@@ -9,8 +9,8 @@ import (
 	"os"
 	"time"
 
-	"github.com/fortinetdev/forti-sdk-go2/fmg/auth"
-	forticlient "github.com/fortinetdev/forti-sdk-go2/fmg/sdkcore"
+	"github.com/fortinetdev/forti-sdk-go/fortimanager2/auth"
+	forticlient "github.com/fortinetdev/forti-sdk-go/fortimanager2/sdkcore"
 )
 
 // Config gets the authentication information from the given metadata
