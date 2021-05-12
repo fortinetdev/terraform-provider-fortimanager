@@ -1,0 +1,385 @@
+// Copyright 2020 Fortinet, Inc. All rights reserved.
+// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
+// Documentation:
+// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
+// Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
+
+// Description: Alert emails.
+
+package fortimanager
+
+import (
+	"fmt"
+	"log"
+	"strconv"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+)
+
+func resourceSystemMail() *schema.Resource {
+	return &schema.Resource{
+		Create: resourceSystemMailCreate,
+		Read:   resourceSystemMailRead,
+		Update: resourceSystemMailUpdate,
+		Delete: resourceSystemMailDelete,
+
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
+
+		Schema: map[string]*schema.Schema{
+			"auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fosid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"passwd": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"secure_option": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"user": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func resourceSystemMailCreate(d *schema.ResourceData, m interface{}) error {
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	obj, err := getObjectSystemMail(d)
+	if err != nil {
+		return fmt.Errorf("Error creating SystemMail resource while getting object: %v", err)
+	}
+
+	_, err = c.CreateSystemMail(obj, adomv, nil)
+
+	if err != nil {
+		return fmt.Errorf("Error creating SystemMail resource: %v", err)
+	}
+
+	d.SetId(getStringKey(d, ""))
+
+	return resourceSystemMailRead(d, m)
+}
+
+func resourceSystemMailUpdate(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	obj, err := getObjectSystemMail(d)
+	if err != nil {
+		return fmt.Errorf("Error updating SystemMail resource while getting object: %v", err)
+	}
+
+	_, err = c.UpdateSystemMail(obj, adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error updating SystemMail resource: %v", err)
+	}
+
+	log.Printf(strconv.Itoa(c.Retries))
+
+	d.SetId(getStringKey(d, ""))
+
+	return resourceSystemMailRead(d, m)
+}
+
+func resourceSystemMailDelete(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	err = c.DeleteSystemMail(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error deleting SystemMail resource: %v", err)
+	}
+
+	d.SetId("")
+
+	return nil
+}
+
+func resourceSystemMailRead(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	o, err := c.ReadSystemMail(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error reading SystemMail resource: %v", err)
+	}
+
+	if o == nil {
+		log.Printf("[WARN] resource (%s) not found, removing from state", d.Id())
+		d.SetId("")
+		return nil
+	}
+
+	err = refreshObjectSystemMail(d, o)
+	if err != nil {
+		return fmt.Errorf("Error reading SystemMail resource from API: %v", err)
+	}
+	return nil
+}
+
+func flattenSystemMailAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenSystemMailId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemMailPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenSystemMailPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemMailSecureOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "default",
+			1: "none",
+			2: "smtps",
+			3: "starttls",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenSystemMailServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemMailUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) error {
+	var err error
+
+	if err = d.Set("auth", flattenSystemMailAuth(o["auth"], d, "auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth"], "SystemMail-Auth"); ok {
+			if err = d.Set("auth", vv); err != nil {
+				return fmt.Errorf("Error reading auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth: %v", err)
+		}
+	}
+
+	if err = d.Set("fosid", flattenSystemMailId(o["id"], d, "fosid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["id"], "SystemMail-Id"); ok {
+			if err = d.Set("fosid", vv); err != nil {
+				return fmt.Errorf("Error reading fosid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fosid: %v", err)
+		}
+	}
+
+	if err = d.Set("passwd", flattenSystemMailPasswd(o["passwd"], d, "passwd")); err != nil {
+		if vv, ok := fortiAPIPatch(o["passwd"], "SystemMail-Passwd"); ok {
+			if err = d.Set("passwd", vv); err != nil {
+				return fmt.Errorf("Error reading passwd: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading passwd: %v", err)
+		}
+	}
+
+	if err = d.Set("port", flattenSystemMailPort(o["port"], d, "port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["port"], "SystemMail-Port"); ok {
+			if err = d.Set("port", vv); err != nil {
+				return fmt.Errorf("Error reading port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading port: %v", err)
+		}
+	}
+
+	if err = d.Set("secure_option", flattenSystemMailSecureOption(o["secure-option"], d, "secure_option")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secure-option"], "SystemMail-SecureOption"); ok {
+			if err = d.Set("secure_option", vv); err != nil {
+				return fmt.Errorf("Error reading secure_option: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secure_option: %v", err)
+		}
+	}
+
+	if err = d.Set("server", flattenSystemMailServer(o["server"], d, "server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server"], "SystemMail-Server"); ok {
+			if err = d.Set("server", vv); err != nil {
+				return fmt.Errorf("Error reading server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server: %v", err)
+		}
+	}
+
+	if err = d.Set("user", flattenSystemMailUser(o["user"], d, "user")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user"], "SystemMail-User"); ok {
+			if err = d.Set("user", vv); err != nil {
+				return fmt.Errorf("Error reading user: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user: %v", err)
+		}
+	}
+
+	return nil
+}
+
+func flattenSystemMailFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fosdebugbeg int, fosdebugend int) {
+	log.Printf(strconv.Itoa(fosdebugsn))
+	e := validation.IntBetween(fosdebugbeg, fosdebugend)
+	log.Printf("ER List: %v", e)
+}
+
+func expandSystemMailAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailPasswd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemMailPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailSecureOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func getObjectSystemMail(d *schema.ResourceData) (*map[string]interface{}, error) {
+	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("auth"); ok {
+		t, err := expandSystemMailAuth(d, v, "auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fosid"); ok {
+		t, err := expandSystemMailId(d, v, "fosid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("passwd"); ok {
+		t, err := expandSystemMailPasswd(d, v, "passwd")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["passwd"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("port"); ok {
+		t, err := expandSystemMailPort(d, v, "port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secure_option"); ok {
+		t, err := expandSystemMailSecureOption(d, v, "secure_option")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secure-option"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server"); ok {
+		t, err := expandSystemMailServer(d, v, "server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user"); ok {
+		t, err := expandSystemMailUser(d, v, "user")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user"] = t
+		}
+	}
+
+	return &obj, nil
+}
