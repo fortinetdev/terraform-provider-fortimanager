@@ -1,0 +1,1142 @@
+// Copyright 2020 Fortinet, Inc. All rights reserved.
+// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
+// Documentation:
+// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
+// Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
+
+// Description: Configure FortiSwitch LLDP profiles.
+
+package fortimanager
+
+import (
+	"fmt"
+	"log"
+	"strconv"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+)
+
+func resourceObjectSwitchControllerLldpProfile() *schema.Resource {
+	return &schema.Resource{
+		Create: resourceObjectSwitchControllerLldpProfileCreate,
+		Read:   resourceObjectSwitchControllerLldpProfileRead,
+		Update: resourceObjectSwitchControllerLldpProfileUpdate,
+		Delete: resourceObjectSwitchControllerLldpProfileDelete,
+
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
+
+		Schema: map[string]*schema.Schema{
+			"scopetype": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "inherit",
+				ForceNew: true,
+				ValidateFunc: validation.StringInSlice([]string{
+					"adom",
+					"global",
+					"inherit",
+				}, false),
+			},
+			"adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
+			"n8021_tlvs": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"n8023_tlvs": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl_hello_timer": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl_port_group": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl_receive_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_mclag_icl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"custom_tlvs": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"information_string": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"oui": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"subtype": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
+			"med_location_service": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sys_location_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
+			"med_network_policy": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"assign_vlan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"dscp": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"priority": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"vlan": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"vlan_intf": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
+			"med_tlvs": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"name": &schema.Schema{
+				Type:     schema.TypeString,
+				ForceNew: true,
+				Optional: true,
+				Computed: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
+			},
+		},
+	}
+}
+
+func resourceObjectSwitchControllerLldpProfileCreate(d *schema.ResourceData, m interface{}) error {
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	obj, err := getObjectObjectSwitchControllerLldpProfile(d)
+	if err != nil {
+		return fmt.Errorf("Error creating ObjectSwitchControllerLldpProfile resource while getting object: %v", err)
+	}
+
+	_, err = c.CreateObjectSwitchControllerLldpProfile(obj, adomv, nil)
+
+	if err != nil {
+		return fmt.Errorf("Error creating ObjectSwitchControllerLldpProfile resource: %v", err)
+	}
+
+	d.SetId(getStringKey(d, "name"))
+
+	return resourceObjectSwitchControllerLldpProfileRead(d, m)
+}
+
+func resourceObjectSwitchControllerLldpProfileUpdate(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	obj, err := getObjectObjectSwitchControllerLldpProfile(d)
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSwitchControllerLldpProfile resource while getting object: %v", err)
+	}
+
+	_, err = c.UpdateObjectSwitchControllerLldpProfile(obj, adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectSwitchControllerLldpProfile resource: %v", err)
+	}
+
+	log.Printf(strconv.Itoa(c.Retries))
+
+	d.SetId(getStringKey(d, "name"))
+
+	return resourceObjectSwitchControllerLldpProfileRead(d, m)
+}
+
+func resourceObjectSwitchControllerLldpProfileDelete(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	err = c.DeleteObjectSwitchControllerLldpProfile(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error deleting ObjectSwitchControllerLldpProfile resource: %v", err)
+	}
+
+	d.SetId("")
+
+	return nil
+}
+
+func resourceObjectSwitchControllerLldpProfileRead(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	o, err := c.ReadObjectSwitchControllerLldpProfile(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error reading ObjectSwitchControllerLldpProfile resource: %v", err)
+	}
+
+	if o == nil {
+		log.Printf("[WARN] resource (%s) not found, removing from state", d.Id())
+		d.SetId("")
+		return nil
+	}
+
+	err = refreshObjectObjectSwitchControllerLldpProfile(d, o)
+	if err != nil {
+		return fmt.Errorf("Error reading ObjectSwitchControllerLldpProfile resource from API: %v", err)
+	}
+	return nil
+}
+
+func flattenObjectSwitchControllerLldpProfile8021Tlvs(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			1: "port-vlan-id",
+		}
+		res := getEnumValbyBit(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfile8023Tlvs(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			1: "max-frame-size",
+			2: "power-negotiation",
+		}
+		res := getEnumValbyBit(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslHelloTimer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslPortGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslReceiveTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoMclagIcl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileCustomTlvs(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "information_string"
+		if _, ok := i["information-string"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileCustomTlvsInformationString(i["information-string"], d, pre_append)
+			tmp["information_string"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-CustomTlvs-InformationString")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileCustomTlvsName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-CustomTlvs-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "oui"
+		if _, ok := i["oui"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileCustomTlvsOui(i["oui"], d, pre_append)
+			tmp["oui"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-CustomTlvs-Oui")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "subtype"
+		if _, ok := i["subtype"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileCustomTlvsSubtype(i["subtype"], d, pre_append)
+			tmp["subtype"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-CustomTlvs-Subtype")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSwitchControllerLldpProfileCustomTlvsInformationString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileCustomTlvsName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileCustomTlvsOui(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileCustomTlvsSubtype(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedLocationService(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedLocationServiceName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedLocationService-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedLocationServiceStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedLocationService-Status")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sys_location_id"
+		if _, ok := i["sys-location-id"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedLocationServiceSysLocationId(i["sys-location-id"], d, pre_append)
+			tmp["sys_location_id"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedLocationService-SysLocationId")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSwitchControllerLldpProfileMedLocationServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedLocationServiceStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedLocationServiceSysLocationId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicy(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "assign_vlan"
+		if _, ok := i["assign-vlan"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyAssignVlan(i["assign-vlan"], d, pre_append)
+			tmp["assign_vlan"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-AssignVlan")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp"
+		if _, ok := i["dscp"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyDscp(i["dscp"], d, pre_append)
+			tmp["dscp"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-Dscp")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
+		if _, ok := i["priority"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyPriority(i["priority"], d, pre_append)
+			tmp["priority"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-Priority")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-Status")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan"
+		if _, ok := i["vlan"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyVlan(i["vlan"], d, pre_append)
+			tmp["vlan"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-Vlan")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_intf"
+		if _, ok := i["vlan-intf"]; ok {
+			v := flattenObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(i["vlan-intf"], d, pre_append)
+			tmp["vlan_intf"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-VlanIntf")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyAssignVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyDscp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileMedTlvs(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			1: "inventory-management",
+			2: "network-policy",
+			4: "power-management",
+			8: "location-identification",
+		}
+		res := getEnumValbyBit(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func refreshObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData, o map[string]interface{}) error {
+	var err error
+
+	if err = d.Set("n8021_tlvs", flattenObjectSwitchControllerLldpProfile8021Tlvs(o["802.1-tlvs"], d, "n8021_tlvs")); err != nil {
+		if vv, ok := fortiAPIPatch(o["802.1-tlvs"], "ObjectSwitchControllerLldpProfile-8021Tlvs"); ok {
+			if err = d.Set("n8021_tlvs", vv); err != nil {
+				return fmt.Errorf("Error reading n8021_tlvs: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading n8021_tlvs: %v", err)
+		}
+	}
+
+	if err = d.Set("n8023_tlvs", flattenObjectSwitchControllerLldpProfile8023Tlvs(o["802.3-tlvs"], d, "n8023_tlvs")); err != nil {
+		if vv, ok := fortiAPIPatch(o["802.3-tlvs"], "ObjectSwitchControllerLldpProfile-8023Tlvs"); ok {
+			if err = d.Set("n8023_tlvs", vv); err != nil {
+				return fmt.Errorf("Error reading n8023_tlvs: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading n8023_tlvs: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl", flattenObjectSwitchControllerLldpProfileAutoIsl(o["auto-isl"], d, "auto_isl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl"], "ObjectSwitchControllerLldpProfile-AutoIsl"); ok {
+			if err = d.Set("auto_isl", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_hello_timer", flattenObjectSwitchControllerLldpProfileAutoIslHelloTimer(o["auto-isl-hello-timer"], d, "auto_isl_hello_timer")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-hello-timer"], "ObjectSwitchControllerLldpProfile-AutoIslHelloTimer"); ok {
+			if err = d.Set("auto_isl_hello_timer", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_hello_timer: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_hello_timer: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_port_group", flattenObjectSwitchControllerLldpProfileAutoIslPortGroup(o["auto-isl-port-group"], d, "auto_isl_port_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-port-group"], "ObjectSwitchControllerLldpProfile-AutoIslPortGroup"); ok {
+			if err = d.Set("auto_isl_port_group", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_port_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_port_group: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_receive_timeout", flattenObjectSwitchControllerLldpProfileAutoIslReceiveTimeout(o["auto-isl-receive-timeout"], d, "auto_isl_receive_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-receive-timeout"], "ObjectSwitchControllerLldpProfile-AutoIslReceiveTimeout"); ok {
+			if err = d.Set("auto_isl_receive_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_receive_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_receive_timeout: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_mclag_icl", flattenObjectSwitchControllerLldpProfileAutoMclagIcl(o["auto-mclag-icl"], d, "auto_mclag_icl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-mclag-icl"], "ObjectSwitchControllerLldpProfile-AutoMclagIcl"); ok {
+			if err = d.Set("auto_mclag_icl", vv); err != nil {
+				return fmt.Errorf("Error reading auto_mclag_icl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_mclag_icl: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("custom_tlvs", flattenObjectSwitchControllerLldpProfileCustomTlvs(o["custom-tlvs"], d, "custom_tlvs")); err != nil {
+			if vv, ok := fortiAPIPatch(o["custom-tlvs"], "ObjectSwitchControllerLldpProfile-CustomTlvs"); ok {
+				if err = d.Set("custom_tlvs", vv); err != nil {
+					return fmt.Errorf("Error reading custom_tlvs: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading custom_tlvs: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("custom_tlvs"); ok {
+			if err = d.Set("custom_tlvs", flattenObjectSwitchControllerLldpProfileCustomTlvs(o["custom-tlvs"], d, "custom_tlvs")); err != nil {
+				if vv, ok := fortiAPIPatch(o["custom-tlvs"], "ObjectSwitchControllerLldpProfile-CustomTlvs"); ok {
+					if err = d.Set("custom_tlvs", vv); err != nil {
+						return fmt.Errorf("Error reading custom_tlvs: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading custom_tlvs: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("med_location_service", flattenObjectSwitchControllerLldpProfileMedLocationService(o["med-location-service"], d, "med_location_service")); err != nil {
+			if vv, ok := fortiAPIPatch(o["med-location-service"], "ObjectSwitchControllerLldpProfile-MedLocationService"); ok {
+				if err = d.Set("med_location_service", vv); err != nil {
+					return fmt.Errorf("Error reading med_location_service: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading med_location_service: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("med_location_service"); ok {
+			if err = d.Set("med_location_service", flattenObjectSwitchControllerLldpProfileMedLocationService(o["med-location-service"], d, "med_location_service")); err != nil {
+				if vv, ok := fortiAPIPatch(o["med-location-service"], "ObjectSwitchControllerLldpProfile-MedLocationService"); ok {
+					if err = d.Set("med_location_service", vv); err != nil {
+						return fmt.Errorf("Error reading med_location_service: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading med_location_service: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("med_network_policy", flattenObjectSwitchControllerLldpProfileMedNetworkPolicy(o["med-network-policy"], d, "med_network_policy")); err != nil {
+			if vv, ok := fortiAPIPatch(o["med-network-policy"], "ObjectSwitchControllerLldpProfile-MedNetworkPolicy"); ok {
+				if err = d.Set("med_network_policy", vv); err != nil {
+					return fmt.Errorf("Error reading med_network_policy: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading med_network_policy: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("med_network_policy"); ok {
+			if err = d.Set("med_network_policy", flattenObjectSwitchControllerLldpProfileMedNetworkPolicy(o["med-network-policy"], d, "med_network_policy")); err != nil {
+				if vv, ok := fortiAPIPatch(o["med-network-policy"], "ObjectSwitchControllerLldpProfile-MedNetworkPolicy"); ok {
+					if err = d.Set("med_network_policy", vv); err != nil {
+						return fmt.Errorf("Error reading med_network_policy: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading med_network_policy: %v", err)
+				}
+			}
+		}
+	}
+
+	if err = d.Set("med_tlvs", flattenObjectSwitchControllerLldpProfileMedTlvs(o["med-tlvs"], d, "med_tlvs")); err != nil {
+		if vv, ok := fortiAPIPatch(o["med-tlvs"], "ObjectSwitchControllerLldpProfile-MedTlvs"); ok {
+			if err = d.Set("med_tlvs", vv); err != nil {
+				return fmt.Errorf("Error reading med_tlvs: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading med_tlvs: %v", err)
+		}
+	}
+
+	if err = d.Set("name", flattenObjectSwitchControllerLldpProfileName(o["name"], d, "name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["name"], "ObjectSwitchControllerLldpProfile-Name"); ok {
+			if err = d.Set("name", vv); err != nil {
+				return fmt.Errorf("Error reading name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	return nil
+}
+
+func flattenObjectSwitchControllerLldpProfileFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fosdebugbeg int, fosdebugend int) {
+	log.Printf(strconv.Itoa(fosdebugsn))
+	e := validation.IntBetween(fosdebugbeg, fosdebugend)
+	log.Printf("ER List: %v", e)
+}
+
+func expandObjectSwitchControllerLldpProfile8021Tlvs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSwitchControllerLldpProfile8023Tlvs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIsl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslHelloTimer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslPortGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslReceiveTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoMclagIcl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileCustomTlvs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "information_string"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["information-string"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsInformationString(d, i["information_string"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["name"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "oui"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["oui"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsOui(d, i["oui"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "subtype"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["subtype"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsSubtype(d, i["subtype"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSwitchControllerLldpProfileCustomTlvsInformationString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileCustomTlvsName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileCustomTlvsOui(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileCustomTlvsSubtype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedLocationService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["name"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["status"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceStatus(d, i["status"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sys_location_id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["sys-location-id"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceSysLocationId(d, i["sys_location_id"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedLocationServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedLocationServiceStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedLocationServiceSysLocationId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "assign_vlan"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["assign-vlan"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyAssignVlan(d, i["assign_vlan"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["dscp"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyDscp(d, i["dscp"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["name"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["priority"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyPriority(d, i["priority"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["status"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyStatus(d, i["status"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["vlan"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlan(d, i["vlan"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_intf"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["vlan-intf"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(d, i["vlan_intf"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyAssignVlan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyDscp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileMedTlvs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSwitchControllerLldpProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
+	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("n8021_tlvs"); ok {
+		t, err := expandObjectSwitchControllerLldpProfile8021Tlvs(d, v, "n8021_tlvs")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["802.1-tlvs"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("n8023_tlvs"); ok {
+		t, err := expandObjectSwitchControllerLldpProfile8023Tlvs(d, v, "n8023_tlvs")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["802.3-tlvs"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIsl(d, v, "auto_isl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_hello_timer"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslHelloTimer(d, v, "auto_isl_hello_timer")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-hello-timer"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_port_group"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslPortGroup(d, v, "auto_isl_port_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-port-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_receive_timeout"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslReceiveTimeout(d, v, "auto_isl_receive_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-receive-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_mclag_icl"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileAutoMclagIcl(d, v, "auto_mclag_icl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-mclag-icl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("custom_tlvs"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileCustomTlvs(d, v, "custom_tlvs")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["custom-tlvs"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("med_location_service"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileMedLocationService(d, v, "med_location_service")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["med-location-service"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("med_network_policy"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileMedNetworkPolicy(d, v, "med_network_policy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["med-network-policy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("med_tlvs"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileMedTlvs(d, v, "med_tlvs")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["med-tlvs"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("name"); ok {
+		t, err := expandObjectSwitchControllerLldpProfileName(d, v, "name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["name"] = t
+		}
+	}
+
+	return &obj, nil
+}
