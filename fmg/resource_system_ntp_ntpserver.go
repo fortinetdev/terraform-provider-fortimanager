@@ -1,0 +1,351 @@
+// Copyright 2020 Fortinet, Inc. All rights reserved.
+// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
+// Documentation:
+// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
+// Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
+
+// Description: NTP server.
+
+package fortimanager
+
+import (
+	"fmt"
+	"log"
+	"strconv"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+)
+
+func resourceSystemNtpNtpserver() *schema.Resource {
+	return &schema.Resource{
+		Create: resourceSystemNtpNtpserverCreate,
+		Read:   resourceSystemNtpNtpserverRead,
+		Update: resourceSystemNtpNtpserverUpdate,
+		Delete: resourceSystemNtpNtpserverDelete,
+
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
+
+		Schema: map[string]*schema.Schema{
+			"authentication": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fosid": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"key": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"key_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"ntpv3": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func resourceSystemNtpNtpserverCreate(d *schema.ResourceData, m interface{}) error {
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	obj, err := getObjectSystemNtpNtpserver(d)
+	if err != nil {
+		return fmt.Errorf("Error creating SystemNtpNtpserver resource while getting object: %v", err)
+	}
+
+	_, err = c.CreateSystemNtpNtpserver(obj, adomv, nil)
+
+	if err != nil {
+		return fmt.Errorf("Error creating SystemNtpNtpserver resource: %v", err)
+	}
+
+	d.SetId(getStringKey(d, ""))
+
+	return resourceSystemNtpNtpserverRead(d, m)
+}
+
+func resourceSystemNtpNtpserverUpdate(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	obj, err := getObjectSystemNtpNtpserver(d)
+	if err != nil {
+		return fmt.Errorf("Error updating SystemNtpNtpserver resource while getting object: %v", err)
+	}
+
+	_, err = c.UpdateSystemNtpNtpserver(obj, adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error updating SystemNtpNtpserver resource: %v", err)
+	}
+
+	log.Printf(strconv.Itoa(c.Retries))
+
+	d.SetId(getStringKey(d, ""))
+
+	return resourceSystemNtpNtpserverRead(d, m)
+}
+
+func resourceSystemNtpNtpserverDelete(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	err = c.DeleteSystemNtpNtpserver(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error deleting SystemNtpNtpserver resource: %v", err)
+	}
+
+	d.SetId("")
+
+	return nil
+}
+
+func resourceSystemNtpNtpserverRead(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	adomv, err := "global", fmt.Errorf("")
+
+	o, err := c.ReadSystemNtpNtpserver(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error reading SystemNtpNtpserver resource: %v", err)
+	}
+
+	if o == nil {
+		log.Printf("[WARN] resource (%s) not found, removing from state", d.Id())
+		d.SetId("")
+		return nil
+	}
+
+	err = refreshObjectSystemNtpNtpserver(d, o)
+	if err != nil {
+		return fmt.Errorf("Error reading SystemNtpNtpserver resource from API: %v", err)
+	}
+	return nil
+}
+
+func flattenSystemNtpNtpserverAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenSystemNtpNtpserverId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemNtpNtpserverKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenSystemNtpNtpserverKeyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemNtpNtpserverNtpv3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenSystemNtpNtpserverServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interface{}) error {
+	var err error
+
+	if err = d.Set("authentication", flattenSystemNtpNtpserverAuthentication(o["authentication"], d, "authentication")); err != nil {
+		if vv, ok := fortiAPIPatch(o["authentication"], "SystemNtpNtpserver-Authentication"); ok {
+			if err = d.Set("authentication", vv); err != nil {
+				return fmt.Errorf("Error reading authentication: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading authentication: %v", err)
+		}
+	}
+
+	if err = d.Set("fosid", flattenSystemNtpNtpserverId(o["id"], d, "fosid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["id"], "SystemNtpNtpserver-Id"); ok {
+			if err = d.Set("fosid", vv); err != nil {
+				return fmt.Errorf("Error reading fosid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fosid: %v", err)
+		}
+	}
+
+	if err = d.Set("key", flattenSystemNtpNtpserverKey(o["key"], d, "key")); err != nil {
+		if vv, ok := fortiAPIPatch(o["key"], "SystemNtpNtpserver-Key"); ok {
+			if err = d.Set("key", vv); err != nil {
+				return fmt.Errorf("Error reading key: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading key: %v", err)
+		}
+	}
+
+	if err = d.Set("key_id", flattenSystemNtpNtpserverKeyId(o["key-id"], d, "key_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["key-id"], "SystemNtpNtpserver-KeyId"); ok {
+			if err = d.Set("key_id", vv); err != nil {
+				return fmt.Errorf("Error reading key_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading key_id: %v", err)
+		}
+	}
+
+	if err = d.Set("ntpv3", flattenSystemNtpNtpserverNtpv3(o["ntpv3"], d, "ntpv3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ntpv3"], "SystemNtpNtpserver-Ntpv3"); ok {
+			if err = d.Set("ntpv3", vv); err != nil {
+				return fmt.Errorf("Error reading ntpv3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ntpv3: %v", err)
+		}
+	}
+
+	if err = d.Set("server", flattenSystemNtpNtpserverServer(o["server"], d, "server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server"], "SystemNtpNtpserver-Server"); ok {
+			if err = d.Set("server", vv); err != nil {
+				return fmt.Errorf("Error reading server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server: %v", err)
+		}
+	}
+
+	return nil
+}
+
+func flattenSystemNtpNtpserverFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fosdebugbeg int, fosdebugend int) {
+	log.Printf(strconv.Itoa(fosdebugsn))
+	e := validation.IntBetween(fosdebugbeg, fosdebugend)
+	log.Printf("ER List: %v", e)
+}
+
+func expandSystemNtpNtpserverAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemNtpNtpserverKeyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverNtpv3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{}, error) {
+	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("authentication"); ok {
+		t, err := expandSystemNtpNtpserverAuthentication(d, v, "authentication")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["authentication"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fosid"); ok {
+		t, err := expandSystemNtpNtpserverId(d, v, "fosid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("key"); ok {
+		t, err := expandSystemNtpNtpserverKey(d, v, "key")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["key"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("key_id"); ok {
+		t, err := expandSystemNtpNtpserverKeyId(d, v, "key_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["key-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ntpv3"); ok {
+		t, err := expandSystemNtpNtpserverNtpv3(d, v, "ntpv3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ntpv3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server"); ok {
+		t, err := expandSystemNtpNtpserverServer(d, v, "server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server"] = t
+		}
+	}
+
+	return &obj, nil
+}
