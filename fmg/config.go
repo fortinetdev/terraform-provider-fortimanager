@@ -1,0 +1,333 @@
+package fortimanager
+
+import (
+	"fmt"
+	"log"
+	"math"
+	"net"
+	"os"
+	"sort"
+	"strconv"
+	"strings"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+)
+
+func validateConvIPMask2CIDR(oNewIP, oOldIP string) string {
+	if oNewIP != oOldIP && strings.Contains(oNewIP, "/") && strings.Contains(oOldIP, " ") {
+		line := strings.Split(oOldIP, " ")
+		if len(line) >= 2 {
+			ip := line[0]
+			mask := line[1]
+			prefixSize, _ := net.IPMask(net.ParseIP(mask).To4()).Size()
+			return ip + "/" + strconv.Itoa(prefixSize)
+		}
+	}
+	return oOldIP
+}
+
+func fortiStringValue(t interface{}) string {
+	if v, ok := t.(string); ok {
+		return v
+	} else {
+		return ""
+	}
+}
+
+func fortiIntValue(t interface{}) int {
+	if v, ok := t.(float64); ok {
+		return int(v)
+	} else {
+		return 0
+	}
+}
+
+func expandStringList(c []interface{}) []string {
+	vs := make([]string, 0, len(c))
+	for _, v := range c {
+		val, ok := v.(string)
+		if ok && val != "" {
+			vs = append(vs, v.(string))
+		}
+	}
+	return vs
+}
+
+func flattenStringList(v interface{}) interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]string, 0, len(l))
+
+	for _, r := range l {
+		result = append(result, fortiStringValue(r))
+	}
+	return result
+}
+
+func expandIntegerList(c []interface{}) []int {
+	vs := make([]int, 0, len(c))
+	for _, v := range c {
+		_, ok := v.(int)
+		if ok {
+			vs = append(vs, v.(int))
+		}
+	}
+	return vs
+}
+
+func flattenIntegerList(v interface{}) interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]int, 0, len(l))
+
+	for _, r := range l {
+		result = append(result, fortiIntValue(r))
+	}
+	return result
+}
+
+func getEnumVal(v interface{}, emap map[int]string) string {
+	if v != nil {
+		if v1, ok := v.(float64); ok {
+			v2 := int(v1)
+			if v3, ok := emap[v2]; ok {
+				return v3
+			}
+		} else if v1, ok := v.(string); ok {
+			for _, v3 := range emap {
+				if v3 == v1 {
+					return v3
+				}
+			}
+		}
+	}
+
+	return "ErrorValue"
+}
+
+func getEnumValbyBit(v interface{}, emap map[int]string) interface{} {
+	if v != nil {
+		if v1, ok := v.(float64); ok {
+			vs := make([]string, 0, 0)
+			v2 := uint32(v1)
+			for i := 0; i < 32; i++ {
+				bit := uint32(math.Pow(2, float64(i)))
+				if v2&bit != 0 {
+					ind := int(bit)
+					if _, ok := emap[ind]; ok {
+						vs = append(vs, emap[ind])
+					}
+				}
+			}
+			return vs
+		}
+	}
+
+	return v
+}
+
+func getStringKey(d *schema.ResourceData, field string) string {
+	if v, ok := d.GetOkExists(field); ok {
+		if v1, ok := v.(string); ok {
+			return v1
+		}
+	}
+
+	return ""
+}
+
+func getIntKey(d *schema.ResourceData, field string) int {
+	if v, ok := d.GetOkExists(field); ok {
+		if v1, ok := v.(int); ok {
+			return v1
+		}
+	}
+
+	return 0
+}
+
+func escapeFilter(filter string) string {
+	filter = strings.ReplaceAll(filter, "_", "-")
+	filter = strings.ReplaceAll(filter, "fosid", "id")
+	filter = strings.ReplaceAll(filter, "&", "&filter=")
+	filter = strings.ReplaceAll(filter, ".", "\\.")
+	filter = strings.ReplaceAll(filter, "\\", "\\\\")
+	filter = "filter=" + filter
+	return filter
+}
+
+func adomChecking(c *Config, d *schema.ResourceData) (string, error) {
+	cst := c.ScopeType
+	cadom := c.Adom
+	st := d.Get("scopetype").(string)
+	adom := d.Get("adom").(string)
+
+	if st == "inherit" || st == "" {
+		if cst == "global" {
+			return "global", nil
+		}
+		return "adom/" + cadom, nil
+	} else if st == "global" {
+		return "global", nil
+	} else if st == "adom" {
+		if adom == "" {
+			err := fmt.Errorf("Empty adom")
+			return "", err
+		}
+		return "adom/" + adom, nil
+	}
+
+	err := fmt.Errorf("unknown adom configuration error")
+	return "", err
+}
+
+func dynamic_sort_subtable(result []map[string]interface{}, fieldname string, d *schema.ResourceData) {
+	if v, ok := d.GetOk("dynamic_sort_subtable"); ok {
+		if v.(string) == "true" {
+			sort.Slice(result, func(i, j int) bool {
+				v1 := fmt.Sprintf("%v", result[i][fieldname])
+				v2 := fmt.Sprintf("%v", result[j][fieldname])
+
+				return v1 < v2
+			})
+		}
+	}
+}
+
+func fortiAPIInt2Bool(t interface{}) string {
+	if v, ok := t.(string); ok {
+		return v
+	} else if v, ok := t.(float64); ok {
+		v1 := int(v)
+		if v1 == 0 {
+			return "false"
+		} else {
+			return "true"
+		}
+	}
+
+	return "false"
+}
+
+func convertV2Ipnetmaskstring(v interface{}) string {
+	res := ""
+
+	if v == nil {
+		return res
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return res
+	}
+
+	for _, r := range l {
+		if res != "" {
+			res += " "
+		}
+		res += fortiStringValue(r)
+	}
+
+	return res
+}
+
+func getAdom(d *schema.ResourceData) string {
+	if v, ok := d.GetOk("adom"); ok {
+		if v1, ok := v.(string); ok {
+			return v1
+		}
+	} else {
+		// if global ..... adom exist?
+		// ...
+		return "global"
+	}
+
+	return "global"
+}
+
+func fortiAPISubPartPatch(t interface{}, lgname string) interface{} {
+	if t == nil {
+		return t
+	} else if v, ok := t.([]interface{}); ok {
+		if len(v) == 0 {
+			log.Printf("shengh6671 - %v", lgname)
+			return ""
+		}
+	}
+
+	return t
+}
+
+func fortiAPIPatch(t interface{}, lgname string) (interface{}, bool) {
+	if t == nil {
+		return nil, false
+		// } else if _, ok := t.(string); ok {
+		// 	return true
+		// } else if _, ok := t.(float64); ok {
+		// 	return true
+	} else if v, ok := t.([]interface{}); ok {
+		if len(v) == 0 {
+			log.Printf("shengh6670 - %v", lgname)
+			return nil, true
+		} else if len(v) == 1 {
+			if vv, ok := v[0].(string); ok {
+				return vv, true
+			}
+			// else if vv, ok := v[0].(float64); ok {
+			// 	return int(vv), true
+			// }
+		}
+	}
+
+	return nil, false
+}
+
+func isImportTable() bool {
+	itable := os.Getenv("FORTIMANAGER_IMPORT_TABLE")
+	if itable == "true" {
+		return true
+	}
+	return false
+}
+
+func convintflist2i(v interface{}) interface{} {
+	if t, ok := v.([]interface{}); ok {
+		if len(t) == 0 {
+			return v
+		}
+		return t[0]
+	}
+	return v
+}
+
+func intBetweenWithZero(min, max int) schema.SchemaValidateFunc {
+	return func(i interface{}, k string) (warnings []string, errors []error) {
+		v, ok := i.(int)
+		if !ok {
+			errors = append(errors, fmt.Errorf("expected type of %s to be integer", k))
+			return warnings, errors
+		}
+
+		if (v >= min && v <= max) || (v == 0) {
+			return warnings, errors
+		}
+
+		errors = append(errors, fmt.Errorf("expected %s to be in the range (%d - %d) or equal to 0, got %d", k, min, max, v))
+
+		return warnings, errors
+	}
+}
