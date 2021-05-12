@@ -1,0 +1,534 @@
+// Copyright 2020 Fortinet, Inc. All rights reserved.
+// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
+// Documentation:
+// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
+// Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
+
+// Description: Configure Authentication Schemes.
+
+package fortimanager
+
+import (
+	"fmt"
+	"log"
+	"strconv"
+
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/validation"
+)
+
+func resourceObjectAuthenticationScheme() *schema.Resource {
+	return &schema.Resource{
+		Create: resourceObjectAuthenticationSchemeCreate,
+		Read:   resourceObjectAuthenticationSchemeRead,
+		Update: resourceObjectAuthenticationSchemeUpdate,
+		Delete: resourceObjectAuthenticationSchemeDelete,
+
+		Importer: &schema.ResourceImporter{
+			State: schema.ImportStatePassthrough,
+		},
+
+		Schema: map[string]*schema.Schema{
+			"scopetype": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "inherit",
+				ForceNew: true,
+				ValidateFunc: validation.StringInSlice([]string{
+					"adom",
+					"global",
+					"inherit",
+				}, false),
+			},
+			"adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
+			"domain_controller": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fsso_agent_for_ntlm": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fsso_guest": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"kerberos_keytab": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"method": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"name": &schema.Schema{
+				Type:     schema.TypeString,
+				ForceNew: true,
+				Optional: true,
+				Computed: true,
+			},
+			"negotiate_ntlm": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"require_tfa": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssh_ca": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"user_database": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+		},
+	}
+}
+
+func resourceObjectAuthenticationSchemeCreate(d *schema.ResourceData, m interface{}) error {
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	obj, err := getObjectObjectAuthenticationScheme(d)
+	if err != nil {
+		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource while getting object: %v", err)
+	}
+
+	_, err = c.CreateObjectAuthenticationScheme(obj, adomv, nil)
+
+	if err != nil {
+		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource: %v", err)
+	}
+
+	d.SetId(getStringKey(d, "name"))
+
+	return resourceObjectAuthenticationSchemeRead(d, m)
+}
+
+func resourceObjectAuthenticationSchemeUpdate(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	obj, err := getObjectObjectAuthenticationScheme(d)
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAuthenticationScheme resource while getting object: %v", err)
+	}
+
+	_, err = c.UpdateObjectAuthenticationScheme(obj, adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error updating ObjectAuthenticationScheme resource: %v", err)
+	}
+
+	log.Printf(strconv.Itoa(c.Retries))
+
+	d.SetId(getStringKey(d, "name"))
+
+	return resourceObjectAuthenticationSchemeRead(d, m)
+}
+
+func resourceObjectAuthenticationSchemeDelete(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	err = c.DeleteObjectAuthenticationScheme(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error deleting ObjectAuthenticationScheme resource: %v", err)
+	}
+
+	d.SetId("")
+
+	return nil
+}
+
+func resourceObjectAuthenticationSchemeRead(d *schema.ResourceData, m interface{}) error {
+	mkey := d.Id()
+
+	c := m.(*FortiClient).Client
+	c.Retries = 1
+
+	cfg := m.(*FortiClient).Cfg
+	adomv, err := adomChecking(cfg, d)
+	if err != nil {
+		return fmt.Errorf("Error adom configuration: %v", err)
+	}
+
+	o, err := c.ReadObjectAuthenticationScheme(adomv, mkey, nil)
+	if err != nil {
+		return fmt.Errorf("Error reading ObjectAuthenticationScheme resource: %v", err)
+	}
+
+	if o == nil {
+		log.Printf("[WARN] resource (%s) not found, removing from state", d.Id())
+		d.SetId("")
+		return nil
+	}
+
+	err = refreshObjectObjectAuthenticationScheme(d, o)
+	if err != nil {
+		return fmt.Errorf("Error reading ObjectAuthenticationScheme resource from API: %v", err)
+	}
+	return nil
+}
+
+func flattenObjectAuthenticationSchemeDomainController(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeFssoAgentForNtlm(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeFssoGuest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectAuthenticationSchemeKerberosKeytab(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			1:   "ntlm",
+			2:   "basic",
+			4:   "digest",
+			8:   "form",
+			16:  "negotiate",
+			32:  "fsso",
+			64:  "rsso",
+			128: "ssh-publickey",
+		}
+		res := getEnumValbyBit(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectAuthenticationSchemeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeNegotiateNtlm(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectAuthenticationSchemeRequireTfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	if v != nil {
+		emap := map[int]string{
+			0: "disable",
+			1: "enable",
+		}
+		res := getEnumVal(v, emap)
+		return res
+	}
+	return v
+}
+
+func flattenObjectAuthenticationSchemeSshCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeUserDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[string]interface{}) error {
+	var err error
+
+	if err = d.Set("domain_controller", flattenObjectAuthenticationSchemeDomainController(o["domain-controller"], d, "domain_controller")); err != nil {
+		if vv, ok := fortiAPIPatch(o["domain-controller"], "ObjectAuthenticationScheme-DomainController"); ok {
+			if err = d.Set("domain_controller", vv); err != nil {
+				return fmt.Errorf("Error reading domain_controller: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading domain_controller: %v", err)
+		}
+	}
+
+	if err = d.Set("fsso_agent_for_ntlm", flattenObjectAuthenticationSchemeFssoAgentForNtlm(o["fsso-agent-for-ntlm"], d, "fsso_agent_for_ntlm")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fsso-agent-for-ntlm"], "ObjectAuthenticationScheme-FssoAgentForNtlm"); ok {
+			if err = d.Set("fsso_agent_for_ntlm", vv); err != nil {
+				return fmt.Errorf("Error reading fsso_agent_for_ntlm: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fsso_agent_for_ntlm: %v", err)
+		}
+	}
+
+	if err = d.Set("fsso_guest", flattenObjectAuthenticationSchemeFssoGuest(o["fsso-guest"], d, "fsso_guest")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fsso-guest"], "ObjectAuthenticationScheme-FssoGuest"); ok {
+			if err = d.Set("fsso_guest", vv); err != nil {
+				return fmt.Errorf("Error reading fsso_guest: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fsso_guest: %v", err)
+		}
+	}
+
+	if err = d.Set("kerberos_keytab", flattenObjectAuthenticationSchemeKerberosKeytab(o["kerberos-keytab"], d, "kerberos_keytab")); err != nil {
+		if vv, ok := fortiAPIPatch(o["kerberos-keytab"], "ObjectAuthenticationScheme-KerberosKeytab"); ok {
+			if err = d.Set("kerberos_keytab", vv); err != nil {
+				return fmt.Errorf("Error reading kerberos_keytab: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading kerberos_keytab: %v", err)
+		}
+	}
+
+	if err = d.Set("method", flattenObjectAuthenticationSchemeMethod(o["method"], d, "method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["method"], "ObjectAuthenticationScheme-Method"); ok {
+			if err = d.Set("method", vv); err != nil {
+				return fmt.Errorf("Error reading method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading method: %v", err)
+		}
+	}
+
+	if err = d.Set("name", flattenObjectAuthenticationSchemeName(o["name"], d, "name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["name"], "ObjectAuthenticationScheme-Name"); ok {
+			if err = d.Set("name", vv); err != nil {
+				return fmt.Errorf("Error reading name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("negotiate_ntlm", flattenObjectAuthenticationSchemeNegotiateNtlm(o["negotiate-ntlm"], d, "negotiate_ntlm")); err != nil {
+		if vv, ok := fortiAPIPatch(o["negotiate-ntlm"], "ObjectAuthenticationScheme-NegotiateNtlm"); ok {
+			if err = d.Set("negotiate_ntlm", vv); err != nil {
+				return fmt.Errorf("Error reading negotiate_ntlm: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading negotiate_ntlm: %v", err)
+		}
+	}
+
+	if err = d.Set("require_tfa", flattenObjectAuthenticationSchemeRequireTfa(o["require-tfa"], d, "require_tfa")); err != nil {
+		if vv, ok := fortiAPIPatch(o["require-tfa"], "ObjectAuthenticationScheme-RequireTfa"); ok {
+			if err = d.Set("require_tfa", vv); err != nil {
+				return fmt.Errorf("Error reading require_tfa: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading require_tfa: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_ca", flattenObjectAuthenticationSchemeSshCa(o["ssh-ca"], d, "ssh_ca")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-ca"], "ObjectAuthenticationScheme-SshCa"); ok {
+			if err = d.Set("ssh_ca", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_ca: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_ca: %v", err)
+		}
+	}
+
+	if err = d.Set("user_database", flattenObjectAuthenticationSchemeUserDatabase(o["user-database"], d, "user_database")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-database"], "ObjectAuthenticationScheme-UserDatabase"); ok {
+			if err = d.Set("user_database", vv); err != nil {
+				return fmt.Errorf("Error reading user_database: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_database: %v", err)
+		}
+	}
+
+	return nil
+}
+
+func flattenObjectAuthenticationSchemeFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fosdebugbeg int, fosdebugend int) {
+	log.Printf(strconv.Itoa(fosdebugsn))
+	e := validation.IntBetween(fosdebugbeg, fosdebugend)
+	log.Printf("ER List: %v", e)
+}
+
+func expandObjectAuthenticationSchemeDomainController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeFssoAgentForNtlm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeFssoGuest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeKerberosKeytab(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAuthenticationSchemeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeNegotiateNtlm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeRequireTfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeSshCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeUserDatabase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]interface{}, error) {
+	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("domain_controller"); ok {
+		t, err := expandObjectAuthenticationSchemeDomainController(d, v, "domain_controller")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["domain-controller"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fsso_agent_for_ntlm"); ok {
+		t, err := expandObjectAuthenticationSchemeFssoAgentForNtlm(d, v, "fsso_agent_for_ntlm")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fsso-agent-for-ntlm"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fsso_guest"); ok {
+		t, err := expandObjectAuthenticationSchemeFssoGuest(d, v, "fsso_guest")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fsso-guest"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("kerberos_keytab"); ok {
+		t, err := expandObjectAuthenticationSchemeKerberosKeytab(d, v, "kerberos_keytab")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["kerberos-keytab"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("method"); ok {
+		t, err := expandObjectAuthenticationSchemeMethod(d, v, "method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["method"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("name"); ok {
+		t, err := expandObjectAuthenticationSchemeName(d, v, "name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("negotiate_ntlm"); ok {
+		t, err := expandObjectAuthenticationSchemeNegotiateNtlm(d, v, "negotiate_ntlm")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["negotiate-ntlm"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("require_tfa"); ok {
+		t, err := expandObjectAuthenticationSchemeRequireTfa(d, v, "require_tfa")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["require-tfa"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_ca"); ok {
+		t, err := expandObjectAuthenticationSchemeSshCa(d, v, "ssh_ca")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-ca"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_database"); ok {
+		t, err := expandObjectAuthenticationSchemeUserDatabase(d, v, "user_database")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-database"] = t
+		}
+	}
+
+	return &obj, nil
+}
