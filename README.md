@@ -18,7 +18,7 @@
 
     ```sh
     $ mkdir -p $GOPATH/src/github.com/terraform-providers; cd $GOPATH/src/github.com/terraform-providers
-    $ git clone git@github.com:terraform-providers/terraform-provider-fortimanager
+    $ git clone git@github.com:fortinetdev/terraform-provider-fortimanager
     ```
 
 2. Enter the provider directory and build the provider.
