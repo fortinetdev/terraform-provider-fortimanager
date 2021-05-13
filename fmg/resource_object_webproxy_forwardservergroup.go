@@ -1,7 +1,7 @@
 // Copyright 2020 Fortinet, Inc. All rights reserved.
-// Author: Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01)
+// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
 // Documentation:
-// Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
+// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
 // Description: Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.

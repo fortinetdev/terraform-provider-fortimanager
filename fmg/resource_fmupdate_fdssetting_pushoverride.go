@@ -1,7 +1,7 @@
 // Copyright 2020 Fortinet, Inc. All rights reserved.
-// Author: Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01)
+// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
 // Documentation:
-// Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
+// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
 // Description: Enable/disable push updates, and override the default IP address and port used by FortiGuard to send antivirus and IPS push messages for clients.
