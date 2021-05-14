@@ -103,10 +103,11 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 				Computed: true,
 			},
 			"scep_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"scep_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -465,16 +466,6 @@ func refreshObjectObjectCertificateTemplate(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading organization_unit: %v", err)
-		}
-	}
-
-	if err = d.Set("scep_password", flattenObjectCertificateTemplateScepPassword(o["scep-password"], d, "scep_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["scep-password"], "ObjectCertificateTemplate-ScepPassword"); ok {
-			if err = d.Set("scep_password", vv); err != nil {
-				return fmt.Errorf("Error reading scep_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading scep_password: %v", err)
 		}
 	}
 
