@@ -409,8 +409,8 @@ func flattenObjectExtenderControllerDataplanUsername(v interface{}, d *schema.Re
 func refreshObjectObjectExtenderControllerDataplan(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("apn", flattenObjectExtenderControllerDataplanApn(o["APN"], d, "apn")); err != nil {
-		if vv, ok := fortiAPIPatch(o["APN"], "ObjectExtenderControllerDataplan-Apn"); ok {
+	if err = d.Set("apn", flattenObjectExtenderControllerDataplanApn(o["apn"], d, "apn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["apn"], "ObjectExtenderControllerDataplan-Apn"); ok {
 			if err = d.Set("apn", vv); err != nil {
 				return fmt.Errorf("Error reading apn: %v", err)
 			}
@@ -419,8 +419,8 @@ func refreshObjectObjectExtenderControllerDataplan(d *schema.ResourceData, o map
 		}
 	}
 
-	if err = d.Set("pdn", flattenObjectExtenderControllerDataplanPdn(o["PDN"], d, "pdn")); err != nil {
-		if vv, ok := fortiAPIPatch(o["PDN"], "ObjectExtenderControllerDataplan-Pdn"); ok {
+	if err = d.Set("pdn", flattenObjectExtenderControllerDataplanPdn(o["pdn"], d, "pdn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pdn"], "ObjectExtenderControllerDataplan-Pdn"); ok {
 			if err = d.Set("pdn", vv); err != nil {
 				return fmt.Errorf("Error reading pdn: %v", err)
 			}
@@ -706,7 +706,7 @@ func getObjectObjectExtenderControllerDataplan(d *schema.ResourceData) (*map[str
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
-			obj["APN"] = t
+			obj["apn"] = t
 		}
 	}
 
@@ -715,7 +715,7 @@ func getObjectObjectExtenderControllerDataplan(d *schema.ResourceData) (*map[str
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
-			obj["PDN"] = t
+			obj["pdn"] = t
 		}
 	}
 
