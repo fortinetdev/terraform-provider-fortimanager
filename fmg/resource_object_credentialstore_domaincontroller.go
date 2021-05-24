@@ -112,7 +112,7 @@ func resourceObjectCredentialStoreDomainControllerCreate(d *schema.ResourceData,
 		return fmt.Errorf("Error creating ObjectCredentialStoreDomainController resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "server-name"))
+	d.SetId(getStringKey(d, "server_name"))
 
 	return resourceObjectCredentialStoreDomainControllerRead(d, m)
 }
@@ -140,7 +140,7 @@ func resourceObjectCredentialStoreDomainControllerUpdate(d *schema.ResourceData,
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "server-name"))
+	d.SetId(getStringKey(d, "server_name"))
 
 	return resourceObjectCredentialStoreDomainControllerRead(d, m)
 }
