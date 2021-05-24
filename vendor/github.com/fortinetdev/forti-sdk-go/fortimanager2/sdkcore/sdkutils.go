@@ -12,7 +12,7 @@ import (
 
 ////////////////////////////////////////////////////////////////////////
 
-func createUpdate(c *FortiSDKClient, globaladom, path string, method string, params *map[string]interface{}, output map[string]interface{}, move bool) (err error) {
+func createUpdate(c *FortiSDKClient, globaladom, path string, method string, params *map[string]interface{}, move bool) (output map[string]interface{}, err error) {
 	data := encodeData(c, globaladom, path, method, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
@@ -40,6 +40,7 @@ func createUpdate(c *FortiSDKClient, globaladom, path string, method string, par
 	err = fortiAPIErrorFormat(result, string(body))
 
 	if err == nil {
+		output = decodeData(result)
 		log.Printf("Successful\n")
 	}
 
@@ -187,10 +188,12 @@ func decodeData(result map[string]interface{}) (map[string]interface{}) {
 	// fortiapi intercepted all the exceptions
 	l := v.([]interface{})
 	v2 := l[0].(map[string]interface{})
-	mapTmp := v2["data"].(map[string]interface{})
+	if v2["data"] != nil {
+		mapTmp := v2["data"].(map[string]interface{})
+		return mapTmp
+	}
 
-
-	return mapTmp
+	return nil
 }
 
 func decodeDataMove(result map[string]interface{}) ([]interface{}) {
@@ -199,10 +202,13 @@ func decodeDataMove(result map[string]interface{}) ([]interface{}) {
 	// fortiapi intercepted all the exceptions
 	l := v.([]interface{})
 	v2 := l[0].(map[string]interface{})
-	v3 := v2["data"]
 
-	if v, ok := v3.([]interface{}); ok {
-		return v
+	if v2["data"] != nil {
+		v3 := v2["data"]
+
+		if v, ok := v3.([]interface{}); ok {
+			return v
+		}
 	}
 
 	return nil
