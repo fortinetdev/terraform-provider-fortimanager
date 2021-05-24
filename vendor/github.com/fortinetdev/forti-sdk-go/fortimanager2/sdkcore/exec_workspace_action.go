@@ -15,8 +15,7 @@ func (c *FortiSDKClient) CreateUpdateExecWorkspaceAction(globaladom, action, tar
 			path += param
 		}
 	}
-	output = make(map[string]interface{})
 
-	err = createUpdate(c, globaladom, path, "exec", nil, output, false)
+	output, err = createUpdate(c, globaladom, path, "exec", nil, false)
 	return
 }
