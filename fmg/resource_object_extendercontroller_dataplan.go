@@ -102,10 +102,11 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"preferred_subnet": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -516,16 +517,6 @@ func refreshObjectObjectExtenderControllerDataplan(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading overage: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectExtenderControllerDataplanPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectExtenderControllerDataplan-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 
