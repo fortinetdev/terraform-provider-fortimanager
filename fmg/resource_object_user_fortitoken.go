@@ -91,7 +91,7 @@ func resourceObjectUserFortitokenCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating ObjectUserFortitoken resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "serial-number"))
+	d.SetId(getStringKey(d, "serial_number"))
 
 	return resourceObjectUserFortitokenRead(d, m)
 }
@@ -119,7 +119,7 @@ func resourceObjectUserFortitokenUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "serial-number"))
+	d.SetId(getStringKey(d, "serial_number"))
 
 	return resourceObjectUserFortitokenRead(d, m)
 }

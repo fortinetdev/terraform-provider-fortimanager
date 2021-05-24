@@ -425,7 +425,7 @@ func resourceObjectSwitchControllerManagedSwitchCreate(d *schema.ResourceData, m
 		return fmt.Errorf("Error creating ObjectSwitchControllerManagedSwitch resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "switch-id"))
+	d.SetId(getStringKey(d, "switch_id"))
 
 	return resourceObjectSwitchControllerManagedSwitchRead(d, m)
 }
@@ -453,7 +453,7 @@ func resourceObjectSwitchControllerManagedSwitchUpdate(d *schema.ResourceData, m
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "switch-id"))
+	d.SetId(getStringKey(d, "switch_id"))
 
 	return resourceObjectSwitchControllerManagedSwitchRead(d, m)
 }

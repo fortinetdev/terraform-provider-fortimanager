@@ -81,7 +81,7 @@ func resourceObjectWanoptPeerCreate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error creating ObjectWanoptPeer resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "peer-host-id"))
+	d.SetId(getStringKey(d, "peer_host_id"))
 
 	return resourceObjectWanoptPeerRead(d, m)
 }
@@ -109,7 +109,7 @@ func resourceObjectWanoptPeerUpdate(d *schema.ResourceData, m interface{}) error
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "peer-host-id"))
+	d.SetId(getStringKey(d, "peer_host_id"))
 
 	return resourceObjectWanoptPeerRead(d, m)
 }

@@ -111,7 +111,7 @@ func resourceObjectVpnSslWebRealmCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating ObjectVpnSslWebRealm resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "url-path"))
+	d.SetId(getStringKey(d, "url_path"))
 
 	return resourceObjectVpnSslWebRealmRead(d, m)
 }
@@ -139,7 +139,7 @@ func resourceObjectVpnSslWebRealmUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "url-path"))
+	d.SetId(getStringKey(d, "url_path"))
 
 	return resourceObjectVpnSslWebRealmRead(d, m)
 }

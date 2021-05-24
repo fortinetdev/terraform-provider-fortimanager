@@ -159,7 +159,7 @@ func resourceObjectFirewallShapingProfileCreate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error creating ObjectFirewallShapingProfile resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "profile-name"))
+	d.SetId(getStringKey(d, "profile_name"))
 
 	return resourceObjectFirewallShapingProfileRead(d, m)
 }
@@ -187,7 +187,7 @@ func resourceObjectFirewallShapingProfileUpdate(d *schema.ResourceData, m interf
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "profile-name"))
+	d.SetId(getStringKey(d, "profile_name"))
 
 	return resourceObjectFirewallShapingProfileRead(d, m)
 }
