@@ -431,7 +431,8 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Computed: true,
 			},
 			"subnet": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1376,7 +1377,7 @@ func flattenObjectFirewallAddressSubType(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallAddressSubnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddressSubnetName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2490,7 +2491,7 @@ func expandObjectFirewallAddressSubType(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallAddressSubnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallAddressSubnetName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
