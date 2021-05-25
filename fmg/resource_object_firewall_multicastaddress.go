@@ -77,7 +77,8 @@ func resourceObjectFirewallMulticastAddress() *schema.Resource {
 				Computed: true,
 			},
 			"subnet": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -250,7 +251,7 @@ func flattenObjectFirewallMulticastAddressStartIp(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallMulticastAddressSubnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallMulticastAddressTagging(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -463,7 +464,7 @@ func expandObjectFirewallMulticastAddressStartIp(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallMulticastAddressSubnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallMulticastAddressTagging(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
