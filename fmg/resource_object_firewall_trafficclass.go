@@ -47,6 +47,7 @@ func resourceObjectFirewallTrafficClass() *schema.Resource {
 			},
 			"class_id": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -80,7 +81,7 @@ func resourceObjectFirewallTrafficClassCreate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error creating ObjectFirewallTrafficClass resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "class_id")))
 
 	return resourceObjectFirewallTrafficClassRead(d, m)
 }
@@ -108,7 +109,7 @@ func resourceObjectFirewallTrafficClassUpdate(d *schema.ResourceData, m interfac
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "class_id")))
 
 	return resourceObjectFirewallTrafficClassRead(d, m)
 }
