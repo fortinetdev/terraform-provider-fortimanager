@@ -688,10 +688,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Computed: true,
 			},
 			"secondary_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -699,10 +700,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Computed: true,
 			},
 			"secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -741,10 +743,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Computed: true,
 			},
 			"tertiary_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -3272,16 +3275,6 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
-	if err = d.Set("secondary_secret", flattenObjectUserRadiusSecondarySecret(o["secondary-secret"], d, "secondary_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secondary-secret"], "ObjectUserRadius-SecondarySecret"); ok {
-			if err = d.Set("secondary_secret", vv); err != nil {
-				return fmt.Errorf("Error reading secondary_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secondary_secret: %v", err)
-		}
-	}
-
 	if err = d.Set("secondary_server", flattenObjectUserRadiusSecondaryServer(o["secondary-server"], d, "secondary_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["secondary-server"], "ObjectUserRadius-SecondaryServer"); ok {
 			if err = d.Set("secondary_server", vv); err != nil {
@@ -3289,16 +3282,6 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading secondary_server: %v", err)
-		}
-	}
-
-	if err = d.Set("secret", flattenObjectUserRadiusSecret(o["secret"], d, "secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secret"], "ObjectUserRadius-Secret"); ok {
-			if err = d.Set("secret", vv); err != nil {
-				return fmt.Errorf("Error reading secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secret: %v", err)
 		}
 	}
 
@@ -3369,16 +3352,6 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading switch_controller_service_type: %v", err)
-		}
-	}
-
-	if err = d.Set("tertiary_secret", flattenObjectUserRadiusTertiarySecret(o["tertiary-secret"], d, "tertiary_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["tertiary-secret"], "ObjectUserRadius-TertiarySecret"); ok {
-			if err = d.Set("tertiary_secret", vv); err != nil {
-				return fmt.Errorf("Error reading tertiary_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading tertiary_secret: %v", err)
 		}
 	}
 
