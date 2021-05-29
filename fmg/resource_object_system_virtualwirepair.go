@@ -46,7 +46,8 @@ func resourceObjectSystemVirtualWirePair() *schema.Resource {
 				ForceNew: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -177,7 +178,7 @@ func resourceObjectSystemVirtualWirePairRead(d *schema.ResourceData, m interface
 }
 
 func flattenObjectSystemVirtualWirePairMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSystemVirtualWirePairName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -253,7 +254,7 @@ func flattenObjectSystemVirtualWirePairFortiTestDebug(d *schema.ResourceData, fo
 }
 
 func expandObjectSystemVirtualWirePairMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectSystemVirtualWirePairName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
