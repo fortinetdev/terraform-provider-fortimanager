@@ -1,7 +1,7 @@
 // Copyright 2020 Fortinet, Inc. All rights reserved.
-// Author: Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu)
+// Author: Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01)
 // Documentation:
-// Frank Shen (@frankshen01), Hongbin Lu (@fgtdev-hblu),
+// Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
 // Description: Device table, most attributes are read-only and can only be changed internally. Refer to Device Manager Command module for API to add, delete, and manage devices.
