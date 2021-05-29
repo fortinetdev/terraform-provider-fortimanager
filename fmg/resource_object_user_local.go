@@ -87,10 +87,11 @@ func resourceObjectUserLocal() *schema.Resource {
 				Computed: true,
 			},
 			"passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"passwd_policy": &schema.Schema{
 				Type:     schema.TypeString,
@@ -103,10 +104,11 @@ func resourceObjectUserLocal() *schema.Resource {
 				Computed: true,
 			},
 			"ppk_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"radius_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -544,16 +546,6 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
-	if err = d.Set("passwd", flattenObjectUserLocalPasswd(o["passwd"], d, "passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["passwd"], "ObjectUserLocal-Passwd"); ok {
-			if err = d.Set("passwd", vv); err != nil {
-				return fmt.Errorf("Error reading passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading passwd: %v", err)
-		}
-	}
-
 	if err = d.Set("passwd_policy", flattenObjectUserLocalPasswdPolicy(o["passwd-policy"], d, "passwd_policy")); err != nil {
 		if vv, ok := fortiAPIPatch(o["passwd-policy"], "ObjectUserLocal-PasswdPolicy"); ok {
 			if err = d.Set("passwd_policy", vv); err != nil {
@@ -571,16 +563,6 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading ppk_identity: %v", err)
-		}
-	}
-
-	if err = d.Set("ppk_secret", flattenObjectUserLocalPpkSecret(o["ppk-secret"], d, "ppk_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["ppk-secret"], "ObjectUserLocal-PpkSecret"); ok {
-			if err = d.Set("ppk_secret", vv); err != nil {
-				return fmt.Errorf("Error reading ppk_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading ppk_secret: %v", err)
 		}
 	}
 
