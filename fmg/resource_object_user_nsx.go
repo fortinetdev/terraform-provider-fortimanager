@@ -51,10 +51,11 @@ func resourceObjectUserNsx() *schema.Resource {
 				Computed: true,
 			},
 			"fmgpasswd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"fmguser": &schema.Schema{
 				Type:     schema.TypeString,
@@ -68,10 +69,11 @@ func resourceObjectUserNsx() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -261,16 +263,6 @@ func refreshObjectObjectUserNsx(d *schema.ResourceData, o map[string]interface{}
 		}
 	}
 
-	if err = d.Set("fmgpasswd", flattenObjectUserNsxFmgpasswd(o["fmgpasswd"], d, "fmgpasswd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["fmgpasswd"], "ObjectUserNsx-Fmgpasswd"); ok {
-			if err = d.Set("fmgpasswd", vv); err != nil {
-				return fmt.Errorf("Error reading fmgpasswd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading fmgpasswd: %v", err)
-		}
-	}
-
 	if err = d.Set("fmguser", flattenObjectUserNsxFmguser(o["fmguser"], d, "fmguser")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fmguser"], "ObjectUserNsx-Fmguser"); ok {
 			if err = d.Set("fmguser", vv); err != nil {
@@ -288,16 +280,6 @@ func refreshObjectObjectUserNsx(d *schema.ResourceData, o map[string]interface{}
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectUserNsxPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectUserNsx-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 
