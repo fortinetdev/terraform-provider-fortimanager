@@ -176,10 +176,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Computed: true,
 			},
 			"proxy_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"proxy_server_ip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -904,16 +905,6 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading protocol: %v", err)
-		}
-	}
-
-	if err = d.Set("proxy_password", flattenObjectSystemFortiguardProxyPassword(o["proxy-password"], d, "proxy_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["proxy-password"], "ObjectSystemFortiguard-ProxyPassword"); ok {
-			if err = d.Set("proxy_password", vv); err != nil {
-				return fmt.Errorf("Error reading proxy_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading proxy_password: %v", err)
 		}
 	}
 
