@@ -254,6 +254,12 @@ func resourcePackagesFirewallDosPolicyRead(d *schema.ResourceData, m interface{}
 	}
 
 	pkg := d.Get("pkg").(string)
+	if pkg == "" {
+		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if err = d.Set("pkg", pkg); err != nil {
+			return fmt.Errorf("Error set params pkg: %v", err)
+		}
+	}
 	var paralist []string
 	paralist = append(paralist, pkg)
 

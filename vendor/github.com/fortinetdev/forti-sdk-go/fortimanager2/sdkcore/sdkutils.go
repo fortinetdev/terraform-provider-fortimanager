@@ -167,6 +167,8 @@ func encodeData(c *FortiSDKClient, globaladom, path, method string, params *map[
 	paramItem := make(map[string]interface{})
 	paramItem["url"] = computerPath(globaladom, path) //"/cli/global/system/admin/setting"
 
+	log.Printf("shengh: %v\n", paramItem["url"])
+
 	if move == false {
 		paramItem["data"] = params
 	} else {

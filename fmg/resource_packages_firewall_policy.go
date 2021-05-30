@@ -386,7 +386,8 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"natip": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -796,10 +797,19 @@ func resourcePackagesFirewallPolicyCreate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesFirewallPolicy(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallPolicy resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
@@ -878,6 +888,12 @@ func resourcePackagesFirewallPolicyRead(d *schema.ResourceData, m interface{}) e
 	}
 
 	pkg := d.Get("pkg").(string)
+	if pkg == "" {
+		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if err = d.Set("pkg", pkg); err != nil {
+			return fmt.Errorf("Error set params pkg: %v", err)
+		}
+	}
 	var paralist []string
 	paralist = append(paralist, pkg)
 
@@ -1426,7 +1442,7 @@ func flattenPackagesFirewallPolicyNatinbound(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicyNatip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicyNatoutbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3695,7 +3711,7 @@ func expandPackagesFirewallPolicyNatinbound(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicyNatip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicyNatoutbound(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
