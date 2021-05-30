@@ -195,6 +195,27 @@ func adomChecking(c *Config, d *schema.ResourceData) (string, error) {
 	return "", err
 }
 
+func importOptionChecking(c *Config, para string) string {
+	v := c.ImportOptions.List()
+	if len(v) == 0 {
+		return ""
+	}
+
+	for _, v1 := range v {
+		if v2, ok := v1.(string); ok {
+			v3 := strings.Split(v2, "=")
+
+			if len(v3) == 2 { // Example "pkg=default"
+				if v3[0] == para {
+					return v3[1]
+				}
+			}
+		}
+	}
+
+	return ""
+}
+
 func dynamic_sort_subtable(result []map[string]interface{}, fieldname string, d *schema.ResourceData) {
 	if v, ok := d.GetOk("dynamic_sort_subtable"); ok {
 		if v.(string) == "true" {

@@ -11,17 +11,19 @@ import (
 
 	"github.com/fortinetdev/forti-sdk-go/fortimanager2/auth"
 	forticlient "github.com/fortinetdev/forti-sdk-go/fortimanager2/sdkcore"
+	"github.com/hashicorp/terraform-plugin-sdk/helper/schema"
 )
 
 // Config gets the authentication information from the given metadata
 type Config struct {
-	Hostname  string
-	User      string
-	Passwd    string
-	Insecure  *bool
-	CABundle  string
-	ScopeType string
-	Adom      string
+	Hostname      string
+	User          string
+	Passwd        string
+	Insecure      *bool
+	CABundle      string
+	ScopeType     string
+	Adom          string
+	ImportOptions *schema.Set
 }
 
 // FortiClient contains the basic FMG SDK connection information to FMG

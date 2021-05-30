@@ -67,6 +67,13 @@ func Provider() terraform.ResourceProvider {
 				Optional: true,
 				Default:  "root",
 			},
+
+			"import_options": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -450,12 +457,13 @@ func Provider() terraform.ResourceProvider {
 
 func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 	config := Config{
-		Hostname:  d.Get("hostname").(string),
-		User:      d.Get("username").(string),
-		Passwd:    d.Get("password").(string),
-		CABundle:  d.Get("cabundlefile").(string),
-		ScopeType: d.Get("scopetype").(string),
-		Adom:      d.Get("adom").(string),
+		Hostname:      d.Get("hostname").(string),
+		User:          d.Get("username").(string),
+		Passwd:        d.Get("password").(string),
+		CABundle:      d.Get("cabundlefile").(string),
+		ScopeType:     d.Get("scopetype").(string),
+		Adom:          d.Get("adom").(string),
+		ImportOptions: d.Get("import_options").(*schema.Set),
 	}
 
 	v1, ok1 := d.GetOkExists("insecure")
