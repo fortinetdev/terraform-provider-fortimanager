@@ -47,12 +47,12 @@ func resourceObjectWebfilterFtgdLocalCat() *schema.Resource {
 			},
 			"desc": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
-				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -86,7 +86,7 @@ func resourceObjectWebfilterFtgdLocalCatCreate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	d.SetId(getStringKey(d, "desc"))
 
 	return resourceObjectWebfilterFtgdLocalCatRead(d, m)
 }
@@ -114,7 +114,7 @@ func resourceObjectWebfilterFtgdLocalCatUpdate(d *schema.ResourceData, m interfa
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
+	d.SetId(getStringKey(d, "desc"))
 
 	return resourceObjectWebfilterFtgdLocalCatRead(d, m)
 }
