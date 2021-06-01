@@ -31,6 +31,7 @@ func resourceSystemSamlFabricIdp() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"dev_id": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -80,7 +81,7 @@ func resourceSystemSamlFabricIdpCreate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error creating SystemSamlFabricIdp resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "dev_id"))
 
 	return resourceSystemSamlFabricIdpRead(d, m)
 }
@@ -104,7 +105,7 @@ func resourceSystemSamlFabricIdpUpdate(d *schema.ResourceData, m interface{}) er
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "dev_id"))
 
 	return resourceSystemSamlFabricIdpRead(d, m)
 }
