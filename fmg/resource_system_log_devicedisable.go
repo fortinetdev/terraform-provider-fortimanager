@@ -41,6 +41,7 @@ func resourceSystemLogDeviceDisable() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -65,7 +66,7 @@ func resourceSystemLogDeviceDisableCreate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error creating SystemLogDeviceDisable resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLogDeviceDisableRead(d, m)
 }
@@ -89,7 +90,7 @@ func resourceSystemLogDeviceDisableUpdate(d *schema.ResourceData, m interface{})
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLogDeviceDisableRead(d, m)
 }
