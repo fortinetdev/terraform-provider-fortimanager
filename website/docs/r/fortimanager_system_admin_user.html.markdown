@@ -165,14 +165,14 @@ The `web_filter` block supports:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{userid}}.
 
 ## Import
 
 System AdminUser can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_admin_user.labelname SystemAdminUser
+$ terraform import fortimanager_system_admin_user.labelname {{userid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
