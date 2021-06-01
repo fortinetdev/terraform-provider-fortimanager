@@ -359,6 +359,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -636,13 +637,22 @@ func resourcePackagesGlobalHeaderPolicy6Create(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesGlobalHeaderPolicy6(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesGlobalHeaderPolicy6Read(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
+		}
+	}
+
+	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
 
 	return resourcePackagesGlobalHeaderPolicy6Read(d, m)
 }
@@ -670,7 +680,7 @@ func resourcePackagesGlobalHeaderPolicy6Update(d *schema.ResourceData, m interfa
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
 
 	return resourcePackagesGlobalHeaderPolicy6Read(d, m)
 }
