@@ -302,6 +302,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -529,13 +530,22 @@ func resourcePackagesGlobalFooterConsolidatedPolicyCreate(d *schema.ResourceData
 		return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesGlobalFooterConsolidatedPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalFooterConsolidatedPolicy(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesGlobalFooterConsolidatedPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesGlobalFooterConsolidatedPolicy resource: %v", err)
+		}
+	}
+
+	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
 
 	return resourcePackagesGlobalFooterConsolidatedPolicyRead(d, m)
 }
@@ -563,7 +573,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicyUpdate(d *schema.ResourceData
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
 
 	return resourcePackagesGlobalFooterConsolidatedPolicyRead(d, m)
 }
