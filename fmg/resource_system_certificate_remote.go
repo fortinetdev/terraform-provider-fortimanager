@@ -42,6 +42,7 @@ func resourceSystemCertificateRemote() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -66,7 +67,7 @@ func resourceSystemCertificateRemoteCreate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error creating SystemCertificateRemote resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateRemoteRead(d, m)
 }
@@ -90,7 +91,7 @@ func resourceSystemCertificateRemoteUpdate(d *schema.ResourceData, m interface{}
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateRemoteRead(d, m)
 }
