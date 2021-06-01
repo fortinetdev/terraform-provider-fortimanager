@@ -21,14 +21,14 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{adom_name}}.
 
 ## Import
 
 System GlobalMcPolicyDisabledAdoms can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_global_mcpolicydisabledadoms.labelname SystemGlobalMcPolicyDisabledAdoms
+$ terraform import fortimanager_system_global_mcpolicydisabledadoms.labelname {{adom_name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
