@@ -55,7 +55,7 @@ func resourceSystemGlobalMcPolicyDisabledAdomsCreate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error creating SystemGlobalMcPolicyDisabledAdoms resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "adom_name")))
 
 	return resourceSystemGlobalMcPolicyDisabledAdomsRead(d, m)
 }
@@ -79,7 +79,7 @@ func resourceSystemGlobalMcPolicyDisabledAdomsUpdate(d *schema.ResourceData, m i
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "adom_name")))
 
 	return resourceSystemGlobalMcPolicyDisabledAdomsRead(d, m)
 }
