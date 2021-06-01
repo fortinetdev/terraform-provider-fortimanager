@@ -132,14 +132,14 @@ The `datamask_custom_fields` block supports:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{profileid}}.
 
 ## Import
 
 System AdminProfile can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_admin_profile.labelname SystemAdminProfile
+$ terraform import fortimanager_system_admin_profile.labelname {{profileid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
