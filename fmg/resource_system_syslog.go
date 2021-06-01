@@ -36,6 +36,7 @@ func resourceSystemSyslog() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -65,7 +66,7 @@ func resourceSystemSyslogCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error creating SystemSyslog resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemSyslogRead(d, m)
 }
@@ -89,7 +90,7 @@ func resourceSystemSyslogUpdate(d *schema.ResourceData, m interface{}) error {
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemSyslogRead(d, m)
 }
