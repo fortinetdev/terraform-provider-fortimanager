@@ -36,6 +36,7 @@ func resourceSystemSqlCustomSkipidx() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -70,7 +71,7 @@ func resourceSystemSqlCustomSkipidxCreate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error creating SystemSqlCustomSkipidx resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSqlCustomSkipidxRead(d, m)
 }
@@ -94,7 +95,7 @@ func resourceSystemSqlCustomSkipidxUpdate(d *schema.ResourceData, m interface{})
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSqlCustomSkipidxRead(d, m)
 }
