@@ -31,6 +31,7 @@ func resourceFmupdateFdsSettingPushOverrideToClientAnnounceIp() *schema.Resource
 		Schema: map[string]*schema.Schema{
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -65,7 +66,7 @@ func resourceFmupdateFdsSettingPushOverrideToClientAnnounceIpCreate(d *schema.Re
 		return fmt.Errorf("Error creating FmupdateFdsSettingPushOverrideToClientAnnounceIp resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceFmupdateFdsSettingPushOverrideToClientAnnounceIpRead(d, m)
 }
@@ -89,7 +90,7 @@ func resourceFmupdateFdsSettingPushOverrideToClientAnnounceIpUpdate(d *schema.Re
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceFmupdateFdsSettingPushOverrideToClientAnnounceIpRead(d, m)
 }
