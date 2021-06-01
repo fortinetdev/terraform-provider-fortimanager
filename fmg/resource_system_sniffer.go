@@ -36,6 +36,7 @@ func resourceSystemSniffer() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -95,7 +96,7 @@ func resourceSystemSnifferCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error creating SystemSniffer resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSnifferRead(d, m)
 }
@@ -119,7 +120,7 @@ func resourceSystemSnifferUpdate(d *schema.ResourceData, m interface{}) error {
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSnifferRead(d, m)
 }
