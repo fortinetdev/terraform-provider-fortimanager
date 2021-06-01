@@ -31,6 +31,7 @@ func resourceSystemHaPeer() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -75,7 +76,7 @@ func resourceSystemHaPeerCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error creating SystemHaPeer resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemHaPeerRead(d, m)
 }
@@ -99,7 +100,7 @@ func resourceSystemHaPeerUpdate(d *schema.ResourceData, m interface{}) error {
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemHaPeerRead(d, m)
 }
