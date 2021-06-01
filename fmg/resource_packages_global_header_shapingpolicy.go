@@ -270,10 +270,19 @@ func resourcePackagesGlobalHeaderShapingPolicyCreate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesGlobalHeaderShapingPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
+	}
+
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesGlobalHeaderShapingPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
