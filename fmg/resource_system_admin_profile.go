@@ -257,6 +257,7 @@ func resourceSystemAdminProfile() *schema.Resource {
 			},
 			"profileid": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -346,7 +347,7 @@ func resourceSystemAdminProfileCreate(d *schema.ResourceData, m interface{}) err
 		return fmt.Errorf("Error creating SystemAdminProfile resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "profileid")))
 
 	return resourceSystemAdminProfileRead(d, m)
 }
@@ -370,7 +371,7 @@ func resourceSystemAdminProfileUpdate(d *schema.ResourceData, m interface{}) err
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "profileid")))
 
 	return resourceSystemAdminProfileRead(d, m)
 }
