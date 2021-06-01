@@ -25,14 +25,14 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{name}}.
 
 ## Import
 
 System CertificateCrl can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_certificate_crl.labelname SystemCertificateCrl
+$ terraform import fortimanager_system_certificate_crl.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
