@@ -80,6 +80,7 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -194,7 +195,7 @@ func resourceSystemLogFetchClientProfileCreate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error creating SystemLogFetchClientProfile resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLogFetchClientProfileRead(d, m)
 }
@@ -218,7 +219,7 @@ func resourceSystemLogFetchClientProfileUpdate(d *schema.ResourceData, m interfa
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLogFetchClientProfileRead(d, m)
 }
