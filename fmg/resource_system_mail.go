@@ -36,6 +36,7 @@ func resourceSystemMail() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -86,7 +87,7 @@ func resourceSystemMailCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error creating SystemMail resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "fosid"))
 
 	return resourceSystemMailRead(d, m)
 }
@@ -110,7 +111,7 @@ func resourceSystemMailUpdate(d *schema.ResourceData, m interface{}) error {
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "fosid"))
 
 	return resourceSystemMailRead(d, m)
 }
