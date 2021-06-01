@@ -41,6 +41,7 @@ func resourceSystemLogMailDomain() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -70,7 +71,7 @@ func resourceSystemLogMailDomainCreate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error creating SystemLogMailDomain resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLogMailDomainRead(d, m)
 }
@@ -94,7 +95,7 @@ func resourceSystemLogMailDomainUpdate(d *schema.ResourceData, m interface{}) er
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLogMailDomainRead(d, m)
 }
