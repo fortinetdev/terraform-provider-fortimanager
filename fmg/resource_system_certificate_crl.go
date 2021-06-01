@@ -47,6 +47,7 @@ func resourceSystemCertificateCrl() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -76,7 +77,7 @@ func resourceSystemCertificateCrlCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating SystemCertificateCrl resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateCrlRead(d, m)
 }
@@ -100,7 +101,7 @@ func resourceSystemCertificateCrlUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateCrlRead(d, m)
 }
