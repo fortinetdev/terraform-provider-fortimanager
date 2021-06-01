@@ -24,14 +24,14 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{fosid}}.
 
 ## Import
 
 Fmupdate ServerAccessPrioritiesPrivateServer can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_fmupdate_serveraccesspriorities_privateserver.labelname FmupdateServerAccessPrioritiesPrivateServer
+$ terraform import fortimanager_fmupdate_serveraccesspriorities_privateserver.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
