@@ -42,6 +42,7 @@ func resourceSystemCertificateCa() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -66,7 +67,7 @@ func resourceSystemCertificateCaCreate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error creating SystemCertificateCa resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateCaRead(d, m)
 }
@@ -90,7 +91,7 @@ func resourceSystemCertificateCaUpdate(d *schema.ResourceData, m interface{}) er
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateCaRead(d, m)
 }
