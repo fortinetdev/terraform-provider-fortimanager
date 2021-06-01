@@ -41,6 +41,7 @@ func resourceSystemSqlCustomIndex() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -75,7 +76,7 @@ func resourceSystemSqlCustomIndexCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating SystemSqlCustomIndex resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSqlCustomIndexRead(d, m)
 }
@@ -99,7 +100,7 @@ func resourceSystemSqlCustomIndexUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSqlCustomIndexRead(d, m)
 }
