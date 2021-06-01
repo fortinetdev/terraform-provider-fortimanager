@@ -23,14 +23,14 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{fosid}}.
 
 ## Import
 
 System LogDeviceDisable can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_log_devicedisable.labelname SystemLogDeviceDisable
+$ terraform import fortimanager_system_log_devicedisable.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
