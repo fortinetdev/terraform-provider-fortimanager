@@ -31,6 +31,7 @@ func resourceSystemWorkflowApprovalMatrix() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"adom_name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -88,7 +89,7 @@ func resourceSystemWorkflowApprovalMatrixCreate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error creating SystemWorkflowApprovalMatrix resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "adom_name"))
 
 	return resourceSystemWorkflowApprovalMatrixRead(d, m)
 }
@@ -112,7 +113,7 @@ func resourceSystemWorkflowApprovalMatrixUpdate(d *schema.ResourceData, m interf
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "adom_name"))
 
 	return resourceSystemWorkflowApprovalMatrixRead(d, m)
 }
