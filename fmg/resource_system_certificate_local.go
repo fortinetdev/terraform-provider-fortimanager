@@ -48,6 +48,7 @@ func resourceSystemCertificateLocal() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -84,7 +85,7 @@ func resourceSystemCertificateLocalCreate(d *schema.ResourceData, m interface{})
 		return fmt.Errorf("Error creating SystemCertificateLocal resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateLocalRead(d, m)
 }
@@ -108,7 +109,7 @@ func resourceSystemCertificateLocalUpdate(d *schema.ResourceData, m interface{})
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateLocalRead(d, m)
 }
