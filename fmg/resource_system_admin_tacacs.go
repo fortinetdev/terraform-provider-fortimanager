@@ -40,10 +40,11 @@ func resourceSystemAdminTacacs() *schema.Resource {
 				Computed: true,
 			},
 			"key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -57,10 +58,11 @@ func resourceSystemAdminTacacs() *schema.Resource {
 				Computed: true,
 			},
 			"secondary_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -73,10 +75,11 @@ func resourceSystemAdminTacacs() *schema.Resource {
 				Computed: true,
 			},
 			"tertiary_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -259,16 +262,6 @@ func refreshObjectSystemAdminTacacs(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
-	if err = d.Set("key", flattenSystemAdminTacacsKey(o["key"], d, "key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["key"], "SystemAdminTacacs-Key"); ok {
-			if err = d.Set("key", vv); err != nil {
-				return fmt.Errorf("Error reading key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading key: %v", err)
-		}
-	}
-
 	if err = d.Set("name", flattenSystemAdminTacacsName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "SystemAdminTacacs-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -289,16 +282,6 @@ func refreshObjectSystemAdminTacacs(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
-	if err = d.Set("secondary_key", flattenSystemAdminTacacsSecondaryKey(o["secondary-key"], d, "secondary_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secondary-key"], "SystemAdminTacacs-SecondaryKey"); ok {
-			if err = d.Set("secondary_key", vv); err != nil {
-				return fmt.Errorf("Error reading secondary_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secondary_key: %v", err)
-		}
-	}
-
 	if err = d.Set("secondary_server", flattenSystemAdminTacacsSecondaryServer(o["secondary-server"], d, "secondary_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["secondary-server"], "SystemAdminTacacs-SecondaryServer"); ok {
 			if err = d.Set("secondary_server", vv); err != nil {
@@ -316,16 +299,6 @@ func refreshObjectSystemAdminTacacs(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading server: %v", err)
-		}
-	}
-
-	if err = d.Set("tertiary_key", flattenSystemAdminTacacsTertiaryKey(o["tertiary-key"], d, "tertiary_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["tertiary-key"], "SystemAdminTacacs-TertiaryKey"); ok {
-			if err = d.Set("tertiary_key", vv); err != nil {
-				return fmt.Errorf("Error reading tertiary_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading tertiary_key: %v", err)
 		}
 	}
 
