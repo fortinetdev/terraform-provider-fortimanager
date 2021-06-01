@@ -27,14 +27,14 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{fieldname}}.
 
 ## Import
 
 System MetadataAdmins can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_metadata_admins.labelname SystemMetadataAdmins
+$ terraform import fortimanager_system_metadata_admins.labelname {{fieldname}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
