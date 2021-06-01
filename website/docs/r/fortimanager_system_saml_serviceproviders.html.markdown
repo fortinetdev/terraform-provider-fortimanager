@@ -29,14 +29,14 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{idp_entity_id}}.
 
 ## Import
 
 System SamlServiceProviders can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_saml_serviceproviders.labelname SystemSamlServiceProviders
+$ terraform import fortimanager_system_saml_serviceproviders.labelname {{idp_entity_id}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
