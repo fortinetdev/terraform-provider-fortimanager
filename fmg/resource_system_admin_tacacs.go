@@ -47,6 +47,7 @@ func resourceSystemAdminTacacs() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -103,7 +104,7 @@ func resourceSystemAdminTacacsCreate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error creating SystemAdminTacacs resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemAdminTacacsRead(d, m)
 }
@@ -127,7 +128,7 @@ func resourceSystemAdminTacacsUpdate(d *schema.ResourceData, m interface{}) erro
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemAdminTacacsRead(d, m)
 }
