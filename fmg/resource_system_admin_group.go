@@ -44,6 +44,7 @@ func resourceSystemAdminGroup() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -73,7 +74,7 @@ func resourceSystemAdminGroupCreate(d *schema.ResourceData, m interface{}) error
 		return fmt.Errorf("Error creating SystemAdminGroup resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemAdminGroupRead(d, m)
 }
@@ -97,7 +98,7 @@ func resourceSystemAdminGroupUpdate(d *schema.ResourceData, m interface{}) error
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemAdminGroupRead(d, m)
 }
