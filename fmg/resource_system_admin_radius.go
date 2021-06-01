@@ -36,6 +36,7 @@ func resourceSystemAdminRadius() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -92,7 +93,7 @@ func resourceSystemAdminRadiusCreate(d *schema.ResourceData, m interface{}) erro
 		return fmt.Errorf("Error creating SystemAdminRadius resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemAdminRadiusRead(d, m)
 }
@@ -116,7 +117,7 @@ func resourceSystemAdminRadiusUpdate(d *schema.ResourceData, m interface{}) erro
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemAdminRadiusRead(d, m)
 }
