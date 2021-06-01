@@ -270,10 +270,19 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesGlobalFooterShapingPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
+	}
+
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesGlobalFooterShapingPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
