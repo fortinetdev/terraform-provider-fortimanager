@@ -36,6 +36,7 @@ func resourceSystemMetadataAdmins() *schema.Resource {
 			},
 			"fieldname": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -70,7 +71,7 @@ func resourceSystemMetadataAdminsCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating SystemMetadataAdmins resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "fieldname"))
 
 	return resourceSystemMetadataAdminsRead(d, m)
 }
@@ -94,7 +95,7 @@ func resourceSystemMetadataAdminsUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "fieldname"))
 
 	return resourceSystemMetadataAdminsRead(d, m)
 }
