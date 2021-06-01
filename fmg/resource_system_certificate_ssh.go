@@ -42,6 +42,7 @@ func resourceSystemCertificateSsh() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -72,7 +73,7 @@ func resourceSystemCertificateSshCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating SystemCertificateSsh resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateSshRead(d, m)
 }
@@ -96,7 +97,7 @@ func resourceSystemCertificateSshUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemCertificateSshRead(d, m)
 }
