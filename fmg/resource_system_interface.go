@@ -87,6 +87,7 @@ func resourceSystemInterface() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -143,7 +144,7 @@ func resourceSystemInterfaceCreate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error creating SystemInterface resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemInterfaceRead(d, m)
 }
@@ -167,7 +168,7 @@ func resourceSystemInterfaceUpdate(d *schema.ResourceData, m interface{}) error 
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceSystemInterfaceRead(d, m)
 }
