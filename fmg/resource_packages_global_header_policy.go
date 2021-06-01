@@ -618,7 +618,8 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"natip": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -675,6 +676,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -1092,13 +1094,22 @@ func resourcePackagesGlobalHeaderPolicyCreate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesGlobalHeaderPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderPolicy(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesGlobalHeaderPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource: %v", err)
+		}
+	}
+
+	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
 
 	return resourcePackagesGlobalHeaderPolicyRead(d, m)
 }
@@ -1126,7 +1137,7 @@ func resourcePackagesGlobalHeaderPolicyUpdate(d *schema.ResourceData, m interfac
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
 
 	return resourcePackagesGlobalHeaderPolicyRead(d, m)
 }
@@ -2213,7 +2224,7 @@ func flattenPackagesGlobalHeaderPolicyNatinbound(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalHeaderPolicyNatip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalHeaderPolicyNatoutbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -5475,7 +5486,7 @@ func expandPackagesGlobalHeaderPolicyNatinbound(d *schema.ResourceData, v interf
 }
 
 func expandPackagesGlobalHeaderPolicyNatip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalHeaderPolicyNatoutbound(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
