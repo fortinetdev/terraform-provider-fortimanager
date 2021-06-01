@@ -102,6 +102,7 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -275,7 +276,7 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourcePackagesGlobalFooterShapingPolicyRead(d, m)
 }
@@ -303,7 +304,7 @@ func resourcePackagesGlobalFooterShapingPolicyUpdate(d *schema.ResourceData, m i
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourcePackagesGlobalFooterShapingPolicyRead(d, m)
 }
