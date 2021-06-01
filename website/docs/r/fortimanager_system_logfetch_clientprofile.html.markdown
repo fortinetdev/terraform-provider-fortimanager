@@ -60,14 +60,14 @@ The `log_filter` block supports:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{fosid}}.
 
 ## Import
 
 System LogFetchClientProfile can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_logfetch_clientprofile.labelname SystemLogFetchClientProfile
+$ terraform import fortimanager_system_logfetch_clientprofile.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
