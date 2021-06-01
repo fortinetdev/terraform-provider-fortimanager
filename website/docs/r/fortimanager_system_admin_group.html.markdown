@@ -27,14 +27,14 @@ The `member` block supports:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{name}}.
 
 ## Import
 
 System AdminGroup can be imported using any of these accepted formats:
 ```
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_admin_group.labelname SystemAdminGroup
+$ terraform import fortimanager_system_admin_group.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 
