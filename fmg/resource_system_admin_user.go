@@ -509,6 +509,7 @@ func resourceSystemAdminUser() *schema.Resource {
 			},
 			"userid": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -556,7 +557,7 @@ func resourceSystemAdminUserCreate(d *schema.ResourceData, m interface{}) error 
 		return fmt.Errorf("Error creating SystemAdminUser resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "userid"))
 
 	return resourceSystemAdminUserRead(d, m)
 }
@@ -580,7 +581,7 @@ func resourceSystemAdminUserUpdate(d *schema.ResourceData, m interface{}) error 
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "userid"))
 
 	return resourceSystemAdminUserRead(d, m)
 }
