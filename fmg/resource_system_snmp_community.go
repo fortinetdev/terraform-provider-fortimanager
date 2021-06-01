@@ -83,6 +83,7 @@ func resourceSystemSnmpCommunity() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -162,7 +163,7 @@ func resourceSystemSnmpCommunityCreate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error creating SystemSnmpCommunity resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSnmpCommunityRead(d, m)
 }
@@ -186,7 +187,7 @@ func resourceSystemSnmpCommunityUpdate(d *schema.ResourceData, m interface{}) er
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSnmpCommunityRead(d, m)
 }
