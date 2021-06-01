@@ -31,6 +31,7 @@ func resourceSystemSamlServiceProviders() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"idp_entity_id": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -95,7 +96,7 @@ func resourceSystemSamlServiceProvidersCreate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error creating SystemSamlServiceProviders resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "idp_entity_id"))
 
 	return resourceSystemSamlServiceProvidersRead(d, m)
 }
@@ -119,7 +120,7 @@ func resourceSystemSamlServiceProvidersUpdate(d *schema.ResourceData, m interfac
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "idp_entity_id"))
 
 	return resourceSystemSamlServiceProvidersRead(d, m)
 }
