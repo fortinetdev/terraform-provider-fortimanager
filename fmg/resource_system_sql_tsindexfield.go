@@ -31,6 +31,7 @@ func resourceSystemSqlTsIndexField() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -60,7 +61,7 @@ func resourceSystemSqlTsIndexFieldCreate(d *schema.ResourceData, m interface{}) 
 		return fmt.Errorf("Error creating SystemSqlTsIndexField resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "category"))
 
 	return resourceSystemSqlTsIndexFieldRead(d, m)
 }
@@ -84,7 +85,7 @@ func resourceSystemSqlTsIndexFieldUpdate(d *schema.ResourceData, m interface{}) 
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "category"))
 
 	return resourceSystemSqlTsIndexFieldRead(d, m)
 }
