@@ -172,10 +172,19 @@ func resourcePackagesFirewallDosPolicyCreate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error creating PackagesFirewallDosPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallDosPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesFirewallDosPolicy(obj, adomv, paralist)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallDosPolicy resource: %v", err)
+	}
+
+	if v != nil && v["policyid"] != nil {
+		if vidn, ok := v["policyid"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourcePackagesFirewallDosPolicyRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating PackagesFirewallDosPolicy resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "policyid")))
