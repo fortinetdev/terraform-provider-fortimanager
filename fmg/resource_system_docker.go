@@ -35,7 +35,8 @@ func resourceSystemDocker() *schema.Resource {
 				Computed: true,
 			},
 			"default_address_pool_base": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -166,7 +167,7 @@ func flattenSystemDockerCpu(v interface{}, d *schema.ResourceData, pre string) i
 }
 
 func flattenSystemDockerDefaultAddressPoolBase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemDockerDefaultAddressPoolSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -404,7 +405,7 @@ func expandSystemDockerCpu(d *schema.ResourceData, v interface{}, pre string) (i
 }
 
 func expandSystemDockerDefaultAddressPoolBase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemDockerDefaultAddressPoolSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
