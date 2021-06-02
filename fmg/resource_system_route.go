@@ -35,8 +35,8 @@ func resourceSystemRoute() *schema.Resource {
 				Computed: true,
 			},
 			"dst": &schema.Schema{
-				Type:     schema.TypeString,
-				ForceNew: true,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -47,6 +47,7 @@ func resourceSystemRoute() *schema.Resource {
 			},
 			"seq_num": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -71,7 +72,7 @@ func resourceSystemRouteCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error creating SystemRoute resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, "dst"))
+	d.SetId(strconv.Itoa(getIntKey(d, "seq_num")))
 
 	return resourceSystemRouteRead(d, m)
 }
@@ -95,7 +96,7 @@ func resourceSystemRouteUpdate(d *schema.ResourceData, m interface{}) error {
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, "dst"))
+	d.SetId(strconv.Itoa(getIntKey(d, "seq_num")))
 
 	return resourceSystemRouteRead(d, m)
 }
@@ -149,7 +150,7 @@ func flattenSystemRouteDevice(v interface{}, d *schema.ResourceData, pre string)
 }
 
 func flattenSystemRouteDst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemRouteGateway(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -217,7 +218,7 @@ func expandSystemRouteDevice(d *schema.ResourceData, v interface{}, pre string) 
 }
 
 func expandSystemRouteDst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemRouteGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
