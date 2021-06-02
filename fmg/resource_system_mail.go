@@ -41,10 +41,11 @@ func resourceSystemMail() *schema.Resource {
 				Computed: true,
 			},
 			"passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -226,16 +227,6 @@ func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading fosid: %v", err)
-		}
-	}
-
-	if err = d.Set("passwd", flattenSystemMailPasswd(o["passwd"], d, "passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["passwd"], "SystemMail-Passwd"); ok {
-			if err = d.Set("passwd", vv); err != nil {
-				return fmt.Errorf("Error reading passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading passwd: %v", err)
 		}
 	}
 
