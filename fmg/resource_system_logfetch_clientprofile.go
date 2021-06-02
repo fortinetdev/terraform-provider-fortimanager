@@ -133,10 +133,11 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"secure_connection": &schema.Schema{
 				Type:     schema.TypeString,
@@ -666,16 +667,6 @@ func refreshObjectSystemLogFetchClientProfile(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemLogFetchClientProfilePassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemLogFetchClientProfile-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 
