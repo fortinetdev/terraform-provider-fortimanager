@@ -34,6 +34,11 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"alias": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -51,7 +56,8 @@ func resourceSystemInterface() *schema.Resource {
 				Computed: true,
 			},
 			"ip": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -92,7 +98,8 @@ func resourceSystemInterface() *schema.Resource {
 				Computed: true,
 			},
 			"rating_service_ip": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -113,7 +120,8 @@ func resourceSystemInterface() *schema.Resource {
 				Computed: true,
 			},
 			"update_service_ip": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -250,7 +258,7 @@ func flattenSystemInterfaceDescription(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemInterfaceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemInterfaceIpv6(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -323,7 +331,7 @@ func flattenSystemInterfaceName(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenSystemInterfaceRatingServiceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemInterfaceServiceaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -369,7 +377,7 @@ func flattenSystemInterfaceStatus(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenSystemInterfaceUpdateServiceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface{}) error {
@@ -531,7 +539,7 @@ func expandSystemInterfaceDescription(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemInterfaceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemInterfaceIpv6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -583,7 +591,7 @@ func expandSystemInterfaceName(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandSystemInterfaceRatingServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemInterfaceServiceaccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -599,7 +607,7 @@ func expandSystemInterfaceStatus(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandSystemInterfaceUpdateServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
