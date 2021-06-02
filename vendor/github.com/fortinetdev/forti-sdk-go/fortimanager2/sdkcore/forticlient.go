@@ -48,7 +48,8 @@ func EscapeURLString(v string) string { // doesn't support "<>()"'#"
 }
 
 func escapeURLString(v string) string { // doesn't support "<>()"'#"
-	return strings.Replace(url.QueryEscape(v), "+", "%20", -1)
+	return v
+	// return strings.Replace(url.QueryEscape(v), "+", "%20", -1)
 }
 
 // NewClient initializes a new global plugin client
