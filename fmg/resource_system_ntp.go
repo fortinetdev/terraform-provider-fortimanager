@@ -45,10 +45,11 @@ func resourceSystemNtp() *schema.Resource {
 							Computed: true,
 						},
 						"key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"key_id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -190,6 +191,10 @@ func flattenSystemNtpNtpserverSna(v interface{}, d *schema.ResourceData, pre str
 		if _, ok := i["key"]; ok {
 			v := flattenSystemNtpNtpserverKeySna(i["key"], d, pre_append)
 			tmp["key"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Key")
+			c := d.Get(pre_append).(string)
+			if c != "" {
+				tmp["key"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_id"
