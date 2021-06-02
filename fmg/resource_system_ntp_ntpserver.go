@@ -41,10 +41,11 @@ func resourceSystemNtpNtpserver() *schema.Resource {
 				Computed: true,
 			},
 			"key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"key_id": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -215,16 +216,6 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading fosid: %v", err)
-		}
-	}
-
-	if err = d.Set("key", flattenSystemNtpNtpserverKey(o["key"], d, "key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["key"], "SystemNtpNtpserver-Key"); ok {
-			if err = d.Set("key", vv); err != nil {
-				return fmt.Errorf("Error reading key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading key: %v", err)
 		}
 	}
 
