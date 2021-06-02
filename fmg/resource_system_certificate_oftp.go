@@ -51,16 +51,18 @@ func resourceSystemCertificateOftp() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"private_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 		},
 	}
@@ -207,26 +209,6 @@ func refreshObjectSystemCertificateOftp(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading mode: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemCertificateOftpPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemCertificateOftp-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
-		}
-	}
-
-	if err = d.Set("private_key", flattenSystemCertificateOftpPrivateKey(o["private-key"], d, "private_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["private-key"], "SystemCertificateOftp-PrivateKey"); ok {
-			if err = d.Set("private_key", vv); err != nil {
-				return fmt.Errorf("Error reading private_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading private_key: %v", err)
 		}
 	}
 
