@@ -58,6 +58,12 @@ func flattenStringList(v interface{}) interface{} {
 		return nil
 	}
 
+	if v1, ok := v.(string); ok {
+		result := make([]string, 0, 1)
+		result = append(result, v1)
+		return result
+	}
+
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil
