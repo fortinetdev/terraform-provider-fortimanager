@@ -35,10 +35,11 @@ func resourceSystemSnmpUser() *schema.Resource {
 				Computed: true,
 			},
 			"auth_pwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"events": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -68,10 +69,11 @@ func resourceSystemSnmpUser() *schema.Resource {
 				Computed: true,
 			},
 			"priv_pwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"queries": &schema.Schema{
 				Type:     schema.TypeString,
@@ -290,16 +292,6 @@ func refreshObjectSystemSnmpUser(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
-	if err = d.Set("auth_pwd", flattenSystemSnmpUserAuthPwd(o["auth-pwd"], d, "auth_pwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["auth-pwd"], "SystemSnmpUser-AuthPwd"); ok {
-			if err = d.Set("auth_pwd", vv); err != nil {
-				return fmt.Errorf("Error reading auth_pwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading auth_pwd: %v", err)
-		}
-	}
-
 	if err = d.Set("events", flattenSystemSnmpUserEvents(o["events"], d, "events")); err != nil {
 		if vv, ok := fortiAPIPatch(o["events"], "SystemSnmpUser-Events"); ok {
 			if err = d.Set("events", vv); err != nil {
@@ -347,16 +339,6 @@ func refreshObjectSystemSnmpUser(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading priv_proto: %v", err)
-		}
-	}
-
-	if err = d.Set("priv_pwd", flattenSystemSnmpUserPrivPwd(o["priv-pwd"], d, "priv_pwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["priv-pwd"], "SystemSnmpUser-PrivPwd"); ok {
-			if err = d.Set("priv_pwd", vv); err != nil {
-				return fmt.Errorf("Error reading priv_pwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading priv_pwd: %v", err)
 		}
 	}
 
