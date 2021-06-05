@@ -13,6 +13,8 @@ import (
 ////////////////////////////////////////////////////////////////////////
 
 func createUpdate(c *FortiSDKClient, globaladom, path string, method string, params *map[string]interface{}, move bool) (output map[string]interface{}, err error) {
+	log.Printf("shengh3: %v, %v:    %v\n", globaladom, path, params)
+
 	data := encodeData(c, globaladom, path, method, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {

@@ -47,8 +47,7 @@ func resourceDvmCmdAddDevice() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"adm_pass": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -285,7 +284,7 @@ func flattenDvmCmdAddDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenDvmCmdAddDeviceDeviceAdmPass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return v
 }
 
 func flattenDvmCmdAddDeviceDeviceAdmUsr(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -614,7 +613,7 @@ func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre stri
 }
 
 func expandDvmCmdAddDeviceDeviceAdmPass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return v, nil
 }
 
 func expandDvmCmdAddDeviceDeviceAdmUsr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
