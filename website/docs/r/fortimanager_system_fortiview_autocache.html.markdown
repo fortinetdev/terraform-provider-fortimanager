@@ -1,5 +1,5 @@
 ---
-subcategory: "System"
+subcategory: "System FortiView"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_system_fortiview_autocache"
 description: |-
@@ -31,6 +31,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 System FortiviewAutoCache can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_system_fortiview_autocache.labelname SystemFortiviewAutoCache
 $ unset "FORTIMANAGER_IMPORT_TABLE"
