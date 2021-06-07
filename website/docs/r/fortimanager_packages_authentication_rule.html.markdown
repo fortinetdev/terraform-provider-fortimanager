@@ -9,6 +9,19 @@ description: |-
 # fortimanager_packages_authentication_rule
 Configure Authentication Rules.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_authentication_rule" "labelname" {
+  ip_based = "enable"
+  name     = "ss"
+  pkg      = "default"
+  protocol = "http"
+  srcaddr  = "all"
+  status   = "enable"
+}
+```
+
 ## Argument Reference
 
 
