@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium
 Configure roaming consortium.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium" "labelname" {
+  name = "sss"
+}
+```
+
 ## Argument Reference
 
 
