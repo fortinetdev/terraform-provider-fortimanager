@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectDlp"
+subcategory: "Object DLP"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_dlp_filepattern"
 description: |-
@@ -41,6 +41,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectDlp Filepattern can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_dlp_filepattern.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
