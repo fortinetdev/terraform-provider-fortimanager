@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_user_clearpass
 ObjectUser Clearpass
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_clearpass" "labelname" {
+  client   = "2.2.2.2"
+  name     = "ss"
+  password = ["fdsafdsp"]
+  server   = "1.1.1.1"
+  status   = "disable"
+  user     = "sidnscc"
+}
+```
+
 ## Argument Reference
 
 
