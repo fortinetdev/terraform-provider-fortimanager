@@ -9,6 +9,31 @@ description: |-
 # fortimanager_object_certificate_template
 ObjectCertificate Template
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_certificate_template" "trname" {
+  city         = "Cd"
+  country      = "AM"
+  curve_name   = "secp256r1"
+  digest_type  = "sha1"
+  email        = "dfa@efsa.com"
+  id_type      = "host-ip"
+  key_size     = "2048"
+  key_type     = "rsa"
+  name         = "ssss"
+  organization = "fds"
+  organization_unit = [
+    "FortinetTestLab",
+  ]
+  scep_password = [
+    "33333",
+  ]
+  state = "dfa"
+  type  = "external"
+}
+```
+
 ## Argument Reference
 
 
