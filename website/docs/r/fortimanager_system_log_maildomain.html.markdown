@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_log_maildomain
 FortiMail domain setting.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_maildomain" "trname" {
+  domain = "terraform"
+  fosid  = "1"
+  vdom   = "terraform"
+}
+```
+
 ## Argument Reference
 
 
