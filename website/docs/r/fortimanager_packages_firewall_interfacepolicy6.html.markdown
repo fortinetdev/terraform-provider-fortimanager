@@ -9,6 +9,29 @@ description: |-
 # fortimanager_packages_firewall_interfacepolicy6
 Configure IPv6 interface policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_interfacepolicy6" "labelname" {
+  address_type               = "ipv6"
+  application_list_status    = "disable"
+  av_profile_status          = "disable"
+  dlp_sensor_status          = "disable"
+  dsri                       = "disable"
+  dstaddr6                   = "all"
+  emailfilter_profile_status = "disable"
+  interface                  = "1-A14"
+  ips_sensor_status          = "disable"
+  logtraffic                 = "utm"
+  pkg                        = "default"
+  policyid                   = 1
+  service6                   = "ALL"
+  srcaddr6                   = "all"
+  status                     = "enable"
+  webfilter_profile_status   = "disable"
+}
+```
+
 ## Argument Reference
 
 
