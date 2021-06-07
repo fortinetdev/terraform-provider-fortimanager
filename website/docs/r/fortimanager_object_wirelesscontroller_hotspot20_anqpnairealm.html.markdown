@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm
 Configure network access identifier (NAI) realm.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm" "labelname" {
+  name = "ss"
+}
+```
+
 ## Argument Reference
 
 
