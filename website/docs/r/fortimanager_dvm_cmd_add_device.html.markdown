@@ -9,6 +9,21 @@ description: |-
 # fortimanager_dvm_cmd_add_device
 Add a device to the Device Manager database.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvm_cmd_add_device" "trname" {
+  fmgadom = "root"
+  device {
+    ip        = "192.168.52.177"
+    mgmt_mode = "fmg"
+    name      = "terraform-test"
+    adm_usr   = "admin"
+    adm_pass  = "admin"
+  }
+}
+```
+
 ## Argument Reference
 
 
