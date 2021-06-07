@@ -7,24 +7,29 @@ import (
 
 // Auth describes the authentication information for FortiManager
 type Auth struct {
-	Hostname string
-	User string
-	Passwd string
-	CABundle string
-	Insecure *bool
-	Refresh  bool
+	Hostname    string
+	User        string
+	Passwd      string
+	CABundle    string
+	Insecure    *bool
+	Refresh     bool
+
+	LogSession  bool
+	Session     string
 }
 
 // NewAuth inits Auth object with the given metadata
-func NewAuth(hostname, user, passwd, cabundle string) *Auth {
+func NewAuth(hostname, user, passwd, cabundle, session string, logsession bool) *Auth {
 	return &Auth{
-		Hostname: hostname,
-		User:     user,
-		Passwd:   passwd,
-		CABundle: cabundle,
+		Hostname:   hostname,
+		User:       user,
+		Passwd:     passwd,
+		CABundle:   cabundle,
+
+		LogSession: logsession,
+		Session:    session,
 	}
 }
-
 
 // GetEnvHostname gets FortiManager hostname from OS environment
 // It returns the hostname

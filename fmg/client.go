@@ -24,6 +24,9 @@ type Config struct {
 	ScopeType     string
 	Adom          string
 	ImportOptions *schema.Set
+
+	LogSession bool
+	Session    string
 }
 
 // FortiClient contains the basic FMG SDK connection information to FMG
@@ -49,7 +52,7 @@ func (c *Config) CreateClient() (interface{}, error) {
 func createFMGClient(fClient *FortiClient, c *Config) error {
 	config := &tls.Config{}
 
-	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle)
+	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.LogSession)
 
 	if auth.Hostname == "" {
 		_, err := auth.GetEnvHostname()
