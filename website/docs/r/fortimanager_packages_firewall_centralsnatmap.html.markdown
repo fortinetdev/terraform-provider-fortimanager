@@ -9,6 +9,24 @@ description: |-
 # fortimanager_packages_firewall_centralsnatmap
 Configure IPv4 and IPv6 central SNAT policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_centralsnatmap" "labelname" {
+  pkg       = "default"
+  nat       = "enable"
+  nat_port  = "0"
+  orig_port = "0"
+  policyid  = 1
+  protocol  = 33
+  status    = "enable"
+  dst_addr  = "all"
+  dstintf   = "port3"
+  orig_addr = "all"
+  srcintf   = "port1"
+}
+```
+
 ## Argument Reference
 
 
