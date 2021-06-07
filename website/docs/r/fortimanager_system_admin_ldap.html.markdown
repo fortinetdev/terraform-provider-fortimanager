@@ -9,6 +9,19 @@ description: |-
 # fortimanager_system_admin_ldap
 LDAP server entry configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_ldap" "trname" {
+  name     = "tldap"
+  password = ["Fortinet"]
+  port     = 390
+  server   = "terraform"
+  type     = "regular"
+  username = "terraform-username"
+}
+```
+
 ## Argument Reference
 
 
