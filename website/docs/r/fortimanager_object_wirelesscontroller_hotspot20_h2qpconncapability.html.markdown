@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectWireless-Controller"
+subcategory: "Object Wireless-Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability"
 description: |-
@@ -51,6 +51,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectWirelessController Hotspot20H2QpConnCapability can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
