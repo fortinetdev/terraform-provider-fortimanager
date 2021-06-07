@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_log_settings
 Log settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_settings" "trname" {
+  dns_resolve_dstip     = "disable"
+  ha_auto_migrate       = "disable"
+  log_file_archive_name = "basic"
+}
+```
+
 ## Argument Reference
 
 
