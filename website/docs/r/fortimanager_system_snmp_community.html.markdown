@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_snmp_community
 SNMP community configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_snmp_community" "trname" {
+  events = ["cpu-high-exclude-nice"]
+  fosid  = "1"
+  name   = "terraform-test-snmp"
+  status = "disable"
+}
+```
+
 ## Argument Reference
 
 
