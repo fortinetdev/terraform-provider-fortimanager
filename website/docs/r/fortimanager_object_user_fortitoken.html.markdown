@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_user_fortitoken
 Configure FortiToken.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_fortitoken" "labelname" {
+  license       = "FTMTRIAL0BDD59BA"
+  serial_number = "FTKMOB099A321EA2"
+  status        = "active"
+}
+```
+
 ## Argument Reference
 
 
