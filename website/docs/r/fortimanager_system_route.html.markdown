@@ -1,5 +1,5 @@
 ---
-subcategory: "System"
+subcategory: "System Route"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_system_route"
 description: |-
@@ -30,6 +30,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 System Route can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_system_route.labelname {{seq_num}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
