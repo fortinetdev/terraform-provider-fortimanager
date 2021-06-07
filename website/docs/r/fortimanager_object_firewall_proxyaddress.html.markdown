@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_proxyaddress
 Configure web proxy address.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_proxyaddress" "trname" {
+  case_sensitivity = "disable"
+  color            = 3
+  name             = "test1"
+  referrer         = "disable"
+  type             = "url"
+}
+```
+
 ## Argument Reference
 
 
