@@ -9,6 +9,20 @@ description: |-
 # fortimanager_packages_global_footer_consolidated_policy
 Configure consolidated IPv4/IPv6 policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_global_footer_consolidated_policy" "trname" {
+  pkg      = "default"
+  action   = "accept"
+  comments = "This is a Terraform test"
+  dstintf  = "any"
+  name     = "terr-pkg-footer-cslid-policy"
+  srcintf  = "any"
+  status   = "enable"
+}
+```
+
 ## Argument Reference
 
 
