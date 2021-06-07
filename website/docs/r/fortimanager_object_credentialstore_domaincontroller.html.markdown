@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_credentialstore_domaincontroller
 Define known domain controller servers.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_credentialstore_domaincontroller" "trname" {
+  scopetype   = "inherit"
+  domain_name = "tu.com"
+  hostname    = "sti"
+  ip          = "1.0.0.22"
+  ip6         = "::"
+  password = [
+    "fdsafda",
+  ]
+  port        = 20
+  server_name = "sewe1221"
+  username    = "user"
+}
+```
+
 ## Argument Reference
 
 
