@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_user_exchange
 Configure MS Exchange server entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_exchange" "labelname" {
+  auth_level            = "privacy"
+  auth_type             = "ntlm"
+  auto_discover_kdc     = "enable"
+  connect_protocol      = "rpc-over-https"
+  domain_name           = "sien.com"
+  http_auth_type        = "basic"
+  ip                    = "22.22.2.2"
+  name                  = "ss2"
+  password              = ["fdafd"]
+  ssl_min_proto_version = "default"
+}
+```
+
 ## Argument Reference
 
 
