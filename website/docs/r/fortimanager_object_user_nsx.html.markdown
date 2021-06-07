@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_user_nsx
 ObjectUser Nsx
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_nsx" "labelname" {
+  fmgip      = "1.1.1.1"
+  fmgpasswd  = ["tesssssss"]
+  fmguser    = "dfa"
+  name       = "ewwe"
+  password   = ["tesssssss"]
+  server     = "3.3.3.3"
+  service_id = []
+  status     = "disable"
+  user       = "sgic"
+}
+```
+
 ## Argument Reference
 
 
