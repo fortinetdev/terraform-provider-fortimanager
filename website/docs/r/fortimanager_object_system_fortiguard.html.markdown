@@ -9,6 +9,53 @@ description: |-
 # fortimanager_object_system_fortiguard
 Configure FortiGuard services.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_fortiguard" "labelname" {
+  antispam_cache                     = "enable"
+  antispam_cache_mpercent            = 2
+  antispam_cache_ttl                 = 1800
+  antispam_expiration                = 0
+  antispam_force_off                 = "disable"
+  antispam_license                   = 4294967295
+  antispam_timeout                   = 7
+  anycast_sdns_server_ip             = "0.0.0.0"
+  anycast_sdns_server_port           = 853
+  auto_join_forticloud               = "disable"
+  ddns_server_ip                     = "0.0.0.0"
+  ddns_server_port                   = 443
+  fortiguard_anycast                 = "enable"
+  fortiguard_anycast_source          = "fortinet"
+  interface_select_method            = "auto"
+  load_balance_servers               = 1
+  outbreak_prevention_cache          = "enable"
+  outbreak_prevention_cache_mpercent = 2
+  outbreak_prevention_cache_ttl      = 300
+  outbreak_prevention_expiration     = 0
+  outbreak_prevention_force_off      = "disable"
+  outbreak_prevention_license        = 4294967295
+  outbreak_prevention_timeout        = 7
+  port                               = "443"
+  protocol                           = "https"
+  proxy_server_ip                    = "0.0.0.0"
+  proxy_server_port                  = 0
+  sdns_options                       = []
+  sdns_server_ip                     = []
+  sdns_server_port                   = 0
+  source_ip                          = "0.0.0.0"
+  source_ip6                         = "::"
+  update_server_location             = "usa"
+  webfilter_cache                    = "enable"
+  webfilter_cache_ttl                = 3600
+  webfilter_expiration               = 0
+  webfilter_force_off                = "disable"
+  webfilter_license                  = 4294967295
+  webfilter_timeout                  = 15
+  proxy_password                     = ["fdafdas"]
+}
+```
+
 ## Argument Reference
 
 
