@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_trafficclass
 Configure names for shaping classes.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_trafficclass" "trname" {
+  class_id   = 15
+  class_name = "33233"
+}
+```
+
 ## Argument Reference
 
 
