@@ -1,5 +1,5 @@
 ---
-subcategory: "Dvm"
+subcategory: "Device Manager"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_dvm_cmd_update_device"
 description: |-
@@ -31,6 +31,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Dvm CmdUpdateDevice can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_dvm_cmd_update_device.labelname DvmCmdUpdateDevice
 $ unset "FORTIMANAGER_IMPORT_TABLE"
