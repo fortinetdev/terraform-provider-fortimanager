@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_switchcontroller_qos_ipdscpmap
 Configure FortiSwitch QoS IP precedence/DSCP.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_qos_ipdscpmap" "trname" {
+  name = "vp1"
+
+  map {
+    cos_queue = 1
+    name      = "1"
+    value     = "46"
+  }
+  map {
+    cos_queue = 2
+    name      = "2"
+    value     = "24,26,48,56"
+  }
+  map {
+    cos_queue = 3
+    name      = "5"
+    value     = "34"
+  }
+}
+```
+
 ## Argument Reference
 
 
