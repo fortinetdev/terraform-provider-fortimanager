@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_user_local
 Configure local users.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_local" "labelname" {
+  auth_concurrent_override    = "disable"
+  auth_concurrent_value       = 0
+  authtimeout                 = 0
+  fosid                       = 0
+  name                        = "dafcd"
+  passwd                      = ["dddExxxxxxxx"]
+  ppk_secret                  = ["xxxxxddxxxxxxdewewfa"]
+  sms_server                  = "fortiguard"
+  status                      = "enable"
+  two_factor                  = "disable"
+  two_factor_authentication   = "email"
+  two_factor_notification     = "email"
+  username_case_insensitivity = "disable"
+  username_case_sensitivity   = "enable"
+}
+```
+
 ## Argument Reference
 
 
