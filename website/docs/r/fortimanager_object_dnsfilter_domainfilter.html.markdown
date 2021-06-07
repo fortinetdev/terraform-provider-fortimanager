@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_dnsfilter_domainfilter
 Configure DNS domain filters.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dnsfilter_domainfilter" "trname" {
+  name    = "F11"
+  comment = "FDS332911"
+  fosid   = 25
+}
+```
+
 ## Argument Reference
 
 
