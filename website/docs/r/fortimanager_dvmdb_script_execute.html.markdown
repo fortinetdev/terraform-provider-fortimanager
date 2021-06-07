@@ -9,6 +9,16 @@ description: |-
 # fortimanager_dvmdb_script_execute
 Run script.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvmdb_script_execute" "trname" {
+  fmgadom = "root"
+  package = "default"
+  script  = "sfafds"
+}
+```
+
 ## Argument Reference
 
 
