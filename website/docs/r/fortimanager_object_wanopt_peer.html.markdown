@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wanopt_peer
 Configure WAN optimization peers.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_peer" "labelname" {
+  ip           = "20.0.0.20"
+  peer_host_id = "ds"
+}
+```
+
 ## Argument Reference
 
 
