@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_saml
 Global settings for SAML authentication.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_saml" "trname" {
+  default_profile     = "Restricted_User"
+  login_auto_redirect = "disable"
+  role                = "SP"
+  status              = "disable"
+}
+```
+
 ## Argument Reference
 
 
