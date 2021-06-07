@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_system_objecttagging
 Configure object tagging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_objecttagging" "labelname" {
+  address   = "mandatory"
+  category  = "ss"
+  color     = 0
+  device    = "mandatory"
+  interface = "mandatory"
+  multiple  = "enable"
+  tags = [
+    "11",
+  ]
+}
+```
+
 ## Argument Reference
 
 
