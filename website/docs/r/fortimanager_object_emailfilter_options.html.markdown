@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_emailfilter_options
 Configure AntiSpam options.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_options" "trname" {
+  dns_timeout = 17
+}
+```
+
 ## Argument Reference
 
 
