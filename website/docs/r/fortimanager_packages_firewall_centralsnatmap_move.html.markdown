@@ -1,5 +1,5 @@
 ---
-subcategory: "Packages"
+subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_centralsnatmap_move"
 description: |-
