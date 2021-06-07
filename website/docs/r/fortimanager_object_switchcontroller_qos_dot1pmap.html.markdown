@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectSwitch-Controller"
+subcategory: "Object Switch-Controller"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_switchcontroller_qos_dot1pmap"
 description: |-
@@ -48,6 +48,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectSwitchController QosDot1PMap can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_switchcontroller_qos_dot1pmap.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
