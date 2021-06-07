@@ -9,6 +9,37 @@ description: |-
 # fortimanager_packages_firewall_proxypolicy
 Configure proxy policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_proxypolicy" "labelname" {
+  action              = "deny"
+  disclaimer          = "disable"
+  dstaddr             = "all"
+  dstaddr_negate      = "disable"
+  dstintf             = "any"
+  http_tunnel_auth    = "disable"
+  internet_service    = "disable"
+  logtraffic          = "all"
+  logtraffic_start    = "disable"
+  name                = "11"
+  pkg                 = "default"
+  policyid            = 1
+  profile_type        = "single"
+  proxy               = "explicit-web"
+  schedule            = "always"
+  service             = "webproxy"
+  service_negate      = "disable"
+  session_ttl         = 0
+  srcaddr             = "all"
+  srcaddr_negate      = "disable"
+  ssh_policy_redirect = "disable"
+  status              = "enable"
+  webcache            = "disable"
+  webcache_https      = "disable"
+}
+```
+
 ## Argument Reference
 
 
