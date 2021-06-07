@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_user_peergrp
 Configure peer groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_peergrp" "labelname" {
+  member = "usiky"
+  name   = "ss"
+}
+```
+
 ## Argument Reference
 
 
