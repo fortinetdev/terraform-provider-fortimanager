@@ -37,6 +37,8 @@ resource "fortimanager_object_firewall_vip" "trname1" {
 
 ```
 
+Before using this provider, WebServices access with FortiManager need to be enabled. See `Guides->Enabling Web Services` to enable FortiManager WebServices.
+
 If it is used for testing, you can set `insecure` to "true" and unset `cabundlefile` to quickly set the provider up, for example:
 
 ```hcl
@@ -52,6 +54,7 @@ provider "fortimanager" {
 ```
 
 Please refer to the Argument Reference below for more help on `insecure` and `cabundlefile`.
+
 
 ## Authentication
 
@@ -119,9 +122,30 @@ The following arguments are supported:
 
 * `adom` - (Optional) Adom. This value is valid only when the `scopetype` is set to `adom`. The option is used to set the default adom of the resources managed by the provider. The default value is `root`. Each resource can also set its own adom as needed, see the description of each resource for details.
 
+* `import_options` - (Optional) This parameter is only used for import in some special cases. When the resource to be imported includes pkg parameter, you need to assign a value to the parameter here, for example:
+
+    ```hcl
+    provider "fortimanager" {
+      hostname       = "192.168.52.178"
+      username       = "admin"
+      password       = "admin"
+      insecure       = "true"
+
+      scopetype      = "adom"
+      adom           = "root"
+
+      import_options = ["pkg=default"]
+    }
+    ```
+
+* `logsession` - (Optional) Save the session to a local file. Used to assist fortimanager_exec_workspace_action resource. Valid values: `true`: log to file, `false`: do not log to file. Default is `false`. See `Guides -> To Lock for Restricting Configuration Changes` for details.
+
+* `presession` - (Optional) The session saved earlier and within the validity period, used to reuse the previous session and assist fortimanager_exec_workspace_action resource. See `Guides -> To Lock for Restricting Configuration Changes` for details. Default is empty.
+
+
 ## Release
 Check out the FortiManager provider release notes and additional information from: [the FortiManager provider releases](https://github.com/fortinetdev/terraform-provider-fortimanager/releases).
 
 ## Versioning
 
-The provider can cover FortiManager 6.0, 6.2, 6.4, 7.0 versions, the configuration of all parameters should be based on the relevant FortiManager version manual.
+The provider can cover FortiManager 6.4 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
