@@ -9,6 +9,40 @@ description: |-
 # fortimanager_object_user_ldap
 Configure LDAP server entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_ldap" "labelname" {
+  account_key_filter        = "(&(userPrincipalName=%s)(!(UserAccountControl:1.2.840.113556.1.4.803:=2)))"
+  account_key_processing    = "strip"
+  ca_cert                   = "root_CA2"
+  cnid                      = "cn"
+  dn                        = "ew"
+  group_member_check        = "posix-group-object"
+  group_object_filter       = "(&(objectcategory=group)(member=*))"
+  group_search_base         = "dwec"
+  interface                 = "1-A1"
+  interface_select_method   = "auto"
+  member_attr               = "memberOf"
+  name                      = "ss2323"
+  obtain_user_info          = "enable"
+  password                  = ["dfdqeww"]
+  password_expiry_warning   = "disable"
+  password_renewal          = "disable"
+  port                      = 389
+  secure                    = "ldaps"
+  server                    = "2.2.2.2"
+  server_identity_check     = "enable"
+  source_ip                 = "0.0.0.0"
+  ssl_min_proto_version     = "TLSv1-2"
+  two_factor                = "fortitoken-cloud"
+  two_factor_authentication = "fortitoken"
+  two_factor_notification   = "sms"
+  type                      = "simple"
+  user_info_exchange_server = "ss"
+}
+```
+
 ## Argument Reference
 
 
