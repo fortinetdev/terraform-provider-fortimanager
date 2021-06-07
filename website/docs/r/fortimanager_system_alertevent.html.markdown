@@ -9,6 +9,21 @@ description: |-
 # fortimanager_system_alertevent
 Alert events.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_alertevent" "trname" {
+  enable_generic_text    = ["enable"]
+  enable_severity_filter = ["enable"]
+  event_time_period      = 1
+  name                   = "tsysalert1"
+  num_events             = 1
+  severity_filter        = "high"
+  severity_level_comp    = ["<="]
+  severity_level_logs    = ["information", "notify", "warning", "alert", "emergency"]
+}
+```
+
 ## Argument Reference
 
 
