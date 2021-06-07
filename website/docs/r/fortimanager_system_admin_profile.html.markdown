@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_admin_profile
 Admin profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_profile" "trname" {
+  description = "terraform-test-description"
+  profileid   = "terraform-test-profile2"
+  scope       = "adom"
+  type        = "system"
+}
+```
+
 ## Argument Reference
 
 
