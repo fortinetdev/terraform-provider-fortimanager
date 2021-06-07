@@ -9,6 +9,20 @@ description: |-
 # fortimanager_system_route
 Routing table configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_route" "trname" {
+  device = "port1"
+  dst = [
+    "222.222.22.0",
+    "255.255.255.0"
+  ]
+  gateway = "222.222.222.1"
+  seq_num = 7
+}
+```
+
 ## Argument Reference
 
 
