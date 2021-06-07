@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_firewall_ldbmonitor
 Configure server load balancing health monitors.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_ldbmonitor" "trname" {
+  http_max_redirects = 0
+  interval           = 10
+  name               = "dfsd"
+  port               = 0
+  retry              = 3
+  src_ip             = "0.0.0.0"
+  timeout            = 2
+  type               = "https"
+}
+```
+
 ## Argument Reference
 
 
