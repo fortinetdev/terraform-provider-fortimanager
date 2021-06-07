@@ -1,5 +1,5 @@
 ---
-subcategory: "System"
+subcategory: "System LocalLog"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_system_locallog_syslogd2_setting"
 description: |-
@@ -35,6 +35,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 System LocallogSyslogd2Setting can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_system_locallog_syslogd2_setting.labelname SystemLocallogSyslogd2Setting
 $ unset "FORTIMANAGER_IMPORT_TABLE"
