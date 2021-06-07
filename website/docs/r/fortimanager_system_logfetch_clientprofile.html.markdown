@@ -1,5 +1,5 @@
 ---
-subcategory: "System"
+subcategory: "System Log"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_system_logfetch_clientprofile"
 description: |-
@@ -66,6 +66,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 System LogFetchClientProfile can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_system_logfetch_clientprofile.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
