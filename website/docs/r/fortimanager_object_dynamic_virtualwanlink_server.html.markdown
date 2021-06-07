@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectDynamic"
+subcategory: "Object Dynamic"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_dynamic_virtualwanlink_server"
 description: |-
@@ -43,6 +43,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectDynamic VirtualWanLinkServer can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_dynamic_virtualwanlink_server.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
