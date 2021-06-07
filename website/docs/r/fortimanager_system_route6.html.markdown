@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_route6
 Routing table configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_route6" "trname" {
+  device  = "port1"
+  dst     = ["2001::/96"]
+  gateway = "2001::2"
+  prio    = 23
+}
+```
+
 ## Argument Reference
 
 
