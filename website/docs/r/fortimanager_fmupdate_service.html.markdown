@@ -40,6 +40,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Fmupdate Service can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_fmupdate_service.labelname FmupdateService
 $ unset "FORTIMANAGER_IMPORT_TABLE"
