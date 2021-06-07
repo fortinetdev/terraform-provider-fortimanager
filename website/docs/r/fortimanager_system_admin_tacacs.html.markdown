@@ -9,6 +9,19 @@ description: |-
 # fortimanager_system_admin_tacacs
 TACACS+ server entry configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_tacacs" "trname" {
+  authen_type   = "auto"
+  authorization = "disable"
+  key           = ["fortinet"]
+  name          = "tstacacs1"
+  port          = 33
+  server        = "terraform"
+}
+```
+
 ## Argument Reference
 
 
