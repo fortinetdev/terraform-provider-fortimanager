@@ -9,6 +9,24 @@ description: |-
 # fortimanager_packages_global_footer_policy6
 Configure IPv6 policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_global_header_policy6" "labelname" {
+  pkg      = "default"
+  action   = "accept"
+  comments = "terraform-comment"
+  dstaddr  = "gall"
+  dstintf  = "any"
+  name     = "terraform-test-footer"
+  schedule = "galways"
+  service  = "gALL"
+  srcaddr  = "gall"
+  srcintf  = "any"
+  status   = "disable"
+}
+```
+
 ## Argument Reference
 
 
