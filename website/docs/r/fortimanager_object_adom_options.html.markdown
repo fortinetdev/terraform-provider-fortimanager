@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_adom_options
 ObjectAdom Options
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_adom_options" "trname" {
+  assign_excluded         = "disable"
+  specify_assign_pkg_list = "disable"
+}
+```
+
 ## Argument Reference
 
 
