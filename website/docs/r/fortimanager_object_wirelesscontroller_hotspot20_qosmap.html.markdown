@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_qosmap
 Configure QoS map set.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_qosmap" "labelname" {
+  name = "ss"
+}
+```
+
 ## Argument Reference
 
 
