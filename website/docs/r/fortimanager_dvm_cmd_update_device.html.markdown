@@ -9,6 +9,16 @@ description: |-
 # fortimanager_dvm_cmd_update_device
 Refresh the FGFM connection and system information of a device.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvm_cmd_update_device" "trname" {
+  fmgadom = "root"
+  device  = "terraform-test"
+  flags   = ["create_task", "nonblocking"]
+}
+```
+
 ## Argument Reference
 
 
