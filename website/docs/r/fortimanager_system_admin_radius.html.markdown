@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_admin_radius
 Configure radius.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_radius" "trname" {
+  auth_type = "pap"
+  name      = "tradius"
+  port      = 1812
+  server    = "ALL"
+}
+```
+
 ## Argument Reference
 
 
