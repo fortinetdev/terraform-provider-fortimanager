@@ -9,6 +9,41 @@ description: |-
 # fortimanager_system_interface
 Interface configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_interface" "trname" {
+  allowaccess = [
+    "https",
+    "ssh",
+  ]
+  type = "physical"
+  ip = [
+    "192.168.21.99",
+    "255.255.255.0",
+  ]
+  mtu  = 1500
+  name = "port3"
+  rating_service_ip = [
+    "0.0.0.0",
+    "0.0.0.0",
+  ]
+  serviceaccess = []
+  speed         = "auto"
+  status        = "up"
+  update_service_ip = [
+    "0.0.0.0",
+    "0.0.0.0",
+  ]
+
+  ipv6 {
+    ip6_address     = "::/0"
+    ip6_allowaccess = []
+    ip6_autoconf    = "enable"
+  }
+}
+```
+
 ## Argument Reference
 
 
