@@ -9,6 +9,18 @@ description: |-
 # fortimanager_packages_authentication_setting
 Configure authentication setting.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_authentication_setting" "labelname" {
+  auth_https              = "enable"
+  captive_portal_port     = 7830
+  captive_portal_ssl_port = 7831
+  captive_portal_type     = "fqdn"
+  pkg                     = "default"
+}
+```
+
 ## Argument Reference
 
 
