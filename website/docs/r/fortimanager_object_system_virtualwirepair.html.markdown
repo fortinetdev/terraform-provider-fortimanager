@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectSystem"
+subcategory: "Object System"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_system_virtualwirepair"
 description: |-
@@ -33,6 +33,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectSystem VirtualWirePair can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_virtualwirepair.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
