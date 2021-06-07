@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectDynamic"
+subcategory: "Object Dynamic"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_dynamic_multicast_interface"
 description: |-
@@ -45,6 +45,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectDynamic MulticastInterface can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_dynamic_multicast_interface.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
