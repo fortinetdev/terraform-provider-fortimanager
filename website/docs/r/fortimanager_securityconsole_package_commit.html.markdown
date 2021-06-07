@@ -1,5 +1,5 @@
 ---
-subcategory: "Securityconsole"
+subcategory: "Security Console"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_securityconsole_package_commit"
 description: |-
@@ -35,6 +35,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Securityconsole PackageCommit can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_securityconsole_package_commit.labelname SecurityconsolePackageCommit
 $ unset "FORTIMANAGER_IMPORT_TABLE"
