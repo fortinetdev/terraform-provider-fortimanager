@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectWanopt"
+subcategory: "Object WAN-Opt"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_wanopt_profile"
 description: |-
@@ -125,6 +125,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectWanopt Profile can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_wanopt_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
