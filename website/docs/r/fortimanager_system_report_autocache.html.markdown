@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_report_autocache
 Report auto-cache settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_report_autocache" "trname" {
+  aggressive_schedule = "disable"
+  status              = "enable"
+}
+```
+
 ## Argument Reference
 
 
