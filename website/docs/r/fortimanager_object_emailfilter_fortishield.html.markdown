@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_emailfilter_fortishield
 Configure FortiGuard - AntiSpam.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_fortishield" "trname" {
+  spam_submit_force   = "enable"
+  spam_submit_srv     = "www.nospammer1.net"
+  spam_submit_txt2htm = "enable"
+}
+```
+
 ## Argument Reference
 
 
