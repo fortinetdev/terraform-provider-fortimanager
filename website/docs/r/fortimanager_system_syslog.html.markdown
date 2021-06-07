@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_syslog
 Syslog servers.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_syslog" "trname" {
+  ip   = "192.168.1.1"
+  name = "terr-sys-syslog"
+}
+```
+
 ## Argument Reference
 
 
