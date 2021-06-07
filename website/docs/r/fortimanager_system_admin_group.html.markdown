@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_admin_group
 User group.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_group" "trname" {
+  name = "terraform-group"
+}
+```
+
 ## Argument Reference
 
 
