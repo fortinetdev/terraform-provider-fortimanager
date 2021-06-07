@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_virtualwirepair
 Configure virtual wire pairs.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_virtualwirepair" "labelname" {
+  member = [
+    "1-A1",
+    "1-A10",
+  ]
+  name          = "222"
+  wildcard_vlan = "disable"
+}
+```
+
 ## Argument Reference
 
 
