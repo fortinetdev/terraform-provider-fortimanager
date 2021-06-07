@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectVpnmgr"
+subcategory: "Object VPN"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_vpnmgr_node"
 description: |-
@@ -129,6 +129,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectVpnmgr Node can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_vpnmgr_node.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
