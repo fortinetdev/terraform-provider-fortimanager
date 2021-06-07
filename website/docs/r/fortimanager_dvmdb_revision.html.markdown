@@ -1,5 +1,5 @@
 ---
-subcategory: "Dvmdb"
+subcategory: "Device Manager"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_dvmdb_revision"
 description: |-
@@ -34,6 +34,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Dvmdb Revision can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_dvmdb_revision.labelname {{version}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
