@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectFsp"
+subcategory: "Object Others"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_fsp_vlan"
 description: |-
@@ -966,6 +966,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectFsp Vlan can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_fsp_vlan.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
