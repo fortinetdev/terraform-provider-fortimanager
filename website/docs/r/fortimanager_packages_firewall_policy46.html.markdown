@@ -9,6 +9,31 @@ description: |-
 # fortimanager_packages_firewall_policy46
 Configure IPv4 to IPv6 policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_policy46" "labelname" {
+  action           = "deny"
+  dstaddr          = "111"
+  dstintf          = "any"
+  fixedport        = "disable"
+  ippool           = "disable"
+  logtraffic       = "disable"
+  logtraffic_start = "disable"
+  name             = "1"
+  permit_any_host  = "disable"
+  pkg              = "default"
+  policyid         = 1
+  schedule         = "always"
+  service          = "ALL"
+  srcaddr          = "all"
+  srcintf          = "any"
+  status           = "enable"
+  tcp_mss_receiver = 0
+  tcp_mss_sender   = 0
+}
+```
+
 ## Argument Reference
 
 
