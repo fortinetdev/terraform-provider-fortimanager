@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname
 Configure operator friendly name.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname" "labelname" {
+  name = "ss"
+}
+```
+
 ## Argument Reference
 
 
