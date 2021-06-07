@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectFirewall"
+subcategory: "Object Firewall"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_firewall_internetservicecustomgroup"
 description: |-
@@ -31,6 +31,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectFirewall InternetServiceCustomGroup can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_internetservicecustomgroup.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
