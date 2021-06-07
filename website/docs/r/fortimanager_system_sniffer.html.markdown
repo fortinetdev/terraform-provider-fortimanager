@@ -9,6 +9,18 @@ description: |-
 # fortimanager_system_sniffer
 Interface sniffer.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_sniffer" "trname" {
+  fosid     = "1"
+  interface = "port5"
+  ipv6      = "disable"
+  protocol  = "20"
+  vlan      = "100"
+}
+```
+
 ## Argument Reference
 
 
