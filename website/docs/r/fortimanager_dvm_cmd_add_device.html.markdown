@@ -1,5 +1,5 @@
 ---
-subcategory: "Dvm"
+subcategory: "Device Manager"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_dvm_cmd_add_device"
 description: |-
@@ -59,6 +59,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Dvm CmdAddDevice can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_dvm_cmd_add_device.labelname DvmCmdAddDevice
 $ unset "FORTIMANAGER_IMPORT_TABLE"
