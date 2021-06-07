@@ -9,6 +9,15 @@ description: |-
 # fortimanager_dvm_cmd_del_device
 Delete a device.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvm_cmd_del_device" "trname" {
+  fmgadom = "root"
+  device  = "terraform-test"
+}
+```
+
 ## Argument Reference
 
 
