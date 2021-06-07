@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_firewall_address
 Configure IPv4 addresses.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_address" "trname" {
+  color    = 0
+  name     = "ssssss"
+  obj_type = "ip"
+  subnet = [
+    "192.168.0.0",
+    "255.255.255.255",
+  ]
+  type = "ipmask"
+}
+```
+
 ## Argument Reference
 
 
