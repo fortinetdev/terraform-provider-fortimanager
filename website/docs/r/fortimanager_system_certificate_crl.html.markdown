@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_certificate_crl
 Certificate Revocation List.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_certificate_crl" "trname" {
+  comment = "terraform-comment"
+  name    = "terraform-test-crl"
+}
+```
+
 ## Argument Reference
 
 
