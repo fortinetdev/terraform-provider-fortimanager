@@ -9,6 +9,22 @@ description: |-
 # fortimanager_packages_firewall_localinpolicy6
 Configure user defined IPv6 local-in policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_localinpolicy6" "labelname" {
+  action   = "deny"
+  dstaddr  = "all"
+  intf     = "1-A10"
+  pkg      = "default"
+  policyid = 1
+  schedule = "always"
+  service  = "ALL"
+  srcaddr  = "all"
+  status   = "enable"
+}
+```
+
 ## Argument Reference
 
 
