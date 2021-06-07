@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_firewall_internetservicegroup
 Configure group of Internet Service.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetservicegroup" "trname" {
+  comment   = "fdsafdsafds"
+  direction = "destination"
+  member = [
+    "8X8-8X8.Cloud",
+    "ADP-DNS",
+  ]
+  name = "dd"
+}
+```
+
 ## Argument Reference
 
 
