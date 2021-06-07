@@ -9,6 +9,18 @@ description: |-
 # fortimanager_system_sql_customindex
 List of SQL index fields.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_sql_customindex" "trname" {
+  case_sensitive = "disable"
+  device_type    = "FortiGate"
+  fosid          = "1"
+  index_field    = "srcip"
+  log_type       = "attack"
+}
+```
+
 ## Argument Reference
 
 
