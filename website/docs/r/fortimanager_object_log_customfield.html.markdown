@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectLog"
+subcategory: "Object Others"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_log_customfield"
 description: |-
@@ -31,6 +31,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectLog CustomField can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_log_customfield.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
