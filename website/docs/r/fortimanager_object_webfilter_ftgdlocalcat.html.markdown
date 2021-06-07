@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_webfilter_ftgdlocalcat
 Configure FortiGuard Web Filter local categories.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_ftgdlocalcat" "labelname" {
+  desc   = "s2s"
+  status = "enable"
+}
+```
+
 ## Argument Reference
 
 
