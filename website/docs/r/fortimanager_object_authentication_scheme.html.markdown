@@ -1,5 +1,5 @@
 ---
-subcategory: "ObjectAuthentication"
+subcategory: "Object Others"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_authentication_scheme"
 description: |-
@@ -42,6 +42,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 ObjectAuthentication Scheme can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_authentication_scheme.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
