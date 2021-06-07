@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_firewall_multicastaddress
 Configure multicast addresses.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_multicastaddress" "trname" {
+  color = 0
+  name  = "sdf"
+  subnet = [
+    "255.255.111.0",
+    "255.255.255.255",
+  ]
+  type = "broadcastmask"
+}
+```
+
 ## Argument Reference
 
 
