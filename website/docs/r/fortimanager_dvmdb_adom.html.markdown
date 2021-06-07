@@ -9,6 +9,32 @@ description: |-
 # fortimanager_dvmdb_adom
 ADOM table, most attributes are read-only and can only be changed internally.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvmdb_adom" "trname" {
+  flags = [
+    "no_vpn_console",
+  ]
+  log_db_retention_hours     = 1440
+  log_disk_quota             = 51200
+  log_disk_quota_alert_thres = 90
+  log_disk_quota_split_ratio = 70
+  log_file_retention_hours   = 8760
+  mig_mr                     = 4
+  mig_os_ver                 = "0.0"
+  mode                       = "gms"
+  mr                         = 4
+  name                       = "roots"
+  os_ver                     = "6.0"
+  restricted_prds = [
+    "fos",
+  ]
+  state          = 1
+  workspace_mode = 0
+}
+```
+
 ## Argument Reference
 
 
