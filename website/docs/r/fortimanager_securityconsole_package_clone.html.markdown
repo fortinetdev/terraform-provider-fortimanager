@@ -1,5 +1,5 @@
 ---
-subcategory: "Securityconsole"
+subcategory: "Security Console"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_securityconsole_package_clone"
 description: |-
@@ -38,6 +38,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Securityconsole PackageClone can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_securityconsole_package_clone.labelname SecurityconsolePackageClone
 $ unset "FORTIMANAGER_IMPORT_TABLE"
