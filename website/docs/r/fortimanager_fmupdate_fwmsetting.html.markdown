@@ -36,6 +36,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Fmupdate FwmSetting can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_fmupdate_fwmsetting.labelname FmupdateFwmSetting
 $ unset "FORTIMANAGER_IMPORT_TABLE"
