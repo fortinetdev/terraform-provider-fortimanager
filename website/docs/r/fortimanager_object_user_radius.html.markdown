@@ -9,6 +9,43 @@ description: |-
 # fortimanager_object_user_radius
 Configure RADIUS server entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_radius" "labelname" {
+  acct_all_servers                            = "disable"
+  acct_interim_interval                       = 0
+  all_usergroup                               = "disable"
+  auth_type                                   = "auto"
+  class                                       = []
+  h3c_compatibility                           = "disable"
+  interface_select_method                     = "auto"
+  name                                        = "fdsafds"
+  nas_ip                                      = "0.0.0.0"
+  password_encoding                           = "auto"
+  password_renewal                            = "enable"
+  radius_coa                                  = "disable"
+  radius_port                                 = 0
+  rsso                                        = "disable"
+  rsso_context_timeout                        = 0
+  rsso_ep_one_ip_only                         = "disable"
+  rsso_log_flags                              = []
+  rsso_log_period                             = 0
+  rsso_radius_server_port                     = 0
+  rsso_secret                                 = []
+  secondary_secret                            = ["tesssssss"]
+  secret                                      = ["tesssssss"]
+  server                                      = "2.2.2.2"
+  sso_attribute_value_override                = "enable"
+  switch_controller_acct_fast_framedip_detect = 2
+  switch_controller_service_type              = []
+  tertiary_secret                             = ["tesssssss"]
+  timeout                                     = 5
+  use_management_vdom                         = "disable"
+  username_case_sensitive                     = "disable"
+}
+```
+
 ## Argument Reference
 
 
