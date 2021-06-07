@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_admin_user
 Admin user.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_user" "trname" {
+  password  = ["fortinet"]
+  profileid = "Super_User"
+  userid    = "tfuser"
+}
+```
+
 ## Argument Reference
 
 
