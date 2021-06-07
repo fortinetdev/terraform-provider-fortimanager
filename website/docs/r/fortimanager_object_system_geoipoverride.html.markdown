@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_system_geoipoverride
 Configure geographical location mapping for IP address(es) to override mappings from FortiGuard.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_geoipoverride" "labelname" {
+  name = "ACN"
+}
+```
+
 ## Argument Reference
 
 
