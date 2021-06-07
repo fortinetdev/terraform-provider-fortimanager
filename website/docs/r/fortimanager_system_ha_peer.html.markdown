@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_ha_peer
 Peer.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_ha_peer" "trname" {
+  fosid         = "1"
+  ip            = "11.11.11.5"
+  serial_number = "FMG-VM0000000003"
+  status        = "enable"
+}
+```
+
 ## Argument Reference
 
 
