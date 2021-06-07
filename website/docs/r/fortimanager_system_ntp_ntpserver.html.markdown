@@ -9,6 +9,19 @@ description: |-
 # fortimanager_system_ntp_ntpserver
 NTP server.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_ntp_ntpserver" "trname" {
+  authentication = "disable"
+  fosid          = "2"
+  key            = ["fortinet"]
+  key_id         = 0
+  ntpv3          = "enable"
+  server         = "ntp1.fortinet.net"
+}
+```
+
 ## Argument Reference
 
 
