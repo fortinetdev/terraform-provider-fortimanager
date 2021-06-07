@@ -1,5 +1,5 @@
 ---
-subcategory: "Securityconsole"
+subcategory: "Security Console"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_securityconsole_pblock_clone"
 description: |-
@@ -30,6 +30,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Securityconsole PblockClone can be imported using any of these accepted formats:
 ```
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_securityconsole_pblock_clone.labelname SecurityconsolePblockClone
 $ unset "FORTIMANAGER_IMPORT_TABLE"
