@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_metadata_admins
 Configure admins.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_metadata_admins" "trname" {
+  fieldlength = 50
+  fieldname   = "terraform test1"
+  importance  = "optional"
+  status      = "enabled"
+}
+```
+
 ## Argument Reference
 
 
