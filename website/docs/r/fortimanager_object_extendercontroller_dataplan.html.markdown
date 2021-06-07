@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_extendercontroller_dataplan
 FortiExtender dataplan configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_dataplan" "trname" {
+  auth_type        = "chap"
+  billing_date     = 1
+  capacity         = 10
+  modem_id         = "all"
+  name             = "ste121"
+  overage          = "disable"
+  password         = ["fortinet"]
+  pdn              = "ipv4-only"
+  preferred_subnet = 32
+  private_network  = "disable"
+  signal_period    = 3600
+  signal_threshold = 100
+  status           = "enable"
+  type             = "generic"
+}
+```
+
 ## Argument Reference
 
 
