@@ -1,5 +1,5 @@
 ---
-subcategory: "Packages"
+subcategory: "Packages Authentication"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_authentication_setting"
 description: |-
@@ -41,6 +41,8 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages AuthenticationSetting can be imported using any of these accepted formats:
 ```
+Set import_options = ["pkg=mypkg"] in the provider section.
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_authentication_setting.labelname PackagesAuthenticationSetting
 $ unset "FORTIMANAGER_IMPORT_TABLE"
