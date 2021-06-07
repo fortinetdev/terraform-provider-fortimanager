@@ -1,5 +1,5 @@
 ---
-subcategory: "Packages"
+subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_policy64"
 description: |-
@@ -59,6 +59,8 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages FirewallPolicy64 can be imported using any of these accepted formats:
 ```
+Set import_options = ["pkg=mypkg"] in the provider section.
+
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_policy64.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
