@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename
 Configure venue name duple.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename" "labelname" {
+  name = "ss"
+}
+```
+
 ## Argument Reference
 
 
