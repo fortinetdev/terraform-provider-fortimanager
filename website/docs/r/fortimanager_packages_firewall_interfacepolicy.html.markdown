@@ -9,6 +9,29 @@ description: |-
 # fortimanager_packages_firewall_interfacepolicy
 Configure IPv4 interface policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_interfacepolicy" "labelname" {
+  address_type               = "ipv4"
+  application_list_status    = "disable"
+  av_profile_status          = "disable"
+  dlp_sensor_status          = "disable"
+  dsri                       = "disable"
+  dstaddr                    = "all"
+  emailfilter_profile_status = "disable"
+  interface                  = "1-A14"
+  ips_sensor_status          = "disable"
+  logtraffic                 = "utm"
+  pkg                        = "default"
+  policyid                   = 1
+  service                    = "ALL"
+  srcaddr                    = "all"
+  status                     = "enable"
+  webfilter_profile_status   = "disable"
+}
+```
+
 ## Argument Reference
 
 
