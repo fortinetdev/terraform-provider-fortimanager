@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_log_devicedisable
 Disable client device logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_devicedisable" "trname" {
+  device = "terr-FGT"
+  fosid  = "1"
+}
+```
+
 ## Argument Reference
 
 
