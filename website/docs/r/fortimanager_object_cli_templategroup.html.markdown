@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_cli_templategroup
 ObjectCli TemplateGroup
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_cli_template" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-cli-template"
+  script      = "terr-script"
+}
+
+resource "fortimanager_object_cli_templategroup" "trname" {
+  description = "This is a Terraform example"
+  member      = "terr-cli-template"
+  name        = "terr-cli-tplt-grp"
+  depends_on = [
+    fortimanager_object_cli_template.trname
+  ]
+}
+```
+
 ## Argument Reference
 
 
