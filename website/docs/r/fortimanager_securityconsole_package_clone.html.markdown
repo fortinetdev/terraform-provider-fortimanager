@@ -9,6 +9,16 @@ description: |-
 # fortimanager_securityconsole_package_clone
 Clone a policy package within the same ADOM.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_package_clone" "trname" {
+  fmgadom  = "root"
+  dst_name = "terr-pkg-clone"
+  pkg      = "default"
+}
+```
+
 ## Argument Reference
 
 
