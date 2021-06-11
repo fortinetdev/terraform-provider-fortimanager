@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile
 Configure SSL/SSH protocol options.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_sslsshprofile" "trname" {
+  comment         = "terraform-comment1"
+  mapi_over_https = "disable"
+  name            = "terraform-tefv"
+  use_ssl_server  = "disable"
+  whitelist       = "enable"
+}
+```
+
 ## Argument Reference
 
 
