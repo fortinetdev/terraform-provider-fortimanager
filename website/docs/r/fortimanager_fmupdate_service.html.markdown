@@ -9,6 +9,16 @@ description: |-
 # fortimanager_fmupdate_service
 Enable/disable services provided by the built-in FortiGuard.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_service" "trname" {
+  avips           = "enable"
+  query_antispam  = "enable"
+  query_antivirus = "enable"
+}
+```
+
 ## Argument Reference
 
 
