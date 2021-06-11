@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_waf_subclass
 Hidden table for datasource.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_subclass" "trname" {
+  fosid = 1
+  name  = "terr-waf-sub-class"
+}
+```
+
 ## Argument Reference
 
 
