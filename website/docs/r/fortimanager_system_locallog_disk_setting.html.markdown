@@ -9,6 +9,19 @@ description: |-
 # fortimanager_system_locallog_disk_setting
 Settings for local disk logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_disk_setting" "trname" {
+  diskfull      = "overwrite"
+  roll_day      = ["sunday"]
+  roll_schedule = "weekly"
+  server_type   = "FTP"
+  severity      = "emergency"
+  status        = "enable"
+}
+```
+
 ## Argument Reference
 
 
