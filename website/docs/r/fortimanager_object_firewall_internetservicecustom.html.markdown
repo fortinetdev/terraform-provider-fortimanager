@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_internetservicecustom
 Configure custom Internet Services.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetservicecustom" "trname" {
+  comment = "terraform-comment"
+  name    = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
