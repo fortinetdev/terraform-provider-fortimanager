@@ -9,6 +9,18 @@ description: |-
 # fortimanager_fmupdate_avips_webproxy
 Configure the web proxy for use with FortiGuard antivirus and IPS updates.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_avips_webproxy" "trname" {
+  address  = "192.168.1.1"
+  mode     = "proxy"
+  password = ["fortinet"]
+  status   = "enable"
+  username = "admin"
+}
+```
+
 ## Argument Reference
 
 
