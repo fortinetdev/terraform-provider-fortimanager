@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_user_saml
 SAML server entry configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_saml" "trname" {
+  name      = "terr-user-saml"
+  user_name = "admin"
+}
+```
+
 ## Argument Reference
 
 
