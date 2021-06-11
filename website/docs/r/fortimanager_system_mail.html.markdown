@@ -9,6 +9,20 @@ description: |-
 # fortimanager_system_mail
 Alert emails.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_mail" "trname" {
+  auth          = "enable"
+  fosid         = "1"
+  passwd        = ["fortinet"]
+  port          = 1
+  secure_option = "none"
+  server        = "ALL"
+  user          = "terraform"
+}
+```
+
 ## Argument Reference
 
 
