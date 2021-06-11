@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability
 Configure connection capability.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpconncapability" "trname" {
+  esp_port      = "closed"
+  ftp_port      = "closed"
+  http_port     = "open"
+  icmp_port     = "closed"
+  ikev2_port    = "closed"
+  ikev2_xx_port = "closed"
+  name          = "terr-wictl-hot20-heqp-conn-capblity"
+  pptp_vpn_port = "closed"
+  ssh_port      = "open"
+  tls_port      = "closed"
+  voip_tcp_port = "closed"
+  voip_udp_port = "unknown"
+}
+```
+
 ## Argument Reference
 
 
