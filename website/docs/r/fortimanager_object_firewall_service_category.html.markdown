@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_service_category
 Configure service categories.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_service_category" "trname" {
+  comment = "terraform-comment"
+  name    = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
