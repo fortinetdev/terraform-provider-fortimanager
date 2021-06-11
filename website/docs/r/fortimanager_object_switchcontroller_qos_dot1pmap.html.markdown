@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_switchcontroller_qos_dot1pmap
 Configure FortiSwitch QoS 802.1p.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_qos_dot1pmap" "trname" {
+  description        = "This is a Terraform example"
+  egress_pri_tagging = "disable"
+  name               = "terr-switch-controller-qos-dot1p-map"
+  priority_0         = "queue-0"
+  priority_1         = "queue-1"
+  priority_2         = "queue-0"
+  priority_3         = "queue-0"
+  priority_4         = "queue-0"
+  priority_5         = "queue-0"
+  priority_6         = "queue-0"
+  priority_7         = "queue-0"
+}
+```
+
 ## Argument Reference
 
 
