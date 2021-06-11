@@ -9,6 +9,38 @@ description: |-
 # fortimanager_object_firewall_vipgrp
 Configure IPv4 virtual IP groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vip" "trname" {
+  arp_reply              = "enable"
+  color                  = 1
+  comment                = "This is a Terraform example"
+  extintf                = "any"
+  extip                  = "192.168.1.1"
+  http_redirect          = "disable"
+  name                   = "terr-firewall-vip"
+  nat_source_vip         = "disable"
+  portforward            = "disable"
+  ssl_client_fallback    = "enable"
+  ssl_server_algorithm   = "client"
+  ssl_server_max_version = "client"
+  ssl_server_min_version = "client"
+  type                   = "static-nat"
+}
+
+resource "fortimanager_object_firewall_vipgrp" "trname" {
+  color     = 3
+  comments  = "This is a Terraform example"
+  interface = "any"
+  member    = "terr-firewall-vip"
+  name      = "terr-firewall-vipgrp"
+  depends_on = [
+    fortimanager_object_firewall_vip.trname
+  ]
+}
+```
+
 ## Argument Reference
 
 
