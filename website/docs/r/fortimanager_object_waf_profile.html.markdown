@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_waf_profile
 Web application firewall configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile" "trname" {
+  comment      = "This is a Terraform example"
+  extended_log = "enable"
+  external     = "enable"
+  name         = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 
