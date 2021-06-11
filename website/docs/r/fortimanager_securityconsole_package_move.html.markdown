@@ -9,6 +9,16 @@ description: |-
 # fortimanager_securityconsole_package_move
 Move and/or rename a policy package within the same ADOM.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_package_move" "trname" {
+  fmgadom  = "root"
+  dst_name = "terr-secconsole-pkg-move"
+  pkg      = "terr-pkg"
+}
+```
+
 ## Argument Reference
 
 
