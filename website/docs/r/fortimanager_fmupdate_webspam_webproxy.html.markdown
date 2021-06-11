@@ -9,6 +9,17 @@ description: |-
 # fortimanager_fmupdate_webspam_webproxy
 Configure the web proxy for use with FortiGuard antivirus and IPS updates.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_webspam_webproxy" "trname" {
+  mode     = "proxy"
+  password = ["fortinet"]
+  status   = "enable"
+  username = "admin"
+}
+```
+
 ## Argument Reference
 
 
