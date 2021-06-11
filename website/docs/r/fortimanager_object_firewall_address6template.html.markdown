@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_address6template
 Configure IPv6 address templates.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_address6template" "trname" {
+  ip6                  = "::33/128"
+  name                 = "terraform-name"
+  subnet_segment_count = 2
+}
+```
+
 ## Argument Reference
 
 
