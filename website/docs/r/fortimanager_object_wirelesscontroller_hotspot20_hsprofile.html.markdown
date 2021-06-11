@@ -9,6 +9,31 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_hsprofile
 Configure hotspot profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_hsprofile" "trname" {
+  access_network_asra     = "disable"
+  access_network_esr      = "disable"
+  access_network_internet = "disable"
+  access_network_type     = "private-network"
+  access_network_uesa     = "disable"
+  bss_transition          = "disable"
+  deauth_request_timeout  = 60
+  dgaf                    = "disable"
+  gas_comeback_delay      = 500
+  gas_fragmentation_limit = 1024
+  hessid                  = "00:00:00:00:00:00"
+  l2tif                   = "disable"
+  name                    = "terr-wictl-hot20-hs-profile"
+  pame_bi                 = "enable"
+  proxy_arp               = "enable"
+  venue_group             = "unspecified"
+  venue_type              = "unspecified"
+  wnm_sleep_mode          = "disable"
+}
+```
+
 ## Argument Reference
 
 
