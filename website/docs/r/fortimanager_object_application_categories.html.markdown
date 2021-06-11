@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_application_categories
 ObjectApplication Categories
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_categories" "trname" {
+  fosid = "99"
+}
+```
+
 ## Argument Reference
 
 
