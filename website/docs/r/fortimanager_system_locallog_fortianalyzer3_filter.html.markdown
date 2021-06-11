@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_fortianalyzer3_filter
 Filter for FortiAnalyzer3 logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_fortianalyzer3_filter" "trname" {
+  event = "enable"
+  ha    = "enable"
+}
+```
+
 ## Argument Reference
 
 
