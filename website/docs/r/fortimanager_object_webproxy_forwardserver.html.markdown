@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_webproxy_forwardserver
 Configure forward-server addresses.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webproxy_forwardserver" "trname" {
+  addr_type          = "ip"
+  comment            = "This is a Terraform example"
+  healthcheck        = "disable"
+  ip                 = "192.168.1.1"
+  monitor            = "http://www.google.com"
+  name               = "terr-web-proxy-forward-server"
+  password           = ["fortinet"]
+  port               = 3128
+  server_down_option = "block"
+  username           = "admin"
+}
+```
+
 ## Argument Reference
 
 
