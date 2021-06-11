@@ -9,6 +9,16 @@ description: |-
 # fortimanager_fmupdate_webspam_fgdsetting
 Configure the FortiGuard run parameters.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_webspam_fgdsetting" "trname" {
+  av_cache   = "400"
+  av_log     = "all"
+  av_preload = "enable"
+}
+```
+
 ## Argument Reference
 
 
