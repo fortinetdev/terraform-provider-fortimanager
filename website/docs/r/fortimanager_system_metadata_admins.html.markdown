@@ -14,7 +14,7 @@ Configure admins.
 ```hcl
 resource "fortimanager_system_metadata_admins" "trname" {
   fieldlength = 50
-  fieldname   = "terraform test1"
+  fieldname   = "terraform tefv1"
   importance  = "optional"
   status      = "enabled"
 }
