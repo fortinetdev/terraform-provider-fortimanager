@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_interfacepolicy_move
 Move IPv4 interface policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_interfacepolicy_move" "trname" {
+  pkg              = "default"
+  interface_policy = "2"
+  target           = "1"
+  option           = "before"
+}
+```
+
 ## Argument Reference
 
 
