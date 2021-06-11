@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_user_fsso
 Configure Fortinet Single Sign On (FSSO) agents.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_fsso" "trname" {
+  interface_select_method = "auto"
+  name                    = "terr-user-fsso"
+  password                = ["fortinet"]
+  password2               = [""]
+  password3               = [""]
+  password4               = [""]
+  password5               = [""]
+  port                    = 8000
+  port2                   = 8000
+  port3                   = 8000
+  port4                   = 8000
+  port5                   = 8000
+  server                  = "terraform-server"
+  source_ip               = "0.0.0.0"
+  source_ip6              = "::"
+  ssl                     = "disable"
+  type                    = "default"
+}
+```
+
 ## Argument Reference
 
 
