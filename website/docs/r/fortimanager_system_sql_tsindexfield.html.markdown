@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_sql_tsindexfield
 List of SQL text search index fields.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_sql_tsindexfield" "trname" {
+  category = "FGT-app-ctrl"
+  value    = "user,group,srcip,dstip,dstport,service,app,action,hostname"
+}
+```
+
 ## Argument Reference
 
 
