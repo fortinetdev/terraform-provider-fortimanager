@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_meta
 ObjectSystem Meta
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_meta" "trname" {
+  name = "terraform-tefv-meta"
+  sys_meta_fields {
+    fieldlength = "100"
+    importance  = "optional"
+    name        = "sys_meta_field"
+  }
+}
+```
+
 ## Argument Reference
 
 
