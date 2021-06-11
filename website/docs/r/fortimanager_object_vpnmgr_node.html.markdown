@@ -9,6 +9,45 @@ description: |-
 # fortimanager_object_vpnmgr_node
 VPN node for VPN Manager. Must specify vpntable and scope member.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpnmgr_node" "trname" {
+  add_route             = "enable"
+  assign_ip             = "enable"
+  assign_ip_from        = "dhcp"
+  authpasswd            = ["fortinet"]
+  authusr               = "admin"
+  auto_configuration    = "enable"
+  automatic_routing     = "disable"
+  default_gateway       = "192.168.1.1"
+  dhcp_server           = "enable"
+  dns_mode              = "auto"
+  dns_service           = "default"
+  domain                = "8.8.8.8"
+  exchange_interface_ip = "disable"
+  extgw_p2_per_net      = "disable"
+  fosid                 = 1
+  ipsec_lease_hold      = 60
+  ipv4_dns_server1      = "0.0.0.0"
+  ipv4_dns_server2      = "0.0.0.0"
+  ipv4_dns_server3      = "0.0.0.0"
+  ipv4_end_ip           = "0.0.0.0"
+  ipv4_netmask          = "255.255.255.255"
+  ipv4_start_ip         = "0.0.0.0"
+  ipv4_wins_server1     = "0.0.0.0"
+  ipv4_wins_server2     = "0.0.0.0"
+  local_gw              = "0.0.0.0"
+  mode_cfg              = "disable"
+  net_device            = "disable"
+  peertype              = "peer"
+  role                  = "hub"
+  tunnel_search         = "selectors"
+  unity_support         = "enable"
+  xauthtype             = "disable"
+}
+```
+
 ## Argument Reference
 
 
