@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_autodelete_reportautodeletion
 Automatic deletion policy for reports.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_autodelete_reportautodeletion" "trname" {
+  retention = "days"
+  runat     = "2"
+  status    = "enable"
+  value     = "10"
+}
+```
+
 ## Argument Reference
 
 
