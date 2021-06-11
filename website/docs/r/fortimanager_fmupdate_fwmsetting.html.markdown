@@ -9,6 +9,17 @@ description: |-
 # fortimanager_fmupdate_fwmsetting
 Configure firmware management settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_fwmsetting" "trname" {
+  auto_scan_fgt_disk = "enable"
+  check_fgt_disk     = "enable"
+  fds_failover_fmg   = "enable"
+  immx_source        = "fmg"
+}
+```
+
 ## Argument Reference
 
 
