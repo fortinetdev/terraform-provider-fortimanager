@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_system_smsserver
 Configure SMS server for sending SMS messages to support user authentication.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_smsserver" "trname" {
+  mail_server = "terraform-tefv"
+  name        = "terraform-tefv-smsserver"
+}
+```
+
 ## Argument Reference
 
 
