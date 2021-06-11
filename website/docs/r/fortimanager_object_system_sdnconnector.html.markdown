@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_system_sdnconnector
 Configure connection to SDN Connector.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_sdnconnector" "trname" {
+  api_key            = ["fortinet"]
+  compute_generation = 2
+  ibm_region         = "us-south"
+  ibm_region_gen1    = "us-south"
+  ibm_region_gen2    = "us-south"
+  name               = "terr-system-sdn-connector"
+  password           = ["fortinet"]
+  rest_interface     = "mgmt"
+  rest_password      = ["fortinet"]
+  rest_sport         = 9443
+  rest_ssl           = "enable"
+  server             = "192.168.1.1"
+  status             = "enable"
+  type               = "aci"
+  username           = "terraform-tefv"
+  vcenter_password   = ["fortinet"]
+}
+```
+
 ## Argument Reference
 
 
