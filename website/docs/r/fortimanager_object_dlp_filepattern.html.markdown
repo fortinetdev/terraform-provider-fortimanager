@@ -9,6 +9,114 @@ description: |-
 # fortimanager_object_dlp_filepattern
 Configure file patterns used by DLP blocking.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dlp_filepattern" "trname1" {
+  comment = "This is a Terraform example"
+  fosid   = 3
+  name    = "terr-dlp-filepattern"
+}
+
+
+
+resource "fortimanager_object_dlp_filepattern" "trname2" {
+  fosid = 2
+  name  = "stefv1"
+
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.bat"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.com"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.dll"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.doc"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.exe"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.gz"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.hta"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.ppt"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.rar"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.scr"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.tar"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.tgz"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.vb?"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.wps"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.xl?"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.zip"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.pif"
+  }
+  entries {
+    file_type   = "unknown"
+    filter_type = "pattern"
+    pattern     = "*.cpl"
+  }
+}
+```
+
 ## Argument Reference
 
 
