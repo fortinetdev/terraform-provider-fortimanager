@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_wanopt_profile
 Configure WAN optimization profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_profile" "trname" {
+  comments    = "This is a Terraform example"
+  name        = "terr-wanopt-profile"
+  transparent = "enable"
+}
+```
+
 ## Argument Reference
 
 
