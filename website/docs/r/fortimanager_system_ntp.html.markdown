@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_ntp
 NTP settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_ntp" "trname" {
+  status = "enable"
+}
+```
+
 ## Argument Reference
 
 
