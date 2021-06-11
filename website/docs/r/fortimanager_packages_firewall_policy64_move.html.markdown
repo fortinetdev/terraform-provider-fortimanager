@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_policy64_move
 Move IPv6 to IPv4 policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_policy64_move" "trname" {
+  pkg      = "default"
+  policy64 = "2"
+  target   = "1"
+  option   = "before"
+}
+```
+
 ## Argument Reference
 
 
