@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_log_ioc
 IoC settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_ioc" "trname" {
+  rescan_status = "disable"
+  status        = "enable"
+}
+```
+
 ## Argument Reference
 
 
