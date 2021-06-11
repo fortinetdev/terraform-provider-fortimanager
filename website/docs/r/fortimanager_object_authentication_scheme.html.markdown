@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_authentication_scheme
 Configure Authentication Schemes.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_authentication_scheme" "trname" {
+  fsso_guest  = "enable"
+  method      = ["basic"]
+  name        = "terr-scheme"
+  require_tfa = "disable"
+}
+```
+
 ## Argument Reference
 
 
