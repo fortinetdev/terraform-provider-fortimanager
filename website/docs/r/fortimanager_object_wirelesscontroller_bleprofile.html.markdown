@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_bleprofile
 Configure Bluetooth Low Energy profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_bleprofile" "trname" {
+  beacon_interval          = 100
+  ble_scanning             = "disable"
+  comment                  = "This is a Terraform example"
+  eddystone_instance       = "abcdef"
+  eddystone_namespace      = "0102030405"
+  eddystone_url            = "http://www.fortinet.com"
+  eddystone_url_encode_hex = "00666f7274696e65-7407"
+  ibeacon_uuid             = "005ea414-cbd1-11e5-9956-625662870761"
+  major_id                 = 1000
+  minor_id                 = 2000
+  name                     = "terr-wils-ctler-ble-profile"
+  txpower                  = "0"
+}
+```
+
 ## Argument Reference
 
 
