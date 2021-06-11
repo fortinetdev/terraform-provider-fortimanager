@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpnetworkauthtype
 Configure network authentication type.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnetworkauthtype" "trname" {
+  auth_type = "acceptance-of-terms"
+  name      = "terr-wictl-hot20-anqp-netauth-type"
+  url       = "tefv/url"
+}
+```
+
 ## Argument Reference
 
 
