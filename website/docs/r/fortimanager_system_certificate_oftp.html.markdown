@@ -13,7 +13,7 @@ OFTP certificates and keys.
 
 ```hcl
 resource "fortimanager_system_certificate_oftp" "trname" {
-  comment  = "This is a Terraform test change"
+  comment  = "This is a Terraform example change"
   mode     = "default"
   password = ["dakdiwX"]
 }
