@@ -9,6 +9,15 @@ description: |-
 # fortimanager_packages_pkg
 Packages Pkg
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_pkg" "trname" {
+  name = "terr-pkg"
+  type = "pkg"
+}
+```
+
 ## Argument Reference
 
 
