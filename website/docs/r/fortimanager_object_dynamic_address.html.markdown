@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_dynamic_address
 ObjectDynamic Address
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_address" "trname" {
+  default     = "all"
+  description = "This is a Terraform example"
+  name        = "terr-dynamic-address"
+}
+```
+
 ## Argument Reference
 
 
