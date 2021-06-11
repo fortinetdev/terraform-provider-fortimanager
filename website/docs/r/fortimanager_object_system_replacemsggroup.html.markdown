@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_system_replacemsggroup
 Configure replacement message groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_replacemsggroup" "trname" {
+  comment = "terraform-comment"
+  name    = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
