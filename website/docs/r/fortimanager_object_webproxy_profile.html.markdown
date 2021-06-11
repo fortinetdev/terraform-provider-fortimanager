@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_webproxy_profile
 Configure web proxy profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webproxy_profile" "trname" {
+  header_client_ip              = "pass"
+  header_front_end_https        = "add"
+  header_via_request            = "add"
+  header_via_response           = "pass"
+  header_x_authenticated_groups = "add"
+  header_x_authenticated_user   = "add"
+  header_x_forwarded_for        = "add"
+  log_header_change             = "disable"
+  name                          = "terr-web-proxy-profile"
+  strip_encoding                = "enable"
+}
+```
+
 ## Argument Reference
 
 
