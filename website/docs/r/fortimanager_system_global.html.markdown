@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_global
 Global range attributes.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_global" "trname" {
+  hostname = "FMG-Terr"
+  language = "en"
+}
+```
+
 ## Argument Reference
 
 
