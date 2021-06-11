@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_switchcontroller_qos_queuepolicy
 Configure FortiSwitch QoS egress queue policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_qos_queuepolicy" "trname" {
+  name     = "terr-switch-controller-qos-queue-policy"
+  rate_by  = "kbps"
+  schedule = "round-robin"
+}
+```
+
 ## Argument Reference
 
 
