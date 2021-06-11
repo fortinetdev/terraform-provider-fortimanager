@@ -9,6 +9,47 @@ description: |-
 # fortimanager_object_firewall_vip6
 Configure virtual IP for IPv6.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vip6" "trname" {
+  arp_reply                     = "enable"
+  color                         = 1
+  comment                       = "This is a Terraform example"
+  extip                         = "2001:192:168:1::2"
+  extport                       = "0"
+  http_cookie_age               = 60
+  http_cookie_domain_from_host  = "disable"
+  http_cookie_share             = "same-ip"
+  http_ip_header                = "disable"
+  http_multiplex                = "disable"
+  http_redirect                 = "disable"
+  https_cookie_secure           = "disable"
+  ldb_method                    = "static"
+  mappedip                      = "2001:192:168:1::2"
+  mappedport                    = "0"
+  max_embryonic_connections     = 1000
+  name                          = "terr-firewall-vip6"
+  nat_source_vip                = "disable"
+  outlook_web_access            = "disable"
+  persistence                   = "none"
+  portforward                   = "disable"
+  protocol                      = "tcp"
+  ssl_client_fallback           = "enable"
+  ssl_hsts                      = "disable"
+  ssl_hsts_age                  = 5184000
+  ssl_hsts_include_subdomains   = "disable"
+  ssl_http_location_conversion  = "disable"
+  ssl_server_algorithm          = "client"
+  ssl_server_max_version        = "client"
+  ssl_server_min_version        = "client"
+  ssl_server_session_state_type = "both"
+  type                          = "static-nat"
+  weblogic_server               = "disable"
+  websphere_server              = "disable"
+}
+```
+
 ## Argument Reference
 
 
