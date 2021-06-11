@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_sshfilter_profile
 SSH filter profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_sshfilter_profile" "trname" {
+  block               = ["shell"]
+  default_command_log = "enable"
+  log                 = ["exec", "sftp"]
+  name                = "terr-ssh-filter-profile"
+}
+```
+
 ## Argument Reference
 
 
