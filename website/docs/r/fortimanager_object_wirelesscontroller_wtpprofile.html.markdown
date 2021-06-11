@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile
 Configure WTP profiles or FortiAP profiles that define radio settings for manageable FortiAP platforms.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname" {
+  ap_country                          = "AM"
+  ap_handoff                          = "disable"
+  comment                             = "This is a Terraform example"
+  control_message_offload             = ["aeroscout-mu", "aeroscout-tag", "ap-list", "ebp-frame", "spectral-analysis", "sta-cap-list", "sta-health", "sta-list", "stats"]
+  dtls_policy                         = ["clear-text"]
+  energy_efficient_ethernet           = "disable"
+  ext_info_enable                     = "enable"
+  frequency_handoff                   = "disable"
+  handoff_roaming                     = "enable"
+  handoff_rssi                        = 25
+  handoff_sta_thresh                  = 55
+  ip_fragment_preventing              = ["tcp-mss-adjust"]
+  led_state                           = "enable"
+  lldp                                = "enable"
+  login_passwd_change                 = "no"
+  name                                = "terr-wictl-wtp-profile"
+  poe_mode                            = "auto"
+  split_tunneling_acl_local_ap_subnet = "disable"
+  split_tunneling_acl_path            = "local"
+}
+```
+
 ## Argument Reference
 
 
