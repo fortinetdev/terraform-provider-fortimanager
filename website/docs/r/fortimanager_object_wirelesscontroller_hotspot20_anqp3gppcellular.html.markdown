@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular
 Configure 3GPP public land mobile network (PLMN).
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular" "trname" {
+  mcc_mnc_list {
+    id  = 1
+    mcc = "mcc"
+    mnc = "mnc"
+  }
+  name = "terr-wictl-hot20-anqp-3gpp-cellular"
+}
+```
+
 ## Argument Reference
 
 
