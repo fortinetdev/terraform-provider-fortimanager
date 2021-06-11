@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_dynamic_virtualwanlink_members
 ObjectDynamic VirtualWanLinkMembers
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_virtualwanlink_members" "trname" {
+  comment      = "This is a Terraform example"
+  cost         = 10
+  gateway      = "192.168.1.1"
+  gateway6     = "::"
+  interface    = "any"
+  name         = "terr-dynamic-virtual-wan-link-member"
+  priority     = 1
+  source       = "192.168.1.2"
+  source6      = "::"
+  status       = "enable"
+  volume_ratio = 1
+  weight       = 1
+}
+```
+
 ## Argument Reference
 
 
