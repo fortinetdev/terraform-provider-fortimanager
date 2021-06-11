@@ -15,7 +15,7 @@ Configure web proxy address.
 resource "fortimanager_object_firewall_proxyaddress" "trname" {
   case_sensitivity = "disable"
   color            = 3
-  name             = "test1"
+  name             = "tefv1"
   referrer         = "disable"
   type             = "url"
 }
