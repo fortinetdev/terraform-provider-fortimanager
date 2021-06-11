@@ -9,6 +9,17 @@ description: |-
 # fortimanager_dvmdb_group
 Device group table.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvmdb_group" "trname" {
+  desc    = "terraform-tefv"
+  name    = "terraform-tefv"
+  os_type = "fos"
+  type    = "normal"
+}
+```
+
 ## Argument Reference
 
 
