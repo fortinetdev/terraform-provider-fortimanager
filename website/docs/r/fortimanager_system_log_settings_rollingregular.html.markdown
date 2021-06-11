@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_log_settings_rollingregular
 Log rolling policy for device logs.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_settings_rollingregular" "trname" {
+  days     = ["sun"]
+  username = "admin"
+}
+```
+
 ## Argument Reference
 
 
