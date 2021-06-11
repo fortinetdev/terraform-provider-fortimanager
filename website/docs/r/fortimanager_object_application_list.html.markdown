@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_application_list
 Configure application control lists.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_list" "trname" {
+  app_replacemsg             = "enable"
+  comment                    = "terraform-tefv-comment"
+  deep_app_inspection        = "enable"
+  extended_log               = "disable"
+  name                       = "terraform-tefv"
+  other_application_action   = "pass"
+  other_application_log      = "disable"
+  unknown_application_action = "pass"
+  unknown_application_log    = "disable"
+}
+```
+
 ## Argument Reference
 
 
