@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_logfetch_serversettings
 Log-fetch server settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_logfetch_serversettings" "trname" {
+  max_sessions    = "10"
+  session_timeout = "200"
+}
+```
+
 ## Argument Reference
 
 
