@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_fsp_vlan
 ObjectFsp Vlan
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_fsp_vlan" "trname" {
+  _dhcp_status = "enable"
+  color        = 2
+  name         = "terr-fsp-vlan"
+  vdom         = "root"
+  vlanid       = 100
+}
+```
+
 ## Argument Reference
 
 
