@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_report_estbrowsetime
 Report estimated browse time settings
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_report_estbrowsetime" "trname" {
+  status = "enable"
+}
+```
+
 ## Argument Reference
 
 
