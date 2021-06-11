@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_icap_profile
 Configure ICAP profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_icap_profile" "trname" {
+  methods                  = ["delete", "get", "head", "options", "other", "post", "put", "trace"]
+  name                     = "terr-icap-profile"
+  preview                  = "disable"
+  preview_data_length      = 500
+  request                  = "disable"
+  respmod_default_action   = "forward"
+  response                 = "disable"
+  response_req_hdr         = "disable"
+  streaming_content_bypass = "disable"
+}
+```
+
 ## Argument Reference
 
 
