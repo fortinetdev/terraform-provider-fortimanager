@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_dns
 DNS configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_dns" "trname" {
+  secondary = "8.8.8.8"
+}
+```
+
 ## Argument Reference
 
 
