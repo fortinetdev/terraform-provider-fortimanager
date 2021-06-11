@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_ssh_localca
 SSH proxy local CA.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_ssh_localca" "trname" {
+  name     = "terr-ssh-local-ca"
+  password = ["fortinet"]
+  source   = "built-in"
+}
+```
+
 ## Argument Reference
 
 
