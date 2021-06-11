@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_report_setting
 Report settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_report_setting" "trname" {
+  aggregate_report      = "disable"
+  exclude_capwap        = "disable"
+  report_priority       = "high"
+  template_auto_install = "default"
+}
+```
+
 ## Argument Reference
 
 
