@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_shaper_trafficshaper
 Configure shared traffic shaper.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_shaper_trafficshaper" "trname" {
+  bandwidth_unit = "mbps"
+  diffserv       = "disable"
+  name           = "terraform"
+  per_policy     = "disable"
+  priority       = "medium"
+}
+```
+
 ## Argument Reference
 
 
