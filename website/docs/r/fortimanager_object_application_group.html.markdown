@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_application_group
 Configure firewall application groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_group" "trname" {
+  comment = "terraform-tefv-comment"
+  name    = "terraform-tefv"
+  type    = "application"
+}
+```
+
 ## Argument Reference
 
 
