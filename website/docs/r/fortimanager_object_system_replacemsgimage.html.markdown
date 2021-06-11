@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_system_replacemsgimage
 Configure replacement message images.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_replacemsgimage" "trname" {
+  image_type = "jpg"
+  name       = "terraform-image"
+}
+```
+
 ## Argument Reference
 
 
