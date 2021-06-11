@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_emailfilter_dnsbl
 Configure AntiSpam DNSBL/ORBL.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_dnsbl" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-dnsbl"
+}
+```
+
 ## Argument Reference
 
 
