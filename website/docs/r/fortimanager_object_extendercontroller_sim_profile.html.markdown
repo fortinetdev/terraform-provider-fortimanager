@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_extendercontroller_sim_profile
 ObjectExtenderController SimProfile
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_sim_profile" "trname" {
+  default_sim    = "carrier"
+  description    = "This is a Terraform example"
+  gps            = "enable"
+  name           = "terr-ex-ctl-sim-profile"
+  redundant_mode = "disable"
+  sim1_pin       = "disable"
+  sim1_pin_code  = ["ENC"]
+  sim2_pin       = "disable"
+  sim2_pin_code  = ["ENC"]
+  status         = "enable"
+}
+```
+
 ## Argument Reference
 
 
