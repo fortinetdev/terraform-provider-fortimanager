@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_emailfilter_iptrust
 Configure AntiSpam IP trust.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_iptrust" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-iptrust"
+}
+```
+
 ## Argument Reference
 
 
