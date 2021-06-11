@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_interfacepolicy6_move
 Move IPv6 interface policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_interfacepolicy6_move" "trname" {
+  pkg               = "default"
+  interface_policy6 = "2"
+  target            = "1"
+  option            = "before"
+}
+```
+
 ## Argument Reference
 
 
