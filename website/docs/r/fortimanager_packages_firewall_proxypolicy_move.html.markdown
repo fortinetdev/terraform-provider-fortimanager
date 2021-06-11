@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_proxypolicy_move
 Move proxy policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_proxypolicy_move" "trname" {
+  pkg          = "default"
+  proxy_policy = "2"
+  target       = "1"
+  option       = "before"
+}
+```
+
 ## Argument Reference
 
 
