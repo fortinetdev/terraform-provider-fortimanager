@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_fortianalyzer_filter
 Filter for FortiAnalyzer logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_fortianalyzer_filter" "trname" {
+  eventmgmt = "enable"
+  logdb     = "enable"
+}
+```
+
 ## Argument Reference
 
 
