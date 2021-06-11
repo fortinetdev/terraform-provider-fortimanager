@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_dynamic_ippool
 ObjectDynamic Ippool
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_ippool" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-dynamic-ippool"
+}
+```
+
 ## Argument Reference
 
 
