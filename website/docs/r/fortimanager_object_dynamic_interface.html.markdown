@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_dynamic_interface
 ObjectDynamic Interface
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_interface" "trname" {
+  default_mapping       = "disable"
+  defmap_intrazone_deny = "disable"
+  description           = "This is a Terraform example"
+  name                  = "terr-dynamic-interface"
+  single_intf           = "enable"
+}
+```
+
 ## Argument Reference
 
 
