@@ -9,6 +9,20 @@ description: |-
 # fortimanager_fmupdate_fdssetting_serveroverride
 Server override configure.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_fdssetting_serveroverride" "trname" {
+  servlist {
+    id           = "1"
+    ip           = "192.168.1.1"
+    port         = "2000"
+    service_type = "fct"
+  }
+  status = "disable"
+}
+```
+
 ## Argument Reference
 
 
