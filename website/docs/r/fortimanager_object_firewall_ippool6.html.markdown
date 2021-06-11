@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_firewall_ippool6
 Configure IPv6 IP pools.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_ippool6" "trname" {
+  comments = "terraform-comment"
+  endip    = "2001::101"
+  name     = "terraform-tefv"
+  startip  = "2001::0"
+}
+```
+
 ## Argument Reference
 
 
