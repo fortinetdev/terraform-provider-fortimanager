@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_dynamic_certificate_local
 ObjectDynamic CertificateLocal
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_certificate_local" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-dynamic-cer-local"
+}
+```
+
 ## Argument Reference
 
 
