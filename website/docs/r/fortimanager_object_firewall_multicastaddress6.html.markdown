@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_firewall_multicastaddress6
 Configure IPv6 multicast address.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_multicastaddress6" "trname" {
+  color   = 2
+  comment = "terraform-comment"
+  ip6     = "2001::10/128"
+  name    = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
