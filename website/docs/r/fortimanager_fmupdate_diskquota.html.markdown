@@ -9,6 +9,14 @@ description: |-
 # fortimanager_fmupdate_diskquota
 Configure disk space available for use by the Upgrade Manager.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_diskquota" "trname" {
+  value = "1"
+}
+```
+
 ## Argument Reference
 
 
