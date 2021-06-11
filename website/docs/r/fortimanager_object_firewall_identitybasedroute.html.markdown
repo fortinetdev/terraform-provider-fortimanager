@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_identitybasedroute
 Configure identity based routing.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_identitybasedroute" "trname" {
+  comments = "terraform-comments"
+  name     = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
