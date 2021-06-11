@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_vpn_certificate_ocspserver
 OCSP server configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_certificate_ocspserver" "trname" {
+  cert           = "ACCVRAIZ1"
+  name           = "terr-vpn-cer-ocsp-server"
+  source_ip      = "192.168.1.1"
+  unavail_action = "revoke"
+}
+```
+
 ## Argument Reference
 
 
