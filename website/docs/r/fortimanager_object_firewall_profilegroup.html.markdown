@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_profilegroup
 Configure profile groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profilegroup" "trname" {
+  application_list = "default"
+  av_profile       = "default"
+  name             = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
