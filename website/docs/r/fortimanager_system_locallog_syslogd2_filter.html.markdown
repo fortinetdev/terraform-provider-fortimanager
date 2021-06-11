@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_syslogd2_filter
 Filter for syslog logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_syslogd2_filter" "trname" {
+  fgfm  = "enable"
+  lrmgr = "enable"
+}
+```
+
 ## Argument Reference
 
 
