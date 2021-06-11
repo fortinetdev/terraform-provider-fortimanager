@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpipaddresstype
 Configure IP address type availability.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpipaddresstype" "trname" {
+  ipv4_address_type = "not-available"
+  ipv6_address_type = "available"
+  name              = "terr-wictl-hot20-anqp-ip-addrtype"
+}
+```
+
 ## Argument Reference
 
 
