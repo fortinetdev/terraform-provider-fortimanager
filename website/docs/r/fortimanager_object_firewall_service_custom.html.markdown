@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_firewall_service_custom
 Configure custom services.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_service_custom" "trname" {
+  app_service_type = "disable"
+  color            = 1
+  comment          = "comment"
+  helper           = "auto"
+  name             = "terraform-tefv"
+  protocol         = "ALL"
+  proxy            = "enable"
+}
+```
+
 ## Argument Reference
 
 
