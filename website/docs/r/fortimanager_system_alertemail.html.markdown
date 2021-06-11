@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_alertemail
 Configure alertemail.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_alertemail" "trname" {
+  fromaddress = "tefv@tefv.com"
+  fromname    = "terr-sys-alertemail"
+  smtpport    = "2000"
+  smtpserver  = "192.168.1.2"
+}
+```
+
 ## Argument Reference
 
 
