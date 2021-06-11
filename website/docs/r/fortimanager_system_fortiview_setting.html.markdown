@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_fortiview_setting
 FortiView settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_fortiview_setting" "trname" {
+  not_scanned_apps = "exclude"
+  resolve_ip       = "enable"
+}
+```
+
 ## Argument Reference
 
 
