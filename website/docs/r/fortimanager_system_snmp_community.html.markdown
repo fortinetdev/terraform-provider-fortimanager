@@ -15,7 +15,7 @@ SNMP community configuration.
 resource "fortimanager_system_snmp_community" "trname" {
   events = ["cpu-high-exclude-nice"]
   fosid  = "1"
-  name   = "terraform-test-snmp"
+  name   = "terraform-tefv-snmp"
   status = "disable"
 }
 ```
