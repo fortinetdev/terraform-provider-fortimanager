@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_vpn_ssl_web_hostchecksoftware
 SSL-VPN host check software.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ssl_web_hostchecksoftware" "trname" {
+  name    = "terr-vpn-ssl-web-host-check-software"
+  os_type = "macos"
+  type    = "av"
+}
+```
+
 ## Argument Reference
 
 
