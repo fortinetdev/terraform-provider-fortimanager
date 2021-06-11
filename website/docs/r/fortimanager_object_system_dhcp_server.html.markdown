@@ -9,6 +9,49 @@ description: |-
 # fortimanager_object_system_dhcp_server
 Configure DHCP servers.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_dhcp_server" "trname" {
+  auto_configuration           = "enable"
+  auto_managed_status          = "enable"
+  conflicted_ip_timeout        = 1800
+  ddns_auth                    = "disable"
+  ddns_server_ip               = "0.0.0.0"
+  ddns_ttl                     = 300
+  ddns_update                  = "disable"
+  ddns_update_override         = "disable"
+  default_gateway              = "0.0.0.0"
+  dhcp_settings_from_fortiipam = "disable"
+  dns_server1                  = "0.0.0.0"
+  dns_server2                  = "0.0.0.0"
+  dns_server3                  = "0.0.0.0"
+  dns_server4                  = "0.0.0.0"
+  dns_service                  = "specify"
+  forticlient_on_net_status    = "enable"
+  fosid                        = 1
+  lease_time                   = 604800
+  mac_acl_default_action       = "assign"
+  netmask                      = "0.0.0.0"
+  next_server                  = "0.0.0.0"
+  ntp_server1                  = "0.0.0.0"
+  ntp_server2                  = "0.0.0.0"
+  ntp_server3                  = "0.0.0.0"
+  ntp_service                  = "specify"
+  server_type                  = "regular"
+  status                       = "enable"
+  timezone                     = "00"
+  timezone_option              = "disable"
+  vci_match                    = "disable"
+  wifi_ac1                     = "0.0.0.0"
+  wifi_ac2                     = "0.0.0.0"
+  wifi_ac3                     = "0.0.0.0"
+  wifi_ac_service              = "specify"
+  wins_server1                 = "0.0.0.0"
+  wins_server2                 = "0.0.0.0"
+}
+```
+
 ## Argument Reference
 
 
