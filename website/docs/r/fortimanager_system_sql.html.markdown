@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_sql
 SQL settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_sql" "trname" {
+  password = ["fortinet"]
+  server   = "192.168.1.1"
+  status   = "enable"
+  username = "admin"
+}
+```
+
 ## Argument Reference
 
 
