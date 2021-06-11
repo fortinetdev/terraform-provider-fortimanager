@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_workflow_approvalmatrix
 workflow approval matrix.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_workflow_approvalmatrix" "trname" {
+  adom_name = "terraform"
+  notify    = "terraform-notify"
+}
+```
+
 ## Argument Reference
 
 
