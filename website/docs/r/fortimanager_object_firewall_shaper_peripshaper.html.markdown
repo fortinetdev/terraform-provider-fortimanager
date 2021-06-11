@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_firewall_shaper_peripshaper
 Configure per-IP traffic shaper.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_shaper_peripshaper" "trname" {
+  bandwidth_unit   = "mbps"
+  diffserv_forward = "enable"
+  diffserv_reverse = "disable"
+  name             = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
