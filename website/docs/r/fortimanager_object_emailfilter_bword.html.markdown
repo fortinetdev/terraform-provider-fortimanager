@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_emailfilter_bword
 Configure AntiSpam banned word list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_bword" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-bword"
+}
+```
+
 ## Argument Reference
 
 
