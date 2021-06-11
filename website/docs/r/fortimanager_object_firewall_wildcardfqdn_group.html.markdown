@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_wildcardfqdn_group
 Config global Wildcard FQDN address groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_wildcardfqdn_custom" "trname" {
+  color   = 1
+  comment = "terraform-comment"
+  name    = "terraform-tefv"
+}
+
+resource "fortimanager_object_firewall_wildcardfqdn_group" "trname" {
+  color   = 1
+  comment = "terraform-comment"
+  member  = "terraform-tefv"
+  name    = "terraform-tefv-fqdn-grp"
+  depends_on = [
+    fortimanager_object_firewall_wildcardfqdn_custom.trname
+  ]
+}
+```
+
 ## Argument Reference
 
 
