@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_emailfilter_profile
 Configure Email Filter profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_profile" "trname" {
+  comment                      = "This is a Terraform example"
+  external                     = "disable"
+  feature_set                  = "flow"
+  name                         = "terr-emailfilter-profile"
+  options                      = ["bannedword", "spambwl"]
+  spam_bword_threshold         = 10
+  spam_filtering               = "disable"
+  spam_log                     = "enable"
+  spam_log_fortiguard_response = "disable"
+}
+```
+
 ## Argument Reference
 
 
