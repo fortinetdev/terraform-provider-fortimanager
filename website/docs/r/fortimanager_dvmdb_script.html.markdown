@@ -9,6 +9,17 @@ description: |-
 # fortimanager_dvmdb_script
 Script table.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvmdb_script" "trname" {
+  content = "terraform-tefv"
+  name    = "terraform-tefv"
+  target  = "device_database"
+  type    = "cli"
+}
+```
+
 ## Argument Reference
 
 
