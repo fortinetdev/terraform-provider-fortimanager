@@ -9,6 +9,14 @@ description: |-
 # fortimanager_securityconsole_abort
 Abort and cancel a security console task.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_abort" "trname" {
+  fmgadom = "root"
+}
+```
+
 ## Argument Reference
 
 
