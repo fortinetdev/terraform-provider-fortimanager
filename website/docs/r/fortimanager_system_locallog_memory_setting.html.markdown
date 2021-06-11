@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_locallog_memory_setting
 Settings for memory buffer.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_memory_setting" "trname" {
+  diskfull = "overwrite"
+  severity = "warning"
+  status   = "disable"
+}
+```
+
 ## Argument Reference
 
 
