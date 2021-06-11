@@ -14,7 +14,7 @@ Refresh the FGFM connection and system information of a device.
 ```hcl
 resource "fortimanager_dvm_cmd_update_device" "trname" {
   fmgadom = "root"
-  device  = "terraform-test"
+  device  = "terraform-tefv"
   flags   = ["create_task", "nonblocking"]
 }
 ```
