@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_user_krbkeytab
 Configure Kerberos keytab entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_krbkeytab" "trname" {
+  name     = "terr-user-krb-keytab"
+  pac_data = "enable"
+}
+```
+
 ## Argument Reference
 
 
