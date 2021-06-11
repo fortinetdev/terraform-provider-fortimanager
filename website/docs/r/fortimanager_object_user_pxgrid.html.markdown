@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_user_pxgrid
 ObjectUser Pxgrid
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_pxgrid" "trname" {
+  name   = "terr-user-pxgrid"
+  server = "192.168.1.1"
+  status = "disable"
+}
+```
+
 ## Argument Reference
 
 
