@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_user_fssopolling
 Configure FSSO active directory servers for polling mode.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_fssopolling" "trname" {
+  default_domain    = "terr-user-fsso-polling"
+  fosid             = 1
+  logon_history     = 8
+  password          = ["fortinet"]
+  polling_frequency = 10
+  server            = "terraform-server"
+  smb_ntlmv1_auth   = "disable"
+  smbv1             = "disable"
+  status            = "enable"
+  user              = "admin"
+}
+```
+
 ## Argument Reference
 
 
