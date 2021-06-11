@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_user_tacacs
 Configure TACACS+ server entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_tacacs" "trname" {
+  authen_type             = "auto"
+  authorization           = "disable"
+  interface               = "port10"
+  interface_select_method = "auto"
+  key                     = ["fortinet"]
+  name                    = "terr-user-tacacs"
+  port                    = 49
+  secondary_key           = ["fortinet"]
+  server                  = "192.168.1.1"
+  tertiary_key            = ["fortinet"]
+}
+```
+
 ## Argument Reference
 
 
