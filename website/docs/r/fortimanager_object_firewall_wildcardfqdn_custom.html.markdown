@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_wildcardfqdn_custom
 Config global/VDOM Wildcard FQDN address.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_wildcardfqdn_custom" "trname" {
+  color   = 1
+  comment = "terraform-comment"
+  name    = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
