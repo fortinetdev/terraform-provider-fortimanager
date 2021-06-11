@@ -9,6 +9,14 @@ description: |-
 # fortimanager_fmupdate_multilayer
 Configure multilayer mode.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_multilayer" "trname" {
+  webspam_rating = "enable"
+}
+```
+
 ## Argument Reference
 
 
