@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions
 Configure protocol options.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  comment = "terraform-comment"
+  name    = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
