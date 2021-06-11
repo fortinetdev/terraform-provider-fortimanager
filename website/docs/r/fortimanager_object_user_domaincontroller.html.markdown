@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_user_domaincontroller
 Configure domain controller entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_domaincontroller" "trname" {
+  domain_name = "admin"
+  ip_address  = "192.168.1.1"
+  name        = "terr-user-domain-controller"
+  port        = 445
+}
+```
+
 ## Argument Reference
 
 
