@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_firewall_addrgrp6
 Configure IPv6 address groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_address6" "trname" {
+  color     = 1
+  comment   = "This is a Terraform example"
+  country   = "US"
+  end_ip    = "2001:192:168:1::10"
+  end_mac   = "00:00:00:00:00:00"
+  host      = "::"
+  host_type = "any"
+  ip6       = "::/0"
+  name      = "terr-firewall-address6"
+  start_ip  = "2001:192:168:1::1"
+  start_mac = "00:00:00:00:00:00"
+  type      = "iprange"
+}
+
+resource "fortimanager_object_firewall_addrgrp6" "trname" {
+  comment = "terraform-comment"
+  member  = "terr-firewall-address6"
+  name    = "terraform-addrgrp6"
+  depends_on = [
+    fortimanager_object_firewall_address6.trname
+  ]
+}
+```
+
 ## Argument Reference
 
 
