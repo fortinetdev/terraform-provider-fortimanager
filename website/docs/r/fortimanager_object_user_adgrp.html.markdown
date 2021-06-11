@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_user_adgrp
 Configure FSSO groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_adgrp" "trname" {
+  connector_source = "terr-tefv"
+  fosid            = 1
+  name             = "terr-user-adgrp"
+  server_name      = "FortiManager"
+}
+```
+
 ## Argument Reference
 
 
