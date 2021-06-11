@@ -9,6 +9,16 @@ description: |-
 # fortimanager_fmupdate_fdssetting
 Configure FortiGuard settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_fdssetting" "trname" {
+  fds_clt_ssl_protocol = "sslv3"
+  fds_ssl_protocol     = "sslv3"
+  fmtr_log             = "emergency"
+}
+```
+
 ## Argument Reference
 
 
