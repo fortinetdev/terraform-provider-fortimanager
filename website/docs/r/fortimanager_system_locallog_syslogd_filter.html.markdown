@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_syslogd_filter
 Filter for syslog logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_syslogd_filter" "trname" {
+  fips  = "enable"
+  logdb = "enable"
+}
+```
+
 ## Argument Reference
 
 
