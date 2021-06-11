@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_dlp_sensor
 Configure DLP sensors.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dlp_sensor" "trname" {
+  dlp_log            = "enable"
+  extended_log       = "disable"
+  feature_set        = "flow"
+  full_archive_proto = ["ftp", "http-get", "http-post", "imap", "mapi", "nntp"]
+  nac_quar_log       = "disable"
+  name               = "terr-dlp-sensor"
+  summary_proto      = ["ftp", "http-get", "http-post", "imap", "mapi", "nntp"]
+}
+```
+
 ## Argument Reference
 
 
