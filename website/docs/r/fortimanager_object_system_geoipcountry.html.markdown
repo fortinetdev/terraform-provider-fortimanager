@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_system_geoipcountry
 ObjectSystem GeoipCountry
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_geoipcountry" "trname" {
+  fosid = "1"
+  name  = "terr-system-geoip-country"
+}
+```
+
 ## Argument Reference
 
 
