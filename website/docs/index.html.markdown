@@ -37,7 +37,7 @@ resource "fortimanager_object_firewall_vip" "trname1" {
 
 ```
 
-Before using this provider, WebServices access with FortiManager need to be enabled. See `Guides->Enabling Web Services` to enable FortiManager WebServices.
+Before using this provider, the permission level for rpc-permit need to be set. See `Guides->To Set the Permission Level for RPC-Permit` for details.
 
 If it is used for testing, you can set `insecure` to "true" and unset `cabundlefile` to quickly set the provider up, for example:
 
