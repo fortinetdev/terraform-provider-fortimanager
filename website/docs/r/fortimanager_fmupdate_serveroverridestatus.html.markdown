@@ -9,6 +9,14 @@ description: |-
 # fortimanager_fmupdate_serveroverridestatus
 Configure strict/loose server override.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_serveroverridestatus" "trname" {
+  mode = "strict"
+}
+```
+
 ## Argument Reference
 
 
