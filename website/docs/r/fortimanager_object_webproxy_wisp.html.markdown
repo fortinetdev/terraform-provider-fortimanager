@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_webproxy_wisp
 Configure Wireless Internet service provider (WISP) servers.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webproxy_wisp" "trname" {
+  comment         = "This is a Terraform example"
+  max_connections = 64
+  name            = "terr-web-proxy-wisp"
+  outgoing_ip     = "192.168.1.1"
+  server_ip       = "192.168.1.2"
+  server_port     = 15868
+  timeout         = 5
+}
+```
+
 ## Argument Reference
 
 
