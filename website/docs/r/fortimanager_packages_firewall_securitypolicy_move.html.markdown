@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_securitypolicy_move
 Move NGFW IPv4/IPv6 application policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_securitypolicy_move" "trname" {
+  pkg             = "default"
+  security_policy = "2"
+  target          = "1"
+  option          = "before"
+}
+```
+
 ## Argument Reference
 
 
