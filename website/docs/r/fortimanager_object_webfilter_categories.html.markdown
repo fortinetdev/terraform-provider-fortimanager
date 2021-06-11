@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_webfilter_categories
 ObjectWebfilter Categories
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_categories" "trname" {
+  fosid = "99"
+}
+```
+
 ## Argument Reference
 
 
