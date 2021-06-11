@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_memory_filter
 Filter for memory logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_memory_filter" "trname" {
+  aid = "enable"
+  dvm = "enable"
+}
+```
+
 ## Argument Reference
 
 
