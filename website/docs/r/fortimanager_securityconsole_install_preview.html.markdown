@@ -9,6 +9,16 @@ description: |-
 # fortimanager_securityconsole_install_preview
 Generate install preview for a device.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_install_preview" "trname" {
+  fmgadom = "root"
+  device  = "terr-FGT"
+  flags   = ["none"]
+}
+```
+
 ## Argument Reference
 
 
