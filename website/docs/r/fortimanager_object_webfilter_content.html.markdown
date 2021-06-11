@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_webfilter_content
 Configure Web filter banned word table.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_content" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-webfilter-content"
+}
+```
+
 ## Argument Reference
 
 
