@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_dlp_sensitivity
 Create self-explanatory DLP sensitivity levels to be used when setting sensitivity under config fp-doc-source.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dlp_sensitivity" "trname" {
+  name = "terr-sensitivity"
+}
+```
+
 ## Argument Reference
 
 
