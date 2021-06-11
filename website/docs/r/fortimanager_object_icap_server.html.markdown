@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_icap_server
 Configure ICAP servers.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_icap_server" "trname" {
+  ip_address      = "192.168.1.1"
+  ip_version      = "4"
+  max_connections = 100
+  name            = "terr-icap-server"
+  port            = 1344
+}
+```
+
 ## Argument Reference
 
 
