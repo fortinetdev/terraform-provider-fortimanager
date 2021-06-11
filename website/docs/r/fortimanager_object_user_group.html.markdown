@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_user_group
 Configure user groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_group" "trname" {
+  name     = "terraform-tefv-group"
+  password = "specify"
+  user_id  = "email"
+}
+```
+
 ## Argument Reference
 
 
