@@ -9,6 +9,15 @@ description: |-
 # fortimanager_securityconsole_sign_certificate_template
 Generate and sign certificate on the target device.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_sign_certificate_template" "trname" {
+  fmgadom  = "root"
+  template = "terraform"
+}
+```
+
 ## Argument Reference
 
 
