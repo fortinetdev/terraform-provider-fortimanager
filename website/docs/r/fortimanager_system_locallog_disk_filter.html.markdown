@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_disk_filter
 Filter for disk logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_disk_filter" "trname" {
+  docker = "enable"
+  ha     = "enable"
+}
+```
+
 ## Argument Reference
 
 
