@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_syslogd_setting
 Settings for remote syslog server.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_syslogd_setting" "trname" {
+  severity = "error"
+  status   = "enable"
+}
+```
+
 ## Argument Reference
 
 
