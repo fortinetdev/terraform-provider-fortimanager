@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_dynamic_virtualwanlink_server
 ObjectDynamic VirtualWanLinkServer
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_virtualwanlink_server" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-dynamic-virtual-wan-link-server"
+  server      = ["terr-server"]
+}
+```
+
 ## Argument Reference
 
 
