@@ -14,7 +14,7 @@ Certificate Revocation List.
 ```hcl
 resource "fortimanager_system_certificate_crl" "trname" {
   comment = "terraform-comment"
-  name    = "terraform-test-crl"
+  name    = "terraform-tefv-crl"
 }
 ```
 
