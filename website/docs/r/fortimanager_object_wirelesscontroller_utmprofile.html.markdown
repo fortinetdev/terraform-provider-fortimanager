@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_wirelesscontroller_utmprofile
 Configure UTM (Unified Threat Management) profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_utmprofile" "trname" {
+  antivirus_profile       = "default"
+  application_list        = "default"
+  comment                 = "This is a Terraform example"
+  ips_sensor              = "all_default"
+  name                    = "terr-wictl-utm-profile"
+  scan_botnet_connections = "block"
+  utm_log                 = "enable"
+  webfilter_profile       = "default"
+}
+```
+
 ## Argument Reference
 
 
