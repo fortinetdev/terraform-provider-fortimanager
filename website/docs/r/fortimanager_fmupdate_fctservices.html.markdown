@@ -9,6 +9,15 @@ description: |-
 # fortimanager_fmupdate_fctservices
 Configure FortiGuard to provide services to FortiClient installations.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_fctservices" "trname" {
+  port   = "200"
+  status = "enable"
+}
+```
+
 ## Argument Reference
 
 
