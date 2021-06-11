@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_firewall_internetservicename
 Define internet service names.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetservicename" "trname" {
+  country_id          = 1
+  internet_service_id = "65536"
+  name                = "terr-firewall-int-svs-name"
+  type                = "location"
+}
+```
+
 ## Argument Reference
 
 
