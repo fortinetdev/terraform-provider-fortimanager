@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_ha
 HA configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_ha" "trname" {
+  clusterid  = "2"
+  file_quota = "2048"
+  mode       = "standalone"
+  password   = ["fortinet"]
+}
+```
+
 ## Argument Reference
 
 
