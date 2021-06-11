@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider
 Configure online sign up (OSU) provider list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider" "trname" {
+  name       = "terr-wictl-hot20-heqp-osu-provider"
+  osu_method = ["oma-dm"]
+}
+```
+
 ## Argument Reference
 
 
