@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_dnsfilter_profile
 Configure DNS domain filter profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dnsfilter_profile" "trname" {
+  block_action   = "redirect"
+  block_botnet   = "disable"
+  comment        = "terraform-tefv-comment"
+  log_all_domain = "disable"
+  name           = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
