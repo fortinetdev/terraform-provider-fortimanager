@@ -13,8 +13,8 @@ Admin profile.
 
 ```hcl
 resource "fortimanager_system_admin_profile" "trname" {
-  description = "terraform-test-description"
-  profileid   = "terraform-test-profile2"
+  description = "terraform-tefv-description"
+  profileid   = "terraform-tefv-profile2"
   scope       = "adom"
   type        = "system"
 }
