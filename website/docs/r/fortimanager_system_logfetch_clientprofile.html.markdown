@@ -17,7 +17,7 @@ resource "fortimanager_system_logfetch_clientprofile" "trname" {
   data_range       = "custom"
   fosid            = "1"
   index_fetch_logs = "enable"
-  name             = "terraform-test-clientprofile"
+  name             = "terraform-tefv-clientprofile"
   password         = ["fortinet"]
   server_ip        = "222.222.22.25"
   user             = "terraform"
