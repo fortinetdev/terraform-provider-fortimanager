@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_multicastpolicy6_move
 Move IPv6 multicast NAT policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_multicastpolicy6_move" "trname" {
+  pkg               = "default"
+  multicast_policy6 = "2"
+  target            = "1"
+  option            = "before"
+}
+```
+
 ## Argument Reference
 
 
