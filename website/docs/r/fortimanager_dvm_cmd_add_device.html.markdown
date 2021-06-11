@@ -17,7 +17,7 @@ resource "fortimanager_dvm_cmd_add_device" "trname" {
   device {
     ip        = "192.168.52.177"
     mgmt_mode = "fmg"
-    name      = "terraform-test"
+    name      = "terraform-tefv"
     adm_usr   = "admin"
     adm_pass  = "admin"
   }
