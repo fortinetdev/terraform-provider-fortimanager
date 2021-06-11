@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_schedule_recurring
 Recurring schedule configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_schedule_recurring" "trname" {
+  color = 1
+  day   = ["sunday", "monday", "tuesday", "wednesday", "thursday", "friday", "saturday", "none"]
+  end   = "15:00"
+  name  = "terraform-tefv-recurring"
+  start = "07:00"
+}
+```
+
 ## Argument Reference
 
 
