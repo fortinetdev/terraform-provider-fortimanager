@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_dm
 Configure dm.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_dm" "trname" {
+  concurrent_install_image_limit = "2"
+  concurrent_install_limit       = "10"
+  conf_merge_after_script        = "disable"
+  fgfm_sock_timeout              = "200"
+}
+```
+
 ## Argument Reference
 
 
