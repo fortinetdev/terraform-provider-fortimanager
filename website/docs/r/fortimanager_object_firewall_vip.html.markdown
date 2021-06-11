@@ -9,6 +9,49 @@ description: |-
 # fortimanager_object_firewall_vip
 Configure virtual IP for IPv4.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vip" "trname1" {
+  arp_reply              = "enable"
+  color                  = 1
+  comment                = "This is a Terraform example"
+  extintf                = "any"
+  extip                  = "192.168.1.1"
+  http_redirect          = "disable"
+  name                   = "terr-firewall-vip"
+  nat_source_vip         = "disable"
+  portforward            = "disable"
+  ssl_client_fallback    = "enable"
+  ssl_server_algorithm   = "client"
+  ssl_server_max_version = "client"
+  ssl_server_min_version = "client"
+  type                   = "static-nat"
+}
+
+resource "fortimanager_object_firewall_vip" "trname2" {
+  realservers {
+    client_ip         = ["3.3.3.3-4.4.4.4", "1.1.1.1-2.2.2.2"]
+    healthcheck       = "vip"
+    holddown_interval = 300
+    ip                = "10.11.1.11"
+    port              = 80
+    status            = "active"
+    type              = "ip"
+  }
+  color                  = 22
+  name                   = "wholezz"
+  extaddr                = ""
+  extintf                = "any"
+  extip                  = "1.1.1.1-2.1.1.1"
+  ssl_server_max_version = "tls-1.2"
+  type                   = "server-load-balance"
+
+  scopetype = "adom"
+  adom      = "myadom"
+}
+```
+
 ## Argument Reference
 
 
