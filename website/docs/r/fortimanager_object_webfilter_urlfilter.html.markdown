@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_webfilter_urlfilter
 Configure URL filter lists.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_urlfilter" "trname" {
+  comment               = "This is a Terraform example"
+  fosid                 = 1
+  ip_addr_block         = "enable"
+  name                  = "terr-webfilter-urlfilter"
+  one_arm_ips_urlfilter = "disable"
+}
+```
+
 ## Argument Reference
 
 
