@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wirelesscontroller_mpskprofile
 Configure MPSK profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_mpskprofile" "trname" {
+  mpsk_concurrent_clients = 10
+  name                    = "terr-wictl-mpsk-profile"
+}
+```
+
 ## Argument Reference
 
 
