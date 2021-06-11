@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_dynamic_virtualwanlink_neighbor
 ObjectDynamic VirtualWanLinkNeighbor
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_virtualwanlink_neighbor" "trname" {
+  description = "This is a Terraform example"
+  ip          = "192.168.1.1"
+  name        = "terr-dynamic-virtual-wan-link-neighbor"
+  role        = "secondary"
+}
+```
+
 ## Argument Reference
 
 
