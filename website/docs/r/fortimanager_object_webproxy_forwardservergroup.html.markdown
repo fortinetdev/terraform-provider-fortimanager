@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_webproxy_forwardservergroup
 Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webproxy_forwardservergroup" "trname" {
+  affinity          = "enable"
+  group_down_option = "block"
+  ldb_method        = "active-passive"
+  name              = "terr-web-proxy-forward-server-group"
+}
+```
+
 ## Argument Reference
 
 
