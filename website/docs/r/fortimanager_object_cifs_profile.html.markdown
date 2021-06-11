@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_cifs_profile
 Configure CIFS profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_cifs_profile" "trname" {
+  name = "terr-cifs-profile"
+}
+```
+
 ## Argument Reference
 
 
