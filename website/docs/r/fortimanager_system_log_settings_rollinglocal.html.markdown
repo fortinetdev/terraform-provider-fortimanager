@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_log_settings_rollinglocal
 Log rolling policy for local logs.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_settings_rollinglocal" "trname" {
+  days     = ["sun"]
+  password = ["fortinet"]
+  username = "admin"
+}
+```
+
 ## Argument Reference
 
 
