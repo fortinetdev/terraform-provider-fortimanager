@@ -9,6 +9,20 @@ description: |-
 # fortimanager_fmupdate_serveraccesspriorities
 Configure priorities for FortiGate units accessing antivirus updates and web filtering services.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_serveraccesspriorities" "trname" {
+  access_public = "enable"
+  av_ips        = "enable"
+  private_server {
+    id = "1"
+    ip = "192.168.1.1"
+  }
+  web_spam = "enable"
+}
+```
+
 ## Argument Reference
 
 
