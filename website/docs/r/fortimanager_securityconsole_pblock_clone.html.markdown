@@ -9,6 +9,15 @@ description: |-
 # fortimanager_securityconsole_pblock_clone
 Securityconsole PblockClone
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_pblock_clone" "trname" {
+  fmgadom  = "root"
+  dst_name = "terr-secconsole-pbloc-clone"
+}
+```
+
 ## Argument Reference
 
 
