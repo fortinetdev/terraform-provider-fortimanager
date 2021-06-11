@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_log_customfield
 Configure custom log fields.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_log_customfield" "trname" {
+  fosid = "terr-log-custom-field"
+  name  = "terr-log-custom"
+  value = "Terraform tefv"
+}
+```
+
 ## Argument Reference
 
 
