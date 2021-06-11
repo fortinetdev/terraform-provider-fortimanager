@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_dynamic_vip
 ObjectDynamic Vip
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_vip" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-dynamic-vip"
+}
+```
+
 ## Argument Reference
 
 
