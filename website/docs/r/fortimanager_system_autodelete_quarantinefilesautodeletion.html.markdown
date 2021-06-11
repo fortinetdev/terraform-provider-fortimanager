@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_autodelete_quarantinefilesautodeletion
 Automatic deletion policy for quarantined files.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_autodelete_quarantinefilesautodeletion" "trname" {
+  retention = "days"
+  runat     = "2"
+  status    = "enable"
+  value     = "10"
+}
+```
+
 ## Argument Reference
 
 
