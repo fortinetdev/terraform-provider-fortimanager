@@ -16,7 +16,7 @@ resource "fortimanager_system_snmp_user" "trname" {
   auth_proto     = "sha"
   auth_pwd       = ["fortinet"]
   events         = ["disk_low", "ha_switch", "intf_ip_chg", "sys_reboot", "cpu_high", "mem_low", "log-alert", "log-rate", "log-data-rate", "lic-gbday", "lic-dev-quota", "cpu-high-exclude-nice"]
-  name           = "terraform-test-snmpuser"
+  name           = "terraform-tefv-snmpuser"
   queries        = "disable"
   security_level = "no-auth-no-priv"
 }
