@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qpwanmetric
 Configure WAN metrics.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpwanmetric" "trname" {
+  downlink_load             = 1
+  downlink_speed            = 2400
+  link_at_capacity          = "disable"
+  link_status               = "down"
+  load_measurement_duration = 10
+  name                      = "terr-wictl-hot20-heqp-wan-metric"
+  symmetric_wan_link        = "asymmetric"
+  uplink_speed              = 2400
+}
+```
+
 ## Argument Reference
 
 
