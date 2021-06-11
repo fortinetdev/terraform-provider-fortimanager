@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_webfilter_contentheader
 Configure content types used by Web filter.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_contentheader" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-webfilter-content-header"
+}
+```
+
 ## Argument Reference
 
 
