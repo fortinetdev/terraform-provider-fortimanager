@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_firewall_proxyaddrgrp
 Configure web proxy address group.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_proxyaddress" "trname" {
+  case_sensitivity = "disable"
+  color            = 1
+  comment          = "This is a Terraform example"
+  host             = "all"
+  name             = "terr-firewall-proxy-address"
+  type             = "ua"
+  ua               = ["chrome"]
+}
+
+resource "fortimanager_object_firewall_proxyaddrgrp" "trname" {
+  comment = "This is a Terraform example"
+  member  = "terr-firewall-proxy-address"
+  name    = "terr-firewall-proxy-addrgrp"
+  type    = "dst"
+  depends_on = [
+    fortimanager_object_firewall_proxyaddress.trname
+  ]
+}
+```
+
 ## Argument Reference
 
 
