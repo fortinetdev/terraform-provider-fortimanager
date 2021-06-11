@@ -9,6 +9,52 @@ description: |-
 # fortimanager_object_wirelesscontroller_widsprofile
 Configure wireless intrusion detection system (WIDS) profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_widsprofile" "trname" {
+  ap_bgscan_disable_schedules = "always"
+  ap_scan                     = "disable"
+  asleap_attack               = "disable"
+  assoc_flood_thresh          = 30
+  assoc_flood_time            = 10
+  assoc_frame_flood           = "disable"
+  auth_flood_thresh           = 30
+  auth_flood_time             = 10
+  auth_frame_flood            = "disable"
+  comment                     = "This is a Terraform example"
+  deauth_broadcast            = "disable"
+  deauth_unknown_src_thresh   = 10
+  eapol_fail_flood            = "disable"
+  eapol_fail_intv             = 1
+  eapol_fail_thresh           = 10
+  eapol_logoff_flood          = "disable"
+  eapol_logoff_intv           = 1
+  eapol_logoff_thresh         = 10
+  eapol_pre_fail_flood        = "disable"
+  eapol_pre_fail_intv         = 1
+  eapol_pre_fail_thresh       = 10
+  eapol_pre_succ_flood        = "disable"
+  eapol_pre_succ_intv         = 1
+  eapol_pre_succ_thresh       = 10
+  eapol_start_flood           = "disable"
+  eapol_start_intv            = 1
+  eapol_start_thresh          = 10
+  eapol_succ_flood            = "disable"
+  eapol_succ_intv             = 1
+  eapol_succ_thresh           = 10
+  invalid_mac_oui             = "disable"
+  long_duration_attack        = "disable"
+  long_duration_thresh        = 8200
+  name                        = "terr-wictl-wids-profile"
+  null_ssid_probe_resp        = "disable"
+  sensor_mode                 = "both"
+  spoofed_deauth              = "disable"
+  weak_wep_iv                 = "disable"
+  wireless_bridge             = "disable"
+}
+```
+
 ## Argument Reference
 
 
