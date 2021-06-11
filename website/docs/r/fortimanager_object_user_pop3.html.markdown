@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_user_pop3
 POP3 server entry configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_pop3" "trname" {
+  name                  = "terraform-tefv-pop"
+  port                  = 8000
+  secure                = "none"
+  server                = "terraform"
+  ssl_min_proto_version = "default"
+}
+```
+
 ## Argument Reference
 
 
