@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_ips_sensor
 Configure IPS sensor.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_ips_sensor" "trname" {
+  block_malicious_url = "disable"
+  comment             = "terraform-comment"
+  name                = "terraform-tefv-ipssensor"
+}
+```
+
 ## Argument Reference
 
 
