@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_user_passwordpolicy
 Configure user password policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_passwordpolicy" "trname" {
+  expire_days              = 180
+  expired_password_renewal = "disable"
+  name                     = "terr-user-pwdpolicy"
+  warn_days                = 15
+}
+```
+
 ## Argument Reference
 
 
