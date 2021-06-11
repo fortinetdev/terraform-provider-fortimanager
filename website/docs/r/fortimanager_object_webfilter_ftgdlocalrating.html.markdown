@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_webfilter_ftgdlocalrating
 Configure local FortiGuard Web Filter local ratings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_ftgdlocalrating" "trname" {
+  comment = "This is a Terraform example"
+  rating  = "0"
+  status  = "enable"
+  url     = "terr-webfilter-ftgd-local-rating"
+}
+```
+
 ## Argument Reference
 
 
