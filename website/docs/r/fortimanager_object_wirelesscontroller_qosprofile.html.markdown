@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_qosprofile
 Configure WiFi quality of service (QoS) profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_qosprofile" "trname" {
+  burst                  = "enable"
+  call_admission_control = "disable"
+  comment                = "This is a Terraform example"
+  downlink               = 10
+  dscp_wmm_mapping       = "disable"
+  name                   = "terr-wictl-qos-profile"
+  wmm                    = "enable"
+  wmm_bk_dscp            = 8
+  wmm_dscp_marking       = "disable"
+  wmm_uapsd              = "enable"
+  wmm_vi_dscp            = 32
+  wmm_vo_dscp            = 48
+}
+```
+
 ## Argument Reference
 
 
