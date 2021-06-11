@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_schedule_group
 Schedule group configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_schedule_group" "trname" {
+  color  = 1
+  member = "none"
+  name   = "terraform-tefv"
+}
+```
+
 ## Argument Reference
 
 
