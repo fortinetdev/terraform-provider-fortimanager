@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_passwordpolicy
 Password policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_passwordpolicy" "trname" {
+  must_contain = ["terraform"]
+  status       = "enable"
+}
+```
+
 ## Argument Reference
 
 
