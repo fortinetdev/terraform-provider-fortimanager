@@ -9,6 +9,22 @@ description: |-
 # fortimanager_system_backup_allsettings
 Scheduled backup settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_backup_allsettings" "trname" {
+  crptpasswd = ["fortinet"]
+  directory  = "terraform"
+  passwd     = ["fortinet"]
+  protocol   = "ftp"
+  server     = "192.168.1.1"
+  status     = "enable"
+  time       = "1:00:00"
+  user       = "admin"
+  week_days  = ["monday"]
+}
+```
+
 ## Argument Reference
 
 
