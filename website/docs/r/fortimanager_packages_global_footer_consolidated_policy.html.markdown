@@ -15,7 +15,7 @@ Configure consolidated IPv4/IPv6 policies.
 resource "fortimanager_packages_global_footer_consolidated_policy" "trname" {
   pkg      = "default"
   action   = "accept"
-  comments = "This is a Terraform test"
+  comments = "This is a Terraform example"
   dstintf  = "any"
   name     = "terr-pkg-footer-cslid-policy"
   srcintf  = "any"
