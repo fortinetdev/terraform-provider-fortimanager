@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_antivirus_profile
 Configure AntiVirus profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_antivirus_profile" "trname" {
+  analytics_db         = "disable"
+  analytics_max_upload = 20
+  av_block_log         = "disable"
+  av_virus_log         = "disable"
+  comment              = "tefv comment"
+  extended_log         = "disable"
+  ftgd_analytics       = "disable"
+  mobile_malware_db    = "disable"
+  name                 = "terr-antivirus-profile"
+  scan_mode            = "default"
+}
+```
+
 ## Argument Reference
 
 
