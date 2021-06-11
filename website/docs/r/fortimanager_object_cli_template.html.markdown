@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_cli_template
 ObjectCli Template
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_cli_template" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-cli-template"
+  script      = "terr-script"
+}
+```
+
 ## Argument Reference
 
 
