@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_dynamic_vpntunnel
 ObjectDynamic Vpntunnel
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_vpntunnel" "trname" {
+  description = "This is a Terraform example"
+  name        = "terr-dynamic-vpntunnel"
+}
+```
+
 ## Argument Reference
 
 
