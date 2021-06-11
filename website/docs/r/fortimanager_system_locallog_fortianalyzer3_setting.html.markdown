@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_fortianalyzer3_setting
 Settings for locallog to fortianalyzer.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_fortianalyzer3_setting" "trname" {
+  severity = "critical"
+  status   = "disable"
+}
+```
+
 ## Argument Reference
 
 
