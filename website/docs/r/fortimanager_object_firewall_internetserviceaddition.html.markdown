@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_internetserviceaddition
 Configure Internet Services Addition.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetserviceaddition" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = "65536"
+}
+```
+
 ## Argument Reference
 
 
