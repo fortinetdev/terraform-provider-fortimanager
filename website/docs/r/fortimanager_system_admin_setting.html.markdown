@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_admin_setting
 Admin setting.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_setting" "trname" {
+  idle_timeout = "400"
+}
+```
+
 ## Argument Reference
 
 
