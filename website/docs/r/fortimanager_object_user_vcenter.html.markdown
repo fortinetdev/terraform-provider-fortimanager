@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_user_vcenter
 ObjectUser Vcenter
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_vcenter" "trname" {
+  name         = "terr-user-vct"
+  password     = ["fortinet"]
+  server       = "192.168.1.1"
+  status       = "disable"
+  upd_interval = 180
+  user         = "admin"
+}
+```
+
 ## Argument Reference
 
 
