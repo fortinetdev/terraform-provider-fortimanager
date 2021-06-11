@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_filefilter_profile
 Configure file-filter profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_filefilter_profile" "trname" {
+  comment               = "This is a Terraform example"
+  extended_log          = "disable"
+  feature_set           = "flow"
+  log                   = "enable"
+  name                  = "terr-file-filter-profile"
+  scan_archive_contents = "enable"
+}
+```
+
 ## Argument Reference
 
 
