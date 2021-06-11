@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_decryptedtrafficmirror
 Configure decrypted traffic mirror.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_decryptedtrafficmirror" "trname" {
+  dstmac         = "ff:ff:ff:ff:ff:ff"
+  interface      = "any"
+  name           = "terr-firewall-mirror"
+  traffic_source = "both"
+  traffic_type   = ["ssh", "ssl"]
+}
+```
+
 ## Argument Reference
 
 
