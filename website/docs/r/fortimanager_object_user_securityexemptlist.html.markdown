@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_user_securityexemptlist
 Configure security exemption list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_securityexemptlist" "trname" {
+  description = "terraform-description"
+  name        = "terraform-tefv-security"
+}
+```
+
 ## Argument Reference
 
 
