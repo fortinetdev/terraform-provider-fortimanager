@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_connector
 Configure connector.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_connector" "trname" {
+  fsso_refresh_interval = "70"
+  fsso_sess_timeout     = "70"
+  px_refresh_interval   = "70"
+  px_svr_timeout        = "70"
+}
+```
+
 ## Argument Reference
 
 
