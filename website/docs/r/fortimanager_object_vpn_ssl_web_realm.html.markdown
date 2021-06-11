@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_vpn_ssl_web_realm
 Realm.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ssl_web_realm" "trname" {
+  max_concurrent_user = 5
+  nas_ip              = "192.168.1.1"
+  url_path            = "terr-vpn-ssl-web-realm"
+  virtual_host_only   = "disable"
+}
+```
+
 ## Argument Reference
 
 
