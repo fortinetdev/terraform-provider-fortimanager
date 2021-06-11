@@ -9,6 +9,15 @@ description: |-
 # fortimanager_securityconsole_reinstall_package
 Re-install a policy package that had been previously installed.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_reinstall_package" "trname" {
+  fmgadom = "root"
+  flags   = ["none"]
+}
+```
+
 ## Argument Reference
 
 
