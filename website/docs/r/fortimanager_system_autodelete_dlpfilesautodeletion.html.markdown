@@ -9,6 +9,17 @@ description: |-
 # fortimanager_system_autodelete_dlpfilesautodeletion
 Automatic deletion policy for DLP archives.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_autodelete_dlpfilesautodeletion" "trname" {
+  retention = "days"
+  runat     = "2"
+  status    = "enable"
+  value     = "10"
+}
+```
+
 ## Argument Reference
 
 
