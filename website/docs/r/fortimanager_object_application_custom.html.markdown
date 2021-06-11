@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_application_custom
 Configure custom application signatures.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_custom" "trname" {
+  behavior   = "terraform-tefv1"
+  category   = "terraform-tefv1"
+  comment    = "terraform-tefv"
+  name       = "terraform-tefv1"
+  protocol   = "terraform-tefv1"
+  signature  = "terraform-tefv1"
+  tag        = "terraform-tefv-tag"
+  technology = "terraform-tefv"
+  vendor     = "terraform-tefv-vendor"
+}
+```
+
 ## Argument Reference
 
 
