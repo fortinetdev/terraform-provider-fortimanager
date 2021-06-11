@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_voip_profile
 Configure VoIP profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_voip_profile" "trname" {
+  comment = "This is a Terraform example"
+  name    = "terr-voip-profile"
+}
+```
+
 ## Argument Reference
 
 
