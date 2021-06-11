@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_alertconsole
 Alert console.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_alertconsole" "trname" {
+  period         = "2"
+  severity_level = ["debug"]
+}
+```
+
 ## Argument Reference
 
 
