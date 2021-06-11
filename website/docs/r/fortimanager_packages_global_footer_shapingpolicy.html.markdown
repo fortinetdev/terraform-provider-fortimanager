@@ -9,6 +9,23 @@ description: |-
 # fortimanager_packages_global_footer_shapingpolicy
 Configure shaping policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_global_footer_shapingpolicy" "trname" {
+  pkg     = "default"
+  comment = "This is a Terraform example"
+  dstaddr = "gall"
+  dstintf = "any"
+  fosid   = "1"
+  name    = "terr-pkg-footer-shapingpolicy"
+  service = "gALL"
+  srcaddr = "gall"
+  srcintf = "any"
+  status  = "enable"
+}
+```
+
 ## Argument Reference
 
 
