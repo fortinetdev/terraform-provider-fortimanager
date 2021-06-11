@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_vip46
 Configure IPv4 to IPv6 virtual IPs.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vip46" "trname" {
+  arp_reply   = "enable"
+  comment     = "This is a Terraform example"
+  extip       = "192.168.1.1"
+  extport     = "0"
+  fosid       = 1
+  ldb_method  = "static"
+  mappedport  = "0"
+  name        = "terr-firewall-vip46"
+  portforward = "disable"
+  protocol    = "tcp"
+  server_type = "http"
+  type        = "server-load-balance"
+}
+```
+
 ## Argument Reference
 
 
