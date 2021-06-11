@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_vpn_ssl_web_portal
 Portal.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ssl_web_portal" "trname" {
+  allow_user_access                   = ["citrix", "ftp", "ping", "portforward", "rdp", "sftp", "smb", "ssh", "telnet", "vnc", "web"]
+  customize_forticlient_download_url  = "disable"
+  exclusive_routing                   = "disable"
+  forticlient_download                = "enable"
+  forticlient_download_method         = "direct"
+  ipv6_exclusive_routing              = "disable"
+  ipv6_service_restriction            = "disable"
+  ipv6_split_tunneling_routing_negate = "disable"
+  ipv6_tunnel_mode                    = "disable"
+  limit_user_logins                   = "disable"
+  name                                = "terr-vpn-ssl-web-portal"
+  service_restriction                 = "disable"
+  skip_check_for_browser              = "enable"
+  split_tunneling_routing_negate      = "disable"
+  tunnel_mode                         = "disable"
+  use_sdwan                           = "disable"
+  web_mode                            = "disable"
+}
+```
+
 ## Argument Reference
 
 
