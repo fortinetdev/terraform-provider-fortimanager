@@ -18,7 +18,7 @@ resource "fortimanager_packages_global_header_policy6" "labelname" {
   comments = "terraform-comment"
   dstaddr  = "gall"
   dstintf  = "any"
-  name     = "terraform-test-footer"
+  name     = "terraform-tefv-footer"
   schedule = "galways"
   service  = "gALL"
   srcaddr  = "gall"
