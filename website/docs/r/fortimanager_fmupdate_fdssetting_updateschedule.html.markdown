@@ -9,6 +9,17 @@ description: |-
 # fortimanager_fmupdate_fdssetting_updateschedule
 Configure the schedule when built-in FortiGuard retrieves antivirus and IPS updates.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_fdssetting_updateschedule" "trname" {
+  day       = "Sunday"
+  frequency = "every"
+  status    = "enable"
+  time      = ["5"]
+}
+```
+
 ## Argument Reference
 
 
