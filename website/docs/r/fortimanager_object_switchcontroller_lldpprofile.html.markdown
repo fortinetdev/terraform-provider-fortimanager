@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_switchcontroller_lldpprofile
 Configure FortiSwitch LLDP profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_lldpprofile" "trname" {
+  auto_isl                 = "enable"
+  auto_isl_hello_timer     = 3
+  auto_isl_receive_timeout = 60
+  auto_mclag_icl           = "disable"
+  med_tlvs                 = ["location-identification"]
+  n8021_tlvs               = ["port-vlan-id"]
+  n8023_tlvs               = ["max-frame-size"]
+  name                     = "terr-switch-controller-lldp-profile"
+}
+```
+
 ## Argument Reference
 
 
