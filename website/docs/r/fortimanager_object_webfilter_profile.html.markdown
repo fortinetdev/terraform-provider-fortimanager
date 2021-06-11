@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_webfilter_profile
 Configure Web filter profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_profile" "trname" {
+  comment                      = "This is a Terraform example"
+  extended_log                 = "disable"
+  feature_set                  = "flow"
+  https_replacemsg             = "enable"
+  log_all_url                  = "disable"
+  name                         = "terr-webfilter-profile"
+  options                      = ["js", "jscript"]
+  ovrd_perm                    = ["bannedword-override"]
+  post_action                  = "block"
+  web_content_log              = "enable"
+  web_extended_all_action_log  = "disable"
+  web_filter_command_block_log = "enable"
+  web_filter_cookie_log        = "enable"
+  web_ftgd_err_log             = "enable"
+  web_invalid_domain_log       = "enable"
+  web_url_log                  = "enable"
+  wisp                         = "disable"
+  wisp_algorithm               = "auto-learning"
+  youtube_channel_status       = "disable"
+}
+```
+
 ## Argument Reference
 
 
