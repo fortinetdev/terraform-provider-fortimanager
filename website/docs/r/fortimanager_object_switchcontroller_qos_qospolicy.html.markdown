@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_switchcontroller_qos_qospolicy
 Configure FortiSwitch QoS policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_qos_qospolicy" "trname" {
+  default_cos  = 2
+  name         = "terr-switch-controller-qos-policy"
+  queue_policy = "default"
+}
+```
+
 ## Argument Reference
 
 
