@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_emailfilter_bwl
 Configure anti-spam black/white list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_bwl" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-bwl"
+}
+```
+
 ## Argument Reference
 
 
