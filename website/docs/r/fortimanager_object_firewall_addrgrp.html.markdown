@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_addrgrp
 Configure IPv4 address groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_address" "trname" {
+  allow_routing        = "disable"
+  associated_interface = "any"
+  name                 = "terraform-tefv"
+}
+
+resource "fortimanager_object_firewall_addrgrp" "trname" {
+  allow_routing = "disable"
+  member        = "terraform-tefv"
+  name          = "terraform-addrgrp4"
+  depends_on = [
+    fortimanager_object_firewall_address.trname
+  ]
+}
+```
+
 ## Argument Reference
 
 
