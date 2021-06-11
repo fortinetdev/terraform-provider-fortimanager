@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_fortianalyzer2_filter
 Filter for FortiAnalyzer2 logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_fortianalyzer2_filter" "trname" {
+  docker = "enable"
+  ha     = "enable"
+}
+```
+
 ## Argument Reference
 
 
