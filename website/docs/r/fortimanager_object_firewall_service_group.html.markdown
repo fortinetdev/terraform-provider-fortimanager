@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_service_group
 Configure service groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_service_group" "trname" {
+  color   = 1
+  comment = "terraform-comment"
+  member  = "ALL"
+  name    = "terraform-tefv-group"
+  proxy   = "disable"
+}
+```
+
 ## Argument Reference
 
 
