@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_firewall_vipgrp64
 Configure IPv6 to IPv4 virtual IP groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vipgrp64" "trname" {
+  color    = 5
+  comments = "This is a Terraform example"
+  member   = "terr-firewall-vip64"
+  name     = "terr-firewall-vipgrp64"
+}
+```
+
 ## Argument Reference
 
 
