@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_system_customlanguage
 Configure custom languages.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_customlanguage" "trname" {
+  comments = "terraform-comment"
+  filename = "terraform"
+  name     = "terraform-tefv-language"
+}
+```
+
 ## Argument Reference
 
 
