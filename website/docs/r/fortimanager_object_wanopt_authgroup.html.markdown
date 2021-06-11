@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_wanopt_authgroup
 Configure WAN optimization authentication groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_authgroup" "trname" {
+  auth_method = "cert"
+  name        = "terr-wanopt-auth-group"
+  peer_accept = "any"
+}
+```
+
 ## Argument Reference
 
 
