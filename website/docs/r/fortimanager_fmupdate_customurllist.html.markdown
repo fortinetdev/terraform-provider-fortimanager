@@ -9,6 +9,14 @@ description: |-
 # fortimanager_fmupdate_customurllist
 Configure the URL database for rating and filtering.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_customurllist" "trname" {
+  db_selection = ["both"]
+}
+```
+
 ## Argument Reference
 
 
