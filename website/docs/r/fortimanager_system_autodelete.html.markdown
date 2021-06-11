@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_autodelete
 Automatic deletion policy for logs, reports, archived, and quarantined files.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_autodelete" "trname" {
+  status_fake = 1
+}
+```
+
 ## Argument Reference
 
 
