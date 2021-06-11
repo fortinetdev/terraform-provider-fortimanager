@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_user_peer
 Configure peer users.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_peer" "trname" {
+  cn_type             = "FQDN"
+  ldap_mode           = "password"
+  ldap_password       = ["fortinet"]
+  ldap_username       = "admin"
+  mandatory_ca_verify = "enable"
+  name                = "terr-user-peer"
+  two_factor          = "disable"
+}
+```
+
 ## Argument Reference
 
 
