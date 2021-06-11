@@ -9,6 +9,14 @@ description: |-
 # fortimanager_fmupdate_publicnetwork
 Enable/disable access to the public FortiGuard.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_publicnetwork" "trname" {
+  status = "enable"
+}
+```
+
 ## Argument Reference
 
 
