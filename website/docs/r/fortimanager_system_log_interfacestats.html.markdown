@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_log_interfacestats
 Interface statistics settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_interfacestats" "trname" {
+  billing_report = "enable"
+  status         = "enable"
+}
+```
+
 ## Argument Reference
 
 
