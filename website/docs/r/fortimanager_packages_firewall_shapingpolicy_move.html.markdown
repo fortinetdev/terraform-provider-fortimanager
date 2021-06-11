@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_firewall_shapingpolicy_move
 Move shaping policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_shapingpolicy_move" "trname" {
+  pkg            = "default"
+  shaping_policy = "2"
+  target         = "1"
+  option         = "before"
+}
+```
+
 ## Argument Reference
 
 
