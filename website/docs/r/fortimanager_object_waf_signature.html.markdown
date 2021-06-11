@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_waf_signature
 Hidden table for datasource.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_signature" "trname" {
+  desc  = "This is a Terraform example"
+  fosid = 1
+}
+```
+
 ## Argument Reference
 
 
