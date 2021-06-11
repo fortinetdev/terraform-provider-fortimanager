@@ -9,6 +9,18 @@ description: |-
 # fortimanager_dvmdb_revision
 ADOM revision table.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvmdb_revision" "trname" {
+  created_by   = "admin"
+  created_time = 1619027731
+  desc         = "This is a Terraform example"
+  name         = "terr-revision"
+  version      = 1
+}
+```
+
 ## Argument Reference
 
 
