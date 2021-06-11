@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_log_settings_rollinganalyzer
 Log rolling policy for Network Analyzer logs.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_settings_rollinganalyzer" "trname" {
+  days     = ["sun"]
+  password = ["fortinet"]
+  username = "admin"
+}
+```
+
 ## Argument Reference
 
 
