@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_guiact
 System settings through GUI.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_guiact" "trname" {
+  backup_conf = "enable"
+}
+```
+
 ## Argument Reference
 
 
