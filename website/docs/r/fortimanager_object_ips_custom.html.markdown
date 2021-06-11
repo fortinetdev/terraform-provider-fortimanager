@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_ips_custom
 Configure IPS custom signature.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_ips_custom" "trname" {
+  rule_id   = 1
+  signature = "F-SBID(--name: [string]; --service: [string]; --flow: [string])"
+  tag       = "terraform-ipscustom"
+}
+```
+
 ## Argument Reference
 
 
