@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_dynamic_multicast_interface
 ObjectDynamic MulticastInterface
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_multicast_interface" "trname" {
+  default_mapping = "disable"
+  description     = "This is a Terraform example"
+  name            = "terr-dynamic-mul-inf"
+}
+```
+
 ## Argument Reference
 
 
