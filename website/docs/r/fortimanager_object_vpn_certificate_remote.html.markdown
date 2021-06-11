@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_vpn_certificate_remote
 Remote certificate as a PEM file.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_certificate_remote" "trname" {
+  name   = "terr-vpn-cer-remote"
+  range  = "vdom"
+  source = "user"
+}
+```
+
 ## Argument Reference
 
 
