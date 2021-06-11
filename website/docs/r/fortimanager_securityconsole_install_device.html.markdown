@@ -9,6 +9,16 @@ description: |-
 # fortimanager_securityconsole_install_device
 Securityconsole InstallDevice
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_install_device" "trname" {
+  fmgadom          = "root"
+  dev_rev_comments = "terraform-comment"
+  flags            = ["none"]
+}
+```
+
 ## Argument Reference
 
 
