@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_firewall_ippool
 Configure IPv4 IP pools.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_ippool" "trname" {
+  comments = "terraform-comment"
+  endip    = "222.222.222.254"
+  name     = "terraform-tefv"
+  startip  = "222.222.222.0"
+  type     = "overload"
+}
+```
+
 ## Argument Reference
 
 
