@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_emailfilter_mheader
 Configure AntiSpam MIME header.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_mheader" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-mheader"
+}
+```
+
 ## Argument Reference
 
 
