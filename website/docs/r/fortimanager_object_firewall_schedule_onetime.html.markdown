@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_firewall_schedule_onetime
 Onetime schedule configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_schedule_onetime" "trname" {
+  color = 1
+  end   = "15:00 2020/08/17"
+  name  = "terraform-tefv-onetime"
+  start = "07:00 2020/08/17"
+}
+```
+
 ## Argument Reference
 
 
