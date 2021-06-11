@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_wirelesscontroller_wagprofile
 Configure wireless access gateway (WAG) profiles used for tunnels on AP.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wagprofile" "trname" {
+  comment               = "This is a Terraform example"
+  dhcp_ip_addr          = "192.168.1.1"
+  name                  = "terr-wictl-wag-profile"
+  ping_interval         = 1
+  ping_number           = 5
+  return_packet_timeout = 160
+  tunnel_type           = "gre"
+  wag_ip                = "0.0.0.0"
+  wag_port              = 1701
+}
+```
+
 ## Argument Reference
 
 
