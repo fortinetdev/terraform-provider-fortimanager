@@ -9,6 +9,14 @@ description: |-
 # fortimanager_system_log_alert
 Log based alert settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_alert" "trname" {
+  max_alert_count = "500"
+}
+```
+
 ## Argument Reference
 
 
