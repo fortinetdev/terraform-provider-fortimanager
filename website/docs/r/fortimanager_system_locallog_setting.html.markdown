@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_locallog_setting
 Settings for locallog logging.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_locallog_setting" "trname" {
+  log_interval_dev_no_logging = "300"
+  log_interval_disk_full      = "200"
+}
+```
+
 ## Argument Reference
 
 
