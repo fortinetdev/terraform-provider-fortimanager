@@ -413,14 +413,6 @@ func resourceObjectFirewallVip64Read(d *schema.ResourceData, m interface{}) erro
 }
 
 func flattenObjectFirewallVip64ArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -609,14 +601,6 @@ func flattenObjectFirewallVip64DynamicMappingScopeVdom(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip64DynamicMappingArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -641,18 +625,6 @@ func flattenObjectFirewallVip64DynamicMappingId(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallVip64DynamicMappingLdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "round-robin",
-			2: "weighted",
-			3: "least-session",
-			4: "least-rtt",
-			5: "first-alive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -669,40 +641,14 @@ func flattenObjectFirewallVip64DynamicMappingMonitor(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallVip64DynamicMappingPortforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVip64DynamicMappingProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "tcp",
-			2: "udp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVip64DynamicMappingServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http",
-			4: "tcp",
-			5: "udp",
-			6: "ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -711,14 +657,6 @@ func flattenObjectFirewallVip64DynamicMappingSrcFilter(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip64DynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static-nat",
-			3: "server-load-balance",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -739,18 +677,6 @@ func flattenObjectFirewallVip64Id(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectFirewallVip64LdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "round-robin",
-			2: "weighted",
-			3: "least-session",
-			4: "least-rtt",
-			5: "first-alive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -771,26 +697,10 @@ func flattenObjectFirewallVip64Name(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectFirewallVip64Portforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVip64Protocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "tcp",
-			2: "udp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -886,15 +796,6 @@ func flattenObjectFirewallVip64RealserversClientIp(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVip64RealserversHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "vip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -923,15 +824,6 @@ func flattenObjectFirewallVip64RealserversPort(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFirewallVip64RealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "active",
-			1: "standby",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -940,16 +832,6 @@ func flattenObjectFirewallVip64RealserversWeight(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallVip64ServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http",
-			4: "tcp",
-			5: "udp",
-			6: "ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -958,14 +840,6 @@ func flattenObjectFirewallVip64SrcFilter(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallVip64Type(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static-nat",
-			3: "server-load-balance",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

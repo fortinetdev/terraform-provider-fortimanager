@@ -63,9 +63,9 @@ The following arguments are supported:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
-* `extip` - IPv6 address or address range on the external interface that you want to map to an address or address range on the destination network.
+* `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
-* `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+* `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
 
@@ -85,7 +85,7 @@ The following arguments are supported:
 * `fosid` - Custom defined ID.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 
-* `mappedip` - Mapped IPv6 address range in the format startIP-endIP.
+* `mappedip` - Mapped IP address range in the format startIP-endIP.
 * `mappedport` - Port number range on the destination network to which the external port number range is mapped.
 * `max_embryonic_connections` - Maximum number of incomplete connections.
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
@@ -173,9 +173,9 @@ The `dynamic_mapping` block supports:
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
-* `extip` - IPv6 address or address range on the external interface that you want to map to an address or address range on the destination network.
+* `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
-* `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
+* `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
 
@@ -195,11 +195,11 @@ The `dynamic_mapping` block supports:
 * `id` - Custom defined ID.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 
-* `mappedip` - Mapped IPv6 address range in the format startIP-endIP.
+* `mappedip` - Mapped IP address range in the format startIP-endIP.
 * `mappedport` - Port number range on the destination network to which the external port number range is mapped.
 * `max_embryonic_connections` - Maximum number of incomplete connections.
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
-* `nat_source_vip` - Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
+* `nat_source_vip` - Nat-Source-Vip. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 

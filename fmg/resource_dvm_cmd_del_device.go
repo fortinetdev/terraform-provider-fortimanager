@@ -98,17 +98,7 @@ func flattenDvmCmdDelDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenDvmCmdDelDeviceFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "create_task",
-			2: "nonblocking",
-			4: "log_dev",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectDvmCmdDelDevice(d *schema.ResourceData, o map[string]interface{}) error {

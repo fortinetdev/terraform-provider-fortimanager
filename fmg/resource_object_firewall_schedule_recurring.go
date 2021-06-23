@@ -61,6 +61,11 @@ func resourceObjectFirewallScheduleRecurring() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -192,24 +197,14 @@ func flattenObjectFirewallScheduleRecurringColor(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallScheduleRecurringDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "sunday",
-			2:   "monday",
-			4:   "tuesday",
-			8:   "wednesday",
-			16:  "thursday",
-			32:  "friday",
-			64:  "saturday",
-			256: "none",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallScheduleRecurringEnd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallScheduleRecurringFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -255,6 +250,16 @@ func refreshObjectObjectFirewallScheduleRecurring(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading end: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallScheduleRecurringFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallScheduleRecurring-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -309,6 +314,10 @@ func expandObjectFirewallScheduleRecurringEnd(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectFirewallScheduleRecurringFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallScheduleRecurringGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -348,6 +357,15 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["end"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallScheduleRecurringFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 

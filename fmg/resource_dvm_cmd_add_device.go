@@ -312,16 +312,6 @@ func flattenDvmCmdAddDeviceDeviceMetaFields(v interface{}, d *schema.ResourceDat
 }
 
 func flattenDvmCmdAddDeviceDeviceMgmtMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "unreg",
-			1: "fmg",
-			2: "faz",
-			3: "fmgfaz",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -334,48 +324,10 @@ func flattenDvmCmdAddDeviceDeviceName(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenDvmCmdAddDeviceDeviceOsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "fos",
-			1:  "fsw",
-			2:  "foc",
-			3:  "fml",
-			4:  "faz",
-			5:  "fwb",
-			6:  "fch",
-			7:  "fct",
-			8:  "log",
-			9:  "fmg",
-			10: "fsa",
-			11: "fdd",
-			12: "fac",
-			13: "fpx",
-			14: "fna",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmCmdAddDeviceDeviceOsVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "0.0",
-			1:  "1.0",
-			2:  "2.0",
-			3:  "3.0",
-			4:  "4.0",
-			5:  "5.0",
-			6:  "6.0",
-			7:  "7.0",
-			8:  "8.0",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -392,17 +344,7 @@ func flattenDvmCmdAddDeviceDeviceSn(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenDvmCmdAddDeviceFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "create_task",
-			2: "nonblocking",
-			4: "log_dev",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenDvmCmdAddDeviceGroups(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

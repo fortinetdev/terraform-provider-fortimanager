@@ -193,15 +193,6 @@ func resourceObjectSystemObjectTaggingRead(d *schema.ResourceData, m interface{}
 }
 
 func flattenObjectSystemObjectTaggingAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "mandatory",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -214,40 +205,14 @@ func flattenObjectSystemObjectTaggingColor(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemObjectTaggingDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "mandatory",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemObjectTaggingInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "mandatory",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemObjectTaggingMultiple(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

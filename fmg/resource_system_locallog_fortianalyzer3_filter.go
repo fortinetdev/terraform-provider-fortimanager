@@ -312,506 +312,170 @@ func resourceSystemLocallogFortianalyzer3FilterRead(d *schema.ResourceData, m in
 }
 
 func flattenSystemLocallogFortianalyzer3FilterAid(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "disable",
-			256: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterDevcfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			8: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterDevops(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:         "disable",
-			134217728: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterDiskquota(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			16: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterDm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "disable",
-			4096: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterDocker(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "disable",
-			1024: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterDvm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:       "disable",
-			4194304: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterEdiscovery(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			64: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterEpmgr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "disable",
-			1024: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterEvent(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterEventmgmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFaz(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:        "disable",
-			16777216: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFazha(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "disable",
-			128: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFazsys(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:         "disable",
-			268435456: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFgd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:      "disable",
-			131072: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFgfm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			4: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFips(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:        "disable",
-			67108864: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFmgws(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:       "disable",
-			8388608: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFmlmgr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:      "disable",
-			524288: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFmwmgr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:     "disable",
-			65536: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterFortiview(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			32: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterGlbcfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			16: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterHa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:     "disable",
-			32768: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterHcache(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			8: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterIncident(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "disable",
-			512: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterIolog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:       "disable",
-			1048576: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterLogd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:        "disable",
-			33554432: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterLogdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			4: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterLogdev(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:         "disable",
-			536870912: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterLogfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-2147483648: "enable",
-			0:           "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterLogging(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:          "disable",
-			1073741824: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterLrmgr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:     "disable",
-			16384: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterObjcfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:       "disable",
-			2097152: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterReport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterRev(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "disable",
-			2048: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterRtmon(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "disable",
-			8192: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterScfw(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "disable",
-			128: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterScply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "disable",
-			256: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterScrmgr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			32: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterScvpn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "disable",
-			512: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterSystem(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer3FilterWebport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			64: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

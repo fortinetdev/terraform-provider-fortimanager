@@ -50,7 +50,23 @@ func resourceObjectWirelessControllerWidsProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ap_bgscan_disable_day": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ap_bgscan_disable_end": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ap_bgscan_disable_schedules": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ap_bgscan_disable_start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -397,18 +413,22 @@ func resourceObjectWirelessControllerWidsProfileRead(d *schema.ResourceData, m i
 }
 
 func flattenObjectWirelessControllerWidsProfileApAutoSuppress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectWirelessControllerWidsProfileApBgscanDisableDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWirelessControllerWidsProfileApBgscanDisableEnd(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileApBgscanDisableSchedules(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWidsProfileApBgscanDisableStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -437,26 +457,10 @@ func flattenObjectWirelessControllerWidsProfileApFgscanReportIntv(v interface{},
 }
 
 func flattenObjectWirelessControllerWidsProfileApScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileApScanPassive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -465,14 +469,6 @@ func flattenObjectWirelessControllerWidsProfileApScanThreshold(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWidsProfileAsleapAttack(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -485,14 +481,6 @@ func flattenObjectWirelessControllerWidsProfileAssocFloodTime(v interface{}, d *
 }
 
 func flattenObjectWirelessControllerWidsProfileAssocFrameFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -505,14 +493,6 @@ func flattenObjectWirelessControllerWidsProfileAuthFloodTime(v interface{}, d *s
 }
 
 func flattenObjectWirelessControllerWidsProfileAuthFrameFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -521,14 +501,6 @@ func flattenObjectWirelessControllerWidsProfileComment(v interface{}, d *schema.
 }
 
 func flattenObjectWirelessControllerWidsProfileDeauthBroadcast(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -537,14 +509,6 @@ func flattenObjectWirelessControllerWidsProfileDeauthUnknownSrcThresh(v interfac
 }
 
 func flattenObjectWirelessControllerWidsProfileEapolFailFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -557,14 +521,6 @@ func flattenObjectWirelessControllerWidsProfileEapolFailThresh(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWidsProfileEapolLogoffFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -577,14 +533,6 @@ func flattenObjectWirelessControllerWidsProfileEapolLogoffThresh(v interface{}, 
 }
 
 func flattenObjectWirelessControllerWidsProfileEapolPreFailFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -597,14 +545,6 @@ func flattenObjectWirelessControllerWidsProfileEapolPreFailThresh(v interface{},
 }
 
 func flattenObjectWirelessControllerWidsProfileEapolPreSuccFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -617,14 +557,6 @@ func flattenObjectWirelessControllerWidsProfileEapolPreSuccThresh(v interface{},
 }
 
 func flattenObjectWirelessControllerWidsProfileEapolStartFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -637,14 +569,6 @@ func flattenObjectWirelessControllerWidsProfileEapolStartThresh(v interface{}, d
 }
 
 func flattenObjectWirelessControllerWidsProfileEapolSuccFlood(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -657,26 +581,10 @@ func flattenObjectWirelessControllerWidsProfileEapolSuccThresh(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWidsProfileInvalidMacOui(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileLongDurationAttack(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -689,63 +597,22 @@ func flattenObjectWirelessControllerWidsProfileName(v interface{}, d *schema.Res
 }
 
 func flattenObjectWirelessControllerWidsProfileNullSsidProbeResp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileSensorMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "foreign",
-			2: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileSpoofedDeauth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileWeakWepIv(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerWidsProfileWirelessBridge(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -762,6 +629,26 @@ func refreshObjectObjectWirelessControllerWidsProfile(d *schema.ResourceData, o 
 		}
 	}
 
+	if err = d.Set("ap_bgscan_disable_day", flattenObjectWirelessControllerWidsProfileApBgscanDisableDay(o["ap-bgscan-disable-day"], d, "ap_bgscan_disable_day")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ap-bgscan-disable-day"], "ObjectWirelessControllerWidsProfile-ApBgscanDisableDay"); ok {
+			if err = d.Set("ap_bgscan_disable_day", vv); err != nil {
+				return fmt.Errorf("Error reading ap_bgscan_disable_day: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ap_bgscan_disable_day: %v", err)
+		}
+	}
+
+	if err = d.Set("ap_bgscan_disable_end", flattenObjectWirelessControllerWidsProfileApBgscanDisableEnd(o["ap-bgscan-disable-end"], d, "ap_bgscan_disable_end")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ap-bgscan-disable-end"], "ObjectWirelessControllerWidsProfile-ApBgscanDisableEnd"); ok {
+			if err = d.Set("ap_bgscan_disable_end", vv); err != nil {
+				return fmt.Errorf("Error reading ap_bgscan_disable_end: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ap_bgscan_disable_end: %v", err)
+		}
+	}
+
 	if err = d.Set("ap_bgscan_disable_schedules", flattenObjectWirelessControllerWidsProfileApBgscanDisableSchedules(o["ap-bgscan-disable-schedules"], d, "ap_bgscan_disable_schedules")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ap-bgscan-disable-schedules"], "ObjectWirelessControllerWidsProfile-ApBgscanDisableSchedules"); ok {
 			if err = d.Set("ap_bgscan_disable_schedules", vv); err != nil {
@@ -769,6 +656,16 @@ func refreshObjectObjectWirelessControllerWidsProfile(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading ap_bgscan_disable_schedules: %v", err)
+		}
+	}
+
+	if err = d.Set("ap_bgscan_disable_start", flattenObjectWirelessControllerWidsProfileApBgscanDisableStart(o["ap-bgscan-disable-start"], d, "ap_bgscan_disable_start")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ap-bgscan-disable-start"], "ObjectWirelessControllerWidsProfile-ApBgscanDisableStart"); ok {
+			if err = d.Set("ap_bgscan_disable_start", vv); err != nil {
+				return fmt.Errorf("Error reading ap_bgscan_disable_start: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ap_bgscan_disable_start: %v", err)
 		}
 	}
 
@@ -1245,7 +1142,19 @@ func expandObjectWirelessControllerWidsProfileApAutoSuppress(d *schema.ResourceD
 	return v, nil
 }
 
+func expandObjectWirelessControllerWidsProfileApBgscanDisableDay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWirelessControllerWidsProfileApBgscanDisableEnd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerWidsProfileApBgscanDisableSchedules(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWidsProfileApBgscanDisableStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1445,12 +1354,39 @@ func getObjectObjectWirelessControllerWidsProfile(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("ap_bgscan_disable_day"); ok {
+		t, err := expandObjectWirelessControllerWidsProfileApBgscanDisableDay(d, v, "ap_bgscan_disable_day")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ap-bgscan-disable-day"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ap_bgscan_disable_end"); ok {
+		t, err := expandObjectWirelessControllerWidsProfileApBgscanDisableEnd(d, v, "ap_bgscan_disable_end")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ap-bgscan-disable-end"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ap_bgscan_disable_schedules"); ok {
 		t, err := expandObjectWirelessControllerWidsProfileApBgscanDisableSchedules(d, v, "ap_bgscan_disable_schedules")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["ap-bgscan-disable-schedules"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ap_bgscan_disable_start"); ok {
+		t, err := expandObjectWirelessControllerWidsProfileApBgscanDisableStart(d, v, "ap_bgscan_disable_start")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ap-bgscan-disable-start"] = t
 		}
 	}
 

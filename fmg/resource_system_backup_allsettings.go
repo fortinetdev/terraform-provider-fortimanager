@@ -171,15 +171,6 @@ func flattenSystemBackupAllSettingsPasswd(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemBackupAllSettingsProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "sftp",
-			1: "ftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -188,14 +179,6 @@ func flattenSystemBackupAllSettingsServer(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemBackupAllSettingsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -208,20 +191,7 @@ func flattenSystemBackupAllSettingsUser(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemBackupAllSettingsWeekDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "monday",
-			2:  "tuesday",
-			4:  "wednesday",
-			8:  "thursday",
-			16: "friday",
-			32: "saturday",
-			64: "sunday",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectSystemBackupAllSettings(d *schema.ResourceData, o map[string]interface{}) error {

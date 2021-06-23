@@ -321,68 +321,22 @@ func flattenObjectWirelessControllerHotspot20HsProfile3GppPlmn(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileAccessNetworkAsra(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileAccessNetworkEsr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileAccessNetworkInternet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileAccessNetworkType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "private-network",
-			1: "private-network-with-guest-access",
-			2: "chargeable-public-network",
-			3: "free-public-network",
-			4: "personal-device-network",
-			5: "emergency-services-only-network",
-			6: "test-or-experimental",
-			7: "wildcard",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileAccessNetworkUesa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -391,14 +345,6 @@ func flattenObjectWirelessControllerHotspot20HsProfileAnqpDomainId(v interface{}
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileBssTransition(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -411,14 +357,6 @@ func flattenObjectWirelessControllerHotspot20HsProfileDeauthRequestTimeout(v int
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileDgaf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -443,14 +381,6 @@ func flattenObjectWirelessControllerHotspot20HsProfileIpAddrType(v interface{}, 
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileL2Tif(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -479,26 +409,10 @@ func flattenObjectWirelessControllerHotspot20HsProfileOsuSsid(v interface{}, d *
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfilePameBi(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileProxyArp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -511,24 +425,6 @@ func flattenObjectWirelessControllerHotspot20HsProfileRoamingConsortium(v interf
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileVenueGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "unspecified",
-			1:  "assembly",
-			2:  "business",
-			3:  "educational",
-			4:  "factory",
-			5:  "institutional",
-			6:  "mercantile",
-			7:  "residential",
-			8:  "storage",
-			9:  "utility",
-			10: "vehicular",
-			11: "outdoor",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -537,67 +433,6 @@ func flattenObjectWirelessControllerHotspot20HsProfileVenueName(v interface{}, d
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileVenueType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "unspecified",
-			1:  "arena",
-			2:  "stadium",
-			3:  "passenger-terminal",
-			4:  "amphitheater",
-			5:  "amusement-park",
-			6:  "place-of-worship",
-			7:  "convention-center",
-			8:  "library",
-			9:  "museum",
-			10: "restaurant",
-			11: "theater",
-			12: "bar",
-			13: "coffee-shop",
-			14: "zoo-or-aquarium",
-			15: "emergency-center",
-			16: "doctor-office",
-			17: "bank",
-			18: "fire-station",
-			19: "police-station",
-			20: "post-office",
-			21: "professional-office",
-			22: "research-facility",
-			23: "attorney-office",
-			24: "primary-school",
-			25: "secondary-school",
-			26: "university-or-college",
-			27: "factory",
-			28: "hospital",
-			29: "long-term-care-facility",
-			30: "rehab-center",
-			31: "group-home",
-			32: "prison-or-jail",
-			33: "retail-store",
-			34: "grocery-market",
-			35: "auto-service-station",
-			36: "shopping-mall",
-			37: "gas-station",
-			38: "private",
-			39: "hotel-or-motel",
-			40: "dormitory",
-			41: "boarding-house",
-			42: "automobile",
-			43: "airplane",
-			44: "bus",
-			45: "ferry",
-			46: "ship-or-boat",
-			47: "train",
-			48: "motor-bike",
-			49: "muni-mesh-network",
-			50: "city-park",
-			51: "rest-area",
-			52: "traffic-control",
-			53: "bus-stop",
-			54: "kiosk",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -606,14 +441,6 @@ func flattenObjectWirelessControllerHotspot20HsProfileWanMetrics(v interface{}, 
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileWnmSleepMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

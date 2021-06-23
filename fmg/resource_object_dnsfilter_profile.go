@@ -332,26 +332,10 @@ func resourceObjectDnsfilterProfileRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenObjectDnsfilterProfileBlockAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			1: "redirect",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDnsfilterProfileBlockBotnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -441,14 +425,6 @@ func flattenObjectDnsfilterProfileDnsTranslation(v interface{}, d *schema.Resour
 }
 
 func flattenObjectDnsfilterProfileDnsTranslationAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "ipv4",
-			8: "ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -481,14 +457,6 @@ func flattenObjectDnsfilterProfileDnsTranslationSrc6(v interface{}, d *schema.Re
 }
 
 func flattenObjectDnsfilterProfileDnsTranslationStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -593,14 +561,6 @@ func flattenObjectDnsfilterProfileFtgdDnsFilters(v interface{}, d *schema.Resour
 }
 
 func flattenObjectDnsfilterProfileFtgdDnsFiltersAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3: "monitor",
-			6: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -613,38 +573,14 @@ func flattenObjectDnsfilterProfileFtgdDnsFiltersId(v interface{}, d *schema.Reso
 }
 
 func flattenObjectDnsfilterProfileFtgdDnsFiltersLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDnsfilterProfileFtgdDnsOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "error-allow",
-			1024: "ftgd-disable",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectDnsfilterProfileLogAllDomain(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -661,50 +597,18 @@ func flattenObjectDnsfilterProfileRedirectPortal6(v interface{}, d *schema.Resou
 }
 
 func flattenObjectDnsfilterProfileSafeSearch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDnsfilterProfileSdnsDomainLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDnsfilterProfileSdnsFtgdErrLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDnsfilterProfileYoutubeRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			6:  "strict",
-			26: "moderate",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

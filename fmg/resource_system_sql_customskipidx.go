@@ -145,19 +145,6 @@ func resourceSystemSqlCustomSkipidxRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenSystemSqlCustomSkipidxDeviceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "FortiGate",
-			1:  "FortiManager",
-			3:  "FortiClient",
-			4:  "FortiMail",
-			5:  "FortiWeb",
-			10: "FortiSandbox",
-			15: "FortiProxy",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -170,37 +157,6 @@ func flattenSystemSqlCustomSkipidxIndexField(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystemSqlCustomSkipidxLogType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "app-ctrl",
-			1:  "attack",
-			2:  "content",
-			3:  "dlp",
-			4:  "emailfilter",
-			5:  "event",
-			6:  "generic",
-			7:  "history",
-			10: "traffic",
-			11: "virus",
-			12: "voip",
-			13: "webfilter",
-			14: "netscan",
-			15: "fct-event",
-			16: "fct-traffic",
-			17: "fct-netscan",
-			18: "waf",
-			19: "gtp",
-			20: "dns",
-			21: "ssh",
-			22: "ssl",
-			23: "file-filter",
-			24: "asset",
-			25: "protocol",
-			26: "siem",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

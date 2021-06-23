@@ -113,38 +113,11 @@ func resourceSystemAlertConsoleRead(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenSystemAlertConsolePeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "1",
-			2: "2",
-			3: "3",
-			4: "4",
-			5: "5",
-			6: "6",
-			7: "7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAlertConsoleSeverityLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "debug",
-			2:   "information",
-			4:   "notify",
-			8:   "warning",
-			16:  "error",
-			32:  "critical",
-			64:  "alert",
-			128: "emergency",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectSystemAlertConsole(d *schema.ResourceData, o map[string]interface{}) error {

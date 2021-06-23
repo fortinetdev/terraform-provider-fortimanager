@@ -268,6 +268,11 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 					},
 				},
 			},
+			"spam_bal_table": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"spam_bwl_table": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -428,26 +433,10 @@ func flattenObjectEmailfilterProfileComment(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectEmailfilterProfileExternal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -475,26 +464,10 @@ func flattenObjectEmailfilterProfileGmail(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectEmailfilterProfileGmailLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileGmailLogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -537,38 +510,14 @@ func flattenObjectEmailfilterProfileImap(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectEmailfilterProfileImapAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5: "pass",
-			6: "tag",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileImapLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileImapLogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -577,16 +526,7 @@ func flattenObjectEmailfilterProfileImapTagMsg(v interface{}, d *schema.Resource
 }
 
 func flattenObjectEmailfilterProfileImapTagType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "subject",
-			2: "header",
-			4: "spaminfo",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectEmailfilterProfileMapi(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -618,38 +558,14 @@ func flattenObjectEmailfilterProfileMapi(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectEmailfilterProfileMapiAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5: "pass",
-			7: "discard",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileMapiLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileMapiLogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -677,26 +593,10 @@ func flattenObjectEmailfilterProfileMsnHotmail(v interface{}, d *schema.Resource
 }
 
 func flattenObjectEmailfilterProfileMsnHotmailLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileMsnHotmailLogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -705,24 +605,7 @@ func flattenObjectEmailfilterProfileName(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectEmailfilterProfileOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "bannedword",
-			2:    "spambwl",
-			4:    "spamfsip",
-			8:    "spamfssubmit",
-			16:   "spamfschksum",
-			32:   "spamfsurl",
-			64:   "spamhelodns",
-			128:  "spamraddrdns",
-			256:  "spamrbl",
-			512:  "spamhdrcheck",
-			1024: "spamfsphish",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectEmailfilterProfileOtherWebmails(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -744,14 +627,6 @@ func flattenObjectEmailfilterProfileOtherWebmails(v interface{}, d *schema.Resou
 }
 
 func flattenObjectEmailfilterProfileOtherWebmailsLogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -794,38 +669,14 @@ func flattenObjectEmailfilterProfilePop3(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectEmailfilterProfilePop3Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5: "pass",
-			6: "tag",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfilePop3Log(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfilePop3LogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -834,16 +685,7 @@ func flattenObjectEmailfilterProfilePop3TagMsg(v interface{}, d *schema.Resource
 }
 
 func flattenObjectEmailfilterProfilePop3TagType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "subject",
-			2: "header",
-			4: "spaminfo",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectEmailfilterProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -899,63 +741,22 @@ func flattenObjectEmailfilterProfileSmtp(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectEmailfilterProfileSmtpAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5: "pass",
-			6: "tag",
-			7: "discard",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileSmtpHdrip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileSmtpLocalOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileSmtpLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileSmtpLogAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -964,15 +765,10 @@ func flattenObjectEmailfilterProfileSmtpTagMsg(v interface{}, d *schema.Resource
 }
 
 func flattenObjectEmailfilterProfileSmtpTagType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "subject",
-			2: "header",
-			4: "spaminfo",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectEmailfilterProfileSpamBalTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -989,14 +785,6 @@ func flattenObjectEmailfilterProfileSpamBwordThreshold(v interface{}, d *schema.
 }
 
 func flattenObjectEmailfilterProfileSpamFiltering(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1005,26 +793,10 @@ func flattenObjectEmailfilterProfileSpamIptrustTable(v interface{}, d *schema.Re
 }
 
 func flattenObjectEmailfilterProfileSpamLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterProfileSpamLogFortiguardResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1264,6 +1036,16 @@ func refreshObjectObjectEmailfilterProfile(d *schema.ResourceData, o map[string]
 					return fmt.Errorf("Error reading smtp: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("spam_bal_table", flattenObjectEmailfilterProfileSpamBalTable(o["spam-bal-table"], d, "spam_bal_table")); err != nil {
+		if vv, ok := fortiAPIPatch(o["spam-bal-table"], "ObjectEmailfilterProfile-SpamBalTable"); ok {
+			if err = d.Set("spam_bal_table", vv); err != nil {
+				return fmt.Errorf("Error reading spam_bal_table: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading spam_bal_table: %v", err)
 		}
 	}
 
@@ -1694,6 +1476,10 @@ func expandObjectEmailfilterProfileSmtpTagType(d *schema.ResourceData, v interfa
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectEmailfilterProfileSpamBalTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectEmailfilterProfileSpamBwlTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1847,6 +1633,15 @@ func getObjectObjectEmailfilterProfile(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["smtp"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("spam_bal_table"); ok {
+		t, err := expandObjectEmailfilterProfileSpamBalTable(d, v, "spam_bal_table")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["spam-bal-table"] = t
 		}
 	}
 

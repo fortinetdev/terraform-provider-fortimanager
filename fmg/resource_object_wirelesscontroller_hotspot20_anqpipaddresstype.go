@@ -172,33 +172,10 @@ func resourceObjectWirelessControllerHotspot20AnqpIpAddressTypeRead(d *schema.Re
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpIpAddressTypeIpv4AddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "not-available",
-			2: "not-known",
-			3: "public",
-			4: "port-restricted",
-			5: "single-NATed-private",
-			6: "double-NATed-private",
-			7: "port-restricted-and-single-NATed",
-			8: "port-restricted-and-double-NATed",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpIpAddressTypeIpv6AddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "not-available",
-			1: "available",
-			2: "not-known",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

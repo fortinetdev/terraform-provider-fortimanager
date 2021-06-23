@@ -205,14 +205,6 @@ func resourceSystemLocallogDiskSettingRead(d *schema.ResourceData, m interface{}
 }
 
 func flattenSystemLocallogDiskSettingDiskfull(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "overwrite",
-			2: "nolog",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -225,32 +217,10 @@ func flattenSystemLocallogDiskSettingMaxLogFileSize(v interface{}, d *schema.Res
 }
 
 func flattenSystemLocallogDiskSettingRollDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "sunday",
-			2:  "monday",
-			4:  "tuesday",
-			8:  "wednesday",
-			16: "thursday",
-			32: "friday",
-			64: "saturday",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLocallogDiskSettingRollSchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -259,69 +229,22 @@ func flattenSystemLocallogDiskSettingRollTime(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemLocallogDiskSettingServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "FTP",
-			1: "SFTP",
-			2: "SCP",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogDiskSettingSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "emergency",
-			1: "alert",
-			2: "critical",
-			3: "error",
-			4: "warning",
-			5: "notification",
-			6: "information",
-			7: "debug",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogDiskSettingStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogDiskSettingUpload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogDiskSettingUploadDeleteFiles(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -346,26 +269,11 @@ func flattenSystemLocallogDiskSettingUploadport(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemLocallogDiskSettingUploadsched(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogDiskSettingUploadtype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "event",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLocallogDiskSettingUploaduser(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -373,14 +281,6 @@ func flattenSystemLocallogDiskSettingUploaduser(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemLocallogDiskSettingUploadzip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

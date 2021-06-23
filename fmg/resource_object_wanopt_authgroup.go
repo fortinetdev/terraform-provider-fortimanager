@@ -188,14 +188,6 @@ func resourceObjectWanoptAuthGroupRead(d *schema.ResourceData, m interface{}) er
 }
 
 func flattenObjectWanoptAuthGroupAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "cert",
-			2: "psk",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -212,15 +204,6 @@ func flattenObjectWanoptAuthGroupPeer(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectWanoptAuthGroupPeerAccept(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "any",
-			2: "defined",
-			3: "one",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

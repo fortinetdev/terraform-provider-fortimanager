@@ -132,38 +132,14 @@ func resourceFmupdateFwmSettingRead(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenFmupdateFwmSettingAutoScanFgtDisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFwmSettingCheckFgtDisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFwmSettingFdsFailoverFmg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -172,15 +148,6 @@ func flattenFmupdateFwmSettingFdsImageTimeout(v interface{}, d *schema.ResourceD
 }
 
 func flattenFmupdateFwmSettingImmxSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "fmg",
-			1: "fgt",
-			2: "cloud",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

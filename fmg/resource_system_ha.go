@@ -196,15 +196,6 @@ func flattenSystemHaLocalCertSha(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemHaModeSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "standalone",
-			1: "primary",
-			2: "secondary",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -286,14 +277,6 @@ func flattenSystemHaPeerSerialNumberSha(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemHaPeerStatusSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

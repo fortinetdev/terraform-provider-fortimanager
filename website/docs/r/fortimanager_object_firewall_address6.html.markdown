@@ -44,6 +44,8 @@ The following arguments are supported:
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `end_ip` - Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `end_mac` - Last MAC address in the range.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `fqdn` - Fully qualified domain name.
 * `global_object` - Global Object.
 * `host` - Host Address.
@@ -51,6 +53,7 @@ The following arguments are supported:
 
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 * `list` - List. The structure of `list` block is documented below.
+* `macaddr` - Multiple MAC address ranges.
 * `name` - Address name.
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
@@ -62,6 +65,8 @@ The following arguments are supported:
 * `type` - Type of IPv6 address object (default = ipprefix). Valid values: `ipprefix`, `iprange`, `nsx`, `dynamic`, `fqdn`, `template`, `mac`, `geography`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `visibility` - Enable/disable the visibility of the object in the GUI. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -71,17 +76,18 @@ The `dynamic_mapping` block supports:
 * `cache_ttl` - Minimal TTL of individual IPv6 addresses in FQDN cache.
 * `color` - Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
 * `comment` - Comment.
-* `country` - IPv6 addresses associated to a specific country.
+* `country` - Country.
 * `end_ip` - Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `end_mac` - Last MAC address in the range.
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
 
 * `fqdn` - Fully qualified domain name.
-* `global_object` - Global Object.
+* `global_object` - Global-Object.
 * `host` - Host Address.
 * `host_type` - Host type. Valid values: `any`, `specific`.
 
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
+* `macaddr` - Macaddr.
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -92,7 +98,7 @@ The `dynamic_mapping` block supports:
 * `type` - Type of IPv6 address object (default = ipprefix). Valid values: `ipprefix`, `iprange`, `nsx`, `dynamic`, `fqdn`, `template`, `mac`, `geography`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-* `visibility` - Visibility. Valid values: `disable`, `enable`.
+* `visibility` - Enable/disable the visibility of the object in the GUI. Valid values: `disable`, `enable`.
 
 
 The `_scope` block supports:

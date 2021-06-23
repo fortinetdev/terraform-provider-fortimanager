@@ -4,7 +4,7 @@
 // Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
-// Description: Configure IPv4 and IPv6 central SNAT policies.
+// Description: Configure central SNAT policies.
 
 package fortimanager
 
@@ -285,14 +285,6 @@ func flattenPackagesFirewallCentralSnatMapDstintf(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallCentralSnatMapNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -333,26 +325,10 @@ func flattenPackagesFirewallCentralSnatMapSrcintf(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallCentralSnatMapStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallCentralSnatMapType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "ipv4",
-			8: "ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -236,31 +236,10 @@ func resourceSystemLogSettingsRollingLocalRead(d *schema.ResourceData, m interfa
 }
 
 func flattenSystemLogSettingsRollingLocalDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "sun",
-			2:  "mon",
-			4:  "tue",
-			8:  "wed",
-			16: "thu",
-			32: "fri",
-			64: "sat",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingLocalDelFiles(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -273,14 +252,6 @@ func flattenSystemLogSettingsRollingLocalFileSize(v interface{}, d *schema.Resou
 }
 
 func flattenSystemLogSettingsRollingLocalGzipFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -301,15 +272,6 @@ func flattenSystemLogSettingsRollingLocalIp3(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystemLogSettingsRollingLocalLogFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "native",
-			1: "text",
-			4: "csv",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -342,27 +304,10 @@ func flattenSystemLogSettingsRollingLocalPort3(v interface{}, d *schema.Resource
 }
 
 func flattenSystemLogSettingsRollingLocalServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ftp",
-			1: "sftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingLocalUpload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -371,26 +316,10 @@ func flattenSystemLogSettingsRollingLocalUploadHour(v interface{}, d *schema.Res
 }
 
 func flattenSystemLogSettingsRollingLocalUploadMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "backup",
-			1: "mirror",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingLocalUploadTrigger(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "on-roll",
-			1: "on-schedule",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -407,15 +336,6 @@ func flattenSystemLogSettingsRollingLocalUsername3(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogSettingsRollingLocalWhen(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

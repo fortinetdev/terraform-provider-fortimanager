@@ -532,26 +532,10 @@ func resourceObjectSystemDhcpServerRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenObjectSystemDhcpServerAutoConfiguration(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerAutoManagedStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -560,14 +544,6 @@ func flattenObjectSystemDhcpServerConflictedIpTimeout(v interface{}, d *schema.R
 }
 
 func flattenObjectSystemDhcpServerDdnsAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			7: "tsig",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -588,26 +564,10 @@ func flattenObjectSystemDhcpServerDdnsTtl(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectSystemDhcpServerDdnsUpdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerDdnsUpdateOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -620,14 +580,6 @@ func flattenObjectSystemDhcpServerDefaultGateway(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemDhcpServerDhcpSettingsFromFortiipam(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -648,15 +600,6 @@ func flattenObjectSystemDhcpServerDnsServer4(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemDhcpServerDnsService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -726,14 +669,6 @@ func flattenObjectSystemDhcpServerFilename(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemDhcpServerForticlientOnNetStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -746,14 +681,6 @@ func flattenObjectSystemDhcpServerInterface(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectSystemDhcpServerIpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "range",
-			1: "usrgrp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -823,14 +750,6 @@ func flattenObjectSystemDhcpServerLeaseTime(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectSystemDhcpServerMacAclDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "assign",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -855,15 +774,6 @@ func flattenObjectSystemDhcpServerNtpServer3(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemDhcpServerNtpService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -937,16 +847,6 @@ func flattenObjectSystemDhcpServerOptionsIp(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectSystemDhcpServerOptionsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-			2: "ip",
-			3: "fqdn",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1042,15 +942,6 @@ func flattenObjectSystemDhcpServerReservedAddress(v interface{}, d *schema.Resou
 }
 
 func flattenObjectSystemDhcpServerReservedAddressAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "assign",
-			1: "block",
-			2: "reserved",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1059,14 +950,6 @@ func flattenObjectSystemDhcpServerReservedAddressCircuitId(v interface{}, d *sch
 }
 
 func flattenObjectSystemDhcpServerReservedAddressCircuitIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1091,50 +974,18 @@ func flattenObjectSystemDhcpServerReservedAddressRemoteId(v interface{}, d *sche
 }
 
 func flattenObjectSystemDhcpServerReservedAddressRemoteIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerReservedAddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "mac",
-			2: "option82",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "regular",
-			31: "ipsec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1143,125 +994,14 @@ func flattenObjectSystemDhcpServerTftpServer(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemDhcpServerTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "00",
-			1:  "01",
-			2:  "02",
-			3:  "03",
-			4:  "04",
-			5:  "05",
-			6:  "06",
-			7:  "07",
-			8:  "08",
-			9:  "09",
-			10: "10",
-			11: "11",
-			12: "12",
-			13: "13",
-			14: "14",
-			15: "15",
-			16: "16",
-			17: "17",
-			18: "18",
-			19: "19",
-			20: "20",
-			21: "21",
-			22: "22",
-			23: "23",
-			24: "24",
-			25: "25",
-			26: "26",
-			27: "27",
-			28: "28",
-			29: "29",
-			30: "30",
-			31: "31",
-			32: "32",
-			33: "33",
-			34: "34",
-			35: "35",
-			36: "36",
-			37: "37",
-			38: "38",
-			39: "39",
-			40: "40",
-			41: "41",
-			42: "42",
-			43: "43",
-			44: "44",
-			45: "45",
-			46: "46",
-			47: "47",
-			48: "48",
-			49: "49",
-			50: "50",
-			51: "51",
-			52: "52",
-			53: "53",
-			54: "54",
-			55: "55",
-			56: "56",
-			57: "57",
-			58: "58",
-			59: "59",
-			60: "60",
-			61: "61",
-			62: "62",
-			63: "63",
-			64: "64",
-			65: "65",
-			66: "66",
-			67: "67",
-			68: "68",
-			69: "69",
-			70: "70",
-			71: "71",
-			72: "72",
-			73: "73",
-			74: "74",
-			75: "75",
-			76: "76",
-			77: "77",
-			78: "78",
-			79: "79",
-			80: "80",
-			81: "81",
-			82: "82",
-			83: "83",
-			84: "84",
-			85: "85",
-			86: "86",
-			87: "87",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerTimezoneOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			3: "default",
-			5: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemDhcpServerVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1270,14 +1010,6 @@ func flattenObjectSystemDhcpServerVciString(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectSystemDhcpServerWifiAcService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -65,6 +65,11 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dstaddr_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -86,7 +91,17 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"service_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"srcaddr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -234,14 +249,6 @@ func resourcePackagesFirewallLocalInPolicy6Read(d *schema.ResourceData, m interf
 }
 
 func flattenPackagesFirewallLocalInPolicy6Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "accept",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -250,6 +257,10 @@ func flattenPackagesFirewallLocalInPolicy6Comments(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallLocalInPolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallLocalInPolicy6DstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -269,19 +280,19 @@ func flattenPackagesFirewallLocalInPolicy6Service(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenPackagesFirewallLocalInPolicy6ServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallLocalInPolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenPackagesFirewallLocalInPolicy6SrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallLocalInPolicy6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -319,6 +330,16 @@ func refreshObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading dstaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("dstaddr_negate", flattenPackagesFirewallLocalInPolicy6DstaddrNegate(o["dstaddr-negate"], d, "dstaddr_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dstaddr-negate"], "PackagesFirewallLocalInPolicy6-DstaddrNegate"); ok {
+			if err = d.Set("dstaddr_negate", vv); err != nil {
+				return fmt.Errorf("Error reading dstaddr_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dstaddr_negate: %v", err)
 		}
 	}
 
@@ -362,6 +383,16 @@ func refreshObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("service_negate", flattenPackagesFirewallLocalInPolicy6ServiceNegate(o["service-negate"], d, "service_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-negate"], "PackagesFirewallLocalInPolicy6-ServiceNegate"); ok {
+			if err = d.Set("service_negate", vv); err != nil {
+				return fmt.Errorf("Error reading service_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("srcaddr", flattenPackagesFirewallLocalInPolicy6Srcaddr(o["srcaddr"], d, "srcaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr"], "PackagesFirewallLocalInPolicy6-Srcaddr"); ok {
 			if err = d.Set("srcaddr", vv); err != nil {
@@ -369,6 +400,16 @@ func refreshObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading srcaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("srcaddr_negate", flattenPackagesFirewallLocalInPolicy6SrcaddrNegate(o["srcaddr-negate"], d, "srcaddr_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["srcaddr-negate"], "PackagesFirewallLocalInPolicy6-SrcaddrNegate"); ok {
+			if err = d.Set("srcaddr_negate", vv); err != nil {
+				return fmt.Errorf("Error reading srcaddr_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading srcaddr_negate: %v", err)
 		}
 	}
 
@@ -413,6 +454,10 @@ func expandPackagesFirewallLocalInPolicy6Dstaddr(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandPackagesFirewallLocalInPolicy6DstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallLocalInPolicy6Intf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -429,7 +474,15 @@ func expandPackagesFirewallLocalInPolicy6Service(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandPackagesFirewallLocalInPolicy6ServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallLocalInPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallLocalInPolicy6SrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -471,6 +524,15 @@ func getObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData) (*map[strin
 		}
 	}
 
+	if v, ok := d.GetOk("dstaddr_negate"); ok {
+		t, err := expandPackagesFirewallLocalInPolicy6DstaddrNegate(d, v, "dstaddr_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dstaddr-negate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("intf"); ok {
 		t, err := expandPackagesFirewallLocalInPolicy6Intf(d, v, "intf")
 		if err != nil {
@@ -507,12 +569,30 @@ func getObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData) (*map[strin
 		}
 	}
 
+	if v, ok := d.GetOk("service_negate"); ok {
+		t, err := expandPackagesFirewallLocalInPolicy6ServiceNegate(d, v, "service_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-negate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("srcaddr"); ok {
 		t, err := expandPackagesFirewallLocalInPolicy6Srcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["srcaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("srcaddr_negate"); ok {
+		t, err := expandPackagesFirewallLocalInPolicy6SrcaddrNegate(d, v, "srcaddr_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["srcaddr-negate"] = t
 		}
 	}
 

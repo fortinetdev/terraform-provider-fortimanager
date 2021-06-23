@@ -76,6 +76,16 @@ func resourceObjectIcapServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"secure": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -191,14 +201,6 @@ func flattenObjectIcapServerIpAddress(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectIcapServerIpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "4",
-			8: "6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -215,6 +217,14 @@ func flattenObjectIcapServerName(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenObjectIcapServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapServerSecure(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapServerSslCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -281,6 +291,26 @@ func refreshObjectObjectIcapServer(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("secure", flattenObjectIcapServerSecure(o["secure"], d, "secure")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secure"], "ObjectIcapServer-Secure"); ok {
+			if err = d.Set("secure", vv); err != nil {
+				return fmt.Errorf("Error reading secure: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secure: %v", err)
+		}
+	}
+
+	if err = d.Set("ssl_cert", flattenObjectIcapServerSslCert(o["ssl-cert"], d, "ssl_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-cert"], "ObjectIcapServer-SslCert"); ok {
+			if err = d.Set("ssl_cert", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_cert: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -311,6 +341,14 @@ func expandObjectIcapServerName(d *schema.ResourceData, v interface{}, pre strin
 }
 
 func expandObjectIcapServerPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapServerSecure(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapServerSslCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -368,6 +406,24 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secure"); ok {
+		t, err := expandObjectIcapServerSecure(d, v, "secure")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secure"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_cert"); ok {
+		t, err := expandObjectIcapServerSslCert(d, v, "ssl_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-cert"] = t
 		}
 	}
 

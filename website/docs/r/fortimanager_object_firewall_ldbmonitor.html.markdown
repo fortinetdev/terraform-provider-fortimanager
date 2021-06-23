@@ -32,6 +32,10 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `dns_match_ip` - Response IP expected from DNS server.
+* `dns_protocol` - Select the protocol used by the DNS health check monitor to check the health of the server (UDP | TCP). Valid values: `udp`, `tcp`.
+
+* `dns_request_domain` - Fully qualified domain name to resolve for the DNS probe.
 * `http_get` - URL used to send a GET request to check the health of an HTTP server.
 * `http_match` - String to match the value expected in response to an HTTP-GET request.
 * `http_max_redirects` - The maximum number of HTTP redirects to be allowed (0 - 5, default = 0).
@@ -41,7 +45,7 @@ The following arguments are supported:
 * `retry` - Number health check attempts before the server is considered down (1 - 255, default = 3).
 * `src_ip` - Source IP for ldb-monitor.
 * `timeout` - Time to wait to receive response to a health check from a server. Reaching the timeout means the health check failed (1 - 255 sec, default = 2).
-* `type` - Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP | HTTPS). Valid values: `ping`, `tcp`, `http`, `passive-sip`, `https`, `dns`.
+* `type` - Select the Monitor type used by the health check monitor to check the health of the server (PING | TCP | HTTP | HTTPS). Valid values: `ping`, `tcp`, `http`, `passive-sip`, `https`.
 
 
 

@@ -111,6 +111,11 @@ func resourceObjectFirewallMulticastAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"visibility": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -312,14 +317,10 @@ func flattenObjectFirewallMulticastAddressTaggingTags(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallMulticastAddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "multicastrange",
-			1: "broadcastmask",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallMulticastAddressVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -430,6 +431,16 @@ func refreshObjectObjectFirewallMulticastAddress(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("visibility", flattenObjectFirewallMulticastAddressVisibility(o["visibility"], d, "visibility")); err != nil {
+		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallMulticastAddress-Visibility"); ok {
+			if err = d.Set("visibility", vv); err != nil {
+				return fmt.Errorf("Error reading visibility: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading visibility: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -522,6 +533,10 @@ func expandObjectFirewallMulticastAddressType(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectFirewallMulticastAddressVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -603,6 +618,15 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("visibility"); ok {
+		t, err := expandObjectFirewallMulticastAddressVisibility(d, v, "visibility")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["visibility"] = t
 		}
 	}
 

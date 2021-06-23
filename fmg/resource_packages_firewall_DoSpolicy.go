@@ -90,6 +90,41 @@ func resourcePackagesFirewallDosPolicy() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"synproxy_tcp_mss": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"synproxy_tcp_sack": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"synproxy_tcp_timestamp": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"synproxy_tcp_window": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"synproxy_tcp_windowscale": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"synproxy_tos": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"synproxy_ttl": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -351,6 +386,48 @@ func flattenPackagesFirewallDosPolicyAnomaly(v interface{}, d *schema.ResourceDa
 			tmp["status"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_mss"
+		if _, ok := i["synproxy-tcp-mss"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTcpMss(i["synproxy-tcp-mss"], d, pre_append)
+			tmp["synproxy_tcp_mss"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTcpMss")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_sack"
+		if _, ok := i["synproxy-tcp-sack"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTcpSack(i["synproxy-tcp-sack"], d, pre_append)
+			tmp["synproxy_tcp_sack"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTcpSack")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_timestamp"
+		if _, ok := i["synproxy-tcp-timestamp"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTcpTimestamp(i["synproxy-tcp-timestamp"], d, pre_append)
+			tmp["synproxy_tcp_timestamp"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTcpTimestamp")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_window"
+		if _, ok := i["synproxy-tcp-window"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTcpWindow(i["synproxy-tcp-window"], d, pre_append)
+			tmp["synproxy_tcp_window"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTcpWindow")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_windowscale"
+		if _, ok := i["synproxy-tcp-windowscale"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTcpWindowscale(i["synproxy-tcp-windowscale"], d, pre_append)
+			tmp["synproxy_tcp_windowscale"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTcpWindowscale")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tos"
+		if _, ok := i["synproxy-tos"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTos(i["synproxy-tos"], d, pre_append)
+			tmp["synproxy_tos"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTos")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_ttl"
+		if _, ok := i["synproxy-ttl"]; ok {
+			v := flattenPackagesFirewallDosPolicyAnomalySynproxyTtl(i["synproxy-ttl"], d, pre_append)
+			tmp["synproxy_ttl"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-SynproxyTtl")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold"
 		if _, ok := i["threshold"]; ok {
 			v := flattenPackagesFirewallDosPolicyAnomalyThreshold(i["threshold"], d, pre_append)
@@ -372,27 +449,10 @@ func flattenPackagesFirewallDosPolicyAnomaly(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallDosPolicyAnomalyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "block",
-			2: "proxy",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallDosPolicyAnomalyLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -401,14 +461,6 @@ func flattenPackagesFirewallDosPolicyAnomalyName(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallDosPolicyAnomalyQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "attacker",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -417,26 +469,38 @@ func flattenPackagesFirewallDosPolicyAnomalyQuarantineExpiry(v interface{}, d *s
 }
 
 func flattenPackagesFirewallDosPolicyAnomalyQuarantineLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallDosPolicyAnomalyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTcpMss(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTcpSack(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTcpTimestamp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTcpWindow(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTcpWindowscale(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTos(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallDosPolicyAnomalySynproxyTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -477,14 +541,6 @@ func flattenPackagesFirewallDosPolicySrcaddr(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallDosPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -653,6 +709,41 @@ func expandPackagesFirewallDosPolicyAnomaly(d *schema.ResourceData, v interface{
 			tmp["status"], _ = expandPackagesFirewallDosPolicyAnomalyStatus(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_mss"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-tcp-mss"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpMss(d, i["synproxy_tcp_mss"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_sack"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-tcp-sack"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpSack(d, i["synproxy_tcp_sack"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_timestamp"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-tcp-timestamp"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpTimestamp(d, i["synproxy_tcp_timestamp"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_window"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-tcp-window"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpWindow(d, i["synproxy_tcp_window"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_windowscale"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-tcp-windowscale"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpWindowscale(d, i["synproxy_tcp_windowscale"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tos"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-tos"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTos(d, i["synproxy_tos"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_ttl"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["synproxy-ttl"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTtl(d, i["synproxy_ttl"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["threshold"], _ = expandPackagesFirewallDosPolicyAnomalyThreshold(d, i["threshold"], pre_append)
@@ -696,6 +787,34 @@ func expandPackagesFirewallDosPolicyAnomalyQuarantineLog(d *schema.ResourceData,
 }
 
 func expandPackagesFirewallDosPolicyAnomalyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTcpMss(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTcpSack(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTcpTimestamp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTcpWindow(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTcpWindowscale(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallDosPolicyAnomalySynproxyTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

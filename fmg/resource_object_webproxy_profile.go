@@ -266,93 +266,30 @@ func resourceObjectWebProxyProfileRead(d *schema.ResourceData, m interface{}) er
 }
 
 func flattenObjectWebProxyProfileHeaderClientIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeaderFrontEndHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeaderViaRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeaderViaResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeaderXAuthenticatedGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeaderXAuthenticatedUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeaderXForwardedFor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pass",
-			1: "add",
-			2: "remove",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -438,41 +375,14 @@ func flattenObjectWebProxyProfileHeaders(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectWebProxyProfileHeadersAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "add-to-request",
-			1: "add-to-response",
-			2: "remove-from-request",
-			3: "remove-from-response",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeadersAddOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "append",
-			2: "new-on-not-found",
-			3: "new",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyProfileHeadersBase64Encoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -497,26 +407,10 @@ func flattenObjectWebProxyProfileHeadersName(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectWebProxyProfileHeadersProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "https",
-			2: "http",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebProxyProfileLogHeaderChange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -525,14 +419,6 @@ func flattenObjectWebProxyProfileName(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectWebProxyProfileStripEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

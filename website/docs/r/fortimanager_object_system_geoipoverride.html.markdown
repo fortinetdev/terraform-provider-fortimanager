@@ -34,8 +34,8 @@ The following arguments are supported:
 
 The `ip_range` block supports:
 
-* `end_ip` - Ending IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
-* `id` - ID of individual entry in the IP range table.
+* `end_ip` - Final IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
+* `id` - ID number for individual entry in the IP-Range table.
 * `start_ip` - Starting IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
 
 The `ip6_range` block supports:

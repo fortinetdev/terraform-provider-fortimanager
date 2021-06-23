@@ -182,14 +182,6 @@ func flattenSystemSnifferInterface(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenSystemSnifferIpv6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -198,14 +190,6 @@ func flattenSystemSnifferMaxPacketCount(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemSnifferNonIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

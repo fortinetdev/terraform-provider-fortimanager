@@ -256,15 +256,6 @@ func flattenSystemAutoDeleteDlpFilesAutoDeletionSaa(v interface{}, d *schema.Res
 }
 
 func flattenSystemAutoDeleteDlpFilesAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "days",
-			2: "weeks",
-			3: "months",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -273,14 +264,6 @@ func flattenSystemAutoDeleteDlpFilesAutoDeletionRunatSaa(v interface{}, d *schem
 }
 
 func flattenSystemAutoDeleteDlpFilesAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -322,15 +305,6 @@ func flattenSystemAutoDeleteLogAutoDeletionSaa(v interface{}, d *schema.Resource
 }
 
 func flattenSystemAutoDeleteLogAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "days",
-			2: "weeks",
-			3: "months",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -339,14 +313,6 @@ func flattenSystemAutoDeleteLogAutoDeletionRunatSaa(v interface{}, d *schema.Res
 }
 
 func flattenSystemAutoDeleteLogAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -388,15 +354,6 @@ func flattenSystemAutoDeleteQuarantineFilesAutoDeletionSaa(v interface{}, d *sch
 }
 
 func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "days",
-			2: "weeks",
-			3: "months",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -405,14 +362,6 @@ func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunatSaa(v interface{}, d
 }
 
 func flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -454,15 +403,6 @@ func flattenSystemAutoDeleteReportAutoDeletionSaa(v interface{}, d *schema.Resou
 }
 
 func flattenSystemAutoDeleteReportAutoDeletionRetentionSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "days",
-			2: "weeks",
-			3: "months",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -471,14 +411,6 @@ func flattenSystemAutoDeleteReportAutoDeletionRunatSaa(v interface{}, d *schema.
 }
 
 func flattenSystemAutoDeleteReportAutoDeletionStatusSaa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

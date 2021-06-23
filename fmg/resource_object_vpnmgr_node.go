@@ -520,40 +520,14 @@ func resourceObjectVpnmgrNodeRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectVpnmgrNodeAddRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeAssignIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeAssignIpFrom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "range",
-			1: "usrgrp",
-			2: "dhcp",
-			4: "name",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -570,26 +544,10 @@ func flattenObjectVpnmgrNodeAuthusrgrp(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectVpnmgrNodeAutoConfiguration(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeAutomaticRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -602,39 +560,14 @@ func flattenObjectVpnmgrNodeDefaultGateway(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnmgrNodeDhcpServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeDnsMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "manual",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeDnsService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -643,14 +576,6 @@ func flattenObjectVpnmgrNodeDomain(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectVpnmgrNodeExchangeInterfaceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -663,14 +588,6 @@ func flattenObjectVpnmgrNodeExtgwHubip(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectVpnmgrNodeExtgwP2PerNet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -861,38 +778,14 @@ func flattenObjectVpnmgrNodeLocalid(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectVpnmgrNodeModeCfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeModeCfgIpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "4",
-			8: "6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeNetDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -909,17 +802,6 @@ func flattenObjectVpnmgrNodePeerid(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectVpnmgrNodePeertype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "any",
-			2:  "one",
-			4:  "dialup",
-			8:  "peer",
-			16: "peergrp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -975,27 +857,10 @@ func flattenObjectVpnmgrNodePublicIp(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectVpnmgrNodeRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hub",
-			1: "spoke",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeRouteOverlap(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "use-old",
-			2: "use-new",
-			3: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1061,26 +926,10 @@ func flattenObjectVpnmgrNodeSummaryAddrSeq(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnmgrNodeTunnelSearch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "selectors",
-			1: "nexthop",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnmgrNodeUnitySupport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1101,17 +950,6 @@ func flattenObjectVpnmgrNodeVpntable(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectVpnmgrNodeXauthtype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "disable",
-			2:  "client",
-			4:  "pap",
-			8:  "chap",
-			16: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

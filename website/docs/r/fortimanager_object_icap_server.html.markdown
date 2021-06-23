@@ -36,6 +36,9 @@ The following arguments are supported:
 * `max_connections` - Maximum number of concurrent connections to ICAP server. Must not be less than wad-worker-count.
 * `name` - Server name.
 * `port` - ICAP server port.
+* `secure` - Enable/disable secure connection to ICAP server. Valid values: `disable`, `enable`.
+
+* `ssl_cert` - CA certificate name.
 
 
 ## Attribute Reference

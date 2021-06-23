@@ -274,13 +274,6 @@ func flattenSystemLogFetchClientProfileClientAdom(v interface{}, d *schema.Resou
 }
 
 func flattenSystemLogFetchClientProfileDataRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "custom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -364,14 +357,6 @@ func flattenSystemLogFetchClientProfileId(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemLogFetchClientProfileIndexFetchLogs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -435,21 +420,6 @@ func flattenSystemLogFetchClientProfileLogFilterId(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogFetchClientProfileLogFilterOper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "=",
-			1: "!=",
-			2: "<",
-			3: ">",
-			4: "<=",
-			5: ">=",
-			6: "contain",
-			7: "not-contain",
-			8: "match",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -458,26 +428,10 @@ func flattenSystemLogFetchClientProfileLogFilterValue(v interface{}, d *schema.R
 }
 
 func flattenSystemLogFetchClientProfileLogFilterLogic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "and",
-			1: "or",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogFetchClientProfileLogFilterStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -490,14 +444,6 @@ func flattenSystemLogFetchClientProfilePassword(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemLogFetchClientProfileSecureConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -514,14 +460,6 @@ func flattenSystemLogFetchClientProfileStartTime(v interface{}, d *schema.Resour
 }
 
 func flattenSystemLogFetchClientProfileSyncAdomConfig(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

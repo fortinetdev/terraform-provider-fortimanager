@@ -60,6 +60,11 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"comments": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -112,6 +117,11 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -249,26 +259,14 @@ func resourcePackagesFirewallMulticastPolicy6Read(d *schema.ResourceData, m inte
 }
 
 func flattenPackagesFirewallMulticastPolicy6Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "accept",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallMulticastPolicy6AutoAsicOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallMulticastPolicy6Comments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -289,14 +287,6 @@ func flattenPackagesFirewallMulticastPolicy6Id(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesFirewallMulticastPolicy6Logtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -321,14 +311,10 @@ func flattenPackagesFirewallMulticastPolicy6StartPort(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallMulticastPolicy6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallMulticastPolicy6Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -352,6 +338,16 @@ func refreshObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading auto_asic_offload: %v", err)
+		}
+	}
+
+	if err = d.Set("comments", flattenPackagesFirewallMulticastPolicy6Comments(o["comments"], d, "comments")); err != nil {
+		if vv, ok := fortiAPIPatch(o["comments"], "PackagesFirewallMulticastPolicy6-Comments"); ok {
+			if err = d.Set("comments", vv); err != nil {
+				return fmt.Errorf("Error reading comments: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading comments: %v", err)
 		}
 	}
 
@@ -465,6 +461,16 @@ func refreshObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("uuid", flattenPackagesFirewallMulticastPolicy6Uuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "PackagesFirewallMulticastPolicy6-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -479,6 +485,10 @@ func expandPackagesFirewallMulticastPolicy6Action(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallMulticastPolicy6AutoAsicOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallMulticastPolicy6Comments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -526,6 +536,10 @@ func expandPackagesFirewallMulticastPolicy6Status(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesFirewallMulticastPolicy6Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -544,6 +558,15 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["auto-asic-offload"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("comments"); ok {
+		t, err := expandPackagesFirewallMulticastPolicy6Comments(d, v, "comments")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["comments"] = t
 		}
 	}
 
@@ -643,6 +666,15 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok {
+		t, err := expandPackagesFirewallMulticastPolicy6Uuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

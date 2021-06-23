@@ -763,27 +763,10 @@ func flattenObjectUserFssoDynamicMappingInterface(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserFssoDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserFssoDynamicMappingLdapPoll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -868,14 +851,6 @@ func flattenObjectUserFssoDynamicMappingSourceIp6(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserFssoDynamicMappingSsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -884,14 +859,6 @@ func flattenObjectUserFssoDynamicMappingSslTrustedCert(v interface{}, d *schema.
 }
 
 func flattenObjectUserFssoDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			2: "fortinac",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -908,27 +875,10 @@ func flattenObjectUserFssoInterface(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserFssoInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserFssoLdapPoll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1017,14 +967,6 @@ func flattenObjectUserFssoSourceIp6(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserFssoSsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1033,14 +975,6 @@ func flattenObjectUserFssoSslTrustedCert(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectUserFssoType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			2: "fortinac",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

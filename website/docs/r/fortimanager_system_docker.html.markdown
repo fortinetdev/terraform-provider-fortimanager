@@ -36,7 +36,7 @@ resource "fortimanager_system_docker" "trname" {
 The following arguments are supported:
 
 
-* `cpu` - Max CPU usage.
+* `cpu` - Cpu.
 * `default_address_pool_base` - Set default-address-pool CIDR.
 * `default_address_pool_size` - Set default-address-pool size.
 * `docker_user_login_max` - Max login session for docker users.

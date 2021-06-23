@@ -32,6 +32,7 @@ The following arguments are supported:
 * `dstaddr` - Destination IPv4 address name and address group names.
 * `dstaddr_negate` - When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 
+* `dstaddr4` - Destination IPv4 address name and address group names.
 * `dstaddr6` - Destination IPv6 address name and address group names.
 * `dstintf` - Outgoing (egress) interface.
 * `emailfilter_profile` - Name of an existing email filter profile.
@@ -48,6 +49,7 @@ The following arguments are supported:
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
 * `internet_service_name` - Internet Service name.
+* `internet_service_id` - Internet Service ID.
 * `internet_service_negate` - When enabled internet-service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `internet_service_src` - Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
@@ -56,11 +58,17 @@ The following arguments are supported:
 * `internet_service_src_custom_group` - Custom Internet Service source group name.
 * `internet_service_src_group` - Internet Service source group name.
 * `internet_service_src_name` - Internet Service source name.
+* `internet_service_src_id` - Internet Service source ID.
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
+* `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
+
 * `logtraffic` - Enable or disable logging. Log all sessions or security profile sessions. Valid values: `disable`, `all`, `utm`.
 
+* `logtraffic_start` - Record logs when a session starts. Valid values: `disable`, `enable`.
+
+* `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
 * `policyid` - Policy ID.
 * `profile_group` - Name of profile group.
@@ -76,6 +84,7 @@ The following arguments are supported:
 * `srcaddr` - Source IPv4 address name and address group names.
 * `srcaddr_negate` - When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `disable`, `enable`.
 
+* `srcaddr4` - Source IPv4 address name and address group names.
 * `srcaddr6` - Source IPv6 address name and address group names.
 * `srcintf` - Incoming (ingress) interface.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
@@ -87,6 +96,7 @@ The following arguments are supported:
 * `utm_status` - Enable security profiles. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `videofilter_profile` - Name of an existing VideoFilter profile.
 * `voip_profile` - Name of an existing VoIP profile.
 * `webfilter_profile` - Name of an existing Web filter profile.
 

@@ -42,7 +42,7 @@ The following arguments are supported:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
-* `extip` - Start-external-IPv6-address [-end-external-IPv6-address].
+* `extip` - Start-external-IP [-end-external-IP].
 * `extport` - External service port.
 * `fosid` - Custom defined id.
 * `ldb_method` - Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
@@ -71,7 +71,7 @@ The `dynamic_mapping` block supports:
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
-* `extip` - Start-external-IPv6-address [-end-external-IPv6-address].
+* `extip` - Start-external-IP [-end-external-IP].
 * `extport` - External service port.
 * `id` - Custom defined id.
 * `ldb_method` - Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.

@@ -45,7 +45,7 @@ The following arguments are supported:
 
 * `allowaccess` - Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space. Valid values: `https`, `ssh`, `snmp`, `http`, `telnet`.
 
-* `ap_country` - Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM). Valid values: `AL`, `DZ`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BH`, `BD`, `BY`, `BE`, `BZ`, `BO`, `BA`, `BR`, `BN`, `BG`, `CA`, `CL`, `CN`, `CO`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DO`, `EC`, `EG`, `SV`, `EE`, `FI`, `FR`, `GE`, `DE`, `GR`, `GT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IR`, `IE`, `IL`, `IT`, `JM`, `JP`, `JO`, `KZ`, `KE`, `KP`, `KR`, `KW`, `LV`, `LB`, `LI`, `LT`, `LU`, `MO`, `MK`, `MY`, `MT`, `MX`, `MC`, `MA`, `NP`, `NL`, `AN`, `NZ`, `NO`, `OM`, `PK`, `PA`, `PG`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RO`, `RU`, `SA`, `SG`, `SK`, `SI`, `ZA`, `ES`, `LK`, `SE`, `CH`, `SY`, `TW`, `TH`, `TT`, `TN`, `TR`, `AE`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VE`, `VN`, `YE`, `ZW`, `NA`, `BS`, `VC`, `KH`, `MV`, `AF`, `TZ`, `SN`, `CI`, `GH`, `SD`, `CM`, `MW`, `AO`, `ML`, `BJ`, `MG`, `TD`, `BW`, `LY`, `RW`, `MZ`, `LS`, `MU`, `UG`, `BF`, `SL`, `NE`, `CF`, `TG`, `RE`, `RS`, `ME`, `MD`, `KY`, `BB`, `BM`, `TC`, `VI`, `PM`, `MF`, `GD`, `IM`, `FO`, `GI`, `GL`, `TM`, `VU`, `LA`, `GU`, `WF`, `MH`, `BT`, `FM`, `PF`, `NI`, `PY`, `HT`, `GY`, `AW`, `KN`, `GF`, `AS`, `MP`, `PW`, `MM`, `LC`, `GP`, `ET`, `SR`, `ZB`, `CX`, `DM`, `MQ`, `YT`, `BL`.
+* `ap_country` - Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM). Valid values: `AL`, `DZ`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BH`, `BD`, `BY`, `BE`, `BZ`, `BO`, `BA`, `BR`, `BN`, `BG`, `CA`, `CL`, `CN`, `CO`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DO`, `EC`, `EG`, `SV`, `EE`, `FI`, `FR`, `GE`, `DE`, `GR`, `GT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IR`, `IE`, `IL`, `IT`, `JM`, `JP`, `JO`, `KZ`, `KE`, `KP`, `KR`, `KW`, `LV`, `LB`, `LI`, `LT`, `LU`, `MO`, `MK`, `MY`, `MT`, `MX`, `MC`, `MA`, `NP`, `NL`, `AN`, `NZ`, `NO`, `OM`, `PK`, `PA`, `PG`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RO`, `RU`, `SA`, `SG`, `SK`, `SI`, `ZA`, `ES`, `LK`, `SE`, `CH`, `SY`, `TW`, `TH`, `TT`, `TN`, `TR`, `AE`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VE`, `VN`, `YE`, `ZW`, `NA`, `BS`, `VC`, `KH`, `MV`, `TZ`, `SN`, `CI`, `GH`, `SD`, `MW`, `AO`, `RW`, `MZ`, `UG`, `BF`, `CF`, `RS`, `ME`, `KY`, `BB`, `TC`, `GD`, `GL`, `TM`, `VU`, `GU`, `FM`, `PY`, `HT`, `GY`, `AW`, `KN`, `MM`, `LC`, `ZB`, `CX`.
 
 * `ap_handoff` - Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `disable`, `enable`.
 
@@ -90,6 +90,8 @@ The following arguments are supported:
 * `radio_2` - Radio-2. The structure of `radio_2` block is documented below.
 * `radio_3` - Radio-3. The structure of `radio_3` block is documented below.
 * `radio_4` - Radio-4. The structure of `radio_4` block is documented below.
+* `snmp` - Snmp. Valid values: `disable`, `enable`.
+
 * `split_tunneling_acl` - Split-Tunneling-Acl. The structure of `split_tunneling_acl` block is documented below.
 * `split_tunneling_acl_local_ap_subnet` - Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `disable`, `enable`.
 
@@ -176,6 +178,7 @@ The `lbs` block supports:
 
 The `platform` block supports:
 
+* `_local_platform_str` - _Local_Platform_Str.
 * `ddscan` - Enable/disable use of one radio for dedicated dual-band scanning to detect RF characterization and wireless threat management. Valid values: `disable`, `enable`.
 
 * `mode` - Configure operation mode of 5G radios (default = single-5G). Valid values: `dual-5G`, `single-5G`.
@@ -234,17 +237,35 @@ The `radio_1` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+
+* `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-* `mode` - Mode of radio 1. Radio 1 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+* `mode` - Mode of radio 1. Radio 1 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+* `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+* `sam_bssid` - BSSID for WiFi network.
+* `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `sam_password` - Passphrase for WiFi network connection.
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+* `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+
+* `sam_server` - SAM test server IP address or domain name.
+* `sam_ssid` - SSID for WiFi network.
+* `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+
+* `sam_username` - Username for WiFi network connection.
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
@@ -317,17 +338,35 @@ The `radio_2` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+
+* `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-* `mode` - Mode of radio 2. Radio 2 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+* `mode` - Mode of radio 2. Radio 2 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+* `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+* `sam_bssid` - BSSID for WiFi network.
+* `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `sam_password` - Passphrase for WiFi network connection.
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+* `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+
+* `sam_server` - SAM test server IP address or domain name.
+* `sam_ssid` - SSID for WiFi network.
+* `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+
+* `sam_username` - Username for WiFi network connection.
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
@@ -400,17 +439,35 @@ The `radio_3` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+
+* `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-* `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`.
+* `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+* `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+* `sam_bssid` - BSSID for WiFi network.
+* `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `sam_password` - Passphrase for WiFi network connection.
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+* `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+
+* `sam_server` - SAM test server IP address or domain name.
+* `sam_ssid` - SSID for WiFi network.
+* `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+
+* `sam_username` - Username for WiFi network connection.
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
@@ -483,17 +540,35 @@ The `radio_4` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
+
+* `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
-* `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `ap`, `monitor`, `sniffer`, `disabled`.
+* `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `ap`, `monitor`, `sniffer`, `disabled`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
+* `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
+
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
+* `sam_bssid` - BSSID for WiFi network.
+* `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `sam_password` - Passphrase for WiFi network connection.
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+* `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
+
+* `sam_server` - SAM test server IP address or domain name.
+* `sam_ssid` - SSID for WiFi network.
+* `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
+
+* `sam_username` - Username for WiFi network connection.
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.

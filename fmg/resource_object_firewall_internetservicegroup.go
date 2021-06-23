@@ -182,15 +182,6 @@ func flattenObjectFirewallInternetServiceGroupComment(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallInternetServiceGroupDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			31: "both",
-			41: "source",
-			42: "destination",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

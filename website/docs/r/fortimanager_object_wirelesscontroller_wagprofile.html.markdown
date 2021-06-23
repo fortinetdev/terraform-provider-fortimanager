@@ -34,10 +34,10 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Comment.
-* `dhcp_ip_addr` - IP address of the monitoring DHCP request packet sent through the tunnel
+* `dhcp_ip_addr` - IP address of the monitoring DHCP request packet sent through the tunnel.
 * `name` - Tunnel profile name.
 * `ping_interval` - Interval between two tunnel monitoring echo packets (1 - 65535 sec, default = 1).
-* `ping_number` - Number of the tunnel mointoring echo packets (1 - 65535, default = 5).
+* `ping_number` - Number of the tunnel monitoring echo packets (1 - 65535, default = 5).
 * `return_packet_timeout` - Window of time for the return packets from the tunnel's remote end (1 - 65535 sec, default = 160).
 * `tunnel_type` - Tunnel type. Valid values: `gre`, `l2tpv3`.
 

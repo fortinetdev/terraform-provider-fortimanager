@@ -28,10 +28,15 @@ The following arguments are supported:
 * `fosid` - Id.
 * `ip_number` - Ip-Number.
 * `ip_range_number` - Ip-Range-Number.
+* `jitter_threshold` - Jitter-Threshold.
+* `latency_threshold` - Latency-Threshold.
 * `name` - Name.
 * `obsolete` - Obsolete.
 * `region` - Region sequence number list.
+* `packetloss_threshold` - Packetloss-Threshold.
+* `reputation` - Reputation.
 * `singularity` - Singularity.
+* `sld_id` - Sld-Id.
 
 
 ## Attribute Reference

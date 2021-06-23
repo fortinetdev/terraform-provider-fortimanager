@@ -384,15 +384,6 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyComment(v interfa
 }
 
 func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyConcurrentClientLimitType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "unlimited",
-			2: "specified",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -429,14 +420,6 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupVlanId(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerMpskProfileMpskGroupVlanType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "no-vlan",
-			1: "fixed-vlan",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

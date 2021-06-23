@@ -55,6 +55,11 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -171,6 +176,11 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -217,6 +227,11 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Computed: true,
 			},
 			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"visibility": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -341,14 +356,10 @@ func flattenObjectFirewallAddrgrpImageBase64(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallAddrgrpAllowRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallAddrgrpCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -529,27 +540,10 @@ func flattenObjectFirewallAddrgrpDynamicMappingScopeVdom(v interface{}, d *schem
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingAllowRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "ztna-ems-tag",
-			2: "ztna-geo-tag",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -562,14 +556,6 @@ func flattenObjectFirewallAddrgrpDynamicMappingComment(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingExclude(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -578,14 +564,6 @@ func flattenObjectFirewallAddrgrpDynamicMappingExcludeMember(v interface{}, d *s
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -602,14 +580,6 @@ func flattenObjectFirewallAddrgrpDynamicMappingTags(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			53: "folder",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -618,30 +588,18 @@ func flattenObjectFirewallAddrgrpDynamicMappingUuid(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallAddrgrpExclude(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallAddrgrpExcludeMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddrgrpFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -715,18 +673,14 @@ func flattenObjectFirewallAddrgrpTaggingTags(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallAddrgrpType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			53: "folder",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallAddrgrpUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddrgrpVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -750,6 +704,16 @@ func refreshObjectObjectFirewallAddrgrp(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading allow_routing: %v", err)
+		}
+	}
+
+	if err = d.Set("category", flattenObjectFirewallAddrgrpCategory(o["category"], d, "category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["category"], "ObjectFirewallAddrgrp-Category"); ok {
+			if err = d.Set("category", vv); err != nil {
+				return fmt.Errorf("Error reading category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading category: %v", err)
 		}
 	}
 
@@ -814,6 +778,16 @@ func refreshObjectObjectFirewallAddrgrp(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading exclude_member: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallAddrgrpFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddrgrp-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -891,6 +865,16 @@ func refreshObjectObjectFirewallAddrgrp(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("visibility", flattenObjectFirewallAddrgrpVisibility(o["visibility"], d, "visibility")); err != nil {
+		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallAddrgrp-Visibility"); ok {
+			if err = d.Set("visibility", vv); err != nil {
+				return fmt.Errorf("Error reading visibility: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading visibility: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -905,6 +889,10 @@ func expandObjectFirewallAddrgrpImageBase64(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallAddrgrpAllowRouting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddrgrpCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1119,6 +1107,10 @@ func expandObjectFirewallAddrgrpExcludeMember(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectFirewallAddrgrpFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddrgrpGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1190,6 +1182,10 @@ func expandObjectFirewallAddrgrpUuid(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandObjectFirewallAddrgrpVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallAddrgrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1208,6 +1204,15 @@ func getObjectObjectFirewallAddrgrp(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["allow-routing"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("category"); ok {
+		t, err := expandObjectFirewallAddrgrpCategory(d, v, "category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["category"] = t
 		}
 	}
 
@@ -1253,6 +1258,15 @@ func getObjectObjectFirewallAddrgrp(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["exclude-member"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallAddrgrpFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 
@@ -1307,6 +1321,15 @@ func getObjectObjectFirewallAddrgrp(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("visibility"); ok {
+		t, err := expandObjectFirewallAddrgrpVisibility(d, v, "visibility")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["visibility"] = t
 		}
 	}
 

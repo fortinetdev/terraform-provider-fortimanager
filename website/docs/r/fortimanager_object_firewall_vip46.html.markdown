@@ -46,7 +46,7 @@ The following arguments are supported:
 * `fosid` - Custom defined id.
 * `ldb_method` - Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 
-* `mappedip` - Start-mapped-IPv6-address [-end mapped-IPv6-address].
+* `mappedip` - Start-mapped-IP [-end mapped-IP].
 * `mappedport` - Mapped service port.
 * `monitor` - Health monitors.
 * `name` - VIP46 name.
@@ -58,6 +58,7 @@ The following arguments are supported:
 * `server_type` - Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
 
 * `src_filter` - Source IP filter (x.x.x.x/x).
+* `srcintf_filter` - Interfaces to which the VIP46 applies. Separate the names with spaces.
 * `type` - VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -75,7 +76,7 @@ The `dynamic_mapping` block supports:
 * `id` - Custom defined id.
 * `ldb_method` - Load balance method. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 
-* `mappedip` - Start-mapped-IPv6-address [-end mapped-IPv6-address].
+* `mappedip` - Start-mapped-IP [-end mapped-IP].
 * `mappedport` - Mapped service port.
 * `monitor` - Health monitors.
 * `portforward` - Enable port forwarding. Valid values: `disable`, `enable`.
@@ -85,7 +86,7 @@ The `dynamic_mapping` block supports:
 * `server_type` - Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
 
 * `src_filter` - Source IP filter (x.x.x.x/x).
-* `srcintf_filter` - Srcintf-Filter.
+* `srcintf_filter` - Interfaces to which the VIP46 applies. Separate the names with spaces.
 * `type` - VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

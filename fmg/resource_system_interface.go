@@ -237,20 +237,7 @@ func flattenSystemInterfaceAlias(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemInterfaceAllowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ping",
-			2:  "https",
-			4:  "ssh",
-			8:  "snmp",
-			16: "http",
-			32: "webservice",
-			64: "https-logging",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemInterfaceDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -294,31 +281,10 @@ func flattenSystemInterfaceIpv6Ip6Address(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemInterfaceIpv6Ip6Allowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ping",
-			2:  "https",
-			4:  "ssh",
-			8:  "snmp",
-			16: "http",
-			32: "webservice",
-			64: "https-logging",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemInterfaceIpv6Ip6Autoconf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -335,44 +301,14 @@ func flattenSystemInterfaceRatingServiceIp(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemInterfaceServiceaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "fgtupdates",
-			2: "fclupdates",
-			4: "webfilter-antispam",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemInterfaceSpeed(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "10full",
-			2: "10half",
-			3: "100full",
-			4: "100half",
-			5: "1000full",
-			6: "10000full",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemInterfaceStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "down",
-			16: "up",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

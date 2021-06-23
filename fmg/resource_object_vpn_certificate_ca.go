@@ -236,14 +236,6 @@ func flattenObjectVpnCertificateCaName(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectVpnCertificateCaRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "global",
-			1: "vdom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -252,15 +244,6 @@ func flattenObjectVpnCertificateCaScepUrl(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectVpnCertificateCaSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "factory",
-			1: "user",
-			2: "bundle",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -269,14 +252,6 @@ func flattenObjectVpnCertificateCaSourceIp(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnCertificateCaSslInspectionTrusted(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

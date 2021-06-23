@@ -107,14 +107,6 @@ func resourceFmupdateServerOverrideStatusRead(d *schema.ResourceData, m interfac
 }
 
 func flattenFmupdateServerOverrideStatusMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "strict",
-			1: "loose",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

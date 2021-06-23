@@ -181,14 +181,6 @@ func flattenObjectVpnCertificateRemoteName(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnCertificateRemoteRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "global",
-			1: "vdom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -197,15 +189,6 @@ func flattenObjectVpnCertificateRemoteRemote(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectVpnCertificateRemoteSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "factory",
-			1: "user",
-			2: "bundle",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

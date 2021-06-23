@@ -43,6 +43,7 @@ The following arguments are supported:
 
 * `auto_asic_offload` - Enable/disable offloading policy traffic for hardware acceleration. Valid values: `disable`, `enable`.
 
+* `comments` - Comment.
 * `dstaddr` - IPv6 destination address name.
 * `dstintf` - IPv6 destination interface name.
 * `end_port` - Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
@@ -56,6 +57,7 @@ The following arguments are supported:
 * `start_port` - Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

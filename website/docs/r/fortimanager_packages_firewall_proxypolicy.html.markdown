@@ -49,6 +49,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
+* `access_proxy` - Access Proxy.
 * `action` - Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 
 * `application_list` - Name of an existing Application list.
@@ -56,6 +57,8 @@ The following arguments are supported:
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Optional comments.
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
+* `device_ownership` - When enabled, the ownership enforcement will be done at policy level. Valid values: `disable`, `enable`.
+
 * `disclaimer` - Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 
 * `dlp_sensor` - Name of an existing DLP sensor.
@@ -77,6 +80,7 @@ The following arguments are supported:
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
 * `internet_service_name` - Internet Service name.
+* `internet_service_id` - Internet Service ID.
 * `internet_service_negate` - When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
@@ -86,6 +90,7 @@ The following arguments are supported:
 * `logtraffic_start` - Enable/disable policy log traffic start. Valid values: `disable`, `enable`.
 
 * `name` - Policy name.
+* `mms_profile` - Name of an existing MMS profile.
 * `policyid` - Policy ID.
 * `poolname` - Name of IP pool object.
 * `profile_group` - Name of profile group.
@@ -118,6 +123,8 @@ The following arguments are supported:
 * `utm_status` - Enable the use of UTM profiles/sensors/lists. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `videofilter_profile` - Name of an existing VideoFilter profile.
+* `voip_profile` - Name of an existing VoIP profile.
 * `waf_profile` - Name of an existing Web application firewall profile.
 * `webcache` - Enable/disable web caching. Valid values: `disable`, `enable`.
 
@@ -126,6 +133,7 @@ The following arguments are supported:
 * `webfilter_profile` - Name of an existing Web filter profile.
 * `webproxy_forward_server` - Web proxy forward server name.
 * `webproxy_profile` - Name of web proxy profile.
+* `ztna_ems_tag` - ZTNA EMS Tag names.
 
 
 ## Attribute Reference

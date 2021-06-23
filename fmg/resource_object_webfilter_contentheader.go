@@ -249,15 +249,6 @@ func flattenObjectWebfilterContentHeaderEntries(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWebfilterContentHeaderEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "exempt",
-			1: "block",
-			2: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

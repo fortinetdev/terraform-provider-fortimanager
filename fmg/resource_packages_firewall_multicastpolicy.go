@@ -274,26 +274,10 @@ func resourcePackagesFirewallMulticastPolicyRead(d *schema.ResourceData, m inter
 }
 
 func flattenPackagesFirewallMulticastPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "accept",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallMulticastPolicyAutoAsicOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -322,14 +306,6 @@ func flattenPackagesFirewallMulticastPolicyId(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesFirewallMulticastPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -342,14 +318,6 @@ func flattenPackagesFirewallMulticastPolicyProtocol(v interface{}, d *schema.Res
 }
 
 func flattenPackagesFirewallMulticastPolicySnat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -370,14 +338,6 @@ func flattenPackagesFirewallMulticastPolicyStartPort(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallMulticastPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

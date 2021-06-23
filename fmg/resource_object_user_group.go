@@ -359,14 +359,6 @@ func resourceObjectUserGroupRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectUserGroupAuthConcurrentOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -379,27 +371,10 @@ func flattenObjectUserGroupAuthtimeout(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectUserGroupCompany(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "mandatory",
-			2: "disabled",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserGroupEmail(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -408,28 +383,10 @@ func flattenObjectUserGroupExpire(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserGroupExpireType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "immediately",
-			1: "first-successful-login",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserGroupGroupType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "firewall",
-			6: "fsso-service",
-			7: "guest",
-			8: "rsso",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -644,26 +601,10 @@ func flattenObjectUserGroupMember(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserGroupMobilePhone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserGroupMultipleGuestAdd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -672,15 +613,6 @@ func flattenObjectUserGroupName(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenObjectUserGroupPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "auto-generate",
-			2: "specify",
-			3: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -689,27 +621,10 @@ func flattenObjectUserGroupSmsCustomServer(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectUserGroupSmsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "fortiguard",
-			1: "custom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserGroupSponsor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "mandatory",
-			2: "disabled",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -718,27 +633,10 @@ func flattenObjectUserGroupSsoAttributeValue(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectUserGroupUserId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "email",
-			1: "auto-generate",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserGroupUserName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

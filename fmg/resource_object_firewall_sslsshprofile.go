@@ -45,6 +45,16 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"allowlist": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"block_blocklisted_certificates": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"block_blacklisted_certificates": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -59,6 +69,70 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"dot": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"cert_validation_failure": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"cert_validation_timeout": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"client_certificate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"expired_server_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"proxy_after_tcp_handshake": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"revoked_server_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sni_server_cert_check": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"unsupported_ssl_cipher": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"unsupported_ssl_negotiation": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"untrusted_server_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"ftps": &schema.Schema{
 				Type:     schema.TypeList,
@@ -131,6 +205,11 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"cert_probe_failure": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"cert_validation_failure": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -608,12 +687,27 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ftps_client_cert_request": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"https_client_cert_request": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
 						},
 						"imaps_client_certificate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"imaps_client_cert_request": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -638,8 +732,28 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"pop3s_client_cert_request": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"smtps_client_cert_request": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ssl_other_client_cert_request": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 					},
 				},
+			},
+			"supported_alpn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"untrusted_caname": &schema.Schema{
 				Type:     schema.TypeString,
@@ -771,15 +885,15 @@ func resourceObjectFirewallSslSshProfileRead(d *schema.ResourceData, m interface
 	return nil
 }
 
+func flattenObjectFirewallSslSshProfileAllowlist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileBlockBlocklistedCertificates(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallSslSshProfileBlockBlacklistedCertificates(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -788,6 +902,118 @@ func flattenObjectFirewallSslSshProfileCaname(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallSslSshProfileComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDot(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "cert_validation_failure"
+	if _, ok := i["cert-validation-failure"]; ok {
+		result["cert_validation_failure"] = flattenObjectFirewallSslSshProfileDotCertValidationFailure(i["cert-validation-failure"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "cert_validation_timeout"
+	if _, ok := i["cert-validation-timeout"]; ok {
+		result["cert_validation_timeout"] = flattenObjectFirewallSslSshProfileDotCertValidationTimeout(i["cert-validation-timeout"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "client_certificate"
+	if _, ok := i["client-certificate"]; ok {
+		result["client_certificate"] = flattenObjectFirewallSslSshProfileDotClientCertificate(i["client-certificate"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "expired_server_cert"
+	if _, ok := i["expired-server-cert"]; ok {
+		result["expired_server_cert"] = flattenObjectFirewallSslSshProfileDotExpiredServerCert(i["expired-server-cert"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
+	if _, ok := i["proxy-after-tcp-handshake"]; ok {
+		result["proxy_after_tcp_handshake"] = flattenObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(i["proxy-after-tcp-handshake"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "revoked_server_cert"
+	if _, ok := i["revoked-server-cert"]; ok {
+		result["revoked_server_cert"] = flattenObjectFirewallSslSshProfileDotRevokedServerCert(i["revoked-server-cert"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sni_server_cert_check"
+	if _, ok := i["sni-server-cert-check"]; ok {
+		result["sni_server_cert_check"] = flattenObjectFirewallSslSshProfileDotSniServerCertCheck(i["sni-server-cert-check"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectFirewallSslSshProfileDotStatus(i["status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "unsupported_ssl_cipher"
+	if _, ok := i["unsupported-ssl-cipher"]; ok {
+		result["unsupported_ssl_cipher"] = flattenObjectFirewallSslSshProfileDotUnsupportedSslCipher(i["unsupported-ssl-cipher"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "unsupported_ssl_negotiation"
+	if _, ok := i["unsupported-ssl-negotiation"]; ok {
+		result["unsupported_ssl_negotiation"] = flattenObjectFirewallSslSshProfileDotUnsupportedSslNegotiation(i["unsupported-ssl-negotiation"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "untrusted_server_cert"
+	if _, ok := i["untrusted-server-cert"]; ok {
+		result["untrusted_server_cert"] = flattenObjectFirewallSslSshProfileDotUntrustedServerCert(i["untrusted-server-cert"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallSslSshProfileDotCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -860,54 +1086,18 @@ func flattenObjectFirewallSslSshProfileFtps(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallSslSshProfileFtpsCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -916,77 +1106,26 @@ func flattenObjectFirewallSslSshProfileFtpsPorts(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallSslSshProfileFtpsRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileFtpsUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -999,6 +1138,11 @@ func flattenObjectFirewallSslSshProfileHttps(v interface{}, d *schema.ResourceDa
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "cert_probe_failure"
+	if _, ok := i["cert-probe-failure"]; ok {
+		result["cert_probe_failure"] = flattenObjectFirewallSslSshProfileHttpsCertProbeFailure(i["cert-probe-failure"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "cert_validation_failure"
 	if _, ok := i["cert-validation-failure"]; ok {
 		result["cert_validation_failure"] = flattenObjectFirewallSslSshProfileHttpsCertValidationFailure(i["cert-validation-failure"], d, pre_append)
@@ -1063,55 +1207,23 @@ func flattenObjectFirewallSslSshProfileHttps(v interface{}, d *schema.ResourceDa
 	return lastresult
 }
 
+func flattenObjectFirewallSslSshProfileHttpsCertProbeFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallSslSshProfileHttpsCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1120,90 +1232,30 @@ func flattenObjectFirewallSslSshProfileHttpsPorts(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallSslSshProfileHttpsProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "certificate-inspection",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileHttpsUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1281,54 +1333,18 @@ func flattenObjectFirewallSslSshProfileImaps(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallSslSshProfileImapsCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1337,101 +1353,34 @@ func flattenObjectFirewallSslSshProfileImapsPorts(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallSslSshProfileImapsProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileImapsUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileMapiOverHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1513,54 +1462,18 @@ func flattenObjectFirewallSslSshProfilePop3S(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallSslSshProfilePop3SCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1569,101 +1482,34 @@ func flattenObjectFirewallSslSshProfilePop3SPorts(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallSslSshProfilePop3SProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfilePop3SUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileRpcOverHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1672,14 +1518,6 @@ func flattenObjectFirewallSslSshProfileServerCert(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallSslSshProfileServerCertMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "re-sign",
-			1: "replace",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1757,54 +1595,18 @@ func flattenObjectFirewallSslSshProfileSmtps(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1813,89 +1615,30 @@ func flattenObjectFirewallSslSshProfileSmtpsPorts(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSmtpsUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1948,14 +1691,6 @@ func flattenObjectFirewallSslSshProfileSsh(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallSslSshProfileSshInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1964,62 +1699,22 @@ func flattenObjectFirewallSslSshProfileSshPorts(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallSslSshProfileSshProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSshSshAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "compatible",
-			1: "high-encryption",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSshSshTunPolicyCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSshStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSshUnsupportedVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "block",
-			17: "bypass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2087,142 +1782,46 @@ func flattenObjectFirewallSslSshProfileSsl(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallSslSshProfileSslCertValidationFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslCertValidationTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslExpiredServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "certificate-inspection",
-			2: "deep-inspection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslRevokedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslSniServerCertCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslUnsupportedSslCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslUnsupportedSslNegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslUntrustedServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslAnomaliesLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2316,17 +1915,6 @@ func flattenObjectFirewallSslSshProfileSslExemptRegex(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "fortiguard-category",
-			1: "address",
-			2: "address6",
-			3: "wildcard-fqdn",
-			4: "regex",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2335,26 +1923,10 @@ func flattenObjectFirewallSslSshProfileSslExemptWildcardFqdn(v interface{}, d *s
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptionsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslNegotiationLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2389,6 +1961,18 @@ func flattenObjectFirewallSslSshProfileSslServer(v interface{}, d *schema.Resour
 			tmp["https_client_certificate"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-HttpsClientCertificate")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ftps_client_cert_request"
+		if _, ok := i["ftps-client-cert-request"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslServerFtpsClientCertRequest(i["ftps-client-cert-request"], d, pre_append)
+			tmp["ftps_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-FtpsClientCertRequest")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "https_client_cert_request"
+		if _, ok := i["https-client-cert-request"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslServerHttpsClientCertRequest(i["https-client-cert-request"], d, pre_append)
+			tmp["https_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-HttpsClientCertRequest")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
 			v := flattenObjectFirewallSslSshProfileSslServerId(i["id"], d, pre_append)
@@ -2399,6 +1983,12 @@ func flattenObjectFirewallSslSshProfileSslServer(v interface{}, d *schema.Resour
 		if _, ok := i["imaps-client-certificate"]; ok {
 			v := flattenObjectFirewallSslSshProfileSslServerImapsClientCertificate(i["imaps-client-certificate"], d, pre_append)
 			tmp["imaps_client_certificate"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-ImapsClientCertificate")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "imaps_client_cert_request"
+		if _, ok := i["imaps-client-cert-request"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslServerImapsClientCertRequest(i["imaps-client-cert-request"], d, pre_append)
+			tmp["imaps_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-ImapsClientCertRequest")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
@@ -2425,6 +2015,24 @@ func flattenObjectFirewallSslSshProfileSslServer(v interface{}, d *schema.Resour
 			tmp["ssl_other_client_certificate"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-SslOtherClientCertificate")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pop3s_client_cert_request"
+		if _, ok := i["pop3s-client-cert-request"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslServerPop3SClientCertRequest(i["pop3s-client-cert-request"], d, pre_append)
+			tmp["pop3s_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-Pop3SClientCertRequest")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "smtps_client_cert_request"
+		if _, ok := i["smtps-client-cert-request"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslServerSmtpsClientCertRequest(i["smtps-client-cert-request"], d, pre_append)
+			tmp["smtps_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-SmtpsClientCertRequest")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_other_client_cert_request"
+		if _, ok := i["ssl-other-client-cert-request"]; ok {
+			v := flattenObjectFirewallSslSshProfileSslServerSslOtherClientCertRequest(i["ssl-other-client-cert-request"], d, pre_append)
+			tmp["ssl_other_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-SslOtherClientCertRequest")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -2434,28 +2042,18 @@ func flattenObjectFirewallSslSshProfileSslServer(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallSslSshProfileSslServerFtpsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslServerHttpsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslServerFtpsClientCertRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslServerHttpsClientCertRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2464,15 +2062,10 @@ func flattenObjectFirewallSslSshProfileSslServerId(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallSslSshProfileSslServerImapsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslServerImapsClientCertRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2481,41 +2074,30 @@ func flattenObjectFirewallSslSshProfileSslServerIp(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallSslSshProfileSslServerPop3SClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslServerSmtpsClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileSslServerSslOtherClientCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "inspect",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslServerPop3SClientCertRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslServerSmtpsClientCertRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSslServerSslOtherClientCertRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileSupportedAlpn(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2524,31 +2106,35 @@ func flattenObjectFirewallSslSshProfileUntrustedCaname(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallSslSshProfileUseSslServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallSslSshProfileWhitelist(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func refreshObjectObjectFirewallSslSshProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("allowlist", flattenObjectFirewallSslSshProfileAllowlist(o["allowlist"], d, "allowlist")); err != nil {
+		if vv, ok := fortiAPIPatch(o["allowlist"], "ObjectFirewallSslSshProfile-Allowlist"); ok {
+			if err = d.Set("allowlist", vv); err != nil {
+				return fmt.Errorf("Error reading allowlist: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading allowlist: %v", err)
+		}
+	}
+
+	if err = d.Set("block_blocklisted_certificates", flattenObjectFirewallSslSshProfileBlockBlocklistedCertificates(o["block-blocklisted-certificates"], d, "block_blocklisted_certificates")); err != nil {
+		if vv, ok := fortiAPIPatch(o["block-blocklisted-certificates"], "ObjectFirewallSslSshProfile-BlockBlocklistedCertificates"); ok {
+			if err = d.Set("block_blocklisted_certificates", vv); err != nil {
+				return fmt.Errorf("Error reading block_blocklisted_certificates: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading block_blocklisted_certificates: %v", err)
+		}
+	}
 
 	if err = d.Set("block_blacklisted_certificates", flattenObjectFirewallSslSshProfileBlockBlacklistedCertificates(o["block-blacklisted-certificates"], d, "block_blacklisted_certificates")); err != nil {
 		if vv, ok := fortiAPIPatch(o["block-blacklisted-certificates"], "ObjectFirewallSslSshProfile-BlockBlacklistedCertificates"); ok {
@@ -2577,6 +2163,30 @@ func refreshObjectObjectFirewallSslSshProfile(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("dot", flattenObjectFirewallSslSshProfileDot(o["dot"], d, "dot")); err != nil {
+			if vv, ok := fortiAPIPatch(o["dot"], "ObjectFirewallSslSshProfile-Dot"); ok {
+				if err = d.Set("dot", vv); err != nil {
+					return fmt.Errorf("Error reading dot: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading dot: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("dot"); ok {
+			if err = d.Set("dot", flattenObjectFirewallSslSshProfileDot(o["dot"], d, "dot")); err != nil {
+				if vv, ok := fortiAPIPatch(o["dot"], "ObjectFirewallSslSshProfile-Dot"); ok {
+					if err = d.Set("dot", vv); err != nil {
+						return fmt.Errorf("Error reading dot: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading dot: %v", err)
+				}
+			}
 		}
 	}
 
@@ -2876,6 +2486,16 @@ func refreshObjectObjectFirewallSslSshProfile(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("supported_alpn", flattenObjectFirewallSslSshProfileSupportedAlpn(o["supported-alpn"], d, "supported_alpn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["supported-alpn"], "ObjectFirewallSslSshProfile-SupportedAlpn"); ok {
+			if err = d.Set("supported_alpn", vv); err != nil {
+				return fmt.Errorf("Error reading supported_alpn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading supported_alpn: %v", err)
+		}
+	}
+
 	if err = d.Set("untrusted_caname", flattenObjectFirewallSslSshProfileUntrustedCaname(o["untrusted-caname"], d, "untrusted_caname")); err != nil {
 		if vv, ok := fortiAPIPatch(o["untrusted-caname"], "ObjectFirewallSslSshProfile-UntrustedCaname"); ok {
 			if err = d.Set("untrusted_caname", vv); err != nil {
@@ -2915,6 +2535,14 @@ func flattenObjectFirewallSslSshProfileFortiTestDebug(d *schema.ResourceData, fo
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectFirewallSslSshProfileAllowlist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileBlockBlocklistedCertificates(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallSslSshProfileBlockBlacklistedCertificates(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2924,6 +2552,108 @@ func expandObjectFirewallSslSshProfileCaname(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallSslSshProfileComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDot(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "cert_validation_failure"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["cert-validation-failure"], _ = expandObjectFirewallSslSshProfileDotCertValidationFailure(d, i["cert_validation_failure"], pre_append)
+	}
+	pre_append = pre + ".0." + "cert_validation_timeout"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["cert-validation-timeout"], _ = expandObjectFirewallSslSshProfileDotCertValidationTimeout(d, i["cert_validation_timeout"], pre_append)
+	}
+	pre_append = pre + ".0." + "client_certificate"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["client-certificate"], _ = expandObjectFirewallSslSshProfileDotClientCertificate(d, i["client_certificate"], pre_append)
+	}
+	pre_append = pre + ".0." + "expired_server_cert"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["expired-server-cert"], _ = expandObjectFirewallSslSshProfileDotExpiredServerCert(d, i["expired_server_cert"], pre_append)
+	}
+	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["proxy-after-tcp-handshake"], _ = expandObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(d, i["proxy_after_tcp_handshake"], pre_append)
+	}
+	pre_append = pre + ".0." + "revoked_server_cert"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["revoked-server-cert"], _ = expandObjectFirewallSslSshProfileDotRevokedServerCert(d, i["revoked_server_cert"], pre_append)
+	}
+	pre_append = pre + ".0." + "sni_server_cert_check"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["sni-server-cert-check"], _ = expandObjectFirewallSslSshProfileDotSniServerCertCheck(d, i["sni_server_cert_check"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status"], _ = expandObjectFirewallSslSshProfileDotStatus(d, i["status"], pre_append)
+	}
+	pre_append = pre + ".0." + "unsupported_ssl_cipher"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["unsupported-ssl-cipher"], _ = expandObjectFirewallSslSshProfileDotUnsupportedSslCipher(d, i["unsupported_ssl_cipher"], pre_append)
+	}
+	pre_append = pre + ".0." + "unsupported_ssl_negotiation"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["unsupported-ssl-negotiation"], _ = expandObjectFirewallSslSshProfileDotUnsupportedSslNegotiation(d, i["unsupported_ssl_negotiation"], pre_append)
+	}
+	pre_append = pre + ".0." + "untrusted_server_cert"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["untrusted-server-cert"], _ = expandObjectFirewallSslSshProfileDotUntrustedServerCert(d, i["untrusted_server_cert"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallSslSshProfileDotCertValidationFailure(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotCertValidationTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotClientCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotExpiredServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotRevokedServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotSniServerCertCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotUnsupportedSslCipher(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotUnsupportedSslNegotiation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotUntrustedServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3041,6 +2771,10 @@ func expandObjectFirewallSslSshProfileHttps(d *schema.ResourceData, v interface{
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "cert_probe_failure"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["cert-probe-failure"], _ = expandObjectFirewallSslSshProfileHttpsCertProbeFailure(d, i["cert_probe_failure"], pre_append)
+	}
 	pre_append = pre + ".0." + "cert_validation_failure"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["cert-validation-failure"], _ = expandObjectFirewallSslSshProfileHttpsCertValidationFailure(d, i["cert_validation_failure"], pre_append)
@@ -3093,6 +2827,10 @@ func expandObjectFirewallSslSshProfileHttps(d *schema.ResourceData, v interface{
 	}
 
 	return result, nil
+}
+
+func expandObjectFirewallSslSshProfileHttpsCertProbeFailure(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallSslSshProfileHttpsCertValidationFailure(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3786,6 +3524,16 @@ func expandObjectFirewallSslSshProfileSslServer(d *schema.ResourceData, v interf
 			tmp["https-client-certificate"], _ = expandObjectFirewallSslSshProfileSslServerHttpsClientCertificate(d, i["https_client_certificate"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ftps_client_cert_request"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ftps-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerFtpsClientCertRequest(d, i["ftps_client_cert_request"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "https_client_cert_request"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["https-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerHttpsClientCertRequest(d, i["https_client_cert_request"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["id"], _ = expandObjectFirewallSslSshProfileSslServerId(d, i["id"], pre_append)
@@ -3794,6 +3542,11 @@ func expandObjectFirewallSslSshProfileSslServer(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "imaps_client_certificate"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["imaps-client-certificate"], _ = expandObjectFirewallSslSshProfileSslServerImapsClientCertificate(d, i["imaps_client_certificate"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "imaps_client_cert_request"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["imaps-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerImapsClientCertRequest(d, i["imaps_client_cert_request"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
@@ -3816,6 +3569,21 @@ func expandObjectFirewallSslSshProfileSslServer(d *schema.ResourceData, v interf
 			tmp["ssl-other-client-certificate"], _ = expandObjectFirewallSslSshProfileSslServerSslOtherClientCertificate(d, i["ssl_other_client_certificate"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pop3s_client_cert_request"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["pop3s-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerPop3SClientCertRequest(d, i["pop3s_client_cert_request"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "smtps_client_cert_request"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["smtps-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerSmtpsClientCertRequest(d, i["smtps_client_cert_request"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_other_client_cert_request"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ssl-other-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerSslOtherClientCertRequest(d, i["ssl_other_client_cert_request"], pre_append)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -3832,11 +3600,23 @@ func expandObjectFirewallSslSshProfileSslServerHttpsClientCertificate(d *schema.
 	return v, nil
 }
 
+func expandObjectFirewallSslSshProfileSslServerFtpsClientCertRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileSslServerHttpsClientCertRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallSslSshProfileSslServerId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallSslSshProfileSslServerImapsClientCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileSslServerImapsClientCertRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3856,6 +3636,22 @@ func expandObjectFirewallSslSshProfileSslServerSslOtherClientCertificate(d *sche
 	return v, nil
 }
 
+func expandObjectFirewallSslSshProfileSslServerPop3SClientCertRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileSslServerSmtpsClientCertRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileSslServerSslOtherClientCertRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileSupportedAlpn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallSslSshProfileUntrustedCaname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3870,6 +3666,24 @@ func expandObjectFirewallSslSshProfileWhitelist(d *schema.ResourceData, v interf
 
 func getObjectObjectFirewallSslSshProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("allowlist"); ok {
+		t, err := expandObjectFirewallSslSshProfileAllowlist(d, v, "allowlist")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["allowlist"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("block_blocklisted_certificates"); ok {
+		t, err := expandObjectFirewallSslSshProfileBlockBlocklistedCertificates(d, v, "block_blocklisted_certificates")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["block-blocklisted-certificates"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("block_blacklisted_certificates"); ok {
 		t, err := expandObjectFirewallSslSshProfileBlockBlacklistedCertificates(d, v, "block_blacklisted_certificates")
@@ -3895,6 +3709,15 @@ func getObjectObjectFirewallSslSshProfile(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dot"); ok {
+		t, err := expandObjectFirewallSslSshProfileDot(d, v, "dot")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dot"] = t
 		}
 	}
 
@@ -4048,6 +3871,15 @@ func getObjectObjectFirewallSslSshProfile(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("supported_alpn"); ok {
+		t, err := expandObjectFirewallSslSshProfileSupportedAlpn(d, v, "supported_alpn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["supported-alpn"] = t
 		}
 	}
 

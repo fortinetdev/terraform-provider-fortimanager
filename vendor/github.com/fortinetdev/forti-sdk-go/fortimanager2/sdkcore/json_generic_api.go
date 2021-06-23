@@ -13,6 +13,7 @@ func (c *FortiSDKClient) JsonGenericAPI(data string) (output string, err error) 
 
 	rev := map[string]interface{}{}
 	json.Unmarshal([]byte(data), &rev)
+	rev["verbose"] = 1
 	rev["session"] = c.Session
 
 	locJSON, err := json.Marshal(rev)

@@ -55,6 +55,11 @@ func resourceObjectFirewallServiceGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -194,6 +199,10 @@ func flattenObjectFirewallServiceGroupComment(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectFirewallServiceGroupFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallServiceGroupGlobalObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -207,14 +216,6 @@ func flattenObjectFirewallServiceGroupName(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallServiceGroupProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -238,6 +239,16 @@ func refreshObjectObjectFirewallServiceGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallServiceGroupFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallServiceGroup-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -298,6 +309,10 @@ func expandObjectFirewallServiceGroupComment(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectFirewallServiceGroupFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallServiceGroupGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -332,6 +347,15 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallServiceGroupFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 

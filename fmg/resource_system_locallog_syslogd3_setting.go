@@ -127,78 +127,18 @@ func resourceSystemLocallogSyslogd3SettingRead(d *schema.ResourceData, m interfa
 }
 
 func flattenSystemLocallogSyslogd3SettingCsv(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogSyslogd3SettingFacility(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "kernel",
-			8:   "user",
-			12:  "ntp",
-			13:  "audit",
-			14:  "alert",
-			15:  "clock",
-			16:  "mail",
-			24:  "daemon",
-			32:  "auth",
-			40:  "syslog",
-			48:  "lpr",
-			56:  "news",
-			64:  "uucp",
-			72:  "cron",
-			80:  "authpriv",
-			88:  "ftp",
-			128: "local0",
-			136: "local1",
-			144: "local2",
-			152: "local3",
-			160: "local4",
-			168: "local5",
-			176: "local6",
-			184: "local7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogSyslogd3SettingSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "emergency",
-			1: "alert",
-			2: "critical",
-			3: "error",
-			4: "warning",
-			5: "notification",
-			6: "information",
-			7: "debug",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogSyslogd3SettingStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

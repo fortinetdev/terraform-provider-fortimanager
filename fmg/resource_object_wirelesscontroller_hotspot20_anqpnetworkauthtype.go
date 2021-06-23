@@ -172,16 +172,6 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeRead(d *schema.
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpNetworkAuthTypeAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "acceptance-of-terms",
-			1: "online-enrollment",
-			2: "http-redirection",
-			3: "dns-redirection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

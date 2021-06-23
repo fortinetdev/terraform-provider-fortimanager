@@ -3,11 +3,11 @@ subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_centralsnatmap_move"
 description: |-
-  Move IPv4 and IPv6 central SNAT policies.
+  Move central SNAT policies.
 ---
 
 # fortimanager_packages_firewall_centralsnatmap_move
-Move IPv4 and IPv6 central SNAT policies.
+Move central SNAT policies.
 
 ## Argument Reference
 

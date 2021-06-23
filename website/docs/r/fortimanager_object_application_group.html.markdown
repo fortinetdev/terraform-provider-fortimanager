@@ -28,11 +28,18 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `application` - Application ID list.
+* `behavior` - Application behavior filter.
 * `category` - Application category ID list.
 * `comment` - Comment
 * `name` - Application group name.
-* `type` - Application group type. Valid values: `application`, `category`, `filter`.
+* `popularity` - Application popularity filter (1 - 5, from least to most popular). Valid values: `1`, `2`, `3`, `4`, `5`.
 
+* `protocols` - Application protocol filter.
+* `risk` - Risk, or impact, of allowing traffic from this application to occur (1 - 5; Low, Elevated, Medium, High, and Critical).
+* `technology` - Application technology filter.
+* `type` - Application group type. Valid values: `application`, `category`.
+
+* `vendor` - Application vendor filter.
 
 
 ## Attribute Reference

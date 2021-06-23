@@ -397,26 +397,10 @@ func flattenPackagesGlobalHeaderShapingPolicyComment(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyDiffservReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -449,14 +433,6 @@ func flattenPackagesGlobalHeaderShapingPolicyId(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -481,14 +457,6 @@ func flattenPackagesGlobalHeaderShapingPolicyInternetServiceName(v interface{}, 
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -513,14 +481,6 @@ func flattenPackagesGlobalHeaderShapingPolicyInternetServiceSrcName(v interface{
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyIpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "4",
-			8: "6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -553,14 +513,6 @@ func flattenPackagesGlobalHeaderShapingPolicySrcintf(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -573,14 +525,6 @@ func flattenPackagesGlobalHeaderShapingPolicyTosMask(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyTosNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -60,6 +60,11 @@ func resourceObjectFirewallScheduleOnetime() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -198,6 +203,10 @@ func flattenObjectFirewallScheduleOnetimeExpirationDays(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallScheduleOnetimeFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallScheduleOnetimeGlobalObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -240,6 +249,16 @@ func refreshObjectObjectFirewallScheduleOnetime(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading expiration_days: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallScheduleOnetimeFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallScheduleOnetime-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -294,6 +313,10 @@ func expandObjectFirewallScheduleOnetimeExpirationDays(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallScheduleOnetimeFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallScheduleOnetimeGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -333,6 +356,15 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["expiration-days"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallScheduleOnetimeFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 

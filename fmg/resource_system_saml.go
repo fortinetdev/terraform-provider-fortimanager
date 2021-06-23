@@ -372,26 +372,10 @@ func flattenSystemSamlFabricIdpIdpSingleSignOnUrlSSa(v interface{}, d *schema.Re
 }
 
 func flattenSystemSamlFabricIdpIdpStatusSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSamlForticloudSsoSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -412,27 +396,10 @@ func flattenSystemSamlIdpSingleSignOnUrlSSa(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemSamlLoginAutoRedirectSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSamlRoleSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "IDP",
-			1: "SP",
-			2: "FAB-SP",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -562,14 +529,6 @@ func flattenSystemSamlSlsUrlSSa(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenSystemSamlStatusSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

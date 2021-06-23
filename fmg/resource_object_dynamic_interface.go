@@ -297,14 +297,6 @@ func flattenObjectDynamicInterfaceColor(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectDynamicInterfaceDefaultMapping(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -313,14 +305,6 @@ func flattenObjectDynamicInterfaceDefmapIntf(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectDynamicInterfaceDefmapIntrazoneDeny(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -445,14 +429,6 @@ func flattenObjectDynamicInterfaceDynamicMappingIngressShapingProfile(v interfac
 }
 
 func flattenObjectDynamicInterfaceDynamicMappingIntrazoneDeny(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -542,14 +518,6 @@ func flattenObjectDynamicInterfacePlatformMappingIntfZone(v interface{}, d *sche
 }
 
 func flattenObjectDynamicInterfacePlatformMappingIntrazoneDeny(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -558,14 +526,6 @@ func flattenObjectDynamicInterfacePlatformMappingName(v interface{}, d *schema.R
 }
 
 func flattenObjectDynamicInterfaceSingleIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

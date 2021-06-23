@@ -28,6 +28,8 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `color` - Color of icon on the GUI.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `global_object` - Global Object.
 * `member` - Schedules added to the schedule group.
 * `name` - Schedule group name.

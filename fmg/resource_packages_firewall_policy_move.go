@@ -4,7 +4,7 @@
 // Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
-// Description: Configure IPv4/IPv6 policies.
+// Description: Configure IPv4 policies.
 
 package fortimanager
 

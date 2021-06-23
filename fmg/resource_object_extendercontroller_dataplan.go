@@ -50,11 +50,6 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"pdn": &schema.Schema{
-				Type:     schema.TypeString,
-				Optional: true,
-				Computed: true,
-			},
 			"auth_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -107,6 +102,11 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 				Optional:  true,
 				Sensitive: true,
 				Computed:  true,
+			},
+			"pdn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"preferred_subnet": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -262,29 +262,7 @@ func flattenObjectExtenderControllerDataplanApn(v interface{}, d *schema.Resourc
 	return v
 }
 
-func flattenObjectExtenderControllerDataplanPdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:  "ipv4-only",
-			6:  "ipv6-only",
-			46: "ipv4-ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
-	return v
-}
-
 func flattenObjectExtenderControllerDataplanAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "none",
-			8:  "pap",
-			16: "chap",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -305,15 +283,6 @@ func flattenObjectExtenderControllerDataplanIccid(v interface{}, d *schema.Resou
 }
 
 func flattenObjectExtenderControllerDataplanModemId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "all",
-			1: "modem1",
-			2: "modem2",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -326,14 +295,6 @@ func flattenObjectExtenderControllerDataplanName(v interface{}, d *schema.Resour
 }
 
 func flattenObjectExtenderControllerDataplanOverage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -341,19 +302,15 @@ func flattenObjectExtenderControllerDataplanPassword(v interface{}, d *schema.Re
 	return flattenStringList(v)
 }
 
+func flattenObjectExtenderControllerDataplanPdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectExtenderControllerDataplanPreferredSubnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectExtenderControllerDataplanPrivateNetwork(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -366,40 +323,14 @@ func flattenObjectExtenderControllerDataplanSignalThreshold(v interface{}, d *sc
 }
 
 func flattenObjectExtenderControllerDataplanSlot(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "sim1",
-			2: "sim2",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectExtenderControllerDataplanStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectExtenderControllerDataplanType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "carrier",
-			2: "slot",
-			3: "iccid",
-			4: "generic",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -417,16 +348,6 @@ func refreshObjectObjectExtenderControllerDataplan(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading apn: %v", err)
-		}
-	}
-
-	if err = d.Set("pdn", flattenObjectExtenderControllerDataplanPdn(o["pdn"], d, "pdn")); err != nil {
-		if vv, ok := fortiAPIPatch(o["pdn"], "ObjectExtenderControllerDataplan-Pdn"); ok {
-			if err = d.Set("pdn", vv); err != nil {
-				return fmt.Errorf("Error reading pdn: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading pdn: %v", err)
 		}
 	}
 
@@ -517,6 +438,16 @@ func refreshObjectObjectExtenderControllerDataplan(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading overage: %v", err)
+		}
+	}
+
+	if err = d.Set("pdn", flattenObjectExtenderControllerDataplanPdn(o["pdn"], d, "pdn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pdn"], "ObjectExtenderControllerDataplan-Pdn"); ok {
+			if err = d.Set("pdn", vv); err != nil {
+				return fmt.Errorf("Error reading pdn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pdn: %v", err)
 		}
 	}
 
@@ -613,10 +544,6 @@ func expandObjectExtenderControllerDataplanApn(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
-func expandObjectExtenderControllerDataplanPdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
 func expandObjectExtenderControllerDataplanAuthType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -655,6 +582,10 @@ func expandObjectExtenderControllerDataplanOverage(d *schema.ResourceData, v int
 
 func expandObjectExtenderControllerDataplanPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectExtenderControllerDataplanPdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectExtenderControllerDataplanPreferredSubnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -698,15 +629,6 @@ func getObjectObjectExtenderControllerDataplan(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["apn"] = t
-		}
-	}
-
-	if v, ok := d.GetOk("pdn"); ok {
-		t, err := expandObjectExtenderControllerDataplanPdn(d, v, "pdn")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["pdn"] = t
 		}
 	}
 
@@ -797,6 +719,15 @@ func getObjectObjectExtenderControllerDataplan(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pdn"); ok {
+		t, err := expandObjectExtenderControllerDataplanPdn(d, v, "pdn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pdn"] = t
 		}
 	}
 

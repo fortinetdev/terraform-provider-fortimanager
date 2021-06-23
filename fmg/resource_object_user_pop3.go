@@ -190,15 +190,6 @@ func flattenObjectUserPop3Port(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserPop3Secure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "starttls",
-			4: "pop3s",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -207,17 +198,6 @@ func flattenObjectUserPop3Server(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenObjectUserPop3SslMinProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "TLSv1",
-			2: "TLSv1-1",
-			4: "TLSv1-2",
-			8: "SSLv3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

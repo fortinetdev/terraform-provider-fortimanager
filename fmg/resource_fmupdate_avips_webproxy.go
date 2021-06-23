@@ -137,14 +137,6 @@ func flattenFmupdateAvIpsWebProxyAddress(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenFmupdateAvIpsWebProxyMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "proxy",
-			2: "tunnel",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -157,14 +149,6 @@ func flattenFmupdateAvIpsWebProxyPort(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenFmupdateAvIpsWebProxyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

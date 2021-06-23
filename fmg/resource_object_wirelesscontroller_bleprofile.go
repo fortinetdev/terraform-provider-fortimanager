@@ -223,16 +223,7 @@ func resourceObjectWirelessControllerBleProfileRead(d *schema.ResourceData, m in
 }
 
 func flattenObjectWirelessControllerBleProfileAdvertising(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ibeacon",
-			2: "eddystone-uid",
-			4: "eddystone-url",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerBleProfileBeaconInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -240,14 +231,6 @@ func flattenObjectWirelessControllerBleProfileBeaconInterval(v interface{}, d *s
 }
 
 func flattenObjectWirelessControllerBleProfileBleScanning(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -288,25 +271,6 @@ func flattenObjectWirelessControllerBleProfileName(v interface{}, d *schema.Reso
 }
 
 func flattenObjectWirelessControllerBleProfileTxpower(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "0",
-			1:  "1",
-			2:  "2",
-			3:  "3",
-			4:  "4",
-			5:  "5",
-			6:  "6",
-			7:  "7",
-			8:  "8",
-			9:  "9",
-			10: "10",
-			11: "11",
-			12: "12",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

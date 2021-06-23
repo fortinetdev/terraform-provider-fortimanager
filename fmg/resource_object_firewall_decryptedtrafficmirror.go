@@ -195,28 +195,11 @@ func flattenObjectFirewallDecryptedTrafficMirrorName(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallDecryptedTrafficMirrorTrafficSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "client",
-			1: "server",
-			2: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallDecryptedTrafficMirrorTrafficType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ssl",
-			2: "ssh",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData, o map[string]interface{}) error {

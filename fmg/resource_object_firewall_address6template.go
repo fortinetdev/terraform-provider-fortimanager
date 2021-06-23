@@ -50,6 +50,11 @@ func resourceObjectFirewallAddress6Template() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -231,6 +236,10 @@ func flattenObjectFirewallAddress6TemplateImageBase64(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFirewallAddress6TemplateFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6TemplateIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -301,14 +310,6 @@ func flattenObjectFirewallAddress6TemplateSubnetSegmentBits(v interface{}, d *sc
 }
 
 func flattenObjectFirewallAddress6TemplateSubnetSegmentExclusive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -384,6 +385,16 @@ func refreshObjectObjectFirewallAddress6Template(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("fabric_object", flattenObjectFirewallAddress6TemplateFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddress6Template-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
 	if err = d.Set("ip6", flattenObjectFirewallAddress6TemplateIp6(o["ip6"], d, "ip6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip6"], "ObjectFirewallAddress6Template-Ip6"); ok {
 			if err = d.Set("ip6", vv); err != nil {
@@ -448,6 +459,10 @@ func flattenObjectFirewallAddress6TemplateFortiTestDebug(d *schema.ResourceData,
 }
 
 func expandObjectFirewallAddress6TemplateImageBase64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6TemplateFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -577,6 +592,15 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["_image-base64"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallAddress6TemplateFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 

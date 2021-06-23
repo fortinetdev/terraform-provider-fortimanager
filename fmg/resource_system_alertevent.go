@@ -300,57 +300,18 @@ func flattenSystemAlertEventAlertDestinationTo(v interface{}, d *schema.Resource
 }
 
 func flattenSystemAlertEventAlertDestinationType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "mail",
-			1: "snmp",
-			2: "syslog",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAlertEventEnableGenericText(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "enable",
-			2: "disable",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemAlertEventEnableSeverityFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "enable",
-			2: "disable",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemAlertEventEventTimePeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "0.5",
-			1:   "1",
-			3:   "3",
-			6:   "6",
-			12:  "12",
-			24:  "24",
-			72:  "72",
-			168: "168",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -363,64 +324,19 @@ func flattenSystemAlertEventName(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemAlertEventNumEvents(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "1",
-			5:   "5",
-			10:  "10",
-			50:  "50",
-			100: "100",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAlertEventSeverityFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "high",
-			1: "medium-high",
-			2: "medium",
-			3: "medium-low",
-			4: "low",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAlertEventSeverityLevelComp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: ">=",
-			2: "=",
-			4: "<=",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemAlertEventSeverityLevelLogs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "no-check",
-			2:   "information",
-			4:   "notify",
-			8:   "warning",
-			16:  "error",
-			32:  "critical",
-			64:  "alert",
-			128: "emergency",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectSystemAlertEvent(d *schema.ResourceData, o map[string]interface{}) error {

@@ -50,6 +50,11 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ems_device_owner": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fsso_agent_for_ntlm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -84,6 +89,16 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			},
 			"require_tfa": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"saml_server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"saml_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -211,19 +226,15 @@ func flattenObjectAuthenticationSchemeDomainController(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectAuthenticationSchemeEmsDeviceOwner(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAuthenticationSchemeFssoAgentForNtlm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAuthenticationSchemeFssoGuest(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -232,21 +243,7 @@ func flattenObjectAuthenticationSchemeKerberosKeytab(v interface{}, d *schema.Re
 }
 
 func flattenObjectAuthenticationSchemeMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "ntlm",
-			2:   "basic",
-			4:   "digest",
-			8:   "form",
-			16:  "negotiate",
-			32:  "fsso",
-			64:  "rsso",
-			128: "ssh-publickey",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAuthenticationSchemeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -254,26 +251,18 @@ func flattenObjectAuthenticationSchemeName(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectAuthenticationSchemeNegotiateNtlm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAuthenticationSchemeRequireTfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAuthenticationSchemeSamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAuthenticationSchemeSamlTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -295,6 +284,16 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading domain_controller: %v", err)
+		}
+	}
+
+	if err = d.Set("ems_device_owner", flattenObjectAuthenticationSchemeEmsDeviceOwner(o["ems-device-owner"], d, "ems_device_owner")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ems-device-owner"], "ObjectAuthenticationScheme-EmsDeviceOwner"); ok {
+			if err = d.Set("ems_device_owner", vv); err != nil {
+				return fmt.Errorf("Error reading ems_device_owner: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ems_device_owner: %v", err)
 		}
 	}
 
@@ -368,6 +367,26 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("saml_server", flattenObjectAuthenticationSchemeSamlServer(o["saml-server"], d, "saml_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["saml-server"], "ObjectAuthenticationScheme-SamlServer"); ok {
+			if err = d.Set("saml_server", vv); err != nil {
+				return fmt.Errorf("Error reading saml_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading saml_server: %v", err)
+		}
+	}
+
+	if err = d.Set("saml_timeout", flattenObjectAuthenticationSchemeSamlTimeout(o["saml-timeout"], d, "saml_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["saml-timeout"], "ObjectAuthenticationScheme-SamlTimeout"); ok {
+			if err = d.Set("saml_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading saml_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading saml_timeout: %v", err)
+		}
+	}
+
 	if err = d.Set("ssh_ca", flattenObjectAuthenticationSchemeSshCa(o["ssh-ca"], d, "ssh_ca")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssh-ca"], "ObjectAuthenticationScheme-SshCa"); ok {
 			if err = d.Set("ssh_ca", vv); err != nil {
@@ -401,6 +420,10 @@ func expandObjectAuthenticationSchemeDomainController(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectAuthenticationSchemeEmsDeviceOwner(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAuthenticationSchemeFssoAgentForNtlm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -429,6 +452,14 @@ func expandObjectAuthenticationSchemeRequireTfa(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectAuthenticationSchemeSamlServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeSamlTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAuthenticationSchemeSshCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -446,6 +477,15 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["domain-controller"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ems_device_owner"); ok {
+		t, err := expandObjectAuthenticationSchemeEmsDeviceOwner(d, v, "ems_device_owner")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ems-device-owner"] = t
 		}
 	}
 
@@ -509,6 +549,24 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["require-tfa"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("saml_server"); ok {
+		t, err := expandObjectAuthenticationSchemeSamlServer(d, v, "saml_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["saml-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("saml_timeout"); ok {
+		t, err := expandObjectAuthenticationSchemeSamlTimeout(d, v, "saml_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["saml-timeout"] = t
 		}
 	}
 

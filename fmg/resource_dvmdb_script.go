@@ -285,28 +285,10 @@ func flattenDvmdbScriptFilterHostname(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenDvmdbScriptFilterOstype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "fos",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbScriptFilterOsver(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1:  "unknown",
-			400: "4.00",
-			500: "5.00",
-			600: "6.00",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -394,20 +376,6 @@ func flattenDvmdbScriptScriptScheduleDatetime(v interface{}, d *schema.ResourceD
 }
 
 func flattenDvmdbScriptScriptScheduleDayOfWeek(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "sun",
-			1:  "mon",
-			2:  "tue",
-			3:  "wed",
-			4:  "thu",
-			5:  "fri",
-			6:  "sat",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -420,54 +388,18 @@ func flattenDvmdbScriptScriptScheduleName(v interface{}, d *schema.ResourceData,
 }
 
 func flattenDvmdbScriptScriptScheduleRunOnDb(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbScriptScriptScheduleType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "auto",
-			2: "onetime",
-			3: "daily",
-			4: "monthly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbScriptTarget(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "device_database",
-			1: "remote_device",
-			2: "adom_database",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbScriptType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "cli",
-			2: "tcl",
-			3: "cligrp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

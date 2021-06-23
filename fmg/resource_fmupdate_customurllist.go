@@ -108,16 +108,7 @@ func resourceFmupdateCustomUrlListRead(d *schema.ResourceData, m interface{}) er
 }
 
 func flattenFmupdateCustomUrlListDbSelection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "both",
-			2: "custom-url",
-			4: "fortiguard-db",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectFmupdateCustomUrlList(d *schema.ResourceData, o map[string]interface{}) error {

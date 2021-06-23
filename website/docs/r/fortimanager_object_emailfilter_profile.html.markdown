@@ -43,12 +43,13 @@ The following arguments are supported:
 * `mapi` - Mapi. The structure of `mapi` block is documented below.
 * `msn_hotmail` - Msn-Hotmail. The structure of `msn_hotmail` block is documented below.
 * `name` - Profile name.
-* `options` - Options. Valid values: `bannedword`, `spambwl`, `spamfsip`, `spamfssubmit`, `spamfschksum`, `spamfsurl`, `spamhelodns`, `spamraddrdns`, `spamrbl`, `spamhdrcheck`, `spamfsphish`, `spambal`.
+* `options` - Options. Valid values: `bannedword`, `spambwl`, `spamfsip`, `spamfssubmit`, `spamfschksum`, `spamfsurl`, `spamhelodns`, `spamraddrdns`, `spamrbl`, `spamhdrcheck`, `spamfsphish`.
 
 * `other_webmails` - Other-Webmails. The structure of `other_webmails` block is documented below.
 * `pop3` - Pop3. The structure of `pop3` block is documented below.
 * `replacemsg_group` - Replacement message group.
 * `smtp` - Smtp. The structure of `smtp` block is documented below.
+* `spam_bal_table` - Anti-spam block/allow list table ID.
 * `spam_bwl_table` - Anti-spam black/white list table ID.
 * `spam_bword_table` - Anti-spam banned word table ID.
 * `spam_bword_threshold` - Spam banned word threshold.

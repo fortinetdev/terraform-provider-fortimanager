@@ -31,6 +31,8 @@ The following arguments are supported:
 * `color` - Color of icon on the GUI.
 * `end` - Schedule end date and time, format hh:mm yyyy/mm/dd.
 * `expiration_days` - Write an event log message this many days before the schedule expires.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `global_object` - Global Object.
 * `name` - Onetime schedule name.
 * `start` - Schedule start date and time, format hh:mm yyyy/mm/dd.

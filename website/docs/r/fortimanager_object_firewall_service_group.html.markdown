@@ -31,6 +31,8 @@ The following arguments are supported:
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `global_object` - Global Object.
 * `member` - Service objects contained within the group.
 * `name` - Address group name.

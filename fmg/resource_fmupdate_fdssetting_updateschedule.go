@@ -123,44 +123,14 @@ func resourceFmupdateFdsSettingUpdateScheduleRead(d *schema.ResourceData, m inte
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "Sunday",
-			1: "Monday",
-			2: "Tuesday",
-			3: "Wednesday",
-			4: "Thursday",
-			5: "Friday",
-			6: "Saturday",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleFrequency(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "every",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

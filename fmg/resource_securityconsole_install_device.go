@@ -121,16 +121,7 @@ func flattenSecurityconsoleInstallDeviceDevRevComments(v interface{}, d *schema.
 }
 
 func flattenSecurityconsoleInstallDeviceFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "none",
-			2:    "preview",
-			4096: "auto_lock_ws",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSecurityconsoleInstallDeviceScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

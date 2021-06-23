@@ -33,6 +33,7 @@ The following arguments are supported:
 
 * `user_agent` - Override HTTP User-Agent header used when retrieving this external resource.
 * `username` - HTTP basic authentication user name.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

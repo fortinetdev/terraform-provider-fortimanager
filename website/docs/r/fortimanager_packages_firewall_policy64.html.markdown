@@ -45,6 +45,13 @@ The following arguments are supported:
 
 * `action` - Policy action. Valid values: `deny`, `accept`.
 
+* `cgn_eif` - Enable/disable CGN endpoint independent filtering. Valid values: `disable`, `enable`.
+
+* `cgn_eim` - Enable/disable CGN endpoint independent mapping. Valid values: `disable`, `enable`.
+
+* `cgn_log_server_grp` - NP log server group name
+* `cgn_resource_quota` - resource quota
+* `cgn_session_quota` - session quota
 * `comments` - Comment.
 * `dstaddr` - Destination address name.
 * `dstintf` - Destination interface name.
@@ -59,6 +66,8 @@ The following arguments are supported:
 * `name` - Policy name.
 * `per_ip_shaper` - Per-IP traffic shaper.
 * `permit_any_host` - Enable/disable permit any host in. Valid values: `disable`, `enable`.
+
+* `policy_offload` - Enable/disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
 * `poolname` - Policy IP pool names.

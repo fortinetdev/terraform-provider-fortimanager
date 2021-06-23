@@ -42,6 +42,8 @@ The following arguments are supported:
 * `member` - Address group members.
 * `name` - Address group name.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `visibility` - Enable/disable address visibility. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

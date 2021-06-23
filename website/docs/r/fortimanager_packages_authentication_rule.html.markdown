@@ -33,13 +33,16 @@ The following arguments are supported:
 
 * `active_auth_method` - Select an active authentication method.
 * `comments` - Comment.
-* `ip_based` - Enable/disable IP-based authentication. When enabled, previously authenticated users from the same IP address will be exempted. Valid values: `disable`, `enable`.
+* `dstaddr` - Select an IPv4 destination address from available options. Required for web proxy authentication.
+* `dstaddr6` - Select an IPv6 destination address from available options. Required for web proxy authentication.
+* `ip_based` - Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `disable`, `enable`.
 
 * `name` - Authentication rule name.
-* `protocol` - Authentication is required for the selected protocol (default = HTTP). Valid values: `http`, `ftp`, `socks`, `ssh`.
+* `protocol` - Select the protocol to use for authentication (default = http). Users connect to the FortiGate using this protocol and are asked to authenticate. Valid values: `http`, `ftp`, `socks`, `ssh`.
 
-* `srcaddr` - Authentication is required for the selected IPv4 source address.
-* `srcaddr6` - Authentication is required for the selected IPv6 source address.
+* `srcaddr` - Select an IPv4 source address from available options. Required for web proxy authentication.
+* `srcaddr6` - Select an IPv6 source address. Required for web proxy authentication.
+* `srcintf` - Incoming (ingress) interface.
 * `sso_auth_method` - Select a single-sign on (SSO) authentication method.
 * `status` - Enable/disable this authentication rule. Valid values: `disable`, `enable`.
 

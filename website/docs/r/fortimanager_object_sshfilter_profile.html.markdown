@@ -40,7 +40,7 @@ The following arguments are supported:
 
 The `shell_commands` block supports:
 
-* `action` - Action to take for SSH shell command matches. Valid values: `block`, `allow`.
+* `action` - Action to take for URL filter matches. Valid values: `block`, `allow`.
 
 * `alert` - Enable/disable alert. Valid values: `disable`, `enable`.
 

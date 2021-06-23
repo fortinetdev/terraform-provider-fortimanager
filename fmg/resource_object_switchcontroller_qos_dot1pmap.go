@@ -216,14 +216,6 @@ func flattenObjectSwitchControllerQosDot1PMapDescription(v interface{}, d *schem
 }
 
 func flattenObjectSwitchControllerQosDot1PMapEgressPriTagging(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -232,146 +224,34 @@ func flattenObjectSwitchControllerQosDot1PMapName(v interface{}, d *schema.Resou
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority0(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority5(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosDot1PMapPriority7(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "queue-0",
-			1: "queue-1",
-			2: "queue-2",
-			3: "queue-3",
-			4: "queue-4",
-			5: "queue-5",
-			6: "queue-6",
-			7: "queue-7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

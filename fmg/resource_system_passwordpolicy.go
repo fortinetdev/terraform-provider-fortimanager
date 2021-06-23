@@ -128,14 +128,6 @@ func resourceSystemPasswordPolicyRead(d *schema.ResourceData, m interface{}) err
 }
 
 func flattenSystemPasswordPolicyChange4Characters(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -148,28 +140,10 @@ func flattenSystemPasswordPolicyMinimumLength(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemPasswordPolicyMustContain(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "upper-case-letter",
-			2: "lower-case-letter",
-			4: "number",
-			8: "non-alphanumeric",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemPasswordPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

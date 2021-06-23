@@ -199,14 +199,6 @@ func flattenObjectFirewallSshLocalCaPublicKey(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallSshLocalCaSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "built-in",
-			1: "user",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

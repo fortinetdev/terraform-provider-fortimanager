@@ -55,6 +55,8 @@ The following arguments are supported:
 
 * `other_application_log` - Enable/disable logging for other applications. Valid values: `disable`, `enable`.
 
+* `p2p_block_list` - P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
+
 * `p2p_black_list` - P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
 
 * `replacemsg_group` - Replacement message group.
@@ -106,14 +108,15 @@ The `entries` block supports:
 * `session_ttl` - Session TTL (0 = default).
 * `shaper` - Traffic shaper.
 * `shaper_reverse` - Reverse traffic shaper.
-* `sub_category` - Sub-Category.
+* `sub_category` - Application Sub-category ID list.
 * `technology` - Application technology filter.
 * `vendor` - Application vendor filter.
 
 The `parameters` block supports:
 
-* `id` - Parameter tuple ID.
+* `id` - Parameter ID.
 * `members` - Members. The structure of `members` block is documented below.
+* `value` - Parameter value.
 
 The `members` block supports:
 

@@ -299,14 +299,6 @@ func resourcePackagesFirewallInterfacePolicyRead(d *schema.ResourceData, m inter
 }
 
 func flattenPackagesFirewallInterfacePolicyAddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "ipv4",
-			8: "ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -315,14 +307,6 @@ func flattenPackagesFirewallInterfacePolicyApplicationList(v interface{}, d *sch
 }
 
 func flattenPackagesFirewallInterfacePolicyApplicationListStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -331,14 +315,6 @@ func flattenPackagesFirewallInterfacePolicyAvProfile(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallInterfacePolicyAvProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -351,26 +327,10 @@ func flattenPackagesFirewallInterfacePolicyDlpSensor(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallInterfacePolicyDlpSensorStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallInterfacePolicyDsri(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -383,14 +343,6 @@ func flattenPackagesFirewallInterfacePolicyEmailfilterProfile(v interface{}, d *
 }
 
 func flattenPackagesFirewallInterfacePolicyEmailfilterProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -403,14 +355,6 @@ func flattenPackagesFirewallInterfacePolicyIpsSensor(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallInterfacePolicyIpsSensorStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -419,15 +363,6 @@ func flattenPackagesFirewallInterfacePolicyLabel(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallInterfacePolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "all",
-			3: "utm",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -444,14 +379,6 @@ func flattenPackagesFirewallInterfacePolicySrcaddr(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallInterfacePolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -460,14 +387,6 @@ func flattenPackagesFirewallInterfacePolicyWebfilterProfile(v interface{}, d *sc
 }
 
 func flattenPackagesFirewallInterfacePolicyWebfilterProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

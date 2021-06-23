@@ -34,19 +34,35 @@ The following arguments are supported:
 
 * `associated_interface` - Associated interface name.
 * `block_size` - Number of addresses in a block (64 to 4096, default = 128).
+* `cgn_block_size` - Number of ports in a block(64 to 4096 in unit of 64, default = 128).
+* `cgn_client_endip` - Final client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `cgn_client_startip` - First client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `cgn_fixedalloc` - Enable/disable fixed-allocation mode. Valid values: `disable`, `enable`.
+
+* `cgn_overload` - Enable/disable overload mode. Valid values: `disable`, `enable`.
+
+* `cgn_port_end` - Ending public port can be allocated.
+* `cgn_port_start` - Starting public port can be allocated.
+* `cgn_spa` - Enable/disable single port allocation mode. Valid values: `disable`, `enable`.
+
 * `comments` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `endip` - Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `endport` - Final port number (inclusive) in the range for the address pool (Default: 65533).
 * `name` - IP pool name.
 * `num_blocks_per_user` - Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 * `pba_timeout` - Port block allocation timeout (seconds).
 * `permit_any_host` - Enable/disable full cone NAT. Valid values: `disable`, `enable`.
 
+* `port_per_user` - Number of port for each user (32 to 60416, default = 0, auto).
 * `source_endip` - Final IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `source_startip` - First IPv4 address (inclusive) in the range of the source addresses to be translated (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `startip` - First IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `startport` - First port number (inclusive) in the range for the address pool (Default: 5117).
 * `type` - IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`, `cgn-resource-allocation`.
 
+* `utilization_alarm_clear` - Pool utilization alarm clear threshold (40-100).
+* `utilization_alarm_raise` - Pool utilization alarm raise threshold (50-100).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -57,16 +73,16 @@ The `dynamic_mapping` block supports:
 
 * `associated_interface` - Associated interface name.
 * `block_size` - Number of addresses in a block (64 to 4096, default = 128).
-* `cgn_block_size` - Cgn-Block-Size.
-* `cgn_client_endip` - Cgn-Client-Endip.
-* `cgn_client_startip` - Cgn-Client-Startip.
-* `cgn_fixedalloc` - Cgn-Fixedalloc. Valid values: `disable`, `enable`.
+* `cgn_block_size` - Number of ports in a block(64 to 4096 in unit of 64, default = 128).
+* `cgn_client_endip` - Final client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `cgn_client_startip` - First client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `cgn_fixedalloc` - Enable/disable fixed-allocation mode. Valid values: `disable`, `enable`.
 
-* `cgn_overload` - Cgn-Overload. Valid values: `disable`, `enable`.
+* `cgn_overload` - Enable/disable overload mode. Valid values: `disable`, `enable`.
 
-* `cgn_port_end` - Cgn-Port-End.
-* `cgn_port_start` - Cgn-Port-Start.
-* `cgn_spa` - Cgn-Spa. Valid values: `disable`, `enable`.
+* `cgn_port_end` - Ending public port can be allocated.
+* `cgn_port_start` - Starting public port can be allocated.
+* `cgn_spa` - Enable/disable single port allocation mode. Valid values: `disable`, `enable`.
 
 * `comments` - Comment.
 * `endip` - Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
@@ -82,8 +98,8 @@ The `dynamic_mapping` block supports:
 * `startport` - Startport.
 * `type` - IP pool type (overload, one-to-one, fixed port range, or port block allocation). Valid values: `overload`, `one-to-one`, `fixed-port-range`, `port-block-allocation`, `cgn-resource-allocation`.
 
-* `utilization_alarm_clear` - Utilization-Alarm-Clear.
-* `utilization_alarm_raise` - Utilization-Alarm-Raise.
+* `utilization_alarm_clear` - Pool utilization alarm clear threshold (40-100).
+* `utilization_alarm_raise` - Pool utilization alarm raise threshold (50-100).
 
 The `_scope` block supports:
 

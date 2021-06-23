@@ -167,16 +167,6 @@ func resourceSystemAdminRadiusRead(d *schema.ResourceData, m interface{}) error 
 }
 
 func flattenSystemAdminRadiusAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "pap",
-			2: "chap",
-			3: "mschap2",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

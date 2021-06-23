@@ -145,15 +145,6 @@ func resourceSystemMetadataAdminsRead(d *schema.ResourceData, m interface{}) err
 }
 
 func flattenSystemMetadataAdminsFieldlength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			20:  "20",
-			50:  "50",
-			255: "255",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -162,26 +153,10 @@ func flattenSystemMetadataAdminsFieldname(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemMetadataAdminsImportance(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "required",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemMetadataAdminsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "enabled",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

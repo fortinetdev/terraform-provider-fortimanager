@@ -287,6 +287,31 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"stream_based_uncompressed_limit": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_maximum": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_minimum": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -814,6 +839,36 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ssl_offloaded": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"stream_based_uncompressed_limit": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_maximum": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_minimum": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tcp_window_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1126,14 +1181,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(v interfac
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "log",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1142,15 +1189,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesComment(v i
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "incoming",
-			2: "outgoing",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1163,49 +1201,19 @@ func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesFilter(v in
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "cifs",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4: "oversize",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1217,27 +1225,10 @@ func flattenObjectFirewallProfileProtocolOptionsCifsPorts(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsServerCredentialType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "none",
-			2: "credential-replication",
-			3: "credential-keytab",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1299,14 +1290,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal(v inte
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1323,15 +1306,6 @@ func flattenObjectFirewallProfileProtocolOptionsCifsTcpWindowSize(v interface{},
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsTcpWindowType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "system",
-			1: "static",
-			2: "dynamic",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1375,26 +1349,10 @@ func flattenObjectFirewallProfileProtocolOptionsDnsPorts(v interface{}, d *schem
 }
 
 func flattenObjectFirewallProfileProtocolOptionsDnsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1452,6 +1410,31 @@ func flattenObjectFirewallProfileProtocolOptionsFtp(v interface{}, d *schema.Res
 		result["status"] = flattenObjectFirewallProfileProtocolOptionsFtpStatus(i["status"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "stream_based_uncompressed_limit"
+	if _, ok := i["stream-based-uncompressed-limit"]; ok {
+		result["stream_based_uncompressed_limit"] = flattenObjectFirewallProfileProtocolOptionsFtpStreamBasedUncompressedLimit(i["stream-based-uncompressed-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_maximum"
+	if _, ok := i["tcp-window-maximum"]; ok {
+		result["tcp_window_maximum"] = flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowMaximum(i["tcp-window-maximum"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_minimum"
+	if _, ok := i["tcp-window-minimum"]; ok {
+		result["tcp_window_minimum"] = flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowMinimum(i["tcp-window-minimum"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_size"
+	if _, ok := i["tcp-window-size"]; ok {
+		result["tcp_window_size"] = flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowSize(i["tcp-window-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_type"
+	if _, ok := i["tcp-window-type"]; ok {
+		result["tcp_window_type"] = flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowType(i["tcp-window-type"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "uncompressed_nest_limit"
 	if _, ok := i["uncompressed-nest-limit"]; ok {
 		result["uncompressed_nest_limit"] = flattenObjectFirewallProfileProtocolOptionsFtpUncompressedNestLimit(i["uncompressed-nest-limit"], d, pre_append)
@@ -1475,30 +1458,11 @@ func flattenObjectFirewallProfileProtocolOptionsFtpComfortInterval(v interface{}
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:     "clientcomfort",
-			16:    "oversize",
-			256:   "splice",
-			32768: "bypass-rest-command",
-			65536: "bypass-mode-command",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1510,38 +1474,34 @@ func flattenObjectFirewallProfileProtocolOptionsFtpPorts(v interface{}, d *schem
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpSslOffloaded(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "no",
-			1: "yes",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsFtpStreamBasedUncompressedLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowMaximum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowMinimum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsFtpTcpWindowType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1719,14 +1679,6 @@ func flattenObjectFirewallProfileProtocolOptionsHttpComfortInterval(v interface{
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpFortinetBar(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1735,29 +1687,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttpFortinetBarPort(v interface{
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:          "oversize",
-			256:        "chunkedbypass",
-			512:        "clientcomfort",
-			1073741824: "servercomfort",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1769,57 +1703,14 @@ func flattenObjectFirewallProfileProtocolOptionsHttpPorts(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpPostLang(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:       "jisx0201",
-			2:       "jisx0208",
-			4:       "jisx0212",
-			8:       "gb2312",
-			16:      "ksc5601-ex",
-			32:      "euc-jp",
-			64:      "sjis",
-			128:     "iso2022-jp",
-			256:     "iso2022-jp-1",
-			512:     "iso2022-jp-2",
-			1024:    "euc-cn",
-			2048:    "ces-gbk",
-			4096:    "hz",
-			8192:    "ces-big5",
-			16384:   "euc-kr",
-			32768:   "iso2022-jp-3",
-			65536:   "iso8859-1",
-			131072:  "tis620",
-			262144:  "cp874",
-			524288:  "cp1252",
-			1048576: "cp1251",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpRangeBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1828,38 +1719,14 @@ func flattenObjectFirewallProfileProtocolOptionsHttpRetryCount(v interface{}, d 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpSslOffloaded(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "no",
-			1: "yes",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1868,38 +1735,14 @@ func flattenObjectFirewallProfileProtocolOptionsHttpStreamBasedUncompressedLimit
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpStreamingContentBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpStripXForwardedFor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpSwitchingProtocols(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1916,27 +1759,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpTcpWindowSize(v interface{},
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpTcpWindowType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "system",
-			1: "static",
-			2: "dynamic",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpTunnelNonHttp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1949,15 +1775,6 @@ func flattenObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(v 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "best-effort",
-			2: "reject",
-			3: "tunnel",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2025,27 +1842,11 @@ func flattenObjectFirewallProfileProtocolOptionsImap(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:   "oversize",
-			256: "fragmail",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2057,50 +1858,18 @@ func flattenObjectFirewallProfileProtocolOptionsImapPorts(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapSslOffloaded(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "no",
-			1: "yes",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsImapStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2140,14 +1909,6 @@ func flattenObjectFirewallProfileProtocolOptionsMailSignatureSignature(v interfa
 }
 
 func flattenObjectFirewallProfileProtocolOptionsMailSignatureStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2200,15 +1961,7 @@ func flattenObjectFirewallProfileProtocolOptionsMapi(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallProfileProtocolOptionsMapiOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "fragmail",
-			2: "oversize",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsMapiOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2220,26 +1973,10 @@ func flattenObjectFirewallProfileProtocolOptionsMapiPorts(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsMapiScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsMapiStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2314,27 +2051,11 @@ func flattenObjectFirewallProfileProtocolOptionsNntp(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallProfileProtocolOptionsNntpInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsNntpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:    "oversize",
-			8192: "splice",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsNntpOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2346,38 +2067,14 @@ func flattenObjectFirewallProfileProtocolOptionsNntpPorts(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsNntpProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsNntpScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsNntpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2390,14 +2087,6 @@ func flattenObjectFirewallProfileProtocolOptionsNntpUncompressedOversizeLimit(v 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsOversizeLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2465,27 +2154,11 @@ func flattenObjectFirewallProfileProtocolOptionsPop3(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3InspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3Options(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:   "oversize",
-			256: "fragmail",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3OversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2497,50 +2170,18 @@ func flattenObjectFirewallProfileProtocolOptionsPop3Ports(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3ProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3ScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3SslOffloaded(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "no",
-			1: "yes",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsPop3Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2557,14 +2198,6 @@ func flattenObjectFirewallProfileProtocolOptionsReplacemsgGroup(v interface{}, d
 }
 
 func flattenObjectFirewallProfileProtocolOptionsRpcOverHttp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2637,28 +2270,11 @@ func flattenObjectFirewallProfileProtocolOptionsSmtp(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpInspectAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:      "oversize",
-			128:    "fragmail",
-			524288: "splice",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2670,62 +2286,22 @@ func flattenObjectFirewallProfileProtocolOptionsSmtpPorts(v interface{}, d *sche
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpServerBusy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpSslOffloaded(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "no",
-			1: "yes",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSmtpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2771,6 +2347,36 @@ func flattenObjectFirewallProfileProtocolOptionsSsh(v interface{}, d *schema.Res
 		result["scan_bzip2"] = flattenObjectFirewallProfileProtocolOptionsSshScanBzip2(i["scan-bzip2"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "ssl_offloaded"
+	if _, ok := i["ssl-offloaded"]; ok {
+		result["ssl_offloaded"] = flattenObjectFirewallProfileProtocolOptionsSshSslOffloaded(i["ssl-offloaded"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "stream_based_uncompressed_limit"
+	if _, ok := i["stream-based-uncompressed-limit"]; ok {
+		result["stream_based_uncompressed_limit"] = flattenObjectFirewallProfileProtocolOptionsSshStreamBasedUncompressedLimit(i["stream-based-uncompressed-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_maximum"
+	if _, ok := i["tcp-window-maximum"]; ok {
+		result["tcp_window_maximum"] = flattenObjectFirewallProfileProtocolOptionsSshTcpWindowMaximum(i["tcp-window-maximum"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_minimum"
+	if _, ok := i["tcp-window-minimum"]; ok {
+		result["tcp_window_minimum"] = flattenObjectFirewallProfileProtocolOptionsSshTcpWindowMinimum(i["tcp-window-minimum"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_size"
+	if _, ok := i["tcp-window-size"]; ok {
+		result["tcp_window_size"] = flattenObjectFirewallProfileProtocolOptionsSshTcpWindowSize(i["tcp-window-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_window_type"
+	if _, ok := i["tcp-window-type"]; ok {
+		result["tcp_window_type"] = flattenObjectFirewallProfileProtocolOptionsSshTcpWindowType(i["tcp-window-type"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "uncompressed_nest_limit"
 	if _, ok := i["uncompressed-nest-limit"]; ok {
 		result["uncompressed_nest_limit"] = flattenObjectFirewallProfileProtocolOptionsSshUncompressedNestLimit(i["uncompressed-nest-limit"], d, pre_append)
@@ -2794,16 +2400,7 @@ func flattenObjectFirewallProfileProtocolOptionsSshComfortInterval(v interface{}
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSshOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:     "oversize",
-			16384: "clientcomfort",
-			32768: "servercomfort",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSshOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2811,14 +2408,30 @@ func flattenObjectFirewallProfileProtocolOptionsSshOversizeLimit(v interface{}, 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSshScanBzip2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsSshSslOffloaded(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsSshStreamBasedUncompressedLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsSshTcpWindowMaximum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsSshTcpWindowMinimum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsSshTcpWindowSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsSshTcpWindowType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2831,14 +2444,6 @@ func flattenObjectFirewallProfileProtocolOptionsSshUncompressedOversizeLimit(v i
 }
 
 func flattenObjectFirewallProfileProtocolOptionsSwitchingProtocolsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3579,6 +3184,26 @@ func expandObjectFirewallProfileProtocolOptionsFtp(d *schema.ResourceData, v int
 	if _, ok := d.GetOk(pre_append); ok {
 		result["status"], _ = expandObjectFirewallProfileProtocolOptionsFtpStatus(d, i["status"], pre_append)
 	}
+	pre_append = pre + ".0." + "stream_based_uncompressed_limit"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["stream-based-uncompressed-limit"], _ = expandObjectFirewallProfileProtocolOptionsFtpStreamBasedUncompressedLimit(d, i["stream_based_uncompressed_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_maximum"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-maximum"], _ = expandObjectFirewallProfileProtocolOptionsFtpTcpWindowMaximum(d, i["tcp_window_maximum"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_minimum"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-minimum"], _ = expandObjectFirewallProfileProtocolOptionsFtpTcpWindowMinimum(d, i["tcp_window_minimum"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_size"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-size"], _ = expandObjectFirewallProfileProtocolOptionsFtpTcpWindowSize(d, i["tcp_window_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_type"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-type"], _ = expandObjectFirewallProfileProtocolOptionsFtpTcpWindowType(d, i["tcp_window_type"], pre_append)
+	}
 	pre_append = pre + ".0." + "uncompressed_nest_limit"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["uncompressed-nest-limit"], _ = expandObjectFirewallProfileProtocolOptionsFtpUncompressedNestLimit(d, i["uncompressed_nest_limit"], pre_append)
@@ -3624,6 +3249,26 @@ func expandObjectFirewallProfileProtocolOptionsFtpSslOffloaded(d *schema.Resourc
 }
 
 func expandObjectFirewallProfileProtocolOptionsFtpStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsFtpStreamBasedUncompressedLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsFtpTcpWindowMaximum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsFtpTcpWindowMinimum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsFtpTcpWindowSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsFtpTcpWindowType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4423,6 +4068,30 @@ func expandObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData, v int
 	if _, ok := d.GetOk(pre_append); ok {
 		result["scan-bzip2"], _ = expandObjectFirewallProfileProtocolOptionsSshScanBzip2(d, i["scan_bzip2"], pre_append)
 	}
+	pre_append = pre + ".0." + "ssl_offloaded"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ssl-offloaded"], _ = expandObjectFirewallProfileProtocolOptionsSshSslOffloaded(d, i["ssl_offloaded"], pre_append)
+	}
+	pre_append = pre + ".0." + "stream_based_uncompressed_limit"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["stream-based-uncompressed-limit"], _ = expandObjectFirewallProfileProtocolOptionsSshStreamBasedUncompressedLimit(d, i["stream_based_uncompressed_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_maximum"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-maximum"], _ = expandObjectFirewallProfileProtocolOptionsSshTcpWindowMaximum(d, i["tcp_window_maximum"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_minimum"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-minimum"], _ = expandObjectFirewallProfileProtocolOptionsSshTcpWindowMinimum(d, i["tcp_window_minimum"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_size"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-size"], _ = expandObjectFirewallProfileProtocolOptionsSshTcpWindowSize(d, i["tcp_window_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_window_type"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tcp-window-type"], _ = expandObjectFirewallProfileProtocolOptionsSshTcpWindowType(d, i["tcp_window_type"], pre_append)
+	}
 	pre_append = pre + ".0." + "uncompressed_nest_limit"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["uncompressed-nest-limit"], _ = expandObjectFirewallProfileProtocolOptionsSshUncompressedNestLimit(d, i["uncompressed_nest_limit"], pre_append)
@@ -4452,6 +4121,30 @@ func expandObjectFirewallProfileProtocolOptionsSshOversizeLimit(d *schema.Resour
 }
 
 func expandObjectFirewallProfileProtocolOptionsSshScanBzip2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshSslOffloaded(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshStreamBasedUncompressedLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshTcpWindowMaximum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshTcpWindowMinimum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshTcpWindowSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsSshTcpWindowType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

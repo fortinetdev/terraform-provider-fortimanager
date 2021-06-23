@@ -289,14 +289,6 @@ func flattenObjectVpnSslWebHostCheckSoftwareCheckItemList(v interface{}, d *sche
 }
 
 func flattenObjectVpnSslWebHostCheckSoftwareCheckItemListAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "require",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -313,15 +305,6 @@ func flattenObjectVpnSslWebHostCheckSoftwareCheckItemListTarget(v interface{}, d
 }
 
 func flattenObjectVpnSslWebHostCheckSoftwareCheckItemListType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "file",
-			1: "registry",
-			2: "process",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -338,26 +321,10 @@ func flattenObjectVpnSslWebHostCheckSoftwareName(v interface{}, d *schema.Resour
 }
 
 func flattenObjectVpnSslWebHostCheckSoftwareOsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "macos",
-			18: "windows",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebHostCheckSoftwareType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "av",
-			2: "fw",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

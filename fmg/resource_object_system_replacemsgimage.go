@@ -176,16 +176,6 @@ func flattenObjectSystemReplacemsgImageImageBase64(v interface{}, d *schema.Reso
 }
 
 func flattenObjectSystemReplacemsgImageImageType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "gif",
-			2: "jpg",
-			3: "tiff",
-			4: "png",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

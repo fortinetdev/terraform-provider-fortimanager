@@ -27,6 +27,8 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Comment.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `global_object` - Global Object.
 * `name` - Service category name.
 

@@ -50,6 +50,11 @@ func resourceObjectFirewallScheduleGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -180,6 +185,10 @@ func flattenObjectFirewallScheduleGroupColor(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectFirewallScheduleGroupFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallScheduleGroupGlobalObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -202,6 +211,16 @@ func refreshObjectObjectFirewallScheduleGroup(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading color: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallScheduleGroupFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallScheduleGroup-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -248,6 +267,10 @@ func expandObjectFirewallScheduleGroupColor(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectFirewallScheduleGroupFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallScheduleGroupGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -269,6 +292,15 @@ func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["color"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallScheduleGroupFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 

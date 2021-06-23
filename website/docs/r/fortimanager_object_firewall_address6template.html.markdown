@@ -28,6 +28,8 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `_image_base64` - _Image-Base64.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `ip6` - IPv6 address prefix.
 * `name` - IPv6 address template name.
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.

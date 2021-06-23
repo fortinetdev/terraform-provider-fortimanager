@@ -55,7 +55,7 @@ The following arguments are supported:
 * `log_all_url` - Enable/disable logging all URLs visited. Valid values: `disable`, `enable`.
 
 * `name` - Profile name.
-* `options` - Options. Valid values: `block-invalid-url`, `jscript`, `js`, `vbs`, `unknown`, `wf-referer`, `https-scan`, `intrinsic`, `wf-cookie`, `per-user-bwl`, `activexfilter`, `cookiefilter`, `https-url-scan`, `javafilter`, `rangeblock`, `contenttype-check`, `per-user-bal`.
+* `options` - Options. Valid values: `block-invalid-url`, `jscript`, `js`, `vbs`, `unknown`, `wf-referer`, `https-scan`, `intrinsic`, `wf-cookie`, `per-user-bwl`, `activexfilter`, `cookiefilter`, `https-url-scan`, `javafilter`, `rangeblock`, `contenttype-check`.
 
 * `override` - Override. The structure of `override` block is documented below.
 * `ovrd_perm` - Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
@@ -111,6 +111,8 @@ The following arguments are supported:
 
 The `antiphish` block supports:
 
+* `authentication` - Authentication methods. Valid values: `domain-controller`, `ldap`.
+
 * `check_basic_auth` - Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `disable`, `enable`.
 
 * `check_uri` - Enable/disable checking of GET URI parameters for known credentials. Valid values: `disable`, `enable`.
@@ -122,6 +124,7 @@ The `antiphish` block supports:
 
 * `domain_controller` - Domain for which to verify received credentials against.
 * `inspection_entries` - Inspection-Entries. The structure of `inspection_entries` block is documented below.
+* `ldap` - LDAP server for which to verify received credentials against.
 * `max_body_len` - Maximum size of a POST body to check for credentials.
 * `status` - Toggle AntiPhishing functionality. Valid values: `disable`, `enable`.
 
@@ -131,6 +134,8 @@ The `custom_patterns` block supports:
 * `category` - Category that the pattern matches. Valid values: `username`, `password`.
 
 * `pattern` - Target pattern.
+* `type` - Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
+
 
 The `inspection_entries` block supports:
 
@@ -152,7 +157,7 @@ The `ftgd_wf` block supports:
 
 * `rate_css_urls` - Enable/disable rating CSS by URL. Valid values: `disable`, `enable`.
 
-* `rate_image_urls` - Enable/disable rating images by URL. Valid values: `disable`, `enable`.
+* `rate_image_urls` - Rate-Image-Urls. Valid values: `disable`, `enable`.
 
 * `rate_javascript_urls` - Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
 
@@ -212,6 +217,10 @@ The `url_extraction` block supports:
 
 
 The `web` block supports:
+
+* `allowlist` - FortiGuard allowlist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
+
+* `blocklist` - Enable/disable automatic addition of URLs detected by FortiSandbox to blocklist. Valid values: `disable`, `enable`.
 
 * `blacklist` - Enable/disable automatic addition of URLs detected by FortiSandbox to blacklist. Valid values: `disable`, `enable`.
 

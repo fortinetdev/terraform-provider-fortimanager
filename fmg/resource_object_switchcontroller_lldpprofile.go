@@ -304,37 +304,14 @@ func resourceObjectSwitchControllerLldpProfileRead(d *schema.ResourceData, m int
 }
 
 func flattenObjectSwitchControllerLldpProfile8021Tlvs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "port-vlan-id",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSwitchControllerLldpProfile8023Tlvs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "max-frame-size",
-			2: "power-negotiation",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSwitchControllerLldpProfileAutoIsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -351,14 +328,6 @@ func flattenObjectSwitchControllerLldpProfileAutoIslReceiveTimeout(v interface{}
 }
 
 func flattenObjectSwitchControllerLldpProfileAutoMclagIcl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -479,14 +448,6 @@ func flattenObjectSwitchControllerLldpProfileMedLocationServiceName(v interface{
 }
 
 func flattenObjectSwitchControllerLldpProfileMedLocationServiceStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -564,14 +525,6 @@ func flattenObjectSwitchControllerLldpProfileMedNetworkPolicy(v interface{}, d *
 }
 
 func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyAssignVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -588,14 +541,6 @@ func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyPriority(v interfac
 }
 
 func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -608,17 +553,7 @@ func flattenObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(v interfac
 }
 
 func flattenObjectSwitchControllerLldpProfileMedTlvs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "inventory-management",
-			2: "network-policy",
-			4: "power-management",
-			8: "location-identification",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSwitchControllerLldpProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -31,6 +31,8 @@ The following arguments are supported:
 * `comment` - Comment.
 * `name` - Address name.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `visibility` - Enable/disable address visibility. Valid values: `disable`, `enable`.
+
 * `wildcard_fqdn` - Wildcard FQDN.
 
 

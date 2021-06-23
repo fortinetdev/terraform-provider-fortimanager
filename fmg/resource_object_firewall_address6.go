@@ -158,6 +158,12 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"macaddr": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"obj_id": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -239,6 +245,11 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fqdn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -286,6 +297,12 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						},
 					},
 				},
+			},
+			"macaddr": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -371,6 +388,11 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				Computed: true,
 			},
 			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"visibility": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -613,6 +635,12 @@ func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["ip6"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-Ip6")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "macaddr"
+		if _, ok := i["macaddr"]; ok {
+			v := flattenObjectFirewallAddress6DynamicMappingMacaddr(i["macaddr"], d, pre_append)
+			tmp["macaddr"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-Macaddr")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_id"
 		if _, ok := i["obj-id"]; ok {
 			v := flattenObjectFirewallAddress6DynamicMappingObjId(i["obj-id"], d, pre_append)
@@ -757,14 +785,6 @@ func flattenObjectFirewallAddress6DynamicMappingEndMac(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallAddress6DynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -781,19 +801,15 @@ func flattenObjectFirewallAddress6DynamicMappingHost(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallAddress6DynamicMappingHostType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "specific",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallAddress6DynamicMappingIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingMacaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddress6DynamicMappingObjId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -862,14 +878,6 @@ func flattenObjectFirewallAddress6DynamicMappingSubnetSegmentName(v interface{},
 }
 
 func flattenObjectFirewallAddress6DynamicMappingSubnetSegmentType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "specific",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -886,19 +894,6 @@ func flattenObjectFirewallAddress6DynamicMappingTemplate(v interface{}, d *schem
 }
 
 func flattenObjectFirewallAddress6DynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ipprefix",
-			1: "iprange",
-			3: "dynamic",
-			4: "fqdn",
-			5: "template",
-			6: "mac",
-			7: "geography",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -907,14 +902,6 @@ func flattenObjectFirewallAddress6DynamicMappingUuid(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallAddress6DynamicMappingVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -923,6 +910,10 @@ func flattenObjectFirewallAddress6EndIp(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallAddress6EndMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6FabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -939,14 +930,6 @@ func flattenObjectFirewallAddress6Host(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallAddress6HostType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "specific",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1009,6 +992,10 @@ func flattenObjectFirewallAddress6ListNetId(v interface{}, d *schema.ResourceDat
 
 func flattenObjectFirewallAddress6ListObjId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallAddress6Macaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddress6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1081,14 +1068,6 @@ func flattenObjectFirewallAddress6SubnetSegmentName(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallAddress6SubnetSegmentType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "specific",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1158,23 +1137,14 @@ func flattenObjectFirewallAddress6Template(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallAddress6Type(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ipprefix",
-			1: "iprange",
-			3: "dynamic",
-			4: "fqdn",
-			5: "template",
-			6: "mac",
-			7: "geography",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallAddress6Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6Visibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1275,6 +1245,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("fabric_object", flattenObjectFirewallAddress6FabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddress6-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
+		}
+	}
+
 	if err = d.Set("fqdn", flattenObjectFirewallAddress6Fqdn(o["fqdn"], d, "fqdn")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fqdn"], "ObjectFirewallAddress6-Fqdn"); ok {
 			if err = d.Set("fqdn", vv); err != nil {
@@ -1346,6 +1326,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 					return fmt.Errorf("Error reading list: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("macaddr", flattenObjectFirewallAddress6Macaddr(o["macaddr"], d, "macaddr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["macaddr"], "ObjectFirewallAddress6-Macaddr"); ok {
+			if err = d.Set("macaddr", vv); err != nil {
+				return fmt.Errorf("Error reading macaddr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading macaddr: %v", err)
 		}
 	}
 
@@ -1477,6 +1467,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("visibility", flattenObjectFirewallAddress6Visibility(o["visibility"], d, "visibility")); err != nil {
+		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallAddress6-Visibility"); ok {
+			if err = d.Set("visibility", vv); err != nil {
+				return fmt.Errorf("Error reading visibility: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading visibility: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1590,6 +1590,13 @@ func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["ip6"], _ = expandObjectFirewallAddress6DynamicMappingIp6(d, i["ip6"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "macaddr"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["macaddr"], _ = expandObjectFirewallAddress6DynamicMappingMacaddr(d, i["macaddr"], pre_append)
+		} else {
+			tmp["macaddr"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_id"
@@ -1744,6 +1751,10 @@ func expandObjectFirewallAddress6DynamicMappingIp6(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectFirewallAddress6DynamicMappingMacaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddress6DynamicMappingObjId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1837,6 +1848,10 @@ func expandObjectFirewallAddress6EndMac(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectFirewallAddress6FabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6Fqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1904,6 +1919,10 @@ func expandObjectFirewallAddress6ListNetId(d *schema.ResourceData, v interface{}
 
 func expandObjectFirewallAddress6ListObjId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFirewallAddress6Macaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAddress6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2038,6 +2057,10 @@ func expandObjectFirewallAddress6Uuid(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectFirewallAddress6Visibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -2113,6 +2136,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallAddress6FabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fqdn"); ok {
 		t, err := expandObjectFirewallAddress6Fqdn(d, v, "fqdn")
 		if err != nil {
@@ -2164,6 +2196,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["list"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("macaddr"); ok {
+		t, err := expandObjectFirewallAddress6Macaddr(d, v, "macaddr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["macaddr"] = t
 		}
 	}
 
@@ -2254,6 +2295,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("visibility"); ok {
+		t, err := expandObjectFirewallAddress6Visibility(d, v, "visibility")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["visibility"] = t
 		}
 	}
 

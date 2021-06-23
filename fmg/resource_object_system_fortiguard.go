@@ -165,6 +165,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"persistent_connection": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"port": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -234,8 +239,38 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"update_build_proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"update_extdb": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"update_ffdb": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"update_server_location": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"update_uwdb": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"videofilter_expiration": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"videofilter_license": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -354,14 +389,6 @@ func resourceObjectSystemFortiguardRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenObjectSystemFortiguardAntispamCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -378,14 +405,6 @@ func flattenObjectSystemFortiguardAntispamExpiration(v interface{}, d *schema.Re
 }
 
 func flattenObjectSystemFortiguardAntispamForceOff(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -406,14 +425,6 @@ func flattenObjectSystemFortiguardAnycastSdnsServerPort(v interface{}, d *schema
 }
 
 func flattenObjectSystemFortiguardAutoJoinForticloud(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -426,27 +437,10 @@ func flattenObjectSystemFortiguardDdnsServerPort(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemFortiguardFortiguardAnycast(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemFortiguardFortiguardAnycastSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "fortinet",
-			1: "aws",
-			2: "debug",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -455,15 +449,6 @@ func flattenObjectSystemFortiguardInterface(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectSystemFortiguardInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -472,14 +457,6 @@ func flattenObjectSystemFortiguardLoadBalanceServers(v interface{}, d *schema.Re
 }
 
 func flattenObjectSystemFortiguardOutbreakPreventionCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -496,14 +473,6 @@ func flattenObjectSystemFortiguardOutbreakPreventionExpiration(v interface{}, d 
 }
 
 func flattenObjectSystemFortiguardOutbreakPreventionForceOff(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -515,30 +484,15 @@ func flattenObjectSystemFortiguardOutbreakPreventionTimeout(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectSystemFortiguardPersistentConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemFortiguardPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			53:   "53",
-			80:   "80",
-			443:  "443",
-			8888: "8888",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemFortiguardProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "udp",
-			1: "http",
-			2: "https",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -563,14 +517,7 @@ func flattenObjectSystemFortiguardSandboxRegion(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectSystemFortiguardSdnsOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "include-question-section",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSystemFortiguardSdnsServerIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -593,27 +540,35 @@ func flattenObjectSystemFortiguardSourceIp6(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectSystemFortiguardUpdateBuildProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardUpdateExtdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardUpdateFfdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemFortiguardUpdateServerLocation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "usa",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectSystemFortiguardUpdateUwdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardVideofilterExpiration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardVideofilterLicense(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemFortiguardWebfilterCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -626,14 +581,6 @@ func flattenObjectSystemFortiguardWebfilterExpiration(v interface{}, d *schema.R
 }
 
 func flattenObjectSystemFortiguardWebfilterForceOff(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -888,6 +835,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("persistent_connection", flattenObjectSystemFortiguardPersistentConnection(o["persistent-connection"], d, "persistent_connection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["persistent-connection"], "ObjectSystemFortiguard-PersistentConnection"); ok {
+			if err = d.Set("persistent_connection", vv); err != nil {
+				return fmt.Errorf("Error reading persistent_connection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading persistent_connection: %v", err)
+		}
+	}
+
 	if err = d.Set("port", flattenObjectSystemFortiguardPort(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "ObjectSystemFortiguard-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
@@ -1008,6 +965,36 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("update_build_proxy", flattenObjectSystemFortiguardUpdateBuildProxy(o["update-build-proxy"], d, "update_build_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-build-proxy"], "ObjectSystemFortiguard-UpdateBuildProxy"); ok {
+			if err = d.Set("update_build_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading update_build_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_build_proxy: %v", err)
+		}
+	}
+
+	if err = d.Set("update_extdb", flattenObjectSystemFortiguardUpdateExtdb(o["update-extdb"], d, "update_extdb")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-extdb"], "ObjectSystemFortiguard-UpdateExtdb"); ok {
+			if err = d.Set("update_extdb", vv); err != nil {
+				return fmt.Errorf("Error reading update_extdb: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_extdb: %v", err)
+		}
+	}
+
+	if err = d.Set("update_ffdb", flattenObjectSystemFortiguardUpdateFfdb(o["update-ffdb"], d, "update_ffdb")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-ffdb"], "ObjectSystemFortiguard-UpdateFfdb"); ok {
+			if err = d.Set("update_ffdb", vv); err != nil {
+				return fmt.Errorf("Error reading update_ffdb: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_ffdb: %v", err)
+		}
+	}
+
 	if err = d.Set("update_server_location", flattenObjectSystemFortiguardUpdateServerLocation(o["update-server-location"], d, "update_server_location")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-server-location"], "ObjectSystemFortiguard-UpdateServerLocation"); ok {
 			if err = d.Set("update_server_location", vv); err != nil {
@@ -1015,6 +1002,36 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading update_server_location: %v", err)
+		}
+	}
+
+	if err = d.Set("update_uwdb", flattenObjectSystemFortiguardUpdateUwdb(o["update-uwdb"], d, "update_uwdb")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-uwdb"], "ObjectSystemFortiguard-UpdateUwdb"); ok {
+			if err = d.Set("update_uwdb", vv); err != nil {
+				return fmt.Errorf("Error reading update_uwdb: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_uwdb: %v", err)
+		}
+	}
+
+	if err = d.Set("videofilter_expiration", flattenObjectSystemFortiguardVideofilterExpiration(o["videofilter-expiration"], d, "videofilter_expiration")); err != nil {
+		if vv, ok := fortiAPIPatch(o["videofilter-expiration"], "ObjectSystemFortiguard-VideofilterExpiration"); ok {
+			if err = d.Set("videofilter_expiration", vv); err != nil {
+				return fmt.Errorf("Error reading videofilter_expiration: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading videofilter_expiration: %v", err)
+		}
+	}
+
+	if err = d.Set("videofilter_license", flattenObjectSystemFortiguardVideofilterLicense(o["videofilter-license"], d, "videofilter_license")); err != nil {
+		if vv, ok := fortiAPIPatch(o["videofilter-license"], "ObjectSystemFortiguard-VideofilterLicense"); ok {
+			if err = d.Set("videofilter_license", vv); err != nil {
+				return fmt.Errorf("Error reading videofilter_license: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading videofilter_license: %v", err)
 		}
 	}
 
@@ -1183,6 +1200,10 @@ func expandObjectSystemFortiguardOutbreakPreventionTimeout(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectSystemFortiguardPersistentConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemFortiguardPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1235,7 +1256,31 @@ func expandObjectSystemFortiguardSourceIp6(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectSystemFortiguardUpdateBuildProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardUpdateExtdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardUpdateFfdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemFortiguardUpdateServerLocation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardUpdateUwdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardVideofilterExpiration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardVideofilterLicense(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1482,6 +1527,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("persistent_connection"); ok {
+		t, err := expandObjectSystemFortiguardPersistentConnection(d, v, "persistent_connection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["persistent-connection"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("port"); ok {
 		t, err := expandObjectSystemFortiguardPort(d, v, "port")
 		if err != nil {
@@ -1599,12 +1653,66 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("update_build_proxy"); ok {
+		t, err := expandObjectSystemFortiguardUpdateBuildProxy(d, v, "update_build_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-build-proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_extdb"); ok {
+		t, err := expandObjectSystemFortiguardUpdateExtdb(d, v, "update_extdb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-extdb"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_ffdb"); ok {
+		t, err := expandObjectSystemFortiguardUpdateFfdb(d, v, "update_ffdb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-ffdb"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("update_server_location"); ok {
 		t, err := expandObjectSystemFortiguardUpdateServerLocation(d, v, "update_server_location")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["update-server-location"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_uwdb"); ok {
+		t, err := expandObjectSystemFortiguardUpdateUwdb(d, v, "update_uwdb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-uwdb"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("videofilter_expiration"); ok {
+		t, err := expandObjectSystemFortiguardVideofilterExpiration(d, v, "videofilter_expiration")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["videofilter-expiration"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("videofilter_license"); ok {
+		t, err := expandObjectSystemFortiguardVideofilterLicense(d, v, "videofilter_license")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["videofilter-license"] = t
 		}
 	}
 

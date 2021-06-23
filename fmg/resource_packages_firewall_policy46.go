@@ -55,6 +55,11 @@ func resourcePackagesFirewallPolicy46() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cgn_log_server_grp": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -101,6 +106,11 @@ func resourcePackagesFirewallPolicy46() *schema.Resource {
 				Computed: true,
 			},
 			"permit_any_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"policy_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -299,14 +309,10 @@ func resourcePackagesFirewallPolicy46Read(d *schema.ResourceData, m interface{})
 }
 
 func flattenPackagesFirewallPolicy46Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "accept",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallPolicy46CgnLogServerGrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -323,50 +329,18 @@ func flattenPackagesFirewallPolicy46Dstintf(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicy46Fixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallPolicy46Ippool(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallPolicy46Logtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallPolicy46LogtrafficStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -379,14 +353,10 @@ func flattenPackagesFirewallPolicy46PerIpShaper(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallPolicy46PermitAnyHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallPolicy46PolicyOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -415,14 +385,6 @@ func flattenPackagesFirewallPolicy46Srcintf(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicy46Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -456,6 +418,16 @@ func refreshObjectPackagesFirewallPolicy46(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading action: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_log_server_grp", flattenPackagesFirewallPolicy46CgnLogServerGrp(o["cgn-log-server-grp"], d, "cgn_log_server_grp")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-log-server-grp"], "PackagesFirewallPolicy46-CgnLogServerGrp"); ok {
+			if err = d.Set("cgn_log_server_grp", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_log_server_grp: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_log_server_grp: %v", err)
 		}
 	}
 
@@ -556,6 +528,16 @@ func refreshObjectPackagesFirewallPolicy46(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading permit_any_host: %v", err)
+		}
+	}
+
+	if err = d.Set("policy_offload", flattenPackagesFirewallPolicy46PolicyOffload(o["policy-offload"], d, "policy_offload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["policy-offload"], "PackagesFirewallPolicy46-PolicyOffload"); ok {
+			if err = d.Set("policy_offload", vv); err != nil {
+				return fmt.Errorf("Error reading policy_offload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading policy_offload: %v", err)
 		}
 	}
 
@@ -692,6 +674,10 @@ func expandPackagesFirewallPolicy46Action(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandPackagesFirewallPolicy46CgnLogServerGrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicy46Comments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -729,6 +715,10 @@ func expandPackagesFirewallPolicy46PerIpShaper(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallPolicy46PermitAnyHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy46PolicyOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -789,6 +779,15 @@ func getObjectPackagesFirewallPolicy46(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_log_server_grp"); ok {
+		t, err := expandPackagesFirewallPolicy46CgnLogServerGrp(d, v, "cgn_log_server_grp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-log-server-grp"] = t
 		}
 	}
 
@@ -879,6 +878,15 @@ func getObjectPackagesFirewallPolicy46(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["permit-any-host"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("policy_offload"); ok {
+		t, err := expandPackagesFirewallPolicy46PolicyOffload(d, v, "policy_offload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["policy-offload"] = t
 		}
 	}
 

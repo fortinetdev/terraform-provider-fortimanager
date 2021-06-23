@@ -45,6 +45,11 @@ func resourceObjectUserExchange() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"addr_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"auth_level": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -76,6 +81,11 @@ func resourceObjectUserExchange() *schema.Resource {
 				Computed: true,
 			},
 			"ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -224,56 +234,23 @@ func resourceObjectUserExchangeRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
+func flattenObjectUserExchangeAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserExchangeAuthLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4: "connect",
-			5: "call",
-			6: "packet",
-			7: "integrity",
-			8: "privacy",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserExchangeAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "spnego",
-			1: "ntlm",
-			2: "kerberos",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserExchangeAutoDiscoverKdc(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserExchangeConnectProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "rpc-over-tcp",
-			1: "rpc-over-http",
-			2: "rpc-over-https",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -282,18 +259,14 @@ func flattenObjectUserExchangeDomainName(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectUserExchangeHttpAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ntlm",
-			2: "basic",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserExchangeIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserExchangeIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -314,17 +287,6 @@ func flattenObjectUserExchangeServerName(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectUserExchangeSslMinProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "default",
-			2:  "TLSv1-1",
-			4:  "TLSv1-2",
-			8:  "SSLv3",
-			16: "TLSv1",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -334,6 +296,16 @@ func flattenObjectUserExchangeUsername(v interface{}, d *schema.ResourceData, pr
 
 func refreshObjectObjectUserExchange(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("addr_type", flattenObjectUserExchangeAddrType(o["addr-type"], d, "addr_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["addr-type"], "ObjectUserExchange-AddrType"); ok {
+			if err = d.Set("addr_type", vv); err != nil {
+				return fmt.Errorf("Error reading addr_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading addr_type: %v", err)
+		}
+	}
 
 	if err = d.Set("auth_level", flattenObjectUserExchangeAuthLevel(o["auth-level"], d, "auth_level")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-level"], "ObjectUserExchange-AuthLevel"); ok {
@@ -405,6 +377,16 @@ func refreshObjectObjectUserExchange(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("ip6", flattenObjectUserExchangeIp6(o["ip6"], d, "ip6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ip6"], "ObjectUserExchange-Ip6"); ok {
+			if err = d.Set("ip6", vv); err != nil {
+				return fmt.Errorf("Error reading ip6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ip6: %v", err)
+		}
+	}
+
 	if err = d.Set("kdc_ip", flattenObjectUserExchangeKdcIp(o["kdc-ip"], d, "kdc_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["kdc-ip"], "ObjectUserExchange-KdcIp"); ok {
 			if err = d.Set("kdc_ip", vv); err != nil {
@@ -464,6 +446,10 @@ func flattenObjectUserExchangeFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectUserExchangeAddrType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserExchangeAuthLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -489,6 +475,10 @@ func expandObjectUserExchangeHttpAuthType(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectUserExchangeIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserExchangeIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -518,6 +508,15 @@ func expandObjectUserExchangeUsername(d *schema.ResourceData, v interface{}, pre
 
 func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("addr_type"); ok {
+		t, err := expandObjectUserExchangeAddrType(d, v, "addr_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["addr-type"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("auth_level"); ok {
 		t, err := expandObjectUserExchangeAuthLevel(d, v, "auth_level")
@@ -579,6 +578,15 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ip6"); ok {
+		t, err := expandObjectUserExchangeIp6(d, v, "ip6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ip6"] = t
 		}
 	}
 

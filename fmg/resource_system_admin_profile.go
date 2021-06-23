@@ -205,6 +205,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_viewer": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fgd_center_advanced": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -276,6 +281,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"run_report": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -306,7 +316,17 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"triage_events": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"update_incidents": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -421,141 +441,46 @@ func resourceSystemAdminProfileRead(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenSystemAdminProfileAdomLock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileAdomPolicyPackages(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileAdomSwitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileAllowToInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileAppFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileAssignment(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileChangePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileConfigRetrieve(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileConfigRevert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileConsistencyCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDatamask(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -611,18 +536,7 @@ func flattenSystemAdminProfileDatamaskCustomFields(v interface{}, d *schema.Reso
 }
 
 func flattenSystemAdminProfileDatamaskCustomFieldsFieldCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "log",
-			2:  "fortiview",
-			4:  "alert",
-			8:  "ueba",
-			16: "all",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemAdminProfileDatamaskCustomFieldsFieldName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -630,61 +544,19 @@ func flattenSystemAdminProfileDatamaskCustomFieldsFieldName(v interface{}, d *sc
 }
 
 func flattenSystemAdminProfileDatamaskCustomFieldsFieldStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDatamaskCustomFieldsFieldType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "string",
-			1: "ip",
-			2: "mac",
-			3: "email",
-			4: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDatamaskCustomPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDatamaskFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "user",
-			2:   "srcip",
-			4:   "srcname",
-			8:   "srcmac",
-			16:  "dstip",
-			32:  "dstname",
-			64:  "email",
-			128: "message",
-			256: "domain",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemAdminProfileDatamaskKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -696,15 +568,6 @@ func flattenSystemAdminProfileDatamaskUnmaskedTime(v interface{}, d *schema.Reso
 }
 
 func flattenSystemAdminProfileDeployManagement(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -713,287 +576,94 @@ func flattenSystemAdminProfileDescription(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemAdminProfileDeviceAp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceConfig(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceForticlient(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceFortiswitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceManager(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceOp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDevicePolicyPackageLock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceRevisionDeletion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileDeviceWanLinkLoadBalance(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileEventManagement(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileExtensionAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenSystemAdminProfileFabricViewer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemAdminProfileFgdCenterAdvanced(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileFgdCenterFmwMgmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileFgdCenterLicensing(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileFgdCenter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileGlobalPolicyPackages(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileImportPolicyPackages(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileIntfMapping(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileIpsFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileLogViewer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfilePolicyObjects(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1002,154 +672,62 @@ func flattenSystemAdminProfileProfileid(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemAdminProfileReadPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileRealtimeMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileReportViewer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenSystemAdminProfileRunReport(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemAdminProfileScope(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "global",
-			1: "adom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileScriptAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileSetInstallTargets(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileSuperUserProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileSystemSetting(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileTermAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenSystemAdminProfileTriageEvents(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemAdminProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "system",
-			1: "restricted",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenSystemAdminProfileUpdateIncidents(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemAdminProfileVpnManager(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "read",
-			2: "read-write",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminProfileWebFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1470,6 +1048,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("fabric_viewer", flattenSystemAdminProfileFabricViewer(o["fabric-viewer"], d, "fabric_viewer")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-viewer"], "SystemAdminProfile-FabricViewer"); ok {
+			if err = d.Set("fabric_viewer", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_viewer: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_viewer: %v", err)
+		}
+	}
+
 	if err = d.Set("fgd_center_advanced", flattenSystemAdminProfileFgdCenterAdvanced(o["fgd-center-advanced"], d, "fgd_center_advanced")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgd-center-advanced"], "SystemAdminProfile-FgdCenterAdvanced"); ok {
 			if err = d.Set("fgd_center_advanced", vv); err != nil {
@@ -1610,6 +1198,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("run_report", flattenSystemAdminProfileRunReport(o["run-report"], d, "run_report")); err != nil {
+		if vv, ok := fortiAPIPatch(o["run-report"], "SystemAdminProfile-RunReport"); ok {
+			if err = d.Set("run_report", vv); err != nil {
+				return fmt.Errorf("Error reading run_report: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading run_report: %v", err)
+		}
+	}
+
 	if err = d.Set("scope", flattenSystemAdminProfileScope(o["scope"], d, "scope")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scope"], "SystemAdminProfile-Scope"); ok {
 			if err = d.Set("scope", vv); err != nil {
@@ -1670,6 +1268,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("triage_events", flattenSystemAdminProfileTriageEvents(o["triage-events"], d, "triage_events")); err != nil {
+		if vv, ok := fortiAPIPatch(o["triage-events"], "SystemAdminProfile-TriageEvents"); ok {
+			if err = d.Set("triage_events", vv); err != nil {
+				return fmt.Errorf("Error reading triage_events: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading triage_events: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenSystemAdminProfileType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "SystemAdminProfile-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -1677,6 +1285,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("update_incidents", flattenSystemAdminProfileUpdateIncidents(o["update-incidents"], d, "update_incidents")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-incidents"], "SystemAdminProfile-UpdateIncidents"); ok {
+			if err = d.Set("update_incidents", vv); err != nil {
+				return fmt.Errorf("Error reading update_incidents: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_incidents: %v", err)
 		}
 	}
 
@@ -1885,6 +1503,10 @@ func expandSystemAdminProfileExtensionAccess(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandSystemAdminProfileFabricViewer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminProfileFgdCenterAdvanced(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1941,6 +1563,10 @@ func expandSystemAdminProfileReportViewer(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystemAdminProfileRunReport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminProfileScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1965,7 +1591,15 @@ func expandSystemAdminProfileTermAccess(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandSystemAdminProfileTriageEvents(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileUpdateIncidents(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2250,6 +1884,15 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("fabric_viewer"); ok {
+		t, err := expandSystemAdminProfileFabricViewer(d, v, "fabric_viewer")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-viewer"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fgd_center_advanced"); ok {
 		t, err := expandSystemAdminProfileFgdCenterAdvanced(d, v, "fgd_center_advanced")
 		if err != nil {
@@ -2376,6 +2019,15 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("run_report"); ok {
+		t, err := expandSystemAdminProfileRunReport(d, v, "run_report")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["run-report"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("scope"); ok {
 		t, err := expandSystemAdminProfileScope(d, v, "scope")
 		if err != nil {
@@ -2430,12 +2082,30 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("triage_events"); ok {
+		t, err := expandSystemAdminProfileTriageEvents(d, v, "triage_events")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["triage-events"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("type"); ok {
 		t, err := expandSystemAdminProfileType(d, v, "type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_incidents"); ok {
+		t, err := expandSystemAdminProfileUpdateIncidents(d, v, "update_incidents")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-incidents"] = t
 		}
 	}
 

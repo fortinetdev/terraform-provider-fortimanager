@@ -344,95 +344,26 @@ func flattenFmupdateFdsSettingUserAgentFfa(v interface{}, d *schema.ResourceData
 }
 
 func flattenFmupdateFdsSettingFdsCltSslProtocolFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2:  "sslv3",
-			4:  "tlsv1.0",
-			8:  "tlsv1.1",
-			16: "tlsv1.2",
-			32: "tlsv1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingFdsSslProtocolFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2:  "sslv3",
-			4:  "tlsv1.0",
-			8:  "tlsv1.1",
-			16: "tlsv1.2",
-			32: "tlsv1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingFmtrLogFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "emergency",
-			1:   "alert",
-			2:   "critical",
-			3:   "error",
-			4:   "warn",
-			5:   "notice",
-			6:   "info",
-			7:   "debug",
-			255: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingFortiguardAnycastFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingFortiguardAnycastSourceFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "fortinet",
-			1: "aws",
-			2: "debug",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingLinkdLogFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "emergency",
-			1:   "alert",
-			2:   "critical",
-			3:   "error",
-			4:   "warn",
-			5:   "notice",
-			6:   "info",
-			7:   "debug",
-			255: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -481,14 +412,6 @@ func flattenFmupdateFdsSettingPushOverridePortFfa(v interface{}, d *schema.Resou
 }
 
 func flattenFmupdateFdsSettingPushOverrideStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -573,38 +496,14 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfa(v interface{
 }
 
 func flattenFmupdateFdsSettingPushOverrideToClientStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingSendReportFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingSendSetupFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -705,135 +604,38 @@ func flattenFmupdateFdsSettingServerOverrideServlistPortFfa(v interface{}, d *sc
 }
 
 func flattenFmupdateFdsSettingServerOverrideServlistServiceTypeFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "fct",
-			2: "fds",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingServerOverrideStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingSystemSupportFctFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "4.x",
-			2:   "5.0",
-			4:   "5.2",
-			8:   "5.4",
-			16:  "5.6",
-			32:  "6.0",
-			64:  "6.2",
-			128: "6.4",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenFmupdateFdsSettingSystemSupportFgtFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "5.4",
-			2:  "5.6",
-			4:  "6.0",
-			8:  "6.2",
-			16: "6.4",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenFmupdateFdsSettingSystemSupportFmlFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "4.x",
-			2: "5.x",
-			4: "6.x",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenFmupdateFdsSettingSystemSupportFsaFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "1.x",
-			2: "2.x",
-			4: "3.x",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenFmupdateFdsSettingSystemSupportFswFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "4.x",
-			2:   "5.0",
-			4:   "5.2",
-			8:   "5.4",
-			16:  "5.6",
-			32:  "6.0",
-			64:  "6.2",
-			128: "6.4",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenFmupdateFdsSettingUmsvcLogFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "emergency",
-			1:   "alert",
-			2:   "critical",
-			3:   "error",
-			4:   "warn",
-			5:   "notice",
-			6:   "info",
-			7:   "debug",
-			255: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingUnregDevOptionFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ignore",
-			2: "svc-only",
-			3: "add-service",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -871,44 +673,14 @@ func flattenFmupdateFdsSettingUpdateScheduleFfa(v interface{}, d *schema.Resourc
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleDayFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "Sunday",
-			1: "Monday",
-			2: "Tuesday",
-			3: "Wednesday",
-			4: "Thursday",
-			5: "Friday",
-			6: "Saturday",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleFrequencyFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "every",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateFdsSettingUpdateScheduleStatusFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -917,14 +689,6 @@ func flattenFmupdateFdsSettingUpdateScheduleTimeFfa(v interface{}, d *schema.Res
 }
 
 func flattenFmupdateFdsSettingWanipQueryModeFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "ipify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

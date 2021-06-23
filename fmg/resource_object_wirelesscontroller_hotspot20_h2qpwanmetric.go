@@ -210,27 +210,10 @@ func flattenObjectWirelessControllerHotspot20H2QpWanMetricDownlinkSpeed(v interf
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpWanMetricLinkAtCapacity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpWanMetricLinkStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "down",
-			1:  "up",
-			21: "in-test",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -243,14 +226,6 @@ func flattenObjectWirelessControllerHotspot20H2QpWanMetricName(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpWanMetricSymmetricWanLink(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "asymmetric",
-			1: "symmetric",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

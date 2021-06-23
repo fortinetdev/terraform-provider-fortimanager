@@ -144,25 +144,7 @@ func flattenSecurityconsoleInstallPackageDevRevComments(v interface{}, d *schema
 }
 
 func flattenSecurityconsoleInstallPackageFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:     "none",
-			1:     "cp_all_objs",
-			2:     "preview",
-			8:     "generate_rev",
-			16:    "copy_assigned_pkg",
-			128:   "unassign",
-			256:   "ifpolicy_only",
-			512:   "no_ifpolicy",
-			1024:  "objs_only",
-			4096:  "auto_lock_ws",
-			8192:  "check_pkg_st",
-			16384: "copy_only",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSecurityconsoleInstallPackagePkg(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -122,14 +122,6 @@ func resourceSystemLogInterfaceStatsRead(d *schema.ResourceData, m interface{}) 
 }
 
 func flattenSystemLogInterfaceStatsBillingReport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -142,14 +134,6 @@ func flattenSystemLogInterfaceStatsSamplingInterval(v interface{}, d *schema.Res
 }
 
 func flattenSystemLogInterfaceStatsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -1229,6 +1229,11 @@ func resourceObjectFspVlan() *schema.Resource {
 													Optional: true,
 													Computed: true,
 												},
+												"ra_send_mtu": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+													Computed: true,
+												},
 												"unique_autoconf_addr": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
@@ -2219,6 +2224,11 @@ func resourceObjectFspVlan() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"ra_send_mtu": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
 									"unique_autoconf_addr": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -2772,6 +2782,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"stp_ha_secondary": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"stp_ha_slave": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -2843,6 +2858,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"switch_controller_dhcp_snooping_verify_mac": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"switch_controller_dynamic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -3323,14 +3343,6 @@ func resourceObjectFspVlanRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectFspVlanDhcpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3632,26 +3644,10 @@ func flattenObjectFspVlanDhcpServer(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectFspVlanDhcpServerAutoConfiguration(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerAutoManagedStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3660,14 +3656,6 @@ func flattenObjectFspVlanDhcpServerConflictedIpTimeout(v interface{}, d *schema.
 }
 
 func flattenObjectFspVlanDhcpServerDdnsAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			7: "tsig",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3688,26 +3676,10 @@ func flattenObjectFspVlanDhcpServerDdnsTtl(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanDhcpServerDdnsUpdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerDdnsUpdateOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3720,14 +3692,6 @@ func flattenObjectFspVlanDhcpServerDefaultGateway(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFspVlanDhcpServerDhcpSettingsFromFortiipam(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3748,15 +3712,6 @@ func flattenObjectFspVlanDhcpServerDnsServer4(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanDhcpServerDnsService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3765,14 +3720,6 @@ func flattenObjectFspVlanDhcpServerDomain(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFspVlanDhcpServerEnable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3838,14 +3785,6 @@ func flattenObjectFspVlanDhcpServerFilename(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanDhcpServerForticlientOnNetStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3854,14 +3793,6 @@ func flattenObjectFspVlanDhcpServerId(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFspVlanDhcpServerIpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "range",
-			1: "usrgrp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3931,14 +3862,6 @@ func flattenObjectFspVlanDhcpServerLeaseTime(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanDhcpServerMacAclDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "assign",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3963,15 +3886,6 @@ func flattenObjectFspVlanDhcpServerNtpServer3(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanDhcpServerNtpService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4069,16 +3983,6 @@ func flattenObjectFspVlanDhcpServerOptionsIp(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanDhcpServerOptionsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-			2: "ip",
-			3: "fqdn",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4174,15 +4078,6 @@ func flattenObjectFspVlanDhcpServerReservedAddress(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFspVlanDhcpServerReservedAddressAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "assign",
-			1: "block",
-			2: "reserved",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4191,14 +4086,6 @@ func flattenObjectFspVlanDhcpServerReservedAddressCircuitId(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanDhcpServerReservedAddressCircuitIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4223,50 +4110,18 @@ func flattenObjectFspVlanDhcpServerReservedAddressRemoteId(v interface{}, d *sch
 }
 
 func flattenObjectFspVlanDhcpServerReservedAddressRemoteIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerReservedAddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "mac",
-			2: "option82",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "regular",
-			31: "ipsec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4275,125 +4130,14 @@ func flattenObjectFspVlanDhcpServerTftpServer(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanDhcpServerTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "00",
-			1:  "01",
-			2:  "02",
-			3:  "03",
-			4:  "04",
-			5:  "05",
-			6:  "06",
-			7:  "07",
-			8:  "08",
-			9:  "09",
-			10: "10",
-			11: "11",
-			12: "12",
-			13: "13",
-			14: "14",
-			15: "15",
-			16: "16",
-			17: "17",
-			18: "18",
-			19: "19",
-			20: "20",
-			21: "21",
-			22: "22",
-			23: "23",
-			24: "24",
-			25: "25",
-			26: "26",
-			27: "27",
-			28: "28",
-			29: "29",
-			30: "30",
-			31: "31",
-			32: "32",
-			33: "33",
-			34: "34",
-			35: "35",
-			36: "36",
-			37: "37",
-			38: "38",
-			39: "39",
-			40: "40",
-			41: "41",
-			42: "42",
-			43: "43",
-			44: "44",
-			45: "45",
-			46: "46",
-			47: "47",
-			48: "48",
-			49: "49",
-			50: "50",
-			51: "51",
-			52: "52",
-			53: "53",
-			54: "54",
-			55: "55",
-			56: "56",
-			57: "57",
-			58: "58",
-			59: "59",
-			60: "60",
-			61: "61",
-			62: "62",
-			63: "63",
-			64: "64",
-			65: "65",
-			66: "66",
-			67: "67",
-			68: "68",
-			69: "69",
-			70: "70",
-			71: "71",
-			72: "72",
-			73: "73",
-			74: "74",
-			75: "75",
-			76: "76",
-			77: "77",
-			78: "78",
-			79: "79",
-			80: "80",
-			81: "81",
-			82: "82",
-			83: "83",
-			84: "84",
-			85: "85",
-			86: "86",
-			87: "87",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerTimezoneOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			3: "default",
-			5: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDhcpServerVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4402,14 +4146,6 @@ func flattenObjectFspVlanDhcpServerVciString(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanDhcpServerWifiAcService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4485,14 +4221,6 @@ func flattenObjectFspVlanDynamicMapping(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4837,26 +4565,10 @@ func flattenObjectFspVlanDynamicMappingDhcpServer(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerAutoConfiguration(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerAutoManagedStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4865,14 +4577,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerConflictedIpTimeout(v interface
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDdnsAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			7: "tsig",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4893,26 +4597,10 @@ func flattenObjectFspVlanDynamicMappingDhcpServerDdnsTtl(v interface{}, d *schem
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDdnsUpdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDdnsUpdateOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4925,14 +4613,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerDefaultGateway(v interface{}, d
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDhcpSettingsFromFortiipam(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4953,15 +4633,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerDnsServer4(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerDnsService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4970,14 +4641,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerDomain(v interface{}, d *schema
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerEnable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5043,14 +4706,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerFilename(v interface{}, d *sche
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerForticlientOnNetStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5059,14 +4714,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerId(v interface{}, d *schema.Res
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerIpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "range",
-			1: "usrgrp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5136,14 +4783,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerLeaseTime(v interface{}, d *sch
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerMacAclDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "assign",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5168,15 +4807,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerNtpServer3(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerNtpService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5274,16 +4904,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerOptionsIp(v interface{}, d *sch
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerOptionsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-			2: "ip",
-			3: "fqdn",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5379,15 +4999,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddress(v interface{}, 
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddressAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "assign",
-			1: "block",
-			2: "reserved",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5396,14 +5007,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddressCircuitId(v inte
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddressCircuitIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5428,50 +5031,18 @@ func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddressRemoteId(v inter
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddressRemoteIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "hex",
-			1: "string",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "mac",
-			2: "option82",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "regular",
-			31: "ipsec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5480,125 +5051,14 @@ func flattenObjectFspVlanDynamicMappingDhcpServerTftpServer(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "00",
-			1:  "01",
-			2:  "02",
-			3:  "03",
-			4:  "04",
-			5:  "05",
-			6:  "06",
-			7:  "07",
-			8:  "08",
-			9:  "09",
-			10: "10",
-			11: "11",
-			12: "12",
-			13: "13",
-			14: "14",
-			15: "15",
-			16: "16",
-			17: "17",
-			18: "18",
-			19: "19",
-			20: "20",
-			21: "21",
-			22: "22",
-			23: "23",
-			24: "24",
-			25: "25",
-			26: "26",
-			27: "27",
-			28: "28",
-			29: "29",
-			30: "30",
-			31: "31",
-			32: "32",
-			33: "33",
-			34: "34",
-			35: "35",
-			36: "36",
-			37: "37",
-			38: "38",
-			39: "39",
-			40: "40",
-			41: "41",
-			42: "42",
-			43: "43",
-			44: "44",
-			45: "45",
-			46: "46",
-			47: "47",
-			48: "48",
-			49: "49",
-			50: "50",
-			51: "51",
-			52: "52",
-			53: "53",
-			54: "54",
-			55: "55",
-			56: "56",
-			57: "57",
-			58: "58",
-			59: "59",
-			60: "60",
-			61: "61",
-			62: "62",
-			63: "63",
-			64: "64",
-			65: "65",
-			66: "66",
-			67: "67",
-			68: "68",
-			69: "69",
-			70: "70",
-			71: "71",
-			72: "72",
-			73: "73",
-			74: "74",
-			75: "75",
-			76: "76",
-			77: "77",
-			78: "78",
-			79: "79",
-			80: "80",
-			81: "81",
-			82: "82",
-			83: "83",
-			84: "84",
-			85: "85",
-			86: "86",
-			87: "87",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerTimezoneOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			3: "default",
-			5: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5607,14 +5067,6 @@ func flattenObjectFspVlanDynamicMappingDhcpServerVciString(v interface{}, d *sch
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerWifiAcService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5:  "specify",
-			21: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5697,14 +5149,6 @@ func flattenObjectFspVlanDynamicMappingInterface(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayAgentOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5713,26 +5157,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayIp(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "regular",
-			1: "ipsec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5944,6 +5372,11 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6(v interface{}, d *schema.Re
 		result["nd_timestamp_fuzz"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampFuzz(i["nd-timestamp-fuzz"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "ra_send_mtu"
+	if _, ok := i["ra-send-mtu"]; ok {
+		result["ra_send_mtu"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6RaSendMtu(i["ra-send-mtu"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "unique_autoconf_addr"
 	if _, ok := i["unique-autoconf-addr"]; ok {
 		result["unique_autoconf_addr"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6UniqueAutoconfAddr(i["unique-autoconf-addr"], d, pre_append)
@@ -5969,14 +5402,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Autoconf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -5985,39 +5410,14 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6CliConn6Status(v interface{}
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6ClientOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "rapid",
-			2: "iapd",
-			4: "iana",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6InformationRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixDelegation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6038,37 +5438,14 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayIp(v interface{}, 
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "regular",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Icmp6SendRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6081,21 +5458,7 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6Address(v interface{}, d 
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6Allowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "https",
-			2:     "ping",
-			4:     "ssh",
-			8:     "snmp",
-			16:    "http",
-			32:    "telnet",
-			128:   "fgfm",
-			16384: "fabric",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DefaultLife(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -6172,26 +5535,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(v int
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListOnlinkFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6204,15 +5551,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListRdnss(
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListRdnssService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "delegated",
-			1: "default",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6225,14 +5563,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListUpstre
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DnsServerOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6282,14 +5612,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6LinkMtu(v interface{}, d 
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6ManageFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6302,28 +5624,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6MinInterval(v interface{}
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "dhcp",
-			2: "pppoe",
-			6: "delegated",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6OtherFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6397,14 +5701,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(v interface{},
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListAutonomousFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6413,14 +5709,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListDnssl(v interfa
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListOnlinkFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6441,14 +5729,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListValidLifeTime(v
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "dhcp6",
-			2: "ra",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6461,14 +5741,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6RetransTime(v interface{}
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6SendAdv(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6489,14 +5761,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6NdCgaModifier(v interface{},
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6NdMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "basic",
-			1: "SEND-compatible",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6512,15 +5776,11 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampFuzz(v interface{
 	return v
 }
 
+func flattenObjectFspVlanDynamicMappingInterfaceIpv6RaSendMtu(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6UniqueAutoconfAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6529,14 +5789,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrip6LinkLocal(v interface{}
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6VrrpVirtualMac6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6628,14 +5880,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(v interface{}, d *sche
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AcceptMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6644,14 +5888,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AdvInterval(v interface
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Preempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6664,14 +5900,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6StartTime(v interface{}
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6692,14 +5920,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Vrip6(v interface{}, d 
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceSecondaryIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -6785,38 +6005,11 @@ func flattenObjectFspVlanDynamicMappingInterfaceSecondaryip(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipAllowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "https",
-			2:     "ping",
-			4:     "ssh",
-			8:     "snmp",
-			16:    "http",
-			32:    "telnet",
-			128:   "fgfm",
-			512:   "radius-acct",
-			1024:  "probe-response",
-			4096:  "dnp",
-			8192:  "ftm",
-			16384: "fabric",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipDetectprotocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ping",
-			2: "tcp-echo",
-			4: "udp-echo",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipDetectserver(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -6824,14 +6017,6 @@ func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipDetectserver(v interf
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceSecondaryipGwdetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -7838,6 +7023,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["stp"] = flattenObjectFspVlanInterfaceStp(i["stp"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "stp_ha_secondary"
+	if _, ok := i["stp-ha-secondary"]; ok {
+		result["stp_ha_secondary"] = flattenObjectFspVlanInterfaceStpHaSecondary(i["stp-ha-secondary"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "stp_ha_slave"
 	if _, ok := i["stp-ha-slave"]; ok {
 		result["stp_ha_slave"] = flattenObjectFspVlanInterfaceStpHaSlave(i["stp-ha-slave"], d, pre_append)
@@ -7911,6 +7101,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "switch_controller_dhcp_snooping_verify_mac"
 	if _, ok := i["switch-controller-dhcp-snooping-verify-mac"]; ok {
 		result["switch_controller_dhcp_snooping_verify_mac"] = flattenObjectFspVlanInterfaceSwitchControllerDhcpSnoopingVerifyMac(i["switch-controller-dhcp-snooping-verify-mac"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "switch_controller_dynamic"
+	if _, ok := i["switch-controller-dynamic"]; ok {
+		result["switch_controller_dynamic"] = flattenObjectFspVlanInterfaceSwitchControllerDynamic(i["switch-controller-dynamic"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "switch_controller_feature"
@@ -8196,15 +7391,6 @@ func flattenObjectFspVlanInterfaceAggregate(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanInterfaceAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "L2",
-			1: "L3",
-			2: "L4",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8213,87 +7399,26 @@ func flattenObjectFspVlanInterfaceAlias(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFspVlanInterfaceAllowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "https",
-			2:     "ping",
-			4:     "ssh",
-			8:     "snmp",
-			16:    "http",
-			32:    "telnet",
-			128:   "fgfm",
-			512:   "radius-acct",
-			1024:  "probe-response",
-			4096:  "dnp",
-			8192:  "ftm",
-			16384: "fabric",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceApDiscover(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceArpforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceAtmProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "ipoa",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:  "auto",
-			8:  "pap",
-			16: "chap",
-			32: "mschapv1",
-			64: "mschapv2",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceAutoAuthExtensionDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8302,15 +7427,6 @@ func flattenObjectFspVlanInterfaceBandwidthMeasureTime(v interface{}, d *schema.
 }
 
 func flattenObjectFspVlanInterfaceBfd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "global",
-			1: "enable",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8327,26 +7443,10 @@ func flattenObjectFspVlanInterfaceBfdRequiredMinRx(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFspVlanInterfaceBroadcastForticlientDiscovery(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceBroadcastForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8363,26 +7463,10 @@ func flattenObjectFspVlanInterfaceColor(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFspVlanInterfaceDdns(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDdnsAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			7: "tsig",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8403,22 +7487,6 @@ func flattenObjectFspVlanInterfaceDdnsPassword(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFspVlanInterfaceDdnsServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "dhs.org",
-			2:  "dyndns.org",
-			3:  "dyns.net",
-			4:  "tzo.com",
-			5:  "ods.org",
-			7:  "vavic.com",
-			8:  "now.net.cn",
-			9:  "dipdns.net",
-			10: "easydns.com",
-			11: "genericDDNS",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8443,26 +7511,10 @@ func flattenObjectFspVlanInterfaceDdnsZone(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfaceDedicatedTo(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "management",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDefaultgw(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8475,16 +7527,7 @@ func flattenObjectFspVlanInterfaceDetectedPeerMtu(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFspVlanInterfaceDetectprotocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ping",
-			2: "tcp-echo",
-			4: "udp-echo",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceDetectserver(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8496,50 +7539,18 @@ func flattenObjectFspVlanInterfaceDeviceAccessList(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFspVlanInterfaceDeviceIdentification(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDeviceIdentificationActiveScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDeviceNetscan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDeviceUserIdentification(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8552,14 +7563,6 @@ func flattenObjectFspVlanInterfaceDhcpClientIdentifier(v interface{}, d *schema.
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayAgentOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8568,15 +7571,6 @@ func flattenObjectFspVlanInterfaceDhcpRelayInterface(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8585,38 +7579,14 @@ func flattenObjectFspVlanInterfaceDhcpRelayIp(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayRequestAllServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "regular",
-			1: "ipsec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8637,70 +7607,22 @@ func flattenObjectFspVlanInterfaceDistance(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfaceDnsQuery(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "recursive",
-			2: "non-recursive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDnsServerOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDropFragment(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceDropOverlappedFragment(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceEgressCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "cos0",
-			2: "cos1",
-			3: "cos2",
-			4: "cos3",
-			5: "cos4",
-			6: "cos5",
-			7: "cos6",
-			8: "cos7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8713,14 +7635,6 @@ func flattenObjectFspVlanInterfaceEip(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFspVlanInterfaceEndpointCompliance(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8733,51 +7647,18 @@ func flattenObjectFspVlanInterfaceEstimatedUpstreamBandwidth(v interface{}, d *s
 }
 
 func flattenObjectFspVlanInterfaceExplicitFtpProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceExplicitWebProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceExternal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFailActionOnExtender(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "soft-restart",
-			1: "hard-restart",
-			2: "reboot",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8786,74 +7667,26 @@ func flattenObjectFspVlanInterfaceFailAlertInterfaces(v interface{}, d *schema.R
 }
 
 func flattenObjectFspVlanInterfaceFailAlertMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "link-failed-signal",
-			1: "link-down",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFailDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFailDetectOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "detectserver",
-			2: "link-down",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceFdp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFortiheartbeat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFortilink(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8862,38 +7695,14 @@ func flattenObjectFspVlanInterfaceFortilinkBackupLink(v interface{}, d *schema.R
 }
 
 func flattenObjectFspVlanInterfaceFortilinkNeighborDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "lldp",
-			1: "fortilink",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFortilinkSplitInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFortilinkStacking(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8902,70 +7711,15 @@ func flattenObjectFspVlanInterfaceForwardDomain(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFspVlanInterfaceForwardErrorCorrection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceFpAnomaly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-2147483648: "drop_tcp_fin_noack",
-			1:           "pass_winnuke",
-			2:           "pass_tcpland",
-			4:           "pass_udpland",
-			8:           "pass_icmpland",
-			16:          "pass_ipland",
-			32:          "pass_iprr",
-			64:          "pass_ipssrr",
-			128:         "pass_iplsrr",
-			256:         "pass_ipstream",
-			512:         "pass_ipsecurity",
-			1024:        "pass_iptimestamp",
-			2048:        "pass_ipunknown_option",
-			4096:        "pass_ipunknown_prot",
-			8192:        "pass_icmp_frag",
-			16384:       "pass_tcp_no_flag",
-			32768:       "pass_tcp_fin_noack",
-			65536:       "drop_winnuke",
-			131072:      "drop_tcpland",
-			262144:      "drop_udpland",
-			524288:      "drop_icmpland",
-			1048576:     "drop_ipland",
-			2097152:     "drop_iprr",
-			4194304:     "drop_ipssrr",
-			8388608:     "drop_iplsrr",
-			16777216:    "drop_ipstream",
-			33554432:    "drop_ipsecurity",
-			67108864:    "drop_iptimestamp",
-			134217728:   "drop_ipunknown_option",
-			268435456:   "drop_ipunknown_prot",
-			536870912:   "drop_icmp_frag",
-			1073741824:  "drop_tcp_no_flag",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceFpDisable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "all",
-			2: "ipsec",
-			4: "none",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceGatewayAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8973,14 +7727,6 @@ func flattenObjectFspVlanInterfaceGatewayAddress(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanInterfaceGiGk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -8989,14 +7735,6 @@ func flattenObjectFspVlanInterfaceGwaddr(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceGwdetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9005,50 +7743,18 @@ func flattenObjectFspVlanInterfaceHaPriority(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanInterfaceIcmpAcceptRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIcmpRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIcmpSendRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIdentAccept(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9057,28 +7763,10 @@ func flattenObjectFspVlanInterfaceIdleTimeout(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceIfMdix(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "normal",
-			2: "crossover",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIfMedia(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "copper",
-			2: "fiber",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9091,21 +7779,6 @@ func flattenObjectFspVlanInterfaceInbandwidth(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceIngressCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "cos0",
-			2: "cos1",
-			3: "cos2",
-			4: "cos3",
-			5: "cos4",
-			6: "cos5",
-			7: "cos6",
-			8: "cos7",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9126,38 +7799,14 @@ func flattenObjectFspVlanInterfaceIp(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectFspVlanInterfaceIpManagedByFortiipam(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpmac(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpsSnifferMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9369,6 +8018,11 @@ func flattenObjectFspVlanInterfaceIpv6(v interface{}, d *schema.ResourceData, pr
 		result["nd_timestamp_fuzz"] = flattenObjectFspVlanInterfaceIpv6NdTimestampFuzz(i["nd-timestamp-fuzz"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "ra_send_mtu"
+	if _, ok := i["ra-send-mtu"]; ok {
+		result["ra_send_mtu"] = flattenObjectFspVlanInterfaceIpv6RaSendMtu(i["ra-send-mtu"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "unique_autoconf_addr"
 	if _, ok := i["unique-autoconf-addr"]; ok {
 		result["unique_autoconf_addr"] = flattenObjectFspVlanInterfaceIpv6UniqueAutoconfAddr(i["unique-autoconf-addr"], d, pre_append)
@@ -9394,14 +8048,6 @@ func flattenObjectFspVlanInterfaceIpv6(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFspVlanInterfaceIpv6Autoconf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9410,39 +8056,14 @@ func flattenObjectFspVlanInterfaceIpv6CliConn6Status(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceIpv6Dhcp6ClientOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "rapid",
-			2: "iapd",
-			4: "iana",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceIpv6Dhcp6InformationRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpv6Dhcp6PrefixDelegation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9463,37 +8084,14 @@ func flattenObjectFspVlanInterfaceIpv6Dhcp6RelayIp(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFspVlanInterfaceIpv6Dhcp6RelayService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpv6Dhcp6RelayType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "regular",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpv6Icmp6SendRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9506,21 +8104,7 @@ func flattenObjectFspVlanInterfaceIpv6Ip6Address(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6Allowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "https",
-			2:     "ping",
-			4:     "ssh",
-			8:     "snmp",
-			16:    "http",
-			32:    "telnet",
-			128:   "fgfm",
-			16384: "fabric",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6DefaultLife(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -9597,26 +8181,10 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(v interface{}, d *s
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListOnlinkFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9629,15 +8197,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListRdnss(v interface{},
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListRdnssService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "delegated",
-			1: "default",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9650,14 +8209,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface(v 
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6DnsServerOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9707,14 +8258,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6LinkMtu(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6ManageFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9727,28 +8270,10 @@ func flattenObjectFspVlanInterfaceIpv6Ip6MinInterval(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "dhcp",
-			2: "pppoe",
-			6: "delegated",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6OtherFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9822,14 +8347,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6PrefixList(v interface{}, d *schema.Res
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6PrefixListAutonomousFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9838,14 +8355,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6PrefixListDnssl(v interface{}, d *schem
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6PrefixListOnlinkFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9866,14 +8375,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6PrefixListValidLifeTime(v interface{}, 
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6PrefixMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "dhcp6",
-			2: "ra",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9886,14 +8387,6 @@ func flattenObjectFspVlanInterfaceIpv6Ip6RetransTime(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6SendAdv(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9914,14 +8407,6 @@ func flattenObjectFspVlanInterfaceIpv6NdCgaModifier(v interface{}, d *schema.Res
 }
 
 func flattenObjectFspVlanInterfaceIpv6NdMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "basic",
-			1: "SEND-compatible",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9937,15 +8422,11 @@ func flattenObjectFspVlanInterfaceIpv6NdTimestampFuzz(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFspVlanInterfaceIpv6RaSendMtu(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceIpv6UniqueAutoconfAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -9954,14 +8435,6 @@ func flattenObjectFspVlanInterfaceIpv6Vrip6LinkLocal(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceIpv6VrrpVirtualMac6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10053,14 +8526,6 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanInterfaceIpv6Vrrp6AcceptMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10069,14 +8534,6 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6AdvInterval(v interface{}, d *schema.
 }
 
 func flattenObjectFspVlanInterfaceIpv6Vrrp6Preempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10089,14 +8546,6 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6StartTime(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceIpv6Vrrp6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10117,63 +8566,22 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6Vrip6(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanInterfaceL2Forward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceL2TpClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceLacpHaSlave(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceLacpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "passive",
-			2: "active",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceLacpSpeed(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "slow",
-			1: "fast",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10190,14 +8598,6 @@ func flattenObjectFspVlanInterfaceLinkUpDelay(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceListenForticlientConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10206,40 +8606,14 @@ func flattenObjectFspVlanInterfaceLldpNetworkPolicy(v interface{}, d *schema.Res
 }
 
 func flattenObjectFspVlanInterfaceLldpReception(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "vdom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceLldpTransmission(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "enable",
-			1: "disable",
-			2: "vdom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10248,21 +8622,6 @@ func flattenObjectFspVlanInterfaceMacaddr(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFspVlanInterfaceManagedSubnetworkSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			256:   "256",
-			512:   "512",
-			1024:  "1024",
-			2048:  "2048",
-			4096:  "4096",
-			8192:  "8192",
-			16384: "16384",
-			32768: "32768",
-			65536: "65536",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10287,26 +8646,6 @@ func flattenObjectFspVlanInterfaceMeasuredUpstreamBandwidth(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanInterfaceMediatype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "serdes-sfp",
-			1:  "sgmii-sfp",
-			2:  "cfp2-sr10",
-			3:  "cfp2-lr4",
-			4:  "serdes-copper-sfp",
-			5:  "sr",
-			6:  "cr",
-			7:  "lr",
-			8:  "qsfp28-sr4",
-			9:  "qsfp28-lr4",
-			10: "qsfp28-cr4",
-			11: "sr4",
-			12: "cr4",
-			13: "lr4",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10319,40 +8658,14 @@ func flattenObjectFspVlanInterfaceMinLinks(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfaceMinLinksDown(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "operational",
-			1: "administrative",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "dhcp",
-			2: "pppoe",
-			3: "pppoa",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceMonitorBandwidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10361,26 +8674,10 @@ func flattenObjectFspVlanInterfaceMtu(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFspVlanInterfaceMtuOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceMuxType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "llc-encaps",
-			1: "vc-encaps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10389,40 +8686,14 @@ func flattenObjectFspVlanInterfaceName(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFspVlanInterfaceNdiscforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceNetbiosForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceNetflowSampler(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "tx",
-			2: "rx",
-			3: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10431,26 +8702,10 @@ func flattenObjectFspVlanInterfaceNpQosProfile(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFspVlanInterfaceNpuFastpath(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceNst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10475,14 +8730,6 @@ func flattenObjectFspVlanInterfacePeerInterface(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFspVlanInterfacePhyMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "adsl",
-			2: "vdsl",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10491,14 +8738,6 @@ func flattenObjectFspVlanInterfacePingServStatus(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanInterfacePoe(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10507,41 +8746,14 @@ func flattenObjectFspVlanInterfacePollingInterval(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFspVlanInterfacePppoeUnnumberedNegotiate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfacePptpAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4:  "auto",
-			8:  "pap",
-			16: "chap",
-			32: "mschapv1",
-			64: "mschapv2",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfacePptpClient(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10562,14 +8774,6 @@ func flattenObjectFspVlanInterfacePptpUser(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfacePreserveSessionRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10578,26 +8782,10 @@ func flattenObjectFspVlanInterfacePriority(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfacePriorityOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceProxyCaptivePortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10614,14 +8802,6 @@ func flattenObjectFspVlanInterfaceReplacemsgOverrideGroup(v interface{}, d *sche
 }
 
 func flattenObjectFspVlanInterfaceRetransmission(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10634,29 +8814,10 @@ func flattenObjectFspVlanInterfaceRingTx(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "lan",
-			1: "wan",
-			2: "dmz",
-			3: "undefined",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSampleDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "rx",
-			2: "tx",
-			3: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10665,27 +8826,10 @@ func flattenObjectFspVlanInterfaceSampleRate(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanInterfaceScanBotnetConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "block",
-			2: "monitor",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSecondaryIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10771,38 +8915,11 @@ func flattenObjectFspVlanInterfaceSecondaryip(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceSecondaryipAllowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "https",
-			2:     "ping",
-			4:     "ssh",
-			8:     "snmp",
-			16:    "http",
-			32:    "telnet",
-			128:   "fgfm",
-			512:   "radius-acct",
-			1024:  "probe-response",
-			4096:  "dnp",
-			8192:  "ftm",
-			16384: "fabric",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceSecondaryipDetectprotocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ping",
-			2: "tcp-echo",
-			4: "udp-echo",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceSecondaryipDetectserver(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -10810,14 +8927,6 @@ func flattenObjectFspVlanInterfaceSecondaryipDetectserver(v interface{}, d *sche
 }
 
 func flattenObjectFspVlanInterfaceSecondaryipGwdetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10850,16 +8959,6 @@ func flattenObjectFspVlanInterfaceSecurity8021XMaster(v interface{}, d *schema.R
 }
 
 func flattenObjectFspVlanInterfaceSecurity8021XMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "dynamic-vlan",
-			2: "fallback",
-			3: "slave",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10880,28 +8979,10 @@ func flattenObjectFspVlanInterfaceSecurityGroups(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanInterfaceSecurityMacAuthBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "mac-auth-only",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSecurityMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "none",
-			2: "captive-portal",
-			3: "802.1X",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10914,37 +8995,10 @@ func flattenObjectFspVlanInterfaceServiceName(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceSflowSampler(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSpeed(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:       "auto",
-			2:       "10full",
-			4:       "10half",
-			8:       "100full",
-			16:      "100half",
-			32:      "1000full",
-			64:      "1000half",
-			128:     "10000full",
-			256:     "1000auto",
-			512:     "10000auto",
-			1024:    "40000full",
-			2048:    "100Gfull",
-			1048576: "25000full",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -10953,100 +9007,38 @@ func flattenObjectFspVlanInterfaceSpilloverThreshold(v interface{}, d *schema.Re
 }
 
 func flattenObjectFspVlanInterfaceSrcCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "down",
-			1: "up",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceStp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFspVlanInterfaceStpHaSecondary(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFspVlanInterfaceStpHaSlave(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			2: "priority-adjust",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceStpforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceStpforwardMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "rpl-all-ext-id",
-			1: "rpl-bridge-ext-id",
-			2: "rpl-nothing",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceStripPriorityVlanTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSubst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11067,139 +9059,50 @@ func flattenObjectFspVlanInterfaceSwitch(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerAccessVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerArpInspection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "radius",
-			2: "usergroup",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerDhcpSnooping(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerDhcpSnoopingOption82(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerDhcpSnoopingVerifyMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSwitchControllerDynamic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerFeature(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "default-vlan",
-			2: "quarantine",
-			4: "voice",
-			6: "rspan",
-			7: "video",
-			8: "nac",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerIgmpSnooping(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerIgmpSnoopingFastLeave(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerIgmpSnoopingProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerIotScanning(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11220,26 +9123,10 @@ func flattenObjectFspVlanInterfaceSwitchControllerRadiusServer(v interface{}, d 
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerRspanMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "outbound",
-			2: "fixed",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11248,14 +9135,6 @@ func flattenObjectFspVlanInterfaceSwitchControllerTrafficPolicy(v interface{}, d
 }
 
 func flattenObjectFspVlanInterfaceTcMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ptm",
-			1: "atm",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11264,14 +9143,6 @@ func flattenObjectFspVlanInterfaceTcpMss(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceTrunk(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11300,31 +9171,6 @@ func flattenObjectFspVlanInterfaceTrustIp63(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFspVlanInterfaceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "physical",
-			1:  "vlan",
-			2:  "aggregate",
-			3:  "redundant",
-			4:  "tunnel",
-			5:  "wireless",
-			6:  "vdom-link",
-			7:  "loopback",
-			8:  "switch",
-			9:  "hard-switch",
-			10: "hdlc",
-			11: "vap-switch",
-			12: "wl-mesh",
-			14: "switch-vlan",
-			15: "fctrl-trunk",
-			17: "fext-wan",
-			18: "vxlan",
-			19: "emac-vlan",
-			20: "geneve",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11337,14 +9183,6 @@ func flattenObjectFspVlanInterfaceVci(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectFspVlanInterfaceVectoring(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11353,26 +9191,10 @@ func flattenObjectFspVlanInterfaceVindex(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceVlanProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "8021q",
-			1: "8021ad",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceVlanforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11494,14 +9316,6 @@ func flattenObjectFspVlanInterfaceVrrp(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFspVlanInterfaceVrrpAcceptMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11510,26 +9324,10 @@ func flattenObjectFspVlanInterfaceVrrpAdvInterval(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFspVlanInterfaceVrrpIgnoreDefaultRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceVrrpPreempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11542,26 +9340,10 @@ func flattenObjectFspVlanInterfaceVrrpStartTime(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFspVlanInterfaceVrrpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceVrrpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "2",
-			3: "3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11586,26 +9368,10 @@ func flattenObjectFspVlanInterfaceVrrpVrip(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFspVlanInterfaceVrrpVirtualMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWccp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11618,88 +9384,30 @@ func flattenObjectFspVlanInterfaceWifi5GThreshold(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFspVlanInterfaceWifiAcl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiApBand(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "5g-preferred",
-			2: "5g-only",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "PSK",
-			1: "radius",
-			2: "usergroup",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiAutoConnect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiAutoSave(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiBroadcastSsid(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFspVlanInterfaceWifiEncrypt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "TKIP",
-			1: "AES",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11716,14 +9424,6 @@ func flattenObjectFspVlanInterfaceWifiKeyindex(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFspVlanInterfaceWifiMacFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -11740,21 +9440,6 @@ func flattenObjectFspVlanInterfaceWifiRtsThreshold(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFspVlanInterfaceWifiSecurity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "wep64",
-			2:  "wep128",
-			8:  "open",
-			9:  "wpa-personal",
-			10: "wpa-enterprise",
-			14: "wpa-only-personal",
-			15: "wpa-only-enterprise",
-			16: "wpa2-only-personal",
-			17: "wpa2-only-enterprise",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -13754,6 +11439,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok {
 		result["nd-timestamp-fuzz"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampFuzz(d, i["nd_timestamp_fuzz"], pre_append)
 	}
+	pre_append = pre + ".0." + "ra_send_mtu"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ra-send-mtu"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6RaSendMtu(d, i["ra_send_mtu"], pre_append)
+	}
 	pre_append = pre + ".0." + "unique_autoconf_addr"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["unique-autoconf-addr"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6UniqueAutoconfAddr(d, i["unique_autoconf_addr"], pre_append)
@@ -14124,6 +11813,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampDelta(d *schema.Re
 }
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampFuzz(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingInterfaceIpv6RaSendMtu(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -15174,6 +12867,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok {
 		result["stp"], _ = expandObjectFspVlanInterfaceStp(d, i["stp"], pre_append)
 	}
+	pre_append = pre + ".0." + "stp_ha_secondary"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["stp-ha-secondary"], _ = expandObjectFspVlanInterfaceStpHaSecondary(d, i["stp_ha_secondary"], pre_append)
+	}
 	pre_append = pre + ".0." + "stp_ha_slave"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["stp-ha-slave"], _ = expandObjectFspVlanInterfaceStpHaSlave(d, i["stp_ha_slave"], pre_append)
@@ -15233,6 +12930,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "switch_controller_dhcp_snooping_verify_mac"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["switch-controller-dhcp-snooping-verify-mac"], _ = expandObjectFspVlanInterfaceSwitchControllerDhcpSnoopingVerifyMac(d, i["switch_controller_dhcp_snooping_verify_mac"], pre_append)
+	}
+	pre_append = pre + ".0." + "switch_controller_dynamic"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["switch-controller-dynamic"], _ = expandObjectFspVlanInterfaceSwitchControllerDynamic(d, i["switch_controller_dynamic"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_feature"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -16068,6 +13769,10 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["nd-timestamp-fuzz"], _ = expandObjectFspVlanInterfaceIpv6NdTimestampFuzz(d, i["nd_timestamp_fuzz"], pre_append)
 	}
+	pre_append = pre + ".0." + "ra_send_mtu"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ra-send-mtu"], _ = expandObjectFspVlanInterfaceIpv6RaSendMtu(d, i["ra_send_mtu"], pre_append)
+	}
 	pre_append = pre + ".0." + "unique_autoconf_addr"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["unique-autoconf-addr"], _ = expandObjectFspVlanInterfaceIpv6UniqueAutoconfAddr(d, i["unique_autoconf_addr"], pre_append)
@@ -16438,6 +14143,10 @@ func expandObjectFspVlanInterfaceIpv6NdTimestampDelta(d *schema.ResourceData, v 
 }
 
 func expandObjectFspVlanInterfaceIpv6NdTimestampFuzz(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceIpv6RaSendMtu(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -17008,6 +14717,10 @@ func expandObjectFspVlanInterfaceStp(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceStpHaSecondary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceStpHaSlave(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -17065,6 +14778,10 @@ func expandObjectFspVlanInterfaceSwitchControllerDhcpSnoopingOption82(d *schema.
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerDhcpSnoopingVerifyMac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSwitchControllerDynamic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
