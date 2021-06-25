@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "System Others"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_system_log_ratelimit_device"
 description: |-

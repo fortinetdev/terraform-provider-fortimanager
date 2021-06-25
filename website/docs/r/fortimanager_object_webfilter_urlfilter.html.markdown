@@ -44,7 +44,7 @@ The `entries` block supports:
 * `action` - Action to take for URL filter matches. Valid values: `exempt`, `block`, `allow`, `monitor`, `pass`.
 
 * `antiphish_action` - Action to take for AntiPhishing matches. Valid values: `block`, `log`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `dns_address_family` - Resolve IPv4 address, IPv6 address, or both from DNS server. Valid values: `ipv4`, `ipv6`, `both`.
 
 * `exempt` - If action is set to exempt, select the security profile operations that exempt URLs skip. Separate multiple options with a space. Valid values: `av`, `web-content`, `activex-java-cookie`, `dlp`, `fortiguard`, `all`, `filepattern`, `pass`, `range-block`, `antiphish`.
@@ -73,4 +73,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_webfilter_urlfilter.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

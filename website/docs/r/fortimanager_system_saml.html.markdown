@@ -32,7 +32,7 @@ The following arguments are supported:
 * `entity_id` - SP entity ID.
 * `fabric_idp` - Fabric-Idp. The structure of `fabric_idp` block is documented below.
 * `forticloud_sso` - Enable/disable FortiCloud SSO (default = disable). disable - Disable Forticloud SSO. enable - Enabld Forticloud SSO. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `idp_cert` - IDP Certificate name.
 * `idp_entity_id` - IDP entity ID.
 * `idp_single_logout_url` - IDP single logout url.

@@ -34,7 +34,7 @@ The following arguments are supported:
 * `name` - IPv6 multicast address name.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
 * `visibility` - Enable/disable visibility of the IPv6 multicast address on the GUI. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `tagging` block supports:
@@ -58,4 +58,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_multicastaddress6.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

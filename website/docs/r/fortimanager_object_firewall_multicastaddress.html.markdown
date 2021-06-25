@@ -42,7 +42,7 @@ The following arguments are supported:
 * `type` - Type of address object: multicast IP address range or broadcast IP/mask to be treated as a multicast address. Valid values: `multicastrange`, `broadcastmask`.
 
 * `visibility` - Enable/disable visibility of the multicast address on the GUI. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `tagging` block supports:
@@ -66,4 +66,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_multicastaddress.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

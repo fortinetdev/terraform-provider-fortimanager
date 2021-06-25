@@ -63,7 +63,7 @@ The following arguments are supported:
 * `auto_configuration` - Enable/disable auto configuration. Valid values: `disable`, `enable`.
 
 * `auto_managed_status` - Enable/disable use of this DHCP server once this interface has been assigned an IP address from FortiIPAM. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `conflicted_ip_timeout` - Time in seconds to wait after a conflicted IP address is removed from the DHCP range before it can be reused.
 * `ddns_auth` - DDNS authentication mode. Valid values: `disable`, `tsig`.
 
@@ -78,7 +78,7 @@ The following arguments are supported:
 * `ddns_zone` - Zone of your domain name (ex. DDNS.com).
 * `default_gateway` - Default gateway IP address assigned by the DHCP server.
 * `dhcp_settings_from_fortiipam` - Enable/disable populating of DHCP server settings from FortiIPAM. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `dns_server1` - DNS server 1.
 * `dns_server2` - DNS server 2.
 * `dns_server3` - DNS server 3.
@@ -182,4 +182,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_dhcp_server.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -87,7 +87,7 @@ The following arguments are supported:
 
 * `ipv6_split_tunneling_routing_address` - IPv6 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access.
 * `ipv6_split_tunneling_routing_negate` - Enable to negate IPv6 split tunneling routing address. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `ipv6_tunnel_mode` - Enable/disable IPv6 SSL-VPN tunnel mode. Valid values: `disable`, `enable`.
 
 * `ipv6_wins_server1` - IPv6 WINS server 1.
@@ -105,12 +105,12 @@ The following arguments are supported:
 * `name` - Portal name.
 * `os_check` - Enable to let the FortiGate decide action based on client OS. Valid values: `disable`, `enable`.
 
-* `os_check_list` - Os-Check-List. The structure of `os_check_list` block is documented below.
+* `os_check_list` - Os-Check-List. The structure of `os_check_list` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `prefer_ipv6_dns` - prefer to query IPv6 dns first if enabled. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `redir_url` - Client login redirect URL.
 * `rewrite_ip_uri_ui` - Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `save_password` - Enable/disable FortiClient saving the user's password. Valid values: `disable`, `enable`.
 
 * `service_restriction` - Enable/disable tunnel service restriction. Valid values: `disable`, `enable`.
@@ -132,11 +132,11 @@ The following arguments are supported:
 
 * `split_tunneling_routing_address` - IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access.
 * `split_tunneling_routing_negate` - Enable to negate split tunneling routing address. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `theme` - Web portal color scheme. Valid values: `gray`, `blue`, `orange`, `crimson`, `steelblue`, `darkgrey`, `green`, `melongene`, `red`, `mariner`, `neutrino`.
 
 * `transform_backward_slashes` - Transform backward slashes to forward slashes in URLs. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `tunnel_mode` - Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `disable`, `enable`.
 
 * `use_sdwan` - Use SD-WAN rules to get output interface. Valid values: `disable`, `enable`.
@@ -163,7 +163,7 @@ The `bookmarks` block supports:
 * `apptype` - Application type. Valid values: `web`, `telnet`, `ssh`, `ftp`, `smb`, `vnc`, `rdp`, `citrix`, `rdpnative`, `portforward`, `sftp`.
 
 * `description` - Description.
-* `domain` - Login domain.
+* `domain` - Login domain. (`ver Controlled FortiOS >= 6.4`)
 * `folder` - Network shared file folder parameter.
 * `form_data` - Form-Data. The structure of `form_data` block is documented below.
 * `host` - Host name/IP parameter.
@@ -203,7 +203,7 @@ The `mac_addr_check_rule` block supports:
 * `mac_addr_mask` - Client MAC address mask.
 * `name` - Client MAC address check rule name.
 
-The `os_check_list` block supports:
+The `os_check_list` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `action` - OS check options. Valid values: `allow`, `check-up-to-date`, `deny`.
 
@@ -235,4 +235,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_vpn_ssl_web_portal.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

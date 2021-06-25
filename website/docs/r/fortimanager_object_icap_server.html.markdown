@@ -37,8 +37,8 @@ The following arguments are supported:
 * `name` - Server name.
 * `port` - ICAP server port.
 * `secure` - Enable/disable secure connection to ICAP server. Valid values: `disable`, `enable`.
-
-* `ssl_cert` - CA certificate name.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `ssl_cert` - CA certificate name. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
 
 ## Attribute Reference
@@ -55,4 +55,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_icap_server.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

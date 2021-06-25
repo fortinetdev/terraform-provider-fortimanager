@@ -36,10 +36,10 @@ resource "fortimanager_system_docker" "trname" {
 The following arguments are supported:
 
 
-* `cpu` - Cpu.
+* `cpu` - Cpu. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `default_address_pool_base` - Set default-address-pool CIDR.
 * `default_address_pool_size` - Set default-address-pool size.
-* `docker_user_login_max` - Max login session for docker users.
+* `docker_user_login_max` - Max login session for docker users. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `fortiauthenticator` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `fortiportal` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
@@ -47,10 +47,10 @@ The following arguments are supported:
 * `fortisigconverter` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `fortisoar` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `fortiwlm` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
-* `mem` - Max % RAM usage.
+* `mem` - Max % RAM usage. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `sdwancontroller` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `status` - Enable and set registry. disable - Disable docker host service. enable - Enable production registry. qa - Enable QA test registry. dev - Enable QA test registry (without signature). Valid values: `disable`, `enable`, `qa`, `dev`.

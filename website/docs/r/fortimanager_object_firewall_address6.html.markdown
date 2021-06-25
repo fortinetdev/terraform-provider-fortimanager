@@ -40,25 +40,25 @@ The following arguments are supported:
 * `cache_ttl` - Minimal TTL of individual IPv6 addresses in FQDN cache.
 * `color` - Integer value to determine the color of the icon in the GUI (range 1 to 32, default = 0, which sets the value to 1).
 * `comment` - Comment.
-* `country` - IPv6 addresses associated to a specific country.
+* `country` - IPv6 addresses associated to a specific country. (`ver Controlled FortiOS >= 6.4`)
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `end_ip` - Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-* `end_mac` - Last MAC address in the range.
+* `end_mac` - Last MAC address in the range. (`ver Controlled FortiOS <= 6.4`)
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `fqdn` - Fully qualified domain name.
-* `global_object` - Global Object.
+* `global_object` - Global Object. (`ver Controlled FortiOS = 6.4`)
 * `host` - Host Address.
 * `host_type` - Host type. Valid values: `any`, `specific`.
 
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 * `list` - List. The structure of `list` block is documented below.
-* `macaddr` - Multiple MAC address ranges.
+* `macaddr` - Multiple MAC address ranges. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `name` - Address name.
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
-* `start_mac` - First MAC address in the range.
+* `start_mac` - First MAC address in the range. (`ver Controlled FortiOS <= 6.4`)
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
 * `template` - IPv6 address template.
@@ -66,7 +66,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `visibility` - Enable/disable the visibility of the object in the GUI. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -87,7 +87,7 @@ The `dynamic_mapping` block supports:
 * `host_type` - Host type. Valid values: `any`, `specific`.
 
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
-* `macaddr` - Macaddr.
+* `macaddr` - Macaddr. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -147,4 +147,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_address6.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

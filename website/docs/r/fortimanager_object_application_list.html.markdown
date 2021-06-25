@@ -56,9 +56,9 @@ The following arguments are supported:
 * `other_application_log` - Enable/disable logging for other applications. Valid values: `disable`, `enable`.
 
 * `p2p_block_list` - P2P applications to be blocklisted. Valid values: `skype`, `edonkey`, `bittorrent`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `p2p_black_list` - P2P applications to be black listed. Valid values: `skype`, `edonkey`, `bittorrent`.
-
+ (`ver Controlled FortiOS <= 6.4`)
 * `replacemsg_group` - Replacement message group.
 * `unknown_application_action` - Pass or block traffic from unknown applications. Valid values: `pass`, `block`.
 
@@ -108,17 +108,17 @@ The `entries` block supports:
 * `session_ttl` - Session TTL (0 = default).
 * `shaper` - Traffic shaper.
 * `shaper_reverse` - Reverse traffic shaper.
-* `sub_category` - Application Sub-category ID list.
+* `sub_category` - Application Sub-category ID list. (`ver Controlled FortiOS <= 6.4`)
 * `technology` - Application technology filter.
 * `vendor` - Application vendor filter.
 
 The `parameters` block supports:
 
 * `id` - Parameter ID.
-* `members` - Members. The structure of `members` block is documented below.
-* `value` - Parameter value.
+* `members` - Members. The structure of `members` block is documented below. (`ver Controlled FortiOS >= 6.4`)
+* `value` - Parameter value. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 
-The `members` block supports:
+The `members` block supports (`ver Controlled FortiOS >= 6.4`):
 
 * `id` - Parameter.
 * `name` - Parameter name.
@@ -139,4 +139,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_application_list.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

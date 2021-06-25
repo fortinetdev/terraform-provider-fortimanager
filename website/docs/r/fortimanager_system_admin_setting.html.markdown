@@ -31,8 +31,8 @@ The following arguments are supported:
 * `admin_server_cert` - HTTPS & Web Service server certificate.
 * `allow_register` - Enable/disable allowance of register an unregistered device. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
-* `auth_addr` - IP which is used by FGT to authorize FMG.
-* `auth_port` - Port which is used by FGT to authorize FMG.
+* `auth_addr` - IP which is used by FGT to authorize FMG. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `auth_port` - Port which is used by FGT to authorize FMG. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `auto_update` - Enable/disable FortiGate automatic update. disable - Disable device automatic update. enable - Enable device automatic update. Valid values: `disable`, `enable`.
 
 * `banner_message` - Banner message.
@@ -46,8 +46,8 @@ The following arguments are supported:
 * `http_port` - HTTP port.
 * `https_port` - HTTPS port.
 * `idle_timeout` - Idle timeout (1 - 480 min).
-* `idle_timeout_api` - Idle timeout for API sessions (1 - 28800 sec).
-* `idle_timeout_gui` - Idle timeout for GUI sessions (60 - 28800 sec).
+* `idle_timeout_api` - Idle timeout for API sessions (1 - 28800 sec). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `idle_timeout_gui` - Idle timeout for GUI sessions (60 - 28800 sec). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `install_ifpolicy_only` - Allow install interface policy only. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `mgmt_addr` - IP of FortiManager used by FGFM.

@@ -29,10 +29,10 @@ The following arguments are supported:
 * `admin` - Admin. The structure of `admin` block is documented below.
 * `alertmail` - Alertmail. The structure of `alertmail` block is documented below.
 * `auth` - Auth. The structure of `auth` block is documented below.
-* `automation` - Automation. The structure of `automation` block is documented below.
+* `automation` - Automation. The structure of `automation` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `comment` - Comment.
 * `custom_message` - Custom-Message. The structure of `custom_message` block is documented below.
-* `device_detection_portal` - Device-Detection-Portal. The structure of `device_detection_portal` block is documented below.
+* `device_detection_portal` - Device-Detection-Portal. The structure of `device_detection_portal` block is documented below. (`ver Controlled FortiOS <= 6.4`)
 * `fortiguard_wf` - Fortiguard-Wf. The structure of `fortiguard_wf` block is documented below.
 * `ftp` - Ftp. The structure of `ftp` block is documented below.
 * `group_type` - Group type. Valid values: `default`, `utm`, `auth`, `ec`, `captive-portal`.
@@ -40,14 +40,14 @@ The following arguments are supported:
 * `http` - Http. The structure of `http` block is documented below.
 * `icap` - Icap. The structure of `icap` block is documented below.
 * `mail` - Mail. The structure of `mail` block is documented below.
-* `mm1` - Mm1. The structure of `mm1` block is documented below.
-* `mm3` - Mm3. The structure of `mm3` block is documented below.
-* `mm4` - Mm4. The structure of `mm4` block is documented below.
-* `mm7` - Mm7. The structure of `mm7` block is documented below.
-* `mms` - Mms. The structure of `mms` block is documented below.
+* `mm1` - Mm1. The structure of `mm1` block is documented below. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `mm3` - Mm3. The structure of `mm3` block is documented below. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `mm4` - Mm4. The structure of `mm4` block is documented below. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `mm7` - Mm7. The structure of `mm7` block is documented below. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `mms` - Mms. The structure of `mms` block is documented below. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `nac_quar` - Nac-Quar. The structure of `nac_quar` block is documented below.
 * `name` - Group name.
-* `nntp` - Nntp. The structure of `nntp` block is documented below.
+* `nntp` - Nntp. The structure of `nntp` block is documented below. (`ver Controlled FortiOS <= 6.4`)
 * `spam` - Spam. The structure of `spam` block is documented below.
 * `sslvpn` - Sslvpn. The structure of `sslvpn` block is documented below.
 * `traffic_quota` - Traffic-Quota. The structure of `traffic_quota` block is documented below.
@@ -82,7 +82,7 @@ The `auth` block supports:
 
 * `msg_type` - Message type.
 
-The `automation` block supports:
+The `automation` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`):
 
 * `buffer` - Message string.
 * `format` - Format flag. Valid values: `none`, `text`, `html`.
@@ -100,7 +100,7 @@ The `custom_message` block supports:
 
 * `msg_type` - Message type.
 
-The `device_detection_portal` block supports:
+The `device_detection_portal` block supports (`ver Controlled FortiOS <= 6.4`):
 
 * `buffer` - Message string.
 * `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
@@ -154,7 +154,7 @@ The `mail` block supports:
 
 * `msg_type` - Message type.
 
-The `mm1` block supports:
+The `mm1` block supports (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`):
 
 * `add_smil` - add message encapsulation Valid values: `disable`, `enable`.
 
@@ -182,7 +182,7 @@ The `mm1` block supports:
 * `smil_part` - message encapsulation text
 * `subject` - subject text string
 
-The `mm3` block supports:
+The `mm3` block supports (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`):
 
 * `add_html` - add message encapsulation Valid values: `disable`, `enable`.
 
@@ -203,7 +203,7 @@ The `mm3` block supports:
 
 * `subject` - subject text string
 
-The `mm4` block supports:
+The `mm4` block supports (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`):
 
 * `add_smil` - add message encapsulation Valid values: `disable`, `enable`.
 
@@ -229,7 +229,7 @@ The `mm4` block supports:
 * `smil_part` - message encapsulation text
 * `subject` - subject text string
 
-The `mm7` block supports:
+The `mm7` block supports (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`):
 
 * `add_smil` - add message encapsulation Valid values: `disable`, `enable`.
 
@@ -258,7 +258,7 @@ The `mm7` block supports:
 * `smil_part` - message encapsulation text
 * `subject` - subject text string
 
-The `mms` block supports:
+The `mms` block supports (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`):
 
 * `buffer` - Message string.
 * `charset` - character encoding used for replacement message Valid values: `us-ascii`, `utf-8`.
@@ -279,7 +279,7 @@ The `nac_quar` block supports:
 
 * `msg_type` - Message type.
 
-The `nntp` block supports:
+The `nntp` block supports (`ver Controlled FortiOS <= 6.4`):
 
 * `buffer` - Message string.
 * `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
@@ -348,4 +348,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_replacemsggroup.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

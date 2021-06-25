@@ -30,7 +30,7 @@ The following arguments are supported:
 
 * `domain_controller` - Domain controller setting.
 * `ems_device_owner` - Enable/disable SSH public-key authentication with device owner (default = disable). Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `fsso_agent_for_ntlm` - FSSO agent to use for NTLM authentication.
 * `fsso_guest` - Enable/disable user fsso-guest authentication (default = disable). Valid values: `disable`, `enable`.
 
@@ -42,8 +42,8 @@ The following arguments are supported:
 
 * `require_tfa` - Enable/disable two-factor authentication (default = disable). Valid values: `disable`, `enable`.
 
-* `saml_server` - SAML configuration.
-* `saml_timeout` - SAML authentication timeout in seconds.
+* `saml_server` - SAML configuration. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `saml_timeout` - SAML authentication timeout in seconds. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `ssh_ca` - SSH CA name.
 * `user_database` - Authentication server to contain user information; "local" (default) or "123" (for LDAP).
 
@@ -62,4 +62,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_authentication_scheme.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

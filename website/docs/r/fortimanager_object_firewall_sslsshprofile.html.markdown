@@ -30,47 +30,47 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `allowlist` - Enable/disable exempting servers by FortiGuard allowlist. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `block_blocklisted_certificates` - Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `block_blacklisted_certificates` - Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS <= 6.4`)
 * `caname` - CA certificate used by SSL Inspection.
 * `comment` - Optional comments.
-* `dot` - Dot. The structure of `dot` block is documented below.
-* `ftps` - Ftps. The structure of `ftps` block is documented below.
-* `https` - Https. The structure of `https` block is documented below.
-* `imaps` - Imaps. The structure of `imaps` block is documented below.
+* `dot` - Dot. The structure of `dot` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `ftps` - Ftps. The structure of `ftps` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `https` - Https. The structure of `https` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `imaps` - Imaps. The structure of `imaps` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `mapi_over_https` - Enable/disable inspection of MAPI over HTTPS. Valid values: `disable`, `enable`.
 
 * `name` - Name.
-* `pop3s` - Pop3S. The structure of `pop3s` block is documented below.
+* `pop3s` - Pop3S. The structure of `pop3s` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `rpc_over_https` - Enable/disable inspection of RPC over HTTPS. Valid values: `disable`, `enable`.
 
 * `server_cert` - Certificate used by SSL Inspection to replace server certificate.
 * `server_cert_mode` - Re-sign or replace the server's certificate. Valid values: `re-sign`, `replace`.
 
-* `smtps` - Smtps. The structure of `smtps` block is documented below.
-* `ssh` - Ssh. The structure of `ssh` block is documented below.
-* `ssl` - Ssl. The structure of `ssl` block is documented below.
+* `smtps` - Smtps. The structure of `smtps` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `ssh` - Ssh. The structure of `ssh` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `ssl` - Ssl. The structure of `ssl` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ssl_anomalies_log` - Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 
 * `ssl_exempt` - Ssl-Exempt. The structure of `ssl_exempt` block is documented below.
 * `ssl_exemptions_log` - Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 
 * `ssl_negotiation_log` - Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `ssl_server` - Ssl-Server. The structure of `ssl_server` block is documented below.
 * `supported_alpn` - Configure ALPN option. Valid values: `none`, `http1-1`, `http2`, `all`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `untrusted_caname` - Untrusted CA certificate used by SSL Inspection.
 * `use_ssl_server` - Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
 
 * `whitelist` - Enable/disable exempting servers by FortiGuard whitelist. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS <= 6.4`)
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
-The `dot` block supports:
+The `dot` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`):
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -95,7 +95,7 @@ The `dot` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
-The `ftps` block supports:
+The `ftps` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -119,10 +119,10 @@ The `ftps` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
-The `https` block supports:
+The `https` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cert_probe_failure` - Action based on certificate probe failure. Valid values: `block`, `allow`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
 * `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
@@ -147,7 +147,7 @@ The `https` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
-The `imaps` block supports:
+The `imaps` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -173,7 +173,7 @@ The `imaps` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
-The `pop3s` block supports:
+The `pop3s` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -199,7 +199,7 @@ The `pop3s` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
-The `smtps` block supports:
+The `smtps` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -225,7 +225,7 @@ The `smtps` block supports:
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
-The `ssh` block supports:
+The `ssh` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `inspect_all` - Level of SSL inspection. Valid values: `disable`, `deep-inspection`.
 
@@ -241,7 +241,7 @@ The `ssh` block supports:
 * `unsupported_version` - Action based on SSH version being unsupported. Valid values: `block`, `bypass`.
 
 
-The `ssl` block supports:
+The `ssl` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -278,31 +278,31 @@ The `ssl_exempt` block supports:
 The `ssl_server` block supports:
 
 * `ftps_client_certificate` - Action based on received client certificate during the FTPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `https_client_certificate` - Action based on received client certificate during the HTTPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `ftps_client_cert_request` - Action based on client certificate request during the FTPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `https_client_cert_request` - Action based on client certificate request during the HTTPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `id` - SSL server ID.
 * `imaps_client_certificate` - Action based on received client certificate during the IMAPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `imaps_client_cert_request` - Action based on client certificate request during the IMAPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `ip` - IPv4 address of the SSL server.
 * `pop3s_client_certificate` - Action based on received client certificate during the POP3S handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `smtps_client_certificate` - Action based on received client certificate during the SMTPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `ssl_other_client_certificate` - Action based on received client certificate during an SSL protocol handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `pop3s_client_cert_request` - Action based on client certificate request during the POP3S handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `smtps_client_cert_request` - Action based on client certificate request during the SMTPS handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `ssl_other_client_cert_request` - Action based on client certificate request during an SSL protocol handshake. Valid values: `bypass`, `inspect`, `block`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 
 
 ## Attribute Reference
@@ -319,4 +319,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_sslsshprofile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

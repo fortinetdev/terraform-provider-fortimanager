@@ -29,7 +29,7 @@ The following arguments are supported:
 
 * `_image_base64` - _Image-Base64.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `ip6` - IPv6 address prefix.
 * `name` - IPv6 address template name.
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.
@@ -65,4 +65,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_address6template.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

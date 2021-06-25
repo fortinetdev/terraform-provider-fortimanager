@@ -34,7 +34,7 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `auto_switch_profile` - Auto-Switch_Profile. The structure of `auto_switch_profile` block is documented below.
+* `auto_switch_profile` - Auto-Switch_Profile. The structure of `auto_switch_profile` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `conn_status` - Conn-Status.
 * `default_sim` - Default-Sim. Valid values: `sim1`, `sim2`, `carrier`, `cost`.
 
@@ -56,7 +56,7 @@ The following arguments are supported:
 * `status` - Status. Valid values: `disable`, `enable`.
 
 
-The `auto_switch_profile` block supports:
+The `auto_switch_profile` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `dataplan` - Dataplan. Valid values: `disable`, `enable`.
 
@@ -88,4 +88,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_extendercontroller_sim_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

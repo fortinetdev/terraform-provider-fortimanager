@@ -55,7 +55,7 @@ The following arguments are supported:
 * `account_key_processing` - Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 
 * `antiphish` - Enable/disable AntiPhishing credential backend. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `ca_cert` - CA certificate name.
 * `cnid` - Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
 * `dn` - Distinguished name used to look up entries on the LDAP server.
@@ -73,7 +73,7 @@ The following arguments are supported:
 * `obtain_user_info` - Enable/disable obtaining of user information. Valid values: `disable`, `enable`.
 
 * `password` - Password for initial binding.
-* `password_attr` - Name of attribute to get password hash.
+* `password_attr` - Name of attribute to get password hash. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `password_expiry_warning` - Enable/disable password expiry warnings. Valid values: `disable`, `enable`.
 
 * `password_renewal` - Enable/disable online password renewal. Valid values: `disable`, `enable`.
@@ -88,7 +88,7 @@ The following arguments are supported:
 * `server_identity_check` - Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
 
 * `source_ip` - Source IP for communications to LDAP server.
-* `source_port` - Source port to be used for communication with the LDAP server.
+* `source_port` - Source port to be used for communication with the LDAP server. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
 * `tertiary_server` - Tertiary LDAP server CN domain name or IP.
@@ -112,7 +112,7 @@ The `dynamic_mapping` block supports:
 * `account_key_processing` - Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 
 * `antiphish` - Antiphish. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ca_cert` - CA certificate name.
 * `cnid` - Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
 * `dn` - Distinguished name used to look up entries on the LDAP server.
@@ -131,7 +131,7 @@ The `dynamic_mapping` block supports:
 * `obtain_user_info` - Enable/disable obtaining of user information. Valid values: `disable`, `enable`.
 
 * `password` - Password for initial binding.
-* `password_attr` - Password-Attr.
+* `password_attr` - Password-Attr. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `password_expiry_warning` - Enable/disable password expiry warnings. Valid values: `disable`, `enable`.
 
 * `password_renewal` - Enable/disable online password renewal. Valid values: `disable`, `enable`.
@@ -147,7 +147,7 @@ The `dynamic_mapping` block supports:
 * `server_identity_check` - Enable/disable LDAP server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
 
 * `source_ip` - Source IP for communications to LDAP server.
-* `source_port` - Source-Port.
+* `source_port` - Source-Port. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ssl_min_proto_version` - Minimum supported protocol version for SSL/TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
 
 * `tertiary_server` - Tertiary LDAP server CN domain name or IP.
@@ -182,4 +182,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_user_ldap.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

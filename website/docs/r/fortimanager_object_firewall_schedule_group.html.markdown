@@ -29,8 +29,8 @@ The following arguments are supported:
 
 * `color` - Color of icon on the GUI.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
-* `global_object` - Global Object.
+ (`ver Controlled FortiOS >= 6.4`)
+* `global_object` - Global Object. (`ver Controlled FortiOS = 6.4`)
 * `member` - Schedules added to the schedule group.
 * `name` - Schedule group name.
 
@@ -49,4 +49,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_schedule_group.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

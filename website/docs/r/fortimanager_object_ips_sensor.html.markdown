@@ -44,7 +44,7 @@ The `entries` block supports:
 * `action` - Action taken with traffic in which signatures are detected. Valid values: `pass`, `block`, `reset`, `default`.
 
 * `application` - Applications to be protected. set application ? lists available applications. all includes all applications. other includes all unlisted applications.
-* `cve` - List of CVE IDs of the signatures to add to the sensor
+* `cve` - List of CVE IDs of the signatures to add to the sensor (`ver Controlled FortiOS >= 6.4`)
 * `exempt_ip` - Exempt-Ip. The structure of `exempt_ip` block is documented below.
 * `id` - Rule ID in IPS database (0 - 4294967295).
 * `location` - Protect client or server traffic.
@@ -93,4 +93,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_ips_sensor.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

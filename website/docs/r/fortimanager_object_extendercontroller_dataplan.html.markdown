@@ -62,7 +62,7 @@ The following arguments are supported:
 * `slot` - SIM slot configuration. Valid values: `sim1`, `sim2`.
 
 * `status` - FortiExtender dataplan (enable or disable). Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS = 6.4`)
 * `type` - Type preferences configuration. Valid values: `carrier`, `slot`, `iccid`, `generic`.
 
 * `username` - Username.
@@ -82,4 +82,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_extendercontroller_dataplan.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

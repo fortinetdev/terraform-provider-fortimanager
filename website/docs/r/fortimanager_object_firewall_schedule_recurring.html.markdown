@@ -34,8 +34,8 @@ The following arguments are supported:
 
 * `end` - Time of day to end the schedule, format hh:mm.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
-* `global_object` - Global Object.
+ (`ver Controlled FortiOS >= 6.4`)
+* `global_object` - Global Object. (`ver Controlled FortiOS = 6.4`)
 * `name` - Recurring schedule name.
 * `start` - Time of day to start the schedule, format hh:mm.
 
@@ -54,4 +54,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_schedule_recurring.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

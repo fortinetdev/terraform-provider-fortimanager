@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_policy6_move"
 description: |-

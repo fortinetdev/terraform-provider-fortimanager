@@ -60,7 +60,7 @@ The following arguments are supported:
 * `ipv6_trusthost9` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
 * `last_name` - Last name.
 * `ldap_server` - LDAP server name.
-* `login_max` - Max login session for this user.
+* `login_max` - Max login session for this user. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `meta_data` - Meta-Data. The structure of `meta_data` block is documented below.
 * `mobile_number` - Mobile number.
 * `pager_number` - Pager number.
@@ -90,9 +90,9 @@ The following arguments are supported:
 * `two_factor_auth` - Enable 2-factor authentication (certificate + password). disable - Disable 2-factor authentication. enable - Enable 2-factor authentication. Valid values: `disable`, `enable`.
 
 * `use_global_theme` - Enable/disble global theme for administration GUI. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `user_theme` - Color scheme to use for the admin user GUI. blue - Blueberry green - Kiwi red - Cherry melongene - Plum spring - Spring summer - Summer autumn - Autumn winter - Winter circuit-board - Circuit Board calla-lily - Calla Lily binary-tunnel - Binary Tunnel mars - Mars blue-sea - Blue Sea technology - Technology landscape - Landscape twilight - Twilight canyon - Canyon northern-light - Northern Light astronomy - Astronomy fish - Fish penguin - Penguin mountain - Mountain panda - Panda parrot - Parrot cave - Cave zebra - Zebra contrast-dark - High Contrast Dark Valid values: `blue`, `green`, `red`, `melongene`, `spring`, `summer`, `autumn`, `winter`, `circuit-board`, `calla-lily`, `binary-tunnel`, `mars`, `blue-sea`, `technology`, `landscape`, `twilight`, `canyon`, `northern-light`, `astronomy`, `fish`, `penguin`, `mountain`, `panda`, `parrot`, `cave`, `zebra`, `contrast-dark`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `user_type` - User type. local - Local user. radius - RADIUS user. ldap - LDAP user. tacacs-plus - TACACS+ user. pki-auth - PKI user. group - Group user. sso - SSO user. Valid values: `local`, `radius`, `ldap`, `tacacs-plus`, `pki-auth`, `group`, `sso`.
 
 * `userid` - User name.

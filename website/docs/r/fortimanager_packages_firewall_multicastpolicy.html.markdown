@@ -45,7 +45,7 @@ The following arguments are supported:
 
 * `auto_asic_offload` - Enable/disable offloading policy traffic for hardware acceleration. Valid values: `disable`, `enable`.
 
-* `comments` - Comment.
+* `comments` - Comment. (`ver Controlled FortiOS >= 6.4`)
 * `dnat` - IPv4 DNAT address used for multicast destination addresses.
 * `dstaddr` - Destination address objects.
 * `dstintf` - Destination interface name.
@@ -53,7 +53,7 @@ The following arguments are supported:
 * `fosid` - Policy ID ((0 - 4294967294).
 * `logtraffic` - Enable/disable logging traffic accepted by this policy. Valid values: `disable`, `enable`.
 
-* `name` - Policy name.
+* `name` - Policy name. (`ver Controlled FortiOS >= 6.4`)
 * `protocol` - Integer value for the protocol type as defined by IANA (0 - 255, default = 0).
 * `snat` - Enable/disable substitution of the outgoing interface IP address for the original source IP address (called source NAT or SNAT). Valid values: `disable`, `enable`.
 
@@ -63,7 +63,7 @@ The following arguments are supported:
 * `start_port` - Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
-* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (`ver Controlled FortiOS >= 6.4`)
 
 
 ## Attribute Reference
@@ -81,4 +81,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_multicastpolicy.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

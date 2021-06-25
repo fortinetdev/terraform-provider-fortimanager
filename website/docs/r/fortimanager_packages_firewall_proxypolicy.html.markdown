@@ -49,16 +49,16 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
-* `access_proxy` - Access Proxy.
+* `access_proxy` - Access Proxy. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `action` - Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 
 * `application_list` - Name of an existing Application list.
 * `av_profile` - Name of an existing Antivirus profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Optional comments.
-* `decrypted_traffic_mirror` - Decrypted traffic mirror.
+* `decrypted_traffic_mirror` - Decrypted traffic mirror. (`ver Controlled FortiOS >= 6.4`)
 * `device_ownership` - When enabled, the ownership enforcement will be done at policy level. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `disclaimer` - Web proxy disclaimer setting: by domain, policy, or user. Valid values: `disable`, `domain`, `policy`, `user`.
 
 * `dlp_sensor` - Name of an existing DLP sensor.
@@ -68,7 +68,7 @@ The following arguments are supported:
 * `dstaddr6` - IPv6 destination address objects.
 * `dstintf` - Destination interface names.
 * `emailfilter_profile` - Name of an existing email filter profile.
-* `file_filter_profile` - Name of an existing file-filter profile.
+* `file_filter_profile` - Name of an existing file-filter profile. (`ver Controlled FortiOS >= 6.4`)
 * `global_label` - Global web-based manager visible label.
 * `groups` - Names of group objects.
 * `http_tunnel_auth` - Enable/disable HTTP tunnel authentication. Valid values: `disable`, `enable`.
@@ -79,8 +79,8 @@ The following arguments are supported:
 * `internet_service_custom` - Custom Internet Service name.
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
-* `internet_service_name` - Internet Service name.
-* `internet_service_id` - Internet Service ID.
+* `internet_service_name` - Internet Service name. (`ver Controlled FortiOS >= 6.4`)
+* `internet_service_id` - Internet Service ID. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `internet_service_negate` - When enabled, Internet Services match against any internet service EXCEPT the selected Internet Service. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
@@ -89,8 +89,8 @@ The following arguments are supported:
 
 * `logtraffic_start` - Enable/disable policy log traffic start. Valid values: `disable`, `enable`.
 
-* `name` - Policy name.
-* `mms_profile` - Name of an existing MMS profile.
+* `name` - Policy name. (`ver Controlled FortiOS >= 6.4`)
+* `mms_profile` - Name of an existing MMS profile. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `policyid` - Policy ID.
 * `poolname` - Name of IP pool object.
 * `profile_group` - Name of profile group.
@@ -123,8 +123,8 @@ The following arguments are supported:
 * `utm_status` - Enable the use of UTM profiles/sensors/lists. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-* `videofilter_profile` - Name of an existing VideoFilter profile.
-* `voip_profile` - Name of an existing VoIP profile.
+* `videofilter_profile` - Name of an existing VideoFilter profile. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `voip_profile` - Name of an existing VoIP profile. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `waf_profile` - Name of an existing Web application firewall profile.
 * `webcache` - Enable/disable web caching. Valid values: `disable`, `enable`.
 
@@ -133,7 +133,7 @@ The following arguments are supported:
 * `webfilter_profile` - Name of an existing Web filter profile.
 * `webproxy_forward_server` - Web proxy forward server name.
 * `webproxy_profile` - Name of web proxy profile.
-* `ztna_ems_tag` - ZTNA EMS Tag names.
+* `ztna_ems_tag` - ZTNA EMS Tag names. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
 
 ## Attribute Reference
@@ -151,4 +151,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_proxypolicy.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

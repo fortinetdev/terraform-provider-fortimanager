@@ -28,17 +28,17 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `auth_group` - Optionally add an authentication group to restrict access to the WAN Optimization tunnel to peers in the authentication group.
-* `cifs` - Cifs. The structure of `cifs` block is documented below.
+* `cifs` - Cifs. The structure of `cifs` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `comments` - Comment.
-* `ftp` - Ftp. The structure of `ftp` block is documented below.
-* `http` - Http. The structure of `http` block is documented below.
-* `mapi` - Mapi. The structure of `mapi` block is documented below.
+* `ftp` - Ftp. The structure of `ftp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `http` - Http. The structure of `http` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `mapi` - Mapi. The structure of `mapi` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `name` - Profile name.
-* `tcp` - Tcp. The structure of `tcp` block is documented below.
+* `tcp` - Tcp. The structure of `tcp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `transparent` - Enable/disable transparent mode. Valid values: `disable`, `enable`.
 
 
-The `cifs` block supports:
+The `cifs` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `byte_caching` - Enable/disable byte-caching. Byte caching reduces the amount of traffic by caching file data sent across the WAN and in future serving if from the cache. Valid values: `disable`, `enable`.
 
@@ -55,26 +55,7 @@ The `cifs` block supports:
 * `tunnel_sharing` - Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
 
 
-The `ftp` block supports:
-
-* `byte_caching` - Enable/disable byte-caching. Byte caching reduces the amount of traffic by caching file data sent across the WAN and in future serving if from the cache. Valid values: `disable`, `enable`.
-
-* `log_traffic` - Enable/disable logging. Valid values: `disable`, `enable`.
-
-* `prefer_chunking` - Select dynamic or fixed-size data chunking for WAN Optimization. Valid values: `dynamic`, `fix`.
-
-* `protocol_opt` - Select Protocol specific optimitation or generic TCP optimization. Valid values: `protocol`, `tcp`.
-
-* `secure_tunnel` - Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `disable`, `enable`.
-
-* `ssl` - Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `disable`, `enable`.
-
-* `status` - Enable/disable WAN Optimization. Valid values: `disable`, `enable`.
-
-* `tunnel_sharing` - Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
-
-
-The `http` block supports:
+The `ftp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `byte_caching` - Enable/disable byte-caching. Byte caching reduces the amount of traffic by caching file data sent across the WAN and in future serving if from the cache. Valid values: `disable`, `enable`.
 
@@ -93,7 +74,26 @@ The `http` block supports:
 * `tunnel_sharing` - Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
 
 
-The `mapi` block supports:
+The `http` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
+
+* `byte_caching` - Enable/disable byte-caching. Byte caching reduces the amount of traffic by caching file data sent across the WAN and in future serving if from the cache. Valid values: `disable`, `enable`.
+
+* `log_traffic` - Enable/disable logging. Valid values: `disable`, `enable`.
+
+* `prefer_chunking` - Select dynamic or fixed-size data chunking for WAN Optimization. Valid values: `dynamic`, `fix`.
+
+* `protocol_opt` - Select Protocol specific optimitation or generic TCP optimization. Valid values: `protocol`, `tcp`.
+
+* `secure_tunnel` - Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `disable`, `enable`.
+
+* `ssl` - Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `disable`, `enable`.
+
+* `status` - Enable/disable WAN Optimization. Valid values: `disable`, `enable`.
+
+* `tunnel_sharing` - Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
+
+
+The `mapi` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `byte_caching` - Enable/disable byte-caching. Byte caching reduces the amount of traffic by caching file data sent across the WAN and in future serving if from the cache. Valid values: `disable`, `enable`.
 
@@ -106,7 +106,7 @@ The `mapi` block supports:
 * `tunnel_sharing` - Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
 
 
-The `tcp` block supports:
+The `tcp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `byte_caching` - Enable/disable byte-caching. Byte caching reduces the amount of traffic by caching file data sent across the WAN and in future serving if from the cache. Valid values: `disable`, `enable`.
 
@@ -140,4 +140,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_wanopt_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

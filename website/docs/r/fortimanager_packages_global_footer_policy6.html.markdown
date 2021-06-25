@@ -56,7 +56,7 @@ The following arguments are supported:
 * `deep_inspection_options` - Deep-Inspection-Options.
 * `device_detection_portal` - Device-Detection-Portal. Valid values: `disable`, `enable`.
 
-* `devices` - Devices.
+* `devices` - Devices. (`ver Controlled FortiOS >= 6.4`)
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
 * `diffserv_reverse` - Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `disable`, `enable`.

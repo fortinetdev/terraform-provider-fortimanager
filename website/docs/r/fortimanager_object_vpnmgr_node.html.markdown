@@ -97,7 +97,7 @@ The following arguments are supported:
 * `ipv4_end_ip` - Ipv4-End-Ip.
 * `ipv4_exclude_range` - Ipv4-Exclude-Range. The structure of `ipv4_exclude_range` block is documented below.
 * `ipv4_netmask` - Ipv4-Netmask.
-* `ipv4_split_exclude` - Ipv4-Split-Exclude.
+* `ipv4_split_exclude` - Ipv4-Split-Exclude. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ipv4_split_include` - Ipv4-Split-Include.
 * `ipv4_start_ip` - Ipv4-Start-Ip.
 * `ipv4_wins_server1` - Ipv4-Wins-Server1.
@@ -173,4 +173,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_vpnmgr_node.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -41,9 +41,9 @@ The following arguments are supported:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `fqdn` - Fully qualified domain name.
-* `global_object` - Global Object.
+* `global_object` - Global Object. (`ver Controlled FortiOS = 6.4`)
 * `helper` - Helper name. Valid values: `disable`, `auto`, `ftp`, `tftp`, `ras`, `h323`, `tns`, `mms`, `sip`, `pptp`, `rtsp`, `dns-udp`, `dns-tcp`, `pmap`, `rsh`, `dcerpc`, `mgcp`, `gtp-c`, `gtp-u`, `gtp-b`.
 
 * `icmpcode` - ICMP code.
@@ -60,7 +60,7 @@ The following arguments are supported:
 * `tcp_halfclose_timer` - Wait time to close a TCP session waiting for an unanswered FIN packet (1 - 86400 sec, 0 = default).
 * `tcp_halfopen_timer` - Wait time to close a TCP session waiting for an unanswered open session packet (1 - 86400 sec, 0 = default).
 * `tcp_portrange` - Multiple TCP port ranges.
-* `tcp_rst_timer` - Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default).
+* `tcp_rst_timer` - Set the length of the TCP CLOSE state in seconds (5 - 300 sec, 0 = default). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `tcp_timewait_timer` - Set the length of the TCP TIME-WAIT state in seconds (1 - 300 sec, 0 = default).
 * `udp_idle_timer` - UDP half close timeout (0 - 86400 sec, 0 = default).
 * `udp_portrange` - Multiple UDP port ranges.
@@ -82,4 +82,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_service_custom.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -38,8 +38,8 @@ The following arguments are supported:
 * `defmap_zonemember` - Defmap-Zonemember.
 * `description` - Description.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
-* `egress_shaping_profile` - Egress-Shaping-Profile.
-* `ingress_shaping_profile` - Ingress-Shaping-Profile.
+* `egress_shaping_profile` - Egress-Shaping-Profile. (`ver Controlled FortiOS <= 6.4`)
+* `ingress_shaping_profile` - Ingress-Shaping-Profile. (`ver Controlled FortiOS <= 6.4`)
 * `name` - Name.
 * `platform_mapping` - Platform_Mapping. The structure of `platform_mapping` block is documented below.
 * `single_intf` - Single-Intf. Valid values: `disable`, `enable`.
@@ -49,8 +49,8 @@ The following arguments are supported:
 The `dynamic_mapping` block supports:
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
-* `egress_shaping_profile` - Egress-Shaping-Profile.
-* `ingress_shaping_profile` - Ingress-Shaping-Profile.
+* `egress_shaping_profile` - Egress-Shaping-Profile. (`ver Controlled FortiOS <= 6.4`)
+* `ingress_shaping_profile` - Ingress-Shaping-Profile. (`ver Controlled FortiOS <= 6.4`)
 * `intrazone_deny` - Intrazone-Deny. Valid values: `disable`, `enable`.
 
 * `local_intf` - Local-Intf.
@@ -62,8 +62,8 @@ The `_scope` block supports:
 
 The `platform_mapping` block supports:
 
-* `egress_shaping_profile` - Egress-Shaping-Profile.
-* `ingress_shaping_profile` - Ingress-Shaping-Profile.
+* `egress_shaping_profile` - Egress-Shaping-Profile. (`ver Controlled FortiOS <= 6.4`)
+* `ingress_shaping_profile` - Ingress-Shaping-Profile. (`ver Controlled FortiOS <= 6.4`)
 * `intf_zone` - Intf-Zone.
 * `intrazone_deny` - Intrazone-Deny. Valid values: `disable`, `enable`.
 
@@ -84,4 +84,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_dynamic_interface.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

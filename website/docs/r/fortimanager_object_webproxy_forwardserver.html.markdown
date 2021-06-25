@@ -43,11 +43,11 @@ The following arguments are supported:
 * `ip` - Forward proxy server IP address.
 * `monitor` - URL for forward server health check monitoring (default = http://www.google.com).
 * `name` - Server name.
-* `password` - HTTP authentication password.
+* `password` - HTTP authentication password. (`ver Controlled FortiOS >= 6.4`)
 * `port` - Port number that the forwarding server expects to receive HTTP sessions on (1 - 65535, default = 3128).
 * `server_down_option` - Action to take when the forward server is found to be down: block sessions until the server is back up or pass sessions to their destination. Valid values: `block`, `pass`.
 
-* `username` - HTTP authentication user name.
+* `username` - HTTP authentication user name. (`ver Controlled FortiOS >= 6.4`)
 
 
 ## Attribute Reference
@@ -64,4 +64,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_webproxy_forwardserver.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

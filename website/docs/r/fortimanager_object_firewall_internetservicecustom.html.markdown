@@ -28,7 +28,7 @@ The following arguments are supported:
 
 * `comment` - Comment.
 * `entry` - Entry. The structure of `entry` block is documented below.
-* `fosid` - Internet Service ID.
+* `fosid` - Internet Service ID. (`ver Controlled FortiOS >= 6.4`)
 * `name` - Internet Service name.
 * `reputation` - Reputation level of the custom Internet Service.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -61,4 +61,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_internetservicecustom.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

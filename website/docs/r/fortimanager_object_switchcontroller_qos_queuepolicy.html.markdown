@@ -41,7 +41,7 @@ The `cos_queue` block supports:
 * `drop_policy` - COS queue drop policy. Valid values: `taildrop`, `weighted-random-early-detection`.
 
 * `ecn` - Enable/disable ECN packet marking to drop eligible packets. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `max_rate` - Maximum rate (0 - 4294967295 kbps, 0 to disable).
 * `max_rate_percent` - Maximum rate (16100036777f link speed).
 * `min_rate` - Minimum rate (0 - 4294967295 kbps, 0 to disable).
@@ -64,4 +64,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_switchcontroller_qos_queuepolicy.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

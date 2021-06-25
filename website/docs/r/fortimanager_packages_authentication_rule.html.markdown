@@ -33,8 +33,8 @@ The following arguments are supported:
 
 * `active_auth_method` - Select an active authentication method.
 * `comments` - Comment.
-* `dstaddr` - Select an IPv4 destination address from available options. Required for web proxy authentication.
-* `dstaddr6` - Select an IPv6 destination address from available options. Required for web proxy authentication.
+* `dstaddr` - Select an IPv4 destination address from available options. Required for web proxy authentication. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `dstaddr6` - Select an IPv6 destination address from available options. Required for web proxy authentication. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `ip_based` - Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `disable`, `enable`.
 
 * `name` - Authentication rule name.
@@ -42,7 +42,7 @@ The following arguments are supported:
 
 * `srcaddr` - Select an IPv4 source address from available options. Required for web proxy authentication.
 * `srcaddr6` - Select an IPv6 source address. Required for web proxy authentication.
-* `srcintf` - Incoming (ingress) interface.
+* `srcintf` - Incoming (ingress) interface. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sso_auth_method` - Select a single-sign on (SSO) authentication method.
 * `status` - Enable/disable this authentication rule. Valid values: `disable`, `enable`.
 
@@ -69,4 +69,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_authentication_rule.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

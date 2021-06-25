@@ -44,24 +44,24 @@ The following arguments are supported:
 * `country` - IP addresses associated to a specific country.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `end_ip` - Final IP address (inclusive) in the range for the address.
-* `end_mac` - Last MAC address in the range.
+* `end_mac` - Last MAC address in the range. (`ver Controlled FortiOS <= 6.4`)
 * `epg_name` - Endpoint group name.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `filter` - Match criteria filter.
 * `fqdn` - Fully Qualified Domain Name address.
 * `fsso_group` - FSSO group(s).
-* `global_object` - Global Object.
+* `global_object` - Global Object. (`ver Controlled FortiOS = 6.4`)
 * `interface` - Name of interface whose IP address is to be used.
 * `list` - List. The structure of `list` block is documented below.
-* `macaddr` - Multiple MAC address ranges.
+* `macaddr` - Multiple MAC address ranges. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `name` - Address name.
 * `node_ip_only` - Enable/disable collection of node addresses only in Kubernetes. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `obj_id` - Object ID for NSX.
-* `obj_tag` - Tag of dynamic address object.
+* `obj_tag` - Tag of dynamic address object. (`ver Controlled FortiOS >= 6.4`)
 * `obj_type` - Object type. Valid values: `ip`, `mac`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `organization` - Organization domain name (Syntax: organization/domain).
 * `policy_group` - Policy group name.
 * `sdn` - SDN.
@@ -69,7 +69,7 @@ The following arguments are supported:
 
 * `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address.
-* `start_mac` - First MAC address in the range.
+* `start_mac` - First MAC address in the range. (`ver Controlled FortiOS <= 6.4`)
 * `sub_type` - Sub-type of address. Valid values: `sdn`, `clearpass-spt`, `fsso`, `ems-tag`.
 
 * `subnet` - IP address and subnet mask of address.
@@ -80,7 +80,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `visibility` - Enable/disable address visibility in the GUI. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `wildcard` - IP address and wildcard netmask.
 * `wildcard_fqdn` - Fully Qualified Domain Name with wildcard characters.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -108,9 +108,9 @@ The `dynamic_mapping` block supports:
 * `fsso_group` - FSSO group(s).
 * `global_object` - Global-Object.
 * `interface` - Name of interface whose IP address is to be used.
-* `macaddr` - Macaddr.
+* `macaddr` - Macaddr. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `node_ip_only` - Node-Ip-Only. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `obj_id` - Object ID for NSX.
 * `obj_tag` - Obj-Tag.
 * `obj_type` - Obj-Type. Valid values: `ip`, `mac`.
@@ -170,4 +170,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_address.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

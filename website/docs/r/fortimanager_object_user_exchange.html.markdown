@@ -35,20 +35,20 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `addr_type` - Addr-Type. Valid values: `ipv4`, `ipv6`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `auth_level` - Authentication security level used for the RPC protocol layer. Valid values: `low`, `medium`, `normal`, `high`, `connect`, `call`, `packet`, `integrity`, `privacy`.
 
 * `auth_type` - Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
 
 * `auto_discover_kdc` - Enable/disable automatic discovery of KDC IP addresses. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `connect_protocol` - Connection protocol used to connect to MS Exchange service. Valid values: `rpc-over-tcp`, `rpc-over-http`, `rpc-over-https`.
 
 * `domain_name` - MS Exchange server fully qualified domain name.
 * `http_auth_type` - Authentication security type used for the HTTP transport. Valid values: `ntlm`, `basic`.
 
 * `ip` - Server IPv4 address.
-* `ip6` - Ip6.
+* `ip6` - Ip6. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `kdc_ip` - KDC IPv4 addresses for Kerberos authentication.
 * `name` - MS Exchange server entry name.
 * `password` - Password for the specified username.
@@ -72,4 +72,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_user_exchange.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

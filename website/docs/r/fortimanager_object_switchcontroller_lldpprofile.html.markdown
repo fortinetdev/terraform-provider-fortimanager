@@ -42,7 +42,7 @@ The following arguments are supported:
 * `auto_isl_port_group` - Auto inter-switch LAG port group ID (0 - 9).
 * `auto_isl_receive_timeout` - Auto inter-switch LAG timeout if no response is received (3 - 90 sec, default = 9).
 * `auto_mclag_icl` - Enable/disable MCLAG inter chassis link. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `custom_tlvs` - Custom-Tlvs. The structure of `custom_tlvs` block is documented below.
 * `med_location_service` - Med-Location-Service. The structure of `med_location_service` block is documented below.
 * `med_network_policy` - Med-Network-Policy. The structure of `med_network_policy` block is documented below.
@@ -92,4 +92,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_switchcontroller_lldpprofile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

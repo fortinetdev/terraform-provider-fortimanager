@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Firewall"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_firewall_accessproxy_move"
 description: |-

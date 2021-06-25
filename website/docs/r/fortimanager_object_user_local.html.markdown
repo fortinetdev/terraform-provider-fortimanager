@@ -68,7 +68,7 @@ The following arguments are supported:
 * `type` - Authentication method. Valid values: `password`, `radius`, `tacacs+`, `ldap`.
 
 * `username_case_insensitivity` - Username-Case-Insensitivity. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS = 6.4`)
 * `username_case_sensitivity` - Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 
 * `workstation` - Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
@@ -88,4 +88,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_user_local.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -32,15 +32,15 @@ The following arguments are supported:
 * `_dhcp_status` - _Dhcp-Status. Valid values: `disable`, `enable`.
 
 * `color` - Color.
-* `dhcp_server` - Dhcp-Server. The structure of `dhcp_server` block is documented below.
+* `dhcp_server` - Dhcp-Server. The structure of `dhcp_server` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
-* `interface` - Interface. The structure of `interface` block is documented below.
+* `interface` - Interface. The structure of `interface` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `name` - Name.
 * `vdom` - Vdom.
 * `vlanid` - Vlanid.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
-The `dhcp_server` block supports:
+The `dhcp_server` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `auto_configuration` - Enable/disable auto configuration. Valid values: `disable`, `enable`.
 
@@ -160,15 +160,15 @@ The `dynamic_mapping` block supports:
 * `_dhcp_status` - _Dhcp-Status. Valid values: `disable`, `enable`.
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
-* `dhcp_server` - Dhcp-Server. The structure of `dhcp_server` block is documented below.
-* `interface` - Interface. The structure of `interface` block is documented below.
+* `dhcp_server` - Dhcp-Server. The structure of `dhcp_server` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `interface` - Interface. The structure of `interface` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 
 The `_scope` block supports:
 
 * `name` - Name.
 * `vdom` - Vdom.
 
-The `dhcp_server` block supports:
+The `dhcp_server` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `auto_configuration` - Enable/disable auto configuration. Valid values: `disable`, `enable`.
 
@@ -283,7 +283,7 @@ The `reserved_address` block supports:
 * `type` - DHCP reserved-address type. Valid values: `mac`, `option82`.
 
 
-The `interface` block supports:
+The `interface` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `dhcp_relay_agent_option` - Dhcp-Relay-Agent-Option. Valid values: `disable`, `enable`.
 
@@ -424,7 +424,7 @@ The `secondaryip` block supports:
 * `ping_serv_status` - Ping-Serv-Status.
 * `seq` - Seq.
 
-The `interface` block supports:
+The `interface` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `ac_name` - PPPoE server name.
 * `aggregate` - Aggregate.
@@ -990,4 +990,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_fsp_vlan.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

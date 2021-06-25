@@ -34,72 +34,72 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `analytics_accept_filetype` - Only submit files matching this DLP file-pattern to FortiSandbox.
-* `analytics_bl_filetype` - Only submit files matching this DLP file-pattern to FortiSandbox.
+* `analytics_accept_filetype` - Only submit files matching this DLP file-pattern to FortiSandbox. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `analytics_bl_filetype` - Only submit files matching this DLP file-pattern to FortiSandbox. (`ver Controlled FortiOS <= 6.4`)
 * `analytics_db` - Enable/disable using the FortiSandbox signature database to supplement the AV signature databases. Valid values: `disable`, `enable`.
 
-* `analytics_ignore_filetype` - Do not submit files matching this DLP file-pattern to FortiSandbox.
+* `analytics_ignore_filetype` - Do not submit files matching this DLP file-pattern to FortiSandbox. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `analytics_max_upload` - Maximum size of files that can be uploaded to FortiSandbox (1 - 395 MBytes, default = 10).
-* `analytics_wl_filetype` - Do not submit files matching this DLP file-pattern to FortiSandbox.
+* `analytics_wl_filetype` - Do not submit files matching this DLP file-pattern to FortiSandbox. (`ver Controlled FortiOS <= 6.4`)
 * `av_block_log` - Enable/disable logging for AntiVirus file blocking. Valid values: `disable`, `enable`.
 
 * `av_virus_log` - Enable/disable AntiVirus logging. Valid values: `disable`, `enable`.
 
-* `cifs` - Cifs. The structure of `cifs` block is documented below.
+* `cifs` - Cifs. The structure of `cifs` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `comment` - Comment.
-* `content_disarm` - Content-Disarm. The structure of `content_disarm` block is documented below.
+* `content_disarm` - Content-Disarm. The structure of `content_disarm` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ems_threat_feed` - Enable/disable use of EMS threat feed when performing AntiVirus scan. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `extended_log` - Enable/disable extended logging for antivirus. Valid values: `disable`, `enable`.
 
-* `external_blocklist` - One or more external malware block lists.
+* `external_blocklist` - One or more external malware block lists. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `external_blocklist_archive_scan` - Enable/disable external-blocklist archive scanning. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `external_blocklist_enable_all` - Enable/disable all external blocklists. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `ftgd_analytics` - Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 
-* `ftp` - Ftp. The structure of `ftp` block is documented below.
-* `http` - Http. The structure of `http` block is documented below.
-* `imap` - Imap. The structure of `imap` block is documented below.
-* `mapi` - Mapi. The structure of `mapi` block is documented below.
+* `ftp` - Ftp. The structure of `ftp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `http` - Http. The structure of `http` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `imap` - Imap. The structure of `imap` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `mapi` - Mapi. The structure of `mapi` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `mobile_malware_db` - Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
 
-* `nac_quar` - Nac-Quar. The structure of `nac_quar` block is documented below.
+* `nac_quar` - Nac-Quar. The structure of `nac_quar` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `name` - Profile name.
-* `nntp` - Nntp. The structure of `nntp` block is documented below.
+* `nntp` - Nntp. The structure of `nntp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `outbreak_prevention_archive_scan` - Enable/disable outbreak-prevention archive scanning. Valid values: `disable`, `enable`.
-
-* `outbreak_prevention` - Outbreak-Prevention. The structure of `outbreak_prevention` block is documented below.
-* `pop3` - Pop3. The structure of `pop3` block is documented below.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `outbreak_prevention` - Outbreak-Prevention. The structure of `outbreak_prevention` block is documented below. (`ver Error Version`)
+* `pop3` - Pop3. The structure of `pop3` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `replacemsg_group` - Replacement message group customized for this profile.
 * `scan_mode` - Choose between default scan mode and legacy scan mode. Valid values: `quick`, `full`, `legacy`, `default`.
 
-* `smtp` - Smtp. The structure of `smtp` block is documented below.
-* `ssh` - Ssh. The structure of `ssh` block is documented below.
+* `smtp` - Smtp. The structure of `smtp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `ssh` - Ssh. The structure of `ssh` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 
-The `cifs` block supports:
+The `cifs` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `quarantine`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `content_disarm` block supports:
+The `content_disarm` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `cover_page` - Enable/disable inserting a cover page into the disarmed document. Valid values: `disable`, `enable`.
 
@@ -140,54 +140,54 @@ The `content_disarm` block supports:
 * `pdf_javacode` - Enable/disable stripping of JavaScript code in PDF documents. Valid values: `disable`, `enable`.
 
 
-The `ftp` block supports:
+The `ftp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `http` block supports:
+The `http` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `content_disarm` - Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`, `strict-file`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `imap` block supports:
+The `imap` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `content_disarm` - Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
@@ -195,36 +195,36 @@ The `imap` block supports:
 * `executables` - Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable IMAP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `mapi` block supports:
+The `mapi` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `executables` - Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable MAPI AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `nac_quar` block supports:
+The `nac_quar` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `expiry` - Duration of quarantine.
 * `infected` - Enable/Disable quarantining infected hosts to the banned user list. Valid values: `none`, `quar-src-ip`, `quar-interface`.
@@ -232,40 +232,40 @@ The `nac_quar` block supports:
 * `log` - Enable/disable AntiVirus quarantine logging. Valid values: `disable`, `enable`.
 
 
-The `nntp` block supports:
+The `nntp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `outbreak_prevention` block supports:
+The `outbreak_prevention` block supports (`ver Error Version`):
 
 * `external_blocklist` - Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
 
 * `ftgd_service` - Enable/disable FortiGuard Virus outbreak prevention service. Valid values: `disable`, `enable`.
 
 
-The `pop3` block supports:
+The `pop3` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `content_disarm` - Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
@@ -273,22 +273,22 @@ The `pop3` block supports:
 * `executables` - Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `smtp` block supports:
+The `smtp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `content_disarm` - Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
 
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
@@ -296,32 +296,32 @@ The `smtp` block supports:
 * `executables` - Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
-
-The `ssh` block supports:
+The `ssh` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `options` - Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `avmonitor`, `quarantine`, `scan`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
 
 ## Attribute Reference
@@ -338,4 +338,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_antivirus_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

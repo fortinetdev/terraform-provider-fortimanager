@@ -40,7 +40,7 @@ The following arguments are supported:
 * `comments` - Comment.
 * `dstaddr` - Destination address object from available options.
 * `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `ha_mgmt_intf_only` - Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `disable`, `enable`.
 
 * `intf` - Incoming interface name from available options.
@@ -48,13 +48,13 @@ The following arguments are supported:
 * `schedule` - Schedule object from available options.
 * `service` - Service object from available options.
 * `service_negate` - When enabled service specifies what the service must NOT be. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `srcaddr` - Source address object from available options.
 * `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `status` - Enable/disable this local-in policy. Valid values: `disable`, `enable`.
 
-* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (`ver Controlled FortiOS >= 6.4`)
 
 
 ## Attribute Reference
@@ -72,4 +72,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_localinpolicy.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

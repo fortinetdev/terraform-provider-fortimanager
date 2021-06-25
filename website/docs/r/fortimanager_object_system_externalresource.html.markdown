@@ -19,9 +19,9 @@ The following arguments are supported:
 
 * `category` - User resource category.
 * `comments` - Comment.
-* `interface` - Specify outgoing interface to reach server.
+* `interface` - Specify outgoing interface to reach server. (`ver Controlled FortiOS >= 6.4`)
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `name` - External resource name.
 * `password` - HTTP basic authentication password.
 * `refresh_rate` - Time interval to refresh external resource (1 - 43200 min, default = 5 min).
@@ -31,9 +31,9 @@ The following arguments are supported:
 
 * `type` - User resource type. Valid values: `category`, `address`, `domain`, `malware`.
 
-* `user_agent` - Override HTTP User-Agent header used when retrieving this external resource.
+* `user_agent` - Override HTTP User-Agent header used when retrieving this external resource. (`ver Controlled FortiOS >= 6.4`)
 * `username` - HTTP basic authentication user name.
-* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
 
 ## Attribute Reference
@@ -50,4 +50,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_externalresource.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -21,12 +21,12 @@ The following arguments are supported:
 
 * `auth_fail_vlan_id` - VLAN ID on which authentication failed.
 * `auth_fail_vlanid` - VLAN ID on which authentication failed.
-* `authserver_timeout_period` - Authentication server timeout period (3 - 15 sec, default = 3).
+* `authserver_timeout_period` - Authentication server timeout period (3 - 15 sec, default = 3). (`ver Controlled FortiOS >= 6.4`)
 * `authserver_timeout_vlan` - Enable/disable the authentication server timeout VLAN to allow limited access when RADIUS is unavailable. Valid values: `disable`, `enable`.
-
-* `authserver_timeout_vlanid` - Authentication server timeout VLAN name.
+ (`ver Controlled FortiOS >= 6.4`)
+* `authserver_timeout_vlanid` - Authentication server timeout VLAN name. (`ver Controlled FortiOS >= 6.4`)
 * `eap_auto_untagged_vlans` - Enable/disable automatic inclusion of untagged VLANs. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `eap_passthru` - Enable/disable EAP pass-through mode, allowing protocols (such as LLDP) to pass through ports for more flexible authentication. Valid values: `disable`, `enable`.
 
 * `framevid_apply` - Enable/disable the capability to apply the EAP/MAB frame VLAN to the port native VLAN. Valid values: `disable`, `enable`.
@@ -64,4 +64,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_switchcontroller_securitypolicy_8021x.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

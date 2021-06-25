@@ -40,7 +40,7 @@ The following arguments are supported:
 * `allow_routing` - Enable/disable use of this group in the static route configuration. Valid values: `disable`, `enable`.
 
 * `category` - Address group category. Valid values: `default`, `ztna-ems-tag`, `ztna-geo-tag`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
@@ -48,16 +48,16 @@ The following arguments are supported:
 
 * `exclude_member` - Address exclusion member.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
-
-* `global_object` - Global Object.
+ (`ver Controlled FortiOS >= 6.4`)
+* `global_object` - Global Object. (`ver Controlled FortiOS = 6.4`)
 * `member` - Address objects contained within the group.
 * `name` - Address group name.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
 * `type` - Address group type. Valid values: `default`, `array`, `folder`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `visibility` - Enable/disable address visibility in the GUI. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -67,7 +67,7 @@ The `dynamic_mapping` block supports:
 * `allow_routing` - Enable/disable use of this group in the static route configuration. Valid values: `disable`, `enable`.
 
 * `category` - Category. Valid values: `default`, `ztna-ems-tag`, `ztna-geo-tag`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `exclude` - Enable/disable address exclusion. Valid values: `disable`, `enable`.
@@ -110,4 +110,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_addrgrp.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

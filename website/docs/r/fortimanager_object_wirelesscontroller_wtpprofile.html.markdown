@@ -48,8 +48,8 @@ The following arguments are supported:
 * `ap_country` - Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM). Valid values: `AL`, `DZ`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BH`, `BD`, `BY`, `BE`, `BZ`, `BO`, `BA`, `BR`, `BN`, `BG`, `CA`, `CL`, `CN`, `CO`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DO`, `EC`, `EG`, `SV`, `EE`, `FI`, `FR`, `GE`, `DE`, `GR`, `GT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IR`, `IE`, `IL`, `IT`, `JM`, `JP`, `JO`, `KZ`, `KE`, `KP`, `KR`, `KW`, `LV`, `LB`, `LI`, `LT`, `LU`, `MO`, `MK`, `MY`, `MT`, `MX`, `MC`, `MA`, `NP`, `NL`, `AN`, `NZ`, `NO`, `OM`, `PK`, `PA`, `PG`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RO`, `RU`, `SA`, `SG`, `SK`, `SI`, `ZA`, `ES`, `LK`, `SE`, `CH`, `SY`, `TW`, `TH`, `TT`, `TN`, `TR`, `AE`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VE`, `VN`, `YE`, `ZW`, `NA`, `BS`, `VC`, `KH`, `MV`, `TZ`, `SN`, `CI`, `GH`, `SD`, `MW`, `AO`, `RW`, `MZ`, `UG`, `BF`, `CF`, `RS`, `ME`, `KY`, `BB`, `TC`, `GD`, `GL`, `TM`, `VU`, `GU`, `FM`, `PY`, `HT`, `GY`, `AW`, `KN`, `MM`, `LC`, `ZB`, `CX`.
 
 * `ap_handoff` - Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `disable`, `enable`.
-
-* `apcfg_profile` - AP local configuration profile name.
+ (`ver Controlled FortiOS >= 6.4`)
+* `apcfg_profile` - AP local configuration profile name. (`ver Controlled FortiOS >= 6.4`)
 * `ble_profile` - Bluetooth Low Energy profile name.
 * `comment` - Comment.
 * `control_message_offload` - Enable/disable CAPWAP control message data channel offload. Valid values: `ebp-frame`, `aeroscout-tag`, `ap-list`, `sta-list`, `sta-cap-list`, `stats`, `aeroscout-mu`, `sta-health`, `spectral-analysis`.
@@ -64,15 +64,15 @@ The following arguments are supported:
 * `ext_info_enable` - Enable/disable station/VAP/radio extension information. Valid values: `disable`, `enable`.
 
 * `frequency_handoff` - Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `handoff_roaming` - Enable/disable client load balancing during roaming to avoid roaming delay (default = disable). Valid values: `disable`, `enable`.
 
 * `handoff_rssi` - Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
 * `handoff_sta_thresh` - Threshold value for AP handoff.
 * `ip_fragment_preventing` - Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 
-* `lan` - Lan. The structure of `lan` block is documented below.
-* `lbs` - Lbs. The structure of `lbs` block is documented below.
+* `lan` - Lan. The structure of `lan` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `lbs` - Lbs. The structure of `lbs` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `led_schedules` - Recurring firewall schedules for illuminating LEDs on the FortiAP. If led-state is enabled, LEDs will be visible when at least one of the schedules is valid. Separate multiple schedule names with a space.
 * `led_state` - Enable/disable use of LEDs on WTP (default = disable). Valid values: `disable`, `enable`.
 
@@ -83,15 +83,15 @@ The following arguments are supported:
 
 * `max_clients` - Maximum number of stations (STAs) supported by the WTP (default = 0, meaning no client limitation).
 * `name` - WTP (or FortiAP or AP) profile name.
-* `platform` - Platform. The structure of `platform` block is documented below.
+* `platform` - Platform. The structure of `platform` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `poe_mode` - Set the WTP, FortiAP, or AP's PoE mode. Valid values: `auto`, `8023af`, `8023at`, `power-adapter`, `full`, `high`, `low`.
 
-* `radio_1` - Radio-1. The structure of `radio_1` block is documented below.
-* `radio_2` - Radio-2. The structure of `radio_2` block is documented below.
-* `radio_3` - Radio-3. The structure of `radio_3` block is documented below.
-* `radio_4` - Radio-4. The structure of `radio_4` block is documented below.
+* `radio_1` - Radio-1. The structure of `radio_1` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `radio_2` - Radio-2. The structure of `radio_2` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `radio_3` - Radio-3. The structure of `radio_3` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `radio_4` - Radio-4. The structure of `radio_4` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `snmp` - Snmp. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `split_tunneling_acl` - Split-Tunneling-Acl. The structure of `split_tunneling_acl` block is documented below.
 * `split_tunneling_acl_local_ap_subnet` - Enable/disable automatically adding local subnetwork of FortiAP to split-tunneling ACL (default = disable). Valid values: `disable`, `enable`.
 
@@ -108,7 +108,7 @@ The `deny_mac_list` block supports:
 * `id` - ID.
 * `mac` - A WiFi device with this MAC address is denied access to this WTP, FortiAP or AP.
 
-The `lan` block supports:
+The `lan` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `port_esl_mode` - ESL port mode. Valid values: `offline`, `bridge-to-wan`, `bridge-to-ssid`, `nat-to-wan`.
 
@@ -141,7 +141,7 @@ The `lan` block supports:
 
 * `port8_ssid` - Bridge LAN port 8 to SSID.
 
-The `lbs` block supports:
+The `lbs` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `aeroscout` - Enable/disable AeroScout Real Time Location Service (RTLS) support (default = disable). Valid values: `disable`, `enable`.
 
@@ -176,7 +176,7 @@ The `lbs` block supports:
 * `station_locate` - Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `disable`, `enable`.
 
 
-The `platform` block supports:
+The `platform` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `_local_platform_str` - _Local_Platform_Str.
 * `ddscan` - Enable/disable use of one radio for dedicated dual-band scanning to detect RF characterization and wireless threat management. Valid values: `disable`, `enable`.
@@ -186,7 +186,7 @@ The `platform` block supports:
 * `type` - WTP, FortiAP or AP platform type. There are built-in WTP profiles for all supported FortiAP models. You can select a built-in profile and customize it or create a new profile. Valid values: `30B-50B`, `60B`, `80CM-81CM`, `220A`, `220B`, `210B`, `60C`, `222B`, `112B`, `320B`, `11C`, `14C`, `223B`, `28C`, `320C`, `221C`, `25D`, `222C`, `224D`, `214B`, `21D`, `24D`, `112D`, `223C`, `321C`, `C220C`, `C225C`, `S321C`, `S323C`, `FWF`, `S311C`, `S313C`, `AP-11N`, `S322C`, `S321CR`, `S322CR`, `S323CR`, `S421E`, `S422E`, `S423E`, `421E`, `423E`, `C221E`, `C226E`, `C23JD`, `C24JE`, `C21D`, `U421E`, `U423E`, `221E`, `222E`, `223E`, `S221E`, `S223E`, `U221EV`, `U223EV`, `U321EV`, `U323EV`, `224E`, `U422EV`, `U24JEV`, `321E`, `U431F`, `U433F`, `231E`, `431F`, `433F`, `231F`, `432F`, `234F`, `23JF`, `U231F`, `831F`, `U234F`, `U432F`.
 
 
-The `radio_1` block supports:
+The `radio_1` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
@@ -238,38 +238,38 @@ The `radio_1` block supports:
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-
-* `iperf_server_port` - Iperf service port number.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `iperf_server_port` - Iperf service port number. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 1. Radio 1 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-
-* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-* `sam_bssid` - BSSID for WiFi network.
+* `sam_bssid` - BSSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
-
-* `sam_password` - Passphrase for WiFi network connection.
-* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_password` - Passphrase for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
-
-* `sam_server` - SAM test server IP address or domain name.
-* `sam_ssid` - SSID for WiFi network.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_server` - SAM test server IP address or domain name. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_ssid` - SSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-
-* `sam_username` - Username for WiFi network connection.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_username` - Username for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
-
+ (`ver Error Version`)
 * `transmit_optimize` - Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 
 * `vap_all` - Configure method for assigning SSIDs to this FortiAP (default = automatically assign tunnel SSIDs). Valid values: `disable`, `enable`, `tunnel`, `bridge`, `manual`.
@@ -287,7 +287,7 @@ The `radio_1` block supports:
 * `zero_wait_dfs` - Enable/disable zero wait DFS on radio (default = enable). Valid values: `disable`, `enable`.
 
 
-The `radio_2` block supports:
+The `radio_2` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
@@ -339,38 +339,38 @@ The `radio_2` block supports:
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-
-* `iperf_server_port` - Iperf service port number.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `iperf_server_port` - Iperf service port number. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 2. Radio 2 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-
-* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-* `sam_bssid` - BSSID for WiFi network.
+* `sam_bssid` - BSSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
-
-* `sam_password` - Passphrase for WiFi network connection.
-* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_password` - Passphrase for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
-
-* `sam_server` - SAM test server IP address or domain name.
-* `sam_ssid` - SSID for WiFi network.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_server` - SAM test server IP address or domain name. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_ssid` - SSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-
-* `sam_username` - Username for WiFi network connection.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_username` - Username for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
-
+ (`ver Error Version`)
 * `transmit_optimize` - Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 
 * `vap_all` - Configure method for assigning SSIDs to this FortiAP (default = automatically assign tunnel SSIDs). Valid values: `disable`, `enable`, `tunnel`, `bridge`, `manual`.
@@ -388,7 +388,7 @@ The `radio_2` block supports:
 * `zero_wait_dfs` - Enable/disable zero wait DFS on radio (default = enable). Valid values: `disable`, `enable`.
 
 
-The `radio_3` block supports:
+The `radio_3` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
@@ -440,38 +440,38 @@ The `radio_3` block supports:
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-
-* `iperf_server_port` - Iperf service port number.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `iperf_server_port` - Iperf service port number. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-
-* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-* `sam_bssid` - BSSID for WiFi network.
+* `sam_bssid` - BSSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
-
-* `sam_password` - Passphrase for WiFi network connection.
-* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_password` - Passphrase for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
-
-* `sam_server` - SAM test server IP address or domain name.
-* `sam_ssid` - SSID for WiFi network.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_server` - SAM test server IP address or domain name. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_ssid` - SSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-
-* `sam_username` - Username for WiFi network connection.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_username` - Username for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
-
+ (`ver Error Version`)
 * `transmit_optimize` - Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 
 * `vap_all` - Configure method for assigning SSIDs to this FortiAP (default = automatically assign tunnel SSIDs). Valid values: `disable`, `enable`, `tunnel`, `bridge`, `manual`.
@@ -489,7 +489,7 @@ The `radio_3` block supports:
 * `zero_wait_dfs` - Enable/disable zero wait DFS on radio (default = enable). Valid values: `disable`, `enable`.
 
 
-The `radio_4` block supports:
+The `radio_4` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
@@ -541,38 +541,38 @@ The `radio_4` block supports:
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
-
-* `iperf_server_port` - Iperf service port number.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `iperf_server_port` - Iperf service port number. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `ap`, `monitor`, `sniffer`, `disabled`, `sam`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
-
-* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27).
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `power_value` - Radio EIRP power in dBm (1 - 33, default = 27). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `powersave_optimize` - Enable client power-saving features such as TIM, AC VO, and OBSS etc. Valid values: `tim`, `ac-vo`, `no-obss-scan`, `no-11b-rate`, `client-rate-follow`.
 
 * `protection_mode` - Enable/disable 802.11g protection modes to support backwards compatibility with older clients (rtscts, ctsonly, disable). Valid values: `rtscts`, `ctsonly`, `disable`.
 
 * `radio_id` - Radio-Id.
 * `rts_threshold` - Maximum packet size for RTS transmissions, specifying the maximum size of a data packet before RTS/CTS (256 - 2346 bytes, default = 2346).
-* `sam_bssid` - BSSID for WiFi network.
+* `sam_bssid` - BSSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
-
-* `sam_password` - Passphrase for WiFi network connection.
-* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_password` - Passphrase for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_report_intv` - SAM report interval (sec), 0 for a one-time report. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
-
-* `sam_server` - SAM test server IP address or domain name.
-* `sam_ssid` - SSID for WiFi network.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_server` - SAM test server IP address or domain name. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_ssid` - SSID for WiFi network. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
-
-* `sam_username` - Username for WiFi network connection.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `sam_username` - Username for WiFi network connection. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `short_guard_interval` - Use either the short guard interval (Short GI) of 400 ns or the long guard interval (Long GI) of 800 ns. Valid values: `disable`, `enable`.
 
 * `spectrum_analysis` - Spectrum-Analysis. Valid values: `disable`, `enable`, `scan-only`.
-
+ (`ver Error Version`)
 * `transmit_optimize` - Packet transmission optimization options including power saving, aggregation limiting, retry limiting, etc. All are enabled by default. Valid values: `disable`, `power-save`, `aggr-limit`, `retry-limit`, `send-bar`.
 
 * `vap_all` - Configure method for assigning SSIDs to this FortiAP (default = automatically assign tunnel SSIDs). Valid values: `disable`, `enable`, `tunnel`, `bridge`, `manual`.
@@ -610,4 +610,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_wirelesscontroller_wtpprofile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

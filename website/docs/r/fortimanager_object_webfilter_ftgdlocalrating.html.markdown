@@ -28,7 +28,7 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `comment` - Comment.
+* `comment` - Comment. (`ver Controlled FortiOS >= 6.4`)
 * `rating` - Local rating.
 * `status` - Enable/disable local rating. Valid values: `disable`, `enable`.
 
@@ -49,4 +49,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_webfilter_ftgdlocalrating.labelname {{url}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

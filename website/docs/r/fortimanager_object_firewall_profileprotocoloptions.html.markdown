@@ -26,33 +26,33 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `cifs` - Cifs. The structure of `cifs` block is documented below.
+* `cifs` - Cifs. The structure of `cifs` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `comment` - Optional comments.
-* `dns` - Dns. The structure of `dns` block is documented below.
+* `dns` - Dns. The structure of `dns` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `feature_set` - Feature-Set. Valid values: `proxy`, `flow`.
-
-* `ftp` - Ftp. The structure of `ftp` block is documented below.
-* `http` - Http. The structure of `http` block is documented below.
-* `imap` - Imap. The structure of `imap` block is documented below.
-* `mail_signature` - Mail-Signature. The structure of `mail_signature` block is documented below.
-* `mapi` - Mapi. The structure of `mapi` block is documented below.
+ (`ver Controlled FortiOS = 6.4`)
+* `ftp` - Ftp. The structure of `ftp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `http` - Http. The structure of `http` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `imap` - Imap. The structure of `imap` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `mail_signature` - Mail-Signature. The structure of `mail_signature` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `mapi` - Mapi. The structure of `mapi` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `name` - Name.
-* `nntp` - Nntp. The structure of `nntp` block is documented below.
+* `nntp` - Nntp. The structure of `nntp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `oversize_log` - Enable/disable logging for antivirus oversize file blocking. Valid values: `disable`, `enable`.
 
-* `pop3` - Pop3. The structure of `pop3` block is documented below.
+* `pop3` - Pop3. The structure of `pop3` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `replacemsg_group` - Name of the replacement message group to be used
 * `rpc_over_http` - Enable/disable inspection of RPC over HTTP. Valid values: `disable`, `enable`.
 
-* `smtp` - Smtp. The structure of `smtp` block is documented below.
-* `ssh` - Ssh. The structure of `ssh` block is documented below.
+* `smtp` - Smtp. The structure of `smtp` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `ssh` - Ssh. The structure of `ssh` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `switching_protocols_log` - Enable/disable logging for HTTP/HTTPS switching protocols. Valid values: `disable`, `enable`.
 
 
-The `cifs` block supports:
+The `cifs` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `domain_controller` - Domain for which to decrypt CIFS traffic.
-* `file_filter` - File-Filter. The structure of `file_filter` block is documented below.
+* `file_filter` - File-Filter. The structure of `file_filter` block is documented below. (`ver Error Version`)
 * `options` - One or more options that can be applied to the session. Valid values: `oversize`.
 
 * `oversize_limit` - Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
@@ -72,7 +72,7 @@ The `cifs` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `file_filter` block supports:
+The `file_filter` block supports (`ver Error Version`):
 
 * `entries` - Entries. The structure of `entries` block is documented below.
 * `log` - Enable/disable file filter logging. Valid values: `disable`, `enable`.
@@ -98,13 +98,13 @@ The `server_keytab` block supports:
 * `password` - Password for keytab.
 * `principal` - Service principal.  For example, "host/cifsserver.example.com@example.com".
 
-The `dns` block supports:
+The `dns` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `ports` - Ports to scan for content (1 - 65535, default = 53).
 * `status` - Enable/disable the active status of scanning for this protocol. Valid values: `disable`, `enable`.
 
 
-The `ftp` block supports:
+The `ftp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
@@ -120,23 +120,23 @@ The `ftp` block supports:
 
 * `status` - Enable/disable the active status of scanning for this protocol. Valid values: `disable`, `enable`.
 
-* `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
-* `tcp_window_maximum` - Maximum dynamic TCP window size.
-* `tcp_window_minimum` - Minimum dynamic TCP window size.
-* `tcp_window_size` - Set TCP static window size.
+* `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `tcp_window_maximum` - Maximum dynamic TCP window size. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `tcp_window_minimum` - Minimum dynamic TCP window size. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `tcp_window_size` - Set TCP static window size. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `tcp_window_type` - TCP window type to use for this protocol. Valid values: `system`, `static`, `dynamic`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `http` block supports:
+The `http` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `block_page_status_code` - Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
 * `fortinet_bar` - Fortinet-Bar. Valid values: `disable`, `enable`.
-
-* `fortinet_bar_port` - Fortinet-Bar-Port.
+ (`ver Error Version`)
+* `fortinet_bar_port` - Fortinet-Bar-Port. (`ver Error Version`)
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
 * `options` - One or more options that can be applied to the session. Valid values: `oversize`, `chunkedbypass`, `clientcomfort`, `no-content-summary`, `servercomfort`.
@@ -175,7 +175,7 @@ The `http` block supports:
 * `unknown_http_version` - How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `best-effort`, `reject`, `tunnel`.
 
 
-The `imap` block supports:
+The `imap` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
@@ -194,13 +194,13 @@ The `imap` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `mail_signature` block supports:
+The `mail_signature` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `signature` - Email signature to be added to outgoing email (if the signature contains spaces, enclose with quotation marks).
 * `status` - Enable/disable adding an email signature to SMTP email messages as they pass through the FortiGate. Valid values: `disable`, `enable`.
 
 
-The `mapi` block supports:
+The `mapi` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `options` - One or more options that can be applied to the session. Valid values: `fragmail`, `oversize`, `no-content-summary`.
 
@@ -213,7 +213,7 @@ The `mapi` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `nntp` block supports:
+The `nntp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
@@ -230,7 +230,7 @@ The `nntp` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `pop3` block supports:
+The `pop3` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
@@ -249,7 +249,7 @@ The `pop3` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `smtp` block supports:
+The `smtp` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
@@ -270,7 +270,7 @@ The `smtp` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
-The `ssh` block supports:
+The `ssh` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
@@ -280,13 +280,13 @@ The `ssh` block supports:
 * `scan_bzip2` - Enable/disable scanning of BZip2 compressed files. Valid values: `disable`, `enable`.
 
 * `ssl_offloaded` - SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
-
-* `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
-* `tcp_window_maximum` - Maximum dynamic TCP window size.
-* `tcp_window_minimum` - Minimum dynamic TCP window size.
-* `tcp_window_size` - Set TCP static window size.
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `tcp_window_maximum` - Maximum dynamic TCP window size. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `tcp_window_minimum` - Minimum dynamic TCP window size. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
+* `tcp_window_size` - Set TCP static window size. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `tcp_window_type` - TCP window type to use for this protocol. Valid values: `system`, `static`, `dynamic`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
@@ -305,4 +305,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_profileprotocoloptions.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

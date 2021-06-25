@@ -35,9 +35,9 @@ The following arguments are supported:
 
 * `comment` - Comment.
 * `dns_translation` - Dns-Translation. The structure of `dns_translation` block is documented below.
-* `domain_filter` - Domain-Filter. The structure of `domain_filter` block is documented below.
+* `domain_filter` - Domain-Filter. The structure of `domain_filter` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `external_ip_blocklist` - One or more external IP block lists.
-* `ftgd_dns` - Ftgd-Dns. The structure of `ftgd_dns` block is documented below.
+* `ftgd_dns` - Ftgd-Dns. The structure of `ftgd_dns` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `log_all_domain` - Enable/disable logging of all domains visited (detailed DNS logging). Valid values: `disable`, `enable`.
 
 * `name` - Profile name.
@@ -67,11 +67,11 @@ The `dns_translation` block supports:
 * `status` - Enable/disable this DNS translation entry. Valid values: `disable`, `enable`.
 
 
-The `domain_filter` block supports:
+The `domain_filter` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `domain_filter_table` - DNS domain filter table ID.
 
-The `ftgd_dns` block supports:
+The `ftgd_dns` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `filters` - Filters. The structure of `filters` block is documented below.
 * `options` - FortiGuard DNS filter options. Valid values: `error-allow`, `ftgd-disable`.
@@ -101,4 +101,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_dnsfilter_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

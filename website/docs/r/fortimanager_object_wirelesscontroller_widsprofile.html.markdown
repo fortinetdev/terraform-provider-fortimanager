@@ -66,10 +66,10 @@ The following arguments are supported:
 * `ap_auto_suppress` - Enable/disable on-wire rogue AP auto-suppression (default = disable). Valid values: `disable`, `enable`.
 
 * `ap_bgscan_disable_day` - Ap-Bgscan-Disable-Day. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
-
-* `ap_bgscan_disable_end` - Ap-Bgscan-Disable-End.
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `ap_bgscan_disable_end` - Ap-Bgscan-Disable-End. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `ap_bgscan_disable_schedules` - Firewall schedules for turning off FortiAP radio background scan. Background scan will be disabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
-* `ap_bgscan_disable_start` - Ap-Bgscan-Disable-Start.
+* `ap_bgscan_disable_start` - Ap-Bgscan-Disable-Start. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `ap_bgscan_duration` - Listening time on a scanning channel (10 - 1000 msec, default = 20).
 * `ap_bgscan_idle` - Waiting time for channel inactivity before scanning this channel (0 - 1000 msec, default = 0).
 * `ap_bgscan_intv` - Period of time between scanning two channels (1 - 600 sec, default = 1).
@@ -151,4 +151,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_wirelesscontroller_widsprofile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

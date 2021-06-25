@@ -38,15 +38,15 @@ The following arguments are supported:
 
 * `comments` - Comment.
 * `dst_addr` - Destination address name from available addresses.
-* `dst_addr6` - IPv6 Destination address.
+* `dst_addr6` - IPv6 Destination address. (`ver Controlled FortiOS >= 6.4`)
 * `dstintf` - Destination interface name from available interfaces.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
 
 * `nat_ippool` - Name of the IP pools to be used to translate addresses from available IP Pools.
-* `nat_ippool6` - IPv6 pools to be used for source NAT.
+* `nat_ippool6` - IPv6 pools to be used for source NAT. (`ver Controlled FortiOS >= 6.4`)
 * `nat_port` - Translated port or port range (0 to 65535).
 * `orig_addr` - Original address.
-* `orig_addr6` - IPv6 Original address.
+* `orig_addr6` - IPv6 Original address. (`ver Controlled FortiOS >= 6.4`)
 * `orig_port` - Original TCP port (0 to 65535).
 * `policyid` - Policy ID.
 * `protocol` - Integer value for the protocol type (0 - 255).
@@ -54,8 +54,8 @@ The following arguments are supported:
 * `status` - Enable/disable the active status of this policy. Valid values: `disable`, `enable`.
 
 * `type` - IPv4/IPv6 source NAT. Valid values: `ipv4`, `ipv6`.
-
-* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+ (`ver Controlled FortiOS >= 6.4`)
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset). (`ver Controlled FortiOS >= 6.4`)
 
 
 ## Attribute Reference
@@ -73,4 +73,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_centralsnatmap.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -37,7 +37,7 @@ The following arguments are supported:
 * `extended_log` - Enable/disable extended logging for data leak prevention. Valid values: `disable`, `enable`.
 
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `filter` - Filter. The structure of `filter` block is documented below.
 * `full_archive_proto` - Protocols to always content archive. Valid values: `imap`, `smtp`, `pop3`, `ftp`, `nntp`, `mm1`, `mm3`, `mm4`, `mm7`, `mapi`, `aim`, `icq`, `msn`, `yahoo`, `http-get`, `http-post`, `cifs`, `ssh`.
 
@@ -90,4 +90,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_dlp_sensor.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

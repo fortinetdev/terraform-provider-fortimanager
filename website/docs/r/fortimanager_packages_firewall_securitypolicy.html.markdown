@@ -29,16 +29,16 @@ The following arguments are supported:
 * `comments` - Comment.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
-* `dstaddr` - Destination IPv4 address name and address group names.
+* `dstaddr` - Destination IPv4 address name and address group names. (`ver Controlled FortiOS >= 6.4`)
 * `dstaddr_negate` - When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
-
-* `dstaddr4` - Destination IPv4 address name and address group names.
+ (`ver Controlled FortiOS >= 6.4`)
+* `dstaddr4` - Destination IPv4 address name and address group names. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `dstaddr6` - Destination IPv6 address name and address group names.
 * `dstintf` - Outgoing (egress) interface.
 * `emailfilter_profile` - Name of an existing email filter profile.
 * `enforce_default_app_port` - Enable/disable default application port enforcement for allowed applications. Valid values: `disable`, `enable`.
 
-* `file_filter_profile` - Name of an existing file-filter profile.
+* `file_filter_profile` - Name of an existing file-filter profile. (`ver Controlled FortiOS >= 6.4`)
 * `fsso_groups` - Names of FSSO groups.
 * `global_label` - Label for the policy that appears when the GUI is in Global View mode.
 * `groups` - Names of user groups that can authenticate with this policy.
@@ -48,8 +48,8 @@ The following arguments are supported:
 * `internet_service_custom` - Custom Internet Service name.
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
-* `internet_service_name` - Internet Service name.
-* `internet_service_id` - Internet Service ID.
+* `internet_service_name` - Internet Service name. (`ver Controlled FortiOS >= 6.4`)
+* `internet_service_id` - Internet Service ID. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `internet_service_negate` - When enabled internet-service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `internet_service_src` - Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
@@ -57,18 +57,18 @@ The following arguments are supported:
 * `internet_service_src_custom` - Custom Internet Service source name.
 * `internet_service_src_custom_group` - Custom Internet Service source group name.
 * `internet_service_src_group` - Internet Service source group name.
-* `internet_service_src_name` - Internet Service source name.
-* `internet_service_src_id` - Internet Service source ID.
+* `internet_service_src_name` - Internet Service source name. (`ver Controlled FortiOS >= 6.4`)
+* `internet_service_src_id` - Internet Service source ID. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
 * `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `logtraffic` - Enable or disable logging. Log all sessions or security profile sessions. Valid values: `disable`, `all`, `utm`.
 
 * `logtraffic_start` - Record logs when a session starts. Valid values: `disable`, `enable`.
-
-* `mms_profile` - Name of an existing MMS profile.
+ (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `mms_profile` - Name of an existing MMS profile. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `name` - Policy name.
 * `policyid` - Policy ID.
 * `profile_group` - Name of profile group.
@@ -81,10 +81,10 @@ The following arguments are supported:
 * `service` - Service and service group names.
 * `service_negate` - When enabled service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
-* `srcaddr` - Source IPv4 address name and address group names.
+* `srcaddr` - Source IPv4 address name and address group names. (`ver Controlled FortiOS >= 6.4`)
 * `srcaddr_negate` - When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `disable`, `enable`.
-
-* `srcaddr4` - Source IPv4 address name and address group names.
+ (`ver Controlled FortiOS >= 6.4`)
+* `srcaddr4` - Source IPv4 address name and address group names. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `srcaddr6` - Source IPv6 address name and address group names.
 * `srcintf` - Incoming (ingress) interface.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
@@ -96,7 +96,7 @@ The following arguments are supported:
 * `utm_status` - Enable security profiles. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-* `videofilter_profile` - Name of an existing VideoFilter profile.
+* `videofilter_profile` - Name of an existing VideoFilter profile. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `voip_profile` - Name of an existing VoIP profile.
 * `webfilter_profile` - Name of an existing Web filter profile.
 
@@ -116,4 +116,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_securitypolicy.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -42,13 +42,13 @@ The following arguments are supported:
 
 * `_local_cert` - _Local_Cert.
 * `access_key` - AWS / ACS access key ID.
-* `api_key` - IBM cloud API key or service ID API key.
+* `api_key` - IBM cloud API key or service ID API key. (`ver Controlled FortiOS >= 6.4`)
 * `azure_region` - Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
 
 * `client_id` - Azure client ID (application ID).
 * `client_secret` - Azure client secret (application key).
 * `compartment_id` - Compartment ID.
-* `compute_generation` - Compute generation for IBM cloud infrastructure.
+* `compute_generation` - Compute generation for IBM cloud infrastructure. (`ver Controlled FortiOS >= 6.4`)
 * `domain` - Domain name.
 * `external_ip` - External-Ip. The structure of `external_ip` block is documented below.
 * `gcp_project` - GCP project name.
@@ -56,13 +56,13 @@ The following arguments are supported:
 * `ha_status` - Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 
 * `ibm_region` - IBM cloud region name. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `ibm_region_gen1` - Ibm-Region-Gen1. Valid values: `us-south`, `us-east`, `germany`, `great-britain`, `japan`, `australia`.
-
+ (`ver Controlled FortiOS = 6.4`)
 * `ibm_region_gen2` - Ibm-Region-Gen2. Valid values: `us-south`, `us-east`, `great-britain`.
-
+ (`ver Controlled FortiOS = 6.4`)
 * `key_passwd` - Private key password.
-* `last_update` - Last-Update.
+* `last_update` - Last-Update. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `login_endpoint` - Azure Stack login endpoint.
 * `name` - SDN connector name.
 * `nic` - Nic. The structure of `nic` block is documented below.
@@ -88,7 +88,7 @@ The following arguments are supported:
 * `secret_key` - AWS / ACS secret access key.
 * `secret_token` - Secret token of Kubernetes service account.
 * `server` - Server address of the remote SDN connector.
-* `server_list` - Server address list of the remote SDN connector.
+* `server_list` - Server address list of the remote SDN connector. (`ver Controlled FortiOS >= 6.4`)
 * `server_port` - Port number of the remote SDN connector.
 * `service_account` - GCP service account email.
 * `status` - Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
@@ -98,14 +98,14 @@ The following arguments are supported:
 * `type` - Type of SDN connector. Valid values: `aci`, `aws`, `nsx`, `nuage`, `azure`, `gcp`, `oci`, `openstack`, `kubernetes`, `vmware`, `acs`, `alicloud`, `sepm`, `aci-direct`, `ibm`.
 
 * `update_interval` - Dynamic object update interval (30 - 3600 sec, default = 60, 0 = disabled).
-* `updating` - Updating.
+* `updating` - Updating. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `use_metadata_iam` - Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 
 * `user_id` - User ID.
 * `username` - Username of the remote SDN connector as login credentials.
-* `vcenter_password` - vCenter server password for NSX quarantine.
-* `vcenter_server` - vCenter server address for NSX quarantine.
-* `vcenter_username` - vCenter server username for NSX quarantine.
+* `vcenter_password` - vCenter server password for NSX quarantine. (`ver Controlled FortiOS >= 6.4`)
+* `vcenter_server` - vCenter server address for NSX quarantine. (`ver Controlled FortiOS >= 6.4`)
+* `vcenter_username` - vCenter server username for NSX quarantine. (`ver Controlled FortiOS >= 6.4`)
 * `vmx_image_url` - URL of web-hosted VMX image.
 * `vmx_service_name` - VMX Service name.
 * `vpc_id` - AWS VPC ID.
@@ -157,4 +157,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_sdnconnector.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

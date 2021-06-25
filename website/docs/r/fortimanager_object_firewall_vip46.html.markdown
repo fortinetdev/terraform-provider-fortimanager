@@ -58,7 +58,7 @@ The following arguments are supported:
 * `server_type` - Server type. Valid values: `http`, `tcp`, `udp`, `ip`.
 
 * `src_filter` - Source IP filter (x.x.x.x/x).
-* `srcintf_filter` - Interfaces to which the VIP46 applies. Separate the names with spaces.
+* `srcintf_filter` - Interfaces to which the VIP46 applies. Separate the names with spaces. (`ver Controlled FortiOS <= 6.4`)
 * `type` - VIP type: static NAT or server load balance. Valid values: `static-nat`, `server-load-balance`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -126,4 +126,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_vip46.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

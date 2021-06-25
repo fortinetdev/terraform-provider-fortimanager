@@ -1,5 +1,5 @@
 ---
-subcategory: "No Category"
+subcategory: "Object Emailfilter"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_object_emailfilter_blockallowlist"
 description: |-
@@ -55,4 +55,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_emailfilter_blockallowlist.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -28,20 +28,20 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `address_list` - Address-List. The structure of `address_list` block is documented below.
+* `address_list` - Address-List. The structure of `address_list` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `comment` - Comment.
-* `constraint` - Constraint. The structure of `constraint` block is documented below.
+* `constraint` - Constraint. The structure of `constraint` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `extended_log` - Enable/disable extended logging. Valid values: `disable`, `enable`.
 
 * `external` - Disable/Enable external HTTP Inspection. Valid values: `disable`, `enable`.
 
-* `method` - Method. The structure of `method` block is documented below.
+* `method` - Method. The structure of `method` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `name` - WAF Profile name.
-* `signature` - Signature. The structure of `signature` block is documented below.
+* `signature` - Signature. The structure of `signature` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `url_access` - Url-Access. The structure of `url_access` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
-The `address_list` block supports:
+The `address_list` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `blocked_address` - Blocked address.
 * `blocked_log` - Enable/disable logging on blocked addresses. Valid values: `disable`, `enable`.
@@ -52,7 +52,7 @@ The `address_list` block supports:
 
 * `trusted_address` - Trusted address.
 
-The `constraint` block supports:
+The `constraint` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `content_length` - Content-Length. The structure of `content_length` block is documented below.
 * `exception` - Exception. The structure of `exception` block is documented below.
@@ -255,7 +255,7 @@ The `version` block supports:
 * `status` - Enable/disable the constraint. Valid values: `disable`, `enable`.
 
 
-The `method` block supports:
+The `method` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `default_allowed_methods` - Methods. Valid values: `delete`, `get`, `head`, `options`, `post`, `put`, `trace`, `others`, `connect`.
 
@@ -277,7 +277,7 @@ The `method_policy` block supports:
 * `regex` - Enable/disable regular expression based pattern match. Valid values: `disable`, `enable`.
 
 
-The `signature` block supports:
+The `signature` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `credit_card_detection_threshold` - The minimum number of Credit cards to detect violation.
 * `custom_signature` - Custom-Signature. The structure of `custom_signature` block is documented below.
@@ -353,4 +353,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_waf_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -85,13 +85,13 @@ The following arguments are supported:
 * `max_running_reports` - Maximum number of reports generating at one time.
 * `mc_policy_disabled_adoms` - Mc-Policy-Disabled-Adoms. The structure of `mc_policy_disabled_adoms` block is documented below.
 * `multiple_steps_upgrade_in_autolink` - Enable/disable multiple steps upgade in autolink process disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
-
-* `object_revision_db_max` - Maximum revisions for a single database (10,000-1,000,000 default 100,000).
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `object_revision_db_max` - Maximum revisions for a single database (10,000-1,000,000 default 100,000). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `object_revision_mandatory_note` - Enable/disable mandatory note when create revision. disable - Disable object revision. enable - Enable object revision. Valid values: `disable`, `enable`.
-
-* `object_revision_object_max` - Maximum revisions for a single object (10-1000 default 100).
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `object_revision_object_max` - Maximum revisions for a single object (10-1000 default 100). (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `object_revision_status` - Enable/disable create revision when modify objects. disable - Disable object revision. enable - Enable object revision. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `oftp_ssl_protocol` - set the lowest SSL protocols for oftpd. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
 
 * `partial_install` - Enable/Disable partial install (install some objects). disable - Disable partial install function. enable - Enable partial install function. Valid values: `disable`, `enable`.

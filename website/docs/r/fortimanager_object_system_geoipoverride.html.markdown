@@ -28,7 +28,7 @@ The following arguments are supported:
 * `country_id` - Two character Country ID code.
 * `description` - Description.
 * `ip_range` - Ip-Range. The structure of `ip_range` block is documented below.
-* `ip6_range` - Ip6-Range. The structure of `ip6_range` block is documented below.
+* `ip6_range` - Ip6-Range. The structure of `ip6_range` block is documented below. (`ver Controlled FortiOS >= 6.4`)
 * `name` - Location name.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
@@ -38,7 +38,7 @@ The `ip_range` block supports:
 * `id` - ID number for individual entry in the IP-Range table.
 * `start_ip` - Starting IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
 
-The `ip6_range` block supports:
+The `ip6_range` block supports (`ver Controlled FortiOS >= 6.4`):
 
 * `end_ip` - Ending IP address, inclusive, of the address range (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `id` - ID of individual entry in the IPv6 range table.
@@ -59,4 +59,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_geoipoverride.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

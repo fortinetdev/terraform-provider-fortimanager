@@ -9,6 +9,8 @@ description: |-
 
 # To Set the Permission Level for RPC-Permit
 
+Set the permission level for RPC-Permit:
+
 ```
 config system admin user
     edit "apiusertest"

@@ -43,13 +43,13 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `antiphish` - Antiphish. The structure of `antiphish` block is documented below.
+* `antiphish` - Antiphish. The structure of `antiphish` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `comment` - Optional comments.
 * `extended_log` - Enable/disable extended logging for web filtering. Valid values: `disable`, `enable`.
 
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
-
-* `ftgd_wf` - Ftgd-Wf. The structure of `ftgd_wf` block is documented below.
+ (`ver Controlled FortiOS >= 6.4`)
+* `ftgd_wf` - Ftgd-Wf. The structure of `ftgd_wf` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `https_replacemsg` - Enable replacement messages for HTTPS. Valid values: `disable`, `enable`.
 
 * `log_all_url` - Enable/disable logging all URLs visited. Valid values: `disable`, `enable`.
@@ -57,16 +57,16 @@ The following arguments are supported:
 * `name` - Profile name.
 * `options` - Options. Valid values: `block-invalid-url`, `jscript`, `js`, `vbs`, `unknown`, `wf-referer`, `https-scan`, `intrinsic`, `wf-cookie`, `per-user-bwl`, `activexfilter`, `cookiefilter`, `https-url-scan`, `javafilter`, `rangeblock`, `contenttype-check`.
 
-* `override` - Override. The structure of `override` block is documented below.
+* `override` - Override. The structure of `override` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ovrd_perm` - Permitted override types. Valid values: `bannedword-override`, `urlfilter-override`, `fortiguard-wf-override`, `contenttype-check-override`.
 
 * `post_action` - Action taken for HTTP POST traffic. Valid values: `normal`, `comfort`, `block`.
 
 * `replacemsg_group` - Replacement message group.
-* `url_extraction` - Url-Extraction. The structure of `url_extraction` block is documented below.
-* `web` - Web. The structure of `web` block is documented below.
+* `url_extraction` - Url-Extraction. The structure of `url_extraction` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `web` - Web. The structure of `web` block is documented below. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `web_antiphishing_log` - Enable/disable logging of AntiPhishing checks. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 * `web_content_log` - Enable/disable logging logging blocked web content. Valid values: `disable`, `enable`.
 
 * `web_extended_all_action_log` - Enable/disable extended any filter action logging for web filtering. Valid values: `disable`, `enable`.
@@ -104,15 +104,15 @@ The following arguments are supported:
 * `wisp_algorithm` - WISP server selection algorithm. Valid values: `auto-learning`, `primary-secondary`, `round-robin`.
 
 * `wisp_servers` - WISP servers.
-* `youtube_channel_filter` - Youtube-Channel-Filter. The structure of `youtube_channel_filter` block is documented below.
+* `youtube_channel_filter` - Youtube-Channel-Filter. The structure of `youtube_channel_filter` block is documented below. (`ver Controlled FortiOS <= 6.4`)
 * `youtube_channel_status` - YouTube channel filter status. Valid values: `disable`, `blacklist`, `whitelist`.
-
+ (`ver Controlled FortiOS <= 6.4`)
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
-The `antiphish` block supports:
+The `antiphish` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `authentication` - Authentication methods. Valid values: `domain-controller`, `ldap`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `check_basic_auth` - Enable/disable checking of HTTP Basic Auth field for known credentials. Valid values: `disable`, `enable`.
 
 * `check_uri` - Enable/disable checking of GET URI parameters for known credentials. Valid values: `disable`, `enable`.
@@ -124,7 +124,7 @@ The `antiphish` block supports:
 
 * `domain_controller` - Domain for which to verify received credentials against.
 * `inspection_entries` - Inspection-Entries. The structure of `inspection_entries` block is documented below.
-* `ldap` - LDAP server for which to verify received credentials against.
+* `ldap` - LDAP server for which to verify received credentials against. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `max_body_len` - Maximum size of a POST body to check for credentials.
 * `status` - Toggle AntiPhishing functionality. Valid values: `disable`, `enable`.
 
@@ -135,7 +135,7 @@ The `custom_patterns` block supports:
 
 * `pattern` - Target pattern.
 * `type` - Pattern will be treated either as a regex pattern or literal string. Valid values: `regex`, `literal`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 
 The `inspection_entries` block supports:
 
@@ -144,7 +144,7 @@ The `inspection_entries` block supports:
 * `fortiguard_category` - FortiGuard category to match.
 * `name` - Inspection target name.
 
-The `ftgd_wf` block supports:
+The `ftgd_wf` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `exempt_quota` - Do not stop quota for these categories.
 * `filters` - Filters. The structure of `filters` block is documented below.
@@ -158,7 +158,7 @@ The `ftgd_wf` block supports:
 * `rate_css_urls` - Enable/disable rating CSS by URL. Valid values: `disable`, `enable`.
 
 * `rate_image_urls` - Rate-Image-Urls. Valid values: `disable`, `enable`.
-
+ (`ver Error Version`)
 * `rate_javascript_urls` - Enable/disable rating JavaScript by URL. Valid values: `disable`, `enable`.
 
 
@@ -190,7 +190,7 @@ The `quota` block supports:
 
 * `value` - Traffic quota value.
 
-The `override` block supports:
+The `override` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `ovrd_cookie` - Allow/deny browser-based (cookie) overrides. Valid values: `deny`, `allow`.
 
@@ -206,7 +206,7 @@ The `override` block supports:
 * `profile_type` - Override profile type. Valid values: `list`, `radius`.
 
 
-The `url_extraction` block supports:
+The `url_extraction` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `redirect_header` - HTTP header name to use for client redirect on blocked requests
 * `redirect_no_content` - Enable / Disable empty message-body entity in HTTP response Valid values: `disable`, `enable`.
@@ -216,14 +216,14 @@ The `url_extraction` block supports:
 * `status` - Enable URL Extraction Valid values: `disable`, `enable`.
 
 
-The `web` block supports:
+The `web` block supports (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`):
 
 * `allowlist` - FortiGuard allowlist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `blocklist` - Enable/disable automatic addition of URLs detected by FortiSandbox to blocklist. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 7.0`)
 * `blacklist` - Enable/disable automatic addition of URLs detected by FortiSandbox to blacklist. Valid values: `disable`, `enable`.
-
+ (`ver Error Version`)
 * `bword_table` - Banned word table ID.
 * `bword_threshold` - Banned word score threshold.
 * `content_header_list` - Content header list.
@@ -234,11 +234,11 @@ The `web` block supports:
 
 * `urlfilter_table` - URL filter table ID.
 * `whitelist` - FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
-
+ (`ver Error Version`)
 * `youtube_restrict` - YouTube EDU filter level. Valid values: `strict`, `none`, `moderate`.
+ (`ver Error Version`)
 
-
-The `youtube_channel_filter` block supports:
+The `youtube_channel_filter` block supports (`ver Controlled FortiOS <= 6.4`):
 
 * `channel_id` - YouTube channel ID to be filtered.
 * `comment` - Comment.
@@ -259,4 +259,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_webfilter_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

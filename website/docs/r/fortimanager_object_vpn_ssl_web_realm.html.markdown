@@ -30,13 +30,13 @@ The following arguments are supported:
 
 * `login_page` - Replacement HTML for SSL-VPN login page.
 * `max_concurrent_user` - Maximum concurrent users (0 - 65535, 0 means unlimited).
-* `nas_ip` - IP address used as a NAS-IP to communicate with the RADIUS server.
-* `radius_port` - RADIUS service port number (0 - 65535, 0 means user.radius.radius-port).
-* `radius_server` - RADIUS server associated with realm.
+* `nas_ip` - IP address used as a NAS-IP to communicate with the RADIUS server. (`ver Controlled FortiOS >= 6.4`)
+* `radius_port` - RADIUS service port number (0 - 65535, 0 means user.radius.radius-port). (`ver Controlled FortiOS >= 6.4`)
+* `radius_server` - RADIUS server associated with realm. (`ver Controlled FortiOS >= 6.4`)
 * `url_path` - URL path to access SSL-VPN login page.
 * `virtual_host` - Virtual host name for realm.
 * `virtual_host_only` - Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `disable`, `enable`.
-
+ (`ver Controlled FortiOS >= 6.4`)
 
 
 ## Attribute Reference
@@ -53,4 +53,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_vpn_ssl_web_realm.labelname {{url_path}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

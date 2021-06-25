@@ -48,8 +48,8 @@ The following arguments are supported:
 * `request_path` - Path component of the ICAP URI that identifies the HTTP request processing service.
 * `request_server` - ICAP server to use for an HTTP request.
 * `respmod_default_action` - Default action to ICAP response modification (respmod) processing. Valid values: `bypass`, `forward`.
-
-* `respmod_forward_rules` - Respmod-Forward-Rules. The structure of `respmod_forward_rules` block is documented below.
+ (`ver Controlled FortiOS >= 6.4`)
+* `respmod_forward_rules` - Respmod-Forward-Rules. The structure of `respmod_forward_rules` block is documented below. (`ver Controlled FortiOS >= 6.4`)
 * `response` - Enable/disable whether an HTTP response is passed to an ICAP server. Valid values: `disable`, `enable`.
 
 * `response_failure` - Action to take if the ICAP server cannot be contacted when processing an HTTP response. Valid values: `error`, `bypass`.
@@ -70,7 +70,7 @@ The `icap_headers` block supports:
 * `id` - HTTP forwarded header ID.
 * `name` - HTTP forwarded header name.
 
-The `respmod_forward_rules` block supports:
+The `respmod_forward_rules` block supports (`ver Controlled FortiOS >= 6.4`):
 
 * `action` - Action to be taken for ICAP server. Valid values: `bypass`, `forward`.
 
@@ -102,4 +102,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_icap_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

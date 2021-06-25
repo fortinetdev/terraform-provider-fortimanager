@@ -85,9 +85,9 @@ The following arguments are supported:
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.
 
-* `app_category` - Application category ID list.
-* `app_group` - Application group names.
-* `application` - Application ID list.
+* `app_category` - Application category ID list. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `app_group` - Application group names. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
+* `application` - Application ID list. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `application_charts` - Application-Charts. Valid values: `top10-app`, `top10-p2p-user`, `top10-media-user`.
 
 * `application_list` - Name of an existing Application list.
@@ -137,7 +137,7 @@ The following arguments are supported:
 
 * `device_detection_portal` - Device-Detection-Portal. Valid values: `disable`, `enable`.
 
-* `devices` - Devices.
+* `devices` - Devices. (`ver Controlled FortiOS >= 6.4`)
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
 * `diffserv_reverse` - Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `disable`, `enable`.
@@ -170,7 +170,7 @@ The following arguments are supported:
 
 * `dynamic_profile_group` - Dynamic-Profile-Group.
 * `dynamic_shaping` - Dynamic-Shaping. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `email_collect` - Enable/disable email collection. Valid values: `disable`, `enable`.
 
 * `email_collection_portal` - Email-Collection-Portal. Valid values: `disable`, `enable`.
@@ -280,7 +280,7 @@ The following arguments are supported:
 * `outbound` - Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `disable`, `enable`.
 
 * `passive_wan_health_measurement` - Passive-Wan-Health-Measurement. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `per_ip_shaper` - Per-IP traffic shaper.
 * `permit_any_host` - Accept UDP packets from any host. Valid values: `disable`, `enable`.
 
@@ -364,7 +364,7 @@ The following arguments are supported:
 * `traffic_shaper_reverse` - Reverse traffic shaper.
 * `transaction_based` - Transaction-Based. Valid values: `disable`, `enable`.
 
-* `url_category` - URL category ID list.
+* `url_category` - URL category ID list. (`ver FortiManager <= 6.4 and Controlled FortiOS <= 6.2`)
 * `users` - Names of individual users that can authenticate with this policy.
 * `utm_inspection_mode` - Utm-Inspection-Mode. Valid values: `proxy`, `flow`.
 
@@ -372,7 +372,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `vendor_mac` - Vendor-Mac.
-* `videofilter_profile` - Videofilter-Profile.
+* `videofilter_profile` - Videofilter-Profile. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `vlan_cos_fwd` - VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_cos_rev` - VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_filter` - Set VLAN filters.
@@ -400,10 +400,10 @@ The following arguments are supported:
 * `webproxy_profile` - Webproxy profile name.
 * `wsso` - Enable/disable WiFi Single Sign On (WSSO). Valid values: `disable`, `enable`.
 
-* `ztna_ems_tag` - Ztna-Ems-Tag.
-* `ztna_geo_tag` - Ztna-Geo-Tag.
+* `ztna_ems_tag` - Ztna-Ems-Tag. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
+* `ztna_geo_tag` - Ztna-Geo-Tag. (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 * `ztna_status` - Ztna-Status. Valid values: `disable`, `enable`.
-
+ (`ver FortiManager >= 7.0 and Controlled FortiOS >= 6.4`)
 
 
 ## Attribute Reference
