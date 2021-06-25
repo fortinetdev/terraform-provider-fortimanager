@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_videofilter_profile
-Configure VideoFilter profile.
+Configure VideoFilter profile. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 7.0`.
 
 ## Argument Reference
 

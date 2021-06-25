@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_packages_firewall_consolidated_policy_move
-Move consolidated IPv4/IPv6 policies.
+Move consolidated IPv4/IPv6 policies. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

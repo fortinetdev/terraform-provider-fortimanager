@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_system_log_ratelimit
-Logging rate limit.
+Logging rate limit. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 6.4`.
 
 ## Argument Reference
 

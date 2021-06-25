@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_emailfilter_blockallowlist
-Configure anti-spam block/allow list.
+Configure anti-spam block/allow list. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 7.0`.
 
 ## Argument Reference
 

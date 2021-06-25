@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_system_socfabric
-SOC Fabric.
+SOC Fabric. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 6.4`.
 
 ## Argument Reference
 

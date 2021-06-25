@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_extendercontroller_dataplan
-FortiExtender dataplan configuration.
+FortiExtender dataplan configuration. Applies to `Controlled FortiOS >= 6.4`.
 
 ## Example Usage
 

@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_wirelesscontroller_mpskprofile
-Configure MPSK profile.
+Configure MPSK profile. Applies to `Controlled FortiOS >= 6.4`.
 
 ## Example Usage
 

@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_system_log_ratelimit_device
-Device log rate limit.
+Device log rate limit. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 6.4`.
 
 ## Argument Reference
 

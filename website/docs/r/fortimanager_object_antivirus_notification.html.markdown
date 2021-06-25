@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_antivirus_notification
-Configure AntiVirus notification lists.
+Configure AntiVirus notification lists. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

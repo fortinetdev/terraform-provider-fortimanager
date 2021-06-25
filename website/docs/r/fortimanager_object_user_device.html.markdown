@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_user_device
-Configure devices.
+Configure devices. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

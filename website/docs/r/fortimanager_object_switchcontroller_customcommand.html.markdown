@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_switchcontroller_customcommand
-Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices.
+Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 6.4`.
 
 ## Argument Reference
 

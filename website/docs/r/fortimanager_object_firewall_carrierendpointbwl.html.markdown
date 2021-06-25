@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_firewall_carrierendpointbwl
-Carrier end point black/white list tables.
+Carrier end point black/white list tables. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

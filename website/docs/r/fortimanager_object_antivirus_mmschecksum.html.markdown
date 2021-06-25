@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_antivirus_mmschecksum
-Configure MMS content checksum list.
+Configure MMS content checksum list. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_emailfilter_bwl
-Configure anti-spam black/white list.
+Configure anti-spam black/white list. Applies to `Controlled FortiOS <= 6.4`.
 
 ## Example Usage
 

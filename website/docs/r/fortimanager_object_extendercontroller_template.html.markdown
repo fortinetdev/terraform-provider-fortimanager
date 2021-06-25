@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_extendercontroller_template
-ObjectExtenderController Template
+ObjectExtenderController Template Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 6.4`.
 
 ## Argument Reference
 

@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_videofilter_youtubechannelfilter
-Configure YouTube channel filter.
+Configure YouTube channel filter. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 7.0`.
 
 ## Argument Reference
 

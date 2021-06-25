@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_filefilter_profile
-Configure file-filter profiles.
+Configure file-filter profiles. Applies to `Controlled FortiOS >= 6.4`.
 
 ## Example Usage
 

@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_firewall_decryptedtrafficmirror
-Configure decrypted traffic mirror.
+Configure decrypted traffic mirror. Applies to `Controlled FortiOS >= 6.4`.
 
 ## Example Usage
 

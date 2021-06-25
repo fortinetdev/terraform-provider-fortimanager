@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_packages_firewall_policy6_move
-Move IPv6 policies.
+Move IPv6 policies. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

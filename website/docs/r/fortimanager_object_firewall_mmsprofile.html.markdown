@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_firewall_mmsprofile
-Configure MMS profiles.
+Configure MMS profiles. Applies to `FortiManager <= 6.4 and Controlled FortiOS <= 6.2`.
 
 ## Argument Reference
 

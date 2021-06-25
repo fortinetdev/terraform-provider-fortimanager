@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_firewall_accessproxy
-Configure Access Proxy.
+Configure Access Proxy. Applies to `FortiManager >= 7.0 and Controlled FortiOS >= 7.0`.
 
 ## Argument Reference
 

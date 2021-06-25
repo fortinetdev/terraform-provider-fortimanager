@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_firewall_internetservicename
-Define internet service names.
+Define internet service names. Applies to `Controlled FortiOS >= 6.4`.
 
 ## Example Usage
 

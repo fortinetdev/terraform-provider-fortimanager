@@ -7,7 +7,7 @@ description: |-
 ---
 
 # fortimanager_object_credentialstore_domaincontroller
-Define known domain controller servers.
+Define known domain controller servers. Applies to `Controlled FortiOS = 6.4`.
 
 ## Example Usage
 
