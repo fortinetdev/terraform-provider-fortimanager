@@ -1,4 +1,32 @@
-## 1.3.0 (Unreleased)
+## 1.4.0 (Unreleased)
+
+## 1.3.0 (Jul 17, 2021)
+
+IMPROVEMENTS:
+
+* Support FortiManager version from 6.4 to 7.0
+
+FEATURES:
+
+* **New Resource:** `fortimanager_object_antivirus_mmschecksum`
+* **New Resource:** `fortimanager_object_antivirus_notification`
+* **New Resource:** `fortimanager_object_emailfilter_blockallowlist`
+* **New Resource:** `fortimanager_object_extendercontroller_template`
+* **New Resource:** `fortimanager_object_firewall_accessproxy`
+* **New Resource:** `fortimanager_object_firewall_accessproxy_move`
+* **New Resource:** `fortimanager_object_firewall_carrierendpointbwl`
+* **New Resource:** `fortimanager_object_firewall_mmsprofile`
+* **New Resource:** `fortimanager_object_switchcontroller_customcommand`
+* **New Resource:** `fortimanager_object_user_device`
+* **New Resource:** `fortimanager_object_videofilter_profile`
+* **New Resource:** `fortimanager_object_videofilter_youtubechannelfilter`
+* **New Resource:** `fortimanager_packages_firewall_consolidated_policy`
+* **New Resource:** `fortimanager_packages_firewall_consolidated_policy_move`
+* **New Resource:** `fortimanager_packages_firewall_policy6`
+* **New Resource:** `fortimanager_packages_firewall_policy6_move`
+* **New Resource:** `fortimanager_system_log_ratelimit`
+* **New Resource:** `fortimanager_system_log_ratelimit_device`
+* **New Resource:** `fortimanager_system_socfabri`
 
 ## 1.2.0 (Jun 11, 2021)
 
