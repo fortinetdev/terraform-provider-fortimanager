@@ -36,10 +36,12 @@ The following arguments are supported:
 * `file_filter_profile` - Name of an existing file-filter profile.
 * `icap_profile` - Name of an existing ICAP profile.
 * `ips_sensor` - Name of an existing IPS sensor.
+* `mms_profile` - Name of an existing MMS profile.
 * `name` - Profile group name.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
+* `videofilter_profile` - Name of an existing VideoFilter profile.
 * `voip_profile` - Name of an existing VoIP profile.
 * `waf_profile` - Name of an existing Web application firewall profile.
 * `webfilter_profile` - Name of an existing Web filter profile.
@@ -59,4 +61,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_profilegroup.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

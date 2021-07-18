@@ -95,7 +95,22 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dev_range": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rewrite_https_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"sso_auth_scheme": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"user_cert_ca": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -207,14 +222,6 @@ func flattenPackagesAuthenticationSettingActiveAuthScheme(v interface{}, d *sche
 }
 
 func flattenPackagesAuthenticationSettingAuthHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -239,14 +246,6 @@ func flattenPackagesAuthenticationSettingCaptivePortalSslPort(v interface{}, d *
 }
 
 func flattenPackagesAuthenticationSettingCaptivePortalType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "fqdn",
-			9: "ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -254,7 +253,19 @@ func flattenPackagesAuthenticationSettingCaptivePortal6(v interface{}, d *schema
 	return v
 }
 
+func flattenPackagesAuthenticationSettingDevRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingRewriteHttpsPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesAuthenticationSettingSsoAuthScheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingUserCertCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -351,6 +362,26 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("dev_range", flattenPackagesAuthenticationSettingDevRange(o["dev-range"], d, "dev_range")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dev-range"], "PackagesAuthenticationSetting-DevRange"); ok {
+			if err = d.Set("dev_range", vv); err != nil {
+				return fmt.Errorf("Error reading dev_range: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dev_range: %v", err)
+		}
+	}
+
+	if err = d.Set("rewrite_https_port", flattenPackagesAuthenticationSettingRewriteHttpsPort(o["rewrite-https-port"], d, "rewrite_https_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rewrite-https-port"], "PackagesAuthenticationSetting-RewriteHttpsPort"); ok {
+			if err = d.Set("rewrite_https_port", vv); err != nil {
+				return fmt.Errorf("Error reading rewrite_https_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rewrite_https_port: %v", err)
+		}
+	}
+
 	if err = d.Set("sso_auth_scheme", flattenPackagesAuthenticationSettingSsoAuthScheme(o["sso-auth-scheme"], d, "sso_auth_scheme")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sso-auth-scheme"], "PackagesAuthenticationSetting-SsoAuthScheme"); ok {
 			if err = d.Set("sso_auth_scheme", vv); err != nil {
@@ -358,6 +389,16 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading sso_auth_scheme: %v", err)
+		}
+	}
+
+	if err = d.Set("user_cert_ca", flattenPackagesAuthenticationSettingUserCertCa(o["user-cert-ca"], d, "user_cert_ca")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-cert-ca"], "PackagesAuthenticationSetting-UserCertCa"); ok {
+			if err = d.Set("user_cert_ca", vv); err != nil {
+				return fmt.Errorf("Error reading user_cert_ca: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_cert_ca: %v", err)
 		}
 	}
 
@@ -406,7 +447,19 @@ func expandPackagesAuthenticationSettingCaptivePortal6(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandPackagesAuthenticationSettingDevRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingRewriteHttpsPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesAuthenticationSettingSsoAuthScheme(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingUserCertCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -494,12 +547,39 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("dev_range"); ok {
+		t, err := expandPackagesAuthenticationSettingDevRange(d, v, "dev_range")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dev-range"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("rewrite_https_port"); ok {
+		t, err := expandPackagesAuthenticationSettingRewriteHttpsPort(d, v, "rewrite_https_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rewrite-https-port"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("sso_auth_scheme"); ok {
 		t, err := expandPackagesAuthenticationSettingSsoAuthScheme(d, v, "sso_auth_scheme")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["sso-auth-scheme"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_cert_ca"); ok {
+		t, err := expandPackagesAuthenticationSettingUserCertCa(d, v, "user_cert_ca")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-cert-ca"] = t
 		}
 	}
 

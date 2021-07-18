@@ -45,12 +45,27 @@ func resourceObjectUserSaml() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"adfs_claim": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
+			"digest_method": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"entity_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"group_claim_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -80,6 +95,11 @@ func resourceObjectUserSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"limit_relaystate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -92,6 +112,11 @@ func resourceObjectUserSaml() *schema.Resource {
 				Computed: true,
 			},
 			"single_sign_on_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"user_claim_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -211,11 +236,23 @@ func resourceObjectUserSamlRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenObjectUserSamlAdfsClaim(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectUserSamlDigestMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlGroupClaimType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -239,6 +276,10 @@ func flattenObjectUserSamlIdpSingleSignOnUrl(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectUserSamlLimitRelaystate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -251,12 +292,26 @@ func flattenObjectUserSamlSingleSignOnUrl(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectUserSamlUserClaimType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlUserName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("adfs_claim", flattenObjectUserSamlAdfsClaim(o["adfs-claim"], d, "adfs_claim")); err != nil {
+		if vv, ok := fortiAPIPatch(o["adfs-claim"], "ObjectUserSaml-AdfsClaim"); ok {
+			if err = d.Set("adfs_claim", vv); err != nil {
+				return fmt.Errorf("Error reading adfs_claim: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading adfs_claim: %v", err)
+		}
+	}
 
 	if err = d.Set("cert", flattenObjectUserSamlCert(o["cert"], d, "cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cert"], "ObjectUserSaml-Cert"); ok {
@@ -268,6 +323,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("digest_method", flattenObjectUserSamlDigestMethod(o["digest-method"], d, "digest_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["digest-method"], "ObjectUserSaml-DigestMethod"); ok {
+			if err = d.Set("digest_method", vv); err != nil {
+				return fmt.Errorf("Error reading digest_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading digest_method: %v", err)
+		}
+	}
+
 	if err = d.Set("entity_id", flattenObjectUserSamlEntityId(o["entity-id"], d, "entity_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["entity-id"], "ObjectUserSaml-EntityId"); ok {
 			if err = d.Set("entity_id", vv); err != nil {
@@ -275,6 +340,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading entity_id: %v", err)
+		}
+	}
+
+	if err = d.Set("group_claim_type", flattenObjectUserSamlGroupClaimType(o["group-claim-type"], d, "group_claim_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["group-claim-type"], "ObjectUserSaml-GroupClaimType"); ok {
+			if err = d.Set("group_claim_type", vv); err != nil {
+				return fmt.Errorf("Error reading group_claim_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading group_claim_type: %v", err)
 		}
 	}
 
@@ -328,6 +403,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("limit_relaystate", flattenObjectUserSamlLimitRelaystate(o["limit-relaystate"], d, "limit_relaystate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["limit-relaystate"], "ObjectUserSaml-LimitRelaystate"); ok {
+			if err = d.Set("limit_relaystate", vv); err != nil {
+				return fmt.Errorf("Error reading limit_relaystate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading limit_relaystate: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectUserSamlName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectUserSaml-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -358,6 +443,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("user_claim_type", flattenObjectUserSamlUserClaimType(o["user-claim-type"], d, "user_claim_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-claim-type"], "ObjectUserSaml-UserClaimType"); ok {
+			if err = d.Set("user_claim_type", vv); err != nil {
+				return fmt.Errorf("Error reading user_claim_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_claim_type: %v", err)
+		}
+	}
+
 	if err = d.Set("user_name", flattenObjectUserSamlUserName(o["user-name"], d, "user_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["user-name"], "ObjectUserSaml-UserName"); ok {
 			if err = d.Set("user_name", vv); err != nil {
@@ -377,11 +472,23 @@ func flattenObjectUserSamlFortiTestDebug(d *schema.ResourceData, fosdebugsn int,
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectUserSamlAdfsClaim(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
+func expandObjectUserSamlDigestMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlGroupClaimType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -405,6 +512,10 @@ func expandObjectUserSamlIdpSingleSignOnUrl(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectUserSamlLimitRelaystate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -417,12 +528,25 @@ func expandObjectUserSamlSingleSignOnUrl(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandObjectUserSamlUserClaimType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlUserName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("adfs_claim"); ok {
+		t, err := expandObjectUserSamlAdfsClaim(d, v, "adfs_claim")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["adfs-claim"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("cert"); ok {
 		t, err := expandObjectUserSamlCert(d, v, "cert")
@@ -433,12 +557,30 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
+	if v, ok := d.GetOk("digest_method"); ok {
+		t, err := expandObjectUserSamlDigestMethod(d, v, "digest_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["digest-method"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("entity_id"); ok {
 		t, err := expandObjectUserSamlEntityId(d, v, "entity_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["entity-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("group_claim_type"); ok {
+		t, err := expandObjectUserSamlGroupClaimType(d, v, "group_claim_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["group-claim-type"] = t
 		}
 	}
 
@@ -487,6 +629,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
+	if v, ok := d.GetOk("limit_relaystate"); ok {
+		t, err := expandObjectUserSamlLimitRelaystate(d, v, "limit_relaystate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["limit-relaystate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok {
 		t, err := expandObjectUserSamlName(d, v, "name")
 		if err != nil {
@@ -511,6 +662,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["single-sign-on-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_claim_type"); ok {
+		t, err := expandObjectUserSamlUserClaimType(d, v, "user_claim_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-claim-type"] = t
 		}
 	}
 

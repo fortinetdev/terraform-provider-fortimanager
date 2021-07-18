@@ -4,7 +4,7 @@
 // Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
-// Description: Configure IPv4 and IPv6 central SNAT policies.
+// Description: Configure central SNAT policies.
 
 package fortimanager
 

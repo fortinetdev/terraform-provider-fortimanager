@@ -117,44 +117,14 @@ func resourceSystemLocallogMemorySettingRead(d *schema.ResourceData, m interface
 }
 
 func flattenSystemLocallogMemorySettingDiskfull(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "overwrite",
-			2: "nolog",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogMemorySettingSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "emergency",
-			1: "alert",
-			2: "critical",
-			3: "error",
-			4: "warning",
-			5: "notification",
-			6: "information",
-			7: "debug",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogMemorySettingStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

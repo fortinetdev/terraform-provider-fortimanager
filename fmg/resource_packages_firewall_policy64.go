@@ -55,6 +55,31 @@ func resourcePackagesFirewallPolicy64() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cgn_eif": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cgn_eim": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cgn_log_server_grp": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cgn_resource_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"cgn_session_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -101,6 +126,11 @@ func resourcePackagesFirewallPolicy64() *schema.Resource {
 				Computed: true,
 			},
 			"permit_any_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"policy_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -299,14 +329,26 @@ func resourcePackagesFirewallPolicy64Read(d *schema.ResourceData, m interface{})
 }
 
 func flattenPackagesFirewallPolicy64Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "accept",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallPolicy64CgnEif(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy64CgnEim(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy64CgnLogServerGrp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy64CgnResourceQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy64CgnSessionQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -323,50 +365,18 @@ func flattenPackagesFirewallPolicy64Dstintf(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicy64Fixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallPolicy64Ippool(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallPolicy64Logtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallPolicy64LogtrafficStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -379,14 +389,10 @@ func flattenPackagesFirewallPolicy64PerIpShaper(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallPolicy64PermitAnyHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesFirewallPolicy64PolicyOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -415,14 +421,6 @@ func flattenPackagesFirewallPolicy64Srcintf(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicy64Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -456,6 +454,56 @@ func refreshObjectPackagesFirewallPolicy64(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading action: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_eif", flattenPackagesFirewallPolicy64CgnEif(o["cgn-eif"], d, "cgn_eif")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-eif"], "PackagesFirewallPolicy64-CgnEif"); ok {
+			if err = d.Set("cgn_eif", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_eif: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_eif: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_eim", flattenPackagesFirewallPolicy64CgnEim(o["cgn-eim"], d, "cgn_eim")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-eim"], "PackagesFirewallPolicy64-CgnEim"); ok {
+			if err = d.Set("cgn_eim", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_eim: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_eim: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_log_server_grp", flattenPackagesFirewallPolicy64CgnLogServerGrp(o["cgn-log-server-grp"], d, "cgn_log_server_grp")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-log-server-grp"], "PackagesFirewallPolicy64-CgnLogServerGrp"); ok {
+			if err = d.Set("cgn_log_server_grp", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_log_server_grp: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_log_server_grp: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_resource_quota", flattenPackagesFirewallPolicy64CgnResourceQuota(o["cgn-resource-quota"], d, "cgn_resource_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-resource-quota"], "PackagesFirewallPolicy64-CgnResourceQuota"); ok {
+			if err = d.Set("cgn_resource_quota", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_resource_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_resource_quota: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_session_quota", flattenPackagesFirewallPolicy64CgnSessionQuota(o["cgn-session-quota"], d, "cgn_session_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-session-quota"], "PackagesFirewallPolicy64-CgnSessionQuota"); ok {
+			if err = d.Set("cgn_session_quota", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_session_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_session_quota: %v", err)
 		}
 	}
 
@@ -556,6 +604,16 @@ func refreshObjectPackagesFirewallPolicy64(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading permit_any_host: %v", err)
+		}
+	}
+
+	if err = d.Set("policy_offload", flattenPackagesFirewallPolicy64PolicyOffload(o["policy-offload"], d, "policy_offload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["policy-offload"], "PackagesFirewallPolicy64-PolicyOffload"); ok {
+			if err = d.Set("policy_offload", vv); err != nil {
+				return fmt.Errorf("Error reading policy_offload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading policy_offload: %v", err)
 		}
 	}
 
@@ -692,6 +750,26 @@ func expandPackagesFirewallPolicy64Action(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandPackagesFirewallPolicy64CgnEif(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy64CgnEim(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy64CgnLogServerGrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy64CgnResourceQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy64CgnSessionQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicy64Comments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -729,6 +807,10 @@ func expandPackagesFirewallPolicy64PerIpShaper(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallPolicy64PermitAnyHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy64PolicyOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -789,6 +871,51 @@ func getObjectPackagesFirewallPolicy64(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_eif"); ok {
+		t, err := expandPackagesFirewallPolicy64CgnEif(d, v, "cgn_eif")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-eif"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_eim"); ok {
+		t, err := expandPackagesFirewallPolicy64CgnEim(d, v, "cgn_eim")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-eim"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_log_server_grp"); ok {
+		t, err := expandPackagesFirewallPolicy64CgnLogServerGrp(d, v, "cgn_log_server_grp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-log-server-grp"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_resource_quota"); ok {
+		t, err := expandPackagesFirewallPolicy64CgnResourceQuota(d, v, "cgn_resource_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-resource-quota"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_session_quota"); ok {
+		t, err := expandPackagesFirewallPolicy64CgnSessionQuota(d, v, "cgn_session_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-session-quota"] = t
 		}
 	}
 
@@ -879,6 +1006,15 @@ func getObjectPackagesFirewallPolicy64(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["permit-any-host"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("policy_offload"); ok {
+		t, err := expandPackagesFirewallPolicy64PolicyOffload(d, v, "policy_offload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["policy-offload"] = t
 		}
 	}
 

@@ -96,6 +96,8 @@ The following arguments are supported:
 
 * `outbreak_prevention_license` - Outbreak-Prevention-License.
 * `outbreak_prevention_timeout` - FortiGuard Virus Outbreak Prevention time out (1 - 30 sec, default = 7).
+* `persistent_connection` - Enable/disable use of persistent connection to receive update notification from FortiGuard. Valid values: `disable`, `enable`.
+
 * `port` - Port used to communicate with the FortiGuard servers. Valid values: `53`, `80`, `443`, `8888`.
 
 * `protocol` - Protocol used to communicate with the FortiGuard servers. Valid values: `udp`, `http`, `https`.
@@ -107,13 +109,23 @@ The following arguments are supported:
 * `sandbox_region` - Cloud sandbox region.
 * `sdns_options` - Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
 
-* `sdns_server_ip` - IP address of the FortiGuard DNS rating server.
-* `sdns_server_port` - Port to connect to on the FortiGuard DNS rating server.
+* `sdns_server_ip` - IP address of the FortiDNS server.
+* `sdns_server_port` - Port used to communicate with FortiDNS servers.
 * `service_account_id` - Service account ID.
 * `source_ip` - Source IPv4 address used to communicate with FortiGuard.
 * `source_ip6` - Source IPv6 address used to communicate with FortiGuard.
+* `update_build_proxy` - Enable/disable proxy dictionary rebuild. Valid values: `disable`, `enable`.
+
+* `update_extdb` - Enable/disable external resource update. Valid values: `disable`, `enable`.
+
+* `update_ffdb` - Enable/disable Internet Service Database update. Valid values: `disable`, `enable`.
+
 * `update_server_location` - Signature update server location. Valid values: `any`, `usa`.
 
+* `update_uwdb` - Enable/disable allowlist update. Valid values: `disable`, `enable`.
+
+* `videofilter_expiration` - Videofilter-Expiration.
+* `videofilter_license` - Videofilter-License.
 * `webfilter_cache` - Enable/disable FortiGuard web filter caching. Valid values: `disable`, `enable`.
 
 * `webfilter_cache_ttl` - Time-to-live for web filter cache entries in seconds (300 - 86400).
@@ -138,4 +150,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_fortiguard.labelname ObjectSystemFortiguard
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

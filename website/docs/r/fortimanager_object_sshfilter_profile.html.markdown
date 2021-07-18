@@ -40,7 +40,7 @@ The following arguments are supported:
 
 The `shell_commands` block supports:
 
-* `action` - Action to take for SSH shell command matches. Valid values: `block`, `allow`.
+* `action` - Action to take for URL filter matches. Valid values: `block`, `allow`.
 
 * `alert` - Enable/disable alert. Valid values: `disable`, `enable`.
 
@@ -68,4 +68,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_sshfilter_profile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

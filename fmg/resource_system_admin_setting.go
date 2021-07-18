@@ -54,6 +54,16 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"auth_addr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"auth_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"auto_update": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -294,26 +304,10 @@ func resourceSystemAdminSettingRead(d *schema.ResourceData, m interface{}) error
 }
 
 func flattenSystemAdminSettingAccessBanner(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingAdminHttpsRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -326,26 +320,18 @@ func flattenSystemAdminSettingAdminServerCert(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemAdminSettingAllowRegister(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenSystemAdminSettingAuthAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminSettingAuthPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemAdminSettingAutoUpdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -354,14 +340,6 @@ func flattenSystemAdminSettingBannerMessage(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemAdminSettingChassisMgmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -370,51 +348,10 @@ func flattenSystemAdminSettingChassisUpdateInterval(v interface{}, d *schema.Res
 }
 
 func flattenSystemAdminSettingDeviceSyncStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingGuiTheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "blue",
-			1:  "green",
-			2:  "red",
-			3:  "melongene",
-			4:  "spring",
-			5:  "summer",
-			6:  "autumn",
-			7:  "winter",
-			8:  "space",
-			9:  "calla-lily",
-			10: "binary-tunnel",
-			11: "diving",
-			12: "dreamy",
-			13: "technology",
-			14: "landscape",
-			15: "twilight",
-			16: "canyon",
-			17: "northern-light",
-			18: "astronomy",
-			19: "fish",
-			20: "penguin",
-			21: "mountain",
-			22: "polar-bear",
-			23: "parrot",
-			24: "cave",
-			25: "zebra",
-			26: "contrast-dark",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -439,14 +376,6 @@ func flattenSystemAdminSettingIdleTimeoutGui(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystemAdminSettingInstallIfpolicyOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -459,26 +388,10 @@ func flattenSystemAdminSettingMgmtFqdn(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemAdminSettingObjectsForceDeletion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingOfflineMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -487,38 +400,14 @@ func flattenSystemAdminSettingRegisterPasswd(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystemAdminSettingSdwanMonitorHistory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingSdwanSkipUnmappedInputDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShellAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -527,151 +416,50 @@ func flattenSystemAdminSettingShellPassword(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemAdminSettingShowAddMultiple(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowAdomDevman(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			4: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowCheckboxInTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowDeviceImportExport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowFctManager(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowAutomaticScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowGroupingScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowScheduleScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingShowTclScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingUnregDevOpt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ignore",
-			2: "add_allow_service",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminSettingWebadminLanguage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto_detect",
-			1: "english",
-			2: "simplified_chinese",
-			3: "traditional_chinese",
-			4: "japanese",
-			5: "korean",
-			6: "spanish",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -725,6 +513,26 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading allow_register: %v", err)
+		}
+	}
+
+	if err = d.Set("auth_addr", flattenSystemAdminSettingAuthAddr(o["auth-addr"], d, "auth_addr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-addr"], "SystemAdminSetting-AuthAddr"); ok {
+			if err = d.Set("auth_addr", vv); err != nil {
+				return fmt.Errorf("Error reading auth_addr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_addr: %v", err)
+		}
+	}
+
+	if err = d.Set("auth_port", flattenSystemAdminSettingAuthPort(o["auth-port"], d, "auth_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-port"], "SystemAdminSetting-AuthPort"); ok {
+			if err = d.Set("auth_port", vv); err != nil {
+				return fmt.Errorf("Error reading auth_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_port: %v", err)
 		}
 	}
 
@@ -1087,6 +895,14 @@ func expandSystemAdminSettingAllowRegister(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandSystemAdminSettingAuthAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminSettingAuthPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminSettingAutoUpdate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1264,6 +1080,24 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["allow_register"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auth_addr"); ok {
+		t, err := expandSystemAdminSettingAuthAddr(d, v, "auth_addr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-addr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auth_port"); ok {
+		t, err := expandSystemAdminSettingAuthPort(d, v, "auth_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-port"] = t
 		}
 	}
 

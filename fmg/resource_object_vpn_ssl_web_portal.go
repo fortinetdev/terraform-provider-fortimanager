@@ -456,7 +456,17 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 					},
 				},
 			},
+			"prefer_ipv6_dns": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"redir_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rewrite_ip_uri_ui": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -555,6 +565,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Computed: true,
 			},
 			"theme": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"transform_backward_slashes": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -715,35 +730,10 @@ func resourceObjectVpnSslWebPortalRead(d *schema.ResourceData, m interface{}) er
 }
 
 func flattenObjectVpnSslWebPortalAllowUserAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "web",
-			2:    "ftp",
-			4:    "telnet",
-			8:    "smb",
-			16:   "vnc",
-			32:   "rdp",
-			64:   "ssh",
-			128:  "ping",
-			256:  "citrix",
-			1024: "portforward",
-			2048: "sftp",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectVpnSslWebPortalAutoConnect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -968,20 +958,6 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksAdditionalParams(v interf
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksApptype(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "web",
-			2:  "telnet",
-			3:  "ssh",
-			4:  "ftp",
-			6:  "smb",
-			7:  "vnc",
-			8:  "rdp",
-			12: "sftp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1085,88 +1061,26 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksRemotePort(v interface{},
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSecurity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "rdp",
-			1: "nla",
-			2: "tls",
-			3: "any",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksServerLayout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "en-us-qwerty",
-			1:  "de-de-qwertz",
-			2:  "fr-fr-azerty",
-			3:  "it-it-qwerty",
-			4:  "sv-se-qwerty",
-			5:  "failsafe",
-			6:  "en-gb-qwerty",
-			7:  "es-es-qwerty",
-			8:  "fr-ch-qwertz",
-			9:  "ja-jp-qwerty",
-			10: "pt-br-qwerty",
-			11: "tr-tr-qwerty",
-			12: "fr-ca-qwerty",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksShowStatusWindow(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSso(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "static",
-			2: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredential(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "sslvpn-login",
-			1: "alternative",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSsoCredentialSentOnce(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1191,62 +1105,22 @@ func flattenObjectVpnSslWebPortalCustomLang(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalDisplayBookmark(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalDisplayConnectionTools(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalDisplayHistory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalDisplayStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1263,38 +1137,14 @@ func flattenObjectVpnSslWebPortalDnsSuffix(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnSslWebPortalExclusiveRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalForticlientDownload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalForticlientDownloadMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "direct",
-			1: "ssl-vpn",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1303,29 +1153,10 @@ func flattenObjectVpnSslWebPortalHeading(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectVpnSslWebPortalHideSsoCredential(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalHostCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "av",
-			2: "fw",
-			3: "av-fw",
-			4: "custom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1338,14 +1169,6 @@ func flattenObjectVpnSslWebPortalHostCheckPolicy(v interface{}, d *schema.Resour
 }
 
 func flattenObjectVpnSslWebPortalIpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "range",
-			1: "user-group",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1362,14 +1185,6 @@ func flattenObjectVpnSslWebPortalIpv6DnsServer2(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectVpnSslWebPortalIpv6ExclusiveRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1378,26 +1193,10 @@ func flattenObjectVpnSslWebPortalIpv6Pools(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnSslWebPortalIpv6ServiceRestriction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalIpv6SplitTunneling(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1406,26 +1205,10 @@ func flattenObjectVpnSslWebPortalIpv6SplitTunnelingRoutingAddress(v interface{},
 }
 
 func flattenObjectVpnSslWebPortalIpv6SplitTunnelingRoutingNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalIpv6TunnelMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1438,50 +1221,18 @@ func flattenObjectVpnSslWebPortalIpv6WinsServer2(v interface{}, d *schema.Resour
 }
 
 func flattenObjectVpnSslWebPortalKeepAlive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalLimitUserLogins(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalMacAddrAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalMacAddrCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1551,14 +1302,6 @@ func flattenObjectVpnSslWebPortalName(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectVpnSslWebPortalOsCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1596,15 +1339,6 @@ func flattenObjectVpnSslWebPortalOsCheckList(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectVpnSslWebPortalOsCheckListAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "check-up-to-date",
-			2: "deny",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1620,105 +1354,47 @@ func flattenObjectVpnSslWebPortalOsCheckListTolerance(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectVpnSslWebPortalPreferIpv6Dns(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalRedirUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectVpnSslWebPortalRewriteIpUriUi(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalSavePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalServiceRestriction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalSkipCheckForBrowser(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalSkipCheckForUnsupportedOs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalSmbMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "smbv1",
-			1: "smbv2",
-			2: "smbv3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalSmbMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "smbv1",
-			1: "smbv2",
-			2: "smbv3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalSmbNtlmv1Auth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalSmbv1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1810,14 +1486,6 @@ func flattenObjectVpnSslWebPortalSplitDnsIpv6DnsServer2(v interface{}, d *schema
 }
 
 func flattenObjectVpnSslWebPortalSplitTunneling(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1826,89 +1494,34 @@ func flattenObjectVpnSslWebPortalSplitTunnelingRoutingAddress(v interface{}, d *
 }
 
 func flattenObjectVpnSslWebPortalSplitTunnelingRoutingNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalTheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "blue",
-			6:  "green",
-			7:  "melongene",
-			9:  "mariner",
-			10: "neutrino",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectVpnSslWebPortalTransformBackwardSlashes(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectVpnSslWebPortalTunnelMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalUseSdwan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalUserBookmark(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalUserGroupBookmark(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectVpnSslWebPortalWebMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2389,6 +2002,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("prefer_ipv6_dns", flattenObjectVpnSslWebPortalPreferIpv6Dns(o["prefer-ipv6-dns"], d, "prefer_ipv6_dns")); err != nil {
+		if vv, ok := fortiAPIPatch(o["prefer-ipv6-dns"], "ObjectVpnSslWebPortal-PreferIpv6Dns"); ok {
+			if err = d.Set("prefer_ipv6_dns", vv); err != nil {
+				return fmt.Errorf("Error reading prefer_ipv6_dns: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading prefer_ipv6_dns: %v", err)
+		}
+	}
+
 	if err = d.Set("redir_url", flattenObjectVpnSslWebPortalRedirUrl(o["redir-url"], d, "redir_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["redir-url"], "ObjectVpnSslWebPortal-RedirUrl"); ok {
 			if err = d.Set("redir_url", vv); err != nil {
@@ -2396,6 +2019,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading redir_url: %v", err)
+		}
+	}
+
+	if err = d.Set("rewrite_ip_uri_ui", flattenObjectVpnSslWebPortalRewriteIpUriUi(o["rewrite-ip-uri-ui"], d, "rewrite_ip_uri_ui")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rewrite-ip-uri-ui"], "ObjectVpnSslWebPortal-RewriteIpUriUi"); ok {
+			if err = d.Set("rewrite_ip_uri_ui", vv); err != nil {
+				return fmt.Errorf("Error reading rewrite_ip_uri_ui: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rewrite_ip_uri_ui: %v", err)
 		}
 	}
 
@@ -2540,6 +2173,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading theme: %v", err)
+		}
+	}
+
+	if err = d.Set("transform_backward_slashes", flattenObjectVpnSslWebPortalTransformBackwardSlashes(o["transform-backward-slashes"], d, "transform_backward_slashes")); err != nil {
+		if vv, ok := fortiAPIPatch(o["transform-backward-slashes"], "ObjectVpnSslWebPortal-TransformBackwardSlashes"); ok {
+			if err = d.Set("transform_backward_slashes", vv); err != nil {
+				return fmt.Errorf("Error reading transform_backward_slashes: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading transform_backward_slashes: %v", err)
 		}
 	}
 
@@ -3212,7 +2855,15 @@ func expandObjectVpnSslWebPortalOsCheckListTolerance(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalPreferIpv6Dns(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalRedirUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalRewriteIpUriUi(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3337,6 +2988,10 @@ func expandObjectVpnSslWebPortalSplitTunnelingRoutingNegate(d *schema.ResourceDa
 }
 
 func expandObjectVpnSslWebPortalTheme(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalTransformBackwardSlashes(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3753,12 +3408,30 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("prefer_ipv6_dns"); ok {
+		t, err := expandObjectVpnSslWebPortalPreferIpv6Dns(d, v, "prefer_ipv6_dns")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["prefer-ipv6-dns"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("redir_url"); ok {
 		t, err := expandObjectVpnSslWebPortalRedirUrl(d, v, "redir_url")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["redir-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("rewrite_ip_uri_ui"); ok {
+		t, err := expandObjectVpnSslWebPortalRewriteIpUriUi(d, v, "rewrite_ip_uri_ui")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rewrite-ip-uri-ui"] = t
 		}
 	}
 
@@ -3876,6 +3549,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["theme"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("transform_backward_slashes"); ok {
+		t, err := expandObjectVpnSslWebPortalTransformBackwardSlashes(d, v, "transform_backward_slashes")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["transform-backward-slashes"] = t
 		}
 	}
 

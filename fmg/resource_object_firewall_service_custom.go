@@ -82,6 +82,11 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fqdn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -155,6 +160,11 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			},
 			"tcp_portrange": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tcp_rst_timer": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -293,15 +303,6 @@ func flattenObjectFirewallServiceCustomAppCategory(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallServiceCustomAppServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "app-id",
-			2: "app-category",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -314,15 +315,6 @@ func flattenObjectFirewallServiceCustomCategory(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallServiceCustomCheckResetRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			3: "default",
-			6: "strict",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -331,6 +323,10 @@ func flattenObjectFirewallServiceCustomColor(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallServiceCustomComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallServiceCustomFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -343,32 +339,6 @@ func flattenObjectFirewallServiceCustomGlobalObject(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallServiceCustomHelper(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			1:  "auto",
-			2:  "ftp",
-			3:  "tftp",
-			4:  "ras",
-			5:  "h323",
-			6:  "tns",
-			7:  "mms",
-			8:  "sip",
-			9:  "pptp",
-			10: "rtsp",
-			11: "dns-udp",
-			12: "dns-tcp",
-			13: "pmap",
-			14: "rsh",
-			15: "dcerpc",
-			16: "mgcp",
-			17: "gtp-c",
-			18: "gtp-u",
-			19: "gtp-b",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -389,22 +359,6 @@ func flattenObjectFirewallServiceCustomName(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallServiceCustomProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ICMP",
-			2:  "IP",
-			5:  "TCP/UDP/SCTP",
-			6:  "ICMP6",
-			7:  "HTTP",
-			8:  "FTP",
-			9:  "CONNECT",
-			11: "ALL",
-			12: "SOCKS-TCP",
-			13: "SOCKS-UDP",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -413,14 +367,6 @@ func flattenObjectFirewallServiceCustomProtocolNumber(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallServiceCustomProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -444,6 +390,10 @@ func flattenObjectFirewallServiceCustomTcpPortrange(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectFirewallServiceCustomTcpRstTimer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallServiceCustomTcpTimewaitTimer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -457,14 +407,6 @@ func flattenObjectFirewallServiceCustomUdpPortrange(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallServiceCustomVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -538,6 +480,16 @@ func refreshObjectObjectFirewallServiceCustom(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallServiceCustomFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallServiceCustom-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -691,6 +643,16 @@ func refreshObjectObjectFirewallServiceCustom(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("tcp_rst_timer", flattenObjectFirewallServiceCustomTcpRstTimer(o["tcp-rst-timer"], d, "tcp_rst_timer")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tcp-rst-timer"], "ObjectFirewallServiceCustom-TcpRstTimer"); ok {
+			if err = d.Set("tcp_rst_timer", vv); err != nil {
+				return fmt.Errorf("Error reading tcp_rst_timer: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tcp_rst_timer: %v", err)
+		}
+	}
+
 	if err = d.Set("tcp_timewait_timer", flattenObjectFirewallServiceCustomTcpTimewaitTimer(o["tcp-timewait-timer"], d, "tcp_timewait_timer")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-timewait-timer"], "ObjectFirewallServiceCustom-TcpTimewaitTimer"); ok {
 			if err = d.Set("tcp_timewait_timer", vv); err != nil {
@@ -768,6 +730,10 @@ func expandObjectFirewallServiceCustomComment(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectFirewallServiceCustomFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallServiceCustomFqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -825,6 +791,10 @@ func expandObjectFirewallServiceCustomTcpHalfopenTimer(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallServiceCustomTcpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallServiceCustomTcpRstTimer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -907,6 +877,15 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallServiceCustomFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 
@@ -1042,6 +1021,15 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["tcp-portrange"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tcp_rst_timer"); ok {
+		t, err := expandObjectFirewallServiceCustomTcpRstTimer(d, v, "tcp_rst_timer")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tcp-rst-timer"] = t
 		}
 	}
 

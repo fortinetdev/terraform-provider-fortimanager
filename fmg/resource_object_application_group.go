@@ -51,6 +51,11 @@ func resourceObjectApplicationGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"behavior": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"category": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
@@ -68,7 +73,34 @@ func resourceObjectApplicationGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"popularity": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"protocols": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"risk": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
+			"technology": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vendor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -187,6 +219,10 @@ func flattenObjectApplicationGroupApplication(v interface{}, d *schema.ResourceD
 	return flattenIntegerList(v)
 }
 
+func flattenObjectApplicationGroupBehavior(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectApplicationGroupCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
@@ -199,15 +235,27 @@ func flattenObjectApplicationGroupName(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectApplicationGroupPopularity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectApplicationGroupProtocols(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectApplicationGroupRisk(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenObjectApplicationGroupTechnology(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectApplicationGroupType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "application",
-			1: "category",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectApplicationGroupVendor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -221,6 +269,16 @@ func refreshObjectObjectApplicationGroup(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading application: %v", err)
+		}
+	}
+
+	if err = d.Set("behavior", flattenObjectApplicationGroupBehavior(o["behavior"], d, "behavior")); err != nil {
+		if vv, ok := fortiAPIPatch(o["behavior"], "ObjectApplicationGroup-Behavior"); ok {
+			if err = d.Set("behavior", vv); err != nil {
+				return fmt.Errorf("Error reading behavior: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading behavior: %v", err)
 		}
 	}
 
@@ -254,6 +312,46 @@ func refreshObjectObjectApplicationGroup(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("popularity", flattenObjectApplicationGroupPopularity(o["popularity"], d, "popularity")); err != nil {
+		if vv, ok := fortiAPIPatch(o["popularity"], "ObjectApplicationGroup-Popularity"); ok {
+			if err = d.Set("popularity", vv); err != nil {
+				return fmt.Errorf("Error reading popularity: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading popularity: %v", err)
+		}
+	}
+
+	if err = d.Set("protocols", flattenObjectApplicationGroupProtocols(o["protocols"], d, "protocols")); err != nil {
+		if vv, ok := fortiAPIPatch(o["protocols"], "ObjectApplicationGroup-Protocols"); ok {
+			if err = d.Set("protocols", vv); err != nil {
+				return fmt.Errorf("Error reading protocols: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading protocols: %v", err)
+		}
+	}
+
+	if err = d.Set("risk", flattenObjectApplicationGroupRisk(o["risk"], d, "risk")); err != nil {
+		if vv, ok := fortiAPIPatch(o["risk"], "ObjectApplicationGroup-Risk"); ok {
+			if err = d.Set("risk", vv); err != nil {
+				return fmt.Errorf("Error reading risk: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading risk: %v", err)
+		}
+	}
+
+	if err = d.Set("technology", flattenObjectApplicationGroupTechnology(o["technology"], d, "technology")); err != nil {
+		if vv, ok := fortiAPIPatch(o["technology"], "ObjectApplicationGroup-Technology"); ok {
+			if err = d.Set("technology", vv); err != nil {
+				return fmt.Errorf("Error reading technology: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading technology: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenObjectApplicationGroupType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectApplicationGroup-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -261,6 +359,16 @@ func refreshObjectObjectApplicationGroup(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("vendor", flattenObjectApplicationGroupVendor(o["vendor"], d, "vendor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vendor"], "ObjectApplicationGroup-Vendor"); ok {
+			if err = d.Set("vendor", vv); err != nil {
+				return fmt.Errorf("Error reading vendor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vendor: %v", err)
 		}
 	}
 
@@ -277,6 +385,10 @@ func expandObjectApplicationGroupApplication(d *schema.ResourceData, v interface
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectApplicationGroupBehavior(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectApplicationGroupCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
@@ -289,7 +401,27 @@ func expandObjectApplicationGroupName(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectApplicationGroupPopularity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectApplicationGroupProtocols(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectApplicationGroupRisk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectApplicationGroupTechnology(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectApplicationGroupType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectApplicationGroupVendor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -302,6 +434,15 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["application"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("behavior"); ok {
+		t, err := expandObjectApplicationGroupBehavior(d, v, "behavior")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["behavior"] = t
 		}
 	}
 
@@ -332,12 +473,57 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("popularity"); ok {
+		t, err := expandObjectApplicationGroupPopularity(d, v, "popularity")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["popularity"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("protocols"); ok {
+		t, err := expandObjectApplicationGroupProtocols(d, v, "protocols")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["protocols"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("risk"); ok {
+		t, err := expandObjectApplicationGroupRisk(d, v, "risk")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["risk"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("technology"); ok {
+		t, err := expandObjectApplicationGroupTechnology(d, v, "technology")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["technology"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("type"); ok {
 		t, err := expandObjectApplicationGroupType(d, v, "type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vendor"); ok {
+		t, err := expandObjectApplicationGroupVendor(d, v, "vendor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vendor"] = t
 		}
 	}
 

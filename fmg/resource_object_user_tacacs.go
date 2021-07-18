@@ -319,29 +319,10 @@ func resourceObjectUserTacacsRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectUserTacacsAuthenType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "ascii",
-			2: "pap",
-			3: "chap",
-			5: "mschap",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserTacacsAuthorization(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -498,29 +479,10 @@ func flattenObjectUserTacacsDynamicMappingScopeVdom(v interface{}, d *schema.Res
 }
 
 func flattenObjectUserTacacsDynamicMappingAuthenType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "ascii",
-			2: "pap",
-			3: "chap",
-			5: "mschap",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserTacacsDynamicMappingAuthorization(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -529,15 +491,6 @@ func flattenObjectUserTacacsDynamicMappingInterface(v interface{}, d *schema.Res
 }
 
 func flattenObjectUserTacacsDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -578,15 +531,6 @@ func flattenObjectUserTacacsInterface(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectUserTacacsInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

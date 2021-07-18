@@ -209,15 +209,6 @@ func flattenObjectCifsProfileName(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectCifsProfileServerCredentialType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "none",
-			2: "credential-replication",
-			3: "credential-keytab",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

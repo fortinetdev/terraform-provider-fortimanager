@@ -333,15 +333,6 @@ func flattenSystemAdminLdapSecondaryServer(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemAdminLdapSecure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "starttls",
-			2: "ldaps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -354,15 +345,6 @@ func flattenSystemAdminLdapTertiaryServer(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemAdminLdapType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "simple",
-			1: "anonymous",
-			2: "regular",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

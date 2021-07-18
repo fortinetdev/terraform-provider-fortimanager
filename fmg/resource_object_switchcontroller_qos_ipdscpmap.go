@@ -272,52 +272,11 @@ func flattenObjectSwitchControllerQosIpDscpMapMapCosQueue(v interface{}, d *sche
 }
 
 func flattenObjectSwitchControllerQosIpDscpMapMapDiffserv(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:       "CS0",
-			2:       "CS1",
-			4:       "AF11",
-			8:       "AF12",
-			16:      "AF13",
-			32:      "CS2",
-			64:      "AF21",
-			128:     "AF22",
-			256:     "AF23",
-			512:     "CS3",
-			1024:    "AF31",
-			2048:    "AF32",
-			4096:    "AF33",
-			8192:    "CS4",
-			16384:   "AF41",
-			32768:   "AF42",
-			65536:   "AF43",
-			131072:  "CS5",
-			262144:  "EF",
-			524288:  "CS6",
-			1048576: "CS7",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSwitchControllerQosIpDscpMapMapIpPrecedence(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "network-control",
-			2:   "internetwork-control",
-			4:   "critic-ecp",
-			8:   "flashoverride",
-			16:  "flash",
-			32:  "immediate",
-			64:  "priority",
-			128: "routine",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSwitchControllerQosIpDscpMapMapName(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -41,7 +41,10 @@ The following arguments are supported:
 * `captive_portal_type` - Captive portal type. Valid values: `fqdn`, `ip`.
 
 * `captive_portal6` - IPv6 captive portal host name.
+* `dev_range` - Address range for the IP based device query.
+* `rewrite_https_port` - Rewrite-Https-Port.
 * `sso_auth_scheme` - Single-Sign-On authentication method (scheme name).
+* `user_cert_ca` - CA certificate used for client certificate verification.
 
 
 ## Attribute Reference
@@ -59,4 +62,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_authentication_setting.labelname PackagesAuthenticationSetting
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

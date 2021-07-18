@@ -200,39 +200,14 @@ func resourceObjectWebProxyForwardServerGroupRead(d *schema.ResourceData, m inte
 }
 
 func flattenObjectWebProxyForwardServerGroupAffinity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyForwardServerGroupGroupDownOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			1: "pass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebProxyForwardServerGroupLdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "weighted",
-			3: "least-session",
-			7: "active-passive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

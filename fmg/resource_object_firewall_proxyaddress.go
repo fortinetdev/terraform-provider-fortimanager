@@ -185,6 +185,11 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"visibility": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -305,14 +310,6 @@ func flattenObjectFirewallProxyAddressImageBase64(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallProxyAddressCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -384,14 +381,6 @@ func flattenObjectFirewallProxyAddressHeaderGroup(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallProxyAddressHeaderGroupCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -420,21 +409,7 @@ func flattenObjectFirewallProxyAddressHostRegex(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallProxyAddressMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "delete",
-			2:   "get",
-			4:   "head",
-			8:   "options",
-			16:  "post",
-			32:  "put",
-			64:  "trace",
-			256: "connect",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProxyAddressName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -450,14 +425,6 @@ func flattenObjectFirewallProxyAddressQuery(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallProxyAddressReferrer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -519,39 +486,18 @@ func flattenObjectFirewallProxyAddressTaggingTags(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallProxyAddressType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "host-regex",
-			1: "url",
-			2: "category",
-			3: "method",
-			4: "ua",
-			5: "header",
-			6: "src-advanced",
-			7: "dst-advanced",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProxyAddressUa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "chrome",
-			2:  "ms",
-			4:  "firefox",
-			8:  "safari",
-			16: "other",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProxyAddressUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProxyAddressVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -776,6 +722,16 @@ func refreshObjectObjectFirewallProxyAddress(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("visibility", flattenObjectFirewallProxyAddressVisibility(o["visibility"], d, "visibility")); err != nil {
+		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallProxyAddress-Visibility"); ok {
+			if err = d.Set("visibility", vv); err != nil {
+				return fmt.Errorf("Error reading visibility: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading visibility: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -962,6 +918,10 @@ func expandObjectFirewallProxyAddressUuid(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddressVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1133,6 +1093,15 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("visibility"); ok {
+		t, err := expandObjectFirewallProxyAddressVisibility(d, v, "visibility")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["visibility"] = t
 		}
 	}
 

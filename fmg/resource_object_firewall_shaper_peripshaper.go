@@ -80,6 +80,16 @@ func resourceObjectFirewallShaperPerIpShaper() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"max_concurrent_tcp_session": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"max_concurrent_udp_session": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -197,39 +207,14 @@ func resourceObjectFirewallShaperPerIpShaperRead(d *schema.ResourceData, m inter
 }
 
 func flattenObjectFirewallShaperPerIpShaperBandwidthUnit(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "kbps",
-			1: "mbps",
-			2: "gbps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallShaperPerIpShaperDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallShaperPerIpShaperDiffservReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -246,6 +231,14 @@ func flattenObjectFirewallShaperPerIpShaperMaxBandwidth(v interface{}, d *schema
 }
 
 func flattenObjectFirewallShaperPerIpShaperMaxConcurrentSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShaperPerIpShaperMaxConcurrentTcpSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallShaperPerIpShaperMaxConcurrentUdpSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -326,6 +319,26 @@ func refreshObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("max_concurrent_tcp_session", flattenObjectFirewallShaperPerIpShaperMaxConcurrentTcpSession(o["max-concurrent-tcp-session"], d, "max_concurrent_tcp_session")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-concurrent-tcp-session"], "ObjectFirewallShaperPerIpShaper-MaxConcurrentTcpSession"); ok {
+			if err = d.Set("max_concurrent_tcp_session", vv); err != nil {
+				return fmt.Errorf("Error reading max_concurrent_tcp_session: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_concurrent_tcp_session: %v", err)
+		}
+	}
+
+	if err = d.Set("max_concurrent_udp_session", flattenObjectFirewallShaperPerIpShaperMaxConcurrentUdpSession(o["max-concurrent-udp-session"], d, "max_concurrent_udp_session")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-concurrent-udp-session"], "ObjectFirewallShaperPerIpShaper-MaxConcurrentUdpSession"); ok {
+			if err = d.Set("max_concurrent_udp_session", vv); err != nil {
+				return fmt.Errorf("Error reading max_concurrent_udp_session: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_concurrent_udp_session: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectFirewallShaperPerIpShaperName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallShaperPerIpShaper-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -370,6 +383,14 @@ func expandObjectFirewallShaperPerIpShaperMaxBandwidth(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallShaperPerIpShaperMaxConcurrentSession(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShaperPerIpShaperMaxConcurrentTcpSession(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallShaperPerIpShaperMaxConcurrentUdpSession(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -440,6 +461,24 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["max-concurrent-session"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_concurrent_tcp_session"); ok {
+		t, err := expandObjectFirewallShaperPerIpShaperMaxConcurrentTcpSession(d, v, "max_concurrent_tcp_session")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-concurrent-tcp-session"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_concurrent_udp_session"); ok {
+		t, err := expandObjectFirewallShaperPerIpShaperMaxConcurrentUdpSession(d, v, "max_concurrent_udp_session")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-concurrent-udp-session"] = t
 		}
 	}
 

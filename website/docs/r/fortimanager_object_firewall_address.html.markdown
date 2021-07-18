@@ -46,13 +46,18 @@ The following arguments are supported:
 * `end_ip` - Final IP address (inclusive) in the range for the address.
 * `end_mac` - Last MAC address in the range.
 * `epg_name` - Endpoint group name.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `filter` - Match criteria filter.
 * `fqdn` - Fully Qualified Domain Name address.
 * `fsso_group` - FSSO group(s).
 * `global_object` - Global Object.
 * `interface` - Name of interface whose IP address is to be used.
 * `list` - List. The structure of `list` block is documented below.
+* `macaddr` - Multiple MAC address ranges.
 * `name` - Address name.
+* `node_ip_only` - Enable/disable collection of node addresses only in Kubernetes. Valid values: `disable`, `enable`.
+
 * `obj_id` - Object ID for NSX.
 * `obj_tag` - Tag of dynamic address object.
 * `obj_type` - Object type. Valid values: `ip`, `mac`.
@@ -74,6 +79,8 @@ The following arguments are supported:
 * `type` - Type of address. Valid values: `ipmask`, `iprange`, `fqdn`, `wildcard`, `geography`, `url`, `wildcard-fqdn`, `nsx`, `aws`, `dynamic`, `interface-subnet`, `mac`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `visibility` - Enable/disable address visibility in the GUI. Valid values: `disable`, `enable`.
+
 * `wildcard` - IP address and wildcard netmask.
 * `wildcard_fqdn` - Fully Qualified Domain Name with wildcard characters.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -99,13 +106,14 @@ The `dynamic_mapping` block supports:
 * `filter` - Match criteria filter.
 * `fqdn` - Fully Qualified Domain Name address.
 * `fsso_group` - FSSO group(s).
-* `global_object` - Global Object.
+* `global_object` - Global-Object.
 * `interface` - Name of interface whose IP address is to be used.
+* `macaddr` - Macaddr.
 * `node_ip_only` - Node-Ip-Only. Valid values: `disable`, `enable`.
 
 * `obj_id` - Object ID for NSX.
-* `obj_tag` - Tag of dynamic address object.
-* `obj_type` - Object type. Valid values: `ip`, `mac`.
+* `obj_tag` - Obj-Tag.
+* `obj_type` - Obj-Type. Valid values: `ip`, `mac`.
 
 * `organization` - Organization domain name (Syntax: organization/domain).
 * `policy_group` - Policy group name.
@@ -125,7 +133,7 @@ The `dynamic_mapping` block supports:
 
 * `url` - Url.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-* `visibility` - Visibility. Valid values: `disable`, `enable`.
+* `visibility` - Enable/disable address visibility in the GUI. Valid values: `disable`, `enable`.
 
 * `wildcard` - IP address and wildcard netmask.
 * `wildcard_fqdn` - Fully Qualified Domain Name with wildcard characters.
@@ -162,4 +170,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_address.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -4,7 +4,7 @@
 // Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
-// Description: Configure IPv4/IPv6 policies.
+// Description: Configure IPv4 policies.
 
 package fortimanager
 
@@ -46,6 +46,22 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			},
 			"anti_replay": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"app_category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"app_group": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"application": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
 				Computed: true,
 			},
@@ -307,6 +323,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dynamic_profile_group": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dynamic_shaping": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -654,6 +675,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"passive_wan_health_measurement": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"per_ip_shaper": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -935,6 +961,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"url_category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"users": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1201,55 +1232,31 @@ func resourcePackagesGlobalFooterPolicyRead(d *schema.ResourceData, m interface{
 }
 
 func flattenPackagesGlobalFooterPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "accept",
-			2: "ipsec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyActiveAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ntlm",
-			2: "basic",
-			3: "digest",
-			4: "form",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyAntiReplay(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
-func flattenPackagesGlobalFooterPolicyApplicationCharts(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "top10-app",
-			2: "top10-p2p-user",
-			4: "top10-media-user",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+func flattenPackagesGlobalFooterPolicyAppCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesGlobalFooterPolicyAppGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyApplicationCharts(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1261,43 +1268,14 @@ func flattenPackagesGlobalFooterPolicyAuthCert(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesGlobalFooterPolicyAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "basic",
-			1: "digest",
-			2: "ntlm",
-			3: "fsae",
-			4: "form",
-			5: "fsso",
-			6: "rsso",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyAuthPath(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyAuthPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1306,14 +1284,6 @@ func flattenPackagesGlobalFooterPolicyAuthRedirectAddr(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicyAutoAsicOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1322,62 +1292,22 @@ func flattenPackagesGlobalFooterPolicyAvProfile(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterPolicyBandwidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyBestRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyBlockNotification(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyCaptivePortalExempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyCapturePacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1386,38 +1316,14 @@ func flattenPackagesGlobalFooterPolicyCasiProfile(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicyCentralNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyCgnEif(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyCgnEim(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1438,26 +1344,10 @@ func flattenPackagesGlobalFooterPolicyCifsProfile(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicyClientReputation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyClientReputationMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "learning",
-			1: "monitoring",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1478,38 +1368,14 @@ func flattenPackagesGlobalFooterPolicyDeepInspectionOptions(v interface{}, d *sc
 }
 
 func flattenPackagesGlobalFooterPolicyDelayTcpNpuSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDelayTcpNpuSessoin(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDeviceDetectionPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1518,26 +1384,10 @@ func flattenPackagesGlobalFooterPolicyDevices(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDiffservReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1550,14 +1400,6 @@ func flattenPackagesGlobalFooterPolicyDiffservcodeRev(v interface{}, d *schema.R
 }
 
 func flattenPackagesGlobalFooterPolicyDisclaimer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1570,38 +1412,14 @@ func flattenPackagesGlobalFooterPolicyDnsfilterProfile(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicyDponly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDscpMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDscpNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1610,14 +1428,6 @@ func flattenPackagesGlobalFooterPolicyDscpValue(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterPolicyDsri(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1626,14 +1436,6 @@ func flattenPackagesGlobalFooterPolicyDstaddr(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1646,49 +1448,14 @@ func flattenPackagesGlobalFooterPolicyDstintf(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicyDynamicProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDynamicProfileAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "imap",
-			2:     "smtp",
-			4:     "pop3",
-			8:     "http",
-			16:    "ftp",
-			32:    "im",
-			64:    "nntp",
-			2048:  "imaps",
-			4096:  "smtps",
-			8192:  "pop3s",
-			16384: "https",
-			32768: "ftps",
-			65536: "ssh",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyDynamicProfileFallthrough(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1696,27 +1463,15 @@ func flattenPackagesGlobalFooterPolicyDynamicProfileGroup(v interface{}, d *sche
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyDynamicShaping(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyEmailCollect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyEmailCollectionPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1725,26 +1480,10 @@ func flattenPackagesGlobalFooterPolicyEmailfilterProfile(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalFooterPolicyEndpointCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyEndpointCompliance(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1757,26 +1496,10 @@ func flattenPackagesGlobalFooterPolicyEndpointProfile(v interface{}, d *schema.R
 }
 
 func flattenPackagesGlobalFooterPolicyFailedConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyFallThroughUnauthenticated(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1785,64 +1508,22 @@ func flattenPackagesGlobalFooterPolicyFileFilterProfile(v interface{}, d *schema
 }
 
 func flattenPackagesGlobalFooterPolicyFirewallSessionDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "check-all",
-			1: "check-new",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyFixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyForticlientComplianceDevices(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "windows-pc",
-			2: "mac",
-			4: "iphone-ipad",
-			8: "android",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyForticlientComplianceEnforcementPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyFsae(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1851,14 +1532,6 @@ func flattenPackagesGlobalFooterPolicyFsaeServerForNtlm(v interface{}, d *schema
 }
 
 func flattenPackagesGlobalFooterPolicyFsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1871,38 +1544,14 @@ func flattenPackagesGlobalFooterPolicyFssoGroups(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicyGeoLocation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyGeoipAnycast(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyGeoipMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "physical-location",
-			1: "registered-location",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1919,14 +1568,6 @@ func flattenPackagesGlobalFooterPolicyGtpProfile(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicyHttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1935,14 +1576,6 @@ func flattenPackagesGlobalFooterPolicyIcapProfile(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicyIdentityBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1951,50 +1584,18 @@ func flattenPackagesGlobalFooterPolicyIdentityBasedRoute(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalFooterPolicyIdentityFrom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auth",
-			1: "device",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyInbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyInternetService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2019,26 +1620,10 @@ func flattenPackagesGlobalFooterPolicyInternetServiceName(v interface{}, d *sche
 }
 
 func flattenPackagesGlobalFooterPolicyInternetServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2063,38 +1648,14 @@ func flattenPackagesGlobalFooterPolicyInternetServiceSrcName(v interface{}, d *s
 }
 
 func flattenPackagesGlobalFooterPolicyInternetServiceSrcNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyIpBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyIppool(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2107,87 +1668,30 @@ func flattenPackagesGlobalFooterPolicyLabel(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesGlobalFooterPolicyLearningMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyLogUnmatchedTraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			2: "all",
-			3: "utm",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyLogtrafficApp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyLogtrafficStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyMatchVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyMatchVipOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2200,26 +1704,10 @@ func flattenPackagesGlobalFooterPolicyName(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesGlobalFooterPolicyNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyNatinbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2228,38 +1716,14 @@ func flattenPackagesGlobalFooterPolicyNatip(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesGlobalFooterPolicyNatoutbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyNpAcceleration(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyNtlm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2268,26 +1732,14 @@ func flattenPackagesGlobalFooterPolicyNtlmEnabledBrowsers(v interface{}, d *sche
 }
 
 func flattenPackagesGlobalFooterPolicyNtlmGuest(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyOutbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2296,38 +1748,14 @@ func flattenPackagesGlobalFooterPolicyPerIpShaper(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicyPermitAnyHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyPermitStunHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyPolicyOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2352,26 +1780,10 @@ func flattenPackagesGlobalFooterPolicyProfileProtocolOptions(v interface{}, d *s
 }
 
 func flattenPackagesGlobalFooterPolicyProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "single",
-			1: "group",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyRadiusMacAuthBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2388,14 +1800,6 @@ func flattenPackagesGlobalFooterPolicyReplacemsgOverrideGroup(v interface{}, d *
 }
 
 func flattenPackagesGlobalFooterPolicyReputationDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "source",
-			2: "destination",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2404,26 +1808,10 @@ func flattenPackagesGlobalFooterPolicyReputationMinimum(v interface{}, d *schema
 }
 
 func flattenPackagesGlobalFooterPolicyRequireTfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyRsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2432,27 +1820,10 @@ func flattenPackagesGlobalFooterPolicyRtpAddr(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicyRtpNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyScanBotnetConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "block",
-			2: "monitor",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2461,26 +1832,10 @@ func flattenPackagesGlobalFooterPolicySchedule(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesGlobalFooterPolicyScheduleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicySendDenyPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2489,14 +1844,6 @@ func flattenPackagesGlobalFooterPolicyService(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2505,14 +1852,6 @@ func flattenPackagesGlobalFooterPolicySessionTtl(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicySessions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2529,14 +1868,6 @@ func flattenPackagesGlobalFooterPolicySrcaddr(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2553,26 +1884,10 @@ func flattenPackagesGlobalFooterPolicySshFilterProfile(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicySshPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicySslMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2585,66 +1900,22 @@ func flattenPackagesGlobalFooterPolicySslSshProfile(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalFooterPolicySslvpnAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "local",
-			2: "radius",
-			3: "ldap",
-			4: "tacacs+",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicySslvpnCcert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicySslvpnCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "high",
-			2: "medium",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicySsoAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			5: "fsso",
-			6: "rsso",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2661,39 +1932,14 @@ func flattenPackagesGlobalFooterPolicyTcpMssSender(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesGlobalFooterPolicyTcpReset(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyTcpSessionWithoutSyn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "all",
-			1: "data-only",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyTimeoutSendRst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2706,14 +1952,6 @@ func flattenPackagesGlobalFooterPolicyTosMask(v interface{}, d *schema.ResourceD
 }
 
 func flattenPackagesGlobalFooterPolicyTosNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2726,14 +1964,10 @@ func flattenPackagesGlobalFooterPolicyTrafficShaperReverse(v interface{}, d *sch
 }
 
 func flattenPackagesGlobalFooterPolicyTransactionBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2742,26 +1976,10 @@ func flattenPackagesGlobalFooterPolicyUsers(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesGlobalFooterPolicyUtmInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyUtmStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2802,40 +2020,14 @@ func flattenPackagesGlobalFooterPolicyWafProfile(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicyWanopt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyWanoptDetection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "active",
-			2: "passive",
-			3: "off",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyWanoptPassiveOpt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "transparent",
-			2: "non-transparent",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2848,50 +2040,18 @@ func flattenPackagesGlobalFooterPolicyWanoptProfile(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalFooterPolicyWccp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyWebAuthCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyWebcache(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyWebcacheHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			3: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2908,14 +2068,6 @@ func flattenPackagesGlobalFooterPolicyWebproxyProfile(v interface{}, d *schema.R
 }
 
 func flattenPackagesGlobalFooterPolicyWsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2928,14 +2080,6 @@ func flattenPackagesGlobalFooterPolicyZtnaGeoTag(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicyZtnaStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2969,6 +2113,36 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading anti_replay: %v", err)
+		}
+	}
+
+	if err = d.Set("app_category", flattenPackagesGlobalFooterPolicyAppCategory(o["app-category"], d, "app_category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["app-category"], "PackagesGlobalFooterPolicy-AppCategory"); ok {
+			if err = d.Set("app_category", vv); err != nil {
+				return fmt.Errorf("Error reading app_category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading app_category: %v", err)
+		}
+	}
+
+	if err = d.Set("app_group", flattenPackagesGlobalFooterPolicyAppGroup(o["app-group"], d, "app_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["app-group"], "PackagesGlobalFooterPolicy-AppGroup"); ok {
+			if err = d.Set("app_group", vv); err != nil {
+				return fmt.Errorf("Error reading app_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading app_group: %v", err)
+		}
+	}
+
+	if err = d.Set("application", flattenPackagesGlobalFooterPolicyApplication(o["application"], d, "application")); err != nil {
+		if vv, ok := fortiAPIPatch(o["application"], "PackagesGlobalFooterPolicy-Application"); ok {
+			if err = d.Set("application", vv); err != nil {
+				return fmt.Errorf("Error reading application: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading application: %v", err)
 		}
 	}
 
@@ -3489,6 +2663,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading dynamic_profile_group: %v", err)
+		}
+	}
+
+	if err = d.Set("dynamic_shaping", flattenPackagesGlobalFooterPolicyDynamicShaping(o["dynamic-shaping"], d, "dynamic_shaping")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dynamic-shaping"], "PackagesGlobalFooterPolicy-DynamicShaping"); ok {
+			if err = d.Set("dynamic_shaping", vv); err != nil {
+				return fmt.Errorf("Error reading dynamic_shaping: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dynamic_shaping: %v", err)
 		}
 	}
 
@@ -4172,6 +3356,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("passive_wan_health_measurement", flattenPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(o["passive-wan-health-measurement"], d, "passive_wan_health_measurement")); err != nil {
+		if vv, ok := fortiAPIPatch(o["passive-wan-health-measurement"], "PackagesGlobalFooterPolicy-PassiveWanHealthMeasurement"); ok {
+			if err = d.Set("passive_wan_health_measurement", vv); err != nil {
+				return fmt.Errorf("Error reading passive_wan_health_measurement: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading passive_wan_health_measurement: %v", err)
+		}
+	}
+
 	if err = d.Set("per_ip_shaper", flattenPackagesGlobalFooterPolicyPerIpShaper(o["per-ip-shaper"], d, "per_ip_shaper")); err != nil {
 		if vv, ok := fortiAPIPatch(o["per-ip-shaper"], "PackagesGlobalFooterPolicy-PerIpShaper"); ok {
 			if err = d.Set("per_ip_shaper", vv); err != nil {
@@ -4732,6 +3926,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("url_category", flattenPackagesGlobalFooterPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesGlobalFooterPolicy-UrlCategory"); ok {
+			if err = d.Set("url_category", vv); err != nil {
+				return fmt.Errorf("Error reading url_category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading url_category: %v", err)
+		}
+	}
+
 	if err = d.Set("users", flattenPackagesGlobalFooterPolicyUsers(o["users"], d, "users")); err != nil {
 		if vv, ok := fortiAPIPatch(o["users"], "PackagesGlobalFooterPolicy-Users"); ok {
 			if err = d.Set("users", vv); err != nil {
@@ -5033,6 +4237,18 @@ func expandPackagesGlobalFooterPolicyAntiReplay(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyAppCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyAppGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalFooterPolicyApplicationCharts(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -5238,6 +4454,10 @@ func expandPackagesGlobalFooterPolicyDynamicProfileFallthrough(d *schema.Resourc
 }
 
 func expandPackagesGlobalFooterPolicyDynamicProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyDynamicShaping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5513,6 +4733,10 @@ func expandPackagesGlobalFooterPolicyOutbound(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5737,6 +4961,10 @@ func expandPackagesGlobalFooterPolicyTransactionBased(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5876,6 +5104,33 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["anti-replay"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("app_category"); ok {
+		t, err := expandPackagesGlobalFooterPolicyAppCategory(d, v, "app_category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["app-category"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("app_group"); ok {
+		t, err := expandPackagesGlobalFooterPolicyAppGroup(d, v, "app_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["app-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("application"); ok {
+		t, err := expandPackagesGlobalFooterPolicyApplication(d, v, "application")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["application"] = t
 		}
 	}
 
@@ -6344,6 +5599,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["dynamic-profile-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dynamic_shaping"); ok {
+		t, err := expandPackagesGlobalFooterPolicyDynamicShaping(d, v, "dynamic_shaping")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic-shaping"] = t
 		}
 	}
 
@@ -6959,6 +6223,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("passive_wan_health_measurement"); ok {
+		t, err := expandPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(d, v, "passive_wan_health_measurement")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["passive-wan-health-measurement"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("per_ip_shaper"); ok {
 		t, err := expandPackagesGlobalFooterPolicyPerIpShaper(d, v, "per_ip_shaper")
 		if err != nil {
@@ -7460,6 +6733,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["transaction-based"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("url_category"); ok {
+		t, err := expandPackagesGlobalFooterPolicyUrlCategory(d, v, "url_category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["url-category"] = t
 		}
 	}
 

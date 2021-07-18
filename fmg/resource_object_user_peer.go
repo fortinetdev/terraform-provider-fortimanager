@@ -232,29 +232,10 @@ func flattenObjectUserPeerCn(v interface{}, d *schema.ResourceData, pre string) 
 }
 
 func flattenObjectUserPeerCnType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "string",
-			2:  "email",
-			4:  "FQDN",
-			8:  "ipv4",
-			16: "ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserPeerLdapMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "password",
-			1: "principal-name",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -271,14 +252,6 @@ func flattenObjectUserPeerLdapUsername(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectUserPeerMandatoryCaVerify(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -299,14 +272,6 @@ func flattenObjectUserPeerSubject(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserPeerTwoFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

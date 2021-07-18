@@ -341,6 +341,26 @@ func convintflist2i(v interface{}) interface{} {
 	return v
 }
 
+func convipstringlist2ipmask(v interface{}) interface{} {
+	if t, ok := v.([]interface{}); ok {
+		if len(t) == 0 {
+			return v
+		} else if len(t) == 2 {
+			v2 := fmt.Sprintf("%v %v", t[0], t[1])
+			return v2
+		}
+	}
+	return v
+}
+
+func convttlfloat642String(v interface{}) interface{} {
+	if v1, ok := v.(float64); ok {
+		return strconv.Itoa(int(v1))
+	}
+
+	return v
+}
+
 func intBetweenWithZero(min, max int) schema.SchemaValidateFunc {
 	return func(i interface{}, k string) (warnings []string, errors []error) {
 		v, ok := i.(int)

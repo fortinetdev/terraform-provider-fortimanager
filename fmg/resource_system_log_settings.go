@@ -177,10 +177,11 @@ func resourceSystemLogSettings() *schema.Resource {
 							Computed: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password2": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -320,10 +321,11 @@ func resourceSystemLogSettings() *schema.Resource {
 							Computed: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
-							Computed: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password2": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -669,14 +671,6 @@ func flattenSystemLogSettingsBrowseMaxLogfilesSlsa(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogSettingsDnsResolveDstipSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -685,14 +679,6 @@ func flattenSystemLogSettingsDownloadMaxLogsSlsa(v interface{}, d *schema.Resour
 }
 
 func flattenSystemLogSettingsHaAutoMigrateSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -701,14 +687,6 @@ func flattenSystemLogSettingsImportMaxLogfilesSlsa(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogSettingsLogFileArchiveNameSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "basic",
-			1: "extended",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -779,6 +757,10 @@ func flattenSystemLogSettingsRollingAnalyzerSlsa(v interface{}, d *schema.Resour
 	pre_append = pre + ".0." + "password"
 	if _, ok := i["password"]; ok {
 		result["password"] = flattenSystemLogSettingsRollingAnalyzerPasswordSlsa(i["password"], d, pre_append)
+		c := d.Get(pre_append).(string)
+		if c != "" {
+			result["password"] = c
+		}
 	}
 
 	pre_append = pre + ".0." + "password2"
@@ -856,31 +838,10 @@ func flattenSystemLogSettingsRollingAnalyzerSlsa(v interface{}, d *schema.Resour
 }
 
 func flattenSystemLogSettingsRollingAnalyzerDaysSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "sun",
-			2:  "mon",
-			4:  "tue",
-			8:  "wed",
-			16: "thu",
-			32: "fri",
-			64: "sat",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingAnalyzerDelFilesSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -893,14 +854,6 @@ func flattenSystemLogSettingsRollingAnalyzerFileSizeSlsa(v interface{}, d *schem
 }
 
 func flattenSystemLogSettingsRollingAnalyzerGzipFormatSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -921,15 +874,6 @@ func flattenSystemLogSettingsRollingAnalyzerIp3Slsa(v interface{}, d *schema.Res
 }
 
 func flattenSystemLogSettingsRollingAnalyzerLogFormatSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "native",
-			1: "text",
-			4: "csv",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -962,27 +906,10 @@ func flattenSystemLogSettingsRollingAnalyzerPort3Slsa(v interface{}, d *schema.R
 }
 
 func flattenSystemLogSettingsRollingAnalyzerServerTypeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ftp",
-			1: "sftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingAnalyzerUploadSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -991,26 +918,10 @@ func flattenSystemLogSettingsRollingAnalyzerUploadHourSlsa(v interface{}, d *sch
 }
 
 func flattenSystemLogSettingsRollingAnalyzerUploadModeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "backup",
-			1: "mirror",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingAnalyzerUploadTriggerSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "on-roll",
-			1: "on-schedule",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1027,15 +938,6 @@ func flattenSystemLogSettingsRollingAnalyzerUsername3Slsa(v interface{}, d *sche
 }
 
 func flattenSystemLogSettingsRollingAnalyzerWhenSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1106,6 +1008,10 @@ func flattenSystemLogSettingsRollingLocalSlsa(v interface{}, d *schema.ResourceD
 	pre_append = pre + ".0." + "password"
 	if _, ok := i["password"]; ok {
 		result["password"] = flattenSystemLogSettingsRollingLocalPasswordSlsa(i["password"], d, pre_append)
+		c := d.Get(pre_append).(string)
+		if c != "" {
+			result["password"] = c
+		}
 	}
 
 	pre_append = pre + ".0." + "password2"
@@ -1183,31 +1089,10 @@ func flattenSystemLogSettingsRollingLocalSlsa(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemLogSettingsRollingLocalDaysSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "sun",
-			2:  "mon",
-			4:  "tue",
-			8:  "wed",
-			16: "thu",
-			32: "fri",
-			64: "sat",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingLocalDelFilesSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1220,14 +1105,6 @@ func flattenSystemLogSettingsRollingLocalFileSizeSlsa(v interface{}, d *schema.R
 }
 
 func flattenSystemLogSettingsRollingLocalGzipFormatSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1248,15 +1125,6 @@ func flattenSystemLogSettingsRollingLocalIp3Slsa(v interface{}, d *schema.Resour
 }
 
 func flattenSystemLogSettingsRollingLocalLogFormatSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "native",
-			1: "text",
-			4: "csv",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1289,27 +1157,10 @@ func flattenSystemLogSettingsRollingLocalPort3Slsa(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogSettingsRollingLocalServerTypeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ftp",
-			1: "sftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingLocalUploadSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1318,26 +1169,10 @@ func flattenSystemLogSettingsRollingLocalUploadHourSlsa(v interface{}, d *schema
 }
 
 func flattenSystemLogSettingsRollingLocalUploadModeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "backup",
-			1: "mirror",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingLocalUploadTriggerSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "on-roll",
-			1: "on-schedule",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1354,15 +1189,6 @@ func flattenSystemLogSettingsRollingLocalUsername3Slsa(v interface{}, d *schema.
 }
 
 func flattenSystemLogSettingsRollingLocalWhenSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1510,31 +1336,10 @@ func flattenSystemLogSettingsRollingRegularSlsa(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemLogSettingsRollingRegularDaysSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "sun",
-			2:  "mon",
-			4:  "tue",
-			8:  "wed",
-			16: "thu",
-			32: "fri",
-			64: "sat",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingRegularDelFilesSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1547,14 +1352,6 @@ func flattenSystemLogSettingsRollingRegularFileSizeSlsa(v interface{}, d *schema
 }
 
 func flattenSystemLogSettingsRollingRegularGzipFormatSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1575,15 +1372,6 @@ func flattenSystemLogSettingsRollingRegularIp3Slsa(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogSettingsRollingRegularLogFormatSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "native",
-			1: "text",
-			4: "csv",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1616,27 +1404,10 @@ func flattenSystemLogSettingsRollingRegularPort3Slsa(v interface{}, d *schema.Re
 }
 
 func flattenSystemLogSettingsRollingRegularServerTypeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ftp",
-			1: "sftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingRegularUploadSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1645,26 +1416,10 @@ func flattenSystemLogSettingsRollingRegularUploadHourSlsa(v interface{}, d *sche
 }
 
 func flattenSystemLogSettingsRollingRegularUploadModeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "backup",
-			1: "mirror",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingRegularUploadTriggerSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "on-roll",
-			1: "on-schedule",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1681,15 +1436,6 @@ func flattenSystemLogSettingsRollingRegularUsername3Slsa(v interface{}, d *schem
 }
 
 func flattenSystemLogSettingsRollingRegularWhenSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

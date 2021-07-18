@@ -249,83 +249,10 @@ func flattenObjectDlpFilepatternEntries(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectDlpFilepatternEntriesFileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:    "unknown",
-			2:    "exe",
-			4:    "elf",
-			5:    "bat",
-			7:    "javascript",
-			8:    "html",
-			9:    "hta",
-			10:   "msoffice",
-			11:   "gzip",
-			12:   "rar",
-			13:   "tar",
-			14:   "lzh",
-			15:   "upx",
-			16:   "zip",
-			17:   "cab",
-			18:   "bzip2",
-			19:   "bzip",
-			20:   "activemime",
-			21:   "mime",
-			22:   "hlp",
-			23:   "arj",
-			24:   "base64",
-			25:   "binhex",
-			26:   "uue",
-			27:   "fsg",
-			28:   "aspack",
-			32:   "msc",
-			33:   "petite",
-			39:   "jpeg",
-			40:   "gif",
-			41:   "tiff",
-			42:   "png",
-			43:   "bmp",
-			44:   "msi",
-			45:   "mpeg",
-			46:   "mov",
-			47:   "mp3",
-			48:   "wma",
-			49:   "wav",
-			50:   "pdf",
-			51:   "avi",
-			52:   "rm",
-			53:   "torrent",
-			54:   "hibun",
-			55:   "7z",
-			56:   "xz",
-			57:   "msofficex",
-			58:   "mach-o",
-			59:   "dmg",
-			60:   ".net",
-			61:   "xar",
-			62:   "chm",
-			63:   "iso",
-			64:   "crx",
-			65:   "flac",
-			1000: "sis",
-			1003: "class",
-			1004: "jad",
-			1005: "cod",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDlpFilepatternEntriesFilterType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pattern",
-			1: "type",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

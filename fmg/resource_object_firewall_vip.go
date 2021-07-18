@@ -301,8 +301,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 										Computed: true,
 									},
 									"monitor": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
+										Type:     schema.TypeString,
 										Optional: true,
 										Computed: true,
 									},
@@ -540,6 +539,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -762,12 +766,16 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Computed: true,
 						},
 						"monitor": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"port": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"seq": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
@@ -832,6 +840,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Computed: true,
 						},
 						"priority": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
@@ -1014,6 +1027,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1150,14 +1168,6 @@ func resourceObjectFirewallVipRead(d *schema.ResourceData, m interface{}) error 
 }
 
 func flattenObjectFirewallVipArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1618,6 +1628,12 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["ssl_server_session_state_type"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-SslServerSessionStateType")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-Status")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := i["type"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingType(i["type"], d, pre_append)
@@ -1698,14 +1714,6 @@ func flattenObjectFirewallVipDynamicMappingScopeVdom(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallVipDynamicMappingArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1750,14 +1758,6 @@ func flattenObjectFirewallVipDynamicMappingHttpCookieDomain(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpCookieDomainFromHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1770,26 +1770,10 @@ func flattenObjectFirewallVipDynamicMappingHttpCookiePath(v interface{}, d *sche
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpCookieShare(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "same-ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpIpHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1798,38 +1782,14 @@ func flattenObjectFirewallVipDynamicMappingHttpIpHeaderName(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpMultiplex(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpsCookieSecure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1838,19 +1798,6 @@ func flattenObjectFirewallVipDynamicMappingId(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVipDynamicMappingLdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "round-robin",
-			2: "weighted",
-			3: "least-session",
-			4: "least-rtt",
-			5: "first-alive",
-			6: "http-host",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1875,77 +1822,26 @@ func flattenObjectFirewallVipDynamicMappingMonitor(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVipDynamicMappingNatSourceVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingOutlookWebAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingPersistence(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "none",
-			3: "http-cookie",
-			4: "ssl-session-id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingPortforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingPortmappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "1-to-1",
-			1: "m-to-n",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "tcp",
-			2: "udp",
-			3: "sctp",
-			4: "icmp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2069,15 +1965,6 @@ func flattenObjectFirewallVipDynamicMappingRealserversClientIp(v interface{}, d 
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "vip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2102,7 +1989,7 @@ func flattenObjectFirewallVipDynamicMappingRealserversMaxConnections(v interface
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2114,27 +2001,10 @@ func flattenObjectFirewallVipDynamicMappingRealserversSeq(v interface{}, d *sche
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "active",
-			1: "standby",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ip",
-			2: "address",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2143,21 +2013,6 @@ func flattenObjectFirewallVipDynamicMappingRealserversWeight(v interface{}, d *s
 }
 
 func flattenObjectFirewallVipDynamicMappingServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http",
-			2: "https",
-			3: "ssl",
-			4: "tcp",
-			5: "udp",
-			6: "ip",
-			7: "imaps",
-			8: "pop3s",
-			9: "smtps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2174,16 +2029,6 @@ func flattenObjectFirewallVipDynamicMappingSrcintfFilter(v interface{}, d *schem
 }
 
 func flattenObjectFirewallVipDynamicMappingSslAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "high",
-			2: "medium",
-			3: "low",
-			4: "custom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2243,82 +2088,6 @@ func flattenObjectFirewallVipDynamicMappingSslCipherSuites(v interface{}, d *sch
 }
 
 func flattenObjectFirewallVipDynamicMappingSslCipherSuitesCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "TLS-RSA-WITH-RC4-128-MD5",
-			2:  "TLS-RSA-WITH-RC4-128-SHA",
-			3:  "TLS-RSA-WITH-DES-CBC-SHA",
-			4:  "TLS-RSA-WITH-3DES-EDE-CBC-SHA",
-			5:  "TLS-RSA-WITH-AES-128-CBC-SHA",
-			6:  "TLS-RSA-WITH-AES-256-CBC-SHA",
-			7:  "TLS-RSA-WITH-AES-128-CBC-SHA256",
-			8:  "TLS-RSA-WITH-AES-256-CBC-SHA256",
-			9:  "TLS-RSA-WITH-CAMELLIA-128-CBC-SHA",
-			10: "TLS-RSA-WITH-CAMELLIA-256-CBC-SHA",
-			11: "TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256",
-			12: "TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256",
-			13: "TLS-RSA-WITH-SEED-CBC-SHA",
-			14: "TLS-RSA-WITH-ARIA-128-CBC-SHA256",
-			15: "TLS-RSA-WITH-ARIA-256-CBC-SHA384",
-			16: "TLS-DHE-RSA-WITH-DES-CBC-SHA",
-			17: "TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA",
-			18: "TLS-DHE-RSA-WITH-AES-128-CBC-SHA",
-			19: "TLS-DHE-RSA-WITH-AES-256-CBC-SHA",
-			20: "TLS-DHE-RSA-WITH-AES-128-CBC-SHA256",
-			21: "TLS-DHE-RSA-WITH-AES-256-CBC-SHA256",
-			22: "TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA",
-			23: "TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA",
-			24: "TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256",
-			25: "TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256",
-			26: "TLS-DHE-RSA-WITH-SEED-CBC-SHA",
-			27: "TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256",
-			28: "TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384",
-			29: "TLS-ECDHE-RSA-WITH-RC4-128-SHA",
-			30: "TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA",
-			31: "TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA",
-			32: "TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA",
-			33: "TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256",
-			34: "TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256",
-			35: "TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256",
-			36: "TLS-DHE-RSA-WITH-AES-128-GCM-SHA256",
-			37: "TLS-DHE-RSA-WITH-AES-256-GCM-SHA384",
-			38: "TLS-DHE-DSS-WITH-AES-128-CBC-SHA",
-			39: "TLS-DHE-DSS-WITH-AES-256-CBC-SHA",
-			40: "TLS-DHE-DSS-WITH-AES-128-CBC-SHA256",
-			41: "TLS-DHE-DSS-WITH-AES-128-GCM-SHA256",
-			42: "TLS-DHE-DSS-WITH-AES-256-CBC-SHA256",
-			43: "TLS-DHE-DSS-WITH-AES-256-GCM-SHA384",
-			44: "TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256",
-			45: "TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256",
-			46: "TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384",
-			47: "TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384",
-			48: "TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA",
-			49: "TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256",
-			50: "TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256",
-			51: "TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384",
-			52: "TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384",
-			53: "TLS-RSA-WITH-AES-128-GCM-SHA256",
-			54: "TLS-RSA-WITH-AES-256-GCM-SHA384",
-			55: "TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA",
-			56: "TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA",
-			57: "TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256",
-			58: "TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256",
-			59: "TLS-DHE-DSS-WITH-SEED-CBC-SHA",
-			60: "TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256",
-			61: "TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384",
-			62: "TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256",
-			63: "TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384",
-			64: "TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256",
-			65: "TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384",
-			66: "TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA",
-			67: "TLS-DHE-DSS-WITH-DES-CBC-SHA",
-			68: "TLS-AES-128-GCM-SHA256",
-			69: "TLS-AES-256-GCM-SHA384",
-			70: "TLS-CHACHA20-POLY1305-SHA256",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2331,29 +2100,10 @@ func flattenObjectFirewallVipDynamicMappingSslCipherSuitesPriority(v interface{}
 }
 
 func flattenObjectFirewallVipDynamicMappingSslCipherSuitesVersions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVipDynamicMappingSslClientFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2362,15 +2112,6 @@ func flattenObjectFirewallVipDynamicMappingSslClientRekeyCount(v interface{}, d 
 }
 
 func flattenObjectFirewallVipDynamicMappingSslClientRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "deny",
-			1:  "allow",
-			14: "secure",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2383,45 +2124,14 @@ func flattenObjectFirewallVipDynamicMappingSslClientSessionStateTimeout(v interf
 }
 
 func flattenObjectFirewallVipDynamicMappingSslClientSessionStateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "time",
-			2: "count",
-			3: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslDhBits(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "768",
-			1: "1024",
-			2: "1536",
-			3: "2048",
-			4: "3072",
-			5: "4096",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHpkp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			2: "report-only",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2434,14 +2144,6 @@ func flattenObjectFirewallVipDynamicMappingSslHpkpBackup(v interface{}, d *schem
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHpkpIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2454,14 +2156,6 @@ func flattenObjectFirewallVipDynamicMappingSslHpkpReportUri(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHsts(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2470,152 +2164,46 @@ func flattenObjectFirewallVipDynamicMappingSslHstsAge(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHstsIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHttpLocationConversion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslHttpMatchHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "half",
-			2: "full",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslPfs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "require",
-			1: "deny",
-			2: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslSendEmptyFrags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslServerAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "high",
-			2: "low",
-			4: "medium",
-			5: "custom",
-			6: "client",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslServerMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			16: "client",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingSslServerMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			16: "client",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2628,31 +2216,14 @@ func flattenObjectFirewallVipDynamicMappingSslServerSessionStateTimeout(v interf
 }
 
 func flattenObjectFirewallVipDynamicMappingSslServerSessionStateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "time",
-			2: "count",
-			3: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static-nat",
-			1: "load-balance",
-			3: "server-load-balance",
-			4: "dns-translation",
-			5: "fqdn",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2661,26 +2232,10 @@ func flattenObjectFirewallVipDynamicMappingUuid(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallVipDynamicMappingWeblogicServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingWebsphereServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2713,14 +2268,6 @@ func flattenObjectFirewallVipHttpCookieDomain(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVipHttpCookieDomainFromHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2733,26 +2280,10 @@ func flattenObjectFirewallVipHttpCookiePath(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallVipHttpCookieShare(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "same-ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipHttpIpHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2761,38 +2292,14 @@ func flattenObjectFirewallVipHttpIpHeaderName(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVipHttpMultiplex(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipHttpRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipHttpsCookieSecure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2801,19 +2308,6 @@ func flattenObjectFirewallVipId(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenObjectFirewallVipLdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "round-robin",
-			2: "weighted",
-			3: "least-session",
-			4: "least-rtt",
-			5: "first-alive",
-			6: "http-host",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2842,77 +2336,26 @@ func flattenObjectFirewallVipName(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectFirewallVipNatSourceVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipOutlookWebAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipPersistence(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "none",
-			3: "http-cookie",
-			4: "ssl-session-id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipPortforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipPortmappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "1-to-1",
-			1: "m-to-n",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "tcp",
-			2: "udp",
-			3: "sctp",
-			4: "icmp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2995,6 +2438,12 @@ func flattenObjectFirewallVipRealservers(v interface{}, d *schema.ResourceData, 
 			tmp["port"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-Port")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq"
+		if _, ok := i["seq"]; ok {
+			v := flattenObjectFirewallVipRealserversSeq(i["seq"], d, pre_append)
+			tmp["seq"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-Seq")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
 		if _, ok := i["status"]; ok {
 			v := flattenObjectFirewallVipRealserversStatus(i["status"], d, pre_append)
@@ -3030,15 +2479,6 @@ func flattenObjectFirewallVipRealserversClientIp(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallVipRealserversHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "vip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3063,35 +2503,22 @@ func flattenObjectFirewallVipRealserversMaxConnections(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVipRealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return flattenStringList(v)
+	return v
 }
 
 func flattenObjectFirewallVipRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectFirewallVipRealserversSeq(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipRealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "active",
-			1: "standby",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipRealserversType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ip",
-			2: "address",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3100,21 +2527,6 @@ func flattenObjectFirewallVipRealserversWeight(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFirewallVipServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http",
-			2: "https",
-			3: "ssl",
-			4: "tcp",
-			5: "udp",
-			6: "ip",
-			7: "imaps",
-			8: "pop3s",
-			9: "smtps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3131,16 +2543,6 @@ func flattenObjectFirewallVipSrcintfFilter(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallVipSslAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "high",
-			2: "medium",
-			3: "low",
-			4: "custom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3179,6 +2581,12 @@ func flattenObjectFirewallVipSslCipherSuites(v interface{}, d *schema.ResourceDa
 			tmp["priority"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-SslCipherSuites-Priority")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectFirewallVipSslCipherSuitesId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-SslCipherSuites-Id")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := i["versions"]; ok {
 			v := flattenObjectFirewallVipSslCipherSuitesVersions(i["versions"], d, pre_append)
@@ -3194,82 +2602,6 @@ func flattenObjectFirewallVipSslCipherSuites(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallVipSslCipherSuitesCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "TLS-RSA-WITH-RC4-128-MD5",
-			2:  "TLS-RSA-WITH-RC4-128-SHA",
-			3:  "TLS-RSA-WITH-DES-CBC-SHA",
-			4:  "TLS-RSA-WITH-3DES-EDE-CBC-SHA",
-			5:  "TLS-RSA-WITH-AES-128-CBC-SHA",
-			6:  "TLS-RSA-WITH-AES-256-CBC-SHA",
-			7:  "TLS-RSA-WITH-AES-128-CBC-SHA256",
-			8:  "TLS-RSA-WITH-AES-256-CBC-SHA256",
-			9:  "TLS-RSA-WITH-CAMELLIA-128-CBC-SHA",
-			10: "TLS-RSA-WITH-CAMELLIA-256-CBC-SHA",
-			11: "TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256",
-			12: "TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256",
-			13: "TLS-RSA-WITH-SEED-CBC-SHA",
-			14: "TLS-RSA-WITH-ARIA-128-CBC-SHA256",
-			15: "TLS-RSA-WITH-ARIA-256-CBC-SHA384",
-			16: "TLS-DHE-RSA-WITH-DES-CBC-SHA",
-			17: "TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA",
-			18: "TLS-DHE-RSA-WITH-AES-128-CBC-SHA",
-			19: "TLS-DHE-RSA-WITH-AES-256-CBC-SHA",
-			20: "TLS-DHE-RSA-WITH-AES-128-CBC-SHA256",
-			21: "TLS-DHE-RSA-WITH-AES-256-CBC-SHA256",
-			22: "TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA",
-			23: "TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA",
-			24: "TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256",
-			25: "TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256",
-			26: "TLS-DHE-RSA-WITH-SEED-CBC-SHA",
-			27: "TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256",
-			28: "TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384",
-			29: "TLS-ECDHE-RSA-WITH-RC4-128-SHA",
-			30: "TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA",
-			31: "TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA",
-			32: "TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA",
-			33: "TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256",
-			34: "TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256",
-			35: "TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256",
-			36: "TLS-DHE-RSA-WITH-AES-128-GCM-SHA256",
-			37: "TLS-DHE-RSA-WITH-AES-256-GCM-SHA384",
-			38: "TLS-DHE-DSS-WITH-AES-128-CBC-SHA",
-			39: "TLS-DHE-DSS-WITH-AES-256-CBC-SHA",
-			40: "TLS-DHE-DSS-WITH-AES-128-CBC-SHA256",
-			41: "TLS-DHE-DSS-WITH-AES-128-GCM-SHA256",
-			42: "TLS-DHE-DSS-WITH-AES-256-CBC-SHA256",
-			43: "TLS-DHE-DSS-WITH-AES-256-GCM-SHA384",
-			44: "TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256",
-			45: "TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256",
-			46: "TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384",
-			47: "TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384",
-			48: "TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA",
-			49: "TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256",
-			50: "TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256",
-			51: "TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384",
-			52: "TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384",
-			53: "TLS-RSA-WITH-AES-128-GCM-SHA256",
-			54: "TLS-RSA-WITH-AES-256-GCM-SHA384",
-			55: "TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA",
-			56: "TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA",
-			57: "TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256",
-			58: "TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256",
-			59: "TLS-DHE-DSS-WITH-SEED-CBC-SHA",
-			60: "TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256",
-			61: "TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384",
-			62: "TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256",
-			63: "TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384",
-			64: "TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256",
-			65: "TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384",
-			66: "TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA",
-			67: "TLS-DHE-DSS-WITH-DES-CBC-SHA",
-			68: "TLS-AES-128-GCM-SHA256",
-			69: "TLS-AES-256-GCM-SHA384",
-			70: "TLS-CHACHA20-POLY1305-SHA256",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3277,30 +2609,15 @@ func flattenObjectFirewallVipSslCipherSuitesPriority(v interface{}, d *schema.Re
 	return v
 }
 
-func flattenObjectFirewallVipSslCipherSuitesVersions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+func flattenObjectFirewallVipSslCipherSuitesId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectFirewallVipSslCipherSuitesVersions(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallVipSslClientFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3309,15 +2626,6 @@ func flattenObjectFirewallVipSslClientRekeyCount(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallVipSslClientRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "deny",
-			1:  "allow",
-			14: "secure",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3330,45 +2638,14 @@ func flattenObjectFirewallVipSslClientSessionStateTimeout(v interface{}, d *sche
 }
 
 func flattenObjectFirewallVipSslClientSessionStateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "time",
-			2: "count",
-			3: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslDhBits(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "768",
-			1: "1024",
-			2: "1536",
-			3: "2048",
-			4: "3072",
-			5: "4096",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslHpkp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			2: "report-only",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3381,14 +2658,6 @@ func flattenObjectFirewallVipSslHpkpBackup(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFirewallVipSslHpkpIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3401,14 +2670,6 @@ func flattenObjectFirewallVipSslHpkpReportUri(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVipSslHsts(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3417,120 +2678,38 @@ func flattenObjectFirewallVipSslHstsAge(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallVipSslHstsIncludeSubdomains(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslHttpLocationConversion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslHttpMatchHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "half",
-			2: "full",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslPfs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "require",
-			1: "deny",
-			2: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslSendEmptyFrags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslServerAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "high",
-			2: "low",
-			4: "medium",
-			5: "custom",
-			6: "client",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3580,82 +2759,6 @@ func flattenObjectFirewallVipSslServerCipherSuites(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVipSslServerCipherSuitesCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "TLS-RSA-WITH-RC4-128-MD5",
-			2:  "TLS-RSA-WITH-RC4-128-SHA",
-			3:  "TLS-RSA-WITH-DES-CBC-SHA",
-			4:  "TLS-RSA-WITH-3DES-EDE-CBC-SHA",
-			5:  "TLS-RSA-WITH-AES-128-CBC-SHA",
-			6:  "TLS-RSA-WITH-AES-256-CBC-SHA",
-			7:  "TLS-RSA-WITH-AES-128-CBC-SHA256",
-			8:  "TLS-RSA-WITH-AES-256-CBC-SHA256",
-			9:  "TLS-RSA-WITH-CAMELLIA-128-CBC-SHA",
-			10: "TLS-RSA-WITH-CAMELLIA-256-CBC-SHA",
-			11: "TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256",
-			12: "TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256",
-			13: "TLS-RSA-WITH-SEED-CBC-SHA",
-			14: "TLS-RSA-WITH-ARIA-128-CBC-SHA256",
-			15: "TLS-RSA-WITH-ARIA-256-CBC-SHA384",
-			16: "TLS-DHE-RSA-WITH-DES-CBC-SHA",
-			17: "TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA",
-			18: "TLS-DHE-RSA-WITH-AES-128-CBC-SHA",
-			19: "TLS-DHE-RSA-WITH-AES-256-CBC-SHA",
-			20: "TLS-DHE-RSA-WITH-AES-128-CBC-SHA256",
-			21: "TLS-DHE-RSA-WITH-AES-256-CBC-SHA256",
-			22: "TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA",
-			23: "TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA",
-			24: "TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256",
-			25: "TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256",
-			26: "TLS-DHE-RSA-WITH-SEED-CBC-SHA",
-			27: "TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256",
-			28: "TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384",
-			29: "TLS-ECDHE-RSA-WITH-RC4-128-SHA",
-			30: "TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA",
-			31: "TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA",
-			32: "TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA",
-			33: "TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256",
-			34: "TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256",
-			35: "TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256",
-			36: "TLS-DHE-RSA-WITH-AES-128-GCM-SHA256",
-			37: "TLS-DHE-RSA-WITH-AES-256-GCM-SHA384",
-			38: "TLS-DHE-DSS-WITH-AES-128-CBC-SHA",
-			39: "TLS-DHE-DSS-WITH-AES-256-CBC-SHA",
-			40: "TLS-DHE-DSS-WITH-AES-128-CBC-SHA256",
-			41: "TLS-DHE-DSS-WITH-AES-128-GCM-SHA256",
-			42: "TLS-DHE-DSS-WITH-AES-256-CBC-SHA256",
-			43: "TLS-DHE-DSS-WITH-AES-256-GCM-SHA384",
-			44: "TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256",
-			45: "TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256",
-			46: "TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384",
-			47: "TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384",
-			48: "TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA",
-			49: "TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256",
-			50: "TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256",
-			51: "TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384",
-			52: "TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384",
-			53: "TLS-RSA-WITH-AES-128-GCM-SHA256",
-			54: "TLS-RSA-WITH-AES-256-GCM-SHA384",
-			55: "TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA",
-			56: "TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA",
-			57: "TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256",
-			58: "TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256",
-			59: "TLS-DHE-DSS-WITH-SEED-CBC-SHA",
-			60: "TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256",
-			61: "TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384",
-			62: "TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256",
-			63: "TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384",
-			64: "TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256",
-			65: "TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384",
-			66: "TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA",
-			67: "TLS-DHE-DSS-WITH-DES-CBC-SHA",
-			68: "TLS-AES-128-GCM-SHA256",
-			69: "TLS-AES-256-GCM-SHA384",
-			70: "TLS-CHACHA20-POLY1305-SHA256",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3664,49 +2767,14 @@ func flattenObjectFirewallVipSslServerCipherSuitesPriority(v interface{}, d *sch
 }
 
 func flattenObjectFirewallVipSslServerCipherSuitesVersions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			32: "tls-1.3",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVipSslServerMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			16: "client",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipSslServerMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "ssl-3.0",
-			2:  "tls-1.0",
-			4:  "tls-1.1",
-			8:  "tls-1.2",
-			16: "client",
-			32: "tls-1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3719,31 +2787,14 @@ func flattenObjectFirewallVipSslServerSessionStateTimeout(v interface{}, d *sche
 }
 
 func flattenObjectFirewallVipSslServerSessionStateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "time",
-			2: "count",
-			3: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectFirewallVipStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallVipType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static-nat",
-			1: "load-balance",
-			3: "server-load-balance",
-			4: "dns-translation",
-			5: "fqdn",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3752,26 +2803,10 @@ func flattenObjectFirewallVipUuid(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectFirewallVipWeblogicServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVipWebsphereServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -4564,6 +3599,16 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("status", flattenObjectFirewallVipStatus(o["status"], d, "status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status"], "ObjectFirewallVip-Status"); ok {
+			if err = d.Set("status", vv); err != nil {
+				return fmt.Errorf("Error reading status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenObjectFirewallVipType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectFirewallVip-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -5010,6 +4055,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["ssl-server-session-state-type"], _ = expandObjectFirewallVipDynamicMappingSslServerSessionStateType(d, i["ssl_server_session_state_type"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["status"], _ = expandObjectFirewallVipDynamicMappingStatus(d, i["status"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["type"], _ = expandObjectFirewallVipDynamicMappingType(d, i["type"], pre_append)
@@ -5269,8 +4319,6 @@ func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["monitor"], _ = expandObjectFirewallVipDynamicMappingRealserversMonitor(d, i["monitor"], pre_append)
-		} else {
-			tmp["monitor"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
@@ -5339,7 +4387,7 @@ func expandObjectFirewallVipDynamicMappingRealserversMaxConnections(d *schema.Re
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return v, nil
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5562,6 +4610,10 @@ func expandObjectFirewallVipDynamicMappingSslServerSessionStateType(d *schema.Re
 	return v, nil
 }
 
+func expandObjectFirewallVipDynamicMappingStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5757,13 +4809,16 @@ func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["monitor"], _ = expandObjectFirewallVipRealserversMonitor(d, i["monitor"], pre_append)
-		} else {
-			tmp["monitor"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["port"], _ = expandObjectFirewallVipRealserversPort(d, i["port"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["seq"], _ = expandObjectFirewallVipRealserversSeq(d, i["seq"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
@@ -5822,10 +4877,14 @@ func expandObjectFirewallVipRealserversMaxConnections(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallVipRealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return expandStringList(v.(*schema.Set).List()), nil
+	return v, nil
 }
 
 func expandObjectFirewallVipRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipRealserversSeq(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5889,6 +4948,11 @@ func expandObjectFirewallVipSslCipherSuites(d *schema.ResourceData, v interface{
 			tmp["priority"], _ = expandObjectFirewallVipSslCipherSuitesPriority(d, i["priority"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandObjectFirewallVipSslCipherSuitesId(d, i["id"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["versions"], _ = expandObjectFirewallVipSslCipherSuitesVersions(d, i["versions"], pre_append)
@@ -5909,6 +4973,10 @@ func expandObjectFirewallVipSslCipherSuitesCipher(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallVipSslCipherSuitesPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipSslCipherSuitesId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6080,6 +5148,10 @@ func expandObjectFirewallVipSslServerSessionStateTimeout(d *schema.ResourceData,
 }
 
 func expandObjectFirewallVipSslServerSessionStateType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6756,6 +5828,15 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-server-session-state-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status"); ok {
+		t, err := expandObjectFirewallVipStatus(d, v, "status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status"] = t
 		}
 	}
 

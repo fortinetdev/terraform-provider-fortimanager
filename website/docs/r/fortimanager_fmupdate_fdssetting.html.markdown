@@ -34,7 +34,7 @@ The following arguments are supported:
 
 * `fortiguard_anycast` - Enable/disable use of FortiGuard's anycast network disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
-* `fortiguard_anycast_source` - Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet fortinet - Use Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. aws - Use Fortinet's AWS servers to provide FortiGuard services in FortiGuard's anycast network. debug - Use Fortinet's internal test servers to provide FortiGuard services in FortiGuard's anycast network. Valid values: `fortinet`, `aws`, `debug`.
+* `fortiguard_anycast_source` - Configure which of Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. Default is Fortinet fortinet - Use Fortinet's servers to provide FortiGuard services in FortiGuard's anycast network. aws - Use Fortinet's AWS servers to provide FortiGuard services in FortiGuard's anycast network. Valid values: `fortinet`, `aws`.
 
 * `linkd_log` - The linkd log level (default = info). emergency - Log level - emergency alert - Log level - alert critical - Log level - critical error - Log level - error warn - Log level - warn notice - Log level - notice info - Log level - info debug - Log level - debug disable - Disable linkd log Valid values: `emergency`, `alert`, `critical`, `error`, `warn`, `notice`, `info`, `debug`, `disable`.
 

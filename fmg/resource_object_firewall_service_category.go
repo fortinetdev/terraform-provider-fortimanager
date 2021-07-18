@@ -50,6 +50,11 @@ func resourceObjectFirewallServiceCategory() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fabric_object": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -175,6 +180,10 @@ func flattenObjectFirewallServiceCategoryComment(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectFirewallServiceCategoryFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallServiceCategoryGlobalObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -193,6 +202,16 @@ func refreshObjectObjectFirewallServiceCategory(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("fabric_object", flattenObjectFirewallServiceCategoryFabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallServiceCategory-FabricObject"); ok {
+			if err = d.Set("fabric_object", vv); err != nil {
+				return fmt.Errorf("Error reading fabric_object: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fabric_object: %v", err)
 		}
 	}
 
@@ -229,6 +248,10 @@ func expandObjectFirewallServiceCategoryComment(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectFirewallServiceCategoryFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallServiceCategoryGlobalObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -246,6 +269,15 @@ func getObjectObjectFirewallServiceCategory(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fabric_object"); ok {
+		t, err := expandObjectFirewallServiceCategoryFabricObject(d, v, "fabric_object")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fabric-object"] = t
 		}
 	}
 

@@ -60,6 +60,16 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dstaddr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dstaddr6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ip_based": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -82,6 +92,11 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"srcintf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -251,15 +266,15 @@ func flattenPackagesAuthenticationRuleComments(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesAuthenticationRuleDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationRuleDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesAuthenticationRuleIpBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -268,16 +283,6 @@ func flattenPackagesAuthenticationRuleName(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesAuthenticationRuleProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7:  "http",
-			8:  "ftp",
-			10: "socks",
-			14: "ssh",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -289,55 +294,27 @@ func flattenPackagesAuthenticationRuleSrcaddr6(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesAuthenticationRuleSrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesAuthenticationRuleSsoAuthMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenPackagesAuthenticationRuleStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesAuthenticationRuleTransactionBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesAuthenticationRuleWebAuthCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesAuthenticationRuleWebPortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -361,6 +338,26 @@ func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("dstaddr", flattenPackagesAuthenticationRuleDstaddr(o["dstaddr"], d, "dstaddr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dstaddr"], "PackagesAuthenticationRule-Dstaddr"); ok {
+			if err = d.Set("dstaddr", vv); err != nil {
+				return fmt.Errorf("Error reading dstaddr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dstaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("dstaddr6", flattenPackagesAuthenticationRuleDstaddr6(o["dstaddr6"], d, "dstaddr6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dstaddr6"], "PackagesAuthenticationRule-Dstaddr6"); ok {
+			if err = d.Set("dstaddr6", vv); err != nil {
+				return fmt.Errorf("Error reading dstaddr6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dstaddr6: %v", err)
 		}
 	}
 
@@ -411,6 +408,16 @@ func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading srcaddr6: %v", err)
+		}
+	}
+
+	if err = d.Set("srcintf", flattenPackagesAuthenticationRuleSrcintf(o["srcintf"], d, "srcintf")); err != nil {
+		if vv, ok := fortiAPIPatch(o["srcintf"], "PackagesAuthenticationRule-Srcintf"); ok {
+			if err = d.Set("srcintf", vv); err != nil {
+				return fmt.Errorf("Error reading srcintf: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading srcintf: %v", err)
 		}
 	}
 
@@ -481,6 +488,14 @@ func expandPackagesAuthenticationRuleComments(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesAuthenticationRuleDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationRuleDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesAuthenticationRuleIpBased(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -498,6 +513,10 @@ func expandPackagesAuthenticationRuleSrcaddr(d *schema.ResourceData, v interface
 }
 
 func expandPackagesAuthenticationRuleSrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationRuleSrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -539,6 +558,24 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dstaddr"); ok {
+		t, err := expandPackagesAuthenticationRuleDstaddr(d, v, "dstaddr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dstaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dstaddr6"); ok {
+		t, err := expandPackagesAuthenticationRuleDstaddr6(d, v, "dstaddr6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dstaddr6"] = t
 		}
 	}
 
@@ -584,6 +621,15 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["srcaddr6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("srcintf"); ok {
+		t, err := expandPackagesAuthenticationRuleSrcintf(d, v, "srcintf")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["srcintf"] = t
 		}
 	}
 

@@ -198,7 +198,7 @@ The `dynamic_mapping` block supports:
 
 * `ep_profile_query_type` - Ep-Profile-Query-Type. Valid values: `session-ip`, `extract-ip`, `extract-carrier-endpoint`.
 
-* `group_override_attr_type` - RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
+* `group_override_attr_type` - Group-Override-Attr-Type. Valid values: `filter-Id`, `class`.
 
 * `h3c_compatibility` - Enable/disable compatibility with the H3C, a mechanism that performs security checking for authentication. Valid values: `disable`, `enable`.
 
@@ -243,8 +243,8 @@ The `dynamic_mapping` block supports:
 * `sso_attribute_key` - Key prefix for SSO group value in the SSO attribute.
 * `sso_attribute_value_override` - Enable/disable override old attribute value with new value for the same endpoint. Valid values: `disable`, `enable`.
 
-* `switch_controller_acct_fast_framedip_detect` - Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
-* `switch_controller_service_type` - RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
+* `switch_controller_acct_fast_framedip_detect` - Switch-Controller-Acct-Fast-Framedip-Detect.
+* `switch_controller_service_type` - Switch-Controller-Service-Type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 
 * `tertiary_secret` - Secret key to access the tertiary server.
 * `tertiary_server` - {&lt;name_str|ip_str&gt;} tertiary RADIUS CN domain name or IP.
@@ -289,4 +289,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_user_radius.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

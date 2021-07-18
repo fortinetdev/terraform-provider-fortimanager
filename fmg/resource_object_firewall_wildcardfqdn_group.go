@@ -71,6 +71,11 @@ func resourceObjectFirewallWildcardFqdnGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"visibility": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -201,6 +206,10 @@ func flattenObjectFirewallWildcardFqdnGroupUuid(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectFirewallWildcardFqdnGroupVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectFirewallWildcardFqdnGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -254,6 +263,16 @@ func refreshObjectObjectFirewallWildcardFqdnGroup(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("visibility", flattenObjectFirewallWildcardFqdnGroupVisibility(o["visibility"], d, "visibility")); err != nil {
+		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallWildcardFqdnGroup-Visibility"); ok {
+			if err = d.Set("visibility", vv); err != nil {
+				return fmt.Errorf("Error reading visibility: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading visibility: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -280,6 +299,10 @@ func expandObjectFirewallWildcardFqdnGroupName(d *schema.ResourceData, v interfa
 }
 
 func expandObjectFirewallWildcardFqdnGroupUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallWildcardFqdnGroupVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -328,6 +351,15 @@ func getObjectObjectFirewallWildcardFqdnGroup(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("visibility"); ok {
+		t, err := expandObjectFirewallWildcardFqdnGroupVisibility(d, v, "visibility")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["visibility"] = t
 		}
 	}
 

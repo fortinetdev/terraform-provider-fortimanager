@@ -45,6 +45,21 @@ func resourceObjectFirewallLdbMonitor() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"dns_match_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dns_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dns_request_domain": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"http_get": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -206,6 +221,18 @@ func resourceObjectFirewallLdbMonitorRead(d *schema.ResourceData, m interface{})
 	return nil
 }
 
+func flattenObjectFirewallLdbMonitorDnsMatchIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallLdbMonitorDnsProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallLdbMonitorDnsRequestDomain(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallLdbMonitorHttpGet(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -243,22 +270,41 @@ func flattenObjectFirewallLdbMonitorTimeout(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallLdbMonitorType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "ping",
-			2: "tcp",
-			3: "http",
-			6: "passive-sip",
-			7: "https",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func refreshObjectObjectFirewallLdbMonitor(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("dns_match_ip", flattenObjectFirewallLdbMonitorDnsMatchIp(o["dns-match-ip"], d, "dns_match_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dns-match-ip"], "ObjectFirewallLdbMonitor-DnsMatchIp"); ok {
+			if err = d.Set("dns_match_ip", vv); err != nil {
+				return fmt.Errorf("Error reading dns_match_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dns_match_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("dns_protocol", flattenObjectFirewallLdbMonitorDnsProtocol(o["dns-protocol"], d, "dns_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dns-protocol"], "ObjectFirewallLdbMonitor-DnsProtocol"); ok {
+			if err = d.Set("dns_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading dns_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dns_protocol: %v", err)
+		}
+	}
+
+	if err = d.Set("dns_request_domain", flattenObjectFirewallLdbMonitorDnsRequestDomain(o["dns-request-domain"], d, "dns_request_domain")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dns-request-domain"], "ObjectFirewallLdbMonitor-DnsRequestDomain"); ok {
+			if err = d.Set("dns_request_domain", vv); err != nil {
+				return fmt.Errorf("Error reading dns_request_domain: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dns_request_domain: %v", err)
+		}
+	}
 
 	if err = d.Set("http_get", flattenObjectFirewallLdbMonitorHttpGet(o["http-get"], d, "http_get")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-get"], "ObjectFirewallLdbMonitor-HttpGet"); ok {
@@ -369,6 +415,18 @@ func flattenObjectFirewallLdbMonitorFortiTestDebug(d *schema.ResourceData, fosde
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectFirewallLdbMonitorDnsMatchIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallLdbMonitorDnsProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallLdbMonitorDnsRequestDomain(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallLdbMonitorHttpGet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -411,6 +469,33 @@ func expandObjectFirewallLdbMonitorType(d *schema.ResourceData, v interface{}, p
 
 func getObjectObjectFirewallLdbMonitor(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("dns_match_ip"); ok {
+		t, err := expandObjectFirewallLdbMonitorDnsMatchIp(d, v, "dns_match_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dns-match-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dns_protocol"); ok {
+		t, err := expandObjectFirewallLdbMonitorDnsProtocol(d, v, "dns_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dns-protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dns_request_domain"); ok {
+		t, err := expandObjectFirewallLdbMonitorDnsRequestDomain(d, v, "dns_request_domain")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dns-request-domain"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("http_get"); ok {
 		t, err := expandObjectFirewallLdbMonitorHttpGet(d, v, "http_get")

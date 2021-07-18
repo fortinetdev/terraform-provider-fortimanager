@@ -45,12 +45,22 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"analytics_accept_filetype": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"analytics_bl_filetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"analytics_db": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"analytics_ignore_filetype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -93,7 +103,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"emulator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -105,6 +125,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -221,7 +246,27 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 					},
 				},
 			},
+			"ems_threat_feed": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"extended_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"external_blocklist": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"external_blocklist_archive_scan": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"external_blocklist_enable_all": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -254,7 +299,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"emulator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -266,6 +321,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -291,12 +351,22 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"emulator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -308,6 +378,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -333,6 +408,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -348,6 +428,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -355,6 +440,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -380,12 +470,22 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"executables": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -397,6 +497,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -457,7 +562,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"emulator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -473,8 +588,18 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"quarantine": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 					},
 				},
+			},
+			"outbreak_prevention_archive_scan": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"outbreak_prevention": &schema.Schema{
 				Type:     schema.TypeList,
@@ -513,6 +638,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -528,6 +658,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -535,6 +670,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -570,6 +710,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -585,6 +730,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -592,6 +742,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -617,7 +772,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_scan": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"emulator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -629,6 +794,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -746,19 +916,19 @@ func resourceObjectAntivirusProfileRead(d *schema.ResourceData, m interface{}) e
 	return nil
 }
 
+func flattenObjectAntivirusProfileAnalyticsAcceptFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileAnalyticsBlFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileAnalyticsDb(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileAnalyticsIgnoreFiletype(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -771,26 +941,10 @@ func flattenObjectAntivirusProfileAnalyticsWlFiletype(v interface{}, d *schema.R
 }
 
 func flattenObjectAntivirusProfileAvBlockLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileAvVirusLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -813,9 +967,19 @@ func flattenObjectAntivirusProfileCifs(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileCifsArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileCifsAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := i["emulator"]; ok {
 		result["emulator"] = flattenObjectAntivirusProfileCifsEmulator(i["emulator"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileCifsExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -828,83 +992,44 @@ func flattenObjectAntivirusProfileCifs(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileCifsOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileCifsQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileCifsArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileCifsArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileCifsAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileCifsEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileCifsExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileCifsOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileCifsOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileCifsQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1021,269 +1146,106 @@ func flattenObjectAntivirusProfileContentDisarm(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectAntivirusProfileContentDisarmCoverPage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmDetectOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmErrorAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "block",
-			3: "log-only",
-			6: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOfficeAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOfficeDde(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOfficeEmbed(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOfficeHylink(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOfficeLinked(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOfficeMacro(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmOriginalFileDestination(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "fortisandbox",
-			1: "quarantine",
-			2: "discard",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfActForm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfActGotor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfActJava(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfActLaunch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfActMovie(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfActSound(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfEmbedfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfHyperlink(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileContentDisarmPdfJavacode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileEmsThreatFeed(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileExternalBlocklistArchiveScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileExternalBlocklistEnableAll(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileFtgdAnalytics(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "disable",
-			2: "suspicious",
-			3: "everything",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1306,9 +1268,19 @@ func flattenObjectAntivirusProfileFtp(v interface{}, d *schema.ResourceData, pre
 		result["archive_log"] = flattenObjectAntivirusProfileFtpArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileFtpAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := i["emulator"]; ok {
 		result["emulator"] = flattenObjectAntivirusProfileFtpEmulator(i["emulator"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileFtpExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1321,83 +1293,44 @@ func flattenObjectAntivirusProfileFtp(v interface{}, d *schema.ResourceData, pre
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileFtpOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileFtpQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileFtpArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileFtpArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileFtpAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileFtpEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileFtpExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileFtpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileFtpOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileFtpQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1420,6 +1353,11 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileHttpArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileHttpAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := i["content-disarm"]; ok {
 		result["content_disarm"] = flattenObjectAntivirusProfileHttpContentDisarm(i["content-disarm"], d, pre_append)
@@ -1428,6 +1366,11 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := i["emulator"]; ok {
 		result["emulator"] = flattenObjectAntivirusProfileHttpEmulator(i["emulator"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileHttpExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1440,95 +1383,48 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileHttpOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileHttpQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileHttpArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileHttpArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileHttpAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileHttpContentDisarm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileHttpEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileHttpExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileHttpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileHttpOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileHttpQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1551,6 +1447,11 @@ func flattenObjectAntivirusProfileImap(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileImapArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileImapAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := i["content-disarm"]; ok {
 		result["content_disarm"] = flattenObjectAntivirusProfileImapContentDisarm(i["content-disarm"], d, pre_append)
@@ -1566,6 +1467,11 @@ func flattenObjectAntivirusProfileImap(v interface{}, d *schema.ResourceData, pr
 		result["executables"] = flattenObjectAntivirusProfileImapExecutables(i["executables"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileImapExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileImapOptions(i["options"], d, pre_append)
@@ -1576,107 +1482,52 @@ func flattenObjectAntivirusProfileImap(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileImapOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileImapQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileImapArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileImapArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileImapAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileImapContentDisarm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileImapEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileImapExecutables(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "virus",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileImapExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileImapOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileImapOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileImapQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1699,6 +1550,11 @@ func flattenObjectAntivirusProfileMapi(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileMapiArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileMapiAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := i["emulator"]; ok {
 		result["emulator"] = flattenObjectAntivirusProfileMapiEmulator(i["emulator"], d, pre_append)
@@ -1707,6 +1563,11 @@ func flattenObjectAntivirusProfileMapi(v interface{}, d *schema.ResourceData, pr
 	pre_append = pre + ".0." + "executables"
 	if _, ok := i["executables"]; ok {
 		result["executables"] = flattenObjectAntivirusProfileMapiExecutables(i["executables"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileMapiExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1719,107 +1580,52 @@ func flattenObjectAntivirusProfileMapi(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileMapiOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileMapiQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileMapiArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileMapiArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileMapiAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileMapiEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileMapiExecutables(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "virus",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileMapiExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileMapiOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileMapiOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileMapiQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileMobileMalwareDb(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1856,26 +1662,10 @@ func flattenObjectAntivirusProfileNacQuarExpiry(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectAntivirusProfileNacQuarInfected(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "none",
-			2: "quar-src-ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileNacQuarLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1902,9 +1692,19 @@ func flattenObjectAntivirusProfileNntp(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileNntpArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileNntpAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := i["emulator"]; ok {
 		result["emulator"] = flattenObjectAntivirusProfileNntpEmulator(i["emulator"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileNntpExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1917,83 +1717,48 @@ func flattenObjectAntivirusProfileNntp(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileNntpOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileNntpQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileNntpArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileNntpArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileNntpAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileNntpEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileNntpExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileNntpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileNntpOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileNntpQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileOutbreakPreventionArchiveScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2021,26 +1786,10 @@ func flattenObjectAntivirusProfileOutbreakPrevention(v interface{}, d *schema.Re
 }
 
 func flattenObjectAntivirusProfileOutbreakPreventionExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileOutbreakPreventionFtgdService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2063,6 +1812,11 @@ func flattenObjectAntivirusProfilePop3(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfilePop3ArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfilePop3AvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := i["content-disarm"]; ok {
 		result["content_disarm"] = flattenObjectAntivirusProfilePop3ContentDisarm(i["content-disarm"], d, pre_append)
@@ -2078,6 +1832,11 @@ func flattenObjectAntivirusProfilePop3(v interface{}, d *schema.ResourceData, pr
 		result["executables"] = flattenObjectAntivirusProfilePop3Executables(i["executables"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfilePop3ExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfilePop3Options(i["options"], d, pre_append)
@@ -2088,107 +1847,52 @@ func flattenObjectAntivirusProfilePop3(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfilePop3OutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfilePop3Quarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfilePop3ArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfilePop3ArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfilePop3AvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfilePop3ContentDisarm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfilePop3Emulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfilePop3Executables(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "virus",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfilePop3ExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfilePop3Options(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfilePop3OutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfilePop3Quarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2197,14 +1901,6 @@ func flattenObjectAntivirusProfileReplacemsgGroup(v interface{}, d *schema.Resou
 }
 
 func flattenObjectAntivirusProfileScanMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			4: "legacy",
-			5: "default",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2227,6 +1923,11 @@ func flattenObjectAntivirusProfileSmtp(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileSmtpArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileSmtpAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := i["content-disarm"]; ok {
 		result["content_disarm"] = flattenObjectAntivirusProfileSmtpContentDisarm(i["content-disarm"], d, pre_append)
@@ -2242,6 +1943,11 @@ func flattenObjectAntivirusProfileSmtp(v interface{}, d *schema.ResourceData, pr
 		result["executables"] = flattenObjectAntivirusProfileSmtpExecutables(i["executables"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileSmtpExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileSmtpOptions(i["options"], d, pre_append)
@@ -2252,107 +1958,52 @@ func flattenObjectAntivirusProfileSmtp(v interface{}, d *schema.ResourceData, pr
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileSmtpOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileSmtpQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileSmtpArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileSmtpArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileSmtpAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileSmtpContentDisarm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileSmtpEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectAntivirusProfileSmtpExecutables(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "virus",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileSmtpExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileSmtpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "scan",
-			4:  "quarantine",
-			16: "avmonitor",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileSmtpOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileSmtpQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2375,9 +2026,19 @@ func flattenObjectAntivirusProfileSsh(v interface{}, d *schema.ResourceData, pre
 		result["archive_log"] = flattenObjectAntivirusProfileSshArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := i["av-scan"]; ok {
+		result["av_scan"] = flattenObjectAntivirusProfileSshAvScan(i["av-scan"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := i["emulator"]; ok {
 		result["emulator"] = flattenObjectAntivirusProfileSshEmulator(i["emulator"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectAntivirusProfileSshExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -2390,88 +2051,59 @@ func flattenObjectAntivirusProfileSsh(v interface{}, d *schema.ResourceData, pre
 		result["outbreak_prevention"] = flattenObjectAntivirusProfileSshOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := i["quarantine"]; ok {
+		result["quarantine"] = flattenObjectAntivirusProfileSshQuarantine(i["quarantine"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
 
 func flattenObjectAntivirusProfileSshArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileSshArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "encrypted",
-			2:   "corrupted",
-			4:   "multipart",
-			8:   "nested",
-			16:  "mailbomb",
-			32:  "unhandled",
-			64:  "partiallycorrupted",
-			128: "fileslimit",
-			256: "timeout",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileSshAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileSshEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileSshExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectAntivirusProfileSshOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "avmonitor",
-			8:  "quarantine",
-			16: "scan",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileSshOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "files",
-			2: "full-archive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectAntivirusProfileSshQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("analytics_accept_filetype", flattenObjectAntivirusProfileAnalyticsAcceptFiletype(o["analytics-accept-filetype"], d, "analytics_accept_filetype")); err != nil {
+		if vv, ok := fortiAPIPatch(o["analytics-accept-filetype"], "ObjectAntivirusProfile-AnalyticsAcceptFiletype"); ok {
+			if err = d.Set("analytics_accept_filetype", vv); err != nil {
+				return fmt.Errorf("Error reading analytics_accept_filetype: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading analytics_accept_filetype: %v", err)
+		}
+	}
 
 	if err = d.Set("analytics_bl_filetype", flattenObjectAntivirusProfileAnalyticsBlFiletype(o["analytics-bl-filetype"], d, "analytics_bl_filetype")); err != nil {
 		if vv, ok := fortiAPIPatch(o["analytics-bl-filetype"], "ObjectAntivirusProfile-AnalyticsBlFiletype"); ok {
@@ -2490,6 +2122,16 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading analytics_db: %v", err)
+		}
+	}
+
+	if err = d.Set("analytics_ignore_filetype", flattenObjectAntivirusProfileAnalyticsIgnoreFiletype(o["analytics-ignore-filetype"], d, "analytics_ignore_filetype")); err != nil {
+		if vv, ok := fortiAPIPatch(o["analytics-ignore-filetype"], "ObjectAntivirusProfile-AnalyticsIgnoreFiletype"); ok {
+			if err = d.Set("analytics_ignore_filetype", vv); err != nil {
+				return fmt.Errorf("Error reading analytics_ignore_filetype: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading analytics_ignore_filetype: %v", err)
 		}
 	}
 
@@ -2591,6 +2233,16 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("ems_threat_feed", flattenObjectAntivirusProfileEmsThreatFeed(o["ems-threat-feed"], d, "ems_threat_feed")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ems-threat-feed"], "ObjectAntivirusProfile-EmsThreatFeed"); ok {
+			if err = d.Set("ems_threat_feed", vv); err != nil {
+				return fmt.Errorf("Error reading ems_threat_feed: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ems_threat_feed: %v", err)
+		}
+	}
+
 	if err = d.Set("extended_log", flattenObjectAntivirusProfileExtendedLog(o["extended-log"], d, "extended_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["extended-log"], "ObjectAntivirusProfile-ExtendedLog"); ok {
 			if err = d.Set("extended_log", vv); err != nil {
@@ -2598,6 +2250,36 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading extended_log: %v", err)
+		}
+	}
+
+	if err = d.Set("external_blocklist", flattenObjectAntivirusProfileExternalBlocklist(o["external-blocklist"], d, "external_blocklist")); err != nil {
+		if vv, ok := fortiAPIPatch(o["external-blocklist"], "ObjectAntivirusProfile-ExternalBlocklist"); ok {
+			if err = d.Set("external_blocklist", vv); err != nil {
+				return fmt.Errorf("Error reading external_blocklist: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading external_blocklist: %v", err)
+		}
+	}
+
+	if err = d.Set("external_blocklist_archive_scan", flattenObjectAntivirusProfileExternalBlocklistArchiveScan(o["external-blocklist-archive-scan"], d, "external_blocklist_archive_scan")); err != nil {
+		if vv, ok := fortiAPIPatch(o["external-blocklist-archive-scan"], "ObjectAntivirusProfile-ExternalBlocklistArchiveScan"); ok {
+			if err = d.Set("external_blocklist_archive_scan", vv); err != nil {
+				return fmt.Errorf("Error reading external_blocklist_archive_scan: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading external_blocklist_archive_scan: %v", err)
+		}
+	}
+
+	if err = d.Set("external_blocklist_enable_all", flattenObjectAntivirusProfileExternalBlocklistEnableAll(o["external-blocklist-enable-all"], d, "external_blocklist_enable_all")); err != nil {
+		if vv, ok := fortiAPIPatch(o["external-blocklist-enable-all"], "ObjectAntivirusProfile-ExternalBlocklistEnableAll"); ok {
+			if err = d.Set("external_blocklist_enable_all", vv); err != nil {
+				return fmt.Errorf("Error reading external_blocklist_enable_all: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading external_blocklist_enable_all: %v", err)
 		}
 	}
 
@@ -2785,6 +2467,16 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("outbreak_prevention_archive_scan", flattenObjectAntivirusProfileOutbreakPreventionArchiveScan(o["outbreak-prevention-archive-scan"], d, "outbreak_prevention_archive_scan")); err != nil {
+		if vv, ok := fortiAPIPatch(o["outbreak-prevention-archive-scan"], "ObjectAntivirusProfile-OutbreakPreventionArchiveScan"); ok {
+			if err = d.Set("outbreak_prevention_archive_scan", vv); err != nil {
+				return fmt.Errorf("Error reading outbreak_prevention_archive_scan: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading outbreak_prevention_archive_scan: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("outbreak_prevention", flattenObjectAntivirusProfileOutbreakPrevention(o["outbreak-prevention"], d, "outbreak_prevention")); err != nil {
 			if vv, ok := fortiAPIPatch(o["outbreak-prevention"], "ObjectAntivirusProfile-OutbreakPrevention"); ok {
@@ -2910,11 +2602,19 @@ func flattenObjectAntivirusProfileFortiTestDebug(d *schema.ResourceData, fosdebu
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectAntivirusProfileAnalyticsAcceptFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileAnalyticsBlFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectAntivirusProfileAnalyticsDb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileAnalyticsIgnoreFiletype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2956,9 +2656,17 @@ func expandObjectAntivirusProfileCifs(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileCifsAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["emulator"], _ = expandObjectAntivirusProfileCifsEmulator(d, i["emulator"], pre_append)
+	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileCifsExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -2969,6 +2677,10 @@ func expandObjectAntivirusProfileCifs(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileCifsOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileCifsQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -2982,7 +2694,15 @@ func expandObjectAntivirusProfileCifsArchiveLog(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileCifsAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileCifsEmulator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileCifsExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2991,6 +2711,10 @@ func expandObjectAntivirusProfileCifsOptions(d *schema.ResourceData, v interface
 }
 
 func expandObjectAntivirusProfileCifsOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileCifsQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3164,7 +2888,23 @@ func expandObjectAntivirusProfileContentDisarmPdfJavacode(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectAntivirusProfileEmsThreatFeed(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileExternalBlocklistArchiveScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileExternalBlocklistEnableAll(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3198,9 +2938,17 @@ func expandObjectAntivirusProfileFtp(d *schema.ResourceData, v interface{}, pre 
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileFtpAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["emulator"], _ = expandObjectAntivirusProfileFtpEmulator(d, i["emulator"], pre_append)
+	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileFtpExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -3211,6 +2959,10 @@ func expandObjectAntivirusProfileFtp(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileFtpOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileFtpQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3224,7 +2976,15 @@ func expandObjectAntivirusProfileFtpArchiveLog(d *schema.ResourceData, v interfa
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileFtpAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileFtpEmulator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFtpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3233,6 +2993,10 @@ func expandObjectAntivirusProfileFtpOptions(d *schema.ResourceData, v interface{
 }
 
 func expandObjectAntivirusProfileFtpOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFtpQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3258,6 +3022,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileHttpAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["content-disarm"], _ = expandObjectAntivirusProfileHttpContentDisarm(d, i["content_disarm"], pre_append)
@@ -3265,6 +3033,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["emulator"], _ = expandObjectAntivirusProfileHttpEmulator(d, i["emulator"], pre_append)
+	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileHttpExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -3275,6 +3047,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileHttpOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileHttpQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3288,6 +3064,10 @@ func expandObjectAntivirusProfileHttpArchiveLog(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileHttpAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileHttpContentDisarm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3296,11 +3076,19 @@ func expandObjectAntivirusProfileHttpEmulator(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectAntivirusProfileHttpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileHttpOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectAntivirusProfileHttpOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileHttpQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3326,6 +3114,10 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileImapAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["content-disarm"], _ = expandObjectAntivirusProfileImapContentDisarm(d, i["content_disarm"], pre_append)
@@ -3338,6 +3130,10 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["executables"], _ = expandObjectAntivirusProfileImapExecutables(d, i["executables"], pre_append)
 	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileImapExternalBlocklist(d, i["external_blocklist"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileImapOptions(d, i["options"], pre_append)
@@ -3347,6 +3143,10 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileImapOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileImapQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3358,6 +3158,10 @@ func expandObjectAntivirusProfileImapArchiveBlock(d *schema.ResourceData, v inte
 
 func expandObjectAntivirusProfileImapArchiveLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAntivirusProfileImapAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectAntivirusProfileImapContentDisarm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3372,11 +3176,19 @@ func expandObjectAntivirusProfileImapExecutables(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectAntivirusProfileImapExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileImapOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectAntivirusProfileImapOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileImapQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3402,6 +3214,10 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileMapiAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["emulator"], _ = expandObjectAntivirusProfileMapiEmulator(d, i["emulator"], pre_append)
@@ -3409,6 +3225,10 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "executables"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["executables"], _ = expandObjectAntivirusProfileMapiExecutables(d, i["executables"], pre_append)
+	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileMapiExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -3419,6 +3239,10 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileMapiOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileMapiQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3432,6 +3256,10 @@ func expandObjectAntivirusProfileMapiArchiveLog(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileMapiAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileMapiEmulator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3440,11 +3268,19 @@ func expandObjectAntivirusProfileMapiExecutables(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectAntivirusProfileMapiExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileMapiOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectAntivirusProfileMapiOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileMapiQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3516,9 +3352,17 @@ func expandObjectAntivirusProfileNntp(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileNntpAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["emulator"], _ = expandObjectAntivirusProfileNntpEmulator(d, i["emulator"], pre_append)
+	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileNntpExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -3529,6 +3373,10 @@ func expandObjectAntivirusProfileNntp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileNntpOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileNntpQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3542,7 +3390,15 @@ func expandObjectAntivirusProfileNntpArchiveLog(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileNntpAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileNntpEmulator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileNntpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3551,6 +3407,14 @@ func expandObjectAntivirusProfileNntpOptions(d *schema.ResourceData, v interface
 }
 
 func expandObjectAntivirusProfileNntpOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileNntpQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileOutbreakPreventionArchiveScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3606,6 +3470,10 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfilePop3AvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["content-disarm"], _ = expandObjectAntivirusProfilePop3ContentDisarm(d, i["content_disarm"], pre_append)
@@ -3618,6 +3486,10 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["executables"], _ = expandObjectAntivirusProfilePop3Executables(d, i["executables"], pre_append)
 	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfilePop3ExternalBlocklist(d, i["external_blocklist"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfilePop3Options(d, i["options"], pre_append)
@@ -3627,6 +3499,10 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfilePop3OutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfilePop3Quarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3638,6 +3514,10 @@ func expandObjectAntivirusProfilePop3ArchiveBlock(d *schema.ResourceData, v inte
 
 func expandObjectAntivirusProfilePop3ArchiveLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAntivirusProfilePop3AvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectAntivirusProfilePop3ContentDisarm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3652,11 +3532,19 @@ func expandObjectAntivirusProfilePop3Executables(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectAntivirusProfilePop3ExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfilePop3Options(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectAntivirusProfilePop3OutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfilePop3Quarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3690,6 +3578,10 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileSmtpAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "content_disarm"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["content-disarm"], _ = expandObjectAntivirusProfileSmtpContentDisarm(d, i["content_disarm"], pre_append)
@@ -3702,6 +3594,10 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["executables"], _ = expandObjectAntivirusProfileSmtpExecutables(d, i["executables"], pre_append)
 	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileSmtpExternalBlocklist(d, i["external_blocklist"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileSmtpOptions(d, i["options"], pre_append)
@@ -3711,6 +3607,10 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileSmtpOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileSmtpQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3722,6 +3622,10 @@ func expandObjectAntivirusProfileSmtpArchiveBlock(d *schema.ResourceData, v inte
 
 func expandObjectAntivirusProfileSmtpArchiveLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAntivirusProfileSmtpAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectAntivirusProfileSmtpContentDisarm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3736,11 +3640,19 @@ func expandObjectAntivirusProfileSmtpExecutables(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectAntivirusProfileSmtpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileSmtpOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectAntivirusProfileSmtpOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSmtpQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3766,9 +3678,17 @@ func expandObjectAntivirusProfileSsh(d *schema.ResourceData, v interface{}, pre 
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_scan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-scan"], _ = expandObjectAntivirusProfileSshAvScan(d, i["av_scan"], pre_append)
+	}
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["emulator"], _ = expandObjectAntivirusProfileSshEmulator(d, i["emulator"], pre_append)
+	}
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectAntivirusProfileSshExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -3779,6 +3699,10 @@ func expandObjectAntivirusProfileSsh(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["outbreak-prevention"], _ = expandObjectAntivirusProfileSshOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+	pre_append = pre + ".0." + "quarantine"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["quarantine"], _ = expandObjectAntivirusProfileSshQuarantine(d, i["quarantine"], pre_append)
 	}
 
 	return result, nil
@@ -3792,7 +3716,15 @@ func expandObjectAntivirusProfileSshArchiveLog(d *schema.ResourceData, v interfa
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileSshAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileSshEmulator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSshExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3804,8 +3736,21 @@ func expandObjectAntivirusProfileSshOutbreakPrevention(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectAntivirusProfileSshQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("analytics_accept_filetype"); ok {
+		t, err := expandObjectAntivirusProfileAnalyticsAcceptFiletype(d, v, "analytics_accept_filetype")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["analytics-accept-filetype"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("analytics_bl_filetype"); ok {
 		t, err := expandObjectAntivirusProfileAnalyticsBlFiletype(d, v, "analytics_bl_filetype")
@@ -3822,6 +3767,15 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["analytics-db"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("analytics_ignore_filetype"); ok {
+		t, err := expandObjectAntivirusProfileAnalyticsIgnoreFiletype(d, v, "analytics_ignore_filetype")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["analytics-ignore-filetype"] = t
 		}
 	}
 
@@ -3888,12 +3842,48 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("ems_threat_feed"); ok {
+		t, err := expandObjectAntivirusProfileEmsThreatFeed(d, v, "ems_threat_feed")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ems-threat-feed"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("extended_log"); ok {
 		t, err := expandObjectAntivirusProfileExtendedLog(d, v, "extended_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["extended-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("external_blocklist"); ok {
+		t, err := expandObjectAntivirusProfileExternalBlocklist(d, v, "external_blocklist")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["external-blocklist"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("external_blocklist_archive_scan"); ok {
+		t, err := expandObjectAntivirusProfileExternalBlocklistArchiveScan(d, v, "external_blocklist_archive_scan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["external-blocklist-archive-scan"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("external_blocklist_enable_all"); ok {
+		t, err := expandObjectAntivirusProfileExternalBlocklistEnableAll(d, v, "external_blocklist_enable_all")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["external-blocklist-enable-all"] = t
 		}
 	}
 
@@ -3984,6 +3974,15 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["nntp"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("outbreak_prevention_archive_scan"); ok {
+		t, err := expandObjectAntivirusProfileOutbreakPreventionArchiveScan(d, v, "outbreak_prevention_archive_scan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["outbreak-prevention-archive-scan"] = t
 		}
 	}
 

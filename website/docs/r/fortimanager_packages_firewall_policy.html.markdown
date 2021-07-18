@@ -3,11 +3,11 @@ subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_policy"
 description: |-
-  Configure IPv4/IPv6 policies.
+  Configure IPv4 policies.
 ---
 
 # fortimanager_packages_firewall_policy
-Configure IPv4/IPv6 policies.
+Configure IPv4 policies.
 
 ## Example Usage
 
@@ -78,10 +78,13 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
-* `action` - Policy action (accept/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
+* `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.
 
+* `app_category` - Application category ID list.
+* `app_group` - Application group names.
+* `application` - Application ID list.
 * `application_list` - Name of an existing Application list.
 * `auth_cert` - HTTPS server certificate for policy authentication.
 * `auth_path` - Enable/disable authentication-based routing. Valid values: `disable`, `enable`.
@@ -90,12 +93,21 @@ The following arguments are supported:
 * `auto_asic_offload` - Enable/disable policy traffic ASIC offloading. Valid values: `disable`, `enable`.
 
 * `av_profile` - Name of an existing Antivirus profile.
+* `best_route` - Best-Route. Valid values: `disable`, `enable`.
+
 * `block_notification` - Enable/disable block notification. Valid values: `disable`, `enable`.
 
 * `captive_portal_exempt` - Enable to exempt some users from the captive portal. Valid values: `disable`, `enable`.
 
 * `capture_packet` - Enable/disable capture packets. Valid values: `disable`, `enable`.
 
+* `cgn_eif` - Enable/Disable CGN endpoint independent filtering. Valid values: `disable`, `enable`.
+
+* `cgn_eim` - Enable/Disable CGN endpoint independent mapping Valid values: `disable`, `enable`.
+
+* `cgn_log_server_grp` - NP log server group name
+* `cgn_resource_quota` - resource quota
+* `cgn_session_quota` - session quota
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
 * `custom_log_fields` - Custom fields to append to log messages for this policy.
@@ -114,11 +126,13 @@ The following arguments are supported:
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `dsri` - Enable DSRI to ignore HTTP server responses. Valid values: `disable`, `enable`.
 
-* `dstaddr` - Destination IPv4 address and address group names.
-* `dstaddr_negate` - When enabled dstaddr/dstaddr6 specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
+* `dstaddr` - Destination address and address group names.
+* `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 
 * `dstaddr6` - Destination IPv6 address name and address group names.
 * `dstintf` - Outgoing (egress) interface.
+* `dynamic_shaping` - Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `disable`, `enable`.
+
 * `email_collect` - Enable/disable email collection. Valid values: `disable`, `enable`.
 
 * `emailfilter_profile` - Name of an existing email filter profile.
@@ -126,6 +140,8 @@ The following arguments are supported:
 * `firewall_session_dirty` - How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
 
 * `fixedport` - Enable to prevent source NAT from changing a session's source port. Valid values: `disable`, `enable`.
+
+* `fsso` - Enable/disable Fortinet Single Sign-On. Valid values: `disable`, `enable`.
 
 * `fsso_agent_for_ntlm` - FSSO agent to use for NTLM authentication.
 * `fsso_groups` - Names of FSSO groups.
@@ -150,6 +166,7 @@ The following arguments are supported:
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
 * `internet_service_name` - Internet Service name.
+* `internet_service_id` - Internet Service ID.
 * `internet_service_negate` - When enabled internet-service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `internet_service_src` - Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
@@ -158,6 +175,7 @@ The following arguments are supported:
 * `internet_service_src_custom_group` - Custom Internet Service source group name.
 * `internet_service_src_group` - Internet Service source group name.
 * `internet_service_src_name` - Internet Service source name.
+* `internet_service_src_id` - Internet Service source ID.
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ippool` - Enable to use IP Pools for source NAT. Valid values: `disable`, `enable`.
@@ -172,6 +190,7 @@ The following arguments are supported:
 
 * `match_vip_only` - Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. Valid values: `disable`, `enable`.
 
+* `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
 
@@ -189,10 +208,14 @@ The following arguments are supported:
 
 * `outbound` - Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `disable`, `enable`.
 
+* `passive_wan_health_measurement` - Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `disable`, `enable`.
+
 * `per_ip_shaper` - Per-IP traffic shaper.
 * `permit_any_host` - Accept UDP packets from any host. Valid values: `disable`, `enable`.
 
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
+
+* `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
 * `poolname` - IP Pool names.
@@ -208,6 +231,8 @@ The following arguments are supported:
 * `reputation_direction` - Direction of the initial traffic for reputation to take effect. Valid values: `source`, `destination`.
 
 * `reputation_minimum` - Minimum Reputation to take action.
+* `rsso` - Enable/disable RADIUS single sign-on (RSSO). Valid values: `disable`, `enable`.
+
 * `rtp_addr` - Address names if this is an RTP NAT policy.
 * `rtp_nat` - Enable Real Time Protocol (RTP) NAT. Valid values: `disable`, `enable`.
 
@@ -221,14 +246,17 @@ The following arguments are supported:
 
 * `session_ttl` - TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 * `src_vendor_mac` - Vendor MAC source ID.
-* `srcaddr` - Source IPv4 address and address group names.
-* `srcaddr_negate` - When enabled srcaddr/srcaddr6 specifies what the source address must NOT be. Valid values: `disable`, `enable`.
+* `srcaddr` - Source address and address group names.
+* `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
 
 * `srcaddr6` - Source IPv6 address name and address group names.
 * `srcintf` - Incoming (ingress) interface.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssh_policy_redirect` - Redirect SSH traffic to matching transparent proxy policy. Valid values: `disable`, `enable`.
 
+* `ssl_mirror` - Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `disable`, `enable`.
+
+* `ssl_mirror_intf` - SSL mirror interface name.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
 * `status` - Enable or disable this policy. Valid values: `disable`, `enable`.
 
@@ -244,10 +272,12 @@ The following arguments are supported:
 
 * `traffic_shaper` - Traffic shaper.
 * `traffic_shaper_reverse` - Reverse traffic shaper.
+* `url_category` - URL category ID list.
 * `users` - Names of individual users that can authenticate with this policy.
 * `utm_status` - Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `videofilter_profile` - Name of an existing VideoFilter profile.
 * `vlan_cos_fwd` - VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_cos_rev` - VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_filter` - Set VLAN filters.
@@ -273,6 +303,12 @@ The following arguments are supported:
 * `webfilter_profile` - Name of an existing Web filter profile.
 * `webproxy_forward_server` - Webproxy forward server name.
 * `webproxy_profile` - Webproxy profile name.
+* `ztna_ems_tag` - Source ztna-ems-tag names.
+* `ztna_geo_tag` - Source ztna-geo-tag names.
+* `ztna_status` - Enable/disable zero trust access. Valid values: `disable`, `enable`.
+
+* `wsso` - Enable/disable WiFi Single Sign On (WSSO). Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `vpn_dst_node` block supports:
@@ -303,4 +339,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_policy.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

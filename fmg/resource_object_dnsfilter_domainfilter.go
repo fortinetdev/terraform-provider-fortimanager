@@ -271,15 +271,6 @@ func flattenObjectDnsfilterDomainFilterEntries(v interface{}, d *schema.Resource
 }
 
 func flattenObjectDnsfilterDomainFilterEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "block",
-			2: "allow",
-			3: "monitor",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -292,27 +283,10 @@ func flattenObjectDnsfilterDomainFilterEntriesId(v interface{}, d *schema.Resour
 }
 
 func flattenObjectDnsfilterDomainFilterEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDnsfilterDomainFilterEntriesType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "simple",
-			1: "regex",
-			2: "wildcard",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -147,6 +147,11 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"internet_service_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"internet_service_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -168,6 +173,11 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"internet_service_src_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"internet_service_src_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -405,26 +415,10 @@ func flattenPackagesFirewallShapingPolicyComment(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallShapingPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesFirewallShapingPolicyDiffservReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -457,14 +451,6 @@ func flattenPackagesFirewallShapingPolicyId(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallShapingPolicyInternetService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -484,15 +470,11 @@ func flattenPackagesFirewallShapingPolicyInternetServiceName(v interface{}, d *s
 	return v
 }
 
+func flattenPackagesFirewallShapingPolicyInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallShapingPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -512,15 +494,11 @@ func flattenPackagesFirewallShapingPolicyInternetServiceSrcName(v interface{}, d
 	return v
 }
 
+func flattenPackagesFirewallShapingPolicyInternetServiceSrcId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallShapingPolicyIpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "4",
-			8: "6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -553,14 +531,6 @@ func flattenPackagesFirewallShapingPolicySrcintf(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallShapingPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -573,14 +543,6 @@ func flattenPackagesFirewallShapingPolicyTosMask(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallShapingPolicyTosNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -793,6 +755,16 @@ func refreshObjectPackagesFirewallShapingPolicy(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("internet_service_id", flattenPackagesFirewallShapingPolicyInternetServiceId(o["internet-service-id"], d, "internet_service_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-id"], "PackagesFirewallShapingPolicy-InternetServiceId"); ok {
+			if err = d.Set("internet_service_id", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_id: %v", err)
+		}
+	}
+
 	if err = d.Set("internet_service_src", flattenPackagesFirewallShapingPolicyInternetServiceSrc(o["internet-service-src"], d, "internet_service_src")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src"], "PackagesFirewallShapingPolicy-InternetServiceSrc"); ok {
 			if err = d.Set("internet_service_src", vv); err != nil {
@@ -840,6 +812,16 @@ func refreshObjectPackagesFirewallShapingPolicy(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading internet_service_src_name: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service_src_id", flattenPackagesFirewallShapingPolicyInternetServiceSrcId(o["internet-service-src-id"], d, "internet_service_src_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service-src-id"], "PackagesFirewallShapingPolicy-InternetServiceSrcId"); ok {
+			if err = d.Set("internet_service_src_id", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service_src_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service_src_id: %v", err)
 		}
 	}
 
@@ -1088,6 +1070,10 @@ func expandPackagesFirewallShapingPolicyInternetServiceName(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandPackagesFirewallShapingPolicyInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallShapingPolicyInternetServiceSrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1105,6 +1091,10 @@ func expandPackagesFirewallShapingPolicyInternetServiceSrcGroup(d *schema.Resour
 }
 
 func expandPackagesFirewallShapingPolicyInternetServiceSrcName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallShapingPolicyInternetServiceSrcId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1346,6 +1336,15 @@ func getObjectPackagesFirewallShapingPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("internet_service_id"); ok {
+		t, err := expandPackagesFirewallShapingPolicyInternetServiceId(d, v, "internet_service_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-id"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("internet_service_src"); ok {
 		t, err := expandPackagesFirewallShapingPolicyInternetServiceSrc(d, v, "internet_service_src")
 		if err != nil {
@@ -1388,6 +1387,15 @@ func getObjectPackagesFirewallShapingPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["internet-service-src-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service_src_id"); ok {
+		t, err := expandPackagesFirewallShapingPolicyInternetServiceSrcId(d, v, "internet_service_src_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service-src-id"] = t
 		}
 	}
 

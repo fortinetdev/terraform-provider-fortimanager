@@ -51,6 +51,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"authentication": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"check_basic_auth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -77,6 +82,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 										Computed: true,
 									},
 									"pattern": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
 										Computed: true,
@@ -117,6 +127,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 									},
 								},
 							},
+						},
+						"ldap": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
 						},
 						"max_body_len": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -419,6 +434,17 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"allowlist": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"blacklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -727,6 +753,11 @@ func flattenObjectWebfilterProfileAntiphish(v interface{}, d *schema.ResourceDat
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "authentication"
+	if _, ok := i["authentication"]; ok {
+		result["authentication"] = flattenObjectWebfilterProfileAntiphishAuthentication(i["authentication"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "check_basic_auth"
 	if _, ok := i["check-basic-auth"]; ok {
 		result["check_basic_auth"] = flattenObjectWebfilterProfileAntiphishCheckBasicAuth(i["check-basic-auth"], d, pre_append)
@@ -762,6 +793,11 @@ func flattenObjectWebfilterProfileAntiphish(v interface{}, d *schema.ResourceDat
 		result["inspection_entries"] = flattenObjectWebfilterProfileAntiphishInspectionEntries(i["inspection-entries"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "ldap"
+	if _, ok := i["ldap"]; ok {
+		result["ldap"] = flattenObjectWebfilterProfileAntiphishLdap(i["ldap"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "max_body_len"
 	if _, ok := i["max-body-len"]; ok {
 		result["max_body_len"] = flattenObjectWebfilterProfileAntiphishMaxBodyLen(i["max-body-len"], d, pre_append)
@@ -776,39 +812,19 @@ func flattenObjectWebfilterProfileAntiphish(v interface{}, d *schema.ResourceDat
 	return lastresult
 }
 
+func flattenObjectWebfilterProfileAntiphishAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileAntiphishCheckBasicAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileAntiphishCheckUri(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileAntiphishCheckUsernameOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -843,6 +859,12 @@ func flattenObjectWebfilterProfileAntiphishCustomPatterns(v interface{}, d *sche
 			tmp["pattern"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileAntiphish-CustomPatterns-Pattern")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := i["type"]; ok {
+			v := flattenObjectWebfilterProfileAntiphishCustomPatternsType(i["type"], d, pre_append)
+			tmp["type"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileAntiphish-CustomPatterns-Type")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -852,14 +874,6 @@ func flattenObjectWebfilterProfileAntiphishCustomPatterns(v interface{}, d *sche
 }
 
 func flattenObjectWebfilterProfileAntiphishCustomPatternsCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "username",
-			1: "password",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -867,16 +881,11 @@ func flattenObjectWebfilterProfileAntiphishCustomPatternsPattern(v interface{}, 
 	return v
 }
 
+func flattenObjectWebfilterProfileAntiphishCustomPatternsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileAntiphishDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "log",
-			1: "block",
-			2: "exempt",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -930,15 +939,6 @@ func flattenObjectWebfilterProfileAntiphishInspectionEntries(v interface{}, d *s
 }
 
 func flattenObjectWebfilterProfileAntiphishInspectionEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "log",
-			1: "block",
-			2: "exempt",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -950,19 +950,15 @@ func flattenObjectWebfilterProfileAntiphishInspectionEntriesName(v interface{}, 
 	return v
 }
 
+func flattenObjectWebfilterProfileAntiphishLdap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileAntiphishMaxBodyLen(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectWebfilterProfileAntiphishStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -971,26 +967,10 @@ func flattenObjectWebfilterProfileComment(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectWebfilterProfileExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1143,16 +1123,6 @@ func flattenObjectWebfilterProfileFtgdWfFilters(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			2: "monitor",
-			3: "warning",
-			4: "authenticate",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1169,14 +1139,6 @@ func flattenObjectWebfilterProfileFtgdWfFiltersId(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1189,26 +1151,10 @@ func flattenObjectWebfilterProfileFtgdWfFiltersWarnDuration(v interface{}, d *sc
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersWarningDurationType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "session",
-			1: "timeout",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersWarningPrompt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "per-domain",
-			1: "per-category",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1217,17 +1163,7 @@ func flattenObjectWebfilterProfileFtgdWfMaxQuotaTimeout(v interface{}, d *schema
 }
 
 func flattenObjectWebfilterProfileFtgdWfOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "error-allow",
-			32:   "rate-server-ip",
-			256:  "connect-request-bypass",
-			1024: "ftgd-disable",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileFtgdWfOvrd(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1320,28 +1256,10 @@ func flattenObjectWebfilterProfileFtgdWfQuotaOverrideReplacemsg(v interface{}, d
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuotaType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "time",
-			1: "traffic",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuotaUnit(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "B",
-			1: "KB",
-			2: "MB",
-			3: "GB",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1350,74 +1268,26 @@ func flattenObjectWebfilterProfileFtgdWfQuotaValue(v interface{}, d *schema.Reso
 }
 
 func flattenObjectWebfilterProfileFtgdWfRateCrlUrls(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileFtgdWfRateCssUrls(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileFtgdWfRateImageUrls(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileFtgdWfRateJavascriptUrls(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileHttpsReplacemsg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileLogAllUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1426,25 +1296,7 @@ func flattenObjectWebfilterProfileName(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectWebfilterProfileOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2:       "block-invalid-url",
-			4:       "jscript",
-			16:      "js",
-			32:      "vbs",
-			64:      "unknown",
-			256:     "wf-referer",
-			2048:    "intrinsic",
-			4096:    "wf-cookie",
-			8192:    "per-user-bwl",
-			16384:   "activexfilter",
-			262144:  "cookiefilter",
-			1048576: "javafilter",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileOverride(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1501,14 +1353,6 @@ func flattenObjectWebfilterProfileOverride(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectWebfilterProfileOverrideOvrdCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "deny",
-			1: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1517,29 +1361,10 @@ func flattenObjectWebfilterProfileOverrideOvrdDur(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWebfilterProfileOverrideOvrdDurMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "constant",
-			1: "ask",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileOverrideOvrdScope(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "user",
-			1: "user-group",
-			2: "ip",
-			4: "ask",
-			6: "browser",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1552,72 +1377,18 @@ func flattenObjectWebfilterProfileOverrideProfile(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWebfilterProfileOverrideProfileAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileOverrideProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "list",
-			1: "radius",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileOvrdPerm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "bannedword-override",
-			2: "urlfilter-override",
-			4: "fortiguard-wf-override",
-			8: "contenttype-check-override",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfilePostAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "normal",
-			4: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1668,14 +1439,6 @@ func flattenObjectWebfilterProfileUrlExtractionRedirectHeader(v interface{}, d *
 }
 
 func flattenObjectWebfilterProfileUrlExtractionRedirectNoContent(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1688,14 +1451,6 @@ func flattenObjectWebfilterProfileUrlExtractionServerFqdn(v interface{}, d *sche
 }
 
 func flattenObjectWebfilterProfileUrlExtractionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1708,6 +1463,16 @@ func flattenObjectWebfilterProfileWeb(v interface{}, d *schema.ResourceData, pre
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "allowlist"
+	if _, ok := i["allowlist"]; ok {
+		result["allowlist"] = flattenObjectWebfilterProfileWebAllowlist(i["allowlist"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "blocklist"
+	if _, ok := i["blocklist"]; ok {
+		result["blocklist"] = flattenObjectWebfilterProfileWebBlocklist(i["blocklist"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "blacklist"
 	if _, ok := i["blacklist"]; ok {
 		result["blacklist"] = flattenObjectWebfilterProfileWebBlacklist(i["blacklist"], d, pre_append)
@@ -1762,15 +1527,15 @@ func flattenObjectWebfilterProfileWeb(v interface{}, d *schema.ResourceData, pre
 	return lastresult
 }
 
+func flattenObjectWebfilterProfileWebAllowlist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWebfilterProfileWebBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileWebBlacklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1791,27 +1556,11 @@ func flattenObjectWebfilterProfileWebKeywordMatch(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWebfilterProfileWebLogSearch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebSafeSearch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			8:  "url",
-			16: "header",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileWebUrlfilterTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1819,260 +1568,86 @@ func flattenObjectWebfilterProfileWebUrlfilterTable(v interface{}, d *schema.Res
 }
 
 func flattenObjectWebfilterProfileWebWhitelist(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "exempt-av",
-			2:  "exempt-webcontent",
-			4:  "exempt-activex-java-cookie",
-			8:  "exempt-dlp",
-			16: "exempt-rangeblock",
-			32: "extended-log-others",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileWebYoutubeRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			6:  "strict",
-			25: "none",
-			26: "moderate",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebAntiphishingLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebContentLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebExtendedAllActionLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterActivexLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterAppletLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterCommandBlockLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterCookieLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterCookieRemovalLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterJsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterJscriptLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterRefererLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterUnknownLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFilterVbsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFtgdErrLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebFtgdQuotaUsage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebInvalidDomainLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWebUrlLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWisp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterProfileWispAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto-learning",
-			1: "primary-secondary",
-			2: "round-robin",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2138,15 +1713,6 @@ func flattenObjectWebfilterProfileYoutubeChannelFilterId(v interface{}, d *schem
 }
 
 func flattenObjectWebfilterProfileYoutubeChannelStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "disable",
-			38: "blacklist",
-			39: "whitelist",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2626,6 +2192,10 @@ func expandObjectWebfilterProfileAntiphish(d *schema.ResourceData, v interface{}
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "authentication"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["authentication"], _ = expandObjectWebfilterProfileAntiphishAuthentication(d, i["authentication"], pre_append)
+	}
 	pre_append = pre + ".0." + "check_basic_auth"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["check-basic-auth"], _ = expandObjectWebfilterProfileAntiphishCheckBasicAuth(d, i["check_basic_auth"], pre_append)
@@ -2658,6 +2228,10 @@ func expandObjectWebfilterProfileAntiphish(d *schema.ResourceData, v interface{}
 	} else {
 		result["inspection-entries"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "ldap"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ldap"], _ = expandObjectWebfilterProfileAntiphishLdap(d, i["ldap"], pre_append)
+	}
 	pre_append = pre + ".0." + "max_body_len"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["max-body-len"], _ = expandObjectWebfilterProfileAntiphishMaxBodyLen(d, i["max_body_len"], pre_append)
@@ -2668,6 +2242,10 @@ func expandObjectWebfilterProfileAntiphish(d *schema.ResourceData, v interface{}
 	}
 
 	return result, nil
+}
+
+func expandObjectWebfilterProfileAntiphishAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWebfilterProfileAntiphishCheckBasicAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2706,6 +2284,11 @@ func expandObjectWebfilterProfileAntiphishCustomPatterns(d *schema.ResourceData,
 			tmp["pattern"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsPattern(d, i["pattern"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["type"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsType(d, i["type"], pre_append)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -2719,6 +2302,10 @@ func expandObjectWebfilterProfileAntiphishCustomPatternsCategory(d *schema.Resou
 }
 
 func expandObjectWebfilterProfileAntiphishCustomPatternsPattern(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileAntiphishCustomPatternsType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2778,6 +2365,10 @@ func expandObjectWebfilterProfileAntiphishInspectionEntriesFortiguardCategory(d 
 }
 
 func expandObjectWebfilterProfileAntiphishInspectionEntriesName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileAntiphishLdap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3251,6 +2842,16 @@ func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre 
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "allowlist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["allowlist"], _ = expandObjectWebfilterProfileWebAllowlist(d, i["allowlist"], pre_append)
+	} else {
+		result["allowlist"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["blocklist"], _ = expandObjectWebfilterProfileWebBlocklist(d, i["blocklist"], pre_append)
+	}
 	pre_append = pre + ".0." + "blacklist"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["blacklist"], _ = expandObjectWebfilterProfileWebBlacklist(d, i["blacklist"], pre_append)
@@ -3299,6 +2900,14 @@ func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre 
 	}
 
 	return result, nil
+}
+
+func expandObjectWebfilterProfileWebAllowlist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWebfilterProfileWebBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWebfilterProfileWebBlacklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

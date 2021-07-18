@@ -57,6 +57,16 @@ func resourceObjectSystemVirtualWirePair() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"poweroff_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"poweron_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vlan_filter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -185,19 +195,19 @@ func flattenObjectSystemVirtualWirePairName(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectSystemVirtualWirePairPoweroffBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemVirtualWirePairPoweronBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemVirtualWirePairVlanFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemVirtualWirePairWildcardVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -221,6 +231,26 @@ func refreshObjectObjectSystemVirtualWirePair(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("poweroff_bypass", flattenObjectSystemVirtualWirePairPoweroffBypass(o["poweroff-bypass"], d, "poweroff_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["poweroff-bypass"], "ObjectSystemVirtualWirePair-PoweroffBypass"); ok {
+			if err = d.Set("poweroff_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading poweroff_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading poweroff_bypass: %v", err)
+		}
+	}
+
+	if err = d.Set("poweron_bypass", flattenObjectSystemVirtualWirePairPoweronBypass(o["poweron-bypass"], d, "poweron_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["poweron-bypass"], "ObjectSystemVirtualWirePair-PoweronBypass"); ok {
+			if err = d.Set("poweron_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading poweron_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading poweron_bypass: %v", err)
 		}
 	}
 
@@ -261,6 +291,14 @@ func expandObjectSystemVirtualWirePairName(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectSystemVirtualWirePairPoweroffBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemVirtualWirePairPoweronBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemVirtualWirePairVlanFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -287,6 +325,24 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("poweroff_bypass"); ok {
+		t, err := expandObjectSystemVirtualWirePairPoweroffBypass(d, v, "poweroff_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["poweroff-bypass"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("poweron_bypass"); ok {
+		t, err := expandObjectSystemVirtualWirePairPoweronBypass(d, v, "poweron_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["poweron-bypass"] = t
 		}
 	}
 

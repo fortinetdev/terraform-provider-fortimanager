@@ -3,11 +3,11 @@ subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_policy_move"
 description: |-
-  Move IPv4/IPv6 policies.
+  Move IPv4 policies.
 ---
 
 # fortimanager_packages_firewall_policy_move
-Move IPv4/IPv6 policies.
+Move IPv4 policies.
 
 ## Example Usage
 

@@ -292,6 +292,11 @@ func resourceObjectFirewallVip46() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"srcintf_filter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -418,14 +423,6 @@ func resourceObjectFirewallVip46Read(d *schema.ResourceData, m interface{}) erro
 }
 
 func flattenObjectFirewallVip46ArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -620,14 +617,6 @@ func flattenObjectFirewallVip46DynamicMappingScopeVdom(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallVip46DynamicMappingArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -652,18 +641,6 @@ func flattenObjectFirewallVip46DynamicMappingId(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallVip46DynamicMappingLdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "round-robin",
-			2: "weighted",
-			3: "least-session",
-			4: "least-rtt",
-			5: "first-alive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -680,40 +657,14 @@ func flattenObjectFirewallVip46DynamicMappingMonitor(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallVip46DynamicMappingPortforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVip46DynamicMappingProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "tcp",
-			2: "udp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVip46DynamicMappingServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http",
-			4: "tcp",
-			5: "udp",
-			6: "ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -726,14 +677,6 @@ func flattenObjectFirewallVip46DynamicMappingSrcintfFilter(v interface{}, d *sch
 }
 
 func flattenObjectFirewallVip46DynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static-nat",
-			3: "server-load-balance",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -754,18 +697,6 @@ func flattenObjectFirewallVip46Id(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectFirewallVip46LdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static",
-			1: "round-robin",
-			2: "weighted",
-			3: "least-session",
-			4: "least-rtt",
-			5: "first-alive",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -786,26 +717,10 @@ func flattenObjectFirewallVip46Name(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectFirewallVip46Portforward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallVip46Protocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "tcp",
-			2: "udp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -901,15 +816,6 @@ func flattenObjectFirewallVip46RealserversClientIp(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVip46RealserversHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "vip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -938,15 +844,6 @@ func flattenObjectFirewallVip46RealserversPort(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFirewallVip46RealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "active",
-			1: "standby",
-			2: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -955,16 +852,6 @@ func flattenObjectFirewallVip46RealserversWeight(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallVip46ServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http",
-			4: "tcp",
-			5: "udp",
-			6: "ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -972,15 +859,11 @@ func flattenObjectFirewallVip46SrcFilter(v interface{}, d *schema.ResourceData, 
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallVip46SrcintfFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip46Type(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "static-nat",
-			3: "server-load-balance",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1186,6 +1069,16 @@ func refreshObjectObjectFirewallVip46(d *schema.ResourceData, o map[string]inter
 			}
 		} else {
 			return fmt.Errorf("Error reading src_filter: %v", err)
+		}
+	}
+
+	if err = d.Set("srcintf_filter", flattenObjectFirewallVip46SrcintfFilter(o["srcintf-filter"], d, "srcintf_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["srcintf-filter"], "ObjectFirewallVip46-SrcintfFilter"); ok {
+			if err = d.Set("srcintf_filter", vv); err != nil {
+				return fmt.Errorf("Error reading srcintf_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading srcintf_filter: %v", err)
 		}
 	}
 
@@ -1614,6 +1507,10 @@ func expandObjectFirewallVip46SrcFilter(d *schema.ResourceData, v interface{}, p
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallVip46SrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip46Type(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1775,6 +1672,15 @@ func getObjectObjectFirewallVip46(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["src-filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("srcintf_filter"); ok {
+		t, err := expandObjectFirewallVip46SrcintfFilter(d, v, "srcintf_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["srcintf-filter"] = t
 		}
 	}
 

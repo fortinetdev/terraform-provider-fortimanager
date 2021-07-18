@@ -122,15 +122,6 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionRead(d *schema.ResourceD
 }
 
 func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "days",
-			2: "weeks",
-			3: "months",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -139,14 +130,6 @@ func flattenSystemAutoDeleteQuarantineFilesAutoDeletionRunat(v interface{}, d *s
 }
 
 func flattenSystemAutoDeleteQuarantineFilesAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

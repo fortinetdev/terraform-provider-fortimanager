@@ -213,14 +213,6 @@ func resourceObjectWebProxyForwardServerRead(d *schema.ResourceData, m interface
 }
 
 func flattenObjectWebProxyForwardServerAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "fqdn",
-			9: "ip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -233,14 +225,6 @@ func flattenObjectWebProxyForwardServerFqdn(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectWebProxyForwardServerHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -265,14 +249,6 @@ func flattenObjectWebProxyForwardServerPort(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectWebProxyForwardServerServerDownOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			1: "pass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

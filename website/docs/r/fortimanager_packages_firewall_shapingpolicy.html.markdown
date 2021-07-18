@@ -62,12 +62,14 @@ The following arguments are supported:
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
 * `internet_service_name` - Internet Service ID.
+* `internet_service_id` - Internet Service ID.
 * `internet_service_src` - Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
 
 * `internet_service_src_custom` - Custom Internet Service source name.
 * `internet_service_src_custom_group` - Custom Internet Service source group name.
 * `internet_service_src_group` - Internet Service source group name.
 * `internet_service_src_name` - Internet Service source name.
+* `internet_service_src_id` - Internet Service source ID.
 * `ip_version` - Apply this traffic shaping policy to IPv4 or IPv6 traffic. Valid values: `4`, `6`.
 
 * `name` - Shaping policy name.
@@ -104,4 +106,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_shapingpolicy.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

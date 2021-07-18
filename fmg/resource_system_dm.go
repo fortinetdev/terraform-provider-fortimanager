@@ -234,14 +234,6 @@ func flattenSystemDmConcurrentInstallScriptLimit(v interface{}, d *schema.Resour
 }
 
 func flattenSystemDmConfMergeAfterScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -266,14 +258,6 @@ func flattenSystemDmFgfmKeepaliveItvl(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenSystemDmForceRemoteDiff(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -306,14 +290,6 @@ func flattenSystemDmNrRetry(v interface{}, d *schema.ResourceData, pre string) i
 }
 
 func flattenSystemDmRetry(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -322,14 +298,6 @@ func flattenSystemDmRetryIntvl(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenSystemDmRollbackAllowReboot(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -338,39 +306,14 @@ func flattenSystemDmScriptLogsize(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenSystemDmSkipScepCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemDmSkipTunnelFcpReq(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemDmVerifyInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "optimal",
-			2: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -40,10 +40,11 @@ func resourceFmupdateAvIpsWebProxy() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -137,14 +138,6 @@ func flattenFmupdateAvIpsWebProxyAddress(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenFmupdateAvIpsWebProxyMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "proxy",
-			2: "tunnel",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -157,14 +150,6 @@ func flattenFmupdateAvIpsWebProxyPort(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenFmupdateAvIpsWebProxyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -192,16 +177,6 @@ func refreshObjectFmupdateAvIpsWebProxy(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading mode: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenFmupdateAvIpsWebProxyPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "FmupdateAvIpsWebProxy-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

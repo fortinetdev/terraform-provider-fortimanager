@@ -271,14 +271,6 @@ func flattenObjectEmailfilterIptrustEntries(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectEmailfilterIptrustEntriesAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ipv4",
-			1: "ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -295,14 +287,6 @@ func flattenObjectEmailfilterIptrustEntriesIp6Subnet(v interface{}, d *schema.Re
 }
 
 func flattenObjectEmailfilterIptrustEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

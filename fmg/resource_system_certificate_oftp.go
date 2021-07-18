@@ -149,15 +149,6 @@ func flattenSystemCertificateOftpLocal(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemCertificateOftpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "custom",
-			2: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

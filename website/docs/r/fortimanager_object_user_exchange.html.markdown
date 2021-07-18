@@ -34,6 +34,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `addr_type` - Addr-Type. Valid values: `ipv4`, `ipv6`.
+
 * `auth_level` - Authentication security level used for the RPC protocol layer. Valid values: `low`, `medium`, `normal`, `high`, `connect`, `call`, `packet`, `integrity`, `privacy`.
 
 * `auth_type` - Authentication security type used for the RPC protocol layer. Valid values: `spnego`, `ntlm`, `kerberos`.
@@ -46,6 +48,7 @@ The following arguments are supported:
 * `http_auth_type` - Authentication security type used for the HTTP transport. Valid values: `ntlm`, `basic`.
 
 * `ip` - Server IPv4 address.
+* `ip6` - Ip6.
 * `kdc_ip` - KDC IPv4 addresses for Kerberos authentication.
 * `name` - MS Exchange server entry name.
 * `password` - Password for the specified username.
@@ -69,4 +72,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_user_exchange.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

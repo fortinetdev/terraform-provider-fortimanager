@@ -302,38 +302,14 @@ func flattenObjectDlpSensorComment(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectDlpSensorDlpLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDlpSensorExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDlpSensorFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -455,28 +431,10 @@ func flattenObjectDlpSensorFilter(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectDlpSensorFilterAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "log-only",
-			1: "block",
-			5: "quarantine-ip",
-			8: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDlpSensorFilterArchive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -497,20 +455,6 @@ func flattenObjectDlpSensorFilterFileType(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectDlpSensorFilterFilterBy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "credit-card",
-			1: "ssn",
-			2: "regexp",
-			3: "file-type",
-			4: "file-size",
-			5: "fingerprint",
-			6: "watermark",
-			7: "encrypted",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -527,23 +471,7 @@ func flattenObjectDlpSensorFilterName(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectDlpSensorFilterProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:         "imap",
-			2:         "smtp",
-			4:         "pop3",
-			16:        "ftp",
-			64:        "nntp",
-			2097152:   "mapi",
-			67108864:  "http-get",
-			134217728: "http-post",
-			268435456: "cifs",
-			536870912: "ssh",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectDlpSensorFilterRegexp(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -555,61 +483,18 @@ func flattenObjectDlpSensorFilterSensitivity(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectDlpSensorFilterSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "info",
-			2: "low",
-			3: "medium",
-			4: "high",
-			5: "critical",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDlpSensorFilterType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "file",
-			1: "message",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectDlpSensorFullArchiveProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:         "imap",
-			2:         "smtp",
-			4:         "pop3",
-			16:        "ftp",
-			64:        "nntp",
-			2097152:   "mapi",
-			67108864:  "http-get",
-			134217728: "http-post",
-			268435456: "cifs",
-			536870912: "ssh",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectDlpSensorNacQuarLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -618,11 +503,6 @@ func flattenObjectDlpSensorName(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenObjectDlpSensorOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -631,23 +511,7 @@ func flattenObjectDlpSensorReplacemsgGroup(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectDlpSensorSummaryProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:         "imap",
-			2:         "smtp",
-			4:         "pop3",
-			16:        "ftp",
-			64:        "nntp",
-			2097152:   "mapi",
-			67108864:  "http-get",
-			134217728: "http-post",
-			268435456: "cifs",
-			536870912: "ssh",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectDlpSensor(d *schema.ResourceData, o map[string]interface{}) error {

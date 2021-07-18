@@ -92,6 +92,16 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"jitter_threshold": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"latency_threshold": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -108,7 +118,22 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"packetloss_threshold": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"reputation": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"singularity": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"sld_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -206,27 +231,10 @@ func flattenObjectFirewallInternetServiceCountry(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFirewallInternetServiceDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "isdb",
-			1: "irdb",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallInternetServiceDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "src",
-			1: "dst",
-			2: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -250,6 +258,14 @@ func flattenObjectFirewallInternetServiceIpRangeNumber(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFirewallInternetServiceJitterThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceLatencyThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallInternetServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -262,7 +278,19 @@ func flattenObjectFirewallInternetServiceRegion(v interface{}, d *schema.Resourc
 	return flattenIntegerList(v)
 }
 
+func flattenObjectFirewallInternetServicePacketlossThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceReputation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallInternetServiceSingularity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceSldId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -359,6 +387,26 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("jitter_threshold", flattenObjectFirewallInternetServiceJitterThreshold(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
+		if vv, ok := fortiAPIPatch(o["jitter-threshold"], "ObjectFirewallInternetService-JitterThreshold"); ok {
+			if err = d.Set("jitter_threshold", vv); err != nil {
+				return fmt.Errorf("Error reading jitter_threshold: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading jitter_threshold: %v", err)
+		}
+	}
+
+	if err = d.Set("latency_threshold", flattenObjectFirewallInternetServiceLatencyThreshold(o["latency-threshold"], d, "latency_threshold")); err != nil {
+		if vv, ok := fortiAPIPatch(o["latency-threshold"], "ObjectFirewallInternetService-LatencyThreshold"); ok {
+			if err = d.Set("latency_threshold", vv); err != nil {
+				return fmt.Errorf("Error reading latency_threshold: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading latency_threshold: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectFirewallInternetServiceName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallInternetService-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -389,6 +437,26 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("packetloss_threshold", flattenObjectFirewallInternetServicePacketlossThreshold(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
+		if vv, ok := fortiAPIPatch(o["packetloss-threshold"], "ObjectFirewallInternetService-PacketlossThreshold"); ok {
+			if err = d.Set("packetloss_threshold", vv); err != nil {
+				return fmt.Errorf("Error reading packetloss_threshold: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading packetloss_threshold: %v", err)
+		}
+	}
+
+	if err = d.Set("reputation", flattenObjectFirewallInternetServiceReputation(o["reputation"], d, "reputation")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reputation"], "ObjectFirewallInternetService-Reputation"); ok {
+			if err = d.Set("reputation", vv); err != nil {
+				return fmt.Errorf("Error reading reputation: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reputation: %v", err)
+		}
+	}
+
 	if err = d.Set("singularity", flattenObjectFirewallInternetServiceSingularity(o["singularity"], d, "singularity")); err != nil {
 		if vv, ok := fortiAPIPatch(o["singularity"], "ObjectFirewallInternetService-Singularity"); ok {
 			if err = d.Set("singularity", vv); err != nil {
@@ -396,6 +464,16 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading singularity: %v", err)
+		}
+	}
+
+	if err = d.Set("sld_id", flattenObjectFirewallInternetServiceSldId(o["sld-id"], d, "sld_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sld-id"], "ObjectFirewallInternetService-SldId"); ok {
+			if err = d.Set("sld_id", vv); err != nil {
+				return fmt.Errorf("Error reading sld_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sld_id: %v", err)
 		}
 	}
 
@@ -444,6 +522,14 @@ func expandObjectFirewallInternetServiceIpRangeNumber(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectFirewallInternetServiceJitterThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceLatencyThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallInternetServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -456,7 +542,19 @@ func expandObjectFirewallInternetServiceRegion(d *schema.ResourceData, v interfa
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallInternetServicePacketlossThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceReputation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallInternetServiceSingularity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceSldId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -544,6 +642,24 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("jitter_threshold"); ok {
+		t, err := expandObjectFirewallInternetServiceJitterThreshold(d, v, "jitter_threshold")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["jitter-threshold"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("latency_threshold"); ok {
+		t, err := expandObjectFirewallInternetServiceLatencyThreshold(d, v, "latency_threshold")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["latency-threshold"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok {
 		t, err := expandObjectFirewallInternetServiceName(d, v, "name")
 		if err != nil {
@@ -571,12 +687,39 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("packetloss_threshold"); ok {
+		t, err := expandObjectFirewallInternetServicePacketlossThreshold(d, v, "packetloss_threshold")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["packetloss-threshold"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reputation"); ok {
+		t, err := expandObjectFirewallInternetServiceReputation(d, v, "reputation")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reputation"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("singularity"); ok {
 		t, err := expandObjectFirewallInternetServiceSingularity(d, v, "singularity")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["singularity"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sld_id"); ok {
+		t, err := expandObjectFirewallInternetServiceSldId(d, v, "sld_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sld-id"] = t
 		}
 	}
 

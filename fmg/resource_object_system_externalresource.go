@@ -112,6 +112,11 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -235,15 +240,6 @@ func flattenObjectSystemExternalResourceInterface(v interface{}, d *schema.Resou
 }
 
 func flattenObjectSystemExternalResourceInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -268,28 +264,10 @@ func flattenObjectSystemExternalResourceSourceIp(v interface{}, d *schema.Resour
 }
 
 func flattenObjectSystemExternalResourceStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemExternalResourceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "category",
-			1: "address",
-			2: "domain",
-			3: "malware",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -298,6 +276,10 @@ func flattenObjectSystemExternalResourceUserAgent(v interface{}, d *schema.Resou
 }
 
 func flattenObjectSystemExternalResourceUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -434,6 +416,16 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("uuid", flattenObjectSystemExternalResourceUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectSystemExternalResource-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -492,6 +484,10 @@ func expandObjectSystemExternalResourceUserAgent(d *schema.ResourceData, v inter
 }
 
 func expandObjectSystemExternalResourceUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -612,6 +608,15 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok {
+		t, err := expandObjectSystemExternalResourceUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

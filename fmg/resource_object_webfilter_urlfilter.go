@@ -337,61 +337,19 @@ func flattenObjectWebfilterUrlfilterEntries(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectWebfilterUrlfilterEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "exempt",
-			1: "block",
-			2: "allow",
-			3: "monitor",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterUrlfilterEntriesAntiphishAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			1: "log",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterUrlfilterEntriesDnsAddressFamily(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7:  "ipv4",
-			8:  "ipv6",
-			11: "both",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterUrlfilterEntriesExempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "av",
-			2:   "web-content",
-			4:   "activex-java-cookie",
-			8:   "dlp",
-			16:  "fortiguard",
-			32:  "all",
-			128: "pass",
-			256: "range-block",
-			512: "antiphish",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterUrlfilterEntriesId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -403,27 +361,10 @@ func flattenObjectWebfilterUrlfilterEntriesReferrerHost(v interface{}, d *schema
 }
 
 func flattenObjectWebfilterUrlfilterEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterUrlfilterEntriesType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "simple",
-			1: "regex",
-			2: "wildcard",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -440,14 +381,6 @@ func flattenObjectWebfilterUrlfilterId(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectWebfilterUrlfilterIpAddrBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -456,14 +389,6 @@ func flattenObjectWebfilterUrlfilterName(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectWebfilterUrlfilterOneArmIpsUrlfilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

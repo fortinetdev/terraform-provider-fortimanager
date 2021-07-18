@@ -150,27 +150,10 @@ func resourceSystemSqlCustomIndexRead(d *schema.ResourceData, m interface{}) err
 }
 
 func flattenSystemSqlCustomIndexCaseSensitive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSqlCustomIndexDeviceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "FortiGate",
-			4: "FortiMail",
-			5: "FortiWeb",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -183,37 +166,6 @@ func flattenSystemSqlCustomIndexIndexField(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemSqlCustomIndexLogType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "app-ctrl",
-			1:  "attack",
-			2:  "content",
-			3:  "dlp",
-			4:  "emailfilter",
-			5:  "event",
-			6:  "generic",
-			7:  "history",
-			10: "traffic",
-			11: "virus",
-			12: "voip",
-			13: "webfilter",
-			14: "netscan",
-			15: "fct-event",
-			16: "fct-traffic",
-			17: "fct-netscan",
-			18: "waf",
-			19: "gtp",
-			20: "dns",
-			21: "ssh",
-			22: "ssl",
-			23: "file-filter",
-			24: "asset",
-			25: "protocol",
-			26: "siem",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

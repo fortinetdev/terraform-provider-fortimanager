@@ -243,14 +243,6 @@ func flattenObjectSystemMetaSysMetaFieldsFieldlength(v interface{}, d *schema.Re
 }
 
 func flattenObjectSystemMetaSysMetaFieldsImportance(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "required",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

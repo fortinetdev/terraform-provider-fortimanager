@@ -282,14 +282,6 @@ func flattenObjectEmailfilterMheaderEntries(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectEmailfilterMheaderEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "spam",
-			3: "clear",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -306,26 +298,10 @@ func flattenObjectEmailfilterMheaderEntriesId(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectEmailfilterMheaderEntriesPatternType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "wildcard",
-			1: "regexp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterMheaderEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

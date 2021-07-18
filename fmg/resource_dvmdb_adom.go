@@ -230,25 +230,7 @@ func flattenDvmdbAdomDesc(v interface{}, d *schema.ResourceData, pre string) int
 }
 
 func flattenDvmdbAdomFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:     "migration",
-			4:     "db_export",
-			8:     "no_vpn_console",
-			16:    "backup",
-			32:    "other_devices",
-			256:   "central_sdwan",
-			512:   "is_autosync",
-			1024:  "per_device_wtp",
-			4096:  "policy_check_on_install",
-			8192:  "install_on_policy_check_fail",
-			16384: "auto_push_cfg",
-			65536: "per_device_fsw",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenDvmdbAdomLogDbRetentionHours(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -280,35 +262,10 @@ func flattenDvmdbAdomMigMr(v interface{}, d *schema.ResourceData, pre string) in
 }
 
 func flattenDvmdbAdomMigOsVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "0.0",
-			1:  "1.0",
-			2:  "2.0",
-			3:  "3.0",
-			4:  "4.0",
-			5:  "5.0",
-			6:  "6.0",
-			7:  "7.0",
-			8:  "8.0",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbAdomMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ems",
-			1: "gms",
-			2: "provider",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -321,52 +278,11 @@ func flattenDvmdbAdomName(v interface{}, d *schema.ResourceData, pre string) int
 }
 
 func flattenDvmdbAdomOsVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "0.0",
-			1:  "1.0",
-			2:  "2.0",
-			3:  "3.0",
-			4:  "4.0",
-			5:  "5.0",
-			6:  "6.0",
-			7:  "7.0",
-			8:  "8.0",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbAdomRestrictedPrds(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:      "fos",
-			2:      "foc",
-			4:      "fml",
-			8:      "fch",
-			16:     "fwb",
-			32:     "log",
-			64:     "fct",
-			128:    "faz",
-			256:    "fsa",
-			512:    "fsw",
-			1024:   "fmg",
-			2048:   "fdd",
-			4096:   "fac",
-			8192:   "fpx",
-			16384:  "fna",
-			32768:  "ffw",
-			65536:  "fsr",
-			131072: "fad",
-			262144: "fdc",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenDvmdbAdomState(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -248,27 +248,10 @@ func flattenObjectCertificateTemplateCountry(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectCertificateTemplateCurveName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "secp256r1",
-			1: "secp384r1",
-			2: "secp521r1",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectCertificateTemplateDigestType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "sha1",
-			1: "sha256",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -277,42 +260,14 @@ func flattenObjectCertificateTemplateEmail(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectCertificateTemplateIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "host-ip",
-			1: "domain-name",
-			2: "email",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectCertificateTemplateKeySize(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "512",
-			1: "1024",
-			2: "1536",
-			3: "2048",
-			4: "4096",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectCertificateTemplateKeyType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "rsa",
-			1: "ec",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -345,14 +300,6 @@ func flattenObjectCertificateTemplateSubjectName(v interface{}, d *schema.Resour
 }
 
 func flattenObjectCertificateTemplateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "external",
-			1: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

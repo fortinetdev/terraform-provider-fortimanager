@@ -342,26 +342,10 @@ func flattenObjectExtenderControllerSimProfileAutoSwitchProfile(v interface{}, d
 }
 
 func flattenObjectExtenderControllerSimProfileAutoSwitchProfileDataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectExtenderControllerSimProfileAutoSwitchProfileDisconnect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -374,39 +358,15 @@ func flattenObjectExtenderControllerSimProfileAutoSwitchProfileDisconnectThresho
 }
 
 func flattenObjectExtenderControllerSimProfileAutoSwitchProfileSignal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectExtenderControllerSimProfileAutoSwitchProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBack(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "time",
-			2: "timer",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBackTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -422,16 +382,6 @@ func flattenObjectExtenderControllerSimProfileConnStatus(v interface{}, d *schem
 }
 
 func flattenObjectExtenderControllerSimProfileDefaultSim(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "sim1",
-			2: "sim2",
-			3: "carrier",
-			4: "cost",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -440,14 +390,6 @@ func flattenObjectExtenderControllerSimProfileDescription(v interface{}, d *sche
 }
 
 func flattenObjectExtenderControllerSimProfileGps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -468,26 +410,10 @@ func flattenObjectExtenderControllerSimProfileRedundantIntf(v interface{}, d *sc
 }
 
 func flattenObjectExtenderControllerSimProfileRedundantMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectExtenderControllerSimProfileSim1Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -496,14 +422,6 @@ func flattenObjectExtenderControllerSimProfileSim1PinCode(v interface{}, d *sche
 }
 
 func flattenObjectExtenderControllerSimProfileSim2Pin(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -512,14 +430,6 @@ func flattenObjectExtenderControllerSimProfileSim2PinCode(v interface{}, d *sche
 }
 
 func flattenObjectExtenderControllerSimProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

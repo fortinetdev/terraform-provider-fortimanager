@@ -968,15 +968,6 @@ func flattenObjectUserRadiusAccountingServerInterface(v interface{}, d *schema.R
 }
 
 func flattenObjectUserRadiusAccountingServerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -997,26 +988,10 @@ func flattenObjectUserRadiusAccountingServerSourceIp(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserRadiusAccountingServerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusAcctAllServers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1025,29 +1000,10 @@ func flattenObjectUserRadiusAcctInterimInterval(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectUserRadiusAllUsergroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pap",
-			1: "chap",
-			3: "ms_chap",
-			4: "ms_chap_v2",
-			6: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1669,15 +1625,6 @@ func flattenObjectUserRadiusDynamicMappingAccountingServerInterface(v interface{
 }
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1698,26 +1645,10 @@ func flattenObjectUserRadiusDynamicMappingAccountingServerSourceIp(v interface{}
 }
 
 func flattenObjectUserRadiusDynamicMappingAccountingServerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingAcctAllServers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1726,29 +1657,10 @@ func flattenObjectUserRadiusDynamicMappingAcctInterimInterval(v interface{}, d *
 }
 
 func flattenObjectUserRadiusDynamicMappingAllUsergroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "pap",
-			1: "chap",
-			3: "ms_chap",
-			4: "ms_chap_v2",
-			6: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1757,128 +1669,10 @@ func flattenObjectUserRadiusDynamicMappingClass(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectUserRadiusDynamicMappingDpCarrierEndpointAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			2:  "User-Password",
-			3:  "CHAP-Password",
-			4:  "NAS-IP-Address",
-			5:  "NAS-Port",
-			6:  "Service-Type",
-			7:  "Framed-Protocol",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			10: "Framed-Routing",
-			11: "Filter-Id",
-			12: "Framed-MTU",
-			13: "Framed-Compression",
-			14: "Login-IP-Host",
-			15: "Login-Service",
-			16: "Login-TCP-Port",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			24: "State",
-			25: "Class",
-			26: "Vendor-Specific",
-			27: "Session-Timeout",
-			28: "Idle-Timeout",
-			29: "Termination-Action",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			37: "Framed-AppleTalk-Link",
-			38: "Framed-AppleTalk-Network",
-			39: "Framed-AppleTalk-Zone",
-			40: "Acct-Status-Type",
-			41: "Acct-Delay-Time",
-			42: "Acct-Input-Octets",
-			43: "Acct-Output-Octets",
-			44: "Acct-Session-Id",
-			45: "Acct-Authentic",
-			46: "Acct-Session-Time",
-			47: "Acct-Input-Packets",
-			48: "Acct-Output-Packets",
-			49: "Acct-Terminate-Cause",
-			50: "Acct-Multi-Session-Id",
-			51: "Acct-Link-Count",
-			60: "CHAP-Challenge",
-			61: "NAS-Port-Type",
-			62: "Port-Limit",
-			63: "Login-LAT-Port",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingDpCarrierEndpointBlockAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			2:  "User-Password",
-			3:  "CHAP-Password",
-			4:  "NAS-IP-Address",
-			5:  "NAS-Port",
-			6:  "Service-Type",
-			7:  "Framed-Protocol",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			10: "Framed-Routing",
-			11: "Filter-Id",
-			12: "Framed-MTU",
-			13: "Framed-Compression",
-			14: "Login-IP-Host",
-			15: "Login-Service",
-			16: "Login-TCP-Port",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			24: "State",
-			25: "Class",
-			26: "Vendor-Specific",
-			27: "Session-Timeout",
-			28: "Idle-Timeout",
-			29: "Termination-Action",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			37: "Framed-AppleTalk-Link",
-			38: "Framed-AppleTalk-Network",
-			39: "Framed-AppleTalk-Zone",
-			40: "Acct-Status-Type",
-			41: "Acct-Delay-Time",
-			42: "Acct-Input-Octets",
-			43: "Acct-Output-Octets",
-			44: "Acct-Session-Id",
-			45: "Acct-Authentic",
-			46: "Acct-Session-Time",
-			47: "Acct-Input-Packets",
-			48: "Acct-Output-Packets",
-			49: "Acct-Terminate-Cause",
-			50: "Acct-Multi-Session-Id",
-			51: "Acct-Link-Count",
-			60: "CHAP-Challenge",
-			61: "NAS-Port-Type",
-			62: "Port-Limit",
-			63: "Login-LAT-Port",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1887,14 +1681,6 @@ func flattenObjectUserRadiusDynamicMappingDpContextTimeout(v interface{}, d *sch
 }
 
 func flattenObjectUserRadiusDynamicMappingDpFlushIpSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1907,57 +1693,19 @@ func flattenObjectUserRadiusDynamicMappingDpHttpHeader(v interface{}, d *schema.
 }
 
 func flattenObjectUserRadiusDynamicMappingDpHttpHeaderFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ip-header-address",
-			1: "default-profile",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingDpHttpHeaderStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingDpHttpHeaderSuppress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingDpLogDynFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "none",
-			2:   "protocol-error",
-			4:   "profile-missing",
-			8:   "context-missing",
-			16:  "accounting-stop-missed",
-			32:  "accounting-event",
-			64:  "radiusd-other",
-			128: "endpoint-block",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusDynamicMappingDpLogPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1969,65 +1717,6 @@ func flattenObjectUserRadiusDynamicMappingDpMemPercent(v interface{}, d *schema.
 }
 
 func flattenObjectUserRadiusDynamicMappingDpProfileAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			2:  "User-Password",
-			3:  "CHAP-Password",
-			4:  "NAS-IP-Address",
-			5:  "NAS-Port",
-			6:  "Service-Type",
-			7:  "Framed-Protocol",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			10: "Framed-Routing",
-			11: "Filter-Id",
-			12: "Framed-MTU",
-			13: "Framed-Compression",
-			14: "Login-IP-Host",
-			15: "Login-Service",
-			16: "Login-TCP-Port",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			24: "State",
-			25: "Class",
-			26: "Vendor-Specific",
-			27: "Session-Timeout",
-			28: "Idle-Timeout",
-			29: "Termination-Action",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			37: "Framed-AppleTalk-Link",
-			38: "Framed-AppleTalk-Network",
-			39: "Framed-AppleTalk-Zone",
-			40: "Acct-Status-Type",
-			41: "Acct-Delay-Time",
-			42: "Acct-Input-Octets",
-			43: "Acct-Output-Octets",
-			44: "Acct-Session-Id",
-			45: "Acct-Authentic",
-			46: "Acct-Session-Time",
-			47: "Acct-Input-Packets",
-			48: "Acct-Output-Packets",
-			49: "Acct-Terminate-Cause",
-			50: "Acct-Multi-Session-Id",
-			51: "Acct-Link-Count",
-			60: "CHAP-Challenge",
-			61: "NAS-Port-Type",
-			62: "Port-Limit",
-			63: "Login-LAT-Port",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2036,14 +1725,6 @@ func flattenObjectUserRadiusDynamicMappingDpProfileAttributeKey(v interface{}, d
 }
 
 func flattenObjectUserRadiusDynamicMappingDpRadiusResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2056,50 +1737,18 @@ func flattenObjectUserRadiusDynamicMappingDpSecret(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserRadiusDynamicMappingDpValidateRequestSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingDynamicProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingEndpointTranslation(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingEpCarrierEndpointConvertHex(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2108,26 +1757,10 @@ func flattenObjectUserRadiusDynamicMappingEpCarrierEndpointHeader(v interface{},
 }
 
 func flattenObjectUserRadiusDynamicMappingEpCarrierEndpointHeaderSuppress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingEpCarrierEndpointPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2144,14 +1777,6 @@ func flattenObjectUserRadiusDynamicMappingEpCarrierEndpointPrefixString(v interf
 }
 
 func flattenObjectUserRadiusDynamicMappingEpCarrierEndpointSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "http-header",
-			2: "cookie",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2160,63 +1785,22 @@ func flattenObjectUserRadiusDynamicMappingEpIpHeader(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserRadiusDynamicMappingEpIpHeaderSuppress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingEpMissingHeaderFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "session-ip",
-			1: "policy-profile",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingEpProfileQueryType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "session-ip",
-			2: "extract-ip",
-			3: "extract-carrier-endpoint",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingGroupOverrideAttrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "filter-Id",
-			2: "class",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingH3CCompatibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2225,15 +1809,6 @@ func flattenObjectUserRadiusDynamicMappingInterface(v interface{}, d *schema.Res
 }
 
 func flattenObjectUserRadiusDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2242,38 +1817,14 @@ func flattenObjectUserRadiusDynamicMappingNasIp(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectUserRadiusDynamicMappingPasswordEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			65536:   "ISO-8859-1",
-			2097152: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingPasswordRenewal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingRadiusCoa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2282,14 +1833,6 @@ func flattenObjectUserRadiusDynamicMappingRadiusPort(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserRadiusDynamicMappingRsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2298,108 +1841,23 @@ func flattenObjectUserRadiusDynamicMappingRssoContextTimeout(v interface{}, d *s
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoEndpointAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoEndpointBlockAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoEpOneIpOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoFlushIpSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoLogFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "none",
-			2:   "protocol-error",
-			4:   "profile-missing",
-			16:  "accounting-stop-missed",
-			32:  "accounting-event",
-			64:  "radiusd-other",
-			128: "endpoint-block",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoLogPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2407,14 +1865,6 @@ func flattenObjectUserRadiusDynamicMappingRssoLogPeriod(v interface{}, d *schema
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoRadiusResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2427,14 +1877,6 @@ func flattenObjectUserRadiusDynamicMappingRssoSecret(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserRadiusDynamicMappingRssoValidateRequestSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2459,34 +1901,6 @@ func flattenObjectUserRadiusDynamicMappingSourceIp(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserRadiusDynamicMappingSsoAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2495,14 +1909,6 @@ func flattenObjectUserRadiusDynamicMappingSsoAttributeKey(v interface{}, d *sche
 }
 
 func flattenObjectUserRadiusDynamicMappingSsoAttributeValueOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2511,24 +1917,7 @@ func flattenObjectUserRadiusDynamicMappingSwitchControllerAcctFastFramedipDetect
 }
 
 func flattenObjectUserRadiusDynamicMappingSwitchControllerServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "login",
-			2:    "framed",
-			4:    "callback-login",
-			8:    "callback-framed",
-			16:   "outbound",
-			32:   "administrative",
-			64:   "nas-prompt",
-			128:  "authenticate-only",
-			256:  "callback-nas-prompt",
-			512:  "call-check",
-			1024: "callback-administrative",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusDynamicMappingTertiarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2544,62 +1933,22 @@ func flattenObjectUserRadiusDynamicMappingTimeout(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserRadiusDynamicMappingUseGroupForProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingUseManagementVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingUsernameCaseSensitive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusGroupOverrideAttrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "filter-Id",
-			2: "class",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusH3CCompatibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2608,15 +1957,6 @@ func flattenObjectUserRadiusInterface(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectUserRadiusInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2629,38 +1969,14 @@ func flattenObjectUserRadiusNasIp(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectUserRadiusPasswordEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			65536:   "ISO-8859-1",
-			2097152: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusPasswordRenewal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusRadiusCoa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2669,14 +1985,6 @@ func flattenObjectUserRadiusRadiusPort(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectUserRadiusRsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2685,108 +1993,23 @@ func flattenObjectUserRadiusRssoContextTimeout(v interface{}, d *schema.Resource
 }
 
 func flattenObjectUserRadiusRssoEndpointAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusRssoEndpointBlockAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusRssoEpOneIpOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusRssoFlushIpSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusRssoLogFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "none",
-			2:   "protocol-error",
-			4:   "profile-missing",
-			16:  "accounting-stop-missed",
-			32:  "accounting-event",
-			64:  "radiusd-other",
-			128: "endpoint-block",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusRssoLogPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2794,14 +2017,6 @@ func flattenObjectUserRadiusRssoLogPeriod(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectUserRadiusRssoRadiusResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2814,14 +2029,6 @@ func flattenObjectUserRadiusRssoSecret(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectUserRadiusRssoValidateRequestSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2846,34 +2053,6 @@ func flattenObjectUserRadiusSourceIp(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectUserRadiusSsoAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "User-Name",
-			4:  "NAS-IP-Address",
-			8:  "Framed-IP-Address",
-			9:  "Framed-IP-Netmask",
-			11: "Filter-Id",
-			14: "Login-IP-Host",
-			18: "Reply-Message",
-			19: "Callback-Number",
-			20: "Callback-Id",
-			22: "Framed-Route",
-			23: "Framed-IPX-Network",
-			25: "Class",
-			30: "Called-Station-Id",
-			31: "Calling-Station-Id",
-			32: "NAS-Identifier",
-			33: "Proxy-State",
-			34: "Login-LAT-Service",
-			35: "Login-LAT-Node",
-			36: "Login-LAT-Group",
-			39: "Framed-AppleTalk-Zone",
-			44: "Acct-Session-Id",
-			50: "Acct-Multi-Session-Id",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2882,14 +2061,6 @@ func flattenObjectUserRadiusSsoAttributeKey(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectUserRadiusSsoAttributeValueOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2898,24 +2069,7 @@ func flattenObjectUserRadiusSwitchControllerAcctFastFramedipDetect(v interface{}
 }
 
 func flattenObjectUserRadiusSwitchControllerServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "login",
-			2:    "framed",
-			4:    "callback-login",
-			8:    "callback-framed",
-			16:   "outbound",
-			32:   "administrative",
-			64:   "nas-prompt",
-			128:  "authenticate-only",
-			256:  "callback-nas-prompt",
-			512:  "call-check",
-			1024: "callback-administrative",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserRadiusTertiarySecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2931,26 +2085,10 @@ func flattenObjectUserRadiusTimeout(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserRadiusUseManagementVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserRadiusUsernameCaseSensitive(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

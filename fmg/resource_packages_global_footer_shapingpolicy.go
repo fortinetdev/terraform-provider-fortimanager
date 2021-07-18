@@ -397,26 +397,10 @@ func flattenPackagesGlobalFooterShapingPolicyComment(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterShapingPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenPackagesGlobalFooterShapingPolicyDiffservReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -449,14 +433,6 @@ func flattenPackagesGlobalFooterShapingPolicyId(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterShapingPolicyInternetService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -481,14 +457,6 @@ func flattenPackagesGlobalFooterShapingPolicyInternetServiceName(v interface{}, 
 }
 
 func flattenPackagesGlobalFooterShapingPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -513,14 +481,6 @@ func flattenPackagesGlobalFooterShapingPolicyInternetServiceSrcName(v interface{
 }
 
 func flattenPackagesGlobalFooterShapingPolicyIpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			7: "4",
-			8: "6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -553,14 +513,6 @@ func flattenPackagesGlobalFooterShapingPolicySrcintf(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterShapingPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -573,14 +525,6 @@ func flattenPackagesGlobalFooterShapingPolicyTosMask(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterShapingPolicyTosNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

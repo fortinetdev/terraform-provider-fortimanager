@@ -35,10 +35,11 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 				Computed: true,
 			},
 			"crptpasswd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"directory": &schema.Schema{
 				Type:     schema.TypeString,
@@ -46,10 +47,11 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 				Computed: true,
 			},
 			"passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,
@@ -171,15 +173,6 @@ func flattenSystemBackupAllSettingsPasswd(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemBackupAllSettingsProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "sftp",
-			1: "ftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -188,14 +181,6 @@ func flattenSystemBackupAllSettingsServer(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemBackupAllSettingsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -208,20 +193,7 @@ func flattenSystemBackupAllSettingsUser(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemBackupAllSettingsWeekDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "monday",
-			2:  "tuesday",
-			4:  "wednesday",
-			8:  "thursday",
-			16: "friday",
-			32: "saturday",
-			64: "sunday",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectSystemBackupAllSettings(d *schema.ResourceData, o map[string]interface{}) error {
@@ -237,16 +209,6 @@ func refreshObjectSystemBackupAllSettings(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("crptpasswd", flattenSystemBackupAllSettingsCrptpasswd(o["crptpasswd"], d, "crptpasswd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["crptpasswd"], "SystemBackupAllSettings-Crptpasswd"); ok {
-			if err = d.Set("crptpasswd", vv); err != nil {
-				return fmt.Errorf("Error reading crptpasswd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading crptpasswd: %v", err)
-		}
-	}
-
 	if err = d.Set("directory", flattenSystemBackupAllSettingsDirectory(o["directory"], d, "directory")); err != nil {
 		if vv, ok := fortiAPIPatch(o["directory"], "SystemBackupAllSettings-Directory"); ok {
 			if err = d.Set("directory", vv); err != nil {
@@ -254,16 +216,6 @@ func refreshObjectSystemBackupAllSettings(d *schema.ResourceData, o map[string]i
 			}
 		} else {
 			return fmt.Errorf("Error reading directory: %v", err)
-		}
-	}
-
-	if err = d.Set("passwd", flattenSystemBackupAllSettingsPasswd(o["passwd"], d, "passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["passwd"], "SystemBackupAllSettings-Passwd"); ok {
-			if err = d.Set("passwd", vv); err != nil {
-				return fmt.Errorf("Error reading passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading passwd: %v", err)
 		}
 	}
 

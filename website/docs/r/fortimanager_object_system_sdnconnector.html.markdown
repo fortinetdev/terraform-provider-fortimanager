@@ -62,6 +62,7 @@ The following arguments are supported:
 * `ibm_region_gen2` - Ibm-Region-Gen2. Valid values: `us-south`, `us-east`, `great-britain`.
 
 * `key_passwd` - Private key password.
+* `last_update` - Last-Update.
 * `login_endpoint` - Azure Stack login endpoint.
 * `name` - SDN connector name.
 * `nic` - Nic. The structure of `nic` block is documented below.
@@ -87,6 +88,7 @@ The following arguments are supported:
 * `secret_key` - AWS / ACS secret access key.
 * `secret_token` - Secret token of Kubernetes service account.
 * `server` - Server address of the remote SDN connector.
+* `server_list` - Server address list of the remote SDN connector.
 * `server_port` - Port number of the remote SDN connector.
 * `service_account` - GCP service account email.
 * `status` - Enable/disable connection to the remote SDN connector. Valid values: `disable`, `enable`.
@@ -96,7 +98,8 @@ The following arguments are supported:
 * `type` - Type of SDN connector. Valid values: `aci`, `aws`, `nsx`, `nuage`, `azure`, `gcp`, `oci`, `openstack`, `kubernetes`, `vmware`, `acs`, `alicloud`, `sepm`, `aci-direct`, `ibm`.
 
 * `update_interval` - Dynamic object update interval (30 - 3600 sec, default = 60, 0 = disabled).
-* `use_metadata_iam` - Enable/disable use of IAM role from metadata to call API. Valid values: `disable`, `enable`.
+* `updating` - Updating.
+* `use_metadata_iam` - Enable/disable using IAM role from metadata to call API. Valid values: `disable`, `enable`.
 
 * `user_id` - User ID.
 * `username` - Username of the remote SDN connector as login credentials.
@@ -154,4 +157,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_sdnconnector.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

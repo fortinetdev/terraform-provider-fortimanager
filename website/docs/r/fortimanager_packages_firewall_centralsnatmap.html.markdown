@@ -3,11 +3,11 @@ subcategory: "Packages Policy"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_firewall_centralsnatmap"
 description: |-
-  Configure IPv4 and IPv6 central SNAT policies.
+  Configure central SNAT policies.
 ---
 
 # fortimanager_packages_firewall_centralsnatmap
-Configure IPv4 and IPv6 central SNAT policies.
+Configure central SNAT policies.
 
 ## Example Usage
 
@@ -37,17 +37,17 @@ The following arguments are supported:
 * `pkg` - Package.
 
 * `comments` - Comment.
-* `dst_addr` - IPv4 Destination address.
+* `dst_addr` - Destination address name from available addresses.
 * `dst_addr6` - IPv6 Destination address.
 * `dstintf` - Destination interface name from available interfaces.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
 
 * `nat_ippool` - Name of the IP pools to be used to translate addresses from available IP Pools.
 * `nat_ippool6` - IPv6 pools to be used for source NAT.
-* `nat_port` - Translated port or port range (1 to 65535, 0 means any port).
-* `orig_addr` - IPv4 Original address.
+* `nat_port` - Translated port or port range (0 to 65535).
+* `orig_addr` - Original address.
 * `orig_addr6` - IPv6 Original address.
-* `orig_port` - Original TCP port (1 to 65535, 0 means any port).
+* `orig_port` - Original TCP port (0 to 65535).
 * `policyid` - Policy ID.
 * `protocol` - Integer value for the protocol type (0 - 255).
 * `srcintf` - Source interface name from available interfaces.
@@ -73,4 +73,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_centralsnatmap.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

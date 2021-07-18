@@ -246,38 +246,14 @@ func flattenObjectFileFilterProfileComment(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectFileFilterProfileExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFileFilterProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "proxy",
-			1: "flow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFileFilterProfileLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -359,14 +335,6 @@ func flattenObjectFileFilterProfileRules(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFileFilterProfileRulesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "log-only",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -375,15 +343,6 @@ func flattenObjectFileFilterProfileRulesComment(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFileFilterProfileRulesDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "incoming",
-			2: "outgoing",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -396,44 +355,14 @@ func flattenObjectFileFilterProfileRulesName(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFileFilterProfileRulesPasswordProtected(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "any",
-			1: "yes",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFileFilterProfileRulesProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:         "imap",
-			2:         "smtp",
-			4:         "pop3",
-			8:         "http",
-			16:        "ftp",
-			2097152:   "mapi",
-			268435456: "cifs",
-			536870912: "ssh",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFileFilterProfileScanArchiveContents(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

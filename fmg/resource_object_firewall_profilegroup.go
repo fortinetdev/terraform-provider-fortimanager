@@ -90,6 +90,11 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mms_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -107,6 +112,11 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Computed: true,
 			},
 			"ssl_ssh_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"videofilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -272,6 +282,10 @@ func flattenObjectFirewallProfileGroupIpsSensor(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectFirewallProfileGroupMmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -285,6 +299,10 @@ func flattenObjectFirewallProfileGroupSshFilterProfile(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallProfileGroupSslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileGroupVideofilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -393,6 +411,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("mms_profile", flattenObjectFirewallProfileGroupMmsProfile(o["mms-profile"], d, "mms_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mms-profile"], "ObjectFirewallProfileGroup-MmsProfile"); ok {
+			if err = d.Set("mms_profile", vv); err != nil {
+				return fmt.Errorf("Error reading mms_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mms_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectFirewallProfileGroupName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallProfileGroup-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -430,6 +458,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading ssl_ssh_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("videofilter_profile", flattenObjectFirewallProfileGroupVideofilterProfile(o["videofilter-profile"], d, "videofilter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["videofilter-profile"], "ObjectFirewallProfileGroup-VideofilterProfile"); ok {
+			if err = d.Set("videofilter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading videofilter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading videofilter_profile: %v", err)
 		}
 	}
 
@@ -508,6 +546,10 @@ func expandObjectFirewallProfileGroupIpsSensor(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectFirewallProfileGroupMmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -521,6 +563,10 @@ func expandObjectFirewallProfileGroupSshFilterProfile(d *schema.ResourceData, v 
 }
 
 func expandObjectFirewallProfileGroupSslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileGroupVideofilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -620,6 +666,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("mms_profile"); ok {
+		t, err := expandObjectFirewallProfileGroupMmsProfile(d, v, "mms_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mms-profile"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok {
 		t, err := expandObjectFirewallProfileGroupName(d, v, "name")
 		if err != nil {
@@ -653,6 +708,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-ssh-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("videofilter_profile"); ok {
+		t, err := expandObjectFirewallProfileGroupVideofilterProfile(d, v, "videofilter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["videofilter-profile"] = t
 		}
 	}
 

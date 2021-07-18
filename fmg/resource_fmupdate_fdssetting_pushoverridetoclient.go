@@ -192,14 +192,6 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(v interface
 }
 
 func flattenFmupdateFdsSettingPushOverrideToClientStatusFfpb(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

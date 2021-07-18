@@ -227,27 +227,10 @@ func resourceObjectFirewallShaperTrafficShaperRead(d *schema.ResourceData, m int
 }
 
 func flattenObjectFirewallShaperTrafficShaperBandwidthUnit(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "kbps",
-			1: "mbps",
-			2: "gbps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallShaperTrafficShaperDiffserv(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -256,14 +239,6 @@ func flattenObjectFirewallShaperTrafficShaperDiffservcode(v interface{}, d *sche
 }
 
 func flattenObjectFirewallShaperTrafficShaperDscpMarkingMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "multi-stage",
-			1: "static",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -300,27 +275,10 @@ func flattenObjectFirewallShaperTrafficShaperOverhead(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallShaperTrafficShaperPerPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallShaperTrafficShaperPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "high",
-			1: "medium",
-			2: "low",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

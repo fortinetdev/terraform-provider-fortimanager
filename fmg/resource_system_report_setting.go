@@ -152,14 +152,6 @@ func resourceSystemReportSettingRead(d *schema.ResourceData, m interface{}) erro
 }
 
 func flattenSystemReportSettingAggregateReport(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -172,27 +164,10 @@ func flattenSystemReportSettingCapwapService(v interface{}, d *schema.ResourceDa
 }
 
 func flattenSystemReportSettingExcludeCapwap(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "by-port",
-			2: "by-service",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemReportSettingHcacheLossless(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -205,39 +180,14 @@ func flattenSystemReportSettingMaxTableRows(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemReportSettingReportPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "high",
-			1: "low",
-			2: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemReportSettingTemplateAutoInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "english",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemReportSettingWeekStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "sun",
-			1: "mon",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

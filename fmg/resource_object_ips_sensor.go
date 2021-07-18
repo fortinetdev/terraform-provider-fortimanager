@@ -329,14 +329,6 @@ func resourceObjectIpsSensorRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectIpsSensorBlockMaliciousUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -498,16 +490,6 @@ func flattenObjectIpsSensorEntries(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectIpsSensorEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "pass",
-			2: "block",
-			4: "reset",
-			5: "default",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -585,38 +567,14 @@ func flattenObjectIpsSensorEntriesLocation(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIpsSensorEntriesLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIpsSensorEntriesLogAttackContext(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIpsSensorEntriesLogPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -629,14 +587,6 @@ func flattenObjectIpsSensorEntriesProtocol(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIpsSensorEntriesQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "attacker",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -645,14 +595,6 @@ func flattenObjectIpsSensorEntriesQuarantineExpiry(v interface{}, d *schema.Reso
 }
 
 func flattenObjectIpsSensorEntriesQuarantineLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -665,29 +607,10 @@ func flattenObjectIpsSensorEntriesRateDuration(v interface{}, d *schema.Resource
 }
 
 func flattenObjectIpsSensorEntriesRateMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			8: "periodical",
-			9: "continuous",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIpsSensorEntriesRateTrack(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "src-ip",
-			2: "dest-ip",
-			3: "dhcp-client-mac",
-			4: "dns-domain",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -700,27 +623,10 @@ func flattenObjectIpsSensorEntriesSeverity(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIpsSensorEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			3: "default",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIpsSensorExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -733,15 +639,6 @@ func flattenObjectIpsSensorReplacemsgGroup(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIpsSensorScanBotnetConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "block",
-			2: "monitor",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

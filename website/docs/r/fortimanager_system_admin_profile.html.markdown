@@ -82,6 +82,8 @@ The following arguments are supported:
 
 * `extension_access` - Manage extension access. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `fabric_viewer` - Fabric viewer. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
 * `fgd_center_advanced` - FortiGuard Center Advanced. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `fgd_center_fmw_mgmt` - FortiGuard Center Firmware Management. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
@@ -109,6 +111,8 @@ The following arguments are supported:
 
 * `report_viewer` - Report viewer. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `run_report` - Run reports. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
 * `scope` - Scope. global - Global scope. adom - ADOM scope. Valid values: `global`, `adom`.
 
 * `script_access` - Script access. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
@@ -121,7 +125,11 @@ The following arguments are supported:
 
 * `term_access` - Terminal access. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `triage_events` - Triage events. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
 * `type` - profile type. system - System admin. restricted - Restricted admin. Valid values: `system`, `restricted`.
+
+* `update_incidents` - Create/update incidents. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `vpn_manager` - VPN manager. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 

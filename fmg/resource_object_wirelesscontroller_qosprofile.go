@@ -276,14 +276,6 @@ func resourceObjectWirelessControllerQosProfileRead(d *schema.ResourceData, m in
 }
 
 func flattenObjectWirelessControllerQosProfileBandwidthAdmissionControl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -292,26 +284,10 @@ func flattenObjectWirelessControllerQosProfileBandwidthCapacity(v interface{}, d
 }
 
 func flattenObjectWirelessControllerQosProfileBurst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerQosProfileCallAdmissionControl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -340,14 +316,6 @@ func flattenObjectWirelessControllerQosProfileDscpWmmBk(v interface{}, d *schema
 }
 
 func flattenObjectWirelessControllerQosProfileDscpWmmMapping(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -372,14 +340,6 @@ func flattenObjectWirelessControllerQosProfileUplinkSta(v interface{}, d *schema
 }
 
 func flattenObjectWirelessControllerQosProfileWmm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -392,26 +352,10 @@ func flattenObjectWirelessControllerQosProfileWmmBkDscp(v interface{}, d *schema
 }
 
 func flattenObjectWirelessControllerQosProfileWmmDscpMarking(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerQosProfileWmmUapsd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

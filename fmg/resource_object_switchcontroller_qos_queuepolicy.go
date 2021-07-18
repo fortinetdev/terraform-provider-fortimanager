@@ -315,26 +315,10 @@ func flattenObjectSwitchControllerQosQueuePolicyCosQueueDescription(v interface{
 }
 
 func flattenObjectSwitchControllerQosQueuePolicyCosQueueDropPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "taildrop",
-			1: "weighted-random-early-detection",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosQueuePolicyCosQueueEcn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -367,27 +351,10 @@ func flattenObjectSwitchControllerQosQueuePolicyName(v interface{}, d *schema.Re
 }
 
 func flattenObjectSwitchControllerQosQueuePolicyRateBy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "kbps",
-			3: "percent",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSwitchControllerQosQueuePolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "strict",
-			1: "round-robin",
-			2: "weighted",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

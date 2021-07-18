@@ -43,6 +43,7 @@ The following arguments are supported:
 
 * `auto_asic_offload` - Enable/disable offloading policy traffic for hardware acceleration. Valid values: `disable`, `enable`.
 
+* `comments` - Comment.
 * `dstaddr` - IPv6 destination address name.
 * `dstintf` - IPv6 destination interface name.
 * `end_port` - Integer value for ending TCP/UDP/SCTP destination port in range (1 - 65535, default = 65535).
@@ -56,6 +57,7 @@ The following arguments are supported:
 * `start_port` - Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference
@@ -73,4 +75,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_multicastpolicy6.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

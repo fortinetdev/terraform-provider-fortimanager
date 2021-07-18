@@ -112,26 +112,10 @@ func resourceSystemFortiviewSettingRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenSystemFortiviewSettingNotScannedApps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "exclude",
-			1: "include",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemFortiviewSettingResolveIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

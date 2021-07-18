@@ -105,6 +105,11 @@ func resourceObjectFirewallProxyAddrgrp() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"visibility": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -298,18 +303,14 @@ func flattenObjectFirewallProxyAddrgrpTaggingTags(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallProxyAddrgrpType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "src",
-			1: "dst",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectFirewallProxyAddrgrpUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProxyAddrgrpVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -410,6 +411,16 @@ func refreshObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("visibility", flattenObjectFirewallProxyAddrgrpVisibility(o["visibility"], d, "visibility")); err != nil {
+		if vv, ok := fortiAPIPatch(o["visibility"], "ObjectFirewallProxyAddrgrp-Visibility"); ok {
+			if err = d.Set("visibility", vv); err != nil {
+				return fmt.Errorf("Error reading visibility: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading visibility: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -498,6 +509,10 @@ func expandObjectFirewallProxyAddrgrpUuid(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddrgrpVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -570,6 +585,15 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("visibility"); ok {
+		t, err := expandObjectFirewallProxyAddrgrpVisibility(d, v, "visibility")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["visibility"] = t
 		}
 	}
 

@@ -34,8 +34,8 @@ The following arguments are supported:
 
 The `ip_range` block supports:
 
-* `end_ip` - Ending IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
-* `id` - ID of individual entry in the IP range table.
+* `end_ip` - Final IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
+* `id` - ID number for individual entry in the IP-Range table.
 * `start_ip` - Starting IP address, inclusive, of the address range (format: xxx.xxx.xxx.xxx).
 
 The `ip6_range` block supports:
@@ -59,4 +59,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_geoipoverride.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

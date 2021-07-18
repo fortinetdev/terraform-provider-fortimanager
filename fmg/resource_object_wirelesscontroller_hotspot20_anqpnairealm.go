@@ -372,16 +372,6 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPar
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamId(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "non-eap-inner-auth",
-			1: "inner-auth-eap",
-			2: "credential",
-			3: "tunneled-credential",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -390,42 +380,6 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPar
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamVal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "eap-identity",
-			1:  "eap-md5",
-			2:  "eap-tls",
-			3:  "eap-ttls",
-			4:  "eap-peap",
-			5:  "eap-sim",
-			6:  "eap-aka",
-			7:  "eap-aka-prime",
-			8:  "non-eap-pap",
-			9:  "non-eap-chap",
-			10: "non-eap-mschap",
-			11: "non-eap-mschapv2",
-			12: "cred-sim",
-			13: "cred-usim",
-			14: "cred-nfc",
-			15: "cred-hardware-token",
-			16: "cred-softoken",
-			17: "cred-certificate",
-			18: "cred-user-pwd",
-			19: "cred-none",
-			20: "cred-vendor-specific",
-			21: "tun-cred-sim",
-			22: "tun-cred-usim",
-			23: "tun-cred-nfc",
-			24: "tun-cred-hardware-token",
-			25: "tun-cred-softoken",
-			26: "tun-cred-certificate",
-			27: "tun-cred-user-pwd",
-			28: "tun-cred-anonymous",
-			29: "tun-cred-vendor-specific",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -434,32 +388,10 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodIndex(v
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "eap-identity",
-			1: "eap-md5",
-			2: "eap-tls",
-			3: "eap-ttls",
-			4: "eap-peap",
-			5: "eap-sim",
-			6: "eap-aka",
-			7: "eap-aka-prime",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

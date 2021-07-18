@@ -104,15 +104,7 @@ func flattenSecurityconsoleInstallPreviewDevice(v interface{}, d *schema.Resourc
 }
 
 func flattenSecurityconsoleInstallPreviewFlags(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "json",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSecurityconsoleInstallPreviewVdoms(v interface{}, d *schema.ResourceData, pre string) interface{} {

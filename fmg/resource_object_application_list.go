@@ -180,6 +180,11 @@ func resourceObjectApplicationList() *schema.Resource {
 											},
 										},
 									},
+									"value": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
 								},
 							},
 						},
@@ -306,6 +311,12 @@ func resourceObjectApplicationList() *schema.Resource {
 			},
 			"other_application_log": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"p2p_block_list": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -446,14 +457,6 @@ func resourceObjectApplicationListRead(d *schema.ResourceData, m interface{}) er
 }
 
 func flattenObjectApplicationListAppReplacemsg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -462,26 +465,10 @@ func flattenObjectApplicationListComment(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectApplicationListControlDefaultNetworkServices(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListDeepAppInspection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -545,48 +532,14 @@ func flattenObjectApplicationListDefaultNetworkServicesPort(v interface{}, d *sc
 }
 
 func flattenObjectApplicationListDefaultNetworkServicesServices(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "http",
-			2:    "ssh",
-			4:    "telnet",
-			8:    "ftp",
-			16:   "dns",
-			32:   "smtp",
-			64:   "pop3",
-			128:  "imap",
-			256:  "snmp",
-			512:  "nntp",
-			1024: "https",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectApplicationListDefaultNetworkServicesViolationAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "block",
-			3: "monitor",
-			4: "pass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListEnforceDefaultAppPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -774,15 +727,6 @@ func flattenObjectApplicationListEntries(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectApplicationListEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "pass",
-			2: "block",
-			4: "reset",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -807,26 +751,10 @@ func flattenObjectApplicationListEntriesId(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectApplicationListEntriesLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListEntriesLogPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -859,6 +787,12 @@ func flattenObjectApplicationListEntriesParameters(v interface{}, d *schema.Reso
 		if _, ok := i["members"]; ok {
 			v := flattenObjectApplicationListEntriesParametersMembers(i["members"], d, pre_append)
 			tmp["members"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntries-Parameters-Members")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
+		if _, ok := i["value"]; ok {
+			v := flattenObjectApplicationListEntriesParametersValue(i["value"], d, pre_append)
+			tmp["value"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntries-Parameters-Value")
 		}
 
 		result = append(result, tmp)
@@ -930,23 +864,16 @@ func flattenObjectApplicationListEntriesParametersMembersValue(v interface{}, d 
 	return v
 }
 
+func flattenObjectApplicationListEntriesParametersValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectApplicationListEntriesPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectApplicationListEntriesPopularity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "1",
-			2:  "2",
-			4:  "3",
-			8:  "4",
-			16: "5",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectApplicationListEntriesProtocols(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -954,14 +881,6 @@ func flattenObjectApplicationListEntriesProtocols(v interface{}, d *schema.Resou
 }
 
 func flattenObjectApplicationListEntriesQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "attacker",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -970,14 +889,6 @@ func flattenObjectApplicationListEntriesQuarantineExpiry(v interface{}, d *schem
 }
 
 func flattenObjectApplicationListEntriesQuarantineLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -990,29 +901,10 @@ func flattenObjectApplicationListEntriesRateDuration(v interface{}, d *schema.Re
 }
 
 func flattenObjectApplicationListEntriesRateMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			8: "periodical",
-			9: "continuous",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListEntriesRateTrack(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "src-ip",
-			2: "dest-ip",
-			3: "dhcp-client-mac",
-			4: "dns-domain",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1045,26 +937,10 @@ func flattenObjectApplicationListEntriesVendor(v interface{}, d *schema.Resource
 }
 
 func flattenObjectApplicationListExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListForceInclusionSslDiSigs(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1073,55 +949,23 @@ func flattenObjectApplicationListName(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectApplicationListOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "allow-dns",
-			2:  "allow-icmp",
-			4:  "allow-http",
-			8:  "allow-ssl",
-			16: "allow-quic",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectApplicationListOtherApplicationAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "pass",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListOtherApplicationLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
+func flattenObjectApplicationListP2PBlockList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectApplicationListP2PBlackList(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "skype",
-			2: "edonkey",
-			4: "bittorrent",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectApplicationListReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1129,26 +973,10 @@ func flattenObjectApplicationListReplacemsgGroup(v interface{}, d *schema.Resour
 }
 
 func flattenObjectApplicationListUnknownApplicationAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "pass",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectApplicationListUnknownApplicationLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1310,6 +1138,16 @@ func refreshObjectObjectApplicationList(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading other_application_log: %v", err)
+		}
+	}
+
+	if err = d.Set("p2p_block_list", flattenObjectApplicationListP2PBlockList(o["p2p-block-list"], d, "p2p_block_list")); err != nil {
+		if vv, ok := fortiAPIPatch(o["p2p-block-list"], "ObjectApplicationList-P2PBlockList"); ok {
+			if err = d.Set("p2p_block_list", vv); err != nil {
+				return fmt.Errorf("Error reading p2p_block_list: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading p2p_block_list: %v", err)
 		}
 	}
 
@@ -1672,6 +1510,11 @@ func expandObjectApplicationListEntriesParameters(d *schema.ResourceData, v inte
 			tmp["members"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["value"], _ = expandObjectApplicationListEntriesParametersValue(d, i["value"], pre_append)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -1730,6 +1573,10 @@ func expandObjectApplicationListEntriesParametersMembersName(d *schema.ResourceD
 }
 
 func expandObjectApplicationListEntriesParametersMembersValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectApplicationListEntriesParametersValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1823,6 +1670,10 @@ func expandObjectApplicationListOtherApplicationAction(d *schema.ResourceData, v
 
 func expandObjectApplicationListOtherApplicationLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectApplicationListP2PBlockList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectApplicationListP2PBlackList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1958,6 +1809,15 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["other-application-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("p2p_block_list"); ok {
+		t, err := expandObjectApplicationListP2PBlockList(d, v, "p2p_block_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["p2p-block-list"] = t
 		}
 	}
 

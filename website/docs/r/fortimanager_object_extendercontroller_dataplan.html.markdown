@@ -38,9 +38,7 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
-* `APN` - APN configuration.
-* `PDN` - PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
-
+* `apn` - APN configuration.
 * `auth_type` - Authentication type. Valid values: `none`, `pap`, `chap`.
 
 * `billing_date` - Billing day of the month (1 - 31).
@@ -54,6 +52,8 @@ The following arguments are supported:
 * `overage` - Enable/disable dataplan overage detection. Valid values: `disable`, `enable`.
 
 * `password` - Password.
+* `pdn` - PDN type. Valid values: `ipv4-only`, `ipv6-only`, `ipv4-ipv6`.
+
 * `preferred_subnet` - Preferred subnet mask (8 - 32).
 * `private_network` - Enable/disable dataplan private network support. Valid values: `disable`, `enable`.
 
@@ -82,4 +82,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_extendercontroller_dataplan.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

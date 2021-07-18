@@ -29,10 +29,15 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `allowlist` - Enable/disable exempting servers by FortiGuard allowlist. Valid values: `disable`, `enable`.
+
+* `block_blocklisted_certificates` - Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blocklist. Valid values: `disable`, `enable`.
+
 * `block_blacklisted_certificates` - Enable/disable blocking SSL-based botnet communication by FortiGuard certificate blacklist. Valid values: `disable`, `enable`.
 
 * `caname` - CA certificate used by SSL Inspection.
 * `comment` - Optional comments.
+* `dot` - Dot. The structure of `dot` block is documented below.
 * `ftps` - Ftps. The structure of `ftps` block is documented below.
 * `https` - Https. The structure of `https` block is documented below.
 * `imaps` - Imaps. The structure of `imaps` block is documented below.
@@ -56,12 +61,39 @@ The following arguments are supported:
 * `ssl_negotiation_log` - Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 
 * `ssl_server` - Ssl-Server. The structure of `ssl_server` block is documented below.
+* `supported_alpn` - Configure ALPN option. Valid values: `none`, `http1-1`, `http2`, `all`.
+
 * `untrusted_caname` - Untrusted CA certificate used by SSL Inspection.
 * `use_ssl_server` - Enable/disable the use of SSL server table for SSL offloading. Valid values: `disable`, `enable`.
 
 * `whitelist` - Enable/disable exempting servers by FortiGuard whitelist. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `dot` block supports:
+
+* `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
+
+* `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
+
+* `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
+
+* `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+
+* `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
+
+* `revoked_server_cert` - Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
+
+* `sni_server_cert_check` - Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
+
+* `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
+
+* `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `block`, `allow`.
+
+* `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `block`, `allow`.
+
+* `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
+
 
 The `ftps` block supports:
 
@@ -88,6 +120,8 @@ The `ftps` block supports:
 
 
 The `https` block supports:
+
+* `cert_probe_failure` - Action based on certificate probe failure. Valid values: `block`, `allow`.
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -247,8 +281,14 @@ The `ssl_server` block supports:
 
 * `https_client_certificate` - Action based on received client certificate during the HTTPS handshake. Valid values: `bypass`, `inspect`, `block`.
 
+* `ftps_client_cert_request` - Action based on client certificate request during the FTPS handshake. Valid values: `bypass`, `inspect`, `block`.
+
+* `https_client_cert_request` - Action based on client certificate request during the HTTPS handshake. Valid values: `bypass`, `inspect`, `block`.
+
 * `id` - SSL server ID.
 * `imaps_client_certificate` - Action based on received client certificate during the IMAPS handshake. Valid values: `bypass`, `inspect`, `block`.
+
+* `imaps_client_cert_request` - Action based on client certificate request during the IMAPS handshake. Valid values: `bypass`, `inspect`, `block`.
 
 * `ip` - IPv4 address of the SSL server.
 * `pop3s_client_certificate` - Action based on received client certificate during the POP3S handshake. Valid values: `bypass`, `inspect`, `block`.
@@ -256,6 +296,12 @@ The `ssl_server` block supports:
 * `smtps_client_certificate` - Action based on received client certificate during the SMTPS handshake. Valid values: `bypass`, `inspect`, `block`.
 
 * `ssl_other_client_certificate` - Action based on received client certificate during an SSL protocol handshake. Valid values: `bypass`, `inspect`, `block`.
+
+* `pop3s_client_cert_request` - Action based on client certificate request during the POP3S handshake. Valid values: `bypass`, `inspect`, `block`.
+
+* `smtps_client_cert_request` - Action based on client certificate request during the SMTPS handshake. Valid values: `bypass`, `inspect`, `block`.
+
+* `ssl_other_client_cert_request` - Action based on client certificate request during an SSL protocol handshake. Valid values: `bypass`, `inspect`, `block`.
 
 
 
@@ -273,4 +319,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_sslsshprofile.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

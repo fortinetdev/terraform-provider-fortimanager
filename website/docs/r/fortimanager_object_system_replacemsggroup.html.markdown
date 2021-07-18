@@ -29,6 +29,7 @@ The following arguments are supported:
 * `admin` - Admin. The structure of `admin` block is documented below.
 * `alertmail` - Alertmail. The structure of `alertmail` block is documented below.
 * `auth` - Auth. The structure of `auth` block is documented below.
+* `automation` - Automation. The structure of `automation` block is documented below.
 * `comment` - Comment.
 * `custom_message` - Custom-Message. The structure of `custom_message` block is documented below.
 * `device_detection_portal` - Device-Detection-Portal. The structure of `device_detection_portal` block is documented below.
@@ -39,6 +40,11 @@ The following arguments are supported:
 * `http` - Http. The structure of `http` block is documented below.
 * `icap` - Icap. The structure of `icap` block is documented below.
 * `mail` - Mail. The structure of `mail` block is documented below.
+* `mm1` - Mm1. The structure of `mm1` block is documented below.
+* `mm3` - Mm3. The structure of `mm3` block is documented below.
+* `mm4` - Mm4. The structure of `mm4` block is documented below.
+* `mm7` - Mm7. The structure of `mm7` block is documented below.
+* `mms` - Mms. The structure of `mms` block is documented below.
 * `nac_quar` - Nac-Quar. The structure of `nac_quar` block is documented below.
 * `name` - Group name.
 * `nntp` - Nntp. The structure of `nntp` block is documented below.
@@ -76,6 +82,15 @@ The `auth` block supports:
 
 * `msg_type` - Message type.
 
+The `automation` block supports:
+
+* `buffer` - Message string.
+* `format` - Format flag. Valid values: `none`, `text`, `html`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `msg_type` - Message type.
+
 The `custom_message` block supports:
 
 * `buffer` - Message string.
@@ -87,12 +102,12 @@ The `custom_message` block supports:
 
 The `device_detection_portal` block supports:
 
-* `buffer` - Buffer.
-* `format` - Format. Valid values: `none`, `text`, `html`, `wml`.
+* `buffer` - Message string.
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
 
-* `header` - Header. Valid values: `none`, `http`, `8bit`.
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
 
-* `msg_type` - Msg-Type.
+* `msg_type` - Message type.
 
 The `fortiguard_wf` block supports:
 
@@ -139,6 +154,122 @@ The `mail` block supports:
 
 * `msg_type` - Message type.
 
+The `mm1` block supports:
+
+* `add_smil` - add message encapsulation Valid values: `disable`, `enable`.
+
+* `charset` - character encoding used for replacement message Valid values: `us-ascii`, `utf-8`.
+
+* `class` - message class Valid values: `personal`, `advertisement`, `information`, `automatic`, `not-included`.
+
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
+
+* `from` - from address
+* `from_sender` - notification message sent from recipient Valid values: `disable`, `enable`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `image` - Message string.
+* `message` - message text
+* `msg_type` - Message type.
+* `priority` - message priority Valid values: `low`, `normal`, `high`, `not-included`.
+
+* `rsp_status` - response status code Valid values: `ok`, `err-unspecified`, `err-srv-denied`, `err-msg-fmt-corrupt`, `err-snd-addr-unresolv`, `err-msg-not-found`, `err-net-prob`, `err-content-not-accept`, `err-unsupp-msg`.
+
+* `rsp_text` - response text
+* `sender_visibility` - sender visibility Valid values: `hide`, `show`, `not-specified`.
+
+* `smil_part` - message encapsulation text
+* `subject` - subject text string
+
+The `mm3` block supports:
+
+* `add_html` - add message encapsulation Valid values: `disable`, `enable`.
+
+* `charset` - character encoding used for replacement message Valid values: `us-ascii`, `utf-8`.
+
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
+
+* `from` - from address
+* `from_sender` - notification message sent from recipient Valid values: `disable`, `enable`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `html_part` - message encapsulation text
+* `image` - Message string.
+* `message` - message text
+* `msg_type` - Message type.
+* `priority` - message priority Valid values: `low`, `normal`, `high`, `not-included`.
+
+* `subject` - subject text string
+
+The `mm4` block supports:
+
+* `add_smil` - add message encapsulation Valid values: `disable`, `enable`.
+
+* `charset` - character encoding used for replacement message Valid values: `us-ascii`, `utf-8`.
+
+* `class` - message class Valid values: `personal`, `advertisement`, `informational`, `auto`, `not-included`.
+
+* `domain` - from address domain
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
+
+* `from` - from address
+* `from_sender` - notification message sent from recipient Valid values: `disable`, `enable`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `image` - Message string.
+* `message` - message text
+* `msg_type` - Message type.
+* `priority` - message priority Valid values: `low`, `normal`, `high`, `not-included`.
+
+* `rsp_status` - response status Valid values: `ok`, `err-unspecified`, `err-srv-denied`, `err-msg-fmt-corrupt`, `err-snd-addr-unresolv`, `err-net-prob`, `err-content-not-accept`, `err-unsupp-msg`.
+
+* `smil_part` - message encapsulation text
+* `subject` - subject text string
+
+The `mm7` block supports:
+
+* `add_smil` - add message encapsulation Valid values: `disable`, `enable`.
+
+* `addr_type` - from address type Valid values: `rfc2822-addr`, `number`, `short-code`.
+
+* `allow_content_adaptation` - allow content adaptations Valid values: `disable`, `enable`.
+
+* `charset` - character encoding used for replacement message Valid values: `us-ascii`, `utf-8`.
+
+* `class` - message class Valid values: `personal`, `advertisement`, `informational`, `auto`, `not-included`.
+
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
+
+* `from` - from address
+* `from_sender` - notification message sent from recipient Valid values: `disable`, `enable`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `image` - Message string.
+* `message` - message text
+* `msg_type` - Message type.
+* `priority` - message priority Valid values: `low`, `normal`, `high`, `not-included`.
+
+* `rsp_status` - response status Valid values: `success`, `partial-success`, `client-err`, `oper-restrict`, `addr-err`, `addr-not-found`, `content-refused`, `msg-id-not-found`, `link-id-not-found`, `msg-fmt-corrupt`, `app-id-not-found`, `repl-app-id-not-found`, `srv-err`, `not-possible`, `msg-rejected`, `multiple-addr-not-supp`, `app-addr-not-supp`, `gen-service-err`, `improper-ident`, `unsupp-ver`, `unsupp-oper`, `validation-err`, `service-err`, `service-unavail`, `service-denied`, `app-denied`.
+
+* `smil_part` - message encapsulation text
+* `subject` - subject text string
+
+The `mms` block supports:
+
+* `buffer` - Message string.
+* `charset` - character encoding used for replacement message Valid values: `us-ascii`, `utf-8`.
+
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `image` - Message string.
+* `msg_type` - Message type.
+
 The `nac_quar` block supports:
 
 * `buffer` - Message string.
@@ -150,12 +281,12 @@ The `nac_quar` block supports:
 
 The `nntp` block supports:
 
-* `buffer` - Buffer.
-* `format` - Format. Valid values: `none`, `text`, `html`, `wml`.
+* `buffer` - Message string.
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
 
-* `header` - Header. Valid values: `none`, `http`, `8bit`.
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
 
-* `msg_type` - Msg-Type.
+* `msg_type` - Message type.
 
 The `spam` block supports:
 
@@ -217,4 +348,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_system_replacemsggroup.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

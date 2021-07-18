@@ -133,26 +133,10 @@ func resourceSystemLocallogFortianalyzer2SettingRead(d *schema.ResourceData, m i
 }
 
 func flattenSystemLocallogFortianalyzer2SettingReliable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer2SettingSecureConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -161,33 +145,10 @@ func flattenSystemLocallogFortianalyzer2SettingServer(v interface{}, d *schema.R
 }
 
 func flattenSystemLocallogFortianalyzer2SettingSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "emergency",
-			1: "alert",
-			2: "critical",
-			3: "error",
-			4: "warning",
-			5: "notification",
-			6: "information",
-			7: "debug",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLocallogFortianalyzer2SettingStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "realtime",
-			2: "upload",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

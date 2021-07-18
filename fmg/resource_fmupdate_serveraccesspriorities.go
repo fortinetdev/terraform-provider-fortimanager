@@ -150,26 +150,10 @@ func resourceFmupdateServerAccessPrioritiesRead(d *schema.ResourceData, m interf
 }
 
 func flattenFmupdateServerAccessPrioritiesAccessPublicFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateServerAccessPrioritiesAvIpsFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -241,14 +225,6 @@ func flattenFmupdateServerAccessPrioritiesPrivateServerTimeZoneFsa(v interface{}
 }
 
 func flattenFmupdateServerAccessPrioritiesWebSpamFsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

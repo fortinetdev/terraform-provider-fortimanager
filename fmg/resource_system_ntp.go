@@ -224,14 +224,6 @@ func flattenSystemNtpNtpserverSna(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenSystemNtpNtpserverAuthenticationSna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -248,14 +240,6 @@ func flattenSystemNtpNtpserverKeyIdSna(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemNtpNtpserverNtpv3Sna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -264,14 +248,6 @@ func flattenSystemNtpNtpserverServerSna(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemNtpStatusSna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

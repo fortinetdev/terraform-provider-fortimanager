@@ -227,51 +227,15 @@ func resourceObjectSshFilterProfileRead(d *schema.ResourceData, m interface{}) e
 }
 
 func flattenObjectSshFilterProfileBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "x11",
-			2:   "shell",
-			4:   "exec",
-			8:   "port-forward",
-			16:  "tun-forward",
-			32:  "sftp",
-			64:  "unknown",
-			128: "scp",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSshFilterProfileDefaultCommandLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSshFilterProfileLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "x11",
-			2:   "shell",
-			4:   "exec",
-			8:   "port-forward",
-			16:  "tun-forward",
-			32:  "sftp",
-			64:  "unknown",
-			128: "scp",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectSshFilterProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -348,26 +312,10 @@ func flattenObjectSshFilterProfileShellCommands(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectSshFilterProfileShellCommandsAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			1: "allow",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSshFilterProfileShellCommandsAlert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -376,14 +324,6 @@ func flattenObjectSshFilterProfileShellCommandsId(v interface{}, d *schema.Resou
 }
 
 func flattenObjectSshFilterProfileShellCommandsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -392,28 +332,10 @@ func flattenObjectSshFilterProfileShellCommandsPattern(v interface{}, d *schema.
 }
 
 func flattenObjectSshFilterProfileShellCommandsSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-			5: "critical",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSshFilterProfileShellCommandsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "regex",
-			2: "simple",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

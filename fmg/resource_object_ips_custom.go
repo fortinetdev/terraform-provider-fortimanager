@@ -230,14 +230,6 @@ func resourceObjectIpsCustomRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectIpsCustomAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "block",
-			1: "pass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -254,26 +246,10 @@ func flattenObjectIpsCustomLocation(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectIpsCustomLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIpsCustomLogPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -302,14 +278,6 @@ func flattenObjectIpsCustomSignature(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectIpsCustomStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

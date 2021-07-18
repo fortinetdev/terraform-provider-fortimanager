@@ -80,7 +80,7 @@ The following arguments are supported:
 * `ipv6_dns_server2` - IPv6 DNS server 2.
 * `ipv6_exclusive_routing` - Enable/disable all IPv6 traffic go through tunnel only. Valid values: `disable`, `enable`.
 
-* `ipv6_pools` - IPv6 firewall source address objects reserved for SSL-VPN tunnel mode clients.
+* `ipv6_pools` - IPv4 firewall source address objects reserved for SSL-VPN tunnel mode clients.
 * `ipv6_service_restriction` - Enable/disable IPv6 tunnel service restriction. Valid values: `disable`, `enable`.
 
 * `ipv6_split_tunneling` - Enable/disable IPv6 split tunneling. Valid values: `disable`, `enable`.
@@ -106,7 +106,11 @@ The following arguments are supported:
 * `os_check` - Enable to let the FortiGate decide action based on client OS. Valid values: `disable`, `enable`.
 
 * `os_check_list` - Os-Check-List. The structure of `os_check_list` block is documented below.
+* `prefer_ipv6_dns` - prefer to query IPv6 dns first if enabled. Valid values: `disable`, `enable`.
+
 * `redir_url` - Client login redirect URL.
+* `rewrite_ip_uri_ui` - Rewrite contents for URI contains IP and "/ui/". (default = disable) Valid values: `disable`, `enable`.
+
 * `save_password` - Enable/disable FortiClient saving the user's password. Valid values: `disable`, `enable`.
 
 * `service_restriction` - Enable/disable tunnel service restriction. Valid values: `disable`, `enable`.
@@ -129,7 +133,9 @@ The following arguments are supported:
 * `split_tunneling_routing_address` - IPv4 SSL-VPN tunnel mode firewall address objects that override firewall policy destination addresses to control split-tunneling access.
 * `split_tunneling_routing_negate` - Enable to negate split tunneling routing address. Valid values: `disable`, `enable`.
 
-* `theme` - Web portal color scheme. Valid values: `gray`, `blue`, `orange`, `crimson`, `steelblue`, `darkgrey`, `green`, `melongene`, `red`, `mariner`, `neutrino`, `jade`, `graphite`, `dark-matter`, `onyx`, `eclipse`.
+* `theme` - Web portal color scheme. Valid values: `gray`, `blue`, `orange`, `crimson`, `steelblue`, `darkgrey`, `green`, `melongene`, `red`, `mariner`, `neutrino`.
+
+* `transform_backward_slashes` - Transform backward slashes to forward slashes in URLs. Valid values: `disable`, `enable`.
 
 * `tunnel_mode` - Enable/disable IPv4 SSL-VPN tunnel mode. Valid values: `disable`, `enable`.
 
@@ -229,4 +235,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_vpn_ssl_web_portal.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

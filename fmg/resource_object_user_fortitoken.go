@@ -189,14 +189,6 @@ func flattenObjectUserFortitokenSerialNumber(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectUserFortitokenStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "lock",
-			1: "active",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

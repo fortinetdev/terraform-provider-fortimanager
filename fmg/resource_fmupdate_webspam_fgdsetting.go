@@ -323,27 +323,10 @@ func flattenFmupdateWebSpamFgdSettingAsCacheFwfa(v interface{}, d *schema.Resour
 }
 
 func flattenFmupdateWebSpamFgdSettingAsLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "nospam",
-			2: "all",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingAsPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -352,27 +335,10 @@ func flattenFmupdateWebSpamFgdSettingAvCacheFwfa(v interface{}, d *schema.Resour
 }
 
 func flattenFmupdateWebSpamFgdSettingAvLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "novirus",
-			2: "all",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingAvPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -381,39 +347,14 @@ func flattenFmupdateWebSpamFgdSettingAv2CacheFwfa(v interface{}, d *schema.Resou
 }
 
 func flattenFmupdateWebSpamFgdSettingAv2LogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "noav2",
-			2: "all",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingAv2PreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingEventlogQueryFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -426,46 +367,14 @@ func flattenFmupdateWebSpamFgdSettingFqCacheFwfa(v interface{}, d *schema.Resour
 }
 
 func flattenFmupdateWebSpamFgdSettingFqLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "nofilequery",
-			2: "all",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingFqPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingLinkdLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:   "emergency",
-			1:   "alert",
-			2:   "critical",
-			3:   "error",
-			4:   "warn",
-			5:   "notice",
-			6:   "info",
-			7:   "debug",
-			255: "disable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -606,27 +515,10 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideServlistPortFwfa(v interface{
 }
 
 func flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			256:  "fgd",
-			512:  "fgc",
-			1024: "fsa",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -643,14 +535,6 @@ func flattenFmupdateWebSpamFgdSettingUpdateIntervalFwfa(v interface{}, d *schema
 }
 
 func flattenFmupdateWebSpamFgdSettingUpdateLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -667,27 +551,10 @@ func flattenFmupdateWebSpamFgdSettingWfDnCacheMaxNumberFwfa(v interface{}, d *sc
 }
 
 func flattenFmupdateWebSpamFgdSettingWfLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "nourl",
-			2: "all",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenFmupdateWebSpamFgdSettingWfPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

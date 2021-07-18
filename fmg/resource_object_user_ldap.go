@@ -55,6 +55,11 @@ func resourceObjectUserLdap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"antiphish": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ca_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -346,6 +351,11 @@ func resourceObjectUserLdap() *schema.Resource {
 				Sensitive: true,
 				Computed:  true,
 			},
+			"password_attr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"password_expiry_warning": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -389,6 +399,11 @@ func resourceObjectUserLdap() *schema.Resource {
 			},
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"source_port": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -552,14 +567,10 @@ func flattenObjectUserLdapAccountKeyFilter(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectUserLdapAccountKeyProcessing(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "same",
-			1: "strip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenObjectUserLdapAntiphish(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -898,26 +909,10 @@ func flattenObjectUserLdapDynamicMappingAccountKeyName(v interface{}, d *schema.
 }
 
 func flattenObjectUserLdapDynamicMappingAccountKeyProcessing(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "same",
-			1: "strip",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapDynamicMappingAntiphish(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -946,15 +941,6 @@ func flattenObjectUserLdapDynamicMappingGroupFilter(v interface{}, d *schema.Res
 }
 
 func flattenObjectUserLdapDynamicMappingGroupMemberCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "user-attr",
-			1: "group-object",
-			2: "posix-group-object",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -975,15 +961,6 @@ func flattenObjectUserLdapDynamicMappingInterface(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserLdapDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -992,14 +969,6 @@ func flattenObjectUserLdapDynamicMappingMemberAttr(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserLdapDynamicMappingObtainUserInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1012,26 +981,10 @@ func flattenObjectUserLdapDynamicMappingPasswordAttr(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserLdapDynamicMappingPasswordExpiryWarning(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapDynamicMappingPasswordRenewal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1044,14 +997,7 @@ func flattenObjectUserLdapDynamicMappingRetrieveProtectionProfile(v interface{},
 }
 
 func flattenObjectUserLdapDynamicMappingSearchType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "recursive",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserLdapDynamicMappingSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1059,15 +1005,6 @@ func flattenObjectUserLdapDynamicMappingSecondaryServer(v interface{}, d *schema
 }
 
 func flattenObjectUserLdapDynamicMappingSecure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "starttls",
-			2: "ldaps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1076,14 +1013,6 @@ func flattenObjectUserLdapDynamicMappingServer(v interface{}, d *schema.Resource
 }
 
 func flattenObjectUserLdapDynamicMappingServerIdentityCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1096,17 +1025,6 @@ func flattenObjectUserLdapDynamicMappingSourcePort(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserLdapDynamicMappingSslMinProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "TLSv1",
-			2: "TLSv1-1",
-			4: "TLSv1-2",
-			8: "SSLv3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1115,52 +1033,18 @@ func flattenObjectUserLdapDynamicMappingTertiaryServer(v interface{}, d *schema.
 }
 
 func flattenObjectUserLdapDynamicMappingTwoFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			4: "fortitoken-cloud",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapDynamicMappingTwoFactorAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "fortitoken",
-			2: "email",
-			3: "sms",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapDynamicMappingTwoFactorNotification(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "email",
-			3: "sms",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "simple",
-			1: "anonymous",
-			2: "regular",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1177,15 +1061,6 @@ func flattenObjectUserLdapGroupFilter(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectUserLdapGroupMemberCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "user-attr",
-			1: "group-object",
-			2: "posix-group-object",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1202,15 +1077,6 @@ func flattenObjectUserLdapInterface(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserLdapInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "auto",
-			1: "sdwan",
-			2: "specify",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1223,14 +1089,6 @@ func flattenObjectUserLdapName(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserLdapObtainUserInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1238,27 +1096,15 @@ func flattenObjectUserLdapPassword(v interface{}, d *schema.ResourceData, pre st
 	return flattenStringList(v)
 }
 
+func flattenObjectUserLdapPasswordAttr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapPasswordExpiryWarning(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapPasswordRenewal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1267,14 +1113,7 @@ func flattenObjectUserLdapPort(v interface{}, d *schema.ResourceData, pre string
 }
 
 func flattenObjectUserLdapSearchType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "recursive",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserLdapSecondaryServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1282,15 +1121,6 @@ func flattenObjectUserLdapSecondaryServer(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectUserLdapSecure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "starttls",
-			2: "ldaps",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1299,14 +1129,6 @@ func flattenObjectUserLdapServer(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenObjectUserLdapServerIdentityCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1314,18 +1136,11 @@ func flattenObjectUserLdapSourceIp(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
+func flattenObjectUserLdapSourcePort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapSslMinProtoVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "TLSv1",
-			2: "TLSv1-1",
-			4: "TLSv1-2",
-			8: "SSLv3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1334,52 +1149,18 @@ func flattenObjectUserLdapTertiaryServer(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectUserLdapTwoFactor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			4: "fortitoken-cloud",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapTwoFactorAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "fortitoken",
-			2: "email",
-			3: "sms",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapTwoFactorNotification(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "email",
-			3: "sms",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectUserLdapType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "simple",
-			1: "anonymous",
-			2: "regular",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1411,6 +1192,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading account_key_processing: %v", err)
+		}
+	}
+
+	if err = d.Set("antiphish", flattenObjectUserLdapAntiphish(o["antiphish"], d, "antiphish")); err != nil {
+		if vv, ok := fortiAPIPatch(o["antiphish"], "ObjectUserLdap-Antiphish"); ok {
+			if err = d.Set("antiphish", vv); err != nil {
+				return fmt.Errorf("Error reading antiphish: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading antiphish: %v", err)
 		}
 	}
 
@@ -1558,6 +1349,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("password_attr", flattenObjectUserLdapPasswordAttr(o["password-attr"], d, "password_attr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["password-attr"], "ObjectUserLdap-PasswordAttr"); ok {
+			if err = d.Set("password_attr", vv); err != nil {
+				return fmt.Errorf("Error reading password_attr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading password_attr: %v", err)
+		}
+	}
+
 	if err = d.Set("password_expiry_warning", flattenObjectUserLdapPasswordExpiryWarning(o["password-expiry-warning"], d, "password_expiry_warning")); err != nil {
 		if vv, ok := fortiAPIPatch(o["password-expiry-warning"], "ObjectUserLdap-PasswordExpiryWarning"); ok {
 			if err = d.Set("password_expiry_warning", vv); err != nil {
@@ -1645,6 +1446,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading source_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("source_port", flattenObjectUserLdapSourcePort(o["source-port"], d, "source_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source-port"], "ObjectUserLdap-SourcePort"); ok {
+			if err = d.Set("source_port", vv); err != nil {
+				return fmt.Errorf("Error reading source_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source_port: %v", err)
 		}
 	}
 
@@ -1742,6 +1553,10 @@ func expandObjectUserLdapAccountKeyFilter(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectUserLdapAccountKeyProcessing(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapAntiphish(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2221,6 +2036,10 @@ func expandObjectUserLdapPassword(d *schema.ResourceData, v interface{}, pre str
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectUserLdapPasswordAttr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapPasswordExpiryWarning(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2254,6 +2073,10 @@ func expandObjectUserLdapServerIdentityCheck(d *schema.ResourceData, v interface
 }
 
 func expandObjectUserLdapSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapSourcePort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2307,6 +2130,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["account-key-processing"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("antiphish"); ok {
+		t, err := expandObjectUserLdapAntiphish(d, v, "antiphish")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["antiphish"] = t
 		}
 	}
 
@@ -2436,6 +2268,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
+	if v, ok := d.GetOk("password_attr"); ok {
+		t, err := expandObjectUserLdapPasswordAttr(d, v, "password_attr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["password-attr"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("password_expiry_warning"); ok {
 		t, err := expandObjectUserLdapPasswordExpiryWarning(d, v, "password_expiry_warning")
 		if err != nil {
@@ -2514,6 +2355,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["source-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source_port"); ok {
+		t, err := expandObjectUserLdapSourcePort(d, v, "source_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source-port"] = t
 		}
 	}
 

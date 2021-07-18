@@ -237,25 +237,7 @@ func resourceSystemSnmpCommunityRead(d *schema.ResourceData, m interface{}) erro
 }
 
 func flattenSystemSnmpCommunityEvents(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "disk_low",
-			2:    "ha_switch",
-			4:    "intf_ip_chg",
-			8:    "sys_reboot",
-			16:   "cpu_high",
-			32:   "mem_low",
-			64:   "log-alert",
-			128:  "log-rate",
-			256:  "log-data-rate",
-			512:  "lic-gbday",
-			1024: "lic-dev-quota",
-			2048: "cpu-high-exclude-nice",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemSnmpCommunityHosts(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -385,14 +367,6 @@ func flattenSystemSnmpCommunityQueryV1Port(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemSnmpCommunityQueryV1Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -401,26 +375,10 @@ func flattenSystemSnmpCommunityQueryV2CPort(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemSnmpCommunityQueryV2CStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSnmpCommunityStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -429,14 +387,6 @@ func flattenSystemSnmpCommunityTrapV1Rport(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemSnmpCommunityTrapV1Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -445,14 +395,6 @@ func flattenSystemSnmpCommunityTrapV2CRport(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemSnmpCommunityTrapV2CStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

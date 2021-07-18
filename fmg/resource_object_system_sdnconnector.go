@@ -141,6 +141,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"last_update": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"login_endpoint": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -330,6 +335,12 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"server_list": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"server_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -361,6 +372,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Computed: true,
 			},
 			"update_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"updating": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -539,17 +555,6 @@ func flattenObjectSystemSdnConnectorApiKey(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemSdnConnectorAzureRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "global",
-			1: "china",
-			2: "germany",
-			3: "usgov",
-			4: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -619,64 +624,27 @@ func flattenObjectSystemSdnConnectorGroupName(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectSystemSdnConnectorHaStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemSdnConnectorIbmRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "us-south",
-			2: "us-east",
-			3: "germany",
-			4: "great-britain",
-			5: "japan",
-			6: "australia",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemSdnConnectorIbmRegionGen1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "us-south",
-			2: "us-east",
-			3: "germany",
-			4: "great-britain",
-			5: "japan",
-			6: "australia",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemSdnConnectorIbmRegionGen2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "us-south",
-			2: "us-east",
-			4: "great-britain",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectSystemSdnConnectorKeyPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectSystemSdnConnectorLastUpdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectSystemSdnConnectorLoginEndpoint(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -804,14 +772,6 @@ func flattenObjectSystemSdnConnectorOciRegion(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectSystemSdnConnectorOciRegionType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "commercial",
-			1: "government",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -836,14 +796,6 @@ func flattenObjectSystemSdnConnectorResourceUrl(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectSystemSdnConnectorRestInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "mgmt",
-			1: "sync",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -856,14 +808,6 @@ func flattenObjectSystemSdnConnectorRestSport(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectSystemSdnConnectorRestSsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1026,6 +970,10 @@ func flattenObjectSystemSdnConnectorServer(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectSystemSdnConnectorServerList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectSystemSdnConnectorServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1035,14 +983,6 @@ func flattenObjectSystemSdnConnectorServiceAccount(v interface{}, d *schema.Reso
 }
 
 func flattenObjectSystemSdnConnectorStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1055,26 +995,6 @@ func flattenObjectSystemSdnConnectorTenantId(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemSdnConnectorType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "aci",
-			2:  "aws",
-			3:  "nsx",
-			4:  "nuage",
-			5:  "azure",
-			6:  "gcp",
-			7:  "oci",
-			8:  "openstack",
-			9:  "kubernetes",
-			10: "vmware",
-			12: "alicloud",
-			13: "sepm",
-			14: "aci-direct",
-			15: "ibm",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1082,15 +1002,11 @@ func flattenObjectSystemSdnConnectorUpdateInterval(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectSystemSdnConnectorUpdating(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorUseMetadataIam(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1310,6 +1226,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading key_passwd: %v", err)
+		}
+	}
+
+	if err = d.Set("last_update", flattenObjectSystemSdnConnectorLastUpdate(o["last-update"], d, "last_update")); err != nil {
+		if vv, ok := fortiAPIPatch(o["last-update"], "ObjectSystemSdnConnector-LastUpdate"); ok {
+			if err = d.Set("last_update", vv); err != nil {
+				return fmt.Errorf("Error reading last_update: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading last_update: %v", err)
 		}
 	}
 
@@ -1575,6 +1501,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("server_list", flattenObjectSystemSdnConnectorServerList(o["server-list"], d, "server_list")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server-list"], "ObjectSystemSdnConnector-ServerList"); ok {
+			if err = d.Set("server_list", vv); err != nil {
+				return fmt.Errorf("Error reading server_list: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server_list: %v", err)
+		}
+	}
+
 	if err = d.Set("server_port", flattenObjectSystemSdnConnectorServerPort(o["server-port"], d, "server_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-port"], "ObjectSystemSdnConnector-ServerPort"); ok {
 			if err = d.Set("server_port", vv); err != nil {
@@ -1642,6 +1578,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading update_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("updating", flattenObjectSystemSdnConnectorUpdating(o["updating"], d, "updating")); err != nil {
+		if vv, ok := fortiAPIPatch(o["updating"], "ObjectSystemSdnConnector-Updating"); ok {
+			if err = d.Set("updating", vv); err != nil {
+				return fmt.Errorf("Error reading updating: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading updating: %v", err)
 		}
 	}
 
@@ -1837,6 +1783,10 @@ func expandObjectSystemSdnConnectorIbmRegionGen2(d *schema.ResourceData, v inter
 
 func expandObjectSystemSdnConnectorKeyPasswd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemSdnConnectorLastUpdate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSystemSdnConnectorLoginEndpoint(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2129,6 +2079,10 @@ func expandObjectSystemSdnConnectorServer(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorServerList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectSystemSdnConnectorServerPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2154,6 +2108,10 @@ func expandObjectSystemSdnConnectorType(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectSystemSdnConnectorUpdateInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnConnectorUpdating(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2346,6 +2304,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["key-passwd"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("last_update"); ok {
+		t, err := expandObjectSystemSdnConnectorLastUpdate(d, v, "last_update")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["last-update"] = t
 		}
 	}
 
@@ -2547,6 +2514,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("server_list"); ok {
+		t, err := expandObjectSystemSdnConnectorServerList(d, v, "server_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server-list"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("server_port"); ok {
 		t, err := expandObjectSystemSdnConnectorServerPort(d, v, "server_port")
 		if err != nil {
@@ -2607,6 +2583,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["update-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("updating"); ok {
+		t, err := expandObjectSystemSdnConnectorUpdating(d, v, "updating")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["updating"] = t
 		}
 	}
 

@@ -212,14 +212,6 @@ func flattenObjectVpnCertificateOcspServerSourceIp(v interface{}, d *schema.Reso
 }
 
 func flattenObjectVpnCertificateOcspServerUnavailAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "revoke",
-			1: "ignore",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

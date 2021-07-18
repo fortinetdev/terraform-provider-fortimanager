@@ -145,14 +145,6 @@ func resourceObjectEmailfilterFortishieldRead(d *schema.ResourceData, m interfac
 }
 
 func flattenObjectEmailfilterFortishieldSpamSubmitForce(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -161,14 +153,6 @@ func flattenObjectEmailfilterFortishieldSpamSubmitSrv(v interface{}, d *schema.R
 }
 
 func flattenObjectEmailfilterFortishieldSpamSubmitTxt2Htm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

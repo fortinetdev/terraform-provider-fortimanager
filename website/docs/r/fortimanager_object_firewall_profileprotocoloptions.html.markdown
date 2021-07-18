@@ -120,6 +120,12 @@ The `ftp` block supports:
 
 * `status` - Enable/disable the active status of scanning for this protocol. Valid values: `disable`, `enable`.
 
+* `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+* `tcp_window_maximum` - Maximum dynamic TCP window size.
+* `tcp_window_minimum` - Minimum dynamic TCP window size.
+* `tcp_window_size` - Set TCP static window size.
+* `tcp_window_type` - TCP window type to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
@@ -273,6 +279,14 @@ The `ssh` block supports:
 * `oversize_limit` - Maximum in-memory file size that can be scanned (1 - 383 MB, default = 10).
 * `scan_bzip2` - Enable/disable scanning of BZip2 compressed files. Valid values: `disable`, `enable`.
 
+* `ssl_offloaded` - SSL decryption and encryption performed by an external device. Valid values: `no`, `yes`.
+
+* `stream_based_uncompressed_limit` - Maximum stream-based uncompressed data size that will be scanned (MB, 0 = unlimited (default).  Stream-based uncompression used only under certain conditions.).
+* `tcp_window_maximum` - Maximum dynamic TCP window size.
+* `tcp_window_minimum` - Minimum dynamic TCP window size.
+* `tcp_window_size` - Set TCP static window size.
+* `tcp_window_type` - TCP window type to use for this protocol. Valid values: `system`, `static`, `dynamic`.
+
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 
@@ -291,4 +305,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_profileprotocoloptions.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

@@ -30,7 +30,7 @@ The following arguments are supported:
 
 * `pkg` - Package.
 
-* `action` - Policy action (accept/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`.
+* `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`.
 
 * `app_category` - App-Category.
 * `app_group` - App-Group.
@@ -57,7 +57,7 @@ The following arguments are supported:
 * `dstaddr6` - Destination IPv6 address name and address group names.
 * `dstintf` - Outgoing (egress) interface.
 * `emailfilter_profile` - Name of an existing email filter profile.
-* `file_filter_profile` - Name of an existing file-filter profile.
+* `file_filter_profile` - File-Filter-Profile.
 * `fixedport` - Enable to prevent source NAT from changing a session's source port. Valid values: `disable`, `enable`.
 
 * `fsso_groups` - Names of FSSO groups.
@@ -75,8 +75,8 @@ The following arguments are supported:
 * `internet_service_custom` - Custom Internet Service name.
 * `internet_service_custom_group` - Custom Internet Service group name.
 * `internet_service_group` - Internet Service group name.
-* `internet_service_id` - Internet-Service-Id.
-* `internet_service_name` - Internet Service name.
+* `internet_service_id` - Internet Service ID.
+* `internet_service_name` - Internet-Service-Name.
 * `internet_service_negate` - When enabled internet-service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `internet_service_src` - Enable/disable use of Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
@@ -84,8 +84,8 @@ The following arguments are supported:
 * `internet_service_src_custom` - Custom Internet Service source name.
 * `internet_service_src_custom_group` - Custom Internet Service source group name.
 * `internet_service_src_group` - Internet Service source group name.
-* `internet_service_src_id` - Internet-Service-Src-Id.
-* `internet_service_src_name` - Internet Service source name.
+* `internet_service_src_id` - Internet Service source ID.
+* `internet_service_src_name` - Internet-Service-Src-Name.
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ippool` - Enable to use IP Pools for source NAT. Valid values: `disable`, `enable`.
@@ -95,7 +95,7 @@ The following arguments are supported:
 
 * `logtraffic_start` - Record logs when a session starts. Valid values: `disable`, `enable`.
 
-* `mms_profile` - Mms-Profile.
+* `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
 

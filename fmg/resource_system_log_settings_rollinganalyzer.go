@@ -86,10 +86,11 @@ func resourceSystemLogSettingsRollingAnalyzer() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password2": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -236,31 +237,10 @@ func resourceSystemLogSettingsRollingAnalyzerRead(d *schema.ResourceData, m inte
 }
 
 func flattenSystemLogSettingsRollingAnalyzerDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "sun",
-			2:  "mon",
-			4:  "tue",
-			8:  "wed",
-			16: "thu",
-			32: "fri",
-			64: "sat",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLogSettingsRollingAnalyzerDelFiles(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -273,14 +253,6 @@ func flattenSystemLogSettingsRollingAnalyzerFileSize(v interface{}, d *schema.Re
 }
 
 func flattenSystemLogSettingsRollingAnalyzerGzipFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -301,15 +273,6 @@ func flattenSystemLogSettingsRollingAnalyzerIp3(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemLogSettingsRollingAnalyzerLogFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "native",
-			1: "text",
-			4: "csv",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -342,27 +305,10 @@ func flattenSystemLogSettingsRollingAnalyzerPort3(v interface{}, d *schema.Resou
 }
 
 func flattenSystemLogSettingsRollingAnalyzerServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ftp",
-			1: "sftp",
-			2: "scp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingAnalyzerUpload(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -371,26 +317,10 @@ func flattenSystemLogSettingsRollingAnalyzerUploadHour(v interface{}, d *schema.
 }
 
 func flattenSystemLogSettingsRollingAnalyzerUploadMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "backup",
-			1: "mirror",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemLogSettingsRollingAnalyzerUploadTrigger(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "on-roll",
-			1: "on-schedule",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -407,15 +337,6 @@ func flattenSystemLogSettingsRollingAnalyzerUsername3(v interface{}, d *schema.R
 }
 
 func flattenSystemLogSettingsRollingAnalyzerWhen(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "daily",
-			2: "weekly",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -529,16 +450,6 @@ func refreshObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading min: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemLogSettingsRollingAnalyzerPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemLogSettingsRollingAnalyzer-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

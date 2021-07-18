@@ -34,7 +34,7 @@ The following arguments are supported:
 
 * `pkg` - Package.
 
-* `action` - Policy action (accept/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
+* `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.
 
@@ -48,11 +48,11 @@ The following arguments are supported:
 
 * `av_profile` - Name of an existing Antivirus profile.
 * `casi_profile` - Casi-Profile.
-* `cgn_log_server_grp` - Cgn-Log-Server-Grp.
+* `cgn_log_server_grp` - NP log server group name
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
 * `custom_log_fields` - Log field index numbers to append custom log fields to log messages for this policy.
-* `decrypted_traffic_mirror` - Decrypted traffic mirror.
+* `decrypted_traffic_mirror` - Decrypted-Traffic-Mirror.
 * `deep_inspection_options` - Deep-Inspection-Options.
 * `device_detection_portal` - Device-Detection-Portal. Valid values: `disable`, `enable`.
 
@@ -84,7 +84,7 @@ The following arguments are supported:
 * `email_collection_portal` - Email-Collection-Portal. Valid values: `disable`, `enable`.
 
 * `emailfilter_profile` - Name of an existing email filter profile.
-* `file_filter_profile` - Name of an existing file-filter profile.
+* `file_filter_profile` - File-Filter-Profile.
 * `firewall_session_dirty` - How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
 
 * `fixedport` - Enable to prevent source NAT from changing a session's source port. Valid values: `disable`, `enable`.
@@ -113,7 +113,7 @@ The following arguments are supported:
 
 * `logtraffic_start` - Record logs when a session starts. Valid values: `disable`, `enable`.
 
-* `mms_profile` - Mms-Profile.
+* `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
 
@@ -128,7 +128,7 @@ The following arguments are supported:
 * `outbound` - Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `disable`, `enable`.
 
 * `per_ip_shaper` - Per-IP traffic shaper.
-* `policy_offload` - Policy-Offload. Valid values: `disable`, `enable`.
+* `policy_offload` - Enable/disable offloading policy configuration to CP processors. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
 * `poolname` - IP Pool names.
@@ -138,7 +138,7 @@ The following arguments are supported:
 
 * `replacemsg_group` - Replacemsg-Group.
 * `replacemsg_override_group` - Override the default replacement message group for this policy.
-* `rsso` - Rsso. Valid values: `disable`, `enable`.
+* `rsso` - Enable/disable RADIUS single sign-on (RSSO). Valid values: `disable`, `enable`.
 
 * `schedule` - Schedule name.
 * `send_deny_packet` - Enable/disable return of deny-packet. Valid values: `disable`, `enable`.
@@ -155,9 +155,9 @@ The following arguments are supported:
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssh_policy_redirect` - Redirect SSH traffic to matching transparent proxy policy. Valid values: `disable`, `enable`.
 
-* `ssl_mirror` - Ssl-Mirror. Valid values: `disable`, `enable`.
+* `ssl_mirror` - Enable to copy decrypted SSL traffic to a FortiGate interface (called SSL mirroring). Valid values: `disable`, `enable`.
 
-* `ssl_mirror_intf` - Ssl-Mirror-Intf.
+* `ssl_mirror_intf` - SSL mirror interface name.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
 * `sslvpn_auth` - Sslvpn-Auth. Valid values: `any`, `local`, `radius`, `ldap`, `tacacs+`.
 

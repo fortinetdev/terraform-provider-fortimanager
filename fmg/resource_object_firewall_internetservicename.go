@@ -207,14 +207,6 @@ func flattenObjectFirewallInternetServiceNameRegionId(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallInternetServiceNameType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3:  "default",
-			21: "location",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

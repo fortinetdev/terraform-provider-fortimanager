@@ -194,45 +194,10 @@ func flattenDvmdbGroupName(v interface{}, d *schema.ResourceData, pre string) in
 }
 
 func flattenDvmdbGroupOsType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			-1: "unknown",
-			0:  "fos",
-			1:  "fsw",
-			2:  "foc",
-			3:  "fml",
-			4:  "faz",
-			5:  "fwb",
-			6:  "fch",
-			7:  "fct",
-			8:  "log",
-			9:  "fmg",
-			10: "fsa",
-			11: "fdd",
-			12: "fac",
-			13: "fpx",
-			14: "fna",
-			15: "ffw",
-			16: "fsr",
-			17: "fad",
-			18: "fdc",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenDvmdbGroupType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "normal",
-			1: "default",
-			2: "auto",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

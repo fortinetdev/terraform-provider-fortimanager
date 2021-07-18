@@ -84,6 +84,8 @@ The following arguments are supported:
 * `max_log_forward` - Maximum number of log-forward and aggregation settings.
 * `max_running_reports` - Maximum number of reports generating at one time.
 * `mc_policy_disabled_adoms` - Mc-Policy-Disabled-Adoms. The structure of `mc_policy_disabled_adoms` block is documented below.
+* `multiple_steps_upgrade_in_autolink` - Enable/disable multiple steps upgade in autolink process disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `object_revision_db_max` - Maximum revisions for a single database (10,000-1,000,000 default 100,000).
 * `object_revision_mandatory_note` - Enable/disable mandatory note when create revision. disable - Disable object revision. enable - Enable object revision. Valid values: `disable`, `enable`.
 

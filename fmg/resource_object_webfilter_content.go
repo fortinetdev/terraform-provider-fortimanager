@@ -282,33 +282,10 @@ func flattenObjectWebfilterContentEntries(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectWebfilterContentEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "exempt",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWebfilterContentEntriesLang(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "western",
-			1: "simch",
-			2: "trach",
-			3: "japanese",
-			4: "korean",
-			5: "french",
-			6: "thai",
-			7: "spanish",
-			8: "cyrillic",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -317,14 +294,6 @@ func flattenObjectWebfilterContentEntriesName(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectWebfilterContentEntriesPatternType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "wildcard",
-			1: "regexp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -333,14 +302,6 @@ func flattenObjectWebfilterContentEntriesScore(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWebfilterContentEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

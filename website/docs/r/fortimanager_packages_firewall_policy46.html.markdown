@@ -45,6 +45,7 @@ The following arguments are supported:
 
 * `action` - Accept or deny traffic matching the policy. Valid values: `deny`, `accept`.
 
+* `cgn_log_server_grp` - NP log server group name
 * `comments` - Comment.
 * `dstaddr` - Destination address objects.
 * `dstintf` - Destination interface name.
@@ -59,6 +60,8 @@ The following arguments are supported:
 * `name` - Policy name.
 * `per_ip_shaper` - Per IP traffic shaper.
 * `permit_any_host` - Enable/disable allowing any host. Valid values: `disable`, `enable`.
+
+* `policy_offload` - Enable/disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
 * `poolname` - IP Pool names.
@@ -90,4 +93,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_policy46.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

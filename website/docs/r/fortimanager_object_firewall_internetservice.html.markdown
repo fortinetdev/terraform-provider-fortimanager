@@ -28,10 +28,15 @@ The following arguments are supported:
 * `fosid` - Id.
 * `ip_number` - Ip-Number.
 * `ip_range_number` - Ip-Range-Number.
+* `jitter_threshold` - Jitter-Threshold.
+* `latency_threshold` - Latency-Threshold.
 * `name` - Name.
 * `obsolete` - Obsolete.
 * `region` - Region sequence number list.
+* `packetloss_threshold` - Packetloss-Threshold.
+* `reputation` - Reputation.
 * `singularity` - Singularity.
+* `sld_id` - Sld-Id.
 
 
 ## Attribute Reference
@@ -48,4 +53,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_internetservice.labelname ObjectFirewallInternetService
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

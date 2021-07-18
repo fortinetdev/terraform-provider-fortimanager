@@ -217,13 +217,10 @@ resource "fortimanager_exec_workspace_action" "unlockres" {
 
 Note, we deliberately set a wrong ip for extip.
 
-### Step 2 terraform plan
+### Step 2 terraform apply
 
 ```
 # terraform apply
-2021/06/06 04:53:14 [WARN] Log levels other than TRACE are currently unreliable, and are supported only for backward compatibility.
-  Use TF_LOG=TRACE to see Terraform's internal logs.
-  ----
 
 An execution plan has been generated and is shown below.
 Resource actions are indicated with the following symbols:
@@ -333,7 +330,7 @@ provider "fortimanager" {
   adom      = "root"
 
   logsession = true
-  presession = "N9QtGOCN1TZU+cL0fI9+vzjk9jxB3wrFAuXsW7PAkHLaY4F40rn9Rm9yVI25SDVt1LpXAQScL9/XHQCaCrN2qA=="
+  presession = "GceyOAi/Ft5mBRW1ZRDHWXFC/mkljWiWrk5JeW//SH4RpdzYQS48fZOhhFv6Bodk03AY4tYK5j10eV6HaZmujA=="
 }
 
 resource "fortimanager_exec_workspace_action" "unlockres" {
@@ -349,9 +346,7 @@ Set the `presession` here to the content saved in the previous pression.txt file
 
 ```
 # terraform apply
-2021/06/06 05:18:45 [WARN] Log levels other than TRACE are currently unreliable, and are supported only for backward compatibility.
-  Use TF_LOG=TRACE to see Terraform's internal logs.
-  ----
+
 fortimanager_exec_workspace_action.unlockres: Refreshing state... [id=workspaceactionglobalunlock]
 
 An execution plan has been generated and is shown below.

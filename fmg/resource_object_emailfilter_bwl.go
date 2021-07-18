@@ -315,27 +315,10 @@ func flattenObjectEmailfilterBwlEntries(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectEmailfilterBwlEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "spam",
-			3: "clear",
-			4: "reject",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterBwlEntriesAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ipv4",
-			1: "ipv6",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -356,38 +339,14 @@ func flattenObjectEmailfilterBwlEntriesIp6Subnet(v interface{}, d *schema.Resour
 }
 
 func flattenObjectEmailfilterBwlEntriesPatternType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "wildcard",
-			1: "regexp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterBwlEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterBwlEntriesType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "ip",
-			1: "email",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

@@ -39,13 +39,19 @@ The following arguments are supported:
 
 * `comments` - Comment.
 * `dstaddr` - Destination address object from available options.
+* `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
+
 * `ha_mgmt_intf_only` - Enable/disable dedicating the HA management interface only for local-in policy. Valid values: `disable`, `enable`.
 
 * `intf` - Incoming interface name from available options.
 * `policyid` - User defined local in policy ID.
 * `schedule` - Schedule object from available options.
 * `service` - Service object from available options.
+* `service_negate` - When enabled service specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
 * `srcaddr` - Source address object from available options.
+* `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
+
 * `status` - Enable/disable this local-in policy. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -66,4 +72,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_localinpolicy.labelname {{policyid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

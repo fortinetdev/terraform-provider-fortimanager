@@ -34,9 +34,19 @@ func resourceSystemMail() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"auth_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
+				Optional: true,
+				Computed: true,
+			},
+			"local_cert": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -162,18 +172,18 @@ func resourceSystemMailRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenSystemMailAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
+	return v
+}
+
+func flattenSystemMailAuthType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemMailId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemMailLocalCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -186,16 +196,6 @@ func flattenSystemMailPort(v interface{}, d *schema.ResourceData, pre string) in
 }
 
 func flattenSystemMailSecureOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "none",
-			2: "smtps",
-			3: "starttls",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -220,6 +220,16 @@ func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
+	if err = d.Set("auth_type", flattenSystemMailAuthType(o["auth-type"], d, "auth_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-type"], "SystemMail-AuthType"); ok {
+			if err = d.Set("auth_type", vv); err != nil {
+				return fmt.Errorf("Error reading auth_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_type: %v", err)
+		}
+	}
+
 	if err = d.Set("fosid", flattenSystemMailId(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "SystemMail-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
@@ -227,6 +237,16 @@ func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading fosid: %v", err)
+		}
+	}
+
+	if err = d.Set("local_cert", flattenSystemMailLocalCert(o["local-cert"], d, "local_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["local-cert"], "SystemMail-LocalCert"); ok {
+			if err = d.Set("local_cert", vv); err != nil {
+				return fmt.Errorf("Error reading local_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading local_cert: %v", err)
 		}
 	}
 
@@ -283,7 +303,15 @@ func expandSystemMailAuth(d *schema.ResourceData, v interface{}, pre string) (in
 	return v, nil
 }
 
+func expandSystemMailAuthType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemMailId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailLocalCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -319,12 +347,30 @@ func getObjectSystemMail(d *schema.ResourceData) (*map[string]interface{}, error
 		}
 	}
 
+	if v, ok := d.GetOk("auth_type"); ok {
+		t, err := expandSystemMailAuthType(d, v, "auth_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-type"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fosid"); ok {
 		t, err := expandSystemMailId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("local_cert"); ok {
+		t, err := expandSystemMailLocalCert(d, v, "local_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["local-cert"] = t
 		}
 	}
 

@@ -60,10 +60,11 @@ func resourceSystemHa() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"peer": &schema.Schema{
 				Type:     schema.TypeList,
@@ -196,15 +197,6 @@ func flattenSystemHaLocalCertSha(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemHaModeSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "standalone",
-			1: "primary",
-			2: "secondary",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -286,14 +278,6 @@ func flattenSystemHaPeerSerialNumberSha(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemHaPeerStatusSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -357,16 +341,6 @@ func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) err
 			}
 		} else {
 			return fmt.Errorf("Error reading mode: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemHaPasswordSha(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemHa-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

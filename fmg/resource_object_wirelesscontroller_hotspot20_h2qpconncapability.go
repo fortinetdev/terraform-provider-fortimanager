@@ -217,80 +217,26 @@ func resourceObjectWirelessControllerHotspot20H2QpConnCapabilityRead(d *schema.R
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityEspPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityFtpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityHttpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityIcmpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityIkev2Port(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityIkev2XxPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -299,67 +245,22 @@ func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityName(v interface{
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityPptpVpnPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilitySshPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityTlsPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityVoipTcpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityVoipUdpPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "closed",
-			1: "open",
-			2: "unknown",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

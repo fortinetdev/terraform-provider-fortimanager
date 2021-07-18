@@ -129,6 +129,9 @@ The following arguments are supported:
 * `_intf_listen_forticlient_connection` - _Intf_Listen-Forticlient-Connection. Valid values: `disable`, `enable`.
 
 * `access_control_list` - access-control-list profile name.
+* `additional_akms` - Additional AKMs. Valid values: `akm6`.
+
+* `acct_interim_interval` - WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 * `address_group` - Address group ID.
 * `alias` - Alias.
 * `atf_weight` - Airtime weight in percentage (default = 20).
@@ -140,8 +143,19 @@ The following arguments are supported:
 
 * `bss_color_partial` - Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `disable`, `enable`.
 
+* `bstm_disassociation_imminent` - Enable/disable forcing of disassociation after the BSTM request timer has been reached (default = enable). Valid values: `disable`, `enable`.
+
+* `bstm_load_balancing_disassoc_timer` - Time interval for client to voluntarily leave AP before forcing a disassociation due to AP load-balancing (0 to 30, default = 10).
+* `bstm_rssi_disassoc_timer` - Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 * `captive_portal_ac_name` - Local-bridging captive portal ac-name.
 * `captive_portal_auth_timeout` - Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
+* `dhcp_address_enforcement` - Enable/disable DHCP address enforcement (default = disable). Valid values: `disable`, `enable`.
+
+* `captive_portal_macauth_radius_secret` - Secret key to access the macauth RADIUS server.
+* `captive_portal_macauth_radius_server` - Captive portal external RADIUS server domain name or IP address.
+* `captive_portal_radius_secret` - Secret key to access the RADIUS server.
+* `captive_portal_radius_server` - Captive portal RADIUS server domain name or IP address.
+* `captive_portal_session_timeout_interval` - Session timeout interval (0 - 864000 sec, default = 0).
 * `dhcp_lease_time` - DHCP lease time in seconds for NAT IP address.
 * `dhcp_option43_insertion` - Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `disable`, `enable`.
 
@@ -175,6 +189,8 @@ The following arguments are supported:
 * `ft_over_ds` - Enable/disable FT over the Distribution System (DS). Valid values: `disable`, `enable`.
 
 * `ft_r0_key_lifetime` - Lifetime of the PMK-R0 key in FT, 1-65535 minutes.
+* `gas_comeback_delay` - GAS comeback delay (0 or 100 - 10000 milliseconds, default = 500).
+* `gas_fragmentation_limit` - GAS fragmentation limit (512 - 4096, default = 1024).
 * `gtk_rekey` - Enable/disable GTK rekey for WPA security. Valid values: `disable`, `enable`.
 
 * `gtk_rekey_intv` - GTK rekey interval (1800 - 864000 sec, default = 86400).
@@ -204,19 +220,33 @@ The following arguments are supported:
 
 * `mac_auth_bypass` - Enable/disable MAC authentication bypass. Valid values: `disable`, `enable`.
 
+* `mac_called_station_delimiter` - MAC called station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_calling_station_delimiter` - MAC calling station delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_case` - MAC case (default = uppercase). Valid values: `uppercase`, `lowercase`.
+
 * `mac_filter` - Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `disable`, `enable`.
 
 * `mac_filter_list` - Mac-Filter-List. The structure of `mac_filter_list` block is documented below.
 * `mac_filter_policy_other` - Allow or block clients with MAC addresses that are not in the filter list. Valid values: `deny`, `allow`.
 
+* `mac_password_delimiter` - MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_username_delimiter` - MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
 * `max_clients` - Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 * `max_clients_ap` - Maximum number of clients that can connect simultaneously to the VAP per AP radio (default = 0, meaning no limitation).
+* `mbo` - Enable/disable Multiband Operation (default = disable). Valid values: `disable`, `enable`.
+
+* `mbo_cell_data_conn_pref` - MBO cell data connection preference (0, 1, or 255, default = 1). Valid values: `excluded`, `prefer-not`, `prefer-use`.
+
 * `me_disable_thresh` - Disable multicast enhancement when this many clients are receiving multicast traffic.
 * `mesh_backhaul` - Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `disable`, `enable`.
 
-* `mpsk` - Mpsk. Valid values: `disable`, `enable`.
+* `mpsk` - Enable/disable multiple PSK authentication. Valid values: `disable`, `enable`.
 
-* `mpsk_concurrent_clients` - Mpsk-Concurrent-Clients.
+* `mpsk_concurrent_clients` - Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
 * `mpsk_key` - Mpsk-Key. The structure of `mpsk_key` block is documented below.
 * `mpsk_profile` - MPSK profile name.
 * `mu_mimo` - Enable/disable Multi-user MIMO (default = enable). Valid values: `disable`, `enable`.
@@ -225,7 +255,12 @@ The following arguments are supported:
 
 * `multicast_rate` - Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
 
+* `nac` - Enable/disable network access control. Valid values: `disable`, `enable`.
+
+* `nac_profile` - NAC profile name.
 * `name` - Virtual AP name.
+* `neighbor_report_dual_band` - Enable/disable dual-band neighbor report (default = disable). Valid values: `disable`, `enable`.
+
 * `okc` - Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 
 * `owe_groups` - OWE-Groups. Valid values: `19`, `20`, `21`.
@@ -282,7 +317,7 @@ The following arguments are supported:
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
 * `schedule` - Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
 * `secondary_wag_profile` - Secondary wireless access gateway profile name.
-* `security` - Security mode for the wireless interface (default = wpa2-only-personal). Valid values: `None`, `WEP64`, `wep64`, `WEP128`, `wep128`, `WPA_PSK`, `WPA_RADIUS`, `WPA`, `WPA2`, `WPA2_AUTO`, `open`, `wpa-personal`, `wpa-enterprise`, `captive-portal`, `wpa-only-personal`, `wpa-only-enterprise`, `wpa2-only-personal`, `wpa2-only-enterprise`, `wpa-personal+captive-portal`, `wpa-only-personal+captive-portal`, `wpa2-only-personal+captive-portal`, `osen`, `wpa3-enterprise`, `sae`, `sae-transition`, `owe`, `wpa3-sae`, `wpa3-sae-transition`, `wpa3-only-enterprise`, `wpa3-enterprise-transition`.
+* `security` - Security mode for the wireless interface (default = wpa2-only-personal). Valid values: `None`, `WEP64`, `wep64`, `WEP128`, `wep128`, `WPA_PSK`, `WPA_RADIUS`, `WPA`, `WPA2`, `WPA2_AUTO`, `open`, `wpa-personal`, `wpa-enterprise`, `captive-portal`, `wpa-only-personal`, `wpa-only-enterprise`, `wpa2-only-personal`, `wpa2-only-enterprise`, `wpa-personal+captive-portal`, `wpa-only-personal+captive-portal`, `wpa2-only-personal+captive-portal`, `osen`, `wpa3-enterprise`, `sae`, `sae-transition`, `owe`, `wpa3-sae`, `wpa3-sae-transition`.
 
 * `security_exempt_list` - Optional security exempt list for captive portal authentication.
 * `security_obsolete_option` - Enable/disable obsolete security options. Valid values: `disable`, `enable`.
@@ -343,8 +378,8 @@ The `dynamic_mapping` block supports:
 * `_intf_listen_forticlient_connection` - _Intf_Listen-Forticlient-Connection. Valid values: `disable`, `enable`.
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
-* `access_control_list` - access-control-list profile name.
-* `acct_interim_interval` - Acct-Interim-Interval.
+* `access_control_list` - Access-Control-List.
+* `acct_interim_interval` - WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 * `additional_akms` - Additional-Akms. Valid values: `akm6`.
 
 * `address_group` - Address group ID.
@@ -356,18 +391,24 @@ The `dynamic_mapping` block supports:
 
 * `broadcast_suppression` - Optional suppression of broadcast messages. For example, you can keep DHCP messages, ARP broadcasts, and so on off of the wireless network. Valid values: `dhcp`, `arp`, `dhcp2`, `arp2`, `netbios-ns`, `netbios-ds`, `arp3`, `dhcp-up`, `dhcp-down`, `arp-known`, `arp-unknown`, `arp-reply`, `ipv6`, `dhcp-starvation`, `arp-poison`, `all-other-mc`, `all-other-bc`, `arp-proxy`, `dhcp-ucast`.
 
-* `bss_color_partial` - Enable/disable 802.11ax partial BSS color (default = enable). Valid values: `disable`, `enable`.
+* `bss_color_partial` - Bss-Color-Partial. Valid values: `disable`, `enable`.
 
+* `bstm_disassociation_imminent` - Bstm-Disassociation-Imminent. Valid values: `disable`, `enable`.
+
+* `bstm_load_balancing_disassoc_timer` - Bstm-Load-Balancing-Disassoc-Timer.
+* `bstm_rssi_disassoc_timer` - Bstm-Rssi-Disassoc-Timer.
 * `captive_portal_ac_name` - Local-bridging captive portal ac-name.
-* `captive_portal_auth_timeout` - Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
-* `captive_portal_macauth_radius_secret` - Captive-Portal-Macauth-Radius-Secret.
-* `captive_portal_macauth_radius_server` - Captive-Portal-Macauth-Radius-Server.
-* `captive_portal_radius_secret` - Captive-Portal-Radius-Secret.
-* `captive_portal_radius_server` - Captive-Portal-Radius-Server.
-* `captive_portal_session_timeout_interval` - Captive-Portal-Session-Timeout-Interval.
+* `captive_portal_auth_timeout` - Captive-Portal-Auth-Timeout.
+* `captive_portal_macauth_radius_secret` - Secret key to access the macauth RADIUS server.
+* `captive_portal_macauth_radius_server` - Captive portal external RADIUS server domain name or IP address.
+* `captive_portal_radius_secret` - Secret key to access the RADIUS server.
+* `captive_portal_radius_server` - Captive portal RADIUS server domain name or IP address.
+* `captive_portal_session_timeout_interval` - Session timeout interval (0 - 864000 sec, default = 0).
 * `client_count` - Client-Count.
+* `dhcp_address_enforcement` - Dhcp-Address-Enforcement. Valid values: `disable`, `enable`.
+
 * `dhcp_lease_time` - DHCP lease time in seconds for NAT IP address.
-* `dhcp_option43_insertion` - Enable/disable insertion of DHCP option 43 (default = enable). Valid values: `disable`, `enable`.
+* `dhcp_option43_insertion` - Dhcp-Option43-Insertion. Valid values: `disable`, `enable`.
 
 * `dhcp_option82_circuit_id_insertion` - Enable/disable DHCP option 82 circuit-id insert (default = disable). Valid values: `disable`, `style-1`, `style-2`, `style-3`.
 
@@ -406,12 +447,12 @@ The `dynamic_mapping` block supports:
 * `high_efficiency` - Enable/disable 802.11ax high efficiency (default = enable). Valid values: `disable`, `enable`.
 
 * `hotspot20_profile` - Hotspot 2.0 profile name.
-* `igmp_snooping` - Enable/disable IGMP snooping. Valid values: `disable`, `enable`.
+* `igmp_snooping` - Igmp-Snooping. Valid values: `disable`, `enable`.
 
 * `intra_vap_privacy` - Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `disable`, `enable`.
 
 * `ip` - IP address and subnet mask for the local standalone NAT subnet.
-* `ipv6_rules` - Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
+* `ipv6_rules` - Ipv6-Rules. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 
 * `key` - WEP Key.
 * `keyindex` - WEP key index (1 - 4).
@@ -431,9 +472,19 @@ The `dynamic_mapping` block supports:
 
 * `mac_auth_bypass` - Enable/disable MAC authentication bypass. Valid values: `disable`, `enable`.
 
+* `mac_called_station_delimiter` - Mac-Called-Station-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_calling_station_delimiter` - Mac-Calling-Station-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_case` - Mac-Case. Valid values: `uppercase`, `lowercase`.
+
 * `mac_filter` - Enable/disable MAC filtering to block wireless clients by mac address. Valid values: `disable`, `enable`.
 
 * `mac_filter_policy_other` - Allow or block clients with MAC addresses that are not in the filter list. Valid values: `deny`, `allow`.
+
+* `mac_password_delimiter` - Mac-Password-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_username_delimiter` - Mac-Username-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
 
 * `max_clients` - Maximum number of clients that can connect simultaneously to the VAP (default = 0, meaning no limitation).
 * `max_clients_ap` - Maximum number of clients that can connect simultaneously to the VAP per AP radio (default = 0, meaning no limitation).
@@ -444,15 +495,20 @@ The `dynamic_mapping` block supports:
 * `me_disable_thresh` - Disable multicast enhancement when this many clients are receiving multicast traffic.
 * `mesh_backhaul` - Enable/disable using this VAP as a WiFi mesh backhaul (default = disable). This entry is only available when security is set to a WPA type or open. Valid values: `disable`, `enable`.
 
-* `mpsk` - Mpsk. Valid values: `disable`, `enable`.
+* `mpsk` - Enable/disable multiple PSK authentication. Valid values: `disable`, `enable`.
 
-* `mpsk_concurrent_clients` - Mpsk-Concurrent-Clients.
-* `mpsk_profile` - MPSK profile name.
+* `mpsk_concurrent_clients` - Maximum number of concurrent clients that connect using the same passphrase in multiple PSK authentication (0 - 65535, default = 0, meaning no limitation).
+* `mpsk_profile` - Mpsk-Profile.
 * `mu_mimo` - Enable/disable Multi-user MIMO (default = enable). Valid values: `disable`, `enable`.
 
 * `multicast_enhance` - Enable/disable converting multicast to unicast to improve performance (default = disable). Valid values: `disable`, `enable`.
 
 * `multicast_rate` - Multicast rate (0, 6000, 12000, or 24000 kbps, default = 0). Valid values: `0`, `6000`, `12000`, `24000`.
+
+* `nac` - Nac. Valid values: `disable`, `enable`.
+
+* `nac_profile` - Nac-Profile.
+* `neighbor_report_dual_band` - Neighbor-Report-Dual-Band. Valid values: `disable`, `enable`.
 
 * `okc` - Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 
@@ -466,10 +522,10 @@ The `dynamic_mapping` block supports:
 
 * `pmf_assoc_comeback_timeout` - Protected Management Frames (PMF) comeback maximum timeout (1-20 sec).
 * `pmf_sa_query_retry_timeout` - Protected Management Frames (PMF) SA query retry timeout interval (1 - 5 100s of msec).
-* `port_macauth` - Enable/disable LAN port MAC authentication (default = disable). Valid values: `disable`, `radius`, `address-group`.
+* `port_macauth` - Port-Macauth. Valid values: `disable`, `radius`, `address-group`.
 
-* `port_macauth_reauth_timeout` - LAN port MAC authentication re-authentication timeout value (default = 7200 sec).
-* `port_macauth_timeout` - LAN port MAC authentication idle timeout value (default = 600 sec).
+* `port_macauth_reauth_timeout` - Port-Macauth-Reauth-Timeout.
+* `port_macauth_timeout` - Port-Macauth-Timeout.
 * `portal_message_override_group` - Replacement message group for this VAP (only available when security is set to a captive portal type).
 * `portal_type` - Captive portal functionality. Configure how the captive portal authenticates users and whether it includes a disclaimer. Valid values: `auth`, `auth+disclaimer`, `disclaimer`, `email-collect`, `cmcc`, `cmcc-macauth`, `auth-mac`, `external-auth`.
 
@@ -509,7 +565,7 @@ The `dynamic_mapping` block supports:
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
 * `schedule` - Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
 * `secondary_wag_profile` - Secondary wireless access gateway profile name.
-* `security` - Security mode for the wireless interface (default = wpa2-only-personal). Valid values: `None`, `WEP64`, `wep64`, `WEP128`, `wep128`, `WPA_PSK`, `WPA_RADIUS`, `WPA`, `WPA2`, `WPA2_AUTO`, `open`, `wpa-personal`, `wpa-enterprise`, `captive-portal`, `wpa-only-personal`, `wpa-only-enterprise`, `wpa2-only-personal`, `wpa2-only-enterprise`, `wpa-personal+captive-portal`, `wpa-only-personal+captive-portal`, `wpa2-only-personal+captive-portal`, `osen`, `wpa3-enterprise`, `sae`, `sae-transition`, `owe`, `wpa3-sae`, `wpa3-sae-transition`, `wpa3-only-enterprise`, `wpa3-enterprise-transition`.
+* `security` - Security mode for the wireless interface (default = wpa2-only-personal). Valid values: `None`, `WEP64`, `wep64`, `WEP128`, `wep128`, `WPA_PSK`, `WPA_RADIUS`, `WPA`, `WPA2`, `WPA2_AUTO`, `open`, `wpa-personal`, `wpa-enterprise`, `captive-portal`, `wpa-only-personal`, `wpa-only-enterprise`, `wpa2-only-personal`, `wpa2-only-enterprise`, `wpa-personal+captive-portal`, `wpa-only-personal+captive-portal`, `wpa2-only-personal+captive-portal`, `osen`, `wpa3-enterprise`, `sae`, `sae-transition`, `owe`, `wpa3-sae`, `wpa3-sae-transition`.
 
 * `security_exempt_list` - Optional security exempt list for captive portal authentication.
 * `security_obsolete_option` - Enable/disable obsolete security options. Valid values: `disable`, `enable`.
@@ -519,10 +575,10 @@ The `dynamic_mapping` block supports:
 * `split_tunneling` - Enable/disable split tunneling (default = disable). Valid values: `disable`, `enable`.
 
 * `ssid` - IEEE 802.11 service set identifier (SSID) for the wireless interface. Users who wish to use the wireless network must configure their computers to access this SSID name.
-* `sticky_client_remove` - Enable/disable sticky client remove to maintain good signal level clients in SSID. (default = disable). Valid values: `disable`, `enable`.
+* `sticky_client_remove` - Sticky-Client-Remove. Valid values: `disable`, `enable`.
 
-* `sticky_client_threshold_2g` - Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79).
-* `sticky_client_threshold_5g` - Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76).
+* `sticky_client_threshold_2g` - Sticky-Client-Threshold-2G.
+* `sticky_client_threshold_5g` - Sticky-Client-Threshold-5G.
 * `target_wake_time` - Enable/disable 802.11ax target wake time (default = enable). Valid values: `disable`, `enable`.
 
 * `tkip_counter_measure` - Enable/disable TKIP counter measure. Valid values: `disable`, `enable`.
@@ -555,10 +611,10 @@ The `mac_filter_list` block supports:
 The `mpsk_key` block supports:
 
 * `comment` - Comment.
-* `concurrent_clients` - Concurrent-Clients.
-* `key_name` - Key-Name.
-* `mpsk_schedules` - Mpsk-Schedules.
-* `passphrase` - Passphrase.
+* `concurrent_clients` - Number of clients that can connect using this pre-shared key.
+* `key_name` - Pre-shared key name.
+* `mpsk_schedules` - Firewall schedule for MPSK passphrase. The passphrase will be effective only when at least one schedule is valid.
+* `passphrase` - WPA Pre-shared key.
 
 The `portal_message_overrides` block supports:
 
@@ -587,4 +643,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_wirelesscontroller_vap.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

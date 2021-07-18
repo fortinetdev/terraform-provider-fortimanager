@@ -304,14 +304,6 @@ func flattenObjectEmailfilterBwordEntries(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectEmailfilterBwordEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "spam",
-			3: "clear",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -320,20 +312,6 @@ func flattenObjectEmailfilterBwordEntriesId(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectEmailfilterBwordEntriesLanguage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "western",
-			1: "simch",
-			2: "trach",
-			3: "japanese",
-			4: "korean",
-			5: "french",
-			6: "thai",
-			7: "spanish",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -342,14 +320,6 @@ func flattenObjectEmailfilterBwordEntriesPattern(v interface{}, d *schema.Resour
 }
 
 func flattenObjectEmailfilterBwordEntriesPatternType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "wildcard",
-			1: "regexp",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -358,27 +328,10 @@ func flattenObjectEmailfilterBwordEntriesScore(v interface{}, d *schema.Resource
 }
 
 func flattenObjectEmailfilterBwordEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectEmailfilterBwordEntriesWhere(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "all",
-			1: "subject",
-			2: "body",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

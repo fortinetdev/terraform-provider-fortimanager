@@ -761,14 +761,6 @@ func flattenSystemAdminUserCa(v interface{}, d *schema.ResourceData, pre string)
 }
 
 func flattenSystemAdminUserChangePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -906,68 +898,22 @@ func flattenSystemAdminUserDashboardColumn(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemAdminUserDashboardDiskioContentType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "util",
-			1: "iops",
-			2: "blks",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardDiskioPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3600:  "1hour",
-			28800: "8hour",
-			86400: "24hour",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardLogRatePeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			120:   "2min ",
-			3600:  "1hour",
-			21600: "6hours",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardLogRateTopn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "1",
-			2: "2",
-			3: "3",
-			4: "4",
-			5: "5",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardLogRateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "log",
-			2: "device",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -988,51 +934,18 @@ func flattenSystemAdminUserDashboardRefreshInterval(v interface{}, d *schema.Res
 }
 
 func flattenSystemAdminUserDashboardResCpuDisplay(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "average ",
-			1: "each",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardResPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "10min ",
-			1: "hour",
-			2: "day",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardResViewType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "real-time ",
-			1: "history",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "close",
-			1: "open",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1041,41 +954,10 @@ func flattenSystemAdminUserDashboardTabid(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemAdminUserDashboardTimePeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			3600:  "1hour",
-			28800: "8hour",
-			86400: "24hour",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserDashboardWidgetType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			8:  "top-lograte",
-			9:  "sysres",
-			10: "sysinfo",
-			11: "licinfo",
-			12: "jsconsole",
-			13: "sysop",
-			14: "alert",
-			15: "statistics",
-			16: "rpteng",
-			17: "raid",
-			18: "logrecv",
-			19: "devsummary",
-			21: "logdb-perf",
-			22: "logdb-lag",
-			23: "disk-io",
-			24: "log-rcvd-fwd",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1139,26 +1021,10 @@ func flattenSystemAdminUserEmailAddress(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemAdminUserExtAuthAccprofileOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserExtAuthAdomOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1171,14 +1037,6 @@ func flattenSystemAdminUserFirstName(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenSystemAdminUserForcePasswordChange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1349,26 +1207,10 @@ func flattenSystemAdminUserMetaDataFieldvalue(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemAdminUserMetaDataImportance(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "optional",
-			1: "required",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserMetaDataStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "enabled",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1438,15 +1280,6 @@ func flattenSystemAdminUserRadiusServer(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemAdminUserRpcPermit(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "read-write",
-			1: "none",
-			2: "read",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1511,80 +1344,18 @@ func flattenSystemAdminUserTrusthost9(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenSystemAdminUserTwoFactorAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserUseGlobalTheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserUserTheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "blue",
-			1:  "green",
-			2:  "red",
-			3:  "melongene",
-			4:  "spring",
-			5:  "summer",
-			6:  "autumn",
-			7:  "winter",
-			8:  "space",
-			9:  "calla-lily",
-			10: "binary-tunnel",
-			11: "diving",
-			12: "dreamy",
-			13: "technology",
-			14: "landscape",
-			15: "twilight",
-			16: "canyon",
-			17: "northern-light",
-			18: "astronomy",
-			19: "fish",
-			20: "penguin",
-			21: "mountain",
-			22: "polar-bear",
-			23: "parrot",
-			24: "cave",
-			25: "zebra",
-			26: "contrast-dark",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemAdminUserUserType(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "local",
-			1: "radius",
-			2: "ldap",
-			3: "tacacs-plus",
-			4: "pki-auth",
-			5: "group",
-			6: "sso",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1630,14 +1401,6 @@ func flattenSystemAdminUserWebFilterWebFilterName(v interface{}, d *schema.Resou
 }
 
 func flattenSystemAdminUserWildcard(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

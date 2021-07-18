@@ -228,6 +228,11 @@ func resourceSystemGlobal() *schema.Resource {
 					},
 				},
 			},
+			"multiple_steps_upgrade_in_autolink": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"object_revision_db_max": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -461,27 +466,10 @@ func flattenSystemGlobalAdminLockoutThreshold(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemGlobalAdomMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "normal",
-			2: "advanced",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalAdomRevAutoDelete(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "by-revisions",
-			2: "by-days",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -498,180 +486,58 @@ func flattenSystemGlobalAdomRevMaxRevisions(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemGlobalAdomSelect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalAdomStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalCloneNameOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "default",
-			1: "keep",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalCltCertReq(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-			2: "optional",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalConsoleOutput(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "standard",
-			1: "more",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalCountryFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalCreateRevision(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalDaylightsavetime(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalDetectUnregisteredLogDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalDeviceViewMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "regular",
-			1: "tree",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalDhParams(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1024: "1024",
-			1536: "1536",
-			2048: "2048",
-			3072: "3072",
-			4096: "4096",
-			6144: "6144",
-			8192: "8192",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalDisableModule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "fortiview-noc",
-			2:  "fortirecorder",
-			4:  "siem",
-			8:  "soc",
-			16: "ai",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemGlobalEncAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "low",
-			2: "medium",
-			3: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalFazStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -684,29 +550,10 @@ func flattenSystemGlobalFgfmLocalCert(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenSystemGlobalFgfmSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2:  "sslv3",
-			4:  "tlsv1.0",
-			8:  "tlsv1.1",
-			16: "tlsv1.2",
-			32: "tlsv1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalHaMemberAutoGrouping(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -715,30 +562,10 @@ func flattenSystemGlobalHostname(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemGlobalImportIgnoreAddrCmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalLanguage(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "english",
-			1: "simch",
-			2: "japanese",
-			3: "korean",
-			4: "spanish",
-			5: "trach",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -755,27 +582,10 @@ func flattenSystemGlobalLdapconntimeout(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemGlobalLockPreempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalLogChecksum(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "none",
-			1: "md5",
-			2: "md5-auth",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -832,19 +642,15 @@ func flattenSystemGlobalMcPolicyDisabledAdomsAdomName(v interface{}, d *schema.R
 	return v
 }
 
+func flattenSystemGlobalMultipleStepsUpgradeInAutolink(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalObjectRevisionDbMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemGlobalObjectRevisionMandatoryNote(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -853,125 +659,42 @@ func flattenSystemGlobalObjectRevisionObjectMax(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemGlobalObjectRevisionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalOftpSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2:  "sslv3",
-			4:  "tlsv1.0",
-			8:  "tlsv1.1",
-			16: "tlsv1.2",
-			32: "tlsv1.3",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPartialInstall(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPartialInstallForce(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPartialInstallRev(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPerPolicyLock(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPerformImproveByHa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPolicyObjectIcon(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPolicyObjectInDualPane(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalPreLoginBanner(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -980,14 +703,6 @@ func flattenSystemGlobalPreLoginBannerMessage(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemGlobalPrivateDataEncryption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -996,53 +711,18 @@ func flattenSystemGlobalRemoteauthtimeout(v interface{}, d *schema.ResourceData,
 }
 
 func flattenSystemGlobalSearchAllAdoms(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalSslLowEncryption(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalSslProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "tlsv1.3",
-			2:  "tlsv1.2",
-			4:  "tlsv1.1",
-			8:  "tlsv1.0",
-			16: "sslv3",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemGlobalSslStaticKeyCiphers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1051,116 +731,10 @@ func flattenSystemGlobalTaskListSize(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenSystemGlobalTftp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalTimezone(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "00",
-			1:  "01",
-			2:  "02",
-			3:  "03",
-			4:  "04",
-			5:  "05",
-			6:  "06",
-			7:  "07",
-			8:  "08",
-			9:  "09",
-			10: "10",
-			11: "11",
-			12: "12",
-			13: "13",
-			14: "14",
-			15: "15",
-			16: "16",
-			17: "17",
-			18: "18",
-			19: "19",
-			20: "20",
-			21: "21",
-			22: "22",
-			23: "23",
-			24: "24",
-			25: "25",
-			26: "26",
-			27: "27",
-			28: "28",
-			29: "29",
-			30: "30",
-			31: "31",
-			32: "32",
-			33: "33",
-			34: "34",
-			35: "35",
-			36: "36",
-			37: "37",
-			38: "38",
-			39: "39",
-			40: "40",
-			41: "41",
-			42: "42",
-			43: "43",
-			44: "44",
-			45: "45",
-			46: "46",
-			47: "47",
-			48: "48",
-			49: "49",
-			50: "50",
-			51: "51",
-			52: "52",
-			53: "53",
-			54: "54",
-			55: "55",
-			56: "56",
-			57: "57",
-			58: "58",
-			59: "59",
-			60: "60",
-			61: "61",
-			62: "62",
-			63: "63",
-			64: "64",
-			65: "65",
-			66: "66",
-			67: "67",
-			68: "68",
-			69: "69",
-			70: "70",
-			71: "71",
-			72: "72",
-			73: "73",
-			74: "74",
-			75: "75",
-			76: "76",
-			77: "77",
-			78: "78",
-			79: "79",
-			80: "80",
-			81: "81",
-			82: "82",
-			83: "83",
-			84: "84",
-			85: "85",
-			86: "86",
-			87: "87",
-			88: "88",
-			89: "89",
-			90: "90",
-			91: "91",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1169,43 +743,15 @@ func flattenSystemGlobalTunnelMtu(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenSystemGlobalUsg(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalVdomMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemGlobalWebserviceProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:  "tlsv1.3",
-			2:  "tlsv1.2",
-			4:  "tlsv1.1",
-			8:  "tlsv1.0",
-			16: "sslv3",
-			32: "sslv2",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemGlobalWorkflowMaxSessions(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1213,16 +759,6 @@ func flattenSystemGlobalWorkflowMaxSessions(v interface{}, d *schema.ResourceDat
 }
 
 func flattenSystemGlobalWorkspaceMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disabled",
-			1: "normal",
-			2: "workflow",
-			3: "per-adom",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1620,6 +1156,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 					return fmt.Errorf("Error reading mc_policy_disabled_adoms: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("multiple_steps_upgrade_in_autolink", flattenSystemGlobalMultipleStepsUpgradeInAutolink(o["multiple-steps-upgrade-in-autolink"], d, "multiple_steps_upgrade_in_autolink")); err != nil {
+		if vv, ok := fortiAPIPatch(o["multiple-steps-upgrade-in-autolink"], "SystemGlobal-MultipleStepsUpgradeInAutolink"); ok {
+			if err = d.Set("multiple_steps_upgrade_in_autolink", vv); err != nil {
+				return fmt.Errorf("Error reading multiple_steps_upgrade_in_autolink: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading multiple_steps_upgrade_in_autolink: %v", err)
 		}
 	}
 
@@ -2101,6 +1647,10 @@ func expandSystemGlobalMcPolicyDisabledAdomsAdomName(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandSystemGlobalMultipleStepsUpgradeInAutolink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalObjectRevisionDbMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2559,6 +2109,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["mc-policy-disabled-adoms"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("multiple_steps_upgrade_in_autolink"); ok {
+		t, err := expandSystemGlobalMultipleStepsUpgradeInAutolink(d, v, "multiple_steps_upgrade_in_autolink")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["multiple-steps-upgrade-in-autolink"] = t
 		}
 	}
 

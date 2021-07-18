@@ -379,14 +379,6 @@ func flattenObjectIcapProfileIcapHeaders(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectIcapProfileIcapHeadersBase64Encoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -403,21 +395,7 @@ func flattenObjectIcapProfileIcapHeadersName(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectIcapProfileMethods(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "delete",
-			2:   "get",
-			4:   "head",
-			8:   "options",
-			16:  "post",
-			32:  "put",
-			64:  "trace",
-			128: "other",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectIcapProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -425,14 +403,6 @@ func flattenObjectIcapProfileName(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenObjectIcapProfilePreview(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -445,26 +415,10 @@ func flattenObjectIcapProfileReplacemsgGroup(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectIcapProfileRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIcapProfileRequestFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			16: "error",
-			17: "bypass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -477,14 +431,6 @@ func flattenObjectIcapProfileRequestServer(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectIcapProfileRespmodDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			17: "bypass",
-			47: "forward",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -546,14 +492,6 @@ func flattenObjectIcapProfileRespmodForwardRules(v interface{}, d *schema.Resour
 }
 
 func flattenObjectIcapProfileRespmodForwardRulesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			17: "bypass",
-			47: "forward",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -609,14 +547,6 @@ func flattenObjectIcapProfileRespmodForwardRulesHeaderGroup(v interface{}, d *sc
 }
 
 func flattenObjectIcapProfileRespmodForwardRulesHeaderGroupCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -645,26 +575,10 @@ func flattenObjectIcapProfileRespmodForwardRulesName(v interface{}, d *schema.Re
 }
 
 func flattenObjectIcapProfileResponse(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectIcapProfileResponseFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			16: "error",
-			17: "bypass",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -673,14 +587,6 @@ func flattenObjectIcapProfileResponsePath(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectIcapProfileResponseReqHdr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -689,14 +595,6 @@ func flattenObjectIcapProfileResponseServer(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectIcapProfileStreamingContentBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

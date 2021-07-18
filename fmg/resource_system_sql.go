@@ -132,10 +132,11 @@ func resourceSystemSql() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"prompt_sql_upgrade": &schema.Schema{
 				Type:     schema.TypeString,
@@ -285,14 +286,6 @@ func resourceSystemSqlRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenSystemSqlBackgroundRebuildSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -358,27 +351,10 @@ func flattenSystemSqlCustomIndexSqa(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenSystemSqlCustomIndexCaseSensitiveSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSqlCustomIndexDeviceTypeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "FortiGate",
-			4: "FortiMail",
-			5: "FortiWeb",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -391,37 +367,6 @@ func flattenSystemSqlCustomIndexIndexFieldSqa(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemSqlCustomIndexLogTypeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "app-ctrl",
-			1:  "attack",
-			2:  "content",
-			3:  "dlp",
-			4:  "emailfilter",
-			5:  "event",
-			6:  "generic",
-			7:  "history",
-			10: "traffic",
-			11: "virus",
-			12: "voip",
-			13: "webfilter",
-			14: "netscan",
-			15: "fct-event",
-			16: "fct-traffic",
-			17: "fct-netscan",
-			18: "waf",
-			19: "gtp",
-			20: "dns",
-			21: "ssh",
-			22: "ssl",
-			23: "file-filter",
-			24: "asset",
-			25: "protocol",
-			26: "siem",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -477,19 +422,6 @@ func flattenSystemSqlCustomSkipidxSqa(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenSystemSqlCustomSkipidxDeviceTypeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "FortiGate",
-			1:  "FortiManager",
-			3:  "FortiClient",
-			4:  "FortiMail",
-			5:  "FortiWeb",
-			10: "FortiSandbox",
-			15: "FortiProxy",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -502,37 +434,6 @@ func flattenSystemSqlCustomSkipidxIndexFieldSqa(v interface{}, d *schema.Resourc
 }
 
 func flattenSystemSqlCustomSkipidxLogTypeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0:  "app-ctrl",
-			1:  "attack",
-			2:  "content",
-			3:  "dlp",
-			4:  "emailfilter",
-			5:  "event",
-			6:  "generic",
-			7:  "history",
-			10: "traffic",
-			11: "virus",
-			12: "voip",
-			13: "webfilter",
-			14: "netscan",
-			15: "fct-event",
-			16: "fct-traffic",
-			17: "fct-netscan",
-			18: "waf",
-			19: "gtp",
-			20: "dns",
-			21: "ssh",
-			22: "ssl",
-			23: "file-filter",
-			24: "asset",
-			25: "protocol",
-			26: "siem",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -541,26 +442,10 @@ func flattenSystemSqlDatabaseNameSqa(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenSystemSqlDatabaseTypeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "mysql",
-			1: "postgres",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSqlDeviceCountHighSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -573,39 +458,7 @@ func flattenSystemSqlFctTablePartitionTimeSqa(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemSqlLogtypeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:        "none",
-			2:        "app-ctrl",
-			4:        "attack",
-			8:        "content",
-			16:       "dlp",
-			32:       "emailfilter",
-			64:       "event",
-			128:      "generic",
-			256:      "history",
-			512:      "traffic",
-			1024:     "virus",
-			2048:     "voip",
-			4096:     "webfilter",
-			8192:     "netscan",
-			16384:    "fct-event",
-			32768:    "fct-traffic",
-			65536:    "fct-netscan",
-			131072:   "waf",
-			262144:   "gtp",
-			524288:   "dns",
-			1048576:  "ssh",
-			2097152:  "ssl",
-			4194304:  "file-filter",
-			8388608:  "asset",
-			16777216: "protocol",
-			33554432: "siem",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemSqlPasswordSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -613,26 +466,10 @@ func flattenSystemSqlPasswordSqa(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemSqlPromptSqlUpgradeSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSqlRebuildEventSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -649,26 +486,10 @@ func flattenSystemSqlStartTimeSqa(v interface{}, d *schema.ResourceData, pre str
 }
 
 func flattenSystemSqlStatusSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "local",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenSystemSqlTextSearchIndexSqa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -859,16 +680,6 @@ func refreshObjectSystemSql(d *schema.ResourceData, o map[string]interface{}) er
 			}
 		} else {
 			return fmt.Errorf("Error reading logtype: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemSqlPasswordSqa(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemSql-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

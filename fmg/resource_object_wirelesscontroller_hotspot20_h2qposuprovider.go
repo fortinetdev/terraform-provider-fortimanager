@@ -299,16 +299,7 @@ func flattenObjectWirelessControllerHotspot20H2QpOsuProviderName(v interface{}, 
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpOsuProviderOsuMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "oma-dm",
-			2: "soap-xml-spp",
-			4: "reserved",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerHotspot20H2QpOsuProviderOsuNai(v interface{}, d *schema.ResourceData, pre string) interface{} {

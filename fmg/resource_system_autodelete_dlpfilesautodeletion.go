@@ -122,15 +122,6 @@ func resourceSystemAutoDeleteDlpFilesAutoDeletionRead(d *schema.ResourceData, m 
 }
 
 func flattenSystemAutoDeleteDlpFilesAutoDeletionRetention(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1: "days",
-			2: "weeks",
-			3: "months",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -139,14 +130,6 @@ func flattenSystemAutoDeleteDlpFilesAutoDeletionRunat(v interface{}, d *schema.R
 }
 
 func flattenSystemAutoDeleteDlpFilesAutoDeletionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

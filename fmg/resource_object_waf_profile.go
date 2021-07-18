@@ -1024,39 +1024,14 @@ func flattenObjectWafProfileAddressListBlockedAddress(v interface{}, d *schema.R
 }
 
 func flattenObjectWafProfileAddressListBlockedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileAddressListSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileAddressListStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1190,14 +1165,6 @@ func flattenObjectWafProfileConstraintContentLength(v interface{}, d *schema.Res
 }
 
 func flattenObjectWafProfileConstraintContentLengthAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1206,39 +1173,14 @@ func flattenObjectWafProfileConstraintContentLengthLength(v interface{}, d *sche
 }
 
 func flattenObjectWafProfileConstraintContentLengthLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintContentLengthSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintContentLengthStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1376,38 +1318,14 @@ func flattenObjectWafProfileConstraintExceptionAddress(v interface{}, d *schema.
 }
 
 func flattenObjectWafProfileConstraintExceptionContentLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionHeaderLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1416,98 +1334,34 @@ func flattenObjectWafProfileConstraintExceptionId(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWafProfileConstraintExceptionLineLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionMalformed(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionMaxCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionMaxHeaderLine(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionMaxRangeSegment(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionMaxUrlParam(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionParamLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1516,38 +1370,14 @@ func flattenObjectWafProfileConstraintExceptionPattern(v interface{}, d *schema.
 }
 
 func flattenObjectWafProfileConstraintExceptionRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionUrlParamLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintExceptionVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1590,14 +1420,6 @@ func flattenObjectWafProfileConstraintHeaderLength(v interface{}, d *schema.Reso
 }
 
 func flattenObjectWafProfileConstraintHeaderLengthAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1606,39 +1428,14 @@ func flattenObjectWafProfileConstraintHeaderLengthLength(v interface{}, d *schem
 }
 
 func flattenObjectWafProfileConstraintHeaderLengthLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintHeaderLengthSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintHeaderLengthStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1676,51 +1473,18 @@ func flattenObjectWafProfileConstraintHostname(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWafProfileConstraintHostnameAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintHostnameLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintHostnameSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintHostnameStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1763,14 +1527,6 @@ func flattenObjectWafProfileConstraintLineLength(v interface{}, d *schema.Resour
 }
 
 func flattenObjectWafProfileConstraintLineLengthAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1779,39 +1535,14 @@ func flattenObjectWafProfileConstraintLineLengthLength(v interface{}, d *schema.
 }
 
 func flattenObjectWafProfileConstraintLineLengthLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintLineLengthSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintLineLengthStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1849,51 +1580,18 @@ func flattenObjectWafProfileConstraintMalformed(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWafProfileConstraintMalformedAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMalformedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMalformedSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMalformedStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1936,26 +1634,10 @@ func flattenObjectWafProfileConstraintMaxCookie(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWafProfileConstraintMaxCookieAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxCookieLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -1964,27 +1646,10 @@ func flattenObjectWafProfileConstraintMaxCookieMaxCookie(v interface{}, d *schem
 }
 
 func flattenObjectWafProfileConstraintMaxCookieSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxCookieStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2027,26 +1692,10 @@ func flattenObjectWafProfileConstraintMaxHeaderLine(v interface{}, d *schema.Res
 }
 
 func flattenObjectWafProfileConstraintMaxHeaderLineAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxHeaderLineLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2055,27 +1704,10 @@ func flattenObjectWafProfileConstraintMaxHeaderLineMaxHeaderLine(v interface{}, 
 }
 
 func flattenObjectWafProfileConstraintMaxHeaderLineSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxHeaderLineStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2118,26 +1750,10 @@ func flattenObjectWafProfileConstraintMaxRangeSegment(v interface{}, d *schema.R
 }
 
 func flattenObjectWafProfileConstraintMaxRangeSegmentAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxRangeSegmentLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2146,27 +1762,10 @@ func flattenObjectWafProfileConstraintMaxRangeSegmentMaxRangeSegment(v interface
 }
 
 func flattenObjectWafProfileConstraintMaxRangeSegmentSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxRangeSegmentStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2209,26 +1808,10 @@ func flattenObjectWafProfileConstraintMaxUrlParam(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWafProfileConstraintMaxUrlParamAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxUrlParamLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2237,27 +1820,10 @@ func flattenObjectWafProfileConstraintMaxUrlParamMaxUrlParam(v interface{}, d *s
 }
 
 func flattenObjectWafProfileConstraintMaxUrlParamSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMaxUrlParamStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2295,51 +1861,18 @@ func flattenObjectWafProfileConstraintMethod(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectWafProfileConstraintMethodAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMethodLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMethodSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintMethodStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2382,14 +1915,6 @@ func flattenObjectWafProfileConstraintParamLength(v interface{}, d *schema.Resou
 }
 
 func flattenObjectWafProfileConstraintParamLengthAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2398,39 +1923,14 @@ func flattenObjectWafProfileConstraintParamLengthLength(v interface{}, d *schema
 }
 
 func flattenObjectWafProfileConstraintParamLengthLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintParamLengthSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintParamLengthStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2473,14 +1973,6 @@ func flattenObjectWafProfileConstraintUrlParamLength(v interface{}, d *schema.Re
 }
 
 func flattenObjectWafProfileConstraintUrlParamLengthAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2489,39 +1981,14 @@ func flattenObjectWafProfileConstraintUrlParamLengthLength(v interface{}, d *sch
 }
 
 func flattenObjectWafProfileConstraintUrlParamLengthLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintUrlParamLengthSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintUrlParamLengthStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2559,75 +2026,26 @@ func flattenObjectWafProfileConstraintVersion(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectWafProfileConstraintVersionAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintVersionLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintVersionSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileConstraintVersionStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileExternal(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2670,33 +2088,10 @@ func flattenObjectWafProfileMethod(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectWafProfileMethodDefaultAllowedMethods(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "delete",
-			2:   "get",
-			4:   "head",
-			8:   "options",
-			16:  "post",
-			32:  "put",
-			64:  "trace",
-			128: "others",
-			256: "connect",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWafProfileMethodLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2762,22 +2157,7 @@ func flattenObjectWafProfileMethodMethodPolicyAddress(v interface{}, d *schema.R
 }
 
 func flattenObjectWafProfileMethodMethodPolicyAllowedMethods(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:   "delete",
-			2:   "get",
-			4:   "head",
-			8:   "options",
-			16:  "post",
-			32:  "put",
-			64:  "trace",
-			128: "others",
-			256: "connect",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWafProfileMethodMethodPolicyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2789,39 +2169,14 @@ func flattenObjectWafProfileMethodMethodPolicyPattern(v interface{}, d *schema.R
 }
 
 func flattenObjectWafProfileMethodMethodPolicyRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileMethodSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileMethodStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -2953,51 +2308,18 @@ func flattenObjectWafProfileSignatureCustomSignature(v interface{}, d *schema.Re
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "erase",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "request",
-			1: "response",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3010,51 +2332,15 @@ func flattenObjectWafProfileSignatureCustomSignaturePattern(v interface{}, d *sc
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureCustomSignatureTarget(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			1:    "arg",
-			2:    "arg-name",
-			4:    "req-body",
-			8:    "req-cookie",
-			16:   "req-cookie-name",
-			32:   "req-filename",
-			64:   "req-header",
-			128:  "req-header-name",
-			256:  "req-raw-uri",
-			512:  "req-uri",
-			1024: "resp-body",
-			2048: "resp-hdr",
-			4096: "resp-status",
-		}
-		res := getEnumValbyBit(v, emap)
-		return res
-	}
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWafProfileSignatureDisabledSignature(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3104,15 +2390,6 @@ func flattenObjectWafProfileSignatureMainClass(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWafProfileSignatureMainClassAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "allow",
-			1: "block",
-			2: "erase",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3121,39 +2398,14 @@ func flattenObjectWafProfileSignatureMainClassId(v interface{}, d *schema.Resour
 }
 
 func flattenObjectWafProfileSignatureMainClassLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureMainClassSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileSignatureMainClassStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3282,14 +2534,6 @@ func flattenObjectWafProfileUrlAccessAccessPatternId(v interface{}, d *schema.Re
 }
 
 func flattenObjectWafProfileUrlAccessAccessPatternNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3298,14 +2542,6 @@ func flattenObjectWafProfileUrlAccessAccessPatternPattern(v interface{}, d *sche
 }
 
 func flattenObjectWafProfileUrlAccessAccessPatternRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3314,15 +2550,6 @@ func flattenObjectWafProfileUrlAccessAccessPatternSrcaddr(v interface{}, d *sche
 }
 
 func flattenObjectWafProfileUrlAccessAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "bypass",
-			1: "permit",
-			2: "block",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
@@ -3335,27 +2562,10 @@ func flattenObjectWafProfileUrlAccessId(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectWafProfileUrlAccessLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			0: "disable",
-			1: "enable",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 
 func flattenObjectWafProfileUrlAccessSeverity(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	if v != nil {
-		emap := map[int]string{
-			2: "low",
-			3: "medium",
-			4: "high",
-		}
-		res := getEnumVal(v, emap)
-		return res
-	}
 	return v
 }
 

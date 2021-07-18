@@ -164,6 +164,7 @@ func encodeData(c *FortiSDKClient, globaladom, path, method string, params *map[
 	data := make(map[string]interface{})
 	data["method"] = method
 	data["params"] = make([]map[string]interface{}, 0)
+	data["verbose"] = 1
 	data["session"] = c.Session
 
 	paramItem := make(map[string]interface{})

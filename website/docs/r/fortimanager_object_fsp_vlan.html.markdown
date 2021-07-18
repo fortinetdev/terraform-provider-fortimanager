@@ -318,7 +318,7 @@ The `ipv6` block supports:
 
 * `dhcp6_relay_type` - DHCPv6 relay type. Valid values: `regular`.
 
-* `icmp6_send_redirect` - Icmp6-Send-Redirect. Valid values: `disable`, `enable`.
+* `icmp6_send_redirect` - Enable/disable sending of ICMPv6 redirects. Valid values: `disable`, `enable`.
 
 * `interface_identifier` - IPv6 interface identifier.
 * `ip6_address` - Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
@@ -355,6 +355,8 @@ The `ipv6` block supports:
 * `nd_security_level` - Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
 * `nd_timestamp_delta` - Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
 * `nd_timestamp_fuzz` - Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
+* `ra_send_mtu` - Ra-Send-Mtu. Valid values: `disable`, `enable`.
+
 * `unique_autoconf_addr` - Enable/disable unique auto config address. Valid values: `disable`, `enable`.
 
 * `vrip6_link_local` - Link-local IPv6 address of virtual router.
@@ -567,7 +569,7 @@ The `interface` block supports:
 
 * `icmp_redirect` - Icmp-Redirect. Valid values: `disable`, `enable`.
 
-* `icmp_send_redirect` - Enable/disable ICMP send redirect. Valid values: `disable`, `enable`.
+* `icmp_send_redirect` - Enable/disable sending of ICMP redirects. Valid values: `disable`, `enable`.
 
 * `ident_accept` - Enable/disable authentication for this interface. Valid values: `disable`, `enable`.
 
@@ -719,6 +721,8 @@ The `interface` block supports:
 
 * `stp` - Enable/disable STP. Valid values: `disable`, `enable`.
 
+* `stp_ha_secondary` - Stp-Ha-Secondary. Valid values: `disable`, `enable`, `priority-adjust`.
+
 * `stp_ha_slave` - Control STP behaviour on HA slave. Valid values: `disable`, `enable`, `priority-adjust`.
 
 * `stpforward` - Enable/disable STP forwarding. Valid values: `disable`, `enable`.
@@ -745,6 +749,7 @@ The `interface` block supports:
 
 * `switch_controller_dhcp_snooping_verify_mac` - Switch controller DHCP snooping verify MAC. Valid values: `disable`, `enable`.
 
+* `switch_controller_dynamic` - Switch-Controller-Dynamic.
 * `switch_controller_feature` - Interface's purpose when assigning traffic (read only). Valid values: `none`, `default-vlan`, `quarantine`, `sniffer`, `voice`, `camera`, `rspan`, `video`, `nac`.
 
 * `switch_controller_igmp_snooping` - Switch controller IGMP snooping. Valid values: `disable`, `enable`.
@@ -843,7 +848,7 @@ The `ipv6` block supports:
 
 * `dhcp6_relay_type` - DHCPv6 relay type. Valid values: `regular`.
 
-* `icmp6_send_redirect` - Icmp6-Send-Redirect. Valid values: `disable`, `enable`.
+* `icmp6_send_redirect` - Enable/disable sending of ICMPv6 redirects. Valid values: `disable`, `enable`.
 
 * `interface_identifier` - IPv6 interface identifier.
 * `ip6_address` - Primary IPv6 address prefix, syntax: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx
@@ -880,6 +885,8 @@ The `ipv6` block supports:
 * `nd_security_level` - Neighbor discovery security level (0 - 7; 0 = least secure, default = 0).
 * `nd_timestamp_delta` - Neighbor discovery timestamp delta value (1 - 3600 sec; default = 300).
 * `nd_timestamp_fuzz` - Neighbor discovery timestamp fuzz factor (1 - 60 sec; default = 1).
+* `ra_send_mtu` - Ra-Send-Mtu. Valid values: `disable`, `enable`.
+
 * `unique_autoconf_addr` - Enable/disable unique auto config address. Valid values: `disable`, `enable`.
 
 * `vrip6_link_local` - Link-local IPv6 address of virtual router.
@@ -983,4 +990,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_fsp_vlan.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

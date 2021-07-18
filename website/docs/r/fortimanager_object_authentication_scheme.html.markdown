@@ -29,17 +29,21 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `domain_controller` - Domain controller setting.
+* `ems_device_owner` - Enable/disable SSH public-key authentication with device owner (default = disable). Valid values: `disable`, `enable`.
+
 * `fsso_agent_for_ntlm` - FSSO agent to use for NTLM authentication.
 * `fsso_guest` - Enable/disable user fsso-guest authentication (default = disable). Valid values: `disable`, `enable`.
 
 * `kerberos_keytab` - Kerberos keytab setting.
-* `method` - Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`, `saml`.
+* `method` - Authentication methods (default = basic). Valid values: `ntlm`, `basic`, `digest`, `form`, `negotiate`, `fsso`, `rsso`, `ssh-publickey`.
 
 * `name` - Authentication scheme name.
 * `negotiate_ntlm` - Enable/disable negotiate authentication for NTLM (default = disable). Valid values: `disable`, `enable`.
 
 * `require_tfa` - Enable/disable two-factor authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `saml_server` - SAML configuration.
+* `saml_timeout` - SAML authentication timeout in seconds.
 * `ssh_ca` - SSH CA name.
 * `user_database` - Authentication server to contain user information; "local" (default) or "123" (for LDAP).
 
@@ -58,4 +62,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_authentication_scheme.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

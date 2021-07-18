@@ -49,11 +49,15 @@ The following arguments are supported:
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
+* `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
+
 * `global_object` - Global Object.
 * `member` - Address objects contained within the group.
 * `name` - IPv6 address group name.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `visibility` - Enable/disable address group6 visibility in the GUI. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -64,11 +68,11 @@ The `dynamic_mapping` block supports:
 * `comment` - Comment.
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
 
-* `global_object` - Global Object.
+* `global_object` - Global-Object.
 * `member` - Address objects contained within the group.
 * `tags` - Tags.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
-* `visibility` - Visibility. Valid values: `disable`, `enable`.
+* `visibility` - Enable/disable address group6 visibility in the GUI. Valid values: `disable`, `enable`.
 
 
 The `_scope` block supports:
@@ -97,4 +101,4 @@ $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_object_firewall_addrgrp6.labelname {{name}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
--> **Hint:** The scopetype and adom here will directly inherit the scopetype and adom configuration of the provider.
+-> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.
