@@ -148,4 +148,4 @@ Check out the FortiManager provider release notes and additional information fro
 
 ## Versioning
 
-The provider can cover FortiManager 6.4 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
+The provider can cover FortiManager 6.4 to 7.0 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
