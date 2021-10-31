@@ -187,9 +187,12 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
 				Optional: true,
 				Computed: true,
+				Elem: &schema.Schema{
+					Type: schema.TypeString,
+				},
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
