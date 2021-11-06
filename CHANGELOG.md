@@ -1,5 +1,64 @@
 ## 1.4.0 (Unreleased)
 
+## 1.3.5 (Nov 5, 2021)
+
+IMPROVEMENTS:
+
+* **Update Document examples;**
+* **Fix argument type error for following resources:**
+    * fortimanager_packages_firewall_policy
+    * fortimanager_object_antivirus_profile
+    * fortimanager_object_authentication_scheme
+    * fortimanager_object_cli_templategroup
+    * fortimanager_object_dnsfilter_profile
+    * fortimanager_object_dynamic_address
+    * fortimanager_object_firewall_addrgrp
+    * fortimanager_object_firewall_addrgrp6
+    * fortimanager_object_firewall_internetservicecustomgroup
+    * fortimanager_object_firewall_internetservicegroup
+    * fortimanager_object_firewall_proxyaddrgrp
+    * fortimanager_object_firewall_schedule_group
+    * fortimanager_object_firewall_sslsshprofile
+    * fortimanager_object_firewall_vip
+    * fortimanager_object_firewall_vip46
+    * fortimanager_object_firewall_vip6
+    * fortimanager_object_firewall_vip64
+    * fortimanager_object_firewall_vipgrp
+    * fortimanager_object_firewall_vipgrp46
+    * fortimanager_object_firewall_vipgrp6
+    * fortimanager_object_firewall_vipgrp64
+    * fortimanager_object_firewall_wildcardfqdn_group
+    * fortimanager_object_switchcontroller_securitypolicy_8021x
+    * fortimanager_object_user_domaincontroller
+    * fortimanager_object_user_group
+    * fortimanager_object_user_krbkeytab
+    * fortimanager_object_user_peergrp
+    * fortimanager_object_vpn_ssl_web_portal
+    * fortimanager_object_vpnmgr_node
+    * fortimanager_object_webfilter_ftgdlocalrating
+    * fortimanager_object_webfilter_profile
+    * fortimanager_object_wirelesscontroller_hotspot20_hsprofile
+    * fortimanager_object_wirelesscontroller_vap
+    * fortimanager_object_wirelesscontroller_vapgroup
+    * fortimanager_object_wirelesscontroller_widsprofile
+    * fortimanager_object_wirelesscontroller_wtpprofile
+    * fortimanager_packages_authentication_rule
+    * fortimanager_packages_firewall_centralsnatmap
+    * fortimanager_packages_firewall_interfacepolicy
+    * fortimanager_packages_firewall_interfacepolicy6
+    * fortimanager_packages_firewall_localinpolicy
+    * fortimanager_packages_firewall_localinpolicy6
+    * fortimanager_packages_firewall_multicastpolicy
+    * fortimanager_packages_firewall_multicastpolicy6
+    * fortimanager_packages_firewall_policy46
+    * fortimanager_packages_firewall_policy64
+    * fortimanager_packages_firewall_proxypolicy
+    * fortimanager_packages_firewall_shapingpolicy
+    * fortimanager_packages_global_footer_policy
+    * fortimanager_packages_global_header_policy
+    * fortimanager_packages_firewall_dospolicy
+    * fortimanager_packages_firewall_dospolicy6
+
 ## 1.3.0 (Jul 17, 2021)
 
 IMPROVEMENTS:
