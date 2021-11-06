@@ -192,7 +192,8 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"custom_log_fields": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -287,7 +288,8 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -297,12 +299,14 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr6": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -424,7 +428,8 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"fsso_groups": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -449,7 +454,8 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"groups": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -802,7 +808,8 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -827,12 +834,14 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"src_vendor_mac": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -842,12 +851,14 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -967,7 +978,8 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"users": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1092,12 +1104,14 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"ztna_ems_tag": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"ztna_geo_tag": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1356,7 +1370,7 @@ func flattenPackagesGlobalFooterPolicyComments(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesGlobalFooterPolicyCustomLogFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyDecryptedTrafficMirror(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1432,7 +1446,7 @@ func flattenPackagesGlobalFooterPolicyDsri(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesGlobalFooterPolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1440,11 +1454,11 @@ func flattenPackagesGlobalFooterPolicyDstaddrNegate(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalFooterPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyDynamicProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1540,7 +1554,7 @@ func flattenPackagesGlobalFooterPolicyFssoAgentForNtlm(v interface{}, d *schema.
 }
 
 func flattenPackagesGlobalFooterPolicyFssoGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyGeoLocation(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1560,7 +1574,7 @@ func flattenPackagesGlobalFooterPolicyGlobalLabel(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicyGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyGtpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1840,7 +1854,7 @@ func flattenPackagesGlobalFooterPolicySendDenyPacket(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1860,11 +1874,11 @@ func flattenPackagesGlobalFooterPolicySpamfilterProfile(v interface{}, d *schema
 }
 
 func flattenPackagesGlobalFooterPolicySrcVendorMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1872,11 +1886,11 @@ func flattenPackagesGlobalFooterPolicySrcaddrNegate(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalFooterPolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicySshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1972,7 +1986,7 @@ func flattenPackagesGlobalFooterPolicyUrlCategory(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesGlobalFooterPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyUtmInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2072,11 +2086,11 @@ func flattenPackagesGlobalFooterPolicyWsso(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesGlobalFooterPolicyZtnaEmsTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyZtnaGeoTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyZtnaStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4350,7 +4364,7 @@ func expandPackagesGlobalFooterPolicyComments(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesGlobalFooterPolicyCustomLogFields(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyDecryptedTrafficMirror(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4426,7 +4440,7 @@ func expandPackagesGlobalFooterPolicyDsri(d *schema.ResourceData, v interface{},
 }
 
 func expandPackagesGlobalFooterPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4434,11 +4448,11 @@ func expandPackagesGlobalFooterPolicyDstaddrNegate(d *schema.ResourceData, v int
 }
 
 func expandPackagesGlobalFooterPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyDynamicProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4534,7 +4548,7 @@ func expandPackagesGlobalFooterPolicyFssoAgentForNtlm(d *schema.ResourceData, v 
 }
 
 func expandPackagesGlobalFooterPolicyFssoGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyGeoLocation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4554,7 +4568,7 @@ func expandPackagesGlobalFooterPolicyGlobalLabel(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalFooterPolicyGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyGtpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4834,7 +4848,7 @@ func expandPackagesGlobalFooterPolicySendDenyPacket(d *schema.ResourceData, v in
 }
 
 func expandPackagesGlobalFooterPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4854,11 +4868,11 @@ func expandPackagesGlobalFooterPolicySpamfilterProfile(d *schema.ResourceData, v
 }
 
 func expandPackagesGlobalFooterPolicySrcVendorMac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4866,11 +4880,11 @@ func expandPackagesGlobalFooterPolicySrcaddrNegate(d *schema.ResourceData, v int
 }
 
 func expandPackagesGlobalFooterPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicySshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4966,7 +4980,7 @@ func expandPackagesGlobalFooterPolicyUrlCategory(d *schema.ResourceData, v inter
 }
 
 func expandPackagesGlobalFooterPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyUtmInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5066,11 +5080,11 @@ func expandPackagesGlobalFooterPolicyWsso(d *schema.ResourceData, v interface{},
 }
 
 func expandPackagesGlobalFooterPolicyZtnaEmsTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyZtnaGeoTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicyZtnaStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

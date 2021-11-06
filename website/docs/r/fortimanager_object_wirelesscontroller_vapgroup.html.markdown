@@ -96,7 +96,7 @@ resource "fortimanager_object_wirelesscontroller_vap" "trname" {
 resource "fortimanager_object_wirelesscontroller_vapgroup" "trname" {
   comment = "This is a Terraform example"
   name    = "terr-wictl-vap-group"
-  vaps    = "terr-wictl-vap"
+  vaps    = ["terr-wictl-vap"]
   depends_on = [
     fortimanager_object_wirelesscontroller_vap.trname
   ]

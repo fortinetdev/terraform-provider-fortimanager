@@ -16,7 +16,7 @@ resource "fortimanager_object_firewall_vip" "trname1" {
   arp_reply              = "enable"
   color                  = 1
   comment                = "This is a Terraform example"
-  extintf                = "any"
+  extintf                = ["any"]
   extip                  = "192.168.1.1"
   http_redirect          = "disable"
   name                   = "terr-firewall-vip"

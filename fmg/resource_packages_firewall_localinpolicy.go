@@ -61,7 +61,8 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -76,7 +77,8 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"intf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -92,7 +94,8 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -102,7 +105,8 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -262,7 +266,7 @@ func flattenPackagesFirewallLocalInPolicyComments(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallLocalInPolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -274,7 +278,7 @@ func flattenPackagesFirewallLocalInPolicyHaMgmtIntfOnly(v interface{}, d *schema
 }
 
 func flattenPackagesFirewallLocalInPolicyIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicyPolicyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -286,7 +290,7 @@ func flattenPackagesFirewallLocalInPolicySchedule(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallLocalInPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -294,7 +298,7 @@ func flattenPackagesFirewallLocalInPolicyServiceNegate(v interface{}, d *schema.
 }
 
 func flattenPackagesFirewallLocalInPolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -470,7 +474,7 @@ func expandPackagesFirewallLocalInPolicyComments(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallLocalInPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -482,7 +486,7 @@ func expandPackagesFirewallLocalInPolicyHaMgmtIntfOnly(d *schema.ResourceData, v
 }
 
 func expandPackagesFirewallLocalInPolicyIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicyPolicyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -494,7 +498,7 @@ func expandPackagesFirewallLocalInPolicySchedule(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallLocalInPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -502,7 +506,7 @@ func expandPackagesFirewallLocalInPolicyServiceNegate(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallLocalInPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

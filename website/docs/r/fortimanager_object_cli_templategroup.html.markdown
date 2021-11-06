@@ -20,7 +20,7 @@ resource "fortimanager_object_cli_template" "trname" {
 
 resource "fortimanager_object_cli_templategroup" "trname" {
   description = "This is a Terraform example"
-  member      = "terr-cli-template"
+  member      = ["terr-cli-template"]
   name        = "terr-cli-tplt-grp"
   depends_on = [
     fortimanager_object_cli_template.trname

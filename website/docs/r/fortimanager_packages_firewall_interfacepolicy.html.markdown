@@ -18,15 +18,15 @@ resource "fortimanager_packages_firewall_interfacepolicy" "labelname" {
   av_profile_status          = "disable"
   dlp_sensor_status          = "disable"
   dsri                       = "disable"
-  dstaddr                    = "all"
+  dstaddr                    = ["all"]
   emailfilter_profile_status = "disable"
-  interface                  = "1-A14"
+  interface                  = ["1-A14"]
   ips_sensor_status          = "disable"
   logtraffic                 = "utm"
   pkg                        = "default"
   policyid                   = 1
-  service                    = "ALL"
-  srcaddr                    = "all"
+  service                    = ["ALL"]
+  srcaddr                    = ["all"]
   status                     = "enable"
   webfilter_profile_status   = "disable"
 }

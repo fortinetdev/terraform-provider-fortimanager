@@ -15,9 +15,9 @@ Configure proxy policies.
 resource "fortimanager_packages_firewall_proxypolicy" "labelname" {
   action              = "deny"
   disclaimer          = "disable"
-  dstaddr             = "all"
+  dstaddr             = ["all"]
   dstaddr_negate      = "disable"
-  dstintf             = "any"
+  dstintf             = ["any"]
   http_tunnel_auth    = "disable"
   internet_service    = "disable"
   logtraffic          = "all"
@@ -28,10 +28,10 @@ resource "fortimanager_packages_firewall_proxypolicy" "labelname" {
   profile_type        = "single"
   proxy               = "explicit-web"
   schedule            = "always"
-  service             = "webproxy"
+  service             = ["webproxy"]
   service_negate      = "disable"
   session_ttl         = 0
-  srcaddr             = "all"
+  srcaddr             = ["all"]
   srcaddr_negate      = "disable"
   ssh_policy_redirect = "disable"
   status              = "enable"

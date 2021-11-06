@@ -24,9 +24,9 @@ resource "fortimanager_packages_global_footer_policy" "labelname" {
   diffserv_forward       = "disable"
   diffserv_reverse       = "disable"
   dsri                   = "disable"
-  dstaddr                = "gall"
+  dstaddr                = ["gall"]
   dstaddr_negate         = "disable"
-  dstintf                = "any"
+  dstintf                = ["any"]
   dynamic_profile_access = []
   email_collect          = "disable"
   geoip_anycast          = "disable"
@@ -53,12 +53,12 @@ resource "fortimanager_packages_global_footer_policy" "labelname" {
   schedule                = "galways"
   schedule_timeout        = "disable"
   send_deny_packet        = "disable"
-  service                 = "gALL"
+  service                 = ["gALL"]
   service_negate          = "disable"
   session_ttl             = "0"
-  srcaddr                 = "gall"
+  srcaddr                 = ["gall"]
   srcaddr_negate          = "disable"
-  srcintf                 = "any"
+  srcintf                 = ["any"]
   status                  = "enable"
   tcp_mss_receiver        = 0
   tcp_mss_sender          = 0

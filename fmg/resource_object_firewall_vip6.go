@@ -483,7 +483,8 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Computed: true,
 			},
 			"mappedip": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1738,7 +1739,7 @@ func flattenObjectFirewallVip6LdbMethod(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallVip6Mappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVip6Mappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3654,7 +3655,7 @@ func expandObjectFirewallVip6LdbMethod(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallVip6Mappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVip6Mappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

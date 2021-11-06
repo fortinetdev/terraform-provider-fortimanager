@@ -66,7 +66,8 @@ func resourceObjectFirewallServiceGroup() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -208,7 +209,7 @@ func flattenObjectFirewallServiceGroupGlobalObject(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallServiceGroupMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallServiceGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -318,7 +319,7 @@ func expandObjectFirewallServiceGroupGlobalObject(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallServiceGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallServiceGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

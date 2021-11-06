@@ -56,7 +56,8 @@ func resourceObjectFirewallWildcardFqdnGroup() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -195,7 +196,7 @@ func flattenObjectFirewallWildcardFqdnGroupComment(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallWildcardFqdnGroupMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallWildcardFqdnGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -291,7 +292,7 @@ func expandObjectFirewallWildcardFqdnGroupComment(d *schema.ResourceData, v inte
 }
 
 func expandObjectFirewallWildcardFqdnGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallWildcardFqdnGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

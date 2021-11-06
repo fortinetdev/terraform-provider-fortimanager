@@ -15,7 +15,7 @@ Configure IPv6 virtual IP groups.
 resource "fortimanager_object_firewall_vipgrp6" "trname" {
   color    = 4
   comments = "This is a Terraform example"
-  member   = "terr-firewall-vip6"
+  member   = ["terr-firewall-vip6"]
   name     = "terr-firewall-vipgrp6"
 }
 ```

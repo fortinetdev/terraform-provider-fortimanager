@@ -17,7 +17,7 @@ resource "fortimanager_packages_authentication_rule" "labelname" {
   name     = "ss"
   pkg      = "default"
   protocol = "http"
-  srcaddr  = "all"
+  srcaddr  = ["all"]
   status   = "enable"
 }
 ```

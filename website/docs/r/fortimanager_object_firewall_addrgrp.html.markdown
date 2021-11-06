@@ -20,7 +20,7 @@ resource "fortimanager_object_firewall_address" "trname" {
 
 resource "fortimanager_object_firewall_addrgrp" "trname" {
   allow_routing = "disable"
-  member        = "terraform-tefv"
+  member        = ["terraform-tefv"]
   name          = "terraform-addrgrp4"
   depends_on = [
     fortimanager_object_firewall_address.trname

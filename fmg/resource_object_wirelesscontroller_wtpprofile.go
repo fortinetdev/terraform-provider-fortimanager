@@ -377,7 +377,8 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				},
 			},
 			"led_schedules": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -2518,7 +2519,7 @@ func flattenObjectWirelessControllerWtpProfileLbsStationLocate(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWtpProfileLedSchedules(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileLedState(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -6132,7 +6133,7 @@ func expandObjectWirelessControllerWtpProfileLbsStationLocate(d *schema.Resource
 }
 
 func expandObjectWirelessControllerWtpProfileLedSchedules(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWirelessControllerWtpProfileLedState(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

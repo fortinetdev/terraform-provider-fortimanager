@@ -51,7 +51,8 @@ func resourceObjectUserKrbKeytab() *schema.Resource {
 				Computed: true,
 			},
 			"ldap_server": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -192,7 +193,7 @@ func flattenObjectUserKrbKeytabKeytab(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenObjectUserKrbKeytabLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserKrbKeytabName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -288,7 +289,7 @@ func expandObjectUserKrbKeytabKeytab(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandObjectUserKrbKeytabLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectUserKrbKeytabName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

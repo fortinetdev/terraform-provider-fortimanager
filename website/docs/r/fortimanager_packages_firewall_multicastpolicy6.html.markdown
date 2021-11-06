@@ -15,16 +15,16 @@ Configure IPv6 multicast NAT policies.
 resource "fortimanager_packages_firewall_multicastpolicy6" "labelname" {
   action            = "accept"
   auto_asic_offload = "enable"
-  dstaddr           = "all"
-  dstintf           = "any"
+  dstaddr           = ["all"]
+  dstintf           = ["any"]
   end_port          = 65535
   fosid             = 1
   logtraffic        = "disable"
   name              = "1"
   pkg               = "default"
   protocol          = 0
-  srcaddr           = "all"
-  srcintf           = "any"
+  srcaddr           = ["all"]
+  srcintf           = ["any"]
   start_port        = 1
   status            = "enable"
 }

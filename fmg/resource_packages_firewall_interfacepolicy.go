@@ -96,12 +96,14 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"emailfilter_profile": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -111,7 +113,8 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Computed: true,
 			},
 			"interface": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -142,12 +145,14 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -335,11 +340,11 @@ func flattenPackagesFirewallInterfacePolicyDsri(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallInterfacePolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallInterfacePolicyEmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallInterfacePolicyEmailfilterProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -347,7 +352,7 @@ func flattenPackagesFirewallInterfacePolicyEmailfilterProfileStatus(v interface{
 }
 
 func flattenPackagesFirewallInterfacePolicyInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallInterfacePolicyIpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -371,11 +376,11 @@ func flattenPackagesFirewallInterfacePolicyPolicyid(v interface{}, d *schema.Res
 }
 
 func flattenPackagesFirewallInterfacePolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallInterfacePolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallInterfacePolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -669,11 +674,11 @@ func expandPackagesFirewallInterfacePolicyDsri(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallInterfacePolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallInterfacePolicyEmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallInterfacePolicyEmailfilterProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -681,7 +686,7 @@ func expandPackagesFirewallInterfacePolicyEmailfilterProfileStatus(d *schema.Res
 }
 
 func expandPackagesFirewallInterfacePolicyInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallInterfacePolicyIpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -705,11 +710,11 @@ func expandPackagesFirewallInterfacePolicyPolicyid(d *schema.ResourceData, v int
 }
 
 func expandPackagesFirewallInterfacePolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallInterfacePolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallInterfacePolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -51,7 +51,8 @@ func resourceObjectFirewallInternetServiceCustomGroup() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -176,7 +177,7 @@ func flattenObjectFirewallInternetServiceCustomGroupComment(v interface{}, d *sc
 }
 
 func flattenObjectFirewallInternetServiceCustomGroupMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallInternetServiceCustomGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -230,7 +231,7 @@ func expandObjectFirewallInternetServiceCustomGroupComment(d *schema.ResourceDat
 }
 
 func expandObjectFirewallInternetServiceCustomGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallInternetServiceCustomGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

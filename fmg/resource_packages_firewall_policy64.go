@@ -86,12 +86,14 @@ func resourcePackagesFirewallPolicy64() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -142,7 +144,8 @@ func resourcePackagesFirewallPolicy64() *schema.Resource {
 				Computed: true,
 			},
 			"poolname": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -152,17 +155,20 @@ func resourcePackagesFirewallPolicy64() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -357,11 +363,11 @@ func flattenPackagesFirewallPolicy64Comments(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicy64Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicy64Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicy64Fixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -401,7 +407,7 @@ func flattenPackagesFirewallPolicy64Policyid(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicy64Poolname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicy64Schedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -409,15 +415,15 @@ func flattenPackagesFirewallPolicy64Schedule(v interface{}, d *schema.ResourceDa
 }
 
 func flattenPackagesFirewallPolicy64Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicy64Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicy64Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallPolicy64Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -775,11 +781,11 @@ func expandPackagesFirewallPolicy64Comments(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicy64Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicy64Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicy64Fixedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -819,7 +825,7 @@ func expandPackagesFirewallPolicy64Policyid(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicy64Poolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicy64Schedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -827,15 +833,15 @@ func expandPackagesFirewallPolicy64Schedule(d *schema.ResourceData, v interface{
 }
 
 func expandPackagesFirewallPolicy64Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicy64Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicy64Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallPolicy64Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -15,7 +15,7 @@ Configure IPv6 to IPv4 virtual IP groups.
 resource "fortimanager_object_firewall_vipgrp64" "trname" {
   color    = 5
   comments = "This is a Terraform example"
-  member   = "terr-firewall-vip64"
+  member   = ["terr-firewall-vip64"]
   name     = "terr-firewall-vipgrp64"
 }
 ```

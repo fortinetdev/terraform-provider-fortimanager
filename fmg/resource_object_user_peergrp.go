@@ -46,7 +46,8 @@ func resourceObjectUserPeergrp() *schema.Resource {
 				ForceNew: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -167,7 +168,7 @@ func resourceObjectUserPeergrpRead(d *schema.ResourceData, m interface{}) error 
 }
 
 func flattenObjectUserPeergrpMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserPeergrpName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -207,7 +208,7 @@ func flattenObjectUserPeergrpFortiTestDebug(d *schema.ResourceData, fosdebugsn i
 }
 
 func expandObjectUserPeergrpMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectUserPeergrpName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

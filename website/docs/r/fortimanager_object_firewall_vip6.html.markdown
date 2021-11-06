@@ -26,7 +26,7 @@ resource "fortimanager_object_firewall_vip6" "trname" {
   http_redirect                 = "disable"
   https_cookie_secure           = "disable"
   ldb_method                    = "static"
-  mappedip                      = "2001:192:168:1::2"
+  mappedip                      = ["2001:192:168:1::2"]
   mappedport                    = "0"
   max_embryonic_connections     = 1000
   name                          = "terr-firewall-vip6"

@@ -61,7 +61,8 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -71,7 +72,8 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"intf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -87,7 +89,8 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -97,7 +100,8 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -257,7 +261,7 @@ func flattenPackagesFirewallLocalInPolicy6Comments(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallLocalInPolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicy6DstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -265,7 +269,7 @@ func flattenPackagesFirewallLocalInPolicy6DstaddrNegate(v interface{}, d *schema
 }
 
 func flattenPackagesFirewallLocalInPolicy6Intf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicy6Policyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -277,7 +281,7 @@ func flattenPackagesFirewallLocalInPolicy6Schedule(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallLocalInPolicy6Service(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicy6ServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -285,7 +289,7 @@ func flattenPackagesFirewallLocalInPolicy6ServiceNegate(v interface{}, d *schema
 }
 
 func flattenPackagesFirewallLocalInPolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallLocalInPolicy6SrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -451,7 +455,7 @@ func expandPackagesFirewallLocalInPolicy6Comments(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallLocalInPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicy6DstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -459,7 +463,7 @@ func expandPackagesFirewallLocalInPolicy6DstaddrNegate(d *schema.ResourceData, v
 }
 
 func expandPackagesFirewallLocalInPolicy6Intf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicy6Policyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -471,7 +475,7 @@ func expandPackagesFirewallLocalInPolicy6Schedule(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallLocalInPolicy6Service(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicy6ServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -479,7 +483,7 @@ func expandPackagesFirewallLocalInPolicy6ServiceNegate(d *schema.ResourceData, v
 }
 
 func expandPackagesFirewallLocalInPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallLocalInPolicy6SrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

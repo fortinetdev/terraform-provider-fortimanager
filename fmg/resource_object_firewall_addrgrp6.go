@@ -142,7 +142,8 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -492,7 +493,7 @@ func flattenObjectFirewallAddrgrp6GlobalObject(v interface{}, d *schema.Resource
 }
 
 func flattenObjectFirewallAddrgrp6Member(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddrgrp6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -885,7 +886,7 @@ func expandObjectFirewallAddrgrp6GlobalObject(d *schema.ResourceData, v interfac
 }
 
 func expandObjectFirewallAddrgrp6Member(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallAddrgrp6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -14,7 +14,7 @@ Configure local FortiGuard Web Filter local ratings.
 ```hcl
 resource "fortimanager_object_webfilter_ftgdlocalrating" "trname" {
   comment = "This is a Terraform example"
-  rating  = "0"
+  rating  = ["0"]
   status  = "enable"
   url     = "terr-webfilter-ftgd-local-rating"
 }

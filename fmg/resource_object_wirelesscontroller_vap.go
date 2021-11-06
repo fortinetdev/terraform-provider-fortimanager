@@ -1649,7 +1649,8 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Computed: true,
 			},
 			"schedule": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -4257,7 +4258,7 @@ func flattenObjectWirelessControllerVapSaePassword(v interface{}, d *schema.Reso
 }
 
 func flattenObjectWirelessControllerVapSchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerVapSecondaryWagProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -8292,7 +8293,7 @@ func expandObjectWirelessControllerVapSaePassword(d *schema.ResourceData, v inte
 }
 
 func expandObjectWirelessControllerVapSchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWirelessControllerVapSecondaryWagProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

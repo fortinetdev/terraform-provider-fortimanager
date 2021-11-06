@@ -66,12 +66,14 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -102,12 +104,14 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"srcintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -271,11 +275,11 @@ func flattenPackagesFirewallMulticastPolicy6Comments(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallMulticastPolicy6Dstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallMulticastPolicy6Dstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallMulticastPolicy6EndPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -299,11 +303,11 @@ func flattenPackagesFirewallMulticastPolicy6Protocol(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallMulticastPolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallMulticastPolicy6Srcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallMulticastPolicy6StartPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -493,11 +497,11 @@ func expandPackagesFirewallMulticastPolicy6Comments(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallMulticastPolicy6Dstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6Dstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6EndPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -521,11 +525,11 @@ func expandPackagesFirewallMulticastPolicy6Protocol(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallMulticastPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6Srcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallMulticastPolicy6StartPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

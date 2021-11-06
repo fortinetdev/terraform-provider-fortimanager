@@ -15,7 +15,7 @@ Configure service groups.
 resource "fortimanager_object_firewall_service_group" "trname" {
   color   = 1
   comment = "terraform-comment"
-  member  = "ALL"
+  member  = ["ALL"]
   name    = "terraform-tefv-group"
   proxy   = "disable"
 }

@@ -188,7 +188,8 @@ func resourceObjectUserGroup() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -597,7 +598,7 @@ func flattenObjectUserGroupMaxAccounts(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectUserGroupMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserGroupMobilePhone(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1137,7 +1138,7 @@ func expandObjectUserGroupMaxAccounts(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectUserGroupMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectUserGroupMobilePhone(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

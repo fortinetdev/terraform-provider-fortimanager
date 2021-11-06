@@ -172,7 +172,8 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Computed: true,
 			},
 			"exclude_member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -187,7 +188,8 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -596,7 +598,7 @@ func flattenObjectFirewallAddrgrpExclude(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFirewallAddrgrpExcludeMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddrgrpFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -608,7 +610,7 @@ func flattenObjectFirewallAddrgrpGlobalObject(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallAddrgrpMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddrgrpName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1104,7 +1106,7 @@ func expandObjectFirewallAddrgrpExclude(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFirewallAddrgrpExcludeMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallAddrgrpFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1116,7 +1118,7 @@ func expandObjectFirewallAddrgrpGlobalObject(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallAddrgrpMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallAddrgrpName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

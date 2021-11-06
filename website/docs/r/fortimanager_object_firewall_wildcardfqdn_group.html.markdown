@@ -21,7 +21,7 @@ resource "fortimanager_object_firewall_wildcardfqdn_custom" "trname" {
 resource "fortimanager_object_firewall_wildcardfqdn_group" "trname" {
   color   = 1
   comment = "terraform-comment"
-  member  = "terraform-tefv"
+  member  = ["terraform-tefv"]
   name    = "terraform-tefv-fqdn-grp"
   depends_on = [
     fortimanager_object_firewall_wildcardfqdn_custom.trname

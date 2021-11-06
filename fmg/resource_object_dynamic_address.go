@@ -46,7 +46,8 @@ func resourceObjectDynamicAddress() *schema.Resource {
 				ForceNew: true,
 			},
 			"default": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -195,7 +196,7 @@ func resourceObjectDynamicAddressRead(d *schema.ResourceData, m interface{}) err
 }
 
 func flattenObjectDynamicAddressDefault(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectDynamicAddressDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -320,7 +321,7 @@ func flattenObjectDynamicAddressFortiTestDebug(d *schema.ResourceData, fosdebugs
 }
 
 func expandObjectDynamicAddressDefault(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectDynamicAddressDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

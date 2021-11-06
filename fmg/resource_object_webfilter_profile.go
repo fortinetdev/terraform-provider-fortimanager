@@ -168,7 +168,8 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"exempt_quota": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -237,7 +238,8 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Computed: true,
 						},
 						"ovrd": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -356,12 +358,14 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Computed: true,
 						},
 						"ovrd_user_group": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
 						"profile": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -1038,7 +1042,7 @@ func flattenObjectWebfilterProfileFtgdWf(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectWebfilterProfileFtgdWfExemptQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileFtgdWfFilters(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1167,7 +1171,7 @@ func flattenObjectWebfilterProfileFtgdWfOptions(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWebfilterProfileFtgdWfOvrd(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileFtgdWfQuota(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1369,11 +1373,11 @@ func flattenObjectWebfilterProfileOverrideOvrdScope(v interface{}, d *schema.Res
 }
 
 func flattenObjectWebfilterProfileOverrideOvrdUserGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileOverrideProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWebfilterProfileOverrideProfileAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2453,7 +2457,7 @@ func expandObjectWebfilterProfileFtgdWf(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectWebfilterProfileFtgdWfExemptQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfFilters(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2568,7 +2572,7 @@ func expandObjectWebfilterProfileFtgdWfOptions(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWebfilterProfileFtgdWfOvrd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWebfilterProfileFtgdWfQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2751,11 +2755,11 @@ func expandObjectWebfilterProfileOverrideOvrdScope(d *schema.ResourceData, v int
 }
 
 func expandObjectWebfilterProfileOverrideOvrdUserGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWebfilterProfileOverrideProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWebfilterProfileOverrideProfileAttribute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

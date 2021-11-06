@@ -108,7 +108,8 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Computed: true,
 			},
 			"user_database": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -271,7 +272,7 @@ func flattenObjectAuthenticationSchemeSshCa(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectAuthenticationSchemeUserDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[string]interface{}) error {
@@ -465,7 +466,7 @@ func expandObjectAuthenticationSchemeSshCa(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectAuthenticationSchemeUserDatabase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -21,9 +21,9 @@ resource "fortimanager_packages_firewall_policy" "labelname" {
   diffserv_forward      = "disable"
   diffserv_reverse      = "disable"
   dsri                  = "disable"
-  dstaddr               = "all"
+  dstaddr               = ["all"]
   dstaddr_negate        = "disable"
-  dstintf               = "any"
+  dstintf               = ["any"]
   email_collect         = "disable"
   geoip_anycast         = "disable"
   geoip_match           = "physical-location"
@@ -50,12 +50,12 @@ resource "fortimanager_packages_firewall_policy" "labelname" {
   schedule                = "always"
   schedule_timeout        = "disable"
   send_deny_packet        = "disable"
-  service                 = "ALL"
+  service                 = ["ALL"]
   service_negate          = "disable"
   session_ttl             = "0"
-  srcaddr                 = "all"
+  srcaddr                 = ["all"]
   srcaddr_negate          = "disable"
-  srcintf                 = "any"
+  srcintf                 = ["any"]
   status                  = "enable"
   tcp_mss_receiver        = 0
   tcp_mss_sender          = 0

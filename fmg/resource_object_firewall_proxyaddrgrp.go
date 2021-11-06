@@ -61,7 +61,8 @@ func resourceObjectFirewallProxyAddrgrp() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -238,7 +239,7 @@ func flattenObjectFirewallProxyAddrgrpComment(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallProxyAddrgrpMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProxyAddrgrpName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -443,7 +444,7 @@ func expandObjectFirewallProxyAddrgrpComment(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallProxyAddrgrpMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallProxyAddrgrpName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

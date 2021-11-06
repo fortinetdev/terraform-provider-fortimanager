@@ -20,10 +20,10 @@ resource "fortimanager_packages_firewall_centralsnatmap" "labelname" {
   policyid  = 1
   protocol  = 33
   status    = "enable"
-  dst_addr  = "all"
-  dstintf   = "port3"
-  orig_addr = "all"
-  srcintf   = "port1"
+  dst_addr  = ["all"]
+  dstintf   = ["port3"]
+  orig_addr = ["all"]
+  srcintf   = ["port1"]
 }
 ```
 

@@ -29,7 +29,7 @@ resource "fortimanager_object_firewall_address6" "trname" {
 
 resource "fortimanager_object_firewall_addrgrp6" "trname" {
   comment = "terraform-comment"
-  member  = "terr-firewall-address6"
+  member  = ["terr-firewall-address6"]
   name    = "terraform-addrgrp6"
   depends_on = [
     fortimanager_object_firewall_address6.trname

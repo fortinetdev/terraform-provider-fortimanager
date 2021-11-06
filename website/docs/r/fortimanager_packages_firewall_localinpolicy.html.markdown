@@ -14,14 +14,14 @@ Configure user defined IPv4 local-in policies.
 ```hcl
 resource "fortimanager_packages_firewall_localinpolicy" "labelname" {
   action            = "deny"
-  dstaddr           = "all"
+  dstaddr           = ["all"]
   ha_mgmt_intf_only = "disable"
-  intf              = "1-A1"
+  intf              = ["1-A1"]
   pkg               = "default"
   policyid          = 1
   schedule          = "always"
-  service           = "ALL"
-  srcaddr           = "all"
+  service           = ["ALL"]
+  srcaddr           = ["all"]
   status            = "enable"
 }
 ```

@@ -13,7 +13,7 @@ ObjectDynamic Address
 
 ```hcl
 resource "fortimanager_object_dynamic_address" "trname" {
-  default     = "all"
+  default     = ["all"]
   description = "This is a Terraform example"
   name        = "terr-dynamic-address"
 }

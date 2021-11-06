@@ -635,7 +635,8 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Computed: true,
 						},
 						"fortiguard_category": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -655,7 +656,8 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Computed: true,
 						},
 						"wildcard_fqdn": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -1903,7 +1905,7 @@ func flattenObjectFirewallSslSshProfileSslExemptAddress6(v interface{}, d *schem
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptFortiguardCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1919,7 +1921,7 @@ func flattenObjectFirewallSslSshProfileSslExemptType(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptWildcardFqdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallSslSshProfileSslExemptionsLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3473,7 +3475,7 @@ func expandObjectFirewallSslSshProfileSslExemptAddress6(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallSslSshProfileSslExemptFortiguardCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallSslSshProfileSslExemptId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3489,7 +3491,7 @@ func expandObjectFirewallSslSshProfileSslExemptType(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallSslSshProfileSslExemptWildcardFqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallSslSshProfileSslExemptionsLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

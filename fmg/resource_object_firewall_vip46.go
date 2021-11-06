@@ -203,7 +203,8 @@ func resourceObjectFirewallVip46() *schema.Resource {
 				Computed: true,
 			},
 			"monitor": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -709,7 +710,7 @@ func flattenObjectFirewallVip46Mappedport(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallVip46Monitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVip46Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1372,7 +1373,7 @@ func expandObjectFirewallVip46Mappedport(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVip46Monitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVip46Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

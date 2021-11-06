@@ -24,7 +24,7 @@ resource "fortimanager_object_firewall_proxyaddress" "trname" {
 
 resource "fortimanager_object_firewall_proxyaddrgrp" "trname" {
   comment = "This is a Terraform example"
-  member  = "terr-firewall-proxy-address"
+  member  = ["terr-firewall-proxy-address"]
   name    = "terr-firewall-proxy-addrgrp"
   type    = "dst"
   depends_on = [

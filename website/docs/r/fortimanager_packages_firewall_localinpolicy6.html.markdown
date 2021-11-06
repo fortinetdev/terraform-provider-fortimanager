@@ -14,13 +14,13 @@ Configure user defined IPv6 local-in policies.
 ```hcl
 resource "fortimanager_packages_firewall_localinpolicy6" "labelname" {
   action   = "deny"
-  dstaddr  = "all"
-  intf     = "1-A10"
+  dstaddr  = ["all"]
+  intf     = ["1-A10"]
   pkg      = "default"
   policyid = 1
   schedule = "always"
-  service  = "ALL"
-  srcaddr  = "all"
+  service  = ["ALL"]
+  srcaddr  = ["all"]
   status   = "enable"
 }
 ```

@@ -142,7 +142,8 @@ func resourceObjectSwitchControllerSecurityPolicy8021X() *schema.Resource {
 				Computed: true,
 			},
 			"user_group": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -333,7 +334,7 @@ func flattenObjectSwitchControllerSecurityPolicy8021XSecurityMode(v interface{},
 }
 
 func flattenObjectSwitchControllerSecurityPolicy8021XUserGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectSwitchControllerSecurityPolicy8021X(d *schema.ResourceData, o map[string]interface{}) error {
@@ -625,7 +626,7 @@ func expandObjectSwitchControllerSecurityPolicy8021XSecurityMode(d *schema.Resou
 }
 
 func expandObjectSwitchControllerSecurityPolicy8021XUserGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectObjectSwitchControllerSecurityPolicy8021X(d *schema.ResourceData) (*map[string]interface{}, error) {

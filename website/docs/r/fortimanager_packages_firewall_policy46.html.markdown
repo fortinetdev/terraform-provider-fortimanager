@@ -14,8 +14,8 @@ Configure IPv4 to IPv6 policies.
 ```hcl
 resource "fortimanager_packages_firewall_policy46" "labelname" {
   action           = "deny"
-  dstaddr          = "111"
-  dstintf          = "any"
+  dstaddr          = ["111"]
+  dstintf          = ["any"]
   fixedport        = "disable"
   ippool           = "disable"
   logtraffic       = "disable"
@@ -25,9 +25,9 @@ resource "fortimanager_packages_firewall_policy46" "labelname" {
   pkg              = "default"
   policyid         = 1
   schedule         = "always"
-  service          = "ALL"
-  srcaddr          = "all"
-  srcintf          = "any"
+  service          = ["ALL"]
+  srcaddr          = ["all"]
+  srcintf          = ["any"]
   status           = "enable"
   tcp_mss_receiver = 0
   tcp_mss_sender   = 0

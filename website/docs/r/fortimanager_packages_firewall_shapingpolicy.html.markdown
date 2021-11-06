@@ -15,15 +15,15 @@ Configure shaping policies.
 resource "fortimanager_packages_firewall_shapingpolicy" "labelname" {
   diffserv_forward     = "disable"
   diffserv_reverse     = "disable"
-  dstaddr              = "all"
-  dstintf              = "any"
+  dstaddr              = ["all"]
+  dstintf              = ["any"]
   fosid                = 1
   internet_service     = "disable"
   internet_service_src = "disable"
   ip_version           = "4"
   pkg                  = "default"
-  service              = "ALL"
-  srcaddr              = "all"
+  service              = ["ALL"]
+  srcaddr              = ["all"]
   status               = "enable"
   tos                  = "0x00"
   tos_mask             = "0x00"

@@ -13,7 +13,7 @@ Configure wireless intrusion detection system (WIDS) profiles.
 
 ```hcl
 resource "fortimanager_object_wirelesscontroller_widsprofile" "trname" {
-  ap_bgscan_disable_schedules = "always"
+  ap_bgscan_disable_schedules = ["always"]
   ap_scan                     = "disable"
   asleap_attack               = "disable"
   assoc_flood_thresh          = 30

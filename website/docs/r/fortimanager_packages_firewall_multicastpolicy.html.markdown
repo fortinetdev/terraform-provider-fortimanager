@@ -16,8 +16,8 @@ resource "fortimanager_packages_firewall_multicastpolicy" "labelname" {
   action            = "accept"
   auto_asic_offload = "enable"
   dnat              = "0.0.0.0"
-  dstaddr           = "all"
-  dstintf           = "any"
+  dstaddr           = ["all"]
+  dstintf           = ["any"]
   end_port          = 0
   fosid             = 1
   logtraffic        = "disable"
@@ -25,8 +25,8 @@ resource "fortimanager_packages_firewall_multicastpolicy" "labelname" {
   pkg               = "default"
   protocol          = 0
   snat              = "disable"
-  srcaddr           = "all"
-  srcintf           = "any"
+  srcaddr           = ["all"]
+  srcintf           = ["any"]
   start_port        = 0
   status            = "enable"
 }

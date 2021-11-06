@@ -343,7 +343,8 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Computed: true,
 			},
 			"ipv6_split_tunneling_routing_address": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -555,7 +556,8 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Computed: true,
 			},
 			"split_tunneling_routing_address": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1201,7 +1203,7 @@ func flattenObjectVpnSslWebPortalIpv6SplitTunneling(v interface{}, d *schema.Res
 }
 
 func flattenObjectVpnSslWebPortalIpv6SplitTunnelingRoutingAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectVpnSslWebPortalIpv6SplitTunnelingRoutingNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1490,7 +1492,7 @@ func flattenObjectVpnSslWebPortalSplitTunneling(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectVpnSslWebPortalSplitTunnelingRoutingAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectVpnSslWebPortalSplitTunnelingRoutingNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2711,7 +2713,7 @@ func expandObjectVpnSslWebPortalIpv6SplitTunneling(d *schema.ResourceData, v int
 }
 
 func expandObjectVpnSslWebPortalIpv6SplitTunnelingRoutingAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectVpnSslWebPortalIpv6SplitTunnelingRoutingNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2980,7 +2982,7 @@ func expandObjectVpnSslWebPortalSplitTunneling(d *schema.ResourceData, v interfa
 }
 
 func expandObjectVpnSslWebPortalSplitTunnelingRoutingAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectVpnSslWebPortalSplitTunnelingRoutingNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -139,7 +139,8 @@ func resourceObjectUserDomainController() *schema.Resource {
 				Computed: true,
 			},
 			"ldap_server": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -426,7 +427,7 @@ func flattenObjectUserDomainControllerIp6(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectUserDomainControllerLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectUserDomainControllerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -823,7 +824,7 @@ func expandObjectUserDomainControllerIp6(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectUserDomainControllerLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectUserDomainControllerName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -568,7 +568,8 @@ func resourceObjectFirewallVip() *schema.Resource {
 				},
 			},
 			"extaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -804,7 +805,8 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -815,7 +817,8 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Computed: true,
 			},
 			"srcintf_filter": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -2240,7 +2243,7 @@ func flattenObjectFirewallVipDynamicMappingWebsphereServer(v interface{}, d *sch
 }
 
 func flattenObjectFirewallVipExtaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2i(v)
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVipExtintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2531,7 +2534,7 @@ func flattenObjectFirewallVipServerType(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallVipService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVipSrcFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2539,7 +2542,7 @@ func flattenObjectFirewallVipSrcFilter(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallVipSrcintfFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVipSslAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4631,7 +4634,7 @@ func expandObjectFirewallVipDynamicMappingWebsphereServer(d *schema.ResourceData
 }
 
 func expandObjectFirewallVipExtaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVipExtintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4905,7 +4908,7 @@ func expandObjectFirewallVipServerType(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallVipService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVipSrcFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4913,7 +4916,7 @@ func expandObjectFirewallVipSrcFilter(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectFirewallVipSrcintfFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVipSslAlgorithm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

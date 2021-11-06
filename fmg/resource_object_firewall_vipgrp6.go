@@ -56,7 +56,8 @@ func resourceObjectFirewallVipgrp6() *schema.Resource {
 				Computed: true,
 			},
 			"member": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -190,7 +191,7 @@ func flattenObjectFirewallVipgrp6Comments(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallVipgrp6Member(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVipgrp6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -272,7 +273,7 @@ func expandObjectFirewallVipgrp6Comments(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVipgrp6Member(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVipgrp6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

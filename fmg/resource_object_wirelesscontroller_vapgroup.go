@@ -57,7 +57,8 @@ func resourceObjectWirelessControllerVapGroup() *schema.Resource {
 				Computed: true,
 			},
 			"vaps": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -180,7 +181,7 @@ func flattenObjectWirelessControllerVapGroupName(v interface{}, d *schema.Resour
 }
 
 func flattenObjectWirelessControllerVapGroupVaps(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectWirelessControllerVapGroup(d *schema.ResourceData, o map[string]interface{}) error {
@@ -234,7 +235,7 @@ func expandObjectWirelessControllerVapGroupName(d *schema.ResourceData, v interf
 }
 
 func expandObjectWirelessControllerVapGroupVaps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectObjectWirelessControllerVapGroup(d *schema.ResourceData) (*map[string]interface{}, error) {

@@ -14,7 +14,7 @@ Schedule group configuration.
 ```hcl
 resource "fortimanager_object_firewall_schedule_group" "trname" {
   color  = 1
-  member = "none"
+  member = ["none"]
   name   = "terraform-tefv"
 }
 ```

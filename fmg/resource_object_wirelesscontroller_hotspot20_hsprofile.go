@@ -152,7 +152,8 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 				Computed: true,
 			},
 			"osu_provider": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -401,7 +402,7 @@ func flattenObjectWirelessControllerHotspot20HsProfileOperFriendlyName(v interfa
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileOsuProvider(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerHotspot20HsProfileOsuSsid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -861,7 +862,7 @@ func expandObjectWirelessControllerHotspot20HsProfileOperFriendlyName(d *schema.
 }
 
 func expandObjectWirelessControllerHotspot20HsProfileOsuProvider(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWirelessControllerHotspot20HsProfileOsuSsid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

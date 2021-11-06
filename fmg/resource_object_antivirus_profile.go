@@ -257,7 +257,8 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Computed: true,
 			},
 			"external_blocklist": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -1230,7 +1231,7 @@ func flattenObjectAntivirusProfileExtendedLog(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectAntivirusProfileExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectAntivirusProfileExternalBlocklistArchiveScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2897,7 +2898,7 @@ func expandObjectAntivirusProfileExtendedLog(d *schema.ResourceData, v interface
 }
 
 func expandObjectAntivirusProfileExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectAntivirusProfileExternalBlocklistArchiveScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

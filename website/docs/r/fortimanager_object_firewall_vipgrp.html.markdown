@@ -33,7 +33,7 @@ resource "fortimanager_object_firewall_vipgrp" "trname" {
   color     = 3
   comments  = "This is a Terraform example"
   interface = "any"
-  member    = "terr-firewall-vip"
+  member    = ["terr-firewall-vip"]
   name      = "terr-firewall-vipgrp"
   depends_on = [
     fortimanager_object_firewall_vip.trname

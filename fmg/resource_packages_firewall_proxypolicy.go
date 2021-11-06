@@ -51,7 +51,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				ForceNew: true,
 			},
 			"access_proxy": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -101,7 +102,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -111,12 +113,14 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dstaddr6": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"dstintf": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -136,7 +140,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"groups": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -222,7 +227,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"poolname": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -262,7 +268,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -277,7 +284,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -287,7 +295,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -322,7 +331,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"users": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -377,7 +387,8 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"ztna_ems_tag": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -514,7 +525,7 @@ func resourcePackagesFirewallProxyPolicyRead(d *schema.ResourceData, m interface
 }
 
 func flattenPackagesFirewallProxyPolicyAccessProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -554,7 +565,7 @@ func flattenPackagesFirewallProxyPolicyDlpSensor(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesFirewallProxyPolicyDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -562,11 +573,11 @@ func flattenPackagesFirewallProxyPolicyDstaddrNegate(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallProxyPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyEmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -582,7 +593,7 @@ func flattenPackagesFirewallProxyPolicyGlobalLabel(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallProxyPolicyGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyHttpTunnelAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -650,7 +661,7 @@ func flattenPackagesFirewallProxyPolicyPolicyid(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallProxyPolicyPoolname(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -682,7 +693,7 @@ func flattenPackagesFirewallProxyPolicySchedule(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallProxyPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -694,7 +705,7 @@ func flattenPackagesFirewallProxyPolicySessionTtl(v interface{}, d *schema.Resou
 }
 
 func flattenPackagesFirewallProxyPolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -702,7 +713,7 @@ func flattenPackagesFirewallProxyPolicySrcaddrNegate(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallProxyPolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -730,7 +741,7 @@ func flattenPackagesFirewallProxyPolicyTransparent(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallProxyPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenPackagesFirewallProxyPolicyUtmStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -774,7 +785,7 @@ func flattenPackagesFirewallProxyPolicyWebproxyProfile(v interface{}, d *schema.
 }
 
 func flattenPackagesFirewallProxyPolicyZtnaEmsTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -1450,7 +1461,7 @@ func flattenPackagesFirewallProxyPolicyFortiTestDebug(d *schema.ResourceData, fo
 }
 
 func expandPackagesFirewallProxyPolicyAccessProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1490,7 +1501,7 @@ func expandPackagesFirewallProxyPolicyDlpSensor(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallProxyPolicyDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1498,11 +1509,11 @@ func expandPackagesFirewallProxyPolicyDstaddrNegate(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallProxyPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyEmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1518,7 +1529,7 @@ func expandPackagesFirewallProxyPolicyGlobalLabel(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallProxyPolicyGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyHttpTunnelAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1586,7 +1597,7 @@ func expandPackagesFirewallProxyPolicyPolicyid(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallProxyPolicyPoolname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1618,7 +1629,7 @@ func expandPackagesFirewallProxyPolicySchedule(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallProxyPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1630,7 +1641,7 @@ func expandPackagesFirewallProxyPolicySessionTtl(d *schema.ResourceData, v inter
 }
 
 func expandPackagesFirewallProxyPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1638,7 +1649,7 @@ func expandPackagesFirewallProxyPolicySrcaddrNegate(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallProxyPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1666,7 +1677,7 @@ func expandPackagesFirewallProxyPolicyTransparent(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallProxyPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesFirewallProxyPolicyUtmStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1710,7 +1721,7 @@ func expandPackagesFirewallProxyPolicyWebproxyProfile(d *schema.ResourceData, v 
 }
 
 func expandPackagesFirewallProxyPolicyZtnaEmsTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

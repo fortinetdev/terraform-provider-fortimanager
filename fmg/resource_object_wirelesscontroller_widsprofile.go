@@ -62,7 +62,8 @@ func resourceObjectWirelessControllerWidsProfile() *schema.Resource {
 				Computed: true,
 			},
 			"ap_bgscan_disable_schedules": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -425,7 +426,7 @@ func flattenObjectWirelessControllerWidsProfileApBgscanDisableEnd(v interface{},
 }
 
 func flattenObjectWirelessControllerWidsProfileApBgscanDisableSchedules(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectWirelessControllerWidsProfileApBgscanDisableStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1151,7 +1152,7 @@ func expandObjectWirelessControllerWidsProfileApBgscanDisableEnd(d *schema.Resou
 }
 
 func expandObjectWirelessControllerWidsProfileApBgscanDisableSchedules(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectWirelessControllerWidsProfileApBgscanDisableStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

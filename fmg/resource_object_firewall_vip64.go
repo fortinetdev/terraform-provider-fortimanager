@@ -198,7 +198,8 @@ func resourceObjectFirewallVip64() *schema.Resource {
 				Computed: true,
 			},
 			"monitor": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -689,7 +690,7 @@ func flattenObjectFirewallVip64Mappedport(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectFirewallVip64Monitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVip64Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1329,7 +1330,7 @@ func expandObjectFirewallVip64Mappedport(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectFirewallVip64Monitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallVip64Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
