@@ -1,5 +1,12 @@
 ## 1.4.0 (Unreleased)
 
+## 1.3.6 (Dec 13, 2021)
+
+IMPROVEMENTS:
+
+* **Fix argument type error for following resource:**
+    * fortimanager_dvm_cmd_add_device
+
 ## 1.3.5 (Nov 5, 2021)
 
 IMPROVEMENTS:

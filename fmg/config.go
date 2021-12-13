@@ -378,3 +378,44 @@ func intBetweenWithZero(min, max int) schema.SchemaValidateFunc {
 		return warnings, errors
 	}
 }
+
+func checkVersionMatch(curVersion string, versionRequirement map[string][]string) (match bool, err error) {
+	operations := versionRequirement["operations"]
+	versions := versionRequirement["versions"]
+	for _, curRequiredVersion := range versions {
+		curCompare := compareVersion(curVersion, curRequiredVersion)
+		for _, curOperation := range operations {
+			if (curOperation == ">") && (curCompare > 0) {
+				return true, nil
+			}
+			if (curOperation == "=") && (curCompare == 0) {
+				return true, nil
+			}
+			if (curOperation == "<") && (curCompare < 0) {
+				return true, nil
+			}
+		}
+	}
+	err = fmt.Errorf("requires FortiManager version: %s, your device version is: %s.", strings.Join(operations, "")+" "+strings.Join(versions, ","), curVersion)
+	return false, err
+}
+
+func compareVersion(curVersion string, requiredVersion string) int {
+	curVersionList := strings.Split(curVersion, ".")
+	requiredVersionList := strings.Split(requiredVersion, ".")
+	minLen := len(curVersionList)
+	if len(curVersionList) > len(requiredVersionList) {
+		minLen = len(requiredVersionList)
+	}
+	for i := 0; i < minLen; i++ {
+		curVersionValue, _ := strconv.Atoi(curVersionList[i])
+		requiredVersionValue, _ := strconv.Atoi(requiredVersionList[i])
+		if curVersionValue > requiredVersionValue {
+			return 1
+		}
+		if curVersionValue < requiredVersionValue {
+			return -1
+		}
+	}
+	return 0
+}

@@ -10,6 +10,7 @@ import (
 	"net/http"
 	"net/url"
 	"strings"
+	"regexp"
 
 	"github.com/fortinetdev/forti-sdk-go/fortimanager2/auth"
 	"github.com/fortinetdev/forti-sdk-go/fortimanager2/config"
@@ -170,42 +171,53 @@ func (c *FortiSDKClient) NewRequest(method string, path string, params interface
 // GetDeviceVersion gets the version of FMG
 // It returns version as string
 func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
-	HTTPMethod := "GET"
-	path := "/api/v2/cmdb/system/global"
+	data := make(map[string]interface{})
+	data["method"] = "get"
+	data["params"] = make([]map[string]interface{}, 0)
+	data["verbose"] = 1
+	data["session"] = c.Session
 
-	req := c.NewRequest(HTTPMethod, path, nil, nil)
+	paramItem := make(map[string]interface{})
+	paramItem["url"] = "/cli/global/system/status"
+
+	v2 := make([]map[string]interface{}, 0)
+	v2 = append(v2, paramItem)
+	data["params"] = v2
+
+	locJSON, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+	bytes := bytes.NewBuffer(locJSON)
+
+	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
 	err = req.Send()
 
 	body, err := ioutil.ReadAll(req.HTTPResponse.Body)
 	req.HTTPResponse.Body.Close()
 	if err != nil || body == nil {
-		err = fmt.Errorf("cannot get response body %v", err)
+		err = fmt.Errorf("Cannot get response body %v", err)
 		return "", err
 	}
 
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
-
-
-	if result != nil {
-		if result["status"] == nil {
-			err = fmt.Errorf("cannot get the right response")
-			return "", err
-		}
-
-		if result["status"] != "success" {
-			err = fmt.Errorf("cannot get the right response")
-			return "", err
-		}
-
-		if result["version"] == nil {
-			err = fmt.Errorf("cannot get the right response")
-			return "", err
-		}
-
-		return result["version"].(string), err
+	log.Printf("Get divice version response: %v\n", string(body))
+	if result == nil {
+		err = fmt.Errorf("Cannot Unmarshal the response: %s", string(body))
+		return "", err
 	}
 
-	err = fmt.Errorf("cannot get the right response")
+	if version, ok := result["result"].([]interface{})[0].(map[string]interface{})["data"].(map[string]interface{})["Version"].(string); ok {
+		regexp, err := regexp.Compile(`v([\d.]+)`)
+		match := regexp.FindStringSubmatch(version)
+		if len(match) > 1 {
+			return match[1], err
+		}
+		err = fmt.Errorf("Cannot get the version number in response %s", string(body))
+	}
+
+	err = fmt.Errorf("Cannot get the version in response %s", string(body))
 	return "", err
 }

@@ -81,6 +81,12 @@ func resourceDvmCmdAddDevice() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"metafields_map": &schema.Schema{
+							Type:     schema.TypeMap,
+							Optional: true,
+							Computed: true,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+						},
 						"mgmt_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -162,9 +168,14 @@ func resourceDvmCmdAddDeviceUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	deviceVersion, err := c.GetDeviceVersion()
+	if err != nil {
+		log.Printf("Could not get device version: %v", err)
+	}
+
 	adomv, err := "", fmt.Errorf("")
 
-	obj, err := getObjectDvmCmdAddDevice(d)
+	obj, err := getObjectDvmCmdAddDevice(d, deviceVersion)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdAddDevice resource while getting object: %v", err)
 	}
@@ -239,6 +250,11 @@ func flattenDvmCmdAddDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 		result["metafields"] = flattenDvmCmdAddDeviceDeviceMetaFields(i["meta fields"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "metafields_map"
+	if _, ok := i["meta fields"]; ok {
+		result["metafields_map"] = flattenDvmCmdAddDeviceDeviceMetaFieldsMap(i["meta fields"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "mgmt_mode"
 	if _, ok := i["mgmt_mode"]; ok {
 		result["mgmt_mode"] = flattenDvmCmdAddDeviceDeviceMgmtMode(i["mgmt_mode"], d, pre_append)
@@ -308,6 +324,10 @@ func flattenDvmCmdAddDeviceDeviceIp(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenDvmCmdAddDeviceDeviceMetaFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmCmdAddDeviceDeviceMetaFieldsMap(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -478,7 +498,7 @@ func expandDvmCmdAddDeviceAdom(d *schema.ResourceData, v interface{}, pre string
 	return v, nil
 }
 
-func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre string, deviceVersion string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
 		return nil, nil
@@ -516,14 +536,34 @@ func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre stri
 	}
 	pre_append = pre + ".0." + "metafields"
 	if _, ok := d.GetOk(pre_append); ok {
+		requiredVersion := map[string][]string{
+			"operations": []string{"<"},
+			"versions":   []string{"6.4.7"},
+		}
+		if versionMatch, err := checkVersionMatch(deviceVersion, requiredVersion); !versionMatch {
+			err := fmt.Errorf("Argument 'metafields' %s.", err)
+			return nil, err
+		}
 		result["meta fields"], _ = expandDvmCmdAddDeviceDeviceMetaFields(d, i["metafields"], pre_append)
+	}
+	pre_append = pre + ".0." + "metafields_map"
+	if _, ok := d.GetOk(pre_append); ok {
+		requiredVersion := map[string][]string{
+			"operations": []string{">", "="},
+			"versions":   []string{"6.4.7"},
+		}
+		if versionMatch, err := checkVersionMatch(deviceVersion, requiredVersion); !versionMatch {
+			err := fmt.Errorf("Argument 'metafields_map' %s.", err)
+			return nil, err
+		}
+		result["meta fields"], _ = expandDvmCmdAddDeviceDeviceMetaFieldsMap(d, i["metafields_map"], pre_append)
 	}
 	pre_append = pre + ".0." + "mgmt_mode"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["mgmt_mode"], _ = expandDvmCmdAddDeviceDeviceMgmtMode(d, i["mgmt_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "mr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOkExists(pre_append); ok {
 		result["mr"], _ = expandDvmCmdAddDeviceDeviceMr(d, i["mr"], pre_append)
 	}
 	pre_append = pre + ".0." + "name"
@@ -579,6 +619,10 @@ func expandDvmCmdAddDeviceDeviceIp(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandDvmCmdAddDeviceDeviceMetaFields(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmCmdAddDeviceDeviceMetaFieldsMap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -658,7 +702,7 @@ func expandDvmCmdAddDeviceGroupsVdom(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
-func getObjectDvmCmdAddDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmCmdAddDevice(d *schema.ResourceData, deviceVersion string) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok {
@@ -671,7 +715,7 @@ func getObjectDvmCmdAddDevice(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("device"); ok {
-		t, err := expandDvmCmdAddDeviceDevice(d, v, "device")
+		t, err := expandDvmCmdAddDeviceDevice(d, v, "device", deviceVersion)
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
