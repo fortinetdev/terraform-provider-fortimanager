@@ -303,6 +303,10 @@ func flattenObjectUserSamlUserName(v interface{}, d *schema.ResourceData, pre st
 func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("adfs_claim", flattenObjectUserSamlAdfsClaim(o["adfs-claim"], d, "adfs_claim")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adfs-claim"], "ObjectUserSaml-AdfsClaim"); ok {
 			if err = d.Set("adfs_claim", vv); err != nil {

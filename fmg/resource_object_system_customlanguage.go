@@ -186,6 +186,10 @@ func flattenObjectSystemCustomLanguageName(v interface{}, d *schema.ResourceData
 func refreshObjectObjectSystemCustomLanguage(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comments", flattenObjectSystemCustomLanguageComments(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "ObjectSystemCustomLanguage-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {

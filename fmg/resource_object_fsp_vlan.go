@@ -9470,6 +9470,14 @@ func flattenObjectFspVlanVlanid(v interface{}, d *schema.ResourceData, pre strin
 func refreshObjectObjectFspVlan(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("_dhcp_status", flattenObjectFspVlanDhcpStatus(o["_dhcp-status"], d, "_dhcp_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_dhcp-status"], "ObjectFspVlan-DhcpStatus"); ok {
 			if err = d.Set("_dhcp_status", vv); err != nil {

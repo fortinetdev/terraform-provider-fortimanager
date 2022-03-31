@@ -285,6 +285,10 @@ func flattenObjectFirewallShaperTrafficShaperPriority(v interface{}, d *schema.R
 func refreshObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("bandwidth_unit", flattenObjectFirewallShaperTrafficShaperBandwidthUnit(o["bandwidth-unit"], d, "bandwidth_unit")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bandwidth-unit"], "ObjectFirewallShaperTrafficShaper-BandwidthUnit"); ok {
 			if err = d.Set("bandwidth_unit", vv); err != nil {

@@ -375,6 +375,14 @@ func flattenObjectFirewallAddress6TemplateSubnetSegmentCount(v interface{}, d *s
 func refreshObjectObjectFirewallAddress6Template(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("_image_base64", flattenObjectFirewallAddress6TemplateImageBase64(o["_image-base64"], d, "_image_base64")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_image-base64"], "ObjectFirewallAddress6Template-ImageBase64"); ok {
 			if err = d.Set("_image_base64", vv); err != nil {

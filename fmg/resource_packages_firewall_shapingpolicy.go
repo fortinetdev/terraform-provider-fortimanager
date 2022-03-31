@@ -580,6 +580,10 @@ func flattenPackagesFirewallShapingPolicyUsers(v interface{}, d *schema.Resource
 func refreshObjectPackagesFirewallShapingPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("app_category", flattenPackagesFirewallShapingPolicyAppCategory(o["app-category"], d, "app_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["app-category"], "PackagesFirewallShapingPolicy-AppCategory"); ok {
 			if err = d.Set("app_category", vv); err != nil {

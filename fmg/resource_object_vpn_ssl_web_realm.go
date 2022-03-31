@@ -231,6 +231,10 @@ func flattenObjectVpnSslWebRealmVirtualHostOnly(v interface{}, d *schema.Resourc
 func refreshObjectObjectVpnSslWebRealm(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("login_page", flattenObjectVpnSslWebRealmLoginPage(o["login-page"], d, "login_page")); err != nil {
 		if vv, ok := fortiAPIPatch(o["login-page"], "ObjectVpnSslWebRealm-LoginPage"); ok {
 			if err = d.Set("login_page", vv); err != nil {

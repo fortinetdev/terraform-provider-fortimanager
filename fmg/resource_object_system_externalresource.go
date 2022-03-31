@@ -286,6 +286,10 @@ func flattenObjectSystemExternalResourceUuid(v interface{}, d *schema.ResourceDa
 func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("category", flattenObjectSystemExternalResourceCategory(o["category"], d, "category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["category"], "ObjectSystemExternalResource-Category"); ok {
 			if err = d.Set("category", vv); err != nil {

@@ -535,6 +535,10 @@ func flattenSystemSamlStatusSSa(v interface{}, d *schema.ResourceData, pre strin
 func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("acs_url", flattenSystemSamlAcsUrlSSa(o["acs-url"], d, "acs_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["acs-url"], "SystemSaml-AcsUrl"); ok {
 			if err = d.Set("acs_url", vv); err != nil {

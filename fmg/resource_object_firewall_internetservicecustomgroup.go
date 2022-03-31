@@ -187,6 +187,10 @@ func flattenObjectFirewallInternetServiceCustomGroupName(v interface{}, d *schem
 func refreshObjectObjectFirewallInternetServiceCustomGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectFirewallInternetServiceCustomGroupComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectFirewallInternetServiceCustomGroup-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

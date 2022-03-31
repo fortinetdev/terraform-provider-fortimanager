@@ -214,6 +214,10 @@ func flattenObjectWanoptAuthGroupPsk(v interface{}, d *schema.ResourceData, pre 
 func refreshObjectObjectWanoptAuthGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("auth_method", flattenObjectWanoptAuthGroupAuthMethod(o["auth-method"], d, "auth_method")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-method"], "ObjectWanoptAuthGroup-AuthMethod"); ok {
 			if err = d.Set("auth_method", vv); err != nil {

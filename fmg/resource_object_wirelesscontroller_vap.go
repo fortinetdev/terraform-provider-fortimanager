@@ -4395,6 +4395,14 @@ func flattenObjectWirelessControllerVapVoiceEnterprise(v interface{}, d *schema.
 func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("_centmgmt", flattenObjectWirelessControllerVapCentmgmt(o["_centmgmt"], d, "_centmgmt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_centmgmt"], "ObjectWirelessControllerVap-Centmgmt"); ok {
 			if err = d.Set("_centmgmt", vv); err != nil {

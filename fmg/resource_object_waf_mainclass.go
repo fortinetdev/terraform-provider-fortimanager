@@ -177,6 +177,10 @@ func flattenObjectWafMainClassName(v interface{}, d *schema.ResourceData, pre st
 func refreshObjectObjectWafMainClass(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("fosid", flattenObjectWafMainClassId(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectWafMainClass-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {

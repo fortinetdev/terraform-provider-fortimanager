@@ -297,6 +297,10 @@ func flattenObjectUserExchangeUsername(v interface{}, d *schema.ResourceData, pr
 func refreshObjectObjectUserExchange(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("addr_type", flattenObjectUserExchangeAddrType(o["addr-type"], d, "addr_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["addr-type"], "ObjectUserExchange-AddrType"); ok {
 			if err = d.Set("addr_type", vv); err != nil {

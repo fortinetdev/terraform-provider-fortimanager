@@ -2118,6 +2118,14 @@ func flattenObjectFirewallSslSshProfileWhitelist(v interface{}, d *schema.Resour
 func refreshObjectObjectFirewallSslSshProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("allowlist", flattenObjectFirewallSslSshProfileAllowlist(o["allowlist"], d, "allowlist")); err != nil {
 		if vv, ok := fortiAPIPatch(o["allowlist"], "ObjectFirewallSslSshProfile-Allowlist"); ok {
 			if err = d.Set("allowlist", vv); err != nil {

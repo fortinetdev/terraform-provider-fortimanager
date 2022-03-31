@@ -734,6 +734,10 @@ func flattenSystemAdminProfileWebFilter(v interface{}, d *schema.ResourceData, p
 func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("adom_lock", flattenSystemAdminProfileAdomLock(o["adom-lock"], d, "adom_lock")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-lock"], "SystemAdminProfile-AdomLock"); ok {
 			if err = d.Set("adom_lock", vv); err != nil {

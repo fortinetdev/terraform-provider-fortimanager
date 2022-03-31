@@ -177,6 +177,10 @@ func flattenObjectFirewallTrafficClassClassName(v interface{}, d *schema.Resourc
 func refreshObjectObjectFirewallTrafficClass(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("class_id", flattenObjectFirewallTrafficClassClassId(o["class-id"], d, "class_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["class-id"], "ObjectFirewallTrafficClass-ClassId"); ok {
 			if err = d.Set("class_id", vv); err != nil {

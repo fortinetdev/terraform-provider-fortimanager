@@ -205,6 +205,10 @@ func flattenObjectFirewallSshLocalCaSource(v interface{}, d *schema.ResourceData
 func refreshObjectObjectFirewallSshLocalCa(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("name", flattenObjectFirewallSshLocalCaName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallSshLocalCa-Name"); ok {
 			if err = d.Set("name", vv); err != nil {

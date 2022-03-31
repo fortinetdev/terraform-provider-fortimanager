@@ -258,6 +258,10 @@ func flattenObjectVpnCertificateCaSslInspectionTrusted(v interface{}, d *schema.
 func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("_private_key", flattenObjectVpnCertificateCaPrivateKey(o["_private_key"], d, "_private_key")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_private_key"], "ObjectVpnCertificateCa-PrivateKey"); ok {
 			if err = d.Set("_private_key", vv); err != nil {

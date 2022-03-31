@@ -222,6 +222,10 @@ func flattenObjectExtenderControllerTemplateName(v interface{}, d *schema.Resour
 func refreshObjectObjectExtenderControllerTemplate(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("dataplan", flattenObjectExtenderControllerTemplateDataplan(o["dataplan"], d, "dataplan")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dataplan"], "ObjectExtenderControllerTemplate-Dataplan"); ok {
 			if err = d.Set("dataplan", vv); err != nil {

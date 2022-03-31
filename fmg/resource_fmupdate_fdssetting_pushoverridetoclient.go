@@ -198,6 +198,10 @@ func flattenFmupdateFdsSettingPushOverrideToClientStatusFfpb(v interface{}, d *s
 func refreshObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("announce_ip", flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(o["announce-ip"], d, "announce_ip")); err != nil {
 			if vv, ok := fortiAPIPatch(o["announce-ip"], "FmupdateFdsSettingPushOverrideToClient-AnnounceIp"); ok {

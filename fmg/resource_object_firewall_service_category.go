@@ -195,6 +195,10 @@ func flattenObjectFirewallServiceCategoryName(v interface{}, d *schema.ResourceD
 func refreshObjectObjectFirewallServiceCategory(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectFirewallServiceCategoryComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectFirewallServiceCategory-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

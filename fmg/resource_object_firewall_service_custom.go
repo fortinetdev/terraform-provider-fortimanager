@@ -413,6 +413,10 @@ func flattenObjectFirewallServiceCustomVisibility(v interface{}, d *schema.Resou
 func refreshObjectObjectFirewallServiceCustom(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("app_category", flattenObjectFirewallServiceCustomAppCategory(o["app-category"], d, "app_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["app-category"], "ObjectFirewallServiceCustom-AppCategory"); ok {
 			if err = d.Set("app_category", vv); err != nil {

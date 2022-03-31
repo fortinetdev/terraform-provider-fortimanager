@@ -303,6 +303,14 @@ func flattenObjectDynamicCertificateLocalName(v interface{}, d *schema.ResourceD
 func refreshObjectObjectDynamicCertificateLocal(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("description", flattenObjectDynamicCertificateLocalDescription(o["description"], d, "description")); err != nil {
 		if vv, ok := fortiAPIPatch(o["description"], "ObjectDynamicCertificateLocal-Description"); ok {
 			if err = d.Set("description", vv); err != nil {

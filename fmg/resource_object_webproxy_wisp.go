@@ -222,6 +222,10 @@ func flattenObjectWebProxyWispTimeout(v interface{}, d *schema.ResourceData, pre
 func refreshObjectObjectWebProxyWisp(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectWebProxyWispComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectWebProxyWisp-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

@@ -204,6 +204,10 @@ func flattenObjectSwitchControllerQosQosPolicyTrustIpDscpMap(v interface{}, d *s
 func refreshObjectObjectSwitchControllerQosQosPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("default_cos", flattenObjectSwitchControllerQosQosPolicyDefaultCos(o["default-cos"], d, "default_cos")); err != nil {
 		if vv, ok := fortiAPIPatch(o["default-cos"], "ObjectSwitchControllerQosQosPolicy-DefaultCos"); ok {
 			if err = d.Set("default_cos", vv); err != nil {

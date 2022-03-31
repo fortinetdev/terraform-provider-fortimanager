@@ -645,6 +645,14 @@ func flattenObjectIpsSensorScanBotnetConnections(v interface{}, d *schema.Resour
 func refreshObjectObjectIpsSensor(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("block_malicious_url", flattenObjectIpsSensorBlockMaliciousUrl(o["block-malicious-url"], d, "block_malicious_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["block-malicious-url"], "ObjectIpsSensor-BlockMaliciousUrl"); ok {
 			if err = d.Set("block_malicious_url", vv); err != nil {

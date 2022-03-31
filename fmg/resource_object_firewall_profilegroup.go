@@ -321,6 +321,10 @@ func flattenObjectFirewallProfileGroupWebfilterProfile(v interface{}, d *schema.
 func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("application_list", flattenObjectFirewallProfileGroupApplicationList(o["application-list"], d, "application_list")); err != nil {
 		if vv, ok := fortiAPIPatch(o["application-list"], "ObjectFirewallProfileGroup-ApplicationList"); ok {
 			if err = d.Set("application_list", vv); err != nil {

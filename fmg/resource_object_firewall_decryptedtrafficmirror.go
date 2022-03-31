@@ -205,6 +205,10 @@ func flattenObjectFirewallDecryptedTrafficMirrorTrafficType(v interface{}, d *sc
 func refreshObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("dstmac", flattenObjectFirewallDecryptedTrafficMirrorDstmac(o["dstmac"], d, "dstmac")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstmac"], "ObjectFirewallDecryptedTrafficMirror-Dstmac"); ok {
 			if err = d.Set("dstmac", vv); err != nil {

@@ -240,6 +240,10 @@ func flattenObjectWirelessControllerHotspot20H2QpWanMetricUplinkSpeed(v interfac
 func refreshObjectObjectWirelessControllerHotspot20H2QpWanMetric(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("downlink_load", flattenObjectWirelessControllerHotspot20H2QpWanMetricDownlinkLoad(o["downlink-load"], d, "downlink_load")); err != nil {
 		if vv, ok := fortiAPIPatch(o["downlink-load"], "ObjectWirelessControllerHotspot20H2QpWanMetric-DownlinkLoad"); ok {
 			if err = d.Set("downlink_load", vv); err != nil {

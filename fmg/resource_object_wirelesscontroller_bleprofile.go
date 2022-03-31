@@ -277,6 +277,10 @@ func flattenObjectWirelessControllerBleProfileTxpower(v interface{}, d *schema.R
 func refreshObjectObjectWirelessControllerBleProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("advertising", flattenObjectWirelessControllerBleProfileAdvertising(o["advertising"], d, "advertising")); err != nil {
 		if vv, ok := fortiAPIPatch(o["advertising"], "ObjectWirelessControllerBleProfile-Advertising"); ok {
 			if err = d.Set("advertising", vv); err != nil {

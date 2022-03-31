@@ -240,6 +240,10 @@ func flattenObjectWirelessControllerWagProfileWagPort(v interface{}, d *schema.R
 func refreshObjectObjectWirelessControllerWagProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectWirelessControllerWagProfileComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectWirelessControllerWagProfile-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

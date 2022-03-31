@@ -824,6 +824,10 @@ func flattenObjectWanoptProfileTransparent(v interface{}, d *schema.ResourceData
 func refreshObjectObjectWanoptProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("auth_group", flattenObjectWanoptProfileAuthGroup(o["auth-group"], d, "auth_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-group"], "ObjectWanoptProfile-AuthGroup"); ok {
 			if err = d.Set("auth_group", vv); err != nil {

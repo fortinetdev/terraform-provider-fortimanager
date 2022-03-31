@@ -177,6 +177,10 @@ func flattenObjectWanoptPeerPeerHostId(v interface{}, d *schema.ResourceData, pr
 func refreshObjectObjectWanoptPeer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("ip", flattenObjectWanoptPeerIp(o["ip"], d, "ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip"], "ObjectWanoptPeer-Ip"); ok {
 			if err = d.Set("ip", vv); err != nil {

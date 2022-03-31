@@ -340,6 +340,10 @@ func flattenObjectSwitchControllerSecurityPolicy8021XUserGroup(v interface{}, d 
 func refreshObjectObjectSwitchControllerSecurityPolicy8021X(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("auth_fail_vlan", flattenObjectSwitchControllerSecurityPolicy8021XAuthFailVlan(o["auth-fail-vlan"], d, "auth_fail_vlan")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-fail-vlan"], "ObjectSwitchControllerSecurityPolicy8021X-AuthFailVlan"); ok {
 			if err = d.Set("auth_fail_vlan", vv); err != nil {

@@ -231,6 +231,10 @@ func flattenSystemLogRatelimitSystemRatelimitSLR(v interface{}, d *schema.Resour
 func refreshObjectSystemLogRatelimit(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("device", flattenSystemLogRatelimitDeviceSLR(o["device"], d, "device")); err != nil {
 			if vv, ok := fortiAPIPatch(o["device"], "SystemLogRatelimit-Device"); ok {

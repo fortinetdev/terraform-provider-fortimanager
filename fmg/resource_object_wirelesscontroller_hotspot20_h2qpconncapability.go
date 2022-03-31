@@ -267,6 +267,10 @@ func flattenObjectWirelessControllerHotspot20H2QpConnCapabilityVoipUdpPort(v int
 func refreshObjectObjectWirelessControllerHotspot20H2QpConnCapability(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("esp_port", flattenObjectWirelessControllerHotspot20H2QpConnCapabilityEspPort(o["esp-port"], d, "esp_port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["esp-port"], "ObjectWirelessControllerHotspot20H2QpConnCapability-EspPort"); ok {
 			if err = d.Set("esp_port", vv); err != nil {

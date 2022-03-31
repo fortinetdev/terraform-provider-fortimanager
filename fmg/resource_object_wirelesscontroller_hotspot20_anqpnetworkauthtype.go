@@ -186,6 +186,10 @@ func flattenObjectWirelessControllerHotspot20AnqpNetworkAuthTypeUrl(v interface{
 func refreshObjectObjectWirelessControllerHotspot20AnqpNetworkAuthType(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("auth_type", flattenObjectWirelessControllerHotspot20AnqpNetworkAuthTypeAuthType(o["auth-type"], d, "auth_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-type"], "ObjectWirelessControllerHotspot20AnqpNetworkAuthType-AuthType"); ok {
 			if err = d.Set("auth_type", vv); err != nil {

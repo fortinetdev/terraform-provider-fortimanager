@@ -204,6 +204,10 @@ func flattenObjectUserPxgridStatus(v interface{}, d *schema.ResourceData, pre st
 func refreshObjectObjectUserPxgrid(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("ca_cert", flattenObjectUserPxgridCaCert(o["ca-cert"], d, "ca_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ca-cert"], "ObjectUserPxgrid-CaCert"); ok {
 			if err = d.Set("ca_cert", vv); err != nil {

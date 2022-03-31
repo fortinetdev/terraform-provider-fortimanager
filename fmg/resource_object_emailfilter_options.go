@@ -141,6 +141,10 @@ func flattenObjectEmailfilterOptionsDnsTimeout(v interface{}, d *schema.Resource
 func refreshObjectObjectEmailfilterOptions(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("dns_timeout", flattenObjectEmailfilterOptionsDnsTimeout(o["dns-timeout"], d, "dns_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dns-timeout"], "ObjectEmailfilterOptions-DnsTimeout"); ok {
 			if err = d.Set("dns_timeout", vv); err != nil {

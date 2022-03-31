@@ -159,6 +159,10 @@ func flattenObjectEmailfilterFortishieldSpamSubmitTxt2Htm(v interface{}, d *sche
 func refreshObjectObjectEmailfilterFortishield(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("spam_submit_force", flattenObjectEmailfilterFortishieldSpamSubmitForce(o["spam-submit-force"], d, "spam_submit_force")); err != nil {
 		if vv, ok := fortiAPIPatch(o["spam-submit-force"], "ObjectEmailfilterFortishield-SpamSubmitForce"); ok {
 			if err = d.Set("spam_submit_force", vv); err != nil {

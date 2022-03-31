@@ -249,6 +249,10 @@ func flattenObjectFirewallShaperPerIpShaperName(v interface{}, d *schema.Resourc
 func refreshObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("bandwidth_unit", flattenObjectFirewallShaperPerIpShaperBandwidthUnit(o["bandwidth-unit"], d, "bandwidth_unit")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bandwidth-unit"], "ObjectFirewallShaperPerIpShaper-BandwidthUnit"); ok {
 			if err = d.Set("bandwidth_unit", vv); err != nil {

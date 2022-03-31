@@ -2096,6 +2096,10 @@ func flattenObjectAntivirusProfileSshQuarantine(v interface{}, d *schema.Resourc
 func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("analytics_accept_filetype", flattenObjectAntivirusProfileAnalyticsAcceptFiletype(o["analytics-accept-filetype"], d, "analytics_accept_filetype")); err != nil {
 		if vv, ok := fortiAPIPatch(o["analytics-accept-filetype"], "ObjectAntivirusProfile-AnalyticsAcceptFiletype"); ok {
 			if err = d.Set("analytics_accept_filetype", vv); err != nil {

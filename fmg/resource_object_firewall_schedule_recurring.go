@@ -223,6 +223,10 @@ func flattenObjectFirewallScheduleRecurringStart(v interface{}, d *schema.Resour
 func refreshObjectObjectFirewallScheduleRecurring(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("color", flattenObjectFirewallScheduleRecurringColor(o["color"], d, "color")); err != nil {
 		if vv, ok := fortiAPIPatch(o["color"], "ObjectFirewallScheduleRecurring-Color"); ok {
 			if err = d.Set("color", vv); err != nil {

@@ -224,6 +224,10 @@ func flattenSystemWorkflowApprovalMatrixNotify(v interface{}, d *schema.Resource
 func refreshObjectSystemWorkflowApprovalMatrix(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("adom_name", flattenSystemWorkflowApprovalMatrixAdomName(o["adom-name"], d, "adom_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom-name"], "SystemWorkflowApprovalMatrix-AdomName"); ok {
 			if err = d.Set("adom_name", vv); err != nil {

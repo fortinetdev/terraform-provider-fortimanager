@@ -204,6 +204,10 @@ func flattenDvmdbGroupType(v interface{}, d *schema.ResourceData, pre string) in
 func refreshObjectDvmdbGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("desc", flattenDvmdbGroupDesc(o["desc"], d, "desc")); err != nil {
 		if vv, ok := fortiAPIPatch(o["desc"], "DvmdbGroup-Desc"); ok {
 			if err = d.Set("desc", vv); err != nil {

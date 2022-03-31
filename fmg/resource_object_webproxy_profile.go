@@ -425,6 +425,14 @@ func flattenObjectWebProxyProfileStripEncoding(v interface{}, d *schema.Resource
 func refreshObjectObjectWebProxyProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("header_client_ip", flattenObjectWebProxyProfileHeaderClientIp(o["header-client-ip"], d, "header_client_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["header-client-ip"], "ObjectWebProxyProfile-HeaderClientIp"); ok {
 			if err = d.Set("header_client_ip", vv); err != nil {

@@ -2095,6 +2095,14 @@ func flattenObjectUserRadiusUsernameCaseSensitive(v interface{}, d *schema.Resou
 func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("accounting_server", flattenObjectUserRadiusAccountingServer(o["accounting-server"], d, "accounting_server")); err != nil {
 			if vv, ok := fortiAPIPatch(o["accounting-server"], "ObjectUserRadius-AccountingServer"); ok {

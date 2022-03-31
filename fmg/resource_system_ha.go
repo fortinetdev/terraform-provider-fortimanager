@@ -284,6 +284,10 @@ func flattenSystemHaPeerStatusSha(v interface{}, d *schema.ResourceData, pre str
 func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("clusterid", flattenSystemHaClusteridSha(o["clusterid"], d, "clusterid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["clusterid"], "SystemHa-Clusterid"); ok {
 			if err = d.Set("clusterid", vv); err != nil {

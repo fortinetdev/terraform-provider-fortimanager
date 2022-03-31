@@ -465,6 +465,14 @@ func flattenObjectUserDomainControllerUsername(v interface{}, d *schema.Resource
 func refreshObjectObjectUserDomainController(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("ad_mode", flattenObjectUserDomainControllerAdMode(o["ad-mode"], d, "ad_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ad-mode"], "ObjectUserDomainController-AdMode"); ok {
 			if err = d.Set("ad_mode", vv); err != nil {

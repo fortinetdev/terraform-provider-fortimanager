@@ -297,6 +297,10 @@ func flattenObjectFirewallInternetServiceSldId(v interface{}, d *schema.Resource
 func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("city", flattenObjectFirewallInternetServiceCity(o["city"], d, "city")); err != nil {
 		if vv, ok := fortiAPIPatch(o["city"], "ObjectFirewallInternetService-City"); ok {
 			if err = d.Set("city", vv); err != nil {

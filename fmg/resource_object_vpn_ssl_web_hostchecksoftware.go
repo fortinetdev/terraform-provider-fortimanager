@@ -335,6 +335,14 @@ func flattenObjectVpnSslWebHostCheckSoftwareVersion(v interface{}, d *schema.Res
 func refreshObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("check_item_list", flattenObjectVpnSslWebHostCheckSoftwareCheckItemList(o["check-item-list"], d, "check_item_list")); err != nil {
 			if vv, ok := fortiAPIPatch(o["check-item-list"], "ObjectVpnSslWebHostCheckSoftware-CheckItemList"); ok {

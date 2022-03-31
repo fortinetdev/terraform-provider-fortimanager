@@ -573,6 +573,14 @@ func flattenObjectUserTacacsTertiaryServer(v interface{}, d *schema.ResourceData
 func refreshObjectObjectUserTacacs(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("authen_type", flattenObjectUserTacacsAuthenType(o["authen-type"], d, "authen_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["authen-type"], "ObjectUserTacacs-AuthenType"); ok {
 			if err = d.Set("authen_type", vv); err != nil {

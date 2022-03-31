@@ -306,6 +306,10 @@ func flattenObjectCertificateTemplateType(v interface{}, d *schema.ResourceData,
 func refreshObjectObjectCertificateTemplate(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("city", flattenObjectCertificateTemplateCity(o["city"], d, "city")); err != nil {
 		if vv, ok := fortiAPIPatch(o["city"], "ObjectCertificateTemplate-City"); ok {
 			if err = d.Set("city", vv); err != nil {

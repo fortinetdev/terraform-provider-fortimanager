@@ -231,6 +231,10 @@ func flattenFmupdateServerAccessPrioritiesWebSpamFsa(v interface{}, d *schema.Re
 func refreshObjectFmupdateServerAccessPriorities(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("access_public", flattenFmupdateServerAccessPrioritiesAccessPublicFsa(o["access-public"], d, "access_public")); err != nil {
 		if vv, ok := fortiAPIPatch(o["access-public"], "FmupdateServerAccessPriorities-AccessPublic"); ok {
 			if err = d.Set("access_public", vv); err != nil {

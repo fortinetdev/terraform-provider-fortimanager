@@ -222,6 +222,10 @@ func flattenObjectVpnCertificateOcspServerUrl(v interface{}, d *schema.ResourceD
 func refreshObjectObjectVpnCertificateOcspServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("cert", flattenObjectVpnCertificateOcspServerCert(o["cert"], d, "cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cert"], "ObjectVpnCertificateOcspServer-Cert"); ok {
 			if err = d.Set("cert", vv); err != nil {

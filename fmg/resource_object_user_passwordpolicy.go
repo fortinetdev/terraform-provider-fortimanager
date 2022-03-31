@@ -195,6 +195,10 @@ func flattenObjectUserPasswordPolicyWarnDays(v interface{}, d *schema.ResourceDa
 func refreshObjectObjectUserPasswordPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("expire_days", flattenObjectUserPasswordPolicyExpireDays(o["expire-days"], d, "expire_days")); err != nil {
 		if vv, ok := fortiAPIPatch(o["expire-days"], "ObjectUserPasswordPolicy-ExpireDays"); ok {
 			if err = d.Set("expire_days", vv); err != nil {

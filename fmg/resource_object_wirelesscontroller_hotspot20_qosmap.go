@@ -348,6 +348,14 @@ func flattenObjectWirelessControllerHotspot20QosMapName(v interface{}, d *schema
 func refreshObjectObjectWirelessControllerHotspot20QosMap(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("dscp_except", flattenObjectWirelessControllerHotspot20QosMapDscpExcept(o["dscp-except"], d, "dscp_except")); err != nil {
 			if vv, ok := fortiAPIPatch(o["dscp-except"], "ObjectWirelessControllerHotspot20QosMap-DscpExcept"); ok {

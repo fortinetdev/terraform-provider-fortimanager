@@ -326,6 +326,10 @@ func flattenPackagesAuthenticationRuleWebPortal(v interface{}, d *schema.Resourc
 func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("active_auth_method", flattenPackagesAuthenticationRuleActiveAuthMethod(o["active-auth-method"], d, "active_auth_method")); err != nil {
 		if vv, ok := fortiAPIPatch(o["active-auth-method"], "PackagesAuthenticationRule-ActiveAuthMethod"); ok {
 			if err = d.Set("active_auth_method", vv); err != nil {

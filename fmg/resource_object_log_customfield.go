@@ -186,6 +186,10 @@ func flattenObjectLogCustomFieldValue(v interface{}, d *schema.ResourceData, pre
 func refreshObjectObjectLogCustomField(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("fosid", flattenObjectLogCustomFieldId(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectLogCustomField-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {

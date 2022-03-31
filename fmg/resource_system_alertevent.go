@@ -342,6 +342,10 @@ func flattenSystemAlertEventSeverityLevelLogs(v interface{}, d *schema.ResourceD
 func refreshObjectSystemAlertEvent(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("alert_destination", flattenSystemAlertEventAlertDestination(o["alert-destination"], d, "alert_destination")); err != nil {
 			if vv, ok := fortiAPIPatch(o["alert-destination"], "SystemAlertEvent-AlertDestination"); ok {

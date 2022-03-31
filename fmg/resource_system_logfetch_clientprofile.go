@@ -470,6 +470,10 @@ func flattenSystemLogFetchClientProfileUser(v interface{}, d *schema.ResourceDat
 func refreshObjectSystemLogFetchClientProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("client_adom", flattenSystemLogFetchClientProfileClientAdom(o["client-adom"], d, "client_adom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["client-adom"], "SystemLogFetchClientProfile-ClientAdom"); ok {
 			if err = d.Set("client_adom", vv); err != nil {

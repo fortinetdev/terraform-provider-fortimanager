@@ -272,6 +272,14 @@ func flattenObjectCifsProfileServerKeytabPrincipal(v interface{}, d *schema.Reso
 func refreshObjectObjectCifsProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("domain_controller", flattenObjectCifsProfileDomainController(o["domain-controller"], d, "domain_controller")); err != nil {
 		if vv, ok := fortiAPIPatch(o["domain-controller"], "ObjectCifsProfile-DomainController"); ok {
 			if err = d.Set("domain_controller", vv); err != nil {

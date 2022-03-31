@@ -448,6 +448,10 @@ func flattenObjectWirelessControllerHotspot20HsProfileWnmSleepMode(v interface{}
 func refreshObjectObjectWirelessControllerHotspot20HsProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("n3gpp_plmn", flattenObjectWirelessControllerHotspot20HsProfile3GppPlmn(o["3gpp-plmn"], d, "n3gpp_plmn")); err != nil {
 		if vv, ok := fortiAPIPatch(o["3gpp-plmn"], "ObjectWirelessControllerHotspot20HsProfile-3GppPlmn"); ok {
 			if err = d.Set("n3gpp_plmn", vv); err != nil {

@@ -342,6 +342,14 @@ func flattenObjectSshFilterProfileShellCommandsType(v interface{}, d *schema.Res
 func refreshObjectObjectSshFilterProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("block", flattenObjectSshFilterProfileBlock(o["block"], d, "block")); err != nil {
 		if vv, ok := fortiAPIPatch(o["block"], "ObjectSshFilterProfile-Block"); ok {
 			if err = d.Set("block", vv); err != nil {

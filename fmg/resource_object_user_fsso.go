@@ -985,6 +985,14 @@ func flattenObjectUserFssoUserInfoServer(v interface{}, d *schema.ResourceData, 
 func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("_gui_meta", flattenObjectUserFssoGuiMeta(o["_gui_meta"], d, "_gui_meta")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_gui_meta"], "ObjectUserFsso-GuiMeta"); ok {
 			if err = d.Set("_gui_meta", vv); err != nil {

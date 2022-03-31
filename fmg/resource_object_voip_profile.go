@@ -1896,6 +1896,10 @@ func flattenObjectVoipProfileSipUpdateRateTrack(v interface{}, d *schema.Resourc
 func refreshObjectObjectVoipProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectVoipProfileComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectVoipProfile-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

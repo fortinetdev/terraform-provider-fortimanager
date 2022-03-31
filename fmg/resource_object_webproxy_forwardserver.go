@@ -259,6 +259,10 @@ func flattenObjectWebProxyForwardServerUsername(v interface{}, d *schema.Resourc
 func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("addr_type", flattenObjectWebProxyForwardServerAddrType(o["addr-type"], d, "addr_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["addr-type"], "ObjectWebProxyForwardServer-AddrType"); ok {
 			if err = d.Set("addr_type", vv); err != nil {

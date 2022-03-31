@@ -213,6 +213,10 @@ func flattenDvmdbRevisionVersion(v interface{}, d *schema.ResourceData, pre stri
 func refreshObjectDvmdbRevision(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("created_by", flattenDvmdbRevisionCreatedBy(o["created_by"], d, "created_by")); err != nil {
 		if vv, ok := fortiAPIPatch(o["created_by"], "DvmdbRevision-CreatedBy"); ok {
 			if err = d.Set("created_by", vv); err != nil {

@@ -213,6 +213,10 @@ func flattenObjectFirewallWildcardFqdnCustomWildcardFqdn(v interface{}, d *schem
 func refreshObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("color", flattenObjectFirewallWildcardFqdnCustomColor(o["color"], d, "color")); err != nil {
 		if vv, ok := fortiAPIPatch(o["color"], "ObjectFirewallWildcardFqdnCustom-Color"); ok {
 			if err = d.Set("color", vv); err != nil {

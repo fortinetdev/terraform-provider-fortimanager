@@ -205,6 +205,10 @@ func flattenObjectFirewallVipgrp6Uuid(v interface{}, d *schema.ResourceData, pre
 func refreshObjectObjectFirewallVipgrp6(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("color", flattenObjectFirewallVipgrp6Color(o["color"], d, "color")); err != nil {
 		if vv, ok := fortiAPIPatch(o["color"], "ObjectFirewallVipgrp6-Color"); ok {
 			if err = d.Set("color", vv); err != nil {

@@ -232,6 +232,10 @@ func flattenObjectCredentialStoreDomainControllerUsername(v interface{}, d *sche
 func refreshObjectObjectCredentialStoreDomainController(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("domain_name", flattenObjectCredentialStoreDomainControllerDomainName(o["domain-name"], d, "domain_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["domain-name"], "ObjectCredentialStoreDomainController-DomainName"); ok {
 			if err = d.Set("domain_name", vv); err != nil {

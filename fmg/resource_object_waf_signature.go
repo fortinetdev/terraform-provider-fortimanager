@@ -177,6 +177,10 @@ func flattenObjectWafSignatureId(v interface{}, d *schema.ResourceData, pre stri
 func refreshObjectObjectWafSignature(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("desc", flattenObjectWafSignatureDesc(o["desc"], d, "desc")); err != nil {
 		if vv, ok := fortiAPIPatch(o["desc"], "ObjectWafSignature-Desc"); ok {
 			if err = d.Set("desc", vv); err != nil {

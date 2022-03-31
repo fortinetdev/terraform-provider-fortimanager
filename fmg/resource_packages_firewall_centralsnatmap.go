@@ -345,6 +345,10 @@ func flattenPackagesFirewallCentralSnatMapUuid(v interface{}, d *schema.Resource
 func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comments", flattenPackagesFirewallCentralSnatMapComments(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "PackagesFirewallCentralSnatMap-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {

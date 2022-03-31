@@ -187,6 +187,10 @@ func flattenObjectWirelessControllerVapGroupVaps(v interface{}, d *schema.Resour
 func refreshObjectObjectWirelessControllerVapGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectWirelessControllerVapGroupComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectWirelessControllerVapGroup-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

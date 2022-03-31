@@ -962,6 +962,14 @@ func flattenObjectVpnmgrNodeXauthtype(v interface{}, d *schema.ResourceData, pre
 func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("add_route", flattenObjectVpnmgrNodeAddRoute(o["add-route"], d, "add_route")); err != nil {
 		if vv, ok := fortiAPIPatch(o["add-route"], "ObjectVpnmgrNode-AddRoute"); ok {
 			if err = d.Set("add_route", vv); err != nil {

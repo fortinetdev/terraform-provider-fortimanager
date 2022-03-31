@@ -278,6 +278,10 @@ func flattenObjectUserPeerTwoFactor(v interface{}, d *schema.ResourceData, pre s
 func refreshObjectObjectUserPeer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("ca", flattenObjectUserPeerCa(o["ca"], d, "ca")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ca"], "ObjectUserPeer-Ca"); ok {
 			if err = d.Set("ca", vv); err != nil {

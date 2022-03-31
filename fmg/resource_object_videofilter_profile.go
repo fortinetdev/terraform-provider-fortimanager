@@ -353,6 +353,10 @@ func flattenObjectVideofilterProfileYoutubeRestrict(v interface{}, d *schema.Res
 func refreshObjectObjectVideofilterProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("comment", flattenObjectVideofilterProfileComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectVideofilterProfile-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

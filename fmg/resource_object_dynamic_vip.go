@@ -177,6 +177,10 @@ func flattenObjectDynamicVipName(v interface{}, d *schema.ResourceData, pre stri
 func refreshObjectObjectDynamicVip(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("description", flattenObjectDynamicVipDescription(o["description"], d, "description")); err != nil {
 		if vv, ok := fortiAPIPatch(o["description"], "ObjectDynamicVip-Description"); ok {
 			if err = d.Set("description", vv); err != nil {

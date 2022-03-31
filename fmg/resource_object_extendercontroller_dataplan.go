@@ -341,6 +341,10 @@ func flattenObjectExtenderControllerDataplanUsername(v interface{}, d *schema.Re
 func refreshObjectObjectExtenderControllerDataplan(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("apn", flattenObjectExtenderControllerDataplanApn(o["apn"], d, "apn")); err != nil {
 		if vv, ok := fortiAPIPatch(o["apn"], "ObjectExtenderControllerDataplan-Apn"); ok {
 			if err = d.Set("apn", vv); err != nil {

@@ -249,6 +249,10 @@ func flattenObjectApplicationCustomVendor(v interface{}, d *schema.ResourceData,
 func refreshObjectObjectApplicationCustom(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("behavior", flattenObjectApplicationCustomBehavior(o["behavior"], d, "behavior")); err != nil {
 		if vv, ok := fortiAPIPatch(o["behavior"], "ObjectApplicationCustom-Behavior"); ok {
 			if err = d.Set("behavior", vv); err != nil {

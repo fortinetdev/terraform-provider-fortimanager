@@ -231,6 +231,10 @@ func flattenObjectIcapServerSslCert(v interface{}, d *schema.ResourceData, pre s
 func refreshObjectObjectIcapServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("ip_address", flattenObjectIcapServerIpAddress(o["ip-address"], d, "ip_address")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-address"], "ObjectIcapServer-IpAddress"); ok {
 			if err = d.Set("ip_address", vv); err != nil {

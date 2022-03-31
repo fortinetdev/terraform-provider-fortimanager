@@ -398,6 +398,10 @@ func flattenPackagesFirewallInterfacePolicyWebfilterProfileStatus(v interface{},
 func refreshObjectPackagesFirewallInterfacePolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("address_type", flattenPackagesFirewallInterfacePolicyAddressType(o["address-type"], d, "address_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["address-type"], "PackagesFirewallInterfacePolicy-AddressType"); ok {
 			if err = d.Set("address_type", vv); err != nil {

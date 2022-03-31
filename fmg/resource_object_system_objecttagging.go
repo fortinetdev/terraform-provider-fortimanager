@@ -223,6 +223,10 @@ func flattenObjectSystemObjectTaggingTags(v interface{}, d *schema.ResourceData,
 func refreshObjectObjectSystemObjectTagging(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("address", flattenObjectSystemObjectTaggingAddress(o["address"], d, "address")); err != nil {
 		if vv, ok := fortiAPIPatch(o["address"], "ObjectSystemObjectTagging-Address"); ok {
 			if err = d.Set("address", vv); err != nil {

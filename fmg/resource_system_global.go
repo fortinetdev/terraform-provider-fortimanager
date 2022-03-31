@@ -765,6 +765,10 @@ func flattenSystemGlobalWorkspaceMode(v interface{}, d *schema.ResourceData, pre
 func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("admin_lockout_duration", flattenSystemGlobalAdminLockoutDuration(o["admin-lockout-duration"], d, "admin_lockout_duration")); err != nil {
 		if vv, ok := fortiAPIPatch(o["admin-lockout-duration"], "SystemGlobal-AdminLockoutDuration"); ok {
 			if err = d.Set("admin_lockout_duration", vv); err != nil {

@@ -436,6 +436,10 @@ func flattenObjectExtenderControllerSimProfileStatus(v interface{}, d *schema.Re
 func refreshObjectObjectExtenderControllerSimProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if isImportTable() {
 		if err = d.Set("auto_switch_profile", flattenObjectExtenderControllerSimProfileAutoSwitchProfile(o["auto-switch_profile"], d, "auto_switch_profile")); err != nil {
 			if vv, ok := fortiAPIPatch(o["auto-switch_profile"], "ObjectExtenderControllerSimProfile-AutoSwitchProfile"); ok {

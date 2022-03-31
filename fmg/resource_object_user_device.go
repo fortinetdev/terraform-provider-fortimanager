@@ -618,6 +618,14 @@ func flattenObjectUserDeviceUser(v interface{}, d *schema.ResourceData, pre stri
 func refreshObjectObjectUserDevice(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("alias", flattenObjectUserDeviceAlias(o["alias"], d, "alias")); err != nil {
 		if vv, ok := fortiAPIPatch(o["alias"], "ObjectUserDevice-Alias"); ok {
 			if err = d.Set("alias", vv); err != nil {

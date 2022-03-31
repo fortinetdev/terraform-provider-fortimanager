@@ -601,6 +601,14 @@ func flattenObjectIcapProfileStreamingContentBypass(v interface{}, d *schema.Res
 func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("icap_headers", flattenObjectIcapProfileIcapHeaders(o["icap-headers"], d, "icap_headers")); err != nil {
 			if vv, ok := fortiAPIPatch(o["icap-headers"], "ObjectIcapProfile-IcapHeaders"); ok {

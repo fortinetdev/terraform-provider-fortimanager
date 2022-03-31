@@ -2450,6 +2450,10 @@ func flattenObjectFirewallProfileProtocolOptionsSwitchingProtocolsLog(v interfac
 func refreshObjectObjectFirewallProfileProtocolOptions(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if isImportTable() {
 		if err = d.Set("cifs", flattenObjectFirewallProfileProtocolOptionsCifs(o["cifs"], d, "cifs")); err != nil {
 			if vv, ok := fortiAPIPatch(o["cifs"], "ObjectFirewallProfileProtocolOptions-Cifs"); ok {

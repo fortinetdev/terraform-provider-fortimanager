@@ -791,6 +791,10 @@ func flattenPackagesFirewallProxyPolicyZtnaEmsTag(v interface{}, d *schema.Resou
 func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("access_proxy", flattenPackagesFirewallProxyPolicyAccessProxy(o["access-proxy"], d, "access_proxy")); err != nil {
 		if vv, ok := fortiAPIPatch(o["access-proxy"], "PackagesFirewallProxyPolicy-AccessProxy"); ok {
 			if err = d.Set("access_proxy", vv); err != nil {

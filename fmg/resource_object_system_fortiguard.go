@@ -595,6 +595,10 @@ func flattenObjectSystemFortiguardWebfilterTimeout(v interface{}, d *schema.Reso
 func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("antispam_cache", flattenObjectSystemFortiguardAntispamCache(o["antispam-cache"], d, "antispam_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["antispam-cache"], "ObjectSystemFortiguard-AntispamCache"); ok {
 			if err = d.Set("antispam_cache", vv); err != nil {

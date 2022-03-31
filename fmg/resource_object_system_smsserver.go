@@ -177,6 +177,10 @@ func flattenObjectSystemSmsServerName(v interface{}, d *schema.ResourceData, pre
 func refreshObjectObjectSystemSmsServer(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("mail_server", flattenObjectSystemSmsServerMailServer(o["mail-server"], d, "mail_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mail-server"], "ObjectSystemSmsServer-MailServer"); ok {
 			if err = d.Set("mail_server", vv); err != nil {

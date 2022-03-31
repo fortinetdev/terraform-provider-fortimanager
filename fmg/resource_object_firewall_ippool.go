@@ -903,6 +903,14 @@ func flattenObjectFirewallIppoolUtilizationAlarmRaise(v interface{}, d *schema.R
 func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("arp_intf", flattenObjectFirewallIppoolArpIntf(o["arp-intf"], d, "arp_intf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["arp-intf"], "ObjectFirewallIppool-ArpIntf"); ok {
 			if err = d.Set("arp_intf", vv); err != nil {

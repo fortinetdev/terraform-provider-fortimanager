@@ -195,6 +195,10 @@ func flattenObjectCliTemplateScript(v interface{}, d *schema.ResourceData, pre s
 func refreshObjectObjectCliTemplate(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("description", flattenObjectCliTemplateDescription(o["description"], d, "description")); err != nil {
 		if vv, ok := fortiAPIPatch(o["description"], "ObjectCliTemplate-Description"); ok {
 			if err = d.Set("description", vv); err != nil {

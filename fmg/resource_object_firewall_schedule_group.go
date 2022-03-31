@@ -205,6 +205,10 @@ func flattenObjectFirewallScheduleGroupName(v interface{}, d *schema.ResourceDat
 func refreshObjectObjectFirewallScheduleGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("color", flattenObjectFirewallScheduleGroupColor(o["color"], d, "color")); err != nil {
 		if vv, ok := fortiAPIPatch(o["color"], "ObjectFirewallScheduleGroup-Color"); ok {
 			if err = d.Set("color", vv); err != nil {

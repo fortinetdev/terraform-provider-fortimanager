@@ -167,6 +167,10 @@ func flattenObjectApplicationCategoriesId(v interface{}, d *schema.ResourceData,
 func refreshObjectObjectApplicationCategories(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("fosid", flattenObjectApplicationCategoriesId(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectApplicationCategories-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {

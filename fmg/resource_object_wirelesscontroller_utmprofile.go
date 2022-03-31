@@ -231,6 +231,10 @@ func flattenObjectWirelessControllerUtmProfileWebfilterProfile(v interface{}, d 
 func refreshObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("antivirus_profile", flattenObjectWirelessControllerUtmProfileAntivirusProfile(o["antivirus-profile"], d, "antivirus_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["antivirus-profile"], "ObjectWirelessControllerUtmProfile-AntivirusProfile"); ok {
 			if err = d.Set("antivirus_profile", vv); err != nil {

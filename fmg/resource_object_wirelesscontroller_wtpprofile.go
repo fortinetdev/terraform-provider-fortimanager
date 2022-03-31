@@ -5137,6 +5137,14 @@ func flattenObjectWirelessControllerWtpProfileWanPortMode(v interface{}, d *sche
 func refreshObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("allowaccess", flattenObjectWirelessControllerWtpProfileAllowaccess(o["allowaccess"], d, "allowaccess")); err != nil {
 		if vv, ok := fortiAPIPatch(o["allowaccess"], "ObjectWirelessControllerWtpProfile-Allowaccess"); ok {
 			if err = d.Set("allowaccess", vv); err != nil {

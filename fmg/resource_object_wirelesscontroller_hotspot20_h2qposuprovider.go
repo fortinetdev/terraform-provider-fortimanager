@@ -370,6 +370,14 @@ func flattenObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionSe
 func refreshObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("friendly_name", flattenObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyName(o["friendly-name"], d, "friendly_name")); err != nil {
 			if vv, ok := fortiAPIPatch(o["friendly-name"], "ObjectWirelessControllerHotspot20H2QpOsuProvider-FriendlyName"); ok {

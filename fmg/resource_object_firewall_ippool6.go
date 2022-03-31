@@ -351,6 +351,14 @@ func flattenObjectFirewallIppool6Startip(v interface{}, d *schema.ResourceData, 
 func refreshObjectObjectFirewallIppool6(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("comments", flattenObjectFirewallIppool6Comments(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "ObjectFirewallIppool6-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {

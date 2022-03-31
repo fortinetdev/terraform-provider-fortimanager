@@ -276,6 +276,10 @@ func flattenObjectFirewallLdbMonitorType(v interface{}, d *schema.ResourceData, 
 func refreshObjectObjectFirewallLdbMonitor(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("dns_match_ip", flattenObjectFirewallLdbMonitorDnsMatchIp(o["dns-match-ip"], d, "dns_match_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dns-match-ip"], "ObjectFirewallLdbMonitor-DnsMatchIp"); ok {
 			if err = d.Set("dns_match_ip", vv); err != nil {

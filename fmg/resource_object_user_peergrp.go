@@ -178,6 +178,10 @@ func flattenObjectUserPeergrpName(v interface{}, d *schema.ResourceData, pre str
 func refreshObjectObjectUserPeergrp(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("member", flattenObjectUserPeergrpMember(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "ObjectUserPeergrp-Member"); ok {
 			if err = d.Set("member", vv); err != nil {

@@ -215,6 +215,10 @@ func flattenObjectUserKrbKeytabPrincipal(v interface{}, d *schema.ResourceData, 
 func refreshObjectObjectUserKrbKeytab(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("keytab", flattenObjectUserKrbKeytabKeytab(o["keytab"], d, "keytab")); err != nil {
 		if vv, ok := fortiAPIPatch(o["keytab"], "ObjectUserKrbKeytab-Keytab"); ok {
 			if err = d.Set("keytab", vv); err != nil {

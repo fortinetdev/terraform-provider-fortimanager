@@ -417,6 +417,10 @@ func flattenPackagesFirewallPolicy46Uuid(v interface{}, d *schema.ResourceData, 
 func refreshObjectPackagesFirewallPolicy46(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("action", flattenPackagesFirewallPolicy46Action(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesFirewallPolicy46-Action"); ok {
 			if err = d.Set("action", vv); err != nil {

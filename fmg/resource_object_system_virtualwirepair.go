@@ -214,6 +214,10 @@ func flattenObjectSystemVirtualWirePairWildcardVlan(v interface{}, d *schema.Res
 func refreshObjectObjectSystemVirtualWirePair(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("member", flattenObjectSystemVirtualWirePairMember(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "ObjectSystemVirtualWirePair-Member"); ok {
 			if err = d.Set("member", vv); err != nil {

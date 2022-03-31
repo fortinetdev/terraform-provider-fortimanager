@@ -204,6 +204,10 @@ func flattenObjectUserPop3SslMinProtoVersion(v interface{}, d *schema.ResourceDa
 func refreshObjectObjectUserPop3(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("name", flattenObjectUserPop3Name(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectUserPop3-Name"); ok {
 			if err = d.Set("name", vv); err != nil {

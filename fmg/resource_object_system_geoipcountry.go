@@ -177,6 +177,10 @@ func flattenObjectSystemGeoipCountryName(v interface{}, d *schema.ResourceData, 
 func refreshObjectObjectSystemGeoipCountry(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("fosid", flattenObjectSystemGeoipCountryId(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectSystemGeoipCountry-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {

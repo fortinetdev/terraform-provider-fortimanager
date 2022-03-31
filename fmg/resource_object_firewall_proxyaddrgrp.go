@@ -318,6 +318,14 @@ func flattenObjectFirewallProxyAddrgrpVisibility(v interface{}, d *schema.Resour
 func refreshObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("_image_base64", flattenObjectFirewallProxyAddrgrpImageBase64(o["_image-base64"], d, "_image_base64")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_image-base64"], "ObjectFirewallProxyAddrgrp-ImageBase64"); ok {
 			if err = d.Set("_image_base64", vv); err != nil {

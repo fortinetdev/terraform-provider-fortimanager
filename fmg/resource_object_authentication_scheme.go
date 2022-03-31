@@ -278,6 +278,10 @@ func flattenObjectAuthenticationSchemeUserDatabase(v interface{}, d *schema.Reso
 func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("domain_controller", flattenObjectAuthenticationSchemeDomainController(o["domain-controller"], d, "domain_controller")); err != nil {
 		if vv, ok := fortiAPIPatch(o["domain-controller"], "ObjectAuthenticationScheme-DomainController"); ok {
 			if err = d.Set("domain_controller", vv); err != nil {

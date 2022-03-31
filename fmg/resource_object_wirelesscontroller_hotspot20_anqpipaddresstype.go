@@ -186,6 +186,10 @@ func flattenObjectWirelessControllerHotspot20AnqpIpAddressTypeName(v interface{}
 func refreshObjectObjectWirelessControllerHotspot20AnqpIpAddressType(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("ipv4_address_type", flattenObjectWirelessControllerHotspot20AnqpIpAddressTypeIpv4AddressType(o["ipv4-address-type"], d, "ipv4_address_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipv4-address-type"], "ObjectWirelessControllerHotspot20AnqpIpAddressType-Ipv4AddressType"); ok {
 			if err = d.Set("ipv4_address_type", vv); err != nil {

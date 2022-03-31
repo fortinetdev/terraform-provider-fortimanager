@@ -186,6 +186,10 @@ func flattenObjectWebfilterFtgdLocalCatStatus(v interface{}, d *schema.ResourceD
 func refreshObjectObjectWebfilterFtgdLocalCat(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("desc", flattenObjectWebfilterFtgdLocalCatDesc(o["desc"], d, "desc")); err != nil {
 		if vv, ok := fortiAPIPatch(o["desc"], "ObjectWebfilterFtgdLocalCat-Desc"); ok {
 			if err = d.Set("desc", vv); err != nil {

@@ -352,6 +352,10 @@ func flattenPackagesFirewallMulticastPolicyUuid(v interface{}, d *schema.Resourc
 func refreshObjectPackagesFirewallMulticastPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("action", flattenPackagesFirewallMulticastPolicyAction(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesFirewallMulticastPolicy-Action"); ok {
 			if err = d.Set("action", vv); err != nil {

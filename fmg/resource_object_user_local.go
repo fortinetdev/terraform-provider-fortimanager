@@ -388,6 +388,10 @@ func flattenObjectUserLocalWorkstation(v interface{}, d *schema.ResourceData, pr
 func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("auth_concurrent_override", flattenObjectUserLocalAuthConcurrentOverride(o["auth-concurrent-override"], d, "auth_concurrent_override")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auth-concurrent-override"], "ObjectUserLocal-AuthConcurrentOverride"); ok {
 			if err = d.Set("auth_concurrent_override", vv); err != nil {

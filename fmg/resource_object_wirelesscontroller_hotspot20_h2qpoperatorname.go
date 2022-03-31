@@ -253,6 +253,14 @@ func flattenObjectWirelessControllerHotspot20H2QpOperatorNameValueListValue(v in
 func refreshObjectObjectWirelessControllerHotspot20H2QpOperatorName(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("name", flattenObjectWirelessControllerHotspot20H2QpOperatorNameName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectWirelessControllerHotspot20H2QpOperatorName-Name"); ok {
 			if err = d.Set("name", vv); err != nil {

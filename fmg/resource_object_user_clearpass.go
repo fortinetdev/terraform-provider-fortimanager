@@ -215,6 +215,10 @@ func flattenObjectUserClearpassUser(v interface{}, d *schema.ResourceData, pre s
 func refreshObjectObjectUserClearpass(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("client", flattenObjectUserClearpassClient(o["client"], d, "client")); err != nil {
 		if vv, ok := fortiAPIPatch(o["client"], "ObjectUserClearpass-Client"); ok {
 			if err = d.Set("client", vv); err != nil {

@@ -435,6 +435,14 @@ func flattenPackagesPkgType(v interface{}, d *schema.ResourceData, pre string) i
 func refreshObjectPackagesPkg(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("name", flattenPackagesPkgName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "PackagesPkg-Name"); ok {
 			if err = d.Set("name", vv); err != nil {

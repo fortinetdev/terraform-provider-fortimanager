@@ -361,6 +361,14 @@ func flattenObjectSwitchControllerQosQueuePolicySchedule(v interface{}, d *schem
 func refreshObjectObjectSwitchControllerQosQueuePolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if isImportTable() {
 		if err = d.Set("cos_queue", flattenObjectSwitchControllerQosQueuePolicyCosQueue(o["cos-queue"], d, "cos_queue")); err != nil {
 			if vv, ok := fortiAPIPatch(o["cos-queue"], "ObjectSwitchControllerQosQueuePolicy-CosQueue"); ok {

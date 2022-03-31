@@ -370,6 +370,10 @@ func flattenObjectWirelessControllerQosProfileWmmVoDscp(v interface{}, d *schema
 func refreshObjectObjectWirelessControllerQosProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("bandwidth_admission_control", flattenObjectWirelessControllerQosProfileBandwidthAdmissionControl(o["bandwidth-admission-control"], d, "bandwidth_admission_control")); err != nil {
 		if vv, ok := fortiAPIPatch(o["bandwidth-admission-control"], "ObjectWirelessControllerQosProfile-BandwidthAdmissionControl"); ok {
 			if err = d.Set("bandwidth_admission_control", vv); err != nil {

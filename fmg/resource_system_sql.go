@@ -555,6 +555,10 @@ func flattenSystemSqlUtmTablePartitionTimeSqa(v interface{}, d *schema.ResourceD
 func refreshObjectSystemSql(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("background_rebuild", flattenSystemSqlBackgroundRebuildSqa(o["background-rebuild"], d, "background_rebuild")); err != nil {
 		if vv, ok := fortiAPIPatch(o["background-rebuild"], "SystemSql-BackgroundRebuild"); ok {
 			if err = d.Set("background_rebuild", vv); err != nil {

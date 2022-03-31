@@ -316,6 +316,14 @@ func flattenObjectWebfilterContentName(v interface{}, d *schema.ResourceData, pr
 func refreshObjectObjectWebfilterContent(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("comment", flattenObjectWebfilterContentComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "ObjectWebfilterContent-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {

@@ -186,6 +186,10 @@ func flattenObjectSystemReplacemsgImageName(v interface{}, d *schema.ResourceDat
 func refreshObjectObjectSystemReplacemsgImage(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("image_base64", flattenObjectSystemReplacemsgImageImageBase64(o["image-base64"], d, "image_base64")); err != nil {
 		if vv, ok := fortiAPIPatch(o["image-base64"], "ObjectSystemReplacemsgImage-ImageBase64"); ok {
 			if err = d.Set("image_base64", vv); err != nil {

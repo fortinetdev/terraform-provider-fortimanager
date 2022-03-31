@@ -150,6 +150,10 @@ func flattenObjectAdomOptionsSpecifyAssignPkgList(v interface{}, d *schema.Resou
 func refreshObjectObjectAdomOptions(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if stValue := d.Get("scopetype"); stValue == "" {
+		d.Set("scopetype", "inherit")
+	}
+
 	if err = d.Set("assign_excluded", flattenObjectAdomOptionsAssignExcluded(o["assign_excluded"], d, "assign_excluded")); err != nil {
 		if vv, ok := fortiAPIPatch(o["assign_excluded"], "ObjectAdomOptions-AssignExcluded"); ok {
 			if err = d.Set("assign_excluded", vv); err != nil {
