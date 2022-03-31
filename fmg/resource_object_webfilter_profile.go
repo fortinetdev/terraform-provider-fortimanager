@@ -1544,7 +1544,7 @@ func flattenObjectWebfilterProfileWebBlacklist(v interface{}, d *schema.Resource
 }
 
 func flattenObjectWebfilterProfileWebBwordTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWebfilterProfileWebBwordThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1552,7 +1552,7 @@ func flattenObjectWebfilterProfileWebBwordThreshold(v interface{}, d *schema.Res
 }
 
 func flattenObjectWebfilterProfileWebContentHeaderList(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWebfilterProfileWebKeywordMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1568,7 +1568,7 @@ func flattenObjectWebfilterProfileWebSafeSearch(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectWebfilterProfileWebUrlfilterTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWebfilterProfileWebWhitelist(v interface{}, d *schema.ResourceData, pre string) interface{} {

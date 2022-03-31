@@ -361,6 +361,47 @@ func convttlfloat642String(v interface{}) interface{} {
 	return v
 }
 
+func conv2str(v interface{}) interface{} {
+	if _, ok := v.(string); ok {
+		return v
+	} else if _, ok := v.([]interface{}); ok {
+		return convintflist2str(v)
+	}
+	return ""
+}
+
+func convintflist2str(v interface{}) interface{} {
+	res := ""
+	if t, ok := v.([]interface{}); ok {
+		if len(t) == 0 {
+			return res
+		}
+
+		bFirst := true
+		for _, v1 := range t {
+			curVal := ""
+			if t1, ok := v1.(float64); ok {
+				curVal = strconv.FormatFloat(t1, 'f', -1, 64)
+			} else if t1, ok := v1.(int); ok {
+				curVal = strconv.FormatInt(int64(t1), 10)
+			} else if t1, ok := v1.(string); ok {
+				curVal = t1
+			} else {
+				continue
+			}
+
+			if bFirst == true {
+				res += curVal
+				bFirst = false
+			} else {
+				res += " "
+				res += curVal
+			}
+		}
+	}
+	return res
+}
+
 func intBetweenWithZero(min, max int) schema.SchemaValidateFunc {
 	return func(i interface{}, k string) (warnings []string, errors []error) {
 		v, ok := i.(int)
