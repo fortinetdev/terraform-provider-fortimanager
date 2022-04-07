@@ -76,6 +76,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"color_depth": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
 									"description": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -109,7 +114,17 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 											},
 										},
 									},
+									"height": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
 									"host": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"keyboard_layout": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
 										Computed: true,
@@ -160,7 +175,17 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"restricted_admin": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
 									"security": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"send_preconnection_id": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
 										Computed: true,
@@ -206,6 +231,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"width": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
 								},
 							},
 						},
@@ -216,6 +246,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 						},
 					},
 				},
+			},
+			"clipboard": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"custom_lang": &schema.Schema{
 				Type:     schema.TypeString,
@@ -478,6 +513,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Computed: true,
 			},
 			"service_restriction": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"skip_check_for_unsupported_browser": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -809,6 +849,12 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["apptype"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Apptype")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "color_depth"
+		if _, ok := i["color-depth"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksColorDepth(i["color-depth"], d, pre_append)
+			tmp["color_depth"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-ColorDepth")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
 		if _, ok := i["description"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksDescription(i["description"], d, pre_append)
@@ -833,10 +879,22 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["form_data"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-FormData")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "height"
+		if _, ok := i["height"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksHeight(i["height"], d, pre_append)
+			tmp["height"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Height")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "host"
 		if _, ok := i["host"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksHost(i["host"], d, pre_append)
 			tmp["host"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Host")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "keyboard_layout"
+		if _, ok := i["keyboard-layout"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksKeyboardLayout(i["keyboard-layout"], d, pre_append)
+			tmp["keyboard_layout"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-KeyboardLayout")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "listening_port"
@@ -893,10 +951,22 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["remote_port"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-RemotePort")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "restricted_admin"
+		if _, ok := i["restricted-admin"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksRestrictedAdmin(i["restricted-admin"], d, pre_append)
+			tmp["restricted_admin"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-RestrictedAdmin")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security"
 		if _, ok := i["security"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSecurity(i["security"], d, pre_append)
 			tmp["security"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Security")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "send_preconnection_id"
+		if _, ok := i["send-preconnection-id"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSendPreconnectionId(i["send-preconnection-id"], d, pre_append)
+			tmp["send_preconnection_id"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-SendPreconnectionId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_layout"
@@ -947,6 +1017,12 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["url"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Url")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "width"
+		if _, ok := i["width"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(i["width"], d, pre_append)
+			tmp["width"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Width")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -960,6 +1036,10 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksAdditionalParams(v interf
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksApptype(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksColorDepth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1022,7 +1102,15 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksFormDataValue(v interface
 	return v
 }
 
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksHeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksKeyboardLayout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1062,7 +1150,15 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksRemotePort(v interface{},
 	return v
 }
 
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksRestrictedAdmin(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSecurity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksSendPreconnectionId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1098,7 +1194,15 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksUrl(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalBookmarkGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalClipboard(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1376,6 +1480,10 @@ func flattenObjectVpnSslWebPortalServiceRestriction(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectVpnSslWebPortalSkipCheckForUnsupportedBrowser(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalSkipCheckForBrowser(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1591,6 +1699,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 					return fmt.Errorf("Error reading bookmark_group: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("clipboard", flattenObjectVpnSslWebPortalClipboard(o["clipboard"], d, "clipboard")); err != nil {
+		if vv, ok := fortiAPIPatch(o["clipboard"], "ObjectVpnSslWebPortal-Clipboard"); ok {
+			if err = d.Set("clipboard", vv); err != nil {
+				return fmt.Errorf("Error reading clipboard: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading clipboard: %v", err)
 		}
 	}
 
@@ -2062,6 +2180,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("skip_check_for_unsupported_browser", flattenObjectVpnSslWebPortalSkipCheckForUnsupportedBrowser(o["skip-check-for-unsupported-browser"], d, "skip_check_for_unsupported_browser")); err != nil {
+		if vv, ok := fortiAPIPatch(o["skip-check-for-unsupported-browser"], "ObjectVpnSslWebPortal-SkipCheckForUnsupportedBrowser"); ok {
+			if err = d.Set("skip_check_for_unsupported_browser", vv); err != nil {
+				return fmt.Errorf("Error reading skip_check_for_unsupported_browser: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading skip_check_for_unsupported_browser: %v", err)
+		}
+	}
+
 	if err = d.Set("skip_check_for_browser", flattenObjectVpnSslWebPortalSkipCheckForBrowser(o["skip-check-for-browser"], d, "skip_check_for_browser")); err != nil {
 		if vv, ok := fortiAPIPatch(o["skip-check-for-browser"], "ObjectVpnSslWebPortal-SkipCheckForBrowser"); ok {
 			if err = d.Set("skip_check_for_browser", vv); err != nil {
@@ -2351,6 +2479,11 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 			tmp["apptype"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksApptype(d, i["apptype"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "color_depth"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["color-depth"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksColorDepth(d, i["color_depth"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["description"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksDescription(d, i["description"], pre_append)
@@ -2373,9 +2506,19 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 			tmp["form-data"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "height"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["height"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksHeight(d, i["height"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "host"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["host"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksHost(d, i["host"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "keyboard_layout"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["keyboard-layout"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksKeyboardLayout(d, i["keyboard_layout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "listening_port"
@@ -2425,9 +2568,19 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 			tmp["remote-port"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksRemotePort(d, i["remote_port"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "restricted_admin"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["restricted-admin"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksRestrictedAdmin(d, i["restricted_admin"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["security"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksSecurity(d, i["security"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "send_preconnection_id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["send-preconnection-id"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksSendPreconnectionId(d, i["send_preconnection_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_layout"
@@ -2472,6 +2625,11 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 			tmp["url"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksUrl(d, i["url"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "width"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["width"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(d, i["width"], pre_append)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -2485,6 +2643,10 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksAdditionalParams(d *schema
 }
 
 func expandObjectVpnSslWebPortalBookmarkGroupBookmarksApptype(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksColorDepth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2540,7 +2702,15 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormDataValue(d *schema.Re
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksHeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalBookmarkGroupBookmarksHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksKeyboardLayout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2580,7 +2750,15 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksRemotePort(d *schema.Resou
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksRestrictedAdmin(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalBookmarkGroupBookmarksSecurity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksSendPreconnectionId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2616,7 +2794,15 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksUrl(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalBookmarkGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalClipboard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2885,6 +3071,10 @@ func expandObjectVpnSslWebPortalServiceRestriction(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalSkipCheckForUnsupportedBrowser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalSkipCheckForBrowser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3064,6 +3254,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["bookmark-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("clipboard"); ok {
+		t, err := expandObjectVpnSslWebPortalClipboard(d, v, "clipboard")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["clipboard"] = t
 		}
 	}
 
@@ -3460,6 +3659,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["service-restriction"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("skip_check_for_unsupported_browser"); ok {
+		t, err := expandObjectVpnSslWebPortalSkipCheckForUnsupportedBrowser(d, v, "skip_check_for_unsupported_browser")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["skip-check-for-unsupported-browser"] = t
 		}
 	}
 

@@ -37,6 +37,7 @@ The following arguments are supported:
 * `virtual_host` - Virtual host name for realm.
 * `virtual_host_only` - Enable/disable enforcement of virtual host method for SSL-VPN client access. Valid values: `disable`, `enable`.
 
+* `virtual_host_server_cert` - Name of the server certificate to used for this realm.
 
 
 ## Attribute Reference

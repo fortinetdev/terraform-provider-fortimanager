@@ -45,6 +45,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"add_nat64_route": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"arp_reply": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -83,6 +88,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 								},
 							},
 						},
+						"add_nat64_route": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"arp_reply": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -94,6 +104,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Computed: true,
 						},
 						"comment": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"embedded_ipv4_address": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -168,6 +183,16 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ipv4_mappedip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ipv4_mappedport": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"ldb_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -198,6 +223,16 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"nat64": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"nat66": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"outlook_web_access": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -218,6 +253,69 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"realservers": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"client_ip": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"healthcheck": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"holddown_interval": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"http_host": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"id": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"ip": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"max_connections": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"monitor": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"port": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"status": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"weight": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
 						"server_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -226,6 +324,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 						"src_filter": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"ssl_accept_ffdhe_groups": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -238,6 +341,30 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"ssl_cipher_suites": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"cipher": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"priority": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"versions": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
 						},
 						"ssl_client_fallback": &schema.Schema{
 							Type:     schema.TypeString,
@@ -407,6 +534,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 					},
 				},
 			},
+			"embedded_ipv4_address": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"extip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -477,6 +609,16 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ipv4_mappedip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv4_mappedport": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ldb_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -510,6 +652,16 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Computed: true,
 			},
 			"nat_source_vip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat66": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -605,6 +757,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"src_filter": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_accept_ffdhe_groups": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -946,6 +1103,10 @@ func resourceObjectFirewallVip6Read(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
+func flattenObjectFirewallVip6AddNat64Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6ArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -983,6 +1144,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Scope")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat64_route"
+		if _, ok := i["add-nat64-route"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingAddNat64Route(i["add-nat64-route"], d, pre_append)
+			tmp["add_nat64_route"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-AddNat64Route")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "arp_reply"
 		if _, ok := i["arp-reply"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingArpReply(i["arp-reply"], d, pre_append)
@@ -999,6 +1166,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 		if _, ok := i["comment"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingComment(i["comment"], d, pre_append)
 			tmp["comment"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Comment")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "embedded_ipv4_address"
+		if _, ok := i["embedded-ipv4-address"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(i["embedded-ipv4-address"], d, pre_append)
+			tmp["embedded_ipv4_address"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-EmbeddedIpv4Address")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extip"
@@ -1085,6 +1258,18 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Id")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_mappedip"
+		if _, ok := i["ipv4-mappedip"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingIpv4Mappedip(i["ipv4-mappedip"], d, pre_append)
+			tmp["ipv4_mappedip"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Ipv4Mappedip")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_mappedport"
+		if _, ok := i["ipv4-mappedport"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingIpv4Mappedport(i["ipv4-mappedport"], d, pre_append)
+			tmp["ipv4_mappedport"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Ipv4Mappedport")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldb_method"
 		if _, ok := i["ldb-method"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingLdbMethod(i["ldb-method"], d, pre_append)
@@ -1121,6 +1306,18 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["nat_source_vip"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-NatSourceVip")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
+		if _, ok := i["nat64"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingNat64(i["nat64"], d, pre_append)
+			tmp["nat64"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Nat64")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat66"
+		if _, ok := i["nat66"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingNat66(i["nat66"], d, pre_append)
+			tmp["nat66"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Nat66")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
 		if _, ok := i["outlook-web-access"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingOutlookWebAccess(i["outlook-web-access"], d, pre_append)
@@ -1145,6 +1342,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Protocol")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
+		if _, ok := i["realservers"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealservers(i["realservers"], d, pre_append)
+			tmp["realservers"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Realservers")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_type"
 		if _, ok := i["server-type"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingServerType(i["server-type"], d, pre_append)
@@ -1157,6 +1360,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["src_filter"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SrcFilter")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_accept_ffdhe_groups"
+		if _, ok := i["ssl-accept-ffdhe-groups"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(i["ssl-accept-ffdhe-groups"], d, pre_append)
+			tmp["ssl_accept_ffdhe_groups"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SslAcceptFfdheGroups")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_algorithm"
 		if _, ok := i["ssl-algorithm"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingSslAlgorithm(i["ssl-algorithm"], d, pre_append)
@@ -1167,6 +1376,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 		if _, ok := i["ssl-certificate"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingSslCertificate(i["ssl-certificate"], d, pre_append)
 			tmp["ssl_certificate"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SslCertificate")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_cipher_suites"
+		if _, ok := i["ssl-cipher-suites"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSslCipherSuites(i["ssl-cipher-suites"], d, pre_append)
+			tmp["ssl_cipher_suites"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SslCipherSuites")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_fallback"
@@ -1422,6 +1637,10 @@ func flattenObjectFirewallVip6DynamicMappingScopeVdom(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingAddNat64Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingArpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1431,6 +1650,10 @@ func flattenObjectFirewallVip6DynamicMappingColor(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallVip6DynamicMappingComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1490,6 +1713,14 @@ func flattenObjectFirewallVip6DynamicMappingId(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingIpv4Mappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingIpv4Mappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingLdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1514,6 +1745,14 @@ func flattenObjectFirewallVip6DynamicMappingNatSourceVip(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingNat66(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingOutlookWebAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1530,6 +1769,143 @@ func flattenObjectFirewallVip6DynamicMappingProtocol(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectFirewallVip6DynamicMappingRealservers(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
+		if _, ok := i["client-ip"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversClientIp(i["client-ip"], d, pre_append)
+			tmp["client_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-ClientIp")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
+		if _, ok := i["healthcheck"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversHealthcheck(i["healthcheck"], d, pre_append)
+			tmp["healthcheck"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Healthcheck")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "holddown_interval"
+		if _, ok := i["holddown-interval"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversHolddownInterval(i["holddown-interval"], d, pre_append)
+			tmp["holddown_interval"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-HolddownInterval")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_host"
+		if _, ok := i["http-host"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversHttpHost(i["http-host"], d, pre_append)
+			tmp["http_host"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-HttpHost")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
+		if _, ok := i["ip"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversIp(i["ip"], d, pre_append)
+			tmp["ip"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Ip")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
+		if _, ok := i["max-connections"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversMaxConnections(i["max-connections"], d, pre_append)
+			tmp["max_connections"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-MaxConnections")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
+		if _, ok := i["monitor"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversMonitor(i["monitor"], d, pre_append)
+			tmp["monitor"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Monitor")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := i["port"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversPort(i["port"], d, pre_append)
+			tmp["port"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Port")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := i["status"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversStatus(i["status"], d, pre_append)
+			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Status")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
+		if _, ok := i["weight"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversWeight(i["weight"], d, pre_append)
+			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Weight")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversClientIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversHolddownInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversHttpHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversMaxConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversWeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1538,12 +1914,73 @@ func flattenObjectFirewallVip6DynamicMappingSrcFilter(v interface{}, d *schema.R
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6DynamicMappingSslAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingSslCipherSuites(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
+		if _, ok := i["cipher"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSslCipherSuitesCipher(i["cipher"], d, pre_append)
+			tmp["cipher"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-SslCipherSuites-Cipher")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
+		if _, ok := i["priority"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSslCipherSuitesPriority(i["priority"], d, pre_append)
+			tmp["priority"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-SslCipherSuites-Priority")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
+		if _, ok := i["versions"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSslCipherSuitesVersions(i["versions"], d, pre_append)
+			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-SslCipherSuites-Versions")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallVip6DynamicMappingSslCipherSuitesCipher(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingSslCipherSuitesPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingSslCipherSuitesVersions(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslClientFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1678,6 +2115,10 @@ func flattenObjectFirewallVip6DynamicMappingWebsphereServer(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectFirewallVip6EmbeddedIpv4Address(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6Extip(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1734,6 +2175,14 @@ func flattenObjectFirewallVip6Id(v interface{}, d *schema.ResourceData, pre stri
 	return v
 }
 
+func flattenObjectFirewallVip6Ipv4Mappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6Ipv4Mappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVip6LdbMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1759,6 +2208,14 @@ func flattenObjectFirewallVip6Name(v interface{}, d *schema.ResourceData, pre st
 }
 
 func flattenObjectFirewallVip6NatSourceVip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6Nat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6Nat66(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1921,6 +2378,10 @@ func flattenObjectFirewallVip6ServerType(v interface{}, d *schema.ResourceData, 
 
 func flattenObjectFirewallVip6SrcFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallVip6SslAcceptFfdheGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallVip6SslAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2188,6 +2649,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("add_nat64_route", flattenObjectFirewallVip6AddNat64Route(o["add-nat64-route"], d, "add_nat64_route")); err != nil {
+		if vv, ok := fortiAPIPatch(o["add-nat64-route"], "ObjectFirewallVip6-AddNat64Route"); ok {
+			if err = d.Set("add_nat64_route", vv); err != nil {
+				return fmt.Errorf("Error reading add_nat64_route: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading add_nat64_route: %v", err)
+		}
+	}
+
 	if err = d.Set("arp_reply", flattenObjectFirewallVip6ArpReply(o["arp-reply"], d, "arp_reply")); err != nil {
 		if vv, ok := fortiAPIPatch(o["arp-reply"], "ObjectFirewallVip6-ArpReply"); ok {
 			if err = d.Set("arp_reply", vv); err != nil {
@@ -2239,6 +2710,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("embedded_ipv4_address", flattenObjectFirewallVip6EmbeddedIpv4Address(o["embedded-ipv4-address"], d, "embedded_ipv4_address")); err != nil {
+		if vv, ok := fortiAPIPatch(o["embedded-ipv4-address"], "ObjectFirewallVip6-EmbeddedIpv4Address"); ok {
+			if err = d.Set("embedded_ipv4_address", vv); err != nil {
+				return fmt.Errorf("Error reading embedded_ipv4_address: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading embedded_ipv4_address: %v", err)
 		}
 	}
 
@@ -2382,6 +2863,26 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("ipv4_mappedip", flattenObjectFirewallVip6Ipv4Mappedip(o["ipv4-mappedip"], d, "ipv4_mappedip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv4-mappedip"], "ObjectFirewallVip6-Ipv4Mappedip"); ok {
+			if err = d.Set("ipv4_mappedip", vv); err != nil {
+				return fmt.Errorf("Error reading ipv4_mappedip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv4_mappedip: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv4_mappedport", flattenObjectFirewallVip6Ipv4Mappedport(o["ipv4-mappedport"], d, "ipv4_mappedport")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv4-mappedport"], "ObjectFirewallVip6-Ipv4Mappedport"); ok {
+			if err = d.Set("ipv4_mappedport", vv); err != nil {
+				return fmt.Errorf("Error reading ipv4_mappedport: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv4_mappedport: %v", err)
+		}
+	}
+
 	if err = d.Set("ldb_method", flattenObjectFirewallVip6LdbMethod(o["ldb-method"], d, "ldb_method")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ldb-method"], "ObjectFirewallVip6-LdbMethod"); ok {
 			if err = d.Set("ldb_method", vv); err != nil {
@@ -2449,6 +2950,26 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading nat_source_vip: %v", err)
+		}
+	}
+
+	if err = d.Set("nat64", flattenObjectFirewallVip6Nat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "ObjectFirewallVip6-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
+		}
+	}
+
+	if err = d.Set("nat66", flattenObjectFirewallVip6Nat66(o["nat66"], d, "nat66")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat66"], "ObjectFirewallVip6-Nat66"); ok {
+			if err = d.Set("nat66", vv); err != nil {
+				return fmt.Errorf("Error reading nat66: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat66: %v", err)
 		}
 	}
 
@@ -2533,6 +3054,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading src_filter: %v", err)
+		}
+	}
+
+	if err = d.Set("ssl_accept_ffdhe_groups", flattenObjectFirewallVip6SslAcceptFfdheGroups(o["ssl-accept-ffdhe-groups"], d, "ssl_accept_ffdhe_groups")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-accept-ffdhe-groups"], "ObjectFirewallVip6-SslAcceptFfdheGroups"); ok {
+			if err = d.Set("ssl_accept_ffdhe_groups", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_accept_ffdhe_groups: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_accept_ffdhe_groups: %v", err)
 		}
 	}
 
@@ -2943,6 +3474,10 @@ func flattenObjectFirewallVip6FortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectFirewallVip6AddNat64Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6ArpReply(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2976,6 +3511,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["_scope"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat64_route"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["add-nat64-route"], _ = expandObjectFirewallVip6DynamicMappingAddNat64Route(d, i["add_nat64_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "arp_reply"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["arp-reply"], _ = expandObjectFirewallVip6DynamicMappingArpReply(d, i["arp_reply"], pre_append)
@@ -2989,6 +3529,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["comment"], _ = expandObjectFirewallVip6DynamicMappingComment(d, i["comment"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "embedded_ipv4_address"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["embedded-ipv4-address"], _ = expandObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(d, i["embedded_ipv4_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extip"
@@ -3061,6 +3606,16 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["id"], _ = expandObjectFirewallVip6DynamicMappingId(d, i["id"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_mappedip"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ipv4-mappedip"], _ = expandObjectFirewallVip6DynamicMappingIpv4Mappedip(d, i["ipv4_mappedip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_mappedport"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ipv4-mappedport"], _ = expandObjectFirewallVip6DynamicMappingIpv4Mappedport(d, i["ipv4_mappedport"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldb_method"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["ldb-method"], _ = expandObjectFirewallVip6DynamicMappingLdbMethod(d, i["ldb_method"], pre_append)
@@ -3091,6 +3646,16 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["nat-source-vip"], _ = expandObjectFirewallVip6DynamicMappingNatSourceVip(d, i["nat_source_vip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["nat64"], _ = expandObjectFirewallVip6DynamicMappingNat64(d, i["nat64"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat66"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["nat66"], _ = expandObjectFirewallVip6DynamicMappingNat66(d, i["nat66"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["outlook-web-access"], _ = expandObjectFirewallVip6DynamicMappingOutlookWebAccess(d, i["outlook_web_access"], pre_append)
@@ -3111,6 +3676,13 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["protocol"], _ = expandObjectFirewallVip6DynamicMappingProtocol(d, i["protocol"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["realservers"], _ = expandObjectFirewallVip6DynamicMappingRealservers(d, i["realservers"], pre_append)
+		} else {
+			tmp["realservers"] = make([]string, 0)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_type"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["server-type"], _ = expandObjectFirewallVip6DynamicMappingServerType(d, i["server_type"], pre_append)
@@ -3123,6 +3695,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["src-filter"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_accept_ffdhe_groups"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ssl-accept-ffdhe-groups"], _ = expandObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(d, i["ssl_accept_ffdhe_groups"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_algorithm"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["ssl-algorithm"], _ = expandObjectFirewallVip6DynamicMappingSslAlgorithm(d, i["ssl_algorithm"], pre_append)
@@ -3131,6 +3708,13 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_certificate"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["ssl-certificate"], _ = expandObjectFirewallVip6DynamicMappingSslCertificate(d, i["ssl_certificate"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_cipher_suites"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ssl-cipher-suites"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
+		} else {
+			tmp["ssl-cipher-suites"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_fallback"
@@ -3346,6 +3930,10 @@ func expandObjectFirewallVip6DynamicMappingScopeVdom(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingAddNat64Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingArpReply(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3355,6 +3943,10 @@ func expandObjectFirewallVip6DynamicMappingColor(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallVip6DynamicMappingComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3414,6 +4006,14 @@ func expandObjectFirewallVip6DynamicMappingId(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingIpv4Mappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingIpv4Mappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingLdbMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3438,6 +4038,14 @@ func expandObjectFirewallVip6DynamicMappingNatSourceVip(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingNat66(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingOutlookWebAccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3454,6 +4062,127 @@ func expandObjectFirewallVip6DynamicMappingProtocol(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectFirewallVip6DynamicMappingRealservers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["client-ip"], _ = expandObjectFirewallVip6DynamicMappingRealserversClientIp(d, i["client_ip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["healthcheck"], _ = expandObjectFirewallVip6DynamicMappingRealserversHealthcheck(d, i["healthcheck"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "holddown_interval"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["holddown-interval"], _ = expandObjectFirewallVip6DynamicMappingRealserversHolddownInterval(d, i["holddown_interval"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_host"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["http-host"], _ = expandObjectFirewallVip6DynamicMappingRealserversHttpHost(d, i["http_host"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandObjectFirewallVip6DynamicMappingRealserversId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ip"], _ = expandObjectFirewallVip6DynamicMappingRealserversIp(d, i["ip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["max-connections"], _ = expandObjectFirewallVip6DynamicMappingRealserversMaxConnections(d, i["max_connections"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["monitor"], _ = expandObjectFirewallVip6DynamicMappingRealserversMonitor(d, i["monitor"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["port"], _ = expandObjectFirewallVip6DynamicMappingRealserversPort(d, i["port"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["status"], _ = expandObjectFirewallVip6DynamicMappingRealserversStatus(d, i["status"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["weight"], _ = expandObjectFirewallVip6DynamicMappingRealserversWeight(d, i["weight"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversClientIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversHealthcheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversHolddownInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversHttpHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversMaxConnections(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversWeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingServerType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3462,12 +4191,67 @@ func expandObjectFirewallVip6DynamicMappingSrcFilter(d *schema.ResourceData, v i
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6DynamicMappingSslAlgorithm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallVip6DynamicMappingSslCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["cipher"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuitesCipher(d, i["cipher"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["priority"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuitesPriority(d, i["priority"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["versions"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuitesVersions(d, i["versions"], pre_append)
+		} else {
+			tmp["versions"] = make([]string, 0)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingSslCipherSuitesCipher(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingSslCipherSuitesPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingSslCipherSuitesVersions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallVip6DynamicMappingSslClientFallback(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3602,6 +4386,10 @@ func expandObjectFirewallVip6DynamicMappingWebsphereServer(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectFirewallVip6EmbeddedIpv4Address(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6Extip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3658,6 +4446,14 @@ func expandObjectFirewallVip6Id(d *schema.ResourceData, v interface{}, pre strin
 	return v, nil
 }
 
+func expandObjectFirewallVip6Ipv4Mappedip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6Ipv4Mappedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVip6LdbMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3683,6 +4479,14 @@ func expandObjectFirewallVip6Name(d *schema.ResourceData, v interface{}, pre str
 }
 
 func expandObjectFirewallVip6NatSourceVip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6Nat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6Nat66(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3829,6 +4633,10 @@ func expandObjectFirewallVip6ServerType(d *schema.ResourceData, v interface{}, p
 
 func expandObjectFirewallVip6SrcFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallVip6SslAcceptFfdheGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallVip6SslAlgorithm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4076,6 +4884,15 @@ func expandObjectFirewallVip6WebsphereServer(d *schema.ResourceData, v interface
 func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("add_nat64_route"); ok {
+		t, err := expandObjectFirewallVip6AddNat64Route(d, v, "add_nat64_route")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["add-nat64-route"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("arp_reply"); ok {
 		t, err := expandObjectFirewallVip6ArpReply(d, v, "arp_reply")
 		if err != nil {
@@ -4109,6 +4926,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["dynamic_mapping"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("embedded_ipv4_address"); ok {
+		t, err := expandObjectFirewallVip6EmbeddedIpv4Address(d, v, "embedded_ipv4_address")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["embedded-ipv4-address"] = t
 		}
 	}
 
@@ -4238,6 +5064,24 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("ipv4_mappedip"); ok {
+		t, err := expandObjectFirewallVip6Ipv4Mappedip(d, v, "ipv4_mappedip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv4-mappedip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv4_mappedport"); ok {
+		t, err := expandObjectFirewallVip6Ipv4Mappedport(d, v, "ipv4_mappedport")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv4-mappedport"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ldb_method"); ok {
 		t, err := expandObjectFirewallVip6LdbMethod(d, v, "ldb_method")
 		if err != nil {
@@ -4301,6 +5145,24 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandObjectFirewallVip6Nat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat66"); ok {
+		t, err := expandObjectFirewallVip6Nat66(d, v, "nat66")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat66"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("outlook_web_access"); ok {
 		t, err := expandObjectFirewallVip6OutlookWebAccess(d, v, "outlook_web_access")
 		if err != nil {
@@ -4361,6 +5223,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["src-filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_accept_ffdhe_groups"); ok {
+		t, err := expandObjectFirewallVip6SslAcceptFfdheGroups(d, v, "ssl_accept_ffdhe_groups")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-accept-ffdhe-groups"] = t
 		}
 	}
 

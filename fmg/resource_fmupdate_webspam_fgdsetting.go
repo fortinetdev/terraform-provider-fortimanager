@@ -99,6 +99,21 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"iot_cache": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"iot_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"iot_preload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"linkd_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -145,6 +160,11 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 				Computed: true,
 			},
 			"restrict_fq_dbver": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"restrict_iots_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -374,6 +394,18 @@ func flattenFmupdateWebSpamFgdSettingFqPreloadFwfa(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenFmupdateWebSpamFgdSettingIotCacheFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateWebSpamFgdSettingIotLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateWebSpamFgdSettingIotPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenFmupdateWebSpamFgdSettingLinkdLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -411,6 +443,10 @@ func flattenFmupdateWebSpamFgdSettingRestrictAv2DbverFwfa(v interface{}, d *sche
 }
 
 func flattenFmupdateWebSpamFgdSettingRestrictFqDbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -701,6 +737,36 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("iot_cache", flattenFmupdateWebSpamFgdSettingIotCacheFwfa(o["iot-cache"], d, "iot_cache")); err != nil {
+		if vv, ok := fortiAPIPatch(o["iot-cache"], "FmupdateWebSpamFgdSetting-IotCache"); ok {
+			if err = d.Set("iot_cache", vv); err != nil {
+				return fmt.Errorf("Error reading iot_cache: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading iot_cache: %v", err)
+		}
+	}
+
+	if err = d.Set("iot_log", flattenFmupdateWebSpamFgdSettingIotLogFwfa(o["iot-log"], d, "iot_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["iot-log"], "FmupdateWebSpamFgdSetting-IotLog"); ok {
+			if err = d.Set("iot_log", vv); err != nil {
+				return fmt.Errorf("Error reading iot_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading iot_log: %v", err)
+		}
+	}
+
+	if err = d.Set("iot_preload", flattenFmupdateWebSpamFgdSettingIotPreloadFwfa(o["iot-preload"], d, "iot_preload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["iot-preload"], "FmupdateWebSpamFgdSetting-IotPreload"); ok {
+			if err = d.Set("iot_preload", vv); err != nil {
+				return fmt.Errorf("Error reading iot_preload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading iot_preload: %v", err)
+		}
+	}
+
 	if err = d.Set("linkd_log", flattenFmupdateWebSpamFgdSettingLinkdLogFwfa(o["linkd-log"], d, "linkd_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["linkd-log"], "FmupdateWebSpamFgdSetting-LinkdLog"); ok {
 			if err = d.Set("linkd_log", vv); err != nil {
@@ -798,6 +864,16 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading restrict_fq_dbver: %v", err)
+		}
+	}
+
+	if err = d.Set("restrict_iots_dbver", flattenFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(o["restrict-iots-dbver"], d, "restrict_iots_dbver")); err != nil {
+		if vv, ok := fortiAPIPatch(o["restrict-iots-dbver"], "FmupdateWebSpamFgdSetting-RestrictIotsDbver"); ok {
+			if err = d.Set("restrict_iots_dbver", vv); err != nil {
+				return fmt.Errorf("Error reading restrict_iots_dbver: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading restrict_iots_dbver: %v", err)
 		}
 	}
 
@@ -990,6 +1066,18 @@ func expandFmupdateWebSpamFgdSettingFqPreloadFwfa(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandFmupdateWebSpamFgdSettingIotCacheFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateWebSpamFgdSettingIotLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateWebSpamFgdSettingIotPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandFmupdateWebSpamFgdSettingLinkdLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1027,6 +1115,10 @@ func expandFmupdateWebSpamFgdSettingRestrictAv2DbverFwfa(d *schema.ResourceData,
 }
 
 func expandFmupdateWebSpamFgdSettingRestrictFqDbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1294,6 +1386,33 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
+	if v, ok := d.GetOk("iot_cache"); ok {
+		t, err := expandFmupdateWebSpamFgdSettingIotCacheFwfa(d, v, "iot_cache")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["iot-cache"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("iot_log"); ok {
+		t, err := expandFmupdateWebSpamFgdSettingIotLogFwfa(d, v, "iot_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["iot-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("iot_preload"); ok {
+		t, err := expandFmupdateWebSpamFgdSettingIotPreloadFwfa(d, v, "iot_preload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["iot-preload"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("linkd_log"); ok {
 		t, err := expandFmupdateWebSpamFgdSettingLinkdLogFwfa(d, v, "linkd_log")
 		if err != nil {
@@ -1381,6 +1500,15 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["restrict-fq-dbver"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("restrict_iots_dbver"); ok {
+		t, err := expandFmupdateWebSpamFgdSettingRestrictIotsDbverFwfa(d, v, "restrict_iots_dbver")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["restrict-iots-dbver"] = t
 		}
 	}
 

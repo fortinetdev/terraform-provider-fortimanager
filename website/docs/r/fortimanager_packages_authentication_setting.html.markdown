@@ -41,6 +41,11 @@ The following arguments are supported:
 * `captive_portal_type` - Captive portal type. Valid values: `fqdn`, `ip`.
 
 * `captive_portal6` - IPv6 captive portal host name.
+* `cert_auth` - Enable/disable redirecting certificate authentication to HTTPS portal. Valid values: `disable`, `enable`.
+
+* `cert_captive_portal` - Certificate captive portal host name.
+* `cert_captive_portal_ip` - Certificate captive portal IP address.
+* `cert_captive_portal_port` - Certificate captive portal port number (1 - 65535, default = 7832).
 * `dev_range` - Address range for the IP based device query.
 * `rewrite_https_port` - Rewrite-Https-Port.
 * `sso_auth_scheme` - Single-Sign-On authentication method (scheme name).

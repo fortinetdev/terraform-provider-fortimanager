@@ -1,4 +1,85 @@
-## 1.4.0 (Unreleased)
+## 1.5.0 (Unreleased)
+
+## 1.4.0 (Apr 6, 2022)
+
+IMPROVEMENTS:
+
+* Support FortiManager version from 7.0.1 to 7.0.3
+* Fix issue of value of argument 'scopetype' and 'dynamic_sort_subtable' is null when import the resource
+* Fix argument value type issue for resource fortimanager_object_webfilter_profile
+
+FEATURES:
+
+* **New Resource:** `fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl`
+* **New Resource:** `fortimanager_object_system_npu_backgroundssescan`
+* **New Resource:** `fortimanager_object_system_npu_hpe`
+* **New Resource:** `fortimanager_object_system_npu_ipreassembly`
+* **New Resource:** `fortimanager_system_log_ratelimit_ratelimits`
+* **New Resource:** `fortimanager_system_global_sslciphersuites`
+* **New Resource:** `fortimanager_object_log_npuserver_servergroup`
+* **New Resource:** `fortimanager_object_router_aspathlist`
+* **New Resource:** `fortimanager_object_system_npu_tcptimeoutprofile`
+* **New Resource:** `fortimanager_object_system_npu_isfnpqueues`
+* **New Resource:** `fortimanager_object_wirelesscontroller_arrpprofile`
+* **New Resource:** `fortimanager_packages_firewall_hyperscalepolicy6`
+* **New Resource:** `fortimanager_object_system_npu_npqueues_ipprotocol`
+* **New Resource:** `fortimanager_packages_firewall_hyperscalepolicy46`
+* **New Resource:** `fortimanager_object_system_npu_npqueues_scheduler`
+* **New Resource:** `fortimanager_object_system_npu_swehhash`
+* **New Resource:** `fortimanager_object_firewall_ippool_grp`
+* **New Resource:** `fortimanager_object_router_accesslist6`
+* **New Resource:** `fortimanager_object_firewall_internetservice_entry`
+* **New Resource:** `fortimanager_object_wirelesscontroller_nacprofile`
+* **New Resource:** `fortimanager_packages_firewall_hyperscalepolicy64`
+* **New Resource:** `fortimanager_object_user_connector`
+* **New Resource:** `fortimanager_object_extendercontroller_extenderprofile`
+* **New Resource:** `fortimanager_object_wirelesscontroller_address`
+* **New Resource:** `fortimanager_object_system_npu_npqueues_ethernettype`
+* **New Resource:** `fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions`
+* **New Resource:** `fortimanager_object_wirelesscontroller_hotspot20_icon`
+* **New Resource:** `fortimanager_object_system_npu_fpanomaly`
+* **New Resource:** `fortimanager_object_system_npu_priorityprotocol`
+* **New Resource:** `fortimanager_object_system_npu_npqueues_profile`
+* **New Resource:** `fortimanager_object_system_npu_npqueues`
+* **New Resource:** `fortimanager_system_log_fospolicystats`
+* **New Resource:** `fortimanager_object_router_prefixlist`
+* **New Resource:** `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai`
+* **New Resource:** `fortimanager_system_webproxy`
+* **New Resource:** `fortimanager_object_router_prefixlist6`
+* **New Resource:** `fortimanager_object_user_deviceaccesslist`
+* **New Resource:** `fortimanager_object_system_npu_portcpumap`
+* **New Resource:** `fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge`
+* **New Resource:** `fortimanager_object_dlp_fpsensitivity`
+* **New Resource:** `fortimanager_object_log_npuserver_serverinfo`
+* **New Resource:** `fortimanager_object_global_ips_sensor`
+* **New Resource:** `fortimanager_object_endpointcontrol_fctems`
+* **New Resource:** `fortimanager_object_system_npu_dswqueuedtsprofile`
+* **New Resource:** `fortimanager_packages_firewall_hyperscalepolicy`
+* **New Resource:** `fortimanager_object_router_accesslist`
+* **New Resource:** `fortimanager_object_user_devicegroup`
+* **New Resource:** `fortimanager_object_system_npu_portpathoption`
+* **New Resource:** `fortimanager_object_spamfilter_iptrust`
+* **New Resource:** `fortimanager_object_cifs_domaincontroller`
+* **New Resource:** `fortimanager_object_log_npuserver`
+* **New Resource:** `fortimanager_system_hascheduledcheck`
+* **New Resource:** `fortimanager_object_system_npu_dosoptions`
+* **New Resource:** `fortimanager_object_spamfilter_profile`
+* **New Resource:** `fortimanager_object_router_routemap`
+* **New Resource:** `fortimanager_object_router_communitylist`
+* **New Resource:** `fortimanager_object_wirelesscontroller_addrgrp`
+* **New Resource:** `fortimanager_object_system_npu`
+* **New Resource:** `fortimanager_object_spamfilter_bwl`
+* **New Resource:** `fortimanager_object_system_npu_dswdtsprofile`
+* **New Resource:** `fortimanager_system_log_topology`
+* **New Resource:** `fortimanager_object_user_devicecategory`
+* **New Resource:** `fortimanager_object_spamfilter_bword`
+* **New Resource:** `fortimanager_object_spamfilter_dnsbl`
+* **New Resource:** `fortimanager_object_firewall_accessproxyvirtualhost`
+* **New Resource:** `fortimanager_object_switchcontroller_dsl_policy`
+* **New Resource:** `fortimanager_object_system_npu_portnpumap`
+* **New Resource:** `fortimanager_object_spamfilter_mheader`
+* **New Resource:** `fortimanager_object_system_npu_udptimeoutprofile`
+* **New Resource:** `fortimanager_object_system_npu_npqueues_ipservice`
 
 ## 1.3.6 (Dec 13, 2021)
 

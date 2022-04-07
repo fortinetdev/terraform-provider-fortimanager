@@ -67,6 +67,34 @@ func resourceSystemLogRatelimit() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ratelimits": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"filter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"filter_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"ratelimit": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"system_ratelimit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -224,6 +252,73 @@ func flattenSystemLogRatelimitModeSLR(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenSystemLogRatelimitRatelimitsSLR(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
+		if _, ok := i["filter"]; ok {
+			v := flattenSystemLogRatelimitRatelimitsFilterSLR(i["filter"], d, pre_append)
+			tmp["filter"] = fortiAPISubPartPatch(v, "SystemLogRatelimit-Ratelimits-Filter")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter_type"
+		if _, ok := i["filter-type"]; ok {
+			v := flattenSystemLogRatelimitRatelimitsFilterTypeSLR(i["filter-type"], d, pre_append)
+			tmp["filter_type"] = fortiAPISubPartPatch(v, "SystemLogRatelimit-Ratelimits-FilterType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenSystemLogRatelimitRatelimitsIdSLR(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "SystemLogRatelimit-Ratelimits-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ratelimit"
+		if _, ok := i["ratelimit"]; ok {
+			v := flattenSystemLogRatelimitRatelimitsRatelimitSLR(i["ratelimit"], d, pre_append)
+			tmp["ratelimit"] = fortiAPISubPartPatch(v, "SystemLogRatelimit-Ratelimits-Ratelimit")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenSystemLogRatelimitRatelimitsFilterSLR(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogRatelimitRatelimitsFilterTypeSLR(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogRatelimitRatelimitsIdSLR(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogRatelimitRatelimitsRatelimitSLR(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogRatelimitSystemRatelimitSLR(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -276,6 +371,30 @@ func refreshObjectSystemLogRatelimit(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading mode: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("ratelimits", flattenSystemLogRatelimitRatelimitsSLR(o["ratelimits"], d, "ratelimits")); err != nil {
+			if vv, ok := fortiAPIPatch(o["ratelimits"], "SystemLogRatelimit-Ratelimits"); ok {
+				if err = d.Set("ratelimits", vv); err != nil {
+					return fmt.Errorf("Error reading ratelimits: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading ratelimits: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("ratelimits"); ok {
+			if err = d.Set("ratelimits", flattenSystemLogRatelimitRatelimitsSLR(o["ratelimits"], d, "ratelimits")); err != nil {
+				if vv, ok := fortiAPIPatch(o["ratelimits"], "SystemLogRatelimit-Ratelimits"); ok {
+					if err = d.Set("ratelimits", vv); err != nil {
+						return fmt.Errorf("Error reading ratelimits: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading ratelimits: %v", err)
+				}
+			}
 		}
 	}
 
@@ -364,6 +483,64 @@ func expandSystemLogRatelimitModeSLR(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandSystemLogRatelimitRatelimitsSLR(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["filter"], _ = expandSystemLogRatelimitRatelimitsFilterSLR(d, i["filter"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter_type"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["filter-type"], _ = expandSystemLogRatelimitRatelimitsFilterTypeSLR(d, i["filter_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandSystemLogRatelimitRatelimitsIdSLR(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ratelimit"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ratelimit"], _ = expandSystemLogRatelimitRatelimitsRatelimitSLR(d, i["ratelimit"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandSystemLogRatelimitRatelimitsFilterSLR(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogRatelimitRatelimitsFilterTypeSLR(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogRatelimitRatelimitsIdSLR(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogRatelimitRatelimitsRatelimitSLR(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogRatelimitSystemRatelimitSLR(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -395,6 +572,15 @@ func getObjectSystemLogRatelimit(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ratelimits"); ok {
+		t, err := expandSystemLogRatelimitRatelimitsSLR(d, v, "ratelimits")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ratelimits"] = t
 		}
 	}
 

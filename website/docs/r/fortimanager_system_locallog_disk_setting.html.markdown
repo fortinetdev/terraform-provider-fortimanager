@@ -31,6 +31,8 @@ The following arguments are supported:
 * `diskfull` - Policy to apply when disk is full. overwrite - Overwrite oldest log when disk is full. nolog - Stop logging when disk is full. Valid values: `overwrite`, `nolog`.
 
 * `log_disk_full_percentage` - Consider log disk as full at this usage percentage.
+* `log_disk_quota` - Quota for controlling local log size.
+* `max_log_file_num` - Maximum number of log files before rolling.
 * `max_log_file_size` - Maximum log file size before rolling.
 * `roll_day` - Days of week to roll logs. sunday - Sunday. monday - Monday. tuesday - Tuesday. wednesday - Wednesday. thursday - Thursday. friday - Friday. saturday - Saturday. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 

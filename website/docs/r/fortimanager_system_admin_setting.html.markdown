@@ -36,6 +36,8 @@ The following arguments are supported:
 * `auto_update` - Enable/disable FortiGate automatic update. disable - Disable device automatic update. enable - Enable device automatic update. Valid values: `disable`, `enable`.
 
 * `banner_message` - Banner message.
+* `central_ftgd_local_cat_id` - Central FortiGuard local category id management, and do not auto assign id during installation. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `chassis_mgmt` - Enable or disable chassis management. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `chassis_update_interval` - Chassis background update interval (4 - 1440 mins).
@@ -48,6 +50,7 @@ The following arguments are supported:
 * `idle_timeout` - Idle timeout (1 - 480 min).
 * `idle_timeout_api` - Idle timeout for API sessions (1 - 28800 sec).
 * `idle_timeout_gui` - Idle timeout for GUI sessions (60 - 28800 sec).
+* `idle_timeout_sso` - Idle timeout for SSO sessions (60 - 28800 sec).
 * `install_ifpolicy_only` - Allow install interface policy only. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `mgmt_addr` - IP of FortiManager used by FGFM.
@@ -56,6 +59,7 @@ The following arguments are supported:
 
 * `offline_mode` - Enable/disable offline mode. disable - Disable offline mode. enable - Enable offline mode. Valid values: `disable`, `enable`.
 
+* `preferred_fgfm_intf` - Preferred interface for FGFM connection.
 * `register_passwd` - Password for register a device.
 * `sdwan_monitor_history` - Enable/disable sdwan-monitor-history. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
@@ -83,6 +87,8 @@ The following arguments are supported:
 * `show_schedule_script` - Enable or disable schedule script. disable - Disable script option. enable - Enable script option. Valid values: `disable`, `enable`.
 
 * `show_tcl_script` - Enable/disable TCL script. disable - Disable script option. enable - Enable script option. Valid values: `disable`, `enable`.
+
+* `traffic_shaping_history` - Enable/disable traffic-shaping-history. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `unreg_dev_opt` - Action to take when unregistered device connects to FortiManager. add_no_service - Add unregistered devices but deny service requests. ignore - Ignore unregistered devices. add_allow_service - Add unregistered devices and allow service requests. Valid values: `add_no_service`, `ignore`, `add_allow_service`.
 

@@ -34,6 +34,12 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"access_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -310,6 +316,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dynamic_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -381,6 +392,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fec": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"file_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -392,6 +408,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"fixedport": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"force_proxy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -466,6 +487,17 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			},
 			"http_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"http_tunnel_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ia_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -584,12 +616,23 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"isolator_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"label": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"learning_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"log_http_transaction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -624,6 +667,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"max_session_per_user": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -635,6 +683,16 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"nat": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -681,6 +739,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"pass_through": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"passive_wan_health_measurement": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -697,6 +760,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"permit_stun_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"pfcp_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -772,6 +840,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"reverse_cache": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"rsso": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -802,6 +875,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sctp_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"send_deny_packet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -824,6 +902,17 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"sessions": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sgt": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
+			"sgt_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -937,6 +1026,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tcp_timeout_pid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"timeout_send_rst": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -972,6 +1066,21 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"transparent": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"udp_timeout_pid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"url_category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -995,6 +1104,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid_idx": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -1116,6 +1230,11 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"ztna_status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ztna_tags_match_logic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1243,6 +1362,10 @@ func resourcePackagesGlobalFooterPolicyRead(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error reading PackagesGlobalFooterPolicy resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenPackagesGlobalFooterPolicyAccessProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1461,6 +1584,10 @@ func flattenPackagesGlobalFooterPolicyDstintf(v interface{}, d *schema.ResourceD
 	return flattenStringList(v)
 }
 
+func flattenPackagesGlobalFooterPolicyDynamicBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyDynamicProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1517,6 +1644,10 @@ func flattenPackagesGlobalFooterPolicyFallThroughUnauthenticated(v interface{}, 
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyFec(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyFileFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1526,6 +1657,10 @@ func flattenPackagesGlobalFooterPolicyFirewallSessionDirty(v interface{}, d *sch
 }
 
 func flattenPackagesGlobalFooterPolicyFixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyForceProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1583,6 +1718,14 @@ func flattenPackagesGlobalFooterPolicyGtpProfile(v interface{}, d *schema.Resour
 
 func flattenPackagesGlobalFooterPolicyHttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesGlobalFooterPolicyHttpTunnelAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyIaProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyIcapProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1677,11 +1820,19 @@ func flattenPackagesGlobalFooterPolicyIpsSensor(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyIsolatorServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesGlobalFooterPolicyLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenPackagesGlobalFooterPolicyLearningMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyLogHttpTransaction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1709,6 +1860,10 @@ func flattenPackagesGlobalFooterPolicyMatchVipOnly(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyMaxSessionPerUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyMmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1718,6 +1873,14 @@ func flattenPackagesGlobalFooterPolicyName(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesGlobalFooterPolicyNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1753,6 +1916,10 @@ func flattenPackagesGlobalFooterPolicyOutbound(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyPassThrough(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1766,6 +1933,10 @@ func flattenPackagesGlobalFooterPolicyPermitAnyHost(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalFooterPolicyPermitStunHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyPfcpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1825,6 +1996,10 @@ func flattenPackagesGlobalFooterPolicyRequireTfa(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyReverseCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyRsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1849,6 +2024,10 @@ func flattenPackagesGlobalFooterPolicyScheduleTimeout(v interface{}, d *schema.R
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicySctpFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicySendDenyPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1866,6 +2045,14 @@ func flattenPackagesGlobalFooterPolicySessionTtl(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalFooterPolicySessions(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicySgt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenPackagesGlobalFooterPolicySgtCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1953,6 +2140,10 @@ func flattenPackagesGlobalFooterPolicyTcpSessionWithoutSyn(v interface{}, d *sch
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyTcpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyTimeoutSendRst(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1981,6 +2172,18 @@ func flattenPackagesGlobalFooterPolicyTransactionBased(v interface{}, d *schema.
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyTransparent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyUdpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1998,6 +2201,10 @@ func flattenPackagesGlobalFooterPolicyUtmStatus(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalFooterPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyUuidIdx(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2097,8 +2304,22 @@ func flattenPackagesGlobalFooterPolicyZtnaStatus(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyZtnaTagsMatchLogic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("access_proxy", flattenPackagesGlobalFooterPolicyAccessProxy(o["access-proxy"], d, "access_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["access-proxy"], "PackagesGlobalFooterPolicy-AccessProxy"); ok {
+			if err = d.Set("access_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading access_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading access_proxy: %v", err)
+		}
+	}
 
 	if err = d.Set("action", flattenPackagesGlobalFooterPolicyAction(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesGlobalFooterPolicy-Action"); ok {
@@ -2640,6 +2861,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("dynamic_bypass", flattenPackagesGlobalFooterPolicyDynamicBypass(o["dynamic-bypass"], d, "dynamic_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dynamic-bypass"], "PackagesGlobalFooterPolicy-DynamicBypass"); ok {
+			if err = d.Set("dynamic_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+		}
+	}
+
 	if err = d.Set("dynamic_profile", flattenPackagesGlobalFooterPolicyDynamicProfile(o["dynamic-profile"], d, "dynamic_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dynamic-profile"], "PackagesGlobalFooterPolicy-DynamicProfile"); ok {
 			if err = d.Set("dynamic_profile", vv); err != nil {
@@ -2780,6 +3011,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("fec", flattenPackagesGlobalFooterPolicyFec(o["fec"], d, "fec")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fec"], "PackagesGlobalFooterPolicy-Fec"); ok {
+			if err = d.Set("fec", vv); err != nil {
+				return fmt.Errorf("Error reading fec: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fec: %v", err)
+		}
+	}
+
 	if err = d.Set("file_filter_profile", flattenPackagesGlobalFooterPolicyFileFilterProfile(o["file-filter-profile"], d, "file_filter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["file-filter-profile"], "PackagesGlobalFooterPolicy-FileFilterProfile"); ok {
 			if err = d.Set("file_filter_profile", vv); err != nil {
@@ -2807,6 +3048,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading fixedport: %v", err)
+		}
+	}
+
+	if err = d.Set("force_proxy", flattenPackagesGlobalFooterPolicyForceProxy(o["force-proxy"], d, "force_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["force-proxy"], "PackagesGlobalFooterPolicy-ForceProxy"); ok {
+			if err = d.Set("force_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading force_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading force_proxy: %v", err)
 		}
 	}
 
@@ -2947,6 +3198,26 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading http_policy_redirect: %v", err)
+		}
+	}
+
+	if err = d.Set("http_tunnel_auth", flattenPackagesGlobalFooterPolicyHttpTunnelAuth(o["http-tunnel-auth"], d, "http_tunnel_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-tunnel-auth"], "PackagesGlobalFooterPolicy-HttpTunnelAuth"); ok {
+			if err = d.Set("http_tunnel_auth", vv); err != nil {
+				return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_profile", flattenPackagesGlobalFooterPolicyIaProfile(o["ia-profile"], d, "ia_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-profile"], "PackagesGlobalFooterPolicy-IaProfile"); ok {
+			if err = d.Set("ia_profile", vv); err != nil {
+				return fmt.Errorf("Error reading ia_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_profile: %v", err)
 		}
 	}
 
@@ -3180,6 +3451,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("isolator_server", flattenPackagesGlobalFooterPolicyIsolatorServer(o["isolator-server"], d, "isolator_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-server"], "PackagesGlobalFooterPolicy-IsolatorServer"); ok {
+			if err = d.Set("isolator_server", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_server: %v", err)
+		}
+	}
+
 	if err = d.Set("label", flattenPackagesGlobalFooterPolicyLabel(o["label"], d, "label")); err != nil {
 		if vv, ok := fortiAPIPatch(o["label"], "PackagesGlobalFooterPolicy-Label"); ok {
 			if err = d.Set("label", vv); err != nil {
@@ -3197,6 +3478,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading learning_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("log_http_transaction", flattenPackagesGlobalFooterPolicyLogHttpTransaction(o["log-http-transaction"], d, "log_http_transaction")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-http-transaction"], "PackagesGlobalFooterPolicy-LogHttpTransaction"); ok {
+			if err = d.Set("log_http_transaction", vv); err != nil {
+				return fmt.Errorf("Error reading log_http_transaction: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_http_transaction: %v", err)
 		}
 	}
 
@@ -3260,6 +3551,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("max_session_per_user", flattenPackagesGlobalFooterPolicyMaxSessionPerUser(o["max-session-per-user"], d, "max_session_per_user")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-session-per-user"], "PackagesGlobalFooterPolicy-MaxSessionPerUser"); ok {
+			if err = d.Set("max_session_per_user", vv); err != nil {
+				return fmt.Errorf("Error reading max_session_per_user: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_session_per_user: %v", err)
+		}
+	}
+
 	if err = d.Set("mms_profile", flattenPackagesGlobalFooterPolicyMmsProfile(o["mms-profile"], d, "mms_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mms-profile"], "PackagesGlobalFooterPolicy-MmsProfile"); ok {
 			if err = d.Set("mms_profile", vv); err != nil {
@@ -3287,6 +3588,26 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading nat: %v", err)
+		}
+	}
+
+	if err = d.Set("nat46", flattenPackagesGlobalFooterPolicyNat46(o["nat46"], d, "nat46")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat46"], "PackagesGlobalFooterPolicy-Nat46"); ok {
+			if err = d.Set("nat46", vv); err != nil {
+				return fmt.Errorf("Error reading nat46: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
+	if err = d.Set("nat64", flattenPackagesGlobalFooterPolicyNat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "PackagesGlobalFooterPolicy-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
 		}
 	}
 
@@ -3370,6 +3691,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("pass_through", flattenPackagesGlobalFooterPolicyPassThrough(o["pass-through"], d, "pass_through")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pass-through"], "PackagesGlobalFooterPolicy-PassThrough"); ok {
+			if err = d.Set("pass_through", vv); err != nil {
+				return fmt.Errorf("Error reading pass_through: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pass_through: %v", err)
+		}
+	}
+
 	if err = d.Set("passive_wan_health_measurement", flattenPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(o["passive-wan-health-measurement"], d, "passive_wan_health_measurement")); err != nil {
 		if vv, ok := fortiAPIPatch(o["passive-wan-health-measurement"], "PackagesGlobalFooterPolicy-PassiveWanHealthMeasurement"); ok {
 			if err = d.Set("passive_wan_health_measurement", vv); err != nil {
@@ -3407,6 +3738,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading permit_stun_host: %v", err)
+		}
+	}
+
+	if err = d.Set("pfcp_profile", flattenPackagesGlobalFooterPolicyPfcpProfile(o["pfcp-profile"], d, "pfcp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pfcp-profile"], "PackagesGlobalFooterPolicy-PfcpProfile"); ok {
+			if err = d.Set("pfcp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading pfcp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pfcp_profile: %v", err)
 		}
 	}
 
@@ -3550,6 +3891,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("reverse_cache", flattenPackagesGlobalFooterPolicyReverseCache(o["reverse-cache"], d, "reverse_cache")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reverse-cache"], "PackagesGlobalFooterPolicy-ReverseCache"); ok {
+			if err = d.Set("reverse_cache", vv); err != nil {
+				return fmt.Errorf("Error reading reverse_cache: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reverse_cache: %v", err)
+		}
+	}
+
 	if err = d.Set("rsso", flattenPackagesGlobalFooterPolicyRsso(o["rsso"], d, "rsso")); err != nil {
 		if vv, ok := fortiAPIPatch(o["rsso"], "PackagesGlobalFooterPolicy-Rsso"); ok {
 			if err = d.Set("rsso", vv); err != nil {
@@ -3610,6 +3961,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("sctp_filter_profile", flattenPackagesGlobalFooterPolicySctpFilterProfile(o["sctp-filter-profile"], d, "sctp_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sctp-filter-profile"], "PackagesGlobalFooterPolicy-SctpFilterProfile"); ok {
+			if err = d.Set("sctp_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("send_deny_packet", flattenPackagesGlobalFooterPolicySendDenyPacket(o["send-deny-packet"], d, "send_deny_packet")); err != nil {
 		if vv, ok := fortiAPIPatch(o["send-deny-packet"], "PackagesGlobalFooterPolicy-SendDenyPacket"); ok {
 			if err = d.Set("send_deny_packet", vv); err != nil {
@@ -3657,6 +4018,26 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading sessions: %v", err)
+		}
+	}
+
+	if err = d.Set("sgt", flattenPackagesGlobalFooterPolicySgt(o["sgt"], d, "sgt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sgt"], "PackagesGlobalFooterPolicy-Sgt"); ok {
+			if err = d.Set("sgt", vv); err != nil {
+				return fmt.Errorf("Error reading sgt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sgt: %v", err)
+		}
+	}
+
+	if err = d.Set("sgt_check", flattenPackagesGlobalFooterPolicySgtCheck(o["sgt-check"], d, "sgt_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sgt-check"], "PackagesGlobalFooterPolicy-SgtCheck"); ok {
+			if err = d.Set("sgt_check", vv); err != nil {
+				return fmt.Errorf("Error reading sgt_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sgt_check: %v", err)
 		}
 	}
 
@@ -3870,6 +4251,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("tcp_timeout_pid", flattenPackagesGlobalFooterPolicyTcpTimeoutPid(o["tcp-timeout-pid"], d, "tcp_timeout_pid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tcp-timeout-pid"], "PackagesGlobalFooterPolicy-TcpTimeoutPid"); ok {
+			if err = d.Set("tcp_timeout_pid", vv); err != nil {
+				return fmt.Errorf("Error reading tcp_timeout_pid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tcp_timeout_pid: %v", err)
+		}
+	}
+
 	if err = d.Set("timeout_send_rst", flattenPackagesGlobalFooterPolicyTimeoutSendRst(o["timeout-send-rst"], d, "timeout_send_rst")); err != nil {
 		if vv, ok := fortiAPIPatch(o["timeout-send-rst"], "PackagesGlobalFooterPolicy-TimeoutSendRst"); ok {
 			if err = d.Set("timeout_send_rst", vv); err != nil {
@@ -3940,6 +4331,36 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("transparent", flattenPackagesGlobalFooterPolicyTransparent(o["transparent"], d, "transparent")); err != nil {
+		if vv, ok := fortiAPIPatch(o["transparent"], "PackagesGlobalFooterPolicy-Transparent"); ok {
+			if err = d.Set("transparent", vv); err != nil {
+				return fmt.Errorf("Error reading transparent: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading transparent: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenPackagesGlobalFooterPolicyType(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "PackagesGlobalFooterPolicy-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("udp_timeout_pid", flattenPackagesGlobalFooterPolicyUdpTimeoutPid(o["udp-timeout-pid"], d, "udp_timeout_pid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["udp-timeout-pid"], "PackagesGlobalFooterPolicy-UdpTimeoutPid"); ok {
+			if err = d.Set("udp_timeout_pid", vv); err != nil {
+				return fmt.Errorf("Error reading udp_timeout_pid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading udp_timeout_pid: %v", err)
+		}
+	}
+
 	if err = d.Set("url_category", flattenPackagesGlobalFooterPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesGlobalFooterPolicy-UrlCategory"); ok {
 			if err = d.Set("url_category", vv); err != nil {
@@ -3987,6 +4408,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid_idx", flattenPackagesGlobalFooterPolicyUuidIdx(o["uuid-idx"], d, "uuid_idx")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid-idx"], "PackagesGlobalFooterPolicy-UuidIdx"); ok {
+			if err = d.Set("uuid_idx", vv); err != nil {
+				return fmt.Errorf("Error reading uuid_idx: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid_idx: %v", err)
 		}
 	}
 
@@ -4230,6 +4661,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("ztna_tags_match_logic", flattenPackagesGlobalFooterPolicyZtnaTagsMatchLogic(o["ztna-tags-match-logic"], d, "ztna_tags_match_logic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-tags-match-logic"], "PackagesGlobalFooterPolicy-ZtnaTagsMatchLogic"); ok {
+			if err = d.Set("ztna_tags_match_logic", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_tags_match_logic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_tags_match_logic: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -4237,6 +4678,10 @@ func flattenPackagesGlobalFooterPolicyFortiTestDebug(d *schema.ResourceData, fos
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandPackagesGlobalFooterPolicyAccessProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesGlobalFooterPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4455,6 +4900,10 @@ func expandPackagesGlobalFooterPolicyDstintf(d *schema.ResourceData, v interface
 	return expandStringList(v.([]interface{})), nil
 }
 
+func expandPackagesGlobalFooterPolicyDynamicBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyDynamicProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4511,6 +4960,10 @@ func expandPackagesGlobalFooterPolicyFallThroughUnauthenticated(d *schema.Resour
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyFec(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyFileFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4520,6 +4973,10 @@ func expandPackagesGlobalFooterPolicyFirewallSessionDirty(d *schema.ResourceData
 }
 
 func expandPackagesGlobalFooterPolicyFixedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyForceProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4577,6 +5034,14 @@ func expandPackagesGlobalFooterPolicyGtpProfile(d *schema.ResourceData, v interf
 
 func expandPackagesGlobalFooterPolicyHttpPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyHttpTunnelAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyIaProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesGlobalFooterPolicyIcapProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4671,11 +5136,19 @@ func expandPackagesGlobalFooterPolicyIpsSensor(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyIsolatorServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalFooterPolicyLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandPackagesGlobalFooterPolicyLearningMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyLogHttpTransaction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4703,6 +5176,10 @@ func expandPackagesGlobalFooterPolicyMatchVipOnly(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyMaxSessionPerUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyMmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4712,6 +5189,14 @@ func expandPackagesGlobalFooterPolicyName(d *schema.ResourceData, v interface{},
 }
 
 func expandPackagesGlobalFooterPolicyNat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4747,6 +5232,10 @@ func expandPackagesGlobalFooterPolicyOutbound(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyPassThrough(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4760,6 +5249,10 @@ func expandPackagesGlobalFooterPolicyPermitAnyHost(d *schema.ResourceData, v int
 }
 
 func expandPackagesGlobalFooterPolicyPermitStunHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyPfcpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4819,6 +5312,10 @@ func expandPackagesGlobalFooterPolicyRequireTfa(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyReverseCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyRsso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4843,6 +5340,10 @@ func expandPackagesGlobalFooterPolicyScheduleTimeout(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicySctpFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicySendDenyPacket(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4860,6 +5361,14 @@ func expandPackagesGlobalFooterPolicySessionTtl(d *schema.ResourceData, v interf
 }
 
 func expandPackagesGlobalFooterPolicySessions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicySgt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicySgtCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4947,6 +5456,10 @@ func expandPackagesGlobalFooterPolicyTcpSessionWithoutSyn(d *schema.ResourceData
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyTcpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyTimeoutSendRst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4975,6 +5488,18 @@ func expandPackagesGlobalFooterPolicyTransactionBased(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyTransparent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyUdpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4992,6 +5517,10 @@ func expandPackagesGlobalFooterPolicyUtmStatus(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesGlobalFooterPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyUuidIdx(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5091,8 +5620,21 @@ func expandPackagesGlobalFooterPolicyZtnaStatus(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyZtnaTagsMatchLogic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("access_proxy"); ok {
+		t, err := expandPackagesGlobalFooterPolicyAccessProxy(d, v, "access_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["access-proxy"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok {
 		t, err := expandPackagesGlobalFooterPolicyAction(d, v, "action")
@@ -5580,6 +6122,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("dynamic_bypass"); ok {
+		t, err := expandPackagesGlobalFooterPolicyDynamicBypass(d, v, "dynamic_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic-bypass"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dynamic_profile"); ok {
 		t, err := expandPackagesGlobalFooterPolicyDynamicProfile(d, v, "dynamic_profile")
 		if err != nil {
@@ -5706,6 +6257,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("fec"); ok {
+		t, err := expandPackagesGlobalFooterPolicyFec(d, v, "fec")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fec"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("file_filter_profile"); ok {
 		t, err := expandPackagesGlobalFooterPolicyFileFilterProfile(d, v, "file_filter_profile")
 		if err != nil {
@@ -5730,6 +6290,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["fixedport"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("force_proxy"); ok {
+		t, err := expandPackagesGlobalFooterPolicyForceProxy(d, v, "force_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["force-proxy"] = t
 		}
 	}
 
@@ -5856,6 +6425,24 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["http-policy-redirect"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_tunnel_auth"); ok {
+		t, err := expandPackagesGlobalFooterPolicyHttpTunnelAuth(d, v, "http_tunnel_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-tunnel-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_profile"); ok {
+		t, err := expandPackagesGlobalFooterPolicyIaProfile(d, v, "ia_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-profile"] = t
 		}
 	}
 
@@ -6066,6 +6653,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("isolator_server"); ok {
+		t, err := expandPackagesGlobalFooterPolicyIsolatorServer(d, v, "isolator_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-server"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("label"); ok {
 		t, err := expandPackagesGlobalFooterPolicyLabel(d, v, "label")
 		if err != nil {
@@ -6081,6 +6677,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["learning-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_http_transaction"); ok {
+		t, err := expandPackagesGlobalFooterPolicyLogHttpTransaction(d, v, "log_http_transaction")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-http-transaction"] = t
 		}
 	}
 
@@ -6138,6 +6743,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("max_session_per_user"); ok {
+		t, err := expandPackagesGlobalFooterPolicyMaxSessionPerUser(d, v, "max_session_per_user")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-session-per-user"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("mms_profile"); ok {
 		t, err := expandPackagesGlobalFooterPolicyMmsProfile(d, v, "mms_profile")
 		if err != nil {
@@ -6162,6 +6776,24 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["nat"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat46"); ok {
+		t, err := expandPackagesGlobalFooterPolicyNat46(d, v, "nat46")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat46"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandPackagesGlobalFooterPolicyNat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
 		}
 	}
 
@@ -6237,6 +6869,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("pass_through"); ok {
+		t, err := expandPackagesGlobalFooterPolicyPassThrough(d, v, "pass_through")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pass-through"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("passive_wan_health_measurement"); ok {
 		t, err := expandPackagesGlobalFooterPolicyPassiveWanHealthMeasurement(d, v, "passive_wan_health_measurement")
 		if err != nil {
@@ -6270,6 +6911,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["permit-stun-host"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pfcp_profile"); ok {
+		t, err := expandPackagesGlobalFooterPolicyPfcpProfile(d, v, "pfcp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pfcp-profile"] = t
 		}
 	}
 
@@ -6399,6 +7049,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("reverse_cache"); ok {
+		t, err := expandPackagesGlobalFooterPolicyReverseCache(d, v, "reverse_cache")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reverse-cache"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("rsso"); ok {
 		t, err := expandPackagesGlobalFooterPolicyRsso(d, v, "rsso")
 		if err != nil {
@@ -6453,6 +7112,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+		t, err := expandPackagesGlobalFooterPolicySctpFilterProfile(d, v, "sctp_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sctp-filter-profile"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("send_deny_packet"); ok {
 		t, err := expandPackagesGlobalFooterPolicySendDenyPacket(d, v, "send_deny_packet")
 		if err != nil {
@@ -6495,6 +7163,24 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["sessions"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sgt"); ok {
+		t, err := expandPackagesGlobalFooterPolicySgt(d, v, "sgt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sgt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sgt_check"); ok {
+		t, err := expandPackagesGlobalFooterPolicySgtCheck(d, v, "sgt_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sgt-check"] = t
 		}
 	}
 
@@ -6687,6 +7373,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("tcp_timeout_pid"); ok {
+		t, err := expandPackagesGlobalFooterPolicyTcpTimeoutPid(d, v, "tcp_timeout_pid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tcp-timeout-pid"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("timeout_send_rst"); ok {
 		t, err := expandPackagesGlobalFooterPolicyTimeoutSendRst(d, v, "timeout_send_rst")
 		if err != nil {
@@ -6750,6 +7445,33 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("transparent"); ok {
+		t, err := expandPackagesGlobalFooterPolicyTransparent(d, v, "transparent")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["transparent"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok {
+		t, err := expandPackagesGlobalFooterPolicyType(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("udp_timeout_pid"); ok {
+		t, err := expandPackagesGlobalFooterPolicyUdpTimeoutPid(d, v, "udp_timeout_pid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["udp-timeout-pid"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("url_category"); ok {
 		t, err := expandPackagesGlobalFooterPolicyUrlCategory(d, v, "url_category")
 		if err != nil {
@@ -6792,6 +7514,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid_idx"); ok {
+		t, err := expandPackagesGlobalFooterPolicyUuidIdx(d, v, "uuid_idx")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid-idx"] = t
 		}
 	}
 
@@ -7008,6 +7739,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_tags_match_logic"); ok {
+		t, err := expandPackagesGlobalFooterPolicyZtnaTagsMatchLogic(d, v, "ztna_tags_match_logic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-tags-match-logic"] = t
 		}
 	}
 

@@ -18,6 +18,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `action` - Policy action (accept/deny). Valid values: `deny`, `accept`.
 
 * `app_category` - Application category ID list.
@@ -70,12 +71,17 @@ The following arguments are supported:
 
 * `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
+* `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
+
+* `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
+
 * `policyid` - Policy ID.
 * `profile_group` - Name of profile group.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
 * `profile_type` - Determine whether the firewall policy allows security profile groups or single profiles only. Valid values: `single`, `group`.
 
 * `schedule` - Schedule name.
+* `sctp_filter_profile` - Name of an existing SCTP filter profile.
 * `send_deny_packet` - Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 
 * `service` - Service and service group names.

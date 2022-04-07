@@ -45,6 +45,11 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"add_nat46_route": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -73,12 +78,22 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 								},
 							},
 						},
+						"add_nat46_route": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"comments": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"endip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"nat46": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -99,6 +114,11 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
+				Optional: true,
+				Computed: true,
+			},
+			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -222,6 +242,10 @@ func resourceObjectFirewallIppool6Read(d *schema.ResourceData, m interface{}) er
 	return nil
 }
 
+func flattenObjectFirewallIppool6AddNat46Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppool6Comments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -251,6 +275,12 @@ func flattenObjectFirewallIppool6DynamicMapping(v interface{}, d *schema.Resourc
 			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool6-DynamicMapping-Scope")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat46_route"
+		if _, ok := i["add-nat46-route"]; ok {
+			v := flattenObjectFirewallIppool6DynamicMappingAddNat46Route(i["add-nat46-route"], d, pre_append)
+			tmp["add_nat46_route"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool6-DynamicMapping-AddNat46Route")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comments"
 		if _, ok := i["comments"]; ok {
 			v := flattenObjectFirewallIppool6DynamicMappingComments(i["comments"], d, pre_append)
@@ -261,6 +291,12 @@ func flattenObjectFirewallIppool6DynamicMapping(v interface{}, d *schema.Resourc
 		if _, ok := i["endip"]; ok {
 			v := flattenObjectFirewallIppool6DynamicMappingEndip(i["endip"], d, pre_append)
 			tmp["endip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool6-DynamicMapping-Endip")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat46"
+		if _, ok := i["nat46"]; ok {
+			v := flattenObjectFirewallIppool6DynamicMappingNat46(i["nat46"], d, pre_append)
+			tmp["nat46"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool6-DynamicMapping-Nat46")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "startip"
@@ -324,11 +360,19 @@ func flattenObjectFirewallIppool6DynamicMappingScopeVdom(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectFirewallIppool6DynamicMappingAddNat46Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppool6DynamicMappingComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFirewallIppool6DynamicMappingEndip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppool6DynamicMappingNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -341,6 +385,10 @@ func flattenObjectFirewallIppool6Endip(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallIppool6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppool6Nat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -357,6 +405,16 @@ func refreshObjectObjectFirewallIppool6(d *schema.ResourceData, o map[string]int
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("add_nat46_route", flattenObjectFirewallIppool6AddNat46Route(o["add-nat46-route"], d, "add_nat46_route")); err != nil {
+		if vv, ok := fortiAPIPatch(o["add-nat46-route"], "ObjectFirewallIppool6-AddNat46Route"); ok {
+			if err = d.Set("add_nat46_route", vv); err != nil {
+				return fmt.Errorf("Error reading add_nat46_route: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading add_nat46_route: %v", err)
+		}
 	}
 
 	if err = d.Set("comments", flattenObjectFirewallIppool6Comments(o["comments"], d, "comments")); err != nil {
@@ -413,6 +471,16 @@ func refreshObjectObjectFirewallIppool6(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("nat46", flattenObjectFirewallIppool6Nat46(o["nat46"], d, "nat46")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat46"], "ObjectFirewallIppool6-Nat46"); ok {
+			if err = d.Set("nat46", vv); err != nil {
+				return fmt.Errorf("Error reading nat46: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
 	if err = d.Set("startip", flattenObjectFirewallIppool6Startip(o["startip"], d, "startip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["startip"], "ObjectFirewallIppool6-Startip"); ok {
 			if err = d.Set("startip", vv); err != nil {
@@ -430,6 +498,10 @@ func flattenObjectFirewallIppool6FortiTestDebug(d *schema.ResourceData, fosdebug
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectFirewallIppool6AddNat46Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallIppool6Comments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -457,6 +529,11 @@ func expandObjectFirewallIppool6DynamicMapping(d *schema.ResourceData, v interfa
 			tmp["_scope"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat46_route"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["add-nat46-route"], _ = expandObjectFirewallIppool6DynamicMappingAddNat46Route(d, i["add_nat46_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comments"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["comments"], _ = expandObjectFirewallIppool6DynamicMappingComments(d, i["comments"], pre_append)
@@ -465,6 +542,11 @@ func expandObjectFirewallIppool6DynamicMapping(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "endip"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["endip"], _ = expandObjectFirewallIppool6DynamicMappingEndip(d, i["endip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat46"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["nat46"], _ = expandObjectFirewallIppool6DynamicMappingNat46(d, i["nat46"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "startip"
@@ -520,11 +602,19 @@ func expandObjectFirewallIppool6DynamicMappingScopeVdom(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectFirewallIppool6DynamicMappingAddNat46Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppool6DynamicMappingComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFirewallIppool6DynamicMappingEndip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppool6DynamicMappingNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -540,12 +630,25 @@ func expandObjectFirewallIppool6Name(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandObjectFirewallIppool6Nat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppool6Startip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("add_nat46_route"); ok {
+		t, err := expandObjectFirewallIppool6AddNat46Route(d, v, "add_nat46_route")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["add-nat46-route"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("comments"); ok {
 		t, err := expandObjectFirewallIppool6Comments(d, v, "comments")
@@ -580,6 +683,15 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat46"); ok {
+		t, err := expandObjectFirewallIppool6Nat46(d, v, "nat46")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat46"] = t
 		}
 	}
 

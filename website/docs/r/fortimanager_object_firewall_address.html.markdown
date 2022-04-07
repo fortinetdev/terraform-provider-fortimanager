@@ -42,6 +42,8 @@ The following arguments are supported:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `country` - IP addresses associated to a specific country.
+* `dirty` - To be deleted address. Valid values: `dirty`, `clean`.
+
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `end_ip` - Final IP address (inclusive) in the range for the address.
 * `end_mac` - Last MAC address in the range.
@@ -74,6 +76,8 @@ The following arguments are supported:
 
 * `subnet` - IP address and subnet mask of address.
 * `subnet_name` - Subnet name.
+* `tag_detection_level` - Tag detection level of dynamic address object.
+* `tag_type` - Tag type of dynamic address object.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
 * `tenant` - Tenant.
 * `type` - Type of address. Valid values: `ipmask`, `iprange`, `fqdn`, `wildcard`, `geography`, `url`, `wildcard-fqdn`, `nsx`, `aws`, `dynamic`, `interface-subnet`, `mac`.
@@ -98,6 +102,8 @@ The `dynamic_mapping` block supports:
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `country` - IP addresses associated to a specific country.
+* `dirty` - To be deleted address. Valid values: `dirty`, `clean`.
+
 * `end_ip` - Final IP address (inclusive) in the range for the address.
 * `end_mac` - Last MAC address in the range.
 * `epg_name` - Endpoint group name.
@@ -116,6 +122,8 @@ The `dynamic_mapping` block supports:
 * `obj_type` - Obj-Type. Valid values: `ip`, `mac`.
 
 * `organization` - Organization domain name (Syntax: organization/domain).
+* `pattern_end` - Pattern-End.
+* `pattern_start` - Pattern-Start.
 * `policy_group` - Policy group name.
 * `sdn` - SDN.
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `private`, `public`, `all`.
@@ -127,6 +135,8 @@ The `dynamic_mapping` block supports:
 
 * `subnet` - IP address and subnet mask of address.
 * `subnet_name` - Subnet name.
+* `tag_detection_level` - Tag detection level of dynamic address object.
+* `tag_type` - Tag type of dynamic address object.
 * `tags` - Tags.
 * `tenant` - Tenant.
 * `type` - Type of address. Valid values: `ipmask`, `iprange`, `fqdn`, `wildcard`, `geography`, `url`, `wildcard-fqdn`, `nsx`, `aws`, `dynamic`, `interface-subnet`, `mac`.

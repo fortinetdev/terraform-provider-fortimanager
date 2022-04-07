@@ -50,6 +50,11 @@ func resourceObjectVideofilterYoutubeChannelFilter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"default_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"entries": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -81,6 +86,11 @@ func resourceObjectVideofilterYoutubeChannelFilter() *schema.Resource {
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
+				Optional: true,
+				Computed: true,
+			},
+			"log": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -208,6 +218,10 @@ func flattenObjectVideofilterYoutubeChannelFilterComment(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectVideofilterYoutubeChannelFilterDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVideofilterYoutubeChannelFilterEntries(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -279,6 +293,10 @@ func flattenObjectVideofilterYoutubeChannelFilterId(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectVideofilterYoutubeChannelFilterLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVideofilterYoutubeChannelFilterName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -301,6 +319,16 @@ func refreshObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData, 
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("default_action", flattenObjectVideofilterYoutubeChannelFilterDefaultAction(o["default-action"], d, "default_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-action"], "ObjectVideofilterYoutubeChannelFilter-DefaultAction"); ok {
+			if err = d.Set("default_action", vv); err != nil {
+				return fmt.Errorf("Error reading default_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_action: %v", err)
 		}
 	}
 
@@ -338,6 +366,16 @@ func refreshObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData, 
 		}
 	}
 
+	if err = d.Set("log", flattenObjectVideofilterYoutubeChannelFilterLog(o["log"], d, "log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log"], "ObjectVideofilterYoutubeChannelFilter-Log"); ok {
+			if err = d.Set("log", vv); err != nil {
+				return fmt.Errorf("Error reading log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectVideofilterYoutubeChannelFilterName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectVideofilterYoutubeChannelFilter-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -358,6 +396,10 @@ func flattenObjectVideofilterYoutubeChannelFilterFortiTestDebug(d *schema.Resour
 }
 
 func expandObjectVideofilterYoutubeChannelFilterComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVideofilterYoutubeChannelFilterDefaultAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -423,6 +465,10 @@ func expandObjectVideofilterYoutubeChannelFilterId(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectVideofilterYoutubeChannelFilterLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVideofilterYoutubeChannelFilterName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -436,6 +482,15 @@ func getObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData) (*ma
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("default_action"); ok {
+		t, err := expandObjectVideofilterYoutubeChannelFilterDefaultAction(d, v, "default_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-action"] = t
 		}
 	}
 
@@ -454,6 +509,15 @@ func getObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData) (*ma
 			return &obj, err
 		} else if t != nil {
 			obj["id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log"); ok {
+		t, err := expandObjectVideofilterYoutubeChannelFilterLog(d, v, "log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log"] = t
 		}
 	}
 

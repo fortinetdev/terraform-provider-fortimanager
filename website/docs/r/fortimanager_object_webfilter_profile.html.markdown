@@ -47,10 +47,13 @@ The following arguments are supported:
 * `comment` - Optional comments.
 * `extended_log` - Enable/disable extended logging for web filtering. Valid values: `disable`, `enable`.
 
+* `file_filter` - File-Filter. The structure of `file_filter` block is documented below.
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
 * `ftgd_wf` - Ftgd-Wf. The structure of `ftgd_wf` block is documented below.
 * `https_replacemsg` - Enable replacement messages for HTTPS. Valid values: `disable`, `enable`.
+
+* `inspection_mode` - Web filtering inspection mode. Valid values: `proxy`, `flow-based`, `dns`.
 
 * `log_all_url` - Enable/disable logging all URLs visited. Valid values: `disable`, `enable`.
 
@@ -144,6 +147,32 @@ The `inspection_entries` block supports:
 * `fortiguard_category` - FortiGuard category to match.
 * `name` - Inspection target name.
 
+The `file_filter` block supports:
+
+* `entries` - Entries. The structure of `entries` block is documented below.
+* `log` - Enable/disable file filter logging. Valid values: `disable`, `enable`.
+
+* `scan_archive_contents` - Enable/disable file filter archive contents scan. Valid values: `disable`, `enable`.
+
+* `status` - Enable/disable file filter. Valid values: `disable`, `enable`.
+
+
+The `entries` block supports:
+
+* `action` - Action taken for matched file. Valid values: `log`, `block`.
+
+* `comment` - Comment.
+* `direction` - Match files transmitted in the session's originating or reply direction. Valid values: `any`, `incoming`, `outgoing`.
+
+* `encryption` - Encryption. Valid values: `any`, `yes`.
+
+* `file_type` - Select file type.
+* `filter` - Add a file filter.
+* `password_protected` - Match password-protected files. Valid values: `any`, `yes`.
+
+* `protocol` - Protocols to apply with. Valid values: `http`, `ftp`.
+
+
 The `ftgd_wf` block supports:
 
 * `exempt_quota` - Do not stop quota for these categories.
@@ -233,6 +262,7 @@ The `web` block supports:
 * `safe_search` - Safe search type. Valid values: `google`, `yahoo`, `bing`, `url`, `header`.
 
 * `urlfilter_table` - URL filter table ID.
+* `vimeo_restrict` - Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "content_rating".
 * `whitelist` - FortiGuard whitelist settings. Valid values: `exempt-av`, `exempt-webcontent`, `exempt-activex-java-cookie`, `exempt-dlp`, `exempt-rangeblock`, `extended-log-others`.
 
 * `youtube_restrict` - YouTube EDU filter level. Valid values: `strict`, `none`, `moderate`.

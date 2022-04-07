@@ -29,6 +29,8 @@ The following arguments are supported:
 
 
 * `fmgadom` - Adom. The structure of `fmgadom` block is documented below.
+* `adom_access` - set all or specify adom access type. all - All ADOMs access. specify - Specify ADOMs access. Valid values: `all`, `specify`.
+
 * `adom_attr` - Attribute used to retrieve adom
 * `attributes` - Attributes used for group searching.
 * `ca_cert` - CA certificate name.

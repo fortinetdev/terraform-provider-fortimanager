@@ -58,11 +58,15 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `add_nat64_route` - Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
+* `embedded_ipv4_address` - Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -83,6 +87,8 @@ The following arguments are supported:
 * `https_cookie_secure` - Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 
 * `fosid` - Custom defined ID.
+* `ipv4_mappedip` - Start-mapped-IPv4-address [-end mapped-IPv4-address].
+* `ipv4_mappedport` - IPv4 port number range on the destination network to which the external port number range is mapped.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 
 * `mappedip` - Mapped IP address range in the format startIP-endIP.
@@ -91,6 +97,10 @@ The following arguments are supported:
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
 * `name` - Virtual ip6 name.
 * `nat_source_vip` - Enable to perform SNAT on traffic from mappedip to the extip for all egress interfaces. Valid values: `disable`, `enable`.
+
+* `nat64` - Enable/disable DNAT64. Valid values: `disable`, `enable`.
+
+* `nat66` - Enable/disable DNAT66. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
@@ -104,6 +114,8 @@ The following arguments are supported:
 * `server_type` - Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `ssl`, `tcp`, `udp`, `ip`, `imaps`, `pop3s`, `smtps`.
 
 * `src_filter` - Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces.
+* `ssl_accept_ffdhe_groups` - Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `disable`, `enable`.
+
 * `ssl_algorithm` - Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `low`, `medium`, `custom`.
 
 * `ssl_certificate` - The name of the SSL certificate to use for SSL acceleration.
@@ -169,10 +181,14 @@ The following arguments are supported:
 The `dynamic_mapping` block supports:
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `add_nat64_route` - Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
 * `comment` - Comment.
+* `embedded_ipv4_address` - Enable/disable embedded IPv4 address. Valid values: `disable`, `enable`.
+
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
@@ -193,6 +209,8 @@ The `dynamic_mapping` block supports:
 * `https_cookie_secure` - Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 
 * `id` - Custom defined ID.
+* `ipv4_mappedip` - Start-mapped-IPv4-address [-end mapped-IPv4-address].
+* `ipv4_mappedport` - IPv4 port number range on the destination network to which the external port number range is mapped.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 
 * `mappedip` - Mapped IP address range in the format startIP-endIP.
@@ -200,6 +218,10 @@ The `dynamic_mapping` block supports:
 * `max_embryonic_connections` - Maximum number of incomplete connections.
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
 * `nat_source_vip` - Nat-Source-Vip. Valid values: `disable`, `enable`.
+
+* `nat64` - Enable/disable DNAT64. Valid values: `disable`, `enable`.
+
+* `nat66` - Enable/disable DNAT66. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
@@ -209,12 +231,16 @@ The `dynamic_mapping` block supports:
 
 * `protocol` - Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`.
 
+* `realservers` - Realservers. The structure of `realservers` block is documented below.
 * `server_type` - Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `ssl`, `tcp`, `udp`, `ip`, `imaps`, `pop3s`, `smtps`.
 
 * `src_filter` - Source IP6 filter (x:x:x:x:x:x:x:x/x). Separate addresses with spaces.
+* `ssl_accept_ffdhe_groups` - Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `disable`, `enable`.
+
 * `ssl_algorithm` - Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `low`, `medium`, `custom`.
 
 * `ssl_certificate` - The name of the SSL certificate to use for SSL acceleration.
+* `ssl_cipher_suites` - Ssl-Cipher-Suites. The structure of `ssl_cipher_suites` block is documented below.
 * `ssl_client_fallback` - Enable/disable support for preventing Downgrade Attacks on client connections (RFC 7507). Valid values: `disable`, `enable`.
 
 * `ssl_client_rekey_count` - Maximum length of data in MB before triggering a client rekey (0 = disable).
@@ -275,6 +301,30 @@ The `_scope` block supports:
 
 * `name` - Name.
 * `vdom` - Vdom.
+
+The `realservers` block supports:
+
+* `client_ip` - Only clients in this IP range can connect to this real server.
+* `healthcheck` - Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`, `vip`.
+
+* `holddown_interval` - Time in seconds that the health check monitor continues to monitor an unresponsive server that should be active.
+* `http_host` - HTTP server domain name in HTTP header.
+* `id` - Real server ID.
+* `ip` - IP address of the real server.
+* `max_connections` - Max number of active connections that can directed to the real server. When reached, sessions are sent to other real servers.
+* `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
+* `port` - Port for communicating with the real server. Required if port forwarding is enabled.
+* `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+
+* `weight` - Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
+
+The `ssl_cipher_suites` block supports:
+
+* `cipher` - Cipher suite name. Valid values: `TLS-RSA-WITH-RC4-128-MD5`, `TLS-RSA-WITH-RC4-128-SHA`, `TLS-RSA-WITH-DES-CBC-SHA`, `TLS-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA`, `TLS-RSA-WITH-AES-256-CBC-SHA`, `TLS-RSA-WITH-AES-128-CBC-SHA256`, `TLS-RSA-WITH-AES-256-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-RSA-WITH-SEED-CBC-SHA`, `TLS-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-RSA-WITH-DES-CBC-SHA`, `TLS-DHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-DHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-AES-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-RSA-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-RSA-WITH-SEED-CBC-SHA`, `TLS-DHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-RC4-128-SHA`, `TLS-ECDHE-RSA-WITH-3DES-EDE-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA`, `TLS-ECDHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-CHACHA20-POLY1305-SHA256`, `TLS-DHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-DHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA`, `TLS-DHE-DSS-WITH-AES-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-128-GCM-SHA256`, `TLS-DHE-DSS-WITH-AES-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-RSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-RSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-AES-256-GCM-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA`, `TLS-ECDHE-ECDSA-WITH-AES-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-128-GCM-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-AES-256-GCM-SHA384`, `TLS-RSA-WITH-AES-128-GCM-SHA256`, `TLS-RSA-WITH-AES-256-GCM-SHA384`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA`, `TLS-DHE-DSS-WITH-CAMELLIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-CAMELLIA-256-CBC-SHA256`, `TLS-DHE-DSS-WITH-SEED-CBC-SHA`, `TLS-DHE-DSS-WITH-ARIA-128-CBC-SHA256`, `TLS-DHE-DSS-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-RSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-RSA-WITH-ARIA-256-CBC-SHA384`, `TLS-ECDHE-ECDSA-WITH-ARIA-128-CBC-SHA256`, `TLS-ECDHE-ECDSA-WITH-ARIA-256-CBC-SHA384`, `TLS-DHE-DSS-WITH-3DES-EDE-CBC-SHA`, `TLS-DHE-DSS-WITH-DES-CBC-SHA`, `TLS-AES-128-GCM-SHA256`, `TLS-AES-256-GCM-SHA384`, `TLS-CHACHA20-POLY1305-SHA256`, `TLS-ECDHE-ECDSA-WITH-AES-256-CBC-SHA`.
+
+* `priority` - SSL/TLS cipher suites priority.
+* `versions` - SSL/TLS versions that the cipher suite can be used with. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+
 
 The `realservers` block supports:
 

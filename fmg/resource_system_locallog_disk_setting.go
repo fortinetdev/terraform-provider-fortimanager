@@ -39,6 +39,16 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"log_disk_quota": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"max_log_file_num": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"max_log_file_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -212,6 +222,14 @@ func flattenSystemLocallogDiskSettingLogDiskFullPercentage(v interface{}, d *sch
 	return v
 }
 
+func flattenSystemLocallogDiskSettingLogDiskQuota(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLocallogDiskSettingMaxLogFileNum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLocallogDiskSettingMaxLogFileSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -304,6 +322,26 @@ func refreshObjectSystemLocallogDiskSetting(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading log_disk_full_percentage: %v", err)
+		}
+	}
+
+	if err = d.Set("log_disk_quota", flattenSystemLocallogDiskSettingLogDiskQuota(o["log-disk-quota"], d, "log_disk_quota")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-disk-quota"], "SystemLocallogDiskSetting-LogDiskQuota"); ok {
+			if err = d.Set("log_disk_quota", vv); err != nil {
+				return fmt.Errorf("Error reading log_disk_quota: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_disk_quota: %v", err)
+		}
+	}
+
+	if err = d.Set("max_log_file_num", flattenSystemLocallogDiskSettingMaxLogFileNum(o["max-log-file-num"], d, "max_log_file_num")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-log-file-num"], "SystemLocallogDiskSetting-MaxLogFileNum"); ok {
+			if err = d.Set("max_log_file_num", vv); err != nil {
+				return fmt.Errorf("Error reading max_log_file_num: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_log_file_num: %v", err)
 		}
 	}
 
@@ -504,6 +542,14 @@ func expandSystemLocallogDiskSettingLogDiskFullPercentage(d *schema.ResourceData
 	return v, nil
 }
 
+func expandSystemLocallogDiskSettingLogDiskQuota(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLocallogDiskSettingMaxLogFileNum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLocallogDiskSettingMaxLogFileSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -594,6 +640,24 @@ func getObjectSystemLocallogDiskSetting(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["log-disk-full-percentage"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_disk_quota"); ok {
+		t, err := expandSystemLocallogDiskSettingLogDiskQuota(d, v, "log_disk_quota")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-disk-quota"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_log_file_num"); ok {
+		t, err := expandSystemLocallogDiskSettingMaxLogFileNum(d, v, "max_log_file_num")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-log-file-num"] = t
 		}
 	}
 

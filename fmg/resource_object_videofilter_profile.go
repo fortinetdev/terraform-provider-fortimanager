@@ -98,6 +98,11 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"replacemsg_group": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vimeo": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -330,6 +335,10 @@ func flattenObjectVideofilterProfileName(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectVideofilterProfileReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVideofilterProfileVimeo(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -408,6 +417,16 @@ func refreshObjectObjectVideofilterProfile(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("replacemsg_group", flattenObjectVideofilterProfileReplacemsgGroup(o["replacemsg-group"], d, "replacemsg_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["replacemsg-group"], "ObjectVideofilterProfile-ReplacemsgGroup"); ok {
+			if err = d.Set("replacemsg_group", vv); err != nil {
+				return fmt.Errorf("Error reading replacemsg_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading replacemsg_group: %v", err)
 		}
 	}
 
@@ -560,6 +579,10 @@ func expandObjectVideofilterProfileName(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectVideofilterProfileReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVideofilterProfileVimeo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -616,6 +639,15 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("replacemsg_group"); ok {
+		t, err := expandObjectVideofilterProfileReplacemsgGroup(d, v, "replacemsg_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["replacemsg-group"] = t
 		}
 	}
 

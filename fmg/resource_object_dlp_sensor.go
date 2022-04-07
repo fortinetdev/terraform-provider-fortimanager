@@ -105,6 +105,11 @@ func resourceObjectDlpSensor() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fp_sensitivity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -148,6 +153,11 @@ func resourceObjectDlpSensor() *schema.Resource {
 						},
 					},
 				},
+			},
+			"flow_based": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"full_archive_proto": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -374,6 +384,12 @@ func flattenObjectDlpSensorFilter(v interface{}, d *schema.ResourceData, pre str
 			tmp["filter_by"] = fortiAPISubPartPatch(v, "ObjectDlpSensor-Filter-FilterBy")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fp_sensitivity"
+		if _, ok := i["fp-sensitivity"]; ok {
+			v := flattenObjectDlpSensorFilterFpSensitivity(i["fp-sensitivity"], d, pre_append)
+			tmp["fp_sensitivity"] = fortiAPISubPartPatch(v, "ObjectDlpSensor-Filter-FpSensitivity")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
 			v := flattenObjectDlpSensorFilterId(i["id"], d, pre_append)
@@ -458,6 +474,10 @@ func flattenObjectDlpSensorFilterFilterBy(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectDlpSensorFilterFpSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpSensorFilterId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -487,6 +507,10 @@ func flattenObjectDlpSensorFilterSeverity(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectDlpSensorFilterType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDlpSensorFlowBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -586,6 +610,16 @@ func refreshObjectObjectDlpSensor(d *schema.ResourceData, o map[string]interface
 					return fmt.Errorf("Error reading filter: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("flow_based", flattenObjectDlpSensorFlowBased(o["flow-based"], d, "flow_based")); err != nil {
+		if vv, ok := fortiAPIPatch(o["flow-based"], "ObjectDlpSensor-FlowBased"); ok {
+			if err = d.Set("flow_based", vv); err != nil {
+				return fmt.Errorf("Error reading flow_based: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading flow_based: %v", err)
 		}
 	}
 
@@ -723,6 +757,11 @@ func expandObjectDlpSensorFilter(d *schema.ResourceData, v interface{}, pre stri
 			tmp["filter-by"], _ = expandObjectDlpSensorFilterFilterBy(d, i["filter_by"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "fp_sensitivity"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["fp-sensitivity"], _ = expandObjectDlpSensorFilterFpSensitivity(d, i["fp_sensitivity"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["id"], _ = expandObjectDlpSensorFilterId(d, i["id"], pre_append)
@@ -801,6 +840,10 @@ func expandObjectDlpSensorFilterFilterBy(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandObjectDlpSensorFilterFpSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectDlpSensorFilterId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -830,6 +873,10 @@ func expandObjectDlpSensorFilterSeverity(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectDlpSensorFilterType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDlpSensorFlowBased(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -902,6 +949,15 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("flow_based"); ok {
+		t, err := expandObjectDlpSensorFlowBased(d, v, "flow_based")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["flow-based"] = t
 		}
 	}
 

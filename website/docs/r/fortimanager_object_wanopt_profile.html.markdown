@@ -44,6 +44,7 @@ The `cifs` block supports:
 
 * `log_traffic` - Enable/disable logging. Valid values: `disable`, `enable`.
 
+* `port` - Single port number or port number range for CIFS. Only packets with a destination port number that matches this port number or range are accepted by this profile.
 * `prefer_chunking` - Select dynamic or fixed-size data chunking for WAN Optimization. Valid values: `dynamic`, `fix`.
 
 * `protocol_opt` - Select Protocol specific optimitation or generic TCP optimization. Valid values: `protocol`, `tcp`.
@@ -61,6 +62,7 @@ The `ftp` block supports:
 
 * `log_traffic` - Enable/disable logging. Valid values: `disable`, `enable`.
 
+* `port` - Single port number or port number range for FTP. Only packets with a destination port number that matches this port number or range are accepted by this profile.
 * `prefer_chunking` - Select dynamic or fixed-size data chunking for WAN Optimization. Valid values: `dynamic`, `fix`.
 
 * `protocol_opt` - Select Protocol specific optimitation or generic TCP optimization. Valid values: `protocol`, `tcp`.
@@ -80,6 +82,7 @@ The `http` block supports:
 
 * `log_traffic` - Enable/disable logging. Valid values: `disable`, `enable`.
 
+* `port` - Single port number or port number range for HTTP. Only packets with a destination port number that matches this port number or range are accepted by this profile.
 * `prefer_chunking` - Select dynamic or fixed-size data chunking for WAN Optimization. Valid values: `dynamic`, `fix`.
 
 * `protocol_opt` - Select Protocol specific optimitation or generic TCP optimization. Valid values: `protocol`, `tcp`.
@@ -88,9 +91,14 @@ The `http` block supports:
 
 * `ssl` - Enable/disable SSL/TLS offloading (hardware acceleration) for traffic in this tunnel. Valid values: `disable`, `enable`.
 
+* `ssl_port` - Port on which to expect HTTPS traffic for SSL/TLS offloading.
 * `status` - Enable/disable WAN Optimization. Valid values: `disable`, `enable`.
 
+* `tunnel_non_http` - Configure how to process non-HTTP traffic when a profile configured for HTTP traffic accepts a non-HTTP session. Can occur if an application sends non-HTTP traffic using an HTTP destination port. Valid values: `disable`, `enable`.
+
 * `tunnel_sharing` - Tunnel sharing mode for aggressive/non-aggressive and/or interactive/non-interactive protocols. Valid values: `private`, `shared`, `express-shared`.
+
+* `unknown_http_version` - How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `best-effort`, `reject`, `tunnel`.
 
 
 The `mapi` block supports:
@@ -99,6 +107,7 @@ The `mapi` block supports:
 
 * `log_traffic` - Enable/disable logging. Valid values: `disable`, `enable`.
 
+* `port` - Single port number or port number range for MAPI. Only packets with a destination port number that matches this port number or range are accepted by this profile.
 * `secure_tunnel` - Enable/disable securing the WAN Opt tunnel using SSL. Secure and non-secure tunnels use the same TCP port (7810). Valid values: `disable`, `enable`.
 
 * `status` - Enable/disable WAN Optimization. Valid values: `disable`, `enable`.

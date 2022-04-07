@@ -45,6 +45,10 @@ The following arguments are supported:
 * `nat_ippool` - Name of the IP pools to be used to translate addresses from available IP Pools.
 * `nat_ippool6` - IPv6 pools to be used for source NAT.
 * `nat_port` - Translated port or port range (0 to 65535).
+* `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
+
+* `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
+
 * `orig_addr` - Original address.
 * `orig_addr6` - IPv6 Original address.
 * `orig_port` - Original TCP port (0 to 65535).

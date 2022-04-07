@@ -33,6 +33,7 @@ The following arguments are supported:
 
 The `rule` block supports:
 
+* `devices` - Devices or device groups.
 * `dstaddr` - Destination addresses or address groups.
 * `id` - ID.
 * `service` - Destination services.

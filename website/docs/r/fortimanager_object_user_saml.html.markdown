@@ -29,6 +29,7 @@ The following arguments are supported:
 * `adfs_claim` - Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `disable`, `enable`.
 
 * `cert` - Certificate to sign SAML messages.
+* `clock_tolerance` - Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
 * `digest_method` - Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
 
 * `entity_id` - SP entity ID.

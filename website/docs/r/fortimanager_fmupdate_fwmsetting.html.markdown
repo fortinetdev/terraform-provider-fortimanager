@@ -35,6 +35,8 @@ The following arguments are supported:
 * `fds_image_timeout` - timer for fgt download image from fortiguard (300-3600s default=1800)
 * `immx_source` - Configure which of IMMX file to be used for choosing upgrade pach. Default is file for FortiManager fmg - Use IMMX file for FortiManager fgt - Use IMMX file for FortiGate cloud - Use IMMX file for FortiCloud Valid values: `fmg`, `fgt`, `cloud`.
 
+* `log` - Configure log setting for fwm daemon fwm - FWM daemon log fwm_dm - FWM and Deployment service log fwm_dm_json - FWM and Deployment service log with JSON data between FMG-FGT Valid values: `fwm`, `fwm_dm`, `fwm_dm_json`.
+
 * `multiple_steps_interval` - waiting time between multiple steps upgrade (30-180s, default=60)
 
 

@@ -156,6 +156,80 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"file_filter": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"entries": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"action": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"comment": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"direction": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"encryption": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"file_type": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"filter": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"password_protected": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"protocol": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
+						"log": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"scan_archive_contents": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -310,6 +384,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				},
 			},
 			"https_replacemsg": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"inspection_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -487,6 +566,11 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Computed: true,
 						},
 						"urlfilter_table": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"vimeo_restrict": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -974,6 +1058,158 @@ func flattenObjectWebfilterProfileExtendedLog(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectWebfilterProfileFileFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "entries"
+	if _, ok := i["entries"]; ok {
+		result["entries"] = flattenObjectWebfilterProfileFileFilterEntries(i["entries"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "log"
+	if _, ok := i["log"]; ok {
+		result["log"] = flattenObjectWebfilterProfileFileFilterLog(i["log"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "scan_archive_contents"
+	if _, ok := i["scan-archive-contents"]; ok {
+		result["scan_archive_contents"] = flattenObjectWebfilterProfileFileFilterScanArchiveContents(i["scan-archive-contents"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectWebfilterProfileFileFilterStatus(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectWebfilterProfileFileFilterEntries(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesAction(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
+		if _, ok := i["comment"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesComment(i["comment"], d, pre_append)
+			tmp["comment"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Comment")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
+		if _, ok := i["direction"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesDirection(i["direction"], d, pre_append)
+			tmp["direction"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Direction")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "encryption"
+		if _, ok := i["encryption"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesEncryption(i["encryption"], d, pre_append)
+			tmp["encryption"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Encryption")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
+		if _, ok := i["file-type"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesFileType(i["file-type"], d, pre_append)
+			tmp["file_type"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-FileType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
+		if _, ok := i["filter"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesFilter(i["filter"], d, pre_append)
+			tmp["filter"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Filter")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
+		if _, ok := i["password-protected"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesPasswordProtected(i["password-protected"], d, pre_append)
+			tmp["password_protected"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-PasswordProtected")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := i["protocol"]; ok {
+			v := flattenObjectWebfilterProfileFileFilterEntriesProtocol(i["protocol"], d, pre_append)
+			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Protocol")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesEncryption(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesFileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesPasswordProtected(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterEntriesProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWebfilterProfileFileFilterLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterScanArchiveContents(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWebfilterProfileFileFilterStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1291,6 +1527,10 @@ func flattenObjectWebfilterProfileHttpsReplacemsg(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectWebfilterProfileInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterProfileLogAllUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1517,6 +1757,11 @@ func flattenObjectWebfilterProfileWeb(v interface{}, d *schema.ResourceData, pre
 		result["urlfilter_table"] = flattenObjectWebfilterProfileWebUrlfilterTable(i["urlfilter-table"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "vimeo_restrict"
+	if _, ok := i["vimeo-restrict"]; ok {
+		result["vimeo_restrict"] = flattenObjectWebfilterProfileWebVimeoRestrict(i["vimeo-restrict"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "whitelist"
 	if _, ok := i["whitelist"]; ok {
 		result["whitelist"] = flattenObjectWebfilterProfileWebWhitelist(i["whitelist"], d, pre_append)
@@ -1569,6 +1814,10 @@ func flattenObjectWebfilterProfileWebSafeSearch(v interface{}, d *schema.Resourc
 
 func flattenObjectWebfilterProfileWebUrlfilterTable(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
+}
+
+func flattenObjectWebfilterProfileWebVimeoRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectWebfilterProfileWebWhitelist(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1775,6 +2024,30 @@ func refreshObjectObjectWebfilterProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("file_filter", flattenObjectWebfilterProfileFileFilter(o["file-filter"], d, "file_filter")); err != nil {
+			if vv, ok := fortiAPIPatch(o["file-filter"], "ObjectWebfilterProfile-FileFilter"); ok {
+				if err = d.Set("file_filter", vv); err != nil {
+					return fmt.Errorf("Error reading file_filter: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading file_filter: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("file_filter"); ok {
+			if err = d.Set("file_filter", flattenObjectWebfilterProfileFileFilter(o["file-filter"], d, "file_filter")); err != nil {
+				if vv, ok := fortiAPIPatch(o["file-filter"], "ObjectWebfilterProfile-FileFilter"); ok {
+					if err = d.Set("file_filter", vv); err != nil {
+						return fmt.Errorf("Error reading file_filter: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading file_filter: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("feature_set", flattenObjectWebfilterProfileFeatureSet(o["feature-set"], d, "feature_set")); err != nil {
 		if vv, ok := fortiAPIPatch(o["feature-set"], "ObjectWebfilterProfile-FeatureSet"); ok {
 			if err = d.Set("feature_set", vv); err != nil {
@@ -1816,6 +2089,16 @@ func refreshObjectObjectWebfilterProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading https_replacemsg: %v", err)
+		}
+	}
+
+	if err = d.Set("inspection_mode", flattenObjectWebfilterProfileInspectionMode(o["inspection-mode"], d, "inspection_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["inspection-mode"], "ObjectWebfilterProfile-InspectionMode"); ok {
+			if err = d.Set("inspection_mode", vv); err != nil {
+				return fmt.Errorf("Error reading inspection_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading inspection_mode: %v", err)
 		}
 	}
 
@@ -2400,6 +2683,148 @@ func expandObjectWebfilterProfileExtendedLog(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectWebfilterProfileFileFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "entries"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["entries"], _ = expandObjectWebfilterProfileFileFilterEntries(d, i["entries"], pre_append)
+	} else {
+		result["entries"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "log"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["log"], _ = expandObjectWebfilterProfileFileFilterLog(d, i["log"], pre_append)
+	}
+	pre_append = pre + ".0." + "scan_archive_contents"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["scan-archive-contents"], _ = expandObjectWebfilterProfileFileFilterScanArchiveContents(d, i["scan_archive_contents"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status"], _ = expandObjectWebfilterProfileFileFilterStatus(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["action"], _ = expandObjectWebfilterProfileFileFilterEntriesAction(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["comment"], _ = expandObjectWebfilterProfileFileFilterEntriesComment(d, i["comment"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["direction"], _ = expandObjectWebfilterProfileFileFilterEntriesDirection(d, i["direction"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "encryption"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["encryption"], _ = expandObjectWebfilterProfileFileFilterEntriesEncryption(d, i["encryption"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["file-type"], _ = expandObjectWebfilterProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
+		} else {
+			tmp["file-type"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["filter"], _ = expandObjectWebfilterProfileFileFilterEntriesFilter(d, i["filter"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["password-protected"], _ = expandObjectWebfilterProfileFileFilterEntriesPasswordProtected(d, i["password_protected"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["protocol"], _ = expandObjectWebfilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
+		} else {
+			tmp["protocol"] = make([]string, 0)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesDirection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesEncryption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesFileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesPasswordProtected(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterEntriesProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWebfilterProfileFileFilterLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterScanArchiveContents(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileFileFilterStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebfilterProfileFeatureSet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2688,6 +3113,10 @@ func expandObjectWebfilterProfileHttpsReplacemsg(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectWebfilterProfileInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebfilterProfileLogAllUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2900,6 +3329,10 @@ func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre 
 	if _, ok := d.GetOk(pre_append); ok {
 		result["urlfilter-table"], _ = expandObjectWebfilterProfileWebUrlfilterTable(d, i["urlfilter_table"], pre_append)
 	}
+	pre_append = pre + ".0." + "vimeo_restrict"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["vimeo-restrict"], _ = expandObjectWebfilterProfileWebVimeoRestrict(d, i["vimeo_restrict"], pre_append)
+	}
 	pre_append = pre + ".0." + "whitelist"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["whitelist"], _ = expandObjectWebfilterProfileWebWhitelist(d, i["whitelist"], pre_append)
@@ -2951,6 +3384,10 @@ func expandObjectWebfilterProfileWebSafeSearch(d *schema.ResourceData, v interfa
 }
 
 func expandObjectWebfilterProfileWebUrlfilterTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWebfilterProfileWebVimeoRestrict(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3125,6 +3562,15 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("file_filter"); ok {
+		t, err := expandObjectWebfilterProfileFileFilter(d, v, "file_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["file-filter"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("feature_set"); ok {
 		t, err := expandObjectWebfilterProfileFeatureSet(d, v, "feature_set")
 		if err != nil {
@@ -3149,6 +3595,15 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["https-replacemsg"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("inspection_mode"); ok {
+		t, err := expandObjectWebfilterProfileInspectionMode(d, v, "inspection_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["inspection-mode"] = t
 		}
 	}
 

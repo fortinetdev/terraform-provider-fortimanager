@@ -50,8 +50,11 @@ The following arguments are supported:
 * `compartment_id` - Compartment ID.
 * `compute_generation` - Compute generation for IBM cloud infrastructure.
 * `domain` - Domain name.
+* `external_account_list` - External-Account-List. The structure of `external_account_list` block is documented below.
 * `external_ip` - External-Ip. The structure of `external_ip` block is documented below.
+* `forwarding_rule` - Forwarding-Rule. The structure of `forwarding_rule` block is documented below.
 * `gcp_project` - GCP project name.
+* `gcp_project_list` - Gcp-Project-List. The structure of `gcp_project_list` block is documented below.
 * `group_name` - Group name of computers.
 * `ha_status` - Enable/disable use for FortiGate HA service. Valid values: `disable`, `enable`.
 
@@ -106,14 +109,31 @@ The following arguments are supported:
 * `vcenter_password` - vCenter server password for NSX quarantine.
 * `vcenter_server` - vCenter server address for NSX quarantine.
 * `vcenter_username` - vCenter server username for NSX quarantine.
+* `verify_certificate` - Enable/disable server certificate verification. Valid values: `disable`, `enable`.
+
 * `vmx_image_url` - URL of web-hosted VMX image.
 * `vmx_service_name` - VMX Service name.
 * `vpc_id` - AWS VPC ID.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
+The `external_account_list` block supports:
+
+* `region_list` - AWS region name list.
+* `role_arn` - AWS role ARN to assume.
+
 The `external_ip` block supports:
 
 * `name` - External IP name.
+
+The `forwarding_rule` block supports:
+
+* `rule_name` - Forwarding rule name.
+* `target` - Target instance name.
+
+The `gcp_project_list` block supports:
+
+* `gcp_zone_list` - Configure GCP zone list.
+* `id` - GCP project ID.
 
 The `nic` block supports:
 

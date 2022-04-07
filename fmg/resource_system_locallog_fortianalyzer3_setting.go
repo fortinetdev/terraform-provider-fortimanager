@@ -29,6 +29,11 @@ func resourceSystemLocallogFortianalyzer3Setting() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"peer_cert_cn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"reliable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -132,6 +137,10 @@ func resourceSystemLocallogFortianalyzer3SettingRead(d *schema.ResourceData, m i
 	return nil
 }
 
+func flattenSystemLocallogFortianalyzer3SettingPeerCertCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLocallogFortianalyzer3SettingReliable(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -158,6 +167,16 @@ func flattenSystemLocallogFortianalyzer3SettingUploadTime(v interface{}, d *sche
 
 func refreshObjectSystemLocallogFortianalyzer3Setting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("peer_cert_cn", flattenSystemLocallogFortianalyzer3SettingPeerCertCn(o["peer-cert-cn"], d, "peer_cert_cn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["peer-cert-cn"], "SystemLocallogFortianalyzer3Setting-PeerCertCn"); ok {
+			if err = d.Set("peer_cert_cn", vv); err != nil {
+				return fmt.Errorf("Error reading peer_cert_cn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading peer_cert_cn: %v", err)
+		}
+	}
 
 	if err = d.Set("reliable", flattenSystemLocallogFortianalyzer3SettingReliable(o["reliable"], d, "reliable")); err != nil {
 		if vv, ok := fortiAPIPatch(o["reliable"], "SystemLocallogFortianalyzer3Setting-Reliable"); ok {
@@ -228,6 +247,10 @@ func flattenSystemLocallogFortianalyzer3SettingFortiTestDebug(d *schema.Resource
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemLocallogFortianalyzer3SettingPeerCertCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLocallogFortianalyzer3SettingReliable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -254,6 +277,15 @@ func expandSystemLocallogFortianalyzer3SettingUploadTime(d *schema.ResourceData,
 
 func getObjectSystemLocallogFortianalyzer3Setting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("peer_cert_cn"); ok {
+		t, err := expandSystemLocallogFortianalyzer3SettingPeerCertCn(d, v, "peer_cert_cn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["peer-cert-cn"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("reliable"); ok {
 		t, err := expandSystemLocallogFortianalyzer3SettingReliable(d, v, "reliable")

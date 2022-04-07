@@ -54,6 +54,11 @@ func resourceFmupdateFwmSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"multiple_steps_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -151,6 +156,10 @@ func flattenFmupdateFwmSettingImmxSource(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenFmupdateFwmSettingLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenFmupdateFwmSettingMultipleStepsInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -208,6 +217,16 @@ func refreshObjectFmupdateFwmSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("log", flattenFmupdateFwmSettingLog(o["log"], d, "log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log"], "FmupdateFwmSetting-Log"); ok {
+			if err = d.Set("log", vv); err != nil {
+				return fmt.Errorf("Error reading log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log: %v", err)
+		}
+	}
+
 	if err = d.Set("multiple_steps_interval", flattenFmupdateFwmSettingMultipleStepsInterval(o["multiple-steps-interval"], d, "multiple_steps_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["multiple-steps-interval"], "FmupdateFwmSetting-MultipleStepsInterval"); ok {
 			if err = d.Set("multiple_steps_interval", vv); err != nil {
@@ -244,6 +263,10 @@ func expandFmupdateFwmSettingFdsImageTimeout(d *schema.ResourceData, v interface
 }
 
 func expandFmupdateFwmSettingImmxSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateFwmSettingLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -296,6 +319,15 @@ func getObjectFmupdateFwmSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["immx-source"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log"); ok {
+		t, err := expandFmupdateFwmSettingLog(d, v, "log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log"] = t
 		}
 	}
 

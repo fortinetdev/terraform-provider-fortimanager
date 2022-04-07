@@ -92,6 +92,25 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"external_account_list": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"region_list": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"role_arn": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"external_ip": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -105,10 +124,47 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 					},
 				},
 			},
+			"forwarding_rule": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"rule_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"target": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"gcp_project": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"gcp_project_list": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"gcp_zone_list": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"group_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -412,6 +468,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"verify_certificate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"vmx_image_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -578,6 +639,53 @@ func flattenObjectSystemSdnConnectorDomain(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectSystemSdnConnectorExternalAccountList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "region_list"
+		if _, ok := i["region-list"]; ok {
+			v := flattenObjectSystemSdnConnectorExternalAccountListRegionList(i["region-list"], d, pre_append)
+			tmp["region_list"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ExternalAccountList-RegionList")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "role_arn"
+		if _, ok := i["role-arn"]; ok {
+			v := flattenObjectSystemSdnConnectorExternalAccountListRoleArn(i["role-arn"], d, pre_append)
+			tmp["role_arn"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ExternalAccountList-RoleArn")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemSdnConnectorExternalAccountListRegionList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectSystemSdnConnectorExternalAccountListRoleArn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorExternalIp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -615,7 +723,101 @@ func flattenObjectSystemSdnConnectorExternalIpName(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectSystemSdnConnectorForwardingRule(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "rule_name"
+		if _, ok := i["rule-name"]; ok {
+			v := flattenObjectSystemSdnConnectorForwardingRuleRuleName(i["rule-name"], d, pre_append)
+			tmp["rule_name"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ForwardingRule-RuleName")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "target"
+		if _, ok := i["target"]; ok {
+			v := flattenObjectSystemSdnConnectorForwardingRuleTarget(i["target"], d, pre_append)
+			tmp["target"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ForwardingRule-Target")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemSdnConnectorForwardingRuleRuleName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorForwardingRuleTarget(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorGcpProject(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorGcpProjectList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "gcp_zone_list"
+		if _, ok := i["gcp-zone-list"]; ok {
+			v := flattenObjectSystemSdnConnectorGcpProjectListGcpZoneList(i["gcp-zone-list"], d, pre_append)
+			tmp["gcp_zone_list"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-GcpProjectList-GcpZoneList")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectSystemSdnConnectorGcpProjectListId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-GcpProjectList-Id")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemSdnConnectorGcpProjectListGcpZoneList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectSystemSdnConnectorGcpProjectListId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1030,6 +1232,10 @@ func flattenObjectSystemSdnConnectorVcenterUsername(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectSystemSdnConnectorVerifyCertificate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorVmxImageUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1144,6 +1350,30 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 	}
 
 	if isImportTable() {
+		if err = d.Set("external_account_list", flattenObjectSystemSdnConnectorExternalAccountList(o["external-account-list"], d, "external_account_list")); err != nil {
+			if vv, ok := fortiAPIPatch(o["external-account-list"], "ObjectSystemSdnConnector-ExternalAccountList"); ok {
+				if err = d.Set("external_account_list", vv); err != nil {
+					return fmt.Errorf("Error reading external_account_list: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading external_account_list: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("external_account_list"); ok {
+			if err = d.Set("external_account_list", flattenObjectSystemSdnConnectorExternalAccountList(o["external-account-list"], d, "external_account_list")); err != nil {
+				if vv, ok := fortiAPIPatch(o["external-account-list"], "ObjectSystemSdnConnector-ExternalAccountList"); ok {
+					if err = d.Set("external_account_list", vv); err != nil {
+						return fmt.Errorf("Error reading external_account_list: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading external_account_list: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("external_ip", flattenObjectSystemSdnConnectorExternalIp(o["external-ip"], d, "external_ip")); err != nil {
 			if vv, ok := fortiAPIPatch(o["external-ip"], "ObjectSystemSdnConnector-ExternalIp"); ok {
 				if err = d.Set("external_ip", vv); err != nil {
@@ -1167,6 +1397,30 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("forwarding_rule", flattenObjectSystemSdnConnectorForwardingRule(o["forwarding-rule"], d, "forwarding_rule")); err != nil {
+			if vv, ok := fortiAPIPatch(o["forwarding-rule"], "ObjectSystemSdnConnector-ForwardingRule"); ok {
+				if err = d.Set("forwarding_rule", vv); err != nil {
+					return fmt.Errorf("Error reading forwarding_rule: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading forwarding_rule: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("forwarding_rule"); ok {
+			if err = d.Set("forwarding_rule", flattenObjectSystemSdnConnectorForwardingRule(o["forwarding-rule"], d, "forwarding_rule")); err != nil {
+				if vv, ok := fortiAPIPatch(o["forwarding-rule"], "ObjectSystemSdnConnector-ForwardingRule"); ok {
+					if err = d.Set("forwarding_rule", vv); err != nil {
+						return fmt.Errorf("Error reading forwarding_rule: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading forwarding_rule: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("gcp_project", flattenObjectSystemSdnConnectorGcpProject(o["gcp-project"], d, "gcp_project")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gcp-project"], "ObjectSystemSdnConnector-GcpProject"); ok {
 			if err = d.Set("gcp_project", vv); err != nil {
@@ -1174,6 +1428,30 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading gcp_project: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("gcp_project_list", flattenObjectSystemSdnConnectorGcpProjectList(o["gcp-project-list"], d, "gcp_project_list")); err != nil {
+			if vv, ok := fortiAPIPatch(o["gcp-project-list"], "ObjectSystemSdnConnector-GcpProjectList"); ok {
+				if err = d.Set("gcp_project_list", vv); err != nil {
+					return fmt.Errorf("Error reading gcp_project_list: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading gcp_project_list: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("gcp_project_list"); ok {
+			if err = d.Set("gcp_project_list", flattenObjectSystemSdnConnectorGcpProjectList(o["gcp-project-list"], d, "gcp_project_list")); err != nil {
+				if vv, ok := fortiAPIPatch(o["gcp-project-list"], "ObjectSystemSdnConnector-GcpProjectList"); ok {
+					if err = d.Set("gcp_project_list", vv); err != nil {
+						return fmt.Errorf("Error reading gcp_project_list: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading gcp_project_list: %v", err)
+				}
+			}
 		}
 	}
 
@@ -1659,6 +1937,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("verify_certificate", flattenObjectSystemSdnConnectorVerifyCertificate(o["verify-certificate"], d, "verify_certificate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["verify-certificate"], "ObjectSystemSdnConnector-VerifyCertificate"); ok {
+			if err = d.Set("verify_certificate", vv); err != nil {
+				return fmt.Errorf("Error reading verify_certificate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading verify_certificate: %v", err)
+		}
+	}
+
 	if err = d.Set("vmx_image_url", flattenObjectSystemSdnConnectorVmxImageUrl(o["vmx-image-url"], d, "vmx_image_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vmx-image-url"], "ObjectSystemSdnConnector-VmxImageUrl"); ok {
 			if err = d.Set("vmx_image_url", vv); err != nil {
@@ -1734,6 +2022,48 @@ func expandObjectSystemSdnConnectorDomain(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "region_list"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["region-list"], _ = expandObjectSystemSdnConnectorExternalAccountListRegionList(d, i["region_list"], pre_append)
+		} else {
+			tmp["region-list"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "role_arn"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["role-arn"], _ = expandObjectSystemSdnConnectorExternalAccountListRoleArn(d, i["role_arn"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemSdnConnectorExternalAccountListRegionList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemSdnConnectorExternalAccountListRoleArn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorExternalIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -1765,7 +2095,89 @@ func expandObjectSystemSdnConnectorExternalIpName(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorForwardingRule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "rule_name"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["rule-name"], _ = expandObjectSystemSdnConnectorForwardingRuleRuleName(d, i["rule_name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "target"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["target"], _ = expandObjectSystemSdnConnectorForwardingRuleTarget(d, i["target"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemSdnConnectorForwardingRuleRuleName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnConnectorForwardingRuleTarget(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorGcpProject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnConnectorGcpProjectList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "gcp_zone_list"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["gcp-zone-list"], _ = expandObjectSystemSdnConnectorGcpProjectListGcpZoneList(d, i["gcp_zone_list"], pre_append)
+		} else {
+			tmp["gcp-zone-list"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandObjectSystemSdnConnectorGcpProjectListId(d, i["id"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemSdnConnectorGcpProjectListGcpZoneList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemSdnConnectorGcpProjectListId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2147,6 +2559,10 @@ func expandObjectSystemSdnConnectorVcenterUsername(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorVerifyCertificate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorVmxImageUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2243,6 +2659,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("external_account_list"); ok {
+		t, err := expandObjectSystemSdnConnectorExternalAccountList(d, v, "external_account_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["external-account-list"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("external_ip"); ok {
 		t, err := expandObjectSystemSdnConnectorExternalIp(d, v, "external_ip")
 		if err != nil {
@@ -2252,12 +2677,30 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("forwarding_rule"); ok {
+		t, err := expandObjectSystemSdnConnectorForwardingRule(d, v, "forwarding_rule")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["forwarding-rule"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("gcp_project"); ok {
 		t, err := expandObjectSystemSdnConnectorGcpProject(d, v, "gcp_project")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["gcp-project"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gcp_project_list"); ok {
+		t, err := expandObjectSystemSdnConnectorGcpProjectList(d, v, "gcp_project_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gcp-project-list"] = t
 		}
 	}
 
@@ -2654,6 +3097,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["vcenter-username"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("verify_certificate"); ok {
+		t, err := expandObjectSystemSdnConnectorVerifyCertificate(d, v, "verify_certificate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["verify-certificate"] = t
 		}
 	}
 

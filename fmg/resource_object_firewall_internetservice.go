@@ -67,6 +67,40 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"entry": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"ip_number": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"ip_range_number": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"port": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeInt},
+							Optional: true,
+							Computed: true,
+						},
+						"protocol": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"extra_ip_range_number": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -107,6 +141,11 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"offset": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"obsolete": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -137,6 +176,11 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
 			},
 		},
 	}
@@ -222,75 +266,156 @@ func resourceObjectFirewallInternetServiceRead(d *schema.ResourceData, m interfa
 	return nil
 }
 
-func flattenObjectFirewallInternetServiceCity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceCityOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenObjectFirewallInternetServiceCountry(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceCountryOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenObjectFirewallInternetServiceDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceDatabaseOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceDirectionOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceExtraIpRangeNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryOfia(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectFirewallInternetServiceEntryIdOfia(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetService-Entry-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_number"
+		if _, ok := i["ip-number"]; ok {
+			v := flattenObjectFirewallInternetServiceEntryIpNumberOfia(i["ip-number"], d, pre_append)
+			tmp["ip_number"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetService-Entry-IpNumber")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_range_number"
+		if _, ok := i["ip-range-number"]; ok {
+			v := flattenObjectFirewallInternetServiceEntryIpRangeNumberOfia(i["ip-range-number"], d, pre_append)
+			tmp["ip_range_number"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetService-Entry-IpRangeNumber")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := i["port"]; ok {
+			v := flattenObjectFirewallInternetServiceEntryPortOfia(i["port"], d, pre_append)
+			tmp["port"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetService-Entry-Port")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := i["protocol"]; ok {
+			v := flattenObjectFirewallInternetServiceEntryProtocolOfia(i["protocol"], d, pre_append)
+			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetService-Entry-Protocol")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallInternetServiceEntryIdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceIconId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryIpNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryIpRangeNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceIpNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectFirewallInternetServiceIpRangeNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectFirewallInternetServiceJitterThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectFirewallInternetServiceLatencyThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectFirewallInternetServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectFirewallInternetServiceObsolete(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
-func flattenObjectFirewallInternetServiceRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryPortOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenObjectFirewallInternetServicePacketlossThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceEntryProtocolOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceReputation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceExtraIpRangeNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceSingularity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceIconIdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallInternetServiceSldId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallInternetServiceIdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceIpNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceIpRangeNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceJitterThresholdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceLatencyThresholdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceNameOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceOffsetOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceObsoleteOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceRegionOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenObjectFirewallInternetServicePacketlossThresholdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceReputationOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceSingularityOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceSldIdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -301,7 +426,11 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("city", flattenObjectFirewallInternetServiceCity(o["city"], d, "city")); err != nil {
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("city", flattenObjectFirewallInternetServiceCityOfia(o["city"], d, "city")); err != nil {
 		if vv, ok := fortiAPIPatch(o["city"], "ObjectFirewallInternetService-City"); ok {
 			if err = d.Set("city", vv); err != nil {
 				return fmt.Errorf("Error reading city: %v", err)
@@ -311,7 +440,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("country", flattenObjectFirewallInternetServiceCountry(o["country"], d, "country")); err != nil {
+	if err = d.Set("country", flattenObjectFirewallInternetServiceCountryOfia(o["country"], d, "country")); err != nil {
 		if vv, ok := fortiAPIPatch(o["country"], "ObjectFirewallInternetService-Country"); ok {
 			if err = d.Set("country", vv); err != nil {
 				return fmt.Errorf("Error reading country: %v", err)
@@ -321,7 +450,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("database", flattenObjectFirewallInternetServiceDatabase(o["database"], d, "database")); err != nil {
+	if err = d.Set("database", flattenObjectFirewallInternetServiceDatabaseOfia(o["database"], d, "database")); err != nil {
 		if vv, ok := fortiAPIPatch(o["database"], "ObjectFirewallInternetService-Database"); ok {
 			if err = d.Set("database", vv); err != nil {
 				return fmt.Errorf("Error reading database: %v", err)
@@ -331,7 +460,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("direction", flattenObjectFirewallInternetServiceDirection(o["direction"], d, "direction")); err != nil {
+	if err = d.Set("direction", flattenObjectFirewallInternetServiceDirectionOfia(o["direction"], d, "direction")); err != nil {
 		if vv, ok := fortiAPIPatch(o["direction"], "ObjectFirewallInternetService-Direction"); ok {
 			if err = d.Set("direction", vv); err != nil {
 				return fmt.Errorf("Error reading direction: %v", err)
@@ -341,7 +470,31 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("extra_ip_range_number", flattenObjectFirewallInternetServiceExtraIpRangeNumber(o["extra-ip-range-number"], d, "extra_ip_range_number")); err != nil {
+	if isImportTable() {
+		if err = d.Set("entry", flattenObjectFirewallInternetServiceEntryOfia(o["entry"], d, "entry")); err != nil {
+			if vv, ok := fortiAPIPatch(o["entry"], "ObjectFirewallInternetService-Entry"); ok {
+				if err = d.Set("entry", vv); err != nil {
+					return fmt.Errorf("Error reading entry: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading entry: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("entry"); ok {
+			if err = d.Set("entry", flattenObjectFirewallInternetServiceEntryOfia(o["entry"], d, "entry")); err != nil {
+				if vv, ok := fortiAPIPatch(o["entry"], "ObjectFirewallInternetService-Entry"); ok {
+					if err = d.Set("entry", vv); err != nil {
+						return fmt.Errorf("Error reading entry: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading entry: %v", err)
+				}
+			}
+		}
+	}
+
+	if err = d.Set("extra_ip_range_number", flattenObjectFirewallInternetServiceExtraIpRangeNumberOfia(o["extra-ip-range-number"], d, "extra_ip_range_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["extra-ip-range-number"], "ObjectFirewallInternetService-ExtraIpRangeNumber"); ok {
 			if err = d.Set("extra_ip_range_number", vv); err != nil {
 				return fmt.Errorf("Error reading extra_ip_range_number: %v", err)
@@ -351,7 +504,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("icon_id", flattenObjectFirewallInternetServiceIconId(o["icon-id"], d, "icon_id")); err != nil {
+	if err = d.Set("icon_id", flattenObjectFirewallInternetServiceIconIdOfia(o["icon-id"], d, "icon_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icon-id"], "ObjectFirewallInternetService-IconId"); ok {
 			if err = d.Set("icon_id", vv); err != nil {
 				return fmt.Errorf("Error reading icon_id: %v", err)
@@ -361,7 +514,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("fosid", flattenObjectFirewallInternetServiceId(o["id"], d, "fosid")); err != nil {
+	if err = d.Set("fosid", flattenObjectFirewallInternetServiceIdOfia(o["id"], d, "fosid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["id"], "ObjectFirewallInternetService-Id"); ok {
 			if err = d.Set("fosid", vv); err != nil {
 				return fmt.Errorf("Error reading fosid: %v", err)
@@ -371,7 +524,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("ip_number", flattenObjectFirewallInternetServiceIpNumber(o["ip-number"], d, "ip_number")); err != nil {
+	if err = d.Set("ip_number", flattenObjectFirewallInternetServiceIpNumberOfia(o["ip-number"], d, "ip_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-number"], "ObjectFirewallInternetService-IpNumber"); ok {
 			if err = d.Set("ip_number", vv); err != nil {
 				return fmt.Errorf("Error reading ip_number: %v", err)
@@ -381,7 +534,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("ip_range_number", flattenObjectFirewallInternetServiceIpRangeNumber(o["ip-range-number"], d, "ip_range_number")); err != nil {
+	if err = d.Set("ip_range_number", flattenObjectFirewallInternetServiceIpRangeNumberOfia(o["ip-range-number"], d, "ip_range_number")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-range-number"], "ObjectFirewallInternetService-IpRangeNumber"); ok {
 			if err = d.Set("ip_range_number", vv); err != nil {
 				return fmt.Errorf("Error reading ip_range_number: %v", err)
@@ -391,7 +544,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("jitter_threshold", flattenObjectFirewallInternetServiceJitterThreshold(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
+	if err = d.Set("jitter_threshold", flattenObjectFirewallInternetServiceJitterThresholdOfia(o["jitter-threshold"], d, "jitter_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["jitter-threshold"], "ObjectFirewallInternetService-JitterThreshold"); ok {
 			if err = d.Set("jitter_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading jitter_threshold: %v", err)
@@ -401,7 +554,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("latency_threshold", flattenObjectFirewallInternetServiceLatencyThreshold(o["latency-threshold"], d, "latency_threshold")); err != nil {
+	if err = d.Set("latency_threshold", flattenObjectFirewallInternetServiceLatencyThresholdOfia(o["latency-threshold"], d, "latency_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["latency-threshold"], "ObjectFirewallInternetService-LatencyThreshold"); ok {
 			if err = d.Set("latency_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading latency_threshold: %v", err)
@@ -411,7 +564,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("name", flattenObjectFirewallInternetServiceName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectFirewallInternetServiceNameOfia(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallInternetService-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -421,7 +574,17 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("obsolete", flattenObjectFirewallInternetServiceObsolete(o["obsolete"], d, "obsolete")); err != nil {
+	if err = d.Set("offset", flattenObjectFirewallInternetServiceOffsetOfia(o["offset"], d, "offset")); err != nil {
+		if vv, ok := fortiAPIPatch(o["offset"], "ObjectFirewallInternetService-Offset"); ok {
+			if err = d.Set("offset", vv); err != nil {
+				return fmt.Errorf("Error reading offset: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading offset: %v", err)
+		}
+	}
+
+	if err = d.Set("obsolete", flattenObjectFirewallInternetServiceObsoleteOfia(o["obsolete"], d, "obsolete")); err != nil {
 		if vv, ok := fortiAPIPatch(o["obsolete"], "ObjectFirewallInternetService-Obsolete"); ok {
 			if err = d.Set("obsolete", vv); err != nil {
 				return fmt.Errorf("Error reading obsolete: %v", err)
@@ -431,7 +594,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("region", flattenObjectFirewallInternetServiceRegion(o["region"], d, "region")); err != nil {
+	if err = d.Set("region", flattenObjectFirewallInternetServiceRegionOfia(o["region"], d, "region")); err != nil {
 		if vv, ok := fortiAPIPatch(o["region"], "ObjectFirewallInternetService-Region"); ok {
 			if err = d.Set("region", vv); err != nil {
 				return fmt.Errorf("Error reading region: %v", err)
@@ -441,7 +604,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("packetloss_threshold", flattenObjectFirewallInternetServicePacketlossThreshold(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
+	if err = d.Set("packetloss_threshold", flattenObjectFirewallInternetServicePacketlossThresholdOfia(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packetloss-threshold"], "ObjectFirewallInternetService-PacketlossThreshold"); ok {
 			if err = d.Set("packetloss_threshold", vv); err != nil {
 				return fmt.Errorf("Error reading packetloss_threshold: %v", err)
@@ -451,7 +614,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("reputation", flattenObjectFirewallInternetServiceReputation(o["reputation"], d, "reputation")); err != nil {
+	if err = d.Set("reputation", flattenObjectFirewallInternetServiceReputationOfia(o["reputation"], d, "reputation")); err != nil {
 		if vv, ok := fortiAPIPatch(o["reputation"], "ObjectFirewallInternetService-Reputation"); ok {
 			if err = d.Set("reputation", vv); err != nil {
 				return fmt.Errorf("Error reading reputation: %v", err)
@@ -461,7 +624,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("singularity", flattenObjectFirewallInternetServiceSingularity(o["singularity"], d, "singularity")); err != nil {
+	if err = d.Set("singularity", flattenObjectFirewallInternetServiceSingularityOfia(o["singularity"], d, "singularity")); err != nil {
 		if vv, ok := fortiAPIPatch(o["singularity"], "ObjectFirewallInternetService-Singularity"); ok {
 			if err = d.Set("singularity", vv); err != nil {
 				return fmt.Errorf("Error reading singularity: %v", err)
@@ -471,7 +634,7 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
-	if err = d.Set("sld_id", flattenObjectFirewallInternetServiceSldId(o["sld-id"], d, "sld_id")); err != nil {
+	if err = d.Set("sld_id", flattenObjectFirewallInternetServiceSldIdOfia(o["sld-id"], d, "sld_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sld-id"], "ObjectFirewallInternetService-SldId"); ok {
 			if err = d.Set("sld_id", vv); err != nil {
 				return fmt.Errorf("Error reading sld_id: %v", err)
@@ -490,75 +653,148 @@ func flattenObjectFirewallInternetServiceFortiTestDebug(d *schema.ResourceData, 
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectFirewallInternetServiceCity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceCityOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandObjectFirewallInternetServiceCountry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceCountryOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandObjectFirewallInternetServiceDatabase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceDatabaseOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceDirection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceDirectionOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceExtraIpRangeNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandObjectFirewallInternetServiceEntryIdOfia(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_number"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ip-number"], _ = expandObjectFirewallInternetServiceEntryIpNumberOfia(d, i["ip_number"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_range_number"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ip-range-number"], _ = expandObjectFirewallInternetServiceEntryIpRangeNumberOfia(d, i["ip_range_number"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["port"], _ = expandObjectFirewallInternetServiceEntryPortOfia(d, i["port"], pre_append)
+		} else {
+			tmp["port"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["protocol"], _ = expandObjectFirewallInternetServiceEntryProtocolOfia(d, i["protocol"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallInternetServiceEntryIdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceIconId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryIpNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryIpRangeNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceIpNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandObjectFirewallInternetServiceIpRangeNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandObjectFirewallInternetServiceJitterThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandObjectFirewallInternetServiceLatencyThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandObjectFirewallInternetServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandObjectFirewallInternetServiceObsolete(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
-func expandObjectFirewallInternetServiceRegion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryPortOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandObjectFirewallInternetServicePacketlossThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceEntryProtocolOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceReputation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceExtraIpRangeNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceSingularity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceIconIdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallInternetServiceSldId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallInternetServiceIdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceIpNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceIpRangeNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceJitterThresholdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceLatencyThresholdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceNameOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceOffsetOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceObsoleteOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceRegionOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallInternetServicePacketlossThresholdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceReputationOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceSingularityOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceSldIdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -566,7 +802,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("city"); ok {
-		t, err := expandObjectFirewallInternetServiceCity(d, v, "city")
+		t, err := expandObjectFirewallInternetServiceCityOfia(d, v, "city")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -575,7 +811,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("country"); ok {
-		t, err := expandObjectFirewallInternetServiceCountry(d, v, "country")
+		t, err := expandObjectFirewallInternetServiceCountryOfia(d, v, "country")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -584,7 +820,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("database"); ok {
-		t, err := expandObjectFirewallInternetServiceDatabase(d, v, "database")
+		t, err := expandObjectFirewallInternetServiceDatabaseOfia(d, v, "database")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -593,7 +829,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("direction"); ok {
-		t, err := expandObjectFirewallInternetServiceDirection(d, v, "direction")
+		t, err := expandObjectFirewallInternetServiceDirectionOfia(d, v, "direction")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -601,8 +837,17 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("entry"); ok {
+		t, err := expandObjectFirewallInternetServiceEntryOfia(d, v, "entry")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["entry"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("extra_ip_range_number"); ok {
-		t, err := expandObjectFirewallInternetServiceExtraIpRangeNumber(d, v, "extra_ip_range_number")
+		t, err := expandObjectFirewallInternetServiceExtraIpRangeNumberOfia(d, v, "extra_ip_range_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -611,7 +856,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("icon_id"); ok {
-		t, err := expandObjectFirewallInternetServiceIconId(d, v, "icon_id")
+		t, err := expandObjectFirewallInternetServiceIconIdOfia(d, v, "icon_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -620,7 +865,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("fosid"); ok {
-		t, err := expandObjectFirewallInternetServiceId(d, v, "fosid")
+		t, err := expandObjectFirewallInternetServiceIdOfia(d, v, "fosid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -629,7 +874,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("ip_number"); ok {
-		t, err := expandObjectFirewallInternetServiceIpNumber(d, v, "ip_number")
+		t, err := expandObjectFirewallInternetServiceIpNumberOfia(d, v, "ip_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -638,7 +883,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("ip_range_number"); ok {
-		t, err := expandObjectFirewallInternetServiceIpRangeNumber(d, v, "ip_range_number")
+		t, err := expandObjectFirewallInternetServiceIpRangeNumberOfia(d, v, "ip_range_number")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -647,7 +892,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("jitter_threshold"); ok {
-		t, err := expandObjectFirewallInternetServiceJitterThreshold(d, v, "jitter_threshold")
+		t, err := expandObjectFirewallInternetServiceJitterThresholdOfia(d, v, "jitter_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -656,7 +901,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("latency_threshold"); ok {
-		t, err := expandObjectFirewallInternetServiceLatencyThreshold(d, v, "latency_threshold")
+		t, err := expandObjectFirewallInternetServiceLatencyThresholdOfia(d, v, "latency_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -665,7 +910,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("name"); ok {
-		t, err := expandObjectFirewallInternetServiceName(d, v, "name")
+		t, err := expandObjectFirewallInternetServiceNameOfia(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -673,8 +918,17 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("offset"); ok {
+		t, err := expandObjectFirewallInternetServiceOffsetOfia(d, v, "offset")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["offset"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("obsolete"); ok {
-		t, err := expandObjectFirewallInternetServiceObsolete(d, v, "obsolete")
+		t, err := expandObjectFirewallInternetServiceObsoleteOfia(d, v, "obsolete")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -683,7 +937,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("region"); ok {
-		t, err := expandObjectFirewallInternetServiceRegion(d, v, "region")
+		t, err := expandObjectFirewallInternetServiceRegionOfia(d, v, "region")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -692,7 +946,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("packetloss_threshold"); ok {
-		t, err := expandObjectFirewallInternetServicePacketlossThreshold(d, v, "packetloss_threshold")
+		t, err := expandObjectFirewallInternetServicePacketlossThresholdOfia(d, v, "packetloss_threshold")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -701,7 +955,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("reputation"); ok {
-		t, err := expandObjectFirewallInternetServiceReputation(d, v, "reputation")
+		t, err := expandObjectFirewallInternetServiceReputationOfia(d, v, "reputation")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -710,7 +964,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("singularity"); ok {
-		t, err := expandObjectFirewallInternetServiceSingularity(d, v, "singularity")
+		t, err := expandObjectFirewallInternetServiceSingularityOfia(d, v, "singularity")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -719,7 +973,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 	}
 
 	if v, ok := d.GetOk("sld_id"); ok {
-		t, err := expandObjectFirewallInternetServiceSldId(d, v, "sld_id")
+		t, err := expandObjectFirewallInternetServiceSldIdOfia(d, v, "sld_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

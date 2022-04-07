@@ -55,12 +55,20 @@ The following arguments are supported:
 * `ssl` - Ssl. The structure of `ssl` block is documented below.
 * `ssl_anomalies_log` - Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 
+* `ssl_anomaly_log` - Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
+
 * `ssl_exempt` - Ssl-Exempt. The structure of `ssl_exempt` block is documented below.
+* `ssl_exemption_log` - Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+
 * `ssl_exemptions_log` - Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
+
+* `ssl_handshake_log` - Enable/disable logging of TLS handshakes. Valid values: `disable`, `enable`.
 
 * `ssl_negotiation_log` - Enable/disable logging SSL negotiation. Valid values: `disable`, `enable`.
 
 * `ssl_server` - Ssl-Server. The structure of `ssl_server` block is documented below.
+* `ssl_server_cert_log` - Enable/disable logging of server certificate information. Valid values: `disable`, `enable`.
+
 * `supported_alpn` - Configure ALPN option. Valid values: `none`, `http1-1`, `http2`, `all`.
 
 * `untrusted_caname` - Untrusted CA certificate used by SSL Inspection.
@@ -80,6 +88,8 @@ The `dot` block supports:
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 
+* `min_allowed_ssl_version` - Min-Allowed-Ssl-Version. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
 
 * `revoked_server_cert` - Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
@@ -92,10 +102,18 @@ The `dot` block supports:
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `block`, `allow`.
 
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
+
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
 The `ftps` block supports:
+
+* `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
+
+* `client_cert_request` - Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
+
+* `invalid_server_cert` - Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -105,6 +123,8 @@ The `ftps` block supports:
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 
+* `min_allowed_ssl_version` - Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+
 * `ports` - Ports to use for scanning (1 - 65535, default = 443).
 * `revoked_server_cert` - Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 
@@ -112,14 +132,26 @@ The `ftps` block supports:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 
+* `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
+
+* `untrusted_cert` - Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
 
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
 The `https` block supports:
+
+* `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
+
+* `client_cert_request` - Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
+
+* `invalid_server_cert` - Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
 
 * `cert_probe_failure` - Action based on certificate probe failure. Valid values: `block`, `allow`.
 
@@ -131,6 +163,8 @@ The `https` block supports:
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
 
+* `min_allowed_ssl_version` - Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+
 * `ports` - Ports to use for scanning (1 - 65535, default = 443).
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
 
@@ -140,15 +174,27 @@ The `https` block supports:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
 
+* `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
+
+* `untrusted_cert` - Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
 
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
 The `imaps` block supports:
 
+* `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
+
+* `client_cert_request` - Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
+
+* `invalid_server_cert` - Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
 * `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
@@ -156,6 +202,8 @@ The `imaps` block supports:
 * `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+
+* `min_allowed_ssl_version` - Min-Allowed-Ssl-Version. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
 * `ports` - Ports to use for scanning (1 - 65535, default = 443).
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
@@ -166,15 +214,27 @@ The `imaps` block supports:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 
+* `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
+
+* `untrusted_cert` - Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
 
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
 The `pop3s` block supports:
 
+* `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
+
+* `client_cert_request` - Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
+
+* `invalid_server_cert` - Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
 * `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
@@ -182,6 +242,8 @@ The `pop3s` block supports:
 * `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+
+* `min_allowed_ssl_version` - Min-Allowed-Ssl-Version. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
 * `ports` - Ports to use for scanning (1 - 65535, default = 443).
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
@@ -192,15 +254,27 @@ The `pop3s` block supports:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 
+* `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
+
+* `untrusted_cert` - Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
 
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
 
 The `smtps` block supports:
 
+* `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
+
+* `client_cert_request` - Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
+
+* `invalid_server_cert` - Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
 * `cert_validation_timeout` - Action based on certificate validation timeout. Valid values: `allow`, `block`, `ignore`.
@@ -208,6 +282,8 @@ The `smtps` block supports:
 * `client_certificate` - Action based on received client certificate. Valid values: `bypass`, `inspect`, `block`.
 
 * `expired_server_cert` - Action based on server certificate is expired. Valid values: `allow`, `block`, `ignore`.
+
+* `min_allowed_ssl_version` - Min-Allowed-Ssl-Version. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
 * `ports` - Ports to use for scanning (1 - 65535, default = 443).
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
@@ -218,9 +294,15 @@ The `smtps` block supports:
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
 
+* `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
+
+* `untrusted_cert` - Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
 
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 
@@ -234,6 +316,8 @@ The `ssh` block supports:
 
 * `ssh_algorithm` - Relative strength of encryption algorithms accepted during negotiation. Valid values: `compatible`, `high-encryption`.
 
+* `ssh_policy_check` - Enable/disable SSH policy check. Valid values: `disable`, `enable`.
+
 * `ssh_tun_policy_check` - Enable/disable SSH tunnel policy check. Valid values: `disable`, `enable`.
 
 * `status` - Configure protocol inspection status. Valid values: `disable`, `deep-inspection`.
@@ -242,6 +326,12 @@ The `ssh` block supports:
 
 
 The `ssl` block supports:
+
+* `allow_invalid_server_cert` - When enabled, allows SSL sessions whose server certificate validation failed. Valid values: `disable`, `enable`.
+
+* `client_cert_request` - Action based on client certificate request. Valid values: `bypass`, `inspect`, `block`.
+
+* `cert_probe_failure` - Action based on certificate probe failure. Valid values: `block`, `allow`.
 
 * `cert_validation_failure` - Action based on certificate validation failure. Valid values: `allow`, `block`, `ignore`.
 
@@ -253,13 +343,23 @@ The `ssl` block supports:
 
 * `inspect_all` - Level of SSL inspection. Valid values: `disable`, `certificate-inspection`, `deep-inspection`.
 
+* `min_allowed_ssl_version` - Minimum SSL version to be allowed. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
+
+* `invalid_server_cert` - Allow or block the invalid SSL session server certificate. Valid values: `allow`, `block`.
+
 * `revoked_server_cert` - Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 
 * `sni_server_cert_check` - Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `disable`, `enable`, `strict`.
 
+* `unsupported_ssl` - Action based on the SSL encryption used being unsupported. Valid values: `bypass`, `inspect`, `block`.
+
+* `untrusted_cert` - Allow, ignore, or block the untrusted SSL session server certificate. Valid values: `allow`, `block`, `ignore`.
+
 * `unsupported_ssl_cipher` - Action based on the SSL cipher used being unsupported. Valid values: `allow`, `block`.
 
 * `unsupported_ssl_negotiation` - Action based on the SSL negotiation used being unsupported. Valid values: `allow`, `block`.
+
+* `unsupported_ssl_version` - Action based on the SSL version used being unsupported. Valid values: `block`, `allow`, `inspect`.
 
 * `untrusted_server_cert` - Action based on server certificate is not issued by a trusted CA. Valid values: `allow`, `block`, `ignore`.
 

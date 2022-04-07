@@ -39,6 +39,8 @@ The following arguments are supported:
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
 * `filter` - Filter. The structure of `filter` block is documented below.
+* `flow_based` - Enable/disable flow-based DLP. Valid values: `disable`, `enable`.
+
 * `full_archive_proto` - Protocols to always content archive. Valid values: `imap`, `smtp`, `pop3`, `ftp`, `nntp`, `mm1`, `mm3`, `mm4`, `mm7`, `mapi`, `aim`, `icq`, `msn`, `yahoo`, `http-get`, `http-post`, `cifs`, `ssh`.
 
 * `nac_quar_log` - Enable/disable NAC quarantine logging. Valid values: `disable`, `enable`.
@@ -63,6 +65,7 @@ The `filter` block supports:
 * `file_type` - Select the number of a DLP file pattern table to match.
 * `filter_by` - Select the type of content to match. Valid values: `credit-card`, `ssn`, `regexp`, `file-type`, `file-size`, `fingerprint`, `watermark`, `encrypted`.
 
+* `fp_sensitivity` - Select a DLP file pattern sensitivity to match.
 * `id` - ID.
 * `match_percentage` - Percentage of fingerprints in the fingerprint databases designated with the selected sensitivity to match.
 * `name` - Filter name.

@@ -50,6 +50,11 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -111,6 +116,11 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"devices": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -132,6 +142,21 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"dlp_sensor": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dscp_match": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dscp_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dscp_value": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -338,6 +363,11 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"spamfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -639,6 +669,10 @@ func resourcePackagesFirewallPolicy6Read(d *schema.ResourceData, m interface{}) 
 	return nil
 }
 
+func flattenPackagesFirewallPolicy6PolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicy6Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -687,6 +721,10 @@ func flattenPackagesFirewallPolicy6CustomLogFields(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesFirewallPolicy6Devices(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicy6DiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -704,6 +742,18 @@ func flattenPackagesFirewallPolicy6DiffservcodeRev(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesFirewallPolicy6DlpSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy6DscpMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy6DscpNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicy6DscpValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -871,6 +921,10 @@ func flattenPackagesFirewallPolicy6SessionTtl(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenPackagesFirewallPolicy6SpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicy6Srcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1010,6 +1064,16 @@ func refreshObjectPackagesFirewallPolicy6(d *schema.ResourceData, o map[string]i
 		d.Set("scopetype", "inherit")
 	}
 
+	if err = d.Set("_policy_block", flattenPackagesFirewallPolicy6PolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesFirewallPolicy6-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
+	}
+
 	if err = d.Set("action", flattenPackagesFirewallPolicy6Action(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesFirewallPolicy6-Action"); ok {
 			if err = d.Set("action", vv); err != nil {
@@ -1130,6 +1194,16 @@ func refreshObjectPackagesFirewallPolicy6(d *schema.ResourceData, o map[string]i
 		}
 	}
 
+	if err = d.Set("devices", flattenPackagesFirewallPolicy6Devices(o["devices"], d, "devices")); err != nil {
+		if vv, ok := fortiAPIPatch(o["devices"], "PackagesFirewallPolicy6-Devices"); ok {
+			if err = d.Set("devices", vv); err != nil {
+				return fmt.Errorf("Error reading devices: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading devices: %v", err)
+		}
+	}
+
 	if err = d.Set("diffserv_forward", flattenPackagesFirewallPolicy6DiffservForward(o["diffserv-forward"], d, "diffserv_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffserv-forward"], "PackagesFirewallPolicy6-DiffservForward"); ok {
 			if err = d.Set("diffserv_forward", vv); err != nil {
@@ -1177,6 +1251,36 @@ func refreshObjectPackagesFirewallPolicy6(d *schema.ResourceData, o map[string]i
 			}
 		} else {
 			return fmt.Errorf("Error reading dlp_sensor: %v", err)
+		}
+	}
+
+	if err = d.Set("dscp_match", flattenPackagesFirewallPolicy6DscpMatch(o["dscp-match"], d, "dscp_match")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dscp-match"], "PackagesFirewallPolicy6-DscpMatch"); ok {
+			if err = d.Set("dscp_match", vv); err != nil {
+				return fmt.Errorf("Error reading dscp_match: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dscp_match: %v", err)
+		}
+	}
+
+	if err = d.Set("dscp_negate", flattenPackagesFirewallPolicy6DscpNegate(o["dscp-negate"], d, "dscp_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dscp-negate"], "PackagesFirewallPolicy6-DscpNegate"); ok {
+			if err = d.Set("dscp_negate", vv); err != nil {
+				return fmt.Errorf("Error reading dscp_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dscp_negate: %v", err)
+		}
+	}
+
+	if err = d.Set("dscp_value", flattenPackagesFirewallPolicy6DscpValue(o["dscp-value"], d, "dscp_value")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dscp-value"], "PackagesFirewallPolicy6-DscpValue"); ok {
+			if err = d.Set("dscp_value", vv); err != nil {
+				return fmt.Errorf("Error reading dscp_value: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dscp_value: %v", err)
 		}
 	}
 
@@ -1590,6 +1694,16 @@ func refreshObjectPackagesFirewallPolicy6(d *schema.ResourceData, o map[string]i
 		}
 	}
 
+	if err = d.Set("spamfilter_profile", flattenPackagesFirewallPolicy6SpamfilterProfile(o["spamfilter-profile"], d, "spamfilter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["spamfilter-profile"], "PackagesFirewallPolicy6-SpamfilterProfile"); ok {
+			if err = d.Set("spamfilter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("srcaddr", flattenPackagesFirewallPolicy6Srcaddr(o["srcaddr"], d, "srcaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr"], "PackagesFirewallPolicy6-Srcaddr"); ok {
 			if err = d.Set("srcaddr", vv); err != nil {
@@ -1929,6 +2043,10 @@ func flattenPackagesFirewallPolicy6FortiTestDebug(d *schema.ResourceData, fosdeb
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesFirewallPolicy6PolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicy6Action(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1977,6 +2095,10 @@ func expandPackagesFirewallPolicy6CustomLogFields(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesFirewallPolicy6Devices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicy6DiffservForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1994,6 +2116,18 @@ func expandPackagesFirewallPolicy6DiffservcodeRev(d *schema.ResourceData, v inte
 }
 
 func expandPackagesFirewallPolicy6DlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy6DscpMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy6DscpNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicy6DscpValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2161,6 +2295,10 @@ func expandPackagesFirewallPolicy6SessionTtl(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandPackagesFirewallPolicy6SpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicy6Srcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2296,6 +2434,15 @@ func expandPackagesFirewallPolicy6WebproxyProfile(d *schema.ResourceData, v inte
 func getObjectPackagesFirewallPolicy6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("_policy_block"); ok {
+		t, err := expandPackagesFirewallPolicy6PolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("action"); ok {
 		t, err := expandPackagesFirewallPolicy6Action(d, v, "action")
 		if err != nil {
@@ -2404,6 +2551,15 @@ func getObjectPackagesFirewallPolicy6(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
+	if v, ok := d.GetOk("devices"); ok {
+		t, err := expandPackagesFirewallPolicy6Devices(d, v, "devices")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["devices"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("diffserv_forward"); ok {
 		t, err := expandPackagesFirewallPolicy6DiffservForward(d, v, "diffserv_forward")
 		if err != nil {
@@ -2446,6 +2602,33 @@ func getObjectPackagesFirewallPolicy6(d *schema.ResourceData) (*map[string]inter
 			return &obj, err
 		} else if t != nil {
 			obj["dlp-sensor"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dscp_match"); ok {
+		t, err := expandPackagesFirewallPolicy6DscpMatch(d, v, "dscp_match")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dscp-match"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dscp_negate"); ok {
+		t, err := expandPackagesFirewallPolicy6DscpNegate(d, v, "dscp_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dscp-negate"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dscp_value"); ok {
+		t, err := expandPackagesFirewallPolicy6DscpValue(d, v, "dscp_value")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dscp-value"] = t
 		}
 	}
 
@@ -2815,6 +2998,15 @@ func getObjectPackagesFirewallPolicy6(d *schema.ResourceData) (*map[string]inter
 			return &obj, err
 		} else if t != nil {
 			obj["session-ttl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("spamfilter_profile"); ok {
+		t, err := expandPackagesFirewallPolicy6SpamfilterProfile(d, v, "spamfilter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["spamfilter-profile"] = t
 		}
 	}
 

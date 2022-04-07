@@ -78,6 +78,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.
@@ -114,6 +115,7 @@ The following arguments are supported:
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
 * `delay_tcp_npu_session` - Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `disable`, `enable`.
 
+* `devices` - Names of devices or device groups that can be matched by the policy.
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
 * `diffserv_reverse` - Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `disable`, `enable`.
@@ -124,6 +126,11 @@ The following arguments are supported:
 
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
+* `dscp_match` - Enable DSCP check. Valid values: `disable`, `enable`.
+
+* `dscp_negate` - Enable negated DSCP match. Valid values: `disable`, `enable`.
+
+* `dscp_value` - DSCP value.
 * `dsri` - Enable DSRI to ignore HTTP server responses. Valid values: `disable`, `enable`.
 
 * `dstaddr` - Destination address and address group names.
@@ -136,6 +143,8 @@ The following arguments are supported:
 * `email_collect` - Enable/disable email collection. Valid values: `disable`, `enable`.
 
 * `emailfilter_profile` - Name of an existing email filter profile.
+* `fec` - Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `disable`, `enable`.
+
 * `file_filter_profile` - Name of an existing file-filter profile.
 * `firewall_session_dirty` - How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
 
@@ -182,6 +191,8 @@ The following arguments are supported:
 
 * `ips_sensor` - Name of an existing IPS sensor.
 * `label` - Label for the policy that appears when the GUI is in Section View mode.
+* `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
+
 * `logtraffic` - Enable or disable logging. Log all sessions or security profile sessions. Valid values: `disable`, `enable`, `all`, `utm`.
 
 * `logtraffic_start` - Record logs when a session starts. Valid values: `disable`, `enable`.
@@ -193,6 +204,10 @@ The following arguments are supported:
 * `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
+
+* `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
+
+* `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
 
 * `natinbound` - Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `disable`, `enable`.
 
@@ -215,6 +230,7 @@ The following arguments are supported:
 
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
 
+* `pfcp_profile` - PFCP profile.
 * `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
@@ -236,15 +252,22 @@ The following arguments are supported:
 * `rtp_addr` - Address names if this is an RTP NAT policy.
 * `rtp_nat` - Enable Real Time Protocol (RTP) NAT. Valid values: `disable`, `enable`.
 
+* `scan_botnet_connections` - Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+
 * `schedule` - Schedule name.
 * `schedule_timeout` - Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `disable`, `enable`.
 
+* `sctp_filter_profile` - Name of an existing SCTP filter profile.
 * `send_deny_packet` - Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 
 * `service` - Service and service group names.
 * `service_negate` - When enabled service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `session_ttl` - TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+* `spamfilter_profile` - Name of an existing Spam filter profile.
+* `sgt` - Security group tags.
+* `sgt_check` - Enable/disable security group tags (SGT) check. Valid values: `disable`, `enable`.
+
 * `src_vendor_mac` - Vendor MAC source ID.
 * `srcaddr` - Source address and address group names.
 * `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
@@ -264,6 +287,7 @@ The following arguments are supported:
 * `tcp_mss_sender` - Sender TCP maximum segment size (MSS).
 * `tcp_session_without_syn` - Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
 
+* `tcp_timeout_pid` - TCP timeout profile ID
 * `timeout_send_rst` - Enable/disable sending RST packets when TCP sessions expire. Valid values: `disable`, `enable`.
 
 * `tos` - ToS (Type of Service) value used for comparison.
@@ -272,6 +296,7 @@ The following arguments are supported:
 
 * `traffic_shaper` - Traffic shaper.
 * `traffic_shaper_reverse` - Reverse traffic shaper.
+* `udp_timeout_pid` - UDP timeout profile ID
 * `url_category` - URL category ID list.
 * `users` - Names of individual users that can authenticate with this policy.
 * `utm_status` - Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `disable`, `enable`.

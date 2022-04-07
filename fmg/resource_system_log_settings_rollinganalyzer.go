@@ -119,6 +119,11 @@ func resourceSystemLogSettingsRollingAnalyzer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"rolling_upgrade_status": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"server_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -301,6 +306,10 @@ func flattenSystemLogSettingsRollingAnalyzerPort2(v interface{}, d *schema.Resou
 }
 
 func flattenSystemLogSettingsRollingAnalyzerPort3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -503,6 +512,16 @@ func refreshObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("rolling_upgrade_status", flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatus(o["rolling-upgrade-status"], d, "rolling_upgrade_status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rolling-upgrade-status"], "SystemLogSettingsRollingAnalyzer-RollingUpgradeStatus"); ok {
+			if err = d.Set("rolling_upgrade_status", vv); err != nil {
+				return fmt.Errorf("Error reading rolling_upgrade_status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rolling_upgrade_status: %v", err)
+		}
+	}
+
 	if err = d.Set("server_type", flattenSystemLogSettingsRollingAnalyzerServerType(o["server-type"], d, "server_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-type"], "SystemLogSettingsRollingAnalyzer-ServerType"); ok {
 			if err = d.Set("server_type", vv); err != nil {
@@ -667,6 +686,10 @@ func expandSystemLogSettingsRollingAnalyzerPort2(d *schema.ResourceData, v inter
 }
 
 func expandSystemLogSettingsRollingAnalyzerPort3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -859,6 +882,15 @@ func getObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["port3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("rolling_upgrade_status"); ok {
+		t, err := expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatus(d, v, "rolling_upgrade_status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rolling-upgrade-status"] = t
 		}
 	}
 

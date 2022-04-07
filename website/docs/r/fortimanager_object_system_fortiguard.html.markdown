@@ -78,6 +78,7 @@ The following arguments are supported:
 * `auto_join_forticloud` - Automatically connect to and login to FortiCloud. Valid values: `disable`, `enable`.
 
 * `ddns_server_ip` - IP address of the FortiDDNS server.
+* `ddns_server_ip6` - IPv6 address of the FortiDDNS server.
 * `ddns_server_port` - Port used to communicate with FortiDDNS servers.
 * `fortiguard_anycast` - Enable/disable use of FortiGuard's anycast network. Valid values: `disable`, `enable`.
 

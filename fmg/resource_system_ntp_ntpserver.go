@@ -52,6 +52,16 @@ func resourceSystemNtpNtpserver() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"maxpoll": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"minpoll": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"ntpv3": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -172,6 +182,14 @@ func flattenSystemNtpNtpserverKeyId(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
+func flattenSystemNtpNtpserverMaxpoll(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemNtpNtpserverMinpoll(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemNtpNtpserverNtpv3(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -210,6 +228,26 @@ func refreshObjectSystemNtpNtpserver(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading key_id: %v", err)
+		}
+	}
+
+	if err = d.Set("maxpoll", flattenSystemNtpNtpserverMaxpoll(o["maxpoll"], d, "maxpoll")); err != nil {
+		if vv, ok := fortiAPIPatch(o["maxpoll"], "SystemNtpNtpserver-Maxpoll"); ok {
+			if err = d.Set("maxpoll", vv); err != nil {
+				return fmt.Errorf("Error reading maxpoll: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading maxpoll: %v", err)
+		}
+	}
+
+	if err = d.Set("minpoll", flattenSystemNtpNtpserverMinpoll(o["minpoll"], d, "minpoll")); err != nil {
+		if vv, ok := fortiAPIPatch(o["minpoll"], "SystemNtpNtpserver-Minpoll"); ok {
+			if err = d.Set("minpoll", vv); err != nil {
+				return fmt.Errorf("Error reading minpoll: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading minpoll: %v", err)
 		}
 	}
 
@@ -258,6 +296,14 @@ func expandSystemNtpNtpserverKeyId(d *schema.ResourceData, v interface{}, pre st
 	return v, nil
 }
 
+func expandSystemNtpNtpserverMaxpoll(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverMinpoll(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemNtpNtpserverNtpv3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -302,6 +348,24 @@ func getObjectSystemNtpNtpserver(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["key-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("maxpoll"); ok {
+		t, err := expandSystemNtpNtpserverMaxpoll(d, v, "maxpoll")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["maxpoll"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("minpoll"); ok {
+		t, err := expandSystemNtpNtpserverMinpoll(d, v, "minpoll")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["minpoll"] = t
 		}
 	}
 

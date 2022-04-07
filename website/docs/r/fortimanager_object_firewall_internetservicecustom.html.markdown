@@ -27,11 +27,26 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Comment.
+* `disable_entry` - Disable-Entry. The structure of `disable_entry` block is documented below.
 * `entry` - Entry. The structure of `entry` block is documented below.
+* `master_service_id` - Internet Service ID in the Internet Service database.
 * `fosid` - Internet Service ID.
 * `name` - Internet Service name.
 * `reputation` - Reputation level of the custom Internet Service.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `disable_entry` block supports:
+
+* `id` - Disable entry ID.
+* `ip_range` - Ip-Range. The structure of `ip_range` block is documented below.
+* `port` - Integer value for the TCP/IP port (0 - 65535).
+* `protocol` - Integer value for the protocol type as defined by IANA (0 - 255).
+
+The `ip_range` block supports:
+
+* `end_ip` - End IP address.
+* `id` - Disable entry range ID.
+* `start_ip` - Start IP address.
 
 The `entry` block supports:
 

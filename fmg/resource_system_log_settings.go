@@ -109,6 +109,11 @@ func resourceSystemLogSettings() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"keep_dev_logs": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"log_file_archive_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -206,6 +211,11 @@ func resourceSystemLogSettings() *schema.Resource {
 							Computed: true,
 						},
 						"port3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"rolling_upgrade_status": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
@@ -354,6 +364,11 @@ func resourceSystemLogSettings() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"rolling_upgrade_status": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
 						"server_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -493,6 +508,11 @@ func resourceSystemLogSettings() *schema.Resource {
 							Computed: true,
 						},
 						"port3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"rolling_upgrade_status": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
@@ -686,6 +706,10 @@ func flattenSystemLogSettingsImportMaxLogfilesSlsa(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenSystemLogSettingsKeepDevLogsSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogSettingsLogFileArchiveNameSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -786,6 +810,11 @@ func flattenSystemLogSettingsRollingAnalyzerSlsa(v interface{}, d *schema.Resour
 	pre_append = pre + ".0." + "port3"
 	if _, ok := i["port3"]; ok {
 		result["port3"] = flattenSystemLogSettingsRollingAnalyzerPort3Slsa(i["port3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "rolling_upgrade_status"
+	if _, ok := i["rolling-upgrade-status"]; ok {
+		result["rolling_upgrade_status"] = flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(i["rolling-upgrade-status"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "server_type"
@@ -902,6 +931,10 @@ func flattenSystemLogSettingsRollingAnalyzerPort2Slsa(v interface{}, d *schema.R
 }
 
 func flattenSystemLogSettingsRollingAnalyzerPort3Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1039,6 +1072,11 @@ func flattenSystemLogSettingsRollingLocalSlsa(v interface{}, d *schema.ResourceD
 		result["port3"] = flattenSystemLogSettingsRollingLocalPort3Slsa(i["port3"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "rolling_upgrade_status"
+	if _, ok := i["rolling-upgrade-status"]; ok {
+		result["rolling_upgrade_status"] = flattenSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(i["rolling-upgrade-status"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := i["server-type"]; ok {
 		result["server_type"] = flattenSystemLogSettingsRollingLocalServerTypeSlsa(i["server-type"], d, pre_append)
@@ -1153,6 +1191,10 @@ func flattenSystemLogSettingsRollingLocalPort2Slsa(v interface{}, d *schema.Reso
 }
 
 func flattenSystemLogSettingsRollingLocalPort3Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1286,6 +1328,11 @@ func flattenSystemLogSettingsRollingRegularSlsa(v interface{}, d *schema.Resourc
 		result["port3"] = flattenSystemLogSettingsRollingRegularPort3Slsa(i["port3"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "rolling_upgrade_status"
+	if _, ok := i["rolling-upgrade-status"]; ok {
+		result["rolling_upgrade_status"] = flattenSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(i["rolling-upgrade-status"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := i["server-type"]; ok {
 		result["server_type"] = flattenSystemLogSettingsRollingRegularServerTypeSlsa(i["server-type"], d, pre_append)
@@ -1400,6 +1447,10 @@ func flattenSystemLogSettingsRollingRegularPort2Slsa(v interface{}, d *schema.Re
 }
 
 func flattenSystemLogSettingsRollingRegularPort3Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1606,6 +1657,16 @@ func refreshObjectSystemLogSettings(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("keep_dev_logs", flattenSystemLogSettingsKeepDevLogsSlsa(o["keep-dev-logs"], d, "keep_dev_logs")); err != nil {
+		if vv, ok := fortiAPIPatch(o["keep-dev-logs"], "SystemLogSettings-KeepDevLogs"); ok {
+			if err = d.Set("keep_dev_logs", vv); err != nil {
+				return fmt.Errorf("Error reading keep_dev_logs: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading keep_dev_logs: %v", err)
+		}
+	}
+
 	if err = d.Set("log_file_archive_name", flattenSystemLogSettingsLogFileArchiveNameSlsa(o["log-file-archive-name"], d, "log_file_archive_name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-file-archive-name"], "SystemLogSettings-LogFileArchiveName"); ok {
 			if err = d.Set("log_file_archive_name", vv); err != nil {
@@ -1771,6 +1832,10 @@ func expandSystemLogSettingsImportMaxLogfilesSlsa(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandSystemLogSettingsKeepDevLogsSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogSettingsLogFileArchiveNameSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1860,6 +1925,10 @@ func expandSystemLogSettingsRollingAnalyzerSlsa(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "port3"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["port3"], _ = expandSystemLogSettingsRollingAnalyzerPort3Slsa(d, i["port3"], pre_append)
+	}
+	pre_append = pre + ".0." + "rolling_upgrade_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["rolling-upgrade-status"], _ = expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(d, i["rolling_upgrade_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -1966,6 +2035,10 @@ func expandSystemLogSettingsRollingAnalyzerPort2Slsa(d *schema.ResourceData, v i
 }
 
 func expandSystemLogSettingsRollingAnalyzerPort3Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2091,6 +2164,10 @@ func expandSystemLogSettingsRollingLocalSlsa(d *schema.ResourceData, v interface
 	if _, ok := d.GetOk(pre_append); ok {
 		result["port3"], _ = expandSystemLogSettingsRollingLocalPort3Slsa(d, i["port3"], pre_append)
 	}
+	pre_append = pre + ".0." + "rolling_upgrade_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["rolling-upgrade-status"], _ = expandSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(d, i["rolling_upgrade_status"], pre_append)
+	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["server-type"], _ = expandSystemLogSettingsRollingLocalServerTypeSlsa(d, i["server_type"], pre_append)
@@ -2196,6 +2273,10 @@ func expandSystemLogSettingsRollingLocalPort2Slsa(d *schema.ResourceData, v inte
 }
 
 func expandSystemLogSettingsRollingLocalPort3Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2321,6 +2402,10 @@ func expandSystemLogSettingsRollingRegularSlsa(d *schema.ResourceData, v interfa
 	if _, ok := d.GetOk(pre_append); ok {
 		result["port3"], _ = expandSystemLogSettingsRollingRegularPort3Slsa(d, i["port3"], pre_append)
 	}
+	pre_append = pre + ".0." + "rolling_upgrade_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["rolling-upgrade-status"], _ = expandSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(d, i["rolling_upgrade_status"], pre_append)
+	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["server-type"], _ = expandSystemLogSettingsRollingRegularServerTypeSlsa(d, i["server_type"], pre_append)
@@ -2426,6 +2511,10 @@ func expandSystemLogSettingsRollingRegularPort2Slsa(d *schema.ResourceData, v in
 }
 
 func expandSystemLogSettingsRollingRegularPort3Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2613,6 +2702,15 @@ func getObjectSystemLogSettings(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["import-max-logfiles"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("keep_dev_logs"); ok {
+		t, err := expandSystemLogSettingsKeepDevLogsSlsa(d, v, "keep_dev_logs")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["keep-dev-logs"] = t
 		}
 	}
 

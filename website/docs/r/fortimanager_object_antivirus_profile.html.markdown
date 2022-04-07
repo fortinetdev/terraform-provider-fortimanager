@@ -59,11 +59,17 @@ The following arguments are supported:
 
 * `feature_set` - Flow/proxy feature set. Valid values: `proxy`, `flow`.
 
+* `fortiai_error_action` - Action to take if FortiAI encounters an error. Valid values: `block`, `log-only`, `ignore`.
+
+* `fortiai_timeout_action` - Action to take if FortiAI encounters a scan timeout. Valid values: `block`, `log-only`, `ignore`.
+
 * `ftgd_analytics` - Settings to control which files are uploaded to FortiSandbox. Valid values: `disable`, `suspicious`, `everything`.
 
 * `ftp` - Ftp. The structure of `ftp` block is documented below.
 * `http` - Http. The structure of `http` block is documented below.
 * `imap` - Imap. The structure of `imap` block is documented below.
+* `inspection_mode` - Inspection mode. Valid values: `proxy`, `flow-based`.
+
 * `mapi` - Mapi. The structure of `mapi` block is documented below.
 * `mobile_malware_db` - Enable/disable using the mobile malware signature database. Valid values: `disable`, `enable`.
 
@@ -77,6 +83,7 @@ The following arguments are supported:
 * `replacemsg_group` - Replacement message group customized for this profile.
 * `scan_mode` - Choose between default scan mode and legacy scan mode. Valid values: `quick`, `full`, `legacy`, `default`.
 
+* `smb` - Smb. The structure of `smb` block is documented below.
 * `smtp` - Smtp. The structure of `smtp` block is documented below.
 * `ssh` - Ssh. The structure of `ssh` block is documented below.
 
@@ -91,6 +98,8 @@ The `cifs` block supports:
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
+
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
 
 * `options` - Enable/disable CIFS AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `quarantine`, `avmonitor`.
 
@@ -152,6 +161,8 @@ The `ftp` block supports:
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
 
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
+
 * `options` - Enable/disable FTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
@@ -165,6 +176,8 @@ The `http` block supports:
 
 * `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
 
+* `av_optimize` - Av-Optimize. Valid values: `disable`, `enable`.
+
 * `av_scan` - Enable AntiVirus scan service. Valid values: `disable`, `monitor`, `block`.
 
 * `content_disarm` - Enable Content Disarm and Reconstruction for this protocol. Valid values: `disable`, `enable`.
@@ -172,6 +185,8 @@ The `http` block supports:
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
+
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
 
 * `options` - Enable/disable HTTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`, `strict-file`.
 
@@ -196,6 +211,8 @@ The `imap` block supports:
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
 
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
+
 * `options` - Enable/disable IMAP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
@@ -216,6 +233,8 @@ The `mapi` block supports:
 * `executables` - Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
+
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
 
 * `options` - Enable/disable MAPI AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `quarantine`, `avquery`, `avmonitor`.
 
@@ -243,6 +262,8 @@ The `nntp` block supports:
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
+
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
 
 * `options` - Enable/disable NNTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
@@ -274,11 +295,26 @@ The `pop3` block supports:
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
 
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
+
 * `options` - Enable/disable POP3 AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
 * `outbreak_prevention` - Enable Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`, `disable`, `block`, `monitor`.
 
 * `quarantine` - Enable/disable quarantine for infected files. Valid values: `disable`, `enable`.
+
+
+The `smb` block supports:
+
+* `archive_block` - Select the archive types to block. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
+
+* `archive_log` - Select the archive types to log. Valid values: `encrypted`, `corrupted`, `multipart`, `nested`, `mailbomb`, `unhandled`, `partiallycorrupted`, `fileslimit`, `timeout`.
+
+* `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
+
+* `options` - Enable/disable SMB AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `quarantine`, `avquery`, `avmonitor`.
+
+* `outbreak_prevention` - Enable FortiGuard Virus Outbreak Prevention service. Valid values: `disabled`, `files`, `full-archive`.
 
 
 The `smtp` block supports:
@@ -296,6 +332,8 @@ The `smtp` block supports:
 * `executables` - Treat Windows executable files as viruses for the purpose of blocking or monitoring. Valid values: `default`, `virus`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
+
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
 
 * `options` - Enable/disable SMTP AntiVirus scanning, monitoring, and quarantine. Valid values: `scan`, `file-filter`, `quarantine`, `avquery`, `avmonitor`.
 
@@ -315,6 +353,8 @@ The `ssh` block supports:
 * `emulator` - Enable/disable the virus emulator. Valid values: `disable`, `enable`.
 
 * `external_blocklist` - Enable external-blocklist. Valid values: `disable`, `monitor`, `block`.
+
+* `fortiai` - Enable/disable scanning of files by FortiAI server. Valid values: `disable`, `monitor`, `block`.
 
 * `options` - Enable/disable SFTP and SCP AntiVirus scanning, monitoring, and quarantine. Valid values: `avmonitor`, `quarantine`, `scan`.
 

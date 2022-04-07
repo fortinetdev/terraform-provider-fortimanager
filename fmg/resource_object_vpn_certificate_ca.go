@@ -65,6 +65,11 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ca_identifier": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"last_updated": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -92,6 +97,11 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 				Computed: true,
 			},
 			"source_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusted": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -227,6 +237,10 @@ func flattenObjectVpnCertificateCaCa(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenObjectVpnCertificateCaCaIdentifier(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnCertificateCaLastUpdated(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -248,6 +262,10 @@ func flattenObjectVpnCertificateCaSource(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectVpnCertificateCaSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnCertificateCaTrusted(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -299,6 +317,16 @@ func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading ca: %v", err)
+		}
+	}
+
+	if err = d.Set("ca_identifier", flattenObjectVpnCertificateCaCaIdentifier(o["ca-identifier"], d, "ca_identifier")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ca-identifier"], "ObjectVpnCertificateCa-CaIdentifier"); ok {
+			if err = d.Set("ca_identifier", vv); err != nil {
+				return fmt.Errorf("Error reading ca_identifier: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ca_identifier: %v", err)
 		}
 	}
 
@@ -362,6 +390,16 @@ func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("trusted", flattenObjectVpnCertificateCaTrusted(o["trusted"], d, "trusted")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusted"], "ObjectVpnCertificateCa-Trusted"); ok {
+			if err = d.Set("trusted", vv); err != nil {
+				return fmt.Errorf("Error reading trusted: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusted: %v", err)
+		}
+	}
+
 	if err = d.Set("ssl_inspection_trusted", flattenObjectVpnCertificateCaSslInspectionTrusted(o["ssl-inspection-trusted"], d, "ssl_inspection_trusted")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-inspection-trusted"], "ObjectVpnCertificateCa-SslInspectionTrusted"); ok {
 			if err = d.Set("ssl_inspection_trusted", vv); err != nil {
@@ -397,6 +435,10 @@ func expandObjectVpnCertificateCaCa(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandObjectVpnCertificateCaCaIdentifier(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnCertificateCaLastUpdated(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -418,6 +460,10 @@ func expandObjectVpnCertificateCaSource(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectVpnCertificateCaSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnCertificateCaTrusted(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -461,6 +507,15 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["ca"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ca_identifier"); ok {
+		t, err := expandObjectVpnCertificateCaCaIdentifier(d, v, "ca_identifier")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ca-identifier"] = t
 		}
 	}
 
@@ -515,6 +570,15 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["source-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusted"); ok {
+		t, err := expandObjectVpnCertificateCaTrusted(d, v, "trusted")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusted"] = t
 		}
 	}
 

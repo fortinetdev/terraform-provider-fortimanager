@@ -177,6 +177,21 @@ func resourceObjectDynamicInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"wildcard": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"wildcard_intf": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"zone_only": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -529,6 +544,18 @@ func flattenObjectDynamicInterfaceSingleIntf(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectDynamicInterfaceWildcard(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDynamicInterfaceWildcardIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectDynamicInterfaceZoneOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectDynamicInterface(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -685,6 +712,36 @@ func refreshObjectObjectDynamicInterface(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading single_intf: %v", err)
+		}
+	}
+
+	if err = d.Set("wildcard", flattenObjectDynamicInterfaceWildcard(o["wildcard"], d, "wildcard")); err != nil {
+		if vv, ok := fortiAPIPatch(o["wildcard"], "ObjectDynamicInterface-Wildcard"); ok {
+			if err = d.Set("wildcard", vv); err != nil {
+				return fmt.Errorf("Error reading wildcard: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading wildcard: %v", err)
+		}
+	}
+
+	if err = d.Set("wildcard_intf", flattenObjectDynamicInterfaceWildcardIntf(o["wildcard-intf"], d, "wildcard_intf")); err != nil {
+		if vv, ok := fortiAPIPatch(o["wildcard-intf"], "ObjectDynamicInterface-WildcardIntf"); ok {
+			if err = d.Set("wildcard_intf", vv); err != nil {
+				return fmt.Errorf("Error reading wildcard_intf: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading wildcard_intf: %v", err)
+		}
+	}
+
+	if err = d.Set("zone_only", flattenObjectDynamicInterfaceZoneOnly(o["zone-only"], d, "zone_only")); err != nil {
+		if vv, ok := fortiAPIPatch(o["zone-only"], "ObjectDynamicInterface-ZoneOnly"); ok {
+			if err = d.Set("zone_only", vv); err != nil {
+				return fmt.Errorf("Error reading zone_only: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading zone_only: %v", err)
 		}
 	}
 
@@ -911,6 +968,18 @@ func expandObjectDynamicInterfaceSingleIntf(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectDynamicInterfaceWildcard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDynamicInterfaceWildcardIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectDynamicInterfaceZoneOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1019,6 +1088,33 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["single-intf"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("wildcard"); ok {
+		t, err := expandObjectDynamicInterfaceWildcard(d, v, "wildcard")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["wildcard"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("wildcard_intf"); ok {
+		t, err := expandObjectDynamicInterfaceWildcardIntf(d, v, "wildcard_intf")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["wildcard-intf"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("zone_only"); ok {
+		t, err := expandObjectDynamicInterfaceZoneOnly(d, v, "zone_only")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["zone-only"] = t
 		}
 	}
 

@@ -42,6 +42,11 @@ func resourceSystemAdminLdap() *schema.Resource {
 					},
 				},
 			},
+			"adom_access": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"adom_attr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -276,6 +281,10 @@ func flattenSystemAdminLdapAdomAdomName(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenSystemAdminLdapAdomAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminLdapAdomAttr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -380,6 +389,16 @@ func refreshObjectSystemAdminLdap(d *schema.ResourceData, o map[string]interface
 					return fmt.Errorf("Error reading fmgadom: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("adom_access", flattenSystemAdminLdapAdomAccess(o["adom-access"], d, "adom_access")); err != nil {
+		if vv, ok := fortiAPIPatch(o["adom-access"], "SystemAdminLdap-AdomAccess"); ok {
+			if err = d.Set("adom_access", vv); err != nil {
+				return fmt.Errorf("Error reading adom_access: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading adom_access: %v", err)
 		}
 	}
 
@@ -603,6 +622,10 @@ func expandSystemAdminLdapAdomAdomName(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandSystemAdminLdapAdomAccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminLdapAdomAttr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -688,6 +711,15 @@ func getObjectSystemAdminLdap(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["adom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("adom_access"); ok {
+		t, err := expandSystemAdminLdapAdomAccess(d, v, "adom_access")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["adom-access"] = t
 		}
 	}
 

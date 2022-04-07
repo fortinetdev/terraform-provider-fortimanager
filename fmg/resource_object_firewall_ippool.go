@@ -45,6 +45,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"add_nat64_route": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"arp_intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -72,6 +77,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			},
 			"cgn_client_endip": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cgn_client_ipv6shift": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -133,6 +143,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 								},
 							},
 						},
+						"add_nat64_route": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"arp_intf": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -160,6 +175,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 						},
 						"cgn_client_endip": &schema.Schema{
 							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"cgn_client_ipv6shift": &schema.Schema{
+							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
 						},
@@ -205,6 +225,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 						},
 						"endport": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"nat64": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -279,6 +304,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -452,6 +482,10 @@ func resourceObjectFirewallIppoolRead(d *schema.ResourceData, m interface{}) err
 	return nil
 }
 
+func flattenObjectFirewallIppoolAddNat64Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolArpIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -473,6 +507,10 @@ func flattenObjectFirewallIppoolCgnBlockSize(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallIppoolCgnClientEndip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolCgnClientIpv6Shift(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -529,6 +567,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Scope")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat64_route"
+		if _, ok := i["add-nat64-route"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingAddNat64Route(i["add-nat64-route"], d, pre_append)
+			tmp["add_nat64_route"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-AddNat64Route")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "arp_intf"
 		if _, ok := i["arp-intf"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingArpIntf(i["arp-intf"], d, pre_append)
@@ -563,6 +607,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 		if _, ok := i["cgn-client-endip"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingCgnClientEndip(i["cgn-client-endip"], d, pre_append)
 			tmp["cgn_client_endip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-CgnClientEndip")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "cgn_client_ipv6shift"
+		if _, ok := i["cgn-client-ipv6shift"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingCgnClientIpv6Shift(i["cgn-client-ipv6shift"], d, pre_append)
+			tmp["cgn_client_ipv6shift"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-CgnClientIpv6Shift")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cgn_client_startip"
@@ -617,6 +667,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 		if _, ok := i["endport"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingEndport(i["endport"], d, pre_append)
 			tmp["endport"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Endport")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
+		if _, ok := i["nat64"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingNat64(i["nat64"], d, pre_append)
+			tmp["nat64"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Nat64")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "num_blocks_per_user"
@@ -740,6 +796,10 @@ func flattenObjectFirewallIppoolDynamicMappingScopeVdom(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingAddNat64Route(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingArpIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -761,6 +821,10 @@ func flattenObjectFirewallIppoolDynamicMappingCgnBlockSize(v interface{}, d *sch
 }
 
 func flattenObjectFirewallIppoolDynamicMappingCgnClientEndip(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolDynamicMappingCgnClientIpv6Shift(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -797,6 +861,10 @@ func flattenObjectFirewallIppoolDynamicMappingEndip(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallIppoolDynamicMappingEndport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolDynamicMappingNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -856,6 +924,10 @@ func flattenObjectFirewallIppoolName(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenObjectFirewallIppoolNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolNumBlocksPerUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -909,6 +981,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("add_nat64_route", flattenObjectFirewallIppoolAddNat64Route(o["add-nat64-route"], d, "add_nat64_route")); err != nil {
+		if vv, ok := fortiAPIPatch(o["add-nat64-route"], "ObjectFirewallIppool-AddNat64Route"); ok {
+			if err = d.Set("add_nat64_route", vv); err != nil {
+				return fmt.Errorf("Error reading add_nat64_route: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading add_nat64_route: %v", err)
+		}
 	}
 
 	if err = d.Set("arp_intf", flattenObjectFirewallIppoolArpIntf(o["arp-intf"], d, "arp_intf")); err != nil {
@@ -968,6 +1050,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading cgn_client_endip: %v", err)
+		}
+	}
+
+	if err = d.Set("cgn_client_ipv6shift", flattenObjectFirewallIppoolCgnClientIpv6Shift(o["cgn-client-ipv6shift"], d, "cgn_client_ipv6shift")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cgn-client-ipv6shift"], "ObjectFirewallIppool-CgnClientIpv6Shift"); ok {
+			if err = d.Set("cgn_client_ipv6shift", vv); err != nil {
+				return fmt.Errorf("Error reading cgn_client_ipv6shift: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cgn_client_ipv6shift: %v", err)
 		}
 	}
 
@@ -1095,6 +1187,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("nat64", flattenObjectFirewallIppoolNat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "ObjectFirewallIppool-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
+		}
+	}
+
 	if err = d.Set("num_blocks_per_user", flattenObjectFirewallIppoolNumBlocksPerUser(o["num-blocks-per-user"], d, "num_blocks_per_user")); err != nil {
 		if vv, ok := fortiAPIPatch(o["num-blocks-per-user"], "ObjectFirewallIppool-NumBlocksPerUser"); ok {
 			if err = d.Set("num_blocks_per_user", vv); err != nil {
@@ -1214,6 +1316,10 @@ func flattenObjectFirewallIppoolFortiTestDebug(d *schema.ResourceData, fosdebugs
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectFirewallIppoolAddNat64Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolArpIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1235,6 +1341,10 @@ func expandObjectFirewallIppoolCgnBlockSize(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallIppoolCgnClientEndip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolCgnClientIpv6Shift(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1287,6 +1397,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["_scope"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat64_route"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["add-nat64-route"], _ = expandObjectFirewallIppoolDynamicMappingAddNat64Route(d, i["add_nat64_route"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "arp_intf"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["arp-intf"], _ = expandObjectFirewallIppoolDynamicMappingArpIntf(d, i["arp_intf"], pre_append)
@@ -1315,6 +1430,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cgn_client_endip"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["cgn-client-endip"], _ = expandObjectFirewallIppoolDynamicMappingCgnClientEndip(d, i["cgn_client_endip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "cgn_client_ipv6shift"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["cgn-client-ipv6shift"], _ = expandObjectFirewallIppoolDynamicMappingCgnClientIpv6Shift(d, i["cgn_client_ipv6shift"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cgn_client_startip"
@@ -1360,6 +1480,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "endport"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["endport"], _ = expandObjectFirewallIppoolDynamicMappingEndport(d, i["endport"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["nat64"], _ = expandObjectFirewallIppoolDynamicMappingNat64(d, i["nat64"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "num_blocks_per_user"
@@ -1465,6 +1590,10 @@ func expandObjectFirewallIppoolDynamicMappingScopeVdom(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingAddNat64Route(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingArpIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1486,6 +1615,10 @@ func expandObjectFirewallIppoolDynamicMappingCgnBlockSize(d *schema.ResourceData
 }
 
 func expandObjectFirewallIppoolDynamicMappingCgnClientEndip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingCgnClientIpv6Shift(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1522,6 +1655,10 @@ func expandObjectFirewallIppoolDynamicMappingEndip(d *schema.ResourceData, v int
 }
 
 func expandObjectFirewallIppoolDynamicMappingEndport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolDynamicMappingNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1581,6 +1718,10 @@ func expandObjectFirewallIppoolName(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandObjectFirewallIppoolNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolNumBlocksPerUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1627,6 +1768,15 @@ func expandObjectFirewallIppoolUtilizationAlarmRaise(d *schema.ResourceData, v i
 
 func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("add_nat64_route"); ok {
+		t, err := expandObjectFirewallIppoolAddNat64Route(d, v, "add_nat64_route")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["add-nat64-route"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("arp_intf"); ok {
 		t, err := expandObjectFirewallIppoolArpIntf(d, v, "arp_intf")
@@ -1679,6 +1829,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["cgn-client-endip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cgn_client_ipv6shift"); ok {
+		t, err := expandObjectFirewallIppoolCgnClientIpv6Shift(d, v, "cgn_client_ipv6shift")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cgn-client-ipv6shift"] = t
 		}
 	}
 
@@ -1778,6 +1937,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandObjectFirewallIppoolNat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
 		}
 	}
 

@@ -134,8 +134,14 @@ The following arguments are supported:
 * `acct_interim_interval` - WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 * `address_group` - Address group ID.
 * `alias` - Alias.
+* `antivirus_profile` - AntiVirus profile name.
+* `application_list` - Application control list name.
 * `atf_weight` - Airtime weight in percentage (default = 20).
 * `auth` - Authentication protocol. Valid values: `PSK`, `psk`, `RADIUS`, `radius`, `usergroup`.
+
+* `auth_cert` - HTTPS server certificate.
+* `auth_portal_addr` - Address of captive portal.
+* `beacon_advertising` - Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 
 * `broadcast_ssid` - Enable/disable broadcasting the SSID (default = enable). Valid values: `disable`, `enable`.
 
@@ -202,6 +208,7 @@ The following arguments are supported:
 * `intra_vap_privacy` - Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `disable`, `enable`.
 
 * `ip` - IP address and subnet mask for the local standalone NAT subnet.
+* `ips_sensor` - IPS sensor name.
 * `ipv6_rules` - Optional rules of IPv6 packets. For example, you can keep RA, RS and so on off of the wireless network. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 
 * `key` - WEP Key.
@@ -216,6 +223,9 @@ The following arguments are supported:
 
 * `local_standalone` - Enable/disable AP local standalone (default = disable). Valid values: `disable`, `enable`.
 
+* `local_standalone_dns` - Enable/disable AP local standalone DNS. Valid values: `disable`, `enable`.
+
+* `local_standalone_dns_ip` - IPv4 addresses for the local standalone DNS.
 * `local_standalone_nat` - Enable/disable AP local standalone NAT mode. Valid values: `disable`, `enable`.
 
 * `mac_auth_bypass` - Enable/disable MAC authentication bypass. Valid values: `disable`, `enable`.
@@ -263,6 +273,8 @@ The following arguments are supported:
 
 * `okc` - Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 
+* `osen` - Enable/disable OSEN as part of key management (default = disable). Valid values: `disable`, `enable`.
+
 * `owe_groups` - OWE-Groups. Valid values: `19`, `20`, `21`.
 
 * `owe_transition` - Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -299,12 +311,19 @@ The following arguments are supported:
 
 * `radius_mac_auth_server` - RADIUS-based MAC authentication server.
 * `radius_mac_auth_usergroups` - Selective user groups that are permitted for RADIUS mac authentication.
+* `radius_mac_mpsk_auth` - Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `radius_mac_mpsk_timeout` - RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
 * `radius_server` - RADIUS server to be used to authenticate WiFi users.
 * `rates_11a` - Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`, `11`, `11-basic`.
 
 * `rates_11ac_ss12` - Allowed data rates for 802.11ac/ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/1`, `mcs11/1`, `mcs10/2`, `mcs11/2`.
 
 * `rates_11ac_ss34` - Allowed data rates for 802.11ac/ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/3`, `mcs11/3`, `mcs10/4`, `mcs11/4`.
+
+* `rates_11ax_ss12` - Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+
+* `rates_11ax_ss34` - Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 
 * `rates_11bg` - Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`, `11`, `11-basic`.
 
@@ -315,6 +334,8 @@ The following arguments are supported:
 * `sae_groups` - SAE-Groups. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`.
 
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
+* `scan_botnet_connections` - Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+
 * `schedule` - Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
 * `secondary_wag_profile` - Secondary wireless access gateway profile name.
 * `security` - Security mode for the wireless interface (default = wpa2-only-personal). Valid values: `None`, `WEP64`, `wep64`, `WEP128`, `wep128`, `WPA_PSK`, `WPA_RADIUS`, `WPA`, `WPA2`, `WPA2_AUTO`, `open`, `wpa-personal`, `wpa-enterprise`, `captive-portal`, `wpa-only-personal`, `wpa-only-enterprise`, `wpa2-only-personal`, `wpa2-only-enterprise`, `wpa-personal+captive-portal`, `wpa-only-personal+captive-portal`, `wpa2-only-personal+captive-portal`, `osen`, `wpa3-enterprise`, `sae`, `sae-transition`, `owe`, `wpa3-sae`, `wpa3-sae-transition`.
@@ -338,15 +359,22 @@ The following arguments are supported:
 * `tunnel_echo_interval` - The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
 * `tunnel_fallback_interval` - The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
 * `usergroup` - Firewall user group to be used to authenticate WiFi users.
+* `utm_log` - Enable/disable UTM logging. Valid values: `disable`, `enable`.
+
 * `utm_profile` - UTM profile name.
+* `vdom` - Name of the VDOM that the Virtual AP has been added to.
+* `utm_status` - Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `disable`, `enable`.
+
 * `vlan_auto` - Enable/disable automatic management of SSID VLAN interface. Valid values: `disable`, `enable`.
 
+* `vlan_name` - Vlan-Name. The structure of `vlan_name` block is documented below.
 * `vlan_pool` - Vlan-Pool. The structure of `vlan_pool` block is documented below.
 * `vlan_pooling` - Enable/disable VLAN pooling, to allow grouping of multiple wireless controller VLANs into VLAN pools (default = disable). When set to wtp-group, VLAN pooling occurs with VLAN assignment by wtp-group. Valid values: `wtp-group`, `round-robin`, `hash`, `disable`.
 
 * `vlanid` - Optional VLAN ID.
 * `voice_enterprise` - Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 
+* `webfilter_profile` - WebFilter profile name.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:
@@ -384,8 +412,14 @@ The `dynamic_mapping` block supports:
 
 * `address_group` - Address group ID.
 * `alias` - Alias.
+* `antivirus_profile` - AntiVirus profile name.
+* `application_list` - Application control list name.
 * `atf_weight` - Airtime weight in percentage (default = 20).
 * `auth` - Authentication protocol. Valid values: `PSK`, `psk`, `RADIUS`, `radius`, `usergroup`.
+
+* `auth_cert` - HTTPS server certificate.
+* `auth_portal_addr` - Address of captive portal.
+* `beacon_advertising` - Fortinet beacon advertising IE data   (default = empty). Valid values: `name`, `model`, `serial-number`.
 
 * `broadcast_ssid` - Enable/disable broadcasting the SSID (default = enable). Valid values: `disable`, `enable`.
 
@@ -452,6 +486,7 @@ The `dynamic_mapping` block supports:
 * `intra_vap_privacy` - Enable/disable blocking communication between clients on the same SSID (called intra-SSID privacy) (default = disable). Valid values: `disable`, `enable`.
 
 * `ip` - IP address and subnet mask for the local standalone NAT subnet.
+* `ips_sensor` - IPS sensor name.
 * `ipv6_rules` - Ipv6-Rules. Valid values: `drop-icmp6ra`, `drop-icmp6rs`, `drop-llmnr6`, `drop-icmp6mld2`, `drop-dhcp6s`, `drop-dhcp6c`, `ndp-proxy`, `drop-ns-dad`, `drop-ns-nondad`.
 
 * `key` - WEP Key.
@@ -466,6 +501,9 @@ The `dynamic_mapping` block supports:
 
 * `local_standalone` - Enable/disable AP local standalone (default = disable). Valid values: `disable`, `enable`.
 
+* `local_standalone_dns` - Enable/disable AP local standalone DNS. Valid values: `disable`, `enable`.
+
+* `local_standalone_dns_ip` - IPv4 addresses for the local standalone DNS.
 * `local_standalone_nat` - Enable/disable AP local standalone NAT mode. Valid values: `disable`, `enable`.
 
 * `local_switching` - Local-Switching. Valid values: `disable`, `enable`.
@@ -512,6 +550,8 @@ The `dynamic_mapping` block supports:
 
 * `okc` - Enable/disable Opportunistic Key Caching (OKC) (default = enable). Valid values: `disable`, `enable`.
 
+* `osen` - Enable/disable OSEN as part of key management (default = disable). Valid values: `disable`, `enable`.
+
 * `owe_groups` - OWE-Groups. Valid values: `19`, `20`, `21`.
 
 * `owe_transition` - Enable/disable OWE transition mode support. Valid values: `disable`, `enable`.
@@ -547,12 +587,19 @@ The `dynamic_mapping` block supports:
 
 * `radius_mac_auth_server` - RADIUS-based MAC authentication server.
 * `radius_mac_auth_usergroups` - Selective user groups that are permitted for RADIUS mac authentication.
+* `radius_mac_mpsk_auth` - Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `radius_mac_mpsk_timeout` - RADIUS MAC MPSK cache timeout interval (1800 - 864000, default = 86400).
 * `radius_server` - RADIUS server to be used to authenticate WiFi users.
 * `rates_11a` - Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`, `11`, `11-basic`.
 
 * `rates_11ac_ss12` - Allowed data rates for 802.11ac/ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/1`, `mcs11/1`, `mcs10/2`, `mcs11/2`.
 
 * `rates_11ac_ss34` - Allowed data rates for 802.11ac/ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/3`, `mcs11/3`, `mcs10/4`, `mcs11/4`.
+
+* `rates_11ax_ss12` - Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
+
+* `rates_11ax_ss34` - Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
 
 * `rates_11bg` - Allowed data rates for 802.11b/g. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`, `11`, `11-basic`.
 
@@ -563,6 +610,8 @@ The `dynamic_mapping` block supports:
 * `sae_groups` - SAE-Groups. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`.
 
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
+* `scan_botnet_connections` - Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
+
 * `schedule` - Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
 * `secondary_wag_profile` - Secondary wireless access gateway profile name.
 * `security` - Security mode for the wireless interface (default = wpa2-only-personal). Valid values: `None`, `WEP64`, `wep64`, `WEP128`, `wep128`, `WPA_PSK`, `WPA_RADIUS`, `WPA`, `WPA2`, `WPA2_AUTO`, `open`, `wpa-personal`, `wpa-enterprise`, `captive-portal`, `wpa-only-personal`, `wpa-only-enterprise`, `wpa2-only-personal`, `wpa2-only-enterprise`, `wpa-personal+captive-portal`, `wpa-only-personal+captive-portal`, `wpa2-only-personal+captive-portal`, `osen`, `wpa3-enterprise`, `sae`, `sae-transition`, `owe`, `wpa3-sae`, `wpa3-sae-transition`.
@@ -586,7 +635,11 @@ The `dynamic_mapping` block supports:
 * `tunnel_echo_interval` - The time interval to send echo to both primary and secondary tunnel peers (1 - 65535 sec, default = 300).
 * `tunnel_fallback_interval` - The time interval for secondary tunnel to fall back to primary tunnel (0 - 65535 sec, default = 7200).
 * `usergroup` - Firewall user group to be used to authenticate WiFi users.
+* `utm_log` - Enable/disable UTM logging. Valid values: `disable`, `enable`.
+
 * `utm_profile` - UTM profile name.
+* `utm_status` - Enable to add one or more security profiles (AV, IPS, etc.) to the VAP. Valid values: `disable`, `enable`.
+
 * `vdom` - Vdom.
 * `vlan_auto` - Enable/disable automatic management of SSID VLAN interface. Valid values: `disable`, `enable`.
 
@@ -595,6 +648,7 @@ The `dynamic_mapping` block supports:
 * `vlanid` - Optional VLAN ID.
 * `voice_enterprise` - Enable/disable 802.11k and 802.11v assisted Voice-Enterprise roaming (default = disable). Valid values: `disable`, `enable`.
 
+* `webfilter_profile` - WebFilter profile name.
 
 The `_scope` block supports:
 
@@ -622,6 +676,11 @@ The `portal_message_overrides` block supports:
 * `auth_login_failed_page` - Override auth-login-failed-page message with message from portal-message-overrides group.
 * `auth_login_page` - Override auth-login-page message with message from portal-message-overrides group.
 * `auth_reject_page` - Override auth-reject-page message with message from portal-message-overrides group.
+
+The `vlan_name` block supports:
+
+* `name` - VLAN name.
+* `vlan_id` - VLAN ID.
 
 The `vlan_pool` block supports:
 

@@ -170,6 +170,11 @@ func resourceObjectUserLocal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"username_sensitivity": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"workstation": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -378,6 +383,10 @@ func flattenObjectUserLocalUsernameCaseInsensitivity(v interface{}, d *schema.Re
 }
 
 func flattenObjectUserLocalUsernameCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLocalUsernameSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -612,6 +621,16 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("username_sensitivity", flattenObjectUserLocalUsernameSensitivity(o["username-sensitivity"], d, "username_sensitivity")); err != nil {
+		if vv, ok := fortiAPIPatch(o["username-sensitivity"], "ObjectUserLocal-UsernameSensitivity"); ok {
+			if err = d.Set("username_sensitivity", vv); err != nil {
+				return fmt.Errorf("Error reading username_sensitivity: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading username_sensitivity: %v", err)
+		}
+	}
+
 	if err = d.Set("workstation", flattenObjectUserLocalWorkstation(o["workstation"], d, "workstation")); err != nil {
 		if vv, ok := fortiAPIPatch(o["workstation"], "ObjectUserLocal-Workstation"); ok {
 			if err = d.Set("workstation", vv); err != nil {
@@ -724,6 +743,10 @@ func expandObjectUserLocalUsernameCaseInsensitivity(d *schema.ResourceData, v in
 }
 
 func expandObjectUserLocalUsernameCaseSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLocalUsernameSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -947,6 +970,15 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["username-case-sensitivity"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("username_sensitivity"); ok {
+		t, err := expandObjectUserLocalUsernameSensitivity(d, v, "username_sensitivity")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["username-sensitivity"] = t
 		}
 	}
 

@@ -45,6 +45,11 @@ func resourceObjectIpsSensor() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"_baseline": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"block_malicious_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -326,6 +331,10 @@ func resourceObjectIpsSensorRead(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error reading ObjectIpsSensor resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectIpsSensorBaseline(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectIpsSensorBlockMaliciousUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -653,6 +662,16 @@ func refreshObjectObjectIpsSensor(d *schema.ResourceData, o map[string]interface
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("_baseline", flattenObjectIpsSensorBaseline(o["_baseline"], d, "_baseline")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_baseline"], "ObjectIpsSensor-Baseline"); ok {
+			if err = d.Set("_baseline", vv); err != nil {
+				return fmt.Errorf("Error reading _baseline: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _baseline: %v", err)
+		}
+	}
+
 	if err = d.Set("block_malicious_url", flattenObjectIpsSensorBlockMaliciousUrl(o["block-malicious-url"], d, "block_malicious_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["block-malicious-url"], "ObjectIpsSensor-BlockMaliciousUrl"); ok {
 			if err = d.Set("block_malicious_url", vv); err != nil {
@@ -744,6 +763,10 @@ func flattenObjectIpsSensorFortiTestDebug(d *schema.ResourceData, fosdebugsn int
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectIpsSensorBaseline(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectIpsSensorBlockMaliciousUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1042,6 +1065,15 @@ func expandObjectIpsSensorScanBotnetConnections(d *schema.ResourceData, v interf
 
 func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_baseline"); ok {
+		t, err := expandObjectIpsSensorBaseline(d, v, "_baseline")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_baseline"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("block_malicious_url"); ok {
 		t, err := expandObjectIpsSensorBlockMaliciousUrl(d, v, "block_malicious_url")

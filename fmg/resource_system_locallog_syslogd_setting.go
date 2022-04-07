@@ -29,12 +29,27 @@ func resourceSystemLocallogSyslogdSetting() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"csv": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"facility": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"reliable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"secure_connection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -126,11 +141,23 @@ func resourceSystemLocallogSyslogdSettingRead(d *schema.ResourceData, m interfac
 	return nil
 }
 
+func flattenSystemLocallogSyslogdSettingCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLocallogSyslogdSettingCsv(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemLocallogSyslogdSettingFacility(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLocallogSyslogdSettingReliable(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLocallogSyslogdSettingSecureConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -149,6 +176,16 @@ func flattenSystemLocallogSyslogdSettingSyslogName(v interface{}, d *schema.Reso
 func refreshObjectSystemLocallogSyslogdSetting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
+	if err = d.Set("cert", flattenSystemLocallogSyslogdSettingCert(o["cert"], d, "cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert"], "SystemLocallogSyslogdSetting-Cert"); ok {
+			if err = d.Set("cert", vv); err != nil {
+				return fmt.Errorf("Error reading cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert: %v", err)
+		}
+	}
+
 	if err = d.Set("csv", flattenSystemLocallogSyslogdSettingCsv(o["csv"], d, "csv")); err != nil {
 		if vv, ok := fortiAPIPatch(o["csv"], "SystemLocallogSyslogdSetting-Csv"); ok {
 			if err = d.Set("csv", vv); err != nil {
@@ -166,6 +203,26 @@ func refreshObjectSystemLocallogSyslogdSetting(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading facility: %v", err)
+		}
+	}
+
+	if err = d.Set("reliable", flattenSystemLocallogSyslogdSettingReliable(o["reliable"], d, "reliable")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reliable"], "SystemLocallogSyslogdSetting-Reliable"); ok {
+			if err = d.Set("reliable", vv); err != nil {
+				return fmt.Errorf("Error reading reliable: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reliable: %v", err)
+		}
+	}
+
+	if err = d.Set("secure_connection", flattenSystemLocallogSyslogdSettingSecureConnection(o["secure-connection"], d, "secure_connection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secure-connection"], "SystemLocallogSyslogdSetting-SecureConnection"); ok {
+			if err = d.Set("secure_connection", vv); err != nil {
+				return fmt.Errorf("Error reading secure_connection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secure_connection: %v", err)
 		}
 	}
 
@@ -208,11 +265,23 @@ func flattenSystemLocallogSyslogdSettingFortiTestDebug(d *schema.ResourceData, f
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemLocallogSyslogdSettingCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLocallogSyslogdSettingCsv(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandSystemLocallogSyslogdSettingFacility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLocallogSyslogdSettingReliable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLocallogSyslogdSettingSecureConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -231,6 +300,15 @@ func expandSystemLocallogSyslogdSettingSyslogName(d *schema.ResourceData, v inte
 func getObjectSystemLocallogSyslogdSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("cert"); ok {
+		t, err := expandSystemLocallogSyslogdSettingCert(d, v, "cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("csv"); ok {
 		t, err := expandSystemLocallogSyslogdSettingCsv(d, v, "csv")
 		if err != nil {
@@ -246,6 +324,24 @@ func getObjectSystemLocallogSyslogdSetting(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["facility"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reliable"); ok {
+		t, err := expandSystemLocallogSyslogdSettingReliable(d, v, "reliable")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reliable"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secure_connection"); ok {
+		t, err := expandSystemLocallogSyslogdSettingSecureConnection(d, v, "secure_connection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secure-connection"] = t
 		}
 	}
 

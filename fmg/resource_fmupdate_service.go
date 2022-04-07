@@ -49,6 +49,11 @@ func resourceFmupdateService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"query_iot": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"query_outbreak_prevention": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -152,6 +157,10 @@ func flattenFmupdateServiceQueryFilequery(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenFmupdateServiceQueryIot(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenFmupdateServiceQueryOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -204,6 +213,16 @@ func refreshObjectFmupdateService(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading query_filequery: %v", err)
+		}
+	}
+
+	if err = d.Set("query_iot", flattenFmupdateServiceQueryIot(o["query-iot"], d, "query_iot")); err != nil {
+		if vv, ok := fortiAPIPatch(o["query-iot"], "FmupdateService-QueryIot"); ok {
+			if err = d.Set("query_iot", vv); err != nil {
+				return fmt.Errorf("Error reading query_iot: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading query_iot: %v", err)
 		}
 	}
 
@@ -262,6 +281,10 @@ func expandFmupdateServiceQueryFilequery(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandFmupdateServiceQueryIot(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandFmupdateServiceQueryOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -310,6 +333,15 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["query-filequery"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("query_iot"); ok {
+		t, err := expandFmupdateServiceQueryIot(d, v, "query_iot")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["query-iot"] = t
 		}
 	}
 

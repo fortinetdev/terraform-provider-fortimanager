@@ -245,7 +245,67 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ips_baseline_cfg": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ips_baseline_ovrd": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ips_filter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost1": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost10": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost2": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost3": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost4": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost5": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost7": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost8": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ipv6_trusthost9": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -277,6 +337,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Computed: true,
 			},
 			"report_viewer": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"rpc_permit": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -317,6 +382,56 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Computed: true,
 			},
 			"triage_events": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost1": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost10": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost2": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost3": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost4": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost5": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost7": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost8": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"trusthost9": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -655,7 +770,55 @@ func flattenSystemAdminProfileIntfMapping(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenSystemAdminProfileIpsBaselineCfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpsBaselineOvrd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminProfileIpsFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost10(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost7(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost8(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpv6Trusthost9(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -680,6 +843,10 @@ func flattenSystemAdminProfileRealtimeMonitor(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemAdminProfileReportViewer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileRpcPermit(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -712,6 +879,46 @@ func flattenSystemAdminProfileTermAccess(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenSystemAdminProfileTriageEvents(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost10(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost7(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost8(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileTrusthost9(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1132,6 +1339,26 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("ips_baseline_cfg", flattenSystemAdminProfileIpsBaselineCfg(o["ips-baseline-cfg"], d, "ips_baseline_cfg")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-baseline-cfg"], "SystemAdminProfile-IpsBaselineCfg"); ok {
+			if err = d.Set("ips_baseline_cfg", vv); err != nil {
+				return fmt.Errorf("Error reading ips_baseline_cfg: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_baseline_cfg: %v", err)
+		}
+	}
+
+	if err = d.Set("ips_baseline_ovrd", flattenSystemAdminProfileIpsBaselineOvrd(o["ips-baseline-ovrd"], d, "ips_baseline_ovrd")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-baseline-ovrd"], "SystemAdminProfile-IpsBaselineOvrd"); ok {
+			if err = d.Set("ips_baseline_ovrd", vv); err != nil {
+				return fmt.Errorf("Error reading ips_baseline_ovrd: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_baseline_ovrd: %v", err)
+		}
+	}
+
 	if err = d.Set("ips_filter", flattenSystemAdminProfileIpsFilter(o["ips-filter"], d, "ips_filter")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ips-filter"], "SystemAdminProfile-IpsFilter"); ok {
 			if err = d.Set("ips_filter", vv); err != nil {
@@ -1139,6 +1366,106 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading ips_filter: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost1", flattenSystemAdminProfileIpv6Trusthost1(o["ipv6_trusthost1"], d, "ipv6_trusthost1")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost1"], "SystemAdminProfile-Ipv6Trusthost1"); ok {
+			if err = d.Set("ipv6_trusthost1", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost1: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost1: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost10", flattenSystemAdminProfileIpv6Trusthost10(o["ipv6_trusthost10"], d, "ipv6_trusthost10")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost10"], "SystemAdminProfile-Ipv6Trusthost10"); ok {
+			if err = d.Set("ipv6_trusthost10", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost10: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost10: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost2", flattenSystemAdminProfileIpv6Trusthost2(o["ipv6_trusthost2"], d, "ipv6_trusthost2")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost2"], "SystemAdminProfile-Ipv6Trusthost2"); ok {
+			if err = d.Set("ipv6_trusthost2", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost2: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost2: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost3", flattenSystemAdminProfileIpv6Trusthost3(o["ipv6_trusthost3"], d, "ipv6_trusthost3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost3"], "SystemAdminProfile-Ipv6Trusthost3"); ok {
+			if err = d.Set("ipv6_trusthost3", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost3: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost4", flattenSystemAdminProfileIpv6Trusthost4(o["ipv6_trusthost4"], d, "ipv6_trusthost4")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost4"], "SystemAdminProfile-Ipv6Trusthost4"); ok {
+			if err = d.Set("ipv6_trusthost4", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost4: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost4: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost5", flattenSystemAdminProfileIpv6Trusthost5(o["ipv6_trusthost5"], d, "ipv6_trusthost5")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost5"], "SystemAdminProfile-Ipv6Trusthost5"); ok {
+			if err = d.Set("ipv6_trusthost5", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost5: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost5: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost6", flattenSystemAdminProfileIpv6Trusthost6(o["ipv6_trusthost6"], d, "ipv6_trusthost6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost6"], "SystemAdminProfile-Ipv6Trusthost6"); ok {
+			if err = d.Set("ipv6_trusthost6", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost6: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost7", flattenSystemAdminProfileIpv6Trusthost7(o["ipv6_trusthost7"], d, "ipv6_trusthost7")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost7"], "SystemAdminProfile-Ipv6Trusthost7"); ok {
+			if err = d.Set("ipv6_trusthost7", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost7: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost7: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost8", flattenSystemAdminProfileIpv6Trusthost8(o["ipv6_trusthost8"], d, "ipv6_trusthost8")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost8"], "SystemAdminProfile-Ipv6Trusthost8"); ok {
+			if err = d.Set("ipv6_trusthost8", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost8: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost8: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6_trusthost9", flattenSystemAdminProfileIpv6Trusthost9(o["ipv6_trusthost9"], d, "ipv6_trusthost9")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6_trusthost9"], "SystemAdminProfile-Ipv6Trusthost9"); ok {
+			if err = d.Set("ipv6_trusthost9", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6_trusthost9: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6_trusthost9: %v", err)
 		}
 	}
 
@@ -1199,6 +1526,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading report_viewer: %v", err)
+		}
+	}
+
+	if err = d.Set("rpc_permit", flattenSystemAdminProfileRpcPermit(o["rpc-permit"], d, "rpc_permit")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rpc-permit"], "SystemAdminProfile-RpcPermit"); ok {
+			if err = d.Set("rpc_permit", vv); err != nil {
+				return fmt.Errorf("Error reading rpc_permit: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rpc_permit: %v", err)
 		}
 	}
 
@@ -1279,6 +1616,106 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading triage_events: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost1", flattenSystemAdminProfileTrusthost1(o["trusthost1"], d, "trusthost1")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost1"], "SystemAdminProfile-Trusthost1"); ok {
+			if err = d.Set("trusthost1", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost1: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost1: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost10", flattenSystemAdminProfileTrusthost10(o["trusthost10"], d, "trusthost10")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost10"], "SystemAdminProfile-Trusthost10"); ok {
+			if err = d.Set("trusthost10", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost10: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost10: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost2", flattenSystemAdminProfileTrusthost2(o["trusthost2"], d, "trusthost2")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost2"], "SystemAdminProfile-Trusthost2"); ok {
+			if err = d.Set("trusthost2", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost2: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost2: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost3", flattenSystemAdminProfileTrusthost3(o["trusthost3"], d, "trusthost3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost3"], "SystemAdminProfile-Trusthost3"); ok {
+			if err = d.Set("trusthost3", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost3: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost4", flattenSystemAdminProfileTrusthost4(o["trusthost4"], d, "trusthost4")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost4"], "SystemAdminProfile-Trusthost4"); ok {
+			if err = d.Set("trusthost4", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost4: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost4: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost5", flattenSystemAdminProfileTrusthost5(o["trusthost5"], d, "trusthost5")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost5"], "SystemAdminProfile-Trusthost5"); ok {
+			if err = d.Set("trusthost5", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost5: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost5: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost6", flattenSystemAdminProfileTrusthost6(o["trusthost6"], d, "trusthost6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost6"], "SystemAdminProfile-Trusthost6"); ok {
+			if err = d.Set("trusthost6", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost6: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost7", flattenSystemAdminProfileTrusthost7(o["trusthost7"], d, "trusthost7")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost7"], "SystemAdminProfile-Trusthost7"); ok {
+			if err = d.Set("trusthost7", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost7: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost7: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost8", flattenSystemAdminProfileTrusthost8(o["trusthost8"], d, "trusthost8")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost8"], "SystemAdminProfile-Trusthost8"); ok {
+			if err = d.Set("trusthost8", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost8: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost8: %v", err)
+		}
+	}
+
+	if err = d.Set("trusthost9", flattenSystemAdminProfileTrusthost9(o["trusthost9"], d, "trusthost9")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trusthost9"], "SystemAdminProfile-Trusthost9"); ok {
+			if err = d.Set("trusthost9", vv); err != nil {
+				return fmt.Errorf("Error reading trusthost9: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trusthost9: %v", err)
 		}
 	}
 
@@ -1539,7 +1976,55 @@ func expandSystemAdminProfileIntfMapping(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandSystemAdminProfileIpsBaselineCfg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpsBaselineOvrd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminProfileIpsFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost10(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost8(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpv6Trusthost9(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1564,6 +2049,10 @@ func expandSystemAdminProfileRealtimeMonitor(d *schema.ResourceData, v interface
 }
 
 func expandSystemAdminProfileReportViewer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileRpcPermit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1596,6 +2085,46 @@ func expandSystemAdminProfileTermAccess(d *schema.ResourceData, v interface{}, p
 }
 
 func expandSystemAdminProfileTriageEvents(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost10(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost7(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost8(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileTrusthost9(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1960,12 +2489,120 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("ips_baseline_cfg"); ok {
+		t, err := expandSystemAdminProfileIpsBaselineCfg(d, v, "ips_baseline_cfg")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-baseline-cfg"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ips_baseline_ovrd"); ok {
+		t, err := expandSystemAdminProfileIpsBaselineOvrd(d, v, "ips_baseline_ovrd")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-baseline-ovrd"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ips_filter"); ok {
 		t, err := expandSystemAdminProfileIpsFilter(d, v, "ips_filter")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["ips-filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost1"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost1(d, v, "ipv6_trusthost1")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost1"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost10"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost10(d, v, "ipv6_trusthost10")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost10"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost2"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost2(d, v, "ipv6_trusthost2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost3"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost3(d, v, "ipv6_trusthost3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost4"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost4(d, v, "ipv6_trusthost4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost4"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost5"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost5(d, v, "ipv6_trusthost5")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost5"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost6"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost6(d, v, "ipv6_trusthost6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost7"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost7(d, v, "ipv6_trusthost7")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost7"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost8"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost8(d, v, "ipv6_trusthost8")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost8"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6_trusthost9"); ok {
+		t, err := expandSystemAdminProfileIpv6Trusthost9(d, v, "ipv6_trusthost9")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6_trusthost9"] = t
 		}
 	}
 
@@ -2020,6 +2657,15 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["report-viewer"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("rpc_permit"); ok {
+		t, err := expandSystemAdminProfileRpcPermit(d, v, "rpc_permit")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rpc-permit"] = t
 		}
 	}
 
@@ -2092,6 +2738,96 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["triage-events"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost1"); ok {
+		t, err := expandSystemAdminProfileTrusthost1(d, v, "trusthost1")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost1"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost10"); ok {
+		t, err := expandSystemAdminProfileTrusthost10(d, v, "trusthost10")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost10"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost2"); ok {
+		t, err := expandSystemAdminProfileTrusthost2(d, v, "trusthost2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost3"); ok {
+		t, err := expandSystemAdminProfileTrusthost3(d, v, "trusthost3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost3"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost4"); ok {
+		t, err := expandSystemAdminProfileTrusthost4(d, v, "trusthost4")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost4"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost5"); ok {
+		t, err := expandSystemAdminProfileTrusthost5(d, v, "trusthost5")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost5"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost6"); ok {
+		t, err := expandSystemAdminProfileTrusthost6(d, v, "trusthost6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost7"); ok {
+		t, err := expandSystemAdminProfileTrusthost7(d, v, "trusthost7")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost7"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost8"); ok {
+		t, err := expandSystemAdminProfileTrusthost8(d, v, "trusthost8")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost8"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trusthost9"); ok {
+		t, err := expandSystemAdminProfileTrusthost9(d, v, "trusthost9")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trusthost9"] = t
 		}
 	}
 

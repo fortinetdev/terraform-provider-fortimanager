@@ -43,6 +43,8 @@ The following arguments are supported:
 * `ha_auto_migrate` - Enabled/Disable automatically merging HA member's logs to HA cluster. disable - Disable automatically merging HA member's logs to HA cluster. enable - Enable automatically merging HA member's logs to HA cluster. Valid values: `disable`, `enable`.
 
 * `import_max_logfiles` - Maximum number of log files for each log import attempt.
+* `keep_dev_logs` - Enable/Disable keeping the dev logs after the device has been deleted. disable - Disable keeping the dev logs after the device has been deleted. enable - Enable keeping the dev logs after the device has been deleted. Valid values: `disable`, `enable`.
+
 * `log_file_archive_name` - Log file name format for archiving, such as backup, upload or download. basic - Basic format for log archive file name, e.g. FGT20C0000000001.tlog.1417797247.log. extended - Extended format for log archive file name, e.g. FGT20C0000000001.2014-12-05-08:34:58.tlog.1417797247.log. Valid values: `basic`, `extended`.
 
 * `rolling_analyzer` - Rolling-Analyzer. The structure of `rolling_analyzer` block is documented below.
@@ -73,6 +75,7 @@ The `rolling_analyzer` block supports:
 * `port` - Upload server IP1 port number.
 * `port2` - Upload server IP2 port number.
 * `port3` - Upload server IP3 port number.
+* `rolling_upgrade_status` - rolling upgrade status (1|0).
 * `server_type` - Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: `ftp`, `sftp`, `scp`.
 
 * `upload` - Enable/disable log file uploads. disable - Disable log files uploading. enable - Enable log files uploading. Valid values: `disable`, `enable`.
@@ -111,6 +114,7 @@ The `rolling_local` block supports:
 * `port` - Upload server IP1 port number.
 * `port2` - Upload server IP2 port number.
 * `port3` - Upload server IP3 port number.
+* `rolling_upgrade_status` - rolling upgrade status (1|0).
 * `server_type` - Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: `ftp`, `sftp`, `scp`.
 
 * `upload` - Enable/disable log file uploads. disable - Disable log files uploading. enable - Enable log files uploading. Valid values: `disable`, `enable`.
@@ -149,6 +153,7 @@ The `rolling_regular` block supports:
 * `port` - Upload server IP1 port number.
 * `port2` - Upload server IP2 port number.
 * `port3` - Upload server IP3 port number.
+* `rolling_upgrade_status` - rolling upgrade status (1|0).
 * `server_type` - Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: `ftp`, `sftp`, `scp`.
 
 * `upload` - Enable/disable log file uploads. disable - Disable log files uploading. enable - Enable log files uploading. Valid values: `disable`, `enable`.

@@ -366,6 +366,10 @@ func conv2str(v interface{}) interface{} {
 		return v
 	} else if _, ok := v.([]interface{}); ok {
 		return convintflist2str(v)
+	} else if v1, ok := v.(float64); ok {
+		return strconv.FormatFloat(v1, 'f', -1, 64)
+	} else if v1, ok := v.(int); ok {
+		return strconv.FormatInt(int64(v1), 10)
 	}
 	return ""
 }

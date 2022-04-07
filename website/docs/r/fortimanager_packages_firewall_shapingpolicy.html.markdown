@@ -89,6 +89,7 @@ The following arguments are supported:
 * `traffic_shaper_reverse` - Traffic shaper to apply to response traffic received by the firewall policy.
 * `url_category` - IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to.
 * `users` - Apply this traffic shaping policy to individual users that have authenticated with the FortiGate.
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 
 ## Attribute Reference

@@ -29,9 +29,20 @@ The following arguments are supported:
 * `comment` - Comment.
 * `feature_set` - Flow or proxy inspection feature set. Valid values: `flow`, `proxy`.
 
+* `msrp` - Msrp. The structure of `msrp` block is documented below.
 * `name` - Profile name.
 * `sccp` - Sccp. The structure of `sccp` block is documented below.
 * `sip` - Sip. The structure of `sip` block is documented below.
+
+The `msrp` block supports:
+
+* `log_violations` - Enable/disable logging of MSRP violations. Valid values: `disable`, `enable`.
+
+* `max_msg_size` - Maximum allowable MSRP message size (1-65535).
+* `max_msg_size_action` - Action for violation of max-msg-size. Valid values: `pass`, `block`, `reset`, `monitor`.
+
+* `status` - Enable/disable MSRP. Valid values: `disable`, `enable`.
+
 
 The `sccp` block supports:
 

@@ -55,6 +55,35 @@ func resourceObjectVoipProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"msrp": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"log_violations": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"max_msg_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"max_msg_size_action": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -789,6 +818,55 @@ func flattenObjectVoipProfileComment(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenObjectVoipProfileFeatureSet(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVoipProfileMsrp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "log_violations"
+	if _, ok := i["log-violations"]; ok {
+		result["log_violations"] = flattenObjectVoipProfileMsrpLogViolations(i["log-violations"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_msg_size"
+	if _, ok := i["max-msg-size"]; ok {
+		result["max_msg_size"] = flattenObjectVoipProfileMsrpMaxMsgSize(i["max-msg-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_msg_size_action"
+	if _, ok := i["max-msg-size-action"]; ok {
+		result["max_msg_size_action"] = flattenObjectVoipProfileMsrpMaxMsgSizeAction(i["max-msg-size-action"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectVoipProfileMsrpStatus(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectVoipProfileMsrpLogViolations(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVoipProfileMsrpMaxMsgSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVoipProfileMsrpMaxMsgSizeAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVoipProfileMsrpStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1920,6 +1998,30 @@ func refreshObjectObjectVoipProfile(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("msrp", flattenObjectVoipProfileMsrp(o["msrp"], d, "msrp")); err != nil {
+			if vv, ok := fortiAPIPatch(o["msrp"], "ObjectVoipProfile-Msrp"); ok {
+				if err = d.Set("msrp", vv); err != nil {
+					return fmt.Errorf("Error reading msrp: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading msrp: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("msrp"); ok {
+			if err = d.Set("msrp", flattenObjectVoipProfileMsrp(o["msrp"], d, "msrp")); err != nil {
+				if vv, ok := fortiAPIPatch(o["msrp"], "ObjectVoipProfile-Msrp"); ok {
+					if err = d.Set("msrp", vv); err != nil {
+						return fmt.Errorf("Error reading msrp: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading msrp: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("name", flattenObjectVoipProfileName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectVoipProfile-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -1992,6 +2094,52 @@ func expandObjectVoipProfileComment(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandObjectVoipProfileFeatureSet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVoipProfileMsrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "log_violations"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["log-violations"], _ = expandObjectVoipProfileMsrpLogViolations(d, i["log_violations"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_msg_size"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["max-msg-size"], _ = expandObjectVoipProfileMsrpMaxMsgSize(d, i["max_msg_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_msg_size_action"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["max-msg-size-action"], _ = expandObjectVoipProfileMsrpMaxMsgSizeAction(d, i["max_msg_size_action"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status"], _ = expandObjectVoipProfileMsrpStatus(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectVoipProfileMsrpLogViolations(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVoipProfileMsrpMaxMsgSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVoipProfileMsrpMaxMsgSizeAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVoipProfileMsrpStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2997,6 +3145,15 @@ func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["feature-set"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("msrp"); ok {
+		t, err := expandObjectVoipProfileMsrp(d, v, "msrp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["msrp"] = t
 		}
 	}
 

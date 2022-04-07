@@ -50,6 +50,11 @@ func resourcePackagesFirewallConsolidatedPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -629,6 +634,10 @@ func resourcePackagesFirewallConsolidatedPolicyRead(d *schema.ResourceData, m in
 	return nil
 }
 
+func flattenPackagesFirewallConsolidatedPolicyPolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallConsolidatedPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -990,6 +999,16 @@ func refreshObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData, o m
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("_policy_block", flattenPackagesFirewallConsolidatedPolicyPolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesFirewallConsolidatedPolicy-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
 	}
 
 	if err = d.Set("action", flattenPackagesFirewallConsolidatedPolicyAction(o["action"], d, "action")); err != nil {
@@ -1891,6 +1910,10 @@ func flattenPackagesFirewallConsolidatedPolicyFortiTestDebug(d *schema.ResourceD
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesFirewallConsolidatedPolicyPolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallConsolidatedPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2249,6 +2272,15 @@ func expandPackagesFirewallConsolidatedPolicyWebproxyProfile(d *schema.ResourceD
 
 func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_policy_block"); ok {
+		t, err := expandPackagesFirewallConsolidatedPolicyPolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok {
 		t, err := expandPackagesFirewallConsolidatedPolicyAction(d, v, "action")

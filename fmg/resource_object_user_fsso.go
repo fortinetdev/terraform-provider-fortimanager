@@ -113,6 +113,11 @@ func resourceObjectUserFsso() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"logon_timeout": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
 						"password": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -208,6 +213,11 @@ func resourceObjectUserFsso() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ssl_server_host_ip_check": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"ssl_trusted_cert": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -258,6 +268,11 @@ func resourceObjectUserFsso() *schema.Resource {
 			},
 			"ldap_server": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"logon_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -358,6 +373,11 @@ func resourceObjectUserFsso() *schema.Resource {
 				Computed: true,
 			},
 			"ssl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_server_host_ip_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -569,6 +589,12 @@ func flattenObjectUserFssoDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["ldap_server"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-LdapServer")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_timeout"
+		if _, ok := i["logon-timeout"]; ok {
+			v := flattenObjectUserFssoDynamicMappingLogonTimeout(i["logon-timeout"], d, pre_append)
+			tmp["logon_timeout"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-LogonTimeout")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := i["password"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPassword(i["password"], d, pre_append)
@@ -677,6 +703,12 @@ func flattenObjectUserFssoDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["ssl"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Ssl")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_host_ip_check"
+		if _, ok := i["ssl-server-host-ip-check"]; ok {
+			v := flattenObjectUserFssoDynamicMappingSslServerHostIpCheck(i["ssl-server-host-ip-check"], d, pre_append)
+			tmp["ssl_server_host_ip_check"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-SslServerHostIpCheck")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_trusted_cert"
 		if _, ok := i["ssl-trusted-cert"]; ok {
 			v := flattenObjectUserFssoDynamicMappingSslTrustedCert(i["ssl-trusted-cert"], d, pre_append)
@@ -782,6 +814,10 @@ func flattenObjectUserFssoDynamicMappingLdapServer(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectUserFssoDynamicMappingLogonTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserFssoDynamicMappingPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -854,6 +890,10 @@ func flattenObjectUserFssoDynamicMappingSsl(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectUserFssoDynamicMappingSslServerHostIpCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserFssoDynamicMappingSslTrustedCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -891,6 +931,10 @@ func flattenObjectUserFssoLdapPollInterval(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectUserFssoLdapServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserFssoLogonTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -967,6 +1011,10 @@ func flattenObjectUserFssoSourceIp6(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserFssoSsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserFssoSslServerHostIpCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1094,6 +1142,16 @@ func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading ldap_server: %v", err)
+		}
+	}
+
+	if err = d.Set("logon_timeout", flattenObjectUserFssoLogonTimeout(o["logon-timeout"], d, "logon_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["logon-timeout"], "ObjectUserFsso-LogonTimeout"); ok {
+			if err = d.Set("logon_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading logon_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading logon_timeout: %v", err)
 		}
 	}
 
@@ -1287,6 +1345,16 @@ func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("ssl_server_host_ip_check", flattenObjectUserFssoSslServerHostIpCheck(o["ssl-server-host-ip-check"], d, "ssl_server_host_ip_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-server-host-ip-check"], "ObjectUserFsso-SslServerHostIpCheck"); ok {
+			if err = d.Set("ssl_server_host_ip_check", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_server_host_ip_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_server_host_ip_check: %v", err)
+		}
+	}
+
 	if err = d.Set("ssl_trusted_cert", flattenObjectUserFssoSslTrustedCert(o["ssl-trusted-cert"], d, "ssl_trusted_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-trusted-cert"], "ObjectUserFsso-SslTrustedCert"); ok {
 			if err = d.Set("ssl_trusted_cert", vv); err != nil {
@@ -1391,6 +1459,11 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["ldap-server"], _ = expandObjectUserFssoDynamicMappingLdapServer(d, i["ldap_server"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_timeout"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["logon-timeout"], _ = expandObjectUserFssoDynamicMappingLogonTimeout(d, i["logon_timeout"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["password"], _ = expandObjectUserFssoDynamicMappingPassword(d, i["password"], pre_append)
@@ -1491,6 +1564,11 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["ssl"], _ = expandObjectUserFssoDynamicMappingSsl(d, i["ssl"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_host_ip_check"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ssl-server-host-ip-check"], _ = expandObjectUserFssoDynamicMappingSslServerHostIpCheck(d, i["ssl_server_host_ip_check"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_trusted_cert"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["ssl-trusted-cert"], _ = expandObjectUserFssoDynamicMappingSslTrustedCert(d, i["ssl_trusted_cert"], pre_append)
@@ -1586,6 +1664,10 @@ func expandObjectUserFssoDynamicMappingLdapServer(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectUserFssoDynamicMappingLogonTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserFssoDynamicMappingPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -1658,6 +1740,10 @@ func expandObjectUserFssoDynamicMappingSsl(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectUserFssoDynamicMappingSslServerHostIpCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserFssoDynamicMappingSslTrustedCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1695,6 +1781,10 @@ func expandObjectUserFssoLdapPollInterval(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectUserFssoLdapServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserFssoLogonTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1771,6 +1861,10 @@ func expandObjectUserFssoSourceIp6(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserFssoSsl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserFssoSslServerHostIpCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1867,6 +1961,15 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["ldap-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("logon_timeout"); ok {
+		t, err := expandObjectUserFssoLogonTimeout(d, v, "logon_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["logon-timeout"] = t
 		}
 	}
 
@@ -2038,6 +2141,15 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["ssl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_server_host_ip_check"); ok {
+		t, err := expandObjectUserFssoSslServerHostIpCheck(d, v, "ssl_server_host_ip_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-server-host-ip-check"] = t
 		}
 	}
 

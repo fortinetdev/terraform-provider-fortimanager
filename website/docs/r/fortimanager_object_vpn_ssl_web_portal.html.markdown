@@ -46,6 +46,8 @@ The following arguments are supported:
 * `auto_connect` - Enable/disable automatic connect by client when system is up. Valid values: `disable`, `enable`.
 
 * `bookmark_group` - Bookmark-Group. The structure of `bookmark_group` block is documented below.
+* `clipboard` - Enable to support RDP/VPC clipboard functionality. Valid values: `disable`, `enable`.
+
 * `custom_lang` - Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 * `customize_forticlient_download_url` - Enable support of customized download URL for FortiClient. Valid values: `disable`, `enable`.
 
@@ -115,6 +117,8 @@ The following arguments are supported:
 
 * `service_restriction` - Enable/disable tunnel service restriction. Valid values: `disable`, `enable`.
 
+* `skip_check_for_unsupported_browser` - Enable to skip host check if browser does not support it. Valid values: `disable`, `enable`.
+
 * `skip_check_for_browser` - Enable to skip host check for browser support. Valid values: `disable`, `enable`.
 
 * `skip_check_for_unsupported_os` - Enable to skip host check if client OS does not support it. Valid values: `disable`, `enable`.
@@ -162,11 +166,16 @@ The `bookmarks` block supports:
 * `additional_params` - Additional parameters.
 * `apptype` - Application type. Valid values: `web`, `telnet`, `ssh`, `ftp`, `smb`, `vnc`, `rdp`, `citrix`, `rdpnative`, `portforward`, `sftp`.
 
+* `color_depth` - Color depth per pixel. Valid values: `8`, `16`, `32`.
+
 * `description` - Description.
 * `domain` - Login domain.
 * `folder` - Network shared file folder parameter.
 * `form_data` - Form-Data. The structure of `form_data` block is documented below.
+* `height` - Screen height (range from 480 - 65535, default = 768).
 * `host` - Host name/IP parameter.
+* `keyboard_layout` - Keyboard layout. Valid values: `ar`, `da`, `de`, `de-ch`, `en-gb`, `en-uk`, `en-us`, `es`, `fi`, `fr`, `fr-be`, `fr-ca`, `fr-ch`, `hr`, `hu`, `it`, `ja`, `lt`, `lv`, `mk`, `no`, `pl`, `pt`, `pt-br`, `ru`, `sl`, `sv`, `tk`, `tr`, `fr-ca-m`, `wg`, `ar-101`, `ar-102`, `ar-102-azerty`, `can-mul`, `cz`, `cz-qwerty`, `cz-pr`, `nl`, `de-ibm`, `en-uk-ext`, `en-us-dvorak`, `es-var`, `fi-sami`, `hu-101`, `it-142`, `ko`, `lt-ibm`, `lt-std`, `lav-std`, `lav-leg`, `mk-std`, `no-sami`, `pol-214`, `pol-pr`, `pt-br-abnt2`, `ru-mne`, `ru-t`, `sv-sami`, `tuk`, `tur-f`, `tur-q`, `zh-sym-sg-us`, `zh-sym-us`, `zh-tr-hk`, `zh-tr-mo`, `zh-tr-us`.
+
 * `listening_port` - Listening port (0 - 65535).
 * `load_balancing_info` - The load balancing information or cookie which should be provided to the connection broker.
 * `logon_password` - Logon password.
@@ -176,7 +185,11 @@ The `bookmarks` block supports:
 * `preconnection_blob` - An arbitrary string which identifies the RDP source.
 * `preconnection_id` - The numeric ID of the RDP source (0-2147483648).
 * `remote_port` - Remote port (0 - 65535).
+* `restricted_admin` - Enable/disable restricted admin mode for RDP. Valid values: `disable`, `enable`.
+
 * `security` - Security mode for RDP connection. Valid values: `rdp`, `nla`, `tls`, `any`.
+
+* `send_preconnection_id` - Enable/disable sending of preconnection ID. Valid values: `disable`, `enable`.
 
 * `server_layout` - Server side keyboard layout. Valid values: `en-us-qwerty`, `de-de-qwertz`, `fr-fr-azerty`, `it-it-qwerty`, `sv-se-qwerty`, `failsafe`, `en-gb-qwerty`, `es-es-qwerty`, `fr-ch-qwertz`, `ja-jp-qwerty`, `pt-br-qwerty`, `tr-tr-qwerty`, `fr-ca-qwerty`.
 
@@ -191,6 +204,7 @@ The `bookmarks` block supports:
 * `sso_password` - SSO password.
 * `sso_username` - SSO user name.
 * `url` - URL parameter.
+* `width` - Screen width (range from 640 - 65535, default = 1024).
 
 The `form_data` block supports:
 

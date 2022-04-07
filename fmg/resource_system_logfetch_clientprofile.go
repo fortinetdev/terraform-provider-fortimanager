@@ -139,6 +139,11 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 				Sensitive: true,
 				Computed:  true,
 			},
+			"peer_cert_cn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"secure_connection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -443,6 +448,10 @@ func flattenSystemLogFetchClientProfilePassword(v interface{}, d *schema.Resourc
 	return flattenStringList(v)
 }
 
+func flattenSystemLogFetchClientProfilePeerCertCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogFetchClientProfileSecureConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -609,6 +618,16 @@ func refreshObjectSystemLogFetchClientProfile(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("peer_cert_cn", flattenSystemLogFetchClientProfilePeerCertCn(o["peer-cert-cn"], d, "peer_cert_cn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["peer-cert-cn"], "SystemLogFetchClientProfile-PeerCertCn"); ok {
+			if err = d.Set("peer_cert_cn", vv); err != nil {
+				return fmt.Errorf("Error reading peer_cert_cn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading peer_cert_cn: %v", err)
 		}
 	}
 
@@ -837,6 +856,10 @@ func expandSystemLogFetchClientProfilePassword(d *schema.ResourceData, v interfa
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandSystemLogFetchClientProfilePeerCertCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogFetchClientProfileSecureConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -969,6 +992,15 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("peer_cert_cn"); ok {
+		t, err := expandSystemLogFetchClientProfilePeerCertCn(d, v, "peer_cert_cn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["peer-cert-cn"] = t
 		}
 	}
 

@@ -45,6 +45,24 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"scopemember": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"vdom": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"add_route": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -112,6 +130,11 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Computed: true,
 			},
 			"domain": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"encapsulation": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -261,6 +284,11 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Computed: true,
 			},
 			"ipv4_wins_server2": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"l2tp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -525,6 +553,53 @@ func resourceObjectVpnmgrNodeRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenObjectVpnmgrNodeScopeMember(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectVpnmgrNodeScopeMemberName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-ScopeMember-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := i["vdom"]; ok {
+			v := flattenObjectVpnmgrNodeScopeMemberVdom(i["vdom"], d, pre_append)
+			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-ScopeMember-Vdom")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectVpnmgrNodeScopeMemberName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeScopeMemberVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnmgrNodeAddRoute(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -578,6 +653,10 @@ func flattenObjectVpnmgrNodeDnsService(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectVpnmgrNodeDomain(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeEncapsulation(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -772,6 +851,10 @@ func flattenObjectVpnmgrNodeIpv4WinsServer1(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectVpnmgrNodeIpv4WinsServer2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeL2Tp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -970,6 +1053,30 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if isImportTable() {
+		if err = d.Set("scopemember", flattenObjectVpnmgrNodeScopeMember(o["scope member"], d, "scopemember")); err != nil {
+			if vv, ok := fortiAPIPatch(o["scope member"], "ObjectVpnmgrNode-ScopeMember"); ok {
+				if err = d.Set("scopemember", vv); err != nil {
+					return fmt.Errorf("Error reading scopemember: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading scopemember: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("scopemember"); ok {
+			if err = d.Set("scopemember", flattenObjectVpnmgrNodeScopeMember(o["scope member"], d, "scopemember")); err != nil {
+				if vv, ok := fortiAPIPatch(o["scope member"], "ObjectVpnmgrNode-ScopeMember"); ok {
+					if err = d.Set("scopemember", vv); err != nil {
+						return fmt.Errorf("Error reading scopemember: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading scopemember: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("add_route", flattenObjectVpnmgrNodeAddRoute(o["add-route"], d, "add_route")); err != nil {
 		if vv, ok := fortiAPIPatch(o["add-route"], "ObjectVpnmgrNode-AddRoute"); ok {
 			if err = d.Set("add_route", vv); err != nil {
@@ -1107,6 +1214,16 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading domain: %v", err)
+		}
+	}
+
+	if err = d.Set("encapsulation", flattenObjectVpnmgrNodeEncapsulation(o["encapsulation"], d, "encapsulation")); err != nil {
+		if vv, ok := fortiAPIPatch(o["encapsulation"], "ObjectVpnmgrNode-Encapsulation"); ok {
+			if err = d.Set("encapsulation", vv); err != nil {
+				return fmt.Errorf("Error reading encapsulation: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading encapsulation: %v", err)
 		}
 	}
 
@@ -1355,6 +1472,16 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading ipv4_wins_server2: %v", err)
+		}
+	}
+
+	if err = d.Set("l2tp", flattenObjectVpnmgrNodeL2Tp(o["l2tp"], d, "l2tp")); err != nil {
+		if vv, ok := fortiAPIPatch(o["l2tp"], "ObjectVpnmgrNode-L2Tp"); ok {
+			if err = d.Set("l2tp", vv); err != nil {
+				return fmt.Errorf("Error reading l2tp: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading l2tp: %v", err)
 		}
 	}
 
@@ -1615,6 +1742,46 @@ func flattenObjectVpnmgrNodeFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectVpnmgrNodeScopeMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["name"], _ = expandObjectVpnmgrNodeScopeMemberName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["vdom"], _ = expandObjectVpnmgrNodeScopeMemberVdom(d, i["vdom"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectVpnmgrNodeScopeMemberName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnmgrNodeScopeMemberVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnmgrNodeAddRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1668,6 +1835,10 @@ func expandObjectVpnmgrNodeDnsService(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectVpnmgrNodeDomain(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnmgrNodeEncapsulation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1849,6 +2020,10 @@ func expandObjectVpnmgrNodeIpv4WinsServer2(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectVpnmgrNodeL2Tp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnmgrNodeLocalGw(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2021,6 +2196,15 @@ func expandObjectVpnmgrNodeXauthtype(d *schema.ResourceData, v interface{}, pre 
 func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("scopemember"); ok {
+		t, err := expandObjectVpnmgrNodeScopeMember(d, v, "scopemember")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scope member"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("add_route"); ok {
 		t, err := expandObjectVpnmgrNodeAddRoute(d, v, "add_route")
 		if err != nil {
@@ -2144,6 +2328,15 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["domain"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("encapsulation"); ok {
+		t, err := expandObjectVpnmgrNodeEncapsulation(d, v, "encapsulation")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["encapsulation"] = t
 		}
 	}
 
@@ -2342,6 +2535,15 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["ipv4-wins-server2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("l2tp"); ok {
+		t, err := expandObjectVpnmgrNodeL2Tp(d, v, "l2tp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["l2tp"] = t
 		}
 	}
 

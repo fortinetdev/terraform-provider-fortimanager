@@ -42,6 +42,11 @@ func resourceSystemAdminUser() *schema.Resource {
 					},
 				},
 			},
+			"adom_access": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"adom_exclude": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -438,6 +443,16 @@ func resourceSystemAdminUser() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"th_from_profile": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"th6_from_profile": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"trusthost1": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -675,6 +690,10 @@ func flattenSystemAdminUserAdom(v interface{}, d *schema.ResourceData, pre strin
 }
 
 func flattenSystemAdminUserAdomAdomName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminUserAdomAccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1303,6 +1322,14 @@ func flattenSystemAdminUserTacacsPlusServer(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenSystemAdminUserThFromProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminUserTh6FromProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminUserTrusthost1(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1432,6 +1459,16 @@ func refreshObjectSystemAdminUser(d *schema.ResourceData, o map[string]interface
 					return fmt.Errorf("Error reading fmgadom: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("adom_access", flattenSystemAdminUserAdomAccess(o["adom-access"], d, "adom_access")); err != nil {
+		if vv, ok := fortiAPIPatch(o["adom-access"], "SystemAdminUser-AdomAccess"); ok {
+			if err = d.Set("adom_access", vv); err != nil {
+				return fmt.Errorf("Error reading adom_access: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading adom_access: %v", err)
 		}
 	}
 
@@ -1983,6 +2020,26 @@ func refreshObjectSystemAdminUser(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("th_from_profile", flattenSystemAdminUserThFromProfile(o["th-from-profile"], d, "th_from_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["th-from-profile"], "SystemAdminUser-ThFromProfile"); ok {
+			if err = d.Set("th_from_profile", vv); err != nil {
+				return fmt.Errorf("Error reading th_from_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading th_from_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("th6_from_profile", flattenSystemAdminUserTh6FromProfile(o["th6-from-profile"], d, "th6_from_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["th6-from-profile"], "SystemAdminUser-Th6FromProfile"); ok {
+			if err = d.Set("th6_from_profile", vv); err != nil {
+				return fmt.Errorf("Error reading th6_from_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading th6_from_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("trusthost1", flattenSystemAdminUserTrusthost1(o["trusthost1"], d, "trusthost1")); err != nil {
 		if vv, ok := fortiAPIPatch(o["trusthost1"], "SystemAdminUser-Trusthost1"); ok {
 			if err = d.Set("trusthost1", vv); err != nil {
@@ -2204,6 +2261,10 @@ func expandSystemAdminUserAdom(d *schema.ResourceData, v interface{}, pre string
 }
 
 func expandSystemAdminUserAdomAdomName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminUserAdomAccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2769,6 +2830,14 @@ func expandSystemAdminUserTacacsPlusServer(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandSystemAdminUserThFromProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminUserTh6FromProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminUserTrusthost1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
@@ -2873,6 +2942,15 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["adom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("adom_access"); ok {
+		t, err := expandSystemAdminUserAdomAccess(d, v, "adom_access")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["adom-access"] = t
 		}
 	}
 
@@ -3287,6 +3365,24 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["tacacs-plus-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("th_from_profile"); ok {
+		t, err := expandSystemAdminUserThFromProfile(d, v, "th_from_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["th-from-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("th6_from_profile"); ok {
+		t, err := expandSystemAdminUserTh6FromProfile(d, v, "th6_from_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["th6-from-profile"] = t
 		}
 	}
 

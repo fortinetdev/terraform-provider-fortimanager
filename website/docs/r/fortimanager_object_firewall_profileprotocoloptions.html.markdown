@@ -137,6 +137,8 @@ The `http` block supports:
 * `fortinet_bar` - Fortinet-Bar. Valid values: `disable`, `enable`.
 
 * `fortinet_bar_port` - Fortinet-Bar-Port.
+* `http_policy` - Enable/disable HTTP policy check. Valid values: `disable`, `enable`.
+
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
 * `options` - One or more options that can be applied to the session. Valid values: `oversize`, `chunkedbypass`, `clientcomfort`, `no-content-summary`, `servercomfort`.

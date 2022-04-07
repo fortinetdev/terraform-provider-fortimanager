@@ -97,6 +97,11 @@ func resourceObjectDynamicMulticastInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"zone_only": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -318,6 +323,10 @@ func flattenObjectDynamicMulticastInterfaceName(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectDynamicMulticastInterfaceZoneOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectDynamicMulticastInterface(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -390,6 +399,16 @@ func refreshObjectObjectDynamicMulticastInterface(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("zone_only", flattenObjectDynamicMulticastInterfaceZoneOnly(o["zone-only"], d, "zone_only")); err != nil {
+		if vv, ok := fortiAPIPatch(o["zone-only"], "ObjectDynamicMulticastInterface-ZoneOnly"); ok {
+			if err = d.Set("zone_only", vv); err != nil {
+				return fmt.Errorf("Error reading zone_only: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading zone_only: %v", err)
 		}
 	}
 
@@ -496,6 +515,10 @@ func expandObjectDynamicMulticastInterfaceName(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectDynamicMulticastInterfaceZoneOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -541,6 +564,15 @@ func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("zone_only"); ok {
+		t, err := expandObjectDynamicMulticastInterfaceZoneOnly(d, v, "zone_only")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["zone-only"] = t
 		}
 	}
 

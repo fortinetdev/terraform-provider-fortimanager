@@ -356,6 +356,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"http_policy": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1547,6 +1552,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 		result["fortinet_bar_port"] = flattenObjectFirewallProfileProtocolOptionsHttpFortinetBarPort(i["fortinet-bar-port"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "http_policy"
+	if _, ok := i["http-policy"]; ok {
+		result["http_policy"] = flattenObjectFirewallProfileProtocolOptionsHttpHttpPolicy(i["http-policy"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "inspect_all"
 	if _, ok := i["inspect-all"]; ok {
 		result["inspect_all"] = flattenObjectFirewallProfileProtocolOptionsHttpInspectAll(i["inspect-all"], d, pre_append)
@@ -1683,6 +1693,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpFortinetBar(v interface{}, d
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpFortinetBarPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpHttpPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3314,6 +3328,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok {
 		result["fortinet-bar-port"], _ = expandObjectFirewallProfileProtocolOptionsHttpFortinetBarPort(d, i["fortinet_bar_port"], pre_append)
 	}
+	pre_append = pre + ".0." + "http_policy"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["http-policy"], _ = expandObjectFirewallProfileProtocolOptionsHttpHttpPolicy(d, i["http_policy"], pre_append)
+	}
 	pre_append = pre + ".0." + "inspect_all"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["inspect-all"], _ = expandObjectFirewallProfileProtocolOptionsHttpInspectAll(d, i["inspect_all"], pre_append)
@@ -3433,6 +3451,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpFortinetBar(d *schema.Resourc
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpFortinetBarPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpHttpPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

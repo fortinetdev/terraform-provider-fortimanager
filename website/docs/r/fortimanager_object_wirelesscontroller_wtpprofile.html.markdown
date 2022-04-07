@@ -52,6 +52,8 @@ The following arguments are supported:
 * `apcfg_profile` - AP local configuration profile name.
 * `ble_profile` - Bluetooth Low Energy profile name.
 * `comment` - Comment.
+* `console_login` - Enable/disable FAP console login access (default = enable). Valid values: `disable`, `enable`.
+
 * `control_message_offload` - Enable/disable CAPWAP control message data channel offload. Valid values: `ebp-frame`, `aeroscout-tag`, `ap-list`, `sta-list`, `sta-cap-list`, `stats`, `aeroscout-mu`, `sta-health`, `spectral-analysis`.
 
 * `deny_mac_list` - Deny-Mac-List. The structure of `deny_mac_list` block is documented below.
@@ -61,6 +63,7 @@ The following arguments are supported:
 
 * `energy_efficient_ethernet` - Enable/disable use of energy efficient Ethernet on WTP. Valid values: `disable`, `enable`.
 
+* `esl_ses_dongle` - Esl-Ses-Dongle. The structure of `esl_ses_dongle` block is documented below.
 * `ext_info_enable` - Enable/disable station/VAP/radio extension information. Valid values: `disable`, `enable`.
 
 * `frequency_handoff` - Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `disable`, `enable`.
@@ -69,6 +72,8 @@ The following arguments are supported:
 
 * `handoff_rssi` - Minimum received signal strength indicator (RSSI) value for handoff (20 - 30, default = 25).
 * `handoff_sta_thresh` - Threshold value for AP handoff.
+* `indoor_outdoor_deployment` - Set to allow indoor/outdoor-only channels under regulatory rules (default = platform-determined). Valid values: `platform-determined`, `outdoor`, `indoor`.
+
 * `ip_fragment_preventing` - Method(s) by which IP fragmentation is prevented for control and data packets through CAPWAP tunnel (default = tcp-mss-adjust). Valid values: `tcp-mss-adjust`, `icmp-unreachable`.
 
 * `lan` - Lan. The structure of `lan` block is documented below.
@@ -97,8 +102,15 @@ The following arguments are supported:
 
 * `split_tunneling_acl_path` - Split tunneling ACL path is local/tunnel. Valid values: `tunnel`, `local`.
 
+* `syslog_profile` - System log server configuration profile name.
 * `tun_mtu_downlink` - The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 * `tun_mtu_uplink` - The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+* `wan_port_auth` - Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
+
+* `wan_port_auth_methods` - WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
+
+* `wan_port_auth_password` - Set WAN port 802.1x supplicant password.
+* `wan_port_auth_usrname` - Set WAN port 802.1x supplicant user name.
 * `wan_port_mode` - Enable/disable using a WAN port as a LAN port. Valid values: `wan-lan`, `wan-only`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -107,6 +119,28 @@ The `deny_mac_list` block supports:
 
 * `id` - ID.
 * `mac` - A WiFi device with this MAC address is denied access to this WTP, FortiAP or AP.
+
+The `esl_ses_dongle` block supports:
+
+* `apc_addr_type` - ESL SES-imagotag APC address type (default = fqdn). Valid values: `fqdn`, `ip`.
+
+* `apc_fqdn` - FQDN of ESL SES-imagotag Access Point Controller (APC).
+* `apc_ip` - IP address of ESL SES-imagotag Access Point Controller (APC).
+* `apc_port` - Port of ESL SES-imagotag Access Point Controller (APC).
+* `coex_level` - ESL SES-imagotag dongle coexistence level (default = none). Valid values: `none`.
+
+* `compliance_level` - Compliance levels for the ESL solution integration (default = compliance-level-2). Valid values: `compliance-level-2`.
+
+* `esl_channel` - ESL SES-imagotag dongle channel (default = 127). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `127`, `-1`.
+
+* `output_power` - ESL SES-imagotag dongle output power (default = A). Valid values: `a`, `b`, `c`, `d`, `e`, `f`, `g`, `h`.
+
+* `scd_enable` - Enable/disable ESL SES-imagotag Serial Communication Daemon (SCD) (default = disable). Valid values: `disable`, `enable`.
+
+* `tls_cert_verification` - Enable/disable TLS Certificate verification. (default = enable). Valid values: `disable`, `enable`.
+
+* `tls_fqdn_verification` - Enable/disable TLS Certificate verification. (default = disable). Valid values: `disable`, `enable`.
+
 
 The `lan` block supports:
 
@@ -171,6 +205,9 @@ The `lbs` block supports:
 
 * `fortipresence_secret` - FortiPresence secret password (max. 16 characters).
 * `fortipresence_server` - FortiPresence server IP address.
+* `fortipresence_server_addr_type` - FortiPresence server address type (default = ipv4). Valid values: `fqdn`, `ipv4`.
+
+* `fortipresence_server_fqdn` - FQDN of FortiPresence server.
 * `fortipresence_unassoc` - Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `disable`, `enable`.
 
 * `station_locate` - Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `disable`, `enable`.
@@ -192,6 +229,8 @@ The `radio_1` block supports:
 
 * `amsdu` - Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `disable`, `enable`.
 
+* `ap_handoff` - Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `disable`, `enable`.
+
 * `ap_sniffer_addr` - MAC address to monitor.
 * `ap_sniffer_bufsize` - Sniffer buffer size (1 - 32 MB, default = 16).
 * `ap_sniffer_chan` - Channel on which to operate the sniffer (default = 6).
@@ -205,6 +244,7 @@ The `radio_1` block supports:
 
 * `ap_sniffer_mgmt_probe` - Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `disable`, `enable`.
 
+* `arrp_profile` - Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 * `auto_power_high` - The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 * `auto_power_level` - Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `disable`, `enable`.
 
@@ -219,6 +259,8 @@ The `radio_1` block supports:
 * `bandwidth_capacity` - Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 * `beacon_interval` - Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 * `bss_color` - BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+* `bss_color_mode` - BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+
 * `call_admission_control` - Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `disable`, `enable`.
 
 * `call_capacity` - Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
@@ -237,6 +279,8 @@ The `radio_1` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `frequency_handoff` - Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `disable`, `enable`.
+
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 
 * `iperf_server_port` - Iperf service port number.
@@ -257,11 +301,21 @@ The `radio_1` block supports:
 * `sam_bssid` - BSSID for WiFi network.
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `sam_cwp_failure_string` - Failure identification on the page after an incorrect login.
+* `sam_cwp_match_string` - Identification string from the captive portal login form.
+* `sam_cwp_password` - Password for captive portal authentication.
+* `sam_cwp_success_string` - Success identification on the page after a successful login.
+* `sam_cwp_test_url` - Website the client is trying to access.
+* `sam_cwp_username` - Username for captive portal authentication.
 * `sam_password` - Passphrase for WiFi network connection.
 * `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
 
 * `sam_server` - SAM test server IP address or domain name.
+* `sam_server_fqdn` - SAM test server domain name.
+* `sam_server_ip` - SAM test server IP address.
+* `sam_server_type` - Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+
 * `sam_ssid` - SSID for WiFi network.
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 
@@ -293,6 +347,8 @@ The `radio_2` block supports:
 
 * `amsdu` - Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `disable`, `enable`.
 
+* `ap_handoff` - Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `disable`, `enable`.
+
 * `ap_sniffer_addr` - MAC address to monitor.
 * `ap_sniffer_bufsize` - Sniffer buffer size (1 - 32 MB, default = 16).
 * `ap_sniffer_chan` - Channel on which to operate the sniffer (default = 6).
@@ -306,6 +362,7 @@ The `radio_2` block supports:
 
 * `ap_sniffer_mgmt_probe` - Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `disable`, `enable`.
 
+* `arrp_profile` - Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 * `auto_power_high` - The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 * `auto_power_level` - Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `disable`, `enable`.
 
@@ -320,6 +377,8 @@ The `radio_2` block supports:
 * `bandwidth_capacity` - Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 * `beacon_interval` - Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 * `bss_color` - BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+* `bss_color_mode` - BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+
 * `call_admission_control` - Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `disable`, `enable`.
 
 * `call_capacity` - Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
@@ -338,6 +397,8 @@ The `radio_2` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `frequency_handoff` - Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `disable`, `enable`.
+
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 
 * `iperf_server_port` - Iperf service port number.
@@ -358,11 +419,21 @@ The `radio_2` block supports:
 * `sam_bssid` - BSSID for WiFi network.
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `sam_cwp_failure_string` - Failure identification on the page after an incorrect login.
+* `sam_cwp_match_string` - Identification string from the captive portal login form.
+* `sam_cwp_password` - Password for captive portal authentication.
+* `sam_cwp_success_string` - Success identification on the page after a successful login.
+* `sam_cwp_test_url` - Website the client is trying to access.
+* `sam_cwp_username` - Username for captive portal authentication.
 * `sam_password` - Passphrase for WiFi network connection.
 * `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
 
 * `sam_server` - SAM test server IP address or domain name.
+* `sam_server_fqdn` - SAM test server domain name.
+* `sam_server_ip` - SAM test server IP address.
+* `sam_server_type` - Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+
 * `sam_ssid` - SSID for WiFi network.
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 
@@ -394,6 +465,8 @@ The `radio_3` block supports:
 
 * `amsdu` - Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `disable`, `enable`.
 
+* `ap_handoff` - Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `disable`, `enable`.
+
 * `ap_sniffer_addr` - MAC address to monitor.
 * `ap_sniffer_bufsize` - Sniffer buffer size (1 - 32 MB, default = 16).
 * `ap_sniffer_chan` - Channel on which to operate the sniffer (default = 6).
@@ -407,6 +480,7 @@ The `radio_3` block supports:
 
 * `ap_sniffer_mgmt_probe` - Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `disable`, `enable`.
 
+* `arrp_profile` - Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 * `auto_power_high` - The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 * `auto_power_level` - Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `disable`, `enable`.
 
@@ -421,6 +495,8 @@ The `radio_3` block supports:
 * `bandwidth_capacity` - Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 * `beacon_interval` - Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 * `bss_color` - BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+* `bss_color_mode` - BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+
 * `call_admission_control` - Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `disable`, `enable`.
 
 * `call_capacity` - Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
@@ -439,6 +515,8 @@ The `radio_3` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `frequency_handoff` - Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `disable`, `enable`.
+
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 
 * `iperf_server_port` - Iperf service port number.
@@ -459,11 +537,21 @@ The `radio_3` block supports:
 * `sam_bssid` - BSSID for WiFi network.
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `sam_cwp_failure_string` - Failure identification on the page after an incorrect login.
+* `sam_cwp_match_string` - Identification string from the captive portal login form.
+* `sam_cwp_password` - Password for captive portal authentication.
+* `sam_cwp_success_string` - Success identification on the page after a successful login.
+* `sam_cwp_test_url` - Website the client is trying to access.
+* `sam_cwp_username` - Username for captive portal authentication.
 * `sam_password` - Passphrase for WiFi network connection.
 * `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
 
 * `sam_server` - SAM test server IP address or domain name.
+* `sam_server_fqdn` - SAM test server domain name.
+* `sam_server_ip` - SAM test server IP address.
+* `sam_server_type` - Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+
 * `sam_ssid` - SSID for WiFi network.
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 
@@ -495,6 +583,8 @@ The `radio_4` block supports:
 
 * `amsdu` - Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `disable`, `enable`.
 
+* `ap_handoff` - Enable/disable AP handoff of clients to other APs (default = disable). Valid values: `disable`, `enable`.
+
 * `ap_sniffer_addr` - MAC address to monitor.
 * `ap_sniffer_bufsize` - Sniffer buffer size (1 - 32 MB, default = 16).
 * `ap_sniffer_chan` - Channel on which to operate the sniffer (default = 6).
@@ -508,6 +598,7 @@ The `radio_4` block supports:
 
 * `ap_sniffer_mgmt_probe` - Enable/disable sniffer on WiFi management probe frames (default = enable). Valid values: `disable`, `enable`.
 
+* `arrp_profile` - Distributed Automatic Radio Resource Provisioning (DARRP) profile name to assign to the radio.
 * `auto_power_high` - The upper bound of automatic transmit power adjustment in dBm (the actual range of transmit power depends on the AP platform type).
 * `auto_power_level` - Enable/disable automatic power-level adjustment to prevent co-channel interference (default = enable). Valid values: `disable`, `enable`.
 
@@ -522,6 +613,8 @@ The `radio_4` block supports:
 * `bandwidth_capacity` - Maximum bandwidth capacity allowed (1 - 600000 Kbps, default = 2000).
 * `beacon_interval` - Beacon interval. The time between beacon frames in msec (the actual range of beacon interval depends on the AP platform type, default = 100).
 * `bss_color` - BSS color value for this 11ax radio (0 - 63, 0 means disable. default = 0).
+* `bss_color_mode` - BSS color mode for this 11ax radio (default = auto). Valid values: `auto`, `static`.
+
 * `call_admission_control` - Enable/disable WiFi multimedia (WMM) call admission control to optimize WiFi bandwidth use for VoIP calls. New VoIP calls are only accepted if there is enough bandwidth available to support them. Valid values: `disable`, `enable`.
 
 * `call_capacity` - Maximum number of Voice over WLAN (VoWLAN) phones supported by the radio (0 - 60, default = 10).
@@ -540,6 +633,8 @@ The `radio_4` block supports:
 
 * `dtim` - Delivery Traffic Indication Map (DTIM) period (1 - 255, default = 1). Set higher to save battery life of WiFi client in power-save mode.
 * `frag_threshold` - Maximum packet size that can be sent without fragmentation (800 - 2346 bytes, default = 2346).
+* `frequency_handoff` - Enable/disable frequency handoff of clients to other channels (default = disable). Valid values: `disable`, `enable`.
+
 * `iperf_protocol` - Iperf test protocol (default = "UDP"). Valid values: `udp`, `tcp`.
 
 * `iperf_server_port` - Iperf service port number.
@@ -560,11 +655,21 @@ The `radio_4` block supports:
 * `sam_bssid` - BSSID for WiFi network.
 * `sam_captive_portal` - Enable/disable Captive Portal Authentication (default = disable). Valid values: `disable`, `enable`.
 
+* `sam_cwp_failure_string` - Failure identification on the page after an incorrect login.
+* `sam_cwp_match_string` - Identification string from the captive portal login form.
+* `sam_cwp_password` - Password for captive portal authentication.
+* `sam_cwp_success_string` - Success identification on the page after a successful login.
+* `sam_cwp_test_url` - Website the client is trying to access.
+* `sam_cwp_username` - Username for captive portal authentication.
 * `sam_password` - Passphrase for WiFi network connection.
 * `sam_report_intv` - SAM report interval (sec), 0 for a one-time report.
 * `sam_security_type` - Select WiFi network security type (default = "wpa-personal"). Valid values: `open`, `wpa-personal`, `wpa-enterprise`.
 
 * `sam_server` - SAM test server IP address or domain name.
+* `sam_server_fqdn` - SAM test server domain name.
+* `sam_server_ip` - SAM test server IP address.
+* `sam_server_type` - Select SAM server type (default = "IP"). Valid values: `ip`, `fqdn`.
+
 * `sam_ssid` - SSID for WiFi network.
 * `sam_test` - Select SAM test type (default = "PING"). Valid values: `ping`, `iperf`.
 

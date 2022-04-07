@@ -95,6 +95,26 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cert_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cert_captive_portal": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cert_captive_portal_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"cert_captive_portal_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"dev_range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -253,6 +273,22 @@ func flattenPackagesAuthenticationSettingCaptivePortal6(v interface{}, d *schema
 	return v
 }
 
+func flattenPackagesAuthenticationSettingCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingCertCaptivePortal(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingCertCaptivePortalIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingCertCaptivePortalPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesAuthenticationSettingDevRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -366,6 +402,46 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("cert_auth", flattenPackagesAuthenticationSettingCertAuth(o["cert-auth"], d, "cert_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-auth"], "PackagesAuthenticationSetting-CertAuth"); ok {
+			if err = d.Set("cert_auth", vv); err != nil {
+				return fmt.Errorf("Error reading cert_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_auth: %v", err)
+		}
+	}
+
+	if err = d.Set("cert_captive_portal", flattenPackagesAuthenticationSettingCertCaptivePortal(o["cert-captive-portal"], d, "cert_captive_portal")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-captive-portal"], "PackagesAuthenticationSetting-CertCaptivePortal"); ok {
+			if err = d.Set("cert_captive_portal", vv); err != nil {
+				return fmt.Errorf("Error reading cert_captive_portal: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_captive_portal: %v", err)
+		}
+	}
+
+	if err = d.Set("cert_captive_portal_ip", flattenPackagesAuthenticationSettingCertCaptivePortalIp(o["cert-captive-portal-ip"], d, "cert_captive_portal_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-captive-portal-ip"], "PackagesAuthenticationSetting-CertCaptivePortalIp"); ok {
+			if err = d.Set("cert_captive_portal_ip", vv); err != nil {
+				return fmt.Errorf("Error reading cert_captive_portal_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_captive_portal_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("cert_captive_portal_port", flattenPackagesAuthenticationSettingCertCaptivePortalPort(o["cert-captive-portal-port"], d, "cert_captive_portal_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cert-captive-portal-port"], "PackagesAuthenticationSetting-CertCaptivePortalPort"); ok {
+			if err = d.Set("cert_captive_portal_port", vv); err != nil {
+				return fmt.Errorf("Error reading cert_captive_portal_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cert_captive_portal_port: %v", err)
+		}
+	}
+
 	if err = d.Set("dev_range", flattenPackagesAuthenticationSettingDevRange(o["dev-range"], d, "dev_range")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dev-range"], "PackagesAuthenticationSetting-DevRange"); ok {
 			if err = d.Set("dev_range", vv); err != nil {
@@ -448,6 +524,22 @@ func expandPackagesAuthenticationSettingCaptivePortalType(d *schema.ResourceData
 }
 
 func expandPackagesAuthenticationSettingCaptivePortal6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingCertAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingCertCaptivePortal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingCertCaptivePortalIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingCertCaptivePortalPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -548,6 +640,42 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["captive-portal6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cert_auth"); ok {
+		t, err := expandPackagesAuthenticationSettingCertAuth(d, v, "cert_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cert_captive_portal"); ok {
+		t, err := expandPackagesAuthenticationSettingCertCaptivePortal(d, v, "cert_captive_portal")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-captive-portal"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cert_captive_portal_ip"); ok {
+		t, err := expandPackagesAuthenticationSettingCertCaptivePortalIp(d, v, "cert_captive_portal_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-captive-portal-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cert_captive_portal_port"); ok {
+		t, err := expandPackagesAuthenticationSettingCertCaptivePortalPort(d, v, "cert_captive_portal_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cert-captive-portal-port"] = t
 		}
 	}
 

@@ -325,6 +325,7 @@ The `ipv6` block supports:
 * `ip6_allowaccess` - Allow management access to the interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `capwap`, `fabric`.
 
 * `ip6_default_life` - Default life (sec).
+* `ip6_delegated_prefix_iaid` - IAID of obtained delegated-prefix from the upstream interface.
 * `ip6_delegated_prefix_list` - Ip6-Delegated-Prefix-List. The structure of `ip6_delegated_prefix_list` block is documented below.
 * `ip6_dns_server_override` - Enable/disable using the DNS server acquired by DHCP. Valid values: `disable`, `enable`.
 
@@ -368,6 +369,7 @@ The `ip6_delegated_prefix_list` block supports:
 
 * `autonomous_flag` - Enable/disable the autonomous flag. Valid values: `disable`, `enable`.
 
+* `delegated_prefix_iaid` - IAID of obtained delegated-prefix from the upstream interface.
 * `onlink_flag` - Enable/disable the onlink flag. Valid values: `disable`, `enable`.
 
 * `prefix_id` - Prefix ID.
@@ -426,6 +428,8 @@ The `secondaryip` block supports:
 
 The `interface` block supports:
 
+* `vlan_op_mode` - Vlan-Op-Mode. Valid values: `tag`, `untag`, `passthrough`.
+
 * `ac_name` - PPPoE server name.
 * `aggregate` - Aggregate.
 * `algorithm` - Frame distribution algorithm. Valid values: `L2`, `L3`, `L4`.
@@ -439,6 +443,8 @@ The `interface` block supports:
 
 * `atm_protocol` - ATM protocol. Valid values: `none`, `ipoa`.
 
+* `auth_cert` - HTTPS server certificate.
+* `auth_portal_addr` - Address of captive portal.
 * `auth_type` - PPP authentication type to use. Valid values: `auto`, `pap`, `chap`, `mschapv1`, `mschapv2`.
 
 * `auto_auth_extension_device` - Enable/disable automatic authorization of dedicated Fortinet extension device on this interface. Valid values: `disable`, `enable`.
@@ -490,6 +496,8 @@ The `interface` block supports:
 * `device_user_identification` - Enable/disable passive gathering of user identity information about users on this interface. Valid values: `disable`, `enable`.
 
 * `devindex` - Devindex.
+* `dhcp_classless_route_addition` - Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `disable`, `enable`.
+
 * `dhcp_client_identifier` - DHCP client identifier.
 * `dhcp_relay_agent_option` - Enable/disable DHCP relay agent option. Valid values: `disable`, `enable`.
 
@@ -497,6 +505,7 @@ The `interface` block supports:
 * `dhcp_relay_interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
 * `dhcp_relay_ip` - DHCP relay IP address.
+* `dhcp_relay_link_selection` - DHCP relay link selection.
 * `dhcp_relay_request_all_server` - Dhcp-Relay-Request-All-Server. Valid values: `disable`, `enable`.
 
 * `dhcp_relay_service` - Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
@@ -510,6 +519,8 @@ The `interface` block supports:
 * `dns_query` - Dns-Query. Valid values: `disable`, `recursive`, `non-recursive`.
 
 * `dns_server_override` - Enable/disable use DNS acquired by DHCP or PPPoE. Valid values: `disable`, `enable`.
+
+* `dns_server_protocol` - DNS transport protocols. Valid values: `cleartext`, `dot`, `doh`.
 
 * `drop_fragment` - Enable/disable drop fragment packets. Valid values: `disable`, `enable`.
 
@@ -598,6 +609,8 @@ The `interface` block supports:
 
 * `l2tp_client` - Enable/disable this interface as a Layer 2 Tunnelling Protocol (L2TP) client. Valid values: `disable`, `enable`.
 
+* `lacp_ha_secondary` - Lacp-Ha-Secondary. Valid values: `disable`, `enable`.
+
 * `lacp_ha_slave` - LACP HA slave. Valid values: `disable`, `enable`.
 
 * `lacp_mode` - LACP mode. Valid values: `static`, `passive`, `active`.
@@ -679,6 +692,20 @@ The `interface` block supports:
 
 * `proxy_captive_portal` - Enable/disable proxy captive portal on this interface. Valid values: `disable`, `enable`.
 
+* `pvc_atm_qos` - SFP-DSL ADSL Fallback PVC ATM QoS. Valid values: `cbr`, `rt-vbr`, `nrt-vbr`.
+
+* `pvc_chan` - SFP-DSL ADSL Fallback PVC Channel.
+* `pvc_crc` - SFP-DSL ADSL Fallback PVC CRC Option:  bit0: sar LLC preserve, bit1: ream LLC preserve, bit2: ream VC-MUX has crc.
+* `pvc_pcr` - SFP-DSL ADSL Fallback PVC Packet Cell Rate in cells (0 - 5500).
+* `pvc_scr` - SFP-DSL ADSL Fallback PVC Sustainable Cell Rate in cells (0 - 5500).
+* `pvc_vlan_id` - SFP-DSL ADSL Fallback PVC VLAN ID.
+* `pvc_vlan_rx_id` - SFP-DSL ADSL Fallback PVC VLANID RX.
+* `pvc_vlan_rx_op` - SFP-DSL ADSL Fallback PVC VLAN RX op. Valid values: `pass-through`, `replace`, `remove`.
+
+* `pvc_vlan_tx_id` - SFP-DSL ADSL Fallback PVC VLAN ID TX.
+* `pvc_vlan_tx_op` - SFP-DSL ADSL Fallback PVC VLAN TX op. Valid values: `pass-through`, `replace`, `remove`.
+
+* `reachable_time` - IPv4 reachable time in milliseconds (30000 - 3600000, default = 30000).
 * `redundant_interface` - Redundant-Interface.
 * `remote_ip` - Remote IP address of tunnel.
 * `replacemsg_override_group` - Replacement message override group.
@@ -709,9 +736,18 @@ The `interface` block supports:
 * `security_mode` - Turn on captive portal authentication for this interface. Valid values: `none`, `captive-portal`, `802.1X`.
 
 * `security_redirect_url` - URL redirection after disclaimer/authentication.
+* `select_profile_30a_35b` - Select-Profile-30A-35B. Valid values: `30A`, `35B`.
+
 * `service_name` - PPPoE service name.
 * `sflow_sampler` - Enable/disable sFlow on this interface. Valid values: `disable`, `enable`.
 
+* `sfp_dsl` - Enable/disable SFP DSL. Valid values: `disable`, `enable`.
+
+* `sfp_dsl_adsl_fallback` - Enable/disable SFP DSL ADSL fallback. Valid values: `disable`, `enable`.
+
+* `sfp_dsl_autodetect` - Enable/disable SFP DSL MAC address autodetect. Valid values: `disable`, `enable`.
+
+* `sfp_dsl_mac` - SFP DSL MAC address.
 * `speed` - Interface speed. The default setting and the options available depend on the interface hardware. Valid values: `auto`, `10full`, `10half`, `100full`, `100half`, `1000full`, `1000half`, `10000full`, `1000auto`, `10000auto`, `40000full`, `100Gfull`, `25000full`, `40000auto`, `25000auto`, `100Gauto`.
 
 * `spillover_threshold` - Egress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
@@ -734,6 +770,8 @@ The `interface` block supports:
 * `subst` - Enable to always send packets from this interface to a destination MAC address. Valid values: `disable`, `enable`.
 
 * `substitute_dst_mac` - Destination MAC address that all packets are sent to from this interface.
+* `sw_algorithm` - Frame distribution algorithm for switch. Valid values: `l2`, `l3`, `eh`.
+
 * `swc_first_create` - Initial create for switch-controller VLANs.
 * `swc_vlan` - Swc-Vlan.
 * `switch` - Switch.
@@ -769,6 +807,9 @@ The `interface` block supports:
 * `switch_controller_source_ip` - Source IP address used in FortiLink over L3 connections. Valid values: `outbound`, `fixed`.
 
 * `switch_controller_traffic_policy` - Switch controller traffic policy for the VLAN.
+* `system_id` - Define a system ID for the aggregate interface.
+* `system_id_type` - Method in which system ID is generated. Valid values: `auto`, `user`.
+
 * `tc_mode` - DSL transfer mode. Valid values: `ptm`, `atm`.
 
 * `tcp_mss` - TCP maximum segment size. 0 means do not change segment size.
@@ -855,6 +896,7 @@ The `ipv6` block supports:
 * `ip6_allowaccess` - Allow management access to the interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `capwap`, `fabric`.
 
 * `ip6_default_life` - Default life (sec).
+* `ip6_delegated_prefix_iaid` - IAID of obtained delegated-prefix from the upstream interface.
 * `ip6_delegated_prefix_list` - Ip6-Delegated-Prefix-List. The structure of `ip6_delegated_prefix_list` block is documented below.
 * `ip6_dns_server_override` - Enable/disable using the DNS server acquired by DHCP. Valid values: `disable`, `enable`.
 
@@ -898,6 +940,7 @@ The `ip6_delegated_prefix_list` block supports:
 
 * `autonomous_flag` - Enable/disable the autonomous flag. Valid values: `disable`, `enable`.
 
+* `delegated_prefix_iaid` - IAID of obtained delegated-prefix from the upstream interface.
 * `onlink_flag` - Enable/disable the onlink flag. Valid values: `disable`, `enable`.
 
 * `prefix_id` - Prefix ID.

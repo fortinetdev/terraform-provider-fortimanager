@@ -56,6 +56,16 @@ func resourceSystemNtp() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"maxpoll": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"minpoll": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
 						"ntpv3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -203,6 +213,18 @@ func flattenSystemNtpNtpserverSna(v interface{}, d *schema.ResourceData, pre str
 			tmp["key_id"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-KeyId")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "maxpoll"
+		if _, ok := i["maxpoll"]; ok {
+			v := flattenSystemNtpNtpserverMaxpollSna(i["maxpoll"], d, pre_append)
+			tmp["maxpoll"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Maxpoll")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "minpoll"
+		if _, ok := i["minpoll"]; ok {
+			v := flattenSystemNtpNtpserverMinpollSna(i["minpoll"], d, pre_append)
+			tmp["minpoll"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Minpoll")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ntpv3"
 		if _, ok := i["ntpv3"]; ok {
 			v := flattenSystemNtpNtpserverNtpv3Sna(i["ntpv3"], d, pre_append)
@@ -236,6 +258,14 @@ func flattenSystemNtpNtpserverKeySna(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenSystemNtpNtpserverKeyIdSna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemNtpNtpserverMaxpollSna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemNtpNtpserverMinpollSna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -351,6 +381,16 @@ func expandSystemNtpNtpserverSna(d *schema.ResourceData, v interface{}, pre stri
 			tmp["key-id"], _ = expandSystemNtpNtpserverKeyIdSna(d, i["key_id"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "maxpoll"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["maxpoll"], _ = expandSystemNtpNtpserverMaxpollSna(d, i["maxpoll"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "minpoll"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["minpoll"], _ = expandSystemNtpNtpserverMinpollSna(d, i["minpoll"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ntpv3"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["ntpv3"], _ = expandSystemNtpNtpserverNtpv3Sna(d, i["ntpv3"], pre_append)
@@ -382,6 +422,14 @@ func expandSystemNtpNtpserverKeySna(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandSystemNtpNtpserverKeyIdSna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverMaxpollSna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemNtpNtpserverMinpollSna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

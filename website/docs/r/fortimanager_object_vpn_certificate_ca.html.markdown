@@ -36,6 +36,7 @@ The following arguments are supported:
 * `auto_update_days` - Number of days to wait before requesting an updated CA certificate (0 - 4294967295, 0 = disabled).
 * `auto_update_days_warning` - Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
 * `ca` - CA certificate as a PEM file.
+* `ca_identifier` - CA identifier of the SCEP server.
 * `last_updated` - Time at which CA was last updated.
 * `name` - Name.
 * `range` - Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
@@ -44,6 +45,8 @@ The following arguments are supported:
 * `source` - CA certificate source type. Valid values: `factory`, `user`, `bundle`, `fortiguard`.
 
 * `source_ip` - Source IP address for communications to the SCEP server.
+* `trusted` - Enable/disable as a trusted CA. Valid values: `disable`, `enable`.
+
 * `ssl_inspection_trusted` - Enable/disable this CA as a trusted CA for SSL inspection. Valid values: `disable`, `enable`.
 
 

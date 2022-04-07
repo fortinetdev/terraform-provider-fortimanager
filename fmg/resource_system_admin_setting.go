@@ -74,6 +74,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"central_ftgd_local_cat_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"chassis_mgmt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -119,6 +124,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"idle_timeout_sso": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"install_ifpolicy_only": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -140,6 +150,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Computed: true,
 			},
 			"offline_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"preferred_fgfm_intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -217,6 +232,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Computed: true,
 			},
 			"show_tcl_script": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"traffic_shaping_history": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -339,6 +359,10 @@ func flattenSystemAdminSettingBannerMessage(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenSystemAdminSettingCentralFtgdLocalCatId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminSettingChassisMgmt(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -375,6 +399,10 @@ func flattenSystemAdminSettingIdleTimeoutGui(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenSystemAdminSettingIdleTimeoutSso(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminSettingInstallIfpolicyOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -392,6 +420,10 @@ func flattenSystemAdminSettingObjectsForceDeletion(v interface{}, d *schema.Reso
 }
 
 func flattenSystemAdminSettingOfflineMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminSettingPreferredFgfmIntf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -452,6 +484,10 @@ func flattenSystemAdminSettingShowScheduleScript(v interface{}, d *schema.Resour
 }
 
 func flattenSystemAdminSettingShowTclScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminSettingTrafficShapingHistory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -556,6 +592,16 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("central_ftgd_local_cat_id", flattenSystemAdminSettingCentralFtgdLocalCatId(o["central-ftgd-local-cat-id"], d, "central_ftgd_local_cat_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["central-ftgd-local-cat-id"], "SystemAdminSetting-CentralFtgdLocalCatId"); ok {
+			if err = d.Set("central_ftgd_local_cat_id", vv); err != nil {
+				return fmt.Errorf("Error reading central_ftgd_local_cat_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading central_ftgd_local_cat_id: %v", err)
+		}
+	}
+
 	if err = d.Set("chassis_mgmt", flattenSystemAdminSettingChassisMgmt(o["chassis-mgmt"], d, "chassis_mgmt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["chassis-mgmt"], "SystemAdminSetting-ChassisMgmt"); ok {
 			if err = d.Set("chassis_mgmt", vv); err != nil {
@@ -646,6 +692,16 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("idle_timeout_sso", flattenSystemAdminSettingIdleTimeoutSso(o["idle_timeout_sso"], d, "idle_timeout_sso")); err != nil {
+		if vv, ok := fortiAPIPatch(o["idle_timeout_sso"], "SystemAdminSetting-IdleTimeoutSso"); ok {
+			if err = d.Set("idle_timeout_sso", vv); err != nil {
+				return fmt.Errorf("Error reading idle_timeout_sso: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading idle_timeout_sso: %v", err)
+		}
+	}
+
 	if err = d.Set("install_ifpolicy_only", flattenSystemAdminSettingInstallIfpolicyOnly(o["install-ifpolicy-only"], d, "install_ifpolicy_only")); err != nil {
 		if vv, ok := fortiAPIPatch(o["install-ifpolicy-only"], "SystemAdminSetting-InstallIfpolicyOnly"); ok {
 			if err = d.Set("install_ifpolicy_only", vv); err != nil {
@@ -693,6 +749,16 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading offline_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("preferred_fgfm_intf", flattenSystemAdminSettingPreferredFgfmIntf(o["preferred-fgfm-intf"], d, "preferred_fgfm_intf")); err != nil {
+		if vv, ok := fortiAPIPatch(o["preferred-fgfm-intf"], "SystemAdminSetting-PreferredFgfmIntf"); ok {
+			if err = d.Set("preferred_fgfm_intf", vv); err != nil {
+				return fmt.Errorf("Error reading preferred_fgfm_intf: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading preferred_fgfm_intf: %v", err)
 		}
 	}
 
@@ -846,6 +912,16 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("traffic_shaping_history", flattenSystemAdminSettingTrafficShapingHistory(o["traffic-shaping-history"], d, "traffic_shaping_history")); err != nil {
+		if vv, ok := fortiAPIPatch(o["traffic-shaping-history"], "SystemAdminSetting-TrafficShapingHistory"); ok {
+			if err = d.Set("traffic_shaping_history", vv); err != nil {
+				return fmt.Errorf("Error reading traffic_shaping_history: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading traffic_shaping_history: %v", err)
+		}
+	}
+
 	if err = d.Set("unreg_dev_opt", flattenSystemAdminSettingUnregDevOpt(o["unreg_dev_opt"], d, "unreg_dev_opt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["unreg_dev_opt"], "SystemAdminSetting-UnregDevOpt"); ok {
 			if err = d.Set("unreg_dev_opt", vv); err != nil {
@@ -911,6 +987,10 @@ func expandSystemAdminSettingBannerMessage(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandSystemAdminSettingCentralFtgdLocalCatId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminSettingChassisMgmt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -947,6 +1027,10 @@ func expandSystemAdminSettingIdleTimeoutGui(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandSystemAdminSettingIdleTimeoutSso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminSettingInstallIfpolicyOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -964,6 +1048,10 @@ func expandSystemAdminSettingObjectsForceDeletion(d *schema.ResourceData, v inte
 }
 
 func expandSystemAdminSettingOfflineMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminSettingPreferredFgfmIntf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1024,6 +1112,10 @@ func expandSystemAdminSettingShowScheduleScript(d *schema.ResourceData, v interf
 }
 
 func expandSystemAdminSettingShowTclScript(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminSettingTrafficShapingHistory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1119,6 +1211,15 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("central_ftgd_local_cat_id"); ok {
+		t, err := expandSystemAdminSettingCentralFtgdLocalCatId(d, v, "central_ftgd_local_cat_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["central-ftgd-local-cat-id"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("chassis_mgmt"); ok {
 		t, err := expandSystemAdminSettingChassisMgmt(d, v, "chassis_mgmt")
 		if err != nil {
@@ -1200,6 +1301,15 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("idle_timeout_sso"); ok {
+		t, err := expandSystemAdminSettingIdleTimeoutSso(d, v, "idle_timeout_sso")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["idle_timeout_sso"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("install_ifpolicy_only"); ok {
 		t, err := expandSystemAdminSettingInstallIfpolicyOnly(d, v, "install_ifpolicy_only")
 		if err != nil {
@@ -1242,6 +1352,15 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["offline_mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("preferred_fgfm_intf"); ok {
+		t, err := expandSystemAdminSettingPreferredFgfmIntf(d, v, "preferred_fgfm_intf")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["preferred-fgfm-intf"] = t
 		}
 	}
 
@@ -1377,6 +1496,15 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["show_tcl_script"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("traffic_shaping_history"); ok {
+		t, err := expandSystemAdminSettingTrafficShapingHistory(d, v, "traffic_shaping_history")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["traffic-shaping-history"] = t
 		}
 	}
 

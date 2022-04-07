@@ -46,6 +46,8 @@ The following arguments are supported:
 * `sls_url` - SP SLS(logout) URL.
 * `status` - Enable/disable SAML authentication (default = disable). disable - Disable SAML authentication. enable - Enabld SAML authentication. Valid values: `disable`, `enable`.
 
+* `user_auto_create` - Enable/disable user auto creation (default = disable). disable - Disable auto create user. enable - Enable auto create user. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `fabric_idp` block supports:

@@ -94,6 +94,16 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"orig_addr": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -306,6 +316,14 @@ func flattenPackagesFirewallCentralSnatMapNatPort(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenPackagesFirewallCentralSnatMapNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallCentralSnatMapNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallCentralSnatMapOrigAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -315,7 +333,7 @@ func flattenPackagesFirewallCentralSnatMapOrigAddr6(v interface{}, d *schema.Res
 }
 
 func flattenPackagesFirewallCentralSnatMapOrigPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesFirewallCentralSnatMapPolicyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -426,6 +444,26 @@ func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading nat_port: %v", err)
+		}
+	}
+
+	if err = d.Set("nat46", flattenPackagesFirewallCentralSnatMapNat46(o["nat46"], d, "nat46")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat46"], "PackagesFirewallCentralSnatMap-Nat46"); ok {
+			if err = d.Set("nat46", vv); err != nil {
+				return fmt.Errorf("Error reading nat46: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
+	if err = d.Set("nat64", flattenPackagesFirewallCentralSnatMapNat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "PackagesFirewallCentralSnatMap-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
 		}
 	}
 
@@ -560,6 +598,14 @@ func expandPackagesFirewallCentralSnatMapNatPort(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandPackagesFirewallCentralSnatMapNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallCentralSnatMapNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallCentralSnatMapOrigAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
@@ -668,6 +714,24 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["nat-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat46"); ok {
+		t, err := expandPackagesFirewallCentralSnatMapNat46(d, v, "nat46")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat46"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandPackagesFirewallCentralSnatMapNat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
 		}
 	}
 

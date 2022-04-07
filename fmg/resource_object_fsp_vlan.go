@@ -1027,6 +1027,11 @@ func resourceObjectFspVlan() *schema.Resource {
 													Optional: true,
 													Computed: true,
 												},
+												"ip6_delegated_prefix_iaid": &schema.Schema{
+													Type:     schema.TypeInt,
+													Optional: true,
+													Computed: true,
+												},
 												"ip6_delegated_prefix_list": &schema.Schema{
 													Type:     schema.TypeList,
 													Optional: true,
@@ -1034,6 +1039,11 @@ func resourceObjectFspVlan() *schema.Resource {
 														Schema: map[string]*schema.Schema{
 															"autonomous_flag": &schema.Schema{
 																Type:     schema.TypeString,
+																Optional: true,
+																Computed: true,
+															},
+															"delegated_prefix_iaid": &schema.Schema{
+																Type:     schema.TypeInt,
 																Optional: true,
 																Computed: true,
 															},
@@ -1387,6 +1397,11 @@ func resourceObjectFspVlan() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"vlan_op_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"ac_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1424,6 +1439,16 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"atm_protocol": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"auth_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"auth_portal_addr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -1610,6 +1635,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"dhcp_classless_route_addition": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"dhcp_client_identifier": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1633,6 +1663,11 @@ func resourceObjectFspVlan() *schema.Resource {
 						"dhcp_relay_ip": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"dhcp_relay_link_selection": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -1678,6 +1713,12 @@ func resourceObjectFspVlan() *schema.Resource {
 						},
 						"dns_server_override": &schema.Schema{
 							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"dns_server_protocol": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -2022,6 +2063,11 @@ func resourceObjectFspVlan() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"ip6_delegated_prefix_iaid": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
 									"ip6_delegated_prefix_list": &schema.Schema{
 										Type:     schema.TypeList,
 										Optional: true,
@@ -2029,6 +2075,11 @@ func resourceObjectFspVlan() *schema.Resource {
 											Schema: map[string]*schema.Schema{
 												"autonomous_flag": &schema.Schema{
 													Type:     schema.TypeString,
+													Optional: true,
+													Computed: true,
+												},
+												"delegated_prefix_iaid": &schema.Schema{
+													Type:     schema.TypeInt,
 													Optional: true,
 													Computed: true,
 												},
@@ -2315,6 +2366,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"lacp_ha_secondary": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"lacp_ha_slave": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -2587,6 +2643,61 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"pvc_atm_qos": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_chan": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_crc": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_pcr": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_scr": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_vlan_id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_vlan_rx_id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_vlan_rx_op": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_vlan_tx_id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pvc_vlan_tx_op": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"reachable_time": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
 						"redundant_interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -2747,12 +2858,37 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"select_profile_30a_35b": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"service_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"sflow_sampler": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sfp_dsl": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sfp_dsl_adsl_fallback": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sfp_dsl_autodetect": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sfp_dsl_mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -2813,6 +2949,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"substitute_dst_mac": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sw_algorithm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -2923,6 +3064,16 @@ func resourceObjectFspVlan() *schema.Resource {
 							Computed: true,
 						},
 						"switch_controller_traffic_policy": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"system_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"system_id_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -5257,6 +5408,11 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6(v interface{}, d *schema.Re
 		result["ip6_default_life"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DefaultLife(i["ip6-default-life"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "ip6_delegated_prefix_iaid"
+	if _, ok := i["ip6-delegated-prefix-iaid"]; ok {
+		result["ip6_delegated_prefix_iaid"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixIaid(i["ip6-delegated-prefix-iaid"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
 	if _, ok := i["ip6-delegated-prefix-list"]; ok {
 		result["ip6_delegated_prefix_list"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(i["ip6-delegated-prefix-list"], d, pre_append)
@@ -5465,6 +5621,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DefaultLife(v interface{}
 	return v
 }
 
+func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixIaid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -5488,6 +5648,12 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(v int
 		if _, ok := i["autonomous-flag"]; ok {
 			v := flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(i["autonomous-flag"], d, pre_append)
 			tmp["autonomous_flag"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Ip6DelegatedPrefixList-AutonomousFlag")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "delegated_prefix_iaid"
+		if _, ok := i["delegated-prefix-iaid"]; ok {
+			v := flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(i["delegated-prefix-iaid"], d, pre_append)
+			tmp["delegated_prefix_iaid"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Ip6DelegatedPrefixList-DelegatedPrefixIaid")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
@@ -5535,6 +5701,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(v int
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -6053,6 +6223,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "vlan_op_mode"
+	if _, ok := i["vlan-op-mode"]; ok {
+		result["vlan_op_mode"] = flattenObjectFspVlanInterfaceVlanOpMode(i["vlan-op-mode"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "ac_name"
 	if _, ok := i["ac-name"]; ok {
 		result["ac_name"] = flattenObjectFspVlanInterfaceAcName(i["ac-name"], d, pre_append)
@@ -6091,6 +6266,16 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "atm_protocol"
 	if _, ok := i["atm-protocol"]; ok {
 		result["atm_protocol"] = flattenObjectFspVlanInterfaceAtmProtocol(i["atm-protocol"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "auth_cert"
+	if _, ok := i["auth-cert"]; ok {
+		result["auth_cert"] = flattenObjectFspVlanInterfaceAuthCert(i["auth-cert"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "auth_portal_addr"
+	if _, ok := i["auth-portal-addr"]; ok {
+		result["auth_portal_addr"] = flattenObjectFspVlanInterfaceAuthPortalAddr(i["auth-portal-addr"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "auth_type"
@@ -6273,6 +6458,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["devindex"] = flattenObjectFspVlanInterfaceDevindex(i["devindex"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "dhcp_classless_route_addition"
+	if _, ok := i["dhcp-classless-route-addition"]; ok {
+		result["dhcp_classless_route_addition"] = flattenObjectFspVlanInterfaceDhcpClasslessRouteAddition(i["dhcp-classless-route-addition"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "dhcp_client_identifier"
 	if _, ok := i["dhcp-client-identifier"]; ok {
 		result["dhcp_client_identifier"] = flattenObjectFspVlanInterfaceDhcpClientIdentifier(i["dhcp-client-identifier"], d, pre_append)
@@ -6296,6 +6486,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "dhcp_relay_ip"
 	if _, ok := i["dhcp-relay-ip"]; ok {
 		result["dhcp_relay_ip"] = flattenObjectFspVlanInterfaceDhcpRelayIp(i["dhcp-relay-ip"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dhcp_relay_link_selection"
+	if _, ok := i["dhcp-relay-link-selection"]; ok {
+		result["dhcp_relay_link_selection"] = flattenObjectFspVlanInterfaceDhcpRelayLinkSelection(i["dhcp-relay-link-selection"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "dhcp_relay_request_all_server"
@@ -6341,6 +6536,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "dns_server_override"
 	if _, ok := i["dns-server-override"]; ok {
 		result["dns_server_override"] = flattenObjectFspVlanInterfaceDnsServerOverride(i["dns-server-override"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dns_server_protocol"
+	if _, ok := i["dns-server-protocol"]; ok {
+		result["dns_server_protocol"] = flattenObjectFspVlanInterfaceDnsServerProtocol(i["dns-server-protocol"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "drop_fragment"
@@ -6606,6 +6806,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "l2tp_client"
 	if _, ok := i["l2tp-client"]; ok {
 		result["l2tp_client"] = flattenObjectFspVlanInterfaceL2TpClient(i["l2tp-client"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "lacp_ha_secondary"
+	if _, ok := i["lacp-ha-secondary"]; ok {
+		result["lacp_ha_secondary"] = flattenObjectFspVlanInterfaceLacpHaSecondary(i["lacp-ha-secondary"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "lacp_ha_slave"
@@ -6878,6 +7083,61 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["proxy_captive_portal"] = flattenObjectFspVlanInterfaceProxyCaptivePortal(i["proxy-captive-portal"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "pvc_atm_qos"
+	if _, ok := i["pvc-atm-qos"]; ok {
+		result["pvc_atm_qos"] = flattenObjectFspVlanInterfacePvcAtmQos(i["pvc-atm-qos"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_chan"
+	if _, ok := i["pvc-chan"]; ok {
+		result["pvc_chan"] = flattenObjectFspVlanInterfacePvcChan(i["pvc-chan"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_crc"
+	if _, ok := i["pvc-crc"]; ok {
+		result["pvc_crc"] = flattenObjectFspVlanInterfacePvcCrc(i["pvc-crc"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_pcr"
+	if _, ok := i["pvc-pcr"]; ok {
+		result["pvc_pcr"] = flattenObjectFspVlanInterfacePvcPcr(i["pvc-pcr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_scr"
+	if _, ok := i["pvc-scr"]; ok {
+		result["pvc_scr"] = flattenObjectFspVlanInterfacePvcScr(i["pvc-scr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_vlan_id"
+	if _, ok := i["pvc-vlan-id"]; ok {
+		result["pvc_vlan_id"] = flattenObjectFspVlanInterfacePvcVlanId(i["pvc-vlan-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_vlan_rx_id"
+	if _, ok := i["pvc-vlan-rx-id"]; ok {
+		result["pvc_vlan_rx_id"] = flattenObjectFspVlanInterfacePvcVlanRxId(i["pvc-vlan-rx-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_vlan_rx_op"
+	if _, ok := i["pvc-vlan-rx-op"]; ok {
+		result["pvc_vlan_rx_op"] = flattenObjectFspVlanInterfacePvcVlanRxOp(i["pvc-vlan-rx-op"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_vlan_tx_id"
+	if _, ok := i["pvc-vlan-tx-id"]; ok {
+		result["pvc_vlan_tx_id"] = flattenObjectFspVlanInterfacePvcVlanTxId(i["pvc-vlan-tx-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "pvc_vlan_tx_op"
+	if _, ok := i["pvc-vlan-tx-op"]; ok {
+		result["pvc_vlan_tx_op"] = flattenObjectFspVlanInterfacePvcVlanTxOp(i["pvc-vlan-tx-op"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "reachable_time"
+	if _, ok := i["reachable-time"]; ok {
+		result["reachable_time"] = flattenObjectFspVlanInterfaceReachableTime(i["reachable-time"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "redundant_interface"
 	if _, ok := i["redundant-interface"]; ok {
 		result["redundant_interface"] = flattenObjectFspVlanInterfaceRedundantInterface(i["redundant-interface"], d, pre_append)
@@ -6988,6 +7248,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["security_redirect_url"] = flattenObjectFspVlanInterfaceSecurityRedirectUrl(i["security-redirect-url"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "select_profile_30a_35b"
+	if _, ok := i["select-profile-30a-35b"]; ok {
+		result["select_profile_30a_35b"] = flattenObjectFspVlanInterfaceSelectProfile30A35B(i["select-profile-30a-35b"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "service_name"
 	if _, ok := i["service-name"]; ok {
 		result["service_name"] = flattenObjectFspVlanInterfaceServiceName(i["service-name"], d, pre_append)
@@ -6996,6 +7261,26 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "sflow_sampler"
 	if _, ok := i["sflow-sampler"]; ok {
 		result["sflow_sampler"] = flattenObjectFspVlanInterfaceSflowSampler(i["sflow-sampler"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sfp_dsl"
+	if _, ok := i["sfp-dsl"]; ok {
+		result["sfp_dsl"] = flattenObjectFspVlanInterfaceSfpDsl(i["sfp-dsl"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sfp_dsl_adsl_fallback"
+	if _, ok := i["sfp-dsl-adsl-fallback"]; ok {
+		result["sfp_dsl_adsl_fallback"] = flattenObjectFspVlanInterfaceSfpDslAdslFallback(i["sfp-dsl-adsl-fallback"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sfp_dsl_autodetect"
+	if _, ok := i["sfp-dsl-autodetect"]; ok {
+		result["sfp_dsl_autodetect"] = flattenObjectFspVlanInterfaceSfpDslAutodetect(i["sfp-dsl-autodetect"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sfp_dsl_mac"
+	if _, ok := i["sfp-dsl-mac"]; ok {
+		result["sfp_dsl_mac"] = flattenObjectFspVlanInterfaceSfpDslMac(i["sfp-dsl-mac"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "speed"
@@ -7056,6 +7341,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "substitute_dst_mac"
 	if _, ok := i["substitute-dst-mac"]; ok {
 		result["substitute_dst_mac"] = flattenObjectFspVlanInterfaceSubstituteDstMac(i["substitute-dst-mac"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sw_algorithm"
+	if _, ok := i["sw-algorithm"]; ok {
+		result["sw_algorithm"] = flattenObjectFspVlanInterfaceSwAlgorithm(i["sw-algorithm"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "swc_first_create"
@@ -7166,6 +7456,16 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "switch_controller_traffic_policy"
 	if _, ok := i["switch-controller-traffic-policy"]; ok {
 		result["switch_controller_traffic_policy"] = flattenObjectFspVlanInterfaceSwitchControllerTrafficPolicy(i["switch-controller-traffic-policy"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "system_id"
+	if _, ok := i["system-id"]; ok {
+		result["system_id"] = flattenObjectFspVlanInterfaceSystemId(i["system-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "system_id_type"
+	if _, ok := i["system-id-type"]; ok {
+		result["system_id_type"] = flattenObjectFspVlanInterfaceSystemIdType(i["system-id-type"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "tc_mode"
@@ -7382,6 +7682,10 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	return lastresult
 }
 
+func flattenObjectFspVlanInterfaceVlanOpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceAcName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -7411,6 +7715,14 @@ func flattenObjectFspVlanInterfaceArpforward(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanInterfaceAtmProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceAuthCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceAuthPortalAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7558,6 +7870,10 @@ func flattenObjectFspVlanInterfaceDevindex(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectFspVlanInterfaceDhcpClasslessRouteAddition(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceDhcpClientIdentifier(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -7576,6 +7892,10 @@ func flattenObjectFspVlanInterfaceDhcpRelayInterfaceSelectMethod(v interface{}, 
 
 func flattenObjectFspVlanInterfaceDhcpRelayIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFspVlanInterfaceDhcpRelayLinkSelection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayRequestAllServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -7612,6 +7932,10 @@ func flattenObjectFspVlanInterfaceDnsQuery(v interface{}, d *schema.ResourceData
 
 func flattenObjectFspVlanInterfaceDnsServerOverride(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanInterfaceDnsServerProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceDropFragment(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -7903,6 +8227,11 @@ func flattenObjectFspVlanInterfaceIpv6(v interface{}, d *schema.ResourceData, pr
 		result["ip6_default_life"] = flattenObjectFspVlanInterfaceIpv6Ip6DefaultLife(i["ip6-default-life"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "ip6_delegated_prefix_iaid"
+	if _, ok := i["ip6-delegated-prefix-iaid"]; ok {
+		result["ip6_delegated_prefix_iaid"] = flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixIaid(i["ip6-delegated-prefix-iaid"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
 	if _, ok := i["ip6-delegated-prefix-list"]; ok {
 		result["ip6_delegated_prefix_list"] = flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(i["ip6-delegated-prefix-list"], d, pre_append)
@@ -8111,6 +8440,10 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DefaultLife(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixIaid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -8134,6 +8467,12 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(v interface{}, d *s
 		if _, ok := i["autonomous-flag"]; ok {
 			v := flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(i["autonomous-flag"], d, pre_append)
 			tmp["autonomous_flag"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6DelegatedPrefixList-AutonomousFlag")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "delegated_prefix_iaid"
+		if _, ok := i["delegated-prefix-iaid"]; ok {
+			v := flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(i["delegated-prefix-iaid"], d, pre_append)
+			tmp["delegated_prefix_iaid"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6DelegatedPrefixList-DelegatedPrefixIaid")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
@@ -8181,6 +8520,10 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(v interface{}, d *s
 }
 
 func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -8573,6 +8916,10 @@ func flattenObjectFspVlanInterfaceL2TpClient(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectFspVlanInterfaceLacpHaSecondary(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceLacpHaSlave(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -8789,6 +9136,50 @@ func flattenObjectFspVlanInterfaceProxyCaptivePortal(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectFspVlanInterfacePvcAtmQos(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcChan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcCrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcPcr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcScr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcVlanId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcVlanRxId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcVlanRxOp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcVlanTxId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfacePvcVlanTxOp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceReachableTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceRedundantInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -8990,11 +9381,31 @@ func flattenObjectFspVlanInterfaceSecurityRedirectUrl(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFspVlanInterfaceSelectProfile30A35B(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectFspVlanInterfaceSflowSampler(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSfpDsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSfpDslAdslFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSfpDslAutodetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSfpDslMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -9043,6 +9454,10 @@ func flattenObjectFspVlanInterfaceSubst(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFspVlanInterfaceSubstituteDstMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSwAlgorithm(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -9131,6 +9546,14 @@ func flattenObjectFspVlanInterfaceSwitchControllerSourceIp(v interface{}, d *sch
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerTrafficPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSystemId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSystemIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -11349,6 +11772,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok {
 		result["ip6-default-life"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DefaultLife(d, i["ip6_default_life"], pre_append)
 	}
+	pre_append = pre + ".0." + "ip6_delegated_prefix_iaid"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ip6-delegated-prefix-iaid"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixIaid(d, i["ip6_delegated_prefix_iaid"], pre_append)
+	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["ip6-delegated-prefix-list"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
@@ -11537,6 +11964,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DefaultLife(d *schema.Reso
 	return v, nil
 }
 
+func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixIaid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -11554,6 +11985,11 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *sch
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "autonomous_flag"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["autonomous-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(d, i["autonomous_flag"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "delegated_prefix_iaid"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["delegated-prefix-iaid"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(d, i["delegated_prefix_iaid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
@@ -11597,6 +12033,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *sch
 }
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -12077,6 +12517,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "vlan_op_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["vlan-op-mode"], _ = expandObjectFspVlanInterfaceVlanOpMode(d, i["vlan_op_mode"], pre_append)
+	}
 	pre_append = pre + ".0." + "ac_name"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["ac-name"], _ = expandObjectFspVlanInterfaceAcName(d, i["ac_name"], pre_append)
@@ -12110,6 +12554,14 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "atm_protocol"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["atm-protocol"], _ = expandObjectFspVlanInterfaceAtmProtocol(d, i["atm_protocol"], pre_append)
+	}
+	pre_append = pre + ".0." + "auth_cert"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["auth-cert"], _ = expandObjectFspVlanInterfaceAuthCert(d, i["auth_cert"], pre_append)
+	}
+	pre_append = pre + ".0." + "auth_portal_addr"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["auth-portal-addr"], _ = expandObjectFspVlanInterfaceAuthPortalAddr(d, i["auth_portal_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_type"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -12259,6 +12711,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok {
 		result["devindex"], _ = expandObjectFspVlanInterfaceDevindex(d, i["devindex"], pre_append)
 	}
+	pre_append = pre + ".0." + "dhcp_classless_route_addition"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["dhcp-classless-route-addition"], _ = expandObjectFspVlanInterfaceDhcpClasslessRouteAddition(d, i["dhcp_classless_route_addition"], pre_append)
+	}
 	pre_append = pre + ".0." + "dhcp_client_identifier"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["dhcp-client-identifier"], _ = expandObjectFspVlanInterfaceDhcpClientIdentifier(d, i["dhcp_client_identifier"], pre_append)
@@ -12280,6 +12736,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 		result["dhcp-relay-ip"], _ = expandObjectFspVlanInterfaceDhcpRelayIp(d, i["dhcp_relay_ip"], pre_append)
 	} else {
 		result["dhcp-relay-ip"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "dhcp_relay_link_selection"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["dhcp-relay-link-selection"], _ = expandObjectFspVlanInterfaceDhcpRelayLinkSelection(d, i["dhcp_relay_link_selection"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_request_all_server"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -12316,6 +12776,12 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "dns_server_override"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["dns-server-override"], _ = expandObjectFspVlanInterfaceDnsServerOverride(d, i["dns_server_override"], pre_append)
+	}
+	pre_append = pre + ".0." + "dns_server_protocol"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["dns-server-protocol"], _ = expandObjectFspVlanInterfaceDnsServerProtocol(d, i["dns_server_protocol"], pre_append)
+	} else {
+		result["dns-server-protocol"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "drop_fragment"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -12537,6 +13003,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok {
 		result["l2tp-client"], _ = expandObjectFspVlanInterfaceL2TpClient(d, i["l2tp_client"], pre_append)
 	}
+	pre_append = pre + ".0." + "lacp_ha_secondary"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["lacp-ha-secondary"], _ = expandObjectFspVlanInterfaceLacpHaSecondary(d, i["lacp_ha_secondary"], pre_append)
+	}
 	pre_append = pre + ".0." + "lacp_ha_slave"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["lacp-ha-slave"], _ = expandObjectFspVlanInterfaceLacpHaSlave(d, i["lacp_ha_slave"], pre_append)
@@ -12757,6 +13227,50 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok {
 		result["proxy-captive-portal"], _ = expandObjectFspVlanInterfaceProxyCaptivePortal(d, i["proxy_captive_portal"], pre_append)
 	}
+	pre_append = pre + ".0." + "pvc_atm_qos"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-atm-qos"], _ = expandObjectFspVlanInterfacePvcAtmQos(d, i["pvc_atm_qos"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_chan"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-chan"], _ = expandObjectFspVlanInterfacePvcChan(d, i["pvc_chan"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_crc"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-crc"], _ = expandObjectFspVlanInterfacePvcCrc(d, i["pvc_crc"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_pcr"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-pcr"], _ = expandObjectFspVlanInterfacePvcPcr(d, i["pvc_pcr"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_scr"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-scr"], _ = expandObjectFspVlanInterfacePvcScr(d, i["pvc_scr"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_vlan_id"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-vlan-id"], _ = expandObjectFspVlanInterfacePvcVlanId(d, i["pvc_vlan_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_vlan_rx_id"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-vlan-rx-id"], _ = expandObjectFspVlanInterfacePvcVlanRxId(d, i["pvc_vlan_rx_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_vlan_rx_op"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-vlan-rx-op"], _ = expandObjectFspVlanInterfacePvcVlanRxOp(d, i["pvc_vlan_rx_op"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_vlan_tx_id"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-vlan-tx-id"], _ = expandObjectFspVlanInterfacePvcVlanTxId(d, i["pvc_vlan_tx_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "pvc_vlan_tx_op"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["pvc-vlan-tx-op"], _ = expandObjectFspVlanInterfacePvcVlanTxOp(d, i["pvc_vlan_tx_op"], pre_append)
+	}
+	pre_append = pre + ".0." + "reachable_time"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["reachable-time"], _ = expandObjectFspVlanInterfaceReachableTime(d, i["reachable_time"], pre_append)
+	}
 	pre_append = pre + ".0." + "redundant_interface"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["redundant-interface"], _ = expandObjectFspVlanInterfaceRedundantInterface(d, i["redundant_interface"], pre_append)
@@ -12847,6 +13361,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok {
 		result["security-redirect-url"], _ = expandObjectFspVlanInterfaceSecurityRedirectUrl(d, i["security_redirect_url"], pre_append)
 	}
+	pre_append = pre + ".0." + "select_profile_30a_35b"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["select-profile-30a-35b"], _ = expandObjectFspVlanInterfaceSelectProfile30A35B(d, i["select_profile_30a_35b"], pre_append)
+	}
 	pre_append = pre + ".0." + "service_name"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["service-name"], _ = expandObjectFspVlanInterfaceServiceName(d, i["service_name"], pre_append)
@@ -12854,6 +13372,22 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "sflow_sampler"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["sflow-sampler"], _ = expandObjectFspVlanInterfaceSflowSampler(d, i["sflow_sampler"], pre_append)
+	}
+	pre_append = pre + ".0." + "sfp_dsl"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["sfp-dsl"], _ = expandObjectFspVlanInterfaceSfpDsl(d, i["sfp_dsl"], pre_append)
+	}
+	pre_append = pre + ".0." + "sfp_dsl_adsl_fallback"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["sfp-dsl-adsl-fallback"], _ = expandObjectFspVlanInterfaceSfpDslAdslFallback(d, i["sfp_dsl_adsl_fallback"], pre_append)
+	}
+	pre_append = pre + ".0." + "sfp_dsl_autodetect"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["sfp-dsl-autodetect"], _ = expandObjectFspVlanInterfaceSfpDslAutodetect(d, i["sfp_dsl_autodetect"], pre_append)
+	}
+	pre_append = pre + ".0." + "sfp_dsl_mac"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["sfp-dsl-mac"], _ = expandObjectFspVlanInterfaceSfpDslMac(d, i["sfp_dsl_mac"], pre_append)
 	}
 	pre_append = pre + ".0." + "speed"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -12902,6 +13436,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "substitute_dst_mac"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["substitute-dst-mac"], _ = expandObjectFspVlanInterfaceSubstituteDstMac(d, i["substitute_dst_mac"], pre_append)
+	}
+	pre_append = pre + ".0." + "sw_algorithm"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["sw-algorithm"], _ = expandObjectFspVlanInterfaceSwAlgorithm(d, i["sw_algorithm"], pre_append)
 	}
 	pre_append = pre + ".0." + "swc_first_create"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -12990,6 +13528,14 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "switch_controller_traffic_policy"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["switch-controller-traffic-policy"], _ = expandObjectFspVlanInterfaceSwitchControllerTrafficPolicy(d, i["switch_controller_traffic_policy"], pre_append)
+	}
+	pre_append = pre + ".0." + "system_id"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["system-id"], _ = expandObjectFspVlanInterfaceSystemId(d, i["system_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "system_id_type"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["system-id-type"], _ = expandObjectFspVlanInterfaceSystemIdType(d, i["system_id_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "tc_mode"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -13169,6 +13715,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	return result, nil
 }
 
+func expandObjectFspVlanInterfaceVlanOpMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceAcName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -13198,6 +13748,14 @@ func expandObjectFspVlanInterfaceArpforward(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFspVlanInterfaceAtmProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceAuthCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceAuthPortalAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -13345,6 +13903,10 @@ func expandObjectFspVlanInterfaceDevindex(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceDhcpClasslessRouteAddition(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceDhcpClientIdentifier(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -13363,6 +13925,10 @@ func expandObjectFspVlanInterfaceDhcpRelayInterfaceSelectMethod(d *schema.Resour
 
 func expandObjectFspVlanInterfaceDhcpRelayIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFspVlanInterfaceDhcpRelayLinkSelection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFspVlanInterfaceDhcpRelayRequestAllServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -13399,6 +13965,10 @@ func expandObjectFspVlanInterfaceDnsQuery(d *schema.ResourceData, v interface{},
 
 func expandObjectFspVlanInterfaceDnsServerOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanInterfaceDnsServerProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanInterfaceDropFragment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -13679,6 +14249,10 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["ip6-default-life"], _ = expandObjectFspVlanInterfaceIpv6Ip6DefaultLife(d, i["ip6_default_life"], pre_append)
 	}
+	pre_append = pre + ".0." + "ip6_delegated_prefix_iaid"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ip6-delegated-prefix-iaid"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixIaid(d, i["ip6_delegated_prefix_iaid"], pre_append)
+	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["ip6-delegated-prefix-list"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
@@ -13867,6 +14441,10 @@ func expandObjectFspVlanInterfaceIpv6Ip6DefaultLife(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixIaid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -13884,6 +14462,11 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceDa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "autonomous_flag"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["autonomous-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(d, i["autonomous_flag"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "delegated_prefix_iaid"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["delegated-prefix-iaid"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(d, i["delegated_prefix_iaid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
@@ -13927,6 +14510,10 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceDa
 }
 
 func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14290,6 +14877,10 @@ func expandObjectFspVlanInterfaceL2TpClient(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceLacpHaSecondary(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceLacpHaSlave(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -14506,6 +15097,50 @@ func expandObjectFspVlanInterfaceProxyCaptivePortal(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectFspVlanInterfacePvcAtmQos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcChan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcCrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcPcr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcScr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcVlanId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcVlanRxId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcVlanRxOp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcVlanTxId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfacePvcVlanTxOp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceReachableTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceRedundantInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -14697,11 +15332,31 @@ func expandObjectFspVlanInterfaceSecurityRedirectUrl(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceSelectProfile30A35B(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectFspVlanInterfaceSflowSampler(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSfpDsl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSfpDslAdslFallback(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSfpDslAutodetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSfpDslMac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14750,6 +15405,10 @@ func expandObjectFspVlanInterfaceSubst(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFspVlanInterfaceSubstituteDstMac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSwAlgorithm(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14838,6 +15497,14 @@ func expandObjectFspVlanInterfaceSwitchControllerSourceIp(d *schema.ResourceData
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerTrafficPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSystemId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSystemIdType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

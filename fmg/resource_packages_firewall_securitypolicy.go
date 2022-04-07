@@ -50,6 +50,11 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -261,6 +266,16 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
@@ -283,6 +298,11 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"schedule": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sctp_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -509,6 +529,10 @@ func resourcePackagesFirewallSecurityPolicyRead(d *schema.ResourceData, m interf
 	return nil
 }
 
+func flattenPackagesFirewallSecurityPolicyPolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallSecurityPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -677,6 +701,14 @@ func flattenPackagesFirewallSecurityPolicyName(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesFirewallSecurityPolicyNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallSecurityPolicyNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallSecurityPolicyPolicyid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -694,6 +726,10 @@ func flattenPackagesFirewallSecurityPolicyProfileType(v interface{}, d *schema.R
 }
 
 func flattenPackagesFirewallSecurityPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallSecurityPolicySctpFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -774,6 +810,16 @@ func refreshObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData, o map[s
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("_policy_block", flattenPackagesFirewallSecurityPolicyPolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesFirewallSecurityPolicy-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
 	}
 
 	if err = d.Set("action", flattenPackagesFirewallSecurityPolicyAction(o["action"], d, "action")); err != nil {
@@ -1196,6 +1242,26 @@ func refreshObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("nat46", flattenPackagesFirewallSecurityPolicyNat46(o["nat46"], d, "nat46")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat46"], "PackagesFirewallSecurityPolicy-Nat46"); ok {
+			if err = d.Set("nat46", vv); err != nil {
+				return fmt.Errorf("Error reading nat46: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
+	if err = d.Set("nat64", flattenPackagesFirewallSecurityPolicyNat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "PackagesFirewallSecurityPolicy-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
+		}
+	}
+
 	if err = d.Set("policyid", flattenPackagesFirewallSecurityPolicyPolicyid(o["policyid"], d, "policyid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["policyid"], "PackagesFirewallSecurityPolicy-Policyid"); ok {
 			if err = d.Set("policyid", vv); err != nil {
@@ -1243,6 +1309,16 @@ func refreshObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading schedule: %v", err)
+		}
+	}
+
+	if err = d.Set("sctp_filter_profile", flattenPackagesFirewallSecurityPolicySctpFilterProfile(o["sctp-filter-profile"], d, "sctp_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sctp-filter-profile"], "PackagesFirewallSecurityPolicy-SctpFilterProfile"); ok {
+			if err = d.Set("sctp_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
 		}
 	}
 
@@ -1435,6 +1511,10 @@ func flattenPackagesFirewallSecurityPolicyFortiTestDebug(d *schema.ResourceData,
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesFirewallSecurityPolicyPolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallSecurityPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1603,6 +1683,14 @@ func expandPackagesFirewallSecurityPolicyName(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesFirewallSecurityPolicyNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallSecurityPolicyNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallSecurityPolicyPolicyid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1620,6 +1708,10 @@ func expandPackagesFirewallSecurityPolicyProfileType(d *schema.ResourceData, v i
 }
 
 func expandPackagesFirewallSecurityPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallSecurityPolicySctpFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1697,6 +1789,15 @@ func expandPackagesFirewallSecurityPolicyWebfilterProfile(d *schema.ResourceData
 
 func getObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_policy_block"); ok {
+		t, err := expandPackagesFirewallSecurityPolicyPolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok {
 		t, err := expandPackagesFirewallSecurityPolicyAction(d, v, "action")
@@ -2076,6 +2177,24 @@ func getObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData) (*map[strin
 		}
 	}
 
+	if v, ok := d.GetOk("nat46"); ok {
+		t, err := expandPackagesFirewallSecurityPolicyNat46(d, v, "nat46")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat46"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandPackagesFirewallSecurityPolicyNat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("policyid"); ok {
 		t, err := expandPackagesFirewallSecurityPolicyPolicyid(d, v, "policyid")
 		if err != nil {
@@ -2118,6 +2237,15 @@ func getObjectPackagesFirewallSecurityPolicy(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["schedule"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+		t, err := expandPackagesFirewallSecurityPolicySctpFilterProfile(d, v, "sctp_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sctp-filter-profile"] = t
 		}
 	}
 

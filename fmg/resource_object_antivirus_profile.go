@@ -118,6 +118,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortiai": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -277,6 +282,16 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fortiai_error_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fortiai_timeout_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ftgd_analytics": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -311,6 +326,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -352,6 +372,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"av_optimize": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -368,6 +393,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -434,6 +464,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortiai": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -452,6 +487,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						},
 					},
 				},
+			},
+			"inspection_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"mapi": &schema.Schema{
 				Type:     schema.TypeList,
@@ -487,6 +527,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -578,6 +623,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortiai": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -664,6 +714,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortiai": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -692,6 +747,43 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"smb": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"archive_block": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"archive_log": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"emulator": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"options": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"outbreak_prevention": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"smtp": &schema.Schema{
 				Type:     schema.TypeList,
@@ -732,6 +824,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -784,6 +881,11 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -983,6 +1085,11 @@ func flattenObjectAntivirusProfileCifs(v interface{}, d *schema.ResourceData, pr
 		result["external_blocklist"] = flattenObjectAntivirusProfileCifsExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileCifsFortiai(i["fortiai"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileCifsOptions(i["options"], d, pre_append)
@@ -1019,6 +1126,10 @@ func flattenObjectAntivirusProfileCifsEmulator(v interface{}, d *schema.Resource
 }
 
 func flattenObjectAntivirusProfileCifsExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileCifsFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1246,6 +1357,14 @@ func flattenObjectAntivirusProfileFeatureSet(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectAntivirusProfileFortiaiErrorAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortiaiTimeoutAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileFtgdAnalytics(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1282,6 +1401,11 @@ func flattenObjectAntivirusProfileFtp(v interface{}, d *schema.ResourceData, pre
 	pre_append = pre + ".0." + "external_blocklist"
 	if _, ok := i["external-blocklist"]; ok {
 		result["external_blocklist"] = flattenObjectAntivirusProfileFtpExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileFtpFortiai(i["fortiai"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1323,6 +1447,10 @@ func flattenObjectAntivirusProfileFtpExternalBlocklist(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectAntivirusProfileFtpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileFtpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1354,6 +1482,11 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 		result["archive_log"] = flattenObjectAntivirusProfileHttpArchiveLog(i["archive-log"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "av_optimize"
+	if _, ok := i["av-optimize"]; ok {
+		result["av_optimize"] = flattenObjectAntivirusProfileHttpAvOptimize(i["av-optimize"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := i["av-scan"]; ok {
 		result["av_scan"] = flattenObjectAntivirusProfileHttpAvScan(i["av-scan"], d, pre_append)
@@ -1372,6 +1505,11 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 	pre_append = pre + ".0." + "external_blocklist"
 	if _, ok := i["external-blocklist"]; ok {
 		result["external_blocklist"] = flattenObjectAntivirusProfileHttpExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileHttpFortiai(i["fortiai"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1401,6 +1539,10 @@ func flattenObjectAntivirusProfileHttpArchiveLog(v interface{}, d *schema.Resour
 	return flattenStringList(v)
 }
 
+func flattenObjectAntivirusProfileHttpAvOptimize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileHttpAvScan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1414,6 +1556,10 @@ func flattenObjectAntivirusProfileHttpEmulator(v interface{}, d *schema.Resource
 }
 
 func flattenObjectAntivirusProfileHttpExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileHttpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1473,6 +1619,11 @@ func flattenObjectAntivirusProfileImap(v interface{}, d *schema.ResourceData, pr
 		result["external_blocklist"] = flattenObjectAntivirusProfileImapExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileImapFortiai(i["fortiai"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileImapOptions(i["options"], d, pre_append)
@@ -1520,6 +1671,10 @@ func flattenObjectAntivirusProfileImapExternalBlocklist(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectAntivirusProfileImapFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileImapOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1529,6 +1684,10 @@ func flattenObjectAntivirusProfileImapOutbreakPrevention(v interface{}, d *schem
 }
 
 func flattenObjectAntivirusProfileImapQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1571,6 +1730,11 @@ func flattenObjectAntivirusProfileMapi(v interface{}, d *schema.ResourceData, pr
 		result["external_blocklist"] = flattenObjectAntivirusProfileMapiExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileMapiFortiai(i["fortiai"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileMapiOptions(i["options"], d, pre_append)
@@ -1611,6 +1775,10 @@ func flattenObjectAntivirusProfileMapiExecutables(v interface{}, d *schema.Resou
 }
 
 func flattenObjectAntivirusProfileMapiExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileMapiFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1708,6 +1876,11 @@ func flattenObjectAntivirusProfileNntp(v interface{}, d *schema.ResourceData, pr
 		result["external_blocklist"] = flattenObjectAntivirusProfileNntpExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileNntpFortiai(i["fortiai"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileNntpOptions(i["options"], d, pre_append)
@@ -1744,6 +1917,10 @@ func flattenObjectAntivirusProfileNntpEmulator(v interface{}, d *schema.Resource
 }
 
 func flattenObjectAntivirusProfileNntpExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileNntpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1838,6 +2015,11 @@ func flattenObjectAntivirusProfilePop3(v interface{}, d *schema.ResourceData, pr
 		result["external_blocklist"] = flattenObjectAntivirusProfilePop3ExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfilePop3Fortiai(i["fortiai"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfilePop3Options(i["options"], d, pre_append)
@@ -1885,6 +2067,10 @@ func flattenObjectAntivirusProfilePop3ExternalBlocklist(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectAntivirusProfilePop3Fortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfilePop3Options(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1902,6 +2088,64 @@ func flattenObjectAntivirusProfileReplacemsgGroup(v interface{}, d *schema.Resou
 }
 
 func flattenObjectAntivirusProfileScanMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSmb(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "archive_block"
+	if _, ok := i["archive-block"]; ok {
+		result["archive_block"] = flattenObjectAntivirusProfileSmbArchiveBlock(i["archive-block"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "archive_log"
+	if _, ok := i["archive-log"]; ok {
+		result["archive_log"] = flattenObjectAntivirusProfileSmbArchiveLog(i["archive-log"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "emulator"
+	if _, ok := i["emulator"]; ok {
+		result["emulator"] = flattenObjectAntivirusProfileSmbEmulator(i["emulator"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "options"
+	if _, ok := i["options"]; ok {
+		result["options"] = flattenObjectAntivirusProfileSmbOptions(i["options"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "outbreak_prevention"
+	if _, ok := i["outbreak-prevention"]; ok {
+		result["outbreak_prevention"] = flattenObjectAntivirusProfileSmbOutbreakPrevention(i["outbreak-prevention"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectAntivirusProfileSmbArchiveBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileSmbArchiveLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileSmbEmulator(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSmbOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectAntivirusProfileSmbOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1947,6 +2191,11 @@ func flattenObjectAntivirusProfileSmtp(v interface{}, d *schema.ResourceData, pr
 	pre_append = pre + ".0." + "external_blocklist"
 	if _, ok := i["external-blocklist"]; ok {
 		result["external_blocklist"] = flattenObjectAntivirusProfileSmtpExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileSmtpFortiai(i["fortiai"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "options"
@@ -1996,6 +2245,10 @@ func flattenObjectAntivirusProfileSmtpExternalBlocklist(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectAntivirusProfileSmtpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileSmtpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -2042,6 +2295,11 @@ func flattenObjectAntivirusProfileSsh(v interface{}, d *schema.ResourceData, pre
 		result["external_blocklist"] = flattenObjectAntivirusProfileSshExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := i["fortiai"]; ok {
+		result["fortiai"] = flattenObjectAntivirusProfileSshFortiai(i["fortiai"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileSshOptions(i["options"], d, pre_append)
@@ -2078,6 +2336,10 @@ func flattenObjectAntivirusProfileSshEmulator(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectAntivirusProfileSshExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSshFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2298,6 +2560,26 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("fortiai_error_action", flattenObjectAntivirusProfileFortiaiErrorAction(o["fortiai-error-action"], d, "fortiai_error_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortiai-error-action"], "ObjectAntivirusProfile-FortiaiErrorAction"); ok {
+			if err = d.Set("fortiai_error_action", vv); err != nil {
+				return fmt.Errorf("Error reading fortiai_error_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortiai_error_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fortiai_timeout_action", flattenObjectAntivirusProfileFortiaiTimeoutAction(o["fortiai-timeout-action"], d, "fortiai_timeout_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortiai-timeout-action"], "ObjectAntivirusProfile-FortiaiTimeoutAction"); ok {
+			if err = d.Set("fortiai_timeout_action", vv); err != nil {
+				return fmt.Errorf("Error reading fortiai_timeout_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortiai_timeout_action: %v", err)
+		}
+	}
+
 	if err = d.Set("ftgd_analytics", flattenObjectAntivirusProfileFtgdAnalytics(o["ftgd-analytics"], d, "ftgd_analytics")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ftgd-analytics"], "ObjectAntivirusProfile-FtgdAnalytics"); ok {
 			if err = d.Set("ftgd_analytics", vv); err != nil {
@@ -2377,6 +2659,16 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 					return fmt.Errorf("Error reading imap: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("inspection_mode", flattenObjectAntivirusProfileInspectionMode(o["inspection-mode"], d, "inspection_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["inspection-mode"], "ObjectAntivirusProfile-InspectionMode"); ok {
+			if err = d.Set("inspection_mode", vv); err != nil {
+				return fmt.Errorf("Error reading inspection_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading inspection_mode: %v", err)
 		}
 	}
 
@@ -2551,6 +2843,30 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 	}
 
 	if isImportTable() {
+		if err = d.Set("smb", flattenObjectAntivirusProfileSmb(o["smb"], d, "smb")); err != nil {
+			if vv, ok := fortiAPIPatch(o["smb"], "ObjectAntivirusProfile-Smb"); ok {
+				if err = d.Set("smb", vv); err != nil {
+					return fmt.Errorf("Error reading smb: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading smb: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("smb"); ok {
+			if err = d.Set("smb", flattenObjectAntivirusProfileSmb(o["smb"], d, "smb")); err != nil {
+				if vv, ok := fortiAPIPatch(o["smb"], "ObjectAntivirusProfile-Smb"); ok {
+					if err = d.Set("smb", vv); err != nil {
+						return fmt.Errorf("Error reading smb: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading smb: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("smtp", flattenObjectAntivirusProfileSmtp(o["smtp"], d, "smtp")); err != nil {
 			if vv, ok := fortiAPIPatch(o["smtp"], "ObjectAntivirusProfile-Smtp"); ok {
 				if err = d.Set("smtp", vv); err != nil {
@@ -2673,6 +2989,10 @@ func expandObjectAntivirusProfileCifs(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileCifsExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileCifsFortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileCifsOptions(d, i["options"], pre_append)
@@ -2708,6 +3028,10 @@ func expandObjectAntivirusProfileCifsEmulator(d *schema.ResourceData, v interfac
 }
 
 func expandObjectAntivirusProfileCifsExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileCifsFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2917,6 +3241,14 @@ func expandObjectAntivirusProfileFeatureSet(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectAntivirusProfileFortiaiErrorAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortiaiTimeoutAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileFtgdAnalytics(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2954,6 +3286,10 @@ func expandObjectAntivirusProfileFtp(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "external_blocklist"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileFtpExternalBlocklist(d, i["external_blocklist"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileFtpFortiai(d, i["fortiai"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -2993,6 +3329,10 @@ func expandObjectAntivirusProfileFtpExternalBlocklist(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectAntivirusProfileFtpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileFtpOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -3027,6 +3367,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	} else {
 		result["archive-log"] = make([]string, 0)
 	}
+	pre_append = pre + ".0." + "av_optimize"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["av-optimize"], _ = expandObjectAntivirusProfileHttpAvOptimize(d, i["av_optimize"], pre_append)
+	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["av-scan"], _ = expandObjectAntivirusProfileHttpAvScan(d, i["av_scan"], pre_append)
@@ -3042,6 +3386,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "external_blocklist"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileHttpExternalBlocklist(d, i["external_blocklist"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileHttpFortiai(d, i["fortiai"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
@@ -3069,6 +3417,10 @@ func expandObjectAntivirusProfileHttpArchiveLog(d *schema.ResourceData, v interf
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectAntivirusProfileHttpAvOptimize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileHttpAvScan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3082,6 +3434,10 @@ func expandObjectAntivirusProfileHttpEmulator(d *schema.ResourceData, v interfac
 }
 
 func expandObjectAntivirusProfileHttpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileHttpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3139,6 +3495,10 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileImapExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileImapFortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileImapOptions(d, i["options"], pre_append)
@@ -3185,6 +3545,10 @@ func expandObjectAntivirusProfileImapExternalBlocklist(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectAntivirusProfileImapFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileImapOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -3194,6 +3558,10 @@ func expandObjectAntivirusProfileImapOutbreakPrevention(d *schema.ResourceData, 
 }
 
 func expandObjectAntivirusProfileImapQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3235,6 +3603,10 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileMapiExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileMapiFortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileMapiOptions(d, i["options"], pre_append)
@@ -3274,6 +3646,10 @@ func expandObjectAntivirusProfileMapiExecutables(d *schema.ResourceData, v inter
 }
 
 func expandObjectAntivirusProfileMapiExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileMapiFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3369,6 +3745,10 @@ func expandObjectAntivirusProfileNntp(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileNntpExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileNntpFortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileNntpOptions(d, i["options"], pre_append)
@@ -3404,6 +3784,10 @@ func expandObjectAntivirusProfileNntpEmulator(d *schema.ResourceData, v interfac
 }
 
 func expandObjectAntivirusProfileNntpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileNntpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3495,6 +3879,10 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfilePop3ExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfilePop3Fortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfilePop3Options(d, i["options"], pre_append)
@@ -3541,6 +3929,10 @@ func expandObjectAntivirusProfilePop3ExternalBlocklist(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectAntivirusProfilePop3Fortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfilePop3Options(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -3558,6 +3950,66 @@ func expandObjectAntivirusProfileReplacemsgGroup(d *schema.ResourceData, v inter
 }
 
 func expandObjectAntivirusProfileScanMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSmb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "archive_block"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["archive-block"], _ = expandObjectAntivirusProfileSmbArchiveBlock(d, i["archive_block"], pre_append)
+	} else {
+		result["archive-block"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "archive_log"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["archive-log"], _ = expandObjectAntivirusProfileSmbArchiveLog(d, i["archive_log"], pre_append)
+	} else {
+		result["archive-log"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "emulator"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["emulator"], _ = expandObjectAntivirusProfileSmbEmulator(d, i["emulator"], pre_append)
+	}
+	pre_append = pre + ".0." + "options"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["options"], _ = expandObjectAntivirusProfileSmbOptions(d, i["options"], pre_append)
+	} else {
+		result["options"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "outbreak_prevention"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["outbreak-prevention"], _ = expandObjectAntivirusProfileSmbOutbreakPrevention(d, i["outbreak_prevention"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectAntivirusProfileSmbArchiveBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAntivirusProfileSmbArchiveLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAntivirusProfileSmbEmulator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSmbOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectAntivirusProfileSmbOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3603,6 +4055,10 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileSmtpExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileSmtpFortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileSmtpOptions(d, i["options"], pre_append)
@@ -3646,6 +4102,10 @@ func expandObjectAntivirusProfileSmtpExecutables(d *schema.ResourceData, v inter
 }
 
 func expandObjectAntivirusProfileSmtpExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSmtpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3695,6 +4155,10 @@ func expandObjectAntivirusProfileSsh(d *schema.ResourceData, v interface{}, pre 
 	if _, ok := d.GetOk(pre_append); ok {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileSshExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortiai"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fortiai"], _ = expandObjectAntivirusProfileSshFortiai(d, i["fortiai"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok {
 		result["options"], _ = expandObjectAntivirusProfileSshOptions(d, i["options"], pre_append)
@@ -3730,6 +4194,10 @@ func expandObjectAntivirusProfileSshEmulator(d *schema.ResourceData, v interface
 }
 
 func expandObjectAntivirusProfileSshExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSshFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3901,6 +4369,24 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("fortiai_error_action"); ok {
+		t, err := expandObjectAntivirusProfileFortiaiErrorAction(d, v, "fortiai_error_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortiai-error-action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortiai_timeout_action"); ok {
+		t, err := expandObjectAntivirusProfileFortiaiTimeoutAction(d, v, "fortiai_timeout_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortiai-timeout-action"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ftgd_analytics"); ok {
 		t, err := expandObjectAntivirusProfileFtgdAnalytics(d, v, "ftgd_analytics")
 		if err != nil {
@@ -3934,6 +4420,15 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["imap"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("inspection_mode"); ok {
+		t, err := expandObjectAntivirusProfileInspectionMode(d, v, "inspection_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["inspection-mode"] = t
 		}
 	}
 
@@ -4024,6 +4519,15 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["scan-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("smb"); ok {
+		t, err := expandObjectAntivirusProfileSmb(d, v, "smb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["smb"] = t
 		}
 	}
 

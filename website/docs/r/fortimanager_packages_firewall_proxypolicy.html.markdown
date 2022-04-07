@@ -50,10 +50,13 @@ The following arguments are supported:
 * `pkg` - Package.
 
 * `access_proxy` - Access Proxy.
+* `access_proxy6` - IPv6 access proxy.
 * `action` - Accept or deny traffic matching the policy parameters. Valid values: `accept`, `deny`, `redirect`.
 
 * `application_list` - Name of an existing Application list.
 * `av_profile` - Name of an existing Antivirus profile.
+* `block_notification` - Enable/disable block notification. Valid values: `disable`, `enable`.
+
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Optional comments.
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
@@ -101,11 +104,15 @@ The following arguments are supported:
 
 * `redirect_url` - Redirect URL for further explicit web proxy processing.
 * `replacemsg_override_group` - Authentication replacement message override group.
+* `scan_botnet_connections` - Enable/disable scanning of connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
+
 * `schedule` - Name of schedule object.
+* `sctp_filter_profile` - Name of an existing SCTP filter profile.
 * `service` - Name of service objects.
 * `service_negate` - When enabled, services match against any service EXCEPT the specified destination services. Valid values: `disable`, `enable`.
 
 * `session_ttl` - TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
+* `spamfilter_profile` - Name of an existing Spam filter profile.
 * `srcaddr` - Source address objects.
 * `srcaddr_negate` - When enabled, source addresses match against any address EXCEPT the specified source addresses. Valid values: `disable`, `enable`.
 
@@ -134,6 +141,8 @@ The following arguments are supported:
 * `webproxy_forward_server` - Web proxy forward server name.
 * `webproxy_profile` - Name of web proxy profile.
 * `ztna_ems_tag` - ZTNA EMS Tag names.
+* `ztna_tags_match_logic` - ZTNA tag matching logic. Valid values: `or`, `and`.
+
 
 
 ## Attribute Reference

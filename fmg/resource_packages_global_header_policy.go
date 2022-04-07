@@ -34,6 +34,12 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"access_proxy": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -310,6 +316,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dynamic_bypass": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -381,6 +392,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fec": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"file_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -392,6 +408,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"fixedport": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"force_proxy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -466,6 +487,17 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			},
 			"http_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"http_tunnel_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ia_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -584,12 +616,23 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"isolator_server": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"label": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"learning_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"log_http_transaction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -624,6 +667,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"max_session_per_user": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -635,6 +683,16 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"nat": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -681,6 +739,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"pass_through": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"passive_wan_health_measurement": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -697,6 +760,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"permit_stun_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"pfcp_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -772,6 +840,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"reverse_cache": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"rsso": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -802,6 +875,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sctp_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"send_deny_packet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -824,6 +902,17 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"sessions": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sgt": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
+			"sgt_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -937,6 +1026,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tcp_timeout_pid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"timeout_send_rst": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -972,6 +1066,21 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"transparent": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"udp_timeout_pid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"url_category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -995,6 +1104,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid_idx": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -1116,6 +1230,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"ztna_status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ztna_tags_match_logic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1243,6 +1362,10 @@ func resourcePackagesGlobalHeaderPolicyRead(d *schema.ResourceData, m interface{
 		return fmt.Errorf("Error reading PackagesGlobalHeaderPolicy resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenPackagesGlobalHeaderPolicyAccessProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalHeaderPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1461,6 +1584,10 @@ func flattenPackagesGlobalHeaderPolicyDstintf(v interface{}, d *schema.ResourceD
 	return flattenStringList(v)
 }
 
+func flattenPackagesGlobalHeaderPolicyDynamicBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyDynamicProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1517,6 +1644,10 @@ func flattenPackagesGlobalHeaderPolicyFallThroughUnauthenticated(v interface{}, 
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyFec(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyFileFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1526,6 +1657,10 @@ func flattenPackagesGlobalHeaderPolicyFirewallSessionDirty(v interface{}, d *sch
 }
 
 func flattenPackagesGlobalHeaderPolicyFixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyForceProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1583,6 +1718,14 @@ func flattenPackagesGlobalHeaderPolicyGtpProfile(v interface{}, d *schema.Resour
 
 func flattenPackagesGlobalHeaderPolicyHttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyHttpTunnelAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyIaProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalHeaderPolicyIcapProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1677,11 +1820,19 @@ func flattenPackagesGlobalHeaderPolicyIpsSensor(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyIsolatorServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesGlobalHeaderPolicyLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenPackagesGlobalHeaderPolicyLearningMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyLogHttpTransaction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1709,6 +1860,10 @@ func flattenPackagesGlobalHeaderPolicyMatchVipOnly(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyMaxSessionPerUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyMmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1718,6 +1873,14 @@ func flattenPackagesGlobalHeaderPolicyName(v interface{}, d *schema.ResourceData
 }
 
 func flattenPackagesGlobalHeaderPolicyNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1753,6 +1916,10 @@ func flattenPackagesGlobalHeaderPolicyOutbound(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyPassThrough(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyPassiveWanHealthMeasurement(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1766,6 +1933,10 @@ func flattenPackagesGlobalHeaderPolicyPermitAnyHost(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalHeaderPolicyPermitStunHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyPfcpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1825,6 +1996,10 @@ func flattenPackagesGlobalHeaderPolicyRequireTfa(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyReverseCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyRsso(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1849,6 +2024,10 @@ func flattenPackagesGlobalHeaderPolicyScheduleTimeout(v interface{}, d *schema.R
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicySctpFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicySendDenyPacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1866,6 +2045,14 @@ func flattenPackagesGlobalHeaderPolicySessionTtl(v interface{}, d *schema.Resour
 }
 
 func flattenPackagesGlobalHeaderPolicySessions(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicySgt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenPackagesGlobalHeaderPolicySgtCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1953,6 +2140,10 @@ func flattenPackagesGlobalHeaderPolicyTcpSessionWithoutSyn(v interface{}, d *sch
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyTcpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyTimeoutSendRst(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1981,6 +2172,18 @@ func flattenPackagesGlobalHeaderPolicyTransactionBased(v interface{}, d *schema.
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyTransparent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyUdpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1998,6 +2201,10 @@ func flattenPackagesGlobalHeaderPolicyUtmStatus(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesGlobalHeaderPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyUuidIdx(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2097,8 +2304,22 @@ func flattenPackagesGlobalHeaderPolicyZtnaStatus(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyZtnaTagsMatchLogic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("access_proxy", flattenPackagesGlobalHeaderPolicyAccessProxy(o["access-proxy"], d, "access_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["access-proxy"], "PackagesGlobalHeaderPolicy-AccessProxy"); ok {
+			if err = d.Set("access_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading access_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading access_proxy: %v", err)
+		}
+	}
 
 	if err = d.Set("action", flattenPackagesGlobalHeaderPolicyAction(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesGlobalHeaderPolicy-Action"); ok {
@@ -2640,6 +2861,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("dynamic_bypass", flattenPackagesGlobalHeaderPolicyDynamicBypass(o["dynamic-bypass"], d, "dynamic_bypass")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dynamic-bypass"], "PackagesGlobalHeaderPolicy-DynamicBypass"); ok {
+			if err = d.Set("dynamic_bypass", vv); err != nil {
+				return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dynamic_bypass: %v", err)
+		}
+	}
+
 	if err = d.Set("dynamic_profile", flattenPackagesGlobalHeaderPolicyDynamicProfile(o["dynamic-profile"], d, "dynamic_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dynamic-profile"], "PackagesGlobalHeaderPolicy-DynamicProfile"); ok {
 			if err = d.Set("dynamic_profile", vv); err != nil {
@@ -2780,6 +3011,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("fec", flattenPackagesGlobalHeaderPolicyFec(o["fec"], d, "fec")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fec"], "PackagesGlobalHeaderPolicy-Fec"); ok {
+			if err = d.Set("fec", vv); err != nil {
+				return fmt.Errorf("Error reading fec: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fec: %v", err)
+		}
+	}
+
 	if err = d.Set("file_filter_profile", flattenPackagesGlobalHeaderPolicyFileFilterProfile(o["file-filter-profile"], d, "file_filter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["file-filter-profile"], "PackagesGlobalHeaderPolicy-FileFilterProfile"); ok {
 			if err = d.Set("file_filter_profile", vv); err != nil {
@@ -2807,6 +3048,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading fixedport: %v", err)
+		}
+	}
+
+	if err = d.Set("force_proxy", flattenPackagesGlobalHeaderPolicyForceProxy(o["force-proxy"], d, "force_proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["force-proxy"], "PackagesGlobalHeaderPolicy-ForceProxy"); ok {
+			if err = d.Set("force_proxy", vv); err != nil {
+				return fmt.Errorf("Error reading force_proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading force_proxy: %v", err)
 		}
 	}
 
@@ -2947,6 +3198,26 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading http_policy_redirect: %v", err)
+		}
+	}
+
+	if err = d.Set("http_tunnel_auth", flattenPackagesGlobalHeaderPolicyHttpTunnelAuth(o["http-tunnel-auth"], d, "http_tunnel_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-tunnel-auth"], "PackagesGlobalHeaderPolicy-HttpTunnelAuth"); ok {
+			if err = d.Set("http_tunnel_auth", vv); err != nil {
+				return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_tunnel_auth: %v", err)
+		}
+	}
+
+	if err = d.Set("ia_profile", flattenPackagesGlobalHeaderPolicyIaProfile(o["ia-profile"], d, "ia_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ia-profile"], "PackagesGlobalHeaderPolicy-IaProfile"); ok {
+			if err = d.Set("ia_profile", vv); err != nil {
+				return fmt.Errorf("Error reading ia_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ia_profile: %v", err)
 		}
 	}
 
@@ -3180,6 +3451,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("isolator_server", flattenPackagesGlobalHeaderPolicyIsolatorServer(o["isolator-server"], d, "isolator_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isolator-server"], "PackagesGlobalHeaderPolicy-IsolatorServer"); ok {
+			if err = d.Set("isolator_server", vv); err != nil {
+				return fmt.Errorf("Error reading isolator_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isolator_server: %v", err)
+		}
+	}
+
 	if err = d.Set("label", flattenPackagesGlobalHeaderPolicyLabel(o["label"], d, "label")); err != nil {
 		if vv, ok := fortiAPIPatch(o["label"], "PackagesGlobalHeaderPolicy-Label"); ok {
 			if err = d.Set("label", vv); err != nil {
@@ -3197,6 +3478,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading learning_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("log_http_transaction", flattenPackagesGlobalHeaderPolicyLogHttpTransaction(o["log-http-transaction"], d, "log_http_transaction")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-http-transaction"], "PackagesGlobalHeaderPolicy-LogHttpTransaction"); ok {
+			if err = d.Set("log_http_transaction", vv); err != nil {
+				return fmt.Errorf("Error reading log_http_transaction: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_http_transaction: %v", err)
 		}
 	}
 
@@ -3260,6 +3551,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("max_session_per_user", flattenPackagesGlobalHeaderPolicyMaxSessionPerUser(o["max-session-per-user"], d, "max_session_per_user")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-session-per-user"], "PackagesGlobalHeaderPolicy-MaxSessionPerUser"); ok {
+			if err = d.Set("max_session_per_user", vv); err != nil {
+				return fmt.Errorf("Error reading max_session_per_user: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_session_per_user: %v", err)
+		}
+	}
+
 	if err = d.Set("mms_profile", flattenPackagesGlobalHeaderPolicyMmsProfile(o["mms-profile"], d, "mms_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mms-profile"], "PackagesGlobalHeaderPolicy-MmsProfile"); ok {
 			if err = d.Set("mms_profile", vv); err != nil {
@@ -3287,6 +3588,26 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading nat: %v", err)
+		}
+	}
+
+	if err = d.Set("nat46", flattenPackagesGlobalHeaderPolicyNat46(o["nat46"], d, "nat46")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat46"], "PackagesGlobalHeaderPolicy-Nat46"); ok {
+			if err = d.Set("nat46", vv); err != nil {
+				return fmt.Errorf("Error reading nat46: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
+	if err = d.Set("nat64", flattenPackagesGlobalHeaderPolicyNat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "PackagesGlobalHeaderPolicy-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
 		}
 	}
 
@@ -3370,6 +3691,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("pass_through", flattenPackagesGlobalHeaderPolicyPassThrough(o["pass-through"], d, "pass_through")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pass-through"], "PackagesGlobalHeaderPolicy-PassThrough"); ok {
+			if err = d.Set("pass_through", vv); err != nil {
+				return fmt.Errorf("Error reading pass_through: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pass_through: %v", err)
+		}
+	}
+
 	if err = d.Set("passive_wan_health_measurement", flattenPackagesGlobalHeaderPolicyPassiveWanHealthMeasurement(o["passive-wan-health-measurement"], d, "passive_wan_health_measurement")); err != nil {
 		if vv, ok := fortiAPIPatch(o["passive-wan-health-measurement"], "PackagesGlobalHeaderPolicy-PassiveWanHealthMeasurement"); ok {
 			if err = d.Set("passive_wan_health_measurement", vv); err != nil {
@@ -3407,6 +3738,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading permit_stun_host: %v", err)
+		}
+	}
+
+	if err = d.Set("pfcp_profile", flattenPackagesGlobalHeaderPolicyPfcpProfile(o["pfcp-profile"], d, "pfcp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pfcp-profile"], "PackagesGlobalHeaderPolicy-PfcpProfile"); ok {
+			if err = d.Set("pfcp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading pfcp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pfcp_profile: %v", err)
 		}
 	}
 
@@ -3550,6 +3891,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("reverse_cache", flattenPackagesGlobalHeaderPolicyReverseCache(o["reverse-cache"], d, "reverse_cache")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reverse-cache"], "PackagesGlobalHeaderPolicy-ReverseCache"); ok {
+			if err = d.Set("reverse_cache", vv); err != nil {
+				return fmt.Errorf("Error reading reverse_cache: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reverse_cache: %v", err)
+		}
+	}
+
 	if err = d.Set("rsso", flattenPackagesGlobalHeaderPolicyRsso(o["rsso"], d, "rsso")); err != nil {
 		if vv, ok := fortiAPIPatch(o["rsso"], "PackagesGlobalHeaderPolicy-Rsso"); ok {
 			if err = d.Set("rsso", vv); err != nil {
@@ -3610,6 +3961,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("sctp_filter_profile", flattenPackagesGlobalHeaderPolicySctpFilterProfile(o["sctp-filter-profile"], d, "sctp_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sctp-filter-profile"], "PackagesGlobalHeaderPolicy-SctpFilterProfile"); ok {
+			if err = d.Set("sctp_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("send_deny_packet", flattenPackagesGlobalHeaderPolicySendDenyPacket(o["send-deny-packet"], d, "send_deny_packet")); err != nil {
 		if vv, ok := fortiAPIPatch(o["send-deny-packet"], "PackagesGlobalHeaderPolicy-SendDenyPacket"); ok {
 			if err = d.Set("send_deny_packet", vv); err != nil {
@@ -3657,6 +4018,26 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading sessions: %v", err)
+		}
+	}
+
+	if err = d.Set("sgt", flattenPackagesGlobalHeaderPolicySgt(o["sgt"], d, "sgt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sgt"], "PackagesGlobalHeaderPolicy-Sgt"); ok {
+			if err = d.Set("sgt", vv); err != nil {
+				return fmt.Errorf("Error reading sgt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sgt: %v", err)
+		}
+	}
+
+	if err = d.Set("sgt_check", flattenPackagesGlobalHeaderPolicySgtCheck(o["sgt-check"], d, "sgt_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sgt-check"], "PackagesGlobalHeaderPolicy-SgtCheck"); ok {
+			if err = d.Set("sgt_check", vv); err != nil {
+				return fmt.Errorf("Error reading sgt_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sgt_check: %v", err)
 		}
 	}
 
@@ -3870,6 +4251,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("tcp_timeout_pid", flattenPackagesGlobalHeaderPolicyTcpTimeoutPid(o["tcp-timeout-pid"], d, "tcp_timeout_pid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tcp-timeout-pid"], "PackagesGlobalHeaderPolicy-TcpTimeoutPid"); ok {
+			if err = d.Set("tcp_timeout_pid", vv); err != nil {
+				return fmt.Errorf("Error reading tcp_timeout_pid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tcp_timeout_pid: %v", err)
+		}
+	}
+
 	if err = d.Set("timeout_send_rst", flattenPackagesGlobalHeaderPolicyTimeoutSendRst(o["timeout-send-rst"], d, "timeout_send_rst")); err != nil {
 		if vv, ok := fortiAPIPatch(o["timeout-send-rst"], "PackagesGlobalHeaderPolicy-TimeoutSendRst"); ok {
 			if err = d.Set("timeout_send_rst", vv); err != nil {
@@ -3940,6 +4331,36 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("transparent", flattenPackagesGlobalHeaderPolicyTransparent(o["transparent"], d, "transparent")); err != nil {
+		if vv, ok := fortiAPIPatch(o["transparent"], "PackagesGlobalHeaderPolicy-Transparent"); ok {
+			if err = d.Set("transparent", vv); err != nil {
+				return fmt.Errorf("Error reading transparent: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading transparent: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenPackagesGlobalHeaderPolicyType(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "PackagesGlobalHeaderPolicy-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("udp_timeout_pid", flattenPackagesGlobalHeaderPolicyUdpTimeoutPid(o["udp-timeout-pid"], d, "udp_timeout_pid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["udp-timeout-pid"], "PackagesGlobalHeaderPolicy-UdpTimeoutPid"); ok {
+			if err = d.Set("udp_timeout_pid", vv); err != nil {
+				return fmt.Errorf("Error reading udp_timeout_pid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading udp_timeout_pid: %v", err)
+		}
+	}
+
 	if err = d.Set("url_category", flattenPackagesGlobalHeaderPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesGlobalHeaderPolicy-UrlCategory"); ok {
 			if err = d.Set("url_category", vv); err != nil {
@@ -3987,6 +4408,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading uuid: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid_idx", flattenPackagesGlobalHeaderPolicyUuidIdx(o["uuid-idx"], d, "uuid_idx")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid-idx"], "PackagesGlobalHeaderPolicy-UuidIdx"); ok {
+			if err = d.Set("uuid_idx", vv); err != nil {
+				return fmt.Errorf("Error reading uuid_idx: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid_idx: %v", err)
 		}
 	}
 
@@ -4230,6 +4661,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("ztna_tags_match_logic", flattenPackagesGlobalHeaderPolicyZtnaTagsMatchLogic(o["ztna-tags-match-logic"], d, "ztna_tags_match_logic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ztna-tags-match-logic"], "PackagesGlobalHeaderPolicy-ZtnaTagsMatchLogic"); ok {
+			if err = d.Set("ztna_tags_match_logic", vv); err != nil {
+				return fmt.Errorf("Error reading ztna_tags_match_logic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ztna_tags_match_logic: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -4237,6 +4678,10 @@ func flattenPackagesGlobalHeaderPolicyFortiTestDebug(d *schema.ResourceData, fos
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandPackagesGlobalHeaderPolicyAccessProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesGlobalHeaderPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4455,6 +4900,10 @@ func expandPackagesGlobalHeaderPolicyDstintf(d *schema.ResourceData, v interface
 	return expandStringList(v.([]interface{})), nil
 }
 
+func expandPackagesGlobalHeaderPolicyDynamicBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyDynamicProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4511,6 +4960,10 @@ func expandPackagesGlobalHeaderPolicyFallThroughUnauthenticated(d *schema.Resour
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyFec(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyFileFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4520,6 +4973,10 @@ func expandPackagesGlobalHeaderPolicyFirewallSessionDirty(d *schema.ResourceData
 }
 
 func expandPackagesGlobalHeaderPolicyFixedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyForceProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4577,6 +5034,14 @@ func expandPackagesGlobalHeaderPolicyGtpProfile(d *schema.ResourceData, v interf
 
 func expandPackagesGlobalHeaderPolicyHttpPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyHttpTunnelAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyIaProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesGlobalHeaderPolicyIcapProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4671,11 +5136,19 @@ func expandPackagesGlobalHeaderPolicyIpsSensor(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyIsolatorServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalHeaderPolicyLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandPackagesGlobalHeaderPolicyLearningMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyLogHttpTransaction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4703,6 +5176,10 @@ func expandPackagesGlobalHeaderPolicyMatchVipOnly(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyMaxSessionPerUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyMmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4712,6 +5189,14 @@ func expandPackagesGlobalHeaderPolicyName(d *schema.ResourceData, v interface{},
 }
 
 func expandPackagesGlobalHeaderPolicyNat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4747,6 +5232,10 @@ func expandPackagesGlobalHeaderPolicyOutbound(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyPassThrough(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyPassiveWanHealthMeasurement(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4760,6 +5249,10 @@ func expandPackagesGlobalHeaderPolicyPermitAnyHost(d *schema.ResourceData, v int
 }
 
 func expandPackagesGlobalHeaderPolicyPermitStunHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyPfcpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4819,6 +5312,10 @@ func expandPackagesGlobalHeaderPolicyRequireTfa(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyReverseCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyRsso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4843,6 +5340,10 @@ func expandPackagesGlobalHeaderPolicyScheduleTimeout(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicySctpFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicySendDenyPacket(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4860,6 +5361,14 @@ func expandPackagesGlobalHeaderPolicySessionTtl(d *schema.ResourceData, v interf
 }
 
 func expandPackagesGlobalHeaderPolicySessions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicySgt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalHeaderPolicySgtCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4947,6 +5456,10 @@ func expandPackagesGlobalHeaderPolicyTcpSessionWithoutSyn(d *schema.ResourceData
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyTcpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyTimeoutSendRst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4975,6 +5488,18 @@ func expandPackagesGlobalHeaderPolicyTransactionBased(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyTransparent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyUdpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4992,6 +5517,10 @@ func expandPackagesGlobalHeaderPolicyUtmStatus(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesGlobalHeaderPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyUuidIdx(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5091,8 +5620,21 @@ func expandPackagesGlobalHeaderPolicyZtnaStatus(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyZtnaTagsMatchLogic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("access_proxy"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyAccessProxy(d, v, "access_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["access-proxy"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyAction(d, v, "action")
@@ -5580,6 +6122,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("dynamic_bypass"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyDynamicBypass(d, v, "dynamic_bypass")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic-bypass"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dynamic_profile"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyDynamicProfile(d, v, "dynamic_profile")
 		if err != nil {
@@ -5706,6 +6257,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("fec"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyFec(d, v, "fec")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fec"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("file_filter_profile"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyFileFilterProfile(d, v, "file_filter_profile")
 		if err != nil {
@@ -5730,6 +6290,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["fixedport"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("force_proxy"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyForceProxy(d, v, "force_proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["force-proxy"] = t
 		}
 	}
 
@@ -5856,6 +6425,24 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["http-policy-redirect"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_tunnel_auth"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyHttpTunnelAuth(d, v, "http_tunnel_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-tunnel-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ia_profile"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyIaProfile(d, v, "ia_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ia-profile"] = t
 		}
 	}
 
@@ -6066,6 +6653,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("isolator_server"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyIsolatorServer(d, v, "isolator_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isolator-server"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("label"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyLabel(d, v, "label")
 		if err != nil {
@@ -6081,6 +6677,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["learning-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_http_transaction"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyLogHttpTransaction(d, v, "log_http_transaction")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-http-transaction"] = t
 		}
 	}
 
@@ -6138,6 +6743,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("max_session_per_user"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyMaxSessionPerUser(d, v, "max_session_per_user")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-session-per-user"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("mms_profile"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyMmsProfile(d, v, "mms_profile")
 		if err != nil {
@@ -6162,6 +6776,24 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["nat"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat46"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyNat46(d, v, "nat46")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat46"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyNat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
 		}
 	}
 
@@ -6237,6 +6869,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("pass_through"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyPassThrough(d, v, "pass_through")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pass-through"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("passive_wan_health_measurement"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyPassiveWanHealthMeasurement(d, v, "passive_wan_health_measurement")
 		if err != nil {
@@ -6270,6 +6911,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["permit-stun-host"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pfcp_profile"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyPfcpProfile(d, v, "pfcp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pfcp-profile"] = t
 		}
 	}
 
@@ -6399,6 +7049,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("reverse_cache"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyReverseCache(d, v, "reverse_cache")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reverse-cache"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("rsso"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyRsso(d, v, "rsso")
 		if err != nil {
@@ -6453,6 +7112,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+		t, err := expandPackagesGlobalHeaderPolicySctpFilterProfile(d, v, "sctp_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sctp-filter-profile"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("send_deny_packet"); ok {
 		t, err := expandPackagesGlobalHeaderPolicySendDenyPacket(d, v, "send_deny_packet")
 		if err != nil {
@@ -6495,6 +7163,24 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["sessions"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sgt"); ok {
+		t, err := expandPackagesGlobalHeaderPolicySgt(d, v, "sgt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sgt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sgt_check"); ok {
+		t, err := expandPackagesGlobalHeaderPolicySgtCheck(d, v, "sgt_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sgt-check"] = t
 		}
 	}
 
@@ -6687,6 +7373,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("tcp_timeout_pid"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyTcpTimeoutPid(d, v, "tcp_timeout_pid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tcp-timeout-pid"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("timeout_send_rst"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyTimeoutSendRst(d, v, "timeout_send_rst")
 		if err != nil {
@@ -6750,6 +7445,33 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("transparent"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyTransparent(d, v, "transparent")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["transparent"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyType(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("udp_timeout_pid"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyUdpTimeoutPid(d, v, "udp_timeout_pid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["udp-timeout-pid"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("url_category"); ok {
 		t, err := expandPackagesGlobalHeaderPolicyUrlCategory(d, v, "url_category")
 		if err != nil {
@@ -6792,6 +7514,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid_idx"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyUuidIdx(d, v, "uuid_idx")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid-idx"] = t
 		}
 	}
 
@@ -7008,6 +7739,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ztna-status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ztna_tags_match_logic"); ok {
+		t, err := expandPackagesGlobalHeaderPolicyZtnaTagsMatchLogic(d, v, "ztna_tags_match_logic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ztna-tags-match-logic"] = t
 		}
 	}
 

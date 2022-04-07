@@ -56,6 +56,75 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"file_filter": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"entries": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"action": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"comment": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"direction": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"file_type": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+									"filter": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"password_protected": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"protocol": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
+						"log": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"scan_archive_contents": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"log": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -234,6 +303,148 @@ func flattenObjectSshFilterProfileDefaultCommandLog(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectSshFilterProfileFileFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "entries"
+	if _, ok := i["entries"]; ok {
+		result["entries"] = flattenObjectSshFilterProfileFileFilterEntries(i["entries"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "log"
+	if _, ok := i["log"]; ok {
+		result["log"] = flattenObjectSshFilterProfileFileFilterLog(i["log"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "scan_archive_contents"
+	if _, ok := i["scan-archive-contents"]; ok {
+		result["scan_archive_contents"] = flattenObjectSshFilterProfileFileFilterScanArchiveContents(i["scan-archive-contents"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status"
+	if _, ok := i["status"]; ok {
+		result["status"] = flattenObjectSshFilterProfileFileFilterStatus(i["status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectSshFilterProfileFileFilterEntries(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := i["action"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesAction(i["action"], d, pre_append)
+			tmp["action"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-Action")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
+		if _, ok := i["comment"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesComment(i["comment"], d, pre_append)
+			tmp["comment"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-Comment")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
+		if _, ok := i["direction"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesDirection(i["direction"], d, pre_append)
+			tmp["direction"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-Direction")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
+		if _, ok := i["file-type"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesFileType(i["file-type"], d, pre_append)
+			tmp["file_type"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-FileType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
+		if _, ok := i["filter"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesFilter(i["filter"], d, pre_append)
+			tmp["filter"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-Filter")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
+		if _, ok := i["password-protected"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesPasswordProtected(i["password-protected"], d, pre_append)
+			tmp["password_protected"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-PasswordProtected")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := i["protocol"]; ok {
+			v := flattenObjectSshFilterProfileFileFilterEntriesProtocol(i["protocol"], d, pre_append)
+			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-Protocol")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesDirection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesFileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesPasswordProtected(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterEntriesProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectSshFilterProfileFileFilterLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterScanArchiveContents(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSshFilterProfileFileFilterStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSshFilterProfileLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -370,6 +581,30 @@ func refreshObjectObjectSshFilterProfile(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("file_filter", flattenObjectSshFilterProfileFileFilter(o["file-filter"], d, "file_filter")); err != nil {
+			if vv, ok := fortiAPIPatch(o["file-filter"], "ObjectSshFilterProfile-FileFilter"); ok {
+				if err = d.Set("file_filter", vv); err != nil {
+					return fmt.Errorf("Error reading file_filter: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading file_filter: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("file_filter"); ok {
+			if err = d.Set("file_filter", flattenObjectSshFilterProfileFileFilter(o["file-filter"], d, "file_filter")); err != nil {
+				if vv, ok := fortiAPIPatch(o["file-filter"], "ObjectSshFilterProfile-FileFilter"); ok {
+					if err = d.Set("file_filter", vv); err != nil {
+						return fmt.Errorf("Error reading file_filter: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading file_filter: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("log", flattenObjectSshFilterProfileLog(o["log"], d, "log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log"], "ObjectSshFilterProfile-Log"); ok {
 			if err = d.Set("log", vv); err != nil {
@@ -428,6 +663,139 @@ func expandObjectSshFilterProfileBlock(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectSshFilterProfileDefaultCommandLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "entries"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["entries"], _ = expandObjectSshFilterProfileFileFilterEntries(d, i["entries"], pre_append)
+	} else {
+		result["entries"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "log"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["log"], _ = expandObjectSshFilterProfileFileFilterLog(d, i["log"], pre_append)
+	}
+	pre_append = pre + ".0." + "scan_archive_contents"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["scan-archive-contents"], _ = expandObjectSshFilterProfileFileFilterScanArchiveContents(d, i["scan_archive_contents"], pre_append)
+	}
+	pre_append = pre + ".0." + "status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status"], _ = expandObjectSshFilterProfileFileFilterStatus(d, i["status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["action"], _ = expandObjectSshFilterProfileFileFilterEntriesAction(d, i["action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["comment"], _ = expandObjectSshFilterProfileFileFilterEntriesComment(d, i["comment"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["direction"], _ = expandObjectSshFilterProfileFileFilterEntriesDirection(d, i["direction"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["file-type"], _ = expandObjectSshFilterProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
+		} else {
+			tmp["file-type"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["filter"], _ = expandObjectSshFilterProfileFileFilterEntriesFilter(d, i["filter"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["password-protected"], _ = expandObjectSshFilterProfileFileFilterEntriesPasswordProtected(d, i["password_protected"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["protocol"], _ = expandObjectSshFilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
+		} else {
+			tmp["protocol"] = make([]string, 0)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesDirection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesFileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesPasswordProtected(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterEntriesProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSshFilterProfileFileFilterLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterScanArchiveContents(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSshFilterProfileFileFilterStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -542,6 +910,15 @@ func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["default-command-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("file_filter"); ok {
+		t, err := expandObjectSshFilterProfileFileFilter(d, v, "file_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["file-filter"] = t
 		}
 	}
 

@@ -29,12 +29,31 @@ The following arguments are supported:
 * `name` - Name.
 * `objver` - Obj Ver.
 * `oid` - Oid.
+* `packagesettings` - Package Settings. The structure of `packagesettings` block is documented below.
 * `packagesetting` - Package Setting. The structure of `packagesetting` block is documented below.
 * `scopemember` - Scope Member. The structure of `scopemember` block is documented below.
 * `subobj` - Subobj. The structure of `subobj` block is documented below.
 * `type` - Type. Valid values: `pkg`, `folder`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `packagesettings` block supports:
+
+* `central_nat` - Central-Nat. Valid values: `disable`, `enable`.
+
+* `consolidated_firewall_mode` - Consolidated-Firewall-Mode. Valid values: `disable`, `enable`.
+
+* `fwpolicy_implicit_log` - Fwpolicy-Implicit-Log. Valid values: `disable`, `enable`.
+
+* `fwpolicy6_implicit_log` - Fwpolicy6-Implicit-Log. Valid values: `disable`, `enable`.
+
+* `inspection_mode` - Inspection-Mode. Valid values: `proxy`, `flow`.
+
+* `ngfw_mode` - Ngfw-Mode. Valid values: `profile-based`, `policy-based`.
+
+* `policy_offload_level` - Policy-Offload-Level. Valid values: `disable`, `default`, `dos-offload`, `full-offload`.
+
+* `ssl_ssh_profile` - Ssl-Ssh-Profile.
 
 The `packagesetting` block supports:
 

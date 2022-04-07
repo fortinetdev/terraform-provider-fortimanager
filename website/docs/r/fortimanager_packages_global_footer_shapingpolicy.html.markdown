@@ -37,6 +37,7 @@ The following arguments are supported:
 * `app_group` - One or more application group names.
 * `application` - IDs of one or more applications that this shaper applies application control traffic shaping to.
 * `class_id` - Traffic class ID.
+* `class_id_reverse` - Class-Id-Reverse.
 * `comment` - Comments.
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
@@ -69,6 +70,8 @@ The following arguments are supported:
 * `per_ip_shaper` - Per-IP traffic shaper to apply with this policy.
 * `schedule` - Schedule name.
 * `service` - Service and service group names.
+* `service_type` - Service-Type. Valid values: `service`, `internet-service`.
+
 * `srcaddr` - IPv4 source address and address group names.
 * `srcaddr6` - IPv6 source address and address group names.
 * `srcintf` - One or more incoming (ingress) interfaces.

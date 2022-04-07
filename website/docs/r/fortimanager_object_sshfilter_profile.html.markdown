@@ -32,11 +32,36 @@ The following arguments are supported:
 
 * `default_command_log` - Enable/disable logging unmatched shell commands. Valid values: `disable`, `enable`.
 
+* `file_filter` - File-Filter. The structure of `file_filter` block is documented below.
 * `log` - SSH logging options. Valid values: `x11`, `shell`, `exec`, `port-forward`, `tun-forward`, `sftp`, `unknown`, `scp`.
 
 * `name` - SSH filter profile name.
 * `shell_commands` - Shell-Commands. The structure of `shell_commands` block is documented below.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `file_filter` block supports:
+
+* `entries` - Entries. The structure of `entries` block is documented below.
+* `log` - Enable/disable file filter logging. Valid values: `disable`, `enable`.
+
+* `scan_archive_contents` - Enable/disable file filter archive contents scan. Valid values: `disable`, `enable`.
+
+* `status` - Enable/disable file filter. Valid values: `disable`, `enable`.
+
+
+The `entries` block supports:
+
+* `action` - Action taken for matched file. Valid values: `log`, `block`.
+
+* `comment` - Comment.
+* `direction` - Match files transmitted in the session's originating or reply direction. Valid values: `any`, `incoming`, `outgoing`.
+
+* `file_type` - Select file type.
+* `filter` - Add a file filter.
+* `password_protected` - Match password-protected files. Valid values: `any`, `yes`.
+
+* `protocol` - Protocols to apply with. Valid values: `ssh`.
+
 
 The `shell_commands` block supports:
 

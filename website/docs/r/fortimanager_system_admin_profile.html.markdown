@@ -98,8 +98,22 @@ The following arguments are supported:
 
 * `intf_mapping` - Interface Mapping none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `ips_baseline_cfg` - Ips baseline sensor configration. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
+* `ips_baseline_ovrd` - Enable/disable override baseline ips sensor. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `ips_filter` - IPS filter. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `ipv6_trusthost1` - Admin user trusted host IPv6, default ::/0 for all.
+* `ipv6_trusthost10` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost2` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost3` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost4` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost5` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost6` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost7` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost8` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
+* `ipv6_trusthost9` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.
 * `log_viewer` - Log viewer. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `policy_objects` - Policy objects permission. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
@@ -110,6 +124,8 @@ The following arguments are supported:
 * `realtime_monitor` - Realtime monitor. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `report_viewer` - Report viewer. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
+* `rpc_permit` - Set none/read/read-write rpc-permission read-write - Read-write permission. none - No permission. read - Read-only permission. Valid values: `read-write`, `none`, `read`.
 
 * `run_report` - Run reports. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
@@ -127,6 +143,16 @@ The following arguments are supported:
 
 * `triage_events` - Triage events. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `trusthost1` - Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
+* `trusthost10` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost2` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost3` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost4` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost5` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost6` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost7` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost8` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
+* `trusthost9` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
 * `type` - profile type. system - System admin. restricted - Restricted admin. Valid values: `system`, `restricted`.
 
 * `update_incidents` - Create/update incidents. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.

@@ -60,6 +60,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `add_nat46_route` - Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
@@ -89,6 +91,8 @@ The following arguments are supported:
 * `https_cookie_secure` - Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 
 * `fosid` - Custom defined ID.
+* `ipv6_mappedip` - Start-mapped-IPv6-address [-end mapped-IPv6-address].
+* `ipv6_mappedport` - IPv6 port number range on the destination network to which the external port number range is mapped.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 
 * `mapped_addr` - Mapped FQDN address name.
@@ -98,6 +102,10 @@ The following arguments are supported:
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
 * `name` - Virtual IP name.
 * `nat_source_vip` - Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
+
+* `nat44` - Enable/disable NAT44. Valid values: `disable`, `enable`.
+
+* `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
@@ -115,6 +123,8 @@ The following arguments are supported:
 * `service` - Service name.
 * `src_filter` - Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces.
 * `srcintf_filter` - Interfaces to which the VIP applies. Separate the names with spaces.
+* `ssl_accept_ffdhe_groups` - Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `disable`, `enable`.
+
 * `ssl_algorithm` - Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 
 * `ssl_certificate` - The name of the SSL certificate to use for SSL acceleration.
@@ -182,6 +192,8 @@ The following arguments are supported:
 The `dynamic_mapping` block supports:
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `add_nat46_route` - Enable/disable adding NAT46 route. Valid values: `disable`, `enable`.
+
 * `arp_reply` - Enable to respond to ARP requests for this virtual IP address. Enabled by default. Valid values: `disable`, `enable`.
 
 * `color` - Color of icon on the GUI.
@@ -210,6 +222,8 @@ The `dynamic_mapping` block supports:
 * `https_cookie_secure` - Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 
 * `id` - Custom defined ID.
+* `ipv6_mappedip` - Start-mapped-IPv6-address [-end mapped-IPv6-address].
+* `ipv6_mappedport` - IPv6 port number range on the destination network to which the external port number range is mapped.
 * `ldb_method` - Method used to distribute sessions to real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`, `http-host`.
 
 * `mapped_addr` - Mapped FQDN address name.
@@ -218,6 +232,10 @@ The `dynamic_mapping` block supports:
 * `max_embryonic_connections` - Maximum number of incomplete connections.
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
 * `nat_source_vip` - Enable/disable forcing the source NAT mapped IP to the external IP for all traffic. Valid values: `disable`, `enable`.
+
+* `nat44` - Enable/disable NAT44. Valid values: `disable`, `enable`.
+
+* `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
@@ -235,6 +253,8 @@ The `dynamic_mapping` block supports:
 * `service` - Service name.
 * `src_filter` - Source address filter. Each address must be either an IP/subnet (x.x.x.x/n) or a range (x.x.x.x-y.y.y.y). Separate addresses with spaces.
 * `srcintf_filter` - Interfaces to which the VIP applies. Separate the names with spaces.
+* `ssl_accept_ffdhe_groups` - Enable/disable FFDHE cipher suite for SSL key exchange. Valid values: `disable`, `enable`.
+
 * `ssl_algorithm` - Permitted encryption algorithms for SSL sessions according to encryption strength. Valid values: `high`, `medium`, `low`, `custom`.
 
 * `ssl_certificate` - The name of the SSL certificate to use for SSL acceleration.

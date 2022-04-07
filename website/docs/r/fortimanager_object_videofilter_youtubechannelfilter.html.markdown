@@ -18,8 +18,12 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Comment.
+* `default_action` - YouTube channel filter default action. Valid values: `monitor`, `block`, `allow`.
+
 * `entries` - Entries. The structure of `entries` block is documented below.
 * `fosid` - ID.
+* `log` - Eanble/disable logging. Valid values: `disable`, `enable`.
+
 * `name` - Name.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 

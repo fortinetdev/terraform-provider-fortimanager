@@ -86,6 +86,8 @@ The following arguments are supported:
 * `mc_policy_disabled_adoms` - Mc-Policy-Disabled-Adoms. The structure of `mc_policy_disabled_adoms` block is documented below.
 * `multiple_steps_upgrade_in_autolink` - Enable/disable multiple steps upgade in autolink process disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `normalized_intf_zone_only` - allow normalized interface to be zone only. disable - Disable SSL low-grade encryption. enable - Enable SSL low-grade encryption. Valid values: `disable`, `enable`.
+
 * `object_revision_db_max` - Maximum revisions for a single database (10,000-1,000,000 default 100,000).
 * `object_revision_mandatory_note` - Enable/disable mandatory note when create revision. disable - Disable object revision. enable - Enable object revision. Valid values: `disable`, `enable`.
 
@@ -116,6 +118,7 @@ The following arguments are supported:
 * `remoteauthtimeout` - Remote authentication (RADIUS/LDAP) timeout (sec).
 * `search_all_adoms` - Enable/Disable Search all ADOMs for where-used query. disable - Disable search all ADOMs for where-used queries. enable - Enable search all ADOMs for where-used queries. Valid values: `disable`, `enable`.
 
+* `ssl_cipher_suites` - Ssl-Cipher-Suites. The structure of `ssl_cipher_suites` block is documented below.
 * `ssl_low_encryption` - SSL low-grade encryption. disable - Disable SSL low-grade encryption. enable - Enable SSL low-grade encryption. Valid values: `disable`, `enable`.
 
 * `ssl_protocol` - SSL protocols. tlsv1.3 - Enable TLSv1.3. tlsv1.2 - Enable TLSv1.2. tlsv1.1 - Enable TLSv1.1. tlsv1.0 - Enable TLSv1.0. sslv3 - Enable SSLv3. Valid values: `tlsv1.3`, `tlsv1.2`, `tlsv1.1`, `tlsv1.0`, `sslv3`.
@@ -142,6 +145,13 @@ The following arguments are supported:
 The `mc_policy_disabled_adoms` block supports:
 
 * `adom_name` - Adom names.
+
+The `ssl_cipher_suites` block supports:
+
+* `cipher` - Cipher name
+* `priority` - SSL/TLS cipher suites priority.
+* `version` - SSL/TLS version the cipher suite can be used with. tls1.2-or-below - TLS 1.2 or below. tls1.3 - TLS 1.3 Valid values: `tls1.2-or-below`, `tls1.3`.
+
 
 
 ## Attribute Reference

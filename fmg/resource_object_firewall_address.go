@@ -85,6 +85,11 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dirty": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -144,6 +149,11 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Computed: true,
 						},
 						"country": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"dirty": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -224,6 +234,16 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"pattern_end": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"pattern_start": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
 						"policy_group": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -265,6 +285,16 @@ func resourceObjectFirewallAddress() *schema.Resource {
 							Computed: true,
 						},
 						"subnet_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"tag_detection_level": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"tag_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -459,6 +489,16 @@ func resourceObjectFirewallAddress() *schema.Resource {
 				Computed: true,
 			},
 			"subnet_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tag_detection_level": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"tag_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -664,6 +704,10 @@ func flattenObjectFirewallAddressCountry(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectFirewallAddressDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -735,6 +779,12 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 		if _, ok := i["country"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingCountry(i["country"], d, pre_append)
 			tmp["country"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Country")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "dirty"
+		if _, ok := i["dirty"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingDirty(i["dirty"], d, pre_append)
+			tmp["dirty"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Dirty")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
@@ -827,6 +877,18 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["organization"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-Organization")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_end"
+		if _, ok := i["pattern-end"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingPatternEnd(i["pattern-end"], d, pre_append)
+			tmp["pattern_end"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-PatternEnd")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_start"
+		if _, ok := i["pattern-start"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingPatternStart(i["pattern-start"], d, pre_append)
+			tmp["pattern_start"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-PatternStart")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "policy_group"
 		if _, ok := i["policy-group"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingPolicyGroup(i["policy-group"], d, pre_append)
@@ -879,6 +941,18 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 		if _, ok := i["subnet-name"]; ok {
 			v := flattenObjectFirewallAddressDynamicMappingSubnetName(i["subnet-name"], d, pre_append)
 			tmp["subnet_name"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-SubnetName")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tag_detection_level"
+		if _, ok := i["tag-detection-level"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingTagDetectionLevel(i["tag-detection-level"], d, pre_append)
+			tmp["tag_detection_level"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-TagDetectionLevel")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tag_type"
+		if _, ok := i["tag-type"]; ok {
+			v := flattenObjectFirewallAddressDynamicMappingTagType(i["tag-type"], d, pre_append)
+			tmp["tag_type"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-TagType")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
@@ -1016,6 +1090,10 @@ func flattenObjectFirewallAddressDynamicMappingCountry(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingDirty(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMappingEndIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1076,6 +1154,14 @@ func flattenObjectFirewallAddressDynamicMappingOrganization(v interface{}, d *sc
 	return v
 }
 
+func flattenObjectFirewallAddressDynamicMappingPatternEnd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingPatternStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressDynamicMappingPolicyGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1109,6 +1195,14 @@ func flattenObjectFirewallAddressDynamicMappingSubnet(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallAddressDynamicMappingSubnetName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingTagDetectionLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressDynamicMappingTagType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1301,6 +1395,14 @@ func flattenObjectFirewallAddressSubnetName(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectFirewallAddressTagDetectionLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddressTagType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddressTagging(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -1470,6 +1572,16 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading country: %v", err)
+		}
+	}
+
+	if err = d.Set("dirty", flattenObjectFirewallAddressDirty(o["dirty"], d, "dirty")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dirty"], "ObjectFirewallAddress-Dirty"); ok {
+			if err = d.Set("dirty", vv); err != nil {
+				return fmt.Errorf("Error reading dirty: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dirty: %v", err)
 		}
 	}
 
@@ -1771,6 +1883,26 @@ func refreshObjectObjectFirewallAddress(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("tag_detection_level", flattenObjectFirewallAddressTagDetectionLevel(o["tag-detection-level"], d, "tag_detection_level")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tag-detection-level"], "ObjectFirewallAddress-TagDetectionLevel"); ok {
+			if err = d.Set("tag_detection_level", vv); err != nil {
+				return fmt.Errorf("Error reading tag_detection_level: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tag_detection_level: %v", err)
+		}
+	}
+
+	if err = d.Set("tag_type", flattenObjectFirewallAddressTagType(o["tag-type"], d, "tag_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tag-type"], "ObjectFirewallAddress-TagType"); ok {
+			if err = d.Set("tag_type", vv); err != nil {
+				return fmt.Errorf("Error reading tag_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tag_type: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("tagging", flattenObjectFirewallAddressTagging(o["tagging"], d, "tagging")); err != nil {
 			if vv, ok := fortiAPIPatch(o["tagging"], "ObjectFirewallAddress-Tagging"); ok {
@@ -1896,6 +2028,10 @@ func expandObjectFirewallAddressCountry(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectFirewallAddressDirty(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -1955,6 +2091,11 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "country"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["country"], _ = expandObjectFirewallAddressDynamicMappingCountry(d, i["country"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "dirty"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["dirty"], _ = expandObjectFirewallAddressDynamicMappingDirty(d, i["dirty"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
@@ -2034,6 +2175,16 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["organization"], _ = expandObjectFirewallAddressDynamicMappingOrganization(d, i["organization"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_end"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["pattern-end"], _ = expandObjectFirewallAddressDynamicMappingPatternEnd(d, i["pattern_end"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_start"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["pattern-start"], _ = expandObjectFirewallAddressDynamicMappingPatternStart(d, i["pattern_start"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "policy_group"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["policy-group"], _ = expandObjectFirewallAddressDynamicMappingPolicyGroup(d, i["policy_group"], pre_append)
@@ -2077,6 +2228,16 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet_name"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["subnet-name"], _ = expandObjectFirewallAddressDynamicMappingSubnetName(d, i["subnet_name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tag_detection_level"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["tag-detection-level"], _ = expandObjectFirewallAddressDynamicMappingTagDetectionLevel(d, i["tag_detection_level"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tag_type"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["tag-type"], _ = expandObjectFirewallAddressDynamicMappingTagType(d, i["tag_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
@@ -2199,6 +2360,10 @@ func expandObjectFirewallAddressDynamicMappingCountry(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingDirty(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMappingEndIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2259,6 +2424,14 @@ func expandObjectFirewallAddressDynamicMappingOrganization(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandObjectFirewallAddressDynamicMappingPatternEnd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingPatternStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressDynamicMappingPolicyGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2292,6 +2465,14 @@ func expandObjectFirewallAddressDynamicMappingSubnet(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallAddressDynamicMappingSubnetName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingTagDetectionLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressDynamicMappingTagType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2476,6 +2657,14 @@ func expandObjectFirewallAddressSubnetName(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectFirewallAddressTagDetectionLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddressTagType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddressTagging(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -2623,6 +2812,15 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["country"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dirty"); ok {
+		t, err := expandObjectFirewallAddressDirty(d, v, "dirty")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dirty"] = t
 		}
 	}
 
@@ -2866,6 +3064,24 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["subnet-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tag_detection_level"); ok {
+		t, err := expandObjectFirewallAddressTagDetectionLevel(d, v, "tag_detection_level")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tag-detection-level"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tag_type"); ok {
+		t, err := expandObjectFirewallAddressTagType(d, v, "tag_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tag-type"] = t
 		}
 	}
 

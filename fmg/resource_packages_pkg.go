@@ -61,6 +61,55 @@ func resourcePackagesPkg() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"packagesettings": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"central_nat": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"consolidated_firewall_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fwpolicy_implicit_log": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"fwpolicy6_implicit_log": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"inspection_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ngfw_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"policy_offload_level": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ssl_ssh_profile": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"packagesetting": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -265,6 +314,91 @@ func flattenPackagesPkgObjVer(v interface{}, d *schema.ResourceData, pre string)
 }
 
 func flattenPackagesPkgOid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettings(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "central_nat"
+	if _, ok := i["central-nat"]; ok {
+		result["central_nat"] = flattenPackagesPkgPackageSettingsCentralNat(i["central-nat"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "consolidated_firewall_mode"
+	if _, ok := i["consolidated-firewall-mode"]; ok {
+		result["consolidated_firewall_mode"] = flattenPackagesPkgPackageSettingsConsolidatedFirewallMode(i["consolidated-firewall-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fwpolicy_implicit_log"
+	if _, ok := i["fwpolicy-implicit-log"]; ok {
+		result["fwpolicy_implicit_log"] = flattenPackagesPkgPackageSettingsFwpolicyImplicitLog(i["fwpolicy-implicit-log"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fwpolicy6_implicit_log"
+	if _, ok := i["fwpolicy6-implicit-log"]; ok {
+		result["fwpolicy6_implicit_log"] = flattenPackagesPkgPackageSettingsFwpolicy6ImplicitLog(i["fwpolicy6-implicit-log"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "inspection_mode"
+	if _, ok := i["inspection-mode"]; ok {
+		result["inspection_mode"] = flattenPackagesPkgPackageSettingsInspectionMode(i["inspection-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "ngfw_mode"
+	if _, ok := i["ngfw-mode"]; ok {
+		result["ngfw_mode"] = flattenPackagesPkgPackageSettingsNgfwMode(i["ngfw-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "policy_offload_level"
+	if _, ok := i["policy-offload-level"]; ok {
+		result["policy_offload_level"] = flattenPackagesPkgPackageSettingsPolicyOffloadLevel(i["policy-offload-level"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "ssl_ssh_profile"
+	if _, ok := i["ssl-ssh-profile"]; ok {
+		result["ssl_ssh_profile"] = flattenPackagesPkgPackageSettingsSslSshProfile(i["ssl-ssh-profile"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenPackagesPkgPackageSettingsCentralNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsConsolidatedFirewallMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsFwpolicyImplicitLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsFwpolicy6ImplicitLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsNgfwMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsPolicyOffloadLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesPkgPackageSettingsSslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -474,6 +608,30 @@ func refreshObjectPackagesPkg(d *schema.ResourceData, o map[string]interface{}) 
 	}
 
 	if isImportTable() {
+		if err = d.Set("packagesettings", flattenPackagesPkgPackageSettings(o["package settings"], d, "packagesettings")); err != nil {
+			if vv, ok := fortiAPIPatch(o["package settings"], "PackagesPkg-PackageSettings"); ok {
+				if err = d.Set("packagesettings", vv); err != nil {
+					return fmt.Errorf("Error reading packagesettings: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading packagesettings: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("packagesettings"); ok {
+			if err = d.Set("packagesettings", flattenPackagesPkgPackageSettings(o["package settings"], d, "packagesettings")); err != nil {
+				if vv, ok := fortiAPIPatch(o["package settings"], "PackagesPkg-PackageSettings"); ok {
+					if err = d.Set("packagesettings", vv); err != nil {
+						return fmt.Errorf("Error reading packagesettings: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading packagesettings: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("packagesetting", flattenPackagesPkgPackageSetting(o["package setting"], d, "packagesetting")); err != nil {
 			if vv, ok := fortiAPIPatch(o["package setting"], "PackagesPkg-PackageSetting"); ok {
 				if err = d.Set("packagesetting", vv); err != nil {
@@ -573,6 +731,84 @@ func expandPackagesPkgObjVer(d *schema.ResourceData, v interface{}, pre string) 
 }
 
 func expandPackagesPkgOid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettings(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "central_nat"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["central-nat"], _ = expandPackagesPkgPackageSettingsCentralNat(d, i["central_nat"], pre_append)
+	}
+	pre_append = pre + ".0." + "consolidated_firewall_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["consolidated-firewall-mode"], _ = expandPackagesPkgPackageSettingsConsolidatedFirewallMode(d, i["consolidated_firewall_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "fwpolicy_implicit_log"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fwpolicy-implicit-log"], _ = expandPackagesPkgPackageSettingsFwpolicyImplicitLog(d, i["fwpolicy_implicit_log"], pre_append)
+	}
+	pre_append = pre + ".0." + "fwpolicy6_implicit_log"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["fwpolicy6-implicit-log"], _ = expandPackagesPkgPackageSettingsFwpolicy6ImplicitLog(d, i["fwpolicy6_implicit_log"], pre_append)
+	}
+	pre_append = pre + ".0." + "inspection_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["inspection-mode"], _ = expandPackagesPkgPackageSettingsInspectionMode(d, i["inspection_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "ngfw_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ngfw-mode"], _ = expandPackagesPkgPackageSettingsNgfwMode(d, i["ngfw_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "policy_offload_level"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["policy-offload-level"], _ = expandPackagesPkgPackageSettingsPolicyOffloadLevel(d, i["policy_offload_level"], pre_append)
+	}
+	pre_append = pre + ".0." + "ssl_ssh_profile"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ssl-ssh-profile"], _ = expandPackagesPkgPackageSettingsSslSshProfile(d, i["ssl_ssh_profile"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandPackagesPkgPackageSettingsCentralNat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsConsolidatedFirewallMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsFwpolicyImplicitLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsFwpolicy6ImplicitLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsNgfwMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsPolicyOffloadLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesPkgPackageSettingsSslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -748,6 +984,15 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 			return &obj, err
 		} else if t != nil {
 			obj["oid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("packagesettings"); ok {
+		t, err := expandPackagesPkgPackageSettings(d, v, "packagesettings")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["package settings"] = t
 		}
 	}
 

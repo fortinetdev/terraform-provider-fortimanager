@@ -107,6 +107,11 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"user_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"user_database": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -271,6 +276,10 @@ func flattenObjectAuthenticationSchemeSshCa(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectAuthenticationSchemeUserCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAuthenticationSchemeUserDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -402,6 +411,16 @@ func refreshObjectObjectAuthenticationScheme(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("user_cert", flattenObjectAuthenticationSchemeUserCert(o["user-cert"], d, "user_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-cert"], "ObjectAuthenticationScheme-UserCert"); ok {
+			if err = d.Set("user_cert", vv); err != nil {
+				return fmt.Errorf("Error reading user_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_cert: %v", err)
+		}
+	}
+
 	if err = d.Set("user_database", flattenObjectAuthenticationSchemeUserDatabase(o["user-database"], d, "user_database")); err != nil {
 		if vv, ok := fortiAPIPatch(o["user-database"], "ObjectAuthenticationScheme-UserDatabase"); ok {
 			if err = d.Set("user_database", vv); err != nil {
@@ -466,6 +485,10 @@ func expandObjectAuthenticationSchemeSamlTimeout(d *schema.ResourceData, v inter
 }
 
 func expandObjectAuthenticationSchemeSshCa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAuthenticationSchemeUserCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -581,6 +604,15 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ssh-ca"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_cert"); ok {
+		t, err := expandObjectAuthenticationSchemeUserCert(d, v, "user_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-cert"] = t
 		}
 	}
 

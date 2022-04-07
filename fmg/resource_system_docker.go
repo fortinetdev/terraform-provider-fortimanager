@@ -50,6 +50,11 @@ func resourceSystemDocker() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fortiaiops": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fortiauthenticator": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -75,8 +80,18 @@ func resourceSystemDocker() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fsmcollector": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"mem": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"policyanalyzer": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -86,6 +101,11 @@ func resourceSystemDocker() *schema.Resource {
 				Computed: true,
 			},
 			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"universalconnector": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -178,6 +198,10 @@ func flattenSystemDockerDockerUserLoginMax(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenSystemDockerFortiaiops(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemDockerFortiauthenticator(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -198,7 +222,15 @@ func flattenSystemDockerFortiwlm(v interface{}, d *schema.ResourceData, pre stri
 	return v
 }
 
+func flattenSystemDockerFsmcollector(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemDockerMem(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemDockerPolicyanalyzer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -207,6 +239,10 @@ func flattenSystemDockerSdwancontroller(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemDockerStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemDockerUniversalconnector(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -250,6 +286,16 @@ func refreshObjectSystemDocker(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading docker_user_login_max: %v", err)
+		}
+	}
+
+	if err = d.Set("fortiaiops", flattenSystemDockerFortiaiops(o["fortiaiops"], d, "fortiaiops")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortiaiops"], "SystemDocker-Fortiaiops"); ok {
+			if err = d.Set("fortiaiops", vv); err != nil {
+				return fmt.Errorf("Error reading fortiaiops: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortiaiops: %v", err)
 		}
 	}
 
@@ -303,6 +349,16 @@ func refreshObjectSystemDocker(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("fsmcollector", flattenSystemDockerFsmcollector(o["fsmcollector"], d, "fsmcollector")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fsmcollector"], "SystemDocker-Fsmcollector"); ok {
+			if err = d.Set("fsmcollector", vv); err != nil {
+				return fmt.Errorf("Error reading fsmcollector: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fsmcollector: %v", err)
+		}
+	}
+
 	if err = d.Set("mem", flattenSystemDockerMem(o["mem"], d, "mem")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mem"], "SystemDocker-Mem"); ok {
 			if err = d.Set("mem", vv); err != nil {
@@ -310,6 +366,16 @@ func refreshObjectSystemDocker(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading mem: %v", err)
+		}
+	}
+
+	if err = d.Set("policyanalyzer", flattenSystemDockerPolicyanalyzer(o["policyanalyzer"], d, "policyanalyzer")); err != nil {
+		if vv, ok := fortiAPIPatch(o["policyanalyzer"], "SystemDocker-Policyanalyzer"); ok {
+			if err = d.Set("policyanalyzer", vv); err != nil {
+				return fmt.Errorf("Error reading policyanalyzer: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading policyanalyzer: %v", err)
 		}
 	}
 
@@ -330,6 +396,16 @@ func refreshObjectSystemDocker(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
+	if err = d.Set("universalconnector", flattenSystemDockerUniversalconnector(o["universalconnector"], d, "universalconnector")); err != nil {
+		if vv, ok := fortiAPIPatch(o["universalconnector"], "SystemDocker-Universalconnector"); ok {
+			if err = d.Set("universalconnector", vv); err != nil {
+				return fmt.Errorf("Error reading universalconnector: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading universalconnector: %v", err)
 		}
 	}
 
@@ -358,6 +434,10 @@ func expandSystemDockerDockerUserLoginMax(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystemDockerFortiaiops(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemDockerFortiauthenticator(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -378,7 +458,15 @@ func expandSystemDockerFortiwlm(d *schema.ResourceData, v interface{}, pre strin
 	return v, nil
 }
 
+func expandSystemDockerFsmcollector(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemDockerMem(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemDockerPolicyanalyzer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -387,6 +475,10 @@ func expandSystemDockerSdwancontroller(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandSystemDockerStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemDockerUniversalconnector(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -426,6 +518,15 @@ func getObjectSystemDocker(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["docker-user-login-max"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortiaiops"); ok {
+		t, err := expandSystemDockerFortiaiops(d, v, "fortiaiops")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortiaiops"] = t
 		}
 	}
 
@@ -474,12 +575,30 @@ func getObjectSystemDocker(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("fsmcollector"); ok {
+		t, err := expandSystemDockerFsmcollector(d, v, "fsmcollector")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fsmcollector"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("mem"); ok {
 		t, err := expandSystemDockerMem(d, v, "mem")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["mem"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("policyanalyzer"); ok {
+		t, err := expandSystemDockerPolicyanalyzer(d, v, "policyanalyzer")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["policyanalyzer"] = t
 		}
 	}
 
@@ -498,6 +617,15 @@ func getObjectSystemDocker(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("universalconnector"); ok {
+		t, err := expandSystemDockerUniversalconnector(d, v, "universalconnector")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["universalconnector"] = t
 		}
 	}
 

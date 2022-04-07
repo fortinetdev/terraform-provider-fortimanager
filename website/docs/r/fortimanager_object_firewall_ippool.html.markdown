@@ -29,6 +29,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `add_nat64_route` - Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+
 * `arp_intf` - Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 * `arp_reply` - Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
 
@@ -36,6 +38,7 @@ The following arguments are supported:
 * `block_size` - Number of addresses in a block (64 to 4096, default = 128).
 * `cgn_block_size` - Number of ports in a block(64 to 4096 in unit of 64, default = 128).
 * `cgn_client_endip` - Final client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `cgn_client_ipv6shift` - IPv6 shift for fixed-allocation.(default 0)
 * `cgn_client_startip` - First client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `cgn_fixedalloc` - Enable/disable fixed-allocation mode. Valid values: `disable`, `enable`.
 
@@ -50,6 +53,8 @@ The following arguments are supported:
 * `endip` - Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `endport` - Final port number (inclusive) in the range for the address pool (Default: 65533).
 * `name` - IP pool name.
+* `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
+
 * `num_blocks_per_user` - Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 * `pba_timeout` - Port block allocation timeout (seconds).
 * `permit_any_host` - Enable/disable full cone NAT. Valid values: `disable`, `enable`.
@@ -68,6 +73,8 @@ The following arguments are supported:
 The `dynamic_mapping` block supports:
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `add_nat64_route` - Enable/disable adding NAT64 route. Valid values: `disable`, `enable`.
+
 * `arp_intf` - Select an interface from available options that will reply to ARP requests. (If blank, any is selected).
 * `arp_reply` - Enable/disable replying to ARP requests when an IP Pool is added to a policy (default = enable). Valid values: `disable`, `enable`.
 
@@ -75,6 +82,7 @@ The `dynamic_mapping` block supports:
 * `block_size` - Number of addresses in a block (64 to 4096, default = 128).
 * `cgn_block_size` - Number of ports in a block(64 to 4096 in unit of 64, default = 128).
 * `cgn_client_endip` - Final client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
+* `cgn_client_ipv6shift` - Cgn-Client-Ipv6Shift.
 * `cgn_client_startip` - First client IPv4 address (inclusive) (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `cgn_fixedalloc` - Enable/disable fixed-allocation mode. Valid values: `disable`, `enable`.
 
@@ -87,6 +95,8 @@ The `dynamic_mapping` block supports:
 * `comments` - Comment.
 * `endip` - Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `endport` - Endport.
+* `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
+
 * `num_blocks_per_user` - Number of addresses blocks that can be used by a user (1 to 128, default = 8).
 * `pba_timeout` - Port block allocation timeout (seconds).
 * `permit_any_host` - Enable/disable full cone NAT. Valid values: `disable`, `enable`.

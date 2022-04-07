@@ -30,7 +30,12 @@ The following arguments are supported:
 * `description` - Description.
 * `modification_time` - Modification-Time.
 * `name` - Name.
+* `provision` - Provision. Valid values: `disable`, `enable`.
+
 * `script` - Script.
+* `type` - Type. Valid values: `cli`, `jinja`.
+
+* `variables` - Variables.
 
 
 ## Attribute Reference

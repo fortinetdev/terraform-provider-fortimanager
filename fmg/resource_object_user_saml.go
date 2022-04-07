@@ -55,6 +55,11 @@ func resourceObjectUserSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"clock_tolerance": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"digest_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -244,6 +249,10 @@ func flattenObjectUserSamlCert(v interface{}, d *schema.ResourceData, pre string
 	return v
 }
 
+func flattenObjectUserSamlClockTolerance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDigestMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -324,6 +333,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading cert: %v", err)
+		}
+	}
+
+	if err = d.Set("clock_tolerance", flattenObjectUserSamlClockTolerance(o["clock-tolerance"], d, "clock_tolerance")); err != nil {
+		if vv, ok := fortiAPIPatch(o["clock-tolerance"], "ObjectUserSaml-ClockTolerance"); ok {
+			if err = d.Set("clock_tolerance", vv); err != nil {
+				return fmt.Errorf("Error reading clock_tolerance: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading clock_tolerance: %v", err)
 		}
 	}
 
@@ -484,6 +503,10 @@ func expandObjectUserSamlCert(d *schema.ResourceData, v interface{}, pre string)
 	return v, nil
 }
 
+func expandObjectUserSamlClockTolerance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDigestMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -558,6 +581,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("clock_tolerance"); ok {
+		t, err := expandObjectUserSamlClockTolerance(d, v, "clock_tolerance")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["clock-tolerance"] = t
 		}
 	}
 

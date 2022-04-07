@@ -67,10 +67,16 @@ The following arguments are supported:
 * `logtraffic` - Logging type to be used in this policy (Options: all | utm | disable, Default: utm). Valid values: `disable`, `all`, `utm`.
 
 * `policyid` - Policy ID (0 - 4294967295).
+* `scan_botnet_connections` - Enable/disable scanning for connections to Botnet servers. Valid values: `disable`, `block`, `monitor`.
+
 * `service6` - Service name.
+* `spamfilter_profile` - Antispam profile.
+* `spamfilter_profile_status` - Enable/disable antispam. Valid values: `disable`, `enable`.
+
 * `srcaddr6` - IPv6 address object to limit traffic monitoring to network traffic sent from the specified address or range.
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `webfilter_profile` - Web filter profile.
 * `webfilter_profile_status` - Enable/disable web filtering. Valid values: `disable`, `enable`.
 

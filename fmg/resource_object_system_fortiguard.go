@@ -100,6 +100,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ddns_server_ip6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ddns_server_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -432,6 +437,10 @@ func flattenObjectSystemFortiguardDdnsServerIp(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectSystemFortiguardDdnsServerIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemFortiguardDdnsServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -706,6 +715,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading ddns_server_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("ddns_server_ip6", flattenObjectSystemFortiguardDdnsServerIp6(o["ddns-server-ip6"], d, "ddns_server_ip6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ddns-server-ip6"], "ObjectSystemFortiguard-DdnsServerIp6"); ok {
+			if err = d.Set("ddns_server_ip6", vv); err != nil {
+				return fmt.Errorf("Error reading ddns_server_ip6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ddns_server_ip6: %v", err)
 		}
 	}
 
@@ -1152,6 +1171,10 @@ func expandObjectSystemFortiguardDdnsServerIp(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectSystemFortiguardDdnsServerIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemFortiguardDdnsServerPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1411,6 +1434,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["ddns-server-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ddns_server_ip6"); ok {
+		t, err := expandObjectSystemFortiguardDdnsServerIp6(d, v, "ddns_server_ip6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ddns-server-ip6"] = t
 		}
 	}
 

@@ -46,6 +46,7 @@ The following arguments are supported:
 
 * `name` - Name of log-fetch client profile.
 * `password` - Log-fetch server login password.
+* `peer_cert_cn` - Certificate common name of log-fetch server.
 * `secure_connection` - Enable/Disable protecting log-fetch connection with TLS/SSL. disable - Disable attribute function. enable - Enable attribute function. Valid values: `disable`, `enable`.
 
 * `server_adom` - Log-fetch server side's adom name.

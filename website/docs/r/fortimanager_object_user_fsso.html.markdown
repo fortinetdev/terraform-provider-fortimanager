@@ -52,6 +52,7 @@ The following arguments are supported:
 * `ldap_poll_filter` - Filter used to fetch groups.
 * `ldap_poll_interval` - Interval in minutes within to fetch groups from LDAP server.
 * `ldap_server` - LDAP server to get group information.
+* `logon_timeout` - Interval in minutes to keep logons after FSSO server down.
 * `name` - Name.
 * `password` - Password of the first FSSO collector agent.
 * `password2` - Password of the second FSSO collector agent.
@@ -72,6 +73,8 @@ The following arguments are supported:
 * `source_ip6` - IPv6 source for communications to FSSO agent.
 * `ssl` - Enable/disable use of SSL. Valid values: `disable`, `enable`.
 
+* `ssl_server_host_ip_check` - Enable/disable server host/IP verification. Valid values: `disable`, `enable`.
+
 * `ssl_trusted_cert` - Trusted server certificate or CA certificate.
 * `type` - Server type. Valid values: `default`, `fortiems`, `fortinac`, `fortiems-cloud`.
 
@@ -91,6 +94,7 @@ The `dynamic_mapping` block supports:
 * `ldap_poll_filter` - Filter used to fetch groups.
 * `ldap_poll_interval` - Interval in minutes within to fetch groups from LDAP server.
 * `ldap_server` - LDAP server to get group information.
+* `logon_timeout` - Interval in minutes to keep logons after FSSO server down.
 * `password` - Password of the first FSSO collector agent.
 * `password2` - Password of the second FSSO collector agent.
 * `password3` - Password of the third FSSO collector agent.
@@ -109,6 +113,8 @@ The `dynamic_mapping` block supports:
 * `source_ip` - Source IP for communications to FSSO agent.
 * `source_ip6` - IPv6 source for communications to FSSO agent.
 * `ssl` - Enable/disable use of SSL. Valid values: `disable`, `enable`.
+
+* `ssl_server_host_ip_check` - Enable/disable server host/IP verification. Valid values: `disable`, `enable`.
 
 * `ssl_trusted_cert` - Trusted server certificate or CA certificate.
 * `type` - Server type. Valid values: `default`, `fortiems`, `fortinac`, `fortiems-cloud`.

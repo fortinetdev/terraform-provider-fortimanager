@@ -24,6 +24,7 @@ resource "fortimanager_system_locallog_fortianalyzer_setting" "trname" {
 The following arguments are supported:
 
 
+* `peer_cert_cn` - Certificate common name of remote fortianalyzer.
 * `reliable` - Enable/disable reliable realtime logging. disable - Disable reliable realtime logging. enable - Enable reliable realtime logging. Valid values: `disable`, `enable`.
 
 * `secure_connection` - Enable/disable connection secured by TLS/SSL. disable - Disable SSL connection. enable - Enable SSL connection. Valid values: `disable`, `enable`.

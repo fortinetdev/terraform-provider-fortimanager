@@ -183,6 +183,11 @@ func resourcePackagesFirewallDosPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -548,6 +553,10 @@ func flattenPackagesFirewallDosPolicyStatus(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenPackagesFirewallDosPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectPackagesFirewallDosPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -660,6 +669,16 @@ func refreshObjectPackagesFirewallDosPolicy(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid", flattenPackagesFirewallDosPolicyUuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "PackagesFirewallDosPolicy-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
 		}
 	}
 
@@ -870,6 +889,10 @@ func expandPackagesFirewallDosPolicyStatus(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandPackagesFirewallDosPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -951,6 +974,15 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok {
+		t, err := expandPackagesFirewallDosPolicyUuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

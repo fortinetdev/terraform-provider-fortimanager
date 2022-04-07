@@ -85,10 +85,194 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dupe": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action1": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"action2": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"action3": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"block_time1": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"block_time2": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"block_time3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"limit1": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"limit2": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"limit3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"protocol": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status1": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status2": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status3": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"window1": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"window2": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"window3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"extended_utm_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"flood": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"action1": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"action2": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"action3": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"block_time1": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"block_time2": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"block_time3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"limit1": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"limit2": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"limit3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"protocol": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status1": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status2": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"status3": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"window1": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"window2": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"window3": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"mm1": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -289,6 +473,251 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 					},
 				},
 			},
+			"notification": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"alert_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"alert_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"alert_src_msisdn": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"alert_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"bword_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"bword_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"bword_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"carrier_endpoint_bwl_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"carrier_endpoint_bwl_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"carrier_endpoint_bwl_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"days_allowed": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"detect_server": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"dupe_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"dupe_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"dupe_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"file_block_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"file_block_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"file_block_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"flood_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"flood_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"flood_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"from_in_header": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"mms_checksum_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"mms_checksum_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"mms_checksum_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"mmsc_hostname": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"mmsc_password": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"mmsc_port": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"mmsc_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"mmsc_username": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"msg_protocol": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"msg_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"protocol": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"rate_limit": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"tod_window_duration": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"tod_window_end": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"tod_window_start": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"user_domain": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"vas_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"vasp_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"virus_int": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"virus_int_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"virus_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
+			"outbreak_prevention": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ftgd_service": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"remove_blocked_const_length": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -446,7 +875,321 @@ func flattenObjectFirewallMmsProfileComment(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectFirewallMmsProfileDupe(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "action1"
+	if _, ok := i["action1"]; ok {
+		result["action1"] = flattenObjectFirewallMmsProfileDupeAction1(i["action1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "action2"
+	if _, ok := i["action2"]; ok {
+		result["action2"] = flattenObjectFirewallMmsProfileDupeAction2(i["action2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "action3"
+	if _, ok := i["action3"]; ok {
+		result["action3"] = flattenObjectFirewallMmsProfileDupeAction3(i["action3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "block_time1"
+	if _, ok := i["block-time1"]; ok {
+		result["block_time1"] = flattenObjectFirewallMmsProfileDupeBlockTime1(i["block-time1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "block_time2"
+	if _, ok := i["block-time2"]; ok {
+		result["block_time2"] = flattenObjectFirewallMmsProfileDupeBlockTime2(i["block-time2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "block_time3"
+	if _, ok := i["block-time3"]; ok {
+		result["block_time3"] = flattenObjectFirewallMmsProfileDupeBlockTime3(i["block-time3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "limit1"
+	if _, ok := i["limit1"]; ok {
+		result["limit1"] = flattenObjectFirewallMmsProfileDupeLimit1(i["limit1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "limit2"
+	if _, ok := i["limit2"]; ok {
+		result["limit2"] = flattenObjectFirewallMmsProfileDupeLimit2(i["limit2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "limit3"
+	if _, ok := i["limit3"]; ok {
+		result["limit3"] = flattenObjectFirewallMmsProfileDupeLimit3(i["limit3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "protocol"
+	if _, ok := i["protocol"]; ok {
+		result["protocol"] = flattenObjectFirewallMmsProfileDupeProtocol(i["protocol"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status1"
+	if _, ok := i["status1"]; ok {
+		result["status1"] = flattenObjectFirewallMmsProfileDupeStatus1(i["status1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status2"
+	if _, ok := i["status2"]; ok {
+		result["status2"] = flattenObjectFirewallMmsProfileDupeStatus2(i["status2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status3"
+	if _, ok := i["status3"]; ok {
+		result["status3"] = flattenObjectFirewallMmsProfileDupeStatus3(i["status3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "window1"
+	if _, ok := i["window1"]; ok {
+		result["window1"] = flattenObjectFirewallMmsProfileDupeWindow1(i["window1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "window2"
+	if _, ok := i["window2"]; ok {
+		result["window2"] = flattenObjectFirewallMmsProfileDupeWindow2(i["window2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "window3"
+	if _, ok := i["window3"]; ok {
+		result["window3"] = flattenObjectFirewallMmsProfileDupeWindow3(i["window3"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallMmsProfileDupeAction1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileDupeAction2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileDupeAction3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileDupeBlockTime1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeBlockTime2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeBlockTime3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeLimit1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeLimit2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeLimit3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeStatus1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeStatus2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeStatus3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeWindow1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeWindow2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileDupeWindow3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallMmsProfileExtendedUtmLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFlood(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "action1"
+	if _, ok := i["action1"]; ok {
+		result["action1"] = flattenObjectFirewallMmsProfileFloodAction1(i["action1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "action2"
+	if _, ok := i["action2"]; ok {
+		result["action2"] = flattenObjectFirewallMmsProfileFloodAction2(i["action2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "action3"
+	if _, ok := i["action3"]; ok {
+		result["action3"] = flattenObjectFirewallMmsProfileFloodAction3(i["action3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "block_time1"
+	if _, ok := i["block-time1"]; ok {
+		result["block_time1"] = flattenObjectFirewallMmsProfileFloodBlockTime1(i["block-time1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "block_time2"
+	if _, ok := i["block-time2"]; ok {
+		result["block_time2"] = flattenObjectFirewallMmsProfileFloodBlockTime2(i["block-time2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "block_time3"
+	if _, ok := i["block-time3"]; ok {
+		result["block_time3"] = flattenObjectFirewallMmsProfileFloodBlockTime3(i["block-time3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "limit1"
+	if _, ok := i["limit1"]; ok {
+		result["limit1"] = flattenObjectFirewallMmsProfileFloodLimit1(i["limit1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "limit2"
+	if _, ok := i["limit2"]; ok {
+		result["limit2"] = flattenObjectFirewallMmsProfileFloodLimit2(i["limit2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "limit3"
+	if _, ok := i["limit3"]; ok {
+		result["limit3"] = flattenObjectFirewallMmsProfileFloodLimit3(i["limit3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "protocol"
+	if _, ok := i["protocol"]; ok {
+		result["protocol"] = flattenObjectFirewallMmsProfileFloodProtocol(i["protocol"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status1"
+	if _, ok := i["status1"]; ok {
+		result["status1"] = flattenObjectFirewallMmsProfileFloodStatus1(i["status1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status2"
+	if _, ok := i["status2"]; ok {
+		result["status2"] = flattenObjectFirewallMmsProfileFloodStatus2(i["status2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "status3"
+	if _, ok := i["status3"]; ok {
+		result["status3"] = flattenObjectFirewallMmsProfileFloodStatus3(i["status3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "window1"
+	if _, ok := i["window1"]; ok {
+		result["window1"] = flattenObjectFirewallMmsProfileFloodWindow1(i["window1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "window2"
+	if _, ok := i["window2"]; ok {
+		result["window2"] = flattenObjectFirewallMmsProfileFloodWindow2(i["window2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "window3"
+	if _, ok := i["window3"]; ok {
+		result["window3"] = flattenObjectFirewallMmsProfileFloodWindow3(i["window3"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallMmsProfileFloodAction1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileFloodAction2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileFloodAction3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileFloodBlockTime1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodBlockTime2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodBlockTime3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodLimit1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodLimit2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodLimit3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodStatus1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodStatus2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodStatus3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodWindow1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodWindow2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileFloodWindow3(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -637,6 +1380,437 @@ func flattenObjectFirewallMmsProfileNotifMsisdnThreshold(v interface{}, d *schem
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallMmsProfileNotification(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "alert_int"
+	if _, ok := i["alert-int"]; ok {
+		result["alert_int"] = flattenObjectFirewallMmsProfileNotificationAlertInt(i["alert-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "alert_int_mode"
+	if _, ok := i["alert-int-mode"]; ok {
+		result["alert_int_mode"] = flattenObjectFirewallMmsProfileNotificationAlertIntMode(i["alert-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "alert_src_msisdn"
+	if _, ok := i["alert-src-msisdn"]; ok {
+		result["alert_src_msisdn"] = flattenObjectFirewallMmsProfileNotificationAlertSrcMsisdn(i["alert-src-msisdn"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "alert_status"
+	if _, ok := i["alert-status"]; ok {
+		result["alert_status"] = flattenObjectFirewallMmsProfileNotificationAlertStatus(i["alert-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bword_int"
+	if _, ok := i["bword-int"]; ok {
+		result["bword_int"] = flattenObjectFirewallMmsProfileNotificationBwordInt(i["bword-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bword_int_mode"
+	if _, ok := i["bword-int-mode"]; ok {
+		result["bword_int_mode"] = flattenObjectFirewallMmsProfileNotificationBwordIntMode(i["bword-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "bword_status"
+	if _, ok := i["bword-status"]; ok {
+		result["bword_status"] = flattenObjectFirewallMmsProfileNotificationBwordStatus(i["bword-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "carrier_endpoint_bwl_int"
+	if _, ok := i["carrier-endpoint-bwl-int"]; ok {
+		result["carrier_endpoint_bwl_int"] = flattenObjectFirewallMmsProfileNotificationCarrierEndpointBwlInt(i["carrier-endpoint-bwl-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "carrier_endpoint_bwl_int_mode"
+	if _, ok := i["carrier-endpoint-bwl-int-mode"]; ok {
+		result["carrier_endpoint_bwl_int_mode"] = flattenObjectFirewallMmsProfileNotificationCarrierEndpointBwlIntMode(i["carrier-endpoint-bwl-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "carrier_endpoint_bwl_status"
+	if _, ok := i["carrier-endpoint-bwl-status"]; ok {
+		result["carrier_endpoint_bwl_status"] = flattenObjectFirewallMmsProfileNotificationCarrierEndpointBwlStatus(i["carrier-endpoint-bwl-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "days_allowed"
+	if _, ok := i["days-allowed"]; ok {
+		result["days_allowed"] = flattenObjectFirewallMmsProfileNotificationDaysAllowed(i["days-allowed"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "detect_server"
+	if _, ok := i["detect-server"]; ok {
+		result["detect_server"] = flattenObjectFirewallMmsProfileNotificationDetectServer(i["detect-server"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dupe_int"
+	if _, ok := i["dupe-int"]; ok {
+		result["dupe_int"] = flattenObjectFirewallMmsProfileNotificationDupeInt(i["dupe-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dupe_int_mode"
+	if _, ok := i["dupe-int-mode"]; ok {
+		result["dupe_int_mode"] = flattenObjectFirewallMmsProfileNotificationDupeIntMode(i["dupe-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dupe_status"
+	if _, ok := i["dupe-status"]; ok {
+		result["dupe_status"] = flattenObjectFirewallMmsProfileNotificationDupeStatus(i["dupe-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "file_block_int"
+	if _, ok := i["file-block-int"]; ok {
+		result["file_block_int"] = flattenObjectFirewallMmsProfileNotificationFileBlockInt(i["file-block-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "file_block_int_mode"
+	if _, ok := i["file-block-int-mode"]; ok {
+		result["file_block_int_mode"] = flattenObjectFirewallMmsProfileNotificationFileBlockIntMode(i["file-block-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "file_block_status"
+	if _, ok := i["file-block-status"]; ok {
+		result["file_block_status"] = flattenObjectFirewallMmsProfileNotificationFileBlockStatus(i["file-block-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "flood_int"
+	if _, ok := i["flood-int"]; ok {
+		result["flood_int"] = flattenObjectFirewallMmsProfileNotificationFloodInt(i["flood-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "flood_int_mode"
+	if _, ok := i["flood-int-mode"]; ok {
+		result["flood_int_mode"] = flattenObjectFirewallMmsProfileNotificationFloodIntMode(i["flood-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "flood_status"
+	if _, ok := i["flood-status"]; ok {
+		result["flood_status"] = flattenObjectFirewallMmsProfileNotificationFloodStatus(i["flood-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "from_in_header"
+	if _, ok := i["from-in-header"]; ok {
+		result["from_in_header"] = flattenObjectFirewallMmsProfileNotificationFromInHeader(i["from-in-header"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mms_checksum_int"
+	if _, ok := i["mms-checksum-int"]; ok {
+		result["mms_checksum_int"] = flattenObjectFirewallMmsProfileNotificationMmsChecksumInt(i["mms-checksum-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mms_checksum_int_mode"
+	if _, ok := i["mms-checksum-int-mode"]; ok {
+		result["mms_checksum_int_mode"] = flattenObjectFirewallMmsProfileNotificationMmsChecksumIntMode(i["mms-checksum-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mms_checksum_status"
+	if _, ok := i["mms-checksum-status"]; ok {
+		result["mms_checksum_status"] = flattenObjectFirewallMmsProfileNotificationMmsChecksumStatus(i["mms-checksum-status"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mmsc_hostname"
+	if _, ok := i["mmsc-hostname"]; ok {
+		result["mmsc_hostname"] = flattenObjectFirewallMmsProfileNotificationMmscHostname(i["mmsc-hostname"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mmsc_password"
+	if _, ok := i["mmsc-password"]; ok {
+		result["mmsc_password"] = flattenObjectFirewallMmsProfileNotificationMmscPassword(i["mmsc-password"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mmsc_port"
+	if _, ok := i["mmsc-port"]; ok {
+		result["mmsc_port"] = flattenObjectFirewallMmsProfileNotificationMmscPort(i["mmsc-port"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mmsc_url"
+	if _, ok := i["mmsc-url"]; ok {
+		result["mmsc_url"] = flattenObjectFirewallMmsProfileNotificationMmscUrl(i["mmsc-url"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mmsc_username"
+	if _, ok := i["mmsc-username"]; ok {
+		result["mmsc_username"] = flattenObjectFirewallMmsProfileNotificationMmscUsername(i["mmsc-username"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "msg_protocol"
+	if _, ok := i["msg-protocol"]; ok {
+		result["msg_protocol"] = flattenObjectFirewallMmsProfileNotificationMsgProtocol(i["msg-protocol"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "msg_type"
+	if _, ok := i["msg-type"]; ok {
+		result["msg_type"] = flattenObjectFirewallMmsProfileNotificationMsgType(i["msg-type"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "protocol"
+	if _, ok := i["protocol"]; ok {
+		result["protocol"] = flattenObjectFirewallMmsProfileNotificationProtocol(i["protocol"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "rate_limit"
+	if _, ok := i["rate-limit"]; ok {
+		result["rate_limit"] = flattenObjectFirewallMmsProfileNotificationRateLimit(i["rate-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tod_window_duration"
+	if _, ok := i["tod-window-duration"]; ok {
+		result["tod_window_duration"] = flattenObjectFirewallMmsProfileNotificationTodWindowDuration(i["tod-window-duration"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tod_window_end"
+	if _, ok := i["tod-window-end"]; ok {
+		result["tod_window_end"] = flattenObjectFirewallMmsProfileNotificationTodWindowEnd(i["tod-window-end"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tod_window_start"
+	if _, ok := i["tod-window-start"]; ok {
+		result["tod_window_start"] = flattenObjectFirewallMmsProfileNotificationTodWindowStart(i["tod-window-start"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "user_domain"
+	if _, ok := i["user-domain"]; ok {
+		result["user_domain"] = flattenObjectFirewallMmsProfileNotificationUserDomain(i["user-domain"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "vas_id"
+	if _, ok := i["vas-id"]; ok {
+		result["vas_id"] = flattenObjectFirewallMmsProfileNotificationVasId(i["vas-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "vasp_id"
+	if _, ok := i["vasp-id"]; ok {
+		result["vasp_id"] = flattenObjectFirewallMmsProfileNotificationVaspId(i["vasp-id"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "virus_int"
+	if _, ok := i["virus-int"]; ok {
+		result["virus_int"] = flattenObjectFirewallMmsProfileNotificationVirusInt(i["virus-int"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "virus_int_mode"
+	if _, ok := i["virus-int-mode"]; ok {
+		result["virus_int_mode"] = flattenObjectFirewallMmsProfileNotificationVirusIntMode(i["virus-int-mode"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "virus_status"
+	if _, ok := i["virus-status"]; ok {
+		result["virus_status"] = flattenObjectFirewallMmsProfileNotificationVirusStatus(i["virus-status"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallMmsProfileNotificationAlertInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationAlertIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationAlertSrcMsisdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationAlertStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationBwordInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationBwordIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationBwordStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationCarrierEndpointBwlInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationCarrierEndpointBwlIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationCarrierEndpointBwlStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationDaysAllowed(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileNotificationDetectServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationDupeInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationDupeIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationDupeStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFileBlockInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFileBlockIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFileBlockStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFloodInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFloodIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFloodStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationFromInHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmsChecksumInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmsChecksumIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmsChecksumStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmscHostname(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmscPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmscPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmscUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMmscUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMsgProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationMsgType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationRateLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationTodWindowDuration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationTodWindowEnd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationTodWindowStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationUserDomain(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationVasId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationVaspId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationVirusInt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationVirusIntMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileNotificationVirusStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := i["external-blocklist"]; ok {
+		result["external_blocklist"] = flattenObjectFirewallMmsProfileOutbreakPreventionExternalBlocklist(i["external-blocklist"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "ftgd_service"
+	if _, ok := i["ftgd-service"]; ok {
+		result["ftgd_service"] = flattenObjectFirewallMmsProfileOutbreakPreventionFtgdService(i["ftgd-service"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallMmsProfileOutbreakPreventionExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallMmsProfileOutbreakPreventionFtgdService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallMmsProfileRemoveBlockedConstLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -736,6 +1910,30 @@ func refreshObjectObjectFirewallMmsProfile(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("dupe", flattenObjectFirewallMmsProfileDupe(o["dupe"], d, "dupe")); err != nil {
+			if vv, ok := fortiAPIPatch(o["dupe"], "ObjectFirewallMmsProfile-Dupe"); ok {
+				if err = d.Set("dupe", vv); err != nil {
+					return fmt.Errorf("Error reading dupe: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading dupe: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("dupe"); ok {
+			if err = d.Set("dupe", flattenObjectFirewallMmsProfileDupe(o["dupe"], d, "dupe")); err != nil {
+				if vv, ok := fortiAPIPatch(o["dupe"], "ObjectFirewallMmsProfile-Dupe"); ok {
+					if err = d.Set("dupe", vv); err != nil {
+						return fmt.Errorf("Error reading dupe: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading dupe: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("extended_utm_log", flattenObjectFirewallMmsProfileExtendedUtmLog(o["extended-utm-log"], d, "extended_utm_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["extended-utm-log"], "ObjectFirewallMmsProfile-ExtendedUtmLog"); ok {
 			if err = d.Set("extended_utm_log", vv); err != nil {
@@ -743,6 +1941,30 @@ func refreshObjectObjectFirewallMmsProfile(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading extended_utm_log: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("flood", flattenObjectFirewallMmsProfileFlood(o["flood"], d, "flood")); err != nil {
+			if vv, ok := fortiAPIPatch(o["flood"], "ObjectFirewallMmsProfile-Flood"); ok {
+				if err = d.Set("flood", vv); err != nil {
+					return fmt.Errorf("Error reading flood: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading flood: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("flood"); ok {
+			if err = d.Set("flood", flattenObjectFirewallMmsProfileFlood(o["flood"], d, "flood")); err != nil {
+				if vv, ok := fortiAPIPatch(o["flood"], "ObjectFirewallMmsProfile-Flood"); ok {
+					if err = d.Set("flood", vv); err != nil {
+						return fmt.Errorf("Error reading flood: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading flood: %v", err)
+				}
+			}
 		}
 	}
 
@@ -1120,6 +2342,54 @@ func refreshObjectObjectFirewallMmsProfile(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("notification", flattenObjectFirewallMmsProfileNotification(o["notification"], d, "notification")); err != nil {
+			if vv, ok := fortiAPIPatch(o["notification"], "ObjectFirewallMmsProfile-Notification"); ok {
+				if err = d.Set("notification", vv); err != nil {
+					return fmt.Errorf("Error reading notification: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading notification: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("notification"); ok {
+			if err = d.Set("notification", flattenObjectFirewallMmsProfileNotification(o["notification"], d, "notification")); err != nil {
+				if vv, ok := fortiAPIPatch(o["notification"], "ObjectFirewallMmsProfile-Notification"); ok {
+					if err = d.Set("notification", vv); err != nil {
+						return fmt.Errorf("Error reading notification: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading notification: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("outbreak_prevention", flattenObjectFirewallMmsProfileOutbreakPrevention(o["outbreak-prevention"], d, "outbreak_prevention")); err != nil {
+			if vv, ok := fortiAPIPatch(o["outbreak-prevention"], "ObjectFirewallMmsProfile-OutbreakPrevention"); ok {
+				if err = d.Set("outbreak_prevention", vv); err != nil {
+					return fmt.Errorf("Error reading outbreak_prevention: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading outbreak_prevention: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("outbreak_prevention"); ok {
+			if err = d.Set("outbreak_prevention", flattenObjectFirewallMmsProfileOutbreakPrevention(o["outbreak-prevention"], d, "outbreak_prevention")); err != nil {
+				if vv, ok := fortiAPIPatch(o["outbreak-prevention"], "ObjectFirewallMmsProfile-OutbreakPrevention"); ok {
+					if err = d.Set("outbreak_prevention", vv); err != nil {
+						return fmt.Errorf("Error reading outbreak_prevention: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading outbreak_prevention: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("remove_blocked_const_length", flattenObjectFirewallMmsProfileRemoveBlockedConstLength(o["remove-blocked-const-length"], d, "remove_blocked_const_length")); err != nil {
 		if vv, ok := fortiAPIPatch(o["remove-blocked-const-length"], "ObjectFirewallMmsProfile-RemoveBlockedConstLength"); ok {
 			if err = d.Set("remove_blocked_const_length", vv); err != nil {
@@ -1181,7 +2451,303 @@ func expandObjectFirewallMmsProfileComment(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectFirewallMmsProfileDupe(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "action1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["action1"], _ = expandObjectFirewallMmsProfileDupeAction1(d, i["action1"], pre_append)
+	} else {
+		result["action1"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "action2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["action2"], _ = expandObjectFirewallMmsProfileDupeAction2(d, i["action2"], pre_append)
+	} else {
+		result["action2"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "action3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["action3"], _ = expandObjectFirewallMmsProfileDupeAction3(d, i["action3"], pre_append)
+	} else {
+		result["action3"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "block_time1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["block-time1"], _ = expandObjectFirewallMmsProfileDupeBlockTime1(d, i["block_time1"], pre_append)
+	}
+	pre_append = pre + ".0." + "block_time2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["block-time2"], _ = expandObjectFirewallMmsProfileDupeBlockTime2(d, i["block_time2"], pre_append)
+	}
+	pre_append = pre + ".0." + "block_time3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["block-time3"], _ = expandObjectFirewallMmsProfileDupeBlockTime3(d, i["block_time3"], pre_append)
+	}
+	pre_append = pre + ".0." + "limit1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["limit1"], _ = expandObjectFirewallMmsProfileDupeLimit1(d, i["limit1"], pre_append)
+	}
+	pre_append = pre + ".0." + "limit2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["limit2"], _ = expandObjectFirewallMmsProfileDupeLimit2(d, i["limit2"], pre_append)
+	}
+	pre_append = pre + ".0." + "limit3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["limit3"], _ = expandObjectFirewallMmsProfileDupeLimit3(d, i["limit3"], pre_append)
+	}
+	pre_append = pre + ".0." + "protocol"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["protocol"], _ = expandObjectFirewallMmsProfileDupeProtocol(d, i["protocol"], pre_append)
+	}
+	pre_append = pre + ".0." + "status1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status1"], _ = expandObjectFirewallMmsProfileDupeStatus1(d, i["status1"], pre_append)
+	}
+	pre_append = pre + ".0." + "status2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status2"], _ = expandObjectFirewallMmsProfileDupeStatus2(d, i["status2"], pre_append)
+	}
+	pre_append = pre + ".0." + "status3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status3"], _ = expandObjectFirewallMmsProfileDupeStatus3(d, i["status3"], pre_append)
+	}
+	pre_append = pre + ".0." + "window1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["window1"], _ = expandObjectFirewallMmsProfileDupeWindow1(d, i["window1"], pre_append)
+	}
+	pre_append = pre + ".0." + "window2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["window2"], _ = expandObjectFirewallMmsProfileDupeWindow2(d, i["window2"], pre_append)
+	}
+	pre_append = pre + ".0." + "window3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["window3"], _ = expandObjectFirewallMmsProfileDupeWindow3(d, i["window3"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallMmsProfileDupeAction1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileDupeAction2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileDupeAction3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileDupeBlockTime1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeBlockTime2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeBlockTime3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeLimit1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeLimit2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeLimit3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeStatus1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeStatus2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeStatus3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeWindow1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeWindow2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileDupeWindow3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallMmsProfileExtendedUtmLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFlood(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "action1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["action1"], _ = expandObjectFirewallMmsProfileFloodAction1(d, i["action1"], pre_append)
+	} else {
+		result["action1"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "action2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["action2"], _ = expandObjectFirewallMmsProfileFloodAction2(d, i["action2"], pre_append)
+	} else {
+		result["action2"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "action3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["action3"], _ = expandObjectFirewallMmsProfileFloodAction3(d, i["action3"], pre_append)
+	} else {
+		result["action3"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "block_time1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["block-time1"], _ = expandObjectFirewallMmsProfileFloodBlockTime1(d, i["block_time1"], pre_append)
+	}
+	pre_append = pre + ".0." + "block_time2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["block-time2"], _ = expandObjectFirewallMmsProfileFloodBlockTime2(d, i["block_time2"], pre_append)
+	}
+	pre_append = pre + ".0." + "block_time3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["block-time3"], _ = expandObjectFirewallMmsProfileFloodBlockTime3(d, i["block_time3"], pre_append)
+	}
+	pre_append = pre + ".0." + "limit1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["limit1"], _ = expandObjectFirewallMmsProfileFloodLimit1(d, i["limit1"], pre_append)
+	}
+	pre_append = pre + ".0." + "limit2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["limit2"], _ = expandObjectFirewallMmsProfileFloodLimit2(d, i["limit2"], pre_append)
+	}
+	pre_append = pre + ".0." + "limit3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["limit3"], _ = expandObjectFirewallMmsProfileFloodLimit3(d, i["limit3"], pre_append)
+	}
+	pre_append = pre + ".0." + "protocol"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["protocol"], _ = expandObjectFirewallMmsProfileFloodProtocol(d, i["protocol"], pre_append)
+	}
+	pre_append = pre + ".0." + "status1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status1"], _ = expandObjectFirewallMmsProfileFloodStatus1(d, i["status1"], pre_append)
+	}
+	pre_append = pre + ".0." + "status2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status2"], _ = expandObjectFirewallMmsProfileFloodStatus2(d, i["status2"], pre_append)
+	}
+	pre_append = pre + ".0." + "status3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["status3"], _ = expandObjectFirewallMmsProfileFloodStatus3(d, i["status3"], pre_append)
+	}
+	pre_append = pre + ".0." + "window1"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["window1"], _ = expandObjectFirewallMmsProfileFloodWindow1(d, i["window1"], pre_append)
+	}
+	pre_append = pre + ".0." + "window2"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["window2"], _ = expandObjectFirewallMmsProfileFloodWindow2(d, i["window2"], pre_append)
+	}
+	pre_append = pre + ".0." + "window3"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["window3"], _ = expandObjectFirewallMmsProfileFloodWindow3(d, i["window3"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallMmsProfileFloodAction1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileFloodAction2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileFloodAction3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileFloodBlockTime1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodBlockTime2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodBlockTime3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodLimit1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodLimit2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodLimit3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodStatus1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodStatus2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodStatus3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodWindow1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodWindow2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileFloodWindow3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1367,6 +2933,398 @@ func expandObjectFirewallMmsProfileNotifMsisdnThreshold(d *schema.ResourceData, 
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallMmsProfileNotification(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "alert_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["alert-int"], _ = expandObjectFirewallMmsProfileNotificationAlertInt(d, i["alert_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "alert_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["alert-int-mode"], _ = expandObjectFirewallMmsProfileNotificationAlertIntMode(d, i["alert_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "alert_src_msisdn"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["alert-src-msisdn"], _ = expandObjectFirewallMmsProfileNotificationAlertSrcMsisdn(d, i["alert_src_msisdn"], pre_append)
+	}
+	pre_append = pre + ".0." + "alert_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["alert-status"], _ = expandObjectFirewallMmsProfileNotificationAlertStatus(d, i["alert_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "bword_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["bword-int"], _ = expandObjectFirewallMmsProfileNotificationBwordInt(d, i["bword_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "bword_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["bword-int-mode"], _ = expandObjectFirewallMmsProfileNotificationBwordIntMode(d, i["bword_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "bword_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["bword-status"], _ = expandObjectFirewallMmsProfileNotificationBwordStatus(d, i["bword_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "carrier_endpoint_bwl_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["carrier-endpoint-bwl-int"], _ = expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlInt(d, i["carrier_endpoint_bwl_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "carrier_endpoint_bwl_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["carrier-endpoint-bwl-int-mode"], _ = expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlIntMode(d, i["carrier_endpoint_bwl_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "carrier_endpoint_bwl_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["carrier-endpoint-bwl-status"], _ = expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlStatus(d, i["carrier_endpoint_bwl_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "days_allowed"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["days-allowed"], _ = expandObjectFirewallMmsProfileNotificationDaysAllowed(d, i["days_allowed"], pre_append)
+	} else {
+		result["days-allowed"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "detect_server"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["detect-server"], _ = expandObjectFirewallMmsProfileNotificationDetectServer(d, i["detect_server"], pre_append)
+	}
+	pre_append = pre + ".0." + "dupe_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["dupe-int"], _ = expandObjectFirewallMmsProfileNotificationDupeInt(d, i["dupe_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "dupe_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["dupe-int-mode"], _ = expandObjectFirewallMmsProfileNotificationDupeIntMode(d, i["dupe_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "dupe_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["dupe-status"], _ = expandObjectFirewallMmsProfileNotificationDupeStatus(d, i["dupe_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "file_block_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["file-block-int"], _ = expandObjectFirewallMmsProfileNotificationFileBlockInt(d, i["file_block_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "file_block_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["file-block-int-mode"], _ = expandObjectFirewallMmsProfileNotificationFileBlockIntMode(d, i["file_block_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "file_block_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["file-block-status"], _ = expandObjectFirewallMmsProfileNotificationFileBlockStatus(d, i["file_block_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "flood_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["flood-int"], _ = expandObjectFirewallMmsProfileNotificationFloodInt(d, i["flood_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "flood_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["flood-int-mode"], _ = expandObjectFirewallMmsProfileNotificationFloodIntMode(d, i["flood_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "flood_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["flood-status"], _ = expandObjectFirewallMmsProfileNotificationFloodStatus(d, i["flood_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "from_in_header"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["from-in-header"], _ = expandObjectFirewallMmsProfileNotificationFromInHeader(d, i["from_in_header"], pre_append)
+	}
+	pre_append = pre + ".0." + "mms_checksum_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mms-checksum-int"], _ = expandObjectFirewallMmsProfileNotificationMmsChecksumInt(d, i["mms_checksum_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "mms_checksum_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mms-checksum-int-mode"], _ = expandObjectFirewallMmsProfileNotificationMmsChecksumIntMode(d, i["mms_checksum_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "mms_checksum_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mms-checksum-status"], _ = expandObjectFirewallMmsProfileNotificationMmsChecksumStatus(d, i["mms_checksum_status"], pre_append)
+	}
+	pre_append = pre + ".0." + "mmsc_hostname"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mmsc-hostname"], _ = expandObjectFirewallMmsProfileNotificationMmscHostname(d, i["mmsc_hostname"], pre_append)
+	}
+	pre_append = pre + ".0." + "mmsc_password"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mmsc-password"], _ = expandObjectFirewallMmsProfileNotificationMmscPassword(d, i["mmsc_password"], pre_append)
+	} else {
+		result["mmsc-password"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "mmsc_port"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mmsc-port"], _ = expandObjectFirewallMmsProfileNotificationMmscPort(d, i["mmsc_port"], pre_append)
+	}
+	pre_append = pre + ".0." + "mmsc_url"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mmsc-url"], _ = expandObjectFirewallMmsProfileNotificationMmscUrl(d, i["mmsc_url"], pre_append)
+	}
+	pre_append = pre + ".0." + "mmsc_username"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["mmsc-username"], _ = expandObjectFirewallMmsProfileNotificationMmscUsername(d, i["mmsc_username"], pre_append)
+	}
+	pre_append = pre + ".0." + "msg_protocol"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["msg-protocol"], _ = expandObjectFirewallMmsProfileNotificationMsgProtocol(d, i["msg_protocol"], pre_append)
+	}
+	pre_append = pre + ".0." + "msg_type"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["msg-type"], _ = expandObjectFirewallMmsProfileNotificationMsgType(d, i["msg_type"], pre_append)
+	}
+	pre_append = pre + ".0." + "protocol"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["protocol"], _ = expandObjectFirewallMmsProfileNotificationProtocol(d, i["protocol"], pre_append)
+	}
+	pre_append = pre + ".0." + "rate_limit"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["rate-limit"], _ = expandObjectFirewallMmsProfileNotificationRateLimit(d, i["rate_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "tod_window_duration"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tod-window-duration"], _ = expandObjectFirewallMmsProfileNotificationTodWindowDuration(d, i["tod_window_duration"], pre_append)
+	}
+	pre_append = pre + ".0." + "tod_window_end"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tod-window-end"], _ = expandObjectFirewallMmsProfileNotificationTodWindowEnd(d, i["tod_window_end"], pre_append)
+	}
+	pre_append = pre + ".0." + "tod_window_start"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["tod-window-start"], _ = expandObjectFirewallMmsProfileNotificationTodWindowStart(d, i["tod_window_start"], pre_append)
+	}
+	pre_append = pre + ".0." + "user_domain"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["user-domain"], _ = expandObjectFirewallMmsProfileNotificationUserDomain(d, i["user_domain"], pre_append)
+	}
+	pre_append = pre + ".0." + "vas_id"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["vas-id"], _ = expandObjectFirewallMmsProfileNotificationVasId(d, i["vas_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "vasp_id"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["vasp-id"], _ = expandObjectFirewallMmsProfileNotificationVaspId(d, i["vasp_id"], pre_append)
+	}
+	pre_append = pre + ".0." + "virus_int"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["virus-int"], _ = expandObjectFirewallMmsProfileNotificationVirusInt(d, i["virus_int"], pre_append)
+	}
+	pre_append = pre + ".0." + "virus_int_mode"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["virus-int-mode"], _ = expandObjectFirewallMmsProfileNotificationVirusIntMode(d, i["virus_int_mode"], pre_append)
+	}
+	pre_append = pre + ".0." + "virus_status"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["virus-status"], _ = expandObjectFirewallMmsProfileNotificationVirusStatus(d, i["virus_status"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationAlertInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationAlertIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationAlertSrcMsisdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationAlertStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationBwordInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationBwordIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationBwordStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationDaysAllowed(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileNotificationDetectServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationDupeInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationDupeIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationDupeStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFileBlockInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFileBlockIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFileBlockStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFloodInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFloodIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFloodStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationFromInHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmsChecksumInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmsChecksumIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmsChecksumStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmscHostname(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmscPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmscPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmscUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMmscUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMsgProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationMsgType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationRateLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationTodWindowDuration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationTodWindowEnd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationTodWindowStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationUserDomain(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationVasId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationVaspId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationVirusInt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationVirusIntMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileNotificationVirusStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileOutbreakPrevention(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "external_blocklist"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["external-blocklist"], _ = expandObjectFirewallMmsProfileOutbreakPreventionExternalBlocklist(d, i["external_blocklist"], pre_append)
+	}
+	pre_append = pre + ".0." + "ftgd_service"
+	if _, ok := d.GetOk(pre_append); ok {
+		result["ftgd-service"], _ = expandObjectFirewallMmsProfileOutbreakPreventionFtgdService(d, i["ftgd_service"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallMmsProfileOutbreakPreventionExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallMmsProfileOutbreakPreventionFtgdService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallMmsProfileRemoveBlockedConstLength(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1450,12 +3408,30 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("dupe"); ok {
+		t, err := expandObjectFirewallMmsProfileDupe(d, v, "dupe")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dupe"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("extended_utm_log"); ok {
 		t, err := expandObjectFirewallMmsProfileExtendedUtmLog(d, v, "extended_utm_log")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["extended-utm-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("flood"); ok {
+		t, err := expandObjectFirewallMmsProfileFlood(d, v, "flood")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["flood"] = t
 		}
 	}
 
@@ -1780,6 +3756,24 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["notif-msisdn"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("notification"); ok {
+		t, err := expandObjectFirewallMmsProfileNotification(d, v, "notification")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["notification"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("outbreak_prevention"); ok {
+		t, err := expandObjectFirewallMmsProfileOutbreakPrevention(d, v, "outbreak_prevention")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["outbreak-prevention"] = t
 		}
 	}
 

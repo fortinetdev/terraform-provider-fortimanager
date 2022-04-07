@@ -50,6 +50,53 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"disable_entry": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"ip_range": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"end_ip": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"id": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"start_ip": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
+						"port": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeInt},
+							Optional: true,
+							Computed: true,
+						},
+						"protocol": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"entry": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -95,6 +142,11 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 						},
 					},
 				},
+			},
+			"master_service_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -231,6 +283,126 @@ func flattenObjectFirewallInternetServiceCustomComment(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFirewallInternetServiceCustomDisableEntry(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustom-DisableEntry-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_range"
+		if _, ok := i["ip-range"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryIpRange(i["ip-range"], d, pre_append)
+			tmp["ip_range"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustom-DisableEntry-IpRange")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := i["port"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryPort(i["port"], d, pre_append)
+			tmp["port"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustom-DisableEntry-Port")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := i["protocol"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryProtocol(i["protocol"], d, pre_append)
+			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustom-DisableEntry-Protocol")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryIpRange(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
+		if _, ok := i["end-ip"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryIpRangeEndIp(i["end-ip"], d, pre_append)
+			tmp["end_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustomDisableEntry-IpRange-EndIp")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryIpRangeId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustomDisableEntry-IpRange-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
+		if _, ok := i["start-ip"]; ok {
+			v := flattenObjectFirewallInternetServiceCustomDisableEntryIpRangeStartIp(i["start-ip"], d, pre_append)
+			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustomDisableEntry-IpRange-StartIp")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryIpRangeEndIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryIpRangeId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryIpRangeStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenObjectFirewallInternetServiceCustomDisableEntryProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallInternetServiceCustomEntry(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -351,6 +523,10 @@ func flattenObjectFirewallInternetServiceCustomEntryProtocol(v interface{}, d *s
 	return v
 }
 
+func flattenObjectFirewallInternetServiceCustomMasterServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallInternetServiceCustomId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -385,6 +561,30 @@ func refreshObjectObjectFirewallInternetServiceCustom(d *schema.ResourceData, o 
 	}
 
 	if isImportTable() {
+		if err = d.Set("disable_entry", flattenObjectFirewallInternetServiceCustomDisableEntry(o["disable-entry"], d, "disable_entry")); err != nil {
+			if vv, ok := fortiAPIPatch(o["disable-entry"], "ObjectFirewallInternetServiceCustom-DisableEntry"); ok {
+				if err = d.Set("disable_entry", vv); err != nil {
+					return fmt.Errorf("Error reading disable_entry: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading disable_entry: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("disable_entry"); ok {
+			if err = d.Set("disable_entry", flattenObjectFirewallInternetServiceCustomDisableEntry(o["disable-entry"], d, "disable_entry")); err != nil {
+				if vv, ok := fortiAPIPatch(o["disable-entry"], "ObjectFirewallInternetServiceCustom-DisableEntry"); ok {
+					if err = d.Set("disable_entry", vv); err != nil {
+						return fmt.Errorf("Error reading disable_entry: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading disable_entry: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("entry", flattenObjectFirewallInternetServiceCustomEntry(o["entry"], d, "entry")); err != nil {
 			if vv, ok := fortiAPIPatch(o["entry"], "ObjectFirewallInternetServiceCustom-Entry"); ok {
 				if err = d.Set("entry", vv); err != nil {
@@ -405,6 +605,16 @@ func refreshObjectObjectFirewallInternetServiceCustom(d *schema.ResourceData, o 
 					return fmt.Errorf("Error reading entry: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("master_service_id", flattenObjectFirewallInternetServiceCustomMasterServiceId(o["master-service-id"], d, "master_service_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["master-service-id"], "ObjectFirewallInternetServiceCustom-MasterServiceId"); ok {
+			if err = d.Set("master_service_id", vv); err != nil {
+				return fmt.Errorf("Error reading master_service_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading master_service_id: %v", err)
 		}
 	}
 
@@ -448,6 +658,113 @@ func flattenObjectFirewallInternetServiceCustomFortiTestDebug(d *schema.Resource
 }
 
 func expandObjectFirewallInternetServiceCustomComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandObjectFirewallInternetServiceCustomDisableEntryId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_range"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["ip-range"], _ = expandObjectFirewallInternetServiceCustomDisableEntryIpRange(d, i["ip_range"], pre_append)
+		} else {
+			tmp["ip-range"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["port"], _ = expandObjectFirewallInternetServiceCustomDisableEntryPort(d, i["port"], pre_append)
+		} else {
+			tmp["port"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["protocol"], _ = expandObjectFirewallInternetServiceCustomDisableEntryProtocol(d, i["protocol"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["end-ip"], _ = expandObjectFirewallInternetServiceCustomDisableEntryIpRangeEndIp(d, i["end_ip"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["id"], _ = expandObjectFirewallInternetServiceCustomDisableEntryIpRangeId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["start-ip"], _ = expandObjectFirewallInternetServiceCustomDisableEntryIpRangeStartIp(d, i["start_ip"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryIpRangeEndIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryIpRangeId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryIpRangeStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallInternetServiceCustomDisableEntryProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -556,6 +873,10 @@ func expandObjectFirewallInternetServiceCustomEntryProtocol(d *schema.ResourceDa
 	return v, nil
 }
 
+func expandObjectFirewallInternetServiceCustomMasterServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallInternetServiceCustomId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -580,12 +901,30 @@ func getObjectObjectFirewallInternetServiceCustom(d *schema.ResourceData) (*map[
 		}
 	}
 
+	if v, ok := d.GetOk("disable_entry"); ok {
+		t, err := expandObjectFirewallInternetServiceCustomDisableEntry(d, v, "disable_entry")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["disable-entry"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("entry"); ok {
 		t, err := expandObjectFirewallInternetServiceCustomEntry(d, v, "entry")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["entry"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("master_service_id"); ok {
+		t, err := expandObjectFirewallInternetServiceCustomMasterServiceId(d, v, "master_service_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["master-service-id"] = t
 		}
 	}
 

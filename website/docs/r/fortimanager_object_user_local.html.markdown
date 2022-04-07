@@ -71,6 +71,8 @@ The following arguments are supported:
 
 * `username_case_sensitivity` - Enable/disable case sensitivity when performing username matching (uppercase and lowercase letters are treated either as distinct or equivalent). Valid values: `disable`, `enable`.
 
+* `username_sensitivity` - Enable/disable case and accent sensitivity when performing username matching (accents are stripped and case is ignored when disabled). Valid values: `disable`, `enable`.
+
 * `workstation` - Name of the remote user workstation, if you want to limit the user to authenticate only from a particular workstation.
 
 

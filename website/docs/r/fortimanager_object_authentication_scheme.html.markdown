@@ -45,6 +45,8 @@ The following arguments are supported:
 * `saml_server` - SAML configuration.
 * `saml_timeout` - SAML authentication timeout in seconds.
 * `ssh_ca` - SSH CA name.
+* `user_cert` - Enable/disable authentication with user certificate (default = disable). Valid values: `disable`, `enable`.
+
 * `user_database` - Authentication server to contain user information; "local" (default) or "123" (for LDAP).
 
 

@@ -28,6 +28,7 @@ The following arguments are supported:
 * `srcaddr` - Source address name from available addresses.
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
+* `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `anomaly` block supports:

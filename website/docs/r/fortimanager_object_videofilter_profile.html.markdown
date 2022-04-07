@@ -22,6 +22,7 @@ The following arguments are supported:
 
 * `fortiguard_category` - Fortiguard-Category. The structure of `fortiguard_category` block is documented below.
 * `name` - Name.
+* `replacemsg_group` - Replacement message group.
 * `vimeo` - Enable/disable Vimeo video source. Valid values: `disable`, `enable`.
 
 * `vimeo_restrict` - Set Vimeo-restrict ("7" = don't show mature content, "134" = don't show unrated and mature content). A value of cookie "content_rating".

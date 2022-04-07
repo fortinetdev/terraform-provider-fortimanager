@@ -218,6 +218,34 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 					},
 				},
 			},
+			"ec": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"buffer": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"format": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"header": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"msg_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"fortiguard_wf": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -1448,6 +1476,73 @@ func flattenObjectSystemReplacemsgGroupDeviceDetectionPortalHeader(v interface{}
 }
 
 func flattenObjectSystemReplacemsgGroupDeviceDetectionPortalMsgType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupEc(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
+		if _, ok := i["buffer"]; ok {
+			v := flattenObjectSystemReplacemsgGroupEcBuffer(i["buffer"], d, pre_append)
+			tmp["buffer"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Ec-Buffer")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
+		if _, ok := i["format"]; ok {
+			v := flattenObjectSystemReplacemsgGroupEcFormat(i["format"], d, pre_append)
+			tmp["format"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Ec-Format")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
+		if _, ok := i["header"]; ok {
+			v := flattenObjectSystemReplacemsgGroupEcHeader(i["header"], d, pre_append)
+			tmp["header"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Ec-Header")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
+		if _, ok := i["msg-type"]; ok {
+			v := flattenObjectSystemReplacemsgGroupEcMsgType(i["msg-type"], d, pre_append)
+			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Ec-MsgType")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemReplacemsgGroupEcBuffer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupEcFormat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupEcHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupEcMsgType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3214,6 +3309,30 @@ func refreshObjectObjectSystemReplacemsgGroup(d *schema.ResourceData, o map[stri
 	}
 
 	if isImportTable() {
+		if err = d.Set("ec", flattenObjectSystemReplacemsgGroupEc(o["ec"], d, "ec")); err != nil {
+			if vv, ok := fortiAPIPatch(o["ec"], "ObjectSystemReplacemsgGroup-Ec"); ok {
+				if err = d.Set("ec", vv); err != nil {
+					return fmt.Errorf("Error reading ec: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading ec: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("ec"); ok {
+			if err = d.Set("ec", flattenObjectSystemReplacemsgGroupEc(o["ec"], d, "ec")); err != nil {
+				if vv, ok := fortiAPIPatch(o["ec"], "ObjectSystemReplacemsgGroup-Ec"); ok {
+					if err = d.Set("ec", vv); err != nil {
+						return fmt.Errorf("Error reading ec: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading ec: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("fortiguard_wf", flattenObjectSystemReplacemsgGroupFortiguardWf(o["fortiguard-wf"], d, "fortiguard_wf")); err != nil {
 			if vv, ok := fortiAPIPatch(o["fortiguard-wf"], "ObjectSystemReplacemsgGroup-FortiguardWf"); ok {
 				if err = d.Set("fortiguard_wf", vv); err != nil {
@@ -3999,6 +4118,64 @@ func expandObjectSystemReplacemsgGroupDeviceDetectionPortalHeader(d *schema.Reso
 }
 
 func expandObjectSystemReplacemsgGroupDeviceDetectionPortalMsgType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupEc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupEcBuffer(d, i["buffer"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["format"], _ = expandObjectSystemReplacemsgGroupEcFormat(d, i["format"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["header"], _ = expandObjectSystemReplacemsgGroupEcHeader(d, i["header"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupEcMsgType(d, i["msg_type"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemReplacemsgGroupEcBuffer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupEcFormat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupEcHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupEcMsgType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5464,6 +5641,15 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["device-detection-portal"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ec"); ok {
+		t, err := expandObjectSystemReplacemsgGroupEc(d, v, "ec")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ec"] = t
 		}
 	}
 

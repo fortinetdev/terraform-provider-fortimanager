@@ -29,6 +29,11 @@ func resourceSystemFortiviewSetting() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"data_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"not_scanned_apps": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -111,6 +116,10 @@ func resourceSystemFortiviewSettingRead(d *schema.ResourceData, m interface{}) e
 	return nil
 }
 
+func flattenSystemFortiviewSettingDataSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemFortiviewSettingNotScannedApps(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -121,6 +130,16 @@ func flattenSystemFortiviewSettingResolveIp(v interface{}, d *schema.ResourceDat
 
 func refreshObjectSystemFortiviewSetting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("data_source", flattenSystemFortiviewSettingDataSource(o["data-source"], d, "data_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["data-source"], "SystemFortiviewSetting-DataSource"); ok {
+			if err = d.Set("data_source", vv); err != nil {
+				return fmt.Errorf("Error reading data_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading data_source: %v", err)
+		}
+	}
 
 	if err = d.Set("not_scanned_apps", flattenSystemFortiviewSettingNotScannedApps(o["not-scanned-apps"], d, "not_scanned_apps")); err != nil {
 		if vv, ok := fortiAPIPatch(o["not-scanned-apps"], "SystemFortiviewSetting-NotScannedApps"); ok {
@@ -151,6 +170,10 @@ func flattenSystemFortiviewSettingFortiTestDebug(d *schema.ResourceData, fosdebu
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemFortiviewSettingDataSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemFortiviewSettingNotScannedApps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -161,6 +184,15 @@ func expandSystemFortiviewSettingResolveIp(d *schema.ResourceData, v interface{}
 
 func getObjectSystemFortiviewSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("data_source"); ok {
+		t, err := expandSystemFortiviewSettingDataSource(d, v, "data_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["data-source"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("not_scanned_apps"); ok {
 		t, err := expandSystemFortiviewSettingNotScannedApps(d, v, "not_scanned_apps")

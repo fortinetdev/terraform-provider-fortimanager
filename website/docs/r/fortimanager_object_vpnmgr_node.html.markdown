@@ -56,6 +56,7 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `scopemember` - Scope Member. The structure of `scopemember` block is documented below.
 * `add_route` - Add-Route. Valid values: `disable`, `enable`.
 
 * `assign_ip` - Assign-Ip. Valid values: `disable`, `enable`.
@@ -78,6 +79,8 @@ The following arguments are supported:
 * `dns_service` - Dns-Service. Valid values: `default`, `specify`, `local`.
 
 * `domain` - Domain.
+* `encapsulation` - Encapsulation. Valid values: `tunnel-mode`, `transport-mode`.
+
 * `exchange_interface_ip` - Exchange-Interface-Ip. Valid values: `disable`, `enable`.
 
 * `extgw` - Extgw.
@@ -102,6 +105,8 @@ The following arguments are supported:
 * `ipv4_start_ip` - Ipv4-Start-Ip.
 * `ipv4_wins_server1` - Ipv4-Wins-Server1.
 * `ipv4_wins_server2` - Ipv4-Wins-Server2.
+* `l2tp` - L2Tp. Valid values: `disable`, `enable`.
+
 * `local_gw` - Local-Gw.
 * `localid` - Localid.
 * `mode_cfg` - Mode-Cfg. Valid values: `disable`, `enable`.
@@ -134,6 +139,11 @@ The following arguments are supported:
 * `xauthtype` - Xauthtype. Valid values: `disable`, `client`, `pap`, `chap`, `auto`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `scopemember` block supports:
+
+* `name` - Name.
+* `vdom` - Vdom.
 
 The `ip_range` block supports:
 

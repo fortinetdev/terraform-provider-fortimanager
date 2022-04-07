@@ -45,6 +45,7 @@ The following arguments are supported:
 * `port` - Upload server IP1 port number.
 * `port2` - Upload server IP2 port number.
 * `port3` - Upload server IP3 port number.
+* `rolling_upgrade_status` - rolling upgrade status (1|0).
 * `server_type` - Upload server type. ftp - Upload via FTP. sftp - Upload via SFTP. scp - Upload via SCP. Valid values: `ftp`, `sftp`, `scp`.
 
 * `upload` - Enable/disable log file uploads. disable - Disable log files uploading. enable - Enable log files uploading. Valid values: `disable`, `enable`.

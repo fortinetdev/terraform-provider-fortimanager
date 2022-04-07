@@ -39,6 +39,8 @@ The following arguments are supported:
 * `mms_profile` - Name of an existing MMS profile.
 * `name` - Profile group name.
 * `profile_protocol_options` - Name of an existing Protocol options profile.
+* `spamfilter_profile` - Name of an existing Spam filter profile.
+* `sctp_filter_profile` - Name of an existing SCTP filter profile.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
 * `videofilter_profile` - Name of an existing VideoFilter profile.

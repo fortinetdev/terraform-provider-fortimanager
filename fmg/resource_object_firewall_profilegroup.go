@@ -106,6 +106,16 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"spamfilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sctp_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ssh_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -294,6 +304,14 @@ func flattenObjectFirewallProfileGroupProfileProtocolOptions(v interface{}, d *s
 	return v
 }
 
+func flattenObjectFirewallProfileGroupSpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileGroupSctpFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupSshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -445,6 +463,26 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("spamfilter_profile", flattenObjectFirewallProfileGroupSpamfilterProfile(o["spamfilter-profile"], d, "spamfilter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["spamfilter-profile"], "ObjectFirewallProfileGroup-SpamfilterProfile"); ok {
+			if err = d.Set("spamfilter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("sctp_filter_profile", flattenObjectFirewallProfileGroupSctpFilterProfile(o["sctp-filter-profile"], d, "sctp_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sctp-filter-profile"], "ObjectFirewallProfileGroup-SctpFilterProfile"); ok {
+			if err = d.Set("sctp_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("ssh_filter_profile", flattenObjectFirewallProfileGroupSshFilterProfile(o["ssh-filter-profile"], d, "ssh_filter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssh-filter-profile"], "ObjectFirewallProfileGroup-SshFilterProfile"); ok {
 			if err = d.Set("ssh_filter_profile", vv); err != nil {
@@ -559,6 +597,14 @@ func expandObjectFirewallProfileGroupName(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectFirewallProfileGroupProfileProtocolOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileGroupSpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileGroupSctpFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -694,6 +740,24 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["profile-protocol-options"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("spamfilter_profile"); ok {
+		t, err := expandObjectFirewallProfileGroupSpamfilterProfile(d, v, "spamfilter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["spamfilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+		t, err := expandObjectFirewallProfileGroupSctpFilterProfile(d, v, "sctp_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sctp-filter-profile"] = t
 		}
 	}
 

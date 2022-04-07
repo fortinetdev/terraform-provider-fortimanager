@@ -18,6 +18,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`.
 
 * `app_category` - App-Category.

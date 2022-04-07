@@ -198,6 +198,12 @@ func resourceFmupdateFdsSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"system_support_fdc": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"system_support_fgt": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -211,6 +217,12 @@ func resourceFmupdateFdsSetting() *schema.Resource {
 				Computed: true,
 			},
 			"system_support_fsa": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"system_support_fts": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
@@ -615,6 +627,10 @@ func flattenFmupdateFdsSettingSystemSupportFctFfa(v interface{}, d *schema.Resou
 	return flattenStringList(v)
 }
 
+func flattenFmupdateFdsSettingSystemSupportFdcFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenFmupdateFdsSettingSystemSupportFgtFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -624,6 +640,10 @@ func flattenFmupdateFdsSettingSystemSupportFmlFfa(v interface{}, d *schema.Resou
 }
 
 func flattenFmupdateFdsSettingSystemSupportFsaFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenFmupdateFdsSettingSystemSupportFtsFfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
@@ -887,6 +907,16 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("system_support_fdc", flattenFmupdateFdsSettingSystemSupportFdcFfa(o["system-support-fdc"], d, "system_support_fdc")); err != nil {
+		if vv, ok := fortiAPIPatch(o["system-support-fdc"], "FmupdateFdsSetting-SystemSupportFdc"); ok {
+			if err = d.Set("system_support_fdc", vv); err != nil {
+				return fmt.Errorf("Error reading system_support_fdc: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading system_support_fdc: %v", err)
+		}
+	}
+
 	if err = d.Set("system_support_fgt", flattenFmupdateFdsSettingSystemSupportFgtFfa(o["system-support-fgt"], d, "system_support_fgt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-support-fgt"], "FmupdateFdsSetting-SystemSupportFgt"); ok {
 			if err = d.Set("system_support_fgt", vv); err != nil {
@@ -914,6 +944,16 @@ func refreshObjectFmupdateFdsSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading system_support_fsa: %v", err)
+		}
+	}
+
+	if err = d.Set("system_support_fts", flattenFmupdateFdsSettingSystemSupportFtsFfa(o["system-support-fts"], d, "system_support_fts")); err != nil {
+		if vv, ok := fortiAPIPatch(o["system-support-fts"], "FmupdateFdsSetting-SystemSupportFts"); ok {
+			if err = d.Set("system_support_fts", vv); err != nil {
+				return fmt.Errorf("Error reading system_support_fts: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading system_support_fts: %v", err)
 		}
 	}
 
@@ -1248,6 +1288,10 @@ func expandFmupdateFdsSettingSystemSupportFctFfa(d *schema.ResourceData, v inter
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandFmupdateFdsSettingSystemSupportFdcFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandFmupdateFdsSettingSystemSupportFgtFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -1257,6 +1301,10 @@ func expandFmupdateFdsSettingSystemSupportFmlFfa(d *schema.ResourceData, v inter
 }
 
 func expandFmupdateFdsSettingSystemSupportFsaFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandFmupdateFdsSettingSystemSupportFtsFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
@@ -1462,6 +1510,15 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("system_support_fdc"); ok {
+		t, err := expandFmupdateFdsSettingSystemSupportFdcFfa(d, v, "system_support_fdc")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["system-support-fdc"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("system_support_fgt"); ok {
 		t, err := expandFmupdateFdsSettingSystemSupportFgtFfa(d, v, "system_support_fgt")
 		if err != nil {
@@ -1486,6 +1543,15 @@ func getObjectFmupdateFdsSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["system-support-fsa"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("system_support_fts"); ok {
+		t, err := expandFmupdateFdsSettingSystemSupportFtsFfa(d, v, "system_support_fts")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["system-support-fts"] = t
 		}
 	}
 

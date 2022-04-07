@@ -79,6 +79,7 @@ The following arguments are supported:
 
 * `pkg` - Package.
 
+* `access_proxy` - Access-Proxy.
 * `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
 * `active_auth_method` - Active-Auth-Method. Valid values: `ntlm`, `basic`, `digest`, `form`.
@@ -162,6 +163,8 @@ The following arguments are supported:
 
 * `dstaddr6` - Dstaddr6.
 * `dstintf` - Outgoing (egress) interface.
+* `dynamic_bypass` - Dynamic-Bypass. Valid values: `disable`, `enable`.
+
 * `dynamic_profile` - Dynamic-Profile. Valid values: `disable`, `enable`.
 
 * `dynamic_profile_access` - Dynamic-Profile-Access. Valid values: `imap`, `smtp`, `pop3`, `http`, `ftp`, `im`, `nntp`, `imaps`, `smtps`, `pop3s`, `https`, `ftps`, `ssh`.
@@ -186,10 +189,14 @@ The following arguments are supported:
 
 * `fall_through_unauthenticated` - Fall-Through-Unauthenticated. Valid values: `disable`, `enable`.
 
+* `fec` - Enable/disable Forward Error Correction on traffic matching this policy on a FEC device. Valid values: `disable`, `enable`.
+
 * `file_filter_profile` - File-Filter-Profile.
 * `firewall_session_dirty` - How to handle sessions if the configuration of this firewall policy changes. Valid values: `check-all`, `check-new`.
 
 * `fixedport` - Enable to prevent source NAT from changing a session's source port. Valid values: `disable`, `enable`.
+
+* `force_proxy` - Force-Proxy. Valid values: `disable`, `enable`.
 
 * `forticlient_compliance_devices` - Forticlient-Compliance-Devices. Valid values: `windows-pc`, `mac`, `iphone-ipad`, `android`.
 
@@ -213,6 +220,9 @@ The following arguments are supported:
 * `gtp_profile` - GTP profile.
 * `http_policy_redirect` - Redirect HTTP(S) traffic to matching transparent web proxy policy. Valid values: `disable`, `enable`.
 
+* `http_tunnel_auth` - Http-Tunnel-Auth. Valid values: `disable`, `enable`.
+
+* `ia_profile` - Ia-Profile.
 * `icap_profile` - Name of an existing ICAP profile.
 * `identity_based` - Identity-Based. Valid values: `disable`, `enable`.
 
@@ -246,8 +256,11 @@ The following arguments are supported:
 * `ippool` - Enable to use IP Pools for source NAT. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
+* `isolator_server` - Isolator-Server.
 * `label` - Label for the policy that appears when the GUI is in Section View mode.
 * `learning_mode` - Learning-Mode. Valid values: `disable`, `enable`.
+
+* `log_http_transaction` - Log-Http-Transaction. Valid values: `disable`, `enable`.
 
 * `log_unmatched_traffic` - Log-Unmatched-Traffic. Valid values: `disable`, `enable`.
 
@@ -261,9 +274,14 @@ The following arguments are supported:
 
 * `match_vip_only` - Enable/disable matching of only those packets that have had their destination addresses changed by a VIP. Valid values: `disable`, `enable`.
 
+* `max_session_per_user` - Max-Session-Per-User.
 * `mms_profile` - Name of an existing MMS profile.
 * `name` - Policy name.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
+
+* `nat46` - Enable/disable NAT46. Valid values: `disable`, `enable`.
+
+* `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
 
 * `natinbound` - Policy-based IPsec VPN: apply destination NAT to inbound traffic. Valid values: `disable`, `enable`.
 
@@ -279,6 +297,8 @@ The following arguments are supported:
 
 * `outbound` - Policy-based IPsec VPN: only traffic from the internal network can initiate a VPN. Valid values: `disable`, `enable`.
 
+* `pass_through` - Pass-Through. Valid values: `disable`, `enable`.
+
 * `passive_wan_health_measurement` - Passive-Wan-Health-Measurement. Valid values: `disable`, `enable`.
 
 * `per_ip_shaper` - Per-IP traffic shaper.
@@ -286,6 +306,7 @@ The following arguments are supported:
 
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
 
+* `pfcp_profile` - PFCP profile.
 * `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
@@ -305,6 +326,8 @@ The following arguments are supported:
 * `reputation_minimum` - Minimum Reputation to take action.
 * `require_tfa` - Require-Tfa. Valid values: `disable`, `enable`.
 
+* `reverse_cache` - Reverse-Cache. Valid values: `disable`, `enable`.
+
 * `rsso` - Enable/disable RADIUS single sign-on (RSSO). Valid values: `disable`, `enable`.
 
 * `rtp_addr` - Address names if this is an RTP NAT policy.
@@ -315,6 +338,7 @@ The following arguments are supported:
 * `schedule` - Schedule name.
 * `schedule_timeout` - Enable to force current sessions to end when the schedule object times out. Disable allows them to end from inactivity. Valid values: `disable`, `enable`.
 
+* `sctp_filter_profile` - Name of an existing SCTP filter profile.
 * `send_deny_packet` - Enable to send a reply when a session is denied or blocked by a firewall policy. Valid values: `disable`, `enable`.
 
 * `service` - Service and service group names.
@@ -322,6 +346,9 @@ The following arguments are supported:
 
 * `session_ttl` - TTL in seconds for sessions accepted by this policy (0 means use the system default session TTL).
 * `sessions` - Sessions. Valid values: `disable`, `enable`.
+
+* `sgt` - Security group tags.
+* `sgt_check` - Enable/disable security group tags (SGT) check. Valid values: `disable`, `enable`.
 
 * `spamfilter_profile` - Spamfilter-Profile.
 * `src_vendor_mac` - Src-Vendor-Mac.
@@ -354,6 +381,7 @@ The following arguments are supported:
 
 * `tcp_session_without_syn` - Enable/disable creation of TCP session without SYN flag. Valid values: `all`, `data-only`, `disable`.
 
+* `tcp_timeout_pid` - TCP timeout profile ID
 * `timeout_send_rst` - Enable/disable sending RST packets when TCP sessions expire. Valid values: `disable`, `enable`.
 
 * `tos` - ToS (Type of Service) value used for comparison.
@@ -364,6 +392,11 @@ The following arguments are supported:
 * `traffic_shaper_reverse` - Reverse traffic shaper.
 * `transaction_based` - Transaction-Based. Valid values: `disable`, `enable`.
 
+* `transparent` - Transparent. Valid values: `disable`, `enable`.
+
+* `type` - Type. Valid values: `explicit-web`, `transparent`, `explicit-ftp`, `ssh-tunnel`, `ssh`, `wanopt`, `access-proxy`.
+
+* `udp_timeout_pid` - UDP timeout profile ID
 * `url_category` - URL category ID list.
 * `users` - Names of individual users that can authenticate with this policy.
 * `utm_inspection_mode` - Utm-Inspection-Mode. Valid values: `proxy`, `flow`.
@@ -371,6 +404,7 @@ The following arguments are supported:
 * `utm_status` - Enable to add one or more security profiles (AV, IPS, etc.) to the firewall policy. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `uuid_idx` - Uuid-Idx.
 * `vendor_mac` - Vendor-Mac.
 * `videofilter_profile` - Videofilter-Profile.
 * `vlan_cos_fwd` - VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
@@ -403,6 +437,8 @@ The following arguments are supported:
 * `ztna_ems_tag` - Ztna-Ems-Tag.
 * `ztna_geo_tag` - Ztna-Geo-Tag.
 * `ztna_status` - Ztna-Status. Valid values: `disable`, `enable`.
+
+* `ztna_tags_match_logic` - Ztna-Tags-Match-Logic. Valid values: `or`, `and`.
 
 
 

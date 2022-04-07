@@ -24,6 +24,8 @@ resource "fortimanager_system_fortiview_setting" "trname" {
 The following arguments are supported:
 
 
+* `data_source` - Data soure of the fortiview query. auto - Data from hcache, and from logs in a flexible way. cache-only - Data from hcache only. log-and-cache - Data from logs and hcache. Valid values: `auto`, `cache-only`, `log-and-cache`.
+
 * `not_scanned_apps` - Include/Exclude 'Not.Scanned' applications in FortiView. Set as 'exclude' if you want to filter out never scanned applications. exclude - Exclude 'Not.Scanned' applications in FortiView. include - Include 'Not.Scanned' applications in FortiView. Valid values: `exclude`, `include`.
 
 * `resolve_ip` - Enable or disable resolving IP address to hostname in FortiView.  disable - Disable resolving IP address to hostname. enable - Enable resolving IP address to hostname. Valid values: `disable`, `enable`.

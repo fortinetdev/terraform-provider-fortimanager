@@ -26,6 +26,8 @@ The following arguments are supported:
 
 
 * `fmgadom` - Adom. The structure of `fmgadom` block is documented below.
+* `adom_access` - set all/specify/exclude adom access mode. all - All ADOMs access. specify - Specify ADOMs access. exclude - Exclude ADOMs access. Valid values: `all`, `specify`, `exclude`.
+
 * `adom_exclude` - Adom-Exclude. The structure of `adom_exclude` block is documented below.
 * `app_filter` - App-Filter. The structure of `app_filter` block is documented below.
 * `avatar` - Image file for avatar (maximum 4K base64 encoded).
@@ -77,6 +79,8 @@ The following arguments are supported:
 * `ssh_public_key3` - SSH public key 3.
 * `subject` - PKI user certificate name constraints.
 * `tacacs_plus_server` - TACACS+ server name.
+* `th_from_profile` - Internal use only: trusthostX from-profile flag
+* `th6_from_profile` - Internal use only: ipv6_trusthostX from-profile flag
 * `trusthost1` - Admin user trusted host IP, default 0.0.0.0 0.0.0.0 for all.
 * `trusthost10` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.
 * `trusthost2` - Admin user trusted host IP, default 255.255.255.255 255.255.255.255 for none.

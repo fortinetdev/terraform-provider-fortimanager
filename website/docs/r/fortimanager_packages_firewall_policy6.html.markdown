@@ -18,6 +18,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.
@@ -33,6 +34,7 @@ The following arguments are supported:
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
 * `custom_log_fields` - Log field index numbers to append custom log fields to log messages for this policy.
+* `devices` - Names of devices or device groups that can be matched by the policy.
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
 * `diffserv_reverse` - Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `disable`, `enable`.
@@ -40,6 +42,11 @@ The following arguments are supported:
 * `diffservcode_forward` - Change packet's DiffServ to this value.
 * `diffservcode_rev` - Change packet's reverse (reply) DiffServ to this value.
 * `dlp_sensor` - Name of an existing DLP sensor.
+* `dscp_match` - Enable DSCP check. Valid values: `disable`, `enable`.
+
+* `dscp_negate` - Enable negated DSCP match. Valid values: `disable`, `enable`.
+
+* `dscp_value` - DSCP value.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `dsri` - Enable DSRI to ignore HTTP server responses. Valid values: `disable`, `enable`.
 
@@ -101,6 +108,7 @@ The following arguments are supported:
 * `service_negate` - When enabled service specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `session_ttl` - Session TTL in seconds for sessions accepted by this policy. 0 means use the system default session TTL.
+* `spamfilter_profile` - Name of an existing Spam filter profile.
 * `srcaddr` - Source address and address group names.
 * `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
 

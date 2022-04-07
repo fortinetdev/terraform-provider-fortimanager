@@ -61,6 +61,11 @@ func resourceObjectUserSecurityExemptList() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"devices": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"dstaddr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -226,6 +231,12 @@ func flattenObjectUserSecurityExemptListRule(v interface{}, d *schema.ResourceDa
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "devices"
+		if _, ok := i["devices"]; ok {
+			v := flattenObjectUserSecurityExemptListRuleDevices(i["devices"], d, pre_append)
+			tmp["devices"] = fortiAPISubPartPatch(v, "ObjectUserSecurityExemptList-Rule-Devices")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dstaddr"
 		if _, ok := i["dstaddr"]; ok {
 			v := flattenObjectUserSecurityExemptListRuleDstaddr(i["dstaddr"], d, pre_append)
@@ -256,6 +267,10 @@ func flattenObjectUserSecurityExemptListRule(v interface{}, d *schema.ResourceDa
 	}
 
 	return result
+}
+
+func flattenObjectUserSecurityExemptListRuleDevices(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectUserSecurityExemptListRuleDstaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -360,6 +375,11 @@ func expandObjectUserSecurityExemptListRule(d *schema.ResourceData, v interface{
 		i := r.(map[string]interface{})
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "devices"
+		if _, ok := d.GetOk(pre_append); ok {
+			tmp["devices"], _ = expandObjectUserSecurityExemptListRuleDevices(d, i["devices"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dstaddr"
 		if _, ok := d.GetOk(pre_append); ok {
 			tmp["dstaddr"], _ = expandObjectUserSecurityExemptListRuleDstaddr(d, i["dstaddr"], pre_append)
@@ -386,6 +406,10 @@ func expandObjectUserSecurityExemptListRule(d *schema.ResourceData, v interface{
 	}
 
 	return result, nil
+}
+
+func expandObjectUserSecurityExemptListRuleDevices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectUserSecurityExemptListRuleDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

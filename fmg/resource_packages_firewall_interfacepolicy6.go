@@ -144,9 +144,24 @@ func resourcePackagesFirewallInterfacePolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"scan_botnet_connections": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"service6": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"spamfilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"spamfilter_profile_status": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -157,6 +172,11 @@ func resourcePackagesFirewallInterfacePolicy6() *schema.Resource {
 				Computed: true,
 			},
 			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -375,8 +395,20 @@ func flattenPackagesFirewallInterfacePolicy6Policyid(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesFirewallInterfacePolicy6ScanBotnetConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallInterfacePolicy6Service6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenPackagesFirewallInterfacePolicy6SpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallInterfacePolicy6SpamfilterProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesFirewallInterfacePolicy6Srcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -384,6 +416,10 @@ func flattenPackagesFirewallInterfacePolicy6Srcaddr6(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallInterfacePolicy6Status(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallInterfacePolicy6Uuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -582,6 +618,16 @@ func refreshObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("scan_botnet_connections", flattenPackagesFirewallInterfacePolicy6ScanBotnetConnections(o["scan-botnet-connections"], d, "scan_botnet_connections")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-botnet-connections"], "PackagesFirewallInterfacePolicy6-ScanBotnetConnections"); ok {
+			if err = d.Set("scan_botnet_connections", vv); err != nil {
+				return fmt.Errorf("Error reading scan_botnet_connections: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_botnet_connections: %v", err)
+		}
+	}
+
 	if err = d.Set("service6", flattenPackagesFirewallInterfacePolicy6Service6(o["service6"], d, "service6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service6"], "PackagesFirewallInterfacePolicy6-Service6"); ok {
 			if err = d.Set("service6", vv); err != nil {
@@ -589,6 +635,26 @@ func refreshObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading service6: %v", err)
+		}
+	}
+
+	if err = d.Set("spamfilter_profile", flattenPackagesFirewallInterfacePolicy6SpamfilterProfile(o["spamfilter-profile"], d, "spamfilter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["spamfilter-profile"], "PackagesFirewallInterfacePolicy6-SpamfilterProfile"); ok {
+			if err = d.Set("spamfilter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("spamfilter_profile_status", flattenPackagesFirewallInterfacePolicy6SpamfilterProfileStatus(o["spamfilter-profile-status"], d, "spamfilter_profile_status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["spamfilter-profile-status"], "PackagesFirewallInterfacePolicy6-SpamfilterProfileStatus"); ok {
+			if err = d.Set("spamfilter_profile_status", vv); err != nil {
+				return fmt.Errorf("Error reading spamfilter_profile_status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading spamfilter_profile_status: %v", err)
 		}
 	}
 
@@ -609,6 +675,16 @@ func refreshObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
+	if err = d.Set("uuid", flattenPackagesFirewallInterfacePolicy6Uuid(o["uuid"], d, "uuid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid"], "PackagesFirewallInterfacePolicy6-Uuid"); ok {
+			if err = d.Set("uuid", vv); err != nil {
+				return fmt.Errorf("Error reading uuid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid: %v", err)
 		}
 	}
 
@@ -713,8 +789,20 @@ func expandPackagesFirewallInterfacePolicy6Policyid(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandPackagesFirewallInterfacePolicy6ScanBotnetConnections(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallInterfacePolicy6Service6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
+}
+
+func expandPackagesFirewallInterfacePolicy6SpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallInterfacePolicy6SpamfilterProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandPackagesFirewallInterfacePolicy6Srcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -722,6 +810,10 @@ func expandPackagesFirewallInterfacePolicy6Srcaddr6(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallInterfacePolicy6Status(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallInterfacePolicy6Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -898,12 +990,39 @@ func getObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
+	if v, ok := d.GetOk("scan_botnet_connections"); ok {
+		t, err := expandPackagesFirewallInterfacePolicy6ScanBotnetConnections(d, v, "scan_botnet_connections")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-botnet-connections"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("service6"); ok {
 		t, err := expandPackagesFirewallInterfacePolicy6Service6(d, v, "service6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["service6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("spamfilter_profile"); ok {
+		t, err := expandPackagesFirewallInterfacePolicy6SpamfilterProfile(d, v, "spamfilter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["spamfilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("spamfilter_profile_status"); ok {
+		t, err := expandPackagesFirewallInterfacePolicy6SpamfilterProfileStatus(d, v, "spamfilter_profile_status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["spamfilter-profile-status"] = t
 		}
 	}
 
@@ -922,6 +1041,15 @@ func getObjectPackagesFirewallInterfacePolicy6(d *schema.ResourceData) (*map[str
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid"); ok {
+		t, err := expandPackagesFirewallInterfacePolicy6Uuid(d, v, "uuid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid"] = t
 		}
 	}
 

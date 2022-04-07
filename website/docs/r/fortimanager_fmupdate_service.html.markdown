@@ -33,6 +33,8 @@ The following arguments are supported:
 
 * `query_filequery` - Enable/disable file query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `query_iot` - Enable/disable file query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `query_outbreak_prevention` - Enable/disable  outbreak prevention query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `query_webfilter` - Enable/disable Web Filter service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.

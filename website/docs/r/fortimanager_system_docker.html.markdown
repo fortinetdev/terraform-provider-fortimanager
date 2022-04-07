@@ -40,6 +40,8 @@ The following arguments are supported:
 * `default_address_pool_base` - Set default-address-pool CIDR.
 * `default_address_pool_size` - Set default-address-pool size.
 * `docker_user_login_max` - Max login session for docker users.
+* `fortiaiops` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `fortiauthenticator` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `fortiportal` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
@@ -50,10 +52,16 @@ The following arguments are supported:
 
 * `fortiwlm` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `fsmcollector` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `mem` - Max % RAM usage.
+* `policyanalyzer` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `sdwancontroller` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `status` - Enable and set registry. disable - Disable docker host service. enable - Enable production registry. qa - Enable QA test registry. dev - Enable QA test registry (without signature). Valid values: `disable`, `enable`, `qa`, `dev`.
+
+* `universalconnector` - Enable/disable container. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 
 

@@ -61,8 +61,24 @@ func resourceObjectCliTemplate() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"provision": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"script": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"variables": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -188,8 +204,20 @@ func flattenObjectCliTemplateName(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenObjectCliTemplateProvision(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCliTemplateScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectCliTemplateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectCliTemplateVariables(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func refreshObjectObjectCliTemplate(d *schema.ResourceData, o map[string]interface{}) error {
@@ -229,6 +257,16 @@ func refreshObjectObjectCliTemplate(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("provision", flattenObjectCliTemplateProvision(o["provision"], d, "provision")); err != nil {
+		if vv, ok := fortiAPIPatch(o["provision"], "ObjectCliTemplate-Provision"); ok {
+			if err = d.Set("provision", vv); err != nil {
+				return fmt.Errorf("Error reading provision: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading provision: %v", err)
+		}
+	}
+
 	if err = d.Set("script", flattenObjectCliTemplateScript(o["script"], d, "script")); err != nil {
 		if vv, ok := fortiAPIPatch(o["script"], "ObjectCliTemplate-Script"); ok {
 			if err = d.Set("script", vv); err != nil {
@@ -236,6 +274,26 @@ func refreshObjectObjectCliTemplate(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading script: %v", err)
+		}
+	}
+
+	if err = d.Set("type", flattenObjectCliTemplateType(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "ObjectCliTemplate-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("variables", flattenObjectCliTemplateVariables(o["variables"], d, "variables")); err != nil {
+		if vv, ok := fortiAPIPatch(o["variables"], "ObjectCliTemplate-Variables"); ok {
+			if err = d.Set("variables", vv); err != nil {
+				return fmt.Errorf("Error reading variables: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading variables: %v", err)
 		}
 	}
 
@@ -260,8 +318,20 @@ func expandObjectCliTemplateName(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
+func expandObjectCliTemplateProvision(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectCliTemplateScript(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectCliTemplateType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectCliTemplateVariables(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -294,12 +364,39 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
+	if v, ok := d.GetOk("provision"); ok {
+		t, err := expandObjectCliTemplateProvision(d, v, "provision")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["provision"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("script"); ok {
 		t, err := expandObjectCliTemplateScript(d, v, "script")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["script"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("type"); ok {
+		t, err := expandObjectCliTemplateType(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("variables"); ok {
+		t, err := expandObjectCliTemplateVariables(d, v, "variables")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["variables"] = t
 		}
 	}
 

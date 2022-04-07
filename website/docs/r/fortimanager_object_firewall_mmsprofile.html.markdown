@@ -26,8 +26,10 @@ The following arguments are supported:
 * `carrier_endpoint_prefix_string` - String with which to prefix End point values.
 * `carrierendpointbwltable` - Carrier end point filter table ID.
 * `comment` - Comment.
+* `dupe` - Dupe. The structure of `dupe` block is documented below.
 * `extended_utm_log` - Enable/disable detailed UTM log messages. Valid values: `disable`, `enable`.
 
+* `flood` - Flood. The structure of `flood` block is documented below.
 * `mm1` - MM1 options. Valid values: `avmonitor`, `block`, `oversize`, `quarantine`, `scan`, `avquery`, `bannedword`, `no-content-summary`, `archive-summary`, `archive-full`, `carrier-endpoint-bwl`, `remove-blocked`, `chunkedbypass`, `clientcomfort`, `servercomfort`, `strict-file`, `mms-checksum`.
 
 * `mm1_addr_hdr` - HTTP header field (for MM1) containing user address.
@@ -86,15 +88,141 @@ The following arguments are supported:
 * `mmsbwordthreshold` - MMS banned word threshold.
 * `name` - Profile name.
 * `notif_msisdn` - Notif-Msisdn. The structure of `notif_msisdn` block is documented below.
+* `notification` - Notification. The structure of `notification` block is documented below.
+* `outbreak_prevention` - Outbreak-Prevention. The structure of `outbreak_prevention` block is documented below.
 * `remove_blocked_const_length` - Enable/disable MMS replacement of blocked file constant length. Valid values: `disable`, `enable`.
 
 * `replacemsg_group` - Replacement message group.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
+The `dupe` block supports:
+
+* `action1` - Action to take when threshold reached. Valid values: `log`, `archive`, `intercept`, `block`, `archive-first`, `alert-notif`.
+
+* `action2` - Action to take when threshold reached. Valid values: `log`, `archive`, `intercept`, `block`, `archive-first`, `alert-notif`.
+
+* `action3` - Action to take when threshold reached. Valid values: `log`, `archive`, `intercept`, `block`, `archive-first`, `alert-notif`.
+
+* `block_time1` - Duration for which action takes effect (0 - 35791 min).
+* `block_time2` - Duration for which action takes effect (0 - 35791 min).
+* `block_time3` - Duration action takes effect (0 - 35791 min).
+* `limit1` - Maximum number of messages allowed.
+* `limit2` - Maximum number of messages allowed.
+* `limit3` - Maximum number of messages allowed.
+* `protocol` - Protocol.
+* `status1` - Enable/disable status1 detection. Valid values: `disable`, `enable`.
+
+* `status2` - Enable/disable status2 detection. Valid values: `disable`, `enable`.
+
+* `status3` - Enable/disable status3 detection. Valid values: `disable`, `enable`.
+
+* `window1` - Window to count messages over (1 - 2880 min).
+* `window2` - Window to count messages over (1 - 2880 min).
+* `window3` - Window to count messages over (1 - 2880 min).
+
+The `flood` block supports:
+
+* `action1` - Action to take when threshold reached. Valid values: `log`, `archive`, `intercept`, `block`, `archive-first`, `alert-notif`.
+
+* `action2` - Action to take when threshold reached. Valid values: `log`, `archive`, `intercept`, `block`, `archive-first`, `alert-notif`.
+
+* `action3` - Action to take when threshold reached. Valid values: `log`, `archive`, `intercept`, `block`, `archive-first`, `alert-notif`.
+
+* `block_time1` - Duration for which action takes effect (0 - 35791 min).
+* `block_time2` - Duration for which action takes effect (0 - 35791 min).
+* `block_time3` - Duration action takes effect (0 - 35791 min).
+* `limit1` - Maximum number of messages allowed.
+* `limit2` - Maximum number of messages allowed.
+* `limit3` - Maximum number of messages allowed.
+* `protocol` - Protocol.
+* `status1` - Enable/disable status1 detection. Valid values: `disable`, `enable`.
+
+* `status2` - Enable/disable status2 detection. Valid values: `disable`, `enable`.
+
+* `status3` - Enable/disable status3 detection. Valid values: `disable`, `enable`.
+
+* `window1` - Window to count messages over (1 - 2880 min).
+* `window2` - Window to count messages over (1 - 2880 min).
+* `window3` - Window to count messages over (1 - 2880 min).
+
 The `notif_msisdn` block supports:
 
 * `msisdn` - Recipient MSISDN.
 * `threshold` - Thresholds on which this MSISDN will receive an alert. Valid values: `flood-thresh-1`, `flood-thresh-2`, `flood-thresh-3`, `dupe-thresh-1`, `dupe-thresh-2`, `dupe-thresh-3`.
+
+
+The `notification` block supports:
+
+* `alert_int` - Alert notification send interval.
+* `alert_int_mode` - Alert notification interval mode. Valid values: `hours`, `minutes`.
+
+* `alert_src_msisdn` - Specify from address for alert messages.
+* `alert_status` - Alert notification status. Valid values: `disable`, `enable`.
+
+* `bword_int` - Banned word notification send interval.
+* `bword_int_mode` - Banned word notification interval mode. Valid values: `hours`, `minutes`.
+
+* `bword_status` - Banned word notification status. Valid values: `disable`, `enable`.
+
+* `carrier_endpoint_bwl_int` - Carrier end point black/white list notification send interval.
+* `carrier_endpoint_bwl_int_mode` - Carrier end point black/white list notification interval mode. Valid values: `hours`, `minutes`.
+
+* `carrier_endpoint_bwl_status` - Carrier end point black/white list notification status. Valid values: `disable`, `enable`.
+
+* `days_allowed` - Weekdays on which notification messages may be sent. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+
+* `detect_server` - Enable/disable automatic server address determination. Valid values: `disable`, `enable`.
+
+* `dupe_int` - Duplicate notification send interval.
+* `dupe_int_mode` - Duplicate notification interval mode. Valid values: `hours`, `minutes`.
+
+* `dupe_status` - Duplicate notification status. Valid values: `disable`, `enable`.
+
+* `file_block_int` - File block notification send interval.
+* `file_block_int_mode` - File block notification interval mode. Valid values: `hours`, `minutes`.
+
+* `file_block_status` - File block notification status. Valid values: `disable`, `enable`.
+
+* `flood_int` - Flood notification send interval.
+* `flood_int_mode` - Flood notification interval mode. Valid values: `hours`, `minutes`.
+
+* `flood_status` - Flood notification status. Valid values: `disable`, `enable`.
+
+* `from_in_header` - Enable/disable insertion of from address in HTTP header. Valid values: `disable`, `enable`.
+
+* `mms_checksum_int` - MMS checksum notification send interval.
+* `mms_checksum_int_mode` - MMS checksum notification interval mode. Valid values: `hours`, `minutes`.
+
+* `mms_checksum_status` - MMS checksum notification status. Valid values: `disable`, `enable`.
+
+* `mmsc_hostname` - Host name or IP address of the MMSC.
+* `mmsc_password` - Password required for authentication with the MMSC.
+* `mmsc_port` - Port used on the MMSC for sending MMS messages (1 - 65535).
+* `mmsc_url` - URL used on the MMSC for sending MMS messages.
+* `mmsc_username` - User name required for authentication with the MMSC.
+* `msg_protocol` - Protocol to use for sending notification messages. Valid values: `mm1`, `mm3`, `mm4`, `mm7`.
+
+* `msg_type` - MM7 message type. Valid values: `submit-req`, `deliver-req`.
+
+* `protocol` - Protocol.
+* `rate_limit` - Rate limit for sending notification messages (0 - 250).
+* `tod_window_duration` - Time of day window duration.
+* `tod_window_end` - Obsolete.
+* `tod_window_start` - Time of day window start.
+* `user_domain` - Domain name to which the user addresses belong.
+* `vas_id` - VAS identifier.
+* `vasp_id` - VASP identifier.
+* `virus_int` - Virus notification send interval.
+* `virus_int_mode` - Virus notification interval mode. Valid values: `hours`, `minutes`.
+
+* `virus_status` - Virus notification status. Valid values: `disable`, `enable`.
+
+
+The `outbreak_prevention` block supports:
+
+* `external_blocklist` - Enable/disable external malware blocklist. Valid values: `disable`, `enable`.
+
+* `ftgd_service` - Enable/disable FortiGuard Virus outbreak prevention service. Valid values: `disable`, `enable`.
 
 
 

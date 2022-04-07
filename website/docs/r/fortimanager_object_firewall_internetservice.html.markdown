@@ -23,6 +23,7 @@ The following arguments are supported:
 
 * `direction` - Direction. Valid values: `src`, `dst`, `both`.
 
+* `entry` - Entry. The structure of `entry` block is documented below.
 * `extra_ip_range_number` - Extra-Ip-Range-Number.
 * `icon_id` - Icon-Id.
 * `fosid` - Id.
@@ -31,12 +32,22 @@ The following arguments are supported:
 * `jitter_threshold` - Jitter-Threshold.
 * `latency_threshold` - Latency-Threshold.
 * `name` - Name.
+* `offset` - Offset.
 * `obsolete` - Obsolete.
 * `region` - Region sequence number list.
 * `packetloss_threshold` - Packetloss-Threshold.
 * `reputation` - Reputation.
 * `singularity` - Singularity.
 * `sld_id` - Sld-Id.
+* `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `entry` block supports:
+
+* `id` - Entry ID.
+* `ip_number` - Total number of IP addresses.
+* `ip_range_number` - Total number of IP ranges.
+* `port` - Integer value for the TCP/IP port (0 - 65535).
+* `protocol` - Integer value for the protocol type as defined by IANA (0 - 255).
 
 
 ## Attribute Reference

@@ -48,6 +48,11 @@ The following arguments are supported:
 
 * `fq_preload` - Enable/disable preloading file query database to memory (default = disable). disable - Disable file query db preload. enable - Enable file query db preload. Valid values: `disable`, `enable`.
 
+* `iot_cache` - IoT service maximum memory usage, in megabytes (100 - 500, default = 300).
+* `iot_log` - IoT log setting (default = nofilequery). disable - Disable IoT log. nofilequery - Log non-IoT events. all - Log all IoT events. Valid values: `disable`, `nofilequery`, `all`.
+
+* `iot_preload` - Enable/disable preloading IoT database to memory (default = disable). disable - Disable IoT db preload. enable - Enable IoT db preload. Valid values: `disable`, `enable`.
+
 * `linkd_log` - Linkd log setting (default = debug). emergency - The unit is unusable. alert - Immediate action is required critical - Functionality is affected. error - Functionality is probably affected. warn - Functionality might be affected. notice - Information about normal events. info - General information. debug - Debug information. disable - Linkd logging is disabled. Valid values: `emergency`, `alert`, `critical`, `error`, `warn`, `notice`, `info`, `debug`, `disable`.
 
 * `max_client_worker` - max worker for tcp client connection (0~16: 0 means use cpu number up to 4).
@@ -59,6 +64,7 @@ The following arguments are supported:
 * `restrict_av_dbver` - Restrict system update to indicated antivirus database version (character limit = 127).
 * `restrict_av2_dbver` - Restrict system update to indicated outbreak prevention database version (character limit = 127).
 * `restrict_fq_dbver` - Restrict system update to indicated file query database version (character limit = 127).
+* `restrict_iots_dbver` - Restrict system update to indicated file query database version (character limit = 127).
 * `restrict_wf_dbver` - Restrict system update to indicated web filter database version (character limit = 127).
 * `server_override` - Server-Override. The structure of `server_override` block is documented below.
 * `stat_log_interval` - Statistic log interval setting, in minutes (1 - 1440, default = 60).

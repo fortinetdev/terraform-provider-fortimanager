@@ -29,6 +29,11 @@ func resourceSystemConnector() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"conn_refresh_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"fsso_refresh_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -121,6 +126,10 @@ func resourceSystemConnectorRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenSystemConnectorConnRefreshInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemConnectorFssoRefreshInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -139,6 +148,16 @@ func flattenSystemConnectorPxSvrTimeout(v interface{}, d *schema.ResourceData, p
 
 func refreshObjectSystemConnector(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("conn_refresh_interval", flattenSystemConnectorConnRefreshInterval(o["conn-refresh-interval"], d, "conn_refresh_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["conn-refresh-interval"], "SystemConnector-ConnRefreshInterval"); ok {
+			if err = d.Set("conn_refresh_interval", vv); err != nil {
+				return fmt.Errorf("Error reading conn_refresh_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading conn_refresh_interval: %v", err)
+		}
+	}
 
 	if err = d.Set("fsso_refresh_interval", flattenSystemConnectorFssoRefreshInterval(o["fsso-refresh-interval"], d, "fsso_refresh_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fsso-refresh-interval"], "SystemConnector-FssoRefreshInterval"); ok {
@@ -189,6 +208,10 @@ func flattenSystemConnectorFortiTestDebug(d *schema.ResourceData, fosdebugsn int
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemConnectorConnRefreshInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemConnectorFssoRefreshInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -207,6 +230,15 @@ func expandSystemConnectorPxSvrTimeout(d *schema.ResourceData, v interface{}, pr
 
 func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("conn_refresh_interval"); ok {
+		t, err := expandSystemConnectorConnRefreshInterval(d, v, "conn_refresh_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["conn-refresh-interval"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("fsso_refresh_interval"); ok {
 		t, err := expandSystemConnectorFssoRefreshInterval(d, v, "fsso_refresh_interval")

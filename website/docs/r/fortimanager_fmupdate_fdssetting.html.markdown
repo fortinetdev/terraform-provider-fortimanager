@@ -49,11 +49,15 @@ The following arguments are supported:
 * `server_override` - Server-Override. The structure of `server_override` block is documented below.
 * `system_support_fct` - Supported FortiClient versions. 4.x - Support version 4.x 5.0 - Support version 5.0 5.2 - Support version 5.2 5.4 - Support version 5.4 5.6 - Support version 5.6 6.0 - Support version 6.0 6.2 - Support version 6.2 6.4 - Support version 6.4 Valid values: `4.x`, `5.0`, `5.2`, `5.4`, `5.6`, `6.0`, `6.2`, `6.4`.
 
+* `system_support_fdc` - Supported FortiDeceptor versions. 3.x - Support version 3.x Valid values: `3.x`.
+
 * `system_support_fgt` - Supported FortiOS versions. 5.4 - Support version 5.4 5.6 - Support version 5.6 6.0 - Support version 6.0 6.2 - Support version 6.2 6.4 - Support version 6.4 Valid values: `5.4`, `5.6`, `6.0`, `6.2`, `6.4`.
 
 * `system_support_fml` - Supported FortiMail versions. 4.x - Support version 4.x 5.x - Support version 5.x 6.x - Support version 6.x Valid values: `4.x`, `5.x`, `6.x`.
 
 * `system_support_fsa` - Supported FortiSandbox versions. 1.x - Support version 1.x 2.x - Support version 2.x 3.x - Support version 3.x Valid values: `1.x`, `2.x`, `3.x`.
+
+* `system_support_fts` - Supported FortiTester versions. 4.x - Support version 4.x Valid values: `4.x`.
 
 * `system_support_fsw` - Supported FortiSwitch versions. 4.x - Support version 4.x 5.0 - Support version 5.0 5.2 - Support version 5.2 5.4 - Support version 5.4 5.6 - Support version 5.6 6.0 - Support version 6.0 6.2 - Support version 6.2 6.4 - Support version 6.4 Valid values: `4.x`, `5.0`, `5.2`, `5.4`, `5.6`, `6.0`, `6.2`, `6.4`.
 

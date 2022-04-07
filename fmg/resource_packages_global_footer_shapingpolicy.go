@@ -55,6 +55,11 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"class_id_reverse": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -187,6 +192,11 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"service": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -392,6 +402,10 @@ func flattenPackagesGlobalFooterShapingPolicyClassId(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesGlobalFooterShapingPolicyClassIdReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterShapingPolicyComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -500,6 +514,10 @@ func flattenPackagesGlobalFooterShapingPolicyService(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesGlobalFooterShapingPolicyServiceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterShapingPolicySrcaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -588,6 +606,16 @@ func refreshObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData, o ma
 			}
 		} else {
 			return fmt.Errorf("Error reading class_id: %v", err)
+		}
+	}
+
+	if err = d.Set("class_id_reverse", flattenPackagesGlobalFooterShapingPolicyClassIdReverse(o["class-id-reverse"], d, "class_id_reverse")); err != nil {
+		if vv, ok := fortiAPIPatch(o["class-id-reverse"], "PackagesGlobalFooterShapingPolicy-ClassIdReverse"); ok {
+			if err = d.Set("class_id_reverse", vv); err != nil {
+				return fmt.Errorf("Error reading class_id_reverse: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading class_id_reverse: %v", err)
 		}
 	}
 
@@ -861,6 +889,16 @@ func refreshObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData, o ma
 		}
 	}
 
+	if err = d.Set("service_type", flattenPackagesGlobalFooterShapingPolicyServiceType(o["service-type"], d, "service_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-type"], "PackagesGlobalFooterShapingPolicy-ServiceType"); ok {
+			if err = d.Set("service_type", vv); err != nil {
+				return fmt.Errorf("Error reading service_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_type: %v", err)
+		}
+	}
+
 	if err = d.Set("srcaddr", flattenPackagesGlobalFooterShapingPolicySrcaddr(o["srcaddr"], d, "srcaddr")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr"], "PackagesGlobalFooterShapingPolicy-Srcaddr"); ok {
 			if err = d.Set("srcaddr", vv); err != nil {
@@ -1006,6 +1044,10 @@ func expandPackagesGlobalFooterShapingPolicyClassId(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandPackagesGlobalFooterShapingPolicyClassIdReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterShapingPolicyComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1114,6 +1156,10 @@ func expandPackagesGlobalFooterShapingPolicyService(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandPackagesGlobalFooterShapingPolicyServiceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterShapingPolicySrcaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1198,6 +1244,15 @@ func getObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["class-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("class_id_reverse"); ok {
+		t, err := expandPackagesGlobalFooterShapingPolicyClassIdReverse(d, v, "class_id_reverse")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["class-id-reverse"] = t
 		}
 	}
 
@@ -1441,6 +1496,15 @@ func getObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["service"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_type"); ok {
+		t, err := expandPackagesGlobalFooterShapingPolicyServiceType(d, v, "service_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-type"] = t
 		}
 	}
 

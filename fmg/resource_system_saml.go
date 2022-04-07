@@ -190,6 +190,11 @@ func resourceSystemSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"user_auto_create": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -532,6 +537,10 @@ func flattenSystemSamlStatusSSa(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
+func flattenSystemSamlUserAutoCreateSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -724,6 +733,16 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
+	if err = d.Set("user_auto_create", flattenSystemSamlUserAutoCreateSSa(o["user-auto-create"], d, "user_auto_create")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-auto-create"], "SystemSaml-UserAutoCreate"); ok {
+			if err = d.Set("user_auto_create", vv); err != nil {
+				return fmt.Errorf("Error reading user_auto_create: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_auto_create: %v", err)
 		}
 	}
 
@@ -971,6 +990,10 @@ func expandSystemSamlStatusSSa(d *schema.ResourceData, v interface{}, pre string
 	return v, nil
 }
 
+func expandSystemSamlUserAutoCreateSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1123,6 +1146,15 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_auto_create"); ok {
+		t, err := expandSystemSamlUserAutoCreateSSa(d, v, "user_auto_create")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-auto-create"] = t
 		}
 	}
 

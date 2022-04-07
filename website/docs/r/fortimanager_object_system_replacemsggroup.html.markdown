@@ -33,6 +33,7 @@ The following arguments are supported:
 * `comment` - Comment.
 * `custom_message` - Custom-Message. The structure of `custom_message` block is documented below.
 * `device_detection_portal` - Device-Detection-Portal. The structure of `device_detection_portal` block is documented below.
+* `ec` - Ec. The structure of `ec` block is documented below.
 * `fortiguard_wf` - Fortiguard-Wf. The structure of `fortiguard_wf` block is documented below.
 * `ftp` - Ftp. The structure of `ftp` block is documented below.
 * `group_type` - Group type. Valid values: `default`, `utm`, `auth`, `ec`, `captive-portal`.
@@ -101,6 +102,15 @@ The `custom_message` block supports:
 * `msg_type` - Message type.
 
 The `device_detection_portal` block supports:
+
+* `buffer` - Message string.
+* `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.
+
+* `header` - Header flag. Valid values: `none`, `http`, `8bit`.
+
+* `msg_type` - Message type.
+
+The `ec` block supports:
 
 * `buffer` - Message string.
 * `format` - Format flag. Valid values: `none`, `text`, `html`, `wml`.

@@ -27,6 +27,7 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `_baseline` - _Baseline.
 * `block_malicious_url` - Enable/disable malicious URL blocking. Valid values: `disable`, `enable`.
 
 * `comment` - Comment.

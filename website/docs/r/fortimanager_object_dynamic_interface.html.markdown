@@ -44,6 +44,11 @@ The following arguments are supported:
 * `platform_mapping` - Platform_Mapping. The structure of `platform_mapping` block is documented below.
 * `single_intf` - Single-Intf. Valid values: `disable`, `enable`.
 
+* `wildcard` - Wildcard. Valid values: `disable`, `enable`.
+
+* `wildcard_intf` - Wildcard-Intf.
+* `zone_only` - Zone-Only. Valid values: `disable`, `enable`.
+
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `dynamic_mapping` block supports:

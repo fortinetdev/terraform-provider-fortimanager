@@ -50,6 +50,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -176,6 +181,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"devices": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -207,6 +217,21 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dnsfilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dscp_match": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dscp_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dscp_value": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -250,6 +275,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"emailfilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fec": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -421,6 +451,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"learning_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -452,6 +487,16 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"nat": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat46": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -514,6 +559,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"permit_stun_host": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"pfcp_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -594,12 +644,22 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"scan_botnet_connections": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"schedule": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"schedule_timeout": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sctp_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -621,6 +681,22 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"spamfilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sgt": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
+			"sgt_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -699,6 +775,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tcp_timeout_pid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"timeout_send_rst": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -725,6 +806,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"traffic_shaper_reverse": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"udp_timeout_pid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1052,6 +1138,10 @@ func resourcePackagesFirewallPolicyRead(d *schema.ResourceData, m interface{}) e
 	return nil
 }
 
+func flattenPackagesFirewallPolicyPolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1152,6 +1242,10 @@ func flattenPackagesFirewallPolicyDelayTcpNpuSession(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesFirewallPolicyDevices(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1177,6 +1271,18 @@ func flattenPackagesFirewallPolicyDlpSensor(v interface{}, d *schema.ResourceDat
 }
 
 func flattenPackagesFirewallPolicyDnsfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyDscpMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyDscpNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyDscpValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1209,6 +1315,10 @@ func flattenPackagesFirewallPolicyEmailCollect(v interface{}, d *schema.Resource
 }
 
 func flattenPackagesFirewallPolicyEmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyFec(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1344,6 +1454,10 @@ func flattenPackagesFirewallPolicyLabel(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenPackagesFirewallPolicyLearningMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1369,6 +1483,14 @@ func flattenPackagesFirewallPolicyName(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenPackagesFirewallPolicyNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyNat46(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1417,6 +1539,10 @@ func flattenPackagesFirewallPolicyPermitAnyHost(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallPolicyPermitStunHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyPfcpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1480,11 +1606,19 @@ func flattenPackagesFirewallPolicyRtpNat(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenPackagesFirewallPolicyScanBotnetConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenPackagesFirewallPolicyScheduleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicySctpFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1502,6 +1636,18 @@ func flattenPackagesFirewallPolicyServiceNegate(v interface{}, d *schema.Resourc
 
 func flattenPackagesFirewallPolicySessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return convttlfloat642String(v)
+}
+
+func flattenPackagesFirewallPolicySpamfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicySgt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenPackagesFirewallPolicySgtCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesFirewallPolicySrcVendorMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1560,6 +1706,10 @@ func flattenPackagesFirewallPolicyTcpSessionWithoutSyn(v interface{}, d *schema.
 	return v
 }
 
+func flattenPackagesFirewallPolicyTcpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyTimeoutSendRst(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1581,6 +1731,10 @@ func flattenPackagesFirewallPolicyTrafficShaper(v interface{}, d *schema.Resourc
 }
 
 func flattenPackagesFirewallPolicyTrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyUdpTimeoutPid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1811,6 +1965,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("_policy_block", flattenPackagesFirewallPolicyPolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesFirewallPolicy-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
 	}
 
 	if err = d.Set("action", flattenPackagesFirewallPolicyAction(o["action"], d, "action")); err != nil {
@@ -2063,6 +2227,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("devices", flattenPackagesFirewallPolicyDevices(o["devices"], d, "devices")); err != nil {
+		if vv, ok := fortiAPIPatch(o["devices"], "PackagesFirewallPolicy-Devices"); ok {
+			if err = d.Set("devices", vv); err != nil {
+				return fmt.Errorf("Error reading devices: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading devices: %v", err)
+		}
+	}
+
 	if err = d.Set("diffserv_forward", flattenPackagesFirewallPolicyDiffservForward(o["diffserv-forward"], d, "diffserv_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffserv-forward"], "PackagesFirewallPolicy-DiffservForward"); ok {
 			if err = d.Set("diffserv_forward", vv); err != nil {
@@ -2130,6 +2304,36 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading dnsfilter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("dscp_match", flattenPackagesFirewallPolicyDscpMatch(o["dscp-match"], d, "dscp_match")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dscp-match"], "PackagesFirewallPolicy-DscpMatch"); ok {
+			if err = d.Set("dscp_match", vv); err != nil {
+				return fmt.Errorf("Error reading dscp_match: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dscp_match: %v", err)
+		}
+	}
+
+	if err = d.Set("dscp_negate", flattenPackagesFirewallPolicyDscpNegate(o["dscp-negate"], d, "dscp_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dscp-negate"], "PackagesFirewallPolicy-DscpNegate"); ok {
+			if err = d.Set("dscp_negate", vv); err != nil {
+				return fmt.Errorf("Error reading dscp_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dscp_negate: %v", err)
+		}
+	}
+
+	if err = d.Set("dscp_value", flattenPackagesFirewallPolicyDscpValue(o["dscp-value"], d, "dscp_value")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dscp-value"], "PackagesFirewallPolicy-DscpValue"); ok {
+			if err = d.Set("dscp_value", vv); err != nil {
+				return fmt.Errorf("Error reading dscp_value: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dscp_value: %v", err)
 		}
 	}
 
@@ -2210,6 +2414,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading emailfilter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("fec", flattenPackagesFirewallPolicyFec(o["fec"], d, "fec")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fec"], "PackagesFirewallPolicy-Fec"); ok {
+			if err = d.Set("fec", vv); err != nil {
+				return fmt.Errorf("Error reading fec: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fec: %v", err)
 		}
 	}
 
@@ -2543,6 +2757,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("learning_mode", flattenPackagesFirewallPolicyLearningMode(o["learning-mode"], d, "learning_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["learning-mode"], "PackagesFirewallPolicy-LearningMode"); ok {
+			if err = d.Set("learning_mode", vv); err != nil {
+				return fmt.Errorf("Error reading learning_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading learning_mode: %v", err)
+		}
+	}
+
 	if err = d.Set("logtraffic", flattenPackagesFirewallPolicyLogtraffic(o["logtraffic"], d, "logtraffic")); err != nil {
 		if vv, ok := fortiAPIPatch(o["logtraffic"], "PackagesFirewallPolicy-Logtraffic"); ok {
 			if err = d.Set("logtraffic", vv); err != nil {
@@ -2610,6 +2834,26 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading nat: %v", err)
+		}
+	}
+
+	if err = d.Set("nat46", flattenPackagesFirewallPolicyNat46(o["nat46"], d, "nat46")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat46"], "PackagesFirewallPolicy-Nat46"); ok {
+			if err = d.Set("nat46", vv); err != nil {
+				return fmt.Errorf("Error reading nat46: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat46: %v", err)
+		}
+	}
+
+	if err = d.Set("nat64", flattenPackagesFirewallPolicyNat64(o["nat64"], d, "nat64")); err != nil {
+		if vv, ok := fortiAPIPatch(o["nat64"], "PackagesFirewallPolicy-Nat64"); ok {
+			if err = d.Set("nat64", vv); err != nil {
+				return fmt.Errorf("Error reading nat64: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading nat64: %v", err)
 		}
 	}
 
@@ -2730,6 +2974,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading permit_stun_host: %v", err)
+		}
+	}
+
+	if err = d.Set("pfcp_profile", flattenPackagesFirewallPolicyPfcpProfile(o["pfcp-profile"], d, "pfcp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pfcp-profile"], "PackagesFirewallPolicy-PfcpProfile"); ok {
+			if err = d.Set("pfcp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading pfcp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pfcp_profile: %v", err)
 		}
 	}
 
@@ -2883,6 +3137,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("scan_botnet_connections", flattenPackagesFirewallPolicyScanBotnetConnections(o["scan-botnet-connections"], d, "scan_botnet_connections")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-botnet-connections"], "PackagesFirewallPolicy-ScanBotnetConnections"); ok {
+			if err = d.Set("scan_botnet_connections", vv); err != nil {
+				return fmt.Errorf("Error reading scan_botnet_connections: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_botnet_connections: %v", err)
+		}
+	}
+
 	if err = d.Set("schedule", flattenPackagesFirewallPolicySchedule(o["schedule"], d, "schedule")); err != nil {
 		if vv, ok := fortiAPIPatch(o["schedule"], "PackagesFirewallPolicy-Schedule"); ok {
 			if err = d.Set("schedule", vv); err != nil {
@@ -2900,6 +3164,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading schedule_timeout: %v", err)
+		}
+	}
+
+	if err = d.Set("sctp_filter_profile", flattenPackagesFirewallPolicySctpFilterProfile(o["sctp-filter-profile"], d, "sctp_filter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sctp-filter-profile"], "PackagesFirewallPolicy-SctpFilterProfile"); ok {
+			if err = d.Set("sctp_filter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sctp_filter_profile: %v", err)
 		}
 	}
 
@@ -2940,6 +3214,36 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading session_ttl: %v", err)
+		}
+	}
+
+	if err = d.Set("spamfilter_profile", flattenPackagesFirewallPolicySpamfilterProfile(o["spamfilter-profile"], d, "spamfilter_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["spamfilter-profile"], "PackagesFirewallPolicy-SpamfilterProfile"); ok {
+			if err = d.Set("spamfilter_profile", vv); err != nil {
+				return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading spamfilter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("sgt", flattenPackagesFirewallPolicySgt(o["sgt"], d, "sgt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sgt"], "PackagesFirewallPolicy-Sgt"); ok {
+			if err = d.Set("sgt", vv); err != nil {
+				return fmt.Errorf("Error reading sgt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sgt: %v", err)
+		}
+	}
+
+	if err = d.Set("sgt_check", flattenPackagesFirewallPolicySgtCheck(o["sgt-check"], d, "sgt_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sgt-check"], "PackagesFirewallPolicy-SgtCheck"); ok {
+			if err = d.Set("sgt_check", vv); err != nil {
+				return fmt.Errorf("Error reading sgt_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sgt_check: %v", err)
 		}
 	}
 
@@ -3083,6 +3387,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("tcp_timeout_pid", flattenPackagesFirewallPolicyTcpTimeoutPid(o["tcp-timeout-pid"], d, "tcp_timeout_pid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tcp-timeout-pid"], "PackagesFirewallPolicy-TcpTimeoutPid"); ok {
+			if err = d.Set("tcp_timeout_pid", vv); err != nil {
+				return fmt.Errorf("Error reading tcp_timeout_pid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tcp_timeout_pid: %v", err)
+		}
+	}
+
 	if err = d.Set("timeout_send_rst", flattenPackagesFirewallPolicyTimeoutSendRst(o["timeout-send-rst"], d, "timeout_send_rst")); err != nil {
 		if vv, ok := fortiAPIPatch(o["timeout-send-rst"], "PackagesFirewallPolicy-TimeoutSendRst"); ok {
 			if err = d.Set("timeout_send_rst", vv); err != nil {
@@ -3140,6 +3454,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading traffic_shaper_reverse: %v", err)
+		}
+	}
+
+	if err = d.Set("udp_timeout_pid", flattenPackagesFirewallPolicyUdpTimeoutPid(o["udp-timeout-pid"], d, "udp_timeout_pid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["udp-timeout-pid"], "PackagesFirewallPolicy-UdpTimeoutPid"); ok {
+			if err = d.Set("udp_timeout_pid", vv); err != nil {
+				return fmt.Errorf("Error reading udp_timeout_pid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading udp_timeout_pid: %v", err)
 		}
 	}
 
@@ -3460,6 +3784,10 @@ func flattenPackagesFirewallPolicyFortiTestDebug(d *schema.ResourceData, fosdebu
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesFirewallPolicyPolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3560,6 +3888,10 @@ func expandPackagesFirewallPolicyDelayTcpNpuSession(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyDevices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyDiffservForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3585,6 +3917,18 @@ func expandPackagesFirewallPolicyDlpSensor(d *schema.ResourceData, v interface{}
 }
 
 func expandPackagesFirewallPolicyDnsfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyDscpMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyDscpNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyDscpValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3617,6 +3961,10 @@ func expandPackagesFirewallPolicyEmailCollect(d *schema.ResourceData, v interfac
 }
 
 func expandPackagesFirewallPolicyEmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyFec(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3752,6 +4100,10 @@ func expandPackagesFirewallPolicyLabel(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyLearningMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyLogtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3777,6 +4129,14 @@ func expandPackagesFirewallPolicyName(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandPackagesFirewallPolicyNat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyNat46(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3825,6 +4185,10 @@ func expandPackagesFirewallPolicyPermitAnyHost(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallPolicyPermitStunHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyPfcpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3888,11 +4252,19 @@ func expandPackagesFirewallPolicyRtpNat(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyScanBotnetConnections(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandPackagesFirewallPolicyScheduleTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicySctpFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3909,6 +4281,18 @@ func expandPackagesFirewallPolicyServiceNegate(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallPolicySessionTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicySpamfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicySgt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesFirewallPolicySgtCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3968,6 +4352,10 @@ func expandPackagesFirewallPolicyTcpSessionWithoutSyn(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyTcpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyTimeoutSendRst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3989,6 +4377,10 @@ func expandPackagesFirewallPolicyTrafficShaper(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallPolicyTrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyUdpTimeoutPid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4196,6 +4588,15 @@ func expandPackagesFirewallPolicyWsso(d *schema.ResourceData, v interface{}, pre
 
 func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_policy_block"); ok {
+		t, err := expandPackagesFirewallPolicyPolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok {
 		t, err := expandPackagesFirewallPolicyAction(d, v, "action")
@@ -4422,6 +4823,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("devices"); ok {
+		t, err := expandPackagesFirewallPolicyDevices(d, v, "devices")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["devices"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("diffserv_forward"); ok {
 		t, err := expandPackagesFirewallPolicyDiffservForward(d, v, "diffserv_forward")
 		if err != nil {
@@ -4482,6 +4892,33 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["dnsfilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dscp_match"); ok {
+		t, err := expandPackagesFirewallPolicyDscpMatch(d, v, "dscp_match")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dscp-match"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dscp_negate"); ok {
+		t, err := expandPackagesFirewallPolicyDscpNegate(d, v, "dscp_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dscp-negate"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dscp_value"); ok {
+		t, err := expandPackagesFirewallPolicyDscpValue(d, v, "dscp_value")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dscp-value"] = t
 		}
 	}
 
@@ -4554,6 +4991,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["emailfilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fec"); ok {
+		t, err := expandPackagesFirewallPolicyFec(d, v, "fec")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fec"] = t
 		}
 	}
 
@@ -4854,6 +5300,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("learning_mode"); ok {
+		t, err := expandPackagesFirewallPolicyLearningMode(d, v, "learning_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["learning-mode"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("logtraffic"); ok {
 		t, err := expandPackagesFirewallPolicyLogtraffic(d, v, "logtraffic")
 		if err != nil {
@@ -4914,6 +5369,24 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["nat"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat46"); ok {
+		t, err := expandPackagesFirewallPolicyNat46(d, v, "nat46")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat46"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("nat64"); ok {
+		t, err := expandPackagesFirewallPolicyNat64(d, v, "nat64")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["nat64"] = t
 		}
 	}
 
@@ -5022,6 +5495,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["permit-stun-host"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pfcp_profile"); ok {
+		t, err := expandPackagesFirewallPolicyPfcpProfile(d, v, "pfcp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pfcp-profile"] = t
 		}
 	}
 
@@ -5160,6 +5642,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("scan_botnet_connections"); ok {
+		t, err := expandPackagesFirewallPolicyScanBotnetConnections(d, v, "scan_botnet_connections")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-botnet-connections"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("schedule"); ok {
 		t, err := expandPackagesFirewallPolicySchedule(d, v, "schedule")
 		if err != nil {
@@ -5175,6 +5666,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["schedule-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+		t, err := expandPackagesFirewallPolicySctpFilterProfile(d, v, "sctp_filter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sctp-filter-profile"] = t
 		}
 	}
 
@@ -5211,6 +5711,33 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["session-ttl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("spamfilter_profile"); ok {
+		t, err := expandPackagesFirewallPolicySpamfilterProfile(d, v, "spamfilter_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["spamfilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sgt"); ok {
+		t, err := expandPackagesFirewallPolicySgt(d, v, "sgt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sgt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sgt_check"); ok {
+		t, err := expandPackagesFirewallPolicySgtCheck(d, v, "sgt_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sgt-check"] = t
 		}
 	}
 
@@ -5340,6 +5867,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("tcp_timeout_pid"); ok {
+		t, err := expandPackagesFirewallPolicyTcpTimeoutPid(d, v, "tcp_timeout_pid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tcp-timeout-pid"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("timeout_send_rst"); ok {
 		t, err := expandPackagesFirewallPolicyTimeoutSendRst(d, v, "timeout_send_rst")
 		if err != nil {
@@ -5391,6 +5927,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["traffic-shaper-reverse"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("udp_timeout_pid"); ok {
+		t, err := expandPackagesFirewallPolicyUdpTimeoutPid(d, v, "udp_timeout_pid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["udp-timeout-pid"] = t
 		}
 	}
 

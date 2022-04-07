@@ -86,6 +86,11 @@ func resourceObjectVpnSslWebRealm() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"virtual_host_server_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -228,6 +233,10 @@ func flattenObjectVpnSslWebRealmVirtualHostOnly(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectVpnSslWebRealmVirtualHostServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectVpnSslWebRealm(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -315,6 +324,16 @@ func refreshObjectObjectVpnSslWebRealm(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("virtual_host_server_cert", flattenObjectVpnSslWebRealmVirtualHostServerCert(o["virtual-host-server-cert"], d, "virtual_host_server_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-host-server-cert"], "ObjectVpnSslWebRealm-VirtualHostServerCert"); ok {
+			if err = d.Set("virtual_host_server_cert", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_host_server_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_host_server_cert: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -353,6 +372,10 @@ func expandObjectVpnSslWebRealmVirtualHost(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectVpnSslWebRealmVirtualHostOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebRealmVirtualHostServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -428,6 +451,15 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["virtual-host-only"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_host_server_cert"); ok {
+		t, err := expandObjectVpnSslWebRealmVirtualHostServerCert(d, v, "virtual_host_server_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-host-server-cert"] = t
 		}
 	}
 
