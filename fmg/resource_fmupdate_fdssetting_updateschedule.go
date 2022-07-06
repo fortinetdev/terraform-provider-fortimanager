@@ -209,7 +209,7 @@ func expandFmupdateFdsSettingUpdateScheduleTime(d *schema.ResourceData, v interf
 func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("day"); ok {
+	if v, ok := d.GetOk("day"); ok || d.HasChange("day") {
 		t, err := expandFmupdateFdsSettingUpdateScheduleDay(d, v, "day")
 		if err != nil {
 			return &obj, err
@@ -218,7 +218,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("frequency"); ok {
+	if v, ok := d.GetOk("frequency"); ok || d.HasChange("frequency") {
 		t, err := expandFmupdateFdsSettingUpdateScheduleFrequency(d, v, "frequency")
 		if err != nil {
 			return &obj, err
@@ -227,7 +227,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateFdsSettingUpdateScheduleStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -236,7 +236,7 @@ func getObjectFmupdateFdsSettingUpdateSchedule(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("time"); ok {
+	if v, ok := d.GetOk("time"); ok || d.HasChange("time") {
 		t, err := expandFmupdateFdsSettingUpdateScheduleTime(d, v, "time")
 		if err != nil {
 			return &obj, err

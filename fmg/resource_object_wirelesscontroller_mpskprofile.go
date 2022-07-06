@@ -524,24 +524,24 @@ func expandObjectWirelessControllerMpskProfileMpskGroup(d *schema.ResourceData, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk_key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mpsk-key"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d, i["mpsk_key"], pre_append)
 		} else {
 			tmp["mpsk-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerMpskProfileMpskGroupName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan-id"], _ = expandObjectWirelessControllerMpskProfileMpskGroupVlanId(d, i["vlan_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan-type"], _ = expandObjectWirelessControllerMpskProfileMpskGroupVlanType(d, i["vlan_type"], pre_append)
 		}
 
@@ -568,44 +568,44 @@ func expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d *schema.Resourc
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "concurrent_client_limit_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["concurrent-client-limit-type"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyConcurrentClientLimitType(d, i["concurrent_client_limit_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "concurrent_clients"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["concurrent-clients"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyConcurrentClients(d, i["concurrent_clients"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyMac(d, i["mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk_schedules"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mpsk-schedules"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyMpskSchedules(d, i["mpsk_schedules"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["passphrase"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyPassphrase(d, i["passphrase"], pre_append)
 		} else {
 			tmp["passphrase"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmk"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pmk"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk(d, i["pmk"], pre_append)
 		} else {
 			tmp["pmk"] = make([]string, 0)
@@ -674,7 +674,7 @@ func expandObjectWirelessControllerMpskProfileSsid(d *schema.ResourceData, v int
 func getObjectObjectWirelessControllerMpskProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("mpsk_concurrent_clients"); ok {
+	if v, ok := d.GetOk("mpsk_concurrent_clients"); ok || d.HasChange("mpsk_concurrent_clients") {
 		t, err := expandObjectWirelessControllerMpskProfileMpskConcurrentClients(d, v, "mpsk_concurrent_clients")
 		if err != nil {
 			return &obj, err
@@ -683,7 +683,7 @@ func getObjectObjectWirelessControllerMpskProfile(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("mpsk_group"); ok {
+	if v, ok := d.GetOk("mpsk_group"); ok || d.HasChange("mpsk_group") {
 		t, err := expandObjectWirelessControllerMpskProfileMpskGroup(d, v, "mpsk_group")
 		if err != nil {
 			return &obj, err
@@ -692,7 +692,7 @@ func getObjectObjectWirelessControllerMpskProfile(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerMpskProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -701,7 +701,7 @@ func getObjectObjectWirelessControllerMpskProfile(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("ssid"); ok {
+	if v, ok := d.GetOk("ssid"); ok || d.HasChange("ssid") {
 		t, err := expandObjectWirelessControllerMpskProfileSsid(d, v, "ssid")
 		if err != nil {
 			return &obj, err

@@ -497,27 +497,27 @@ func expandObjectFirewallAddress6TemplateSubnetSegment(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bits"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bits"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentBits(d, i["bits"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclusive"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exclusive"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentExclusive(d, i["exclusive"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "values"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["values"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentValues(d, i["values"], pre_append)
 		} else {
 			tmp["values"] = make([]string, 0)
@@ -562,12 +562,12 @@ func expandObjectFirewallAddress6TemplateSubnetSegmentValues(d *schema.ResourceD
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentValuesName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentValuesValue(d, i["value"], pre_append)
 		}
 
@@ -594,7 +594,7 @@ func expandObjectFirewallAddress6TemplateSubnetSegmentCount(d *schema.ResourceDa
 func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_image_base64"); ok {
+	if v, ok := d.GetOk("_image_base64"); ok || d.HasChange("_image_base64") {
 		t, err := expandObjectFirewallAddress6TemplateImageBase64(d, v, "_image_base64")
 		if err != nil {
 			return &obj, err
@@ -603,7 +603,7 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddress6TemplateFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -612,7 +612,7 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("ip6"); ok {
+	if v, ok := d.GetOk("ip6"); ok || d.HasChange("ip6") {
 		t, err := expandObjectFirewallAddress6TemplateIp6(d, v, "ip6")
 		if err != nil {
 			return &obj, err
@@ -621,7 +621,7 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallAddress6TemplateName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -630,7 +630,7 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("subnet_segment"); ok {
+	if v, ok := d.GetOk("subnet_segment"); ok || d.HasChange("subnet_segment") {
 		t, err := expandObjectFirewallAddress6TemplateSubnetSegment(d, v, "subnet_segment")
 		if err != nil {
 			return &obj, err
@@ -639,7 +639,7 @@ func getObjectObjectFirewallAddress6Template(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("subnet_segment_count"); ok {
+	if v, ok := d.GetOk("subnet_segment_count"); ok || d.HasChange("subnet_segment_count") {
 		t, err := expandObjectFirewallAddress6TemplateSubnetSegmentCount(d, v, "subnet_segment_count")
 		if err != nil {
 			return &obj, err

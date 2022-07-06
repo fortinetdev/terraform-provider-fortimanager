@@ -1113,91 +1113,91 @@ func expandObjectFirewallVip64DynamicMapping(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectFirewallVip64DynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "arp_reply"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["arp-reply"], _ = expandObjectFirewallVip64DynamicMappingArpReply(d, i["arp_reply"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "color"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["color"], _ = expandObjectFirewallVip64DynamicMappingColor(d, i["color"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectFirewallVip64DynamicMappingComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["extip"], _ = expandObjectFirewallVip64DynamicMappingExtip(d, i["extip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["extport"], _ = expandObjectFirewallVip64DynamicMappingExtport(d, i["extport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallVip64DynamicMappingId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldb_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldb-method"], _ = expandObjectFirewallVip64DynamicMappingLdbMethod(d, i["ldb_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mappedip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mappedip"], _ = expandObjectFirewallVip64DynamicMappingMappedip(d, i["mappedip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mappedport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mappedport"], _ = expandObjectFirewallVip64DynamicMappingMappedport(d, i["mappedport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["monitor"], _ = expandObjectFirewallVip64DynamicMappingMonitor(d, i["monitor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "portforward"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["portforward"], _ = expandObjectFirewallVip64DynamicMappingPortforward(d, i["portforward"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectFirewallVip64DynamicMappingProtocol(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server-type"], _ = expandObjectFirewallVip64DynamicMappingServerType(d, i["server_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["src-filter"], _ = expandObjectFirewallVip64DynamicMappingSrcFilter(d, i["src_filter"], pre_append)
 		} else {
 			tmp["src-filter"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallVip64DynamicMappingType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["uuid"], _ = expandObjectFirewallVip64DynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
@@ -1224,12 +1224,12 @@ func expandObjectFirewallVip64DynamicMappingScope(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallVip64DynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectFirewallVip64DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -1368,52 +1368,52 @@ func expandObjectFirewallVip64Realservers(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-ip"], _ = expandObjectFirewallVip64RealserversClientIp(d, i["client_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["healthcheck"], _ = expandObjectFirewallVip64RealserversHealthcheck(d, i["healthcheck"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "holddown_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["holddown-interval"], _ = expandObjectFirewallVip64RealserversHolddownInterval(d, i["holddown_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallVip64RealserversId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFirewallVip64RealserversIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-connections"], _ = expandObjectFirewallVip64RealserversMaxConnections(d, i["max_connections"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["monitor"], _ = expandObjectFirewallVip64RealserversMonitor(d, i["monitor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectFirewallVip64RealserversPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFirewallVip64RealserversStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectFirewallVip64RealserversWeight(d, i["weight"], pre_append)
 		}
 
@@ -1484,7 +1484,7 @@ func expandObjectFirewallVip64Uuid(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("arp_reply"); ok {
+	if v, ok := d.GetOk("arp_reply"); ok || d.HasChange("arp_reply") {
 		t, err := expandObjectFirewallVip64ArpReply(d, v, "arp_reply")
 		if err != nil {
 			return &obj, err
@@ -1493,7 +1493,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallVip64Color(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -1502,7 +1502,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallVip64Comment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1511,7 +1511,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectFirewallVip64DynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -1520,7 +1520,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("extip"); ok {
+	if v, ok := d.GetOk("extip"); ok || d.HasChange("extip") {
 		t, err := expandObjectFirewallVip64Extip(d, v, "extip")
 		if err != nil {
 			return &obj, err
@@ -1529,7 +1529,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("extport"); ok {
+	if v, ok := d.GetOk("extport"); ok || d.HasChange("extport") {
 		t, err := expandObjectFirewallVip64Extport(d, v, "extport")
 		if err != nil {
 			return &obj, err
@@ -1538,7 +1538,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectFirewallVip64Id(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -1547,7 +1547,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("ldb_method"); ok {
+	if v, ok := d.GetOk("ldb_method"); ok || d.HasChange("ldb_method") {
 		t, err := expandObjectFirewallVip64LdbMethod(d, v, "ldb_method")
 		if err != nil {
 			return &obj, err
@@ -1556,7 +1556,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("mappedip"); ok {
+	if v, ok := d.GetOk("mappedip"); ok || d.HasChange("mappedip") {
 		t, err := expandObjectFirewallVip64Mappedip(d, v, "mappedip")
 		if err != nil {
 			return &obj, err
@@ -1565,7 +1565,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("mappedport"); ok {
+	if v, ok := d.GetOk("mappedport"); ok || d.HasChange("mappedport") {
 		t, err := expandObjectFirewallVip64Mappedport(d, v, "mappedport")
 		if err != nil {
 			return &obj, err
@@ -1574,7 +1574,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("monitor"); ok {
+	if v, ok := d.GetOk("monitor"); ok || d.HasChange("monitor") {
 		t, err := expandObjectFirewallVip64Monitor(d, v, "monitor")
 		if err != nil {
 			return &obj, err
@@ -1583,7 +1583,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallVip64Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1592,7 +1592,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("portforward"); ok {
+	if v, ok := d.GetOk("portforward"); ok || d.HasChange("portforward") {
 		t, err := expandObjectFirewallVip64Portforward(d, v, "portforward")
 		if err != nil {
 			return &obj, err
@@ -1601,7 +1601,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectFirewallVip64Protocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -1610,7 +1610,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("realservers"); ok {
+	if v, ok := d.GetOk("realservers"); ok || d.HasChange("realservers") {
 		t, err := expandObjectFirewallVip64Realservers(d, v, "realservers")
 		if err != nil {
 			return &obj, err
@@ -1619,7 +1619,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("server_type"); ok {
+	if v, ok := d.GetOk("server_type"); ok || d.HasChange("server_type") {
 		t, err := expandObjectFirewallVip64ServerType(d, v, "server_type")
 		if err != nil {
 			return &obj, err
@@ -1628,7 +1628,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("src_filter"); ok {
+	if v, ok := d.GetOk("src_filter"); ok || d.HasChange("src_filter") {
 		t, err := expandObjectFirewallVip64SrcFilter(d, v, "src_filter")
 		if err != nil {
 			return &obj, err
@@ -1637,7 +1637,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallVip64Type(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -1646,7 +1646,7 @@ func getObjectObjectFirewallVip64(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallVip64Uuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

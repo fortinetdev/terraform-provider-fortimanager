@@ -536,7 +536,7 @@ func expandObjectCertificateTemplateType(d *schema.ResourceData, v interface{}, 
 func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("city"); ok {
+	if v, ok := d.GetOk("city"); ok || d.HasChange("city") {
 		t, err := expandObjectCertificateTemplateCity(d, v, "city")
 		if err != nil {
 			return &obj, err
@@ -545,7 +545,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("country"); ok {
+	if v, ok := d.GetOk("country"); ok || d.HasChange("country") {
 		t, err := expandObjectCertificateTemplateCountry(d, v, "country")
 		if err != nil {
 			return &obj, err
@@ -554,7 +554,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("curve_name"); ok {
+	if v, ok := d.GetOk("curve_name"); ok || d.HasChange("curve_name") {
 		t, err := expandObjectCertificateTemplateCurveName(d, v, "curve_name")
 		if err != nil {
 			return &obj, err
@@ -563,7 +563,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("digest_type"); ok {
+	if v, ok := d.GetOk("digest_type"); ok || d.HasChange("digest_type") {
 		t, err := expandObjectCertificateTemplateDigestType(d, v, "digest_type")
 		if err != nil {
 			return &obj, err
@@ -572,7 +572,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("email"); ok {
+	if v, ok := d.GetOk("email"); ok || d.HasChange("email") {
 		t, err := expandObjectCertificateTemplateEmail(d, v, "email")
 		if err != nil {
 			return &obj, err
@@ -581,7 +581,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("id_type"); ok {
+	if v, ok := d.GetOk("id_type"); ok || d.HasChange("id_type") {
 		t, err := expandObjectCertificateTemplateIdType(d, v, "id_type")
 		if err != nil {
 			return &obj, err
@@ -590,7 +590,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("key_size"); ok {
+	if v, ok := d.GetOk("key_size"); ok || d.HasChange("key_size") {
 		t, err := expandObjectCertificateTemplateKeySize(d, v, "key_size")
 		if err != nil {
 			return &obj, err
@@ -599,7 +599,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("key_type"); ok {
+	if v, ok := d.GetOk("key_type"); ok || d.HasChange("key_type") {
 		t, err := expandObjectCertificateTemplateKeyType(d, v, "key_type")
 		if err != nil {
 			return &obj, err
@@ -608,7 +608,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCertificateTemplateName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -617,7 +617,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("organization"); ok {
+	if v, ok := d.GetOk("organization"); ok || d.HasChange("organization") {
 		t, err := expandObjectCertificateTemplateOrganization(d, v, "organization")
 		if err != nil {
 			return &obj, err
@@ -626,7 +626,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("organization_unit"); ok {
+	if v, ok := d.GetOk("organization_unit"); ok || d.HasChange("organization_unit") {
 		t, err := expandObjectCertificateTemplateOrganizationUnit(d, v, "organization_unit")
 		if err != nil {
 			return &obj, err
@@ -635,7 +635,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("scep_password"); ok {
+	if v, ok := d.GetOk("scep_password"); ok || d.HasChange("scep_password") {
 		t, err := expandObjectCertificateTemplateScepPassword(d, v, "scep_password")
 		if err != nil {
 			return &obj, err
@@ -644,7 +644,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("scep_server"); ok {
+	if v, ok := d.GetOk("scep_server"); ok || d.HasChange("scep_server") {
 		t, err := expandObjectCertificateTemplateScepServer(d, v, "scep_server")
 		if err != nil {
 			return &obj, err
@@ -653,7 +653,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("state"); ok {
+	if v, ok := d.GetOk("state"); ok || d.HasChange("state") {
 		t, err := expandObjectCertificateTemplateState(d, v, "state")
 		if err != nil {
 			return &obj, err
@@ -662,7 +662,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("subject_name"); ok {
+	if v, ok := d.GetOk("subject_name"); ok || d.HasChange("subject_name") {
 		t, err := expandObjectCertificateTemplateSubjectName(d, v, "subject_name")
 		if err != nil {
 			return &obj, err
@@ -671,7 +671,7 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectCertificateTemplateType(d, v, "type")
 		if err != nil {
 			return &obj, err

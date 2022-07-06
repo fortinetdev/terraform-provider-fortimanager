@@ -332,7 +332,7 @@ func expandObjectSystemNpuIsfNpQueuesCos7(d *schema.ResourceData, v interface{},
 func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("cos0"); ok {
+	if v, ok := d.GetOk("cos0"); ok || d.HasChange("cos0") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos0(d, v, "cos0")
 		if err != nil {
 			return &obj, err
@@ -341,7 +341,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos1"); ok {
+	if v, ok := d.GetOk("cos1"); ok || d.HasChange("cos1") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos1(d, v, "cos1")
 		if err != nil {
 			return &obj, err
@@ -350,7 +350,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos2"); ok {
+	if v, ok := d.GetOk("cos2"); ok || d.HasChange("cos2") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos2(d, v, "cos2")
 		if err != nil {
 			return &obj, err
@@ -359,7 +359,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos3"); ok {
+	if v, ok := d.GetOk("cos3"); ok || d.HasChange("cos3") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos3(d, v, "cos3")
 		if err != nil {
 			return &obj, err
@@ -368,7 +368,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos4"); ok {
+	if v, ok := d.GetOk("cos4"); ok || d.HasChange("cos4") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos4(d, v, "cos4")
 		if err != nil {
 			return &obj, err
@@ -377,7 +377,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos5"); ok {
+	if v, ok := d.GetOk("cos5"); ok || d.HasChange("cos5") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos5(d, v, "cos5")
 		if err != nil {
 			return &obj, err
@@ -386,7 +386,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos6"); ok {
+	if v, ok := d.GetOk("cos6"); ok || d.HasChange("cos6") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos6(d, v, "cos6")
 		if err != nil {
 			return &obj, err
@@ -395,7 +395,7 @@ func getObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cos7"); ok {
+	if v, ok := d.GetOk("cos7"); ok || d.HasChange("cos7") {
 		t, err := expandObjectSystemNpuIsfNpQueuesCos7(d, v, "cos7")
 		if err != nil {
 			return &obj, err

@@ -732,7 +732,7 @@ func expandSystemLogSettingsRollingLocalWhen(d *schema.ResourceData, v interface
 func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("days"); ok {
+	if v, ok := d.GetOk("days"); ok || d.HasChange("days") {
 		t, err := expandSystemLogSettingsRollingLocalDays(d, v, "days")
 		if err != nil {
 			return &obj, err
@@ -741,7 +741,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("del_files"); ok {
+	if v, ok := d.GetOk("del_files"); ok || d.HasChange("del_files") {
 		t, err := expandSystemLogSettingsRollingLocalDelFiles(d, v, "del_files")
 		if err != nil {
 			return &obj, err
@@ -750,7 +750,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("directory"); ok {
+	if v, ok := d.GetOk("directory"); ok || d.HasChange("directory") {
 		t, err := expandSystemLogSettingsRollingLocalDirectory(d, v, "directory")
 		if err != nil {
 			return &obj, err
@@ -759,7 +759,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("file_size"); ok {
+	if v, ok := d.GetOk("file_size"); ok || d.HasChange("file_size") {
 		t, err := expandSystemLogSettingsRollingLocalFileSize(d, v, "file_size")
 		if err != nil {
 			return &obj, err
@@ -768,7 +768,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("gzip_format"); ok {
+	if v, ok := d.GetOk("gzip_format"); ok || d.HasChange("gzip_format") {
 		t, err := expandSystemLogSettingsRollingLocalGzipFormat(d, v, "gzip_format")
 		if err != nil {
 			return &obj, err
@@ -777,7 +777,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("hour"); ok {
+	if v, ok := d.GetOk("hour"); ok || d.HasChange("hour") {
 		t, err := expandSystemLogSettingsRollingLocalHour(d, v, "hour")
 		if err != nil {
 			return &obj, err
@@ -786,7 +786,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandSystemLogSettingsRollingLocalIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -795,7 +795,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("ip2"); ok {
+	if v, ok := d.GetOk("ip2"); ok || d.HasChange("ip2") {
 		t, err := expandSystemLogSettingsRollingLocalIp2(d, v, "ip2")
 		if err != nil {
 			return &obj, err
@@ -804,7 +804,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("ip3"); ok {
+	if v, ok := d.GetOk("ip3"); ok || d.HasChange("ip3") {
 		t, err := expandSystemLogSettingsRollingLocalIp3(d, v, "ip3")
 		if err != nil {
 			return &obj, err
@@ -813,7 +813,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("log_format"); ok {
+	if v, ok := d.GetOk("log_format"); ok || d.HasChange("log_format") {
 		t, err := expandSystemLogSettingsRollingLocalLogFormat(d, v, "log_format")
 		if err != nil {
 			return &obj, err
@@ -822,7 +822,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("min"); ok {
+	if v, ok := d.GetOk("min"); ok || d.HasChange("min") {
 		t, err := expandSystemLogSettingsRollingLocalMin(d, v, "min")
 		if err != nil {
 			return &obj, err
@@ -831,7 +831,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemLogSettingsRollingLocalPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -840,7 +840,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("password2"); ok {
+	if v, ok := d.GetOk("password2"); ok || d.HasChange("password2") {
 		t, err := expandSystemLogSettingsRollingLocalPassword2(d, v, "password2")
 		if err != nil {
 			return &obj, err
@@ -849,7 +849,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("password3"); ok {
+	if v, ok := d.GetOk("password3"); ok || d.HasChange("password3") {
 		t, err := expandSystemLogSettingsRollingLocalPassword3(d, v, "password3")
 		if err != nil {
 			return &obj, err
@@ -858,7 +858,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandSystemLogSettingsRollingLocalPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -867,7 +867,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("port2"); ok {
+	if v, ok := d.GetOk("port2"); ok || d.HasChange("port2") {
 		t, err := expandSystemLogSettingsRollingLocalPort2(d, v, "port2")
 		if err != nil {
 			return &obj, err
@@ -876,7 +876,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("port3"); ok {
+	if v, ok := d.GetOk("port3"); ok || d.HasChange("port3") {
 		t, err := expandSystemLogSettingsRollingLocalPort3(d, v, "port3")
 		if err != nil {
 			return &obj, err
@@ -885,7 +885,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("rolling_upgrade_status"); ok {
+	if v, ok := d.GetOk("rolling_upgrade_status"); ok || d.HasChange("rolling_upgrade_status") {
 		t, err := expandSystemLogSettingsRollingLocalRollingUpgradeStatus(d, v, "rolling_upgrade_status")
 		if err != nil {
 			return &obj, err
@@ -894,7 +894,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("server_type"); ok {
+	if v, ok := d.GetOk("server_type"); ok || d.HasChange("server_type") {
 		t, err := expandSystemLogSettingsRollingLocalServerType(d, v, "server_type")
 		if err != nil {
 			return &obj, err
@@ -903,7 +903,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("upload"); ok {
+	if v, ok := d.GetOk("upload"); ok || d.HasChange("upload") {
 		t, err := expandSystemLogSettingsRollingLocalUpload(d, v, "upload")
 		if err != nil {
 			return &obj, err
@@ -912,7 +912,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("upload_hour"); ok {
+	if v, ok := d.GetOk("upload_hour"); ok || d.HasChange("upload_hour") {
 		t, err := expandSystemLogSettingsRollingLocalUploadHour(d, v, "upload_hour")
 		if err != nil {
 			return &obj, err
@@ -921,7 +921,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("upload_mode"); ok {
+	if v, ok := d.GetOk("upload_mode"); ok || d.HasChange("upload_mode") {
 		t, err := expandSystemLogSettingsRollingLocalUploadMode(d, v, "upload_mode")
 		if err != nil {
 			return &obj, err
@@ -930,7 +930,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("upload_trigger"); ok {
+	if v, ok := d.GetOk("upload_trigger"); ok || d.HasChange("upload_trigger") {
 		t, err := expandSystemLogSettingsRollingLocalUploadTrigger(d, v, "upload_trigger")
 		if err != nil {
 			return &obj, err
@@ -939,7 +939,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandSystemLogSettingsRollingLocalUsername(d, v, "username")
 		if err != nil {
 			return &obj, err
@@ -948,7 +948,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("username2"); ok {
+	if v, ok := d.GetOk("username2"); ok || d.HasChange("username2") {
 		t, err := expandSystemLogSettingsRollingLocalUsername2(d, v, "username2")
 		if err != nil {
 			return &obj, err
@@ -957,7 +957,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("username3"); ok {
+	if v, ok := d.GetOk("username3"); ok || d.HasChange("username3") {
 		t, err := expandSystemLogSettingsRollingLocalUsername3(d, v, "username3")
 		if err != nil {
 			return &obj, err
@@ -966,7 +966,7 @@ func getObjectSystemLogSettingsRollingLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("when"); ok {
+	if v, ok := d.GetOk("when"); ok || d.HasChange("when") {
 		t, err := expandSystemLogSettingsRollingLocalWhen(d, v, "when")
 		if err != nil {
 			return &obj, err

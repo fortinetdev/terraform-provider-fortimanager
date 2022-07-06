@@ -767,75 +767,75 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectUserTacacsDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "authen_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["authen-type"], _ = expandObjectUserTacacsDynamicMappingAuthenType(d, i["authen_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "authorization"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["authorization"], _ = expandObjectUserTacacsDynamicMappingAuthorization(d, i["authorization"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectUserTacacsDynamicMappingInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserTacacsDynamicMappingInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key"], _ = expandObjectUserTacacsDynamicMappingKey(d, i["key"], pre_append)
 		} else {
 			tmp["key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectUserTacacsDynamicMappingPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-key"], _ = expandObjectUserTacacsDynamicMappingSecondaryKey(d, i["secondary_key"], pre_append)
 		} else {
 			tmp["secondary-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-server"], _ = expandObjectUserTacacsDynamicMappingSecondaryServer(d, i["secondary_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectUserTacacsDynamicMappingServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserTacacsDynamicMappingSourceIp(d, i["source_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-key"], _ = expandObjectUserTacacsDynamicMappingTertiaryKey(d, i["tertiary_key"], pre_append)
 		} else {
 			tmp["tertiary-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-server"], _ = expandObjectUserTacacsDynamicMappingTertiaryServer(d, i["tertiary_server"], pre_append)
 		}
 
@@ -862,12 +862,12 @@ func expandObjectUserTacacsDynamicMappingScope(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserTacacsDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectUserTacacsDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -982,7 +982,7 @@ func expandObjectUserTacacsTertiaryServer(d *schema.ResourceData, v interface{},
 func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("authen_type"); ok {
+	if v, ok := d.GetOk("authen_type"); ok || d.HasChange("authen_type") {
 		t, err := expandObjectUserTacacsAuthenType(d, v, "authen_type")
 		if err != nil {
 			return &obj, err
@@ -991,7 +991,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("authorization"); ok {
+	if v, ok := d.GetOk("authorization"); ok || d.HasChange("authorization") {
 		t, err := expandObjectUserTacacsAuthorization(d, v, "authorization")
 		if err != nil {
 			return &obj, err
@@ -1000,7 +1000,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserTacacsDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -1009,7 +1009,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectUserTacacsInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -1018,7 +1018,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectUserTacacsInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -1027,7 +1027,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("key"); ok {
+	if v, ok := d.GetOk("key"); ok || d.HasChange("key") {
 		t, err := expandObjectUserTacacsKey(d, v, "key")
 		if err != nil {
 			return &obj, err
@@ -1036,7 +1036,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserTacacsName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1045,7 +1045,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectUserTacacsPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -1054,7 +1054,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_key"); ok {
+	if v, ok := d.GetOk("secondary_key"); ok || d.HasChange("secondary_key") {
 		t, err := expandObjectUserTacacsSecondaryKey(d, v, "secondary_key")
 		if err != nil {
 			return &obj, err
@@ -1063,7 +1063,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_server"); ok {
+	if v, ok := d.GetOk("secondary_server"); ok || d.HasChange("secondary_server") {
 		t, err := expandObjectUserTacacsSecondaryServer(d, v, "secondary_server")
 		if err != nil {
 			return &obj, err
@@ -1072,7 +1072,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserTacacsServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -1081,7 +1081,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectUserTacacsSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -1090,7 +1090,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("tertiary_key"); ok {
+	if v, ok := d.GetOk("tertiary_key"); ok || d.HasChange("tertiary_key") {
 		t, err := expandObjectUserTacacsTertiaryKey(d, v, "tertiary_key")
 		if err != nil {
 			return &obj, err
@@ -1099,7 +1099,7 @@ func getObjectObjectUserTacacs(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("tertiary_server"); ok {
+	if v, ok := d.GetOk("tertiary_server"); ok || d.HasChange("tertiary_server") {
 		t, err := expandObjectUserTacacsTertiaryServer(d, v, "tertiary_server")
 		if err != nil {
 			return &obj, err

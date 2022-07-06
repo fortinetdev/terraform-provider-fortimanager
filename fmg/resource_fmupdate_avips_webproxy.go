@@ -246,7 +246,7 @@ func expandFmupdateAvIpsWebProxyUsername(d *schema.ResourceData, v interface{}, 
 func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("address"); ok {
+	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {
 		t, err := expandFmupdateAvIpsWebProxyAddress(d, v, "address")
 		if err != nil {
 			return &obj, err
@@ -255,7 +255,7 @@ func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("mode"); ok {
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
 		t, err := expandFmupdateAvIpsWebProxyMode(d, v, "mode")
 		if err != nil {
 			return &obj, err
@@ -264,7 +264,7 @@ func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandFmupdateAvIpsWebProxyPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -273,7 +273,7 @@ func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandFmupdateAvIpsWebProxyPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -282,7 +282,7 @@ func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateAvIpsWebProxyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -291,7 +291,7 @@ func getObjectFmupdateAvIpsWebProxy(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandFmupdateAvIpsWebProxyUsername(d, v, "username")
 		if err != nil {
 			return &obj, err

@@ -563,17 +563,17 @@ func expandObjectCifsProfileFileFilter(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["entries"], _ = expandObjectCifsProfileFileFilterEntries(d, i["entries"], pre_append)
 	} else {
 		result["entries"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectCifsProfileFileFilterLog(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectCifsProfileFileFilterStatus(d, i["status"], pre_append)
 	}
 
@@ -595,32 +595,32 @@ func expandObjectCifsProfileFileFilterEntries(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectCifsProfileFileFilterEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectCifsProfileFileFilterEntriesComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["direction"], _ = expandObjectCifsProfileFileFilterEntriesDirection(d, i["direction"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectCifsProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter"], _ = expandObjectCifsProfileFileFilterEntriesFilter(d, i["filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectCifsProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		} else {
 			tmp["protocol"] = make([]string, 0)
@@ -689,19 +689,19 @@ func expandObjectCifsProfileServerKeytab(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "keytab"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["keytab"], _ = expandObjectCifsProfileServerKeytabKeytab(d, i["keytab"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectCifsProfileServerKeytabPassword(d, i["password"], pre_append)
 		} else {
 			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "principal"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["principal"], _ = expandObjectCifsProfileServerKeytabPrincipal(d, i["principal"], pre_append)
 		}
 
@@ -728,7 +728,7 @@ func expandObjectCifsProfileServerKeytabPrincipal(d *schema.ResourceData, v inte
 func getObjectObjectCifsProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("domain_controller"); ok {
+	if v, ok := d.GetOk("domain_controller"); ok || d.HasChange("domain_controller") {
 		t, err := expandObjectCifsProfileDomainController(d, v, "domain_controller")
 		if err != nil {
 			return &obj, err
@@ -737,7 +737,7 @@ func getObjectObjectCifsProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("file_filter"); ok {
+	if v, ok := d.GetOk("file_filter"); ok || d.HasChange("file_filter") {
 		t, err := expandObjectCifsProfileFileFilter(d, v, "file_filter")
 		if err != nil {
 			return &obj, err
@@ -746,7 +746,7 @@ func getObjectObjectCifsProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCifsProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -755,7 +755,7 @@ func getObjectObjectCifsProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("server_credential_type"); ok {
+	if v, ok := d.GetOk("server_credential_type"); ok || d.HasChange("server_credential_type") {
 		t, err := expandObjectCifsProfileServerCredentialType(d, v, "server_credential_type")
 		if err != nil {
 			return &obj, err
@@ -764,7 +764,7 @@ func getObjectObjectCifsProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("server_keytab"); ok {
+	if v, ok := d.GetOk("server_keytab"); ok || d.HasChange("server_keytab") {
 		t, err := expandObjectCifsProfileServerKeytab(d, v, "server_keytab")
 		if err != nil {
 			return &obj, err

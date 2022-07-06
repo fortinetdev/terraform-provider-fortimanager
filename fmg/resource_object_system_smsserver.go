@@ -221,7 +221,7 @@ func expandObjectSystemSmsServerName(d *schema.ResourceData, v interface{}, pre 
 func getObjectObjectSystemSmsServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("mail_server"); ok {
+	if v, ok := d.GetOk("mail_server"); ok || d.HasChange("mail_server") {
 		t, err := expandObjectSystemSmsServerMailServer(d, v, "mail_server")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectSystemSmsServer(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemSmsServerName(d, v, "name")
 		if err != nil {
 			return &obj, err

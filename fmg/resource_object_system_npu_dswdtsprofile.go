@@ -267,7 +267,7 @@ func expandObjectSystemNpuDswDtsProfileStep(d *schema.ResourceData, v interface{
 func getObjectObjectSystemNpuDswDtsProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandObjectSystemNpuDswDtsProfileAction(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectSystemNpuDswDtsProfile(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("min_limit"); ok {
+	if v, ok := d.GetOk("min_limit"); ok || d.HasChange("min_limit") {
 		t, err := expandObjectSystemNpuDswDtsProfileMinLimit(d, v, "min_limit")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectSystemNpuDswDtsProfile(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("profile_id"); ok {
+	if v, ok := d.GetOk("profile_id"); ok || d.HasChange("profile_id") {
 		t, err := expandObjectSystemNpuDswDtsProfileProfileId(d, v, "profile_id")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectSystemNpuDswDtsProfile(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("step"); ok {
+	if v, ok := d.GetOk("step"); ok || d.HasChange("step") {
 		t, err := expandObjectSystemNpuDswDtsProfileStep(d, v, "step")
 		if err != nil {
 			return &obj, err

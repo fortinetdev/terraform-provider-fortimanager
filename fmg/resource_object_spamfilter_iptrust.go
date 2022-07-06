@@ -391,27 +391,27 @@ func expandObjectSpamfilterIptrustEntries(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr-type"], _ = expandObjectSpamfilterIptrustEntriesAddrType(d, i["addr_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSpamfilterIptrustEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip4_subnet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip4-subnet"], _ = expandObjectSpamfilterIptrustEntriesIp4Subnet(d, i["ip4_subnet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6_subnet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip6-subnet"], _ = expandObjectSpamfilterIptrustEntriesIp6Subnet(d, i["ip6_subnet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectSpamfilterIptrustEntriesStatus(d, i["status"], pre_append)
 		}
 
@@ -454,7 +454,7 @@ func expandObjectSpamfilterIptrustName(d *schema.ResourceData, v interface{}, pr
 func getObjectObjectSpamfilterIptrust(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectSpamfilterIptrustComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -463,7 +463,7 @@ func getObjectObjectSpamfilterIptrust(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectSpamfilterIptrustEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -472,7 +472,7 @@ func getObjectObjectSpamfilterIptrust(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectSpamfilterIptrustId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -481,7 +481,7 @@ func getObjectObjectSpamfilterIptrust(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSpamfilterIptrustName(d, v, "name")
 		if err != nil {
 			return &obj, err

@@ -255,7 +255,7 @@ func expandSystemWebProxyUsername(d *schema.ResourceData, v interface{}, pre str
 func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("address"); ok {
+	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {
 		t, err := expandSystemWebProxyAddress(d, v, "address")
 		if err != nil {
 			return &obj, err
@@ -264,7 +264,7 @@ func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("mode"); ok {
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
 		t, err := expandSystemWebProxyMode(d, v, "mode")
 		if err != nil {
 			return &obj, err
@@ -273,7 +273,7 @@ func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemWebProxyPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -282,7 +282,7 @@ func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandSystemWebProxyPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -291,7 +291,7 @@ func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemWebProxyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -300,7 +300,7 @@ func getObjectSystemWebProxy(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandSystemWebProxyUsername(d, v, "username")
 		if err != nil {
 			return &obj, err

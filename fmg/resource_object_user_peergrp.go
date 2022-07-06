@@ -222,7 +222,7 @@ func expandObjectUserPeergrpName(d *schema.ResourceData, v interface{}, pre stri
 func getObjectObjectUserPeergrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectUserPeergrpMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -231,7 +231,7 @@ func getObjectObjectUserPeergrp(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserPeergrpName(d, v, "name")
 		if err != nil {
 			return &obj, err

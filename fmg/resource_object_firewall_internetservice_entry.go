@@ -291,7 +291,7 @@ func expandObjectFirewallInternetServiceEntryProtocol(d *schema.ResourceData, v 
 func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectFirewallInternetServiceEntryId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -300,7 +300,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ip_number"); ok {
+	if v, ok := d.GetOk("ip_number"); ok || d.HasChange("ip_number") {
 		t, err := expandObjectFirewallInternetServiceEntryIpNumber(d, v, "ip_number")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ip_range_number"); ok {
+	if v, ok := d.GetOk("ip_range_number"); ok || d.HasChange("ip_range_number") {
 		t, err := expandObjectFirewallInternetServiceEntryIpRangeNumber(d, v, "ip_range_number")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectFirewallInternetServiceEntryPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectFirewallInternetServiceEntryProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err

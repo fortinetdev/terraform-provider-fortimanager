@@ -217,7 +217,7 @@ func expandObjectSystemNpuIpReassemblyStatus(d *schema.ResourceData, v interface
 func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("max_timeout"); ok {
+	if v, ok := d.GetOk("max_timeout"); ok || d.HasChange("max_timeout") {
 		t, err := expandObjectSystemNpuIpReassemblyMaxTimeout(d, v, "max_timeout")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("min_timeout"); ok {
+	if v, ok := d.GetOk("min_timeout"); ok || d.HasChange("min_timeout") {
 		t, err := expandObjectSystemNpuIpReassemblyMinTimeout(d, v, "min_timeout")
 		if err != nil {
 			return &obj, err
@@ -235,7 +235,7 @@ func getObjectObjectSystemNpuIpReassembly(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectSystemNpuIpReassemblyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

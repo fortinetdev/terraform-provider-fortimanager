@@ -382,7 +382,7 @@ func expandObjectVpnSslWebRealmVirtualHostServerCert(d *schema.ResourceData, v i
 func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("login_page"); ok {
+	if v, ok := d.GetOk("login_page"); ok || d.HasChange("login_page") {
 		t, err := expandObjectVpnSslWebRealmLoginPage(d, v, "login_page")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("max_concurrent_user"); ok {
+	if v, ok := d.GetOk("max_concurrent_user"); ok || d.HasChange("max_concurrent_user") {
 		t, err := expandObjectVpnSslWebRealmMaxConcurrentUser(d, v, "max_concurrent_user")
 		if err != nil {
 			return &obj, err
@@ -400,7 +400,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("nas_ip"); ok {
+	if v, ok := d.GetOk("nas_ip"); ok || d.HasChange("nas_ip") {
 		t, err := expandObjectVpnSslWebRealmNasIp(d, v, "nas_ip")
 		if err != nil {
 			return &obj, err
@@ -409,7 +409,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("radius_port"); ok {
+	if v, ok := d.GetOk("radius_port"); ok || d.HasChange("radius_port") {
 		t, err := expandObjectVpnSslWebRealmRadiusPort(d, v, "radius_port")
 		if err != nil {
 			return &obj, err
@@ -418,7 +418,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("radius_server"); ok {
+	if v, ok := d.GetOk("radius_server"); ok || d.HasChange("radius_server") {
 		t, err := expandObjectVpnSslWebRealmRadiusServer(d, v, "radius_server")
 		if err != nil {
 			return &obj, err
@@ -427,7 +427,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("url_path"); ok {
+	if v, ok := d.GetOk("url_path"); ok || d.HasChange("url_path") {
 		t, err := expandObjectVpnSslWebRealmUrlPath(d, v, "url_path")
 		if err != nil {
 			return &obj, err
@@ -436,7 +436,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("virtual_host"); ok {
+	if v, ok := d.GetOk("virtual_host"); ok || d.HasChange("virtual_host") {
 		t, err := expandObjectVpnSslWebRealmVirtualHost(d, v, "virtual_host")
 		if err != nil {
 			return &obj, err
@@ -445,7 +445,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("virtual_host_only"); ok {
+	if v, ok := d.GetOk("virtual_host_only"); ok || d.HasChange("virtual_host_only") {
 		t, err := expandObjectVpnSslWebRealmVirtualHostOnly(d, v, "virtual_host_only")
 		if err != nil {
 			return &obj, err
@@ -454,7 +454,7 @@ func getObjectObjectVpnSslWebRealm(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("virtual_host_server_cert"); ok {
+	if v, ok := d.GetOk("virtual_host_server_cert"); ok || d.HasChange("virtual_host_server_cert") {
 		t, err := expandObjectVpnSslWebRealmVirtualHostServerCert(d, v, "virtual_host_server_cert")
 		if err != nil {
 			return &obj, err

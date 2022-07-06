@@ -1012,7 +1012,7 @@ func expandObjectSpamfilterProfileGmail(d *schema.ResourceData, v interface{}, p
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSpamfilterProfileGmailLog(d, i["log"], pre_append)
 	}
 
@@ -1034,19 +1034,19 @@ func expandObjectSpamfilterProfileImap(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action"], _ = expandObjectSpamfilterProfileImapAction(d, i["action"], pre_append)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSpamfilterProfileImapLog(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "tag_msg"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-msg"], _ = expandObjectSpamfilterProfileImapTagMsg(d, i["tag_msg"], pre_append)
 	}
 	pre_append = pre + ".0." + "tag_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectSpamfilterProfileImapTagType(d, i["tag_type"], pre_append)
 	} else {
 		result["tag-type"] = make([]string, 0)
@@ -1082,11 +1082,11 @@ func expandObjectSpamfilterProfileMapi(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action"], _ = expandObjectSpamfilterProfileMapiAction(d, i["action"], pre_append)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSpamfilterProfileMapiLog(d, i["log"], pre_append)
 	}
 
@@ -1112,7 +1112,7 @@ func expandObjectSpamfilterProfileMsnHotmail(d *schema.ResourceData, v interface
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSpamfilterProfileMsnHotmailLog(d, i["log"], pre_append)
 	}
 
@@ -1142,19 +1142,19 @@ func expandObjectSpamfilterProfilePop3(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action"], _ = expandObjectSpamfilterProfilePop3Action(d, i["action"], pre_append)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSpamfilterProfilePop3Log(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "tag_msg"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-msg"], _ = expandObjectSpamfilterProfilePop3TagMsg(d, i["tag_msg"], pre_append)
 	}
 	pre_append = pre + ".0." + "tag_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectSpamfilterProfilePop3TagType(d, i["tag_type"], pre_append)
 	} else {
 		result["tag-type"] = make([]string, 0)
@@ -1194,27 +1194,27 @@ func expandObjectSpamfilterProfileSmtp(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action"], _ = expandObjectSpamfilterProfileSmtpAction(d, i["action"], pre_append)
 	}
 	pre_append = pre + ".0." + "hdrip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["hdrip"], _ = expandObjectSpamfilterProfileSmtpHdrip(d, i["hdrip"], pre_append)
 	}
 	pre_append = pre + ".0." + "local_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["local-override"], _ = expandObjectSpamfilterProfileSmtpLocalOverride(d, i["local_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSpamfilterProfileSmtpLog(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "tag_msg"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-msg"], _ = expandObjectSpamfilterProfileSmtpTagMsg(d, i["tag_msg"], pre_append)
 	}
 	pre_append = pre + ".0." + "tag_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectSpamfilterProfileSmtpTagType(d, i["tag_type"], pre_append)
 	} else {
 		result["tag-type"] = make([]string, 0)
@@ -1286,7 +1286,7 @@ func expandObjectSpamfilterProfileSpamRblTable(d *schema.ResourceData, v interfa
 func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectSpamfilterProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1295,7 +1295,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("external"); ok {
+	if v, ok := d.GetOk("external"); ok || d.HasChange("external") {
 		t, err := expandObjectSpamfilterProfileExternal(d, v, "external")
 		if err != nil {
 			return &obj, err
@@ -1304,7 +1304,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("flow_based"); ok {
+	if v, ok := d.GetOk("flow_based"); ok || d.HasChange("flow_based") {
 		t, err := expandObjectSpamfilterProfileFlowBased(d, v, "flow_based")
 		if err != nil {
 			return &obj, err
@@ -1313,7 +1313,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("gmail"); ok {
+	if v, ok := d.GetOk("gmail"); ok || d.HasChange("gmail") {
 		t, err := expandObjectSpamfilterProfileGmail(d, v, "gmail")
 		if err != nil {
 			return &obj, err
@@ -1322,7 +1322,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("imap"); ok {
+	if v, ok := d.GetOk("imap"); ok || d.HasChange("imap") {
 		t, err := expandObjectSpamfilterProfileImap(d, v, "imap")
 		if err != nil {
 			return &obj, err
@@ -1331,7 +1331,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("mapi"); ok {
+	if v, ok := d.GetOk("mapi"); ok || d.HasChange("mapi") {
 		t, err := expandObjectSpamfilterProfileMapi(d, v, "mapi")
 		if err != nil {
 			return &obj, err
@@ -1340,7 +1340,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("msn_hotmail"); ok {
+	if v, ok := d.GetOk("msn_hotmail"); ok || d.HasChange("msn_hotmail") {
 		t, err := expandObjectSpamfilterProfileMsnHotmail(d, v, "msn_hotmail")
 		if err != nil {
 			return &obj, err
@@ -1349,7 +1349,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSpamfilterProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1358,7 +1358,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok {
+	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
 		t, err := expandObjectSpamfilterProfileOptions(d, v, "options")
 		if err != nil {
 			return &obj, err
@@ -1367,7 +1367,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("pop3"); ok {
+	if v, ok := d.GetOk("pop3"); ok || d.HasChange("pop3") {
 		t, err := expandObjectSpamfilterProfilePop3(d, v, "pop3")
 		if err != nil {
 			return &obj, err
@@ -1376,7 +1376,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectSpamfilterProfileReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -1385,7 +1385,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("smtp"); ok {
+	if v, ok := d.GetOk("smtp"); ok || d.HasChange("smtp") {
 		t, err := expandObjectSpamfilterProfileSmtp(d, v, "smtp")
 		if err != nil {
 			return &obj, err
@@ -1394,7 +1394,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_bwl_table"); ok {
+	if v, ok := d.GetOk("spam_bwl_table"); ok || d.HasChange("spam_bwl_table") {
 		t, err := expandObjectSpamfilterProfileSpamBwlTable(d, v, "spam_bwl_table")
 		if err != nil {
 			return &obj, err
@@ -1403,7 +1403,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_bword_table"); ok {
+	if v, ok := d.GetOk("spam_bword_table"); ok || d.HasChange("spam_bword_table") {
 		t, err := expandObjectSpamfilterProfileSpamBwordTable(d, v, "spam_bword_table")
 		if err != nil {
 			return &obj, err
@@ -1412,7 +1412,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_bword_threshold"); ok {
+	if v, ok := d.GetOk("spam_bword_threshold"); ok || d.HasChange("spam_bword_threshold") {
 		t, err := expandObjectSpamfilterProfileSpamBwordThreshold(d, v, "spam_bword_threshold")
 		if err != nil {
 			return &obj, err
@@ -1421,7 +1421,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_filtering"); ok {
+	if v, ok := d.GetOk("spam_filtering"); ok || d.HasChange("spam_filtering") {
 		t, err := expandObjectSpamfilterProfileSpamFiltering(d, v, "spam_filtering")
 		if err != nil {
 			return &obj, err
@@ -1430,7 +1430,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_iptrust_table"); ok {
+	if v, ok := d.GetOk("spam_iptrust_table"); ok || d.HasChange("spam_iptrust_table") {
 		t, err := expandObjectSpamfilterProfileSpamIptrustTable(d, v, "spam_iptrust_table")
 		if err != nil {
 			return &obj, err
@@ -1439,7 +1439,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_log"); ok {
+	if v, ok := d.GetOk("spam_log"); ok || d.HasChange("spam_log") {
 		t, err := expandObjectSpamfilterProfileSpamLog(d, v, "spam_log")
 		if err != nil {
 			return &obj, err
@@ -1448,7 +1448,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_log_fortiguard_response"); ok {
+	if v, ok := d.GetOk("spam_log_fortiguard_response"); ok || d.HasChange("spam_log_fortiguard_response") {
 		t, err := expandObjectSpamfilterProfileSpamLogFortiguardResponse(d, v, "spam_log_fortiguard_response")
 		if err != nil {
 			return &obj, err
@@ -1457,7 +1457,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_mheader_table"); ok {
+	if v, ok := d.GetOk("spam_mheader_table"); ok || d.HasChange("spam_mheader_table") {
 		t, err := expandObjectSpamfilterProfileSpamMheaderTable(d, v, "spam_mheader_table")
 		if err != nil {
 			return &obj, err
@@ -1466,7 +1466,7 @@ func getObjectObjectSpamfilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("spam_rbl_table"); ok {
+	if v, ok := d.GetOk("spam_rbl_table"); ok || d.HasChange("spam_rbl_table") {
 		t, err := expandObjectSpamfilterProfileSpamRblTable(d, v, "spam_rbl_table")
 		if err != nil {
 			return &obj, err

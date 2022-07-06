@@ -501,17 +501,17 @@ func expandObjectFirewallMulticastAddressTagging(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectFirewallMulticastAddressTaggingCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallMulticastAddressTaggingName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallMulticastAddressTaggingTags(d, i["tags"], pre_append)
 		} else {
 			tmp["tags"] = make([]string, 0)
@@ -548,7 +548,7 @@ func expandObjectFirewallMulticastAddressVisibility(d *schema.ResourceData, v in
 func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("associated_interface"); ok {
+	if v, ok := d.GetOk("associated_interface"); ok || d.HasChange("associated_interface") {
 		t, err := expandObjectFirewallMulticastAddressAssociatedInterface(d, v, "associated_interface")
 		if err != nil {
 			return &obj, err
@@ -557,7 +557,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallMulticastAddressColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -566,7 +566,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallMulticastAddressComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -575,7 +575,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("end_ip"); ok {
+	if v, ok := d.GetOk("end_ip"); ok || d.HasChange("end_ip") {
 		t, err := expandObjectFirewallMulticastAddressEndIp(d, v, "end_ip")
 		if err != nil {
 			return &obj, err
@@ -584,7 +584,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallMulticastAddressName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -593,7 +593,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("start_ip"); ok {
+	if v, ok := d.GetOk("start_ip"); ok || d.HasChange("start_ip") {
 		t, err := expandObjectFirewallMulticastAddressStartIp(d, v, "start_ip")
 		if err != nil {
 			return &obj, err
@@ -602,7 +602,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("subnet"); ok {
+	if v, ok := d.GetOk("subnet"); ok || d.HasChange("subnet") {
 		t, err := expandObjectFirewallMulticastAddressSubnet(d, v, "subnet")
 		if err != nil {
 			return &obj, err
@@ -611,7 +611,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("tagging"); ok {
+	if v, ok := d.GetOk("tagging"); ok || d.HasChange("tagging") {
 		t, err := expandObjectFirewallMulticastAddressTagging(d, v, "tagging")
 		if err != nil {
 			return &obj, err
@@ -620,7 +620,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallMulticastAddressType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -629,7 +629,7 @@ func getObjectObjectFirewallMulticastAddress(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("visibility"); ok {
+	if v, ok := d.GetOk("visibility"); ok || d.HasChange("visibility") {
 		t, err := expandObjectFirewallMulticastAddressVisibility(d, v, "visibility")
 		if err != nil {
 			return &obj, err

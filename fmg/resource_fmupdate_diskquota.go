@@ -139,7 +139,7 @@ func expandFmupdateDiskQuotaValue(d *schema.ResourceData, v interface{}, pre str
 func getObjectFmupdateDiskQuota(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("value"); ok {
+	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
 		t, err := expandFmupdateDiskQuotaValue(d, v, "value")
 		if err != nil {
 			return &obj, err

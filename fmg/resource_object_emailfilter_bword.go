@@ -436,42 +436,42 @@ func expandObjectEmailfilterBwordEntries(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectEmailfilterBwordEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectEmailfilterBwordEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "language"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["language"], _ = expandObjectEmailfilterBwordEntriesLanguage(d, i["language"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern"], _ = expandObjectEmailfilterBwordEntriesPattern(d, i["pattern"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern-type"], _ = expandObjectEmailfilterBwordEntriesPatternType(d, i["pattern_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "score"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["score"], _ = expandObjectEmailfilterBwordEntriesScore(d, i["score"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectEmailfilterBwordEntriesStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "where"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["where"], _ = expandObjectEmailfilterBwordEntriesWhere(d, i["where"], pre_append)
 		}
 
@@ -526,7 +526,7 @@ func expandObjectEmailfilterBwordName(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectEmailfilterBword(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectEmailfilterBwordComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -535,7 +535,7 @@ func getObjectObjectEmailfilterBword(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectEmailfilterBwordEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -544,7 +544,7 @@ func getObjectObjectEmailfilterBword(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectEmailfilterBwordId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -553,7 +553,7 @@ func getObjectObjectEmailfilterBword(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectEmailfilterBwordName(d, v, "name")
 		if err != nil {
 			return &obj, err

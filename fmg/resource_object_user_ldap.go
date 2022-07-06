@@ -1595,208 +1595,208 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectUserLdapDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["account-key-filter"], _ = expandObjectUserLdapDynamicMappingAccountKeyFilter(d, i["account_key_filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["account-key-name"], _ = expandObjectUserLdapDynamicMappingAccountKeyName(d, i["account_key_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_processing"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["account-key-processing"], _ = expandObjectUserLdapDynamicMappingAccountKeyProcessing(d, i["account_key_processing"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "antiphish"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["antiphish"], _ = expandObjectUserLdapDynamicMappingAntiphish(d, i["antiphish"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ca_cert"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ca-cert"], _ = expandObjectUserLdapDynamicMappingCaCert(d, i["ca_cert"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cnid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cnid"], _ = expandObjectUserLdapDynamicMappingCnid(d, i["cnid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dn"], _ = expandObjectUserLdapDynamicMappingDn(d, i["dn"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter"], _ = expandObjectUserLdapDynamicMappingFilter(d, i["filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group"], _ = expandObjectUserLdapDynamicMappingGroup(d, i["group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-filter"], _ = expandObjectUserLdapDynamicMappingGroupFilter(d, i["group_filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_member_check"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-member-check"], _ = expandObjectUserLdapDynamicMappingGroupMemberCheck(d, i["group_member_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_object_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-object-filter"], _ = expandObjectUserLdapDynamicMappingGroupObjectFilter(d, i["group_object_filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_object_search_base"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-object-search-base"], _ = expandObjectUserLdapDynamicMappingGroupObjectSearchBase(d, i["group_object_search_base"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_search_base"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-search-base"], _ = expandObjectUserLdapDynamicMappingGroupSearchBase(d, i["group_search_base"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectUserLdapDynamicMappingInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserLdapDynamicMappingInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member_attr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["member-attr"], _ = expandObjectUserLdapDynamicMappingMemberAttr(d, i["member_attr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obtain_user_info"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["obtain-user-info"], _ = expandObjectUserLdapDynamicMappingObtainUserInfo(d, i["obtain_user_info"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserLdapDynamicMappingPassword(d, i["password"], pre_append)
 		} else {
 			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_attr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-attr"], _ = expandObjectUserLdapDynamicMappingPasswordAttr(d, i["password_attr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_expiry_warning"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-expiry-warning"], _ = expandObjectUserLdapDynamicMappingPasswordExpiryWarning(d, i["password_expiry_warning"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_renewal"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-renewal"], _ = expandObjectUserLdapDynamicMappingPasswordRenewal(d, i["password_renewal"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectUserLdapDynamicMappingPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "retrieve_protection_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["retrieve-protection-profile"], _ = expandObjectUserLdapDynamicMappingRetrieveProtectionProfile(d, i["retrieve_protection_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "search_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["search-type"], _ = expandObjectUserLdapDynamicMappingSearchType(d, i["search_type"], pre_append)
 		} else {
 			tmp["search-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-server"], _ = expandObjectUserLdapDynamicMappingSecondaryServer(d, i["secondary_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secure"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secure"], _ = expandObjectUserLdapDynamicMappingSecure(d, i["secure"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectUserLdapDynamicMappingServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_identity_check"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server-identity-check"], _ = expandObjectUserLdapDynamicMappingServerIdentityCheck(d, i["server_identity_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserLdapDynamicMappingSourceIp(d, i["source_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-port"], _ = expandObjectUserLdapDynamicMappingSourcePort(d, i["source_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_min_proto_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-min-proto-version"], _ = expandObjectUserLdapDynamicMappingSslMinProtoVersion(d, i["ssl_min_proto_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-server"], _ = expandObjectUserLdapDynamicMappingTertiaryServer(d, i["tertiary_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["two-factor"], _ = expandObjectUserLdapDynamicMappingTwoFactor(d, i["two_factor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_authentication"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["two-factor-authentication"], _ = expandObjectUserLdapDynamicMappingTwoFactorAuthentication(d, i["two_factor_authentication"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_notification"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["two-factor-notification"], _ = expandObjectUserLdapDynamicMappingTwoFactorNotification(d, i["two_factor_notification"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectUserLdapDynamicMappingType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_info_exchange_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user-info-exchange-server"], _ = expandObjectUserLdapDynamicMappingUserInfoExchangeServer(d, i["user_info_exchange_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "username"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["username"], _ = expandObjectUserLdapDynamicMappingUsername(d, i["username"], pre_append)
 		}
 
@@ -1823,12 +1823,12 @@ func expandObjectUserLdapDynamicMappingScope(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserLdapDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectUserLdapDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -2123,7 +2123,7 @@ func expandObjectUserLdapUsername(d *schema.ResourceData, v interface{}, pre str
 func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("account_key_filter"); ok {
+	if v, ok := d.GetOk("account_key_filter"); ok || d.HasChange("account_key_filter") {
 		t, err := expandObjectUserLdapAccountKeyFilter(d, v, "account_key_filter")
 		if err != nil {
 			return &obj, err
@@ -2132,7 +2132,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("account_key_processing"); ok {
+	if v, ok := d.GetOk("account_key_processing"); ok || d.HasChange("account_key_processing") {
 		t, err := expandObjectUserLdapAccountKeyProcessing(d, v, "account_key_processing")
 		if err != nil {
 			return &obj, err
@@ -2141,7 +2141,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("antiphish"); ok {
+	if v, ok := d.GetOk("antiphish"); ok || d.HasChange("antiphish") {
 		t, err := expandObjectUserLdapAntiphish(d, v, "antiphish")
 		if err != nil {
 			return &obj, err
@@ -2150,7 +2150,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ca_cert"); ok {
+	if v, ok := d.GetOk("ca_cert"); ok || d.HasChange("ca_cert") {
 		t, err := expandObjectUserLdapCaCert(d, v, "ca_cert")
 		if err != nil {
 			return &obj, err
@@ -2159,7 +2159,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("cnid"); ok {
+	if v, ok := d.GetOk("cnid"); ok || d.HasChange("cnid") {
 		t, err := expandObjectUserLdapCnid(d, v, "cnid")
 		if err != nil {
 			return &obj, err
@@ -2168,7 +2168,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("dn"); ok {
+	if v, ok := d.GetOk("dn"); ok || d.HasChange("dn") {
 		t, err := expandObjectUserLdapDn(d, v, "dn")
 		if err != nil {
 			return &obj, err
@@ -2177,7 +2177,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserLdapDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -2186,7 +2186,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_filter"); ok {
+	if v, ok := d.GetOk("group_filter"); ok || d.HasChange("group_filter") {
 		t, err := expandObjectUserLdapGroupFilter(d, v, "group_filter")
 		if err != nil {
 			return &obj, err
@@ -2195,7 +2195,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_member_check"); ok {
+	if v, ok := d.GetOk("group_member_check"); ok || d.HasChange("group_member_check") {
 		t, err := expandObjectUserLdapGroupMemberCheck(d, v, "group_member_check")
 		if err != nil {
 			return &obj, err
@@ -2204,7 +2204,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_object_filter"); ok {
+	if v, ok := d.GetOk("group_object_filter"); ok || d.HasChange("group_object_filter") {
 		t, err := expandObjectUserLdapGroupObjectFilter(d, v, "group_object_filter")
 		if err != nil {
 			return &obj, err
@@ -2213,7 +2213,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_search_base"); ok {
+	if v, ok := d.GetOk("group_search_base"); ok || d.HasChange("group_search_base") {
 		t, err := expandObjectUserLdapGroupSearchBase(d, v, "group_search_base")
 		if err != nil {
 			return &obj, err
@@ -2222,7 +2222,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectUserLdapInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -2231,7 +2231,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectUserLdapInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -2240,7 +2240,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("member_attr"); ok {
+	if v, ok := d.GetOk("member_attr"); ok || d.HasChange("member_attr") {
 		t, err := expandObjectUserLdapMemberAttr(d, v, "member_attr")
 		if err != nil {
 			return &obj, err
@@ -2249,7 +2249,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserLdapName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -2258,7 +2258,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("obtain_user_info"); ok {
+	if v, ok := d.GetOk("obtain_user_info"); ok || d.HasChange("obtain_user_info") {
 		t, err := expandObjectUserLdapObtainUserInfo(d, v, "obtain_user_info")
 		if err != nil {
 			return &obj, err
@@ -2267,7 +2267,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserLdapPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -2276,7 +2276,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password_attr"); ok {
+	if v, ok := d.GetOk("password_attr"); ok || d.HasChange("password_attr") {
 		t, err := expandObjectUserLdapPasswordAttr(d, v, "password_attr")
 		if err != nil {
 			return &obj, err
@@ -2285,7 +2285,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password_expiry_warning"); ok {
+	if v, ok := d.GetOk("password_expiry_warning"); ok || d.HasChange("password_expiry_warning") {
 		t, err := expandObjectUserLdapPasswordExpiryWarning(d, v, "password_expiry_warning")
 		if err != nil {
 			return &obj, err
@@ -2294,7 +2294,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password_renewal"); ok {
+	if v, ok := d.GetOk("password_renewal"); ok || d.HasChange("password_renewal") {
 		t, err := expandObjectUserLdapPasswordRenewal(d, v, "password_renewal")
 		if err != nil {
 			return &obj, err
@@ -2303,7 +2303,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectUserLdapPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -2312,7 +2312,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("search_type"); ok {
+	if v, ok := d.GetOk("search_type"); ok || d.HasChange("search_type") {
 		t, err := expandObjectUserLdapSearchType(d, v, "search_type")
 		if err != nil {
 			return &obj, err
@@ -2321,7 +2321,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_server"); ok {
+	if v, ok := d.GetOk("secondary_server"); ok || d.HasChange("secondary_server") {
 		t, err := expandObjectUserLdapSecondaryServer(d, v, "secondary_server")
 		if err != nil {
 			return &obj, err
@@ -2330,7 +2330,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("secure"); ok {
+	if v, ok := d.GetOk("secure"); ok || d.HasChange("secure") {
 		t, err := expandObjectUserLdapSecure(d, v, "secure")
 		if err != nil {
 			return &obj, err
@@ -2339,7 +2339,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserLdapServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -2348,7 +2348,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server_identity_check"); ok {
+	if v, ok := d.GetOk("server_identity_check"); ok || d.HasChange("server_identity_check") {
 		t, err := expandObjectUserLdapServerIdentityCheck(d, v, "server_identity_check")
 		if err != nil {
 			return &obj, err
@@ -2357,7 +2357,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectUserLdapSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -2366,7 +2366,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("source_port"); ok {
+	if v, ok := d.GetOk("source_port"); ok || d.HasChange("source_port") {
 		t, err := expandObjectUserLdapSourcePort(d, v, "source_port")
 		if err != nil {
 			return &obj, err
@@ -2375,7 +2375,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_min_proto_version"); ok {
+	if v, ok := d.GetOk("ssl_min_proto_version"); ok || d.HasChange("ssl_min_proto_version") {
 		t, err := expandObjectUserLdapSslMinProtoVersion(d, v, "ssl_min_proto_version")
 		if err != nil {
 			return &obj, err
@@ -2384,7 +2384,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("tertiary_server"); ok {
+	if v, ok := d.GetOk("tertiary_server"); ok || d.HasChange("tertiary_server") {
 		t, err := expandObjectUserLdapTertiaryServer(d, v, "tertiary_server")
 		if err != nil {
 			return &obj, err
@@ -2393,7 +2393,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor"); ok {
+	if v, ok := d.GetOk("two_factor"); ok || d.HasChange("two_factor") {
 		t, err := expandObjectUserLdapTwoFactor(d, v, "two_factor")
 		if err != nil {
 			return &obj, err
@@ -2402,7 +2402,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor_authentication"); ok {
+	if v, ok := d.GetOk("two_factor_authentication"); ok || d.HasChange("two_factor_authentication") {
 		t, err := expandObjectUserLdapTwoFactorAuthentication(d, v, "two_factor_authentication")
 		if err != nil {
 			return &obj, err
@@ -2411,7 +2411,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor_notification"); ok {
+	if v, ok := d.GetOk("two_factor_notification"); ok || d.HasChange("two_factor_notification") {
 		t, err := expandObjectUserLdapTwoFactorNotification(d, v, "two_factor_notification")
 		if err != nil {
 			return &obj, err
@@ -2420,7 +2420,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectUserLdapType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -2429,7 +2429,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("user_info_exchange_server"); ok {
+	if v, ok := d.GetOk("user_info_exchange_server"); ok || d.HasChange("user_info_exchange_server") {
 		t, err := expandObjectUserLdapUserInfoExchangeServer(d, v, "user_info_exchange_server")
 		if err != nil {
 			return &obj, err
@@ -2438,7 +2438,7 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandObjectUserLdapUsername(d, v, "username")
 		if err != nil {
 			return &obj, err

@@ -221,7 +221,7 @@ func expandObjectWafSignatureId(d *schema.ResourceData, v interface{}, pre strin
 func getObjectObjectWafSignature(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("desc"); ok {
+	if v, ok := d.GetOk("desc"); ok || d.HasChange("desc") {
 		t, err := expandObjectWafSignatureDesc(d, v, "desc")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectWafSignature(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectWafSignatureId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

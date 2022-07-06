@@ -1130,7 +1130,7 @@ func expandSystemAdminSettingWebadminLanguage(d *schema.ResourceData, v interfac
 func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("access_banner"); ok {
+	if v, ok := d.GetOk("access_banner"); ok || d.HasChange("access_banner") {
 		t, err := expandSystemAdminSettingAccessBanner(d, v, "access_banner")
 		if err != nil {
 			return &obj, err
@@ -1139,7 +1139,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("admin_https_redirect"); ok {
+	if v, ok := d.GetOk("admin_https_redirect"); ok || d.HasChange("admin_https_redirect") {
 		t, err := expandSystemAdminSettingAdminHttpsRedirect(d, v, "admin_https_redirect")
 		if err != nil {
 			return &obj, err
@@ -1148,7 +1148,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("admin_login_max"); ok {
+	if v, ok := d.GetOk("admin_login_max"); ok || d.HasChange("admin_login_max") {
 		t, err := expandSystemAdminSettingAdminLoginMax(d, v, "admin_login_max")
 		if err != nil {
 			return &obj, err
@@ -1157,7 +1157,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("admin_server_cert"); ok {
+	if v, ok := d.GetOk("admin_server_cert"); ok || d.HasChange("admin_server_cert") {
 		t, err := expandSystemAdminSettingAdminServerCert(d, v, "admin_server_cert")
 		if err != nil {
 			return &obj, err
@@ -1166,7 +1166,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("allow_register"); ok {
+	if v, ok := d.GetOk("allow_register"); ok || d.HasChange("allow_register") {
 		t, err := expandSystemAdminSettingAllowRegister(d, v, "allow_register")
 		if err != nil {
 			return &obj, err
@@ -1175,7 +1175,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("auth_addr"); ok {
+	if v, ok := d.GetOk("auth_addr"); ok || d.HasChange("auth_addr") {
 		t, err := expandSystemAdminSettingAuthAddr(d, v, "auth_addr")
 		if err != nil {
 			return &obj, err
@@ -1184,7 +1184,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("auth_port"); ok {
+	if v, ok := d.GetOk("auth_port"); ok || d.HasChange("auth_port") {
 		t, err := expandSystemAdminSettingAuthPort(d, v, "auth_port")
 		if err != nil {
 			return &obj, err
@@ -1193,7 +1193,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("auto_update"); ok {
+	if v, ok := d.GetOk("auto_update"); ok || d.HasChange("auto_update") {
 		t, err := expandSystemAdminSettingAutoUpdate(d, v, "auto_update")
 		if err != nil {
 			return &obj, err
@@ -1202,7 +1202,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("banner_message"); ok {
+	if v, ok := d.GetOk("banner_message"); ok || d.HasChange("banner_message") {
 		t, err := expandSystemAdminSettingBannerMessage(d, v, "banner_message")
 		if err != nil {
 			return &obj, err
@@ -1211,7 +1211,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("central_ftgd_local_cat_id"); ok {
+	if v, ok := d.GetOk("central_ftgd_local_cat_id"); ok || d.HasChange("central_ftgd_local_cat_id") {
 		t, err := expandSystemAdminSettingCentralFtgdLocalCatId(d, v, "central_ftgd_local_cat_id")
 		if err != nil {
 			return &obj, err
@@ -1220,7 +1220,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("chassis_mgmt"); ok {
+	if v, ok := d.GetOk("chassis_mgmt"); ok || d.HasChange("chassis_mgmt") {
 		t, err := expandSystemAdminSettingChassisMgmt(d, v, "chassis_mgmt")
 		if err != nil {
 			return &obj, err
@@ -1229,7 +1229,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("chassis_update_interval"); ok {
+	if v, ok := d.GetOk("chassis_update_interval"); ok || d.HasChange("chassis_update_interval") {
 		t, err := expandSystemAdminSettingChassisUpdateInterval(d, v, "chassis_update_interval")
 		if err != nil {
 			return &obj, err
@@ -1238,7 +1238,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("device_sync_status"); ok {
+	if v, ok := d.GetOk("device_sync_status"); ok || d.HasChange("device_sync_status") {
 		t, err := expandSystemAdminSettingDeviceSyncStatus(d, v, "device_sync_status")
 		if err != nil {
 			return &obj, err
@@ -1247,7 +1247,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("gui_theme"); ok {
+	if v, ok := d.GetOk("gui_theme"); ok || d.HasChange("gui_theme") {
 		t, err := expandSystemAdminSettingGuiTheme(d, v, "gui_theme")
 		if err != nil {
 			return &obj, err
@@ -1256,7 +1256,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_port"); ok {
+	if v, ok := d.GetOk("http_port"); ok || d.HasChange("http_port") {
 		t, err := expandSystemAdminSettingHttpPort(d, v, "http_port")
 		if err != nil {
 			return &obj, err
@@ -1265,7 +1265,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("https_port"); ok {
+	if v, ok := d.GetOk("https_port"); ok || d.HasChange("https_port") {
 		t, err := expandSystemAdminSettingHttpsPort(d, v, "https_port")
 		if err != nil {
 			return &obj, err
@@ -1274,7 +1274,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("idle_timeout"); ok {
+	if v, ok := d.GetOk("idle_timeout"); ok || d.HasChange("idle_timeout") {
 		t, err := expandSystemAdminSettingIdleTimeout(d, v, "idle_timeout")
 		if err != nil {
 			return &obj, err
@@ -1283,7 +1283,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("idle_timeout_api"); ok {
+	if v, ok := d.GetOk("idle_timeout_api"); ok || d.HasChange("idle_timeout_api") {
 		t, err := expandSystemAdminSettingIdleTimeoutApi(d, v, "idle_timeout_api")
 		if err != nil {
 			return &obj, err
@@ -1292,7 +1292,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("idle_timeout_gui"); ok {
+	if v, ok := d.GetOk("idle_timeout_gui"); ok || d.HasChange("idle_timeout_gui") {
 		t, err := expandSystemAdminSettingIdleTimeoutGui(d, v, "idle_timeout_gui")
 		if err != nil {
 			return &obj, err
@@ -1301,7 +1301,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("idle_timeout_sso"); ok {
+	if v, ok := d.GetOk("idle_timeout_sso"); ok || d.HasChange("idle_timeout_sso") {
 		t, err := expandSystemAdminSettingIdleTimeoutSso(d, v, "idle_timeout_sso")
 		if err != nil {
 			return &obj, err
@@ -1310,7 +1310,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("install_ifpolicy_only"); ok {
+	if v, ok := d.GetOk("install_ifpolicy_only"); ok || d.HasChange("install_ifpolicy_only") {
 		t, err := expandSystemAdminSettingInstallIfpolicyOnly(d, v, "install_ifpolicy_only")
 		if err != nil {
 			return &obj, err
@@ -1319,7 +1319,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("mgmt_addr"); ok {
+	if v, ok := d.GetOk("mgmt_addr"); ok || d.HasChange("mgmt_addr") {
 		t, err := expandSystemAdminSettingMgmtAddr(d, v, "mgmt_addr")
 		if err != nil {
 			return &obj, err
@@ -1328,7 +1328,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("mgmt_fqdn"); ok {
+	if v, ok := d.GetOk("mgmt_fqdn"); ok || d.HasChange("mgmt_fqdn") {
 		t, err := expandSystemAdminSettingMgmtFqdn(d, v, "mgmt_fqdn")
 		if err != nil {
 			return &obj, err
@@ -1337,7 +1337,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("objects_force_deletion"); ok {
+	if v, ok := d.GetOk("objects_force_deletion"); ok || d.HasChange("objects_force_deletion") {
 		t, err := expandSystemAdminSettingObjectsForceDeletion(d, v, "objects_force_deletion")
 		if err != nil {
 			return &obj, err
@@ -1346,7 +1346,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("offline_mode"); ok {
+	if v, ok := d.GetOk("offline_mode"); ok || d.HasChange("offline_mode") {
 		t, err := expandSystemAdminSettingOfflineMode(d, v, "offline_mode")
 		if err != nil {
 			return &obj, err
@@ -1355,7 +1355,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("preferred_fgfm_intf"); ok {
+	if v, ok := d.GetOk("preferred_fgfm_intf"); ok || d.HasChange("preferred_fgfm_intf") {
 		t, err := expandSystemAdminSettingPreferredFgfmIntf(d, v, "preferred_fgfm_intf")
 		if err != nil {
 			return &obj, err
@@ -1364,7 +1364,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("register_passwd"); ok {
+	if v, ok := d.GetOk("register_passwd"); ok || d.HasChange("register_passwd") {
 		t, err := expandSystemAdminSettingRegisterPasswd(d, v, "register_passwd")
 		if err != nil {
 			return &obj, err
@@ -1373,7 +1373,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("sdwan_monitor_history"); ok {
+	if v, ok := d.GetOk("sdwan_monitor_history"); ok || d.HasChange("sdwan_monitor_history") {
 		t, err := expandSystemAdminSettingSdwanMonitorHistory(d, v, "sdwan_monitor_history")
 		if err != nil {
 			return &obj, err
@@ -1382,7 +1382,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("sdwan_skip_unmapped_input_device"); ok {
+	if v, ok := d.GetOk("sdwan_skip_unmapped_input_device"); ok || d.HasChange("sdwan_skip_unmapped_input_device") {
 		t, err := expandSystemAdminSettingSdwanSkipUnmappedInputDevice(d, v, "sdwan_skip_unmapped_input_device")
 		if err != nil {
 			return &obj, err
@@ -1391,7 +1391,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("shell_access"); ok {
+	if v, ok := d.GetOk("shell_access"); ok || d.HasChange("shell_access") {
 		t, err := expandSystemAdminSettingShellAccess(d, v, "shell_access")
 		if err != nil {
 			return &obj, err
@@ -1400,7 +1400,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("shell_password"); ok {
+	if v, ok := d.GetOk("shell_password"); ok || d.HasChange("shell_password") {
 		t, err := expandSystemAdminSettingShellPassword(d, v, "shell_password")
 		if err != nil {
 			return &obj, err
@@ -1409,7 +1409,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_add_multiple"); ok {
+	if v, ok := d.GetOk("show_add_multiple"); ok || d.HasChange("show_add_multiple") {
 		t, err := expandSystemAdminSettingShowAddMultiple(d, v, "show_add_multiple")
 		if err != nil {
 			return &obj, err
@@ -1418,7 +1418,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_adom_devman"); ok {
+	if v, ok := d.GetOk("show_adom_devman"); ok || d.HasChange("show_adom_devman") {
 		t, err := expandSystemAdminSettingShowAdomDevman(d, v, "show_adom_devman")
 		if err != nil {
 			return &obj, err
@@ -1427,7 +1427,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_checkbox_in_table"); ok {
+	if v, ok := d.GetOk("show_checkbox_in_table"); ok || d.HasChange("show_checkbox_in_table") {
 		t, err := expandSystemAdminSettingShowCheckboxInTable(d, v, "show_checkbox_in_table")
 		if err != nil {
 			return &obj, err
@@ -1436,7 +1436,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_device_import_export"); ok {
+	if v, ok := d.GetOk("show_device_import_export"); ok || d.HasChange("show_device_import_export") {
 		t, err := expandSystemAdminSettingShowDeviceImportExport(d, v, "show_device_import_export")
 		if err != nil {
 			return &obj, err
@@ -1445,7 +1445,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_fct_manager"); ok {
+	if v, ok := d.GetOk("show_fct_manager"); ok || d.HasChange("show_fct_manager") {
 		t, err := expandSystemAdminSettingShowFctManager(d, v, "show_fct_manager")
 		if err != nil {
 			return &obj, err
@@ -1454,7 +1454,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_hostname"); ok {
+	if v, ok := d.GetOk("show_hostname"); ok || d.HasChange("show_hostname") {
 		t, err := expandSystemAdminSettingShowHostname(d, v, "show_hostname")
 		if err != nil {
 			return &obj, err
@@ -1463,7 +1463,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_automatic_script"); ok {
+	if v, ok := d.GetOk("show_automatic_script"); ok || d.HasChange("show_automatic_script") {
 		t, err := expandSystemAdminSettingShowAutomaticScript(d, v, "show_automatic_script")
 		if err != nil {
 			return &obj, err
@@ -1472,7 +1472,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_grouping_script"); ok {
+	if v, ok := d.GetOk("show_grouping_script"); ok || d.HasChange("show_grouping_script") {
 		t, err := expandSystemAdminSettingShowGroupingScript(d, v, "show_grouping_script")
 		if err != nil {
 			return &obj, err
@@ -1481,7 +1481,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_schedule_script"); ok {
+	if v, ok := d.GetOk("show_schedule_script"); ok || d.HasChange("show_schedule_script") {
 		t, err := expandSystemAdminSettingShowScheduleScript(d, v, "show_schedule_script")
 		if err != nil {
 			return &obj, err
@@ -1490,7 +1490,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("show_tcl_script"); ok {
+	if v, ok := d.GetOk("show_tcl_script"); ok || d.HasChange("show_tcl_script") {
 		t, err := expandSystemAdminSettingShowTclScript(d, v, "show_tcl_script")
 		if err != nil {
 			return &obj, err
@@ -1499,7 +1499,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaping_history"); ok {
+	if v, ok := d.GetOk("traffic_shaping_history"); ok || d.HasChange("traffic_shaping_history") {
 		t, err := expandSystemAdminSettingTrafficShapingHistory(d, v, "traffic_shaping_history")
 		if err != nil {
 			return &obj, err
@@ -1508,7 +1508,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("unreg_dev_opt"); ok {
+	if v, ok := d.GetOk("unreg_dev_opt"); ok || d.HasChange("unreg_dev_opt") {
 		t, err := expandSystemAdminSettingUnregDevOpt(d, v, "unreg_dev_opt")
 		if err != nil {
 			return &obj, err
@@ -1517,7 +1517,7 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("webadmin_language"); ok {
+	if v, ok := d.GetOk("webadmin_language"); ok || d.HasChange("webadmin_language") {
 		t, err := expandSystemAdminSettingWebadminLanguage(d, v, "webadmin_language")
 		if err != nil {
 			return &obj, err

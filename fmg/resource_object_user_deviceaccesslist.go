@@ -342,17 +342,17 @@ func expandObjectUserDeviceAccessListDeviceList(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectUserDeviceAccessListDeviceListAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "device"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["device"], _ = expandObjectUserDeviceAccessListDeviceListDevice(d, i["device"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserDeviceAccessListDeviceListId(d, i["id"], pre_append)
 		}
 
@@ -383,7 +383,7 @@ func expandObjectUserDeviceAccessListName(d *schema.ResourceData, v interface{},
 func getObjectObjectUserDeviceAccessList(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("default_action"); ok {
+	if v, ok := d.GetOk("default_action"); ok || d.HasChange("default_action") {
 		t, err := expandObjectUserDeviceAccessListDefaultAction(d, v, "default_action")
 		if err != nil {
 			return &obj, err
@@ -392,7 +392,7 @@ func getObjectObjectUserDeviceAccessList(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("device_list"); ok {
+	if v, ok := d.GetOk("device_list"); ok || d.HasChange("device_list") {
 		t, err := expandObjectUserDeviceAccessListDeviceList(d, v, "device_list")
 		if err != nil {
 			return &obj, err
@@ -401,7 +401,7 @@ func getObjectObjectUserDeviceAccessList(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserDeviceAccessListName(d, v, "name")
 		if err != nil {
 			return &obj, err

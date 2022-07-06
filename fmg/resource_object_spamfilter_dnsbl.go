@@ -376,22 +376,22 @@ func expandObjectSpamfilterDnsblEntries(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectSpamfilterDnsblEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSpamfilterDnsblEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectSpamfilterDnsblEntriesServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectSpamfilterDnsblEntriesStatus(d, i["status"], pre_append)
 		}
 
@@ -430,7 +430,7 @@ func expandObjectSpamfilterDnsblName(d *schema.ResourceData, v interface{}, pre 
 func getObjectObjectSpamfilterDnsbl(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectSpamfilterDnsblComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -439,7 +439,7 @@ func getObjectObjectSpamfilterDnsbl(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectSpamfilterDnsblEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -448,7 +448,7 @@ func getObjectObjectSpamfilterDnsbl(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectSpamfilterDnsblId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -457,7 +457,7 @@ func getObjectObjectSpamfilterDnsbl(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSpamfilterDnsblName(d, v, "name")
 		if err != nil {
 			return &obj, err

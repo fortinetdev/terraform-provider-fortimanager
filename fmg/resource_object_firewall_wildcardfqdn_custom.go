@@ -313,7 +313,7 @@ func expandObjectFirewallWildcardFqdnCustomWildcardFqdn(d *schema.ResourceData, 
 func getObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallWildcardFqdnCustomColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -322,7 +322,7 @@ func getObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallWildcardFqdnCustomComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -331,7 +331,7 @@ func getObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallWildcardFqdnCustomName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -340,7 +340,7 @@ func getObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallWildcardFqdnCustomUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -349,7 +349,7 @@ func getObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("visibility"); ok {
+	if v, ok := d.GetOk("visibility"); ok || d.HasChange("visibility") {
 		t, err := expandObjectFirewallWildcardFqdnCustomVisibility(d, v, "visibility")
 		if err != nil {
 			return &obj, err
@@ -358,7 +358,7 @@ func getObjectObjectFirewallWildcardFqdnCustom(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard_fqdn"); ok {
+	if v, ok := d.GetOk("wildcard_fqdn"); ok || d.HasChange("wildcard_fqdn") {
 		t, err := expandObjectFirewallWildcardFqdnCustomWildcardFqdn(d, v, "wildcard_fqdn")
 		if err != nil {
 			return &obj, err

@@ -3505,380 +3505,380 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectFirewallVip6DynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat64_route"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-nat64-route"], _ = expandObjectFirewallVip6DynamicMappingAddNat64Route(d, i["add_nat64_route"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "arp_reply"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["arp-reply"], _ = expandObjectFirewallVip6DynamicMappingArpReply(d, i["arp_reply"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "color"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["color"], _ = expandObjectFirewallVip6DynamicMappingColor(d, i["color"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectFirewallVip6DynamicMappingComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "embedded_ipv4_address"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["embedded-ipv4-address"], _ = expandObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(d, i["embedded_ipv4_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["extip"], _ = expandObjectFirewallVip6DynamicMappingExtip(d, i["extip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "extport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["extport"], _ = expandObjectFirewallVip6DynamicMappingExtport(d, i["extport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-age"], _ = expandObjectFirewallVip6DynamicMappingHttpCookieAge(d, i["http_cookie_age"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_domain"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-domain"], _ = expandObjectFirewallVip6DynamicMappingHttpCookieDomain(d, i["http_cookie_domain"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_domain_from_host"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-domain-from-host"], _ = expandObjectFirewallVip6DynamicMappingHttpCookieDomainFromHost(d, i["http_cookie_domain_from_host"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_generation"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-generation"], _ = expandObjectFirewallVip6DynamicMappingHttpCookieGeneration(d, i["http_cookie_generation"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_path"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-path"], _ = expandObjectFirewallVip6DynamicMappingHttpCookiePath(d, i["http_cookie_path"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_share"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-share"], _ = expandObjectFirewallVip6DynamicMappingHttpCookieShare(d, i["http_cookie_share"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_ip_header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-ip-header"], _ = expandObjectFirewallVip6DynamicMappingHttpIpHeader(d, i["http_ip_header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_ip_header_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-ip-header-name"], _ = expandObjectFirewallVip6DynamicMappingHttpIpHeaderName(d, i["http_ip_header_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-multiplex"], _ = expandObjectFirewallVip6DynamicMappingHttpMultiplex(d, i["http_multiplex"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_redirect"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-redirect"], _ = expandObjectFirewallVip6DynamicMappingHttpRedirect(d, i["http_redirect"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "https_cookie_secure"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["https-cookie-secure"], _ = expandObjectFirewallVip6DynamicMappingHttpsCookieSecure(d, i["https_cookie_secure"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallVip6DynamicMappingId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_mappedip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ipv4-mappedip"], _ = expandObjectFirewallVip6DynamicMappingIpv4Mappedip(d, i["ipv4_mappedip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv4_mappedport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ipv4-mappedport"], _ = expandObjectFirewallVip6DynamicMappingIpv4Mappedport(d, i["ipv4_mappedport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldb_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldb-method"], _ = expandObjectFirewallVip6DynamicMappingLdbMethod(d, i["ldb_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mappedip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mappedip"], _ = expandObjectFirewallVip6DynamicMappingMappedip(d, i["mappedip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mappedport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mappedport"], _ = expandObjectFirewallVip6DynamicMappingMappedport(d, i["mappedport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_embryonic_connections"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-embryonic-connections"], _ = expandObjectFirewallVip6DynamicMappingMaxEmbryonicConnections(d, i["max_embryonic_connections"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["monitor"], _ = expandObjectFirewallVip6DynamicMappingMonitor(d, i["monitor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat_source_vip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nat-source-vip"], _ = expandObjectFirewallVip6DynamicMappingNatSourceVip(d, i["nat_source_vip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nat64"], _ = expandObjectFirewallVip6DynamicMappingNat64(d, i["nat64"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat66"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nat66"], _ = expandObjectFirewallVip6DynamicMappingNat66(d, i["nat66"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["outlook-web-access"], _ = expandObjectFirewallVip6DynamicMappingOutlookWebAccess(d, i["outlook_web_access"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "persistence"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["persistence"], _ = expandObjectFirewallVip6DynamicMappingPersistence(d, i["persistence"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "portforward"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["portforward"], _ = expandObjectFirewallVip6DynamicMappingPortforward(d, i["portforward"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectFirewallVip6DynamicMappingProtocol(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["realservers"], _ = expandObjectFirewallVip6DynamicMappingRealservers(d, i["realservers"], pre_append)
 		} else {
 			tmp["realservers"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server-type"], _ = expandObjectFirewallVip6DynamicMappingServerType(d, i["server_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["src-filter"], _ = expandObjectFirewallVip6DynamicMappingSrcFilter(d, i["src_filter"], pre_append)
 		} else {
 			tmp["src-filter"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_accept_ffdhe_groups"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-accept-ffdhe-groups"], _ = expandObjectFirewallVip6DynamicMappingSslAcceptFfdheGroups(d, i["ssl_accept_ffdhe_groups"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_algorithm"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-algorithm"], _ = expandObjectFirewallVip6DynamicMappingSslAlgorithm(d, i["ssl_algorithm"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_certificate"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-certificate"], _ = expandObjectFirewallVip6DynamicMappingSslCertificate(d, i["ssl_certificate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_cipher_suites"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-cipher-suites"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
 		} else {
 			tmp["ssl-cipher-suites"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_fallback"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-client-fallback"], _ = expandObjectFirewallVip6DynamicMappingSslClientFallback(d, i["ssl_client_fallback"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_rekey_count"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-client-rekey-count"], _ = expandObjectFirewallVip6DynamicMappingSslClientRekeyCount(d, i["ssl_client_rekey_count"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_renegotiation"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-client-renegotiation"], _ = expandObjectFirewallVip6DynamicMappingSslClientRenegotiation(d, i["ssl_client_renegotiation"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_session_state_max"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-client-session-state-max"], _ = expandObjectFirewallVip6DynamicMappingSslClientSessionStateMax(d, i["ssl_client_session_state_max"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_session_state_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-client-session-state-timeout"], _ = expandObjectFirewallVip6DynamicMappingSslClientSessionStateTimeout(d, i["ssl_client_session_state_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_session_state_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-client-session-state-type"], _ = expandObjectFirewallVip6DynamicMappingSslClientSessionStateType(d, i["ssl_client_session_state_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_dh_bits"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-dh-bits"], _ = expandObjectFirewallVip6DynamicMappingSslDhBits(d, i["ssl_dh_bits"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hpkp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hpkp"], _ = expandObjectFirewallVip6DynamicMappingSslHpkp(d, i["ssl_hpkp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hpkp_age"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hpkp-age"], _ = expandObjectFirewallVip6DynamicMappingSslHpkpAge(d, i["ssl_hpkp_age"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hpkp_backup"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hpkp-backup"], _ = expandObjectFirewallVip6DynamicMappingSslHpkpBackup(d, i["ssl_hpkp_backup"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hpkp_include_subdomains"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hpkp-include-subdomains"], _ = expandObjectFirewallVip6DynamicMappingSslHpkpIncludeSubdomains(d, i["ssl_hpkp_include_subdomains"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hpkp_primary"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hpkp-primary"], _ = expandObjectFirewallVip6DynamicMappingSslHpkpPrimary(d, i["ssl_hpkp_primary"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hpkp_report_uri"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hpkp-report-uri"], _ = expandObjectFirewallVip6DynamicMappingSslHpkpReportUri(d, i["ssl_hpkp_report_uri"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hsts"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hsts"], _ = expandObjectFirewallVip6DynamicMappingSslHsts(d, i["ssl_hsts"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hsts_age"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hsts-age"], _ = expandObjectFirewallVip6DynamicMappingSslHstsAge(d, i["ssl_hsts_age"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_hsts_include_subdomains"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-hsts-include-subdomains"], _ = expandObjectFirewallVip6DynamicMappingSslHstsIncludeSubdomains(d, i["ssl_hsts_include_subdomains"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_http_location_conversion"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-http-location-conversion"], _ = expandObjectFirewallVip6DynamicMappingSslHttpLocationConversion(d, i["ssl_http_location_conversion"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_http_match_host"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-http-match-host"], _ = expandObjectFirewallVip6DynamicMappingSslHttpMatchHost(d, i["ssl_http_match_host"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_max_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-max-version"], _ = expandObjectFirewallVip6DynamicMappingSslMaxVersion(d, i["ssl_max_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_min_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-min-version"], _ = expandObjectFirewallVip6DynamicMappingSslMinVersion(d, i["ssl_min_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-mode"], _ = expandObjectFirewallVip6DynamicMappingSslMode(d, i["ssl_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_pfs"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-pfs"], _ = expandObjectFirewallVip6DynamicMappingSslPfs(d, i["ssl_pfs"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_send_empty_frags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-send-empty-frags"], _ = expandObjectFirewallVip6DynamicMappingSslSendEmptyFrags(d, i["ssl_send_empty_frags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_algorithm"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-algorithm"], _ = expandObjectFirewallVip6DynamicMappingSslServerAlgorithm(d, i["ssl_server_algorithm"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_max_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-max-version"], _ = expandObjectFirewallVip6DynamicMappingSslServerMaxVersion(d, i["ssl_server_max_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_min_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-min-version"], _ = expandObjectFirewallVip6DynamicMappingSslServerMinVersion(d, i["ssl_server_min_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_max"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-session-state-max"], _ = expandObjectFirewallVip6DynamicMappingSslServerSessionStateMax(d, i["ssl_server_session_state_max"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-session-state-timeout"], _ = expandObjectFirewallVip6DynamicMappingSslServerSessionStateTimeout(d, i["ssl_server_session_state_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-session-state-type"], _ = expandObjectFirewallVip6DynamicMappingSslServerSessionStateType(d, i["ssl_server_session_state_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallVip6DynamicMappingType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["uuid"], _ = expandObjectFirewallVip6DynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weblogic_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weblogic-server"], _ = expandObjectFirewallVip6DynamicMappingWeblogicServer(d, i["weblogic_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "websphere_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["websphere-server"], _ = expandObjectFirewallVip6DynamicMappingWebsphereServer(d, i["websphere_server"], pre_append)
 		}
 
@@ -3905,12 +3905,12 @@ func expandObjectFirewallVip6DynamicMappingScope(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallVip6DynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectFirewallVip6DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -4077,57 +4077,57 @@ func expandObjectFirewallVip6DynamicMappingRealservers(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-ip"], _ = expandObjectFirewallVip6DynamicMappingRealserversClientIp(d, i["client_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["healthcheck"], _ = expandObjectFirewallVip6DynamicMappingRealserversHealthcheck(d, i["healthcheck"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "holddown_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["holddown-interval"], _ = expandObjectFirewallVip6DynamicMappingRealserversHolddownInterval(d, i["holddown_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_host"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-host"], _ = expandObjectFirewallVip6DynamicMappingRealserversHttpHost(d, i["http_host"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallVip6DynamicMappingRealserversId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFirewallVip6DynamicMappingRealserversIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-connections"], _ = expandObjectFirewallVip6DynamicMappingRealserversMaxConnections(d, i["max_connections"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["monitor"], _ = expandObjectFirewallVip6DynamicMappingRealserversMonitor(d, i["monitor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectFirewallVip6DynamicMappingRealserversPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFirewallVip6DynamicMappingRealserversStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectFirewallVip6DynamicMappingRealserversWeight(d, i["weight"], pre_append)
 		}
 
@@ -4218,17 +4218,17 @@ func expandObjectFirewallVip6DynamicMappingSslCipherSuites(d *schema.ResourceDat
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cipher"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuitesCipher(d, i["cipher"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuitesPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallVip6DynamicMappingSslCipherSuitesVersions(d, i["versions"], pre_append)
 		} else {
 			tmp["versions"] = make([]string, 0)
@@ -4521,57 +4521,57 @@ func expandObjectFirewallVip6Realservers(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-ip"], _ = expandObjectFirewallVip6RealserversClientIp(d, i["client_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["healthcheck"], _ = expandObjectFirewallVip6RealserversHealthcheck(d, i["healthcheck"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "holddown_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["holddown-interval"], _ = expandObjectFirewallVip6RealserversHolddownInterval(d, i["holddown_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_host"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-host"], _ = expandObjectFirewallVip6RealserversHttpHost(d, i["http_host"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallVip6RealserversId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFirewallVip6RealserversIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-connections"], _ = expandObjectFirewallVip6RealserversMaxConnections(d, i["max_connections"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "monitor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["monitor"], _ = expandObjectFirewallVip6RealserversMonitor(d, i["monitor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectFirewallVip6RealserversPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFirewallVip6RealserversStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectFirewallVip6RealserversWeight(d, i["weight"], pre_append)
 		}
 
@@ -4662,17 +4662,17 @@ func expandObjectFirewallVip6SslCipherSuites(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cipher"], _ = expandObjectFirewallVip6SslCipherSuitesCipher(d, i["cipher"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectFirewallVip6SslCipherSuitesPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallVip6SslCipherSuitesVersions(d, i["versions"], pre_append)
 		} else {
 			tmp["versions"] = make([]string, 0)
@@ -4809,17 +4809,17 @@ func expandObjectFirewallVip6SslServerCipherSuites(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cipher"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cipher"], _ = expandObjectFirewallVip6SslServerCipherSuitesCipher(d, i["cipher"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectFirewallVip6SslServerCipherSuitesPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallVip6SslServerCipherSuitesVersions(d, i["versions"], pre_append)
 		} else {
 			tmp["versions"] = make([]string, 0)
@@ -4884,7 +4884,7 @@ func expandObjectFirewallVip6WebsphereServer(d *schema.ResourceData, v interface
 func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("add_nat64_route"); ok {
+	if v, ok := d.GetOk("add_nat64_route"); ok || d.HasChange("add_nat64_route") {
 		t, err := expandObjectFirewallVip6AddNat64Route(d, v, "add_nat64_route")
 		if err != nil {
 			return &obj, err
@@ -4893,7 +4893,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("arp_reply"); ok {
+	if v, ok := d.GetOk("arp_reply"); ok || d.HasChange("arp_reply") {
 		t, err := expandObjectFirewallVip6ArpReply(d, v, "arp_reply")
 		if err != nil {
 			return &obj, err
@@ -4902,7 +4902,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallVip6Color(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -4911,7 +4911,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallVip6Comment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -4920,7 +4920,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectFirewallVip6DynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -4929,7 +4929,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("embedded_ipv4_address"); ok {
+	if v, ok := d.GetOk("embedded_ipv4_address"); ok || d.HasChange("embedded_ipv4_address") {
 		t, err := expandObjectFirewallVip6EmbeddedIpv4Address(d, v, "embedded_ipv4_address")
 		if err != nil {
 			return &obj, err
@@ -4938,7 +4938,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("extip"); ok {
+	if v, ok := d.GetOk("extip"); ok || d.HasChange("extip") {
 		t, err := expandObjectFirewallVip6Extip(d, v, "extip")
 		if err != nil {
 			return &obj, err
@@ -4947,7 +4947,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("extport"); ok {
+	if v, ok := d.GetOk("extport"); ok || d.HasChange("extport") {
 		t, err := expandObjectFirewallVip6Extport(d, v, "extport")
 		if err != nil {
 			return &obj, err
@@ -4956,7 +4956,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_cookie_age"); ok {
+	if v, ok := d.GetOk("http_cookie_age"); ok || d.HasChange("http_cookie_age") {
 		t, err := expandObjectFirewallVip6HttpCookieAge(d, v, "http_cookie_age")
 		if err != nil {
 			return &obj, err
@@ -4965,7 +4965,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_cookie_domain"); ok {
+	if v, ok := d.GetOk("http_cookie_domain"); ok || d.HasChange("http_cookie_domain") {
 		t, err := expandObjectFirewallVip6HttpCookieDomain(d, v, "http_cookie_domain")
 		if err != nil {
 			return &obj, err
@@ -4974,7 +4974,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_cookie_domain_from_host"); ok {
+	if v, ok := d.GetOk("http_cookie_domain_from_host"); ok || d.HasChange("http_cookie_domain_from_host") {
 		t, err := expandObjectFirewallVip6HttpCookieDomainFromHost(d, v, "http_cookie_domain_from_host")
 		if err != nil {
 			return &obj, err
@@ -4983,7 +4983,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_cookie_generation"); ok {
+	if v, ok := d.GetOk("http_cookie_generation"); ok || d.HasChange("http_cookie_generation") {
 		t, err := expandObjectFirewallVip6HttpCookieGeneration(d, v, "http_cookie_generation")
 		if err != nil {
 			return &obj, err
@@ -4992,7 +4992,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_cookie_path"); ok {
+	if v, ok := d.GetOk("http_cookie_path"); ok || d.HasChange("http_cookie_path") {
 		t, err := expandObjectFirewallVip6HttpCookiePath(d, v, "http_cookie_path")
 		if err != nil {
 			return &obj, err
@@ -5001,7 +5001,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_cookie_share"); ok {
+	if v, ok := d.GetOk("http_cookie_share"); ok || d.HasChange("http_cookie_share") {
 		t, err := expandObjectFirewallVip6HttpCookieShare(d, v, "http_cookie_share")
 		if err != nil {
 			return &obj, err
@@ -5010,7 +5010,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_ip_header"); ok {
+	if v, ok := d.GetOk("http_ip_header"); ok || d.HasChange("http_ip_header") {
 		t, err := expandObjectFirewallVip6HttpIpHeader(d, v, "http_ip_header")
 		if err != nil {
 			return &obj, err
@@ -5019,7 +5019,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_ip_header_name"); ok {
+	if v, ok := d.GetOk("http_ip_header_name"); ok || d.HasChange("http_ip_header_name") {
 		t, err := expandObjectFirewallVip6HttpIpHeaderName(d, v, "http_ip_header_name")
 		if err != nil {
 			return &obj, err
@@ -5028,7 +5028,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_multiplex"); ok {
+	if v, ok := d.GetOk("http_multiplex"); ok || d.HasChange("http_multiplex") {
 		t, err := expandObjectFirewallVip6HttpMultiplex(d, v, "http_multiplex")
 		if err != nil {
 			return &obj, err
@@ -5037,7 +5037,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_redirect"); ok {
+	if v, ok := d.GetOk("http_redirect"); ok || d.HasChange("http_redirect") {
 		t, err := expandObjectFirewallVip6HttpRedirect(d, v, "http_redirect")
 		if err != nil {
 			return &obj, err
@@ -5046,7 +5046,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("https_cookie_secure"); ok {
+	if v, ok := d.GetOk("https_cookie_secure"); ok || d.HasChange("https_cookie_secure") {
 		t, err := expandObjectFirewallVip6HttpsCookieSecure(d, v, "https_cookie_secure")
 		if err != nil {
 			return &obj, err
@@ -5055,7 +5055,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectFirewallVip6Id(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -5064,7 +5064,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_mappedip"); ok {
+	if v, ok := d.GetOk("ipv4_mappedip"); ok || d.HasChange("ipv4_mappedip") {
 		t, err := expandObjectFirewallVip6Ipv4Mappedip(d, v, "ipv4_mappedip")
 		if err != nil {
 			return &obj, err
@@ -5073,7 +5073,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_mappedport"); ok {
+	if v, ok := d.GetOk("ipv4_mappedport"); ok || d.HasChange("ipv4_mappedport") {
 		t, err := expandObjectFirewallVip6Ipv4Mappedport(d, v, "ipv4_mappedport")
 		if err != nil {
 			return &obj, err
@@ -5082,7 +5082,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ldb_method"); ok {
+	if v, ok := d.GetOk("ldb_method"); ok || d.HasChange("ldb_method") {
 		t, err := expandObjectFirewallVip6LdbMethod(d, v, "ldb_method")
 		if err != nil {
 			return &obj, err
@@ -5091,7 +5091,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("mappedip"); ok {
+	if v, ok := d.GetOk("mappedip"); ok || d.HasChange("mappedip") {
 		t, err := expandObjectFirewallVip6Mappedip(d, v, "mappedip")
 		if err != nil {
 			return &obj, err
@@ -5100,7 +5100,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("mappedport"); ok {
+	if v, ok := d.GetOk("mappedport"); ok || d.HasChange("mappedport") {
 		t, err := expandObjectFirewallVip6Mappedport(d, v, "mappedport")
 		if err != nil {
 			return &obj, err
@@ -5109,7 +5109,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("max_embryonic_connections"); ok {
+	if v, ok := d.GetOk("max_embryonic_connections"); ok || d.HasChange("max_embryonic_connections") {
 		t, err := expandObjectFirewallVip6MaxEmbryonicConnections(d, v, "max_embryonic_connections")
 		if err != nil {
 			return &obj, err
@@ -5118,7 +5118,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("monitor"); ok {
+	if v, ok := d.GetOk("monitor"); ok || d.HasChange("monitor") {
 		t, err := expandObjectFirewallVip6Monitor(d, v, "monitor")
 		if err != nil {
 			return &obj, err
@@ -5127,7 +5127,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallVip6Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -5136,7 +5136,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("nat_source_vip"); ok {
+	if v, ok := d.GetOk("nat_source_vip"); ok || d.HasChange("nat_source_vip") {
 		t, err := expandObjectFirewallVip6NatSourceVip(d, v, "nat_source_vip")
 		if err != nil {
 			return &obj, err
@@ -5145,7 +5145,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("nat64"); ok {
+	if v, ok := d.GetOk("nat64"); ok || d.HasChange("nat64") {
 		t, err := expandObjectFirewallVip6Nat64(d, v, "nat64")
 		if err != nil {
 			return &obj, err
@@ -5154,7 +5154,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("nat66"); ok {
+	if v, ok := d.GetOk("nat66"); ok || d.HasChange("nat66") {
 		t, err := expandObjectFirewallVip6Nat66(d, v, "nat66")
 		if err != nil {
 			return &obj, err
@@ -5163,7 +5163,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("outlook_web_access"); ok {
+	if v, ok := d.GetOk("outlook_web_access"); ok || d.HasChange("outlook_web_access") {
 		t, err := expandObjectFirewallVip6OutlookWebAccess(d, v, "outlook_web_access")
 		if err != nil {
 			return &obj, err
@@ -5172,7 +5172,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("persistence"); ok {
+	if v, ok := d.GetOk("persistence"); ok || d.HasChange("persistence") {
 		t, err := expandObjectFirewallVip6Persistence(d, v, "persistence")
 		if err != nil {
 			return &obj, err
@@ -5181,7 +5181,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("portforward"); ok {
+	if v, ok := d.GetOk("portforward"); ok || d.HasChange("portforward") {
 		t, err := expandObjectFirewallVip6Portforward(d, v, "portforward")
 		if err != nil {
 			return &obj, err
@@ -5190,7 +5190,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectFirewallVip6Protocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -5199,7 +5199,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("realservers"); ok {
+	if v, ok := d.GetOk("realservers"); ok || d.HasChange("realservers") {
 		t, err := expandObjectFirewallVip6Realservers(d, v, "realservers")
 		if err != nil {
 			return &obj, err
@@ -5208,7 +5208,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("server_type"); ok {
+	if v, ok := d.GetOk("server_type"); ok || d.HasChange("server_type") {
 		t, err := expandObjectFirewallVip6ServerType(d, v, "server_type")
 		if err != nil {
 			return &obj, err
@@ -5217,7 +5217,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("src_filter"); ok {
+	if v, ok := d.GetOk("src_filter"); ok || d.HasChange("src_filter") {
 		t, err := expandObjectFirewallVip6SrcFilter(d, v, "src_filter")
 		if err != nil {
 			return &obj, err
@@ -5226,7 +5226,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_accept_ffdhe_groups"); ok {
+	if v, ok := d.GetOk("ssl_accept_ffdhe_groups"); ok || d.HasChange("ssl_accept_ffdhe_groups") {
 		t, err := expandObjectFirewallVip6SslAcceptFfdheGroups(d, v, "ssl_accept_ffdhe_groups")
 		if err != nil {
 			return &obj, err
@@ -5235,7 +5235,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_algorithm"); ok {
+	if v, ok := d.GetOk("ssl_algorithm"); ok || d.HasChange("ssl_algorithm") {
 		t, err := expandObjectFirewallVip6SslAlgorithm(d, v, "ssl_algorithm")
 		if err != nil {
 			return &obj, err
@@ -5244,7 +5244,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_certificate"); ok {
+	if v, ok := d.GetOk("ssl_certificate"); ok || d.HasChange("ssl_certificate") {
 		t, err := expandObjectFirewallVip6SslCertificate(d, v, "ssl_certificate")
 		if err != nil {
 			return &obj, err
@@ -5253,7 +5253,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_cipher_suites"); ok {
+	if v, ok := d.GetOk("ssl_cipher_suites"); ok || d.HasChange("ssl_cipher_suites") {
 		t, err := expandObjectFirewallVip6SslCipherSuites(d, v, "ssl_cipher_suites")
 		if err != nil {
 			return &obj, err
@@ -5262,7 +5262,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_client_fallback"); ok {
+	if v, ok := d.GetOk("ssl_client_fallback"); ok || d.HasChange("ssl_client_fallback") {
 		t, err := expandObjectFirewallVip6SslClientFallback(d, v, "ssl_client_fallback")
 		if err != nil {
 			return &obj, err
@@ -5271,7 +5271,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_client_rekey_count"); ok {
+	if v, ok := d.GetOk("ssl_client_rekey_count"); ok || d.HasChange("ssl_client_rekey_count") {
 		t, err := expandObjectFirewallVip6SslClientRekeyCount(d, v, "ssl_client_rekey_count")
 		if err != nil {
 			return &obj, err
@@ -5280,7 +5280,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_client_renegotiation"); ok {
+	if v, ok := d.GetOk("ssl_client_renegotiation"); ok || d.HasChange("ssl_client_renegotiation") {
 		t, err := expandObjectFirewallVip6SslClientRenegotiation(d, v, "ssl_client_renegotiation")
 		if err != nil {
 			return &obj, err
@@ -5289,7 +5289,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_client_session_state_max"); ok {
+	if v, ok := d.GetOk("ssl_client_session_state_max"); ok || d.HasChange("ssl_client_session_state_max") {
 		t, err := expandObjectFirewallVip6SslClientSessionStateMax(d, v, "ssl_client_session_state_max")
 		if err != nil {
 			return &obj, err
@@ -5298,7 +5298,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_client_session_state_timeout"); ok {
+	if v, ok := d.GetOk("ssl_client_session_state_timeout"); ok || d.HasChange("ssl_client_session_state_timeout") {
 		t, err := expandObjectFirewallVip6SslClientSessionStateTimeout(d, v, "ssl_client_session_state_timeout")
 		if err != nil {
 			return &obj, err
@@ -5307,7 +5307,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_client_session_state_type"); ok {
+	if v, ok := d.GetOk("ssl_client_session_state_type"); ok || d.HasChange("ssl_client_session_state_type") {
 		t, err := expandObjectFirewallVip6SslClientSessionStateType(d, v, "ssl_client_session_state_type")
 		if err != nil {
 			return &obj, err
@@ -5316,7 +5316,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_dh_bits"); ok {
+	if v, ok := d.GetOk("ssl_dh_bits"); ok || d.HasChange("ssl_dh_bits") {
 		t, err := expandObjectFirewallVip6SslDhBits(d, v, "ssl_dh_bits")
 		if err != nil {
 			return &obj, err
@@ -5325,7 +5325,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hpkp"); ok {
+	if v, ok := d.GetOk("ssl_hpkp"); ok || d.HasChange("ssl_hpkp") {
 		t, err := expandObjectFirewallVip6SslHpkp(d, v, "ssl_hpkp")
 		if err != nil {
 			return &obj, err
@@ -5334,7 +5334,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hpkp_age"); ok {
+	if v, ok := d.GetOk("ssl_hpkp_age"); ok || d.HasChange("ssl_hpkp_age") {
 		t, err := expandObjectFirewallVip6SslHpkpAge(d, v, "ssl_hpkp_age")
 		if err != nil {
 			return &obj, err
@@ -5343,7 +5343,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hpkp_backup"); ok {
+	if v, ok := d.GetOk("ssl_hpkp_backup"); ok || d.HasChange("ssl_hpkp_backup") {
 		t, err := expandObjectFirewallVip6SslHpkpBackup(d, v, "ssl_hpkp_backup")
 		if err != nil {
 			return &obj, err
@@ -5352,7 +5352,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hpkp_include_subdomains"); ok {
+	if v, ok := d.GetOk("ssl_hpkp_include_subdomains"); ok || d.HasChange("ssl_hpkp_include_subdomains") {
 		t, err := expandObjectFirewallVip6SslHpkpIncludeSubdomains(d, v, "ssl_hpkp_include_subdomains")
 		if err != nil {
 			return &obj, err
@@ -5361,7 +5361,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hpkp_primary"); ok {
+	if v, ok := d.GetOk("ssl_hpkp_primary"); ok || d.HasChange("ssl_hpkp_primary") {
 		t, err := expandObjectFirewallVip6SslHpkpPrimary(d, v, "ssl_hpkp_primary")
 		if err != nil {
 			return &obj, err
@@ -5370,7 +5370,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hpkp_report_uri"); ok {
+	if v, ok := d.GetOk("ssl_hpkp_report_uri"); ok || d.HasChange("ssl_hpkp_report_uri") {
 		t, err := expandObjectFirewallVip6SslHpkpReportUri(d, v, "ssl_hpkp_report_uri")
 		if err != nil {
 			return &obj, err
@@ -5379,7 +5379,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hsts"); ok {
+	if v, ok := d.GetOk("ssl_hsts"); ok || d.HasChange("ssl_hsts") {
 		t, err := expandObjectFirewallVip6SslHsts(d, v, "ssl_hsts")
 		if err != nil {
 			return &obj, err
@@ -5388,7 +5388,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hsts_age"); ok {
+	if v, ok := d.GetOk("ssl_hsts_age"); ok || d.HasChange("ssl_hsts_age") {
 		t, err := expandObjectFirewallVip6SslHstsAge(d, v, "ssl_hsts_age")
 		if err != nil {
 			return &obj, err
@@ -5397,7 +5397,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_hsts_include_subdomains"); ok {
+	if v, ok := d.GetOk("ssl_hsts_include_subdomains"); ok || d.HasChange("ssl_hsts_include_subdomains") {
 		t, err := expandObjectFirewallVip6SslHstsIncludeSubdomains(d, v, "ssl_hsts_include_subdomains")
 		if err != nil {
 			return &obj, err
@@ -5406,7 +5406,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_http_location_conversion"); ok {
+	if v, ok := d.GetOk("ssl_http_location_conversion"); ok || d.HasChange("ssl_http_location_conversion") {
 		t, err := expandObjectFirewallVip6SslHttpLocationConversion(d, v, "ssl_http_location_conversion")
 		if err != nil {
 			return &obj, err
@@ -5415,7 +5415,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_http_match_host"); ok {
+	if v, ok := d.GetOk("ssl_http_match_host"); ok || d.HasChange("ssl_http_match_host") {
 		t, err := expandObjectFirewallVip6SslHttpMatchHost(d, v, "ssl_http_match_host")
 		if err != nil {
 			return &obj, err
@@ -5424,7 +5424,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_max_version"); ok {
+	if v, ok := d.GetOk("ssl_max_version"); ok || d.HasChange("ssl_max_version") {
 		t, err := expandObjectFirewallVip6SslMaxVersion(d, v, "ssl_max_version")
 		if err != nil {
 			return &obj, err
@@ -5433,7 +5433,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_min_version"); ok {
+	if v, ok := d.GetOk("ssl_min_version"); ok || d.HasChange("ssl_min_version") {
 		t, err := expandObjectFirewallVip6SslMinVersion(d, v, "ssl_min_version")
 		if err != nil {
 			return &obj, err
@@ -5442,7 +5442,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_mode"); ok {
+	if v, ok := d.GetOk("ssl_mode"); ok || d.HasChange("ssl_mode") {
 		t, err := expandObjectFirewallVip6SslMode(d, v, "ssl_mode")
 		if err != nil {
 			return &obj, err
@@ -5451,7 +5451,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_pfs"); ok {
+	if v, ok := d.GetOk("ssl_pfs"); ok || d.HasChange("ssl_pfs") {
 		t, err := expandObjectFirewallVip6SslPfs(d, v, "ssl_pfs")
 		if err != nil {
 			return &obj, err
@@ -5460,7 +5460,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_send_empty_frags"); ok {
+	if v, ok := d.GetOk("ssl_send_empty_frags"); ok || d.HasChange("ssl_send_empty_frags") {
 		t, err := expandObjectFirewallVip6SslSendEmptyFrags(d, v, "ssl_send_empty_frags")
 		if err != nil {
 			return &obj, err
@@ -5469,7 +5469,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_algorithm"); ok {
+	if v, ok := d.GetOk("ssl_server_algorithm"); ok || d.HasChange("ssl_server_algorithm") {
 		t, err := expandObjectFirewallVip6SslServerAlgorithm(d, v, "ssl_server_algorithm")
 		if err != nil {
 			return &obj, err
@@ -5478,7 +5478,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_cipher_suites"); ok {
+	if v, ok := d.GetOk("ssl_server_cipher_suites"); ok || d.HasChange("ssl_server_cipher_suites") {
 		t, err := expandObjectFirewallVip6SslServerCipherSuites(d, v, "ssl_server_cipher_suites")
 		if err != nil {
 			return &obj, err
@@ -5487,7 +5487,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_max_version"); ok {
+	if v, ok := d.GetOk("ssl_server_max_version"); ok || d.HasChange("ssl_server_max_version") {
 		t, err := expandObjectFirewallVip6SslServerMaxVersion(d, v, "ssl_server_max_version")
 		if err != nil {
 			return &obj, err
@@ -5496,7 +5496,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_min_version"); ok {
+	if v, ok := d.GetOk("ssl_server_min_version"); ok || d.HasChange("ssl_server_min_version") {
 		t, err := expandObjectFirewallVip6SslServerMinVersion(d, v, "ssl_server_min_version")
 		if err != nil {
 			return &obj, err
@@ -5505,7 +5505,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_session_state_max"); ok {
+	if v, ok := d.GetOk("ssl_server_session_state_max"); ok || d.HasChange("ssl_server_session_state_max") {
 		t, err := expandObjectFirewallVip6SslServerSessionStateMax(d, v, "ssl_server_session_state_max")
 		if err != nil {
 			return &obj, err
@@ -5514,7 +5514,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_session_state_timeout"); ok {
+	if v, ok := d.GetOk("ssl_server_session_state_timeout"); ok || d.HasChange("ssl_server_session_state_timeout") {
 		t, err := expandObjectFirewallVip6SslServerSessionStateTimeout(d, v, "ssl_server_session_state_timeout")
 		if err != nil {
 			return &obj, err
@@ -5523,7 +5523,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_session_state_type"); ok {
+	if v, ok := d.GetOk("ssl_server_session_state_type"); ok || d.HasChange("ssl_server_session_state_type") {
 		t, err := expandObjectFirewallVip6SslServerSessionStateType(d, v, "ssl_server_session_state_type")
 		if err != nil {
 			return &obj, err
@@ -5532,7 +5532,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallVip6Type(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -5541,7 +5541,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallVip6Uuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -5550,7 +5550,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("weblogic_server"); ok {
+	if v, ok := d.GetOk("weblogic_server"); ok || d.HasChange("weblogic_server") {
 		t, err := expandObjectFirewallVip6WeblogicServer(d, v, "weblogic_server")
 		if err != nil {
 			return &obj, err
@@ -5559,7 +5559,7 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("websphere_server"); ok {
+	if v, ok := d.GetOk("websphere_server"); ok || d.HasChange("websphere_server") {
 		t, err := expandObjectFirewallVip6WebsphereServer(d, v, "websphere_server")
 		if err != nil {
 			return &obj, err

@@ -139,7 +139,7 @@ func expandFmupdateServerOverrideStatusMode(d *schema.ResourceData, v interface{
 func getObjectFmupdateServerOverrideStatus(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("mode"); ok {
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
 		t, err := expandFmupdateServerOverrideStatusMode(d, v, "mode")
 		if err != nil {
 			return &obj, err

@@ -361,17 +361,17 @@ func expandObjectWebfilterContentHeaderEntries(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectWebfilterContentHeaderEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectWebfilterContentHeaderEntriesCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern"], _ = expandObjectWebfilterContentHeaderEntriesPattern(d, i["pattern"], pre_append)
 		}
 
@@ -406,7 +406,7 @@ func expandObjectWebfilterContentHeaderName(d *schema.ResourceData, v interface{
 func getObjectObjectWebfilterContentHeader(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWebfilterContentHeaderComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -415,7 +415,7 @@ func getObjectObjectWebfilterContentHeader(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectWebfilterContentHeaderEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -424,7 +424,7 @@ func getObjectObjectWebfilterContentHeader(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectWebfilterContentHeaderId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -433,7 +433,7 @@ func getObjectObjectWebfilterContentHeader(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWebfilterContentHeaderName(d, v, "name")
 		if err != nil {
 			return &obj, err

@@ -359,7 +359,7 @@ func expandObjectIcapServerSslCert(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ip_address"); ok {
+	if v, ok := d.GetOk("ip_address"); ok || d.HasChange("ip_address") {
 		t, err := expandObjectIcapServerIpAddress(d, v, "ip_address")
 		if err != nil {
 			return &obj, err
@@ -368,7 +368,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ip_version"); ok {
+	if v, ok := d.GetOk("ip_version"); ok || d.HasChange("ip_version") {
 		t, err := expandObjectIcapServerIpVersion(d, v, "ip_version")
 		if err != nil {
 			return &obj, err
@@ -377,7 +377,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ip6_address"); ok {
+	if v, ok := d.GetOk("ip6_address"); ok || d.HasChange("ip6_address") {
 		t, err := expandObjectIcapServerIp6Address(d, v, "ip6_address")
 		if err != nil {
 			return &obj, err
@@ -386,7 +386,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("max_connections"); ok {
+	if v, ok := d.GetOk("max_connections"); ok || d.HasChange("max_connections") {
 		t, err := expandObjectIcapServerMaxConnections(d, v, "max_connections")
 		if err != nil {
 			return &obj, err
@@ -395,7 +395,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectIcapServerName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -404,7 +404,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectIcapServerPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -413,7 +413,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("secure"); ok {
+	if v, ok := d.GetOk("secure"); ok || d.HasChange("secure") {
 		t, err := expandObjectIcapServerSecure(d, v, "secure")
 		if err != nil {
 			return &obj, err
@@ -422,7 +422,7 @@ func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_cert"); ok {
+	if v, ok := d.GetOk("ssl_cert"); ok || d.HasChange("ssl_cert") {
 		t, err := expandObjectIcapServerSslCert(d, v, "ssl_cert")
 		if err != nil {
 			return &obj, err

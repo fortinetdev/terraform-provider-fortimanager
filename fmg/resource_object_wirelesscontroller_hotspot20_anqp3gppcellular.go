@@ -319,17 +319,17 @@ func expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(d *schema
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mcc"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mcc"], _ = expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListMcc(d, i["mcc"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mnc"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mnc"], _ = expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListMnc(d, i["mnc"], pre_append)
 		}
 
@@ -360,7 +360,7 @@ func expandObjectWirelessControllerHotspot20Anqp3GppCellularName(d *schema.Resou
 func getObjectObjectWirelessControllerHotspot20Anqp3GppCellular(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("mcc_mnc_list"); ok {
+	if v, ok := d.GetOk("mcc_mnc_list"); ok || d.HasChange("mcc_mnc_list") {
 		t, err := expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(d, v, "mcc_mnc_list")
 		if err != nil {
 			return &obj, err
@@ -369,7 +369,7 @@ func getObjectObjectWirelessControllerHotspot20Anqp3GppCellular(d *schema.Resour
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20Anqp3GppCellularName(d, v, "name")
 		if err != nil {
 			return &obj, err

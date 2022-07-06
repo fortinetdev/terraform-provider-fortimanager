@@ -313,7 +313,7 @@ func expandDvmdbRevisionVersion(d *schema.ResourceData, v interface{}, pre strin
 func getObjectDvmdbRevision(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("created_by"); ok {
+	if v, ok := d.GetOk("created_by"); ok || d.HasChange("created_by") {
 		t, err := expandDvmdbRevisionCreatedBy(d, v, "created_by")
 		if err != nil {
 			return &obj, err
@@ -322,7 +322,7 @@ func getObjectDvmdbRevision(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("created_time"); ok {
+	if v, ok := d.GetOk("created_time"); ok || d.HasChange("created_time") {
 		t, err := expandDvmdbRevisionCreatedTime(d, v, "created_time")
 		if err != nil {
 			return &obj, err
@@ -331,7 +331,7 @@ func getObjectDvmdbRevision(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("desc"); ok {
+	if v, ok := d.GetOk("desc"); ok || d.HasChange("desc") {
 		t, err := expandDvmdbRevisionDesc(d, v, "desc")
 		if err != nil {
 			return &obj, err
@@ -340,7 +340,7 @@ func getObjectDvmdbRevision(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("locked"); ok {
+	if v, ok := d.GetOk("locked"); ok || d.HasChange("locked") {
 		t, err := expandDvmdbRevisionLocked(d, v, "locked")
 		if err != nil {
 			return &obj, err
@@ -349,7 +349,7 @@ func getObjectDvmdbRevision(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandDvmdbRevisionName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -358,7 +358,7 @@ func getObjectDvmdbRevision(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("version"); ok {
+	if v, ok := d.GetOk("version"); ok || d.HasChange("version") {
 		t, err := expandDvmdbRevisionVersion(d, v, "version")
 		if err != nil {
 			return &obj, err

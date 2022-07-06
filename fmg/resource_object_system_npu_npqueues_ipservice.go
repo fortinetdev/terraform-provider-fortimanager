@@ -313,7 +313,7 @@ func expandObjectSystemNpuNpQueuesIpServiceWeight(d *schema.ResourceData, v inte
 func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("dport"); ok {
+	if v, ok := d.GetOk("dport"); ok || d.HasChange("dport") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceDport(d, v, "dport")
 		if err != nil {
 			return &obj, err
@@ -322,7 +322,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -331,7 +331,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -340,7 +340,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("queue"); ok {
+	if v, ok := d.GetOk("queue"); ok || d.HasChange("queue") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceQueue(d, v, "queue")
 		if err != nil {
 			return &obj, err
@@ -349,7 +349,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("sport"); ok {
+	if v, ok := d.GetOk("sport"); ok || d.HasChange("sport") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceSport(d, v, "sport")
 		if err != nil {
 			return &obj, err
@@ -358,7 +358,7 @@ func getObjectObjectSystemNpuNpQueuesIpService(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("weight"); ok {
+	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceWeight(d, v, "weight")
 		if err != nil {
 			return &obj, err

@@ -447,47 +447,47 @@ func expandObjectSwitchControllerQosQueuePolicyCosQueue(d *schema.ResourceData, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["description"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueDescription(d, i["description"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "drop_policy"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["drop-policy"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueDropPolicy(d, i["drop_policy"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ecn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ecn"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueEcn(d, i["ecn"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_rate"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-rate"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueMaxRate(d, i["max_rate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_rate_percent"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-rate-percent"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueMaxRatePercent(d, i["max_rate_percent"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "min_rate"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["min-rate"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueMinRate(d, i["min_rate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "min_rate_percent"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["min-rate-percent"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueMinRatePercent(d, i["min_rate_percent"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueWeight(d, i["weight"], pre_append)
 		}
 
@@ -550,7 +550,7 @@ func expandObjectSwitchControllerQosQueuePolicySchedule(d *schema.ResourceData, 
 func getObjectObjectSwitchControllerQosQueuePolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("cos_queue"); ok {
+	if v, ok := d.GetOk("cos_queue"); ok || d.HasChange("cos_queue") {
 		t, err := expandObjectSwitchControllerQosQueuePolicyCosQueue(d, v, "cos_queue")
 		if err != nil {
 			return &obj, err
@@ -559,7 +559,7 @@ func getObjectObjectSwitchControllerQosQueuePolicy(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerQosQueuePolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -568,7 +568,7 @@ func getObjectObjectSwitchControllerQosQueuePolicy(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("rate_by"); ok {
+	if v, ok := d.GetOk("rate_by"); ok || d.HasChange("rate_by") {
 		t, err := expandObjectSwitchControllerQosQueuePolicyRateBy(d, v, "rate_by")
 		if err != nil {
 			return &obj, err
@@ -577,7 +577,7 @@ func getObjectObjectSwitchControllerQosQueuePolicy(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("schedule"); ok {
+	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
 		t, err := expandObjectSwitchControllerQosQueuePolicySchedule(d, v, "schedule")
 		if err != nil {
 			return &obj, err

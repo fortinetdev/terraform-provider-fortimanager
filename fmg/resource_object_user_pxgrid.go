@@ -290,7 +290,7 @@ func expandObjectUserPxgridStatus(d *schema.ResourceData, v interface{}, pre str
 func getObjectObjectUserPxgrid(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ca_cert"); ok {
+	if v, ok := d.GetOk("ca_cert"); ok || d.HasChange("ca_cert") {
 		t, err := expandObjectUserPxgridCaCert(d, v, "ca_cert")
 		if err != nil {
 			return &obj, err
@@ -299,7 +299,7 @@ func getObjectObjectUserPxgrid(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("client_cert"); ok {
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
 		t, err := expandObjectUserPxgridClientCert(d, v, "client_cert")
 		if err != nil {
 			return &obj, err
@@ -308,7 +308,7 @@ func getObjectObjectUserPxgrid(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserPxgridName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -317,7 +317,7 @@ func getObjectObjectUserPxgrid(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserPxgridServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -326,7 +326,7 @@ func getObjectObjectUserPxgrid(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserPxgridStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

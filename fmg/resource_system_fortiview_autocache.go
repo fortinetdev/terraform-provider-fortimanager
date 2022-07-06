@@ -185,7 +185,7 @@ func expandSystemFortiviewAutoCacheStatus(d *schema.ResourceData, v interface{},
 func getObjectSystemFortiviewAutoCache(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("aggressive_fortiview"); ok {
+	if v, ok := d.GetOk("aggressive_fortiview"); ok || d.HasChange("aggressive_fortiview") {
 		t, err := expandSystemFortiviewAutoCacheAggressiveFortiview(d, v, "aggressive_fortiview")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemFortiviewAutoCache(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("interval"); ok {
+	if v, ok := d.GetOk("interval"); ok || d.HasChange("interval") {
 		t, err := expandSystemFortiviewAutoCacheInterval(d, v, "interval")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectSystemFortiviewAutoCache(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemFortiviewAutoCacheStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

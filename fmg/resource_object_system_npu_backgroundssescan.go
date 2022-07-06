@@ -217,7 +217,7 @@ func expandObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval(d *schema.Resour
 func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("scan"); ok {
+	if v, ok := d.GetOk("scan"); ok || d.HasChange("scan") {
 		t, err := expandObjectSystemNpuBackgroundSseScanScan(d, v, "scan")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("stats_update_interval"); ok {
+	if v, ok := d.GetOk("stats_update_interval"); ok || d.HasChange("stats_update_interval") {
 		t, err := expandObjectSystemNpuBackgroundSseScanStatsUpdateInterval(d, v, "stats_update_interval")
 		if err != nil {
 			return &obj, err
@@ -235,7 +235,7 @@ func getObjectObjectSystemNpuBackgroundSseScan(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("udp_keepalive_interval"); ok {
+	if v, ok := d.GetOk("udp_keepalive_interval"); ok || d.HasChange("udp_keepalive_interval") {
 		t, err := expandObjectSystemNpuBackgroundSseScanUdpKeepaliveInterval(d, v, "udp_keepalive_interval")
 		if err != nil {
 			return &obj, err

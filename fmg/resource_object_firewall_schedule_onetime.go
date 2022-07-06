@@ -336,7 +336,7 @@ func expandObjectFirewallScheduleOnetimeStart(d *schema.ResourceData, v interfac
 func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallScheduleOnetimeColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("end"); ok {
+	if v, ok := d.GetOk("end"); ok || d.HasChange("end") {
 		t, err := expandObjectFirewallScheduleOnetimeEnd(d, v, "end")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("expiration_days"); ok {
+	if v, ok := d.GetOk("expiration_days"); ok || d.HasChange("expiration_days") {
 		t, err := expandObjectFirewallScheduleOnetimeExpirationDays(d, v, "expiration_days")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallScheduleOnetimeFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -372,7 +372,7 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallScheduleOnetimeGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -381,7 +381,7 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallScheduleOnetimeName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -390,7 +390,7 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("start"); ok {
+	if v, ok := d.GetOk("start"); ok || d.HasChange("start") {
 		t, err := expandObjectFirewallScheduleOnetimeStart(d, v, "start")
 		if err != nil {
 			return &obj, err

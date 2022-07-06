@@ -566,7 +566,7 @@ func expandObjectUserSamlUserName(d *schema.ResourceData, v interface{}, pre str
 func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("adfs_claim"); ok {
+	if v, ok := d.GetOk("adfs_claim"); ok || d.HasChange("adfs_claim") {
 		t, err := expandObjectUserSamlAdfsClaim(d, v, "adfs_claim")
 		if err != nil {
 			return &obj, err
@@ -575,7 +575,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("cert"); ok {
+	if v, ok := d.GetOk("cert"); ok || d.HasChange("cert") {
 		t, err := expandObjectUserSamlCert(d, v, "cert")
 		if err != nil {
 			return &obj, err
@@ -584,7 +584,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("clock_tolerance"); ok {
+	if v, ok := d.GetOk("clock_tolerance"); ok || d.HasChange("clock_tolerance") {
 		t, err := expandObjectUserSamlClockTolerance(d, v, "clock_tolerance")
 		if err != nil {
 			return &obj, err
@@ -593,7 +593,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("digest_method"); ok {
+	if v, ok := d.GetOk("digest_method"); ok || d.HasChange("digest_method") {
 		t, err := expandObjectUserSamlDigestMethod(d, v, "digest_method")
 		if err != nil {
 			return &obj, err
@@ -602,7 +602,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("entity_id"); ok {
+	if v, ok := d.GetOk("entity_id"); ok || d.HasChange("entity_id") {
 		t, err := expandObjectUserSamlEntityId(d, v, "entity_id")
 		if err != nil {
 			return &obj, err
@@ -611,7 +611,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_claim_type"); ok {
+	if v, ok := d.GetOk("group_claim_type"); ok || d.HasChange("group_claim_type") {
 		t, err := expandObjectUserSamlGroupClaimType(d, v, "group_claim_type")
 		if err != nil {
 			return &obj, err
@@ -620,7 +620,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_name"); ok {
+	if v, ok := d.GetOk("group_name"); ok || d.HasChange("group_name") {
 		t, err := expandObjectUserSamlGroupName(d, v, "group_name")
 		if err != nil {
 			return &obj, err
@@ -629,7 +629,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("idp_cert"); ok {
+	if v, ok := d.GetOk("idp_cert"); ok || d.HasChange("idp_cert") {
 		t, err := expandObjectUserSamlIdpCert(d, v, "idp_cert")
 		if err != nil {
 			return &obj, err
@@ -638,7 +638,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("idp_entity_id"); ok {
+	if v, ok := d.GetOk("idp_entity_id"); ok || d.HasChange("idp_entity_id") {
 		t, err := expandObjectUserSamlIdpEntityId(d, v, "idp_entity_id")
 		if err != nil {
 			return &obj, err
@@ -647,7 +647,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("idp_single_logout_url"); ok {
+	if v, ok := d.GetOk("idp_single_logout_url"); ok || d.HasChange("idp_single_logout_url") {
 		t, err := expandObjectUserSamlIdpSingleLogoutUrl(d, v, "idp_single_logout_url")
 		if err != nil {
 			return &obj, err
@@ -656,7 +656,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("idp_single_sign_on_url"); ok {
+	if v, ok := d.GetOk("idp_single_sign_on_url"); ok || d.HasChange("idp_single_sign_on_url") {
 		t, err := expandObjectUserSamlIdpSingleSignOnUrl(d, v, "idp_single_sign_on_url")
 		if err != nil {
 			return &obj, err
@@ -665,7 +665,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("limit_relaystate"); ok {
+	if v, ok := d.GetOk("limit_relaystate"); ok || d.HasChange("limit_relaystate") {
 		t, err := expandObjectUserSamlLimitRelaystate(d, v, "limit_relaystate")
 		if err != nil {
 			return &obj, err
@@ -674,7 +674,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserSamlName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -683,7 +683,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("single_logout_url"); ok {
+	if v, ok := d.GetOk("single_logout_url"); ok || d.HasChange("single_logout_url") {
 		t, err := expandObjectUserSamlSingleLogoutUrl(d, v, "single_logout_url")
 		if err != nil {
 			return &obj, err
@@ -692,7 +692,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("single_sign_on_url"); ok {
+	if v, ok := d.GetOk("single_sign_on_url"); ok || d.HasChange("single_sign_on_url") {
 		t, err := expandObjectUserSamlSingleSignOnUrl(d, v, "single_sign_on_url")
 		if err != nil {
 			return &obj, err
@@ -701,7 +701,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("user_claim_type"); ok {
+	if v, ok := d.GetOk("user_claim_type"); ok || d.HasChange("user_claim_type") {
 		t, err := expandObjectUserSamlUserClaimType(d, v, "user_claim_type")
 		if err != nil {
 			return &obj, err
@@ -710,7 +710,7 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("user_name"); ok {
+	if v, ok := d.GetOk("user_name"); ok || d.HasChange("user_name") {
 		t, err := expandObjectUserSamlUserName(d, v, "user_name")
 		if err != nil {
 			return &obj, err

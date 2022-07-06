@@ -792,121 +792,121 @@ func expandObjectIpsSensorEntries(d *schema.ResourceData, v interface{}, pre str
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectIpsSensorEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["application"], _ = expandObjectIpsSensorEntriesApplication(d, i["application"], pre_append)
 		} else {
 			tmp["application"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cve"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cve"], _ = expandObjectIpsSensorEntriesCve(d, i["cve"], pre_append)
 		} else {
 			tmp["cve"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exempt-ip"], _ = expandObjectIpsSensorEntriesExemptIp(d, i["exempt_ip"], pre_append)
 		} else {
 			tmp["exempt-ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectIpsSensorEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["location"], _ = expandObjectIpsSensorEntriesLocation(d, i["location"], pre_append)
 		} else {
 			tmp["location"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandObjectIpsSensorEntriesLog(d, i["log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_attack_context"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-attack-context"], _ = expandObjectIpsSensorEntriesLogAttackContext(d, i["log_attack_context"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_packet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-packet"], _ = expandObjectIpsSensorEntriesLogPacket(d, i["log_packet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "os"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["os"], _ = expandObjectIpsSensorEntriesOs(d, i["os"], pre_append)
 		} else {
 			tmp["os"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectIpsSensorEntriesProtocol(d, i["protocol"], pre_append)
 		} else {
 			tmp["protocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine"], _ = expandObjectIpsSensorEntriesQuarantine(d, i["quarantine"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine_expiry"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine-expiry"], _ = expandObjectIpsSensorEntriesQuarantineExpiry(d, i["quarantine_expiry"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine_log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine-log"], _ = expandObjectIpsSensorEntriesQuarantineLog(d, i["quarantine_log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_count"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-count"], _ = expandObjectIpsSensorEntriesRateCount(d, i["rate_count"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_duration"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-duration"], _ = expandObjectIpsSensorEntriesRateDuration(d, i["rate_duration"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-mode"], _ = expandObjectIpsSensorEntriesRateMode(d, i["rate_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_track"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-track"], _ = expandObjectIpsSensorEntriesRateTrack(d, i["rate_track"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rule"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rule"], _ = expandObjectIpsSensorEntriesRule(d, i["rule"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "severity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["severity"], _ = expandObjectIpsSensorEntriesSeverity(d, i["severity"], pre_append)
 		} else {
 			tmp["severity"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectIpsSensorEntriesStatus(d, i["status"], pre_append)
 		}
 
@@ -945,17 +945,17 @@ func expandObjectIpsSensorEntriesExemptIp(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dst-ip"], _ = expandObjectIpsSensorEntriesExemptIpDstIp(d, i["dst_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectIpsSensorEntriesExemptIpId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["src-ip"], _ = expandObjectIpsSensorEntriesExemptIpSrcIp(d, i["src_ip"], pre_append)
 		}
 
@@ -1066,7 +1066,7 @@ func expandObjectIpsSensorScanBotnetConnections(d *schema.ResourceData, v interf
 func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_baseline"); ok {
+	if v, ok := d.GetOk("_baseline"); ok || d.HasChange("_baseline") {
 		t, err := expandObjectIpsSensorBaseline(d, v, "_baseline")
 		if err != nil {
 			return &obj, err
@@ -1075,7 +1075,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("block_malicious_url"); ok {
+	if v, ok := d.GetOk("block_malicious_url"); ok || d.HasChange("block_malicious_url") {
 		t, err := expandObjectIpsSensorBlockMaliciousUrl(d, v, "block_malicious_url")
 		if err != nil {
 			return &obj, err
@@ -1084,7 +1084,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectIpsSensorComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1093,7 +1093,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectIpsSensorEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -1102,7 +1102,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("extended_log"); ok {
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
 		t, err := expandObjectIpsSensorExtendedLog(d, v, "extended_log")
 		if err != nil {
 			return &obj, err
@@ -1111,7 +1111,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectIpsSensorName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1120,7 +1120,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectIpsSensorReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -1129,7 +1129,7 @@ func getObjectObjectIpsSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("scan_botnet_connections"); ok {
+	if v, ok := d.GetOk("scan_botnet_connections"); ok || d.HasChange("scan_botnet_connections") {
 		t, err := expandObjectIpsSensorScanBotnetConnections(d, v, "scan_botnet_connections")
 		if err != nil {
 			return &obj, err

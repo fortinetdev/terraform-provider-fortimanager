@@ -240,12 +240,12 @@ func expandSecurityconsoleSignCertificateTemplateScope(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSecurityconsoleSignCertificateTemplateScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandSecurityconsoleSignCertificateTemplateScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -272,7 +272,7 @@ func expandSecurityconsoleSignCertificateTemplateTemplate(d *schema.ResourceData
 func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsoleSignCertificateTemplateAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -281,7 +281,7 @@ func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*m
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok {
+	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
 		t, err := expandSecurityconsoleSignCertificateTemplateScope(d, v, "scope")
 		if err != nil {
 			return &obj, err
@@ -290,7 +290,7 @@ func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*m
 		}
 	}
 
-	if v, ok := d.GetOk("template"); ok {
+	if v, ok := d.GetOk("template"); ok || d.HasChange("template") {
 		t, err := expandSecurityconsoleSignCertificateTemplateTemplate(d, v, "template")
 		if err != nil {
 			return &obj, err

@@ -221,7 +221,7 @@ func expandObjectSystemNpuPortCpuMapInterface(d *schema.ResourceData, v interfac
 func getObjectObjectSystemNpuPortCpuMap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("cpu_core"); ok {
+	if v, ok := d.GetOk("cpu_core"); ok || d.HasChange("cpu_core") {
 		t, err := expandObjectSystemNpuPortCpuMapCpuCore(d, v, "cpu_core")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectSystemNpuPortCpuMap(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectSystemNpuPortCpuMapInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err

@@ -706,82 +706,82 @@ func expandPackagesFirewallDosPolicyAnomaly(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandPackagesFirewallDosPolicyAnomalyAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandPackagesFirewallDosPolicyAnomalyLog(d, i["log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandPackagesFirewallDosPolicyAnomalyName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine"], _ = expandPackagesFirewallDosPolicyAnomalyQuarantine(d, i["quarantine"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine_expiry"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine-expiry"], _ = expandPackagesFirewallDosPolicyAnomalyQuarantineExpiry(d, i["quarantine_expiry"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine_log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine-log"], _ = expandPackagesFirewallDosPolicyAnomalyQuarantineLog(d, i["quarantine_log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandPackagesFirewallDosPolicyAnomalyStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_mss"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-tcp-mss"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpMss(d, i["synproxy_tcp_mss"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_sack"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-tcp-sack"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpSack(d, i["synproxy_tcp_sack"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_timestamp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-tcp-timestamp"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpTimestamp(d, i["synproxy_tcp_timestamp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_window"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-tcp-window"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpWindow(d, i["synproxy_tcp_window"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tcp_windowscale"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-tcp-windowscale"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTcpWindowscale(d, i["synproxy_tcp_windowscale"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_tos"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-tos"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTos(d, i["synproxy_tos"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "synproxy_ttl"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["synproxy-ttl"], _ = expandPackagesFirewallDosPolicyAnomalySynproxyTtl(d, i["synproxy_ttl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["threshold"], _ = expandPackagesFirewallDosPolicyAnomalyThreshold(d, i["threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "thresholddefault"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["threshold(default)"], _ = expandPackagesFirewallDosPolicyAnomalyThresholdDefault(d, i["thresholddefault"], pre_append)
 		}
 
@@ -896,7 +896,7 @@ func expandPackagesFirewallDosPolicyUuid(d *schema.ResourceData, v interface{}, 
 func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("anomaly"); ok {
+	if v, ok := d.GetOk("anomaly"); ok || d.HasChange("anomaly") {
 		t, err := expandPackagesFirewallDosPolicyAnomaly(d, v, "anomaly")
 		if err != nil {
 			return &obj, err
@@ -905,7 +905,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallDosPolicyComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -914,7 +914,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesFirewallDosPolicyDstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -923,7 +923,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandPackagesFirewallDosPolicyInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -932,7 +932,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesFirewallDosPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -941,7 +941,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("policyid"); ok {
+	if v, ok := d.GetOk("policyid"); ok || d.HasChange("policyid") {
 		t, err := expandPackagesFirewallDosPolicyPolicyid(d, v, "policyid")
 		if err != nil {
 			return &obj, err
@@ -950,7 +950,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok {
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
 		t, err := expandPackagesFirewallDosPolicyService(d, v, "service")
 		if err != nil {
 			return &obj, err
@@ -959,7 +959,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesFirewallDosPolicySrcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -968,7 +968,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallDosPolicyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -977,7 +977,7 @@ func getObjectPackagesFirewallDosPolicy(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallDosPolicyUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

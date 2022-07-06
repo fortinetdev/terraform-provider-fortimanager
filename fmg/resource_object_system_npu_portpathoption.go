@@ -172,7 +172,7 @@ func expandObjectSystemNpuPortPathOptionPortsUsingNpu(d *schema.ResourceData, v 
 func getObjectObjectSystemNpuPortPathOption(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ports_using_npu"); ok {
+	if v, ok := d.GetOk("ports_using_npu"); ok || d.HasChange("ports_using_npu") {
 		t, err := expandObjectSystemNpuPortPathOptionPortsUsingNpu(d, v, "ports_using_npu")
 		if err != nil {
 			return &obj, err

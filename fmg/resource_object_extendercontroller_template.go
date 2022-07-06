@@ -336,7 +336,7 @@ func expandObjectExtenderControllerTemplateName(d *schema.ResourceData, v interf
 func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("dataplan"); ok {
+	if v, ok := d.GetOk("dataplan"); ok || d.HasChange("dataplan") {
 		t, err := expandObjectExtenderControllerTemplateDataplan(d, v, "dataplan")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectExtenderControllerTemplateDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("modem1_ifname"); ok {
+	if v, ok := d.GetOk("modem1_ifname"); ok || d.HasChange("modem1_ifname") {
 		t, err := expandObjectExtenderControllerTemplateModem1Ifname(d, v, "modem1_ifname")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("modem1_sim_profile"); ok {
+	if v, ok := d.GetOk("modem1_sim_profile"); ok || d.HasChange("modem1_sim_profile") {
 		t, err := expandObjectExtenderControllerTemplateModem1SimProfile(d, v, "modem1_sim_profile")
 		if err != nil {
 			return &obj, err
@@ -372,7 +372,7 @@ func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("modem2_ifname"); ok {
+	if v, ok := d.GetOk("modem2_ifname"); ok || d.HasChange("modem2_ifname") {
 		t, err := expandObjectExtenderControllerTemplateModem2Ifname(d, v, "modem2_ifname")
 		if err != nil {
 			return &obj, err
@@ -381,7 +381,7 @@ func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("modem2_sim_profile"); ok {
+	if v, ok := d.GetOk("modem2_sim_profile"); ok || d.HasChange("modem2_sim_profile") {
 		t, err := expandObjectExtenderControllerTemplateModem2SimProfile(d, v, "modem2_sim_profile")
 		if err != nil {
 			return &obj, err
@@ -390,7 +390,7 @@ func getObjectObjectExtenderControllerTemplate(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectExtenderControllerTemplateName(d, v, "name")
 		if err != nil {
 			return &obj, err

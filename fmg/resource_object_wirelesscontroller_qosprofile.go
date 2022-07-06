@@ -708,7 +708,7 @@ func expandObjectWirelessControllerQosProfileWmmVoDscp(d *schema.ResourceData, v
 func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("bandwidth_admission_control"); ok {
+	if v, ok := d.GetOk("bandwidth_admission_control"); ok || d.HasChange("bandwidth_admission_control") {
 		t, err := expandObjectWirelessControllerQosProfileBandwidthAdmissionControl(d, v, "bandwidth_admission_control")
 		if err != nil {
 			return &obj, err
@@ -717,7 +717,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("bandwidth_capacity"); ok {
+	if v, ok := d.GetOk("bandwidth_capacity"); ok || d.HasChange("bandwidth_capacity") {
 		t, err := expandObjectWirelessControllerQosProfileBandwidthCapacity(d, v, "bandwidth_capacity")
 		if err != nil {
 			return &obj, err
@@ -726,7 +726,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("burst"); ok {
+	if v, ok := d.GetOk("burst"); ok || d.HasChange("burst") {
 		t, err := expandObjectWirelessControllerQosProfileBurst(d, v, "burst")
 		if err != nil {
 			return &obj, err
@@ -735,7 +735,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("call_admission_control"); ok {
+	if v, ok := d.GetOk("call_admission_control"); ok || d.HasChange("call_admission_control") {
 		t, err := expandObjectWirelessControllerQosProfileCallAdmissionControl(d, v, "call_admission_control")
 		if err != nil {
 			return &obj, err
@@ -744,7 +744,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("call_capacity"); ok {
+	if v, ok := d.GetOk("call_capacity"); ok || d.HasChange("call_capacity") {
 		t, err := expandObjectWirelessControllerQosProfileCallCapacity(d, v, "call_capacity")
 		if err != nil {
 			return &obj, err
@@ -753,7 +753,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWirelessControllerQosProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -762,7 +762,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("downlink"); ok {
+	if v, ok := d.GetOk("downlink"); ok || d.HasChange("downlink") {
 		t, err := expandObjectWirelessControllerQosProfileDownlink(d, v, "downlink")
 		if err != nil {
 			return &obj, err
@@ -771,7 +771,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("downlink_sta"); ok {
+	if v, ok := d.GetOk("downlink_sta"); ok || d.HasChange("downlink_sta") {
 		t, err := expandObjectWirelessControllerQosProfileDownlinkSta(d, v, "downlink_sta")
 		if err != nil {
 			return &obj, err
@@ -780,7 +780,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dscp_wmm_be"); ok {
+	if v, ok := d.GetOk("dscp_wmm_be"); ok || d.HasChange("dscp_wmm_be") {
 		t, err := expandObjectWirelessControllerQosProfileDscpWmmBe(d, v, "dscp_wmm_be")
 		if err != nil {
 			return &obj, err
@@ -789,7 +789,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dscp_wmm_bk"); ok {
+	if v, ok := d.GetOk("dscp_wmm_bk"); ok || d.HasChange("dscp_wmm_bk") {
 		t, err := expandObjectWirelessControllerQosProfileDscpWmmBk(d, v, "dscp_wmm_bk")
 		if err != nil {
 			return &obj, err
@@ -798,7 +798,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dscp_wmm_mapping"); ok {
+	if v, ok := d.GetOk("dscp_wmm_mapping"); ok || d.HasChange("dscp_wmm_mapping") {
 		t, err := expandObjectWirelessControllerQosProfileDscpWmmMapping(d, v, "dscp_wmm_mapping")
 		if err != nil {
 			return &obj, err
@@ -807,7 +807,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dscp_wmm_vi"); ok {
+	if v, ok := d.GetOk("dscp_wmm_vi"); ok || d.HasChange("dscp_wmm_vi") {
 		t, err := expandObjectWirelessControllerQosProfileDscpWmmVi(d, v, "dscp_wmm_vi")
 		if err != nil {
 			return &obj, err
@@ -816,7 +816,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dscp_wmm_vo"); ok {
+	if v, ok := d.GetOk("dscp_wmm_vo"); ok || d.HasChange("dscp_wmm_vo") {
 		t, err := expandObjectWirelessControllerQosProfileDscpWmmVo(d, v, "dscp_wmm_vo")
 		if err != nil {
 			return &obj, err
@@ -825,7 +825,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerQosProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -834,7 +834,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("uplink"); ok {
+	if v, ok := d.GetOk("uplink"); ok || d.HasChange("uplink") {
 		t, err := expandObjectWirelessControllerQosProfileUplink(d, v, "uplink")
 		if err != nil {
 			return &obj, err
@@ -843,7 +843,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("uplink_sta"); ok {
+	if v, ok := d.GetOk("uplink_sta"); ok || d.HasChange("uplink_sta") {
 		t, err := expandObjectWirelessControllerQosProfileUplinkSta(d, v, "uplink_sta")
 		if err != nil {
 			return &obj, err
@@ -852,7 +852,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm"); ok {
+	if v, ok := d.GetOk("wmm"); ok || d.HasChange("wmm") {
 		t, err := expandObjectWirelessControllerQosProfileWmm(d, v, "wmm")
 		if err != nil {
 			return &obj, err
@@ -861,7 +861,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm_be_dscp"); ok {
+	if v, ok := d.GetOk("wmm_be_dscp"); ok || d.HasChange("wmm_be_dscp") {
 		t, err := expandObjectWirelessControllerQosProfileWmmBeDscp(d, v, "wmm_be_dscp")
 		if err != nil {
 			return &obj, err
@@ -870,7 +870,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm_bk_dscp"); ok {
+	if v, ok := d.GetOk("wmm_bk_dscp"); ok || d.HasChange("wmm_bk_dscp") {
 		t, err := expandObjectWirelessControllerQosProfileWmmBkDscp(d, v, "wmm_bk_dscp")
 		if err != nil {
 			return &obj, err
@@ -879,7 +879,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm_dscp_marking"); ok {
+	if v, ok := d.GetOk("wmm_dscp_marking"); ok || d.HasChange("wmm_dscp_marking") {
 		t, err := expandObjectWirelessControllerQosProfileWmmDscpMarking(d, v, "wmm_dscp_marking")
 		if err != nil {
 			return &obj, err
@@ -888,7 +888,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm_uapsd"); ok {
+	if v, ok := d.GetOk("wmm_uapsd"); ok || d.HasChange("wmm_uapsd") {
 		t, err := expandObjectWirelessControllerQosProfileWmmUapsd(d, v, "wmm_uapsd")
 		if err != nil {
 			return &obj, err
@@ -897,7 +897,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm_vi_dscp"); ok {
+	if v, ok := d.GetOk("wmm_vi_dscp"); ok || d.HasChange("wmm_vi_dscp") {
 		t, err := expandObjectWirelessControllerQosProfileWmmViDscp(d, v, "wmm_vi_dscp")
 		if err != nil {
 			return &obj, err
@@ -906,7 +906,7 @@ func getObjectObjectWirelessControllerQosProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wmm_vo_dscp"); ok {
+	if v, ok := d.GetOk("wmm_vo_dscp"); ok || d.HasChange("wmm_vo_dscp") {
 		t, err := expandObjectWirelessControllerQosProfileWmmVoDscp(d, v, "wmm_vo_dscp")
 		if err != nil {
 			return &obj, err

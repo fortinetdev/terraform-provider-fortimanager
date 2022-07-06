@@ -111,7 +111,7 @@ func expandSecurityconsoleAbortAdom(d *schema.ResourceData, v interface{}, pre s
 func getObjectSecurityconsoleAbort(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsoleAbortAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

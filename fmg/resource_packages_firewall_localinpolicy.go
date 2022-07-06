@@ -528,7 +528,7 @@ func expandPackagesFirewallLocalInPolicyUuid(d *schema.ResourceData, v interface
 func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesFirewallLocalInPolicyAction(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -537,7 +537,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallLocalInPolicyComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -546,7 +546,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesFirewallLocalInPolicyDstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -555,7 +555,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr_negate"); ok {
+	if v, ok := d.GetOk("dstaddr_negate"); ok || d.HasChange("dstaddr_negate") {
 		t, err := expandPackagesFirewallLocalInPolicyDstaddrNegate(d, v, "dstaddr_negate")
 		if err != nil {
 			return &obj, err
@@ -564,7 +564,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("ha_mgmt_intf_only"); ok {
+	if v, ok := d.GetOk("ha_mgmt_intf_only"); ok || d.HasChange("ha_mgmt_intf_only") {
 		t, err := expandPackagesFirewallLocalInPolicyHaMgmtIntfOnly(d, v, "ha_mgmt_intf_only")
 		if err != nil {
 			return &obj, err
@@ -573,7 +573,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("intf"); ok {
+	if v, ok := d.GetOk("intf"); ok || d.HasChange("intf") {
 		t, err := expandPackagesFirewallLocalInPolicyIntf(d, v, "intf")
 		if err != nil {
 			return &obj, err
@@ -582,7 +582,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("policyid"); ok {
+	if v, ok := d.GetOk("policyid"); ok || d.HasChange("policyid") {
 		t, err := expandPackagesFirewallLocalInPolicyPolicyid(d, v, "policyid")
 		if err != nil {
 			return &obj, err
@@ -591,7 +591,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("schedule"); ok {
+	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
 		t, err := expandPackagesFirewallLocalInPolicySchedule(d, v, "schedule")
 		if err != nil {
 			return &obj, err
@@ -600,7 +600,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok {
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
 		t, err := expandPackagesFirewallLocalInPolicyService(d, v, "service")
 		if err != nil {
 			return &obj, err
@@ -609,7 +609,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("service_negate"); ok {
+	if v, ok := d.GetOk("service_negate"); ok || d.HasChange("service_negate") {
 		t, err := expandPackagesFirewallLocalInPolicyServiceNegate(d, v, "service_negate")
 		if err != nil {
 			return &obj, err
@@ -618,7 +618,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesFirewallLocalInPolicySrcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -627,7 +627,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr_negate"); ok {
+	if v, ok := d.GetOk("srcaddr_negate"); ok || d.HasChange("srcaddr_negate") {
 		t, err := expandPackagesFirewallLocalInPolicySrcaddrNegate(d, v, "srcaddr_negate")
 		if err != nil {
 			return &obj, err
@@ -636,7 +636,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallLocalInPolicyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -645,7 +645,7 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallLocalInPolicyUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

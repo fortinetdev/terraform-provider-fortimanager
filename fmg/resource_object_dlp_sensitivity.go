@@ -197,7 +197,7 @@ func expandObjectDlpSensitivityName(d *schema.ResourceData, v interface{}, pre s
 func getObjectObjectDlpSensitivity(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDlpSensitivityName(d, v, "name")
 		if err != nil {
 			return &obj, err

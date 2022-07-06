@@ -221,7 +221,7 @@ func expandObjectDynamicVipName(d *schema.ResourceData, v interface{}, pre strin
 func getObjectObjectDynamicVip(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicVipDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectDynamicVip(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicVipName(d, v, "name")
 		if err != nil {
 			return &obj, err

@@ -290,27 +290,27 @@ func expandFmupdateFdsSettingServerOverrideServlistFfsa(d *schema.ResourceData, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandFmupdateFdsSettingServerOverrideServlistIdFfsa(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandFmupdateFdsSettingServerOverrideServlistIpFfsa(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip6"], _ = expandFmupdateFdsSettingServerOverrideServlistIp6Ffsa(d, i["ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandFmupdateFdsSettingServerOverrideServlistPortFfsa(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfsa(d, i["service_type"], pre_append)
 		}
 
@@ -349,7 +349,7 @@ func expandFmupdateFdsSettingServerOverrideStatusFfsa(d *schema.ResourceData, v 
 func getObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("servlist"); ok {
+	if v, ok := d.GetOk("servlist"); ok || d.HasChange("servlist") {
 		t, err := expandFmupdateFdsSettingServerOverrideServlistFfsa(d, v, "servlist")
 		if err != nil {
 			return &obj, err
@@ -358,7 +358,7 @@ func getObjectFmupdateFdsSettingServerOverride(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateFdsSettingServerOverrideStatusFfsa(d, v, "status")
 		if err != nil {
 			return &obj, err

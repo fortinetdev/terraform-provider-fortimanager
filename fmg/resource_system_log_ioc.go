@@ -254,7 +254,7 @@ func expandSystemLogIocStatus(d *schema.ResourceData, v interface{}, pre string)
 func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("notification"); ok {
+	if v, ok := d.GetOk("notification"); ok || d.HasChange("notification") {
 		t, err := expandSystemLogIocNotification(d, v, "notification")
 		if err != nil {
 			return &obj, err
@@ -263,7 +263,7 @@ func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("notification_throttle"); ok {
+	if v, ok := d.GetOk("notification_throttle"); ok || d.HasChange("notification_throttle") {
 		t, err := expandSystemLogIocNotificationThrottle(d, v, "notification_throttle")
 		if err != nil {
 			return &obj, err
@@ -272,7 +272,7 @@ func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("rescan_max_runner"); ok {
+	if v, ok := d.GetOk("rescan_max_runner"); ok || d.HasChange("rescan_max_runner") {
 		t, err := expandSystemLogIocRescanMaxRunner(d, v, "rescan_max_runner")
 		if err != nil {
 			return &obj, err
@@ -281,7 +281,7 @@ func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("rescan_run_at"); ok {
+	if v, ok := d.GetOk("rescan_run_at"); ok || d.HasChange("rescan_run_at") {
 		t, err := expandSystemLogIocRescanRunAt(d, v, "rescan_run_at")
 		if err != nil {
 			return &obj, err
@@ -290,7 +290,7 @@ func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("rescan_status"); ok {
+	if v, ok := d.GetOk("rescan_status"); ok || d.HasChange("rescan_status") {
 		t, err := expandSystemLogIocRescanStatus(d, v, "rescan_status")
 		if err != nil {
 			return &obj, err
@@ -299,7 +299,7 @@ func getObjectSystemLogIoc(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemLogIocStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

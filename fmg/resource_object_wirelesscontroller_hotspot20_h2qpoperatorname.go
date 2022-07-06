@@ -323,17 +323,17 @@ func expandObjectWirelessControllerHotspot20H2QpOperatorNameValueList(d *schema.
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["index"], _ = expandObjectWirelessControllerHotspot20H2QpOperatorNameValueListIndex(d, i["index"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "lang"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["lang"], _ = expandObjectWirelessControllerHotspot20H2QpOperatorNameValueListLang(d, i["lang"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectWirelessControllerHotspot20H2QpOperatorNameValueListValue(d, i["value"], pre_append)
 		}
 
@@ -360,7 +360,7 @@ func expandObjectWirelessControllerHotspot20H2QpOperatorNameValueListValue(d *sc
 func getObjectObjectWirelessControllerHotspot20H2QpOperatorName(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOperatorNameName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -369,7 +369,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOperatorName(d *schema.Resour
 		}
 	}
 
-	if v, ok := d.GetOk("value_list"); ok {
+	if v, ok := d.GetOk("value_list"); ok || d.HasChange("value_list") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOperatorNameValueList(d, v, "value_list")
 		if err != nil {
 			return &obj, err

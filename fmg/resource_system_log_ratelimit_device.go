@@ -231,7 +231,7 @@ func expandSystemLogRatelimitDeviceRatelimit(d *schema.ResourceData, v interface
 func getObjectSystemLogRatelimitDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("device"); ok {
+	if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
 		t, err := expandSystemLogRatelimitDeviceDevice(d, v, "device")
 		if err != nil {
 			return &obj, err
@@ -240,7 +240,7 @@ func getObjectSystemLogRatelimitDevice(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("filter_type"); ok {
+	if v, ok := d.GetOk("filter_type"); ok || d.HasChange("filter_type") {
 		t, err := expandSystemLogRatelimitDeviceFilterType(d, v, "filter_type")
 		if err != nil {
 			return &obj, err
@@ -249,7 +249,7 @@ func getObjectSystemLogRatelimitDevice(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandSystemLogRatelimitDeviceId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -258,7 +258,7 @@ func getObjectSystemLogRatelimitDevice(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ratelimit"); ok {
+	if v, ok := d.GetOk("ratelimit"); ok || d.HasChange("ratelimit") {
 		t, err := expandSystemLogRatelimitDeviceRatelimit(d, v, "ratelimit")
 		if err != nil {
 			return &obj, err

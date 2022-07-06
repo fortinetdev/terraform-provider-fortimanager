@@ -635,7 +635,7 @@ func expandObjectFirewallProfileGroupWebfilterProfile(d *schema.ResourceData, v 
 func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("application_list"); ok {
+	if v, ok := d.GetOk("application_list"); ok || d.HasChange("application_list") {
 		t, err := expandObjectFirewallProfileGroupApplicationList(d, v, "application_list")
 		if err != nil {
 			return &obj, err
@@ -644,7 +644,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("av_profile"); ok {
+	if v, ok := d.GetOk("av_profile"); ok || d.HasChange("av_profile") {
 		t, err := expandObjectFirewallProfileGroupAvProfile(d, v, "av_profile")
 		if err != nil {
 			return &obj, err
@@ -653,7 +653,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("cifs_profile"); ok {
+	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandObjectFirewallProfileGroupCifsProfile(d, v, "cifs_profile")
 		if err != nil {
 			return &obj, err
@@ -662,7 +662,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dlp_sensor"); ok {
+	if v, ok := d.GetOk("dlp_sensor"); ok || d.HasChange("dlp_sensor") {
 		t, err := expandObjectFirewallProfileGroupDlpSensor(d, v, "dlp_sensor")
 		if err != nil {
 			return &obj, err
@@ -671,7 +671,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dnsfilter_profile"); ok {
+	if v, ok := d.GetOk("dnsfilter_profile"); ok || d.HasChange("dnsfilter_profile") {
 		t, err := expandObjectFirewallProfileGroupDnsfilterProfile(d, v, "dnsfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -680,7 +680,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("emailfilter_profile"); ok {
+	if v, ok := d.GetOk("emailfilter_profile"); ok || d.HasChange("emailfilter_profile") {
 		t, err := expandObjectFirewallProfileGroupEmailfilterProfile(d, v, "emailfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -689,7 +689,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("file_filter_profile"); ok {
+	if v, ok := d.GetOk("file_filter_profile"); ok || d.HasChange("file_filter_profile") {
 		t, err := expandObjectFirewallProfileGroupFileFilterProfile(d, v, "file_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -698,7 +698,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("icap_profile"); ok {
+	if v, ok := d.GetOk("icap_profile"); ok || d.HasChange("icap_profile") {
 		t, err := expandObjectFirewallProfileGroupIcapProfile(d, v, "icap_profile")
 		if err != nil {
 			return &obj, err
@@ -707,7 +707,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ips_sensor"); ok {
+	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
 		t, err := expandObjectFirewallProfileGroupIpsSensor(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
@@ -716,7 +716,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("mms_profile"); ok {
+	if v, ok := d.GetOk("mms_profile"); ok || d.HasChange("mms_profile") {
 		t, err := expandObjectFirewallProfileGroupMmsProfile(d, v, "mms_profile")
 		if err != nil {
 			return &obj, err
@@ -725,7 +725,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallProfileGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -734,7 +734,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("profile_protocol_options"); ok {
+	if v, ok := d.GetOk("profile_protocol_options"); ok || d.HasChange("profile_protocol_options") {
 		t, err := expandObjectFirewallProfileGroupProfileProtocolOptions(d, v, "profile_protocol_options")
 		if err != nil {
 			return &obj, err
@@ -743,7 +743,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("spamfilter_profile"); ok {
+	if v, ok := d.GetOk("spamfilter_profile"); ok || d.HasChange("spamfilter_profile") {
 		t, err := expandObjectFirewallProfileGroupSpamfilterProfile(d, v, "spamfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -752,7 +752,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+	if v, ok := d.GetOk("sctp_filter_profile"); ok || d.HasChange("sctp_filter_profile") {
 		t, err := expandObjectFirewallProfileGroupSctpFilterProfile(d, v, "sctp_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -761,7 +761,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_filter_profile"); ok {
+	if v, ok := d.GetOk("ssh_filter_profile"); ok || d.HasChange("ssh_filter_profile") {
 		t, err := expandObjectFirewallProfileGroupSshFilterProfile(d, v, "ssh_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -770,7 +770,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_ssh_profile"); ok {
+	if v, ok := d.GetOk("ssl_ssh_profile"); ok || d.HasChange("ssl_ssh_profile") {
 		t, err := expandObjectFirewallProfileGroupSslSshProfile(d, v, "ssl_ssh_profile")
 		if err != nil {
 			return &obj, err
@@ -779,7 +779,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("videofilter_profile"); ok {
+	if v, ok := d.GetOk("videofilter_profile"); ok || d.HasChange("videofilter_profile") {
 		t, err := expandObjectFirewallProfileGroupVideofilterProfile(d, v, "videofilter_profile")
 		if err != nil {
 			return &obj, err
@@ -788,7 +788,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("voip_profile"); ok {
+	if v, ok := d.GetOk("voip_profile"); ok || d.HasChange("voip_profile") {
 		t, err := expandObjectFirewallProfileGroupVoipProfile(d, v, "voip_profile")
 		if err != nil {
 			return &obj, err
@@ -797,7 +797,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("waf_profile"); ok {
+	if v, ok := d.GetOk("waf_profile"); ok || d.HasChange("waf_profile") {
 		t, err := expandObjectFirewallProfileGroupWafProfile(d, v, "waf_profile")
 		if err != nil {
 			return &obj, err
@@ -806,7 +806,7 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_profile"); ok {
+	if v, ok := d.GetOk("webfilter_profile"); ok || d.HasChange("webfilter_profile") {
 		t, err := expandObjectFirewallProfileGroupWebfilterProfile(d, v, "webfilter_profile")
 		if err != nil {
 			return &obj, err

@@ -185,7 +185,7 @@ func expandSystemReportAutoCacheStatus(d *schema.ResourceData, v interface{}, pr
 func getObjectSystemReportAutoCache(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("aggressive_schedule"); ok {
+	if v, ok := d.GetOk("aggressive_schedule"); ok || d.HasChange("aggressive_schedule") {
 		t, err := expandSystemReportAutoCacheAggressiveSchedule(d, v, "aggressive_schedule")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemReportAutoCache(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("order"); ok {
+	if v, ok := d.GetOk("order"); ok || d.HasChange("order") {
 		t, err := expandSystemReportAutoCacheOrder(d, v, "order")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectSystemReportAutoCache(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemReportAutoCacheStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

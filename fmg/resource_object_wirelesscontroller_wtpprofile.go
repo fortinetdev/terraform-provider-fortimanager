@@ -6811,12 +6811,12 @@ func expandObjectWirelessControllerWtpProfileDenyMacList(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWirelessControllerWtpProfileDenyMacListId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectWirelessControllerWtpProfileDenyMacListMac(d, i["mac"], pre_append)
 		}
 
@@ -6859,47 +6859,47 @@ func expandObjectWirelessControllerWtpProfileEslSesDongle(d *schema.ResourceData
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "apc_addr_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["apc-addr-type"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleApcAddrType(d, i["apc_addr_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "apc_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["apc-fqdn"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleApcFqdn(d, i["apc_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "apc_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["apc-ip"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleApcIp(d, i["apc_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "apc_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["apc-port"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleApcPort(d, i["apc_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "coex_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["coex-level"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleCoexLevel(d, i["coex_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "compliance_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["compliance-level"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleComplianceLevel(d, i["compliance_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "esl_channel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["esl-channel"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleEslChannel(d, i["esl_channel"], pre_append)
 	}
 	pre_append = pre + ".0." + "output_power"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["output-power"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleOutputPower(d, i["output_power"], pre_append)
 	}
 	pre_append = pre + ".0." + "scd_enable"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scd-enable"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleScdEnable(d, i["scd_enable"], pre_append)
 	}
 	pre_append = pre + ".0." + "tls_cert_verification"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tls-cert-verification"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleTlsCertVerification(d, i["tls_cert_verification"], pre_append)
 	}
 	pre_append = pre + ".0." + "tls_fqdn_verification"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tls-fqdn-verification"], _ = expandObjectWirelessControllerWtpProfileEslSesDongleTlsFqdnVerification(d, i["tls_fqdn_verification"], pre_append)
 	}
 
@@ -6989,83 +6989,83 @@ func expandObjectWirelessControllerWtpProfileLan(d *schema.ResourceData, v inter
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "port_esl_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port-esl-mode"], _ = expandObjectWirelessControllerWtpProfileLanPortEslMode(d, i["port_esl_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port_esl_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port-esl-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPortEslSsid(d, i["port_esl_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port-mode"], _ = expandObjectWirelessControllerWtpProfileLanPortMode(d, i["port_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPortSsid(d, i["port_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port1_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port1-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort1Mode(d, i["port1_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port1_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port1-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort1Ssid(d, i["port1_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port2_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port2-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort2Mode(d, i["port2_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port2_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port2-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort2Ssid(d, i["port2_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port3_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port3-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort3Mode(d, i["port3_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port3_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port3-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort3Ssid(d, i["port3_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port4_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port4-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort4Mode(d, i["port4_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port4_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port4-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort4Ssid(d, i["port4_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port5_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port5-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort5Mode(d, i["port5_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port5_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port5-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort5Ssid(d, i["port5_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port6_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port6-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort6Mode(d, i["port6_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port6_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port6-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort6Ssid(d, i["port6_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port7_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port7-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort7Mode(d, i["port7_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port7_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port7-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort7Ssid(d, i["port7_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "port8_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port8-mode"], _ = expandObjectWirelessControllerWtpProfileLanPort8Mode(d, i["port8_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "port8_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port8-ssid"], _ = expandObjectWirelessControllerWtpProfileLanPort8Ssid(d, i["port8_ssid"], pre_append)
 	}
 
@@ -7163,101 +7163,101 @@ func expandObjectWirelessControllerWtpProfileLbs(d *schema.ResourceData, v inter
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "aeroscout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscout(d, i["aeroscout"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_ap_mac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-ap-mac"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutApMac(d, i["aeroscout_ap_mac"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_mmu_report"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-mmu-report"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutMmuReport(d, i["aeroscout_mmu_report"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_mu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-mu"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutMu(d, i["aeroscout_mu"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_mu_factor"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-mu-factor"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutMuFactor(d, i["aeroscout_mu_factor"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_mu_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-mu-timeout"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutMuTimeout(d, i["aeroscout_mu_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-server-ip"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutServerIp(d, i["aeroscout_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "aeroscout_server_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aeroscout-server-port"], _ = expandObjectWirelessControllerWtpProfileLbsAeroscoutServerPort(d, i["aeroscout_server_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "ekahau_blink_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ekahau-blink-mode"], _ = expandObjectWirelessControllerWtpProfileLbsEkahauBlinkMode(d, i["ekahau_blink_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ekahau_tag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ekahau-tag"], _ = expandObjectWirelessControllerWtpProfileLbsEkahauTag(d, i["ekahau_tag"], pre_append)
 	}
 	pre_append = pre + ".0." + "erc_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["erc-server-ip"], _ = expandObjectWirelessControllerWtpProfileLbsErcServerIp(d, i["erc_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "erc_server_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["erc-server-port"], _ = expandObjectWirelessControllerWtpProfileLbsErcServerPort(d, i["erc_server_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresence(d, i["fortipresence"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_ble"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-ble"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceBle(d, i["fortipresence_ble"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_frequency"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-frequency"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceFrequency(d, i["fortipresence_frequency"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-port"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresencePort(d, i["fortipresence_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_project"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-project"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceProject(d, i["fortipresence_project"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_rogue"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-rogue"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceRogue(d, i["fortipresence_rogue"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_secret"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-secret"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceSecret(d, i["fortipresence_secret"], pre_append)
 	} else {
 		result["fortipresence-secret"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "fortipresence_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-server"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceServer(d, i["fortipresence_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_server_addr_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-server-addr-type"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceServerAddrType(d, i["fortipresence_server_addr_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_server_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-server-fqdn"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceServerFqdn(d, i["fortipresence_server_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortipresence_unassoc"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-unassoc"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceUnassoc(d, i["fortipresence_unassoc"], pre_append)
 	}
 	pre_append = pre + ".0." + "station_locate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["station-locate"], _ = expandObjectWirelessControllerWtpProfileLbsStationLocate(d, i["station_locate"], pre_append)
 	}
 
@@ -7399,19 +7399,19 @@ func expandObjectWirelessControllerWtpProfilePlatform(d *schema.ResourceData, v 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "_local_platform_str"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["_local_platform_str"], _ = expandObjectWirelessControllerWtpProfilePlatformLocalPlatformStr(d, i["_local_platform_str"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddscan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddscan"], _ = expandObjectWirelessControllerWtpProfilePlatformDdscan(d, i["ddscan"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfilePlatformMode(d, i["mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["type"], _ = expandObjectWirelessControllerWtpProfilePlatformType(d, i["type"], pre_append)
 	}
 
@@ -7449,333 +7449,333 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "airtime_fairness"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio1AirtimeFairness(d, i["airtime_fairness"], pre_append)
 	}
 	pre_append = pre + ".0." + "amsdu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["amsdu"], _ = expandObjectWirelessControllerWtpProfileRadio1Amsdu(d, i["amsdu"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio1ApHandoff(d, i["ap_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-addr"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferAddr(d, i["ap_sniffer_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_bufsize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-bufsize"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferBufsize(d, i["ap_sniffer_bufsize"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_chan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-chan"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferChan(d, i["ap_sniffer_chan"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_ctl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-ctl"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferCtl(d, i["ap_sniffer_ctl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_data"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-data"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferData(d, i["ap_sniffer_data"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_beacon"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-beacon"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferMgmtBeacon(d, i["ap_sniffer_mgmt_beacon"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_other"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-other"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferMgmtOther(d, i["ap_sniffer_mgmt_other"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_probe"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-probe"], _ = expandObjectWirelessControllerWtpProfileRadio1ApSnifferMgmtProbe(d, i["ap_sniffer_mgmt_probe"], pre_append)
 	}
 	pre_append = pre + ".0." + "arrp_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arrp-profile"], _ = expandObjectWirelessControllerWtpProfileRadio1ArrpProfile(d, i["arrp_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_high"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-high"], _ = expandObjectWirelessControllerWtpProfileRadio1AutoPowerHigh(d, i["auto_power_high"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-level"], _ = expandObjectWirelessControllerWtpProfileRadio1AutoPowerLevel(d, i["auto_power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_low"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-low"], _ = expandObjectWirelessControllerWtpProfileRadio1AutoPowerLow(d, i["auto_power_low"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_target"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-target"], _ = expandObjectWirelessControllerWtpProfileRadio1AutoPowerTarget(d, i["auto_power_target"], pre_append)
 	}
 	pre_append = pre + ".0." + "band"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band"], _ = expandObjectWirelessControllerWtpProfileRadio1Band(d, i["band"], pre_append)
 	}
 	pre_append = pre + ".0." + "band_5g_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band-5g-type"], _ = expandObjectWirelessControllerWtpProfileRadio1Band5GType(d, i["band_5g_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio1BandwidthAdmissionControl(d, i["bandwidth_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio1BandwidthCapacity(d, i["bandwidth_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "beacon_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["beacon-interval"], _ = expandObjectWirelessControllerWtpProfileRadio1BeaconInterval(d, i["beacon_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color"], _ = expandObjectWirelessControllerWtpProfileRadio1BssColor(d, i["bss_color"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color-mode"], _ = expandObjectWirelessControllerWtpProfileRadio1BssColorMode(d, i["bss_color_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio1CallAdmissionControl(d, i["call_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio1CallCapacity(d, i["call_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio1Channel(d, i["channel"], pre_append)
 	} else {
 		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-bonding"], _ = expandObjectWirelessControllerWtpProfileRadio1ChannelBonding(d, i["channel_bonding"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel_utilization"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-utilization"], _ = expandObjectWirelessControllerWtpProfileRadio1ChannelUtilization(d, i["channel_utilization"], pre_append)
 	}
 	pre_append = pre + ".0." + "coexistence"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["coexistence"], _ = expandObjectWirelessControllerWtpProfileRadio1Coexistence(d, i["coexistence"], pre_append)
 	}
 	pre_append = pre + ".0." + "darrp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["darrp"], _ = expandObjectWirelessControllerWtpProfileRadio1Darrp(d, i["darrp"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma"], _ = expandObjectWirelessControllerWtpProfileRadio1Drma(d, i["drma"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma_sensitivity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma-sensitivity"], _ = expandObjectWirelessControllerWtpProfileRadio1DrmaSensitivity(d, i["drma_sensitivity"], pre_append)
 	}
 	pre_append = pre + ".0." + "dtim"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dtim"], _ = expandObjectWirelessControllerWtpProfileRadio1Dtim(d, i["dtim"], pre_append)
 	}
 	pre_append = pre + ".0." + "frag_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frag-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio1FragThreshold(d, i["frag_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "frequency_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frequency-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio1FrequencyHandoff(d, i["frequency_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-protocol"], _ = expandObjectWirelessControllerWtpProfileRadio1IperfProtocol(d, i["iperf_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_server_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-server-port"], _ = expandObjectWirelessControllerWtpProfileRadio1IperfServerPort(d, i["iperf_server_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_clients"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-clients"], _ = expandObjectWirelessControllerWtpProfileRadio1MaxClients(d, i["max_clients"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_distance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio1MaxDistance(d, i["max_distance"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio1Mode(d, i["mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio1PowerLevel(d, i["power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-mode"], _ = expandObjectWirelessControllerWtpProfileRadio1PowerMode(d, i["power_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_value"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-value"], _ = expandObjectWirelessControllerWtpProfileRadio1PowerValue(d, i["power_value"], pre_append)
 	}
 	pre_append = pre + ".0." + "powersave_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio1PowersaveOptimize(d, i["powersave_optimize"], pre_append)
 	} else {
 		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protection-mode"], _ = expandObjectWirelessControllerWtpProfileRadio1ProtectionMode(d, i["protection_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "radio_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["radio-id"], _ = expandObjectWirelessControllerWtpProfileRadio1RadioId(d, i["radio_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "rts_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rts-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio1RtsThreshold(d, i["rts_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_bssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-bssid"], _ = expandObjectWirelessControllerWtpProfileRadio1SamBssid(d, i["sam_bssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_captive_portal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-captive-portal"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCaptivePortal(d, i["sam_captive_portal"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_failure_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-failure-string"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpFailureString(d, i["sam_cwp_failure_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_match_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-match-string"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpMatchString(d, i["sam_cwp_match_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpPassword(d, i["sam_cwp_password"], pre_append)
 	} else {
 		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-success-string"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpSuccessString(d, i["sam_cwp_success_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_test_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-test-url"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpTestUrl(d, i["sam_cwp_test_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-username"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpUsername(d, i["sam_cwp_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio1SamPassword(d, i["sam_password"], pre_append)
 	} else {
 		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-report-intv"], _ = expandObjectWirelessControllerWtpProfileRadio1SamReportIntv(d, i["sam_report_intv"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_security_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-security-type"], _ = expandObjectWirelessControllerWtpProfileRadio1SamSecurityType(d, i["sam_security_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server"], _ = expandObjectWirelessControllerWtpProfileRadio1SamServer(d, i["sam_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-fqdn"], _ = expandObjectWirelessControllerWtpProfileRadio1SamServerFqdn(d, i["sam_server_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-ip"], _ = expandObjectWirelessControllerWtpProfileRadio1SamServerIp(d, i["sam_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-type"], _ = expandObjectWirelessControllerWtpProfileRadio1SamServerType(d, i["sam_server_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-ssid"], _ = expandObjectWirelessControllerWtpProfileRadio1SamSsid(d, i["sam_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_test"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-test"], _ = expandObjectWirelessControllerWtpProfileRadio1SamTest(d, i["sam_test"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-username"], _ = expandObjectWirelessControllerWtpProfileRadio1SamUsername(d, i["sam_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "short_guard_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["short-guard-interval"], _ = expandObjectWirelessControllerWtpProfileRadio1ShortGuardInterval(d, i["short_guard_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "spectrum_analysis"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["spectrum-analysis"], _ = expandObjectWirelessControllerWtpProfileRadio1SpectrumAnalysis(d, i["spectrum_analysis"], pre_append)
 	}
 	pre_append = pre + ".0." + "transmit_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio1TransmitOptimize(d, i["transmit_optimize"], pre_append)
 	} else {
 		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap-all"], _ = expandObjectWirelessControllerWtpProfileRadio1VapAll(d, i["vap_all"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap1"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap1(d, i["vap1"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap2"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap2(d, i["vap2"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap3"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap3(d, i["vap3"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap4"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap4(d, i["vap4"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap5"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap5(d, i["vap5"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap6"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap6(d, i["vap6"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap7"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap7"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap7(d, i["vap7"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap8"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap8"], _ = expandObjectWirelessControllerWtpProfileRadio1Vap8(d, i["vap8"], pre_append)
 	}
 	pre_append = pre + ".0." + "vaps"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vaps"], _ = expandObjectWirelessControllerWtpProfileRadio1Vaps(d, i["vaps"], pre_append)
 	}
 	pre_append = pre + ".0." + "wids_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wids-profile"], _ = expandObjectWirelessControllerWtpProfileRadio1WidsProfile(d, i["wids_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "zero_wait_dfs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["zero-wait-dfs"], _ = expandObjectWirelessControllerWtpProfileRadio1ZeroWaitDfs(d, i["zero_wait_dfs"], pre_append)
 	}
 
@@ -8113,333 +8113,333 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "airtime_fairness"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio2AirtimeFairness(d, i["airtime_fairness"], pre_append)
 	}
 	pre_append = pre + ".0." + "amsdu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["amsdu"], _ = expandObjectWirelessControllerWtpProfileRadio2Amsdu(d, i["amsdu"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio2ApHandoff(d, i["ap_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-addr"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferAddr(d, i["ap_sniffer_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_bufsize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-bufsize"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferBufsize(d, i["ap_sniffer_bufsize"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_chan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-chan"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferChan(d, i["ap_sniffer_chan"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_ctl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-ctl"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferCtl(d, i["ap_sniffer_ctl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_data"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-data"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferData(d, i["ap_sniffer_data"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_beacon"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-beacon"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferMgmtBeacon(d, i["ap_sniffer_mgmt_beacon"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_other"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-other"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferMgmtOther(d, i["ap_sniffer_mgmt_other"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_probe"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-probe"], _ = expandObjectWirelessControllerWtpProfileRadio2ApSnifferMgmtProbe(d, i["ap_sniffer_mgmt_probe"], pre_append)
 	}
 	pre_append = pre + ".0." + "arrp_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arrp-profile"], _ = expandObjectWirelessControllerWtpProfileRadio2ArrpProfile(d, i["arrp_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_high"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-high"], _ = expandObjectWirelessControllerWtpProfileRadio2AutoPowerHigh(d, i["auto_power_high"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-level"], _ = expandObjectWirelessControllerWtpProfileRadio2AutoPowerLevel(d, i["auto_power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_low"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-low"], _ = expandObjectWirelessControllerWtpProfileRadio2AutoPowerLow(d, i["auto_power_low"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_target"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-target"], _ = expandObjectWirelessControllerWtpProfileRadio2AutoPowerTarget(d, i["auto_power_target"], pre_append)
 	}
 	pre_append = pre + ".0." + "band"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band"], _ = expandObjectWirelessControllerWtpProfileRadio2Band(d, i["band"], pre_append)
 	}
 	pre_append = pre + ".0." + "band_5g_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band-5g-type"], _ = expandObjectWirelessControllerWtpProfileRadio2Band5GType(d, i["band_5g_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio2BandwidthAdmissionControl(d, i["bandwidth_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio2BandwidthCapacity(d, i["bandwidth_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "beacon_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["beacon-interval"], _ = expandObjectWirelessControllerWtpProfileRadio2BeaconInterval(d, i["beacon_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color"], _ = expandObjectWirelessControllerWtpProfileRadio2BssColor(d, i["bss_color"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color-mode"], _ = expandObjectWirelessControllerWtpProfileRadio2BssColorMode(d, i["bss_color_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio2CallAdmissionControl(d, i["call_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio2CallCapacity(d, i["call_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio2Channel(d, i["channel"], pre_append)
 	} else {
 		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-bonding"], _ = expandObjectWirelessControllerWtpProfileRadio2ChannelBonding(d, i["channel_bonding"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel_utilization"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-utilization"], _ = expandObjectWirelessControllerWtpProfileRadio2ChannelUtilization(d, i["channel_utilization"], pre_append)
 	}
 	pre_append = pre + ".0." + "coexistence"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["coexistence"], _ = expandObjectWirelessControllerWtpProfileRadio2Coexistence(d, i["coexistence"], pre_append)
 	}
 	pre_append = pre + ".0." + "darrp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["darrp"], _ = expandObjectWirelessControllerWtpProfileRadio2Darrp(d, i["darrp"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma"], _ = expandObjectWirelessControllerWtpProfileRadio2Drma(d, i["drma"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma_sensitivity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma-sensitivity"], _ = expandObjectWirelessControllerWtpProfileRadio2DrmaSensitivity(d, i["drma_sensitivity"], pre_append)
 	}
 	pre_append = pre + ".0." + "dtim"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dtim"], _ = expandObjectWirelessControllerWtpProfileRadio2Dtim(d, i["dtim"], pre_append)
 	}
 	pre_append = pre + ".0." + "frag_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frag-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio2FragThreshold(d, i["frag_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "frequency_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frequency-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio2FrequencyHandoff(d, i["frequency_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-protocol"], _ = expandObjectWirelessControllerWtpProfileRadio2IperfProtocol(d, i["iperf_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_server_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-server-port"], _ = expandObjectWirelessControllerWtpProfileRadio2IperfServerPort(d, i["iperf_server_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_clients"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-clients"], _ = expandObjectWirelessControllerWtpProfileRadio2MaxClients(d, i["max_clients"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_distance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio2MaxDistance(d, i["max_distance"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio2Mode(d, i["mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio2PowerLevel(d, i["power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-mode"], _ = expandObjectWirelessControllerWtpProfileRadio2PowerMode(d, i["power_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_value"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-value"], _ = expandObjectWirelessControllerWtpProfileRadio2PowerValue(d, i["power_value"], pre_append)
 	}
 	pre_append = pre + ".0." + "powersave_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio2PowersaveOptimize(d, i["powersave_optimize"], pre_append)
 	} else {
 		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protection-mode"], _ = expandObjectWirelessControllerWtpProfileRadio2ProtectionMode(d, i["protection_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "radio_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["radio-id"], _ = expandObjectWirelessControllerWtpProfileRadio2RadioId(d, i["radio_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "rts_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rts-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio2RtsThreshold(d, i["rts_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_bssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-bssid"], _ = expandObjectWirelessControllerWtpProfileRadio2SamBssid(d, i["sam_bssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_captive_portal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-captive-portal"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCaptivePortal(d, i["sam_captive_portal"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_failure_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-failure-string"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpFailureString(d, i["sam_cwp_failure_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_match_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-match-string"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpMatchString(d, i["sam_cwp_match_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpPassword(d, i["sam_cwp_password"], pre_append)
 	} else {
 		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-success-string"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpSuccessString(d, i["sam_cwp_success_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_test_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-test-url"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpTestUrl(d, i["sam_cwp_test_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-username"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpUsername(d, i["sam_cwp_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio2SamPassword(d, i["sam_password"], pre_append)
 	} else {
 		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-report-intv"], _ = expandObjectWirelessControllerWtpProfileRadio2SamReportIntv(d, i["sam_report_intv"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_security_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-security-type"], _ = expandObjectWirelessControllerWtpProfileRadio2SamSecurityType(d, i["sam_security_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server"], _ = expandObjectWirelessControllerWtpProfileRadio2SamServer(d, i["sam_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-fqdn"], _ = expandObjectWirelessControllerWtpProfileRadio2SamServerFqdn(d, i["sam_server_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-ip"], _ = expandObjectWirelessControllerWtpProfileRadio2SamServerIp(d, i["sam_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-type"], _ = expandObjectWirelessControllerWtpProfileRadio2SamServerType(d, i["sam_server_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-ssid"], _ = expandObjectWirelessControllerWtpProfileRadio2SamSsid(d, i["sam_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_test"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-test"], _ = expandObjectWirelessControllerWtpProfileRadio2SamTest(d, i["sam_test"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-username"], _ = expandObjectWirelessControllerWtpProfileRadio2SamUsername(d, i["sam_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "short_guard_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["short-guard-interval"], _ = expandObjectWirelessControllerWtpProfileRadio2ShortGuardInterval(d, i["short_guard_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "spectrum_analysis"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["spectrum-analysis"], _ = expandObjectWirelessControllerWtpProfileRadio2SpectrumAnalysis(d, i["spectrum_analysis"], pre_append)
 	}
 	pre_append = pre + ".0." + "transmit_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio2TransmitOptimize(d, i["transmit_optimize"], pre_append)
 	} else {
 		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap-all"], _ = expandObjectWirelessControllerWtpProfileRadio2VapAll(d, i["vap_all"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap1"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap1(d, i["vap1"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap2"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap2(d, i["vap2"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap3"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap3(d, i["vap3"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap4"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap4(d, i["vap4"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap5"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap5(d, i["vap5"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap6"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap6(d, i["vap6"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap7"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap7"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap7(d, i["vap7"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap8"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap8"], _ = expandObjectWirelessControllerWtpProfileRadio2Vap8(d, i["vap8"], pre_append)
 	}
 	pre_append = pre + ".0." + "vaps"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vaps"], _ = expandObjectWirelessControllerWtpProfileRadio2Vaps(d, i["vaps"], pre_append)
 	}
 	pre_append = pre + ".0." + "wids_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wids-profile"], _ = expandObjectWirelessControllerWtpProfileRadio2WidsProfile(d, i["wids_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "zero_wait_dfs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["zero-wait-dfs"], _ = expandObjectWirelessControllerWtpProfileRadio2ZeroWaitDfs(d, i["zero_wait_dfs"], pre_append)
 	}
 
@@ -8777,333 +8777,333 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "airtime_fairness"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio3AirtimeFairness(d, i["airtime_fairness"], pre_append)
 	}
 	pre_append = pre + ".0." + "amsdu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["amsdu"], _ = expandObjectWirelessControllerWtpProfileRadio3Amsdu(d, i["amsdu"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio3ApHandoff(d, i["ap_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-addr"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferAddr(d, i["ap_sniffer_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_bufsize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-bufsize"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferBufsize(d, i["ap_sniffer_bufsize"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_chan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-chan"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferChan(d, i["ap_sniffer_chan"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_ctl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-ctl"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferCtl(d, i["ap_sniffer_ctl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_data"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-data"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferData(d, i["ap_sniffer_data"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_beacon"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-beacon"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferMgmtBeacon(d, i["ap_sniffer_mgmt_beacon"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_other"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-other"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferMgmtOther(d, i["ap_sniffer_mgmt_other"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_probe"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-probe"], _ = expandObjectWirelessControllerWtpProfileRadio3ApSnifferMgmtProbe(d, i["ap_sniffer_mgmt_probe"], pre_append)
 	}
 	pre_append = pre + ".0." + "arrp_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arrp-profile"], _ = expandObjectWirelessControllerWtpProfileRadio3ArrpProfile(d, i["arrp_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_high"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-high"], _ = expandObjectWirelessControllerWtpProfileRadio3AutoPowerHigh(d, i["auto_power_high"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-level"], _ = expandObjectWirelessControllerWtpProfileRadio3AutoPowerLevel(d, i["auto_power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_low"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-low"], _ = expandObjectWirelessControllerWtpProfileRadio3AutoPowerLow(d, i["auto_power_low"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_target"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-target"], _ = expandObjectWirelessControllerWtpProfileRadio3AutoPowerTarget(d, i["auto_power_target"], pre_append)
 	}
 	pre_append = pre + ".0." + "band"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band"], _ = expandObjectWirelessControllerWtpProfileRadio3Band(d, i["band"], pre_append)
 	}
 	pre_append = pre + ".0." + "band_5g_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band-5g-type"], _ = expandObjectWirelessControllerWtpProfileRadio3Band5GType(d, i["band_5g_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio3BandwidthAdmissionControl(d, i["bandwidth_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio3BandwidthCapacity(d, i["bandwidth_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "beacon_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["beacon-interval"], _ = expandObjectWirelessControllerWtpProfileRadio3BeaconInterval(d, i["beacon_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color"], _ = expandObjectWirelessControllerWtpProfileRadio3BssColor(d, i["bss_color"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color-mode"], _ = expandObjectWirelessControllerWtpProfileRadio3BssColorMode(d, i["bss_color_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio3CallAdmissionControl(d, i["call_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio3CallCapacity(d, i["call_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio3Channel(d, i["channel"], pre_append)
 	} else {
 		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-bonding"], _ = expandObjectWirelessControllerWtpProfileRadio3ChannelBonding(d, i["channel_bonding"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel_utilization"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-utilization"], _ = expandObjectWirelessControllerWtpProfileRadio3ChannelUtilization(d, i["channel_utilization"], pre_append)
 	}
 	pre_append = pre + ".0." + "coexistence"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["coexistence"], _ = expandObjectWirelessControllerWtpProfileRadio3Coexistence(d, i["coexistence"], pre_append)
 	}
 	pre_append = pre + ".0." + "darrp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["darrp"], _ = expandObjectWirelessControllerWtpProfileRadio3Darrp(d, i["darrp"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma"], _ = expandObjectWirelessControllerWtpProfileRadio3Drma(d, i["drma"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma_sensitivity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma-sensitivity"], _ = expandObjectWirelessControllerWtpProfileRadio3DrmaSensitivity(d, i["drma_sensitivity"], pre_append)
 	}
 	pre_append = pre + ".0." + "dtim"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dtim"], _ = expandObjectWirelessControllerWtpProfileRadio3Dtim(d, i["dtim"], pre_append)
 	}
 	pre_append = pre + ".0." + "frag_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frag-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio3FragThreshold(d, i["frag_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "frequency_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frequency-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio3FrequencyHandoff(d, i["frequency_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-protocol"], _ = expandObjectWirelessControllerWtpProfileRadio3IperfProtocol(d, i["iperf_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_server_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-server-port"], _ = expandObjectWirelessControllerWtpProfileRadio3IperfServerPort(d, i["iperf_server_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_clients"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-clients"], _ = expandObjectWirelessControllerWtpProfileRadio3MaxClients(d, i["max_clients"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_distance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio3MaxDistance(d, i["max_distance"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio3Mode(d, i["mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio3PowerLevel(d, i["power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-mode"], _ = expandObjectWirelessControllerWtpProfileRadio3PowerMode(d, i["power_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_value"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-value"], _ = expandObjectWirelessControllerWtpProfileRadio3PowerValue(d, i["power_value"], pre_append)
 	}
 	pre_append = pre + ".0." + "powersave_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio3PowersaveOptimize(d, i["powersave_optimize"], pre_append)
 	} else {
 		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protection-mode"], _ = expandObjectWirelessControllerWtpProfileRadio3ProtectionMode(d, i["protection_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "radio_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["radio-id"], _ = expandObjectWirelessControllerWtpProfileRadio3RadioId(d, i["radio_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "rts_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rts-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio3RtsThreshold(d, i["rts_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_bssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-bssid"], _ = expandObjectWirelessControllerWtpProfileRadio3SamBssid(d, i["sam_bssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_captive_portal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-captive-portal"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCaptivePortal(d, i["sam_captive_portal"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_failure_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-failure-string"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpFailureString(d, i["sam_cwp_failure_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_match_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-match-string"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpMatchString(d, i["sam_cwp_match_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpPassword(d, i["sam_cwp_password"], pre_append)
 	} else {
 		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-success-string"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpSuccessString(d, i["sam_cwp_success_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_test_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-test-url"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpTestUrl(d, i["sam_cwp_test_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-username"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpUsername(d, i["sam_cwp_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio3SamPassword(d, i["sam_password"], pre_append)
 	} else {
 		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-report-intv"], _ = expandObjectWirelessControllerWtpProfileRadio3SamReportIntv(d, i["sam_report_intv"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_security_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-security-type"], _ = expandObjectWirelessControllerWtpProfileRadio3SamSecurityType(d, i["sam_security_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server"], _ = expandObjectWirelessControllerWtpProfileRadio3SamServer(d, i["sam_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-fqdn"], _ = expandObjectWirelessControllerWtpProfileRadio3SamServerFqdn(d, i["sam_server_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-ip"], _ = expandObjectWirelessControllerWtpProfileRadio3SamServerIp(d, i["sam_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-type"], _ = expandObjectWirelessControllerWtpProfileRadio3SamServerType(d, i["sam_server_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-ssid"], _ = expandObjectWirelessControllerWtpProfileRadio3SamSsid(d, i["sam_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_test"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-test"], _ = expandObjectWirelessControllerWtpProfileRadio3SamTest(d, i["sam_test"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-username"], _ = expandObjectWirelessControllerWtpProfileRadio3SamUsername(d, i["sam_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "short_guard_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["short-guard-interval"], _ = expandObjectWirelessControllerWtpProfileRadio3ShortGuardInterval(d, i["short_guard_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "spectrum_analysis"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["spectrum-analysis"], _ = expandObjectWirelessControllerWtpProfileRadio3SpectrumAnalysis(d, i["spectrum_analysis"], pre_append)
 	}
 	pre_append = pre + ".0." + "transmit_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio3TransmitOptimize(d, i["transmit_optimize"], pre_append)
 	} else {
 		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap-all"], _ = expandObjectWirelessControllerWtpProfileRadio3VapAll(d, i["vap_all"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap1"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap1(d, i["vap1"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap2"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap2(d, i["vap2"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap3"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap3(d, i["vap3"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap4"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap4(d, i["vap4"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap5"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap5(d, i["vap5"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap6"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap6(d, i["vap6"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap7"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap7"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap7(d, i["vap7"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap8"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap8"], _ = expandObjectWirelessControllerWtpProfileRadio3Vap8(d, i["vap8"], pre_append)
 	}
 	pre_append = pre + ".0." + "vaps"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vaps"], _ = expandObjectWirelessControllerWtpProfileRadio3Vaps(d, i["vaps"], pre_append)
 	}
 	pre_append = pre + ".0." + "wids_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wids-profile"], _ = expandObjectWirelessControllerWtpProfileRadio3WidsProfile(d, i["wids_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "zero_wait_dfs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["zero-wait-dfs"], _ = expandObjectWirelessControllerWtpProfileRadio3ZeroWaitDfs(d, i["zero_wait_dfs"], pre_append)
 	}
 
@@ -9441,333 +9441,333 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "airtime_fairness"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio4AirtimeFairness(d, i["airtime_fairness"], pre_append)
 	}
 	pre_append = pre + ".0." + "amsdu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["amsdu"], _ = expandObjectWirelessControllerWtpProfileRadio4Amsdu(d, i["amsdu"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio4ApHandoff(d, i["ap_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-addr"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferAddr(d, i["ap_sniffer_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_bufsize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-bufsize"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferBufsize(d, i["ap_sniffer_bufsize"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_chan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-chan"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferChan(d, i["ap_sniffer_chan"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_ctl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-ctl"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferCtl(d, i["ap_sniffer_ctl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_data"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-data"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferData(d, i["ap_sniffer_data"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_beacon"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-beacon"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferMgmtBeacon(d, i["ap_sniffer_mgmt_beacon"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_other"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-other"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferMgmtOther(d, i["ap_sniffer_mgmt_other"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_sniffer_mgmt_probe"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-sniffer-mgmt-probe"], _ = expandObjectWirelessControllerWtpProfileRadio4ApSnifferMgmtProbe(d, i["ap_sniffer_mgmt_probe"], pre_append)
 	}
 	pre_append = pre + ".0." + "arrp_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arrp-profile"], _ = expandObjectWirelessControllerWtpProfileRadio4ArrpProfile(d, i["arrp_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_high"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-high"], _ = expandObjectWirelessControllerWtpProfileRadio4AutoPowerHigh(d, i["auto_power_high"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-level"], _ = expandObjectWirelessControllerWtpProfileRadio4AutoPowerLevel(d, i["auto_power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_low"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-low"], _ = expandObjectWirelessControllerWtpProfileRadio4AutoPowerLow(d, i["auto_power_low"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_power_target"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-power-target"], _ = expandObjectWirelessControllerWtpProfileRadio4AutoPowerTarget(d, i["auto_power_target"], pre_append)
 	}
 	pre_append = pre + ".0." + "band"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band"], _ = expandObjectWirelessControllerWtpProfileRadio4Band(d, i["band"], pre_append)
 	}
 	pre_append = pre + ".0." + "band_5g_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["band-5g-type"], _ = expandObjectWirelessControllerWtpProfileRadio4Band5GType(d, i["band_5g_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio4BandwidthAdmissionControl(d, i["bandwidth_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio4BandwidthCapacity(d, i["bandwidth_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "beacon_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["beacon-interval"], _ = expandObjectWirelessControllerWtpProfileRadio4BeaconInterval(d, i["beacon_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color"], _ = expandObjectWirelessControllerWtpProfileRadio4BssColor(d, i["bss_color"], pre_append)
 	}
 	pre_append = pre + ".0." + "bss_color_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bss-color-mode"], _ = expandObjectWirelessControllerWtpProfileRadio4BssColorMode(d, i["bss_color_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_admission_control"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-admission-control"], _ = expandObjectWirelessControllerWtpProfileRadio4CallAdmissionControl(d, i["call_admission_control"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_capacity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-capacity"], _ = expandObjectWirelessControllerWtpProfileRadio4CallCapacity(d, i["call_capacity"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio4Channel(d, i["channel"], pre_append)
 	} else {
 		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-bonding"], _ = expandObjectWirelessControllerWtpProfileRadio4ChannelBonding(d, i["channel_bonding"], pre_append)
 	}
 	pre_append = pre + ".0." + "channel_utilization"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel-utilization"], _ = expandObjectWirelessControllerWtpProfileRadio4ChannelUtilization(d, i["channel_utilization"], pre_append)
 	}
 	pre_append = pre + ".0." + "coexistence"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["coexistence"], _ = expandObjectWirelessControllerWtpProfileRadio4Coexistence(d, i["coexistence"], pre_append)
 	}
 	pre_append = pre + ".0." + "darrp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["darrp"], _ = expandObjectWirelessControllerWtpProfileRadio4Darrp(d, i["darrp"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma"], _ = expandObjectWirelessControllerWtpProfileRadio4Drma(d, i["drma"], pre_append)
 	}
 	pre_append = pre + ".0." + "drma_sensitivity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drma-sensitivity"], _ = expandObjectWirelessControllerWtpProfileRadio4DrmaSensitivity(d, i["drma_sensitivity"], pre_append)
 	}
 	pre_append = pre + ".0." + "dtim"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dtim"], _ = expandObjectWirelessControllerWtpProfileRadio4Dtim(d, i["dtim"], pre_append)
 	}
 	pre_append = pre + ".0." + "frag_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frag-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio4FragThreshold(d, i["frag_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "frequency_handoff"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["frequency-handoff"], _ = expandObjectWirelessControllerWtpProfileRadio4FrequencyHandoff(d, i["frequency_handoff"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-protocol"], _ = expandObjectWirelessControllerWtpProfileRadio4IperfProtocol(d, i["iperf_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "iperf_server_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["iperf-server-port"], _ = expandObjectWirelessControllerWtpProfileRadio4IperfServerPort(d, i["iperf_server_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_clients"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-clients"], _ = expandObjectWirelessControllerWtpProfileRadio4MaxClients(d, i["max_clients"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_distance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio4MaxDistance(d, i["max_distance"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio4Mode(d, i["mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio4PowerLevel(d, i["power_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-mode"], _ = expandObjectWirelessControllerWtpProfileRadio4PowerMode(d, i["power_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "power_value"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-value"], _ = expandObjectWirelessControllerWtpProfileRadio4PowerValue(d, i["power_value"], pre_append)
 	}
 	pre_append = pre + ".0." + "powersave_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio4PowersaveOptimize(d, i["powersave_optimize"], pre_append)
 	} else {
 		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protection-mode"], _ = expandObjectWirelessControllerWtpProfileRadio4ProtectionMode(d, i["protection_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "radio_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["radio-id"], _ = expandObjectWirelessControllerWtpProfileRadio4RadioId(d, i["radio_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "rts_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rts-threshold"], _ = expandObjectWirelessControllerWtpProfileRadio4RtsThreshold(d, i["rts_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_bssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-bssid"], _ = expandObjectWirelessControllerWtpProfileRadio4SamBssid(d, i["sam_bssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_captive_portal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-captive-portal"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCaptivePortal(d, i["sam_captive_portal"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_failure_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-failure-string"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpFailureString(d, i["sam_cwp_failure_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_match_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-match-string"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpMatchString(d, i["sam_cwp_match_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpPassword(d, i["sam_cwp_password"], pre_append)
 	} else {
 		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-success-string"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpSuccessString(d, i["sam_cwp_success_string"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_test_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-test-url"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpTestUrl(d, i["sam_cwp_test_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_cwp_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-username"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpUsername(d, i["sam_cwp_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio4SamPassword(d, i["sam_password"], pre_append)
 	} else {
 		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-report-intv"], _ = expandObjectWirelessControllerWtpProfileRadio4SamReportIntv(d, i["sam_report_intv"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_security_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-security-type"], _ = expandObjectWirelessControllerWtpProfileRadio4SamSecurityType(d, i["sam_security_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server"], _ = expandObjectWirelessControllerWtpProfileRadio4SamServer(d, i["sam_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-fqdn"], _ = expandObjectWirelessControllerWtpProfileRadio4SamServerFqdn(d, i["sam_server_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-ip"], _ = expandObjectWirelessControllerWtpProfileRadio4SamServerIp(d, i["sam_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_server_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-server-type"], _ = expandObjectWirelessControllerWtpProfileRadio4SamServerType(d, i["sam_server_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-ssid"], _ = expandObjectWirelessControllerWtpProfileRadio4SamSsid(d, i["sam_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_test"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-test"], _ = expandObjectWirelessControllerWtpProfileRadio4SamTest(d, i["sam_test"], pre_append)
 	}
 	pre_append = pre + ".0." + "sam_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-username"], _ = expandObjectWirelessControllerWtpProfileRadio4SamUsername(d, i["sam_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "short_guard_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["short-guard-interval"], _ = expandObjectWirelessControllerWtpProfileRadio4ShortGuardInterval(d, i["short_guard_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "spectrum_analysis"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["spectrum-analysis"], _ = expandObjectWirelessControllerWtpProfileRadio4SpectrumAnalysis(d, i["spectrum_analysis"], pre_append)
 	}
 	pre_append = pre + ".0." + "transmit_optimize"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio4TransmitOptimize(d, i["transmit_optimize"], pre_append)
 	} else {
 		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap-all"], _ = expandObjectWirelessControllerWtpProfileRadio4VapAll(d, i["vap_all"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap1"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap1(d, i["vap1"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap2"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap2(d, i["vap2"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap3"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap3(d, i["vap3"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap4"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap4(d, i["vap4"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap5"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap5(d, i["vap5"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap6"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap6(d, i["vap6"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap7"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap7"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap7(d, i["vap7"], pre_append)
 	}
 	pre_append = pre + ".0." + "vap8"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vap8"], _ = expandObjectWirelessControllerWtpProfileRadio4Vap8(d, i["vap8"], pre_append)
 	}
 	pre_append = pre + ".0." + "vaps"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vaps"], _ = expandObjectWirelessControllerWtpProfileRadio4Vaps(d, i["vaps"], pre_append)
 	}
 	pre_append = pre + ".0." + "wids_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wids-profile"], _ = expandObjectWirelessControllerWtpProfileRadio4WidsProfile(d, i["wids_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "zero_wait_dfs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["zero-wait-dfs"], _ = expandObjectWirelessControllerWtpProfileRadio4ZeroWaitDfs(d, i["zero_wait_dfs"], pre_append)
 	}
 
@@ -10113,12 +10113,12 @@ func expandObjectWirelessControllerWtpProfileSplitTunnelingAcl(d *schema.Resourc
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dest_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dest-ip"], _ = expandObjectWirelessControllerWtpProfileSplitTunnelingAclDestIp(d, i["dest_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWirelessControllerWtpProfileSplitTunnelingAclId(d, i["id"], pre_append)
 		}
 
@@ -10181,7 +10181,7 @@ func expandObjectWirelessControllerWtpProfileWanPortMode(d *schema.ResourceData,
 func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("allowaccess"); ok {
+	if v, ok := d.GetOk("allowaccess"); ok || d.HasChange("allowaccess") {
 		t, err := expandObjectWirelessControllerWtpProfileAllowaccess(d, v, "allowaccess")
 		if err != nil {
 			return &obj, err
@@ -10190,7 +10190,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ap_country"); ok {
+	if v, ok := d.GetOk("ap_country"); ok || d.HasChange("ap_country") {
 		t, err := expandObjectWirelessControllerWtpProfileApCountry(d, v, "ap_country")
 		if err != nil {
 			return &obj, err
@@ -10199,7 +10199,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ap_handoff"); ok {
+	if v, ok := d.GetOk("ap_handoff"); ok || d.HasChange("ap_handoff") {
 		t, err := expandObjectWirelessControllerWtpProfileApHandoff(d, v, "ap_handoff")
 		if err != nil {
 			return &obj, err
@@ -10208,7 +10208,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("apcfg_profile"); ok {
+	if v, ok := d.GetOk("apcfg_profile"); ok || d.HasChange("apcfg_profile") {
 		t, err := expandObjectWirelessControllerWtpProfileApcfgProfile(d, v, "apcfg_profile")
 		if err != nil {
 			return &obj, err
@@ -10217,7 +10217,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ble_profile"); ok {
+	if v, ok := d.GetOk("ble_profile"); ok || d.HasChange("ble_profile") {
 		t, err := expandObjectWirelessControllerWtpProfileBleProfile(d, v, "ble_profile")
 		if err != nil {
 			return &obj, err
@@ -10226,7 +10226,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWirelessControllerWtpProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -10235,7 +10235,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("console_login"); ok {
+	if v, ok := d.GetOk("console_login"); ok || d.HasChange("console_login") {
 		t, err := expandObjectWirelessControllerWtpProfileConsoleLogin(d, v, "console_login")
 		if err != nil {
 			return &obj, err
@@ -10244,7 +10244,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("control_message_offload"); ok {
+	if v, ok := d.GetOk("control_message_offload"); ok || d.HasChange("control_message_offload") {
 		t, err := expandObjectWirelessControllerWtpProfileControlMessageOffload(d, v, "control_message_offload")
 		if err != nil {
 			return &obj, err
@@ -10253,7 +10253,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("deny_mac_list"); ok {
+	if v, ok := d.GetOk("deny_mac_list"); ok || d.HasChange("deny_mac_list") {
 		t, err := expandObjectWirelessControllerWtpProfileDenyMacList(d, v, "deny_mac_list")
 		if err != nil {
 			return &obj, err
@@ -10262,7 +10262,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dtls_in_kernel"); ok {
+	if v, ok := d.GetOk("dtls_in_kernel"); ok || d.HasChange("dtls_in_kernel") {
 		t, err := expandObjectWirelessControllerWtpProfileDtlsInKernel(d, v, "dtls_in_kernel")
 		if err != nil {
 			return &obj, err
@@ -10271,7 +10271,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dtls_policy"); ok {
+	if v, ok := d.GetOk("dtls_policy"); ok || d.HasChange("dtls_policy") {
 		t, err := expandObjectWirelessControllerWtpProfileDtlsPolicy(d, v, "dtls_policy")
 		if err != nil {
 			return &obj, err
@@ -10280,7 +10280,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("energy_efficient_ethernet"); ok {
+	if v, ok := d.GetOk("energy_efficient_ethernet"); ok || d.HasChange("energy_efficient_ethernet") {
 		t, err := expandObjectWirelessControllerWtpProfileEnergyEfficientEthernet(d, v, "energy_efficient_ethernet")
 		if err != nil {
 			return &obj, err
@@ -10289,7 +10289,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("esl_ses_dongle"); ok {
+	if v, ok := d.GetOk("esl_ses_dongle"); ok || d.HasChange("esl_ses_dongle") {
 		t, err := expandObjectWirelessControllerWtpProfileEslSesDongle(d, v, "esl_ses_dongle")
 		if err != nil {
 			return &obj, err
@@ -10298,7 +10298,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ext_info_enable"); ok {
+	if v, ok := d.GetOk("ext_info_enable"); ok || d.HasChange("ext_info_enable") {
 		t, err := expandObjectWirelessControllerWtpProfileExtInfoEnable(d, v, "ext_info_enable")
 		if err != nil {
 			return &obj, err
@@ -10307,7 +10307,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("frequency_handoff"); ok {
+	if v, ok := d.GetOk("frequency_handoff"); ok || d.HasChange("frequency_handoff") {
 		t, err := expandObjectWirelessControllerWtpProfileFrequencyHandoff(d, v, "frequency_handoff")
 		if err != nil {
 			return &obj, err
@@ -10316,7 +10316,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("handoff_roaming"); ok {
+	if v, ok := d.GetOk("handoff_roaming"); ok || d.HasChange("handoff_roaming") {
 		t, err := expandObjectWirelessControllerWtpProfileHandoffRoaming(d, v, "handoff_roaming")
 		if err != nil {
 			return &obj, err
@@ -10325,7 +10325,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("handoff_rssi"); ok {
+	if v, ok := d.GetOk("handoff_rssi"); ok || d.HasChange("handoff_rssi") {
 		t, err := expandObjectWirelessControllerWtpProfileHandoffRssi(d, v, "handoff_rssi")
 		if err != nil {
 			return &obj, err
@@ -10334,7 +10334,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("handoff_sta_thresh"); ok {
+	if v, ok := d.GetOk("handoff_sta_thresh"); ok || d.HasChange("handoff_sta_thresh") {
 		t, err := expandObjectWirelessControllerWtpProfileHandoffStaThresh(d, v, "handoff_sta_thresh")
 		if err != nil {
 			return &obj, err
@@ -10343,7 +10343,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("indoor_outdoor_deployment"); ok {
+	if v, ok := d.GetOk("indoor_outdoor_deployment"); ok || d.HasChange("indoor_outdoor_deployment") {
 		t, err := expandObjectWirelessControllerWtpProfileIndoorOutdoorDeployment(d, v, "indoor_outdoor_deployment")
 		if err != nil {
 			return &obj, err
@@ -10352,7 +10352,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ip_fragment_preventing"); ok {
+	if v, ok := d.GetOk("ip_fragment_preventing"); ok || d.HasChange("ip_fragment_preventing") {
 		t, err := expandObjectWirelessControllerWtpProfileIpFragmentPreventing(d, v, "ip_fragment_preventing")
 		if err != nil {
 			return &obj, err
@@ -10361,7 +10361,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("lan"); ok {
+	if v, ok := d.GetOk("lan"); ok || d.HasChange("lan") {
 		t, err := expandObjectWirelessControllerWtpProfileLan(d, v, "lan")
 		if err != nil {
 			return &obj, err
@@ -10370,7 +10370,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("lbs"); ok {
+	if v, ok := d.GetOk("lbs"); ok || d.HasChange("lbs") {
 		t, err := expandObjectWirelessControllerWtpProfileLbs(d, v, "lbs")
 		if err != nil {
 			return &obj, err
@@ -10379,7 +10379,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("led_schedules"); ok {
+	if v, ok := d.GetOk("led_schedules"); ok || d.HasChange("led_schedules") {
 		t, err := expandObjectWirelessControllerWtpProfileLedSchedules(d, v, "led_schedules")
 		if err != nil {
 			return &obj, err
@@ -10388,7 +10388,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("led_state"); ok {
+	if v, ok := d.GetOk("led_state"); ok || d.HasChange("led_state") {
 		t, err := expandObjectWirelessControllerWtpProfileLedState(d, v, "led_state")
 		if err != nil {
 			return &obj, err
@@ -10397,7 +10397,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("lldp"); ok {
+	if v, ok := d.GetOk("lldp"); ok || d.HasChange("lldp") {
 		t, err := expandObjectWirelessControllerWtpProfileLldp(d, v, "lldp")
 		if err != nil {
 			return &obj, err
@@ -10406,7 +10406,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("login_passwd"); ok {
+	if v, ok := d.GetOk("login_passwd"); ok || d.HasChange("login_passwd") {
 		t, err := expandObjectWirelessControllerWtpProfileLoginPasswd(d, v, "login_passwd")
 		if err != nil {
 			return &obj, err
@@ -10415,7 +10415,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("login_passwd_change"); ok {
+	if v, ok := d.GetOk("login_passwd_change"); ok || d.HasChange("login_passwd_change") {
 		t, err := expandObjectWirelessControllerWtpProfileLoginPasswdChange(d, v, "login_passwd_change")
 		if err != nil {
 			return &obj, err
@@ -10424,7 +10424,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("max_clients"); ok {
+	if v, ok := d.GetOk("max_clients"); ok || d.HasChange("max_clients") {
 		t, err := expandObjectWirelessControllerWtpProfileMaxClients(d, v, "max_clients")
 		if err != nil {
 			return &obj, err
@@ -10433,7 +10433,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerWtpProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -10442,7 +10442,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("platform"); ok {
+	if v, ok := d.GetOk("platform"); ok || d.HasChange("platform") {
 		t, err := expandObjectWirelessControllerWtpProfilePlatform(d, v, "platform")
 		if err != nil {
 			return &obj, err
@@ -10451,7 +10451,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("poe_mode"); ok {
+	if v, ok := d.GetOk("poe_mode"); ok || d.HasChange("poe_mode") {
 		t, err := expandObjectWirelessControllerWtpProfilePoeMode(d, v, "poe_mode")
 		if err != nil {
 			return &obj, err
@@ -10460,7 +10460,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("radio_1"); ok {
+	if v, ok := d.GetOk("radio_1"); ok || d.HasChange("radio_1") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio1(d, v, "radio_1")
 		if err != nil {
 			return &obj, err
@@ -10469,7 +10469,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("radio_2"); ok {
+	if v, ok := d.GetOk("radio_2"); ok || d.HasChange("radio_2") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio2(d, v, "radio_2")
 		if err != nil {
 			return &obj, err
@@ -10478,7 +10478,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("radio_3"); ok {
+	if v, ok := d.GetOk("radio_3"); ok || d.HasChange("radio_3") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio3(d, v, "radio_3")
 		if err != nil {
 			return &obj, err
@@ -10487,7 +10487,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("radio_4"); ok {
+	if v, ok := d.GetOk("radio_4"); ok || d.HasChange("radio_4") {
 		t, err := expandObjectWirelessControllerWtpProfileRadio4(d, v, "radio_4")
 		if err != nil {
 			return &obj, err
@@ -10496,7 +10496,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("snmp"); ok {
+	if v, ok := d.GetOk("snmp"); ok || d.HasChange("snmp") {
 		t, err := expandObjectWirelessControllerWtpProfileSnmp(d, v, "snmp")
 		if err != nil {
 			return &obj, err
@@ -10505,7 +10505,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("split_tunneling_acl"); ok {
+	if v, ok := d.GetOk("split_tunneling_acl"); ok || d.HasChange("split_tunneling_acl") {
 		t, err := expandObjectWirelessControllerWtpProfileSplitTunnelingAcl(d, v, "split_tunneling_acl")
 		if err != nil {
 			return &obj, err
@@ -10514,7 +10514,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("split_tunneling_acl_local_ap_subnet"); ok {
+	if v, ok := d.GetOk("split_tunneling_acl_local_ap_subnet"); ok || d.HasChange("split_tunneling_acl_local_ap_subnet") {
 		t, err := expandObjectWirelessControllerWtpProfileSplitTunnelingAclLocalApSubnet(d, v, "split_tunneling_acl_local_ap_subnet")
 		if err != nil {
 			return &obj, err
@@ -10523,7 +10523,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("split_tunneling_acl_path"); ok {
+	if v, ok := d.GetOk("split_tunneling_acl_path"); ok || d.HasChange("split_tunneling_acl_path") {
 		t, err := expandObjectWirelessControllerWtpProfileSplitTunnelingAclPath(d, v, "split_tunneling_acl_path")
 		if err != nil {
 			return &obj, err
@@ -10532,7 +10532,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("syslog_profile"); ok {
+	if v, ok := d.GetOk("syslog_profile"); ok || d.HasChange("syslog_profile") {
 		t, err := expandObjectWirelessControllerWtpProfileSyslogProfile(d, v, "syslog_profile")
 		if err != nil {
 			return &obj, err
@@ -10541,7 +10541,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("tun_mtu_downlink"); ok {
+	if v, ok := d.GetOk("tun_mtu_downlink"); ok || d.HasChange("tun_mtu_downlink") {
 		t, err := expandObjectWirelessControllerWtpProfileTunMtuDownlink(d, v, "tun_mtu_downlink")
 		if err != nil {
 			return &obj, err
@@ -10550,7 +10550,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("tun_mtu_uplink"); ok {
+	if v, ok := d.GetOk("tun_mtu_uplink"); ok || d.HasChange("tun_mtu_uplink") {
 		t, err := expandObjectWirelessControllerWtpProfileTunMtuUplink(d, v, "tun_mtu_uplink")
 		if err != nil {
 			return &obj, err
@@ -10559,7 +10559,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wan_port_auth"); ok {
+	if v, ok := d.GetOk("wan_port_auth"); ok || d.HasChange("wan_port_auth") {
 		t, err := expandObjectWirelessControllerWtpProfileWanPortAuth(d, v, "wan_port_auth")
 		if err != nil {
 			return &obj, err
@@ -10568,7 +10568,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wan_port_auth_methods"); ok {
+	if v, ok := d.GetOk("wan_port_auth_methods"); ok || d.HasChange("wan_port_auth_methods") {
 		t, err := expandObjectWirelessControllerWtpProfileWanPortAuthMethods(d, v, "wan_port_auth_methods")
 		if err != nil {
 			return &obj, err
@@ -10577,7 +10577,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wan_port_auth_password"); ok {
+	if v, ok := d.GetOk("wan_port_auth_password"); ok || d.HasChange("wan_port_auth_password") {
 		t, err := expandObjectWirelessControllerWtpProfileWanPortAuthPassword(d, v, "wan_port_auth_password")
 		if err != nil {
 			return &obj, err
@@ -10586,7 +10586,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wan_port_auth_usrname"); ok {
+	if v, ok := d.GetOk("wan_port_auth_usrname"); ok || d.HasChange("wan_port_auth_usrname") {
 		t, err := expandObjectWirelessControllerWtpProfileWanPortAuthUsrname(d, v, "wan_port_auth_usrname")
 		if err != nil {
 			return &obj, err
@@ -10595,7 +10595,7 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wan_port_mode"); ok {
+	if v, ok := d.GetOk("wan_port_mode"); ok || d.HasChange("wan_port_mode") {
 		t, err := expandObjectWirelessControllerWtpProfileWanPortMode(d, v, "wan_port_mode")
 		if err != nil {
 			return &obj, err

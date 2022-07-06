@@ -382,7 +382,7 @@ func expandObjectWirelessControllerWagProfileWagPort(d *schema.ResourceData, v i
 func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWirelessControllerWagProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_ip_addr"); ok {
+	if v, ok := d.GetOk("dhcp_ip_addr"); ok || d.HasChange("dhcp_ip_addr") {
 		t, err := expandObjectWirelessControllerWagProfileDhcpIpAddr(d, v, "dhcp_ip_addr")
 		if err != nil {
 			return &obj, err
@@ -400,7 +400,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerWagProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -409,7 +409,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ping_interval"); ok {
+	if v, ok := d.GetOk("ping_interval"); ok || d.HasChange("ping_interval") {
 		t, err := expandObjectWirelessControllerWagProfilePingInterval(d, v, "ping_interval")
 		if err != nil {
 			return &obj, err
@@ -418,7 +418,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ping_number"); ok {
+	if v, ok := d.GetOk("ping_number"); ok || d.HasChange("ping_number") {
 		t, err := expandObjectWirelessControllerWagProfilePingNumber(d, v, "ping_number")
 		if err != nil {
 			return &obj, err
@@ -427,7 +427,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("return_packet_timeout"); ok {
+	if v, ok := d.GetOk("return_packet_timeout"); ok || d.HasChange("return_packet_timeout") {
 		t, err := expandObjectWirelessControllerWagProfileReturnPacketTimeout(d, v, "return_packet_timeout")
 		if err != nil {
 			return &obj, err
@@ -436,7 +436,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("tunnel_type"); ok {
+	if v, ok := d.GetOk("tunnel_type"); ok || d.HasChange("tunnel_type") {
 		t, err := expandObjectWirelessControllerWagProfileTunnelType(d, v, "tunnel_type")
 		if err != nil {
 			return &obj, err
@@ -445,7 +445,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wag_ip"); ok {
+	if v, ok := d.GetOk("wag_ip"); ok || d.HasChange("wag_ip") {
 		t, err := expandObjectWirelessControllerWagProfileWagIp(d, v, "wag_ip")
 		if err != nil {
 			return &obj, err
@@ -454,7 +454,7 @@ func getObjectObjectWirelessControllerWagProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wag_port"); ok {
+	if v, ok := d.GetOk("wag_port"); ok || d.HasChange("wag_port") {
 		t, err := expandObjectWirelessControllerWagProfileWagPort(d, v, "wag_port")
 		if err != nil {
 			return &obj, err

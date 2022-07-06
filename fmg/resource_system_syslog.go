@@ -208,7 +208,7 @@ func expandSystemSyslogPort(d *schema.ResourceData, v interface{}, pre string) (
 func getObjectSystemSyslog(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandSystemSyslogIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -217,7 +217,7 @@ func getObjectSystemSyslog(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemSyslogName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectSystemSyslog(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandSystemSyslogPort(d, v, "port")
 		if err != nil {
 			return &obj, err

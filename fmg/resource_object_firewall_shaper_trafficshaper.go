@@ -497,7 +497,7 @@ func expandObjectFirewallShaperTrafficShaperPriority(d *schema.ResourceData, v i
 func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("bandwidth_unit"); ok {
+	if v, ok := d.GetOk("bandwidth_unit"); ok || d.HasChange("bandwidth_unit") {
 		t, err := expandObjectFirewallShaperTrafficShaperBandwidthUnit(d, v, "bandwidth_unit")
 		if err != nil {
 			return &obj, err
@@ -506,7 +506,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv"); ok {
+	if v, ok := d.GetOk("diffserv"); ok || d.HasChange("diffserv") {
 		t, err := expandObjectFirewallShaperTrafficShaperDiffserv(d, v, "diffserv")
 		if err != nil {
 			return &obj, err
@@ -515,7 +515,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode"); ok {
+	if v, ok := d.GetOk("diffservcode"); ok || d.HasChange("diffservcode") {
 		t, err := expandObjectFirewallShaperTrafficShaperDiffservcode(d, v, "diffservcode")
 		if err != nil {
 			return &obj, err
@@ -524,7 +524,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("dscp_marking_method"); ok {
+	if v, ok := d.GetOk("dscp_marking_method"); ok || d.HasChange("dscp_marking_method") {
 		t, err := expandObjectFirewallShaperTrafficShaperDscpMarkingMethod(d, v, "dscp_marking_method")
 		if err != nil {
 			return &obj, err
@@ -533,7 +533,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("exceed_bandwidth"); ok {
+	if v, ok := d.GetOk("exceed_bandwidth"); ok || d.HasChange("exceed_bandwidth") {
 		t, err := expandObjectFirewallShaperTrafficShaperExceedBandwidth(d, v, "exceed_bandwidth")
 		if err != nil {
 			return &obj, err
@@ -542,7 +542,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("exceed_class_id"); ok {
+	if v, ok := d.GetOk("exceed_class_id"); ok || d.HasChange("exceed_class_id") {
 		t, err := expandObjectFirewallShaperTrafficShaperExceedClassId(d, v, "exceed_class_id")
 		if err != nil {
 			return &obj, err
@@ -551,7 +551,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("exceed_dscp"); ok {
+	if v, ok := d.GetOk("exceed_dscp"); ok || d.HasChange("exceed_dscp") {
 		t, err := expandObjectFirewallShaperTrafficShaperExceedDscp(d, v, "exceed_dscp")
 		if err != nil {
 			return &obj, err
@@ -560,7 +560,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("guaranteed_bandwidth"); ok {
+	if v, ok := d.GetOk("guaranteed_bandwidth"); ok || d.HasChange("guaranteed_bandwidth") {
 		t, err := expandObjectFirewallShaperTrafficShaperGuaranteedBandwidth(d, v, "guaranteed_bandwidth")
 		if err != nil {
 			return &obj, err
@@ -569,7 +569,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("maximum_bandwidth"); ok {
+	if v, ok := d.GetOk("maximum_bandwidth"); ok || d.HasChange("maximum_bandwidth") {
 		t, err := expandObjectFirewallShaperTrafficShaperMaximumBandwidth(d, v, "maximum_bandwidth")
 		if err != nil {
 			return &obj, err
@@ -578,7 +578,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("maximum_dscp"); ok {
+	if v, ok := d.GetOk("maximum_dscp"); ok || d.HasChange("maximum_dscp") {
 		t, err := expandObjectFirewallShaperTrafficShaperMaximumDscp(d, v, "maximum_dscp")
 		if err != nil {
 			return &obj, err
@@ -587,7 +587,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallShaperTrafficShaperName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -596,7 +596,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("overhead"); ok {
+	if v, ok := d.GetOk("overhead"); ok || d.HasChange("overhead") {
 		t, err := expandObjectFirewallShaperTrafficShaperOverhead(d, v, "overhead")
 		if err != nil {
 			return &obj, err
@@ -605,7 +605,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("per_policy"); ok {
+	if v, ok := d.GetOk("per_policy"); ok || d.HasChange("per_policy") {
 		t, err := expandObjectFirewallShaperTrafficShaperPerPolicy(d, v, "per_policy")
 		if err != nil {
 			return &obj, err
@@ -614,7 +614,7 @@ func getObjectObjectFirewallShaperTrafficShaper(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority"); ok {
+	if v, ok := d.GetOk("priority"); ok || d.HasChange("priority") {
 		t, err := expandObjectFirewallShaperTrafficShaperPriority(d, v, "priority")
 		if err != nil {
 			return &obj, err

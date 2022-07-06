@@ -474,17 +474,17 @@ func expandObjectFirewallProxyAddrgrpTagging(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectFirewallProxyAddrgrpTaggingCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallProxyAddrgrpTaggingName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallProxyAddrgrpTaggingTags(d, i["tags"], pre_append)
 		} else {
 			tmp["tags"] = make([]string, 0)
@@ -525,7 +525,7 @@ func expandObjectFirewallProxyAddrgrpVisibility(d *schema.ResourceData, v interf
 func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_image_base64"); ok {
+	if v, ok := d.GetOk("_image_base64"); ok || d.HasChange("_image_base64") {
 		t, err := expandObjectFirewallProxyAddrgrpImageBase64(d, v, "_image_base64")
 		if err != nil {
 			return &obj, err
@@ -534,7 +534,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallProxyAddrgrpColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -543,7 +543,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallProxyAddrgrpComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -552,7 +552,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallProxyAddrgrpMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -561,7 +561,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallProxyAddrgrpName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -570,7 +570,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("tagging"); ok {
+	if v, ok := d.GetOk("tagging"); ok || d.HasChange("tagging") {
 		t, err := expandObjectFirewallProxyAddrgrpTagging(d, v, "tagging")
 		if err != nil {
 			return &obj, err
@@ -579,7 +579,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallProxyAddrgrpType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -588,7 +588,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallProxyAddrgrpUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -597,7 +597,7 @@ func getObjectObjectFirewallProxyAddrgrp(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("visibility"); ok {
+	if v, ok := d.GetOk("visibility"); ok || d.HasChange("visibility") {
 		t, err := expandObjectFirewallProxyAddrgrpVisibility(d, v, "visibility")
 		if err != nil {
 			return &obj, err

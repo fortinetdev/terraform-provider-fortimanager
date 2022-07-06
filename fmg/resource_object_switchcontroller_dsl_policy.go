@@ -406,7 +406,7 @@ func expandObjectSwitchControllerDslPolicyUsBitswap(d *schema.ResourceData, v in
 func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("append_padding"); ok {
+	if v, ok := d.GetOk("append_padding"); ok || d.HasChange("append_padding") {
 		t, err := expandObjectSwitchControllerDslPolicyAppendPadding(d, v, "append_padding")
 		if err != nil {
 			return &obj, err
@@ -415,7 +415,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("cpe_aele"); ok {
+	if v, ok := d.GetOk("cpe_aele"); ok || d.HasChange("cpe_aele") {
 		t, err := expandObjectSwitchControllerDslPolicyCpeAele(d, v, "cpe_aele")
 		if err != nil {
 			return &obj, err
@@ -424,7 +424,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("cpe_aele_mode"); ok {
+	if v, ok := d.GetOk("cpe_aele_mode"); ok || d.HasChange("cpe_aele_mode") {
 		t, err := expandObjectSwitchControllerDslPolicyCpeAeleMode(d, v, "cpe_aele_mode")
 		if err != nil {
 			return &obj, err
@@ -433,7 +433,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("cs"); ok {
+	if v, ok := d.GetOk("cs"); ok || d.HasChange("cs") {
 		t, err := expandObjectSwitchControllerDslPolicyCs(d, v, "cs")
 		if err != nil {
 			return &obj, err
@@ -442,7 +442,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("ds_bitswap"); ok {
+	if v, ok := d.GetOk("ds_bitswap"); ok || d.HasChange("ds_bitswap") {
 		t, err := expandObjectSwitchControllerDslPolicyDsBitswap(d, v, "ds_bitswap")
 		if err != nil {
 			return &obj, err
@@ -451,7 +451,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerDslPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -460,7 +460,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("pause_frame"); ok {
+	if v, ok := d.GetOk("pause_frame"); ok || d.HasChange("pause_frame") {
 		t, err := expandObjectSwitchControllerDslPolicyPauseFrame(d, v, "pause_frame")
 		if err != nil {
 			return &obj, err
@@ -469,7 +469,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("profile"); ok {
+	if v, ok := d.GetOk("profile"); ok || d.HasChange("profile") {
 		t, err := expandObjectSwitchControllerDslPolicyProfile(d, v, "profile")
 		if err != nil {
 			return &obj, err
@@ -478,7 +478,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectSwitchControllerDslPolicyType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -487,7 +487,7 @@ func getObjectObjectSwitchControllerDslPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("us_bitswap"); ok {
+	if v, ok := d.GetOk("us_bitswap"); ok || d.HasChange("us_bitswap") {
 		t, err := expandObjectSwitchControllerDslPolicyUsBitswap(d, v, "us_bitswap")
 		if err != nil {
 			return &obj, err

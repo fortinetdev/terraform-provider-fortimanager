@@ -208,7 +208,7 @@ func expandSystemDnsSecondary(d *schema.ResourceData, v interface{}, pre string)
 func getObjectSystemDns(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ip6_primary"); ok {
+	if v, ok := d.GetOk("ip6_primary"); ok || d.HasChange("ip6_primary") {
 		t, err := expandSystemDnsIp6Primary(d, v, "ip6_primary")
 		if err != nil {
 			return &obj, err
@@ -217,7 +217,7 @@ func getObjectSystemDns(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("ip6_secondary"); ok {
+	if v, ok := d.GetOk("ip6_secondary"); ok || d.HasChange("ip6_secondary") {
 		t, err := expandSystemDnsIp6Secondary(d, v, "ip6_secondary")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectSystemDns(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("primary"); ok {
+	if v, ok := d.GetOk("primary"); ok || d.HasChange("primary") {
 		t, err := expandSystemDnsPrimary(d, v, "primary")
 		if err != nil {
 			return &obj, err
@@ -235,7 +235,7 @@ func getObjectSystemDns(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("secondary"); ok {
+	if v, ok := d.GetOk("secondary"); ok || d.HasChange("secondary") {
 		t, err := expandSystemDnsSecondary(d, v, "secondary")
 		if err != nil {
 			return &obj, err

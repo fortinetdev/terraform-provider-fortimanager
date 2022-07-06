@@ -513,7 +513,7 @@ func expandObjectUserExchangeUsername(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("addr_type"); ok {
+	if v, ok := d.GetOk("addr_type"); ok || d.HasChange("addr_type") {
 		t, err := expandObjectUserExchangeAddrType(d, v, "addr_type")
 		if err != nil {
 			return &obj, err
@@ -522,7 +522,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("auth_level"); ok {
+	if v, ok := d.GetOk("auth_level"); ok || d.HasChange("auth_level") {
 		t, err := expandObjectUserExchangeAuthLevel(d, v, "auth_level")
 		if err != nil {
 			return &obj, err
@@ -531,7 +531,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("auth_type"); ok {
+	if v, ok := d.GetOk("auth_type"); ok || d.HasChange("auth_type") {
 		t, err := expandObjectUserExchangeAuthType(d, v, "auth_type")
 		if err != nil {
 			return &obj, err
@@ -540,7 +540,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("auto_discover_kdc"); ok {
+	if v, ok := d.GetOk("auto_discover_kdc"); ok || d.HasChange("auto_discover_kdc") {
 		t, err := expandObjectUserExchangeAutoDiscoverKdc(d, v, "auto_discover_kdc")
 		if err != nil {
 			return &obj, err
@@ -549,7 +549,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("connect_protocol"); ok {
+	if v, ok := d.GetOk("connect_protocol"); ok || d.HasChange("connect_protocol") {
 		t, err := expandObjectUserExchangeConnectProtocol(d, v, "connect_protocol")
 		if err != nil {
 			return &obj, err
@@ -558,7 +558,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("domain_name"); ok {
+	if v, ok := d.GetOk("domain_name"); ok || d.HasChange("domain_name") {
 		t, err := expandObjectUserExchangeDomainName(d, v, "domain_name")
 		if err != nil {
 			return &obj, err
@@ -567,7 +567,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("http_auth_type"); ok {
+	if v, ok := d.GetOk("http_auth_type"); ok || d.HasChange("http_auth_type") {
 		t, err := expandObjectUserExchangeHttpAuthType(d, v, "http_auth_type")
 		if err != nil {
 			return &obj, err
@@ -576,7 +576,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandObjectUserExchangeIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -585,7 +585,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ip6"); ok {
+	if v, ok := d.GetOk("ip6"); ok || d.HasChange("ip6") {
 		t, err := expandObjectUserExchangeIp6(d, v, "ip6")
 		if err != nil {
 			return &obj, err
@@ -594,7 +594,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("kdc_ip"); ok {
+	if v, ok := d.GetOk("kdc_ip"); ok || d.HasChange("kdc_ip") {
 		t, err := expandObjectUserExchangeKdcIp(d, v, "kdc_ip")
 		if err != nil {
 			return &obj, err
@@ -603,7 +603,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserExchangeName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -612,7 +612,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserExchangePassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -621,7 +621,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("server_name"); ok {
+	if v, ok := d.GetOk("server_name"); ok || d.HasChange("server_name") {
 		t, err := expandObjectUserExchangeServerName(d, v, "server_name")
 		if err != nil {
 			return &obj, err
@@ -630,7 +630,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_min_proto_version"); ok {
+	if v, ok := d.GetOk("ssl_min_proto_version"); ok || d.HasChange("ssl_min_proto_version") {
 		t, err := expandObjectUserExchangeSslMinProtoVersion(d, v, "ssl_min_proto_version")
 		if err != nil {
 			return &obj, err
@@ -639,7 +639,7 @@ func getObjectObjectUserExchange(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandObjectUserExchangeUsername(d, v, "username")
 		if err != nil {
 			return &obj, err

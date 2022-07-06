@@ -111,7 +111,7 @@ func expandSecurityconsolePackageCancelInstallAdom(d *schema.ResourceData, v int
 func getObjectSecurityconsolePackageCancelInstall(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsolePackageCancelInstallAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

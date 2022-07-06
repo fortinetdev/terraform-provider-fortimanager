@@ -727,22 +727,22 @@ func expandSystemLogFetchClientProfileDeviceFilter(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["adom"], _ = expandSystemLogFetchClientProfileDeviceFilterAdom(d, i["adom"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "device"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["device"], _ = expandSystemLogFetchClientProfileDeviceFilterDevice(d, i["device"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandSystemLogFetchClientProfileDeviceFilterId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandSystemLogFetchClientProfileDeviceFilterVdom(d, i["vdom"], pre_append)
 		}
 
@@ -797,22 +797,22 @@ func expandSystemLogFetchClientProfileLogFilter(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "field"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["field"], _ = expandSystemLogFetchClientProfileLogFilterField(d, i["field"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandSystemLogFetchClientProfileLogFilterId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "oper"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["oper"], _ = expandSystemLogFetchClientProfileLogFilterOper(d, i["oper"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandSystemLogFetchClientProfileLogFilterValue(d, i["value"], pre_append)
 		}
 
@@ -887,7 +887,7 @@ func expandSystemLogFetchClientProfileUser(d *schema.ResourceData, v interface{}
 func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("client_adom"); ok {
+	if v, ok := d.GetOk("client_adom"); ok || d.HasChange("client_adom") {
 		t, err := expandSystemLogFetchClientProfileClientAdom(d, v, "client_adom")
 		if err != nil {
 			return &obj, err
@@ -896,7 +896,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("data_range"); ok {
+	if v, ok := d.GetOk("data_range"); ok || d.HasChange("data_range") {
 		t, err := expandSystemLogFetchClientProfileDataRange(d, v, "data_range")
 		if err != nil {
 			return &obj, err
@@ -905,7 +905,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("data_range_value"); ok {
+	if v, ok := d.GetOk("data_range_value"); ok || d.HasChange("data_range_value") {
 		t, err := expandSystemLogFetchClientProfileDataRangeValue(d, v, "data_range_value")
 		if err != nil {
 			return &obj, err
@@ -914,7 +914,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("device_filter"); ok {
+	if v, ok := d.GetOk("device_filter"); ok || d.HasChange("device_filter") {
 		t, err := expandSystemLogFetchClientProfileDeviceFilter(d, v, "device_filter")
 		if err != nil {
 			return &obj, err
@@ -923,7 +923,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("end_time"); ok {
+	if v, ok := d.GetOk("end_time"); ok || d.HasChange("end_time") {
 		t, err := expandSystemLogFetchClientProfileEndTime(d, v, "end_time")
 		if err != nil {
 			return &obj, err
@@ -932,7 +932,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandSystemLogFetchClientProfileId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -941,7 +941,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("index_fetch_logs"); ok {
+	if v, ok := d.GetOk("index_fetch_logs"); ok || d.HasChange("index_fetch_logs") {
 		t, err := expandSystemLogFetchClientProfileIndexFetchLogs(d, v, "index_fetch_logs")
 		if err != nil {
 			return &obj, err
@@ -950,7 +950,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("log_filter"); ok {
+	if v, ok := d.GetOk("log_filter"); ok || d.HasChange("log_filter") {
 		t, err := expandSystemLogFetchClientProfileLogFilter(d, v, "log_filter")
 		if err != nil {
 			return &obj, err
@@ -959,7 +959,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("log_filter_logic"); ok {
+	if v, ok := d.GetOk("log_filter_logic"); ok || d.HasChange("log_filter_logic") {
 		t, err := expandSystemLogFetchClientProfileLogFilterLogic(d, v, "log_filter_logic")
 		if err != nil {
 			return &obj, err
@@ -968,7 +968,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("log_filter_status"); ok {
+	if v, ok := d.GetOk("log_filter_status"); ok || d.HasChange("log_filter_status") {
 		t, err := expandSystemLogFetchClientProfileLogFilterStatus(d, v, "log_filter_status")
 		if err != nil {
 			return &obj, err
@@ -977,7 +977,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemLogFetchClientProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -986,7 +986,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemLogFetchClientProfilePassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -995,7 +995,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("peer_cert_cn"); ok {
+	if v, ok := d.GetOk("peer_cert_cn"); ok || d.HasChange("peer_cert_cn") {
 		t, err := expandSystemLogFetchClientProfilePeerCertCn(d, v, "peer_cert_cn")
 		if err != nil {
 			return &obj, err
@@ -1004,7 +1004,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("secure_connection"); ok {
+	if v, ok := d.GetOk("secure_connection"); ok || d.HasChange("secure_connection") {
 		t, err := expandSystemLogFetchClientProfileSecureConnection(d, v, "secure_connection")
 		if err != nil {
 			return &obj, err
@@ -1013,7 +1013,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("server_adom"); ok {
+	if v, ok := d.GetOk("server_adom"); ok || d.HasChange("server_adom") {
 		t, err := expandSystemLogFetchClientProfileServerAdom(d, v, "server_adom")
 		if err != nil {
 			return &obj, err
@@ -1022,7 +1022,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("server_ip"); ok {
+	if v, ok := d.GetOk("server_ip"); ok || d.HasChange("server_ip") {
 		t, err := expandSystemLogFetchClientProfileServerIp(d, v, "server_ip")
 		if err != nil {
 			return &obj, err
@@ -1031,7 +1031,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("start_time"); ok {
+	if v, ok := d.GetOk("start_time"); ok || d.HasChange("start_time") {
 		t, err := expandSystemLogFetchClientProfileStartTime(d, v, "start_time")
 		if err != nil {
 			return &obj, err
@@ -1040,7 +1040,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sync_adom_config"); ok {
+	if v, ok := d.GetOk("sync_adom_config"); ok || d.HasChange("sync_adom_config") {
 		t, err := expandSystemLogFetchClientProfileSyncAdomConfig(d, v, "sync_adom_config")
 		if err != nil {
 			return &obj, err
@@ -1049,7 +1049,7 @@ func getObjectSystemLogFetchClientProfile(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("user"); ok {
+	if v, ok := d.GetOk("user"); ok || d.HasChange("user") {
 		t, err := expandSystemLogFetchClientProfileUser(d, v, "user")
 		if err != nil {
 			return &obj, err

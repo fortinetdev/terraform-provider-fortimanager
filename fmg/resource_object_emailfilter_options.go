@@ -171,7 +171,7 @@ func expandObjectEmailfilterOptionsDnsTimeout(d *schema.ResourceData, v interfac
 func getObjectObjectEmailfilterOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("dns_timeout"); ok {
+	if v, ok := d.GetOk("dns_timeout"); ok || d.HasChange("dns_timeout") {
 		t, err := expandObjectEmailfilterOptionsDnsTimeout(d, v, "dns_timeout")
 		if err != nil {
 			return &obj, err

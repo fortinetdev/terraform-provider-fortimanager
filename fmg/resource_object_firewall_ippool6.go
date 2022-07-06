@@ -523,34 +523,34 @@ func expandObjectFirewallIppool6DynamicMapping(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectFirewallIppool6DynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat46_route"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-nat46-route"], _ = expandObjectFirewallIppool6DynamicMappingAddNat46Route(d, i["add_nat46_route"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comments"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comments"], _ = expandObjectFirewallIppool6DynamicMappingComments(d, i["comments"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "endip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["endip"], _ = expandObjectFirewallIppool6DynamicMappingEndip(d, i["endip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat46"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nat46"], _ = expandObjectFirewallIppool6DynamicMappingNat46(d, i["nat46"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "startip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["startip"], _ = expandObjectFirewallIppool6DynamicMappingStartip(d, i["startip"], pre_append)
 		}
 
@@ -577,12 +577,12 @@ func expandObjectFirewallIppool6DynamicMappingScope(d *schema.ResourceData, v in
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallIppool6DynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectFirewallIppool6DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -641,7 +641,7 @@ func expandObjectFirewallIppool6Startip(d *schema.ResourceData, v interface{}, p
 func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("add_nat46_route"); ok {
+	if v, ok := d.GetOk("add_nat46_route"); ok || d.HasChange("add_nat46_route") {
 		t, err := expandObjectFirewallIppool6AddNat46Route(d, v, "add_nat46_route")
 		if err != nil {
 			return &obj, err
@@ -650,7 +650,7 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectFirewallIppool6Comments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -659,7 +659,7 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectFirewallIppool6DynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -668,7 +668,7 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("endip"); ok {
+	if v, ok := d.GetOk("endip"); ok || d.HasChange("endip") {
 		t, err := expandObjectFirewallIppool6Endip(d, v, "endip")
 		if err != nil {
 			return &obj, err
@@ -677,7 +677,7 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallIppool6Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -686,7 +686,7 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("nat46"); ok {
+	if v, ok := d.GetOk("nat46"); ok || d.HasChange("nat46") {
 		t, err := expandObjectFirewallIppool6Nat46(d, v, "nat46")
 		if err != nil {
 			return &obj, err
@@ -695,7 +695,7 @@ func getObjectObjectFirewallIppool6(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("startip"); ok {
+	if v, ok := d.GetOk("startip"); ok || d.HasChange("startip") {
 		t, err := expandObjectFirewallIppool6Startip(d, v, "startip")
 		if err != nil {
 			return &obj, err

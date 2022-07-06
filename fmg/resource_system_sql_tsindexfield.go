@@ -185,7 +185,7 @@ func expandSystemSqlTsIndexFieldValue(d *schema.ResourceData, v interface{}, pre
 func getObjectSystemSqlTsIndexField(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandSystemSqlTsIndexFieldCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemSqlTsIndexField(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("value"); ok {
+	if v, ok := d.GetOk("value"); ok || d.HasChange("value") {
 		t, err := expandSystemSqlTsIndexFieldValue(d, v, "value")
 		if err != nil {
 			return &obj, err

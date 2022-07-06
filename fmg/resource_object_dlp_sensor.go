@@ -723,84 +723,84 @@ func expandObjectDlpSensorFilter(d *schema.ResourceData, v interface{}, pre stri
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectDlpSensorFilterAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "archive"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["archive"], _ = expandObjectDlpSensorFilterArchive(d, i["archive"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "company_identifier"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["company-identifier"], _ = expandObjectDlpSensorFilterCompanyIdentifier(d, i["company_identifier"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "expiry"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["expiry"], _ = expandObjectDlpSensorFilterExpiry(d, i["expiry"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_size"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-size"], _ = expandObjectDlpSensorFilterFileSize(d, i["file_size"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectDlpSensorFilterFileType(d, i["file_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter_by"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter-by"], _ = expandObjectDlpSensorFilterFilterBy(d, i["filter_by"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fp_sensitivity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fp-sensitivity"], _ = expandObjectDlpSensorFilterFpSensitivity(d, i["fp_sensitivity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectDlpSensorFilterId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_percentage"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-percentage"], _ = expandObjectDlpSensorFilterMatchPercentage(d, i["match_percentage"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectDlpSensorFilterName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "proto"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["proto"], _ = expandObjectDlpSensorFilterProto(d, i["proto"], pre_append)
 		} else {
 			tmp["proto"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "regexp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["regexp"], _ = expandObjectDlpSensorFilterRegexp(d, i["regexp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sensitivity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sensitivity"], _ = expandObjectDlpSensorFilterSensitivity(d, i["sensitivity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "severity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["severity"], _ = expandObjectDlpSensorFilterSeverity(d, i["severity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectDlpSensorFilterType(d, i["type"], pre_append)
 		}
 
@@ -907,7 +907,7 @@ func expandObjectDlpSensorSummaryProto(d *schema.ResourceData, v interface{}, pr
 func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectDlpSensorComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -916,7 +916,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dlp_log"); ok {
+	if v, ok := d.GetOk("dlp_log"); ok || d.HasChange("dlp_log") {
 		t, err := expandObjectDlpSensorDlpLog(d, v, "dlp_log")
 		if err != nil {
 			return &obj, err
@@ -925,7 +925,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("extended_log"); ok {
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
 		t, err := expandObjectDlpSensorExtendedLog(d, v, "extended_log")
 		if err != nil {
 			return &obj, err
@@ -934,7 +934,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("feature_set"); ok {
+	if v, ok := d.GetOk("feature_set"); ok || d.HasChange("feature_set") {
 		t, err := expandObjectDlpSensorFeatureSet(d, v, "feature_set")
 		if err != nil {
 			return &obj, err
@@ -943,7 +943,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("filter"); ok {
+	if v, ok := d.GetOk("filter"); ok || d.HasChange("filter") {
 		t, err := expandObjectDlpSensorFilter(d, v, "filter")
 		if err != nil {
 			return &obj, err
@@ -952,7 +952,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("flow_based"); ok {
+	if v, ok := d.GetOk("flow_based"); ok || d.HasChange("flow_based") {
 		t, err := expandObjectDlpSensorFlowBased(d, v, "flow_based")
 		if err != nil {
 			return &obj, err
@@ -961,7 +961,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("full_archive_proto"); ok {
+	if v, ok := d.GetOk("full_archive_proto"); ok || d.HasChange("full_archive_proto") {
 		t, err := expandObjectDlpSensorFullArchiveProto(d, v, "full_archive_proto")
 		if err != nil {
 			return &obj, err
@@ -970,7 +970,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("nac_quar_log"); ok {
+	if v, ok := d.GetOk("nac_quar_log"); ok || d.HasChange("nac_quar_log") {
 		t, err := expandObjectDlpSensorNacQuarLog(d, v, "nac_quar_log")
 		if err != nil {
 			return &obj, err
@@ -979,7 +979,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDlpSensorName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -988,7 +988,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok {
+	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
 		t, err := expandObjectDlpSensorOptions(d, v, "options")
 		if err != nil {
 			return &obj, err
@@ -997,7 +997,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectDlpSensorReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -1006,7 +1006,7 @@ func getObjectObjectDlpSensor(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("summary_proto"); ok {
+	if v, ok := d.GetOk("summary_proto"); ok || d.HasChange("summary_proto") {
 		t, err := expandObjectDlpSensorSummaryProto(d, v, "summary_proto")
 		if err != nil {
 			return &obj, err

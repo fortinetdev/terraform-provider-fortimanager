@@ -759,27 +759,27 @@ func expandObjectUserDomainControllerExtraServer(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserDomainControllerExtraServerId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_address"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip-address"], _ = expandObjectUserDomainControllerExtraServerIpAddress(d, i["ip_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectUserDomainControllerExtraServerPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip_address"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip-address"], _ = expandObjectUserDomainControllerExtraServerSourceIpAddress(d, i["source_ip_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-port"], _ = expandObjectUserDomainControllerExtraServerSourcePort(d, i["source_port"], pre_append)
 		}
 
@@ -870,7 +870,7 @@ func expandObjectUserDomainControllerUsername(d *schema.ResourceData, v interfac
 func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ad_mode"); ok {
+	if v, ok := d.GetOk("ad_mode"); ok || d.HasChange("ad_mode") {
 		t, err := expandObjectUserDomainControllerAdMode(d, v, "ad_mode")
 		if err != nil {
 			return &obj, err
@@ -879,7 +879,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("adlds_dn"); ok {
+	if v, ok := d.GetOk("adlds_dn"); ok || d.HasChange("adlds_dn") {
 		t, err := expandObjectUserDomainControllerAdldsDn(d, v, "adlds_dn")
 		if err != nil {
 			return &obj, err
@@ -888,7 +888,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("adlds_ip_address"); ok {
+	if v, ok := d.GetOk("adlds_ip_address"); ok || d.HasChange("adlds_ip_address") {
 		t, err := expandObjectUserDomainControllerAdldsIpAddress(d, v, "adlds_ip_address")
 		if err != nil {
 			return &obj, err
@@ -897,7 +897,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("adlds_ip6"); ok {
+	if v, ok := d.GetOk("adlds_ip6"); ok || d.HasChange("adlds_ip6") {
 		t, err := expandObjectUserDomainControllerAdldsIp6(d, v, "adlds_ip6")
 		if err != nil {
 			return &obj, err
@@ -906,7 +906,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("adlds_port"); ok {
+	if v, ok := d.GetOk("adlds_port"); ok || d.HasChange("adlds_port") {
 		t, err := expandObjectUserDomainControllerAdldsPort(d, v, "adlds_port")
 		if err != nil {
 			return &obj, err
@@ -915,7 +915,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dns_srv_lookup"); ok {
+	if v, ok := d.GetOk("dns_srv_lookup"); ok || d.HasChange("dns_srv_lookup") {
 		t, err := expandObjectUserDomainControllerDnsSrvLookup(d, v, "dns_srv_lookup")
 		if err != nil {
 			return &obj, err
@@ -924,7 +924,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("domain_name"); ok {
+	if v, ok := d.GetOk("domain_name"); ok || d.HasChange("domain_name") {
 		t, err := expandObjectUserDomainControllerDomainName(d, v, "domain_name")
 		if err != nil {
 			return &obj, err
@@ -933,7 +933,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("extra_server"); ok {
+	if v, ok := d.GetOk("extra_server"); ok || d.HasChange("extra_server") {
 		t, err := expandObjectUserDomainControllerExtraServer(d, v, "extra_server")
 		if err != nil {
 			return &obj, err
@@ -942,7 +942,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("hostname"); ok {
+	if v, ok := d.GetOk("hostname"); ok || d.HasChange("hostname") {
 		t, err := expandObjectUserDomainControllerHostname(d, v, "hostname")
 		if err != nil {
 			return &obj, err
@@ -951,7 +951,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectUserDomainControllerInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -960,7 +960,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectUserDomainControllerInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -969,7 +969,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ip_address"); ok {
+	if v, ok := d.GetOk("ip_address"); ok || d.HasChange("ip_address") {
 		t, err := expandObjectUserDomainControllerIpAddress(d, v, "ip_address")
 		if err != nil {
 			return &obj, err
@@ -978,7 +978,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ip6"); ok {
+	if v, ok := d.GetOk("ip6"); ok || d.HasChange("ip6") {
 		t, err := expandObjectUserDomainControllerIp6(d, v, "ip6")
 		if err != nil {
 			return &obj, err
@@ -987,7 +987,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_server"); ok {
+	if v, ok := d.GetOk("ldap_server"); ok || d.HasChange("ldap_server") {
 		t, err := expandObjectUserDomainControllerLdapServer(d, v, "ldap_server")
 		if err != nil {
 			return &obj, err
@@ -996,7 +996,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserDomainControllerName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1005,7 +1005,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserDomainControllerPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -1014,7 +1014,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectUserDomainControllerPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -1023,7 +1023,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("replication_port"); ok {
+	if v, ok := d.GetOk("replication_port"); ok || d.HasChange("replication_port") {
 		t, err := expandObjectUserDomainControllerReplicationPort(d, v, "replication_port")
 		if err != nil {
 			return &obj, err
@@ -1032,7 +1032,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip_address"); ok {
+	if v, ok := d.GetOk("source_ip_address"); ok || d.HasChange("source_ip_address") {
 		t, err := expandObjectUserDomainControllerSourceIpAddress(d, v, "source_ip_address")
 		if err != nil {
 			return &obj, err
@@ -1041,7 +1041,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip6"); ok {
+	if v, ok := d.GetOk("source_ip6"); ok || d.HasChange("source_ip6") {
 		t, err := expandObjectUserDomainControllerSourceIp6(d, v, "source_ip6")
 		if err != nil {
 			return &obj, err
@@ -1050,7 +1050,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("source_port"); ok {
+	if v, ok := d.GetOk("source_port"); ok || d.HasChange("source_port") {
 		t, err := expandObjectUserDomainControllerSourcePort(d, v, "source_port")
 		if err != nil {
 			return &obj, err
@@ -1059,7 +1059,7 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandObjectUserDomainControllerUsername(d, v, "username")
 		if err != nil {
 			return &obj, err

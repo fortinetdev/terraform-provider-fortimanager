@@ -162,7 +162,7 @@ func expandFmupdateFctServicesStatus(d *schema.ResourceData, v interface{}, pre 
 func getObjectFmupdateFctServices(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandFmupdateFctServicesPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -171,7 +171,7 @@ func getObjectFmupdateFctServices(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateFctServicesStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

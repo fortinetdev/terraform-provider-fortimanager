@@ -290,7 +290,7 @@ func expandObjectSwitchControllerQosQosPolicyTrustIpDscpMap(d *schema.ResourceDa
 func getObjectObjectSwitchControllerQosQosPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("default_cos"); ok {
+	if v, ok := d.GetOk("default_cos"); ok || d.HasChange("default_cos") {
 		t, err := expandObjectSwitchControllerQosQosPolicyDefaultCos(d, v, "default_cos")
 		if err != nil {
 			return &obj, err
@@ -299,7 +299,7 @@ func getObjectObjectSwitchControllerQosQosPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerQosQosPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -308,7 +308,7 @@ func getObjectObjectSwitchControllerQosQosPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("queue_policy"); ok {
+	if v, ok := d.GetOk("queue_policy"); ok || d.HasChange("queue_policy") {
 		t, err := expandObjectSwitchControllerQosQosPolicyQueuePolicy(d, v, "queue_policy")
 		if err != nil {
 			return &obj, err
@@ -317,7 +317,7 @@ func getObjectObjectSwitchControllerQosQosPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("trust_dot1p_map"); ok {
+	if v, ok := d.GetOk("trust_dot1p_map"); ok || d.HasChange("trust_dot1p_map") {
 		t, err := expandObjectSwitchControllerQosQosPolicyTrustDot1PMap(d, v, "trust_dot1p_map")
 		if err != nil {
 			return &obj, err
@@ -326,7 +326,7 @@ func getObjectObjectSwitchControllerQosQosPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("trust_ip_dscp_map"); ok {
+	if v, ok := d.GetOk("trust_ip_dscp_map"); ok || d.HasChange("trust_ip_dscp_map") {
 		t, err := expandObjectSwitchControllerQosQosPolicyTrustIpDscpMap(d, v, "trust_ip_dscp_map")
 		if err != nil {
 			return &obj, err

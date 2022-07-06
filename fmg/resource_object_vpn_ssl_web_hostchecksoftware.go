@@ -441,34 +441,34 @@ func expandObjectVpnSslWebHostCheckSoftwareCheckItemList(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "md5s"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["md5s"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListMd5S(d, i["md5s"], pre_append)
 		} else {
 			tmp["md5s"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "target"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["target"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListTarget(d, i["target"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["version"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListVersion(d, i["version"], pre_append)
 		}
 
@@ -527,7 +527,7 @@ func expandObjectVpnSslWebHostCheckSoftwareVersion(d *schema.ResourceData, v int
 func getObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("check_item_list"); ok {
+	if v, ok := d.GetOk("check_item_list"); ok || d.HasChange("check_item_list") {
 		t, err := expandObjectVpnSslWebHostCheckSoftwareCheckItemList(d, v, "check_item_list")
 		if err != nil {
 			return &obj, err
@@ -536,7 +536,7 @@ func getObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("guid"); ok {
+	if v, ok := d.GetOk("guid"); ok || d.HasChange("guid") {
 		t, err := expandObjectVpnSslWebHostCheckSoftwareGuid(d, v, "guid")
 		if err != nil {
 			return &obj, err
@@ -545,7 +545,7 @@ func getObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectVpnSslWebHostCheckSoftwareName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -554,7 +554,7 @@ func getObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("os_type"); ok {
+	if v, ok := d.GetOk("os_type"); ok || d.HasChange("os_type") {
 		t, err := expandObjectVpnSslWebHostCheckSoftwareOsType(d, v, "os_type")
 		if err != nil {
 			return &obj, err
@@ -563,7 +563,7 @@ func getObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectVpnSslWebHostCheckSoftwareType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -572,7 +572,7 @@ func getObjectObjectVpnSslWebHostCheckSoftware(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("version"); ok {
+	if v, ok := d.GetOk("version"); ok || d.HasChange("version") {
 		t, err := expandObjectVpnSslWebHostCheckSoftwareVersion(d, v, "version")
 		if err != nil {
 			return &obj, err

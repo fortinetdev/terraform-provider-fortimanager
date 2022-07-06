@@ -367,7 +367,7 @@ func expandObjectUserNsxUser(d *schema.ResourceData, v interface{}, pre string) 
 func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgip"); ok {
+	if v, ok := d.GetOk("fmgip"); ok || d.HasChange("fmgip") {
 		t, err := expandObjectUserNsxFmgip(d, v, "fmgip")
 		if err != nil {
 			return &obj, err
@@ -376,7 +376,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("fmgpasswd"); ok {
+	if v, ok := d.GetOk("fmgpasswd"); ok || d.HasChange("fmgpasswd") {
 		t, err := expandObjectUserNsxFmgpasswd(d, v, "fmgpasswd")
 		if err != nil {
 			return &obj, err
@@ -385,7 +385,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("fmguser"); ok {
+	if v, ok := d.GetOk("fmguser"); ok || d.HasChange("fmguser") {
 		t, err := expandObjectUserNsxFmguser(d, v, "fmguser")
 		if err != nil {
 			return &obj, err
@@ -394,7 +394,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserNsxName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -403,7 +403,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserNsxPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -412,7 +412,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserNsxServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -421,7 +421,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("service_id"); ok {
+	if v, ok := d.GetOk("service_id"); ok || d.HasChange("service_id") {
 		t, err := expandObjectUserNsxServiceId(d, v, "service_id")
 		if err != nil {
 			return &obj, err
@@ -430,7 +430,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserNsxStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -439,7 +439,7 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("user"); ok {
+	if v, ok := d.GetOk("user"); ok || d.HasChange("user") {
 		t, err := expandObjectUserNsxUser(d, v, "user")
 		if err != nil {
 			return &obj, err

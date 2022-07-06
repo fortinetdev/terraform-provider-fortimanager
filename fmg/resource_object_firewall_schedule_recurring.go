@@ -337,7 +337,7 @@ func expandObjectFirewallScheduleRecurringStart(d *schema.ResourceData, v interf
 func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallScheduleRecurringColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -346,7 +346,7 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("day"); ok {
+	if v, ok := d.GetOk("day"); ok || d.HasChange("day") {
 		t, err := expandObjectFirewallScheduleRecurringDay(d, v, "day")
 		if err != nil {
 			return &obj, err
@@ -355,7 +355,7 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("end"); ok {
+	if v, ok := d.GetOk("end"); ok || d.HasChange("end") {
 		t, err := expandObjectFirewallScheduleRecurringEnd(d, v, "end")
 		if err != nil {
 			return &obj, err
@@ -364,7 +364,7 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallScheduleRecurringFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -373,7 +373,7 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallScheduleRecurringGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -382,7 +382,7 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallScheduleRecurringName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectFirewallScheduleRecurring(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("start"); ok {
+	if v, ok := d.GetOk("start"); ok || d.HasChange("start") {
 		t, err := expandObjectFirewallScheduleRecurringStart(d, v, "start")
 		if err != nil {
 			return &obj, err

@@ -337,7 +337,7 @@ func expandObjectSystemObjectTaggingTags(d *schema.ResourceData, v interface{}, 
 func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("address"); ok {
+	if v, ok := d.GetOk("address"); ok || d.HasChange("address") {
 		t, err := expandObjectSystemObjectTaggingAddress(d, v, "address")
 		if err != nil {
 			return &obj, err
@@ -346,7 +346,7 @@ func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectSystemObjectTaggingCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -355,7 +355,7 @@ func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectSystemObjectTaggingColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -364,7 +364,7 @@ func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("device"); ok {
+	if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
 		t, err := expandObjectSystemObjectTaggingDevice(d, v, "device")
 		if err != nil {
 			return &obj, err
@@ -373,7 +373,7 @@ func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectSystemObjectTaggingInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -382,7 +382,7 @@ func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("multiple"); ok {
+	if v, ok := d.GetOk("multiple"); ok || d.HasChange("multiple") {
 		t, err := expandObjectSystemObjectTaggingMultiple(d, v, "multiple")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectSystemObjectTagging(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("tags"); ok {
+	if v, ok := d.GetOk("tags"); ok || d.HasChange("tags") {
 		t, err := expandObjectSystemObjectTaggingTags(d, v, "tags")
 		if err != nil {
 			return &obj, err

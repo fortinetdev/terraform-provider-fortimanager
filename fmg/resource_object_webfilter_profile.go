@@ -2488,51 +2488,51 @@ func expandObjectWebfilterProfileAntiphish(d *schema.ResourceData, v interface{}
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "authentication"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["authentication"], _ = expandObjectWebfilterProfileAntiphishAuthentication(d, i["authentication"], pre_append)
 	}
 	pre_append = pre + ".0." + "check_basic_auth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["check-basic-auth"], _ = expandObjectWebfilterProfileAntiphishCheckBasicAuth(d, i["check_basic_auth"], pre_append)
 	}
 	pre_append = pre + ".0." + "check_uri"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["check-uri"], _ = expandObjectWebfilterProfileAntiphishCheckUri(d, i["check_uri"], pre_append)
 	}
 	pre_append = pre + ".0." + "check_username_only"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["check-username-only"], _ = expandObjectWebfilterProfileAntiphishCheckUsernameOnly(d, i["check_username_only"], pre_append)
 	}
 	pre_append = pre + ".0." + "custom_patterns"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["custom-patterns"], _ = expandObjectWebfilterProfileAntiphishCustomPatterns(d, i["custom_patterns"], pre_append)
 	} else {
 		result["custom-patterns"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "default_action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["default-action"], _ = expandObjectWebfilterProfileAntiphishDefaultAction(d, i["default_action"], pre_append)
 	}
 	pre_append = pre + ".0." + "domain_controller"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["domain-controller"], _ = expandObjectWebfilterProfileAntiphishDomainController(d, i["domain_controller"], pre_append)
 	}
 	pre_append = pre + ".0." + "inspection_entries"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["inspection-entries"], _ = expandObjectWebfilterProfileAntiphishInspectionEntries(d, i["inspection_entries"], pre_append)
 	} else {
 		result["inspection-entries"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ldap"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ldap"], _ = expandObjectWebfilterProfileAntiphishLdap(d, i["ldap"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_body_len"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-body-len"], _ = expandObjectWebfilterProfileAntiphishMaxBodyLen(d, i["max_body_len"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectWebfilterProfileAntiphishStatus(d, i["status"], pre_append)
 	}
 
@@ -2570,17 +2570,17 @@ func expandObjectWebfilterProfileAntiphishCustomPatterns(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsPattern(d, i["pattern"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsType(d, i["type"], pre_append)
 		}
 
@@ -2627,19 +2627,19 @@ func expandObjectWebfilterProfileAntiphishInspectionEntries(d *schema.ResourceDa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectWebfilterProfileAntiphishInspectionEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fortiguard_category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fortiguard-category"], _ = expandObjectWebfilterProfileAntiphishInspectionEntriesFortiguardCategory(d, i["fortiguard_category"], pre_append)
 		} else {
 			tmp["fortiguard-category"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWebfilterProfileAntiphishInspectionEntriesName(d, i["name"], pre_append)
 		}
 
@@ -2694,21 +2694,21 @@ func expandObjectWebfilterProfileFileFilter(d *schema.ResourceData, v interface{
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["entries"], _ = expandObjectWebfilterProfileFileFilterEntries(d, i["entries"], pre_append)
 	} else {
 		result["entries"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectWebfilterProfileFileFilterLog(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "scan_archive_contents"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scan-archive-contents"], _ = expandObjectWebfilterProfileFileFilterScanArchiveContents(d, i["scan_archive_contents"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectWebfilterProfileFileFilterStatus(d, i["status"], pre_append)
 	}
 
@@ -2730,44 +2730,44 @@ func expandObjectWebfilterProfileFileFilterEntries(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectWebfilterProfileFileFilterEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectWebfilterProfileFileFilterEntriesComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["direction"], _ = expandObjectWebfilterProfileFileFilterEntriesDirection(d, i["direction"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "encryption"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["encryption"], _ = expandObjectWebfilterProfileFileFilterEntriesEncryption(d, i["encryption"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectWebfilterProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
 		} else {
 			tmp["file-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter"], _ = expandObjectWebfilterProfileFileFilterEntriesFilter(d, i["filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-protected"], _ = expandObjectWebfilterProfileFileFilterEntriesPasswordProtected(d, i["password_protected"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectWebfilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		} else {
 			tmp["protocol"] = make([]string, 0)
@@ -2840,49 +2840,49 @@ func expandObjectWebfilterProfileFtgdWf(d *schema.ResourceData, v interface{}, p
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "exempt_quota"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["exempt-quota"], _ = expandObjectWebfilterProfileFtgdWfExemptQuota(d, i["exempt_quota"], pre_append)
 	}
 	pre_append = pre + ".0." + "filters"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["filters"], _ = expandObjectWebfilterProfileFtgdWfFilters(d, i["filters"], pre_append)
 	} else {
 		result["filters"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "max_quota_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-quota-timeout"], _ = expandObjectWebfilterProfileFtgdWfMaxQuotaTimeout(d, i["max_quota_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectWebfilterProfileFtgdWfOptions(d, i["options"], pre_append)
 	} else {
 		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ovrd"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ovrd"], _ = expandObjectWebfilterProfileFtgdWfOvrd(d, i["ovrd"], pre_append)
 	}
 	pre_append = pre + ".0." + "quota"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["quota"], _ = expandObjectWebfilterProfileFtgdWfQuota(d, i["quota"], pre_append)
 	} else {
 		result["quota"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "rate_crl_urls"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rate-crl-urls"], _ = expandObjectWebfilterProfileFtgdWfRateCrlUrls(d, i["rate_crl_urls"], pre_append)
 	}
 	pre_append = pre + ".0." + "rate_css_urls"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rate-css-urls"], _ = expandObjectWebfilterProfileFtgdWfRateCssUrls(d, i["rate_css_urls"], pre_append)
 	}
 	pre_append = pre + ".0." + "rate_image_urls"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rate-image-urls"], _ = expandObjectWebfilterProfileFtgdWfRateImageUrls(d, i["rate_image_urls"], pre_append)
 	}
 	pre_append = pre + ".0." + "rate_javascript_urls"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rate-javascript-urls"], _ = expandObjectWebfilterProfileFtgdWfRateJavascriptUrls(d, i["rate_javascript_urls"], pre_append)
 	}
 
@@ -2908,47 +2908,47 @@ func expandObjectWebfilterProfileFtgdWfFilters(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectWebfilterProfileFtgdWfFiltersAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_usr_grp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-usr-grp"], _ = expandObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp(d, i["auth_usr_grp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectWebfilterProfileFtgdWfFiltersCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWebfilterProfileFtgdWfFiltersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandObjectWebfilterProfileFtgdWfFiltersLog(d, i["log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "override_replacemsg"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["override-replacemsg"], _ = expandObjectWebfilterProfileFtgdWfFiltersOverrideReplacemsg(d, i["override_replacemsg"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "warn_duration"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["warn-duration"], _ = expandObjectWebfilterProfileFtgdWfFiltersWarnDuration(d, i["warn_duration"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "warning_duration_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["warning-duration-type"], _ = expandObjectWebfilterProfileFtgdWfFiltersWarningDurationType(d, i["warning_duration_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "warning_prompt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["warning-prompt"], _ = expandObjectWebfilterProfileFtgdWfFiltersWarningPrompt(d, i["warning_prompt"], pre_append)
 		}
 
@@ -3023,37 +3023,37 @@ func expandObjectWebfilterProfileFtgdWfQuota(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectWebfilterProfileFtgdWfQuotaCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "duration"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["duration"], _ = expandObjectWebfilterProfileFtgdWfQuotaDuration(d, i["duration"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWebfilterProfileFtgdWfQuotaId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "override_replacemsg"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["override-replacemsg"], _ = expandObjectWebfilterProfileFtgdWfQuotaOverrideReplacemsg(d, i["override_replacemsg"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectWebfilterProfileFtgdWfQuotaType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "unit"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["unit"], _ = expandObjectWebfilterProfileFtgdWfQuotaUnit(d, i["unit"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectWebfilterProfileFtgdWfQuotaValue(d, i["value"], pre_append)
 		}
 
@@ -3140,35 +3140,35 @@ func expandObjectWebfilterProfileOverride(d *schema.ResourceData, v interface{},
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ovrd_cookie"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ovrd-cookie"], _ = expandObjectWebfilterProfileOverrideOvrdCookie(d, i["ovrd_cookie"], pre_append)
 	}
 	pre_append = pre + ".0." + "ovrd_dur"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ovrd-dur"], _ = expandObjectWebfilterProfileOverrideOvrdDur(d, i["ovrd_dur"], pre_append)
 	}
 	pre_append = pre + ".0." + "ovrd_dur_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ovrd-dur-mode"], _ = expandObjectWebfilterProfileOverrideOvrdDurMode(d, i["ovrd_dur_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ovrd_scope"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ovrd-scope"], _ = expandObjectWebfilterProfileOverrideOvrdScope(d, i["ovrd_scope"], pre_append)
 	}
 	pre_append = pre + ".0." + "ovrd_user_group"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ovrd-user-group"], _ = expandObjectWebfilterProfileOverrideOvrdUserGroup(d, i["ovrd_user_group"], pre_append)
 	}
 	pre_append = pre + ".0." + "profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["profile"], _ = expandObjectWebfilterProfileOverrideProfile(d, i["profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "profile_attribute"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["profile-attribute"], _ = expandObjectWebfilterProfileOverrideProfileAttribute(d, i["profile_attribute"], pre_append)
 	}
 	pre_append = pre + ".0." + "profile_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["profile-type"], _ = expandObjectWebfilterProfileOverrideProfileType(d, i["profile_type"], pre_append)
 	}
 
@@ -3230,23 +3230,23 @@ func expandObjectWebfilterProfileUrlExtraction(d *schema.ResourceData, v interfa
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "redirect_header"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["redirect-header"], _ = expandObjectWebfilterProfileUrlExtractionRedirectHeader(d, i["redirect_header"], pre_append)
 	}
 	pre_append = pre + ".0." + "redirect_no_content"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["redirect-no-content"], _ = expandObjectWebfilterProfileUrlExtractionRedirectNoContent(d, i["redirect_no_content"], pre_append)
 	}
 	pre_append = pre + ".0." + "redirect_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["redirect-url"], _ = expandObjectWebfilterProfileUrlExtractionRedirectUrl(d, i["redirect_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "server_fqdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["server-fqdn"], _ = expandObjectWebfilterProfileUrlExtractionServerFqdn(d, i["server_fqdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectWebfilterProfileUrlExtractionStatus(d, i["status"], pre_append)
 	}
 
@@ -3284,63 +3284,63 @@ func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "allowlist"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["allowlist"], _ = expandObjectWebfilterProfileWebAllowlist(d, i["allowlist"], pre_append)
 	} else {
 		result["allowlist"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "blocklist"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["blocklist"], _ = expandObjectWebfilterProfileWebBlocklist(d, i["blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "blacklist"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["blacklist"], _ = expandObjectWebfilterProfileWebBlacklist(d, i["blacklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "bword_table"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bword-table"], _ = expandObjectWebfilterProfileWebBwordTable(d, i["bword_table"], pre_append)
 	}
 	pre_append = pre + ".0." + "bword_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bword-threshold"], _ = expandObjectWebfilterProfileWebBwordThreshold(d, i["bword_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "content_header_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["content-header-list"], _ = expandObjectWebfilterProfileWebContentHeaderList(d, i["content_header_list"], pre_append)
 	}
 	pre_append = pre + ".0." + "keyword_match"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["keyword-match"], _ = expandObjectWebfilterProfileWebKeywordMatch(d, i["keyword_match"], pre_append)
 	} else {
 		result["keyword-match"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "log_search"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log-search"], _ = expandObjectWebfilterProfileWebLogSearch(d, i["log_search"], pre_append)
 	}
 	pre_append = pre + ".0." + "safe_search"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["safe-search"], _ = expandObjectWebfilterProfileWebSafeSearch(d, i["safe_search"], pre_append)
 	} else {
 		result["safe-search"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "urlfilter_table"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["urlfilter-table"], _ = expandObjectWebfilterProfileWebUrlfilterTable(d, i["urlfilter_table"], pre_append)
 	}
 	pre_append = pre + ".0." + "vimeo_restrict"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vimeo-restrict"], _ = expandObjectWebfilterProfileWebVimeoRestrict(d, i["vimeo_restrict"], pre_append)
 	}
 	pre_append = pre + ".0." + "whitelist"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["whitelist"], _ = expandObjectWebfilterProfileWebWhitelist(d, i["whitelist"], pre_append)
 	} else {
 		result["whitelist"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "youtube_restrict"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["youtube-restrict"], _ = expandObjectWebfilterProfileWebYoutubeRestrict(d, i["youtube_restrict"], pre_append)
 	}
 
@@ -3494,17 +3494,17 @@ func expandObjectWebfilterProfileYoutubeChannelFilter(d *schema.ResourceData, v 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "channel_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["channel-id"], _ = expandObjectWebfilterProfileYoutubeChannelFilterChannelId(d, i["channel_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectWebfilterProfileYoutubeChannelFilterComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWebfilterProfileYoutubeChannelFilterId(d, i["id"], pre_append)
 		}
 
@@ -3535,7 +3535,7 @@ func expandObjectWebfilterProfileYoutubeChannelStatus(d *schema.ResourceData, v 
 func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("antiphish"); ok {
+	if v, ok := d.GetOk("antiphish"); ok || d.HasChange("antiphish") {
 		t, err := expandObjectWebfilterProfileAntiphish(d, v, "antiphish")
 		if err != nil {
 			return &obj, err
@@ -3544,7 +3544,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWebfilterProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -3553,7 +3553,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("extended_log"); ok {
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
 		t, err := expandObjectWebfilterProfileExtendedLog(d, v, "extended_log")
 		if err != nil {
 			return &obj, err
@@ -3562,7 +3562,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("file_filter"); ok {
+	if v, ok := d.GetOk("file_filter"); ok || d.HasChange("file_filter") {
 		t, err := expandObjectWebfilterProfileFileFilter(d, v, "file_filter")
 		if err != nil {
 			return &obj, err
@@ -3571,7 +3571,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("feature_set"); ok {
+	if v, ok := d.GetOk("feature_set"); ok || d.HasChange("feature_set") {
 		t, err := expandObjectWebfilterProfileFeatureSet(d, v, "feature_set")
 		if err != nil {
 			return &obj, err
@@ -3580,7 +3580,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ftgd_wf"); ok {
+	if v, ok := d.GetOk("ftgd_wf"); ok || d.HasChange("ftgd_wf") {
 		t, err := expandObjectWebfilterProfileFtgdWf(d, v, "ftgd_wf")
 		if err != nil {
 			return &obj, err
@@ -3589,7 +3589,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("https_replacemsg"); ok {
+	if v, ok := d.GetOk("https_replacemsg"); ok || d.HasChange("https_replacemsg") {
 		t, err := expandObjectWebfilterProfileHttpsReplacemsg(d, v, "https_replacemsg")
 		if err != nil {
 			return &obj, err
@@ -3598,7 +3598,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("inspection_mode"); ok {
+	if v, ok := d.GetOk("inspection_mode"); ok || d.HasChange("inspection_mode") {
 		t, err := expandObjectWebfilterProfileInspectionMode(d, v, "inspection_mode")
 		if err != nil {
 			return &obj, err
@@ -3607,7 +3607,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("log_all_url"); ok {
+	if v, ok := d.GetOk("log_all_url"); ok || d.HasChange("log_all_url") {
 		t, err := expandObjectWebfilterProfileLogAllUrl(d, v, "log_all_url")
 		if err != nil {
 			return &obj, err
@@ -3616,7 +3616,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWebfilterProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -3625,7 +3625,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok {
+	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
 		t, err := expandObjectWebfilterProfileOptions(d, v, "options")
 		if err != nil {
 			return &obj, err
@@ -3634,7 +3634,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("override"); ok {
+	if v, ok := d.GetOk("override"); ok || d.HasChange("override") {
 		t, err := expandObjectWebfilterProfileOverride(d, v, "override")
 		if err != nil {
 			return &obj, err
@@ -3643,7 +3643,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ovrd_perm"); ok {
+	if v, ok := d.GetOk("ovrd_perm"); ok || d.HasChange("ovrd_perm") {
 		t, err := expandObjectWebfilterProfileOvrdPerm(d, v, "ovrd_perm")
 		if err != nil {
 			return &obj, err
@@ -3652,7 +3652,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("post_action"); ok {
+	if v, ok := d.GetOk("post_action"); ok || d.HasChange("post_action") {
 		t, err := expandObjectWebfilterProfilePostAction(d, v, "post_action")
 		if err != nil {
 			return &obj, err
@@ -3661,7 +3661,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectWebfilterProfileReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -3670,7 +3670,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("url_extraction"); ok {
+	if v, ok := d.GetOk("url_extraction"); ok || d.HasChange("url_extraction") {
 		t, err := expandObjectWebfilterProfileUrlExtraction(d, v, "url_extraction")
 		if err != nil {
 			return &obj, err
@@ -3679,7 +3679,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web"); ok {
+	if v, ok := d.GetOk("web"); ok || d.HasChange("web") {
 		t, err := expandObjectWebfilterProfileWeb(d, v, "web")
 		if err != nil {
 			return &obj, err
@@ -3688,7 +3688,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_antiphishing_log"); ok {
+	if v, ok := d.GetOk("web_antiphishing_log"); ok || d.HasChange("web_antiphishing_log") {
 		t, err := expandObjectWebfilterProfileWebAntiphishingLog(d, v, "web_antiphishing_log")
 		if err != nil {
 			return &obj, err
@@ -3697,7 +3697,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_content_log"); ok {
+	if v, ok := d.GetOk("web_content_log"); ok || d.HasChange("web_content_log") {
 		t, err := expandObjectWebfilterProfileWebContentLog(d, v, "web_content_log")
 		if err != nil {
 			return &obj, err
@@ -3706,7 +3706,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_extended_all_action_log"); ok {
+	if v, ok := d.GetOk("web_extended_all_action_log"); ok || d.HasChange("web_extended_all_action_log") {
 		t, err := expandObjectWebfilterProfileWebExtendedAllActionLog(d, v, "web_extended_all_action_log")
 		if err != nil {
 			return &obj, err
@@ -3715,7 +3715,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_activex_log"); ok {
+	if v, ok := d.GetOk("web_filter_activex_log"); ok || d.HasChange("web_filter_activex_log") {
 		t, err := expandObjectWebfilterProfileWebFilterActivexLog(d, v, "web_filter_activex_log")
 		if err != nil {
 			return &obj, err
@@ -3724,7 +3724,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_applet_log"); ok {
+	if v, ok := d.GetOk("web_filter_applet_log"); ok || d.HasChange("web_filter_applet_log") {
 		t, err := expandObjectWebfilterProfileWebFilterAppletLog(d, v, "web_filter_applet_log")
 		if err != nil {
 			return &obj, err
@@ -3733,7 +3733,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_command_block_log"); ok {
+	if v, ok := d.GetOk("web_filter_command_block_log"); ok || d.HasChange("web_filter_command_block_log") {
 		t, err := expandObjectWebfilterProfileWebFilterCommandBlockLog(d, v, "web_filter_command_block_log")
 		if err != nil {
 			return &obj, err
@@ -3742,7 +3742,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_cookie_log"); ok {
+	if v, ok := d.GetOk("web_filter_cookie_log"); ok || d.HasChange("web_filter_cookie_log") {
 		t, err := expandObjectWebfilterProfileWebFilterCookieLog(d, v, "web_filter_cookie_log")
 		if err != nil {
 			return &obj, err
@@ -3751,7 +3751,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_cookie_removal_log"); ok {
+	if v, ok := d.GetOk("web_filter_cookie_removal_log"); ok || d.HasChange("web_filter_cookie_removal_log") {
 		t, err := expandObjectWebfilterProfileWebFilterCookieRemovalLog(d, v, "web_filter_cookie_removal_log")
 		if err != nil {
 			return &obj, err
@@ -3760,7 +3760,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_js_log"); ok {
+	if v, ok := d.GetOk("web_filter_js_log"); ok || d.HasChange("web_filter_js_log") {
 		t, err := expandObjectWebfilterProfileWebFilterJsLog(d, v, "web_filter_js_log")
 		if err != nil {
 			return &obj, err
@@ -3769,7 +3769,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_jscript_log"); ok {
+	if v, ok := d.GetOk("web_filter_jscript_log"); ok || d.HasChange("web_filter_jscript_log") {
 		t, err := expandObjectWebfilterProfileWebFilterJscriptLog(d, v, "web_filter_jscript_log")
 		if err != nil {
 			return &obj, err
@@ -3778,7 +3778,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_referer_log"); ok {
+	if v, ok := d.GetOk("web_filter_referer_log"); ok || d.HasChange("web_filter_referer_log") {
 		t, err := expandObjectWebfilterProfileWebFilterRefererLog(d, v, "web_filter_referer_log")
 		if err != nil {
 			return &obj, err
@@ -3787,7 +3787,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_unknown_log"); ok {
+	if v, ok := d.GetOk("web_filter_unknown_log"); ok || d.HasChange("web_filter_unknown_log") {
 		t, err := expandObjectWebfilterProfileWebFilterUnknownLog(d, v, "web_filter_unknown_log")
 		if err != nil {
 			return &obj, err
@@ -3796,7 +3796,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter_vbs_log"); ok {
+	if v, ok := d.GetOk("web_filter_vbs_log"); ok || d.HasChange("web_filter_vbs_log") {
 		t, err := expandObjectWebfilterProfileWebFilterVbsLog(d, v, "web_filter_vbs_log")
 		if err != nil {
 			return &obj, err
@@ -3805,7 +3805,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_ftgd_err_log"); ok {
+	if v, ok := d.GetOk("web_ftgd_err_log"); ok || d.HasChange("web_ftgd_err_log") {
 		t, err := expandObjectWebfilterProfileWebFtgdErrLog(d, v, "web_ftgd_err_log")
 		if err != nil {
 			return &obj, err
@@ -3814,7 +3814,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_ftgd_quota_usage"); ok {
+	if v, ok := d.GetOk("web_ftgd_quota_usage"); ok || d.HasChange("web_ftgd_quota_usage") {
 		t, err := expandObjectWebfilterProfileWebFtgdQuotaUsage(d, v, "web_ftgd_quota_usage")
 		if err != nil {
 			return &obj, err
@@ -3823,7 +3823,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_invalid_domain_log"); ok {
+	if v, ok := d.GetOk("web_invalid_domain_log"); ok || d.HasChange("web_invalid_domain_log") {
 		t, err := expandObjectWebfilterProfileWebInvalidDomainLog(d, v, "web_invalid_domain_log")
 		if err != nil {
 			return &obj, err
@@ -3832,7 +3832,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("web_url_log"); ok {
+	if v, ok := d.GetOk("web_url_log"); ok || d.HasChange("web_url_log") {
 		t, err := expandObjectWebfilterProfileWebUrlLog(d, v, "web_url_log")
 		if err != nil {
 			return &obj, err
@@ -3841,7 +3841,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wisp"); ok {
+	if v, ok := d.GetOk("wisp"); ok || d.HasChange("wisp") {
 		t, err := expandObjectWebfilterProfileWisp(d, v, "wisp")
 		if err != nil {
 			return &obj, err
@@ -3850,7 +3850,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wisp_algorithm"); ok {
+	if v, ok := d.GetOk("wisp_algorithm"); ok || d.HasChange("wisp_algorithm") {
 		t, err := expandObjectWebfilterProfileWispAlgorithm(d, v, "wisp_algorithm")
 		if err != nil {
 			return &obj, err
@@ -3859,7 +3859,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wisp_servers"); ok {
+	if v, ok := d.GetOk("wisp_servers"); ok || d.HasChange("wisp_servers") {
 		t, err := expandObjectWebfilterProfileWispServers(d, v, "wisp_servers")
 		if err != nil {
 			return &obj, err
@@ -3868,7 +3868,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("youtube_channel_filter"); ok {
+	if v, ok := d.GetOk("youtube_channel_filter"); ok || d.HasChange("youtube_channel_filter") {
 		t, err := expandObjectWebfilterProfileYoutubeChannelFilter(d, v, "youtube_channel_filter")
 		if err != nil {
 			return &obj, err
@@ -3877,7 +3877,7 @@ func getObjectObjectWebfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("youtube_channel_status"); ok {
+	if v, ok := d.GetOk("youtube_channel_status"); ok || d.HasChange("youtube_channel_status") {
 		t, err := expandObjectWebfilterProfileYoutubeChannelStatus(d, v, "youtube_channel_status")
 		if err != nil {
 			return &obj, err

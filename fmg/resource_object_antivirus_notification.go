@@ -361,17 +361,17 @@ func expandObjectAntivirusNotificationEntries(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectAntivirusNotificationEntriesName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectAntivirusNotificationEntriesPrefix(d, i["prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectAntivirusNotificationEntriesStatus(d, i["status"], pre_append)
 		}
 
@@ -406,7 +406,7 @@ func expandObjectAntivirusNotificationName(d *schema.ResourceData, v interface{}
 func getObjectObjectAntivirusNotification(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectAntivirusNotificationComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -415,7 +415,7 @@ func getObjectObjectAntivirusNotification(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectAntivirusNotificationEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -424,7 +424,7 @@ func getObjectObjectAntivirusNotification(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectAntivirusNotificationId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -433,7 +433,7 @@ func getObjectObjectAntivirusNotification(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectAntivirusNotificationName(d, v, "name")
 		if err != nil {
 			return &obj, err

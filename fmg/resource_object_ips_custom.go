@@ -500,7 +500,7 @@ func expandObjectIpsCustomTag(d *schema.ResourceData, v interface{}, pre string)
 func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandObjectIpsCustomAction(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -509,7 +509,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("application"); ok {
+	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
 		t, err := expandObjectIpsCustomApplication(d, v, "application")
 		if err != nil {
 			return &obj, err
@@ -518,7 +518,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectIpsCustomComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -527,7 +527,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("location"); ok {
+	if v, ok := d.GetOk("location"); ok || d.HasChange("location") {
 		t, err := expandObjectIpsCustomLocation(d, v, "location")
 		if err != nil {
 			return &obj, err
@@ -536,7 +536,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("log"); ok {
+	if v, ok := d.GetOk("log"); ok || d.HasChange("log") {
 		t, err := expandObjectIpsCustomLog(d, v, "log")
 		if err != nil {
 			return &obj, err
@@ -545,7 +545,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("log_packet"); ok {
+	if v, ok := d.GetOk("log_packet"); ok || d.HasChange("log_packet") {
 		t, err := expandObjectIpsCustomLogPacket(d, v, "log_packet")
 		if err != nil {
 			return &obj, err
@@ -554,7 +554,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("os"); ok {
+	if v, ok := d.GetOk("os"); ok || d.HasChange("os") {
 		t, err := expandObjectIpsCustomOs(d, v, "os")
 		if err != nil {
 			return &obj, err
@@ -563,7 +563,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectIpsCustomProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -572,7 +572,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("rule_id"); ok {
+	if v, ok := d.GetOk("rule_id"); ok || d.HasChange("rule_id") {
 		t, err := expandObjectIpsCustomRuleId(d, v, "rule_id")
 		if err != nil {
 			return &obj, err
@@ -581,7 +581,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("severity"); ok {
+	if v, ok := d.GetOk("severity"); ok || d.HasChange("severity") {
 		t, err := expandObjectIpsCustomSeverity(d, v, "severity")
 		if err != nil {
 			return &obj, err
@@ -590,7 +590,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sig_name"); ok {
+	if v, ok := d.GetOk("sig_name"); ok || d.HasChange("sig_name") {
 		t, err := expandObjectIpsCustomSigName(d, v, "sig_name")
 		if err != nil {
 			return &obj, err
@@ -599,7 +599,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("signature"); ok {
+	if v, ok := d.GetOk("signature"); ok || d.HasChange("signature") {
 		t, err := expandObjectIpsCustomSignature(d, v, "signature")
 		if err != nil {
 			return &obj, err
@@ -608,7 +608,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectIpsCustomStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -617,7 +617,7 @@ func getObjectObjectIpsCustom(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("tag"); ok {
+	if v, ok := d.GetOk("tag"); ok || d.HasChange("tag") {
 		t, err := expandObjectIpsCustomTag(d, v, "tag")
 		if err != nil {
 			return &obj, err

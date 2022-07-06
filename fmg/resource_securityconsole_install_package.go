@@ -337,12 +337,12 @@ func expandSecurityconsoleInstallPackageScope(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSecurityconsoleInstallPackageScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandSecurityconsoleInstallPackageScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -365,7 +365,7 @@ func expandSecurityconsoleInstallPackageScopeVdom(d *schema.ResourceData, v inte
 func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsoleInstallPackageAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -374,7 +374,7 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("adom_rev_comments"); ok {
+	if v, ok := d.GetOk("adom_rev_comments"); ok || d.HasChange("adom_rev_comments") {
 		t, err := expandSecurityconsoleInstallPackageAdomRevComments(d, v, "adom_rev_comments")
 		if err != nil {
 			return &obj, err
@@ -383,7 +383,7 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("adom_rev_name"); ok {
+	if v, ok := d.GetOk("adom_rev_name"); ok || d.HasChange("adom_rev_name") {
 		t, err := expandSecurityconsoleInstallPackageAdomRevName(d, v, "adom_rev_name")
 		if err != nil {
 			return &obj, err
@@ -392,7 +392,7 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("dev_rev_comments"); ok {
+	if v, ok := d.GetOk("dev_rev_comments"); ok || d.HasChange("dev_rev_comments") {
 		t, err := expandSecurityconsoleInstallPackageDevRevComments(d, v, "dev_rev_comments")
 		if err != nil {
 			return &obj, err
@@ -401,7 +401,7 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("flags"); ok {
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
 		t, err := expandSecurityconsoleInstallPackageFlags(d, v, "flags")
 		if err != nil {
 			return &obj, err
@@ -410,7 +410,7 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("pkg"); ok {
+	if v, ok := d.GetOk("pkg"); ok || d.HasChange("pkg") {
 		t, err := expandSecurityconsoleInstallPackagePkg(d, v, "pkg")
 		if err != nil {
 			return &obj, err
@@ -419,7 +419,7 @@ func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok {
+	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
 		t, err := expandSecurityconsoleInstallPackageScope(d, v, "scope")
 		if err != nil {
 			return &obj, err

@@ -182,7 +182,7 @@ func expandSecurityconsoleInstallPreviewVdoms(d *schema.ResourceData, v interfac
 func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsoleInstallPreviewAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -191,7 +191,7 @@ func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("device"); ok {
+	if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
 		t, err := expandSecurityconsoleInstallPreviewDevice(d, v, "device")
 		if err != nil {
 			return &obj, err
@@ -200,7 +200,7 @@ func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("flags"); ok {
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
 		t, err := expandSecurityconsoleInstallPreviewFlags(d, v, "flags")
 		if err != nil {
 			return &obj, err
@@ -209,7 +209,7 @@ func getObjectSecurityconsoleInstallPreview(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("vdoms"); ok {
+	if v, ok := d.GetOk("vdoms"); ok || d.HasChange("vdoms") {
 		t, err := expandSecurityconsoleInstallPreviewVdoms(d, v, "vdoms")
 		if err != nil {
 			return &obj, err

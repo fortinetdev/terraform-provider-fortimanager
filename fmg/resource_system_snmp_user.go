@@ -377,7 +377,7 @@ func expandSystemSnmpUserSecurityLevel(d *schema.ResourceData, v interface{}, pr
 func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auth_proto"); ok {
+	if v, ok := d.GetOk("auth_proto"); ok || d.HasChange("auth_proto") {
 		t, err := expandSystemSnmpUserAuthProto(d, v, "auth_proto")
 		if err != nil {
 			return &obj, err
@@ -386,7 +386,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("auth_pwd"); ok {
+	if v, ok := d.GetOk("auth_pwd"); ok || d.HasChange("auth_pwd") {
 		t, err := expandSystemSnmpUserAuthPwd(d, v, "auth_pwd")
 		if err != nil {
 			return &obj, err
@@ -395,7 +395,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("events"); ok {
+	if v, ok := d.GetOk("events"); ok || d.HasChange("events") {
 		t, err := expandSystemSnmpUserEvents(d, v, "events")
 		if err != nil {
 			return &obj, err
@@ -404,7 +404,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemSnmpUserName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -413,7 +413,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("notify_hosts"); ok {
+	if v, ok := d.GetOk("notify_hosts"); ok || d.HasChange("notify_hosts") {
 		t, err := expandSystemSnmpUserNotifyHosts(d, v, "notify_hosts")
 		if err != nil {
 			return &obj, err
@@ -422,7 +422,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("notify_hosts6"); ok {
+	if v, ok := d.GetOk("notify_hosts6"); ok || d.HasChange("notify_hosts6") {
 		t, err := expandSystemSnmpUserNotifyHosts6(d, v, "notify_hosts6")
 		if err != nil {
 			return &obj, err
@@ -431,7 +431,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("priv_proto"); ok {
+	if v, ok := d.GetOk("priv_proto"); ok || d.HasChange("priv_proto") {
 		t, err := expandSystemSnmpUserPrivProto(d, v, "priv_proto")
 		if err != nil {
 			return &obj, err
@@ -440,7 +440,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("priv_pwd"); ok {
+	if v, ok := d.GetOk("priv_pwd"); ok || d.HasChange("priv_pwd") {
 		t, err := expandSystemSnmpUserPrivPwd(d, v, "priv_pwd")
 		if err != nil {
 			return &obj, err
@@ -449,7 +449,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("queries"); ok {
+	if v, ok := d.GetOk("queries"); ok || d.HasChange("queries") {
 		t, err := expandSystemSnmpUserQueries(d, v, "queries")
 		if err != nil {
 			return &obj, err
@@ -458,7 +458,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("query_port"); ok {
+	if v, ok := d.GetOk("query_port"); ok || d.HasChange("query_port") {
 		t, err := expandSystemSnmpUserQueryPort(d, v, "query_port")
 		if err != nil {
 			return &obj, err
@@ -467,7 +467,7 @@ func getObjectSystemSnmpUser(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("security_level"); ok {
+	if v, ok := d.GetOk("security_level"); ok || d.HasChange("security_level") {
 		t, err := expandSystemSnmpUserSecurityLevel(d, v, "security_level")
 		if err != nil {
 			return &obj, err

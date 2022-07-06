@@ -484,32 +484,32 @@ func expandSystemAlertEventAlertDestination(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from"], _ = expandSystemAlertEventAlertDestinationFrom(d, i["from"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "smtp_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["smtp-name"], _ = expandSystemAlertEventAlertDestinationSmtpName(d, i["smtp_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "snmp_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["snmp-name"], _ = expandSystemAlertEventAlertDestinationSnmpName(d, i["snmp_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "syslog_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["syslog-name"], _ = expandSystemAlertEventAlertDestinationSyslogName(d, i["syslog_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "to"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["to"], _ = expandSystemAlertEventAlertDestinationTo(d, i["to"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandSystemAlertEventAlertDestinationType(d, i["type"], pre_append)
 		}
 
@@ -584,7 +584,7 @@ func expandSystemAlertEventSeverityLevelLogs(d *schema.ResourceData, v interface
 func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("alert_destination"); ok {
+	if v, ok := d.GetOk("alert_destination"); ok || d.HasChange("alert_destination") {
 		t, err := expandSystemAlertEventAlertDestination(d, v, "alert_destination")
 		if err != nil {
 			return &obj, err
@@ -593,7 +593,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("enable_generic_text"); ok {
+	if v, ok := d.GetOk("enable_generic_text"); ok || d.HasChange("enable_generic_text") {
 		t, err := expandSystemAlertEventEnableGenericText(d, v, "enable_generic_text")
 		if err != nil {
 			return &obj, err
@@ -602,7 +602,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("enable_severity_filter"); ok {
+	if v, ok := d.GetOk("enable_severity_filter"); ok || d.HasChange("enable_severity_filter") {
 		t, err := expandSystemAlertEventEnableSeverityFilter(d, v, "enable_severity_filter")
 		if err != nil {
 			return &obj, err
@@ -611,7 +611,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("event_time_period"); ok {
+	if v, ok := d.GetOk("event_time_period"); ok || d.HasChange("event_time_period") {
 		t, err := expandSystemAlertEventEventTimePeriod(d, v, "event_time_period")
 		if err != nil {
 			return &obj, err
@@ -620,7 +620,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("generic_text"); ok {
+	if v, ok := d.GetOk("generic_text"); ok || d.HasChange("generic_text") {
 		t, err := expandSystemAlertEventGenericText(d, v, "generic_text")
 		if err != nil {
 			return &obj, err
@@ -629,7 +629,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemAlertEventName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -638,7 +638,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("num_events"); ok {
+	if v, ok := d.GetOk("num_events"); ok || d.HasChange("num_events") {
 		t, err := expandSystemAlertEventNumEvents(d, v, "num_events")
 		if err != nil {
 			return &obj, err
@@ -647,7 +647,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("severity_filter"); ok {
+	if v, ok := d.GetOk("severity_filter"); ok || d.HasChange("severity_filter") {
 		t, err := expandSystemAlertEventSeverityFilter(d, v, "severity_filter")
 		if err != nil {
 			return &obj, err
@@ -656,7 +656,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("severity_level_comp"); ok {
+	if v, ok := d.GetOk("severity_level_comp"); ok || d.HasChange("severity_level_comp") {
 		t, err := expandSystemAlertEventSeverityLevelComp(d, v, "severity_level_comp")
 		if err != nil {
 			return &obj, err
@@ -665,7 +665,7 @@ func getObjectSystemAlertEvent(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("severity_level_logs"); ok {
+	if v, ok := d.GetOk("severity_level_logs"); ok || d.HasChange("severity_level_logs") {
 		t, err := expandSystemAlertEventSeverityLevelLogs(d, v, "severity_level_logs")
 		if err != nil {
 			return &obj, err

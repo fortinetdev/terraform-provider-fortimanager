@@ -636,32 +636,32 @@ func expandDvmdbScriptScriptSchedule(d *schema.ResourceData, v interface{}, pre 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "datetime"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["datetime"], _ = expandDvmdbScriptScriptScheduleDatetime(d, i["datetime"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "day_of_week"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["day_of_week"], _ = expandDvmdbScriptScriptScheduleDayOfWeek(d, i["day_of_week"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "device"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["device"], _ = expandDvmdbScriptScriptScheduleDevice(d, i["device"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandDvmdbScriptScriptScheduleName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "run_on_db"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["run_on_db"], _ = expandDvmdbScriptScriptScheduleRunOnDb(d, i["run_on_db"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandDvmdbScriptScriptScheduleType(d, i["type"], pre_append)
 		}
 
@@ -708,7 +708,7 @@ func expandDvmdbScriptType(d *schema.ResourceData, v interface{}, pre string) (i
 func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("content"); ok {
+	if v, ok := d.GetOk("content"); ok || d.HasChange("content") {
 		t, err := expandDvmdbScriptContent(d, v, "content")
 		if err != nil {
 			return &obj, err
@@ -717,7 +717,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("desc"); ok {
+	if v, ok := d.GetOk("desc"); ok || d.HasChange("desc") {
 		t, err := expandDvmdbScriptDesc(d, v, "desc")
 		if err != nil {
 			return &obj, err
@@ -726,7 +726,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_build"); ok {
+	if v, ok := d.GetOk("filter_build"); ok || d.HasChange("filter_build") {
 		t, err := expandDvmdbScriptFilterBuild(d, v, "filter_build")
 		if err != nil {
 			return &obj, err
@@ -735,7 +735,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_device"); ok {
+	if v, ok := d.GetOk("filter_device"); ok || d.HasChange("filter_device") {
 		t, err := expandDvmdbScriptFilterDevice(d, v, "filter_device")
 		if err != nil {
 			return &obj, err
@@ -744,7 +744,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_hostname"); ok {
+	if v, ok := d.GetOk("filter_hostname"); ok || d.HasChange("filter_hostname") {
 		t, err := expandDvmdbScriptFilterHostname(d, v, "filter_hostname")
 		if err != nil {
 			return &obj, err
@@ -753,7 +753,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_ostype"); ok {
+	if v, ok := d.GetOk("filter_ostype"); ok || d.HasChange("filter_ostype") {
 		t, err := expandDvmdbScriptFilterOstype(d, v, "filter_ostype")
 		if err != nil {
 			return &obj, err
@@ -762,7 +762,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_osver"); ok {
+	if v, ok := d.GetOk("filter_osver"); ok || d.HasChange("filter_osver") {
 		t, err := expandDvmdbScriptFilterOsver(d, v, "filter_osver")
 		if err != nil {
 			return &obj, err
@@ -771,7 +771,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_platform"); ok {
+	if v, ok := d.GetOk("filter_platform"); ok || d.HasChange("filter_platform") {
 		t, err := expandDvmdbScriptFilterPlatform(d, v, "filter_platform")
 		if err != nil {
 			return &obj, err
@@ -780,7 +780,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("filter_serial"); ok {
+	if v, ok := d.GetOk("filter_serial"); ok || d.HasChange("filter_serial") {
 		t, err := expandDvmdbScriptFilterSerial(d, v, "filter_serial")
 		if err != nil {
 			return &obj, err
@@ -789,7 +789,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("modification_time"); ok {
+	if v, ok := d.GetOk("modification_time"); ok || d.HasChange("modification_time") {
 		t, err := expandDvmdbScriptModificationTime(d, v, "modification_time")
 		if err != nil {
 			return &obj, err
@@ -798,7 +798,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandDvmdbScriptName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -807,7 +807,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("script_schedule"); ok {
+	if v, ok := d.GetOk("script_schedule"); ok || d.HasChange("script_schedule") {
 		t, err := expandDvmdbScriptScriptSchedule(d, v, "script_schedule")
 		if err != nil {
 			return &obj, err
@@ -816,7 +816,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("target"); ok {
+	if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
 		t, err := expandDvmdbScriptTarget(d, v, "target")
 		if err != nil {
 			return &obj, err
@@ -825,7 +825,7 @@ func getObjectDvmdbScript(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandDvmdbScriptType(d, v, "type")
 		if err != nil {
 			return &obj, err

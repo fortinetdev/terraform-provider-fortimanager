@@ -383,14 +383,14 @@ func expandObjectDynamicVpntunnelDynamicMapping(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectDynamicVpntunnelDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_ipsec"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-ipsec"], _ = expandObjectDynamicVpntunnelDynamicMappingLocalIpsec(d, i["local_ipsec"], pre_append)
 		}
 
@@ -417,12 +417,12 @@ func expandObjectDynamicVpntunnelDynamicMappingScope(d *schema.ResourceData, v i
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectDynamicVpntunnelDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectDynamicVpntunnelDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -453,7 +453,7 @@ func expandObjectDynamicVpntunnelName(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectDynamicVpntunnel(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicVpntunnelDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -462,7 +462,7 @@ func getObjectObjectDynamicVpntunnel(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectDynamicVpntunnelDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -471,7 +471,7 @@ func getObjectObjectDynamicVpntunnel(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicVpntunnelName(d, v, "name")
 		if err != nil {
 			return &obj, err

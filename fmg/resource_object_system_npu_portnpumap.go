@@ -221,7 +221,7 @@ func expandObjectSystemNpuPortNpuMapNpuGroupIndex(d *schema.ResourceData, v inte
 func getObjectObjectSystemNpuPortNpuMap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectSystemNpuPortNpuMapInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectSystemNpuPortNpuMap(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("npu_group_index"); ok {
+	if v, ok := d.GetOk("npu_group_index"); ok || d.HasChange("npu_group_index") {
 		t, err := expandObjectSystemNpuPortNpuMapNpuGroupIndex(d, v, "npu_group_index")
 		if err != nil {
 			return &obj, err

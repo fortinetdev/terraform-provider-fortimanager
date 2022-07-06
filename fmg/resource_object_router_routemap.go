@@ -950,225 +950,225 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectRouterRouteMapRuleAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectRouterRouteMapRuleId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_as_path"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-as-path"], _ = expandObjectRouterRouteMapRuleMatchAsPath(d, i["match_as_path"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_community"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-community"], _ = expandObjectRouterRouteMapRuleMatchCommunity(d, i["match_community"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_community_exact"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-community-exact"], _ = expandObjectRouterRouteMapRuleMatchCommunityExact(d, i["match_community_exact"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_flags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-flags"], _ = expandObjectRouterRouteMapRuleMatchFlags(d, i["match_flags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-interface"], _ = expandObjectRouterRouteMapRuleMatchInterface(d, i["match_interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_ip_address"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-ip-address"], _ = expandObjectRouterRouteMapRuleMatchIpAddress(d, i["match_ip_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_ip_nexthop"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-ip-nexthop"], _ = expandObjectRouterRouteMapRuleMatchIpNexthop(d, i["match_ip_nexthop"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_ip6_address"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-ip6-address"], _ = expandObjectRouterRouteMapRuleMatchIp6Address(d, i["match_ip6_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_ip6_nexthop"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-ip6-nexthop"], _ = expandObjectRouterRouteMapRuleMatchIp6Nexthop(d, i["match_ip6_nexthop"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_metric"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-metric"], _ = expandObjectRouterRouteMapRuleMatchMetric(d, i["match_metric"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_origin"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-origin"], _ = expandObjectRouterRouteMapRuleMatchOrigin(d, i["match_origin"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_route_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-route-type"], _ = expandObjectRouterRouteMapRuleMatchRouteType(d, i["match_route_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_tag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-tag"], _ = expandObjectRouterRouteMapRuleMatchTag(d, i["match_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_vrf"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-vrf"], _ = expandObjectRouterRouteMapRuleMatchVrf(d, i["match_vrf"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_aggregator_as"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-aggregator-as"], _ = expandObjectRouterRouteMapRuleSetAggregatorAs(d, i["set_aggregator_as"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_aggregator_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-aggregator-ip"], _ = expandObjectRouterRouteMapRuleSetAggregatorIp(d, i["set_aggregator_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_aspath"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-aspath"], _ = expandObjectRouterRouteMapRuleSetAspath(d, i["set_aspath"], pre_append)
 		} else {
 			tmp["set-aspath"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_aspath_action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-aspath-action"], _ = expandObjectRouterRouteMapRuleSetAspathAction(d, i["set_aspath_action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_atomic_aggregate"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-atomic-aggregate"], _ = expandObjectRouterRouteMapRuleSetAtomicAggregate(d, i["set_atomic_aggregate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_community"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-community"], _ = expandObjectRouterRouteMapRuleSetCommunity(d, i["set_community"], pre_append)
 		} else {
 			tmp["set-community"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_community_additive"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-community-additive"], _ = expandObjectRouterRouteMapRuleSetCommunityAdditive(d, i["set_community_additive"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_community_delete"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-community-delete"], _ = expandObjectRouterRouteMapRuleSetCommunityDelete(d, i["set_community_delete"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_dampening_max_suppress"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-dampening-max-suppress"], _ = expandObjectRouterRouteMapRuleSetDampeningMaxSuppress(d, i["set_dampening_max_suppress"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_dampening_reachability_half_life"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-dampening-reachability-half-life"], _ = expandObjectRouterRouteMapRuleSetDampeningReachabilityHalfLife(d, i["set_dampening_reachability_half_life"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_dampening_reuse"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-dampening-reuse"], _ = expandObjectRouterRouteMapRuleSetDampeningReuse(d, i["set_dampening_reuse"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_dampening_suppress"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-dampening-suppress"], _ = expandObjectRouterRouteMapRuleSetDampeningSuppress(d, i["set_dampening_suppress"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_dampening_unreachability_half_life"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-dampening-unreachability-half-life"], _ = expandObjectRouterRouteMapRuleSetDampeningUnreachabilityHalfLife(d, i["set_dampening_unreachability_half_life"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_extcommunity_rt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-extcommunity-rt"], _ = expandObjectRouterRouteMapRuleSetExtcommunityRt(d, i["set_extcommunity_rt"], pre_append)
 		} else {
 			tmp["set-extcommunity-rt"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_extcommunity_soo"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-extcommunity-soo"], _ = expandObjectRouterRouteMapRuleSetExtcommunitySoo(d, i["set_extcommunity_soo"], pre_append)
 		} else {
 			tmp["set-extcommunity-soo"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_flags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-flags"], _ = expandObjectRouterRouteMapRuleSetFlags(d, i["set_flags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip_nexthop"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-ip-nexthop"], _ = expandObjectRouterRouteMapRuleSetIpNexthop(d, i["set_ip_nexthop"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip6_nexthop"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-ip6-nexthop"], _ = expandObjectRouterRouteMapRuleSetIp6Nexthop(d, i["set_ip6_nexthop"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip6_nexthop_local"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-ip6-nexthop-local"], _ = expandObjectRouterRouteMapRuleSetIp6NexthopLocal(d, i["set_ip6_nexthop_local"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_local_preference"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-local-preference"], _ = expandObjectRouterRouteMapRuleSetLocalPreference(d, i["set_local_preference"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_metric"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-metric"], _ = expandObjectRouterRouteMapRuleSetMetric(d, i["set_metric"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_metric_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-metric-type"], _ = expandObjectRouterRouteMapRuleSetMetricType(d, i["set_metric_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_origin"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-origin"], _ = expandObjectRouterRouteMapRuleSetOrigin(d, i["set_origin"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_originator_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-originator-id"], _ = expandObjectRouterRouteMapRuleSetOriginatorId(d, i["set_originator_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_route_tag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-route-tag"], _ = expandObjectRouterRouteMapRuleSetRouteTag(d, i["set_route_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_tag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-tag"], _ = expandObjectRouterRouteMapRuleSetTag(d, i["set_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-weight"], _ = expandObjectRouterRouteMapRuleSetWeight(d, i["set_weight"], pre_append)
 		}
 
@@ -1355,7 +1355,7 @@ func expandObjectRouterRouteMapRuleSetWeight(d *schema.ResourceData, v interface
 func getObjectObjectRouterRouteMap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectRouterRouteMapComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -1364,7 +1364,7 @@ func getObjectObjectRouterRouteMap(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectRouterRouteMapName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1373,7 +1373,7 @@ func getObjectObjectRouterRouteMap(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("rule"); ok {
+	if v, ok := d.GetOk("rule"); ok || d.HasChange("rule") {
 		t, err := expandObjectRouterRouteMapRule(d, v, "rule")
 		if err != nil {
 			return &obj, err

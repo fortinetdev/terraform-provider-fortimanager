@@ -1829,22 +1829,22 @@ func expandObjectSystemNpuNpQueuesEthernetTypeOsnna(d *schema.ResourceData, v in
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesEthernetTypeNameOsnna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue"], _ = expandObjectSystemNpuNpQueuesEthernetTypeQueueOsnna(d, i["queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSystemNpuNpQueuesEthernetTypeTypeOsnna(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesEthernetTypeWeightOsnna(d, i["weight"], pre_append)
 		}
 
@@ -1887,22 +1887,22 @@ func expandObjectSystemNpuNpQueuesIpProtocolOsnna(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesIpProtocolNameOsnna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectSystemNpuNpQueuesIpProtocolProtocolOsnna(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue"], _ = expandObjectSystemNpuNpQueuesIpProtocolQueueOsnna(d, i["queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesIpProtocolWeightOsnna(d, i["weight"], pre_append)
 		}
 
@@ -1945,32 +1945,32 @@ func expandObjectSystemNpuNpQueuesIpServiceOsnna(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dport"], _ = expandObjectSystemNpuNpQueuesIpServiceDportOsnna(d, i["dport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesIpServiceNameOsnna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectSystemNpuNpQueuesIpServiceProtocolOsnna(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue"], _ = expandObjectSystemNpuNpQueuesIpServiceQueueOsnna(d, i["queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sport"], _ = expandObjectSystemNpuNpQueuesIpServiceSportOsnna(d, i["sport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesIpServiceWeightOsnna(d, i["weight"], pre_append)
 		}
 
@@ -2021,377 +2021,377 @@ func expandObjectSystemNpuNpQueuesProfileOsnna(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos0"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos0"], _ = expandObjectSystemNpuNpQueuesProfileCos0Osnna(d, i["cos0"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos1"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos1"], _ = expandObjectSystemNpuNpQueuesProfileCos1Osnna(d, i["cos1"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos2"], _ = expandObjectSystemNpuNpQueuesProfileCos2Osnna(d, i["cos2"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos3"], _ = expandObjectSystemNpuNpQueuesProfileCos3Osnna(d, i["cos3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos4"], _ = expandObjectSystemNpuNpQueuesProfileCos4Osnna(d, i["cos4"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos5"], _ = expandObjectSystemNpuNpQueuesProfileCos5Osnna(d, i["cos5"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos6"], _ = expandObjectSystemNpuNpQueuesProfileCos6Osnna(d, i["cos6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos7"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos7"], _ = expandObjectSystemNpuNpQueuesProfileCos7Osnna(d, i["cos7"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp0"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp0"], _ = expandObjectSystemNpuNpQueuesProfileDscp0Osnna(d, i["dscp0"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp1"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp1"], _ = expandObjectSystemNpuNpQueuesProfileDscp1Osnna(d, i["dscp1"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp10"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp10"], _ = expandObjectSystemNpuNpQueuesProfileDscp10Osnna(d, i["dscp10"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp11"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp11"], _ = expandObjectSystemNpuNpQueuesProfileDscp11Osnna(d, i["dscp11"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp12"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp12"], _ = expandObjectSystemNpuNpQueuesProfileDscp12Osnna(d, i["dscp12"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp13"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp13"], _ = expandObjectSystemNpuNpQueuesProfileDscp13Osnna(d, i["dscp13"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp14"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp14"], _ = expandObjectSystemNpuNpQueuesProfileDscp14Osnna(d, i["dscp14"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp15"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp15"], _ = expandObjectSystemNpuNpQueuesProfileDscp15Osnna(d, i["dscp15"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp16"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp16"], _ = expandObjectSystemNpuNpQueuesProfileDscp16Osnna(d, i["dscp16"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp17"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp17"], _ = expandObjectSystemNpuNpQueuesProfileDscp17Osnna(d, i["dscp17"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp18"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp18"], _ = expandObjectSystemNpuNpQueuesProfileDscp18Osnna(d, i["dscp18"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp19"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp19"], _ = expandObjectSystemNpuNpQueuesProfileDscp19Osnna(d, i["dscp19"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp2"], _ = expandObjectSystemNpuNpQueuesProfileDscp2Osnna(d, i["dscp2"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp20"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp20"], _ = expandObjectSystemNpuNpQueuesProfileDscp20Osnna(d, i["dscp20"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp21"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp21"], _ = expandObjectSystemNpuNpQueuesProfileDscp21Osnna(d, i["dscp21"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp22"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp22"], _ = expandObjectSystemNpuNpQueuesProfileDscp22Osnna(d, i["dscp22"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp23"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp23"], _ = expandObjectSystemNpuNpQueuesProfileDscp23Osnna(d, i["dscp23"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp24"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp24"], _ = expandObjectSystemNpuNpQueuesProfileDscp24Osnna(d, i["dscp24"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp25"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp25"], _ = expandObjectSystemNpuNpQueuesProfileDscp25Osnna(d, i["dscp25"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp26"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp26"], _ = expandObjectSystemNpuNpQueuesProfileDscp26Osnna(d, i["dscp26"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp27"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp27"], _ = expandObjectSystemNpuNpQueuesProfileDscp27Osnna(d, i["dscp27"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp28"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp28"], _ = expandObjectSystemNpuNpQueuesProfileDscp28Osnna(d, i["dscp28"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp29"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp29"], _ = expandObjectSystemNpuNpQueuesProfileDscp29Osnna(d, i["dscp29"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp3"], _ = expandObjectSystemNpuNpQueuesProfileDscp3Osnna(d, i["dscp3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp30"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp30"], _ = expandObjectSystemNpuNpQueuesProfileDscp30Osnna(d, i["dscp30"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp31"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp31"], _ = expandObjectSystemNpuNpQueuesProfileDscp31Osnna(d, i["dscp31"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp32"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp32"], _ = expandObjectSystemNpuNpQueuesProfileDscp32Osnna(d, i["dscp32"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp33"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp33"], _ = expandObjectSystemNpuNpQueuesProfileDscp33Osnna(d, i["dscp33"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp34"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp34"], _ = expandObjectSystemNpuNpQueuesProfileDscp34Osnna(d, i["dscp34"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp35"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp35"], _ = expandObjectSystemNpuNpQueuesProfileDscp35Osnna(d, i["dscp35"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp36"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp36"], _ = expandObjectSystemNpuNpQueuesProfileDscp36Osnna(d, i["dscp36"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp37"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp37"], _ = expandObjectSystemNpuNpQueuesProfileDscp37Osnna(d, i["dscp37"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp38"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp38"], _ = expandObjectSystemNpuNpQueuesProfileDscp38Osnna(d, i["dscp38"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp39"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp39"], _ = expandObjectSystemNpuNpQueuesProfileDscp39Osnna(d, i["dscp39"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp4"], _ = expandObjectSystemNpuNpQueuesProfileDscp4Osnna(d, i["dscp4"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp40"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp40"], _ = expandObjectSystemNpuNpQueuesProfileDscp40Osnna(d, i["dscp40"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp41"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp41"], _ = expandObjectSystemNpuNpQueuesProfileDscp41Osnna(d, i["dscp41"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp42"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp42"], _ = expandObjectSystemNpuNpQueuesProfileDscp42Osnna(d, i["dscp42"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp43"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp43"], _ = expandObjectSystemNpuNpQueuesProfileDscp43Osnna(d, i["dscp43"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp44"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp44"], _ = expandObjectSystemNpuNpQueuesProfileDscp44Osnna(d, i["dscp44"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp45"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp45"], _ = expandObjectSystemNpuNpQueuesProfileDscp45Osnna(d, i["dscp45"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp46"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp46"], _ = expandObjectSystemNpuNpQueuesProfileDscp46Osnna(d, i["dscp46"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp47"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp47"], _ = expandObjectSystemNpuNpQueuesProfileDscp47Osnna(d, i["dscp47"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp48"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp48"], _ = expandObjectSystemNpuNpQueuesProfileDscp48Osnna(d, i["dscp48"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp49"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp49"], _ = expandObjectSystemNpuNpQueuesProfileDscp49Osnna(d, i["dscp49"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp5"], _ = expandObjectSystemNpuNpQueuesProfileDscp5Osnna(d, i["dscp5"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp50"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp50"], _ = expandObjectSystemNpuNpQueuesProfileDscp50Osnna(d, i["dscp50"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp51"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp51"], _ = expandObjectSystemNpuNpQueuesProfileDscp51Osnna(d, i["dscp51"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp52"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp52"], _ = expandObjectSystemNpuNpQueuesProfileDscp52Osnna(d, i["dscp52"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp53"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp53"], _ = expandObjectSystemNpuNpQueuesProfileDscp53Osnna(d, i["dscp53"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp54"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp54"], _ = expandObjectSystemNpuNpQueuesProfileDscp54Osnna(d, i["dscp54"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp55"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp55"], _ = expandObjectSystemNpuNpQueuesProfileDscp55Osnna(d, i["dscp55"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp56"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp56"], _ = expandObjectSystemNpuNpQueuesProfileDscp56Osnna(d, i["dscp56"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp57"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp57"], _ = expandObjectSystemNpuNpQueuesProfileDscp57Osnna(d, i["dscp57"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp58"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp58"], _ = expandObjectSystemNpuNpQueuesProfileDscp58Osnna(d, i["dscp58"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp59"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp59"], _ = expandObjectSystemNpuNpQueuesProfileDscp59Osnna(d, i["dscp59"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp6"], _ = expandObjectSystemNpuNpQueuesProfileDscp6Osnna(d, i["dscp6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp60"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp60"], _ = expandObjectSystemNpuNpQueuesProfileDscp60Osnna(d, i["dscp60"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp61"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp61"], _ = expandObjectSystemNpuNpQueuesProfileDscp61Osnna(d, i["dscp61"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp62"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp62"], _ = expandObjectSystemNpuNpQueuesProfileDscp62Osnna(d, i["dscp62"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp63"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp63"], _ = expandObjectSystemNpuNpQueuesProfileDscp63Osnna(d, i["dscp63"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp7"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp7"], _ = expandObjectSystemNpuNpQueuesProfileDscp7Osnna(d, i["dscp7"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp8"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp8"], _ = expandObjectSystemNpuNpQueuesProfileDscp8Osnna(d, i["dscp8"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp9"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp9"], _ = expandObjectSystemNpuNpQueuesProfileDscp9Osnna(d, i["dscp9"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemNpuNpQueuesProfileIdOsnna(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSystemNpuNpQueuesProfileTypeOsnna(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesProfileWeightOsnna(d, i["weight"], pre_append)
 		}
 
@@ -2718,12 +2718,12 @@ func expandObjectSystemNpuNpQueuesSchedulerOsnna(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mode"], _ = expandObjectSystemNpuNpQueuesSchedulerModeOsnna(d, i["mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesSchedulerNameOsnna(d, i["name"], pre_append)
 		}
 
@@ -2746,7 +2746,7 @@ func expandObjectSystemNpuNpQueuesSchedulerNameOsnna(d *schema.ResourceData, v i
 func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ethernet_type"); ok {
+	if v, ok := d.GetOk("ethernet_type"); ok || d.HasChange("ethernet_type") {
 		t, err := expandObjectSystemNpuNpQueuesEthernetTypeOsnna(d, v, "ethernet_type")
 		if err != nil {
 			return &obj, err
@@ -2755,7 +2755,7 @@ func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("ip_protocol"); ok {
+	if v, ok := d.GetOk("ip_protocol"); ok || d.HasChange("ip_protocol") {
 		t, err := expandObjectSystemNpuNpQueuesIpProtocolOsnna(d, v, "ip_protocol")
 		if err != nil {
 			return &obj, err
@@ -2764,7 +2764,7 @@ func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("ip_service"); ok {
+	if v, ok := d.GetOk("ip_service"); ok || d.HasChange("ip_service") {
 		t, err := expandObjectSystemNpuNpQueuesIpServiceOsnna(d, v, "ip_service")
 		if err != nil {
 			return &obj, err
@@ -2773,7 +2773,7 @@ func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("profile"); ok {
+	if v, ok := d.GetOk("profile"); ok || d.HasChange("profile") {
 		t, err := expandObjectSystemNpuNpQueuesProfileOsnna(d, v, "profile")
 		if err != nil {
 			return &obj, err
@@ -2782,7 +2782,7 @@ func getObjectObjectSystemNpuNpQueues(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("scheduler"); ok {
+	if v, ok := d.GetOk("scheduler"); ok || d.HasChange("scheduler") {
 		t, err := expandObjectSystemNpuNpQueuesSchedulerOsnna(d, v, "scheduler")
 		if err != nil {
 			return &obj, err

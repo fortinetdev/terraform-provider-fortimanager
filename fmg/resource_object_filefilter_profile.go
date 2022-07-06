@@ -519,39 +519,39 @@ func expandObjectFileFilterProfileRules(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectFileFilterProfileRulesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectFileFilterProfileRulesComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["direction"], _ = expandObjectFileFilterProfileRulesDirection(d, i["direction"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectFileFilterProfileRulesFileType(d, i["file_type"], pre_append)
 		} else {
 			tmp["file-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFileFilterProfileRulesName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-protected"], _ = expandObjectFileFilterProfileRulesPasswordProtected(d, i["password_protected"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectFileFilterProfileRulesProtocol(d, i["protocol"], pre_append)
 		} else {
 			tmp["protocol"] = make([]string, 0)
@@ -600,7 +600,7 @@ func expandObjectFileFilterProfileScanArchiveContents(d *schema.ResourceData, v 
 func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFileFilterProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -609,7 +609,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("extended_log"); ok {
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
 		t, err := expandObjectFileFilterProfileExtendedLog(d, v, "extended_log")
 		if err != nil {
 			return &obj, err
@@ -618,7 +618,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("feature_set"); ok {
+	if v, ok := d.GetOk("feature_set"); ok || d.HasChange("feature_set") {
 		t, err := expandObjectFileFilterProfileFeatureSet(d, v, "feature_set")
 		if err != nil {
 			return &obj, err
@@ -627,7 +627,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("log"); ok {
+	if v, ok := d.GetOk("log"); ok || d.HasChange("log") {
 		t, err := expandObjectFileFilterProfileLog(d, v, "log")
 		if err != nil {
 			return &obj, err
@@ -636,7 +636,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFileFilterProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -645,7 +645,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectFileFilterProfileReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -654,7 +654,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("rules"); ok {
+	if v, ok := d.GetOk("rules"); ok || d.HasChange("rules") {
 		t, err := expandObjectFileFilterProfileRules(d, v, "rules")
 		if err != nil {
 			return &obj, err
@@ -663,7 +663,7 @@ func getObjectObjectFileFilterProfile(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("scan_archive_contents"); ok {
+	if v, ok := d.GetOk("scan_archive_contents"); ok || d.HasChange("scan_archive_contents") {
 		t, err := expandObjectFileFilterProfileScanArchiveContents(d, v, "scan_archive_contents")
 		if err != nil {
 			return &obj, err

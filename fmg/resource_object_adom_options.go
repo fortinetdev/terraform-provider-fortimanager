@@ -194,7 +194,7 @@ func expandObjectAdomOptionsSpecifyAssignPkgList(d *schema.ResourceData, v inter
 func getObjectObjectAdomOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("assign_excluded"); ok {
+	if v, ok := d.GetOk("assign_excluded"); ok || d.HasChange("assign_excluded") {
 		t, err := expandObjectAdomOptionsAssignExcluded(d, v, "assign_excluded")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectObjectAdomOptions(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("specify_assign_pkg_list"); ok {
+	if v, ok := d.GetOk("specify_assign_pkg_list"); ok || d.HasChange("specify_assign_pkg_list") {
 		t, err := expandObjectAdomOptionsSpecifyAssignPkgList(d, v, "specify_assign_pkg_list")
 		if err != nil {
 			return &obj, err

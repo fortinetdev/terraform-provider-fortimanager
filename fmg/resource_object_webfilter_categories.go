@@ -197,7 +197,7 @@ func expandObjectWebfilterCategoriesId(d *schema.ResourceData, v interface{}, pr
 func getObjectObjectWebfilterCategories(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectWebfilterCategoriesId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

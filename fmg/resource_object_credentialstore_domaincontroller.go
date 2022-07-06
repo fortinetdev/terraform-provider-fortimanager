@@ -360,7 +360,7 @@ func expandObjectCredentialStoreDomainControllerUsername(d *schema.ResourceData,
 func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("domain_name"); ok {
+	if v, ok := d.GetOk("domain_name"); ok || d.HasChange("domain_name") {
 		t, err := expandObjectCredentialStoreDomainControllerDomainName(d, v, "domain_name")
 		if err != nil {
 			return &obj, err
@@ -369,7 +369,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("hostname"); ok {
+	if v, ok := d.GetOk("hostname"); ok || d.HasChange("hostname") {
 		t, err := expandObjectCredentialStoreDomainControllerHostname(d, v, "hostname")
 		if err != nil {
 			return &obj, err
@@ -378,7 +378,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandObjectCredentialStoreDomainControllerIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -387,7 +387,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("ip6"); ok {
+	if v, ok := d.GetOk("ip6"); ok || d.HasChange("ip6") {
 		t, err := expandObjectCredentialStoreDomainControllerIp6(d, v, "ip6")
 		if err != nil {
 			return &obj, err
@@ -396,7 +396,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectCredentialStoreDomainControllerPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -405,7 +405,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectCredentialStoreDomainControllerPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -414,7 +414,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("server_name"); ok {
+	if v, ok := d.GetOk("server_name"); ok || d.HasChange("server_name") {
 		t, err := expandObjectCredentialStoreDomainControllerServerName(d, v, "server_name")
 		if err != nil {
 			return &obj, err
@@ -423,7 +423,7 @@ func getObjectObjectCredentialStoreDomainController(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandObjectCredentialStoreDomainControllerUsername(d, v, "username")
 		if err != nil {
 			return &obj, err

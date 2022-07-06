@@ -2047,236 +2047,236 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_image_base64"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_image-base64"], _ = expandObjectFirewallAddressDynamicMappingImageBase64(d, i["_image_base64"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectFirewallAddressDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allow_routing"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["allow-routing"], _ = expandObjectFirewallAddressDynamicMappingAllowRouting(d, i["allow_routing"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "associated_interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["associated-interface"], _ = expandObjectFirewallAddressDynamicMappingAssociatedInterface(d, i["associated_interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cache_ttl"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cache-ttl"], _ = expandObjectFirewallAddressDynamicMappingCacheTtl(d, i["cache_ttl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "clearpass_spt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["clearpass-spt"], _ = expandObjectFirewallAddressDynamicMappingClearpassSpt(d, i["clearpass_spt"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "color"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["color"], _ = expandObjectFirewallAddressDynamicMappingColor(d, i["color"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectFirewallAddressDynamicMappingComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "country"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["country"], _ = expandObjectFirewallAddressDynamicMappingCountry(d, i["country"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dirty"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dirty"], _ = expandObjectFirewallAddressDynamicMappingDirty(d, i["dirty"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectFirewallAddressDynamicMappingEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-mac"], _ = expandObjectFirewallAddressDynamicMappingEndMac(d, i["end_mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "epg_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["epg-name"], _ = expandObjectFirewallAddressDynamicMappingEpgName(d, i["epg_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fabric-object"], _ = expandObjectFirewallAddressDynamicMappingFabricObject(d, i["fabric_object"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter"], _ = expandObjectFirewallAddressDynamicMappingFilter(d, i["filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fqdn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fqdn"], _ = expandObjectFirewallAddressDynamicMappingFqdn(d, i["fqdn"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fsso_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fsso-group"], _ = expandObjectFirewallAddressDynamicMappingFssoGroup(d, i["fsso_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "global_object"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["global-object"], _ = expandObjectFirewallAddressDynamicMappingGlobalObject(d, i["global_object"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectFirewallAddressDynamicMappingInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "macaddr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["macaddr"], _ = expandObjectFirewallAddressDynamicMappingMacaddr(d, i["macaddr"], pre_append)
 		} else {
 			tmp["macaddr"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "node_ip_only"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["node-ip-only"], _ = expandObjectFirewallAddressDynamicMappingNodeIpOnly(d, i["node_ip_only"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["obj-id"], _ = expandObjectFirewallAddressDynamicMappingObjId(d, i["obj_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_tag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["obj-tag"], _ = expandObjectFirewallAddressDynamicMappingObjTag(d, i["obj_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["obj-type"], _ = expandObjectFirewallAddressDynamicMappingObjType(d, i["obj_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "organization"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["organization"], _ = expandObjectFirewallAddressDynamicMappingOrganization(d, i["organization"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_end"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern-end"], _ = expandObjectFirewallAddressDynamicMappingPatternEnd(d, i["pattern_end"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_start"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern-start"], _ = expandObjectFirewallAddressDynamicMappingPatternStart(d, i["pattern_start"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "policy_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["policy-group"], _ = expandObjectFirewallAddressDynamicMappingPolicyGroup(d, i["policy_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sdn"], _ = expandObjectFirewallAddressDynamicMappingSdn(d, i["sdn"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn_addr_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sdn-addr-type"], _ = expandObjectFirewallAddressDynamicMappingSdnAddrType(d, i["sdn_addr_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn_tag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sdn-tag"], _ = expandObjectFirewallAddressDynamicMappingSdnTag(d, i["sdn_tag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFirewallAddressDynamicMappingStartIp(d, i["start_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-mac"], _ = expandObjectFirewallAddressDynamicMappingStartMac(d, i["start_mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sub_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sub-type"], _ = expandObjectFirewallAddressDynamicMappingSubType(d, i["sub_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subnet"], _ = expandObjectFirewallAddressDynamicMappingSubnet(d, i["subnet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subnet-name"], _ = expandObjectFirewallAddressDynamicMappingSubnetName(d, i["subnet_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tag_detection_level"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tag-detection-level"], _ = expandObjectFirewallAddressDynamicMappingTagDetectionLevel(d, i["tag_detection_level"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tag_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tag-type"], _ = expandObjectFirewallAddressDynamicMappingTagType(d, i["tag_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallAddressDynamicMappingTags(d, i["tags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tenant"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tenant"], _ = expandObjectFirewallAddressDynamicMappingTenant(d, i["tenant"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallAddressDynamicMappingType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "url"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["url"], _ = expandObjectFirewallAddressDynamicMappingUrl(d, i["url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "uuid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["uuid"], _ = expandObjectFirewallAddressDynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "visibility"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["visibility"], _ = expandObjectFirewallAddressDynamicMappingVisibility(d, i["visibility"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "wildcard"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["wildcard"], _ = expandObjectFirewallAddressDynamicMappingWildcard(d, i["wildcard"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "wildcard_fqdn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["wildcard-fqdn"], _ = expandObjectFirewallAddressDynamicMappingWildcardFqdn(d, i["wildcard_fqdn"], pre_append)
 		}
 
@@ -2307,12 +2307,12 @@ func expandObjectFirewallAddressDynamicMappingScope(d *schema.ResourceData, v in
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallAddressDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectFirewallAddressDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -2559,17 +2559,17 @@ func expandObjectFirewallAddressList(d *schema.ResourceData, v interface{}, pre 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFirewallAddressListIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "net_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["net-id"], _ = expandObjectFirewallAddressListNetId(d, i["net_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "obj_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["obj-id"], _ = expandObjectFirewallAddressListObjId(d, i["obj_id"], pre_append)
 		}
 
@@ -2680,17 +2680,17 @@ func expandObjectFirewallAddressTagging(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectFirewallAddressTaggingCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallAddressTaggingName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallAddressTaggingTags(d, i["tags"], pre_append)
 		} else {
 			tmp["tags"] = make([]string, 0)
@@ -2743,7 +2743,7 @@ func expandObjectFirewallAddressWildcardFqdn(d *schema.ResourceData, v interface
 func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_image_base64"); ok {
+	if v, ok := d.GetOk("_image_base64"); ok || d.HasChange("_image_base64") {
 		t, err := expandObjectFirewallAddressImageBase64(d, v, "_image_base64")
 		if err != nil {
 			return &obj, err
@@ -2752,7 +2752,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("allow_routing"); ok {
+	if v, ok := d.GetOk("allow_routing"); ok || d.HasChange("allow_routing") {
 		t, err := expandObjectFirewallAddressAllowRouting(d, v, "allow_routing")
 		if err != nil {
 			return &obj, err
@@ -2761,7 +2761,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("associated_interface"); ok {
+	if v, ok := d.GetOk("associated_interface"); ok || d.HasChange("associated_interface") {
 		t, err := expandObjectFirewallAddressAssociatedInterface(d, v, "associated_interface")
 		if err != nil {
 			return &obj, err
@@ -2770,7 +2770,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("cache_ttl"); ok {
+	if v, ok := d.GetOk("cache_ttl"); ok || d.HasChange("cache_ttl") {
 		t, err := expandObjectFirewallAddressCacheTtl(d, v, "cache_ttl")
 		if err != nil {
 			return &obj, err
@@ -2779,7 +2779,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("clearpass_spt"); ok {
+	if v, ok := d.GetOk("clearpass_spt"); ok || d.HasChange("clearpass_spt") {
 		t, err := expandObjectFirewallAddressClearpassSpt(d, v, "clearpass_spt")
 		if err != nil {
 			return &obj, err
@@ -2788,7 +2788,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallAddressColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -2797,7 +2797,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallAddressComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -2806,7 +2806,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("country"); ok {
+	if v, ok := d.GetOk("country"); ok || d.HasChange("country") {
 		t, err := expandObjectFirewallAddressCountry(d, v, "country")
 		if err != nil {
 			return &obj, err
@@ -2815,7 +2815,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("dirty"); ok {
+	if v, ok := d.GetOk("dirty"); ok || d.HasChange("dirty") {
 		t, err := expandObjectFirewallAddressDirty(d, v, "dirty")
 		if err != nil {
 			return &obj, err
@@ -2824,7 +2824,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectFirewallAddressDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -2833,7 +2833,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("end_ip"); ok {
+	if v, ok := d.GetOk("end_ip"); ok || d.HasChange("end_ip") {
 		t, err := expandObjectFirewallAddressEndIp(d, v, "end_ip")
 		if err != nil {
 			return &obj, err
@@ -2842,7 +2842,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("end_mac"); ok {
+	if v, ok := d.GetOk("end_mac"); ok || d.HasChange("end_mac") {
 		t, err := expandObjectFirewallAddressEndMac(d, v, "end_mac")
 		if err != nil {
 			return &obj, err
@@ -2851,7 +2851,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("epg_name"); ok {
+	if v, ok := d.GetOk("epg_name"); ok || d.HasChange("epg_name") {
 		t, err := expandObjectFirewallAddressEpgName(d, v, "epg_name")
 		if err != nil {
 			return &obj, err
@@ -2860,7 +2860,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallAddressFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -2869,7 +2869,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("filter"); ok {
+	if v, ok := d.GetOk("filter"); ok || d.HasChange("filter") {
 		t, err := expandObjectFirewallAddressFilter(d, v, "filter")
 		if err != nil {
 			return &obj, err
@@ -2878,7 +2878,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("fqdn"); ok {
+	if v, ok := d.GetOk("fqdn"); ok || d.HasChange("fqdn") {
 		t, err := expandObjectFirewallAddressFqdn(d, v, "fqdn")
 		if err != nil {
 			return &obj, err
@@ -2887,7 +2887,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("fsso_group"); ok {
+	if v, ok := d.GetOk("fsso_group"); ok || d.HasChange("fsso_group") {
 		t, err := expandObjectFirewallAddressFssoGroup(d, v, "fsso_group")
 		if err != nil {
 			return &obj, err
@@ -2896,7 +2896,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallAddressGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -2905,7 +2905,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectFirewallAddressInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -2914,7 +2914,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("list"); ok {
+	if v, ok := d.GetOk("list"); ok || d.HasChange("list") {
 		t, err := expandObjectFirewallAddressList(d, v, "list")
 		if err != nil {
 			return &obj, err
@@ -2923,7 +2923,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("macaddr"); ok {
+	if v, ok := d.GetOk("macaddr"); ok || d.HasChange("macaddr") {
 		t, err := expandObjectFirewallAddressMacaddr(d, v, "macaddr")
 		if err != nil {
 			return &obj, err
@@ -2932,7 +2932,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallAddressName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -2941,7 +2941,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("node_ip_only"); ok {
+	if v, ok := d.GetOk("node_ip_only"); ok || d.HasChange("node_ip_only") {
 		t, err := expandObjectFirewallAddressNodeIpOnly(d, v, "node_ip_only")
 		if err != nil {
 			return &obj, err
@@ -2950,7 +2950,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("obj_id"); ok {
+	if v, ok := d.GetOk("obj_id"); ok || d.HasChange("obj_id") {
 		t, err := expandObjectFirewallAddressObjId(d, v, "obj_id")
 		if err != nil {
 			return &obj, err
@@ -2959,7 +2959,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("obj_tag"); ok {
+	if v, ok := d.GetOk("obj_tag"); ok || d.HasChange("obj_tag") {
 		t, err := expandObjectFirewallAddressObjTag(d, v, "obj_tag")
 		if err != nil {
 			return &obj, err
@@ -2968,7 +2968,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("obj_type"); ok {
+	if v, ok := d.GetOk("obj_type"); ok || d.HasChange("obj_type") {
 		t, err := expandObjectFirewallAddressObjType(d, v, "obj_type")
 		if err != nil {
 			return &obj, err
@@ -2977,7 +2977,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("organization"); ok {
+	if v, ok := d.GetOk("organization"); ok || d.HasChange("organization") {
 		t, err := expandObjectFirewallAddressOrganization(d, v, "organization")
 		if err != nil {
 			return &obj, err
@@ -2986,7 +2986,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("policy_group"); ok {
+	if v, ok := d.GetOk("policy_group"); ok || d.HasChange("policy_group") {
 		t, err := expandObjectFirewallAddressPolicyGroup(d, v, "policy_group")
 		if err != nil {
 			return &obj, err
@@ -2995,7 +2995,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("sdn"); ok {
+	if v, ok := d.GetOk("sdn"); ok || d.HasChange("sdn") {
 		t, err := expandObjectFirewallAddressSdn(d, v, "sdn")
 		if err != nil {
 			return &obj, err
@@ -3004,7 +3004,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("sdn_addr_type"); ok {
+	if v, ok := d.GetOk("sdn_addr_type"); ok || d.HasChange("sdn_addr_type") {
 		t, err := expandObjectFirewallAddressSdnAddrType(d, v, "sdn_addr_type")
 		if err != nil {
 			return &obj, err
@@ -3013,7 +3013,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("sdn_tag"); ok {
+	if v, ok := d.GetOk("sdn_tag"); ok || d.HasChange("sdn_tag") {
 		t, err := expandObjectFirewallAddressSdnTag(d, v, "sdn_tag")
 		if err != nil {
 			return &obj, err
@@ -3022,7 +3022,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("start_ip"); ok {
+	if v, ok := d.GetOk("start_ip"); ok || d.HasChange("start_ip") {
 		t, err := expandObjectFirewallAddressStartIp(d, v, "start_ip")
 		if err != nil {
 			return &obj, err
@@ -3031,7 +3031,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("start_mac"); ok {
+	if v, ok := d.GetOk("start_mac"); ok || d.HasChange("start_mac") {
 		t, err := expandObjectFirewallAddressStartMac(d, v, "start_mac")
 		if err != nil {
 			return &obj, err
@@ -3040,7 +3040,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("sub_type"); ok {
+	if v, ok := d.GetOk("sub_type"); ok || d.HasChange("sub_type") {
 		t, err := expandObjectFirewallAddressSubType(d, v, "sub_type")
 		if err != nil {
 			return &obj, err
@@ -3049,7 +3049,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("subnet"); ok {
+	if v, ok := d.GetOk("subnet"); ok || d.HasChange("subnet") {
 		t, err := expandObjectFirewallAddressSubnet(d, v, "subnet")
 		if err != nil {
 			return &obj, err
@@ -3058,7 +3058,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("subnet_name"); ok {
+	if v, ok := d.GetOk("subnet_name"); ok || d.HasChange("subnet_name") {
 		t, err := expandObjectFirewallAddressSubnetName(d, v, "subnet_name")
 		if err != nil {
 			return &obj, err
@@ -3067,7 +3067,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("tag_detection_level"); ok {
+	if v, ok := d.GetOk("tag_detection_level"); ok || d.HasChange("tag_detection_level") {
 		t, err := expandObjectFirewallAddressTagDetectionLevel(d, v, "tag_detection_level")
 		if err != nil {
 			return &obj, err
@@ -3076,7 +3076,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("tag_type"); ok {
+	if v, ok := d.GetOk("tag_type"); ok || d.HasChange("tag_type") {
 		t, err := expandObjectFirewallAddressTagType(d, v, "tag_type")
 		if err != nil {
 			return &obj, err
@@ -3085,7 +3085,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("tagging"); ok {
+	if v, ok := d.GetOk("tagging"); ok || d.HasChange("tagging") {
 		t, err := expandObjectFirewallAddressTagging(d, v, "tagging")
 		if err != nil {
 			return &obj, err
@@ -3094,7 +3094,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("tenant"); ok {
+	if v, ok := d.GetOk("tenant"); ok || d.HasChange("tenant") {
 		t, err := expandObjectFirewallAddressTenant(d, v, "tenant")
 		if err != nil {
 			return &obj, err
@@ -3103,7 +3103,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallAddressType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -3112,7 +3112,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallAddressUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -3121,7 +3121,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("visibility"); ok {
+	if v, ok := d.GetOk("visibility"); ok || d.HasChange("visibility") {
 		t, err := expandObjectFirewallAddressVisibility(d, v, "visibility")
 		if err != nil {
 			return &obj, err
@@ -3130,7 +3130,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard"); ok {
+	if v, ok := d.GetOk("wildcard"); ok || d.HasChange("wildcard") {
 		t, err := expandObjectFirewallAddressWildcard(d, v, "wildcard")
 		if err != nil {
 			return &obj, err
@@ -3139,7 +3139,7 @@ func getObjectObjectFirewallAddress(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard_fqdn"); ok {
+	if v, ok := d.GetOk("wildcard_fqdn"); ok || d.HasChange("wildcard_fqdn") {
 		t, err := expandObjectFirewallAddressWildcardFqdn(d, v, "wildcard_fqdn")
 		if err != nil {
 			return &obj, err

@@ -2108,19 +2108,19 @@ func expandObjectVoipProfileMsrp(d *schema.ResourceData, v interface{}, pre stri
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "log_violations"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log-violations"], _ = expandObjectVoipProfileMsrpLogViolations(d, i["log_violations"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_msg_size"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-msg-size"], _ = expandObjectVoipProfileMsrpMaxMsgSize(d, i["max_msg_size"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_msg_size_action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-msg-size-action"], _ = expandObjectVoipProfileMsrpMaxMsgSizeAction(d, i["max_msg_size_action"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectVoipProfileMsrpStatus(d, i["status"], pre_append)
 	}
 
@@ -2158,27 +2158,27 @@ func expandObjectVoipProfileSccp(d *schema.ResourceData, v interface{}, pre stri
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "block_mcast"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-mcast"], _ = expandObjectVoipProfileSccpBlockMcast(d, i["block_mcast"], pre_append)
 	}
 	pre_append = pre + ".0." + "log_call_summary"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log-call-summary"], _ = expandObjectVoipProfileSccpLogCallSummary(d, i["log_call_summary"], pre_append)
 	}
 	pre_append = pre + ".0." + "log_violations"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log-violations"], _ = expandObjectVoipProfileSccpLogViolations(d, i["log_violations"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_calls"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-calls"], _ = expandObjectVoipProfileSccpMaxCalls(d, i["max_calls"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectVoipProfileSccpStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "verify_header"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["verify-header"], _ = expandObjectVoipProfileSccpVerifyHeader(d, i["verify_header"], pre_append)
 	}
 
@@ -2220,455 +2220,455 @@ func expandObjectVoipProfileSip(d *schema.ResourceData, v interface{}, pre strin
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ack_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ack-rate"], _ = expandObjectVoipProfileSipAckRate(d, i["ack_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "ack_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ack-rate-track"], _ = expandObjectVoipProfileSipAckRateTrack(d, i["ack_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_ack"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-ack"], _ = expandObjectVoipProfileSipBlockAck(d, i["block_ack"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_bye"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-bye"], _ = expandObjectVoipProfileSipBlockBye(d, i["block_bye"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_cancel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-cancel"], _ = expandObjectVoipProfileSipBlockCancel(d, i["block_cancel"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_geo_red_options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-geo-red-options"], _ = expandObjectVoipProfileSipBlockGeoRedOptions(d, i["block_geo_red_options"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_info"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-info"], _ = expandObjectVoipProfileSipBlockInfo(d, i["block_info"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_invite"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-invite"], _ = expandObjectVoipProfileSipBlockInvite(d, i["block_invite"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_long_lines"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-long-lines"], _ = expandObjectVoipProfileSipBlockLongLines(d, i["block_long_lines"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_message"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-message"], _ = expandObjectVoipProfileSipBlockMessage(d, i["block_message"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_notify"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-notify"], _ = expandObjectVoipProfileSipBlockNotify(d, i["block_notify"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-options"], _ = expandObjectVoipProfileSipBlockOptions(d, i["block_options"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_prack"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-prack"], _ = expandObjectVoipProfileSipBlockPrack(d, i["block_prack"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_publish"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-publish"], _ = expandObjectVoipProfileSipBlockPublish(d, i["block_publish"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_refer"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-refer"], _ = expandObjectVoipProfileSipBlockRefer(d, i["block_refer"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_register"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-register"], _ = expandObjectVoipProfileSipBlockRegister(d, i["block_register"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_subscribe"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-subscribe"], _ = expandObjectVoipProfileSipBlockSubscribe(d, i["block_subscribe"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_unknown"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-unknown"], _ = expandObjectVoipProfileSipBlockUnknown(d, i["block_unknown"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_update"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-update"], _ = expandObjectVoipProfileSipBlockUpdate(d, i["block_update"], pre_append)
 	}
 	pre_append = pre + ".0." + "bye_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bye-rate"], _ = expandObjectVoipProfileSipByeRate(d, i["bye_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "bye_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bye-rate-track"], _ = expandObjectVoipProfileSipByeRateTrack(d, i["bye_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "call_keepalive"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-keepalive"], _ = expandObjectVoipProfileSipCallKeepalive(d, i["call_keepalive"], pre_append)
 	}
 	pre_append = pre + ".0." + "cancel_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cancel-rate"], _ = expandObjectVoipProfileSipCancelRate(d, i["cancel_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "cancel_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cancel-rate-track"], _ = expandObjectVoipProfileSipCancelRateTrack(d, i["cancel_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "contact_fixup"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["contact-fixup"], _ = expandObjectVoipProfileSipContactFixup(d, i["contact_fixup"], pre_append)
 	}
 	pre_append = pre + ".0." + "hnt_restrict_source_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["hnt-restrict-source-ip"], _ = expandObjectVoipProfileSipHntRestrictSourceIp(d, i["hnt_restrict_source_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "hosted_nat_traversal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["hosted-nat-traversal"], _ = expandObjectVoipProfileSipHostedNatTraversal(d, i["hosted_nat_traversal"], pre_append)
 	}
 	pre_append = pre + ".0." + "info_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["info-rate"], _ = expandObjectVoipProfileSipInfoRate(d, i["info_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "info_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["info-rate-track"], _ = expandObjectVoipProfileSipInfoRateTrack(d, i["info_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "invite_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["invite-rate"], _ = expandObjectVoipProfileSipInviteRate(d, i["invite_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "invite_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["invite-rate-track"], _ = expandObjectVoipProfileSipInviteRateTrack(d, i["invite_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "ips_rtp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ips-rtp"], _ = expandObjectVoipProfileSipIpsRtp(d, i["ips_rtp"], pre_append)
 	}
 	pre_append = pre + ".0." + "log_call_summary"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log-call-summary"], _ = expandObjectVoipProfileSipLogCallSummary(d, i["log_call_summary"], pre_append)
 	}
 	pre_append = pre + ".0." + "log_violations"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log-violations"], _ = expandObjectVoipProfileSipLogViolations(d, i["log_violations"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_allow"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-allow"], _ = expandObjectVoipProfileSipMalformedHeaderAllow(d, i["malformed_header_allow"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_call_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-call-id"], _ = expandObjectVoipProfileSipMalformedHeaderCallId(d, i["malformed_header_call_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_contact"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-contact"], _ = expandObjectVoipProfileSipMalformedHeaderContact(d, i["malformed_header_contact"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_content_length"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-content-length"], _ = expandObjectVoipProfileSipMalformedHeaderContentLength(d, i["malformed_header_content_length"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_content_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-content-type"], _ = expandObjectVoipProfileSipMalformedHeaderContentType(d, i["malformed_header_content_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_cseq"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-cseq"], _ = expandObjectVoipProfileSipMalformedHeaderCseq(d, i["malformed_header_cseq"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_expires"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-expires"], _ = expandObjectVoipProfileSipMalformedHeaderExpires(d, i["malformed_header_expires"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_from"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-from"], _ = expandObjectVoipProfileSipMalformedHeaderFrom(d, i["malformed_header_from"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_max_forwards"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-max-forwards"], _ = expandObjectVoipProfileSipMalformedHeaderMaxForwards(d, i["malformed_header_max_forwards"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_no_proxy_require"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-no-proxy-require"], _ = expandObjectVoipProfileSipMalformedHeaderNoProxyRequire(d, i["malformed_header_no_proxy_require"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_no_require"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-no-require"], _ = expandObjectVoipProfileSipMalformedHeaderNoRequire(d, i["malformed_header_no_require"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_p_asserted_identity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-p-asserted-identity"], _ = expandObjectVoipProfileSipMalformedHeaderPAssertedIdentity(d, i["malformed_header_p_asserted_identity"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_rack"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-rack"], _ = expandObjectVoipProfileSipMalformedHeaderRack(d, i["malformed_header_rack"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_record_route"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-record-route"], _ = expandObjectVoipProfileSipMalformedHeaderRecordRoute(d, i["malformed_header_record_route"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_route"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-route"], _ = expandObjectVoipProfileSipMalformedHeaderRoute(d, i["malformed_header_route"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_rseq"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-rseq"], _ = expandObjectVoipProfileSipMalformedHeaderRseq(d, i["malformed_header_rseq"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_a"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-a"], _ = expandObjectVoipProfileSipMalformedHeaderSdpA(d, i["malformed_header_sdp_a"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_b"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-b"], _ = expandObjectVoipProfileSipMalformedHeaderSdpB(d, i["malformed_header_sdp_b"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_c"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-c"], _ = expandObjectVoipProfileSipMalformedHeaderSdpC(d, i["malformed_header_sdp_c"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_i"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-i"], _ = expandObjectVoipProfileSipMalformedHeaderSdpI(d, i["malformed_header_sdp_i"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_k"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-k"], _ = expandObjectVoipProfileSipMalformedHeaderSdpK(d, i["malformed_header_sdp_k"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_m"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-m"], _ = expandObjectVoipProfileSipMalformedHeaderSdpM(d, i["malformed_header_sdp_m"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_o"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-o"], _ = expandObjectVoipProfileSipMalformedHeaderSdpO(d, i["malformed_header_sdp_o"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_r"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-r"], _ = expandObjectVoipProfileSipMalformedHeaderSdpR(d, i["malformed_header_sdp_r"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_s"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-s"], _ = expandObjectVoipProfileSipMalformedHeaderSdpS(d, i["malformed_header_sdp_s"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_t"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-t"], _ = expandObjectVoipProfileSipMalformedHeaderSdpT(d, i["malformed_header_sdp_t"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_v"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-v"], _ = expandObjectVoipProfileSipMalformedHeaderSdpV(d, i["malformed_header_sdp_v"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_sdp_z"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-sdp-z"], _ = expandObjectVoipProfileSipMalformedHeaderSdpZ(d, i["malformed_header_sdp_z"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_to"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-to"], _ = expandObjectVoipProfileSipMalformedHeaderTo(d, i["malformed_header_to"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_header_via"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-header-via"], _ = expandObjectVoipProfileSipMalformedHeaderVia(d, i["malformed_header_via"], pre_append)
 	}
 	pre_append = pre + ".0." + "malformed_request_line"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["malformed-request-line"], _ = expandObjectVoipProfileSipMalformedRequestLine(d, i["malformed_request_line"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_body_length"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-body-length"], _ = expandObjectVoipProfileSipMaxBodyLength(d, i["max_body_length"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_dialogs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-dialogs"], _ = expandObjectVoipProfileSipMaxDialogs(d, i["max_dialogs"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_idle_dialogs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-idle-dialogs"], _ = expandObjectVoipProfileSipMaxIdleDialogs(d, i["max_idle_dialogs"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_line_length"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-line-length"], _ = expandObjectVoipProfileSipMaxLineLength(d, i["max_line_length"], pre_append)
 	}
 	pre_append = pre + ".0." + "message_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["message-rate"], _ = expandObjectVoipProfileSipMessageRate(d, i["message_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "message_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["message-rate-track"], _ = expandObjectVoipProfileSipMessageRateTrack(d, i["message_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "nat_port_range"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nat-port-range"], _ = expandObjectVoipProfileSipNatPortRange(d, i["nat_port_range"], pre_append)
 	}
 	pre_append = pre + ".0." + "nat_trace"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nat-trace"], _ = expandObjectVoipProfileSipNatTrace(d, i["nat_trace"], pre_append)
 	}
 	pre_append = pre + ".0." + "no_sdp_fixup"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["no-sdp-fixup"], _ = expandObjectVoipProfileSipNoSdpFixup(d, i["no_sdp_fixup"], pre_append)
 	}
 	pre_append = pre + ".0." + "notify_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["notify-rate"], _ = expandObjectVoipProfileSipNotifyRate(d, i["notify_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "notify_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["notify-rate-track"], _ = expandObjectVoipProfileSipNotifyRateTrack(d, i["notify_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "open_contact_pinhole"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["open-contact-pinhole"], _ = expandObjectVoipProfileSipOpenContactPinhole(d, i["open_contact_pinhole"], pre_append)
 	}
 	pre_append = pre + ".0." + "open_record_route_pinhole"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["open-record-route-pinhole"], _ = expandObjectVoipProfileSipOpenRecordRoutePinhole(d, i["open_record_route_pinhole"], pre_append)
 	}
 	pre_append = pre + ".0." + "open_register_pinhole"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["open-register-pinhole"], _ = expandObjectVoipProfileSipOpenRegisterPinhole(d, i["open_register_pinhole"], pre_append)
 	}
 	pre_append = pre + ".0." + "open_via_pinhole"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["open-via-pinhole"], _ = expandObjectVoipProfileSipOpenViaPinhole(d, i["open_via_pinhole"], pre_append)
 	}
 	pre_append = pre + ".0." + "options_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options-rate"], _ = expandObjectVoipProfileSipOptionsRate(d, i["options_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "options_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options-rate-track"], _ = expandObjectVoipProfileSipOptionsRateTrack(d, i["options_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "prack_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["prack-rate"], _ = expandObjectVoipProfileSipPrackRate(d, i["prack_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "prack_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["prack-rate-track"], _ = expandObjectVoipProfileSipPrackRateTrack(d, i["prack_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "preserve_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["preserve-override"], _ = expandObjectVoipProfileSipPreserveOverride(d, i["preserve_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "provisional_invite_expiry_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["provisional-invite-expiry-time"], _ = expandObjectVoipProfileSipProvisionalInviteExpiryTime(d, i["provisional_invite_expiry_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "publish_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["publish-rate"], _ = expandObjectVoipProfileSipPublishRate(d, i["publish_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "publish_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["publish-rate-track"], _ = expandObjectVoipProfileSipPublishRateTrack(d, i["publish_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "refer_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["refer-rate"], _ = expandObjectVoipProfileSipReferRate(d, i["refer_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "refer_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["refer-rate-track"], _ = expandObjectVoipProfileSipReferRateTrack(d, i["refer_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "register_contact_trace"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["register-contact-trace"], _ = expandObjectVoipProfileSipRegisterContactTrace(d, i["register_contact_trace"], pre_append)
 	}
 	pre_append = pre + ".0." + "register_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["register-rate"], _ = expandObjectVoipProfileSipRegisterRate(d, i["register_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "register_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["register-rate-track"], _ = expandObjectVoipProfileSipRegisterRateTrack(d, i["register_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "rfc2543_branch"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rfc2543-branch"], _ = expandObjectVoipProfileSipRfc2543Branch(d, i["rfc2543_branch"], pre_append)
 	}
 	pre_append = pre + ".0." + "rtp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rtp"], _ = expandObjectVoipProfileSipRtp(d, i["rtp"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_algorithm"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-algorithm"], _ = expandObjectVoipProfileSipSslAlgorithm(d, i["ssl_algorithm"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_auth_client"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-auth-client"], _ = expandObjectVoipProfileSipSslAuthClient(d, i["ssl_auth_client"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_auth_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-auth-server"], _ = expandObjectVoipProfileSipSslAuthServer(d, i["ssl_auth_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_client_certificate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-client-certificate"], _ = expandObjectVoipProfileSipSslClientCertificate(d, i["ssl_client_certificate"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_client_renegotiation"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-client-renegotiation"], _ = expandObjectVoipProfileSipSslClientRenegotiation(d, i["ssl_client_renegotiation"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_max_version"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-max-version"], _ = expandObjectVoipProfileSipSslMaxVersion(d, i["ssl_max_version"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_min_version"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-min-version"], _ = expandObjectVoipProfileSipSslMinVersion(d, i["ssl_min_version"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-mode"], _ = expandObjectVoipProfileSipSslMode(d, i["ssl_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_pfs"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-pfs"], _ = expandObjectVoipProfileSipSslPfs(d, i["ssl_pfs"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_send_empty_frags"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-send-empty-frags"], _ = expandObjectVoipProfileSipSslSendEmptyFrags(d, i["ssl_send_empty_frags"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_server_certificate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-server-certificate"], _ = expandObjectVoipProfileSipSslServerCertificate(d, i["ssl_server_certificate"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectVoipProfileSipStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "strict_register"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["strict-register"], _ = expandObjectVoipProfileSipStrictRegister(d, i["strict_register"], pre_append)
 	}
 	pre_append = pre + ".0." + "subscribe_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["subscribe-rate"], _ = expandObjectVoipProfileSipSubscribeRate(d, i["subscribe_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "subscribe_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["subscribe-rate-track"], _ = expandObjectVoipProfileSipSubscribeRateTrack(d, i["subscribe_rate_track"], pre_append)
 	}
 	pre_append = pre + ".0." + "unknown_header"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["unknown-header"], _ = expandObjectVoipProfileSipUnknownHeader(d, i["unknown_header"], pre_append)
 	}
 	pre_append = pre + ".0." + "update_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["update-rate"], _ = expandObjectVoipProfileSipUpdateRate(d, i["update_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "update_rate_track"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["update-rate-track"], _ = expandObjectVoipProfileSipUpdateRateTrack(d, i["update_rate_track"], pre_append)
 	}
 
@@ -3130,7 +3130,7 @@ func expandObjectVoipProfileSipUpdateRateTrack(d *schema.ResourceData, v interfa
 func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectVoipProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -3139,7 +3139,7 @@ func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("feature_set"); ok {
+	if v, ok := d.GetOk("feature_set"); ok || d.HasChange("feature_set") {
 		t, err := expandObjectVoipProfileFeatureSet(d, v, "feature_set")
 		if err != nil {
 			return &obj, err
@@ -3148,7 +3148,7 @@ func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("msrp"); ok {
+	if v, ok := d.GetOk("msrp"); ok || d.HasChange("msrp") {
 		t, err := expandObjectVoipProfileMsrp(d, v, "msrp")
 		if err != nil {
 			return &obj, err
@@ -3157,7 +3157,7 @@ func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectVoipProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -3166,7 +3166,7 @@ func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("sccp"); ok {
+	if v, ok := d.GetOk("sccp"); ok || d.HasChange("sccp") {
 		t, err := expandObjectVoipProfileSccp(d, v, "sccp")
 		if err != nil {
 			return &obj, err
@@ -3175,7 +3175,7 @@ func getObjectObjectVoipProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("sip"); ok {
+	if v, ok := d.GetOk("sip"); ok || d.HasChange("sip") {
 		t, err := expandObjectVoipProfileSip(d, v, "sip")
 		if err != nil {
 			return &obj, err

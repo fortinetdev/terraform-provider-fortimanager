@@ -244,7 +244,7 @@ func expandObjectUserDeviceCategoryName(d *schema.ResourceData, v interface{}, p
 func getObjectObjectUserDeviceCategory(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectUserDeviceCategoryComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -253,7 +253,7 @@ func getObjectObjectUserDeviceCategory(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("desc"); ok {
+	if v, ok := d.GetOk("desc"); ok || d.HasChange("desc") {
 		t, err := expandObjectUserDeviceCategoryDesc(d, v, "desc")
 		if err != nil {
 			return &obj, err
@@ -262,7 +262,7 @@ func getObjectObjectUserDeviceCategory(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserDeviceCategoryName(d, v, "name")
 		if err != nil {
 			return &obj, err

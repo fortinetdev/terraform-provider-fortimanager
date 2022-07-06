@@ -413,19 +413,19 @@ func expandObjectFirewallInternetServiceAdditionEntry(d *schema.ResourceData, v 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallInternetServiceAdditionEntryId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port_range"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port-range"], _ = expandObjectFirewallInternetServiceAdditionEntryPortRange(d, i["port_range"], pre_append)
 		} else {
 			tmp["port-range"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectFirewallInternetServiceAdditionEntryProtocol(d, i["protocol"], pre_append)
 		}
 
@@ -456,17 +456,17 @@ func expandObjectFirewallInternetServiceAdditionEntryPortRange(d *schema.Resourc
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-port"], _ = expandObjectFirewallInternetServiceAdditionEntryPortRangeEndPort(d, i["end_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallInternetServiceAdditionEntryPortRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-port"], _ = expandObjectFirewallInternetServiceAdditionEntryPortRangeStartPort(d, i["start_port"], pre_append)
 		}
 
@@ -501,7 +501,7 @@ func expandObjectFirewallInternetServiceAdditionId(d *schema.ResourceData, v int
 func getObjectObjectFirewallInternetServiceAddition(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallInternetServiceAdditionComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -510,7 +510,7 @@ func getObjectObjectFirewallInternetServiceAddition(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("entry"); ok {
+	if v, ok := d.GetOk("entry"); ok || d.HasChange("entry") {
 		t, err := expandObjectFirewallInternetServiceAdditionEntry(d, v, "entry")
 		if err != nil {
 			return &obj, err
@@ -519,7 +519,7 @@ func getObjectObjectFirewallInternetServiceAddition(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectFirewallInternetServiceAdditionId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

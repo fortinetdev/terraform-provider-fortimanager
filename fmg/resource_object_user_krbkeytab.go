@@ -315,7 +315,7 @@ func expandObjectUserKrbKeytabPrincipal(d *schema.ResourceData, v interface{}, p
 func getObjectObjectUserKrbKeytab(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("keytab"); ok {
+	if v, ok := d.GetOk("keytab"); ok || d.HasChange("keytab") {
 		t, err := expandObjectUserKrbKeytabKeytab(d, v, "keytab")
 		if err != nil {
 			return &obj, err
@@ -324,7 +324,7 @@ func getObjectObjectUserKrbKeytab(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_server"); ok {
+	if v, ok := d.GetOk("ldap_server"); ok || d.HasChange("ldap_server") {
 		t, err := expandObjectUserKrbKeytabLdapServer(d, v, "ldap_server")
 		if err != nil {
 			return &obj, err
@@ -333,7 +333,7 @@ func getObjectObjectUserKrbKeytab(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserKrbKeytabName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -342,7 +342,7 @@ func getObjectObjectUserKrbKeytab(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("pac_data"); ok {
+	if v, ok := d.GetOk("pac_data"); ok || d.HasChange("pac_data") {
 		t, err := expandObjectUserKrbKeytabPacData(d, v, "pac_data")
 		if err != nil {
 			return &obj, err
@@ -351,7 +351,7 @@ func getObjectObjectUserKrbKeytab(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserKrbKeytabPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -360,7 +360,7 @@ func getObjectObjectUserKrbKeytab(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("principal"); ok {
+	if v, ok := d.GetOk("principal"); ok || d.HasChange("principal") {
 		t, err := expandObjectUserKrbKeytabPrincipal(d, v, "principal")
 		if err != nil {
 			return &obj, err

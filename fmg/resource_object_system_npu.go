@@ -5589,15 +5589,15 @@ func expandObjectSystemNpuBackgroundSseScanOsna(d *schema.ResourceData, v interf
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "scan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scan"], _ = expandObjectSystemNpuBackgroundSseScanScanOsna(d, i["scan"], pre_append)
 	}
 	pre_append = pre + ".0." + "stats_update_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stats-update-interval"], _ = expandObjectSystemNpuBackgroundSseScanStatsUpdateIntervalOsna(d, i["stats_update_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_keepalive_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-keepalive-interval"], _ = expandObjectSystemNpuBackgroundSseScanUdpKeepaliveIntervalOsna(d, i["udp_keepalive_interval"], pre_append)
 	}
 
@@ -5643,15 +5643,15 @@ func expandObjectSystemNpuDosOptionsOsna(d *schema.ResourceData, v interface{}, 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "npu_dos_meter_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["npu-dos-meter-mode"], _ = expandObjectSystemNpuDosOptionsNpuDosMeterModeOsna(d, i["npu_dos_meter_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "npu_dos_synproxy_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["npu-dos-synproxy-mode"], _ = expandObjectSystemNpuDosOptionsNpuDosSynproxyModeOsna(d, i["npu_dos_synproxy_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "npu_dos_tpe_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["npu-dos-tpe-mode"], _ = expandObjectSystemNpuDosOptionsNpuDosTpeModeOsna(d, i["npu_dos_tpe_mode"], pre_append)
 	}
 
@@ -5693,22 +5693,22 @@ func expandObjectSystemNpuDswDtsProfileOsna(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectSystemNpuDswDtsProfileActionOsna(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "min_limit"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["min-limit"], _ = expandObjectSystemNpuDswDtsProfileMinLimitOsna(d, i["min_limit"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "profile_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["profile-id"], _ = expandObjectSystemNpuDswDtsProfileProfileIdOsna(d, i["profile_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "step"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["step"], _ = expandObjectSystemNpuDswDtsProfileStepOsna(d, i["step"], pre_append)
 		}
 
@@ -5751,27 +5751,27 @@ func expandObjectSystemNpuDswQueueDtsProfileOsna(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "iport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["iport"], _ = expandObjectSystemNpuDswQueueDtsProfileIportOsna(d, i["iport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuDswQueueDtsProfileNameOsna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "oport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["oport"], _ = expandObjectSystemNpuDswQueueDtsProfileOportOsna(d, i["oport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "profile_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["profile-id"], _ = expandObjectSystemNpuDswQueueDtsProfileProfileIdOsna(d, i["profile_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue_select"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue-select"], _ = expandObjectSystemNpuDswQueueDtsProfileQueueSelectOsna(d, i["queue_select"], pre_append)
 		}
 
@@ -5818,263 +5818,263 @@ func expandObjectSystemNpuFpAnomalyOsna(d *schema.ResourceData, v interface{}, p
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "capwap_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["capwap-minlen-err"], _ = expandObjectSystemNpuFpAnomalyCapwapMinlenErrOsna(d, i["capwap_minlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "esp_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["esp-minlen-err"], _ = expandObjectSystemNpuFpAnomalyEspMinlenErrOsna(d, i["esp_minlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "gre_csum_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gre-csum-err"], _ = expandObjectSystemNpuFpAnomalyGreCsumErrOsna(d, i["gre_csum_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "gtpu_plen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gtpu-plen-err"], _ = expandObjectSystemNpuFpAnomalyGtpuPlenErrOsna(d, i["gtpu_plen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_csum_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-csum-err"], _ = expandObjectSystemNpuFpAnomalyIcmpCsumErrOsna(d, i["icmp_csum_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_frag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-frag"], _ = expandObjectSystemNpuFpAnomalyIcmpFragOsna(d, i["icmp_frag"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_land"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-land"], _ = expandObjectSystemNpuFpAnomalyIcmpLandOsna(d, i["icmp_land"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-minlen-err"], _ = expandObjectSystemNpuFpAnomalyIcmpMinlenErrOsna(d, i["icmp_minlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_csum_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-csum-err"], _ = expandObjectSystemNpuFpAnomalyIpv4CsumErrOsna(d, i["ipv4_csum_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_ihl_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-ihl-err"], _ = expandObjectSystemNpuFpAnomalyIpv4IhlErrOsna(d, i["ipv4_ihl_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_land"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-land"], _ = expandObjectSystemNpuFpAnomalyIpv4LandOsna(d, i["ipv4_land"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_len_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-len-err"], _ = expandObjectSystemNpuFpAnomalyIpv4LenErrOsna(d, i["ipv4_len_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_opt_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-opt-err"], _ = expandObjectSystemNpuFpAnomalyIpv4OptErrOsna(d, i["ipv4_opt_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_optlsrr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-optlsrr"], _ = expandObjectSystemNpuFpAnomalyIpv4OptlsrrOsna(d, i["ipv4_optlsrr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_optrr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-optrr"], _ = expandObjectSystemNpuFpAnomalyIpv4OptrrOsna(d, i["ipv4_optrr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_optsecurity"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-optsecurity"], _ = expandObjectSystemNpuFpAnomalyIpv4OptsecurityOsna(d, i["ipv4_optsecurity"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_optssrr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-optssrr"], _ = expandObjectSystemNpuFpAnomalyIpv4OptssrrOsna(d, i["ipv4_optssrr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_optstream"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-optstream"], _ = expandObjectSystemNpuFpAnomalyIpv4OptstreamOsna(d, i["ipv4_optstream"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_opttimestamp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-opttimestamp"], _ = expandObjectSystemNpuFpAnomalyIpv4OpttimestampOsna(d, i["ipv4_opttimestamp"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_proto_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-proto-err"], _ = expandObjectSystemNpuFpAnomalyIpv4ProtoErrOsna(d, i["ipv4_proto_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_ttlzero_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-ttlzero-err"], _ = expandObjectSystemNpuFpAnomalyIpv4TtlzeroErrOsna(d, i["ipv4_ttlzero_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_unknopt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-unknopt"], _ = expandObjectSystemNpuFpAnomalyIpv4UnknoptOsna(d, i["ipv4_unknopt"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv4_ver_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv4-ver-err"], _ = expandObjectSystemNpuFpAnomalyIpv4VerErrOsna(d, i["ipv4_ver_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_daddr_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-daddr-err"], _ = expandObjectSystemNpuFpAnomalyIpv6DaddrErrOsna(d, i["ipv6_daddr_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_exthdr_len_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-exthdr-len-err"], _ = expandObjectSystemNpuFpAnomalyIpv6ExthdrLenErrOsna(d, i["ipv6_exthdr_len_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_exthdr_order_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-exthdr-order-err"], _ = expandObjectSystemNpuFpAnomalyIpv6ExthdrOrderErrOsna(d, i["ipv6_exthdr_order_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_ihl_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-ihl-err"], _ = expandObjectSystemNpuFpAnomalyIpv6IhlErrOsna(d, i["ipv6_ihl_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_land"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-land"], _ = expandObjectSystemNpuFpAnomalyIpv6LandOsna(d, i["ipv6_land"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_optendpid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-optendpid"], _ = expandObjectSystemNpuFpAnomalyIpv6OptendpidOsna(d, i["ipv6_optendpid"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_opthomeaddr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-opthomeaddr"], _ = expandObjectSystemNpuFpAnomalyIpv6OpthomeaddrOsna(d, i["ipv6_opthomeaddr"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_optinvld"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-optinvld"], _ = expandObjectSystemNpuFpAnomalyIpv6OptinvldOsna(d, i["ipv6_optinvld"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_optjumbo"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-optjumbo"], _ = expandObjectSystemNpuFpAnomalyIpv6OptjumboOsna(d, i["ipv6_optjumbo"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_optnsap"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-optnsap"], _ = expandObjectSystemNpuFpAnomalyIpv6OptnsapOsna(d, i["ipv6_optnsap"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_optralert"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-optralert"], _ = expandObjectSystemNpuFpAnomalyIpv6OptralertOsna(d, i["ipv6_optralert"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_opttunnel"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-opttunnel"], _ = expandObjectSystemNpuFpAnomalyIpv6OpttunnelOsna(d, i["ipv6_opttunnel"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_plen_zero"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-plen-zero"], _ = expandObjectSystemNpuFpAnomalyIpv6PlenZeroOsna(d, i["ipv6_plen_zero"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_proto_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-proto-err"], _ = expandObjectSystemNpuFpAnomalyIpv6ProtoErrOsna(d, i["ipv6_proto_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_saddr_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-saddr-err"], _ = expandObjectSystemNpuFpAnomalyIpv6SaddrErrOsna(d, i["ipv6_saddr_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_unknopt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-unknopt"], _ = expandObjectSystemNpuFpAnomalyIpv6UnknoptOsna(d, i["ipv6_unknopt"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6_ver_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6-ver-err"], _ = expandObjectSystemNpuFpAnomalyIpv6VerErrOsna(d, i["ipv6_ver_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "nvgre_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nvgre-minlen-err"], _ = expandObjectSystemNpuFpAnomalyNvgreMinlenErrOsna(d, i["nvgre_minlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "sctp_clen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sctp-clen-err"], _ = expandObjectSystemNpuFpAnomalySctpClenErrOsna(d, i["sctp_clen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "sctp_crc_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sctp-crc-err"], _ = expandObjectSystemNpuFpAnomalySctpCrcErrOsna(d, i["sctp_crc_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "sctp_l4len_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sctp-l4len-err"], _ = expandObjectSystemNpuFpAnomalySctpL4LenErrOsna(d, i["sctp_l4len_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_csum_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-csum-err"], _ = expandObjectSystemNpuFpAnomalyTcpCsumErrOsna(d, i["tcp_csum_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_fin_noack"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-fin-noack"], _ = expandObjectSystemNpuFpAnomalyTcpFinNoackOsna(d, i["tcp_fin_noack"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_fin_only"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-fin-only"], _ = expandObjectSystemNpuFpAnomalyTcpFinOnlyOsna(d, i["tcp_fin_only"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_hlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-hlen-err"], _ = expandObjectSystemNpuFpAnomalyTcpHlenErrOsna(d, i["tcp_hlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_hlenvsl4len_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-hlenvsl4len-err"], _ = expandObjectSystemNpuFpAnomalyTcpHlenvsl4LenErrOsna(d, i["tcp_hlenvsl4len_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_land"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-land"], _ = expandObjectSystemNpuFpAnomalyTcpLandOsna(d, i["tcp_land"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_no_flag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-no-flag"], _ = expandObjectSystemNpuFpAnomalyTcpNoFlagOsna(d, i["tcp_no_flag"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_plen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-plen-err"], _ = expandObjectSystemNpuFpAnomalyTcpPlenErrOsna(d, i["tcp_plen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_syn_data"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-syn-data"], _ = expandObjectSystemNpuFpAnomalyTcpSynDataOsna(d, i["tcp_syn_data"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_syn_fin"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-syn-fin"], _ = expandObjectSystemNpuFpAnomalyTcpSynFinOsna(d, i["tcp_syn_fin"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_winnuke"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-winnuke"], _ = expandObjectSystemNpuFpAnomalyTcpWinnukeOsna(d, i["tcp_winnuke"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_csum_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-csum-err"], _ = expandObjectSystemNpuFpAnomalyUdpCsumErrOsna(d, i["udp_csum_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_hlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-hlen-err"], _ = expandObjectSystemNpuFpAnomalyUdpHlenErrOsna(d, i["udp_hlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_land"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-land"], _ = expandObjectSystemNpuFpAnomalyUdpLandOsna(d, i["udp_land"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_len_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-len-err"], _ = expandObjectSystemNpuFpAnomalyUdpLenErrOsna(d, i["udp_len_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_plen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-plen-err"], _ = expandObjectSystemNpuFpAnomalyUdpPlenErrOsna(d, i["udp_plen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "udplite_cover_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udplite-cover-err"], _ = expandObjectSystemNpuFpAnomalyUdpliteCoverErrOsna(d, i["udplite_cover_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "udplite_csum_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udplite-csum-err"], _ = expandObjectSystemNpuFpAnomalyUdpliteCsumErrOsna(d, i["udplite_csum_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "uesp_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["uesp-minlen-err"], _ = expandObjectSystemNpuFpAnomalyUespMinlenErrOsna(d, i["uesp_minlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "unknproto_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["unknproto-minlen-err"], _ = expandObjectSystemNpuFpAnomalyUnknprotoMinlenErrOsna(d, i["unknproto_minlen_err"], pre_append)
 	}
 	pre_append = pre + ".0." + "vxlan_minlen_err"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vxlan-minlen-err"], _ = expandObjectSystemNpuFpAnomalyVxlanMinlenErrOsna(d, i["vxlan_minlen_err"], pre_append)
 	}
 
@@ -6376,67 +6376,67 @@ func expandObjectSystemNpuHpeOsna(d *schema.ResourceData, v interface{}, pre str
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "all_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["all-protocol"], _ = expandObjectSystemNpuHpeAllProtocolOsna(d, i["all_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "arp_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arp-max"], _ = expandObjectSystemNpuHpeArpMaxOsna(d, i["arp_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "enable_shaper"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["enable-shaper"], _ = expandObjectSystemNpuHpeEnableShaperOsna(d, i["enable_shaper"], pre_append)
 	}
 	pre_append = pre + ".0." + "esp_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["esp-max"], _ = expandObjectSystemNpuHpeEspMaxOsna(d, i["esp_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "high_priority"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["high-priority"], _ = expandObjectSystemNpuHpeHighPriorityOsna(d, i["high_priority"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-max"], _ = expandObjectSystemNpuHpeIcmpMaxOsna(d, i["icmp_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_frag_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-frag-max"], _ = expandObjectSystemNpuHpeIpFragMaxOsna(d, i["ip_frag_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_others_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-others-max"], _ = expandObjectSystemNpuHpeIpOthersMaxOsna(d, i["ip_others_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "l2_others_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["l2-others-max"], _ = expandObjectSystemNpuHpeL2OthersMaxOsna(d, i["l2_others_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "pri_type_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pri-type-max"], _ = expandObjectSystemNpuHpePriTypeMaxOsna(d, i["pri_type_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "sctp_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sctp-max"], _ = expandObjectSystemNpuHpeSctpMaxOsna(d, i["sctp_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-max"], _ = expandObjectSystemNpuHpeTcpMaxOsna(d, i["tcp_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcpfin_rst_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcpfin-rst-max"], _ = expandObjectSystemNpuHpeTcpfinRstMaxOsna(d, i["tcpfin_rst_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcpsyn_ack_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcpsyn-ack-max"], _ = expandObjectSystemNpuHpeTcpsynAckMaxOsna(d, i["tcpsyn_ack_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcpsyn_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcpsyn-max"], _ = expandObjectSystemNpuHpeTcpsynMaxOsna(d, i["tcpsyn_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "udp_max"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-max"], _ = expandObjectSystemNpuHpeUdpMaxOsna(d, i["udp_max"], pre_append)
 	}
 
@@ -6546,15 +6546,15 @@ func expandObjectSystemNpuIpReassemblyOsna(d *schema.ResourceData, v interface{}
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "max_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-timeout"], _ = expandObjectSystemNpuIpReassemblyMaxTimeoutOsna(d, i["max_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "min_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["min-timeout"], _ = expandObjectSystemNpuIpReassemblyMinTimeoutOsna(d, i["min_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectSystemNpuIpReassemblyStatusOsna(d, i["status"], pre_append)
 	}
 
@@ -6632,35 +6632,35 @@ func expandObjectSystemNpuIsfNpQueuesOsna(d *schema.ResourceData, v interface{},
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "cos0"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos0"], _ = expandObjectSystemNpuIsfNpQueuesCos0Osna(d, i["cos0"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos1"], _ = expandObjectSystemNpuIsfNpQueuesCos1Osna(d, i["cos1"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos2"], _ = expandObjectSystemNpuIsfNpQueuesCos2Osna(d, i["cos2"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos3"], _ = expandObjectSystemNpuIsfNpQueuesCos3Osna(d, i["cos3"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos4"], _ = expandObjectSystemNpuIsfNpQueuesCos4Osna(d, i["cos4"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos5"], _ = expandObjectSystemNpuIsfNpQueuesCos5Osna(d, i["cos5"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos6"], _ = expandObjectSystemNpuIsfNpQueuesCos6Osna(d, i["cos6"], pre_append)
 	}
 	pre_append = pre + ".0." + "cos7"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cos7"], _ = expandObjectSystemNpuIsfNpQueuesCos7Osna(d, i["cos7"], pre_append)
 	}
 
@@ -6738,31 +6738,31 @@ func expandObjectSystemNpuNpQueuesOsna(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ethernet_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ethernet-type"], _ = expandObjectSystemNpuNpQueuesEthernetTypeOsna(d, i["ethernet_type"], pre_append)
 	} else {
 		result["ethernet-type"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-protocol"], _ = expandObjectSystemNpuNpQueuesIpProtocolOsna(d, i["ip_protocol"], pre_append)
 	} else {
 		result["ip-protocol"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-service"], _ = expandObjectSystemNpuNpQueuesIpServiceOsna(d, i["ip_service"], pre_append)
 	} else {
 		result["ip-service"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["profile"], _ = expandObjectSystemNpuNpQueuesProfileOsna(d, i["profile"], pre_append)
 	} else {
 		result["profile"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "scheduler"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scheduler"], _ = expandObjectSystemNpuNpQueuesSchedulerOsna(d, i["scheduler"], pre_append)
 	} else {
 		result["scheduler"] = make([]string, 0)
@@ -6786,22 +6786,22 @@ func expandObjectSystemNpuNpQueuesEthernetTypeOsna(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesEthernetTypeNameOsna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue"], _ = expandObjectSystemNpuNpQueuesEthernetTypeQueueOsna(d, i["queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSystemNpuNpQueuesEthernetTypeTypeOsna(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesEthernetTypeWeightOsna(d, i["weight"], pre_append)
 		}
 
@@ -6844,22 +6844,22 @@ func expandObjectSystemNpuNpQueuesIpProtocolOsna(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesIpProtocolNameOsna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectSystemNpuNpQueuesIpProtocolProtocolOsna(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue"], _ = expandObjectSystemNpuNpQueuesIpProtocolQueueOsna(d, i["queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesIpProtocolWeightOsna(d, i["weight"], pre_append)
 		}
 
@@ -6902,32 +6902,32 @@ func expandObjectSystemNpuNpQueuesIpServiceOsna(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dport"], _ = expandObjectSystemNpuNpQueuesIpServiceDportOsna(d, i["dport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesIpServiceNameOsna(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectSystemNpuNpQueuesIpServiceProtocolOsna(d, i["protocol"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["queue"], _ = expandObjectSystemNpuNpQueuesIpServiceQueueOsna(d, i["queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sport"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sport"], _ = expandObjectSystemNpuNpQueuesIpServiceSportOsna(d, i["sport"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesIpServiceWeightOsna(d, i["weight"], pre_append)
 		}
 
@@ -6978,377 +6978,377 @@ func expandObjectSystemNpuNpQueuesProfileOsna(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos0"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos0"], _ = expandObjectSystemNpuNpQueuesProfileCos0Osna(d, i["cos0"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos1"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos1"], _ = expandObjectSystemNpuNpQueuesProfileCos1Osna(d, i["cos1"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos2"], _ = expandObjectSystemNpuNpQueuesProfileCos2Osna(d, i["cos2"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos3"], _ = expandObjectSystemNpuNpQueuesProfileCos3Osna(d, i["cos3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos4"], _ = expandObjectSystemNpuNpQueuesProfileCos4Osna(d, i["cos4"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos5"], _ = expandObjectSystemNpuNpQueuesProfileCos5Osna(d, i["cos5"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos6"], _ = expandObjectSystemNpuNpQueuesProfileCos6Osna(d, i["cos6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos7"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos7"], _ = expandObjectSystemNpuNpQueuesProfileCos7Osna(d, i["cos7"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp0"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp0"], _ = expandObjectSystemNpuNpQueuesProfileDscp0Osna(d, i["dscp0"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp1"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp1"], _ = expandObjectSystemNpuNpQueuesProfileDscp1Osna(d, i["dscp1"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp10"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp10"], _ = expandObjectSystemNpuNpQueuesProfileDscp10Osna(d, i["dscp10"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp11"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp11"], _ = expandObjectSystemNpuNpQueuesProfileDscp11Osna(d, i["dscp11"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp12"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp12"], _ = expandObjectSystemNpuNpQueuesProfileDscp12Osna(d, i["dscp12"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp13"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp13"], _ = expandObjectSystemNpuNpQueuesProfileDscp13Osna(d, i["dscp13"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp14"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp14"], _ = expandObjectSystemNpuNpQueuesProfileDscp14Osna(d, i["dscp14"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp15"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp15"], _ = expandObjectSystemNpuNpQueuesProfileDscp15Osna(d, i["dscp15"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp16"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp16"], _ = expandObjectSystemNpuNpQueuesProfileDscp16Osna(d, i["dscp16"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp17"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp17"], _ = expandObjectSystemNpuNpQueuesProfileDscp17Osna(d, i["dscp17"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp18"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp18"], _ = expandObjectSystemNpuNpQueuesProfileDscp18Osna(d, i["dscp18"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp19"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp19"], _ = expandObjectSystemNpuNpQueuesProfileDscp19Osna(d, i["dscp19"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp2"], _ = expandObjectSystemNpuNpQueuesProfileDscp2Osna(d, i["dscp2"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp20"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp20"], _ = expandObjectSystemNpuNpQueuesProfileDscp20Osna(d, i["dscp20"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp21"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp21"], _ = expandObjectSystemNpuNpQueuesProfileDscp21Osna(d, i["dscp21"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp22"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp22"], _ = expandObjectSystemNpuNpQueuesProfileDscp22Osna(d, i["dscp22"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp23"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp23"], _ = expandObjectSystemNpuNpQueuesProfileDscp23Osna(d, i["dscp23"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp24"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp24"], _ = expandObjectSystemNpuNpQueuesProfileDscp24Osna(d, i["dscp24"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp25"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp25"], _ = expandObjectSystemNpuNpQueuesProfileDscp25Osna(d, i["dscp25"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp26"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp26"], _ = expandObjectSystemNpuNpQueuesProfileDscp26Osna(d, i["dscp26"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp27"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp27"], _ = expandObjectSystemNpuNpQueuesProfileDscp27Osna(d, i["dscp27"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp28"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp28"], _ = expandObjectSystemNpuNpQueuesProfileDscp28Osna(d, i["dscp28"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp29"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp29"], _ = expandObjectSystemNpuNpQueuesProfileDscp29Osna(d, i["dscp29"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp3"], _ = expandObjectSystemNpuNpQueuesProfileDscp3Osna(d, i["dscp3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp30"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp30"], _ = expandObjectSystemNpuNpQueuesProfileDscp30Osna(d, i["dscp30"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp31"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp31"], _ = expandObjectSystemNpuNpQueuesProfileDscp31Osna(d, i["dscp31"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp32"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp32"], _ = expandObjectSystemNpuNpQueuesProfileDscp32Osna(d, i["dscp32"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp33"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp33"], _ = expandObjectSystemNpuNpQueuesProfileDscp33Osna(d, i["dscp33"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp34"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp34"], _ = expandObjectSystemNpuNpQueuesProfileDscp34Osna(d, i["dscp34"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp35"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp35"], _ = expandObjectSystemNpuNpQueuesProfileDscp35Osna(d, i["dscp35"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp36"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp36"], _ = expandObjectSystemNpuNpQueuesProfileDscp36Osna(d, i["dscp36"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp37"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp37"], _ = expandObjectSystemNpuNpQueuesProfileDscp37Osna(d, i["dscp37"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp38"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp38"], _ = expandObjectSystemNpuNpQueuesProfileDscp38Osna(d, i["dscp38"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp39"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp39"], _ = expandObjectSystemNpuNpQueuesProfileDscp39Osna(d, i["dscp39"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp4"], _ = expandObjectSystemNpuNpQueuesProfileDscp4Osna(d, i["dscp4"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp40"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp40"], _ = expandObjectSystemNpuNpQueuesProfileDscp40Osna(d, i["dscp40"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp41"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp41"], _ = expandObjectSystemNpuNpQueuesProfileDscp41Osna(d, i["dscp41"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp42"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp42"], _ = expandObjectSystemNpuNpQueuesProfileDscp42Osna(d, i["dscp42"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp43"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp43"], _ = expandObjectSystemNpuNpQueuesProfileDscp43Osna(d, i["dscp43"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp44"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp44"], _ = expandObjectSystemNpuNpQueuesProfileDscp44Osna(d, i["dscp44"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp45"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp45"], _ = expandObjectSystemNpuNpQueuesProfileDscp45Osna(d, i["dscp45"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp46"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp46"], _ = expandObjectSystemNpuNpQueuesProfileDscp46Osna(d, i["dscp46"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp47"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp47"], _ = expandObjectSystemNpuNpQueuesProfileDscp47Osna(d, i["dscp47"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp48"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp48"], _ = expandObjectSystemNpuNpQueuesProfileDscp48Osna(d, i["dscp48"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp49"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp49"], _ = expandObjectSystemNpuNpQueuesProfileDscp49Osna(d, i["dscp49"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp5"], _ = expandObjectSystemNpuNpQueuesProfileDscp5Osna(d, i["dscp5"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp50"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp50"], _ = expandObjectSystemNpuNpQueuesProfileDscp50Osna(d, i["dscp50"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp51"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp51"], _ = expandObjectSystemNpuNpQueuesProfileDscp51Osna(d, i["dscp51"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp52"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp52"], _ = expandObjectSystemNpuNpQueuesProfileDscp52Osna(d, i["dscp52"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp53"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp53"], _ = expandObjectSystemNpuNpQueuesProfileDscp53Osna(d, i["dscp53"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp54"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp54"], _ = expandObjectSystemNpuNpQueuesProfileDscp54Osna(d, i["dscp54"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp55"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp55"], _ = expandObjectSystemNpuNpQueuesProfileDscp55Osna(d, i["dscp55"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp56"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp56"], _ = expandObjectSystemNpuNpQueuesProfileDscp56Osna(d, i["dscp56"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp57"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp57"], _ = expandObjectSystemNpuNpQueuesProfileDscp57Osna(d, i["dscp57"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp58"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp58"], _ = expandObjectSystemNpuNpQueuesProfileDscp58Osna(d, i["dscp58"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp59"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp59"], _ = expandObjectSystemNpuNpQueuesProfileDscp59Osna(d, i["dscp59"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp6"], _ = expandObjectSystemNpuNpQueuesProfileDscp6Osna(d, i["dscp6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp60"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp60"], _ = expandObjectSystemNpuNpQueuesProfileDscp60Osna(d, i["dscp60"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp61"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp61"], _ = expandObjectSystemNpuNpQueuesProfileDscp61Osna(d, i["dscp61"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp62"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp62"], _ = expandObjectSystemNpuNpQueuesProfileDscp62Osna(d, i["dscp62"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp63"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp63"], _ = expandObjectSystemNpuNpQueuesProfileDscp63Osna(d, i["dscp63"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp7"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp7"], _ = expandObjectSystemNpuNpQueuesProfileDscp7Osna(d, i["dscp7"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp8"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp8"], _ = expandObjectSystemNpuNpQueuesProfileDscp8Osna(d, i["dscp8"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp9"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp9"], _ = expandObjectSystemNpuNpQueuesProfileDscp9Osna(d, i["dscp9"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemNpuNpQueuesProfileIdOsna(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSystemNpuNpQueuesProfileTypeOsna(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesProfileWeightOsna(d, i["weight"], pre_append)
 		}
 
@@ -7675,12 +7675,12 @@ func expandObjectSystemNpuNpQueuesSchedulerOsna(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mode"], _ = expandObjectSystemNpuNpQueuesSchedulerModeOsna(d, i["mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesSchedulerNameOsna(d, i["name"], pre_append)
 		}
 
@@ -7735,12 +7735,12 @@ func expandObjectSystemNpuPortCpuMapOsna(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cpu_core"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cpu-core"], _ = expandObjectSystemNpuPortCpuMapCpuCoreOsna(d, i["cpu_core"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectSystemNpuPortCpuMapInterfaceOsna(d, i["interface"], pre_append)
 		}
 
@@ -7775,12 +7775,12 @@ func expandObjectSystemNpuPortNpuMapOsna(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectSystemNpuPortNpuMapInterfaceOsna(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "npu_group_index"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["npu-group-index"], _ = expandObjectSystemNpuPortNpuMapNpuGroupIndexOsna(d, i["npu_group_index"], pre_append)
 		}
 
@@ -7811,7 +7811,7 @@ func expandObjectSystemNpuPortPathOptionOsna(d *schema.ResourceData, v interface
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ports_using_npu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports-using-npu"], _ = expandObjectSystemNpuPortPathOptionPortsUsingNpuOsna(d, i["ports_using_npu"], pre_append)
 	} else {
 		result["ports-using-npu"] = make([]string, 0)
@@ -7835,15 +7835,15 @@ func expandObjectSystemNpuPriorityProtocolOsna(d *schema.ResourceData, v interfa
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "bfd"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bfd"], _ = expandObjectSystemNpuPriorityProtocolBfdOsna(d, i["bfd"], pre_append)
 	}
 	pre_append = pre + ".0." + "bgp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bgp"], _ = expandObjectSystemNpuPriorityProtocolBgpOsna(d, i["bgp"], pre_append)
 	}
 	pre_append = pre + ".0." + "slbc"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["slbc"], _ = expandObjectSystemNpuPriorityProtocolSlbcOsna(d, i["slbc"], pre_append)
 	}
 
@@ -7921,39 +7921,39 @@ func expandObjectSystemNpuSwEhHashOsna(d *schema.ResourceData, v interface{}, pr
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "computation"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["computation"], _ = expandObjectSystemNpuSwEhHashComputationOsna(d, i["computation"], pre_append)
 	}
 	pre_append = pre + ".0." + "destination_ip_lower_16"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["destination-ip-lower-16"], _ = expandObjectSystemNpuSwEhHashDestinationIpLower16Osna(d, i["destination_ip_lower_16"], pre_append)
 	}
 	pre_append = pre + ".0." + "destination_ip_upper_16"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["destination-ip-upper-16"], _ = expandObjectSystemNpuSwEhHashDestinationIpUpper16Osna(d, i["destination_ip_upper_16"], pre_append)
 	}
 	pre_append = pre + ".0." + "destination_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["destination-port"], _ = expandObjectSystemNpuSwEhHashDestinationPortOsna(d, i["destination_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-protocol"], _ = expandObjectSystemNpuSwEhHashIpProtocolOsna(d, i["ip_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "netmask_length"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["netmask-length"], _ = expandObjectSystemNpuSwEhHashNetmaskLengthOsna(d, i["netmask_length"], pre_append)
 	}
 	pre_append = pre + ".0." + "source_ip_lower_16"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["source-ip-lower-16"], _ = expandObjectSystemNpuSwEhHashSourceIpLower16Osna(d, i["source_ip_lower_16"], pre_append)
 	}
 	pre_append = pre + ".0." + "source_ip_upper_16"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["source-ip-upper-16"], _ = expandObjectSystemNpuSwEhHashSourceIpUpper16Osna(d, i["source_ip_upper_16"], pre_append)
 	}
 	pre_append = pre + ".0." + "source_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["source-port"], _ = expandObjectSystemNpuSwEhHashSourcePortOsna(d, i["source_port"], pre_append)
 	}
 
@@ -8023,37 +8023,37 @@ func expandObjectSystemNpuTcpTimeoutProfileOsna(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "close_wait"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["close-wait"], _ = expandObjectSystemNpuTcpTimeoutProfileCloseWaitOsna(d, i["close_wait"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fin_wait"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fin-wait"], _ = expandObjectSystemNpuTcpTimeoutProfileFinWaitOsna(d, i["fin_wait"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemNpuTcpTimeoutProfileIdOsna(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "syn_sent"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["syn-sent"], _ = expandObjectSystemNpuTcpTimeoutProfileSynSentOsna(d, i["syn_sent"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "syn_wait"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["syn-wait"], _ = expandObjectSystemNpuTcpTimeoutProfileSynWaitOsna(d, i["syn_wait"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tcp_idle"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tcp-idle"], _ = expandObjectSystemNpuTcpTimeoutProfileTcpIdleOsna(d, i["tcp_idle"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "time_wait"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["time-wait"], _ = expandObjectSystemNpuTcpTimeoutProfileTimeWaitOsna(d, i["time_wait"], pre_append)
 		}
 
@@ -8108,12 +8108,12 @@ func expandObjectSystemNpuUdpTimeoutProfileOsna(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemNpuUdpTimeoutProfileIdOsna(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "udp_idle"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["udp-idle"], _ = expandObjectSystemNpuUdpTimeoutProfileUdpIdleOsna(d, i["udp_idle"], pre_append)
 		}
 
@@ -8144,7 +8144,7 @@ func expandObjectSystemNpuVlanLookupCacheOsna(d *schema.ResourceData, v interfac
 func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("background_sse_scan"); ok {
+	if v, ok := d.GetOk("background_sse_scan"); ok || d.HasChange("background_sse_scan") {
 		t, err := expandObjectSystemNpuBackgroundSseScanOsna(d, v, "background_sse_scan")
 		if err != nil {
 			return &obj, err
@@ -8153,7 +8153,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("capwap_offload"); ok {
+	if v, ok := d.GetOk("capwap_offload"); ok || d.HasChange("capwap_offload") {
 		t, err := expandObjectSystemNpuCapwapOffloadOsna(d, v, "capwap_offload")
 		if err != nil {
 			return &obj, err
@@ -8162,7 +8162,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dedicated_management_affinity"); ok {
+	if v, ok := d.GetOk("dedicated_management_affinity"); ok || d.HasChange("dedicated_management_affinity") {
 		t, err := expandObjectSystemNpuDedicatedManagementAffinityOsna(d, v, "dedicated_management_affinity")
 		if err != nil {
 			return &obj, err
@@ -8171,7 +8171,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dedicated_management_cpu"); ok {
+	if v, ok := d.GetOk("dedicated_management_cpu"); ok || d.HasChange("dedicated_management_cpu") {
 		t, err := expandObjectSystemNpuDedicatedManagementCpuOsna(d, v, "dedicated_management_cpu")
 		if err != nil {
 			return &obj, err
@@ -8180,7 +8180,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("default_qos_type"); ok {
+	if v, ok := d.GetOk("default_qos_type"); ok || d.HasChange("default_qos_type") {
 		t, err := expandObjectSystemNpuDefaultQosTypeOsna(d, v, "default_qos_type")
 		if err != nil {
 			return &obj, err
@@ -8189,7 +8189,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dos_options"); ok {
+	if v, ok := d.GetOk("dos_options"); ok || d.HasChange("dos_options") {
 		t, err := expandObjectSystemNpuDosOptionsOsna(d, v, "dos_options")
 		if err != nil {
 			return &obj, err
@@ -8198,7 +8198,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("double_level_mcast_offload"); ok {
+	if v, ok := d.GetOk("double_level_mcast_offload"); ok || d.HasChange("double_level_mcast_offload") {
 		t, err := expandObjectSystemNpuDoubleLevelMcastOffloadOsna(d, v, "double_level_mcast_offload")
 		if err != nil {
 			return &obj, err
@@ -8207,7 +8207,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dse_timeout"); ok {
+	if v, ok := d.GetOk("dse_timeout"); ok || d.HasChange("dse_timeout") {
 		t, err := expandObjectSystemNpuDseTimeoutOsna(d, v, "dse_timeout")
 		if err != nil {
 			return &obj, err
@@ -8216,7 +8216,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dsw_dts_profile"); ok {
+	if v, ok := d.GetOk("dsw_dts_profile"); ok || d.HasChange("dsw_dts_profile") {
 		t, err := expandObjectSystemNpuDswDtsProfileOsna(d, v, "dsw_dts_profile")
 		if err != nil {
 			return &obj, err
@@ -8225,7 +8225,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dsw_queue_dts_profile"); ok {
+	if v, ok := d.GetOk("dsw_queue_dts_profile"); ok || d.HasChange("dsw_queue_dts_profile") {
 		t, err := expandObjectSystemNpuDswQueueDtsProfileOsna(d, v, "dsw_queue_dts_profile")
 		if err != nil {
 			return &obj, err
@@ -8234,7 +8234,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fastpath"); ok {
+	if v, ok := d.GetOk("fastpath"); ok || d.HasChange("fastpath") {
 		t, err := expandObjectSystemNpuFastpathOsna(d, v, "fastpath")
 		if err != nil {
 			return &obj, err
@@ -8243,7 +8243,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fp_anomaly"); ok {
+	if v, ok := d.GetOk("fp_anomaly"); ok || d.HasChange("fp_anomaly") {
 		t, err := expandObjectSystemNpuFpAnomalyOsna(d, v, "fp_anomaly")
 		if err != nil {
 			return &obj, err
@@ -8252,7 +8252,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("gtp_enhanced_cpu_range"); ok {
+	if v, ok := d.GetOk("gtp_enhanced_cpu_range"); ok || d.HasChange("gtp_enhanced_cpu_range") {
 		t, err := expandObjectSystemNpuGtpEnhancedCpuRangeOsna(d, v, "gtp_enhanced_cpu_range")
 		if err != nil {
 			return &obj, err
@@ -8261,7 +8261,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("gtp_enhanced_mode"); ok {
+	if v, ok := d.GetOk("gtp_enhanced_mode"); ok || d.HasChange("gtp_enhanced_mode") {
 		t, err := expandObjectSystemNpuGtpEnhancedModeOsna(d, v, "gtp_enhanced_mode")
 		if err != nil {
 			return &obj, err
@@ -8270,7 +8270,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("gtp_support"); ok {
+	if v, ok := d.GetOk("gtp_support"); ok || d.HasChange("gtp_support") {
 		t, err := expandObjectSystemNpuGtpSupportOsna(d, v, "gtp_support")
 		if err != nil {
 			return &obj, err
@@ -8279,7 +8279,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("hash_config"); ok {
+	if v, ok := d.GetOk("hash_config"); ok || d.HasChange("hash_config") {
 		t, err := expandObjectSystemNpuHashConfigOsna(d, v, "hash_config")
 		if err != nil {
 			return &obj, err
@@ -8288,7 +8288,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("hash_tbl_spread"); ok {
+	if v, ok := d.GetOk("hash_tbl_spread"); ok || d.HasChange("hash_tbl_spread") {
 		t, err := expandObjectSystemNpuHashTblSpreadOsna(d, v, "hash_tbl_spread")
 		if err != nil {
 			return &obj, err
@@ -8297,7 +8297,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("host_shortcut_mode"); ok {
+	if v, ok := d.GetOk("host_shortcut_mode"); ok || d.HasChange("host_shortcut_mode") {
 		t, err := expandObjectSystemNpuHostShortcutModeOsna(d, v, "host_shortcut_mode")
 		if err != nil {
 			return &obj, err
@@ -8306,7 +8306,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("hpe"); ok {
+	if v, ok := d.GetOk("hpe"); ok || d.HasChange("hpe") {
 		t, err := expandObjectSystemNpuHpeOsna(d, v, "hpe")
 		if err != nil {
 			return &obj, err
@@ -8315,7 +8315,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("htab_dedi_queue_nr"); ok {
+	if v, ok := d.GetOk("htab_dedi_queue_nr"); ok || d.HasChange("htab_dedi_queue_nr") {
 		t, err := expandObjectSystemNpuHtabDediQueueNrOsna(d, v, "htab_dedi_queue_nr")
 		if err != nil {
 			return &obj, err
@@ -8324,7 +8324,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("htab_msg_queue"); ok {
+	if v, ok := d.GetOk("htab_msg_queue"); ok || d.HasChange("htab_msg_queue") {
 		t, err := expandObjectSystemNpuHtabMsgQueueOsna(d, v, "htab_msg_queue")
 		if err != nil {
 			return &obj, err
@@ -8333,7 +8333,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("htx_gtse_quota"); ok {
+	if v, ok := d.GetOk("htx_gtse_quota"); ok || d.HasChange("htx_gtse_quota") {
 		t, err := expandObjectSystemNpuHtxGtseQuotaOsna(d, v, "htx_gtse_quota")
 		if err != nil {
 			return &obj, err
@@ -8342,7 +8342,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("htx_icmp_csum_chk"); ok {
+	if v, ok := d.GetOk("htx_icmp_csum_chk"); ok || d.HasChange("htx_icmp_csum_chk") {
 		t, err := expandObjectSystemNpuHtxIcmpCsumChkOsna(d, v, "htx_icmp_csum_chk")
 		if err != nil {
 			return &obj, err
@@ -8351,7 +8351,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("hw_ha_scan_interval"); ok {
+	if v, ok := d.GetOk("hw_ha_scan_interval"); ok || d.HasChange("hw_ha_scan_interval") {
 		t, err := expandObjectSystemNpuHwHaScanIntervalOsna(d, v, "hw_ha_scan_interval")
 		if err != nil {
 			return &obj, err
@@ -8360,7 +8360,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("inbound_dscp_copy"); ok {
+	if v, ok := d.GetOk("inbound_dscp_copy"); ok || d.HasChange("inbound_dscp_copy") {
 		t, err := expandObjectSystemNpuInboundDscpCopyOsna(d, v, "inbound_dscp_copy")
 		if err != nil {
 			return &obj, err
@@ -8369,7 +8369,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("inbound_dscp_copy_port"); ok {
+	if v, ok := d.GetOk("inbound_dscp_copy_port"); ok || d.HasChange("inbound_dscp_copy_port") {
 		t, err := expandObjectSystemNpuInboundDscpCopyPortOsna(d, v, "inbound_dscp_copy_port")
 		if err != nil {
 			return &obj, err
@@ -8378,7 +8378,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ip_reassembly"); ok {
+	if v, ok := d.GetOk("ip_reassembly"); ok || d.HasChange("ip_reassembly") {
 		t, err := expandObjectSystemNpuIpReassemblyOsna(d, v, "ip_reassembly")
 		if err != nil {
 			return &obj, err
@@ -8387,7 +8387,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("intf_shaping_offload"); ok {
+	if v, ok := d.GetOk("intf_shaping_offload"); ok || d.HasChange("intf_shaping_offload") {
 		t, err := expandObjectSystemNpuIntfShapingOffloadOsna(d, v, "intf_shaping_offload")
 		if err != nil {
 			return &obj, err
@@ -8396,7 +8396,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("iph_rsvd_re_cksum"); ok {
+	if v, ok := d.GetOk("iph_rsvd_re_cksum"); ok || d.HasChange("iph_rsvd_re_cksum") {
 		t, err := expandObjectSystemNpuIphRsvdReCksumOsna(d, v, "iph_rsvd_re_cksum")
 		if err != nil {
 			return &obj, err
@@ -8405,7 +8405,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ippool_overload_high"); ok {
+	if v, ok := d.GetOk("ippool_overload_high"); ok || d.HasChange("ippool_overload_high") {
 		t, err := expandObjectSystemNpuIppoolOverloadHighOsna(d, v, "ippool_overload_high")
 		if err != nil {
 			return &obj, err
@@ -8414,7 +8414,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ippool_overload_low"); ok {
+	if v, ok := d.GetOk("ippool_overload_low"); ok || d.HasChange("ippool_overload_low") {
 		t, err := expandObjectSystemNpuIppoolOverloadLowOsna(d, v, "ippool_overload_low")
 		if err != nil {
 			return &obj, err
@@ -8423,7 +8423,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_dec_subengine_mask"); ok {
+	if v, ok := d.GetOk("ipsec_dec_subengine_mask"); ok || d.HasChange("ipsec_dec_subengine_mask") {
 		t, err := expandObjectSystemNpuIpsecDecSubengineMaskOsna(d, v, "ipsec_dec_subengine_mask")
 		if err != nil {
 			return &obj, err
@@ -8432,7 +8432,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_enc_subengine_mask"); ok {
+	if v, ok := d.GetOk("ipsec_enc_subengine_mask"); ok || d.HasChange("ipsec_enc_subengine_mask") {
 		t, err := expandObjectSystemNpuIpsecEncSubengineMaskOsna(d, v, "ipsec_enc_subengine_mask")
 		if err != nil {
 			return &obj, err
@@ -8441,7 +8441,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_host_dfclr"); ok {
+	if v, ok := d.GetOk("ipsec_host_dfclr"); ok || d.HasChange("ipsec_host_dfclr") {
 		t, err := expandObjectSystemNpuIpsecHostDfclrOsna(d, v, "ipsec_host_dfclr")
 		if err != nil {
 			return &obj, err
@@ -8450,7 +8450,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_inbound_cache"); ok {
+	if v, ok := d.GetOk("ipsec_inbound_cache"); ok || d.HasChange("ipsec_inbound_cache") {
 		t, err := expandObjectSystemNpuIpsecInboundCacheOsna(d, v, "ipsec_inbound_cache")
 		if err != nil {
 			return &obj, err
@@ -8459,7 +8459,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_local_uesp_port"); ok {
+	if v, ok := d.GetOk("ipsec_local_uesp_port"); ok || d.HasChange("ipsec_local_uesp_port") {
 		t, err := expandObjectSystemNpuIpsecLocalUespPortOsna(d, v, "ipsec_local_uesp_port")
 		if err != nil {
 			return &obj, err
@@ -8468,7 +8468,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_mtu_override"); ok {
+	if v, ok := d.GetOk("ipsec_mtu_override"); ok || d.HasChange("ipsec_mtu_override") {
 		t, err := expandObjectSystemNpuIpsecMtuOverrideOsna(d, v, "ipsec_mtu_override")
 		if err != nil {
 			return &obj, err
@@ -8477,7 +8477,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_ob_np_sel"); ok {
+	if v, ok := d.GetOk("ipsec_ob_np_sel"); ok || d.HasChange("ipsec_ob_np_sel") {
 		t, err := expandObjectSystemNpuIpsecObNpSelOsna(d, v, "ipsec_ob_np_sel")
 		if err != nil {
 			return &obj, err
@@ -8486,7 +8486,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_over_vlink"); ok {
+	if v, ok := d.GetOk("ipsec_over_vlink"); ok || d.HasChange("ipsec_over_vlink") {
 		t, err := expandObjectSystemNpuIpsecOverVlinkOsna(d, v, "ipsec_over_vlink")
 		if err != nil {
 			return &obj, err
@@ -8495,7 +8495,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("isf_np_queues"); ok {
+	if v, ok := d.GetOk("isf_np_queues"); ok || d.HasChange("isf_np_queues") {
 		t, err := expandObjectSystemNpuIsfNpQueuesOsna(d, v, "isf_np_queues")
 		if err != nil {
 			return &obj, err
@@ -8504,7 +8504,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("lag_out_port_select"); ok {
+	if v, ok := d.GetOk("lag_out_port_select"); ok || d.HasChange("lag_out_port_select") {
 		t, err := expandObjectSystemNpuLagOutPortSelectOsna(d, v, "lag_out_port_select")
 		if err != nil {
 			return &obj, err
@@ -8513,7 +8513,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("max_session_timeout"); ok {
+	if v, ok := d.GetOk("max_session_timeout"); ok || d.HasChange("max_session_timeout") {
 		t, err := expandObjectSystemNpuMaxSessionTimeoutOsna(d, v, "max_session_timeout")
 		if err != nil {
 			return &obj, err
@@ -8522,7 +8522,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("mcast_session_accounting"); ok {
+	if v, ok := d.GetOk("mcast_session_accounting"); ok || d.HasChange("mcast_session_accounting") {
 		t, err := expandObjectSystemNpuMcastSessionAccountingOsna(d, v, "mcast_session_accounting")
 		if err != nil {
 			return &obj, err
@@ -8531,7 +8531,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("mcast_session_counting"); ok {
+	if v, ok := d.GetOk("mcast_session_counting"); ok || d.HasChange("mcast_session_counting") {
 		t, err := expandObjectSystemNpuMcastSessionCountingOsna(d, v, "mcast_session_counting")
 		if err != nil {
 			return &obj, err
@@ -8540,7 +8540,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("mcast_session_counting6"); ok {
+	if v, ok := d.GetOk("mcast_session_counting6"); ok || d.HasChange("mcast_session_counting6") {
 		t, err := expandObjectSystemNpuMcastSessionCounting6Osna(d, v, "mcast_session_counting6")
 		if err != nil {
 			return &obj, err
@@ -8549,7 +8549,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("napi_break_interval"); ok {
+	if v, ok := d.GetOk("napi_break_interval"); ok || d.HasChange("napi_break_interval") {
 		t, err := expandObjectSystemNpuNapiBreakIntervalOsna(d, v, "napi_break_interval")
 		if err != nil {
 			return &obj, err
@@ -8558,7 +8558,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("nat46_force_ipv4_packet_forwarding"); ok {
+	if v, ok := d.GetOk("nat46_force_ipv4_packet_forwarding"); ok || d.HasChange("nat46_force_ipv4_packet_forwarding") {
 		t, err := expandObjectSystemNpuNat46ForceIpv4PacketForwardingOsna(d, v, "nat46_force_ipv4_packet_forwarding")
 		if err != nil {
 			return &obj, err
@@ -8567,7 +8567,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("np_queues"); ok {
+	if v, ok := d.GetOk("np_queues"); ok || d.HasChange("np_queues") {
 		t, err := expandObjectSystemNpuNpQueuesOsna(d, v, "np_queues")
 		if err != nil {
 			return &obj, err
@@ -8576,7 +8576,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("np6_cps_optimization_mode"); ok {
+	if v, ok := d.GetOk("np6_cps_optimization_mode"); ok || d.HasChange("np6_cps_optimization_mode") {
 		t, err := expandObjectSystemNpuNp6CpsOptimizationModeOsna(d, v, "np6_cps_optimization_mode")
 		if err != nil {
 			return &obj, err
@@ -8585,7 +8585,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("pba_eim"); ok {
+	if v, ok := d.GetOk("pba_eim"); ok || d.HasChange("pba_eim") {
 		t, err := expandObjectSystemNpuPbaEimOsna(d, v, "pba_eim")
 		if err != nil {
 			return &obj, err
@@ -8594,7 +8594,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("per_policy_accounting"); ok {
+	if v, ok := d.GetOk("per_policy_accounting"); ok || d.HasChange("per_policy_accounting") {
 		t, err := expandObjectSystemNpuPerPolicyAccountingOsna(d, v, "per_policy_accounting")
 		if err != nil {
 			return &obj, err
@@ -8603,7 +8603,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("per_session_accounting"); ok {
+	if v, ok := d.GetOk("per_session_accounting"); ok || d.HasChange("per_session_accounting") {
 		t, err := expandObjectSystemNpuPerSessionAccountingOsna(d, v, "per_session_accounting")
 		if err != nil {
 			return &obj, err
@@ -8612,7 +8612,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("policy_offload_level"); ok {
+	if v, ok := d.GetOk("policy_offload_level"); ok || d.HasChange("policy_offload_level") {
 		t, err := expandObjectSystemNpuPolicyOffloadLevelOsna(d, v, "policy_offload_level")
 		if err != nil {
 			return &obj, err
@@ -8621,7 +8621,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("port_cpu_map"); ok {
+	if v, ok := d.GetOk("port_cpu_map"); ok || d.HasChange("port_cpu_map") {
 		t, err := expandObjectSystemNpuPortCpuMapOsna(d, v, "port_cpu_map")
 		if err != nil {
 			return &obj, err
@@ -8630,7 +8630,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("port_npu_map"); ok {
+	if v, ok := d.GetOk("port_npu_map"); ok || d.HasChange("port_npu_map") {
 		t, err := expandObjectSystemNpuPortNpuMapOsna(d, v, "port_npu_map")
 		if err != nil {
 			return &obj, err
@@ -8639,7 +8639,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("port_path_option"); ok {
+	if v, ok := d.GetOk("port_path_option"); ok || d.HasChange("port_path_option") {
 		t, err := expandObjectSystemNpuPortPathOptionOsna(d, v, "port_path_option")
 		if err != nil {
 			return &obj, err
@@ -8648,7 +8648,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("priority_protocol"); ok {
+	if v, ok := d.GetOk("priority_protocol"); ok || d.HasChange("priority_protocol") {
 		t, err := expandObjectSystemNpuPriorityProtocolOsna(d, v, "priority_protocol")
 		if err != nil {
 			return &obj, err
@@ -8657,7 +8657,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("process_icmp_by_host"); ok {
+	if v, ok := d.GetOk("process_icmp_by_host"); ok || d.HasChange("process_icmp_by_host") {
 		t, err := expandObjectSystemNpuProcessIcmpByHostOsna(d, v, "process_icmp_by_host")
 		if err != nil {
 			return &obj, err
@@ -8666,7 +8666,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("prp_port_in"); ok {
+	if v, ok := d.GetOk("prp_port_in"); ok || d.HasChange("prp_port_in") {
 		t, err := expandObjectSystemNpuPrpPortInOsna(d, v, "prp_port_in")
 		if err != nil {
 			return &obj, err
@@ -8675,7 +8675,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("prp_port_out"); ok {
+	if v, ok := d.GetOk("prp_port_out"); ok || d.HasChange("prp_port_out") {
 		t, err := expandObjectSystemNpuPrpPortOutOsna(d, v, "prp_port_out")
 		if err != nil {
 			return &obj, err
@@ -8684,7 +8684,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("qos_mode"); ok {
+	if v, ok := d.GetOk("qos_mode"); ok || d.HasChange("qos_mode") {
 		t, err := expandObjectSystemNpuQosModeOsna(d, v, "qos_mode")
 		if err != nil {
 			return &obj, err
@@ -8693,7 +8693,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("qtm_buf_mode"); ok {
+	if v, ok := d.GetOk("qtm_buf_mode"); ok || d.HasChange("qtm_buf_mode") {
 		t, err := expandObjectSystemNpuQtmBufModeOsna(d, v, "qtm_buf_mode")
 		if err != nil {
 			return &obj, err
@@ -8702,7 +8702,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("rdp_offload"); ok {
+	if v, ok := d.GetOk("rdp_offload"); ok || d.HasChange("rdp_offload") {
 		t, err := expandObjectSystemNpuRdpOffloadOsna(d, v, "rdp_offload")
 		if err != nil {
 			return &obj, err
@@ -8711,7 +8711,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("recover_np6_link"); ok {
+	if v, ok := d.GetOk("recover_np6_link"); ok || d.HasChange("recover_np6_link") {
 		t, err := expandObjectSystemNpuRecoverNp6LinkOsna(d, v, "recover_np6_link")
 		if err != nil {
 			return &obj, err
@@ -8720,7 +8720,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("session_acct_interval"); ok {
+	if v, ok := d.GetOk("session_acct_interval"); ok || d.HasChange("session_acct_interval") {
 		t, err := expandObjectSystemNpuSessionAcctIntervalOsna(d, v, "session_acct_interval")
 		if err != nil {
 			return &obj, err
@@ -8729,7 +8729,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("session_denied_offload"); ok {
+	if v, ok := d.GetOk("session_denied_offload"); ok || d.HasChange("session_denied_offload") {
 		t, err := expandObjectSystemNpuSessionDeniedOffloadOsna(d, v, "session_denied_offload")
 		if err != nil {
 			return &obj, err
@@ -8738,7 +8738,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sse_backpressure"); ok {
+	if v, ok := d.GetOk("sse_backpressure"); ok || d.HasChange("sse_backpressure") {
 		t, err := expandObjectSystemNpuSseBackpressureOsna(d, v, "sse_backpressure")
 		if err != nil {
 			return &obj, err
@@ -8747,7 +8747,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("strip_clear_text_padding"); ok {
+	if v, ok := d.GetOk("strip_clear_text_padding"); ok || d.HasChange("strip_clear_text_padding") {
 		t, err := expandObjectSystemNpuStripClearTextPaddingOsna(d, v, "strip_clear_text_padding")
 		if err != nil {
 			return &obj, err
@@ -8756,7 +8756,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("strip_esp_padding"); ok {
+	if v, ok := d.GetOk("strip_esp_padding"); ok || d.HasChange("strip_esp_padding") {
 		t, err := expandObjectSystemNpuStripEspPaddingOsna(d, v, "strip_esp_padding")
 		if err != nil {
 			return &obj, err
@@ -8765,7 +8765,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sw_eh_hash"); ok {
+	if v, ok := d.GetOk("sw_eh_hash"); ok || d.HasChange("sw_eh_hash") {
 		t, err := expandObjectSystemNpuSwEhHashOsna(d, v, "sw_eh_hash")
 		if err != nil {
 			return &obj, err
@@ -8774,7 +8774,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sw_np_bandwidth"); ok {
+	if v, ok := d.GetOk("sw_np_bandwidth"); ok || d.HasChange("sw_np_bandwidth") {
 		t, err := expandObjectSystemNpuSwNpBandwidthOsna(d, v, "sw_np_bandwidth")
 		if err != nil {
 			return &obj, err
@@ -8783,7 +8783,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("switch_np_hash"); ok {
+	if v, ok := d.GetOk("switch_np_hash"); ok || d.HasChange("switch_np_hash") {
 		t, err := expandObjectSystemNpuSwitchNpHashOsna(d, v, "switch_np_hash")
 		if err != nil {
 			return &obj, err
@@ -8792,7 +8792,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_rst_timeout"); ok {
+	if v, ok := d.GetOk("tcp_rst_timeout"); ok || d.HasChange("tcp_rst_timeout") {
 		t, err := expandObjectSystemNpuTcpRstTimeoutOsna(d, v, "tcp_rst_timeout")
 		if err != nil {
 			return &obj, err
@@ -8801,7 +8801,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_timeout_profile"); ok {
+	if v, ok := d.GetOk("tcp_timeout_profile"); ok || d.HasChange("tcp_timeout_profile") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileOsna(d, v, "tcp_timeout_profile")
 		if err != nil {
 			return &obj, err
@@ -8810,7 +8810,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("udp_timeout_profile"); ok {
+	if v, ok := d.GetOk("udp_timeout_profile"); ok || d.HasChange("udp_timeout_profile") {
 		t, err := expandObjectSystemNpuUdpTimeoutProfileOsna(d, v, "udp_timeout_profile")
 		if err != nil {
 			return &obj, err
@@ -8819,7 +8819,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("uesp_offload"); ok {
+	if v, ok := d.GetOk("uesp_offload"); ok || d.HasChange("uesp_offload") {
 		t, err := expandObjectSystemNpuUespOffloadOsna(d, v, "uesp_offload")
 		if err != nil {
 			return &obj, err
@@ -8828,7 +8828,7 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("vlan_lookup_cache"); ok {
+	if v, ok := d.GetOk("vlan_lookup_cache"); ok || d.HasChange("vlan_lookup_cache") {
 		t, err := expandObjectSystemNpuVlanLookupCacheOsna(d, v, "vlan_lookup_cache")
 		if err != nil {
 			return &obj, err

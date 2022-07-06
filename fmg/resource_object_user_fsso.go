@@ -1413,174 +1413,174 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_gui_meta"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_gui_meta"], _ = expandObjectUserFssoDynamicMappingGuiMeta(d, i["_gui_meta"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectUserFssoDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_poll_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-poll-interval"], _ = expandObjectUserFssoDynamicMappingGroupPollInterval(d, i["group_poll_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectUserFssoDynamicMappingInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserFssoDynamicMappingInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_poll"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldap-poll"], _ = expandObjectUserFssoDynamicMappingLdapPoll(d, i["ldap_poll"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_poll_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldap-poll-filter"], _ = expandObjectUserFssoDynamicMappingLdapPollFilter(d, i["ldap_poll_filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_poll_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldap-poll-interval"], _ = expandObjectUserFssoDynamicMappingLdapPollInterval(d, i["ldap_poll_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldap-server"], _ = expandObjectUserFssoDynamicMappingLdapServer(d, i["ldap_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["logon-timeout"], _ = expandObjectUserFssoDynamicMappingLogonTimeout(d, i["logon_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserFssoDynamicMappingPassword(d, i["password"], pre_append)
 		} else {
 			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password2"], _ = expandObjectUserFssoDynamicMappingPassword2(d, i["password2"], pre_append)
 		} else {
 			tmp["password2"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password3"], _ = expandObjectUserFssoDynamicMappingPassword3(d, i["password3"], pre_append)
 		} else {
 			tmp["password3"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password4"], _ = expandObjectUserFssoDynamicMappingPassword4(d, i["password4"], pre_append)
 		} else {
 			tmp["password4"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password5"], _ = expandObjectUserFssoDynamicMappingPassword5(d, i["password5"], pre_append)
 		} else {
 			tmp["password5"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectUserFssoDynamicMappingPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port2"], _ = expandObjectUserFssoDynamicMappingPort2(d, i["port2"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port3"], _ = expandObjectUserFssoDynamicMappingPort3(d, i["port3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port4"], _ = expandObjectUserFssoDynamicMappingPort4(d, i["port4"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port5"], _ = expandObjectUserFssoDynamicMappingPort5(d, i["port5"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectUserFssoDynamicMappingServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server2"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server2"], _ = expandObjectUserFssoDynamicMappingServer2(d, i["server2"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server3"], _ = expandObjectUserFssoDynamicMappingServer3(d, i["server3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server4"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server4"], _ = expandObjectUserFssoDynamicMappingServer4(d, i["server4"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server5"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server5"], _ = expandObjectUserFssoDynamicMappingServer5(d, i["server5"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserFssoDynamicMappingSourceIp(d, i["source_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip6"], _ = expandObjectUserFssoDynamicMappingSourceIp6(d, i["source_ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl"], _ = expandObjectUserFssoDynamicMappingSsl(d, i["ssl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_host_ip_check"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-host-ip-check"], _ = expandObjectUserFssoDynamicMappingSslServerHostIpCheck(d, i["ssl_server_host_ip_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_trusted_cert"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-trusted-cert"], _ = expandObjectUserFssoDynamicMappingSslTrustedCert(d, i["ssl_trusted_cert"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectUserFssoDynamicMappingType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_info_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user-info-server"], _ = expandObjectUserFssoDynamicMappingUserInfoServer(d, i["user_info_server"], pre_append)
 		}
 
@@ -1611,12 +1611,12 @@ func expandObjectUserFssoDynamicMappingScope(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserFssoDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectUserFssoDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -1883,7 +1883,7 @@ func expandObjectUserFssoUserInfoServer(d *schema.ResourceData, v interface{}, p
 func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_gui_meta"); ok {
+	if v, ok := d.GetOk("_gui_meta"); ok || d.HasChange("_gui_meta") {
 		t, err := expandObjectUserFssoGuiMeta(d, v, "_gui_meta")
 		if err != nil {
 			return &obj, err
@@ -1892,7 +1892,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserFssoDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -1901,7 +1901,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("group_poll_interval"); ok {
+	if v, ok := d.GetOk("group_poll_interval"); ok || d.HasChange("group_poll_interval") {
 		t, err := expandObjectUserFssoGroupPollInterval(d, v, "group_poll_interval")
 		if err != nil {
 			return &obj, err
@@ -1910,7 +1910,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectUserFssoInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -1919,7 +1919,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectUserFssoInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -1928,7 +1928,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_poll"); ok {
+	if v, ok := d.GetOk("ldap_poll"); ok || d.HasChange("ldap_poll") {
 		t, err := expandObjectUserFssoLdapPoll(d, v, "ldap_poll")
 		if err != nil {
 			return &obj, err
@@ -1937,7 +1937,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_poll_filter"); ok {
+	if v, ok := d.GetOk("ldap_poll_filter"); ok || d.HasChange("ldap_poll_filter") {
 		t, err := expandObjectUserFssoLdapPollFilter(d, v, "ldap_poll_filter")
 		if err != nil {
 			return &obj, err
@@ -1946,7 +1946,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_poll_interval"); ok {
+	if v, ok := d.GetOk("ldap_poll_interval"); ok || d.HasChange("ldap_poll_interval") {
 		t, err := expandObjectUserFssoLdapPollInterval(d, v, "ldap_poll_interval")
 		if err != nil {
 			return &obj, err
@@ -1955,7 +1955,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_server"); ok {
+	if v, ok := d.GetOk("ldap_server"); ok || d.HasChange("ldap_server") {
 		t, err := expandObjectUserFssoLdapServer(d, v, "ldap_server")
 		if err != nil {
 			return &obj, err
@@ -1964,7 +1964,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("logon_timeout"); ok {
+	if v, ok := d.GetOk("logon_timeout"); ok || d.HasChange("logon_timeout") {
 		t, err := expandObjectUserFssoLogonTimeout(d, v, "logon_timeout")
 		if err != nil {
 			return &obj, err
@@ -1973,7 +1973,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserFssoName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1982,7 +1982,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserFssoPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -1991,7 +1991,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password2"); ok {
+	if v, ok := d.GetOk("password2"); ok || d.HasChange("password2") {
 		t, err := expandObjectUserFssoPassword2(d, v, "password2")
 		if err != nil {
 			return &obj, err
@@ -2000,7 +2000,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password3"); ok {
+	if v, ok := d.GetOk("password3"); ok || d.HasChange("password3") {
 		t, err := expandObjectUserFssoPassword3(d, v, "password3")
 		if err != nil {
 			return &obj, err
@@ -2009,7 +2009,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password4"); ok {
+	if v, ok := d.GetOk("password4"); ok || d.HasChange("password4") {
 		t, err := expandObjectUserFssoPassword4(d, v, "password4")
 		if err != nil {
 			return &obj, err
@@ -2018,7 +2018,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("password5"); ok {
+	if v, ok := d.GetOk("password5"); ok || d.HasChange("password5") {
 		t, err := expandObjectUserFssoPassword5(d, v, "password5")
 		if err != nil {
 			return &obj, err
@@ -2027,7 +2027,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectUserFssoPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -2036,7 +2036,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port2"); ok {
+	if v, ok := d.GetOk("port2"); ok || d.HasChange("port2") {
 		t, err := expandObjectUserFssoPort2(d, v, "port2")
 		if err != nil {
 			return &obj, err
@@ -2045,7 +2045,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port3"); ok {
+	if v, ok := d.GetOk("port3"); ok || d.HasChange("port3") {
 		t, err := expandObjectUserFssoPort3(d, v, "port3")
 		if err != nil {
 			return &obj, err
@@ -2054,7 +2054,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port4"); ok {
+	if v, ok := d.GetOk("port4"); ok || d.HasChange("port4") {
 		t, err := expandObjectUserFssoPort4(d, v, "port4")
 		if err != nil {
 			return &obj, err
@@ -2063,7 +2063,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port5"); ok {
+	if v, ok := d.GetOk("port5"); ok || d.HasChange("port5") {
 		t, err := expandObjectUserFssoPort5(d, v, "port5")
 		if err != nil {
 			return &obj, err
@@ -2072,7 +2072,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserFssoServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -2081,7 +2081,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server2"); ok {
+	if v, ok := d.GetOk("server2"); ok || d.HasChange("server2") {
 		t, err := expandObjectUserFssoServer2(d, v, "server2")
 		if err != nil {
 			return &obj, err
@@ -2090,7 +2090,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server3"); ok {
+	if v, ok := d.GetOk("server3"); ok || d.HasChange("server3") {
 		t, err := expandObjectUserFssoServer3(d, v, "server3")
 		if err != nil {
 			return &obj, err
@@ -2099,7 +2099,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server4"); ok {
+	if v, ok := d.GetOk("server4"); ok || d.HasChange("server4") {
 		t, err := expandObjectUserFssoServer4(d, v, "server4")
 		if err != nil {
 			return &obj, err
@@ -2108,7 +2108,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server5"); ok {
+	if v, ok := d.GetOk("server5"); ok || d.HasChange("server5") {
 		t, err := expandObjectUserFssoServer5(d, v, "server5")
 		if err != nil {
 			return &obj, err
@@ -2117,7 +2117,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectUserFssoSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -2126,7 +2126,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip6"); ok {
+	if v, ok := d.GetOk("source_ip6"); ok || d.HasChange("source_ip6") {
 		t, err := expandObjectUserFssoSourceIp6(d, v, "source_ip6")
 		if err != nil {
 			return &obj, err
@@ -2135,7 +2135,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ssl"); ok {
+	if v, ok := d.GetOk("ssl"); ok || d.HasChange("ssl") {
 		t, err := expandObjectUserFssoSsl(d, v, "ssl")
 		if err != nil {
 			return &obj, err
@@ -2144,7 +2144,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_server_host_ip_check"); ok {
+	if v, ok := d.GetOk("ssl_server_host_ip_check"); ok || d.HasChange("ssl_server_host_ip_check") {
 		t, err := expandObjectUserFssoSslServerHostIpCheck(d, v, "ssl_server_host_ip_check")
 		if err != nil {
 			return &obj, err
@@ -2153,7 +2153,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_trusted_cert"); ok {
+	if v, ok := d.GetOk("ssl_trusted_cert"); ok || d.HasChange("ssl_trusted_cert") {
 		t, err := expandObjectUserFssoSslTrustedCert(d, v, "ssl_trusted_cert")
 		if err != nil {
 			return &obj, err
@@ -2162,7 +2162,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectUserFssoType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -2171,7 +2171,7 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("user_info_server"); ok {
+	if v, ok := d.GetOk("user_info_server"); ok || d.HasChange("user_info_server") {
 		t, err := expandObjectUserFssoUserInfoServer(d, v, "user_info_server")
 		if err != nil {
 			return &obj, err

@@ -267,7 +267,7 @@ func expandObjectFirewallIppoolGrpUuid(d *schema.ResourceData, v interface{}, pr
 func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectFirewallIppoolGrpComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallIppoolGrpMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallIppoolGrpName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallIppoolGrpUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

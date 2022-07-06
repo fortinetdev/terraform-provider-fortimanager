@@ -325,7 +325,7 @@ func expandSystemAdminRadiusServer(d *schema.ResourceData, v interface{}, pre st
 func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auth_type"); ok {
+	if v, ok := d.GetOk("auth_type"); ok || d.HasChange("auth_type") {
 		t, err := expandSystemAdminRadiusAuthType(d, v, "auth_type")
 		if err != nil {
 			return &obj, err
@@ -334,7 +334,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemAdminRadiusName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -343,7 +343,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("nas_ip"); ok {
+	if v, ok := d.GetOk("nas_ip"); ok || d.HasChange("nas_ip") {
 		t, err := expandSystemAdminRadiusNasIp(d, v, "nas_ip")
 		if err != nil {
 			return &obj, err
@@ -352,7 +352,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandSystemAdminRadiusPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -361,7 +361,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_secret"); ok {
+	if v, ok := d.GetOk("secondary_secret"); ok || d.HasChange("secondary_secret") {
 		t, err := expandSystemAdminRadiusSecondarySecret(d, v, "secondary_secret")
 		if err != nil {
 			return &obj, err
@@ -370,7 +370,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_server"); ok {
+	if v, ok := d.GetOk("secondary_server"); ok || d.HasChange("secondary_server") {
 		t, err := expandSystemAdminRadiusSecondaryServer(d, v, "secondary_server")
 		if err != nil {
 			return &obj, err
@@ -379,7 +379,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("secret"); ok {
+	if v, ok := d.GetOk("secret"); ok || d.HasChange("secret") {
 		t, err := expandSystemAdminRadiusSecret(d, v, "secret")
 		if err != nil {
 			return &obj, err
@@ -388,7 +388,7 @@ func getObjectSystemAdminRadius(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandSystemAdminRadiusServer(d, v, "server")
 		if err != nil {
 			return &obj, err

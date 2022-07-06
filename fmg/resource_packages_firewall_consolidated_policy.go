@@ -2273,7 +2273,7 @@ func expandPackagesFirewallConsolidatedPolicyWebproxyProfile(d *schema.ResourceD
 func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_policy_block"); ok {
+	if v, ok := d.GetOk("_policy_block"); ok || d.HasChange("_policy_block") {
 		t, err := expandPackagesFirewallConsolidatedPolicyPolicyBlock(d, v, "_policy_block")
 		if err != nil {
 			return &obj, err
@@ -2282,7 +2282,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesFirewallConsolidatedPolicyAction(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -2291,7 +2291,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("app_category"); ok {
+	if v, ok := d.GetOk("app_category"); ok || d.HasChange("app_category") {
 		t, err := expandPackagesFirewallConsolidatedPolicyAppCategory(d, v, "app_category")
 		if err != nil {
 			return &obj, err
@@ -2300,7 +2300,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("app_group"); ok {
+	if v, ok := d.GetOk("app_group"); ok || d.HasChange("app_group") {
 		t, err := expandPackagesFirewallConsolidatedPolicyAppGroup(d, v, "app_group")
 		if err != nil {
 			return &obj, err
@@ -2309,7 +2309,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("application"); ok {
+	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
 		t, err := expandPackagesFirewallConsolidatedPolicyApplication(d, v, "application")
 		if err != nil {
 			return &obj, err
@@ -2318,7 +2318,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("application_list"); ok {
+	if v, ok := d.GetOk("application_list"); ok || d.HasChange("application_list") {
 		t, err := expandPackagesFirewallConsolidatedPolicyApplicationList(d, v, "application_list")
 		if err != nil {
 			return &obj, err
@@ -2327,7 +2327,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("auto_asic_offload"); ok {
+	if v, ok := d.GetOk("auto_asic_offload"); ok || d.HasChange("auto_asic_offload") {
 		t, err := expandPackagesFirewallConsolidatedPolicyAutoAsicOffload(d, v, "auto_asic_offload")
 		if err != nil {
 			return &obj, err
@@ -2336,7 +2336,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("av_profile"); ok {
+	if v, ok := d.GetOk("av_profile"); ok || d.HasChange("av_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyAvProfile(d, v, "av_profile")
 		if err != nil {
 			return &obj, err
@@ -2345,7 +2345,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_exempt"); ok {
+	if v, ok := d.GetOk("captive_portal_exempt"); ok || d.HasChange("captive_portal_exempt") {
 		t, err := expandPackagesFirewallConsolidatedPolicyCaptivePortalExempt(d, v, "captive_portal_exempt")
 		if err != nil {
 			return &obj, err
@@ -2354,7 +2354,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("cifs_profile"); ok {
+	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyCifsProfile(d, v, "cifs_profile")
 		if err != nil {
 			return &obj, err
@@ -2363,7 +2363,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallConsolidatedPolicyComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -2372,7 +2372,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv_forward"); ok {
+	if v, ok := d.GetOk("diffserv_forward"); ok || d.HasChange("diffserv_forward") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDiffservForward(d, v, "diffserv_forward")
 		if err != nil {
 			return &obj, err
@@ -2381,7 +2381,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv_reverse"); ok {
+	if v, ok := d.GetOk("diffserv_reverse"); ok || d.HasChange("diffserv_reverse") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDiffservReverse(d, v, "diffserv_reverse")
 		if err != nil {
 			return &obj, err
@@ -2390,7 +2390,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode_forward"); ok {
+	if v, ok := d.GetOk("diffservcode_forward"); ok || d.HasChange("diffservcode_forward") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDiffservcodeForward(d, v, "diffservcode_forward")
 		if err != nil {
 			return &obj, err
@@ -2399,7 +2399,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode_rev"); ok {
+	if v, ok := d.GetOk("diffservcode_rev"); ok || d.HasChange("diffservcode_rev") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDiffservcodeRev(d, v, "diffservcode_rev")
 		if err != nil {
 			return &obj, err
@@ -2408,7 +2408,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dlp_sensor"); ok {
+	if v, ok := d.GetOk("dlp_sensor"); ok || d.HasChange("dlp_sensor") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDlpSensor(d, v, "dlp_sensor")
 		if err != nil {
 			return &obj, err
@@ -2417,7 +2417,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dnsfilter_profile"); ok {
+	if v, ok := d.GetOk("dnsfilter_profile"); ok || d.HasChange("dnsfilter_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDnsfilterProfile(d, v, "dnsfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -2426,7 +2426,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr_negate"); ok {
+	if v, ok := d.GetOk("dstaddr_negate"); ok || d.HasChange("dstaddr_negate") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDstaddrNegate(d, v, "dstaddr_negate")
 		if err != nil {
 			return &obj, err
@@ -2435,7 +2435,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr4"); ok {
+	if v, ok := d.GetOk("dstaddr4"); ok || d.HasChange("dstaddr4") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDstaddr4(d, v, "dstaddr4")
 		if err != nil {
 			return &obj, err
@@ -2444,7 +2444,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr6"); ok {
+	if v, ok := d.GetOk("dstaddr6"); ok || d.HasChange("dstaddr6") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDstaddr6(d, v, "dstaddr6")
 		if err != nil {
 			return &obj, err
@@ -2453,7 +2453,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dstintf"); ok {
+	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
 		t, err := expandPackagesFirewallConsolidatedPolicyDstintf(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
@@ -2462,7 +2462,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("emailfilter_profile"); ok {
+	if v, ok := d.GetOk("emailfilter_profile"); ok || d.HasChange("emailfilter_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyEmailfilterProfile(d, v, "emailfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -2471,7 +2471,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("fixedport"); ok {
+	if v, ok := d.GetOk("fixedport"); ok || d.HasChange("fixedport") {
 		t, err := expandPackagesFirewallConsolidatedPolicyFixedport(d, v, "fixedport")
 		if err != nil {
 			return &obj, err
@@ -2480,7 +2480,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("fsso_groups"); ok {
+	if v, ok := d.GetOk("fsso_groups"); ok || d.HasChange("fsso_groups") {
 		t, err := expandPackagesFirewallConsolidatedPolicyFssoGroups(d, v, "fsso_groups")
 		if err != nil {
 			return &obj, err
@@ -2489,7 +2489,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("global_label"); ok {
+	if v, ok := d.GetOk("global_label"); ok || d.HasChange("global_label") {
 		t, err := expandPackagesFirewallConsolidatedPolicyGlobalLabel(d, v, "global_label")
 		if err != nil {
 			return &obj, err
@@ -2498,7 +2498,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("groups"); ok {
+	if v, ok := d.GetOk("groups"); ok || d.HasChange("groups") {
 		t, err := expandPackagesFirewallConsolidatedPolicyGroups(d, v, "groups")
 		if err != nil {
 			return &obj, err
@@ -2507,7 +2507,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("http_policy_redirect"); ok {
+	if v, ok := d.GetOk("http_policy_redirect"); ok || d.HasChange("http_policy_redirect") {
 		t, err := expandPackagesFirewallConsolidatedPolicyHttpPolicyRedirect(d, v, "http_policy_redirect")
 		if err != nil {
 			return &obj, err
@@ -2516,7 +2516,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("icap_profile"); ok {
+	if v, ok := d.GetOk("icap_profile"); ok || d.HasChange("icap_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyIcapProfile(d, v, "icap_profile")
 		if err != nil {
 			return &obj, err
@@ -2525,7 +2525,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("inbound"); ok {
+	if v, ok := d.GetOk("inbound"); ok || d.HasChange("inbound") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInbound(d, v, "inbound")
 		if err != nil {
 			return &obj, err
@@ -2534,7 +2534,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("inspection_mode"); ok {
+	if v, ok := d.GetOk("inspection_mode"); ok || d.HasChange("inspection_mode") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInspectionMode(d, v, "inspection_mode")
 		if err != nil {
 			return &obj, err
@@ -2543,7 +2543,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service"); ok {
+	if v, ok := d.GetOk("internet_service"); ok || d.HasChange("internet_service") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetService(d, v, "internet_service")
 		if err != nil {
 			return &obj, err
@@ -2552,7 +2552,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_custom"); ok {
+	if v, ok := d.GetOk("internet_service_custom"); ok || d.HasChange("internet_service_custom") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceCustom(d, v, "internet_service_custom")
 		if err != nil {
 			return &obj, err
@@ -2561,7 +2561,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_custom_group"); ok {
+	if v, ok := d.GetOk("internet_service_custom_group"); ok || d.HasChange("internet_service_custom_group") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceCustomGroup(d, v, "internet_service_custom_group")
 		if err != nil {
 			return &obj, err
@@ -2570,7 +2570,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_group"); ok {
+	if v, ok := d.GetOk("internet_service_group"); ok || d.HasChange("internet_service_group") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceGroup(d, v, "internet_service_group")
 		if err != nil {
 			return &obj, err
@@ -2579,7 +2579,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_id"); ok {
+	if v, ok := d.GetOk("internet_service_id"); ok || d.HasChange("internet_service_id") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceId(d, v, "internet_service_id")
 		if err != nil {
 			return &obj, err
@@ -2588,7 +2588,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_negate"); ok {
+	if v, ok := d.GetOk("internet_service_negate"); ok || d.HasChange("internet_service_negate") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceNegate(d, v, "internet_service_negate")
 		if err != nil {
 			return &obj, err
@@ -2597,7 +2597,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src"); ok {
+	if v, ok := d.GetOk("internet_service_src"); ok || d.HasChange("internet_service_src") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceSrc(d, v, "internet_service_src")
 		if err != nil {
 			return &obj, err
@@ -2606,7 +2606,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_custom"); ok {
+	if v, ok := d.GetOk("internet_service_src_custom"); ok || d.HasChange("internet_service_src_custom") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceSrcCustom(d, v, "internet_service_src_custom")
 		if err != nil {
 			return &obj, err
@@ -2615,7 +2615,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_custom_group"); ok {
+	if v, ok := d.GetOk("internet_service_src_custom_group"); ok || d.HasChange("internet_service_src_custom_group") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceSrcCustomGroup(d, v, "internet_service_src_custom_group")
 		if err != nil {
 			return &obj, err
@@ -2624,7 +2624,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_group"); ok {
+	if v, ok := d.GetOk("internet_service_src_group"); ok || d.HasChange("internet_service_src_group") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceSrcGroup(d, v, "internet_service_src_group")
 		if err != nil {
 			return &obj, err
@@ -2633,7 +2633,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_id"); ok {
+	if v, ok := d.GetOk("internet_service_src_id"); ok || d.HasChange("internet_service_src_id") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceSrcId(d, v, "internet_service_src_id")
 		if err != nil {
 			return &obj, err
@@ -2642,7 +2642,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_negate"); ok {
+	if v, ok := d.GetOk("internet_service_src_negate"); ok || d.HasChange("internet_service_src_negate") {
 		t, err := expandPackagesFirewallConsolidatedPolicyInternetServiceSrcNegate(d, v, "internet_service_src_negate")
 		if err != nil {
 			return &obj, err
@@ -2651,7 +2651,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ippool"); ok {
+	if v, ok := d.GetOk("ippool"); ok || d.HasChange("ippool") {
 		t, err := expandPackagesFirewallConsolidatedPolicyIppool(d, v, "ippool")
 		if err != nil {
 			return &obj, err
@@ -2660,7 +2660,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ips_sensor"); ok {
+	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
 		t, err := expandPackagesFirewallConsolidatedPolicyIpsSensor(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
@@ -2669,7 +2669,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("logtraffic"); ok {
+	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
 		t, err := expandPackagesFirewallConsolidatedPolicyLogtraffic(d, v, "logtraffic")
 		if err != nil {
 			return &obj, err
@@ -2678,7 +2678,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("logtraffic_start"); ok {
+	if v, ok := d.GetOk("logtraffic_start"); ok || d.HasChange("logtraffic_start") {
 		t, err := expandPackagesFirewallConsolidatedPolicyLogtrafficStart(d, v, "logtraffic_start")
 		if err != nil {
 			return &obj, err
@@ -2687,7 +2687,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("mms_profile"); ok {
+	if v, ok := d.GetOk("mms_profile"); ok || d.HasChange("mms_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyMmsProfile(d, v, "mms_profile")
 		if err != nil {
 			return &obj, err
@@ -2696,7 +2696,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesFirewallConsolidatedPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -2705,7 +2705,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("nat"); ok {
+	if v, ok := d.GetOk("nat"); ok || d.HasChange("nat") {
 		t, err := expandPackagesFirewallConsolidatedPolicyNat(d, v, "nat")
 		if err != nil {
 			return &obj, err
@@ -2714,7 +2714,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("outbound"); ok {
+	if v, ok := d.GetOk("outbound"); ok || d.HasChange("outbound") {
 		t, err := expandPackagesFirewallConsolidatedPolicyOutbound(d, v, "outbound")
 		if err != nil {
 			return &obj, err
@@ -2723,7 +2723,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("per_ip_shaper"); ok {
+	if v, ok := d.GetOk("per_ip_shaper"); ok || d.HasChange("per_ip_shaper") {
 		t, err := expandPackagesFirewallConsolidatedPolicyPerIpShaper(d, v, "per_ip_shaper")
 		if err != nil {
 			return &obj, err
@@ -2732,7 +2732,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("policyid"); ok {
+	if v, ok := d.GetOk("policyid"); ok || d.HasChange("policyid") {
 		t, err := expandPackagesFirewallConsolidatedPolicyPolicyid(d, v, "policyid")
 		if err != nil {
 			return &obj, err
@@ -2741,7 +2741,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("poolname4"); ok {
+	if v, ok := d.GetOk("poolname4"); ok || d.HasChange("poolname4") {
 		t, err := expandPackagesFirewallConsolidatedPolicyPoolname4(d, v, "poolname4")
 		if err != nil {
 			return &obj, err
@@ -2750,7 +2750,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("poolname6"); ok {
+	if v, ok := d.GetOk("poolname6"); ok || d.HasChange("poolname6") {
 		t, err := expandPackagesFirewallConsolidatedPolicyPoolname6(d, v, "poolname6")
 		if err != nil {
 			return &obj, err
@@ -2759,7 +2759,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("profile_group"); ok {
+	if v, ok := d.GetOk("profile_group"); ok || d.HasChange("profile_group") {
 		t, err := expandPackagesFirewallConsolidatedPolicyProfileGroup(d, v, "profile_group")
 		if err != nil {
 			return &obj, err
@@ -2768,7 +2768,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("profile_protocol_options"); ok {
+	if v, ok := d.GetOk("profile_protocol_options"); ok || d.HasChange("profile_protocol_options") {
 		t, err := expandPackagesFirewallConsolidatedPolicyProfileProtocolOptions(d, v, "profile_protocol_options")
 		if err != nil {
 			return &obj, err
@@ -2777,7 +2777,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("profile_type"); ok {
+	if v, ok := d.GetOk("profile_type"); ok || d.HasChange("profile_type") {
 		t, err := expandPackagesFirewallConsolidatedPolicyProfileType(d, v, "profile_type")
 		if err != nil {
 			return &obj, err
@@ -2786,7 +2786,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("schedule"); ok {
+	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
 		t, err := expandPackagesFirewallConsolidatedPolicySchedule(d, v, "schedule")
 		if err != nil {
 			return &obj, err
@@ -2795,7 +2795,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok {
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
 		t, err := expandPackagesFirewallConsolidatedPolicyService(d, v, "service")
 		if err != nil {
 			return &obj, err
@@ -2804,7 +2804,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("service_negate"); ok {
+	if v, ok := d.GetOk("service_negate"); ok || d.HasChange("service_negate") {
 		t, err := expandPackagesFirewallConsolidatedPolicyServiceNegate(d, v, "service_negate")
 		if err != nil {
 			return &obj, err
@@ -2813,7 +2813,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("session_ttl"); ok {
+	if v, ok := d.GetOk("session_ttl"); ok || d.HasChange("session_ttl") {
 		t, err := expandPackagesFirewallConsolidatedPolicySessionTtl(d, v, "session_ttl")
 		if err != nil {
 			return &obj, err
@@ -2822,7 +2822,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr_negate"); ok {
+	if v, ok := d.GetOk("srcaddr_negate"); ok || d.HasChange("srcaddr_negate") {
 		t, err := expandPackagesFirewallConsolidatedPolicySrcaddrNegate(d, v, "srcaddr_negate")
 		if err != nil {
 			return &obj, err
@@ -2831,7 +2831,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr4"); ok {
+	if v, ok := d.GetOk("srcaddr4"); ok || d.HasChange("srcaddr4") {
 		t, err := expandPackagesFirewallConsolidatedPolicySrcaddr4(d, v, "srcaddr4")
 		if err != nil {
 			return &obj, err
@@ -2840,7 +2840,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr6"); ok {
+	if v, ok := d.GetOk("srcaddr6"); ok || d.HasChange("srcaddr6") {
 		t, err := expandPackagesFirewallConsolidatedPolicySrcaddr6(d, v, "srcaddr6")
 		if err != nil {
 			return &obj, err
@@ -2849,7 +2849,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesFirewallConsolidatedPolicySrcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -2858,7 +2858,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_filter_profile"); ok {
+	if v, ok := d.GetOk("ssh_filter_profile"); ok || d.HasChange("ssh_filter_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicySshFilterProfile(d, v, "ssh_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -2867,7 +2867,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_policy_redirect"); ok {
+	if v, ok := d.GetOk("ssh_policy_redirect"); ok || d.HasChange("ssh_policy_redirect") {
 		t, err := expandPackagesFirewallConsolidatedPolicySshPolicyRedirect(d, v, "ssh_policy_redirect")
 		if err != nil {
 			return &obj, err
@@ -2876,7 +2876,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_ssh_profile"); ok {
+	if v, ok := d.GetOk("ssl_ssh_profile"); ok || d.HasChange("ssl_ssh_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicySslSshProfile(d, v, "ssl_ssh_profile")
 		if err != nil {
 			return &obj, err
@@ -2885,7 +2885,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallConsolidatedPolicyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -2894,7 +2894,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_mss_receiver"); ok {
+	if v, ok := d.GetOk("tcp_mss_receiver"); ok || d.HasChange("tcp_mss_receiver") {
 		t, err := expandPackagesFirewallConsolidatedPolicyTcpMssReceiver(d, v, "tcp_mss_receiver")
 		if err != nil {
 			return &obj, err
@@ -2903,7 +2903,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_mss_sender"); ok {
+	if v, ok := d.GetOk("tcp_mss_sender"); ok || d.HasChange("tcp_mss_sender") {
 		t, err := expandPackagesFirewallConsolidatedPolicyTcpMssSender(d, v, "tcp_mss_sender")
 		if err != nil {
 			return &obj, err
@@ -2912,7 +2912,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaper"); ok {
+	if v, ok := d.GetOk("traffic_shaper"); ok || d.HasChange("traffic_shaper") {
 		t, err := expandPackagesFirewallConsolidatedPolicyTrafficShaper(d, v, "traffic_shaper")
 		if err != nil {
 			return &obj, err
@@ -2921,7 +2921,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaper_reverse"); ok {
+	if v, ok := d.GetOk("traffic_shaper_reverse"); ok || d.HasChange("traffic_shaper_reverse") {
 		t, err := expandPackagesFirewallConsolidatedPolicyTrafficShaperReverse(d, v, "traffic_shaper_reverse")
 		if err != nil {
 			return &obj, err
@@ -2930,7 +2930,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("url_category"); ok {
+	if v, ok := d.GetOk("url_category"); ok || d.HasChange("url_category") {
 		t, err := expandPackagesFirewallConsolidatedPolicyUrlCategory(d, v, "url_category")
 		if err != nil {
 			return &obj, err
@@ -2939,7 +2939,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("users"); ok {
+	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
 		t, err := expandPackagesFirewallConsolidatedPolicyUsers(d, v, "users")
 		if err != nil {
 			return &obj, err
@@ -2948,7 +2948,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("utm_status"); ok {
+	if v, ok := d.GetOk("utm_status"); ok || d.HasChange("utm_status") {
 		t, err := expandPackagesFirewallConsolidatedPolicyUtmStatus(d, v, "utm_status")
 		if err != nil {
 			return &obj, err
@@ -2957,7 +2957,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallConsolidatedPolicyUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -2966,7 +2966,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("voip_profile"); ok {
+	if v, ok := d.GetOk("voip_profile"); ok || d.HasChange("voip_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyVoipProfile(d, v, "voip_profile")
 		if err != nil {
 			return &obj, err
@@ -2975,7 +2975,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("vpntunnel"); ok {
+	if v, ok := d.GetOk("vpntunnel"); ok || d.HasChange("vpntunnel") {
 		t, err := expandPackagesFirewallConsolidatedPolicyVpntunnel(d, v, "vpntunnel")
 		if err != nil {
 			return &obj, err
@@ -2984,7 +2984,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("waf_profile"); ok {
+	if v, ok := d.GetOk("waf_profile"); ok || d.HasChange("waf_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWafProfile(d, v, "waf_profile")
 		if err != nil {
 			return &obj, err
@@ -2993,7 +2993,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wanopt"); ok {
+	if v, ok := d.GetOk("wanopt"); ok || d.HasChange("wanopt") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWanopt(d, v, "wanopt")
 		if err != nil {
 			return &obj, err
@@ -3002,7 +3002,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wanopt_detection"); ok {
+	if v, ok := d.GetOk("wanopt_detection"); ok || d.HasChange("wanopt_detection") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWanoptDetection(d, v, "wanopt_detection")
 		if err != nil {
 			return &obj, err
@@ -3011,7 +3011,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wanopt_passive_opt"); ok {
+	if v, ok := d.GetOk("wanopt_passive_opt"); ok || d.HasChange("wanopt_passive_opt") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWanoptPassiveOpt(d, v, "wanopt_passive_opt")
 		if err != nil {
 			return &obj, err
@@ -3020,7 +3020,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wanopt_peer"); ok {
+	if v, ok := d.GetOk("wanopt_peer"); ok || d.HasChange("wanopt_peer") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWanoptPeer(d, v, "wanopt_peer")
 		if err != nil {
 			return &obj, err
@@ -3029,7 +3029,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("wanopt_profile"); ok {
+	if v, ok := d.GetOk("wanopt_profile"); ok || d.HasChange("wanopt_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWanoptProfile(d, v, "wanopt_profile")
 		if err != nil {
 			return &obj, err
@@ -3038,7 +3038,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("webcache"); ok {
+	if v, ok := d.GetOk("webcache"); ok || d.HasChange("webcache") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWebcache(d, v, "webcache")
 		if err != nil {
 			return &obj, err
@@ -3047,7 +3047,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("webcache_https"); ok {
+	if v, ok := d.GetOk("webcache_https"); ok || d.HasChange("webcache_https") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWebcacheHttps(d, v, "webcache_https")
 		if err != nil {
 			return &obj, err
@@ -3056,7 +3056,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_profile"); ok {
+	if v, ok := d.GetOk("webfilter_profile"); ok || d.HasChange("webfilter_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWebfilterProfile(d, v, "webfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -3065,7 +3065,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("webproxy_forward_server"); ok {
+	if v, ok := d.GetOk("webproxy_forward_server"); ok || d.HasChange("webproxy_forward_server") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWebproxyForwardServer(d, v, "webproxy_forward_server")
 		if err != nil {
 			return &obj, err
@@ -3074,7 +3074,7 @@ func getObjectPackagesFirewallConsolidatedPolicy(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("webproxy_profile"); ok {
+	if v, ok := d.GetOk("webproxy_profile"); ok || d.HasChange("webproxy_profile") {
 		t, err := expandPackagesFirewallConsolidatedPolicyWebproxyProfile(d, v, "webproxy_profile")
 		if err != nil {
 			return &obj, err

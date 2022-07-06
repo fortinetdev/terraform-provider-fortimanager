@@ -291,7 +291,7 @@ func expandObjectFirewallSshLocalCaSource(d *schema.ResourceData, v interface{},
 func getObjectObjectFirewallSshLocalCa(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallSshLocalCaName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -300,7 +300,7 @@ func getObjectObjectFirewallSshLocalCa(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectFirewallSshLocalCaPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectObjectFirewallSshLocalCa(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("private_key"); ok {
+	if v, ok := d.GetOk("private_key"); ok || d.HasChange("private_key") {
 		t, err := expandObjectFirewallSshLocalCaPrivateKey(d, v, "private_key")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectObjectFirewallSshLocalCa(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("public_key"); ok {
+	if v, ok := d.GetOk("public_key"); ok || d.HasChange("public_key") {
 		t, err := expandObjectFirewallSshLocalCaPublicKey(d, v, "public_key")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectObjectFirewallSshLocalCa(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("source"); ok {
+	if v, ok := d.GetOk("source"); ok || d.HasChange("source") {
 		t, err := expandObjectFirewallSshLocalCaSource(d, v, "source")
 		if err != nil {
 			return &obj, err

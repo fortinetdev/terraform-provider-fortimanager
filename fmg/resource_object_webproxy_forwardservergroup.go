@@ -377,12 +377,12 @@ func expandObjectWebProxyForwardServerGroupServerList(d *schema.ResourceData, v 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWebProxyForwardServerGroupServerListName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectWebProxyForwardServerGroupServerListWeight(d, i["weight"], pre_append)
 		}
 
@@ -405,7 +405,7 @@ func expandObjectWebProxyForwardServerGroupServerListWeight(d *schema.ResourceDa
 func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("affinity"); ok {
+	if v, ok := d.GetOk("affinity"); ok || d.HasChange("affinity") {
 		t, err := expandObjectWebProxyForwardServerGroupAffinity(d, v, "affinity")
 		if err != nil {
 			return &obj, err
@@ -414,7 +414,7 @@ func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("group_down_option"); ok {
+	if v, ok := d.GetOk("group_down_option"); ok || d.HasChange("group_down_option") {
 		t, err := expandObjectWebProxyForwardServerGroupGroupDownOption(d, v, "group_down_option")
 		if err != nil {
 			return &obj, err
@@ -423,7 +423,7 @@ func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("ldb_method"); ok {
+	if v, ok := d.GetOk("ldb_method"); ok || d.HasChange("ldb_method") {
 		t, err := expandObjectWebProxyForwardServerGroupLdbMethod(d, v, "ldb_method")
 		if err != nil {
 			return &obj, err
@@ -432,7 +432,7 @@ func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWebProxyForwardServerGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -441,7 +441,7 @@ func getObjectObjectWebProxyForwardServerGroup(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("server_list"); ok {
+	if v, ok := d.GetOk("server_list"); ok || d.HasChange("server_list") {
 		t, err := expandObjectWebProxyForwardServerGroupServerList(d, v, "server_list")
 		if err != nil {
 			return &obj, err

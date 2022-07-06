@@ -1643,7 +1643,7 @@ func expandObjectSystemNpuFpAnomalyVxlanMinlenErr(d *schema.ResourceData, v inte
 func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("capwap_minlen_err"); ok {
+	if v, ok := d.GetOk("capwap_minlen_err"); ok || d.HasChange("capwap_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyCapwapMinlenErr(d, v, "capwap_minlen_err")
 		if err != nil {
 			return &obj, err
@@ -1652,7 +1652,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("esp_minlen_err"); ok {
+	if v, ok := d.GetOk("esp_minlen_err"); ok || d.HasChange("esp_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyEspMinlenErr(d, v, "esp_minlen_err")
 		if err != nil {
 			return &obj, err
@@ -1661,7 +1661,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("gre_csum_err"); ok {
+	if v, ok := d.GetOk("gre_csum_err"); ok || d.HasChange("gre_csum_err") {
 		t, err := expandObjectSystemNpuFpAnomalyGreCsumErr(d, v, "gre_csum_err")
 		if err != nil {
 			return &obj, err
@@ -1670,7 +1670,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("gtpu_plen_err"); ok {
+	if v, ok := d.GetOk("gtpu_plen_err"); ok || d.HasChange("gtpu_plen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyGtpuPlenErr(d, v, "gtpu_plen_err")
 		if err != nil {
 			return &obj, err
@@ -1679,7 +1679,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("icmp_csum_err"); ok {
+	if v, ok := d.GetOk("icmp_csum_err"); ok || d.HasChange("icmp_csum_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIcmpCsumErr(d, v, "icmp_csum_err")
 		if err != nil {
 			return &obj, err
@@ -1688,7 +1688,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("icmp_frag"); ok {
+	if v, ok := d.GetOk("icmp_frag"); ok || d.HasChange("icmp_frag") {
 		t, err := expandObjectSystemNpuFpAnomalyIcmpFrag(d, v, "icmp_frag")
 		if err != nil {
 			return &obj, err
@@ -1697,7 +1697,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("icmp_land"); ok {
+	if v, ok := d.GetOk("icmp_land"); ok || d.HasChange("icmp_land") {
 		t, err := expandObjectSystemNpuFpAnomalyIcmpLand(d, v, "icmp_land")
 		if err != nil {
 			return &obj, err
@@ -1706,7 +1706,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("icmp_minlen_err"); ok {
+	if v, ok := d.GetOk("icmp_minlen_err"); ok || d.HasChange("icmp_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIcmpMinlenErr(d, v, "icmp_minlen_err")
 		if err != nil {
 			return &obj, err
@@ -1715,7 +1715,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_csum_err"); ok {
+	if v, ok := d.GetOk("ipv4_csum_err"); ok || d.HasChange("ipv4_csum_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4CsumErr(d, v, "ipv4_csum_err")
 		if err != nil {
 			return &obj, err
@@ -1724,7 +1724,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_ihl_err"); ok {
+	if v, ok := d.GetOk("ipv4_ihl_err"); ok || d.HasChange("ipv4_ihl_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4IhlErr(d, v, "ipv4_ihl_err")
 		if err != nil {
 			return &obj, err
@@ -1733,7 +1733,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_land"); ok {
+	if v, ok := d.GetOk("ipv4_land"); ok || d.HasChange("ipv4_land") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Land(d, v, "ipv4_land")
 		if err != nil {
 			return &obj, err
@@ -1742,7 +1742,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_len_err"); ok {
+	if v, ok := d.GetOk("ipv4_len_err"); ok || d.HasChange("ipv4_len_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4LenErr(d, v, "ipv4_len_err")
 		if err != nil {
 			return &obj, err
@@ -1751,7 +1751,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_opt_err"); ok {
+	if v, ok := d.GetOk("ipv4_opt_err"); ok || d.HasChange("ipv4_opt_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4OptErr(d, v, "ipv4_opt_err")
 		if err != nil {
 			return &obj, err
@@ -1760,7 +1760,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_optlsrr"); ok {
+	if v, ok := d.GetOk("ipv4_optlsrr"); ok || d.HasChange("ipv4_optlsrr") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Optlsrr(d, v, "ipv4_optlsrr")
 		if err != nil {
 			return &obj, err
@@ -1769,7 +1769,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_optrr"); ok {
+	if v, ok := d.GetOk("ipv4_optrr"); ok || d.HasChange("ipv4_optrr") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Optrr(d, v, "ipv4_optrr")
 		if err != nil {
 			return &obj, err
@@ -1778,7 +1778,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_optsecurity"); ok {
+	if v, ok := d.GetOk("ipv4_optsecurity"); ok || d.HasChange("ipv4_optsecurity") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Optsecurity(d, v, "ipv4_optsecurity")
 		if err != nil {
 			return &obj, err
@@ -1787,7 +1787,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_optssrr"); ok {
+	if v, ok := d.GetOk("ipv4_optssrr"); ok || d.HasChange("ipv4_optssrr") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Optssrr(d, v, "ipv4_optssrr")
 		if err != nil {
 			return &obj, err
@@ -1796,7 +1796,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_optstream"); ok {
+	if v, ok := d.GetOk("ipv4_optstream"); ok || d.HasChange("ipv4_optstream") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Optstream(d, v, "ipv4_optstream")
 		if err != nil {
 			return &obj, err
@@ -1805,7 +1805,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_opttimestamp"); ok {
+	if v, ok := d.GetOk("ipv4_opttimestamp"); ok || d.HasChange("ipv4_opttimestamp") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Opttimestamp(d, v, "ipv4_opttimestamp")
 		if err != nil {
 			return &obj, err
@@ -1814,7 +1814,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_proto_err"); ok {
+	if v, ok := d.GetOk("ipv4_proto_err"); ok || d.HasChange("ipv4_proto_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4ProtoErr(d, v, "ipv4_proto_err")
 		if err != nil {
 			return &obj, err
@@ -1823,7 +1823,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_ttlzero_err"); ok {
+	if v, ok := d.GetOk("ipv4_ttlzero_err"); ok || d.HasChange("ipv4_ttlzero_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4TtlzeroErr(d, v, "ipv4_ttlzero_err")
 		if err != nil {
 			return &obj, err
@@ -1832,7 +1832,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_unknopt"); ok {
+	if v, ok := d.GetOk("ipv4_unknopt"); ok || d.HasChange("ipv4_unknopt") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4Unknopt(d, v, "ipv4_unknopt")
 		if err != nil {
 			return &obj, err
@@ -1841,7 +1841,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_ver_err"); ok {
+	if v, ok := d.GetOk("ipv4_ver_err"); ok || d.HasChange("ipv4_ver_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv4VerErr(d, v, "ipv4_ver_err")
 		if err != nil {
 			return &obj, err
@@ -1850,7 +1850,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_daddr_err"); ok {
+	if v, ok := d.GetOk("ipv6_daddr_err"); ok || d.HasChange("ipv6_daddr_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6DaddrErr(d, v, "ipv6_daddr_err")
 		if err != nil {
 			return &obj, err
@@ -1859,7 +1859,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_exthdr_len_err"); ok {
+	if v, ok := d.GetOk("ipv6_exthdr_len_err"); ok || d.HasChange("ipv6_exthdr_len_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6ExthdrLenErr(d, v, "ipv6_exthdr_len_err")
 		if err != nil {
 			return &obj, err
@@ -1868,7 +1868,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_exthdr_order_err"); ok {
+	if v, ok := d.GetOk("ipv6_exthdr_order_err"); ok || d.HasChange("ipv6_exthdr_order_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6ExthdrOrderErr(d, v, "ipv6_exthdr_order_err")
 		if err != nil {
 			return &obj, err
@@ -1877,7 +1877,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_ihl_err"); ok {
+	if v, ok := d.GetOk("ipv6_ihl_err"); ok || d.HasChange("ipv6_ihl_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6IhlErr(d, v, "ipv6_ihl_err")
 		if err != nil {
 			return &obj, err
@@ -1886,7 +1886,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_land"); ok {
+	if v, ok := d.GetOk("ipv6_land"); ok || d.HasChange("ipv6_land") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Land(d, v, "ipv6_land")
 		if err != nil {
 			return &obj, err
@@ -1895,7 +1895,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_optendpid"); ok {
+	if v, ok := d.GetOk("ipv6_optendpid"); ok || d.HasChange("ipv6_optendpid") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Optendpid(d, v, "ipv6_optendpid")
 		if err != nil {
 			return &obj, err
@@ -1904,7 +1904,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_opthomeaddr"); ok {
+	if v, ok := d.GetOk("ipv6_opthomeaddr"); ok || d.HasChange("ipv6_opthomeaddr") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Opthomeaddr(d, v, "ipv6_opthomeaddr")
 		if err != nil {
 			return &obj, err
@@ -1913,7 +1913,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_optinvld"); ok {
+	if v, ok := d.GetOk("ipv6_optinvld"); ok || d.HasChange("ipv6_optinvld") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Optinvld(d, v, "ipv6_optinvld")
 		if err != nil {
 			return &obj, err
@@ -1922,7 +1922,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_optjumbo"); ok {
+	if v, ok := d.GetOk("ipv6_optjumbo"); ok || d.HasChange("ipv6_optjumbo") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Optjumbo(d, v, "ipv6_optjumbo")
 		if err != nil {
 			return &obj, err
@@ -1931,7 +1931,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_optnsap"); ok {
+	if v, ok := d.GetOk("ipv6_optnsap"); ok || d.HasChange("ipv6_optnsap") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Optnsap(d, v, "ipv6_optnsap")
 		if err != nil {
 			return &obj, err
@@ -1940,7 +1940,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_optralert"); ok {
+	if v, ok := d.GetOk("ipv6_optralert"); ok || d.HasChange("ipv6_optralert") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Optralert(d, v, "ipv6_optralert")
 		if err != nil {
 			return &obj, err
@@ -1949,7 +1949,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_opttunnel"); ok {
+	if v, ok := d.GetOk("ipv6_opttunnel"); ok || d.HasChange("ipv6_opttunnel") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Opttunnel(d, v, "ipv6_opttunnel")
 		if err != nil {
 			return &obj, err
@@ -1958,7 +1958,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_plen_zero"); ok {
+	if v, ok := d.GetOk("ipv6_plen_zero"); ok || d.HasChange("ipv6_plen_zero") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6PlenZero(d, v, "ipv6_plen_zero")
 		if err != nil {
 			return &obj, err
@@ -1967,7 +1967,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_proto_err"); ok {
+	if v, ok := d.GetOk("ipv6_proto_err"); ok || d.HasChange("ipv6_proto_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6ProtoErr(d, v, "ipv6_proto_err")
 		if err != nil {
 			return &obj, err
@@ -1976,7 +1976,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_saddr_err"); ok {
+	if v, ok := d.GetOk("ipv6_saddr_err"); ok || d.HasChange("ipv6_saddr_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6SaddrErr(d, v, "ipv6_saddr_err")
 		if err != nil {
 			return &obj, err
@@ -1985,7 +1985,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_unknopt"); ok {
+	if v, ok := d.GetOk("ipv6_unknopt"); ok || d.HasChange("ipv6_unknopt") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6Unknopt(d, v, "ipv6_unknopt")
 		if err != nil {
 			return &obj, err
@@ -1994,7 +1994,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_ver_err"); ok {
+	if v, ok := d.GetOk("ipv6_ver_err"); ok || d.HasChange("ipv6_ver_err") {
 		t, err := expandObjectSystemNpuFpAnomalyIpv6VerErr(d, v, "ipv6_ver_err")
 		if err != nil {
 			return &obj, err
@@ -2003,7 +2003,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("nvgre_minlen_err"); ok {
+	if v, ok := d.GetOk("nvgre_minlen_err"); ok || d.HasChange("nvgre_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyNvgreMinlenErr(d, v, "nvgre_minlen_err")
 		if err != nil {
 			return &obj, err
@@ -2012,7 +2012,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_clen_err"); ok {
+	if v, ok := d.GetOk("sctp_clen_err"); ok || d.HasChange("sctp_clen_err") {
 		t, err := expandObjectSystemNpuFpAnomalySctpClenErr(d, v, "sctp_clen_err")
 		if err != nil {
 			return &obj, err
@@ -2021,7 +2021,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_crc_err"); ok {
+	if v, ok := d.GetOk("sctp_crc_err"); ok || d.HasChange("sctp_crc_err") {
 		t, err := expandObjectSystemNpuFpAnomalySctpCrcErr(d, v, "sctp_crc_err")
 		if err != nil {
 			return &obj, err
@@ -2030,7 +2030,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_l4len_err"); ok {
+	if v, ok := d.GetOk("sctp_l4len_err"); ok || d.HasChange("sctp_l4len_err") {
 		t, err := expandObjectSystemNpuFpAnomalySctpL4LenErr(d, v, "sctp_l4len_err")
 		if err != nil {
 			return &obj, err
@@ -2039,7 +2039,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_csum_err"); ok {
+	if v, ok := d.GetOk("tcp_csum_err"); ok || d.HasChange("tcp_csum_err") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpCsumErr(d, v, "tcp_csum_err")
 		if err != nil {
 			return &obj, err
@@ -2048,7 +2048,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_fin_noack"); ok {
+	if v, ok := d.GetOk("tcp_fin_noack"); ok || d.HasChange("tcp_fin_noack") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpFinNoack(d, v, "tcp_fin_noack")
 		if err != nil {
 			return &obj, err
@@ -2057,7 +2057,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_fin_only"); ok {
+	if v, ok := d.GetOk("tcp_fin_only"); ok || d.HasChange("tcp_fin_only") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpFinOnly(d, v, "tcp_fin_only")
 		if err != nil {
 			return &obj, err
@@ -2066,7 +2066,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_hlen_err"); ok {
+	if v, ok := d.GetOk("tcp_hlen_err"); ok || d.HasChange("tcp_hlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpHlenErr(d, v, "tcp_hlen_err")
 		if err != nil {
 			return &obj, err
@@ -2075,7 +2075,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_hlenvsl4len_err"); ok {
+	if v, ok := d.GetOk("tcp_hlenvsl4len_err"); ok || d.HasChange("tcp_hlenvsl4len_err") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpHlenvsl4LenErr(d, v, "tcp_hlenvsl4len_err")
 		if err != nil {
 			return &obj, err
@@ -2084,7 +2084,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_land"); ok {
+	if v, ok := d.GetOk("tcp_land"); ok || d.HasChange("tcp_land") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpLand(d, v, "tcp_land")
 		if err != nil {
 			return &obj, err
@@ -2093,7 +2093,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_no_flag"); ok {
+	if v, ok := d.GetOk("tcp_no_flag"); ok || d.HasChange("tcp_no_flag") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpNoFlag(d, v, "tcp_no_flag")
 		if err != nil {
 			return &obj, err
@@ -2102,7 +2102,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_plen_err"); ok {
+	if v, ok := d.GetOk("tcp_plen_err"); ok || d.HasChange("tcp_plen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpPlenErr(d, v, "tcp_plen_err")
 		if err != nil {
 			return &obj, err
@@ -2111,7 +2111,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_syn_data"); ok {
+	if v, ok := d.GetOk("tcp_syn_data"); ok || d.HasChange("tcp_syn_data") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpSynData(d, v, "tcp_syn_data")
 		if err != nil {
 			return &obj, err
@@ -2120,7 +2120,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_syn_fin"); ok {
+	if v, ok := d.GetOk("tcp_syn_fin"); ok || d.HasChange("tcp_syn_fin") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpSynFin(d, v, "tcp_syn_fin")
 		if err != nil {
 			return &obj, err
@@ -2129,7 +2129,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_winnuke"); ok {
+	if v, ok := d.GetOk("tcp_winnuke"); ok || d.HasChange("tcp_winnuke") {
 		t, err := expandObjectSystemNpuFpAnomalyTcpWinnuke(d, v, "tcp_winnuke")
 		if err != nil {
 			return &obj, err
@@ -2138,7 +2138,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udp_csum_err"); ok {
+	if v, ok := d.GetOk("udp_csum_err"); ok || d.HasChange("udp_csum_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpCsumErr(d, v, "udp_csum_err")
 		if err != nil {
 			return &obj, err
@@ -2147,7 +2147,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udp_hlen_err"); ok {
+	if v, ok := d.GetOk("udp_hlen_err"); ok || d.HasChange("udp_hlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpHlenErr(d, v, "udp_hlen_err")
 		if err != nil {
 			return &obj, err
@@ -2156,7 +2156,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udp_land"); ok {
+	if v, ok := d.GetOk("udp_land"); ok || d.HasChange("udp_land") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpLand(d, v, "udp_land")
 		if err != nil {
 			return &obj, err
@@ -2165,7 +2165,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udp_len_err"); ok {
+	if v, ok := d.GetOk("udp_len_err"); ok || d.HasChange("udp_len_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpLenErr(d, v, "udp_len_err")
 		if err != nil {
 			return &obj, err
@@ -2174,7 +2174,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udp_plen_err"); ok {
+	if v, ok := d.GetOk("udp_plen_err"); ok || d.HasChange("udp_plen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpPlenErr(d, v, "udp_plen_err")
 		if err != nil {
 			return &obj, err
@@ -2183,7 +2183,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udplite_cover_err"); ok {
+	if v, ok := d.GetOk("udplite_cover_err"); ok || d.HasChange("udplite_cover_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpliteCoverErr(d, v, "udplite_cover_err")
 		if err != nil {
 			return &obj, err
@@ -2192,7 +2192,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("udplite_csum_err"); ok {
+	if v, ok := d.GetOk("udplite_csum_err"); ok || d.HasChange("udplite_csum_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUdpliteCsumErr(d, v, "udplite_csum_err")
 		if err != nil {
 			return &obj, err
@@ -2201,7 +2201,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("uesp_minlen_err"); ok {
+	if v, ok := d.GetOk("uesp_minlen_err"); ok || d.HasChange("uesp_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUespMinlenErr(d, v, "uesp_minlen_err")
 		if err != nil {
 			return &obj, err
@@ -2210,7 +2210,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("unknproto_minlen_err"); ok {
+	if v, ok := d.GetOk("unknproto_minlen_err"); ok || d.HasChange("unknproto_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyUnknprotoMinlenErr(d, v, "unknproto_minlen_err")
 		if err != nil {
 			return &obj, err
@@ -2219,7 +2219,7 @@ func getObjectObjectSystemNpuFpAnomaly(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vxlan_minlen_err"); ok {
+	if v, ok := d.GetOk("vxlan_minlen_err"); ok || d.HasChange("vxlan_minlen_err") {
 		t, err := expandObjectSystemNpuFpAnomalyVxlanMinlenErr(d, v, "vxlan_minlen_err")
 		if err != nil {
 			return &obj, err

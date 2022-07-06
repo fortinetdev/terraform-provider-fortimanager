@@ -424,27 +424,27 @@ func expandSystemHaPeerSha(d *schema.ResourceData, v interface{}, pre string) (i
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandSystemHaPeerIdSha(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandSystemHaPeerIpSha(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip6"], _ = expandSystemHaPeerIp6Sha(d, i["ip6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "serial_number"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["serial-number"], _ = expandSystemHaPeerSerialNumberSha(d, i["serial_number"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandSystemHaPeerStatusSha(d, i["status"], pre_append)
 		}
 
@@ -479,7 +479,7 @@ func expandSystemHaPeerStatusSha(d *schema.ResourceData, v interface{}, pre stri
 func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("clusterid"); ok {
+	if v, ok := d.GetOk("clusterid"); ok || d.HasChange("clusterid") {
 		t, err := expandSystemHaClusteridSha(d, v, "clusterid")
 		if err != nil {
 			return &obj, err
@@ -488,7 +488,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("file_quota"); ok {
+	if v, ok := d.GetOk("file_quota"); ok || d.HasChange("file_quota") {
 		t, err := expandSystemHaFileQuotaSha(d, v, "file_quota")
 		if err != nil {
 			return &obj, err
@@ -497,7 +497,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("hb_interval"); ok {
+	if v, ok := d.GetOk("hb_interval"); ok || d.HasChange("hb_interval") {
 		t, err := expandSystemHaHbIntervalSha(d, v, "hb_interval")
 		if err != nil {
 			return &obj, err
@@ -506,7 +506,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("hb_lost_threshold"); ok {
+	if v, ok := d.GetOk("hb_lost_threshold"); ok || d.HasChange("hb_lost_threshold") {
 		t, err := expandSystemHaHbLostThresholdSha(d, v, "hb_lost_threshold")
 		if err != nil {
 			return &obj, err
@@ -515,7 +515,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("local_cert"); ok {
+	if v, ok := d.GetOk("local_cert"); ok || d.HasChange("local_cert") {
 		t, err := expandSystemHaLocalCertSha(d, v, "local_cert")
 		if err != nil {
 			return &obj, err
@@ -524,7 +524,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("mode"); ok {
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
 		t, err := expandSystemHaModeSha(d, v, "mode")
 		if err != nil {
 			return &obj, err
@@ -533,7 +533,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemHaPasswordSha(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -542,7 +542,7 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("peer"); ok {
+	if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
 		t, err := expandSystemHaPeerSha(d, v, "peer")
 		if err != nil {
 			return &obj, err

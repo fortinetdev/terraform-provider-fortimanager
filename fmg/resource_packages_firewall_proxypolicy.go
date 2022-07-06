@@ -1869,7 +1869,7 @@ func expandPackagesFirewallProxyPolicyZtnaTagsMatchLogic(d *schema.ResourceData,
 func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("access_proxy"); ok {
+	if v, ok := d.GetOk("access_proxy"); ok || d.HasChange("access_proxy") {
 		t, err := expandPackagesFirewallProxyPolicyAccessProxy(d, v, "access_proxy")
 		if err != nil {
 			return &obj, err
@@ -1878,7 +1878,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("access_proxy6"); ok {
+	if v, ok := d.GetOk("access_proxy6"); ok || d.HasChange("access_proxy6") {
 		t, err := expandPackagesFirewallProxyPolicyAccessProxy6(d, v, "access_proxy6")
 		if err != nil {
 			return &obj, err
@@ -1887,7 +1887,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesFirewallProxyPolicyAction(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -1896,7 +1896,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("application_list"); ok {
+	if v, ok := d.GetOk("application_list"); ok || d.HasChange("application_list") {
 		t, err := expandPackagesFirewallProxyPolicyApplicationList(d, v, "application_list")
 		if err != nil {
 			return &obj, err
@@ -1905,7 +1905,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("av_profile"); ok {
+	if v, ok := d.GetOk("av_profile"); ok || d.HasChange("av_profile") {
 		t, err := expandPackagesFirewallProxyPolicyAvProfile(d, v, "av_profile")
 		if err != nil {
 			return &obj, err
@@ -1914,7 +1914,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("block_notification"); ok {
+	if v, ok := d.GetOk("block_notification"); ok || d.HasChange("block_notification") {
 		t, err := expandPackagesFirewallProxyPolicyBlockNotification(d, v, "block_notification")
 		if err != nil {
 			return &obj, err
@@ -1923,7 +1923,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("cifs_profile"); ok {
+	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
 		t, err := expandPackagesFirewallProxyPolicyCifsProfile(d, v, "cifs_profile")
 		if err != nil {
 			return &obj, err
@@ -1932,7 +1932,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallProxyPolicyComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -1941,7 +1941,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("decrypted_traffic_mirror"); ok {
+	if v, ok := d.GetOk("decrypted_traffic_mirror"); ok || d.HasChange("decrypted_traffic_mirror") {
 		t, err := expandPackagesFirewallProxyPolicyDecryptedTrafficMirror(d, v, "decrypted_traffic_mirror")
 		if err != nil {
 			return &obj, err
@@ -1950,7 +1950,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("device_ownership"); ok {
+	if v, ok := d.GetOk("device_ownership"); ok || d.HasChange("device_ownership") {
 		t, err := expandPackagesFirewallProxyPolicyDeviceOwnership(d, v, "device_ownership")
 		if err != nil {
 			return &obj, err
@@ -1959,7 +1959,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("disclaimer"); ok {
+	if v, ok := d.GetOk("disclaimer"); ok || d.HasChange("disclaimer") {
 		t, err := expandPackagesFirewallProxyPolicyDisclaimer(d, v, "disclaimer")
 		if err != nil {
 			return &obj, err
@@ -1968,7 +1968,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dlp_sensor"); ok {
+	if v, ok := d.GetOk("dlp_sensor"); ok || d.HasChange("dlp_sensor") {
 		t, err := expandPackagesFirewallProxyPolicyDlpSensor(d, v, "dlp_sensor")
 		if err != nil {
 			return &obj, err
@@ -1977,7 +1977,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesFirewallProxyPolicyDstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -1986,7 +1986,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr_negate"); ok {
+	if v, ok := d.GetOk("dstaddr_negate"); ok || d.HasChange("dstaddr_negate") {
 		t, err := expandPackagesFirewallProxyPolicyDstaddrNegate(d, v, "dstaddr_negate")
 		if err != nil {
 			return &obj, err
@@ -1995,7 +1995,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr6"); ok {
+	if v, ok := d.GetOk("dstaddr6"); ok || d.HasChange("dstaddr6") {
 		t, err := expandPackagesFirewallProxyPolicyDstaddr6(d, v, "dstaddr6")
 		if err != nil {
 			return &obj, err
@@ -2004,7 +2004,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dstintf"); ok {
+	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
 		t, err := expandPackagesFirewallProxyPolicyDstintf(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
@@ -2013,7 +2013,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("emailfilter_profile"); ok {
+	if v, ok := d.GetOk("emailfilter_profile"); ok || d.HasChange("emailfilter_profile") {
 		t, err := expandPackagesFirewallProxyPolicyEmailfilterProfile(d, v, "emailfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -2022,7 +2022,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("file_filter_profile"); ok {
+	if v, ok := d.GetOk("file_filter_profile"); ok || d.HasChange("file_filter_profile") {
 		t, err := expandPackagesFirewallProxyPolicyFileFilterProfile(d, v, "file_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -2031,7 +2031,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("global_label"); ok {
+	if v, ok := d.GetOk("global_label"); ok || d.HasChange("global_label") {
 		t, err := expandPackagesFirewallProxyPolicyGlobalLabel(d, v, "global_label")
 		if err != nil {
 			return &obj, err
@@ -2040,7 +2040,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("groups"); ok {
+	if v, ok := d.GetOk("groups"); ok || d.HasChange("groups") {
 		t, err := expandPackagesFirewallProxyPolicyGroups(d, v, "groups")
 		if err != nil {
 			return &obj, err
@@ -2049,7 +2049,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("http_tunnel_auth"); ok {
+	if v, ok := d.GetOk("http_tunnel_auth"); ok || d.HasChange("http_tunnel_auth") {
 		t, err := expandPackagesFirewallProxyPolicyHttpTunnelAuth(d, v, "http_tunnel_auth")
 		if err != nil {
 			return &obj, err
@@ -2058,7 +2058,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("icap_profile"); ok {
+	if v, ok := d.GetOk("icap_profile"); ok || d.HasChange("icap_profile") {
 		t, err := expandPackagesFirewallProxyPolicyIcapProfile(d, v, "icap_profile")
 		if err != nil {
 			return &obj, err
@@ -2067,7 +2067,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service"); ok {
+	if v, ok := d.GetOk("internet_service"); ok || d.HasChange("internet_service") {
 		t, err := expandPackagesFirewallProxyPolicyInternetService(d, v, "internet_service")
 		if err != nil {
 			return &obj, err
@@ -2076,7 +2076,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_custom"); ok {
+	if v, ok := d.GetOk("internet_service_custom"); ok || d.HasChange("internet_service_custom") {
 		t, err := expandPackagesFirewallProxyPolicyInternetServiceCustom(d, v, "internet_service_custom")
 		if err != nil {
 			return &obj, err
@@ -2085,7 +2085,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_custom_group"); ok {
+	if v, ok := d.GetOk("internet_service_custom_group"); ok || d.HasChange("internet_service_custom_group") {
 		t, err := expandPackagesFirewallProxyPolicyInternetServiceCustomGroup(d, v, "internet_service_custom_group")
 		if err != nil {
 			return &obj, err
@@ -2094,7 +2094,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_group"); ok {
+	if v, ok := d.GetOk("internet_service_group"); ok || d.HasChange("internet_service_group") {
 		t, err := expandPackagesFirewallProxyPolicyInternetServiceGroup(d, v, "internet_service_group")
 		if err != nil {
 			return &obj, err
@@ -2103,7 +2103,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_name"); ok {
+	if v, ok := d.GetOk("internet_service_name"); ok || d.HasChange("internet_service_name") {
 		t, err := expandPackagesFirewallProxyPolicyInternetServiceName(d, v, "internet_service_name")
 		if err != nil {
 			return &obj, err
@@ -2112,7 +2112,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_id"); ok {
+	if v, ok := d.GetOk("internet_service_id"); ok || d.HasChange("internet_service_id") {
 		t, err := expandPackagesFirewallProxyPolicyInternetServiceId(d, v, "internet_service_id")
 		if err != nil {
 			return &obj, err
@@ -2121,7 +2121,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_negate"); ok {
+	if v, ok := d.GetOk("internet_service_negate"); ok || d.HasChange("internet_service_negate") {
 		t, err := expandPackagesFirewallProxyPolicyInternetServiceNegate(d, v, "internet_service_negate")
 		if err != nil {
 			return &obj, err
@@ -2130,7 +2130,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ips_sensor"); ok {
+	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
 		t, err := expandPackagesFirewallProxyPolicyIpsSensor(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
@@ -2139,7 +2139,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("label"); ok {
+	if v, ok := d.GetOk("label"); ok || d.HasChange("label") {
 		t, err := expandPackagesFirewallProxyPolicyLabel(d, v, "label")
 		if err != nil {
 			return &obj, err
@@ -2148,7 +2148,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("logtraffic"); ok {
+	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
 		t, err := expandPackagesFirewallProxyPolicyLogtraffic(d, v, "logtraffic")
 		if err != nil {
 			return &obj, err
@@ -2157,7 +2157,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("logtraffic_start"); ok {
+	if v, ok := d.GetOk("logtraffic_start"); ok || d.HasChange("logtraffic_start") {
 		t, err := expandPackagesFirewallProxyPolicyLogtrafficStart(d, v, "logtraffic_start")
 		if err != nil {
 			return &obj, err
@@ -2166,7 +2166,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesFirewallProxyPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -2175,7 +2175,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mms_profile"); ok {
+	if v, ok := d.GetOk("mms_profile"); ok || d.HasChange("mms_profile") {
 		t, err := expandPackagesFirewallProxyPolicyMmsProfile(d, v, "mms_profile")
 		if err != nil {
 			return &obj, err
@@ -2184,7 +2184,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("policyid"); ok {
+	if v, ok := d.GetOk("policyid"); ok || d.HasChange("policyid") {
 		t, err := expandPackagesFirewallProxyPolicyPolicyid(d, v, "policyid")
 		if err != nil {
 			return &obj, err
@@ -2193,7 +2193,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("poolname"); ok {
+	if v, ok := d.GetOk("poolname"); ok || d.HasChange("poolname") {
 		t, err := expandPackagesFirewallProxyPolicyPoolname(d, v, "poolname")
 		if err != nil {
 			return &obj, err
@@ -2202,7 +2202,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("profile_group"); ok {
+	if v, ok := d.GetOk("profile_group"); ok || d.HasChange("profile_group") {
 		t, err := expandPackagesFirewallProxyPolicyProfileGroup(d, v, "profile_group")
 		if err != nil {
 			return &obj, err
@@ -2211,7 +2211,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("profile_protocol_options"); ok {
+	if v, ok := d.GetOk("profile_protocol_options"); ok || d.HasChange("profile_protocol_options") {
 		t, err := expandPackagesFirewallProxyPolicyProfileProtocolOptions(d, v, "profile_protocol_options")
 		if err != nil {
 			return &obj, err
@@ -2220,7 +2220,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("profile_type"); ok {
+	if v, ok := d.GetOk("profile_type"); ok || d.HasChange("profile_type") {
 		t, err := expandPackagesFirewallProxyPolicyProfileType(d, v, "profile_type")
 		if err != nil {
 			return &obj, err
@@ -2229,7 +2229,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("proxy"); ok {
+	if v, ok := d.GetOk("proxy"); ok || d.HasChange("proxy") {
 		t, err := expandPackagesFirewallProxyPolicyProxy(d, v, "proxy")
 		if err != nil {
 			return &obj, err
@@ -2238,7 +2238,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("redirect_url"); ok {
+	if v, ok := d.GetOk("redirect_url"); ok || d.HasChange("redirect_url") {
 		t, err := expandPackagesFirewallProxyPolicyRedirectUrl(d, v, "redirect_url")
 		if err != nil {
 			return &obj, err
@@ -2247,7 +2247,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_override_group"); ok {
+	if v, ok := d.GetOk("replacemsg_override_group"); ok || d.HasChange("replacemsg_override_group") {
 		t, err := expandPackagesFirewallProxyPolicyReplacemsgOverrideGroup(d, v, "replacemsg_override_group")
 		if err != nil {
 			return &obj, err
@@ -2256,7 +2256,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("scan_botnet_connections"); ok {
+	if v, ok := d.GetOk("scan_botnet_connections"); ok || d.HasChange("scan_botnet_connections") {
 		t, err := expandPackagesFirewallProxyPolicyScanBotnetConnections(d, v, "scan_botnet_connections")
 		if err != nil {
 			return &obj, err
@@ -2265,7 +2265,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("schedule"); ok {
+	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
 		t, err := expandPackagesFirewallProxyPolicySchedule(d, v, "schedule")
 		if err != nil {
 			return &obj, err
@@ -2274,7 +2274,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_filter_profile"); ok {
+	if v, ok := d.GetOk("sctp_filter_profile"); ok || d.HasChange("sctp_filter_profile") {
 		t, err := expandPackagesFirewallProxyPolicySctpFilterProfile(d, v, "sctp_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -2283,7 +2283,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok {
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
 		t, err := expandPackagesFirewallProxyPolicyService(d, v, "service")
 		if err != nil {
 			return &obj, err
@@ -2292,7 +2292,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("service_negate"); ok {
+	if v, ok := d.GetOk("service_negate"); ok || d.HasChange("service_negate") {
 		t, err := expandPackagesFirewallProxyPolicyServiceNegate(d, v, "service_negate")
 		if err != nil {
 			return &obj, err
@@ -2301,7 +2301,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("session_ttl"); ok {
+	if v, ok := d.GetOk("session_ttl"); ok || d.HasChange("session_ttl") {
 		t, err := expandPackagesFirewallProxyPolicySessionTtl(d, v, "session_ttl")
 		if err != nil {
 			return &obj, err
@@ -2310,7 +2310,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("spamfilter_profile"); ok {
+	if v, ok := d.GetOk("spamfilter_profile"); ok || d.HasChange("spamfilter_profile") {
 		t, err := expandPackagesFirewallProxyPolicySpamfilterProfile(d, v, "spamfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -2319,7 +2319,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesFirewallProxyPolicySrcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -2328,7 +2328,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr_negate"); ok {
+	if v, ok := d.GetOk("srcaddr_negate"); ok || d.HasChange("srcaddr_negate") {
 		t, err := expandPackagesFirewallProxyPolicySrcaddrNegate(d, v, "srcaddr_negate")
 		if err != nil {
 			return &obj, err
@@ -2337,7 +2337,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr6"); ok {
+	if v, ok := d.GetOk("srcaddr6"); ok || d.HasChange("srcaddr6") {
 		t, err := expandPackagesFirewallProxyPolicySrcaddr6(d, v, "srcaddr6")
 		if err != nil {
 			return &obj, err
@@ -2346,7 +2346,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesFirewallProxyPolicySrcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -2355,7 +2355,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_filter_profile"); ok {
+	if v, ok := d.GetOk("ssh_filter_profile"); ok || d.HasChange("ssh_filter_profile") {
 		t, err := expandPackagesFirewallProxyPolicySshFilterProfile(d, v, "ssh_filter_profile")
 		if err != nil {
 			return &obj, err
@@ -2364,7 +2364,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_policy_redirect"); ok {
+	if v, ok := d.GetOk("ssh_policy_redirect"); ok || d.HasChange("ssh_policy_redirect") {
 		t, err := expandPackagesFirewallProxyPolicySshPolicyRedirect(d, v, "ssh_policy_redirect")
 		if err != nil {
 			return &obj, err
@@ -2373,7 +2373,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_ssh_profile"); ok {
+	if v, ok := d.GetOk("ssl_ssh_profile"); ok || d.HasChange("ssl_ssh_profile") {
 		t, err := expandPackagesFirewallProxyPolicySslSshProfile(d, v, "ssl_ssh_profile")
 		if err != nil {
 			return &obj, err
@@ -2382,7 +2382,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallProxyPolicyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -2391,7 +2391,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("transparent"); ok {
+	if v, ok := d.GetOk("transparent"); ok || d.HasChange("transparent") {
 		t, err := expandPackagesFirewallProxyPolicyTransparent(d, v, "transparent")
 		if err != nil {
 			return &obj, err
@@ -2400,7 +2400,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("users"); ok {
+	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
 		t, err := expandPackagesFirewallProxyPolicyUsers(d, v, "users")
 		if err != nil {
 			return &obj, err
@@ -2409,7 +2409,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("utm_status"); ok {
+	if v, ok := d.GetOk("utm_status"); ok || d.HasChange("utm_status") {
 		t, err := expandPackagesFirewallProxyPolicyUtmStatus(d, v, "utm_status")
 		if err != nil {
 			return &obj, err
@@ -2418,7 +2418,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallProxyPolicyUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -2427,7 +2427,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("videofilter_profile"); ok {
+	if v, ok := d.GetOk("videofilter_profile"); ok || d.HasChange("videofilter_profile") {
 		t, err := expandPackagesFirewallProxyPolicyVideofilterProfile(d, v, "videofilter_profile")
 		if err != nil {
 			return &obj, err
@@ -2436,7 +2436,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("voip_profile"); ok {
+	if v, ok := d.GetOk("voip_profile"); ok || d.HasChange("voip_profile") {
 		t, err := expandPackagesFirewallProxyPolicyVoipProfile(d, v, "voip_profile")
 		if err != nil {
 			return &obj, err
@@ -2445,7 +2445,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("waf_profile"); ok {
+	if v, ok := d.GetOk("waf_profile"); ok || d.HasChange("waf_profile") {
 		t, err := expandPackagesFirewallProxyPolicyWafProfile(d, v, "waf_profile")
 		if err != nil {
 			return &obj, err
@@ -2454,7 +2454,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webcache"); ok {
+	if v, ok := d.GetOk("webcache"); ok || d.HasChange("webcache") {
 		t, err := expandPackagesFirewallProxyPolicyWebcache(d, v, "webcache")
 		if err != nil {
 			return &obj, err
@@ -2463,7 +2463,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webcache_https"); ok {
+	if v, ok := d.GetOk("webcache_https"); ok || d.HasChange("webcache_https") {
 		t, err := expandPackagesFirewallProxyPolicyWebcacheHttps(d, v, "webcache_https")
 		if err != nil {
 			return &obj, err
@@ -2472,7 +2472,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_profile"); ok {
+	if v, ok := d.GetOk("webfilter_profile"); ok || d.HasChange("webfilter_profile") {
 		t, err := expandPackagesFirewallProxyPolicyWebfilterProfile(d, v, "webfilter_profile")
 		if err != nil {
 			return &obj, err
@@ -2481,7 +2481,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webproxy_forward_server"); ok {
+	if v, ok := d.GetOk("webproxy_forward_server"); ok || d.HasChange("webproxy_forward_server") {
 		t, err := expandPackagesFirewallProxyPolicyWebproxyForwardServer(d, v, "webproxy_forward_server")
 		if err != nil {
 			return &obj, err
@@ -2490,7 +2490,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webproxy_profile"); ok {
+	if v, ok := d.GetOk("webproxy_profile"); ok || d.HasChange("webproxy_profile") {
 		t, err := expandPackagesFirewallProxyPolicyWebproxyProfile(d, v, "webproxy_profile")
 		if err != nil {
 			return &obj, err
@@ -2499,7 +2499,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ztna_ems_tag"); ok {
+	if v, ok := d.GetOk("ztna_ems_tag"); ok || d.HasChange("ztna_ems_tag") {
 		t, err := expandPackagesFirewallProxyPolicyZtnaEmsTag(d, v, "ztna_ems_tag")
 		if err != nil {
 			return &obj, err
@@ -2508,7 +2508,7 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ztna_tags_match_logic"); ok {
+	if v, ok := d.GetOk("ztna_tags_match_logic"); ok || d.HasChange("ztna_tags_match_logic") {
 		t, err := expandPackagesFirewallProxyPolicyZtnaTagsMatchLogic(d, v, "ztna_tags_match_logic")
 		if err != nil {
 			return &obj, err

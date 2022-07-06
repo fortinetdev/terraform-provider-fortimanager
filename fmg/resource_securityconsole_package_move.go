@@ -180,7 +180,7 @@ func expandSecurityconsolePackageMovePkg(d *schema.ResourceData, v interface{}, 
 func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsolePackageMoveAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -189,7 +189,7 @@ func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dst_name"); ok {
+	if v, ok := d.GetOk("dst_name"); ok || d.HasChange("dst_name") {
 		t, err := expandSecurityconsolePackageMoveDstName(d, v, "dst_name")
 		if err != nil {
 			return &obj, err
@@ -198,7 +198,7 @@ func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dst_parent"); ok {
+	if v, ok := d.GetOk("dst_parent"); ok || d.HasChange("dst_parent") {
 		t, err := expandSecurityconsolePackageMoveDstParent(d, v, "dst_parent")
 		if err != nil {
 			return &obj, err
@@ -207,7 +207,7 @@ func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("pkg"); ok {
+	if v, ok := d.GetOk("pkg"); ok || d.HasChange("pkg") {
 		t, err := expandSecurityconsolePackageMovePkg(d, v, "pkg")
 		if err != nil {
 			return &obj, err

@@ -393,31 +393,31 @@ func expandObjectFirewallCarrierEndpointBwlEntries(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectFirewallCarrierEndpointBwlEntriesAction(d, i["action"], pre_append)
 		} else {
 			tmp["action"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "carrier_endpoint"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["carrier-endpoint"], _ = expandObjectFirewallCarrierEndpointBwlEntriesCarrierEndpoint(d, i["carrier_endpoint"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-action"], _ = expandObjectFirewallCarrierEndpointBwlEntriesLogAction(d, i["log_action"], pre_append)
 		} else {
 			tmp["log-action"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern-type"], _ = expandObjectFirewallCarrierEndpointBwlEntriesPatternType(d, i["pattern_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFirewallCarrierEndpointBwlEntriesStatus(d, i["status"], pre_append)
 		}
 
@@ -460,7 +460,7 @@ func expandObjectFirewallCarrierEndpointBwlName(d *schema.ResourceData, v interf
 func getObjectObjectFirewallCarrierEndpointBwl(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallCarrierEndpointBwlComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -469,7 +469,7 @@ func getObjectObjectFirewallCarrierEndpointBwl(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectFirewallCarrierEndpointBwlEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -478,7 +478,7 @@ func getObjectObjectFirewallCarrierEndpointBwl(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectFirewallCarrierEndpointBwlId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -487,7 +487,7 @@ func getObjectObjectFirewallCarrierEndpointBwl(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallCarrierEndpointBwlName(d, v, "name")
 		if err != nil {
 			return &obj, err

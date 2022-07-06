@@ -162,7 +162,7 @@ func expandSystemLogTopologyMaxDepthShare(d *schema.ResourceData, v interface{},
 func getObjectSystemLogTopology(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("max_depth"); ok {
+	if v, ok := d.GetOk("max_depth"); ok || d.HasChange("max_depth") {
 		t, err := expandSystemLogTopologyMaxDepth(d, v, "max_depth")
 		if err != nil {
 			return &obj, err
@@ -171,7 +171,7 @@ func getObjectSystemLogTopology(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("max_depth_share"); ok {
+	if v, ok := d.GetOk("max_depth_share"); ok || d.HasChange("max_depth_share") {
 		t, err := expandSystemLogTopologyMaxDepthShare(d, v, "max_depth_share")
 		if err != nil {
 			return &obj, err

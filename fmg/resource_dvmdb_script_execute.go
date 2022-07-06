@@ -287,12 +287,12 @@ func expandDvmdbScriptExecuteScope(d *schema.ResourceData, v interface{}, pre st
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandDvmdbScriptExecuteScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandDvmdbScriptExecuteScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -319,7 +319,7 @@ func expandDvmdbScriptExecuteScript(d *schema.ResourceData, v interface{}, pre s
 func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandDvmdbScriptExecuteAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -328,7 +328,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("package"); ok {
+	if v, ok := d.GetOk("package"); ok || d.HasChange("package") {
 		t, err := expandDvmdbScriptExecutePackage(d, v, "package")
 		if err != nil {
 			return &obj, err
@@ -337,7 +337,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok {
+	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
 		t, err := expandDvmdbScriptExecuteScope(d, v, "scope")
 		if err != nil {
 			return &obj, err
@@ -346,7 +346,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("script"); ok {
+	if v, ok := d.GetOk("script"); ok || d.HasChange("script") {
 		t, err := expandDvmdbScriptExecuteScript(d, v, "script")
 		if err != nil {
 			return &obj, err

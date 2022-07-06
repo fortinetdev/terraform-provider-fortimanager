@@ -374,31 +374,31 @@ func expandObjectSwitchControllerQosIpDscpMapMap(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cos_queue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cos-queue"], _ = expandObjectSwitchControllerQosIpDscpMapMapCosQueue(d, i["cos_queue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "diffserv"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["diffserv"], _ = expandObjectSwitchControllerQosIpDscpMapMapDiffserv(d, i["diffserv"], pre_append)
 		} else {
 			tmp["diffserv"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_precedence"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip-precedence"], _ = expandObjectSwitchControllerQosIpDscpMapMapIpPrecedence(d, i["ip_precedence"], pre_append)
 		} else {
 			tmp["ip-precedence"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSwitchControllerQosIpDscpMapMapName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectSwitchControllerQosIpDscpMapMapValue(d, i["value"], pre_append)
 		}
 
@@ -437,7 +437,7 @@ func expandObjectSwitchControllerQosIpDscpMapName(d *schema.ResourceData, v inte
 func getObjectObjectSwitchControllerQosIpDscpMap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectSwitchControllerQosIpDscpMapDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -446,7 +446,7 @@ func getObjectObjectSwitchControllerQosIpDscpMap(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("map"); ok {
+	if v, ok := d.GetOk("map"); ok || d.HasChange("map") {
 		t, err := expandObjectSwitchControllerQosIpDscpMapMap(d, v, "map")
 		if err != nil {
 			return &obj, err
@@ -455,7 +455,7 @@ func getObjectObjectSwitchControllerQosIpDscpMap(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerQosIpDscpMapName(d, v, "name")
 		if err != nil {
 			return &obj, err

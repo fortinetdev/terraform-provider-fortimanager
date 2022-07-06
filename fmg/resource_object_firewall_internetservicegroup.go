@@ -268,7 +268,7 @@ func expandObjectFirewallInternetServiceGroupName(d *schema.ResourceData, v inte
 func getObjectObjectFirewallInternetServiceGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallInternetServiceGroupComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -277,7 +277,7 @@ func getObjectObjectFirewallInternetServiceGroup(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("direction"); ok {
+	if v, ok := d.GetOk("direction"); ok || d.HasChange("direction") {
 		t, err := expandObjectFirewallInternetServiceGroupDirection(d, v, "direction")
 		if err != nil {
 			return &obj, err
@@ -286,7 +286,7 @@ func getObjectObjectFirewallInternetServiceGroup(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallInternetServiceGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -295,7 +295,7 @@ func getObjectObjectFirewallInternetServiceGroup(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallInternetServiceGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err

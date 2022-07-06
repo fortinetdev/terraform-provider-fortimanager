@@ -391,32 +391,32 @@ func expandObjectRouterAccessListRule(d *schema.ResourceData, v interface{}, pre
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectRouterAccessListRuleAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exact_match"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exact-match"], _ = expandObjectRouterAccessListRuleExactMatch(d, i["exact_match"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "flags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["flags"], _ = expandObjectRouterAccessListRuleFlags(d, i["flags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectRouterAccessListRuleId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectRouterAccessListRulePrefix(d, i["prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "wildcard"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["wildcard"], _ = expandObjectRouterAccessListRuleWildcard(d, i["wildcard"], pre_append)
 		}
 
@@ -455,7 +455,7 @@ func expandObjectRouterAccessListRuleWildcard(d *schema.ResourceData, v interfac
 func getObjectObjectRouterAccessList(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectRouterAccessListComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -464,7 +464,7 @@ func getObjectObjectRouterAccessList(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectRouterAccessListName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -473,7 +473,7 @@ func getObjectObjectRouterAccessList(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("rule"); ok {
+	if v, ok := d.GetOk("rule"); ok || d.HasChange("rule") {
 		t, err := expandObjectRouterAccessListRule(d, v, "rule")
 		if err != nil {
 			return &obj, err

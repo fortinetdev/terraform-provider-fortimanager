@@ -186,7 +186,7 @@ func expandSystemHaScheduledCheckWeekDays(d *schema.ResourceData, v interface{},
 func getObjectSystemHaScheduledCheck(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemHaScheduledCheckStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -195,7 +195,7 @@ func getObjectSystemHaScheduledCheck(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("time"); ok {
+	if v, ok := d.GetOk("time"); ok || d.HasChange("time") {
 		t, err := expandSystemHaScheduledCheckTime(d, v, "time")
 		if err != nil {
 			return &obj, err
@@ -204,7 +204,7 @@ func getObjectSystemHaScheduledCheck(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("week_days"); ok {
+	if v, ok := d.GetOk("week_days"); ok || d.HasChange("week_days") {
 		t, err := expandSystemHaScheduledCheckWeekDays(d, v, "week_days")
 		if err != nil {
 			return &obj, err

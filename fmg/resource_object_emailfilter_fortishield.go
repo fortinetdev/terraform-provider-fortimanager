@@ -217,7 +217,7 @@ func expandObjectEmailfilterFortishieldSpamSubmitTxt2Htm(d *schema.ResourceData,
 func getObjectObjectEmailfilterFortishield(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("spam_submit_force"); ok {
+	if v, ok := d.GetOk("spam_submit_force"); ok || d.HasChange("spam_submit_force") {
 		t, err := expandObjectEmailfilterFortishieldSpamSubmitForce(d, v, "spam_submit_force")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectObjectEmailfilterFortishield(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("spam_submit_srv"); ok {
+	if v, ok := d.GetOk("spam_submit_srv"); ok || d.HasChange("spam_submit_srv") {
 		t, err := expandObjectEmailfilterFortishieldSpamSubmitSrv(d, v, "spam_submit_srv")
 		if err != nil {
 			return &obj, err
@@ -235,7 +235,7 @@ func getObjectObjectEmailfilterFortishield(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("spam_submit_txt2htm"); ok {
+	if v, ok := d.GetOk("spam_submit_txt2htm"); ok || d.HasChange("spam_submit_txt2htm") {
 		t, err := expandObjectEmailfilterFortishieldSpamSubmitTxt2Htm(d, v, "spam_submit_txt2htm")
 		if err != nil {
 			return &obj, err

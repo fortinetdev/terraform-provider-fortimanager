@@ -290,12 +290,12 @@ func expandSecurityconsolePackageCloneScope(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSecurityconsolePackageCloneScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandSecurityconsolePackageCloneScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -318,7 +318,7 @@ func expandSecurityconsolePackageCloneScopeVdom(d *schema.ResourceData, v interf
 func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsolePackageCloneAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dst_name"); ok {
+	if v, ok := d.GetOk("dst_name"); ok || d.HasChange("dst_name") {
 		t, err := expandSecurityconsolePackageCloneDstName(d, v, "dst_name")
 		if err != nil {
 			return &obj, err
@@ -336,7 +336,7 @@ func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dst_parent"); ok {
+	if v, ok := d.GetOk("dst_parent"); ok || d.HasChange("dst_parent") {
 		t, err := expandSecurityconsolePackageCloneDstParent(d, v, "dst_parent")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pkg"); ok {
+	if v, ok := d.GetOk("pkg"); ok || d.HasChange("pkg") {
 		t, err := expandSecurityconsolePackageClonePkg(d, v, "pkg")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok {
+	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
 		t, err := expandSecurityconsolePackageCloneScope(d, v, "scope")
 		if err != nil {
 			return &obj, err

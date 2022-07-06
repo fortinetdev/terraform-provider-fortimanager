@@ -2143,252 +2143,252 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectUserGroupDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_override"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-concurrent-override"], _ = expandObjectUserGroupDynamicMappingAuthConcurrentOverride(d, i["auth_concurrent_override"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-concurrent-value"], _ = expandObjectUserGroupDynamicMappingAuthConcurrentValue(d, i["auth_concurrent_value"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "authtimeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["authtimeout"], _ = expandObjectUserGroupDynamicMappingAuthtimeout(d, i["authtimeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "company"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["company"], _ = expandObjectUserGroupDynamicMappingCompany(d, i["company"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "email"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["email"], _ = expandObjectUserGroupDynamicMappingEmail(d, i["email"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "expire"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["expire"], _ = expandObjectUserGroupDynamicMappingExpire(d, i["expire"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "expire_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["expire-type"], _ = expandObjectUserGroupDynamicMappingExpireType(d, i["expire_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-type"], _ = expandObjectUserGroupDynamicMappingGroupType(d, i["group_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "guest"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["guest"], _ = expandObjectUserGroupDynamicMappingGuest(d, i["guest"], pre_append)
 		} else {
 			tmp["guest"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_digest_realm"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-digest-realm"], _ = expandObjectUserGroupDynamicMappingHttpDigestRealm(d, i["http_digest_realm"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserGroupDynamicMappingId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldap_memberof"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldap-memberof"], _ = expandObjectUserGroupDynamicMappingLdapMemberof(d, i["ldap_memberof"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "logic_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["logic-type"], _ = expandObjectUserGroupDynamicMappingLogicType(d, i["logic_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match"], _ = expandObjectUserGroupDynamicMappingMatch(d, i["match"], pre_append)
 		} else {
 			tmp["match"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_accounts"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-accounts"], _ = expandObjectUserGroupDynamicMappingMaxAccounts(d, i["max_accounts"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["member"], _ = expandObjectUserGroupDynamicMappingMember(d, i["member"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mobile_phone"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mobile-phone"], _ = expandObjectUserGroupDynamicMappingMobilePhone(d, i["mobile_phone"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "multiple_guest_add"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["multiple-guest-add"], _ = expandObjectUserGroupDynamicMappingMultipleGuestAdd(d, i["multiple_guest_add"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserGroupDynamicMappingPassword(d, i["password"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "redir_url"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["redir-url"], _ = expandObjectUserGroupDynamicMappingRedirUrl(d, i["redir_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_custom_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sms-custom-server"], _ = expandObjectUserGroupDynamicMappingSmsCustomServer(d, i["sms_custom_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sms_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sms-server"], _ = expandObjectUserGroupDynamicMappingSmsServer(d, i["sms_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sponsor"], _ = expandObjectUserGroupDynamicMappingSponsor(d, i["sponsor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_bookmarks_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-bookmarks-group"], _ = expandObjectUserGroupDynamicMappingSslvpnBookmarksGroup(d, i["sslvpn_bookmarks_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_cache_cleaner"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-cache-cleaner"], _ = expandObjectUserGroupDynamicMappingSslvpnCacheCleaner(d, i["sslvpn_cache_cleaner"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_client_check"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-client-check"], _ = expandObjectUserGroupDynamicMappingSslvpnClientCheck(d, i["sslvpn_client_check"], pre_append)
 		} else {
 			tmp["sslvpn-client-check"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_ftp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-ftp"], _ = expandObjectUserGroupDynamicMappingSslvpnFtp(d, i["sslvpn_ftp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_http"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-http"], _ = expandObjectUserGroupDynamicMappingSslvpnHttp(d, i["sslvpn_http"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_os_check"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-os-check"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheck(d, i["sslvpn_os_check"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_os_check_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-os-check-list"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheckList(d, i["sslvpn_os_check_list"], pre_append)
 		} else {
 			tmp["sslvpn-os-check-list"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_portal"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-portal"], _ = expandObjectUserGroupDynamicMappingSslvpnPortal(d, i["sslvpn_portal"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_portal_heading"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-portal-heading"], _ = expandObjectUserGroupDynamicMappingSslvpnPortalHeading(d, i["sslvpn_portal_heading"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_rdp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-rdp"], _ = expandObjectUserGroupDynamicMappingSslvpnRdp(d, i["sslvpn_rdp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_samba"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-samba"], _ = expandObjectUserGroupDynamicMappingSslvpnSamba(d, i["sslvpn_samba"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_split_tunneling"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-split-tunneling"], _ = expandObjectUserGroupDynamicMappingSslvpnSplitTunneling(d, i["sslvpn_split_tunneling"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_ssh"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-ssh"], _ = expandObjectUserGroupDynamicMappingSslvpnSsh(d, i["sslvpn_ssh"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_telnet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-telnet"], _ = expandObjectUserGroupDynamicMappingSslvpnTelnet(d, i["sslvpn_telnet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_tunnel"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-tunnel"], _ = expandObjectUserGroupDynamicMappingSslvpnTunnel(d, i["sslvpn_tunnel"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_tunnel_endip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-tunnel-endip"], _ = expandObjectUserGroupDynamicMappingSslvpnTunnelEndip(d, i["sslvpn_tunnel_endip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_tunnel_ip_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-tunnel-ip-mode"], _ = expandObjectUserGroupDynamicMappingSslvpnTunnelIpMode(d, i["sslvpn_tunnel_ip_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_tunnel_startip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-tunnel-startip"], _ = expandObjectUserGroupDynamicMappingSslvpnTunnelStartip(d, i["sslvpn_tunnel_startip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_virtual_desktop"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-virtual-desktop"], _ = expandObjectUserGroupDynamicMappingSslvpnVirtualDesktop(d, i["sslvpn_virtual_desktop"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_vnc"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-vnc"], _ = expandObjectUserGroupDynamicMappingSslvpnVnc(d, i["sslvpn_vnc"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_webapp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-webapp"], _ = expandObjectUserGroupDynamicMappingSslvpnWebapp(d, i["sslvpn_webapp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute_value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sso-attribute-value"], _ = expandObjectUserGroupDynamicMappingSsoAttributeValue(d, i["sso_attribute_value"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user-id"], _ = expandObjectUserGroupDynamicMappingUserId(d, i["user_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user-name"], _ = expandObjectUserGroupDynamicMappingUserName(d, i["user_name"], pre_append)
 		}
 
@@ -2415,12 +2415,12 @@ func expandObjectUserGroupDynamicMappingScope(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserGroupDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectUserGroupDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -2487,59 +2487,59 @@ func expandObjectUserGroupDynamicMappingGuest(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectUserGroupDynamicMappingGuestComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "company"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["company"], _ = expandObjectUserGroupDynamicMappingGuestCompany(d, i["company"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "email"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["email"], _ = expandObjectUserGroupDynamicMappingGuestEmail(d, i["email"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "expiration"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["expiration"], _ = expandObjectUserGroupDynamicMappingGuestExpiration(d, i["expiration"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group"], _ = expandObjectUserGroupDynamicMappingGuestGroup(d, i["group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserGroupDynamicMappingGuestId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mobile_phone"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mobile-phone"], _ = expandObjectUserGroupDynamicMappingGuestMobilePhone(d, i["mobile_phone"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserGroupDynamicMappingGuestName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserGroupDynamicMappingGuestPassword(d, i["password"], pre_append)
 		} else {
 			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sponsor"], _ = expandObjectUserGroupDynamicMappingGuestSponsor(d, i["sponsor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user-id"], _ = expandObjectUserGroupDynamicMappingGuestUserId(d, i["user_id"], pre_append)
 		}
 
@@ -2626,22 +2626,22 @@ func expandObjectUserGroupDynamicMappingMatch(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_gui_meta"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_gui_meta"], _ = expandObjectUserGroupDynamicMappingMatchGuiMeta(d, i["_gui_meta"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-name"], _ = expandObjectUserGroupDynamicMappingMatchGroupName(d, i["group_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserGroupDynamicMappingMatchId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server-name"], _ = expandObjectUserGroupDynamicMappingMatchServerName(d, i["server_name"], pre_append)
 		}
 
@@ -2740,19 +2740,19 @@ func expandObjectUserGroupDynamicMappingSslvpnOsCheckList(d *schema.ResourceData
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheckListAction(d, i["action"], pre_append)
 	}
 	pre_append = pre + ".0." + "latest_patch_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["latest-patch-level"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheckListLatestPatchLevel(d, i["latest_patch_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "name"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["name"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheckListName(d, i["name"], pre_append)
 	}
 	pre_append = pre + ".0." + "tolerance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tolerance"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheckListTolerance(d, i["tolerance"], pre_append)
 	}
 
@@ -2874,54 +2874,54 @@ func expandObjectUserGroupGuest(d *schema.ResourceData, v interface{}, pre strin
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectUserGroupGuestComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "company"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["company"], _ = expandObjectUserGroupGuestCompany(d, i["company"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "email"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["email"], _ = expandObjectUserGroupGuestEmail(d, i["email"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "expiration"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["expiration"], _ = expandObjectUserGroupGuestExpiration(d, i["expiration"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserGroupGuestId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mobile_phone"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mobile-phone"], _ = expandObjectUserGroupGuestMobilePhone(d, i["mobile_phone"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserGroupGuestName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserGroupGuestPassword(d, i["password"], pre_append)
 		} else {
 			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sponsor"], _ = expandObjectUserGroupGuestSponsor(d, i["sponsor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user-id"], _ = expandObjectUserGroupGuestUserId(d, i["user_id"], pre_append)
 		}
 
@@ -2996,22 +2996,22 @@ func expandObjectUserGroupMatch(d *schema.ResourceData, v interface{}, pre strin
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_gui_meta"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_gui_meta"], _ = expandObjectUserGroupMatchGuiMeta(d, i["_gui_meta"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-name"], _ = expandObjectUserGroupMatchGroupName(d, i["group_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserGroupMatchId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server-name"], _ = expandObjectUserGroupMatchServerName(d, i["server_name"], pre_append)
 		}
 
@@ -3090,7 +3090,7 @@ func expandObjectUserGroupUserName(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auth_concurrent_override"); ok {
+	if v, ok := d.GetOk("auth_concurrent_override"); ok || d.HasChange("auth_concurrent_override") {
 		t, err := expandObjectUserGroupAuthConcurrentOverride(d, v, "auth_concurrent_override")
 		if err != nil {
 			return &obj, err
@@ -3099,7 +3099,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("auth_concurrent_value"); ok {
+	if v, ok := d.GetOk("auth_concurrent_value"); ok || d.HasChange("auth_concurrent_value") {
 		t, err := expandObjectUserGroupAuthConcurrentValue(d, v, "auth_concurrent_value")
 		if err != nil {
 			return &obj, err
@@ -3108,7 +3108,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("authtimeout"); ok {
+	if v, ok := d.GetOk("authtimeout"); ok || d.HasChange("authtimeout") {
 		t, err := expandObjectUserGroupAuthtimeout(d, v, "authtimeout")
 		if err != nil {
 			return &obj, err
@@ -3117,7 +3117,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("company"); ok {
+	if v, ok := d.GetOk("company"); ok || d.HasChange("company") {
 		t, err := expandObjectUserGroupCompany(d, v, "company")
 		if err != nil {
 			return &obj, err
@@ -3126,7 +3126,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserGroupDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -3135,7 +3135,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("email"); ok {
+	if v, ok := d.GetOk("email"); ok || d.HasChange("email") {
 		t, err := expandObjectUserGroupEmail(d, v, "email")
 		if err != nil {
 			return &obj, err
@@ -3144,7 +3144,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("expire"); ok {
+	if v, ok := d.GetOk("expire"); ok || d.HasChange("expire") {
 		t, err := expandObjectUserGroupExpire(d, v, "expire")
 		if err != nil {
 			return &obj, err
@@ -3153,7 +3153,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("expire_type"); ok {
+	if v, ok := d.GetOk("expire_type"); ok || d.HasChange("expire_type") {
 		t, err := expandObjectUserGroupExpireType(d, v, "expire_type")
 		if err != nil {
 			return &obj, err
@@ -3162,7 +3162,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("group_type"); ok {
+	if v, ok := d.GetOk("group_type"); ok || d.HasChange("group_type") {
 		t, err := expandObjectUserGroupGroupType(d, v, "group_type")
 		if err != nil {
 			return &obj, err
@@ -3171,7 +3171,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("guest"); ok {
+	if v, ok := d.GetOk("guest"); ok || d.HasChange("guest") {
 		t, err := expandObjectUserGroupGuest(d, v, "guest")
 		if err != nil {
 			return &obj, err
@@ -3180,7 +3180,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("http_digest_realm"); ok {
+	if v, ok := d.GetOk("http_digest_realm"); ok || d.HasChange("http_digest_realm") {
 		t, err := expandObjectUserGroupHttpDigestRealm(d, v, "http_digest_realm")
 		if err != nil {
 			return &obj, err
@@ -3189,7 +3189,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectUserGroupId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -3198,7 +3198,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("match"); ok {
+	if v, ok := d.GetOk("match"); ok || d.HasChange("match") {
 		t, err := expandObjectUserGroupMatch(d, v, "match")
 		if err != nil {
 			return &obj, err
@@ -3207,7 +3207,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("max_accounts"); ok {
+	if v, ok := d.GetOk("max_accounts"); ok || d.HasChange("max_accounts") {
 		t, err := expandObjectUserGroupMaxAccounts(d, v, "max_accounts")
 		if err != nil {
 			return &obj, err
@@ -3216,7 +3216,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectUserGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -3225,7 +3225,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("mobile_phone"); ok {
+	if v, ok := d.GetOk("mobile_phone"); ok || d.HasChange("mobile_phone") {
 		t, err := expandObjectUserGroupMobilePhone(d, v, "mobile_phone")
 		if err != nil {
 			return &obj, err
@@ -3234,7 +3234,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("multiple_guest_add"); ok {
+	if v, ok := d.GetOk("multiple_guest_add"); ok || d.HasChange("multiple_guest_add") {
 		t, err := expandObjectUserGroupMultipleGuestAdd(d, v, "multiple_guest_add")
 		if err != nil {
 			return &obj, err
@@ -3243,7 +3243,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -3252,7 +3252,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserGroupPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -3261,7 +3261,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sms_custom_server"); ok {
+	if v, ok := d.GetOk("sms_custom_server"); ok || d.HasChange("sms_custom_server") {
 		t, err := expandObjectUserGroupSmsCustomServer(d, v, "sms_custom_server")
 		if err != nil {
 			return &obj, err
@@ -3270,7 +3270,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sms_server"); ok {
+	if v, ok := d.GetOk("sms_server"); ok || d.HasChange("sms_server") {
 		t, err := expandObjectUserGroupSmsServer(d, v, "sms_server")
 		if err != nil {
 			return &obj, err
@@ -3279,7 +3279,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sponsor"); ok {
+	if v, ok := d.GetOk("sponsor"); ok || d.HasChange("sponsor") {
 		t, err := expandObjectUserGroupSponsor(d, v, "sponsor")
 		if err != nil {
 			return &obj, err
@@ -3288,7 +3288,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sso_attribute_value"); ok {
+	if v, ok := d.GetOk("sso_attribute_value"); ok || d.HasChange("sso_attribute_value") {
 		t, err := expandObjectUserGroupSsoAttributeValue(d, v, "sso_attribute_value")
 		if err != nil {
 			return &obj, err
@@ -3297,7 +3297,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("user_id"); ok {
+	if v, ok := d.GetOk("user_id"); ok || d.HasChange("user_id") {
 		t, err := expandObjectUserGroupUserId(d, v, "user_id")
 		if err != nil {
 			return &obj, err
@@ -3306,7 +3306,7 @@ func getObjectObjectUserGroup(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("user_name"); ok {
+	if v, ok := d.GetOk("user_name"); ok || d.HasChange("user_name") {
 		t, err := expandObjectUserGroupUserName(d, v, "user_name")
 		if err != nil {
 			return &obj, err

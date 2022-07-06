@@ -476,7 +476,7 @@ func expandObjectUserPeerTwoFactor(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ca"); ok {
+	if v, ok := d.GetOk("ca"); ok || d.HasChange("ca") {
 		t, err := expandObjectUserPeerCa(d, v, "ca")
 		if err != nil {
 			return &obj, err
@@ -485,7 +485,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("cn"); ok {
+	if v, ok := d.GetOk("cn"); ok || d.HasChange("cn") {
 		t, err := expandObjectUserPeerCn(d, v, "cn")
 		if err != nil {
 			return &obj, err
@@ -494,7 +494,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("cn_type"); ok {
+	if v, ok := d.GetOk("cn_type"); ok || d.HasChange("cn_type") {
 		t, err := expandObjectUserPeerCnType(d, v, "cn_type")
 		if err != nil {
 			return &obj, err
@@ -503,7 +503,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_mode"); ok {
+	if v, ok := d.GetOk("ldap_mode"); ok || d.HasChange("ldap_mode") {
 		t, err := expandObjectUserPeerLdapMode(d, v, "ldap_mode")
 		if err != nil {
 			return &obj, err
@@ -512,7 +512,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_password"); ok {
+	if v, ok := d.GetOk("ldap_password"); ok || d.HasChange("ldap_password") {
 		t, err := expandObjectUserPeerLdapPassword(d, v, "ldap_password")
 		if err != nil {
 			return &obj, err
@@ -521,7 +521,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_server"); ok {
+	if v, ok := d.GetOk("ldap_server"); ok || d.HasChange("ldap_server") {
 		t, err := expandObjectUserPeerLdapServer(d, v, "ldap_server")
 		if err != nil {
 			return &obj, err
@@ -530,7 +530,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_username"); ok {
+	if v, ok := d.GetOk("ldap_username"); ok || d.HasChange("ldap_username") {
 		t, err := expandObjectUserPeerLdapUsername(d, v, "ldap_username")
 		if err != nil {
 			return &obj, err
@@ -539,7 +539,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("mandatory_ca_verify"); ok {
+	if v, ok := d.GetOk("mandatory_ca_verify"); ok || d.HasChange("mandatory_ca_verify") {
 		t, err := expandObjectUserPeerMandatoryCaVerify(d, v, "mandatory_ca_verify")
 		if err != nil {
 			return &obj, err
@@ -548,7 +548,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserPeerName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -557,7 +557,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ocsp_override_server"); ok {
+	if v, ok := d.GetOk("ocsp_override_server"); ok || d.HasChange("ocsp_override_server") {
 		t, err := expandObjectUserPeerOcspOverrideServer(d, v, "ocsp_override_server")
 		if err != nil {
 			return &obj, err
@@ -566,7 +566,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("passwd"); ok {
+	if v, ok := d.GetOk("passwd"); ok || d.HasChange("passwd") {
 		t, err := expandObjectUserPeerPasswd(d, v, "passwd")
 		if err != nil {
 			return &obj, err
@@ -575,7 +575,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("subject"); ok {
+	if v, ok := d.GetOk("subject"); ok || d.HasChange("subject") {
 		t, err := expandObjectUserPeerSubject(d, v, "subject")
 		if err != nil {
 			return &obj, err
@@ -584,7 +584,7 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor"); ok {
+	if v, ok := d.GetOk("two_factor"); ok || d.HasChange("two_factor") {
 		t, err := expandObjectUserPeerTwoFactor(d, v, "two_factor")
 		if err != nil {
 			return &obj, err

@@ -268,7 +268,7 @@ func expandObjectWebfilterFtgdLocalRatingUrl(d *schema.ResourceData, v interface
 func getObjectObjectWebfilterFtgdLocalRating(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWebfilterFtgdLocalRatingComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -277,7 +277,7 @@ func getObjectObjectWebfilterFtgdLocalRating(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("rating"); ok {
+	if v, ok := d.GetOk("rating"); ok || d.HasChange("rating") {
 		t, err := expandObjectWebfilterFtgdLocalRatingRating(d, v, "rating")
 		if err != nil {
 			return &obj, err
@@ -286,7 +286,7 @@ func getObjectObjectWebfilterFtgdLocalRating(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectWebfilterFtgdLocalRatingStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -295,7 +295,7 @@ func getObjectObjectWebfilterFtgdLocalRating(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("url"); ok {
+	if v, ok := d.GetOk("url"); ok || d.HasChange("url") {
 		t, err := expandObjectWebfilterFtgdLocalRatingUrl(d, v, "url")
 		if err != nil {
 			return &obj, err

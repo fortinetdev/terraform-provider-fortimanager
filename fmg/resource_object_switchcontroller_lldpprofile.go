@@ -785,22 +785,22 @@ func expandObjectSwitchControllerLldpProfileCustomTlvs(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "information_string"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["information-string"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsInformationString(d, i["information_string"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "oui"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["oui"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsOui(d, i["oui"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subtype"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subtype"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsSubtype(d, i["subtype"], pre_append)
 		}
 
@@ -843,17 +843,17 @@ func expandObjectSwitchControllerLldpProfileMedLocationService(d *schema.Resourc
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sys_location_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sys-location-id"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceSysLocationId(d, i["sys_location_id"], pre_append)
 		}
 
@@ -892,37 +892,37 @@ func expandObjectSwitchControllerLldpProfileMedNetworkPolicy(d *schema.ResourceD
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "assign_vlan"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["assign-vlan"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyAssignVlan(d, i["assign_vlan"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dscp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dscp"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyDscp(d, i["dscp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlan(d, i["vlan"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_intf"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan-intf"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(d, i["vlan_intf"], pre_append)
 		}
 
@@ -973,7 +973,7 @@ func expandObjectSwitchControllerLldpProfileName(d *schema.ResourceData, v inter
 func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("n8021_tlvs"); ok {
+	if v, ok := d.GetOk("n8021_tlvs"); ok || d.HasChange("n8021_tlvs") {
 		t, err := expandObjectSwitchControllerLldpProfile8021Tlvs(d, v, "n8021_tlvs")
 		if err != nil {
 			return &obj, err
@@ -982,7 +982,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("n8023_tlvs"); ok {
+	if v, ok := d.GetOk("n8023_tlvs"); ok || d.HasChange("n8023_tlvs") {
 		t, err := expandObjectSwitchControllerLldpProfile8023Tlvs(d, v, "n8023_tlvs")
 		if err != nil {
 			return &obj, err
@@ -991,7 +991,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("auto_isl"); ok {
+	if v, ok := d.GetOk("auto_isl"); ok || d.HasChange("auto_isl") {
 		t, err := expandObjectSwitchControllerLldpProfileAutoIsl(d, v, "auto_isl")
 		if err != nil {
 			return &obj, err
@@ -1000,7 +1000,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("auto_isl_hello_timer"); ok {
+	if v, ok := d.GetOk("auto_isl_hello_timer"); ok || d.HasChange("auto_isl_hello_timer") {
 		t, err := expandObjectSwitchControllerLldpProfileAutoIslHelloTimer(d, v, "auto_isl_hello_timer")
 		if err != nil {
 			return &obj, err
@@ -1009,7 +1009,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("auto_isl_port_group"); ok {
+	if v, ok := d.GetOk("auto_isl_port_group"); ok || d.HasChange("auto_isl_port_group") {
 		t, err := expandObjectSwitchControllerLldpProfileAutoIslPortGroup(d, v, "auto_isl_port_group")
 		if err != nil {
 			return &obj, err
@@ -1018,7 +1018,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("auto_isl_receive_timeout"); ok {
+	if v, ok := d.GetOk("auto_isl_receive_timeout"); ok || d.HasChange("auto_isl_receive_timeout") {
 		t, err := expandObjectSwitchControllerLldpProfileAutoIslReceiveTimeout(d, v, "auto_isl_receive_timeout")
 		if err != nil {
 			return &obj, err
@@ -1027,7 +1027,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("auto_mclag_icl"); ok {
+	if v, ok := d.GetOk("auto_mclag_icl"); ok || d.HasChange("auto_mclag_icl") {
 		t, err := expandObjectSwitchControllerLldpProfileAutoMclagIcl(d, v, "auto_mclag_icl")
 		if err != nil {
 			return &obj, err
@@ -1036,7 +1036,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("custom_tlvs"); ok {
+	if v, ok := d.GetOk("custom_tlvs"); ok || d.HasChange("custom_tlvs") {
 		t, err := expandObjectSwitchControllerLldpProfileCustomTlvs(d, v, "custom_tlvs")
 		if err != nil {
 			return &obj, err
@@ -1045,7 +1045,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("med_location_service"); ok {
+	if v, ok := d.GetOk("med_location_service"); ok || d.HasChange("med_location_service") {
 		t, err := expandObjectSwitchControllerLldpProfileMedLocationService(d, v, "med_location_service")
 		if err != nil {
 			return &obj, err
@@ -1054,7 +1054,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("med_network_policy"); ok {
+	if v, ok := d.GetOk("med_network_policy"); ok || d.HasChange("med_network_policy") {
 		t, err := expandObjectSwitchControllerLldpProfileMedNetworkPolicy(d, v, "med_network_policy")
 		if err != nil {
 			return &obj, err
@@ -1063,7 +1063,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("med_tlvs"); ok {
+	if v, ok := d.GetOk("med_tlvs"); ok || d.HasChange("med_tlvs") {
 		t, err := expandObjectSwitchControllerLldpProfileMedTlvs(d, v, "med_tlvs")
 		if err != nil {
 			return &obj, err
@@ -1072,7 +1072,7 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerLldpProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err

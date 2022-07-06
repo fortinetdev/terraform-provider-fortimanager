@@ -300,7 +300,7 @@ func expandSystemLocallogSyslogd3SettingSyslogName(d *schema.ResourceData, v int
 func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("cert"); ok {
+	if v, ok := d.GetOk("cert"); ok || d.HasChange("cert") {
 		t, err := expandSystemLocallogSyslogd3SettingCert(d, v, "cert")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("csv"); ok {
+	if v, ok := d.GetOk("csv"); ok || d.HasChange("csv") {
 		t, err := expandSystemLocallogSyslogd3SettingCsv(d, v, "csv")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("facility"); ok {
+	if v, ok := d.GetOk("facility"); ok || d.HasChange("facility") {
 		t, err := expandSystemLocallogSyslogd3SettingFacility(d, v, "facility")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("reliable"); ok {
+	if v, ok := d.GetOk("reliable"); ok || d.HasChange("reliable") {
 		t, err := expandSystemLocallogSyslogd3SettingReliable(d, v, "reliable")
 		if err != nil {
 			return &obj, err
@@ -336,7 +336,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("secure_connection"); ok {
+	if v, ok := d.GetOk("secure_connection"); ok || d.HasChange("secure_connection") {
 		t, err := expandSystemLocallogSyslogd3SettingSecureConnection(d, v, "secure_connection")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("severity"); ok {
+	if v, ok := d.GetOk("severity"); ok || d.HasChange("severity") {
 		t, err := expandSystemLocallogSyslogd3SettingSeverity(d, v, "severity")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemLocallogSyslogd3SettingStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectSystemLocallogSyslogd3Setting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("syslog_name"); ok {
+	if v, ok := d.GetOk("syslog_name"); ok || d.HasChange("syslog_name") {
 		t, err := expandSystemLocallogSyslogd3SettingSyslogName(d, v, "syslog_name")
 		if err != nil {
 			return &obj, err

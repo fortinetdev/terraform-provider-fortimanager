@@ -355,7 +355,7 @@ func expandObjectSystemNpuSwEhHashSourcePort(d *schema.ResourceData, v interface
 func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("computation"); ok {
+	if v, ok := d.GetOk("computation"); ok || d.HasChange("computation") {
 		t, err := expandObjectSystemNpuSwEhHashComputation(d, v, "computation")
 		if err != nil {
 			return &obj, err
@@ -364,7 +364,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("destination_ip_lower_16"); ok {
+	if v, ok := d.GetOk("destination_ip_lower_16"); ok || d.HasChange("destination_ip_lower_16") {
 		t, err := expandObjectSystemNpuSwEhHashDestinationIpLower16(d, v, "destination_ip_lower_16")
 		if err != nil {
 			return &obj, err
@@ -373,7 +373,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("destination_ip_upper_16"); ok {
+	if v, ok := d.GetOk("destination_ip_upper_16"); ok || d.HasChange("destination_ip_upper_16") {
 		t, err := expandObjectSystemNpuSwEhHashDestinationIpUpper16(d, v, "destination_ip_upper_16")
 		if err != nil {
 			return &obj, err
@@ -382,7 +382,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("destination_port"); ok {
+	if v, ok := d.GetOk("destination_port"); ok || d.HasChange("destination_port") {
 		t, err := expandObjectSystemNpuSwEhHashDestinationPort(d, v, "destination_port")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("ip_protocol"); ok {
+	if v, ok := d.GetOk("ip_protocol"); ok || d.HasChange("ip_protocol") {
 		t, err := expandObjectSystemNpuSwEhHashIpProtocol(d, v, "ip_protocol")
 		if err != nil {
 			return &obj, err
@@ -400,7 +400,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("netmask_length"); ok {
+	if v, ok := d.GetOk("netmask_length"); ok || d.HasChange("netmask_length") {
 		t, err := expandObjectSystemNpuSwEhHashNetmaskLength(d, v, "netmask_length")
 		if err != nil {
 			return &obj, err
@@ -409,7 +409,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip_lower_16"); ok {
+	if v, ok := d.GetOk("source_ip_lower_16"); ok || d.HasChange("source_ip_lower_16") {
 		t, err := expandObjectSystemNpuSwEhHashSourceIpLower16(d, v, "source_ip_lower_16")
 		if err != nil {
 			return &obj, err
@@ -418,7 +418,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip_upper_16"); ok {
+	if v, ok := d.GetOk("source_ip_upper_16"); ok || d.HasChange("source_ip_upper_16") {
 		t, err := expandObjectSystemNpuSwEhHashSourceIpUpper16(d, v, "source_ip_upper_16")
 		if err != nil {
 			return &obj, err
@@ -427,7 +427,7 @@ func getObjectObjectSystemNpuSwEhHash(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("source_port"); ok {
+	if v, ok := d.GetOk("source_port"); ok || d.HasChange("source_port") {
 		t, err := expandObjectSystemNpuSwEhHashSourcePort(d, v, "source_port")
 		if err != nil {
 			return &obj, err

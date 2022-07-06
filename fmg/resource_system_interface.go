@@ -489,17 +489,17 @@ func expandSystemInterfaceIpv6(d *schema.ResourceData, v interface{}, pre string
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ip6_address"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-address"], _ = expandSystemInterfaceIpv6Ip6Address(d, i["ip6_address"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_allowaccess"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-allowaccess"], _ = expandSystemInterfaceIpv6Ip6Allowaccess(d, i["ip6_allowaccess"], pre_append)
 	} else {
 		result["ip6-allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_autoconf"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-autoconf"], _ = expandSystemInterfaceIpv6Ip6Autoconf(d, i["ip6_autoconf"], pre_append)
 	}
 
@@ -549,7 +549,7 @@ func expandSystemInterfaceUpdateServiceIp(d *schema.ResourceData, v interface{},
 func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("alias"); ok {
+	if v, ok := d.GetOk("alias"); ok || d.HasChange("alias") {
 		t, err := expandSystemInterfaceAlias(d, v, "alias")
 		if err != nil {
 			return &obj, err
@@ -558,7 +558,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("allowaccess"); ok {
+	if v, ok := d.GetOk("allowaccess"); ok || d.HasChange("allowaccess") {
 		t, err := expandSystemInterfaceAllowaccess(d, v, "allowaccess")
 		if err != nil {
 			return &obj, err
@@ -567,7 +567,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandSystemInterfaceDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -576,7 +576,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandSystemInterfaceIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -585,7 +585,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6"); ok {
+	if v, ok := d.GetOk("ipv6"); ok || d.HasChange("ipv6") {
 		t, err := expandSystemInterfaceIpv6(d, v, "ipv6")
 		if err != nil {
 			return &obj, err
@@ -594,7 +594,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("mtu"); ok {
+	if v, ok := d.GetOk("mtu"); ok || d.HasChange("mtu") {
 		t, err := expandSystemInterfaceMtu(d, v, "mtu")
 		if err != nil {
 			return &obj, err
@@ -603,7 +603,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemInterfaceName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -612,7 +612,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("rating_service_ip"); ok {
+	if v, ok := d.GetOk("rating_service_ip"); ok || d.HasChange("rating_service_ip") {
 		t, err := expandSystemInterfaceRatingServiceIp(d, v, "rating_service_ip")
 		if err != nil {
 			return &obj, err
@@ -621,7 +621,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("serviceaccess"); ok {
+	if v, ok := d.GetOk("serviceaccess"); ok || d.HasChange("serviceaccess") {
 		t, err := expandSystemInterfaceServiceaccess(d, v, "serviceaccess")
 		if err != nil {
 			return &obj, err
@@ -630,7 +630,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("speed"); ok {
+	if v, ok := d.GetOk("speed"); ok || d.HasChange("speed") {
 		t, err := expandSystemInterfaceSpeed(d, v, "speed")
 		if err != nil {
 			return &obj, err
@@ -639,7 +639,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemInterfaceStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -648,7 +648,7 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("update_service_ip"); ok {
+	if v, ok := d.GetOk("update_service_ip"); ok || d.HasChange("update_service_ip") {
 		t, err := expandSystemInterfaceUpdateServiceIp(d, v, "update_service_ip")
 		if err != nil {
 			return &obj, err

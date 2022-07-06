@@ -793,29 +793,29 @@ func expandObjectDynamicInterfaceDynamicMapping(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectDynamicInterfaceDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "egress_shaping_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["egress-shaping-profile"], _ = expandObjectDynamicInterfaceDynamicMappingEgressShapingProfile(d, i["egress_shaping_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ingress_shaping_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ingress-shaping-profile"], _ = expandObjectDynamicInterfaceDynamicMappingIngressShapingProfile(d, i["ingress_shaping_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "intrazone_deny"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["intrazone-deny"], _ = expandObjectDynamicInterfaceDynamicMappingIntrazoneDeny(d, i["intrazone_deny"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_intf"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-intf"], _ = expandObjectDynamicInterfaceDynamicMappingLocalIntf(d, i["local_intf"], pre_append)
 		} else {
 			tmp["local-intf"] = make([]string, 0)
@@ -844,12 +844,12 @@ func expandObjectDynamicInterfaceDynamicMappingScope(d *schema.ResourceData, v i
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectDynamicInterfaceDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectDynamicInterfaceDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -912,27 +912,27 @@ func expandObjectDynamicInterfacePlatformMapping(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "egress_shaping_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["egress-shaping-profile"], _ = expandObjectDynamicInterfacePlatformMappingEgressShapingProfile(d, i["egress_shaping_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ingress_shaping_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ingress-shaping-profile"], _ = expandObjectDynamicInterfacePlatformMappingIngressShapingProfile(d, i["ingress_shaping_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "intf_zone"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["intf-zone"], _ = expandObjectDynamicInterfacePlatformMappingIntfZone(d, i["intf_zone"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "intrazone_deny"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["intrazone-deny"], _ = expandObjectDynamicInterfacePlatformMappingIntrazoneDeny(d, i["intrazone_deny"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectDynamicInterfacePlatformMappingName(d, i["name"], pre_append)
 		}
 
@@ -983,7 +983,7 @@ func expandObjectDynamicInterfaceZoneOnly(d *schema.ResourceData, v interface{},
 func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectDynamicInterfaceColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -992,7 +992,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("default_mapping"); ok {
+	if v, ok := d.GetOk("default_mapping"); ok || d.HasChange("default_mapping") {
 		t, err := expandObjectDynamicInterfaceDefaultMapping(d, v, "default_mapping")
 		if err != nil {
 			return &obj, err
@@ -1001,7 +1001,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("defmap_intf"); ok {
+	if v, ok := d.GetOk("defmap_intf"); ok || d.HasChange("defmap_intf") {
 		t, err := expandObjectDynamicInterfaceDefmapIntf(d, v, "defmap_intf")
 		if err != nil {
 			return &obj, err
@@ -1010,7 +1010,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("defmap_intrazone_deny"); ok {
+	if v, ok := d.GetOk("defmap_intrazone_deny"); ok || d.HasChange("defmap_intrazone_deny") {
 		t, err := expandObjectDynamicInterfaceDefmapIntrazoneDeny(d, v, "defmap_intrazone_deny")
 		if err != nil {
 			return &obj, err
@@ -1019,7 +1019,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("defmap_zonemember"); ok {
+	if v, ok := d.GetOk("defmap_zonemember"); ok || d.HasChange("defmap_zonemember") {
 		t, err := expandObjectDynamicInterfaceDefmapZonemember(d, v, "defmap_zonemember")
 		if err != nil {
 			return &obj, err
@@ -1028,7 +1028,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicInterfaceDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -1037,7 +1037,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectDynamicInterfaceDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -1046,7 +1046,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("egress_shaping_profile"); ok {
+	if v, ok := d.GetOk("egress_shaping_profile"); ok || d.HasChange("egress_shaping_profile") {
 		t, err := expandObjectDynamicInterfaceEgressShapingProfile(d, v, "egress_shaping_profile")
 		if err != nil {
 			return &obj, err
@@ -1055,7 +1055,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ingress_shaping_profile"); ok {
+	if v, ok := d.GetOk("ingress_shaping_profile"); ok || d.HasChange("ingress_shaping_profile") {
 		t, err := expandObjectDynamicInterfaceIngressShapingProfile(d, v, "ingress_shaping_profile")
 		if err != nil {
 			return &obj, err
@@ -1064,7 +1064,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicInterfaceName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1073,7 +1073,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("platform_mapping"); ok {
+	if v, ok := d.GetOk("platform_mapping"); ok || d.HasChange("platform_mapping") {
 		t, err := expandObjectDynamicInterfacePlatformMapping(d, v, "platform_mapping")
 		if err != nil {
 			return &obj, err
@@ -1082,7 +1082,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("single_intf"); ok {
+	if v, ok := d.GetOk("single_intf"); ok || d.HasChange("single_intf") {
 		t, err := expandObjectDynamicInterfaceSingleIntf(d, v, "single_intf")
 		if err != nil {
 			return &obj, err
@@ -1091,7 +1091,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard"); ok {
+	if v, ok := d.GetOk("wildcard"); ok || d.HasChange("wildcard") {
 		t, err := expandObjectDynamicInterfaceWildcard(d, v, "wildcard")
 		if err != nil {
 			return &obj, err
@@ -1100,7 +1100,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard_intf"); ok {
+	if v, ok := d.GetOk("wildcard_intf"); ok || d.HasChange("wildcard_intf") {
 		t, err := expandObjectDynamicInterfaceWildcardIntf(d, v, "wildcard_intf")
 		if err != nil {
 			return &obj, err
@@ -1109,7 +1109,7 @@ func getObjectObjectDynamicInterface(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("zone_only"); ok {
+	if v, ok := d.GetOk("zone_only"); ok || d.HasChange("zone_only") {
 		t, err := expandObjectDynamicInterfaceZoneOnly(d, v, "zone_only")
 		if err != nil {
 			return &obj, err

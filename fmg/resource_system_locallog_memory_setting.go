@@ -185,7 +185,7 @@ func expandSystemLocallogMemorySettingStatus(d *schema.ResourceData, v interface
 func getObjectSystemLocallogMemorySetting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("diskfull"); ok {
+	if v, ok := d.GetOk("diskfull"); ok || d.HasChange("diskfull") {
 		t, err := expandSystemLocallogMemorySettingDiskfull(d, v, "diskfull")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemLocallogMemorySetting(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("severity"); ok {
+	if v, ok := d.GetOk("severity"); ok || d.HasChange("severity") {
 		t, err := expandSystemLocallogMemorySettingSeverity(d, v, "severity")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectSystemLocallogMemorySetting(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemLocallogMemorySettingStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

@@ -391,27 +391,27 @@ func expandObjectDnsfilterDomainFilterEntries(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectDnsfilterDomainFilterEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "domain"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["domain"], _ = expandObjectDnsfilterDomainFilterEntriesDomain(d, i["domain"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectDnsfilterDomainFilterEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectDnsfilterDomainFilterEntriesStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectDnsfilterDomainFilterEntriesType(d, i["type"], pre_append)
 		}
 
@@ -454,7 +454,7 @@ func expandObjectDnsfilterDomainFilterName(d *schema.ResourceData, v interface{}
 func getObjectObjectDnsfilterDomainFilter(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectDnsfilterDomainFilterComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -463,7 +463,7 @@ func getObjectObjectDnsfilterDomainFilter(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectDnsfilterDomainFilterEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -472,7 +472,7 @@ func getObjectObjectDnsfilterDomainFilter(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectDnsfilterDomainFilterId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -481,7 +481,7 @@ func getObjectObjectDnsfilterDomainFilter(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDnsfilterDomainFilterName(d, v, "name")
 		if err != nil {
 			return &obj, err

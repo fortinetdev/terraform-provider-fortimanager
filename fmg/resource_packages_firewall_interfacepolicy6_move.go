@@ -246,7 +246,7 @@ func expandPackagesFirewallInterfacePolicy6MoveOption(d *schema.ResourceData, v 
 func getObjectPackagesFirewallInterfacePolicy6Move(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("target"); ok {
+	if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
 		t, err := expandPackagesFirewallInterfacePolicy6MoveTarget(d, v, "target")
 		if err != nil {
 			return &obj, err
@@ -255,7 +255,7 @@ func getObjectPackagesFirewallInterfacePolicy6Move(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("option"); ok {
+	if v, ok := d.GetOk("option"); ok || d.HasChange("option") {
 		t, err := expandPackagesFirewallInterfacePolicy6MoveOption(d, v, "option")
 		if err != nil {
 			return &obj, err

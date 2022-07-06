@@ -499,7 +499,7 @@ func expandObjectAuthenticationSchemeUserDatabase(d *schema.ResourceData, v inte
 func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("domain_controller"); ok {
+	if v, ok := d.GetOk("domain_controller"); ok || d.HasChange("domain_controller") {
 		t, err := expandObjectAuthenticationSchemeDomainController(d, v, "domain_controller")
 		if err != nil {
 			return &obj, err
@@ -508,7 +508,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ems_device_owner"); ok {
+	if v, ok := d.GetOk("ems_device_owner"); ok || d.HasChange("ems_device_owner") {
 		t, err := expandObjectAuthenticationSchemeEmsDeviceOwner(d, v, "ems_device_owner")
 		if err != nil {
 			return &obj, err
@@ -517,7 +517,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("fsso_agent_for_ntlm"); ok {
+	if v, ok := d.GetOk("fsso_agent_for_ntlm"); ok || d.HasChange("fsso_agent_for_ntlm") {
 		t, err := expandObjectAuthenticationSchemeFssoAgentForNtlm(d, v, "fsso_agent_for_ntlm")
 		if err != nil {
 			return &obj, err
@@ -526,7 +526,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("fsso_guest"); ok {
+	if v, ok := d.GetOk("fsso_guest"); ok || d.HasChange("fsso_guest") {
 		t, err := expandObjectAuthenticationSchemeFssoGuest(d, v, "fsso_guest")
 		if err != nil {
 			return &obj, err
@@ -535,7 +535,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("kerberos_keytab"); ok {
+	if v, ok := d.GetOk("kerberos_keytab"); ok || d.HasChange("kerberos_keytab") {
 		t, err := expandObjectAuthenticationSchemeKerberosKeytab(d, v, "kerberos_keytab")
 		if err != nil {
 			return &obj, err
@@ -544,7 +544,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("method"); ok {
+	if v, ok := d.GetOk("method"); ok || d.HasChange("method") {
 		t, err := expandObjectAuthenticationSchemeMethod(d, v, "method")
 		if err != nil {
 			return &obj, err
@@ -553,7 +553,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectAuthenticationSchemeName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -562,7 +562,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("negotiate_ntlm"); ok {
+	if v, ok := d.GetOk("negotiate_ntlm"); ok || d.HasChange("negotiate_ntlm") {
 		t, err := expandObjectAuthenticationSchemeNegotiateNtlm(d, v, "negotiate_ntlm")
 		if err != nil {
 			return &obj, err
@@ -571,7 +571,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("require_tfa"); ok {
+	if v, ok := d.GetOk("require_tfa"); ok || d.HasChange("require_tfa") {
 		t, err := expandObjectAuthenticationSchemeRequireTfa(d, v, "require_tfa")
 		if err != nil {
 			return &obj, err
@@ -580,7 +580,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("saml_server"); ok {
+	if v, ok := d.GetOk("saml_server"); ok || d.HasChange("saml_server") {
 		t, err := expandObjectAuthenticationSchemeSamlServer(d, v, "saml_server")
 		if err != nil {
 			return &obj, err
@@ -589,7 +589,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("saml_timeout"); ok {
+	if v, ok := d.GetOk("saml_timeout"); ok || d.HasChange("saml_timeout") {
 		t, err := expandObjectAuthenticationSchemeSamlTimeout(d, v, "saml_timeout")
 		if err != nil {
 			return &obj, err
@@ -598,7 +598,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_ca"); ok {
+	if v, ok := d.GetOk("ssh_ca"); ok || d.HasChange("ssh_ca") {
 		t, err := expandObjectAuthenticationSchemeSshCa(d, v, "ssh_ca")
 		if err != nil {
 			return &obj, err
@@ -607,7 +607,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("user_cert"); ok {
+	if v, ok := d.GetOk("user_cert"); ok || d.HasChange("user_cert") {
 		t, err := expandObjectAuthenticationSchemeUserCert(d, v, "user_cert")
 		if err != nil {
 			return &obj, err
@@ -616,7 +616,7 @@ func getObjectObjectAuthenticationScheme(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("user_database"); ok {
+	if v, ok := d.GetOk("user_database"); ok || d.HasChange("user_database") {
 		t, err := expandObjectAuthenticationSchemeUserDatabase(d, v, "user_database")
 		if err != nil {
 			return &obj, err

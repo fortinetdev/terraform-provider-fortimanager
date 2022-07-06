@@ -677,21 +677,21 @@ func expandObjectSshFilterProfileFileFilter(d *schema.ResourceData, v interface{
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["entries"], _ = expandObjectSshFilterProfileFileFilterEntries(d, i["entries"], pre_append)
 	} else {
 		result["entries"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectSshFilterProfileFileFilterLog(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "scan_archive_contents"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scan-archive-contents"], _ = expandObjectSshFilterProfileFileFilterScanArchiveContents(d, i["scan_archive_contents"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectSshFilterProfileFileFilterStatus(d, i["status"], pre_append)
 	}
 
@@ -713,39 +713,39 @@ func expandObjectSshFilterProfileFileFilterEntries(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectSshFilterProfileFileFilterEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectSshFilterProfileFileFilterEntriesComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "direction"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["direction"], _ = expandObjectSshFilterProfileFileFilterEntriesDirection(d, i["direction"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectSshFilterProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
 		} else {
 			tmp["file-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter"], _ = expandObjectSshFilterProfileFileFilterEntriesFilter(d, i["filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_protected"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-protected"], _ = expandObjectSshFilterProfileFileFilterEntriesPasswordProtected(d, i["password_protected"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectSshFilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		} else {
 			tmp["protocol"] = make([]string, 0)
@@ -822,37 +822,37 @@ func expandObjectSshFilterProfileShellCommands(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectSshFilterProfileShellCommandsAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "alert"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["alert"], _ = expandObjectSshFilterProfileShellCommandsAlert(d, i["alert"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSshFilterProfileShellCommandsId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandObjectSshFilterProfileShellCommandsLog(d, i["log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern"], _ = expandObjectSshFilterProfileShellCommandsPattern(d, i["pattern"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "severity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["severity"], _ = expandObjectSshFilterProfileShellCommandsSeverity(d, i["severity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSshFilterProfileShellCommandsType(d, i["type"], pre_append)
 		}
 
@@ -895,7 +895,7 @@ func expandObjectSshFilterProfileShellCommandsType(d *schema.ResourceData, v int
 func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("block"); ok {
+	if v, ok := d.GetOk("block"); ok || d.HasChange("block") {
 		t, err := expandObjectSshFilterProfileBlock(d, v, "block")
 		if err != nil {
 			return &obj, err
@@ -904,7 +904,7 @@ func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("default_command_log"); ok {
+	if v, ok := d.GetOk("default_command_log"); ok || d.HasChange("default_command_log") {
 		t, err := expandObjectSshFilterProfileDefaultCommandLog(d, v, "default_command_log")
 		if err != nil {
 			return &obj, err
@@ -913,7 +913,7 @@ func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("file_filter"); ok {
+	if v, ok := d.GetOk("file_filter"); ok || d.HasChange("file_filter") {
 		t, err := expandObjectSshFilterProfileFileFilter(d, v, "file_filter")
 		if err != nil {
 			return &obj, err
@@ -922,7 +922,7 @@ func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("log"); ok {
+	if v, ok := d.GetOk("log"); ok || d.HasChange("log") {
 		t, err := expandObjectSshFilterProfileLog(d, v, "log")
 		if err != nil {
 			return &obj, err
@@ -931,7 +931,7 @@ func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSshFilterProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -940,7 +940,7 @@ func getObjectObjectSshFilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("shell_commands"); ok {
+	if v, ok := d.GetOk("shell_commands"); ok || d.HasChange("shell_commands") {
 		t, err := expandObjectSshFilterProfileShellCommands(d, v, "shell_commands")
 		if err != nil {
 			return &obj, err

@@ -313,7 +313,7 @@ func expandObjectFirewallInternetServiceNameType(d *schema.ResourceData, v inter
 func getObjectObjectFirewallInternetServiceName(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("city_id"); ok {
+	if v, ok := d.GetOk("city_id"); ok || d.HasChange("city_id") {
 		t, err := expandObjectFirewallInternetServiceNameCityId(d, v, "city_id")
 		if err != nil {
 			return &obj, err
@@ -322,7 +322,7 @@ func getObjectObjectFirewallInternetServiceName(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("country_id"); ok {
+	if v, ok := d.GetOk("country_id"); ok || d.HasChange("country_id") {
 		t, err := expandObjectFirewallInternetServiceNameCountryId(d, v, "country_id")
 		if err != nil {
 			return &obj, err
@@ -331,7 +331,7 @@ func getObjectObjectFirewallInternetServiceName(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_id"); ok {
+	if v, ok := d.GetOk("internet_service_id"); ok || d.HasChange("internet_service_id") {
 		t, err := expandObjectFirewallInternetServiceNameInternetServiceId(d, v, "internet_service_id")
 		if err != nil {
 			return &obj, err
@@ -340,7 +340,7 @@ func getObjectObjectFirewallInternetServiceName(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallInternetServiceNameName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -349,7 +349,7 @@ func getObjectObjectFirewallInternetServiceName(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("region_id"); ok {
+	if v, ok := d.GetOk("region_id"); ok || d.HasChange("region_id") {
 		t, err := expandObjectFirewallInternetServiceNameRegionId(d, v, "region_id")
 		if err != nil {
 			return &obj, err
@@ -358,7 +358,7 @@ func getObjectObjectFirewallInternetServiceName(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallInternetServiceNameType(d, v, "type")
 		if err != nil {
 			return &obj, err

@@ -304,12 +304,12 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(d *schema.
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "osu_nai"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["osu-nai"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListOsuNai(d, i["osu_nai"], pre_append)
 		}
 
@@ -336,7 +336,7 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiName(d *schema.Res
 func getObjectObjectWirelessControllerHotspot20H2QpOsuProviderNai(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("nai_list"); ok {
+	if v, ok := d.GetOk("nai_list"); ok || d.HasChange("nai_list") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(d, v, "nai_list")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProviderNai(d *schema.Reso
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiName(d, v, "name")
 		if err != nil {
 			return &obj, err

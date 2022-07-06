@@ -852,47 +852,47 @@ func expandObjectDnsfilterProfileDnsTranslation(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr-type"], _ = expandObjectDnsfilterProfileDnsTranslationAddrType(d, i["addr_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dst"], _ = expandObjectDnsfilterProfileDnsTranslationDst(d, i["dst"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dst6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dst6"], _ = expandObjectDnsfilterProfileDnsTranslationDst6(d, i["dst6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectDnsfilterProfileDnsTranslationId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "netmask"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["netmask"], _ = expandObjectDnsfilterProfileDnsTranslationNetmask(d, i["netmask"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectDnsfilterProfileDnsTranslationPrefix(d, i["prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["src"], _ = expandObjectDnsfilterProfileDnsTranslationSrc(d, i["src"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["src6"], _ = expandObjectDnsfilterProfileDnsTranslationSrc6(d, i["src6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectDnsfilterProfileDnsTranslationStatus(d, i["status"], pre_append)
 		}
 
@@ -951,7 +951,7 @@ func expandObjectDnsfilterProfileDomainFilter(d *schema.ResourceData, v interfac
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "domain_filter_table"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["domain-filter-table"], _ = expandObjectDnsfilterProfileDomainFilterDomainFilterTable(d, i["domain_filter_table"], pre_append)
 	}
 
@@ -977,13 +977,13 @@ func expandObjectDnsfilterProfileFtgdDns(d *schema.ResourceData, v interface{}, 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "filters"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["filters"], _ = expandObjectDnsfilterProfileFtgdDnsFilters(d, i["filters"], pre_append)
 	} else {
 		result["filters"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectDnsfilterProfileFtgdDnsOptions(d, i["options"], pre_append)
 	} else {
 		result["options"] = make([]string, 0)
@@ -1007,22 +1007,22 @@ func expandObjectDnsfilterProfileFtgdDnsFilters(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectDnsfilterProfileFtgdDnsFiltersAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectDnsfilterProfileFtgdDnsFiltersCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectDnsfilterProfileFtgdDnsFiltersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandObjectDnsfilterProfileFtgdDnsFiltersLog(d, i["log"], pre_append)
 		}
 
@@ -1089,7 +1089,7 @@ func expandObjectDnsfilterProfileYoutubeRestrict(d *schema.ResourceData, v inter
 func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("block_action"); ok {
+	if v, ok := d.GetOk("block_action"); ok || d.HasChange("block_action") {
 		t, err := expandObjectDnsfilterProfileBlockAction(d, v, "block_action")
 		if err != nil {
 			return &obj, err
@@ -1098,7 +1098,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("block_botnet"); ok {
+	if v, ok := d.GetOk("block_botnet"); ok || d.HasChange("block_botnet") {
 		t, err := expandObjectDnsfilterProfileBlockBotnet(d, v, "block_botnet")
 		if err != nil {
 			return &obj, err
@@ -1107,7 +1107,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectDnsfilterProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1116,7 +1116,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dns_translation"); ok {
+	if v, ok := d.GetOk("dns_translation"); ok || d.HasChange("dns_translation") {
 		t, err := expandObjectDnsfilterProfileDnsTranslation(d, v, "dns_translation")
 		if err != nil {
 			return &obj, err
@@ -1125,7 +1125,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("domain_filter"); ok {
+	if v, ok := d.GetOk("domain_filter"); ok || d.HasChange("domain_filter") {
 		t, err := expandObjectDnsfilterProfileDomainFilter(d, v, "domain_filter")
 		if err != nil {
 			return &obj, err
@@ -1134,7 +1134,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("external_ip_blocklist"); ok {
+	if v, ok := d.GetOk("external_ip_blocklist"); ok || d.HasChange("external_ip_blocklist") {
 		t, err := expandObjectDnsfilterProfileExternalIpBlocklist(d, v, "external_ip_blocklist")
 		if err != nil {
 			return &obj, err
@@ -1143,7 +1143,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ftgd_dns"); ok {
+	if v, ok := d.GetOk("ftgd_dns"); ok || d.HasChange("ftgd_dns") {
 		t, err := expandObjectDnsfilterProfileFtgdDns(d, v, "ftgd_dns")
 		if err != nil {
 			return &obj, err
@@ -1152,7 +1152,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("log_all_domain"); ok {
+	if v, ok := d.GetOk("log_all_domain"); ok || d.HasChange("log_all_domain") {
 		t, err := expandObjectDnsfilterProfileLogAllDomain(d, v, "log_all_domain")
 		if err != nil {
 			return &obj, err
@@ -1161,7 +1161,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDnsfilterProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1170,7 +1170,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("redirect_portal"); ok {
+	if v, ok := d.GetOk("redirect_portal"); ok || d.HasChange("redirect_portal") {
 		t, err := expandObjectDnsfilterProfileRedirectPortal(d, v, "redirect_portal")
 		if err != nil {
 			return &obj, err
@@ -1179,7 +1179,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("redirect_portal6"); ok {
+	if v, ok := d.GetOk("redirect_portal6"); ok || d.HasChange("redirect_portal6") {
 		t, err := expandObjectDnsfilterProfileRedirectPortal6(d, v, "redirect_portal6")
 		if err != nil {
 			return &obj, err
@@ -1188,7 +1188,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("safe_search"); ok {
+	if v, ok := d.GetOk("safe_search"); ok || d.HasChange("safe_search") {
 		t, err := expandObjectDnsfilterProfileSafeSearch(d, v, "safe_search")
 		if err != nil {
 			return &obj, err
@@ -1197,7 +1197,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("sdns_domain_log"); ok {
+	if v, ok := d.GetOk("sdns_domain_log"); ok || d.HasChange("sdns_domain_log") {
 		t, err := expandObjectDnsfilterProfileSdnsDomainLog(d, v, "sdns_domain_log")
 		if err != nil {
 			return &obj, err
@@ -1206,7 +1206,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("sdns_ftgd_err_log"); ok {
+	if v, ok := d.GetOk("sdns_ftgd_err_log"); ok || d.HasChange("sdns_ftgd_err_log") {
 		t, err := expandObjectDnsfilterProfileSdnsFtgdErrLog(d, v, "sdns_ftgd_err_log")
 		if err != nil {
 			return &obj, err
@@ -1215,7 +1215,7 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("youtube_restrict"); ok {
+	if v, ok := d.GetOk("youtube_restrict"); ok || d.HasChange("youtube_restrict") {
 		t, err := expandObjectDnsfilterProfileYoutubeRestrict(d, v, "youtube_restrict")
 		if err != nil {
 			return &obj, err

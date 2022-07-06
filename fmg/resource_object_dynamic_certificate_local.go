@@ -383,14 +383,14 @@ func expandObjectDynamicCertificateLocalDynamicMapping(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectDynamicCertificateLocalDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_cert"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-cert"], _ = expandObjectDynamicCertificateLocalDynamicMappingLocalCert(d, i["local_cert"], pre_append)
 		}
 
@@ -417,12 +417,12 @@ func expandObjectDynamicCertificateLocalDynamicMappingScope(d *schema.ResourceDa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectDynamicCertificateLocalDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectDynamicCertificateLocalDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -453,7 +453,7 @@ func expandObjectDynamicCertificateLocalName(d *schema.ResourceData, v interface
 func getObjectObjectDynamicCertificateLocal(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicCertificateLocalDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -462,7 +462,7 @@ func getObjectObjectDynamicCertificateLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectDynamicCertificateLocalDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -471,7 +471,7 @@ func getObjectObjectDynamicCertificateLocal(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicCertificateLocalName(d, v, "name")
 		if err != nil {
 			return &obj, err

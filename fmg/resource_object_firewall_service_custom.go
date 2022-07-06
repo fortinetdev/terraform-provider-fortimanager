@@ -821,7 +821,7 @@ func expandObjectFirewallServiceCustomVisibility(d *schema.ResourceData, v inter
 func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("app_category"); ok {
+	if v, ok := d.GetOk("app_category"); ok || d.HasChange("app_category") {
 		t, err := expandObjectFirewallServiceCustomAppCategory(d, v, "app_category")
 		if err != nil {
 			return &obj, err
@@ -830,7 +830,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("app_service_type"); ok {
+	if v, ok := d.GetOk("app_service_type"); ok || d.HasChange("app_service_type") {
 		t, err := expandObjectFirewallServiceCustomAppServiceType(d, v, "app_service_type")
 		if err != nil {
 			return &obj, err
@@ -839,7 +839,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("application"); ok {
+	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
 		t, err := expandObjectFirewallServiceCustomApplication(d, v, "application")
 		if err != nil {
 			return &obj, err
@@ -848,7 +848,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectFirewallServiceCustomCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -857,7 +857,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("check_reset_range"); ok {
+	if v, ok := d.GetOk("check_reset_range"); ok || d.HasChange("check_reset_range") {
 		t, err := expandObjectFirewallServiceCustomCheckResetRange(d, v, "check_reset_range")
 		if err != nil {
 			return &obj, err
@@ -866,7 +866,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallServiceCustomColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -875,7 +875,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallServiceCustomComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -884,7 +884,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallServiceCustomFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -893,7 +893,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fqdn"); ok {
+	if v, ok := d.GetOk("fqdn"); ok || d.HasChange("fqdn") {
 		t, err := expandObjectFirewallServiceCustomFqdn(d, v, "fqdn")
 		if err != nil {
 			return &obj, err
@@ -902,7 +902,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallServiceCustomGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -911,7 +911,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("helper"); ok {
+	if v, ok := d.GetOk("helper"); ok || d.HasChange("helper") {
 		t, err := expandObjectFirewallServiceCustomHelper(d, v, "helper")
 		if err != nil {
 			return &obj, err
@@ -920,7 +920,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("icmpcode"); ok {
+	if v, ok := d.GetOk("icmpcode"); ok || d.HasChange("icmpcode") {
 		t, err := expandObjectFirewallServiceCustomIcmpcode(d, v, "icmpcode")
 		if err != nil {
 			return &obj, err
@@ -929,7 +929,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("icmptype"); ok {
+	if v, ok := d.GetOk("icmptype"); ok || d.HasChange("icmptype") {
 		t, err := expandObjectFirewallServiceCustomIcmptype(d, v, "icmptype")
 		if err != nil {
 			return &obj, err
@@ -938,7 +938,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("iprange"); ok {
+	if v, ok := d.GetOk("iprange"); ok || d.HasChange("iprange") {
 		t, err := expandObjectFirewallServiceCustomIprange(d, v, "iprange")
 		if err != nil {
 			return &obj, err
@@ -947,7 +947,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallServiceCustomName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -956,7 +956,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectFirewallServiceCustomProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -965,7 +965,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("protocol_number"); ok {
+	if v, ok := d.GetOk("protocol_number"); ok || d.HasChange("protocol_number") {
 		t, err := expandObjectFirewallServiceCustomProtocolNumber(d, v, "protocol_number")
 		if err != nil {
 			return &obj, err
@@ -974,7 +974,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("proxy"); ok {
+	if v, ok := d.GetOk("proxy"); ok || d.HasChange("proxy") {
 		t, err := expandObjectFirewallServiceCustomProxy(d, v, "proxy")
 		if err != nil {
 			return &obj, err
@@ -983,7 +983,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_portrange"); ok {
+	if v, ok := d.GetOk("sctp_portrange"); ok || d.HasChange("sctp_portrange") {
 		t, err := expandObjectFirewallServiceCustomSctpPortrange(d, v, "sctp_portrange")
 		if err != nil {
 			return &obj, err
@@ -992,7 +992,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("session_ttl"); ok {
+	if v, ok := d.GetOk("session_ttl"); ok || d.HasChange("session_ttl") {
 		t, err := expandObjectFirewallServiceCustomSessionTtl(d, v, "session_ttl")
 		if err != nil {
 			return &obj, err
@@ -1001,7 +1001,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_halfclose_timer"); ok {
+	if v, ok := d.GetOk("tcp_halfclose_timer"); ok || d.HasChange("tcp_halfclose_timer") {
 		t, err := expandObjectFirewallServiceCustomTcpHalfcloseTimer(d, v, "tcp_halfclose_timer")
 		if err != nil {
 			return &obj, err
@@ -1010,7 +1010,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_halfopen_timer"); ok {
+	if v, ok := d.GetOk("tcp_halfopen_timer"); ok || d.HasChange("tcp_halfopen_timer") {
 		t, err := expandObjectFirewallServiceCustomTcpHalfopenTimer(d, v, "tcp_halfopen_timer")
 		if err != nil {
 			return &obj, err
@@ -1019,7 +1019,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_portrange"); ok {
+	if v, ok := d.GetOk("tcp_portrange"); ok || d.HasChange("tcp_portrange") {
 		t, err := expandObjectFirewallServiceCustomTcpPortrange(d, v, "tcp_portrange")
 		if err != nil {
 			return &obj, err
@@ -1028,7 +1028,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_rst_timer"); ok {
+	if v, ok := d.GetOk("tcp_rst_timer"); ok || d.HasChange("tcp_rst_timer") {
 		t, err := expandObjectFirewallServiceCustomTcpRstTimer(d, v, "tcp_rst_timer")
 		if err != nil {
 			return &obj, err
@@ -1037,7 +1037,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_timewait_timer"); ok {
+	if v, ok := d.GetOk("tcp_timewait_timer"); ok || d.HasChange("tcp_timewait_timer") {
 		t, err := expandObjectFirewallServiceCustomTcpTimewaitTimer(d, v, "tcp_timewait_timer")
 		if err != nil {
 			return &obj, err
@@ -1046,7 +1046,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("udp_idle_timer"); ok {
+	if v, ok := d.GetOk("udp_idle_timer"); ok || d.HasChange("udp_idle_timer") {
 		t, err := expandObjectFirewallServiceCustomUdpIdleTimer(d, v, "udp_idle_timer")
 		if err != nil {
 			return &obj, err
@@ -1055,7 +1055,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("udp_portrange"); ok {
+	if v, ok := d.GetOk("udp_portrange"); ok || d.HasChange("udp_portrange") {
 		t, err := expandObjectFirewallServiceCustomUdpPortrange(d, v, "udp_portrange")
 		if err != nil {
 			return &obj, err
@@ -1064,7 +1064,7 @@ func getObjectObjectFirewallServiceCustom(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("visibility"); ok {
+	if v, ok := d.GetOk("visibility"); ok || d.HasChange("visibility") {
 		t, err := expandObjectFirewallServiceCustomVisibility(d, v, "visibility")
 		if err != nil {
 			return &obj, err

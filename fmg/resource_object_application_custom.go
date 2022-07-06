@@ -405,7 +405,7 @@ func expandObjectApplicationCustomVendor(d *schema.ResourceData, v interface{}, 
 func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("behavior"); ok {
+	if v, ok := d.GetOk("behavior"); ok || d.HasChange("behavior") {
 		t, err := expandObjectApplicationCustomBehavior(d, v, "behavior")
 		if err != nil {
 			return &obj, err
@@ -414,7 +414,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectApplicationCustomCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -423,7 +423,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectApplicationCustomComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -432,7 +432,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectApplicationCustomId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -441,7 +441,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectApplicationCustomName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -450,7 +450,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectApplicationCustomProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -459,7 +459,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("signature"); ok {
+	if v, ok := d.GetOk("signature"); ok || d.HasChange("signature") {
 		t, err := expandObjectApplicationCustomSignature(d, v, "signature")
 		if err != nil {
 			return &obj, err
@@ -468,7 +468,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("tag"); ok {
+	if v, ok := d.GetOk("tag"); ok || d.HasChange("tag") {
 		t, err := expandObjectApplicationCustomTag(d, v, "tag")
 		if err != nil {
 			return &obj, err
@@ -477,7 +477,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("technology"); ok {
+	if v, ok := d.GetOk("technology"); ok || d.HasChange("technology") {
 		t, err := expandObjectApplicationCustomTechnology(d, v, "technology")
 		if err != nil {
 			return &obj, err
@@ -486,7 +486,7 @@ func getObjectObjectApplicationCustom(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("vendor"); ok {
+	if v, ok := d.GetOk("vendor"); ok || d.HasChange("vendor") {
 		t, err := expandObjectApplicationCustomVendor(d, v, "vendor")
 		if err != nil {
 			return &obj, err

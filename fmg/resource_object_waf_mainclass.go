@@ -221,7 +221,7 @@ func expandObjectWafMainClassName(d *schema.ResourceData, v interface{}, pre str
 func getObjectObjectWafMainClass(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectWafMainClassId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectWafMainClass(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWafMainClassName(d, v, "name")
 		if err != nil {
 			return &obj, err

@@ -220,7 +220,7 @@ func expandObjectSystemNpuUdpTimeoutProfileUdpIdle(d *schema.ResourceData, v int
 func getObjectObjectSystemNpuUdpTimeoutProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectSystemNpuUdpTimeoutProfileId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -229,7 +229,7 @@ func getObjectObjectSystemNpuUdpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("udp_idle"); ok {
+	if v, ok := d.GetOk("udp_idle"); ok || d.HasChange("udp_idle") {
 		t, err := expandObjectSystemNpuUdpTimeoutProfileUdpIdle(d, v, "udp_idle")
 		if err != nil {
 			return &obj, err

@@ -498,7 +498,7 @@ func expandObjectSystemExternalResourceUuid(d *schema.ResourceData, v interface{
 func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectSystemExternalResourceCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -507,7 +507,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectSystemExternalResourceComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -516,7 +516,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectSystemExternalResourceInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -525,7 +525,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectSystemExternalResourceInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -534,7 +534,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemExternalResourceName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -543,7 +543,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectSystemExternalResourcePassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -552,7 +552,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("refresh_rate"); ok {
+	if v, ok := d.GetOk("refresh_rate"); ok || d.HasChange("refresh_rate") {
 		t, err := expandObjectSystemExternalResourceRefreshRate(d, v, "refresh_rate")
 		if err != nil {
 			return &obj, err
@@ -561,7 +561,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("resource"); ok {
+	if v, ok := d.GetOk("resource"); ok || d.HasChange("resource") {
 		t, err := expandObjectSystemExternalResourceResource(d, v, "resource")
 		if err != nil {
 			return &obj, err
@@ -570,7 +570,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectSystemExternalResourceSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -579,7 +579,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectSystemExternalResourceStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -588,7 +588,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectSystemExternalResourceType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -597,7 +597,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("user_agent"); ok {
+	if v, ok := d.GetOk("user_agent"); ok || d.HasChange("user_agent") {
 		t, err := expandObjectSystemExternalResourceUserAgent(d, v, "user_agent")
 		if err != nil {
 			return &obj, err
@@ -606,7 +606,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandObjectSystemExternalResourceUsername(d, v, "username")
 		if err != nil {
 			return &obj, err
@@ -615,7 +615,7 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectSystemExternalResourceUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

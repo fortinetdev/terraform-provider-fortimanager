@@ -336,7 +336,7 @@ func expandObjectLogNpuServerServerGroupSwLogFlags(d *schema.ResourceData, v int
 func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("group_name"); ok {
+	if v, ok := d.GetOk("group_name"); ok || d.HasChange("group_name") {
 		t, err := expandObjectLogNpuServerServerGroupGroupName(d, v, "group_name")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("log_format"); ok {
+	if v, ok := d.GetOk("log_format"); ok || d.HasChange("log_format") {
 		t, err := expandObjectLogNpuServerServerGroupLogFormat(d, v, "log_format")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("log_mode"); ok {
+	if v, ok := d.GetOk("log_mode"); ok || d.HasChange("log_mode") {
 		t, err := expandObjectLogNpuServerServerGroupLogMode(d, v, "log_mode")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("log_tx_mode"); ok {
+	if v, ok := d.GetOk("log_tx_mode"); ok || d.HasChange("log_tx_mode") {
 		t, err := expandObjectLogNpuServerServerGroupLogTxMode(d, v, "log_tx_mode")
 		if err != nil {
 			return &obj, err
@@ -372,7 +372,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("server_number"); ok {
+	if v, ok := d.GetOk("server_number"); ok || d.HasChange("server_number") {
 		t, err := expandObjectLogNpuServerServerGroupServerNumber(d, v, "server_number")
 		if err != nil {
 			return &obj, err
@@ -381,7 +381,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("server_start_id"); ok {
+	if v, ok := d.GetOk("server_start_id"); ok || d.HasChange("server_start_id") {
 		t, err := expandObjectLogNpuServerServerGroupServerStartId(d, v, "server_start_id")
 		if err != nil {
 			return &obj, err
@@ -390,7 +390,7 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("sw_log_flags"); ok {
+	if v, ok := d.GetOk("sw_log_flags"); ok || d.HasChange("sw_log_flags") {
 		t, err := expandObjectLogNpuServerServerGroupSwLogFlags(d, v, "sw_log_flags")
 		if err != nil {
 			return &obj, err

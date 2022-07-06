@@ -593,7 +593,7 @@ func expandPackagesFirewallHyperscalePolicy46Uuid(d *schema.ResourceData, v inte
 func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Action(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -602,7 +602,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("cgn_log_server_grp"); ok {
+	if v, ok := d.GetOk("cgn_log_server_grp"); ok || d.HasChange("cgn_log_server_grp") {
 		t, err := expandPackagesFirewallHyperscalePolicy46CgnLogServerGrp(d, v, "cgn_log_server_grp")
 		if err != nil {
 			return &obj, err
@@ -611,7 +611,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Comments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -620,7 +620,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Dstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -629,7 +629,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("dstintf"); ok {
+	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Dstintf(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
@@ -638,7 +638,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -647,7 +647,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("policy_offload"); ok {
+	if v, ok := d.GetOk("policy_offload"); ok || d.HasChange("policy_offload") {
 		t, err := expandPackagesFirewallHyperscalePolicy46PolicyOffload(d, v, "policy_offload")
 		if err != nil {
 			return &obj, err
@@ -656,7 +656,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("policyid"); ok {
+	if v, ok := d.GetOk("policyid"); ok || d.HasChange("policyid") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Policyid(d, v, "policyid")
 		if err != nil {
 			return &obj, err
@@ -665,7 +665,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok {
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Service(d, v, "service")
 		if err != nil {
 			return &obj, err
@@ -674,7 +674,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Srcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -683,7 +683,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Srcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -692,7 +692,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Status(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -701,7 +701,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_timeout_pid"); ok {
+	if v, ok := d.GetOk("tcp_timeout_pid"); ok || d.HasChange("tcp_timeout_pid") {
 		t, err := expandPackagesFirewallHyperscalePolicy46TcpTimeoutPid(d, v, "tcp_timeout_pid")
 		if err != nil {
 			return &obj, err
@@ -710,7 +710,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaper"); ok {
+	if v, ok := d.GetOk("traffic_shaper"); ok || d.HasChange("traffic_shaper") {
 		t, err := expandPackagesFirewallHyperscalePolicy46TrafficShaper(d, v, "traffic_shaper")
 		if err != nil {
 			return &obj, err
@@ -719,7 +719,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaper_reverse"); ok {
+	if v, ok := d.GetOk("traffic_shaper_reverse"); ok || d.HasChange("traffic_shaper_reverse") {
 		t, err := expandPackagesFirewallHyperscalePolicy46TrafficShaperReverse(d, v, "traffic_shaper_reverse")
 		if err != nil {
 			return &obj, err
@@ -728,7 +728,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("udp_timeout_pid"); ok {
+	if v, ok := d.GetOk("udp_timeout_pid"); ok || d.HasChange("udp_timeout_pid") {
 		t, err := expandPackagesFirewallHyperscalePolicy46UdpTimeoutPid(d, v, "udp_timeout_pid")
 		if err != nil {
 			return &obj, err
@@ -737,7 +737,7 @@ func getObjectPackagesFirewallHyperscalePolicy46(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallHyperscalePolicy46Uuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

@@ -1239,24 +1239,24 @@ func expandObjectApplicationListDefaultNetworkServices(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectApplicationListDefaultNetworkServicesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectApplicationListDefaultNetworkServicesPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "services"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["services"], _ = expandObjectApplicationListDefaultNetworkServicesServices(d, i["services"], pre_append)
 		} else {
 			tmp["services"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "violation_action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["violation-action"], _ = expandObjectApplicationListDefaultNetworkServicesViolationAction(d, i["violation_action"], pre_append)
 		}
 
@@ -1303,150 +1303,150 @@ func expandObjectApplicationListEntries(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectApplicationListEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["application"], _ = expandObjectApplicationListEntriesApplication(d, i["application"], pre_append)
 		} else {
 			tmp["application"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "behavior"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["behavior"], _ = expandObjectApplicationListEntriesBehavior(d, i["behavior"], pre_append)
 		} else {
 			tmp["behavior"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectApplicationListEntriesCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclusion"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exclusion"], _ = expandObjectApplicationListEntriesExclusion(d, i["exclusion"], pre_append)
 		} else {
 			tmp["exclusion"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectApplicationListEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandObjectApplicationListEntriesLog(d, i["log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_packet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-packet"], _ = expandObjectApplicationListEntriesLogPacket(d, i["log_packet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "parameters"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["parameters"], _ = expandObjectApplicationListEntriesParameters(d, i["parameters"], pre_append)
 		} else {
 			tmp["parameters"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "per_ip_shaper"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["per-ip-shaper"], _ = expandObjectApplicationListEntriesPerIpShaper(d, i["per_ip_shaper"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "popularity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["popularity"], _ = expandObjectApplicationListEntriesPopularity(d, i["popularity"], pre_append)
 		} else {
 			tmp["popularity"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocols"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocols"], _ = expandObjectApplicationListEntriesProtocols(d, i["protocols"], pre_append)
 		} else {
 			tmp["protocols"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine"], _ = expandObjectApplicationListEntriesQuarantine(d, i["quarantine"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine_expiry"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine-expiry"], _ = expandObjectApplicationListEntriesQuarantineExpiry(d, i["quarantine_expiry"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine_log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine-log"], _ = expandObjectApplicationListEntriesQuarantineLog(d, i["quarantine_log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_count"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-count"], _ = expandObjectApplicationListEntriesRateCount(d, i["rate_count"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_duration"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-duration"], _ = expandObjectApplicationListEntriesRateDuration(d, i["rate_duration"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-mode"], _ = expandObjectApplicationListEntriesRateMode(d, i["rate_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rate_track"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rate-track"], _ = expandObjectApplicationListEntriesRateTrack(d, i["rate_track"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "risk"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["risk"], _ = expandObjectApplicationListEntriesRisk(d, i["risk"], pre_append)
 		} else {
 			tmp["risk"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "session_ttl"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["session-ttl"], _ = expandObjectApplicationListEntriesSessionTtl(d, i["session_ttl"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "shaper"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["shaper"], _ = expandObjectApplicationListEntriesShaper(d, i["shaper"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "shaper_reverse"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["shaper-reverse"], _ = expandObjectApplicationListEntriesShaperReverse(d, i["shaper_reverse"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sub_category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sub-category"], _ = expandObjectApplicationListEntriesSubCategory(d, i["sub_category"], pre_append)
 		} else {
 			tmp["sub-category"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "technology"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["technology"], _ = expandObjectApplicationListEntriesTechnology(d, i["technology"], pre_append)
 		} else {
 			tmp["technology"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vendor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vendor"], _ = expandObjectApplicationListEntriesVendor(d, i["vendor"], pre_append)
 		} else {
 			tmp["vendor"] = make([]string, 0)
@@ -1507,19 +1507,19 @@ func expandObjectApplicationListEntriesParameters(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectApplicationListEntriesParametersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "members"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["members"], _ = expandObjectApplicationListEntriesParametersMembers(d, i["members"], pre_append)
 		} else {
 			tmp["members"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersValue(d, i["value"], pre_append)
 		}
 
@@ -1550,17 +1550,17 @@ func expandObjectApplicationListEntriesParametersMembers(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectApplicationListEntriesParametersMembersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectApplicationListEntriesParametersMembersName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersMembersValue(d, i["value"], pre_append)
 		}
 
@@ -1703,7 +1703,7 @@ func expandObjectApplicationListUnknownApplicationLog(d *schema.ResourceData, v 
 func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("app_replacemsg"); ok {
+	if v, ok := d.GetOk("app_replacemsg"); ok || d.HasChange("app_replacemsg") {
 		t, err := expandObjectApplicationListAppReplacemsg(d, v, "app_replacemsg")
 		if err != nil {
 			return &obj, err
@@ -1712,7 +1712,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectApplicationListComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1721,7 +1721,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("control_default_network_services"); ok {
+	if v, ok := d.GetOk("control_default_network_services"); ok || d.HasChange("control_default_network_services") {
 		t, err := expandObjectApplicationListControlDefaultNetworkServices(d, v, "control_default_network_services")
 		if err != nil {
 			return &obj, err
@@ -1730,7 +1730,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("deep_app_inspection"); ok {
+	if v, ok := d.GetOk("deep_app_inspection"); ok || d.HasChange("deep_app_inspection") {
 		t, err := expandObjectApplicationListDeepAppInspection(d, v, "deep_app_inspection")
 		if err != nil {
 			return &obj, err
@@ -1739,7 +1739,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("default_network_services"); ok {
+	if v, ok := d.GetOk("default_network_services"); ok || d.HasChange("default_network_services") {
 		t, err := expandObjectApplicationListDefaultNetworkServices(d, v, "default_network_services")
 		if err != nil {
 			return &obj, err
@@ -1748,7 +1748,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("enforce_default_app_port"); ok {
+	if v, ok := d.GetOk("enforce_default_app_port"); ok || d.HasChange("enforce_default_app_port") {
 		t, err := expandObjectApplicationListEnforceDefaultAppPort(d, v, "enforce_default_app_port")
 		if err != nil {
 			return &obj, err
@@ -1757,7 +1757,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectApplicationListEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -1766,7 +1766,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("extended_log"); ok {
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
 		t, err := expandObjectApplicationListExtendedLog(d, v, "extended_log")
 		if err != nil {
 			return &obj, err
@@ -1775,7 +1775,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("force_inclusion_ssl_di_sigs"); ok {
+	if v, ok := d.GetOk("force_inclusion_ssl_di_sigs"); ok || d.HasChange("force_inclusion_ssl_di_sigs") {
 		t, err := expandObjectApplicationListForceInclusionSslDiSigs(d, v, "force_inclusion_ssl_di_sigs")
 		if err != nil {
 			return &obj, err
@@ -1784,7 +1784,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectApplicationListName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1793,7 +1793,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok {
+	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
 		t, err := expandObjectApplicationListOptions(d, v, "options")
 		if err != nil {
 			return &obj, err
@@ -1802,7 +1802,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("other_application_action"); ok {
+	if v, ok := d.GetOk("other_application_action"); ok || d.HasChange("other_application_action") {
 		t, err := expandObjectApplicationListOtherApplicationAction(d, v, "other_application_action")
 		if err != nil {
 			return &obj, err
@@ -1811,7 +1811,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("other_application_log"); ok {
+	if v, ok := d.GetOk("other_application_log"); ok || d.HasChange("other_application_log") {
 		t, err := expandObjectApplicationListOtherApplicationLog(d, v, "other_application_log")
 		if err != nil {
 			return &obj, err
@@ -1820,7 +1820,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("p2p_block_list"); ok {
+	if v, ok := d.GetOk("p2p_block_list"); ok || d.HasChange("p2p_block_list") {
 		t, err := expandObjectApplicationListP2PBlockList(d, v, "p2p_block_list")
 		if err != nil {
 			return &obj, err
@@ -1829,7 +1829,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("p2p_black_list"); ok {
+	if v, ok := d.GetOk("p2p_black_list"); ok || d.HasChange("p2p_black_list") {
 		t, err := expandObjectApplicationListP2PBlackList(d, v, "p2p_black_list")
 		if err != nil {
 			return &obj, err
@@ -1838,7 +1838,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectApplicationListReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -1847,7 +1847,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("unknown_application_action"); ok {
+	if v, ok := d.GetOk("unknown_application_action"); ok || d.HasChange("unknown_application_action") {
 		t, err := expandObjectApplicationListUnknownApplicationAction(d, v, "unknown_application_action")
 		if err != nil {
 			return &obj, err
@@ -1856,7 +1856,7 @@ func getObjectObjectApplicationList(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("unknown_application_log"); ok {
+	if v, ok := d.GetOk("unknown_application_log"); ok || d.HasChange("unknown_application_log") {
 		t, err := expandObjectApplicationListUnknownApplicationLog(d, v, "unknown_application_log")
 		if err != nil {
 			return &obj, err

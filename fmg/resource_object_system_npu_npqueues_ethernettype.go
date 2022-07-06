@@ -267,7 +267,7 @@ func expandObjectSystemNpuNpQueuesEthernetTypeWeight(d *schema.ResourceData, v i
 func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemNpuNpQueuesEthernetTypeName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("queue"); ok {
+	if v, ok := d.GetOk("queue"); ok || d.HasChange("queue") {
 		t, err := expandObjectSystemNpuNpQueuesEthernetTypeQueue(d, v, "queue")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectSystemNpuNpQueuesEthernetTypeType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectSystemNpuNpQueuesEthernetType(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("weight"); ok {
+	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
 		t, err := expandObjectSystemNpuNpQueuesEthernetTypeWeight(d, v, "weight")
 		if err != nil {
 			return &obj, err

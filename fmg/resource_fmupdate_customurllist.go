@@ -140,7 +140,7 @@ func expandFmupdateCustomUrlListDbSelection(d *schema.ResourceData, v interface{
 func getObjectFmupdateCustomUrlList(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("db_selection"); ok {
+	if v, ok := d.GetOk("db_selection"); ok || d.HasChange("db_selection") {
 		t, err := expandFmupdateCustomUrlListDbSelection(d, v, "db_selection")
 		if err != nil {
 			return &obj, err

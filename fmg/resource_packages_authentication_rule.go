@@ -552,7 +552,7 @@ func expandPackagesAuthenticationRuleWebPortal(d *schema.ResourceData, v interfa
 func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("active_auth_method"); ok {
+	if v, ok := d.GetOk("active_auth_method"); ok || d.HasChange("active_auth_method") {
 		t, err := expandPackagesAuthenticationRuleActiveAuthMethod(d, v, "active_auth_method")
 		if err != nil {
 			return &obj, err
@@ -561,7 +561,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesAuthenticationRuleComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -570,7 +570,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesAuthenticationRuleDstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -579,7 +579,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr6"); ok {
+	if v, ok := d.GetOk("dstaddr6"); ok || d.HasChange("dstaddr6") {
 		t, err := expandPackagesAuthenticationRuleDstaddr6(d, v, "dstaddr6")
 		if err != nil {
 			return &obj, err
@@ -588,7 +588,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ip_based"); ok {
+	if v, ok := d.GetOk("ip_based"); ok || d.HasChange("ip_based") {
 		t, err := expandPackagesAuthenticationRuleIpBased(d, v, "ip_based")
 		if err != nil {
 			return &obj, err
@@ -597,7 +597,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesAuthenticationRuleName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -606,7 +606,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandPackagesAuthenticationRuleProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -615,7 +615,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesAuthenticationRuleSrcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -624,7 +624,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr6"); ok {
+	if v, ok := d.GetOk("srcaddr6"); ok || d.HasChange("srcaddr6") {
 		t, err := expandPackagesAuthenticationRuleSrcaddr6(d, v, "srcaddr6")
 		if err != nil {
 			return &obj, err
@@ -633,7 +633,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesAuthenticationRuleSrcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -642,7 +642,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("sso_auth_method"); ok {
+	if v, ok := d.GetOk("sso_auth_method"); ok || d.HasChange("sso_auth_method") {
 		t, err := expandPackagesAuthenticationRuleSsoAuthMethod(d, v, "sso_auth_method")
 		if err != nil {
 			return &obj, err
@@ -651,7 +651,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesAuthenticationRuleStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -660,7 +660,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("transaction_based"); ok {
+	if v, ok := d.GetOk("transaction_based"); ok || d.HasChange("transaction_based") {
 		t, err := expandPackagesAuthenticationRuleTransactionBased(d, v, "transaction_based")
 		if err != nil {
 			return &obj, err
@@ -669,7 +669,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("web_auth_cookie"); ok {
+	if v, ok := d.GetOk("web_auth_cookie"); ok || d.HasChange("web_auth_cookie") {
 		t, err := expandPackagesAuthenticationRuleWebAuthCookie(d, v, "web_auth_cookie")
 		if err != nil {
 			return &obj, err
@@ -678,7 +678,7 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("web_portal"); ok {
+	if v, ok := d.GetOk("web_portal"); ok || d.HasChange("web_portal") {
 		t, err := expandPackagesAuthenticationRuleWebPortal(d, v, "web_portal")
 		if err != nil {
 			return &obj, err

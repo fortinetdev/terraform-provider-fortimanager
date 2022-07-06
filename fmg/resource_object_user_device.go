@@ -794,74 +794,74 @@ func expandObjectUserDeviceDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectUserDeviceDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "avatar"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["avatar"], _ = expandObjectUserDeviceDynamicMappingAvatar(d, i["avatar"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectUserDeviceDynamicMappingCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectUserDeviceDynamicMappingComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "family"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["family"], _ = expandObjectUserDeviceDynamicMappingFamily(d, i["family"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "hardware_vendor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["hardware-vendor"], _ = expandObjectUserDeviceDynamicMappingHardwareVendor(d, i["hardware_vendor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "hardware_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["hardware-version"], _ = expandObjectUserDeviceDynamicMappingHardwareVersion(d, i["hardware_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectUserDeviceDynamicMappingMac(d, i["mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "master_device"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["master-device"], _ = expandObjectUserDeviceDynamicMappingMasterDevice(d, i["master_device"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "os"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["os"], _ = expandObjectUserDeviceDynamicMappingOs(d, i["os"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "software_version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["software-version"], _ = expandObjectUserDeviceDynamicMappingSoftwareVersion(d, i["software_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectUserDeviceDynamicMappingTags(d, i["tags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectUserDeviceDynamicMappingType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "user"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["user"], _ = expandObjectUserDeviceDynamicMappingUser(d, i["user"], pre_append)
 		}
 
@@ -888,12 +888,12 @@ func expandObjectUserDeviceDynamicMappingScope(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserDeviceDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectUserDeviceDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -988,17 +988,17 @@ func expandObjectUserDeviceTagging(d *schema.ResourceData, v interface{}, pre st
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectUserDeviceTaggingCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserDeviceTaggingName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectUserDeviceTaggingTags(d, i["tags"], pre_append)
 		} else {
 			tmp["tags"] = make([]string, 0)
@@ -1035,7 +1035,7 @@ func expandObjectUserDeviceUser(d *schema.ResourceData, v interface{}, pre strin
 func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("alias"); ok {
+	if v, ok := d.GetOk("alias"); ok || d.HasChange("alias") {
 		t, err := expandObjectUserDeviceAlias(d, v, "alias")
 		if err != nil {
 			return &obj, err
@@ -1044,7 +1044,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("avatar"); ok {
+	if v, ok := d.GetOk("avatar"); ok || d.HasChange("avatar") {
 		t, err := expandObjectUserDeviceAvatar(d, v, "avatar")
 		if err != nil {
 			return &obj, err
@@ -1053,7 +1053,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectUserDeviceCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -1062,7 +1062,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectUserDeviceComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1071,7 +1071,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserDeviceDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -1080,7 +1080,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("mac"); ok {
+	if v, ok := d.GetOk("mac"); ok || d.HasChange("mac") {
 		t, err := expandObjectUserDeviceMac(d, v, "mac")
 		if err != nil {
 			return &obj, err
@@ -1089,7 +1089,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("master_device"); ok {
+	if v, ok := d.GetOk("master_device"); ok || d.HasChange("master_device") {
 		t, err := expandObjectUserDeviceMasterDevice(d, v, "master_device")
 		if err != nil {
 			return &obj, err
@@ -1098,7 +1098,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("tagging"); ok {
+	if v, ok := d.GetOk("tagging"); ok || d.HasChange("tagging") {
 		t, err := expandObjectUserDeviceTagging(d, v, "tagging")
 		if err != nil {
 			return &obj, err
@@ -1107,7 +1107,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectUserDeviceType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -1116,7 +1116,7 @@ func getObjectObjectUserDevice(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("user"); ok {
+	if v, ok := d.GetOk("user"); ok || d.HasChange("user") {
 		t, err := expandObjectUserDeviceUser(d, v, "user")
 		if err != nil {
 			return &obj, err

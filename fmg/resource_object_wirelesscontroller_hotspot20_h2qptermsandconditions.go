@@ -267,7 +267,7 @@ func expandObjectWirelessControllerHotspot20H2QpTermsAndConditionsUrl(d *schema.
 func getObjectObjectWirelessControllerHotspot20H2QpTermsAndConditions(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("filename"); ok {
+	if v, ok := d.GetOk("filename"); ok || d.HasChange("filename") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpTermsAndConditionsFilename(d, v, "filename")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpTermsAndConditions(d *schema.
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpTermsAndConditionsName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpTermsAndConditions(d *schema.
 		}
 	}
 
-	if v, ok := d.GetOk("timestamp"); ok {
+	if v, ok := d.GetOk("timestamp"); ok || d.HasChange("timestamp") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpTermsAndConditionsTimestamp(d, v, "timestamp")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpTermsAndConditions(d *schema.
 		}
 	}
 
-	if v, ok := d.GetOk("url"); ok {
+	if v, ok := d.GetOk("url"); ok || d.HasChange("url") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpTermsAndConditionsUrl(d, v, "url")
 		if err != nil {
 			return &obj, err

@@ -221,7 +221,7 @@ func expandObjectDynamicIppoolName(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectDynamicIppool(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicIppoolDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectDynamicIppool(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicIppoolName(d, v, "name")
 		if err != nil {
 			return &obj, err

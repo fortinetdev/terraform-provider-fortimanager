@@ -448,14 +448,14 @@ func expandObjectDynamicMulticastInterfaceDynamicMapping(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_intf"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-intf"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingLocalIntf(d, i["local_intf"], pre_append)
 		}
 
@@ -482,12 +482,12 @@ func expandObjectDynamicMulticastInterfaceDynamicMappingScope(d *schema.Resource
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -522,7 +522,7 @@ func expandObjectDynamicMulticastInterfaceZoneOnly(d *schema.ResourceData, v int
 func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("default_mapping"); ok {
+	if v, ok := d.GetOk("default_mapping"); ok || d.HasChange("default_mapping") {
 		t, err := expandObjectDynamicMulticastInterfaceDefaultMapping(d, v, "default_mapping")
 		if err != nil {
 			return &obj, err
@@ -531,7 +531,7 @@ func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("defmap_intf"); ok {
+	if v, ok := d.GetOk("defmap_intf"); ok || d.HasChange("defmap_intf") {
 		t, err := expandObjectDynamicMulticastInterfaceDefmapIntf(d, v, "defmap_intf")
 		if err != nil {
 			return &obj, err
@@ -540,7 +540,7 @@ func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicMulticastInterfaceDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -549,7 +549,7 @@ func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectDynamicMulticastInterfaceDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -558,7 +558,7 @@ func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicMulticastInterfaceName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -567,7 +567,7 @@ func getObjectObjectDynamicMulticastInterface(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("zone_only"); ok {
+	if v, ok := d.GetOk("zone_only"); ok || d.HasChange("zone_only") {
 		t, err := expandObjectDynamicMulticastInterfaceZoneOnly(d, v, "zone_only")
 		if err != nil {
 			return &obj, err

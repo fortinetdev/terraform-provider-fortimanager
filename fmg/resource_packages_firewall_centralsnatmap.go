@@ -645,7 +645,7 @@ func expandPackagesFirewallCentralSnatMapUuid(d *schema.ResourceData, v interfac
 func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallCentralSnatMapComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -654,7 +654,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dst_addr"); ok {
+	if v, ok := d.GetOk("dst_addr"); ok || d.HasChange("dst_addr") {
 		t, err := expandPackagesFirewallCentralSnatMapDstAddr(d, v, "dst_addr")
 		if err != nil {
 			return &obj, err
@@ -663,7 +663,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dst_addr6"); ok {
+	if v, ok := d.GetOk("dst_addr6"); ok || d.HasChange("dst_addr6") {
 		t, err := expandPackagesFirewallCentralSnatMapDstAddr6(d, v, "dst_addr6")
 		if err != nil {
 			return &obj, err
@@ -672,7 +672,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dstintf"); ok {
+	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
 		t, err := expandPackagesFirewallCentralSnatMapDstintf(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
@@ -681,7 +681,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("nat"); ok {
+	if v, ok := d.GetOk("nat"); ok || d.HasChange("nat") {
 		t, err := expandPackagesFirewallCentralSnatMapNat(d, v, "nat")
 		if err != nil {
 			return &obj, err
@@ -690,7 +690,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("nat_ippool"); ok {
+	if v, ok := d.GetOk("nat_ippool"); ok || d.HasChange("nat_ippool") {
 		t, err := expandPackagesFirewallCentralSnatMapNatIppool(d, v, "nat_ippool")
 		if err != nil {
 			return &obj, err
@@ -699,7 +699,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("nat_ippool6"); ok {
+	if v, ok := d.GetOk("nat_ippool6"); ok || d.HasChange("nat_ippool6") {
 		t, err := expandPackagesFirewallCentralSnatMapNatIppool6(d, v, "nat_ippool6")
 		if err != nil {
 			return &obj, err
@@ -708,7 +708,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("nat_port"); ok {
+	if v, ok := d.GetOk("nat_port"); ok || d.HasChange("nat_port") {
 		t, err := expandPackagesFirewallCentralSnatMapNatPort(d, v, "nat_port")
 		if err != nil {
 			return &obj, err
@@ -717,7 +717,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("nat46"); ok {
+	if v, ok := d.GetOk("nat46"); ok || d.HasChange("nat46") {
 		t, err := expandPackagesFirewallCentralSnatMapNat46(d, v, "nat46")
 		if err != nil {
 			return &obj, err
@@ -726,7 +726,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("nat64"); ok {
+	if v, ok := d.GetOk("nat64"); ok || d.HasChange("nat64") {
 		t, err := expandPackagesFirewallCentralSnatMapNat64(d, v, "nat64")
 		if err != nil {
 			return &obj, err
@@ -735,7 +735,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("orig_addr"); ok {
+	if v, ok := d.GetOk("orig_addr"); ok || d.HasChange("orig_addr") {
 		t, err := expandPackagesFirewallCentralSnatMapOrigAddr(d, v, "orig_addr")
 		if err != nil {
 			return &obj, err
@@ -744,7 +744,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("orig_addr6"); ok {
+	if v, ok := d.GetOk("orig_addr6"); ok || d.HasChange("orig_addr6") {
 		t, err := expandPackagesFirewallCentralSnatMapOrigAddr6(d, v, "orig_addr6")
 		if err != nil {
 			return &obj, err
@@ -753,7 +753,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("orig_port"); ok {
+	if v, ok := d.GetOk("orig_port"); ok || d.HasChange("orig_port") {
 		t, err := expandPackagesFirewallCentralSnatMapOrigPort(d, v, "orig_port")
 		if err != nil {
 			return &obj, err
@@ -762,7 +762,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("policyid"); ok {
+	if v, ok := d.GetOk("policyid"); ok || d.HasChange("policyid") {
 		t, err := expandPackagesFirewallCentralSnatMapPolicyid(d, v, "policyid")
 		if err != nil {
 			return &obj, err
@@ -771,7 +771,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandPackagesFirewallCentralSnatMapProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -780,7 +780,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesFirewallCentralSnatMapSrcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -789,7 +789,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallCentralSnatMapStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -798,7 +798,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandPackagesFirewallCentralSnatMapType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -807,7 +807,7 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallCentralSnatMapUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

@@ -745,35 +745,35 @@ func expandPackagesPkgPackageSettings(d *schema.ResourceData, v interface{}, pre
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "central_nat"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["central-nat"], _ = expandPackagesPkgPackageSettingsCentralNat(d, i["central_nat"], pre_append)
 	}
 	pre_append = pre + ".0." + "consolidated_firewall_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["consolidated-firewall-mode"], _ = expandPackagesPkgPackageSettingsConsolidatedFirewallMode(d, i["consolidated_firewall_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "fwpolicy_implicit_log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fwpolicy-implicit-log"], _ = expandPackagesPkgPackageSettingsFwpolicyImplicitLog(d, i["fwpolicy_implicit_log"], pre_append)
 	}
 	pre_append = pre + ".0." + "fwpolicy6_implicit_log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fwpolicy6-implicit-log"], _ = expandPackagesPkgPackageSettingsFwpolicy6ImplicitLog(d, i["fwpolicy6_implicit_log"], pre_append)
 	}
 	pre_append = pre + ".0." + "inspection_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["inspection-mode"], _ = expandPackagesPkgPackageSettingsInspectionMode(d, i["inspection_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ngfw_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ngfw-mode"], _ = expandPackagesPkgPackageSettingsNgfwMode(d, i["ngfw_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "policy_offload_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["policy-offload-level"], _ = expandPackagesPkgPackageSettingsPolicyOffloadLevel(d, i["policy_offload_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_ssh_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-ssh-profile"], _ = expandPackagesPkgPackageSettingsSslSshProfile(d, i["ssl_ssh_profile"], pre_append)
 	}
 
@@ -823,31 +823,31 @@ func expandPackagesPkgPackageSetting(d *schema.ResourceData, v interface{}, pre 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "central_nat"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["central-nat"], _ = expandPackagesPkgPackageSettingCentralNat(d, i["central_nat"], pre_append)
 	}
 	pre_append = pre + ".0." + "consolidated_firewall_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["consolidated-firewall-mode"], _ = expandPackagesPkgPackageSettingConsolidatedFirewallMode(d, i["consolidated_firewall_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "fwpolicy_implicit_log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fwpolicy-implicit-log"], _ = expandPackagesPkgPackageSettingFwpolicyImplicitLog(d, i["fwpolicy_implicit_log"], pre_append)
 	}
 	pre_append = pre + ".0." + "fwpolicy6_implicit_log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fwpolicy6-implicit-log"], _ = expandPackagesPkgPackageSettingFwpolicy6ImplicitLog(d, i["fwpolicy6_implicit_log"], pre_append)
 	}
 	pre_append = pre + ".0." + "inspection_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["inspection-mode"], _ = expandPackagesPkgPackageSettingInspectionMode(d, i["inspection_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ngfw_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ngfw-mode"], _ = expandPackagesPkgPackageSettingNgfwMode(d, i["ngfw_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ssl_ssh_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-ssh-profile"], _ = expandPackagesPkgPackageSettingSslSshProfile(d, i["ssl_ssh_profile"], pre_append)
 	}
 
@@ -897,12 +897,12 @@ func expandPackagesPkgScopeMember(d *schema.ResourceData, v interface{}, pre str
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandPackagesPkgScopeMemberName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandPackagesPkgScopeMemberVdom(d, i["vdom"], pre_append)
 		}
 
@@ -937,7 +937,7 @@ func expandPackagesPkgSubobj(d *schema.ResourceData, v interface{}, pre string) 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandPackagesPkgSubobjName(d, i["name"], pre_append)
 		}
 
@@ -960,7 +960,7 @@ func expandPackagesPkgType(d *schema.ResourceData, v interface{}, pre string) (i
 func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesPkgName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -969,7 +969,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("objver"); ok {
+	if v, ok := d.GetOk("objver"); ok || d.HasChange("objver") {
 		t, err := expandPackagesPkgObjVer(d, v, "objver")
 		if err != nil {
 			return &obj, err
@@ -978,7 +978,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("oid"); ok {
+	if v, ok := d.GetOk("oid"); ok || d.HasChange("oid") {
 		t, err := expandPackagesPkgOid(d, v, "oid")
 		if err != nil {
 			return &obj, err
@@ -987,7 +987,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("packagesettings"); ok {
+	if v, ok := d.GetOk("packagesettings"); ok || d.HasChange("packagesettings") {
 		t, err := expandPackagesPkgPackageSettings(d, v, "packagesettings")
 		if err != nil {
 			return &obj, err
@@ -996,7 +996,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("packagesetting"); ok {
+	if v, ok := d.GetOk("packagesetting"); ok || d.HasChange("packagesetting") {
 		t, err := expandPackagesPkgPackageSetting(d, v, "packagesetting")
 		if err != nil {
 			return &obj, err
@@ -1005,7 +1005,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("scopemember"); ok {
+	if v, ok := d.GetOk("scopemember"); ok || d.HasChange("scopemember") {
 		t, err := expandPackagesPkgScopeMember(d, v, "scopemember")
 		if err != nil {
 			return &obj, err
@@ -1014,7 +1014,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("subobj"); ok {
+	if v, ok := d.GetOk("subobj"); ok || d.HasChange("subobj") {
 		t, err := expandPackagesPkgSubobj(d, v, "subobj")
 		if err != nil {
 			return &obj, err
@@ -1023,7 +1023,7 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandPackagesPkgType(d, v, "type")
 		if err != nil {
 			return &obj, err

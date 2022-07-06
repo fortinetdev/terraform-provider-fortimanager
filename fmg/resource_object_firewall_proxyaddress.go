@@ -788,22 +788,22 @@ func expandObjectFirewallProxyAddressHeaderGroup(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "case_sensitivity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["case-sensitivity"], _ = expandObjectFirewallProxyAddressHeaderGroupCaseSensitivity(d, i["case_sensitivity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectFirewallProxyAddressHeaderGroupHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header-name"], _ = expandObjectFirewallProxyAddressHeaderGroupHeaderName(d, i["header_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallProxyAddressHeaderGroupId(d, i["id"], pre_append)
 		}
 
@@ -878,17 +878,17 @@ func expandObjectFirewallProxyAddressTagging(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category"], _ = expandObjectFirewallProxyAddressTaggingCategory(d, i["category"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFirewallProxyAddressTaggingName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallProxyAddressTaggingTags(d, i["tags"], pre_append)
 		} else {
 			tmp["tags"] = make([]string, 0)
@@ -933,7 +933,7 @@ func expandObjectFirewallProxyAddressVisibility(d *schema.ResourceData, v interf
 func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_image_base64"); ok {
+	if v, ok := d.GetOk("_image_base64"); ok || d.HasChange("_image_base64") {
 		t, err := expandObjectFirewallProxyAddressImageBase64(d, v, "_image_base64")
 		if err != nil {
 			return &obj, err
@@ -942,7 +942,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("case_sensitivity"); ok {
+	if v, ok := d.GetOk("case_sensitivity"); ok || d.HasChange("case_sensitivity") {
 		t, err := expandObjectFirewallProxyAddressCaseSensitivity(d, v, "case_sensitivity")
 		if err != nil {
 			return &obj, err
@@ -951,7 +951,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectFirewallProxyAddressCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -960,7 +960,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallProxyAddressColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -969,7 +969,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallProxyAddressComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -978,7 +978,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("header"); ok {
+	if v, ok := d.GetOk("header"); ok || d.HasChange("header") {
 		t, err := expandObjectFirewallProxyAddressHeader(d, v, "header")
 		if err != nil {
 			return &obj, err
@@ -987,7 +987,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("header_group"); ok {
+	if v, ok := d.GetOk("header_group"); ok || d.HasChange("header_group") {
 		t, err := expandObjectFirewallProxyAddressHeaderGroup(d, v, "header_group")
 		if err != nil {
 			return &obj, err
@@ -996,7 +996,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("header_name"); ok {
+	if v, ok := d.GetOk("header_name"); ok || d.HasChange("header_name") {
 		t, err := expandObjectFirewallProxyAddressHeaderName(d, v, "header_name")
 		if err != nil {
 			return &obj, err
@@ -1005,7 +1005,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("host"); ok {
+	if v, ok := d.GetOk("host"); ok || d.HasChange("host") {
 		t, err := expandObjectFirewallProxyAddressHost(d, v, "host")
 		if err != nil {
 			return &obj, err
@@ -1014,7 +1014,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("host_regex"); ok {
+	if v, ok := d.GetOk("host_regex"); ok || d.HasChange("host_regex") {
 		t, err := expandObjectFirewallProxyAddressHostRegex(d, v, "host_regex")
 		if err != nil {
 			return &obj, err
@@ -1023,7 +1023,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("method"); ok {
+	if v, ok := d.GetOk("method"); ok || d.HasChange("method") {
 		t, err := expandObjectFirewallProxyAddressMethod(d, v, "method")
 		if err != nil {
 			return &obj, err
@@ -1032,7 +1032,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallProxyAddressName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1041,7 +1041,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("path"); ok {
+	if v, ok := d.GetOk("path"); ok || d.HasChange("path") {
 		t, err := expandObjectFirewallProxyAddressPath(d, v, "path")
 		if err != nil {
 			return &obj, err
@@ -1050,7 +1050,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("query"); ok {
+	if v, ok := d.GetOk("query"); ok || d.HasChange("query") {
 		t, err := expandObjectFirewallProxyAddressQuery(d, v, "query")
 		if err != nil {
 			return &obj, err
@@ -1059,7 +1059,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("referrer"); ok {
+	if v, ok := d.GetOk("referrer"); ok || d.HasChange("referrer") {
 		t, err := expandObjectFirewallProxyAddressReferrer(d, v, "referrer")
 		if err != nil {
 			return &obj, err
@@ -1068,7 +1068,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("tagging"); ok {
+	if v, ok := d.GetOk("tagging"); ok || d.HasChange("tagging") {
 		t, err := expandObjectFirewallProxyAddressTagging(d, v, "tagging")
 		if err != nil {
 			return &obj, err
@@ -1077,7 +1077,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectFirewallProxyAddressType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -1086,7 +1086,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("ua"); ok {
+	if v, ok := d.GetOk("ua"); ok || d.HasChange("ua") {
 		t, err := expandObjectFirewallProxyAddressUa(d, v, "ua")
 		if err != nil {
 			return &obj, err
@@ -1095,7 +1095,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallProxyAddressUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -1104,7 +1104,7 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("visibility"); ok {
+	if v, ok := d.GetOk("visibility"); ok || d.HasChange("visibility") {
 		t, err := expandObjectFirewallProxyAddressVisibility(d, v, "visibility")
 		if err != nil {
 			return &obj, err

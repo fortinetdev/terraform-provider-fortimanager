@@ -364,32 +364,32 @@ func expandObjectWirelessControllerHotspot20IconIconList(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file"], _ = expandObjectWirelessControllerHotspot20IconIconListFile(d, i["file"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "height"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["height"], _ = expandObjectWirelessControllerHotspot20IconIconListHeight(d, i["height"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "lang"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["lang"], _ = expandObjectWirelessControllerHotspot20IconIconListLang(d, i["lang"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerHotspot20IconIconListName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectWirelessControllerHotspot20IconIconListType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "width"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["width"], _ = expandObjectWirelessControllerHotspot20IconIconListWidth(d, i["width"], pre_append)
 		}
 
@@ -432,7 +432,7 @@ func expandObjectWirelessControllerHotspot20IconName(d *schema.ResourceData, v i
 func getObjectObjectWirelessControllerHotspot20Icon(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("icon_list"); ok {
+	if v, ok := d.GetOk("icon_list"); ok || d.HasChange("icon_list") {
 		t, err := expandObjectWirelessControllerHotspot20IconIconList(d, v, "icon_list")
 		if err != nil {
 			return &obj, err
@@ -441,7 +441,7 @@ func getObjectObjectWirelessControllerHotspot20Icon(d *schema.ResourceData) (*ma
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20IconName(d, v, "name")
 		if err != nil {
 			return &obj, err

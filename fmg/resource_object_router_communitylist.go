@@ -357,22 +357,22 @@ func expandObjectRouterCommunityListRule(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectRouterCommunityListRuleAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectRouterCommunityListRuleId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match"], _ = expandObjectRouterCommunityListRuleMatch(d, i["match"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "regexp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["regexp"], _ = expandObjectRouterCommunityListRuleRegexp(d, i["regexp"], pre_append)
 		}
 
@@ -407,7 +407,7 @@ func expandObjectRouterCommunityListType(d *schema.ResourceData, v interface{}, 
 func getObjectObjectRouterCommunityList(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectRouterCommunityListName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -416,7 +416,7 @@ func getObjectObjectRouterCommunityList(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("rule"); ok {
+	if v, ok := d.GetOk("rule"); ok || d.HasChange("rule") {
 		t, err := expandObjectRouterCommunityListRule(d, v, "rule")
 		if err != nil {
 			return &obj, err
@@ -425,7 +425,7 @@ func getObjectObjectRouterCommunityList(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectRouterCommunityListType(d, v, "type")
 		if err != nil {
 			return &obj, err

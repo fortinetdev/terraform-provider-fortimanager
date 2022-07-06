@@ -1211,7 +1211,7 @@ func expandPackagesGlobalHeaderShapingPolicyUuid(d *schema.ResourceData, v inter
 func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("app_category"); ok {
+	if v, ok := d.GetOk("app_category"); ok || d.HasChange("app_category") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyAppCategory(d, v, "app_category")
 		if err != nil {
 			return &obj, err
@@ -1220,7 +1220,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("app_group"); ok {
+	if v, ok := d.GetOk("app_group"); ok || d.HasChange("app_group") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyAppGroup(d, v, "app_group")
 		if err != nil {
 			return &obj, err
@@ -1229,7 +1229,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("application"); ok {
+	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyApplication(d, v, "application")
 		if err != nil {
 			return &obj, err
@@ -1238,7 +1238,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("class_id"); ok {
+	if v, ok := d.GetOk("class_id"); ok || d.HasChange("class_id") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyClassId(d, v, "class_id")
 		if err != nil {
 			return &obj, err
@@ -1247,7 +1247,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("class_id_reverse"); ok {
+	if v, ok := d.GetOk("class_id_reverse"); ok || d.HasChange("class_id_reverse") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyClassIdReverse(d, v, "class_id_reverse")
 		if err != nil {
 			return &obj, err
@@ -1256,7 +1256,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -1265,7 +1265,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv_forward"); ok {
+	if v, ok := d.GetOk("diffserv_forward"); ok || d.HasChange("diffserv_forward") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDiffservForward(d, v, "diffserv_forward")
 		if err != nil {
 			return &obj, err
@@ -1274,7 +1274,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv_reverse"); ok {
+	if v, ok := d.GetOk("diffserv_reverse"); ok || d.HasChange("diffserv_reverse") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDiffservReverse(d, v, "diffserv_reverse")
 		if err != nil {
 			return &obj, err
@@ -1283,7 +1283,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode_forward"); ok {
+	if v, ok := d.GetOk("diffservcode_forward"); ok || d.HasChange("diffservcode_forward") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDiffservcodeForward(d, v, "diffservcode_forward")
 		if err != nil {
 			return &obj, err
@@ -1292,7 +1292,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode_rev"); ok {
+	if v, ok := d.GetOk("diffservcode_rev"); ok || d.HasChange("diffservcode_rev") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDiffservcodeRev(d, v, "diffservcode_rev")
 		if err != nil {
 			return &obj, err
@@ -1301,7 +1301,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -1310,7 +1310,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr6"); ok {
+	if v, ok := d.GetOk("dstaddr6"); ok || d.HasChange("dstaddr6") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDstaddr6(d, v, "dstaddr6")
 		if err != nil {
 			return &obj, err
@@ -1319,7 +1319,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("dstintf"); ok {
+	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyDstintf(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
@@ -1328,7 +1328,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("groups"); ok {
+	if v, ok := d.GetOk("groups"); ok || d.HasChange("groups") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyGroups(d, v, "groups")
 		if err != nil {
 			return &obj, err
@@ -1337,7 +1337,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -1346,7 +1346,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service"); ok {
+	if v, ok := d.GetOk("internet_service"); ok || d.HasChange("internet_service") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetService(d, v, "internet_service")
 		if err != nil {
 			return &obj, err
@@ -1355,7 +1355,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_custom"); ok {
+	if v, ok := d.GetOk("internet_service_custom"); ok || d.HasChange("internet_service_custom") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceCustom(d, v, "internet_service_custom")
 		if err != nil {
 			return &obj, err
@@ -1364,7 +1364,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_custom_group"); ok {
+	if v, ok := d.GetOk("internet_service_custom_group"); ok || d.HasChange("internet_service_custom_group") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceCustomGroup(d, v, "internet_service_custom_group")
 		if err != nil {
 			return &obj, err
@@ -1373,7 +1373,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_group"); ok {
+	if v, ok := d.GetOk("internet_service_group"); ok || d.HasChange("internet_service_group") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceGroup(d, v, "internet_service_group")
 		if err != nil {
 			return &obj, err
@@ -1382,7 +1382,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_id"); ok {
+	if v, ok := d.GetOk("internet_service_id"); ok || d.HasChange("internet_service_id") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceId(d, v, "internet_service_id")
 		if err != nil {
 			return &obj, err
@@ -1391,7 +1391,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_name"); ok {
+	if v, ok := d.GetOk("internet_service_name"); ok || d.HasChange("internet_service_name") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceName(d, v, "internet_service_name")
 		if err != nil {
 			return &obj, err
@@ -1400,7 +1400,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src"); ok {
+	if v, ok := d.GetOk("internet_service_src"); ok || d.HasChange("internet_service_src") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceSrc(d, v, "internet_service_src")
 		if err != nil {
 			return &obj, err
@@ -1409,7 +1409,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_custom"); ok {
+	if v, ok := d.GetOk("internet_service_src_custom"); ok || d.HasChange("internet_service_src_custom") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcCustom(d, v, "internet_service_src_custom")
 		if err != nil {
 			return &obj, err
@@ -1418,7 +1418,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_custom_group"); ok {
+	if v, ok := d.GetOk("internet_service_src_custom_group"); ok || d.HasChange("internet_service_src_custom_group") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcCustomGroup(d, v, "internet_service_src_custom_group")
 		if err != nil {
 			return &obj, err
@@ -1427,7 +1427,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_group"); ok {
+	if v, ok := d.GetOk("internet_service_src_group"); ok || d.HasChange("internet_service_src_group") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcGroup(d, v, "internet_service_src_group")
 		if err != nil {
 			return &obj, err
@@ -1436,7 +1436,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_id"); ok {
+	if v, ok := d.GetOk("internet_service_src_id"); ok || d.HasChange("internet_service_src_id") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcId(d, v, "internet_service_src_id")
 		if err != nil {
 			return &obj, err
@@ -1445,7 +1445,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("internet_service_src_name"); ok {
+	if v, ok := d.GetOk("internet_service_src_name"); ok || d.HasChange("internet_service_src_name") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyInternetServiceSrcName(d, v, "internet_service_src_name")
 		if err != nil {
 			return &obj, err
@@ -1454,7 +1454,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("ip_version"); ok {
+	if v, ok := d.GetOk("ip_version"); ok || d.HasChange("ip_version") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyIpVersion(d, v, "ip_version")
 		if err != nil {
 			return &obj, err
@@ -1463,7 +1463,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1472,7 +1472,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("per_ip_shaper"); ok {
+	if v, ok := d.GetOk("per_ip_shaper"); ok || d.HasChange("per_ip_shaper") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyPerIpShaper(d, v, "per_ip_shaper")
 		if err != nil {
 			return &obj, err
@@ -1481,7 +1481,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("schedule"); ok {
+	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
 		t, err := expandPackagesGlobalHeaderShapingPolicySchedule(d, v, "schedule")
 		if err != nil {
 			return &obj, err
@@ -1490,7 +1490,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("service"); ok {
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyService(d, v, "service")
 		if err != nil {
 			return &obj, err
@@ -1499,7 +1499,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("service_type"); ok {
+	if v, ok := d.GetOk("service_type"); ok || d.HasChange("service_type") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyServiceType(d, v, "service_type")
 		if err != nil {
 			return &obj, err
@@ -1508,7 +1508,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesGlobalHeaderShapingPolicySrcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -1517,7 +1517,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr6"); ok {
+	if v, ok := d.GetOk("srcaddr6"); ok || d.HasChange("srcaddr6") {
 		t, err := expandPackagesGlobalHeaderShapingPolicySrcaddr6(d, v, "srcaddr6")
 		if err != nil {
 			return &obj, err
@@ -1526,7 +1526,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesGlobalHeaderShapingPolicySrcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -1535,7 +1535,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -1544,7 +1544,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("tos"); ok {
+	if v, ok := d.GetOk("tos"); ok || d.HasChange("tos") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyTos(d, v, "tos")
 		if err != nil {
 			return &obj, err
@@ -1553,7 +1553,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("tos_mask"); ok {
+	if v, ok := d.GetOk("tos_mask"); ok || d.HasChange("tos_mask") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyTosMask(d, v, "tos_mask")
 		if err != nil {
 			return &obj, err
@@ -1562,7 +1562,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("tos_negate"); ok {
+	if v, ok := d.GetOk("tos_negate"); ok || d.HasChange("tos_negate") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyTosNegate(d, v, "tos_negate")
 		if err != nil {
 			return &obj, err
@@ -1571,7 +1571,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaper"); ok {
+	if v, ok := d.GetOk("traffic_shaper"); ok || d.HasChange("traffic_shaper") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyTrafficShaper(d, v, "traffic_shaper")
 		if err != nil {
 			return &obj, err
@@ -1580,7 +1580,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_shaper_reverse"); ok {
+	if v, ok := d.GetOk("traffic_shaper_reverse"); ok || d.HasChange("traffic_shaper_reverse") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyTrafficShaperReverse(d, v, "traffic_shaper_reverse")
 		if err != nil {
 			return &obj, err
@@ -1589,7 +1589,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("url_category"); ok {
+	if v, ok := d.GetOk("url_category"); ok || d.HasChange("url_category") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyUrlCategory(d, v, "url_category")
 		if err != nil {
 			return &obj, err
@@ -1598,7 +1598,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("users"); ok {
+	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyUsers(d, v, "users")
 		if err != nil {
 			return &obj, err
@@ -1607,7 +1607,7 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesGlobalHeaderShapingPolicyUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

@@ -408,12 +408,12 @@ func expandObjectUserVcenterRule(d *schema.ResourceData, v interface{}, pre stri
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserVcenterRuleName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rule"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rule"], _ = expandObjectUserVcenterRuleRule(d, i["rule"], pre_append)
 		}
 
@@ -452,7 +452,7 @@ func expandObjectUserVcenterUser(d *schema.ResourceData, v interface{}, pre stri
 func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserVcenterName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -461,7 +461,7 @@ func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserVcenterPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -470,7 +470,7 @@ func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("rule"); ok {
+	if v, ok := d.GetOk("rule"); ok || d.HasChange("rule") {
 		t, err := expandObjectUserVcenterRule(d, v, "rule")
 		if err != nil {
 			return &obj, err
@@ -479,7 +479,7 @@ func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserVcenterServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -488,7 +488,7 @@ func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserVcenterStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -497,7 +497,7 @@ func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("upd_interval"); ok {
+	if v, ok := d.GetOk("upd_interval"); ok || d.HasChange("upd_interval") {
 		t, err := expandObjectUserVcenterUpdInterval(d, v, "upd_interval")
 		if err != nil {
 			return &obj, err
@@ -506,7 +506,7 @@ func getObjectObjectUserVcenter(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("user"); ok {
+	if v, ok := d.GetOk("user"); ok || d.HasChange("user") {
 		t, err := expandObjectUserVcenterUser(d, v, "user")
 		if err != nil {
 			return &obj, err

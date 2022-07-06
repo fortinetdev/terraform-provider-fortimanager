@@ -244,7 +244,7 @@ func expandObjectUserConnectorType(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectUserConnector(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserConnectorName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -253,7 +253,7 @@ func getObjectObjectUserConnector(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserConnectorStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -262,7 +262,7 @@ func getObjectObjectUserConnector(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectUserConnectorType(d, v, "type")
 		if err != nil {
 			return &obj, err

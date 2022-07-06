@@ -406,32 +406,32 @@ func expandObjectEmailfilterMheaderEntries(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectEmailfilterMheaderEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fieldbody"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fieldbody"], _ = expandObjectEmailfilterMheaderEntriesFieldbody(d, i["fieldbody"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fieldname"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fieldname"], _ = expandObjectEmailfilterMheaderEntriesFieldname(d, i["fieldname"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectEmailfilterMheaderEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern-type"], _ = expandObjectEmailfilterMheaderEntriesPatternType(d, i["pattern_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectEmailfilterMheaderEntriesStatus(d, i["status"], pre_append)
 		}
 
@@ -478,7 +478,7 @@ func expandObjectEmailfilterMheaderName(d *schema.ResourceData, v interface{}, p
 func getObjectObjectEmailfilterMheader(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectEmailfilterMheaderComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -487,7 +487,7 @@ func getObjectObjectEmailfilterMheader(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectEmailfilterMheaderEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -496,7 +496,7 @@ func getObjectObjectEmailfilterMheader(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectEmailfilterMheaderId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -505,7 +505,7 @@ func getObjectObjectEmailfilterMheader(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectEmailfilterMheaderName(d, v, "name")
 		if err != nil {
 			return &obj, err

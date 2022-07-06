@@ -323,17 +323,17 @@ func expandObjectSystemMetaSysMetaFields(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fieldlength"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fieldlength"], _ = expandObjectSystemMetaSysMetaFieldsFieldlength(d, i["fieldlength"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "importance"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["importance"], _ = expandObjectSystemMetaSysMetaFieldsImportance(d, i["importance"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemMetaSysMetaFieldsName(d, i["name"], pre_append)
 		}
 
@@ -360,7 +360,7 @@ func expandObjectSystemMetaSysMetaFieldsName(d *schema.ResourceData, v interface
 func getObjectObjectSystemMeta(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemMetaName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -369,7 +369,7 @@ func getObjectObjectSystemMeta(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("sys_meta_fields"); ok {
+	if v, ok := d.GetOk("sys_meta_fields"); ok || d.HasChange("sys_meta_fields") {
 		t, err := expandObjectSystemMetaSysMetaFields(d, v, "sys_meta_fields")
 		if err != nil {
 			return &obj, err

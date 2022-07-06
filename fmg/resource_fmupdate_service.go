@@ -300,7 +300,7 @@ func expandFmupdateServiceWebfilterHttpsTraversal(d *schema.ResourceData, v inte
 func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("avips"); ok {
+	if v, ok := d.GetOk("avips"); ok || d.HasChange("avips") {
 		t, err := expandFmupdateServiceAvips(d, v, "avips")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("query_antispam"); ok {
+	if v, ok := d.GetOk("query_antispam"); ok || d.HasChange("query_antispam") {
 		t, err := expandFmupdateServiceQueryAntispam(d, v, "query_antispam")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("query_antivirus"); ok {
+	if v, ok := d.GetOk("query_antivirus"); ok || d.HasChange("query_antivirus") {
 		t, err := expandFmupdateServiceQueryAntivirus(d, v, "query_antivirus")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("query_filequery"); ok {
+	if v, ok := d.GetOk("query_filequery"); ok || d.HasChange("query_filequery") {
 		t, err := expandFmupdateServiceQueryFilequery(d, v, "query_filequery")
 		if err != nil {
 			return &obj, err
@@ -336,7 +336,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("query_iot"); ok {
+	if v, ok := d.GetOk("query_iot"); ok || d.HasChange("query_iot") {
 		t, err := expandFmupdateServiceQueryIot(d, v, "query_iot")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("query_outbreak_prevention"); ok {
+	if v, ok := d.GetOk("query_outbreak_prevention"); ok || d.HasChange("query_outbreak_prevention") {
 		t, err := expandFmupdateServiceQueryOutbreakPrevention(d, v, "query_outbreak_prevention")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("query_webfilter"); ok {
+	if v, ok := d.GetOk("query_webfilter"); ok || d.HasChange("query_webfilter") {
 		t, err := expandFmupdateServiceQueryWebfilter(d, v, "query_webfilter")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_https_traversal"); ok {
+	if v, ok := d.GetOk("webfilter_https_traversal"); ok || d.HasChange("webfilter_https_traversal") {
 		t, err := expandFmupdateServiceWebfilterHttpsTraversal(d, v, "webfilter_https_traversal")
 		if err != nil {
 			return &obj, err

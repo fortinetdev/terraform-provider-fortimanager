@@ -291,7 +291,7 @@ func expandObjectFirewallDecryptedTrafficMirrorTrafficType(d *schema.ResourceDat
 func getObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("dstmac"); ok {
+	if v, ok := d.GetOk("dstmac"); ok || d.HasChange("dstmac") {
 		t, err := expandObjectFirewallDecryptedTrafficMirrorDstmac(d, v, "dstmac")
 		if err != nil {
 			return &obj, err
@@ -300,7 +300,7 @@ func getObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectFirewallDecryptedTrafficMirrorInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallDecryptedTrafficMirrorName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_source"); ok {
+	if v, ok := d.GetOk("traffic_source"); ok || d.HasChange("traffic_source") {
 		t, err := expandObjectFirewallDecryptedTrafficMirrorTrafficSource(d, v, "traffic_source")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectObjectFirewallDecryptedTrafficMirror(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_type"); ok {
+	if v, ok := d.GetOk("traffic_type"); ok || d.HasChange("traffic_type") {
 		t, err := expandObjectFirewallDecryptedTrafficMirrorTrafficType(d, v, "traffic_type")
 		if err != nil {
 			return &obj, err

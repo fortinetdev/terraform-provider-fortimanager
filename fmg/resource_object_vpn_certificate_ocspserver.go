@@ -336,7 +336,7 @@ func expandObjectVpnCertificateOcspServerUrl(d *schema.ResourceData, v interface
 func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("cert"); ok {
+	if v, ok := d.GetOk("cert"); ok || d.HasChange("cert") {
 		t, err := expandObjectVpnCertificateOcspServerCert(d, v, "cert")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectVpnCertificateOcspServerName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_cert"); ok {
+	if v, ok := d.GetOk("secondary_cert"); ok || d.HasChange("secondary_cert") {
 		t, err := expandObjectVpnCertificateOcspServerSecondaryCert(d, v, "secondary_cert")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_url"); ok {
+	if v, ok := d.GetOk("secondary_url"); ok || d.HasChange("secondary_url") {
 		t, err := expandObjectVpnCertificateOcspServerSecondaryUrl(d, v, "secondary_url")
 		if err != nil {
 			return &obj, err
@@ -372,7 +372,7 @@ func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectVpnCertificateOcspServerSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -381,7 +381,7 @@ func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("unavail_action"); ok {
+	if v, ok := d.GetOk("unavail_action"); ok || d.HasChange("unavail_action") {
 		t, err := expandObjectVpnCertificateOcspServerUnavailAction(d, v, "unavail_action")
 		if err != nil {
 			return &obj, err
@@ -390,7 +390,7 @@ func getObjectObjectVpnCertificateOcspServer(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("url"); ok {
+	if v, ok := d.GetOk("url"); ok || d.HasChange("url") {
 		t, err := expandObjectVpnCertificateOcspServerUrl(d, v, "url")
 		if err != nil {
 			return &obj, err

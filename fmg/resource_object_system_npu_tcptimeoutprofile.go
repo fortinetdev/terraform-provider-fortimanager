@@ -336,7 +336,7 @@ func expandObjectSystemNpuTcpTimeoutProfileTimeWait(d *schema.ResourceData, v in
 func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("close_wait"); ok {
+	if v, ok := d.GetOk("close_wait"); ok || d.HasChange("close_wait") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileCloseWait(d, v, "close_wait")
 		if err != nil {
 			return &obj, err
@@ -345,7 +345,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("fin_wait"); ok {
+	if v, ok := d.GetOk("fin_wait"); ok || d.HasChange("fin_wait") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileFinWait(d, v, "fin_wait")
 		if err != nil {
 			return &obj, err
@@ -354,7 +354,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -363,7 +363,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("syn_sent"); ok {
+	if v, ok := d.GetOk("syn_sent"); ok || d.HasChange("syn_sent") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileSynSent(d, v, "syn_sent")
 		if err != nil {
 			return &obj, err
@@ -372,7 +372,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("syn_wait"); ok {
+	if v, ok := d.GetOk("syn_wait"); ok || d.HasChange("syn_wait") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileSynWait(d, v, "syn_wait")
 		if err != nil {
 			return &obj, err
@@ -381,7 +381,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_idle"); ok {
+	if v, ok := d.GetOk("tcp_idle"); ok || d.HasChange("tcp_idle") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileTcpIdle(d, v, "tcp_idle")
 		if err != nil {
 			return &obj, err
@@ -390,7 +390,7 @@ func getObjectObjectSystemNpuTcpTimeoutProfile(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("time_wait"); ok {
+	if v, ok := d.GetOk("time_wait"); ok || d.HasChange("time_wait") {
 		t, err := expandObjectSystemNpuTcpTimeoutProfileTimeWait(d, v, "time_wait")
 		if err != nil {
 			return &obj, err

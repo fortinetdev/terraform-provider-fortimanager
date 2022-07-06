@@ -305,7 +305,7 @@ func expandObjectUserClearpassUser(d *schema.ResourceData, v interface{}, pre st
 func getObjectObjectUserClearpass(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("client"); ok {
+	if v, ok := d.GetOk("client"); ok || d.HasChange("client") {
 		t, err := expandObjectUserClearpassClient(d, v, "client")
 		if err != nil {
 			return &obj, err
@@ -314,7 +314,7 @@ func getObjectObjectUserClearpass(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserClearpassName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -323,7 +323,7 @@ func getObjectObjectUserClearpass(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectUserClearpassPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -332,7 +332,7 @@ func getObjectObjectUserClearpass(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserClearpassServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -341,7 +341,7 @@ func getObjectObjectUserClearpass(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserClearpassStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -350,7 +350,7 @@ func getObjectObjectUserClearpass(d *schema.ResourceData) (*map[string]interface
 		}
 	}
 
-	if v, ok := d.GetOk("user"); ok {
+	if v, ok := d.GetOk("user"); ok || d.HasChange("user") {
 		t, err := expandObjectUserClearpassUser(d, v, "user")
 		if err != nil {
 			return &obj, err

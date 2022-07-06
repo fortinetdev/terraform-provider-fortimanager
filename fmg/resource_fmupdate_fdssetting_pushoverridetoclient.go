@@ -260,17 +260,17 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d *schema.Resour
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIdFfpb(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpIpFfpb(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(d, i["port"], pre_append)
 		}
 
@@ -301,7 +301,7 @@ func expandFmupdateFdsSettingPushOverrideToClientStatusFfpb(d *schema.ResourceDa
 func getObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("announce_ip"); ok {
+	if v, ok := d.GetOk("announce_ip"); ok || d.HasChange("announce_ip") {
 		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d, v, "announce_ip")
 		if err != nil {
 			return &obj, err
@@ -310,7 +310,7 @@ func getObjectFmupdateFdsSettingPushOverrideToClient(d *schema.ResourceData) (*m
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateFdsSettingPushOverrideToClientStatusFfpb(d, v, "status")
 		if err != nil {
 			return &obj, err

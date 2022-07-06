@@ -221,7 +221,7 @@ func expandObjectSystemNpuNpQueuesSchedulerName(d *schema.ResourceData, v interf
 func getObjectObjectSystemNpuNpQueuesScheduler(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("mode"); ok {
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
 		t, err := expandObjectSystemNpuNpQueuesSchedulerMode(d, v, "mode")
 		if err != nil {
 			return &obj, err
@@ -230,7 +230,7 @@ func getObjectObjectSystemNpuNpQueuesScheduler(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemNpuNpQueuesSchedulerName(d, v, "name")
 		if err != nil {
 			return &obj, err

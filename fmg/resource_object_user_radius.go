@@ -2565,44 +2565,44 @@ func expandObjectUserRadiusAccountingServer(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserRadiusAccountingServerId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectUserRadiusAccountingServerInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserRadiusAccountingServerInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectUserRadiusAccountingServerPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secret"], _ = expandObjectUserRadiusAccountingServerSecret(d, i["secret"], pre_append)
 		} else {
 			tmp["secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectUserRadiusAccountingServerServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserRadiusAccountingServerSourceIp(d, i["source_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectUserRadiusAccountingServerStatus(d, i["status"], pre_append)
 		}
 
@@ -2681,404 +2681,404 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectUserRadiusDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accounting_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["accounting-server"], _ = expandObjectUserRadiusDynamicMappingAccountingServer(d, i["accounting_server"], pre_append)
 		} else {
 			tmp["accounting-server"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "acct_all_servers"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["acct-all-servers"], _ = expandObjectUserRadiusDynamicMappingAcctAllServers(d, i["acct_all_servers"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "acct_interim_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["acct-interim-interval"], _ = expandObjectUserRadiusDynamicMappingAcctInterimInterval(d, i["acct_interim_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "all_usergroup"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["all-usergroup"], _ = expandObjectUserRadiusDynamicMappingAllUsergroup(d, i["all_usergroup"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-type"], _ = expandObjectUserRadiusDynamicMappingAuthType(d, i["auth_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["class"], _ = expandObjectUserRadiusDynamicMappingClass(d, i["class"], pre_append)
 		} else {
 			tmp["class"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_carrier_endpoint_attribute"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-carrier-endpoint-attribute"], _ = expandObjectUserRadiusDynamicMappingDpCarrierEndpointAttribute(d, i["dp_carrier_endpoint_attribute"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_carrier_endpoint_block_attribute"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-carrier-endpoint-block-attribute"], _ = expandObjectUserRadiusDynamicMappingDpCarrierEndpointBlockAttribute(d, i["dp_carrier_endpoint_block_attribute"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_context_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-context-timeout"], _ = expandObjectUserRadiusDynamicMappingDpContextTimeout(d, i["dp_context_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_flush_ip_session"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-flush-ip-session"], _ = expandObjectUserRadiusDynamicMappingDpFlushIpSession(d, i["dp_flush_ip_session"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_hold_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-hold-time"], _ = expandObjectUserRadiusDynamicMappingDpHoldTime(d, i["dp_hold_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_http_header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-http-header"], _ = expandObjectUserRadiusDynamicMappingDpHttpHeader(d, i["dp_http_header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_http_header_fallback"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-http-header-fallback"], _ = expandObjectUserRadiusDynamicMappingDpHttpHeaderFallback(d, i["dp_http_header_fallback"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_http_header_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-http-header-status"], _ = expandObjectUserRadiusDynamicMappingDpHttpHeaderStatus(d, i["dp_http_header_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_http_header_suppress"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-http-header-suppress"], _ = expandObjectUserRadiusDynamicMappingDpHttpHeaderSuppress(d, i["dp_http_header_suppress"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_log_dyn_flags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-log-dyn_flags"], _ = expandObjectUserRadiusDynamicMappingDpLogDynFlags(d, i["dp_log_dyn_flags"], pre_append)
 		} else {
 			tmp["dp-log-dyn_flags"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_log_period"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-log-period"], _ = expandObjectUserRadiusDynamicMappingDpLogPeriod(d, i["dp_log_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_mem_percent"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-mem-percent"], _ = expandObjectUserRadiusDynamicMappingDpMemPercent(d, i["dp_mem_percent"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_profile_attribute"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-profile-attribute"], _ = expandObjectUserRadiusDynamicMappingDpProfileAttribute(d, i["dp_profile_attribute"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_profile_attribute_key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-profile-attribute-key"], _ = expandObjectUserRadiusDynamicMappingDpProfileAttributeKey(d, i["dp_profile_attribute_key"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_radius_response"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-radius-response"], _ = expandObjectUserRadiusDynamicMappingDpRadiusResponse(d, i["dp_radius_response"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_radius_server_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-radius-server-port"], _ = expandObjectUserRadiusDynamicMappingDpRadiusServerPort(d, i["dp_radius_server_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-secret"], _ = expandObjectUserRadiusDynamicMappingDpSecret(d, i["dp_secret"], pre_append)
 		} else {
 			tmp["dp-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_validate_request_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-validate-request-secret"], _ = expandObjectUserRadiusDynamicMappingDpValidateRequestSecret(d, i["dp_validate_request_secret"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dynamic_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dynamic-profile"], _ = expandObjectUserRadiusDynamicMappingDynamicProfile(d, i["dynamic_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "endpoint_translation"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["endpoint-translation"], _ = expandObjectUserRadiusDynamicMappingEndpointTranslation(d, i["endpoint_translation"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_convert_hex"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-convert-hex"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointConvertHex(d, i["ep_carrier_endpoint_convert_hex"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-header"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointHeader(d, i["ep_carrier_endpoint_header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_header_suppress"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-header-suppress"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointHeaderSuppress(d, i["ep_carrier_endpoint_header_suppress"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-prefix"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointPrefix(d, i["ep_carrier_endpoint_prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_prefix_range_max"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-prefix-range-max"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointPrefixRangeMax(d, i["ep_carrier_endpoint_prefix_range_max"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_prefix_range_min"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-prefix-range-min"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointPrefixRangeMin(d, i["ep_carrier_endpoint_prefix_range_min"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_prefix_string"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-prefix-string"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointPrefixString(d, i["ep_carrier_endpoint_prefix_string"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_carrier_endpoint_source"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-carrier-endpoint-source"], _ = expandObjectUserRadiusDynamicMappingEpCarrierEndpointSource(d, i["ep_carrier_endpoint_source"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_ip_header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-ip-header"], _ = expandObjectUserRadiusDynamicMappingEpIpHeader(d, i["ep_ip_header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_ip_header_suppress"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-ip-header-suppress"], _ = expandObjectUserRadiusDynamicMappingEpIpHeaderSuppress(d, i["ep_ip_header_suppress"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_missing_header_fallback"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-missing-header-fallback"], _ = expandObjectUserRadiusDynamicMappingEpMissingHeaderFallback(d, i["ep_missing_header_fallback"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ep_profile_query_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ep-profile-query-type"], _ = expandObjectUserRadiusDynamicMappingEpProfileQueryType(d, i["ep_profile_query_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_override_attr_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["group-override-attr-type"], _ = expandObjectUserRadiusDynamicMappingGroupOverrideAttrType(d, i["group_override_attr_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3c_compatibility"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["h3c-compatibility"], _ = expandObjectUserRadiusDynamicMappingH3CCompatibility(d, i["h3c_compatibility"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectUserRadiusDynamicMappingInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserRadiusDynamicMappingInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nas_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nas-ip"], _ = expandObjectUserRadiusDynamicMappingNasIp(d, i["nas_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_encoding"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-encoding"], _ = expandObjectUserRadiusDynamicMappingPasswordEncoding(d, i["password_encoding"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_renewal"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password-renewal"], _ = expandObjectUserRadiusDynamicMappingPasswordRenewal(d, i["password_renewal"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_coa"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-coa"], _ = expandObjectUserRadiusDynamicMappingRadiusCoa(d, i["radius_coa"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-port"], _ = expandObjectUserRadiusDynamicMappingRadiusPort(d, i["radius_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso"], _ = expandObjectUserRadiusDynamicMappingRsso(d, i["rsso"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_context_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-context-timeout"], _ = expandObjectUserRadiusDynamicMappingRssoContextTimeout(d, i["rsso_context_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_endpoint_attribute"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-endpoint-attribute"], _ = expandObjectUserRadiusDynamicMappingRssoEndpointAttribute(d, i["rsso_endpoint_attribute"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_endpoint_block_attribute"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-endpoint-block-attribute"], _ = expandObjectUserRadiusDynamicMappingRssoEndpointBlockAttribute(d, i["rsso_endpoint_block_attribute"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_ep_one_ip_only"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-ep-one-ip-only"], _ = expandObjectUserRadiusDynamicMappingRssoEpOneIpOnly(d, i["rsso_ep_one_ip_only"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_flush_ip_session"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-flush-ip-session"], _ = expandObjectUserRadiusDynamicMappingRssoFlushIpSession(d, i["rsso_flush_ip_session"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_log_flags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-log-flags"], _ = expandObjectUserRadiusDynamicMappingRssoLogFlags(d, i["rsso_log_flags"], pre_append)
 		} else {
 			tmp["rsso-log-flags"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_log_period"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-log-period"], _ = expandObjectUserRadiusDynamicMappingRssoLogPeriod(d, i["rsso_log_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_radius_response"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-radius-response"], _ = expandObjectUserRadiusDynamicMappingRssoRadiusResponse(d, i["rsso_radius_response"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_radius_server_port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-radius-server-port"], _ = expandObjectUserRadiusDynamicMappingRssoRadiusServerPort(d, i["rsso_radius_server_port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-secret"], _ = expandObjectUserRadiusDynamicMappingRssoSecret(d, i["rsso_secret"], pre_append)
 		} else {
 			tmp["rsso-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_validate_request_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-validate-request-secret"], _ = expandObjectUserRadiusDynamicMappingRssoValidateRequestSecret(d, i["rsso_validate_request_secret"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-secret"], _ = expandObjectUserRadiusDynamicMappingSecondarySecret(d, i["secondary_secret"], pre_append)
 		} else {
 			tmp["secondary-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-server"], _ = expandObjectUserRadiusDynamicMappingSecondaryServer(d, i["secondary_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secret"], _ = expandObjectUserRadiusDynamicMappingSecret(d, i["secret"], pre_append)
 		} else {
 			tmp["secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectUserRadiusDynamicMappingServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserRadiusDynamicMappingSourceIp(d, i["source_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sso-attribute"], _ = expandObjectUserRadiusDynamicMappingSsoAttribute(d, i["sso_attribute"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute_key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sso-attribute-key"], _ = expandObjectUserRadiusDynamicMappingSsoAttributeKey(d, i["sso_attribute_key"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_attribute_value_override"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sso-attribute-value-override"], _ = expandObjectUserRadiusDynamicMappingSsoAttributeValueOverride(d, i["sso_attribute_value_override"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_acct_fast_framedip_detect"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["switch-controller-acct-fast-framedip-detect"], _ = expandObjectUserRadiusDynamicMappingSwitchControllerAcctFastFramedipDetect(d, i["switch_controller_acct_fast_framedip_detect"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_service_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["switch-controller-service-type"], _ = expandObjectUserRadiusDynamicMappingSwitchControllerServiceType(d, i["switch_controller_service_type"], pre_append)
 		} else {
 			tmp["switch-controller-service-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-secret"], _ = expandObjectUserRadiusDynamicMappingTertiarySecret(d, i["tertiary_secret"], pre_append)
 		} else {
 			tmp["tertiary-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-server"], _ = expandObjectUserRadiusDynamicMappingTertiaryServer(d, i["tertiary_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["timeout"], _ = expandObjectUserRadiusDynamicMappingTimeout(d, i["timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "use_group_for_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["use-group-for-profile"], _ = expandObjectUserRadiusDynamicMappingUseGroupForProfile(d, i["use_group_for_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "use_management_vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["use-management-vdom"], _ = expandObjectUserRadiusDynamicMappingUseManagementVdom(d, i["use_management_vdom"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "username_case_sensitive"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["username-case-sensitive"], _ = expandObjectUserRadiusDynamicMappingUsernameCaseSensitive(d, i["username_case_sensitive"], pre_append)
 		}
 
@@ -3105,12 +3105,12 @@ func expandObjectUserRadiusDynamicMappingScope(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectUserRadiusDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectUserRadiusDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -3145,44 +3145,44 @@ func expandObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceData
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectUserRadiusDynamicMappingAccountingServerId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectUserRadiusDynamicMappingAccountingServerInterface(d, i["interface"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserRadiusDynamicMappingAccountingServerInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectUserRadiusDynamicMappingAccountingServerPort(d, i["port"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secret"], _ = expandObjectUserRadiusDynamicMappingAccountingServerSecret(d, i["secret"], pre_append)
 		} else {
 			tmp["secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandObjectUserRadiusDynamicMappingAccountingServerServer(d, i["server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserRadiusDynamicMappingAccountingServerSourceIp(d, i["source_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectUserRadiusDynamicMappingAccountingServerStatus(d, i["status"], pre_append)
 		}
 
@@ -3673,7 +3673,7 @@ func expandObjectUserRadiusUsernameCaseSensitive(d *schema.ResourceData, v inter
 func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("accounting_server"); ok {
+	if v, ok := d.GetOk("accounting_server"); ok || d.HasChange("accounting_server") {
 		t, err := expandObjectUserRadiusAccountingServer(d, v, "accounting_server")
 		if err != nil {
 			return &obj, err
@@ -3682,7 +3682,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("acct_all_servers"); ok {
+	if v, ok := d.GetOk("acct_all_servers"); ok || d.HasChange("acct_all_servers") {
 		t, err := expandObjectUserRadiusAcctAllServers(d, v, "acct_all_servers")
 		if err != nil {
 			return &obj, err
@@ -3691,7 +3691,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("acct_interim_interval"); ok {
+	if v, ok := d.GetOk("acct_interim_interval"); ok || d.HasChange("acct_interim_interval") {
 		t, err := expandObjectUserRadiusAcctInterimInterval(d, v, "acct_interim_interval")
 		if err != nil {
 			return &obj, err
@@ -3700,7 +3700,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("all_usergroup"); ok {
+	if v, ok := d.GetOk("all_usergroup"); ok || d.HasChange("all_usergroup") {
 		t, err := expandObjectUserRadiusAllUsergroup(d, v, "all_usergroup")
 		if err != nil {
 			return &obj, err
@@ -3709,7 +3709,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("auth_type"); ok {
+	if v, ok := d.GetOk("auth_type"); ok || d.HasChange("auth_type") {
 		t, err := expandObjectUserRadiusAuthType(d, v, "auth_type")
 		if err != nil {
 			return &obj, err
@@ -3718,7 +3718,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("class"); ok {
+	if v, ok := d.GetOk("class"); ok || d.HasChange("class") {
 		t, err := expandObjectUserRadiusClass(d, v, "class")
 		if err != nil {
 			return &obj, err
@@ -3727,7 +3727,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserRadiusDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -3736,7 +3736,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("group_override_attr_type"); ok {
+	if v, ok := d.GetOk("group_override_attr_type"); ok || d.HasChange("group_override_attr_type") {
 		t, err := expandObjectUserRadiusGroupOverrideAttrType(d, v, "group_override_attr_type")
 		if err != nil {
 			return &obj, err
@@ -3745,7 +3745,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("h3c_compatibility"); ok {
+	if v, ok := d.GetOk("h3c_compatibility"); ok || d.HasChange("h3c_compatibility") {
 		t, err := expandObjectUserRadiusH3CCompatibility(d, v, "h3c_compatibility")
 		if err != nil {
 			return &obj, err
@@ -3754,7 +3754,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectUserRadiusInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -3763,7 +3763,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectUserRadiusInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -3772,7 +3772,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserRadiusName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -3781,7 +3781,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("nas_ip"); ok {
+	if v, ok := d.GetOk("nas_ip"); ok || d.HasChange("nas_ip") {
 		t, err := expandObjectUserRadiusNasIp(d, v, "nas_ip")
 		if err != nil {
 			return &obj, err
@@ -3790,7 +3790,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("password_encoding"); ok {
+	if v, ok := d.GetOk("password_encoding"); ok || d.HasChange("password_encoding") {
 		t, err := expandObjectUserRadiusPasswordEncoding(d, v, "password_encoding")
 		if err != nil {
 			return &obj, err
@@ -3799,7 +3799,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("password_renewal"); ok {
+	if v, ok := d.GetOk("password_renewal"); ok || d.HasChange("password_renewal") {
 		t, err := expandObjectUserRadiusPasswordRenewal(d, v, "password_renewal")
 		if err != nil {
 			return &obj, err
@@ -3808,7 +3808,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("radius_coa"); ok {
+	if v, ok := d.GetOk("radius_coa"); ok || d.HasChange("radius_coa") {
 		t, err := expandObjectUserRadiusRadiusCoa(d, v, "radius_coa")
 		if err != nil {
 			return &obj, err
@@ -3817,7 +3817,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("radius_port"); ok {
+	if v, ok := d.GetOk("radius_port"); ok || d.HasChange("radius_port") {
 		t, err := expandObjectUserRadiusRadiusPort(d, v, "radius_port")
 		if err != nil {
 			return &obj, err
@@ -3826,7 +3826,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso"); ok {
+	if v, ok := d.GetOk("rsso"); ok || d.HasChange("rsso") {
 		t, err := expandObjectUserRadiusRsso(d, v, "rsso")
 		if err != nil {
 			return &obj, err
@@ -3835,7 +3835,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_context_timeout"); ok {
+	if v, ok := d.GetOk("rsso_context_timeout"); ok || d.HasChange("rsso_context_timeout") {
 		t, err := expandObjectUserRadiusRssoContextTimeout(d, v, "rsso_context_timeout")
 		if err != nil {
 			return &obj, err
@@ -3844,7 +3844,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_endpoint_attribute"); ok {
+	if v, ok := d.GetOk("rsso_endpoint_attribute"); ok || d.HasChange("rsso_endpoint_attribute") {
 		t, err := expandObjectUserRadiusRssoEndpointAttribute(d, v, "rsso_endpoint_attribute")
 		if err != nil {
 			return &obj, err
@@ -3853,7 +3853,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_endpoint_block_attribute"); ok {
+	if v, ok := d.GetOk("rsso_endpoint_block_attribute"); ok || d.HasChange("rsso_endpoint_block_attribute") {
 		t, err := expandObjectUserRadiusRssoEndpointBlockAttribute(d, v, "rsso_endpoint_block_attribute")
 		if err != nil {
 			return &obj, err
@@ -3862,7 +3862,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_ep_one_ip_only"); ok {
+	if v, ok := d.GetOk("rsso_ep_one_ip_only"); ok || d.HasChange("rsso_ep_one_ip_only") {
 		t, err := expandObjectUserRadiusRssoEpOneIpOnly(d, v, "rsso_ep_one_ip_only")
 		if err != nil {
 			return &obj, err
@@ -3871,7 +3871,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_flush_ip_session"); ok {
+	if v, ok := d.GetOk("rsso_flush_ip_session"); ok || d.HasChange("rsso_flush_ip_session") {
 		t, err := expandObjectUserRadiusRssoFlushIpSession(d, v, "rsso_flush_ip_session")
 		if err != nil {
 			return &obj, err
@@ -3880,7 +3880,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_log_flags"); ok {
+	if v, ok := d.GetOk("rsso_log_flags"); ok || d.HasChange("rsso_log_flags") {
 		t, err := expandObjectUserRadiusRssoLogFlags(d, v, "rsso_log_flags")
 		if err != nil {
 			return &obj, err
@@ -3889,7 +3889,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_log_period"); ok {
+	if v, ok := d.GetOk("rsso_log_period"); ok || d.HasChange("rsso_log_period") {
 		t, err := expandObjectUserRadiusRssoLogPeriod(d, v, "rsso_log_period")
 		if err != nil {
 			return &obj, err
@@ -3898,7 +3898,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_radius_response"); ok {
+	if v, ok := d.GetOk("rsso_radius_response"); ok || d.HasChange("rsso_radius_response") {
 		t, err := expandObjectUserRadiusRssoRadiusResponse(d, v, "rsso_radius_response")
 		if err != nil {
 			return &obj, err
@@ -3907,7 +3907,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_radius_server_port"); ok {
+	if v, ok := d.GetOk("rsso_radius_server_port"); ok || d.HasChange("rsso_radius_server_port") {
 		t, err := expandObjectUserRadiusRssoRadiusServerPort(d, v, "rsso_radius_server_port")
 		if err != nil {
 			return &obj, err
@@ -3916,7 +3916,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_secret"); ok {
+	if v, ok := d.GetOk("rsso_secret"); ok || d.HasChange("rsso_secret") {
 		t, err := expandObjectUserRadiusRssoSecret(d, v, "rsso_secret")
 		if err != nil {
 			return &obj, err
@@ -3925,7 +3925,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("rsso_validate_request_secret"); ok {
+	if v, ok := d.GetOk("rsso_validate_request_secret"); ok || d.HasChange("rsso_validate_request_secret") {
 		t, err := expandObjectUserRadiusRssoValidateRequestSecret(d, v, "rsso_validate_request_secret")
 		if err != nil {
 			return &obj, err
@@ -3934,7 +3934,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_secret"); ok {
+	if v, ok := d.GetOk("secondary_secret"); ok || d.HasChange("secondary_secret") {
 		t, err := expandObjectUserRadiusSecondarySecret(d, v, "secondary_secret")
 		if err != nil {
 			return &obj, err
@@ -3943,7 +3943,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_server"); ok {
+	if v, ok := d.GetOk("secondary_server"); ok || d.HasChange("secondary_server") {
 		t, err := expandObjectUserRadiusSecondaryServer(d, v, "secondary_server")
 		if err != nil {
 			return &obj, err
@@ -3952,7 +3952,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("secret"); ok {
+	if v, ok := d.GetOk("secret"); ok || d.HasChange("secret") {
 		t, err := expandObjectUserRadiusSecret(d, v, "secret")
 		if err != nil {
 			return &obj, err
@@ -3961,7 +3961,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserRadiusServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -3970,7 +3970,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectUserRadiusSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -3979,7 +3979,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("sso_attribute"); ok {
+	if v, ok := d.GetOk("sso_attribute"); ok || d.HasChange("sso_attribute") {
 		t, err := expandObjectUserRadiusSsoAttribute(d, v, "sso_attribute")
 		if err != nil {
 			return &obj, err
@@ -3988,7 +3988,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("sso_attribute_key"); ok {
+	if v, ok := d.GetOk("sso_attribute_key"); ok || d.HasChange("sso_attribute_key") {
 		t, err := expandObjectUserRadiusSsoAttributeKey(d, v, "sso_attribute_key")
 		if err != nil {
 			return &obj, err
@@ -3997,7 +3997,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("sso_attribute_value_override"); ok {
+	if v, ok := d.GetOk("sso_attribute_value_override"); ok || d.HasChange("sso_attribute_value_override") {
 		t, err := expandObjectUserRadiusSsoAttributeValueOverride(d, v, "sso_attribute_value_override")
 		if err != nil {
 			return &obj, err
@@ -4006,7 +4006,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("switch_controller_acct_fast_framedip_detect"); ok {
+	if v, ok := d.GetOk("switch_controller_acct_fast_framedip_detect"); ok || d.HasChange("switch_controller_acct_fast_framedip_detect") {
 		t, err := expandObjectUserRadiusSwitchControllerAcctFastFramedipDetect(d, v, "switch_controller_acct_fast_framedip_detect")
 		if err != nil {
 			return &obj, err
@@ -4015,7 +4015,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("switch_controller_service_type"); ok {
+	if v, ok := d.GetOk("switch_controller_service_type"); ok || d.HasChange("switch_controller_service_type") {
 		t, err := expandObjectUserRadiusSwitchControllerServiceType(d, v, "switch_controller_service_type")
 		if err != nil {
 			return &obj, err
@@ -4024,7 +4024,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("tertiary_secret"); ok {
+	if v, ok := d.GetOk("tertiary_secret"); ok || d.HasChange("tertiary_secret") {
 		t, err := expandObjectUserRadiusTertiarySecret(d, v, "tertiary_secret")
 		if err != nil {
 			return &obj, err
@@ -4033,7 +4033,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("tertiary_server"); ok {
+	if v, ok := d.GetOk("tertiary_server"); ok || d.HasChange("tertiary_server") {
 		t, err := expandObjectUserRadiusTertiaryServer(d, v, "tertiary_server")
 		if err != nil {
 			return &obj, err
@@ -4042,7 +4042,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("timeout"); ok {
+	if v, ok := d.GetOk("timeout"); ok || d.HasChange("timeout") {
 		t, err := expandObjectUserRadiusTimeout(d, v, "timeout")
 		if err != nil {
 			return &obj, err
@@ -4051,7 +4051,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("use_management_vdom"); ok {
+	if v, ok := d.GetOk("use_management_vdom"); ok || d.HasChange("use_management_vdom") {
 		t, err := expandObjectUserRadiusUseManagementVdom(d, v, "use_management_vdom")
 		if err != nil {
 			return &obj, err
@@ -4060,7 +4060,7 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("username_case_sensitive"); ok {
+	if v, ok := d.GetOk("username_case_sensitive"); ok || d.HasChange("username_case_sensitive") {
 		t, err := expandObjectUserRadiusUsernameCaseSensitive(d, v, "username_case_sensitive")
 		if err != nil {
 			return &obj, err

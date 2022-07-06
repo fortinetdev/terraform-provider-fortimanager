@@ -253,7 +253,7 @@ func expandSystemAdminGroupMember(d *schema.ResourceData, v interface{}, pre str
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSystemAdminGroupMemberName(d, i["name"], pre_append)
 		}
 
@@ -276,7 +276,7 @@ func expandSystemAdminGroupName(d *schema.ResourceData, v interface{}, pre strin
 func getObjectSystemAdminGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandSystemAdminGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectSystemAdminGroup(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemAdminGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err

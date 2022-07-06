@@ -267,7 +267,7 @@ func expandObjectFirewallAccessProxyVirtualHostSslCertificate(d *schema.Resource
 func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("host"); ok {
+	if v, ok := d.GetOk("host"); ok || d.HasChange("host") {
 		t, err := expandObjectFirewallAccessProxyVirtualHostHost(d, v, "host")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("host_type"); ok {
+	if v, ok := d.GetOk("host_type"); ok || d.HasChange("host_type") {
 		t, err := expandObjectFirewallAccessProxyVirtualHostHostType(d, v, "host_type")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallAccessProxyVirtualHostName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_certificate"); ok {
+	if v, ok := d.GetOk("ssl_certificate"); ok || d.HasChange("ssl_certificate") {
 		t, err := expandObjectFirewallAccessProxyVirtualHostSslCertificate(d, v, "ssl_certificate")
 		if err != nil {
 			return &obj, err

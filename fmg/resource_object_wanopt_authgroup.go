@@ -314,7 +314,7 @@ func expandObjectWanoptAuthGroupPsk(d *schema.ResourceData, v interface{}, pre s
 func getObjectObjectWanoptAuthGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auth_method"); ok {
+	if v, ok := d.GetOk("auth_method"); ok || d.HasChange("auth_method") {
 		t, err := expandObjectWanoptAuthGroupAuthMethod(d, v, "auth_method")
 		if err != nil {
 			return &obj, err
@@ -323,7 +323,7 @@ func getObjectObjectWanoptAuthGroup(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("cert"); ok {
+	if v, ok := d.GetOk("cert"); ok || d.HasChange("cert") {
 		t, err := expandObjectWanoptAuthGroupCert(d, v, "cert")
 		if err != nil {
 			return &obj, err
@@ -332,7 +332,7 @@ func getObjectObjectWanoptAuthGroup(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWanoptAuthGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -341,7 +341,7 @@ func getObjectObjectWanoptAuthGroup(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("peer"); ok {
+	if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
 		t, err := expandObjectWanoptAuthGroupPeer(d, v, "peer")
 		if err != nil {
 			return &obj, err
@@ -350,7 +350,7 @@ func getObjectObjectWanoptAuthGroup(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("peer_accept"); ok {
+	if v, ok := d.GetOk("peer_accept"); ok || d.HasChange("peer_accept") {
 		t, err := expandObjectWanoptAuthGroupPeerAccept(d, v, "peer_accept")
 		if err != nil {
 			return &obj, err
@@ -359,7 +359,7 @@ func getObjectObjectWanoptAuthGroup(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("psk"); ok {
+	if v, ok := d.GetOk("psk"); ok || d.HasChange("psk") {
 		t, err := expandObjectWanoptAuthGroupPsk(d, v, "psk")
 		if err != nil {
 			return &obj, err

@@ -139,7 +139,7 @@ func expandSystemLogAlertMaxAlertCount(d *schema.ResourceData, v interface{}, pr
 func getObjectSystemLogAlert(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("max_alert_count"); ok {
+	if v, ok := d.GetOk("max_alert_count"); ok || d.HasChange("max_alert_count") {
 		t, err := expandSystemLogAlertMaxAlertCount(d, v, "max_alert_count")
 		if err != nil {
 			return &obj, err

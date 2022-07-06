@@ -139,7 +139,7 @@ func expandFmupdateAnalyzerVirusreportStatus(d *schema.ResourceData, v interface
 func getObjectFmupdateAnalyzerVirusreport(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateAnalyzerVirusreportStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

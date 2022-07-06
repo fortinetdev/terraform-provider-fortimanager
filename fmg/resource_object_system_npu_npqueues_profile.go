@@ -1900,7 +1900,7 @@ func expandObjectSystemNpuNpQueuesProfileWeight(d *schema.ResourceData, v interf
 func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("cos0"); ok {
+	if v, ok := d.GetOk("cos0"); ok || d.HasChange("cos0") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos0(d, v, "cos0")
 		if err != nil {
 			return &obj, err
@@ -1909,7 +1909,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos1"); ok {
+	if v, ok := d.GetOk("cos1"); ok || d.HasChange("cos1") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos1(d, v, "cos1")
 		if err != nil {
 			return &obj, err
@@ -1918,7 +1918,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos2"); ok {
+	if v, ok := d.GetOk("cos2"); ok || d.HasChange("cos2") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos2(d, v, "cos2")
 		if err != nil {
 			return &obj, err
@@ -1927,7 +1927,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos3"); ok {
+	if v, ok := d.GetOk("cos3"); ok || d.HasChange("cos3") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos3(d, v, "cos3")
 		if err != nil {
 			return &obj, err
@@ -1936,7 +1936,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos4"); ok {
+	if v, ok := d.GetOk("cos4"); ok || d.HasChange("cos4") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos4(d, v, "cos4")
 		if err != nil {
 			return &obj, err
@@ -1945,7 +1945,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos5"); ok {
+	if v, ok := d.GetOk("cos5"); ok || d.HasChange("cos5") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos5(d, v, "cos5")
 		if err != nil {
 			return &obj, err
@@ -1954,7 +1954,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos6"); ok {
+	if v, ok := d.GetOk("cos6"); ok || d.HasChange("cos6") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos6(d, v, "cos6")
 		if err != nil {
 			return &obj, err
@@ -1963,7 +1963,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("cos7"); ok {
+	if v, ok := d.GetOk("cos7"); ok || d.HasChange("cos7") {
 		t, err := expandObjectSystemNpuNpQueuesProfileCos7(d, v, "cos7")
 		if err != nil {
 			return &obj, err
@@ -1972,7 +1972,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp0"); ok {
+	if v, ok := d.GetOk("dscp0"); ok || d.HasChange("dscp0") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp0(d, v, "dscp0")
 		if err != nil {
 			return &obj, err
@@ -1981,7 +1981,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp1"); ok {
+	if v, ok := d.GetOk("dscp1"); ok || d.HasChange("dscp1") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp1(d, v, "dscp1")
 		if err != nil {
 			return &obj, err
@@ -1990,7 +1990,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp10"); ok {
+	if v, ok := d.GetOk("dscp10"); ok || d.HasChange("dscp10") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp10(d, v, "dscp10")
 		if err != nil {
 			return &obj, err
@@ -1999,7 +1999,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp11"); ok {
+	if v, ok := d.GetOk("dscp11"); ok || d.HasChange("dscp11") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp11(d, v, "dscp11")
 		if err != nil {
 			return &obj, err
@@ -2008,7 +2008,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp12"); ok {
+	if v, ok := d.GetOk("dscp12"); ok || d.HasChange("dscp12") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp12(d, v, "dscp12")
 		if err != nil {
 			return &obj, err
@@ -2017,7 +2017,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp13"); ok {
+	if v, ok := d.GetOk("dscp13"); ok || d.HasChange("dscp13") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp13(d, v, "dscp13")
 		if err != nil {
 			return &obj, err
@@ -2026,7 +2026,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp14"); ok {
+	if v, ok := d.GetOk("dscp14"); ok || d.HasChange("dscp14") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp14(d, v, "dscp14")
 		if err != nil {
 			return &obj, err
@@ -2035,7 +2035,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp15"); ok {
+	if v, ok := d.GetOk("dscp15"); ok || d.HasChange("dscp15") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp15(d, v, "dscp15")
 		if err != nil {
 			return &obj, err
@@ -2044,7 +2044,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp16"); ok {
+	if v, ok := d.GetOk("dscp16"); ok || d.HasChange("dscp16") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp16(d, v, "dscp16")
 		if err != nil {
 			return &obj, err
@@ -2053,7 +2053,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp17"); ok {
+	if v, ok := d.GetOk("dscp17"); ok || d.HasChange("dscp17") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp17(d, v, "dscp17")
 		if err != nil {
 			return &obj, err
@@ -2062,7 +2062,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp18"); ok {
+	if v, ok := d.GetOk("dscp18"); ok || d.HasChange("dscp18") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp18(d, v, "dscp18")
 		if err != nil {
 			return &obj, err
@@ -2071,7 +2071,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp19"); ok {
+	if v, ok := d.GetOk("dscp19"); ok || d.HasChange("dscp19") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp19(d, v, "dscp19")
 		if err != nil {
 			return &obj, err
@@ -2080,7 +2080,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp2"); ok {
+	if v, ok := d.GetOk("dscp2"); ok || d.HasChange("dscp2") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp2(d, v, "dscp2")
 		if err != nil {
 			return &obj, err
@@ -2089,7 +2089,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp20"); ok {
+	if v, ok := d.GetOk("dscp20"); ok || d.HasChange("dscp20") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp20(d, v, "dscp20")
 		if err != nil {
 			return &obj, err
@@ -2098,7 +2098,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp21"); ok {
+	if v, ok := d.GetOk("dscp21"); ok || d.HasChange("dscp21") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp21(d, v, "dscp21")
 		if err != nil {
 			return &obj, err
@@ -2107,7 +2107,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp22"); ok {
+	if v, ok := d.GetOk("dscp22"); ok || d.HasChange("dscp22") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp22(d, v, "dscp22")
 		if err != nil {
 			return &obj, err
@@ -2116,7 +2116,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp23"); ok {
+	if v, ok := d.GetOk("dscp23"); ok || d.HasChange("dscp23") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp23(d, v, "dscp23")
 		if err != nil {
 			return &obj, err
@@ -2125,7 +2125,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp24"); ok {
+	if v, ok := d.GetOk("dscp24"); ok || d.HasChange("dscp24") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp24(d, v, "dscp24")
 		if err != nil {
 			return &obj, err
@@ -2134,7 +2134,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp25"); ok {
+	if v, ok := d.GetOk("dscp25"); ok || d.HasChange("dscp25") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp25(d, v, "dscp25")
 		if err != nil {
 			return &obj, err
@@ -2143,7 +2143,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp26"); ok {
+	if v, ok := d.GetOk("dscp26"); ok || d.HasChange("dscp26") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp26(d, v, "dscp26")
 		if err != nil {
 			return &obj, err
@@ -2152,7 +2152,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp27"); ok {
+	if v, ok := d.GetOk("dscp27"); ok || d.HasChange("dscp27") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp27(d, v, "dscp27")
 		if err != nil {
 			return &obj, err
@@ -2161,7 +2161,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp28"); ok {
+	if v, ok := d.GetOk("dscp28"); ok || d.HasChange("dscp28") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp28(d, v, "dscp28")
 		if err != nil {
 			return &obj, err
@@ -2170,7 +2170,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp29"); ok {
+	if v, ok := d.GetOk("dscp29"); ok || d.HasChange("dscp29") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp29(d, v, "dscp29")
 		if err != nil {
 			return &obj, err
@@ -2179,7 +2179,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp3"); ok {
+	if v, ok := d.GetOk("dscp3"); ok || d.HasChange("dscp3") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp3(d, v, "dscp3")
 		if err != nil {
 			return &obj, err
@@ -2188,7 +2188,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp30"); ok {
+	if v, ok := d.GetOk("dscp30"); ok || d.HasChange("dscp30") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp30(d, v, "dscp30")
 		if err != nil {
 			return &obj, err
@@ -2197,7 +2197,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp31"); ok {
+	if v, ok := d.GetOk("dscp31"); ok || d.HasChange("dscp31") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp31(d, v, "dscp31")
 		if err != nil {
 			return &obj, err
@@ -2206,7 +2206,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp32"); ok {
+	if v, ok := d.GetOk("dscp32"); ok || d.HasChange("dscp32") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp32(d, v, "dscp32")
 		if err != nil {
 			return &obj, err
@@ -2215,7 +2215,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp33"); ok {
+	if v, ok := d.GetOk("dscp33"); ok || d.HasChange("dscp33") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp33(d, v, "dscp33")
 		if err != nil {
 			return &obj, err
@@ -2224,7 +2224,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp34"); ok {
+	if v, ok := d.GetOk("dscp34"); ok || d.HasChange("dscp34") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp34(d, v, "dscp34")
 		if err != nil {
 			return &obj, err
@@ -2233,7 +2233,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp35"); ok {
+	if v, ok := d.GetOk("dscp35"); ok || d.HasChange("dscp35") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp35(d, v, "dscp35")
 		if err != nil {
 			return &obj, err
@@ -2242,7 +2242,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp36"); ok {
+	if v, ok := d.GetOk("dscp36"); ok || d.HasChange("dscp36") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp36(d, v, "dscp36")
 		if err != nil {
 			return &obj, err
@@ -2251,7 +2251,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp37"); ok {
+	if v, ok := d.GetOk("dscp37"); ok || d.HasChange("dscp37") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp37(d, v, "dscp37")
 		if err != nil {
 			return &obj, err
@@ -2260,7 +2260,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp38"); ok {
+	if v, ok := d.GetOk("dscp38"); ok || d.HasChange("dscp38") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp38(d, v, "dscp38")
 		if err != nil {
 			return &obj, err
@@ -2269,7 +2269,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp39"); ok {
+	if v, ok := d.GetOk("dscp39"); ok || d.HasChange("dscp39") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp39(d, v, "dscp39")
 		if err != nil {
 			return &obj, err
@@ -2278,7 +2278,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp4"); ok {
+	if v, ok := d.GetOk("dscp4"); ok || d.HasChange("dscp4") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp4(d, v, "dscp4")
 		if err != nil {
 			return &obj, err
@@ -2287,7 +2287,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp40"); ok {
+	if v, ok := d.GetOk("dscp40"); ok || d.HasChange("dscp40") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp40(d, v, "dscp40")
 		if err != nil {
 			return &obj, err
@@ -2296,7 +2296,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp41"); ok {
+	if v, ok := d.GetOk("dscp41"); ok || d.HasChange("dscp41") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp41(d, v, "dscp41")
 		if err != nil {
 			return &obj, err
@@ -2305,7 +2305,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp42"); ok {
+	if v, ok := d.GetOk("dscp42"); ok || d.HasChange("dscp42") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp42(d, v, "dscp42")
 		if err != nil {
 			return &obj, err
@@ -2314,7 +2314,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp43"); ok {
+	if v, ok := d.GetOk("dscp43"); ok || d.HasChange("dscp43") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp43(d, v, "dscp43")
 		if err != nil {
 			return &obj, err
@@ -2323,7 +2323,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp44"); ok {
+	if v, ok := d.GetOk("dscp44"); ok || d.HasChange("dscp44") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp44(d, v, "dscp44")
 		if err != nil {
 			return &obj, err
@@ -2332,7 +2332,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp45"); ok {
+	if v, ok := d.GetOk("dscp45"); ok || d.HasChange("dscp45") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp45(d, v, "dscp45")
 		if err != nil {
 			return &obj, err
@@ -2341,7 +2341,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp46"); ok {
+	if v, ok := d.GetOk("dscp46"); ok || d.HasChange("dscp46") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp46(d, v, "dscp46")
 		if err != nil {
 			return &obj, err
@@ -2350,7 +2350,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp47"); ok {
+	if v, ok := d.GetOk("dscp47"); ok || d.HasChange("dscp47") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp47(d, v, "dscp47")
 		if err != nil {
 			return &obj, err
@@ -2359,7 +2359,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp48"); ok {
+	if v, ok := d.GetOk("dscp48"); ok || d.HasChange("dscp48") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp48(d, v, "dscp48")
 		if err != nil {
 			return &obj, err
@@ -2368,7 +2368,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp49"); ok {
+	if v, ok := d.GetOk("dscp49"); ok || d.HasChange("dscp49") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp49(d, v, "dscp49")
 		if err != nil {
 			return &obj, err
@@ -2377,7 +2377,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp5"); ok {
+	if v, ok := d.GetOk("dscp5"); ok || d.HasChange("dscp5") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp5(d, v, "dscp5")
 		if err != nil {
 			return &obj, err
@@ -2386,7 +2386,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp50"); ok {
+	if v, ok := d.GetOk("dscp50"); ok || d.HasChange("dscp50") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp50(d, v, "dscp50")
 		if err != nil {
 			return &obj, err
@@ -2395,7 +2395,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp51"); ok {
+	if v, ok := d.GetOk("dscp51"); ok || d.HasChange("dscp51") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp51(d, v, "dscp51")
 		if err != nil {
 			return &obj, err
@@ -2404,7 +2404,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp52"); ok {
+	if v, ok := d.GetOk("dscp52"); ok || d.HasChange("dscp52") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp52(d, v, "dscp52")
 		if err != nil {
 			return &obj, err
@@ -2413,7 +2413,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp53"); ok {
+	if v, ok := d.GetOk("dscp53"); ok || d.HasChange("dscp53") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp53(d, v, "dscp53")
 		if err != nil {
 			return &obj, err
@@ -2422,7 +2422,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp54"); ok {
+	if v, ok := d.GetOk("dscp54"); ok || d.HasChange("dscp54") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp54(d, v, "dscp54")
 		if err != nil {
 			return &obj, err
@@ -2431,7 +2431,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp55"); ok {
+	if v, ok := d.GetOk("dscp55"); ok || d.HasChange("dscp55") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp55(d, v, "dscp55")
 		if err != nil {
 			return &obj, err
@@ -2440,7 +2440,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp56"); ok {
+	if v, ok := d.GetOk("dscp56"); ok || d.HasChange("dscp56") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp56(d, v, "dscp56")
 		if err != nil {
 			return &obj, err
@@ -2449,7 +2449,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp57"); ok {
+	if v, ok := d.GetOk("dscp57"); ok || d.HasChange("dscp57") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp57(d, v, "dscp57")
 		if err != nil {
 			return &obj, err
@@ -2458,7 +2458,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp58"); ok {
+	if v, ok := d.GetOk("dscp58"); ok || d.HasChange("dscp58") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp58(d, v, "dscp58")
 		if err != nil {
 			return &obj, err
@@ -2467,7 +2467,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp59"); ok {
+	if v, ok := d.GetOk("dscp59"); ok || d.HasChange("dscp59") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp59(d, v, "dscp59")
 		if err != nil {
 			return &obj, err
@@ -2476,7 +2476,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp6"); ok {
+	if v, ok := d.GetOk("dscp6"); ok || d.HasChange("dscp6") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp6(d, v, "dscp6")
 		if err != nil {
 			return &obj, err
@@ -2485,7 +2485,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp60"); ok {
+	if v, ok := d.GetOk("dscp60"); ok || d.HasChange("dscp60") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp60(d, v, "dscp60")
 		if err != nil {
 			return &obj, err
@@ -2494,7 +2494,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp61"); ok {
+	if v, ok := d.GetOk("dscp61"); ok || d.HasChange("dscp61") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp61(d, v, "dscp61")
 		if err != nil {
 			return &obj, err
@@ -2503,7 +2503,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp62"); ok {
+	if v, ok := d.GetOk("dscp62"); ok || d.HasChange("dscp62") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp62(d, v, "dscp62")
 		if err != nil {
 			return &obj, err
@@ -2512,7 +2512,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp63"); ok {
+	if v, ok := d.GetOk("dscp63"); ok || d.HasChange("dscp63") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp63(d, v, "dscp63")
 		if err != nil {
 			return &obj, err
@@ -2521,7 +2521,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp7"); ok {
+	if v, ok := d.GetOk("dscp7"); ok || d.HasChange("dscp7") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp7(d, v, "dscp7")
 		if err != nil {
 			return &obj, err
@@ -2530,7 +2530,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp8"); ok {
+	if v, ok := d.GetOk("dscp8"); ok || d.HasChange("dscp8") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp8(d, v, "dscp8")
 		if err != nil {
 			return &obj, err
@@ -2539,7 +2539,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("dscp9"); ok {
+	if v, ok := d.GetOk("dscp9"); ok || d.HasChange("dscp9") {
 		t, err := expandObjectSystemNpuNpQueuesProfileDscp9(d, v, "dscp9")
 		if err != nil {
 			return &obj, err
@@ -2548,7 +2548,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectSystemNpuNpQueuesProfileId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -2557,7 +2557,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectSystemNpuNpQueuesProfileType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -2566,7 +2566,7 @@ func getObjectObjectSystemNpuNpQueuesProfile(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("weight"); ok {
+	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
 		t, err := expandObjectSystemNpuNpQueuesProfileWeight(d, v, "weight")
 		if err != nil {
 			return &obj, err

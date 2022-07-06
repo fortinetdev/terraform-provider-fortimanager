@@ -360,44 +360,44 @@ func expandSystemNtpNtpserverSna(d *schema.ResourceData, v interface{}, pre stri
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "authentication"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["authentication"], _ = expandSystemNtpNtpserverAuthenticationSna(d, i["authentication"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandSystemNtpNtpserverIdSna(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key"], _ = expandSystemNtpNtpserverKeySna(d, i["key"], pre_append)
 		} else {
 			tmp["key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key-id"], _ = expandSystemNtpNtpserverKeyIdSna(d, i["key_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "maxpoll"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["maxpoll"], _ = expandSystemNtpNtpserverMaxpollSna(d, i["maxpoll"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "minpoll"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["minpoll"], _ = expandSystemNtpNtpserverMinpollSna(d, i["minpoll"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ntpv3"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ntpv3"], _ = expandSystemNtpNtpserverNtpv3Sna(d, i["ntpv3"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["server"], _ = expandSystemNtpNtpserverServerSna(d, i["server"], pre_append)
 		}
 
@@ -452,7 +452,7 @@ func expandSystemNtpSyncIntervalSna(d *schema.ResourceData, v interface{}, pre s
 func getObjectSystemNtp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ntpserver"); ok {
+	if v, ok := d.GetOk("ntpserver"); ok || d.HasChange("ntpserver") {
 		t, err := expandSystemNtpNtpserverSna(d, v, "ntpserver")
 		if err != nil {
 			return &obj, err
@@ -461,7 +461,7 @@ func getObjectSystemNtp(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemNtpStatusSna(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -470,7 +470,7 @@ func getObjectSystemNtp(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("sync_interval"); ok {
+	if v, ok := d.GetOk("sync_interval"); ok || d.HasChange("sync_interval") {
 		t, err := expandSystemNtpSyncIntervalSna(d, v, "sync_interval")
 		if err != nil {
 			return &obj, err

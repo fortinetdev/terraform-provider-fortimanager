@@ -391,32 +391,32 @@ func expandObjectRouterPrefixList6Rule(d *schema.ResourceData, v interface{}, pr
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectRouterPrefixList6RuleAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "flags"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["flags"], _ = expandObjectRouterPrefixList6RuleFlags(d, i["flags"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ge"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ge"], _ = expandObjectRouterPrefixList6RuleGe(d, i["ge"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectRouterPrefixList6RuleId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "le"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["le"], _ = expandObjectRouterPrefixList6RuleLe(d, i["le"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix6"], _ = expandObjectRouterPrefixList6RulePrefix6(d, i["prefix6"], pre_append)
 		}
 
@@ -455,7 +455,7 @@ func expandObjectRouterPrefixList6RulePrefix6(d *schema.ResourceData, v interfac
 func getObjectObjectRouterPrefixList6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectRouterPrefixList6Comments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -464,7 +464,7 @@ func getObjectObjectRouterPrefixList6(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectRouterPrefixList6Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -473,7 +473,7 @@ func getObjectObjectRouterPrefixList6(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("rule"); ok {
+	if v, ok := d.GetOk("rule"); ok || d.HasChange("rule") {
 		t, err := expandObjectRouterPrefixList6Rule(d, v, "rule")
 		if err != nil {
 			return &obj, err

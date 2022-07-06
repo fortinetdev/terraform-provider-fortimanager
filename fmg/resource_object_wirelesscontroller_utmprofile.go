@@ -359,7 +359,7 @@ func expandObjectWirelessControllerUtmProfileWebfilterProfile(d *schema.Resource
 func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("antivirus_profile"); ok {
+	if v, ok := d.GetOk("antivirus_profile"); ok || d.HasChange("antivirus_profile") {
 		t, err := expandObjectWirelessControllerUtmProfileAntivirusProfile(d, v, "antivirus_profile")
 		if err != nil {
 			return &obj, err
@@ -368,7 +368,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("application_list"); ok {
+	if v, ok := d.GetOk("application_list"); ok || d.HasChange("application_list") {
 		t, err := expandObjectWirelessControllerUtmProfileApplicationList(d, v, "application_list")
 		if err != nil {
 			return &obj, err
@@ -377,7 +377,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWirelessControllerUtmProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -386,7 +386,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("ips_sensor"); ok {
+	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
 		t, err := expandObjectWirelessControllerUtmProfileIpsSensor(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
@@ -395,7 +395,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerUtmProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -404,7 +404,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("scan_botnet_connections"); ok {
+	if v, ok := d.GetOk("scan_botnet_connections"); ok || d.HasChange("scan_botnet_connections") {
 		t, err := expandObjectWirelessControllerUtmProfileScanBotnetConnections(d, v, "scan_botnet_connections")
 		if err != nil {
 			return &obj, err
@@ -413,7 +413,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("utm_log"); ok {
+	if v, ok := d.GetOk("utm_log"); ok || d.HasChange("utm_log") {
 		t, err := expandObjectWirelessControllerUtmProfileUtmLog(d, v, "utm_log")
 		if err != nil {
 			return &obj, err
@@ -422,7 +422,7 @@ func getObjectObjectWirelessControllerUtmProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_profile"); ok {
+	if v, ok := d.GetOk("webfilter_profile"); ok || d.HasChange("webfilter_profile") {
 		t, err := expandObjectWirelessControllerUtmProfileWebfilterProfile(d, v, "webfilter_profile")
 		if err != nil {
 			return &obj, err

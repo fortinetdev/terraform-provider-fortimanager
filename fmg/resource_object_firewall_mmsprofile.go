@@ -2462,73 +2462,73 @@ func expandObjectFirewallMmsProfileDupe(d *schema.ResourceData, v interface{}, p
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action1"], _ = expandObjectFirewallMmsProfileDupeAction1(d, i["action1"], pre_append)
 	} else {
 		result["action1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action2"], _ = expandObjectFirewallMmsProfileDupeAction2(d, i["action2"], pre_append)
 	} else {
 		result["action2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action3"], _ = expandObjectFirewallMmsProfileDupeAction3(d, i["action3"], pre_append)
 	} else {
 		result["action3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "block_time1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-time1"], _ = expandObjectFirewallMmsProfileDupeBlockTime1(d, i["block_time1"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_time2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-time2"], _ = expandObjectFirewallMmsProfileDupeBlockTime2(d, i["block_time2"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_time3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-time3"], _ = expandObjectFirewallMmsProfileDupeBlockTime3(d, i["block_time3"], pre_append)
 	}
 	pre_append = pre + ".0." + "limit1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["limit1"], _ = expandObjectFirewallMmsProfileDupeLimit1(d, i["limit1"], pre_append)
 	}
 	pre_append = pre + ".0." + "limit2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["limit2"], _ = expandObjectFirewallMmsProfileDupeLimit2(d, i["limit2"], pre_append)
 	}
 	pre_append = pre + ".0." + "limit3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["limit3"], _ = expandObjectFirewallMmsProfileDupeLimit3(d, i["limit3"], pre_append)
 	}
 	pre_append = pre + ".0." + "protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protocol"], _ = expandObjectFirewallMmsProfileDupeProtocol(d, i["protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "status1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status1"], _ = expandObjectFirewallMmsProfileDupeStatus1(d, i["status1"], pre_append)
 	}
 	pre_append = pre + ".0." + "status2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status2"], _ = expandObjectFirewallMmsProfileDupeStatus2(d, i["status2"], pre_append)
 	}
 	pre_append = pre + ".0." + "status3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status3"], _ = expandObjectFirewallMmsProfileDupeStatus3(d, i["status3"], pre_append)
 	}
 	pre_append = pre + ".0." + "window1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["window1"], _ = expandObjectFirewallMmsProfileDupeWindow1(d, i["window1"], pre_append)
 	}
 	pre_append = pre + ".0." + "window2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["window2"], _ = expandObjectFirewallMmsProfileDupeWindow2(d, i["window2"], pre_append)
 	}
 	pre_append = pre + ".0." + "window3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["window3"], _ = expandObjectFirewallMmsProfileDupeWindow3(d, i["window3"], pre_append)
 	}
 
@@ -2614,73 +2614,73 @@ func expandObjectFirewallMmsProfileFlood(d *schema.ResourceData, v interface{}, 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "action1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action1"], _ = expandObjectFirewallMmsProfileFloodAction1(d, i["action1"], pre_append)
 	} else {
 		result["action1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action2"], _ = expandObjectFirewallMmsProfileFloodAction2(d, i["action2"], pre_append)
 	} else {
 		result["action2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action3"], _ = expandObjectFirewallMmsProfileFloodAction3(d, i["action3"], pre_append)
 	} else {
 		result["action3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "block_time1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-time1"], _ = expandObjectFirewallMmsProfileFloodBlockTime1(d, i["block_time1"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_time2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-time2"], _ = expandObjectFirewallMmsProfileFloodBlockTime2(d, i["block_time2"], pre_append)
 	}
 	pre_append = pre + ".0." + "block_time3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-time3"], _ = expandObjectFirewallMmsProfileFloodBlockTime3(d, i["block_time3"], pre_append)
 	}
 	pre_append = pre + ".0." + "limit1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["limit1"], _ = expandObjectFirewallMmsProfileFloodLimit1(d, i["limit1"], pre_append)
 	}
 	pre_append = pre + ".0." + "limit2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["limit2"], _ = expandObjectFirewallMmsProfileFloodLimit2(d, i["limit2"], pre_append)
 	}
 	pre_append = pre + ".0." + "limit3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["limit3"], _ = expandObjectFirewallMmsProfileFloodLimit3(d, i["limit3"], pre_append)
 	}
 	pre_append = pre + ".0." + "protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protocol"], _ = expandObjectFirewallMmsProfileFloodProtocol(d, i["protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "status1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status1"], _ = expandObjectFirewallMmsProfileFloodStatus1(d, i["status1"], pre_append)
 	}
 	pre_append = pre + ".0." + "status2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status2"], _ = expandObjectFirewallMmsProfileFloodStatus2(d, i["status2"], pre_append)
 	}
 	pre_append = pre + ".0." + "status3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status3"], _ = expandObjectFirewallMmsProfileFloodStatus3(d, i["status3"], pre_append)
 	}
 	pre_append = pre + ".0." + "window1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["window1"], _ = expandObjectFirewallMmsProfileFloodWindow1(d, i["window1"], pre_append)
 	}
 	pre_append = pre + ".0." + "window2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["window2"], _ = expandObjectFirewallMmsProfileFloodWindow2(d, i["window2"], pre_append)
 	}
 	pre_append = pre + ".0." + "window3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["window3"], _ = expandObjectFirewallMmsProfileFloodWindow3(d, i["window3"], pre_append)
 	}
 
@@ -2906,12 +2906,12 @@ func expandObjectFirewallMmsProfileNotifMsisdn(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msisdn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msisdn"], _ = expandObjectFirewallMmsProfileNotifMsisdnMsisdn(d, i["msisdn"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["threshold"], _ = expandObjectFirewallMmsProfileNotifMsisdnThreshold(d, i["threshold"], pre_append)
 		} else {
 			tmp["threshold"] = make([]string, 0)
@@ -2944,179 +2944,179 @@ func expandObjectFirewallMmsProfileNotification(d *schema.ResourceData, v interf
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "alert_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["alert-int"], _ = expandObjectFirewallMmsProfileNotificationAlertInt(d, i["alert_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "alert_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["alert-int-mode"], _ = expandObjectFirewallMmsProfileNotificationAlertIntMode(d, i["alert_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "alert_src_msisdn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["alert-src-msisdn"], _ = expandObjectFirewallMmsProfileNotificationAlertSrcMsisdn(d, i["alert_src_msisdn"], pre_append)
 	}
 	pre_append = pre + ".0." + "alert_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["alert-status"], _ = expandObjectFirewallMmsProfileNotificationAlertStatus(d, i["alert_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "bword_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bword-int"], _ = expandObjectFirewallMmsProfileNotificationBwordInt(d, i["bword_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "bword_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bword-int-mode"], _ = expandObjectFirewallMmsProfileNotificationBwordIntMode(d, i["bword_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "bword_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bword-status"], _ = expandObjectFirewallMmsProfileNotificationBwordStatus(d, i["bword_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "carrier_endpoint_bwl_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["carrier-endpoint-bwl-int"], _ = expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlInt(d, i["carrier_endpoint_bwl_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "carrier_endpoint_bwl_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["carrier-endpoint-bwl-int-mode"], _ = expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlIntMode(d, i["carrier_endpoint_bwl_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "carrier_endpoint_bwl_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["carrier-endpoint-bwl-status"], _ = expandObjectFirewallMmsProfileNotificationCarrierEndpointBwlStatus(d, i["carrier_endpoint_bwl_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "days_allowed"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["days-allowed"], _ = expandObjectFirewallMmsProfileNotificationDaysAllowed(d, i["days_allowed"], pre_append)
 	} else {
 		result["days-allowed"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "detect_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["detect-server"], _ = expandObjectFirewallMmsProfileNotificationDetectServer(d, i["detect_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "dupe_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dupe-int"], _ = expandObjectFirewallMmsProfileNotificationDupeInt(d, i["dupe_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "dupe_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dupe-int-mode"], _ = expandObjectFirewallMmsProfileNotificationDupeIntMode(d, i["dupe_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "dupe_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dupe-status"], _ = expandObjectFirewallMmsProfileNotificationDupeStatus(d, i["dupe_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "file_block_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["file-block-int"], _ = expandObjectFirewallMmsProfileNotificationFileBlockInt(d, i["file_block_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "file_block_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["file-block-int-mode"], _ = expandObjectFirewallMmsProfileNotificationFileBlockIntMode(d, i["file_block_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "file_block_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["file-block-status"], _ = expandObjectFirewallMmsProfileNotificationFileBlockStatus(d, i["file_block_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "flood_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["flood-int"], _ = expandObjectFirewallMmsProfileNotificationFloodInt(d, i["flood_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "flood_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["flood-int-mode"], _ = expandObjectFirewallMmsProfileNotificationFloodIntMode(d, i["flood_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "flood_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["flood-status"], _ = expandObjectFirewallMmsProfileNotificationFloodStatus(d, i["flood_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "from_in_header"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["from-in-header"], _ = expandObjectFirewallMmsProfileNotificationFromInHeader(d, i["from_in_header"], pre_append)
 	}
 	pre_append = pre + ".0." + "mms_checksum_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mms-checksum-int"], _ = expandObjectFirewallMmsProfileNotificationMmsChecksumInt(d, i["mms_checksum_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "mms_checksum_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mms-checksum-int-mode"], _ = expandObjectFirewallMmsProfileNotificationMmsChecksumIntMode(d, i["mms_checksum_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "mms_checksum_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mms-checksum-status"], _ = expandObjectFirewallMmsProfileNotificationMmsChecksumStatus(d, i["mms_checksum_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "mmsc_hostname"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mmsc-hostname"], _ = expandObjectFirewallMmsProfileNotificationMmscHostname(d, i["mmsc_hostname"], pre_append)
 	}
 	pre_append = pre + ".0." + "mmsc_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mmsc-password"], _ = expandObjectFirewallMmsProfileNotificationMmscPassword(d, i["mmsc_password"], pre_append)
 	} else {
 		result["mmsc-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "mmsc_port"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mmsc-port"], _ = expandObjectFirewallMmsProfileNotificationMmscPort(d, i["mmsc_port"], pre_append)
 	}
 	pre_append = pre + ".0." + "mmsc_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mmsc-url"], _ = expandObjectFirewallMmsProfileNotificationMmscUrl(d, i["mmsc_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "mmsc_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mmsc-username"], _ = expandObjectFirewallMmsProfileNotificationMmscUsername(d, i["mmsc_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "msg_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["msg-protocol"], _ = expandObjectFirewallMmsProfileNotificationMsgProtocol(d, i["msg_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "msg_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["msg-type"], _ = expandObjectFirewallMmsProfileNotificationMsgType(d, i["msg_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["protocol"], _ = expandObjectFirewallMmsProfileNotificationProtocol(d, i["protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "rate_limit"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rate-limit"], _ = expandObjectFirewallMmsProfileNotificationRateLimit(d, i["rate_limit"], pre_append)
 	}
 	pre_append = pre + ".0." + "tod_window_duration"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tod-window-duration"], _ = expandObjectFirewallMmsProfileNotificationTodWindowDuration(d, i["tod_window_duration"], pre_append)
 	}
 	pre_append = pre + ".0." + "tod_window_end"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tod-window-end"], _ = expandObjectFirewallMmsProfileNotificationTodWindowEnd(d, i["tod_window_end"], pre_append)
 	}
 	pre_append = pre + ".0." + "tod_window_start"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tod-window-start"], _ = expandObjectFirewallMmsProfileNotificationTodWindowStart(d, i["tod_window_start"], pre_append)
 	}
 	pre_append = pre + ".0." + "user_domain"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["user-domain"], _ = expandObjectFirewallMmsProfileNotificationUserDomain(d, i["user_domain"], pre_append)
 	}
 	pre_append = pre + ".0." + "vas_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vas-id"], _ = expandObjectFirewallMmsProfileNotificationVasId(d, i["vas_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "vasp_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vasp-id"], _ = expandObjectFirewallMmsProfileNotificationVaspId(d, i["vasp_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "virus_int"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["virus-int"], _ = expandObjectFirewallMmsProfileNotificationVirusInt(d, i["virus_int"], pre_append)
 	}
 	pre_append = pre + ".0." + "virus_int_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["virus-int-mode"], _ = expandObjectFirewallMmsProfileNotificationVirusIntMode(d, i["virus_int_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "virus_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["virus-status"], _ = expandObjectFirewallMmsProfileNotificationVirusStatus(d, i["virus_status"], pre_append)
 	}
 
@@ -3306,11 +3306,11 @@ func expandObjectFirewallMmsProfileOutbreakPrevention(d *schema.ResourceData, v 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "external_blocklist"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["external-blocklist"], _ = expandObjectFirewallMmsProfileOutbreakPreventionExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
 	pre_append = pre + ".0." + "ftgd_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ftgd-service"], _ = expandObjectFirewallMmsProfileOutbreakPreventionFtgdService(d, i["ftgd_service"], pre_append)
 	}
 
@@ -3336,7 +3336,7 @@ func expandObjectFirewallMmsProfileReplacemsgGroup(d *schema.ResourceData, v int
 func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("avnotificationtable"); ok {
+	if v, ok := d.GetOk("avnotificationtable"); ok || d.HasChange("avnotificationtable") {
 		t, err := expandObjectFirewallMmsProfileAvnotificationtable(d, v, "avnotificationtable")
 		if err != nil {
 			return &obj, err
@@ -3345,7 +3345,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("bwordtable"); ok {
+	if v, ok := d.GetOk("bwordtable"); ok || d.HasChange("bwordtable") {
 		t, err := expandObjectFirewallMmsProfileBwordtable(d, v, "bwordtable")
 		if err != nil {
 			return &obj, err
@@ -3354,7 +3354,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("carrier_endpoint_prefix"); ok {
+	if v, ok := d.GetOk("carrier_endpoint_prefix"); ok || d.HasChange("carrier_endpoint_prefix") {
 		t, err := expandObjectFirewallMmsProfileCarrierEndpointPrefix(d, v, "carrier_endpoint_prefix")
 		if err != nil {
 			return &obj, err
@@ -3363,7 +3363,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("carrier_endpoint_prefix_range_max"); ok {
+	if v, ok := d.GetOk("carrier_endpoint_prefix_range_max"); ok || d.HasChange("carrier_endpoint_prefix_range_max") {
 		t, err := expandObjectFirewallMmsProfileCarrierEndpointPrefixRangeMax(d, v, "carrier_endpoint_prefix_range_max")
 		if err != nil {
 			return &obj, err
@@ -3372,7 +3372,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("carrier_endpoint_prefix_range_min"); ok {
+	if v, ok := d.GetOk("carrier_endpoint_prefix_range_min"); ok || d.HasChange("carrier_endpoint_prefix_range_min") {
 		t, err := expandObjectFirewallMmsProfileCarrierEndpointPrefixRangeMin(d, v, "carrier_endpoint_prefix_range_min")
 		if err != nil {
 			return &obj, err
@@ -3381,7 +3381,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("carrier_endpoint_prefix_string"); ok {
+	if v, ok := d.GetOk("carrier_endpoint_prefix_string"); ok || d.HasChange("carrier_endpoint_prefix_string") {
 		t, err := expandObjectFirewallMmsProfileCarrierEndpointPrefixString(d, v, "carrier_endpoint_prefix_string")
 		if err != nil {
 			return &obj, err
@@ -3390,7 +3390,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("carrierendpointbwltable"); ok {
+	if v, ok := d.GetOk("carrierendpointbwltable"); ok || d.HasChange("carrierendpointbwltable") {
 		t, err := expandObjectFirewallMmsProfileCarrierendpointbwltable(d, v, "carrierendpointbwltable")
 		if err != nil {
 			return &obj, err
@@ -3399,7 +3399,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallMmsProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -3408,7 +3408,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("dupe"); ok {
+	if v, ok := d.GetOk("dupe"); ok || d.HasChange("dupe") {
 		t, err := expandObjectFirewallMmsProfileDupe(d, v, "dupe")
 		if err != nil {
 			return &obj, err
@@ -3417,7 +3417,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("extended_utm_log"); ok {
+	if v, ok := d.GetOk("extended_utm_log"); ok || d.HasChange("extended_utm_log") {
 		t, err := expandObjectFirewallMmsProfileExtendedUtmLog(d, v, "extended_utm_log")
 		if err != nil {
 			return &obj, err
@@ -3426,7 +3426,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("flood"); ok {
+	if v, ok := d.GetOk("flood"); ok || d.HasChange("flood") {
 		t, err := expandObjectFirewallMmsProfileFlood(d, v, "flood")
 		if err != nil {
 			return &obj, err
@@ -3435,7 +3435,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1"); ok {
+	if v, ok := d.GetOk("mm1"); ok || d.HasChange("mm1") {
 		t, err := expandObjectFirewallMmsProfileMm1(d, v, "mm1")
 		if err != nil {
 			return &obj, err
@@ -3444,7 +3444,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1_addr_hdr"); ok {
+	if v, ok := d.GetOk("mm1_addr_hdr"); ok || d.HasChange("mm1_addr_hdr") {
 		t, err := expandObjectFirewallMmsProfileMm1AddrHdr(d, v, "mm1_addr_hdr")
 		if err != nil {
 			return &obj, err
@@ -3453,7 +3453,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1_addr_source"); ok {
+	if v, ok := d.GetOk("mm1_addr_source"); ok || d.HasChange("mm1_addr_source") {
 		t, err := expandObjectFirewallMmsProfileMm1AddrSource(d, v, "mm1_addr_source")
 		if err != nil {
 			return &obj, err
@@ -3462,7 +3462,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1_convert_hex"); ok {
+	if v, ok := d.GetOk("mm1_convert_hex"); ok || d.HasChange("mm1_convert_hex") {
 		t, err := expandObjectFirewallMmsProfileMm1ConvertHex(d, v, "mm1_convert_hex")
 		if err != nil {
 			return &obj, err
@@ -3471,7 +3471,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1_outbreak_prevention"); ok {
+	if v, ok := d.GetOk("mm1_outbreak_prevention"); ok || d.HasChange("mm1_outbreak_prevention") {
 		t, err := expandObjectFirewallMmsProfileMm1OutbreakPrevention(d, v, "mm1_outbreak_prevention")
 		if err != nil {
 			return &obj, err
@@ -3480,7 +3480,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1_retr_dupe"); ok {
+	if v, ok := d.GetOk("mm1_retr_dupe"); ok || d.HasChange("mm1_retr_dupe") {
 		t, err := expandObjectFirewallMmsProfileMm1RetrDupe(d, v, "mm1_retr_dupe")
 		if err != nil {
 			return &obj, err
@@ -3489,7 +3489,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1_retrieve_scan"); ok {
+	if v, ok := d.GetOk("mm1_retrieve_scan"); ok || d.HasChange("mm1_retrieve_scan") {
 		t, err := expandObjectFirewallMmsProfileMm1RetrieveScan(d, v, "mm1_retrieve_scan")
 		if err != nil {
 			return &obj, err
@@ -3498,7 +3498,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1comfortamount"); ok {
+	if v, ok := d.GetOk("mm1comfortamount"); ok || d.HasChange("mm1comfortamount") {
 		t, err := expandObjectFirewallMmsProfileMm1Comfortamount(d, v, "mm1comfortamount")
 		if err != nil {
 			return &obj, err
@@ -3507,7 +3507,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1comfortinterval"); ok {
+	if v, ok := d.GetOk("mm1comfortinterval"); ok || d.HasChange("mm1comfortinterval") {
 		t, err := expandObjectFirewallMmsProfileMm1Comfortinterval(d, v, "mm1comfortinterval")
 		if err != nil {
 			return &obj, err
@@ -3516,7 +3516,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm1oversizelimit"); ok {
+	if v, ok := d.GetOk("mm1oversizelimit"); ok || d.HasChange("mm1oversizelimit") {
 		t, err := expandObjectFirewallMmsProfileMm1Oversizelimit(d, v, "mm1oversizelimit")
 		if err != nil {
 			return &obj, err
@@ -3525,7 +3525,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm3"); ok {
+	if v, ok := d.GetOk("mm3"); ok || d.HasChange("mm3") {
 		t, err := expandObjectFirewallMmsProfileMm3(d, v, "mm3")
 		if err != nil {
 			return &obj, err
@@ -3534,7 +3534,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm3_outbreak_prevention"); ok {
+	if v, ok := d.GetOk("mm3_outbreak_prevention"); ok || d.HasChange("mm3_outbreak_prevention") {
 		t, err := expandObjectFirewallMmsProfileMm3OutbreakPrevention(d, v, "mm3_outbreak_prevention")
 		if err != nil {
 			return &obj, err
@@ -3543,7 +3543,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm3oversizelimit"); ok {
+	if v, ok := d.GetOk("mm3oversizelimit"); ok || d.HasChange("mm3oversizelimit") {
 		t, err := expandObjectFirewallMmsProfileMm3Oversizelimit(d, v, "mm3oversizelimit")
 		if err != nil {
 			return &obj, err
@@ -3552,7 +3552,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm4"); ok {
+	if v, ok := d.GetOk("mm4"); ok || d.HasChange("mm4") {
 		t, err := expandObjectFirewallMmsProfileMm4(d, v, "mm4")
 		if err != nil {
 			return &obj, err
@@ -3561,7 +3561,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm4_outbreak_prevention"); ok {
+	if v, ok := d.GetOk("mm4_outbreak_prevention"); ok || d.HasChange("mm4_outbreak_prevention") {
 		t, err := expandObjectFirewallMmsProfileMm4OutbreakPrevention(d, v, "mm4_outbreak_prevention")
 		if err != nil {
 			return &obj, err
@@ -3570,7 +3570,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm4oversizelimit"); ok {
+	if v, ok := d.GetOk("mm4oversizelimit"); ok || d.HasChange("mm4oversizelimit") {
 		t, err := expandObjectFirewallMmsProfileMm4Oversizelimit(d, v, "mm4oversizelimit")
 		if err != nil {
 			return &obj, err
@@ -3579,7 +3579,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7"); ok {
+	if v, ok := d.GetOk("mm7"); ok || d.HasChange("mm7") {
 		t, err := expandObjectFirewallMmsProfileMm7(d, v, "mm7")
 		if err != nil {
 			return &obj, err
@@ -3588,7 +3588,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7_addr_hdr"); ok {
+	if v, ok := d.GetOk("mm7_addr_hdr"); ok || d.HasChange("mm7_addr_hdr") {
 		t, err := expandObjectFirewallMmsProfileMm7AddrHdr(d, v, "mm7_addr_hdr")
 		if err != nil {
 			return &obj, err
@@ -3597,7 +3597,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7_addr_source"); ok {
+	if v, ok := d.GetOk("mm7_addr_source"); ok || d.HasChange("mm7_addr_source") {
 		t, err := expandObjectFirewallMmsProfileMm7AddrSource(d, v, "mm7_addr_source")
 		if err != nil {
 			return &obj, err
@@ -3606,7 +3606,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7_convert_hex"); ok {
+	if v, ok := d.GetOk("mm7_convert_hex"); ok || d.HasChange("mm7_convert_hex") {
 		t, err := expandObjectFirewallMmsProfileMm7ConvertHex(d, v, "mm7_convert_hex")
 		if err != nil {
 			return &obj, err
@@ -3615,7 +3615,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7_outbreak_prevention"); ok {
+	if v, ok := d.GetOk("mm7_outbreak_prevention"); ok || d.HasChange("mm7_outbreak_prevention") {
 		t, err := expandObjectFirewallMmsProfileMm7OutbreakPrevention(d, v, "mm7_outbreak_prevention")
 		if err != nil {
 			return &obj, err
@@ -3624,7 +3624,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7comfortamount"); ok {
+	if v, ok := d.GetOk("mm7comfortamount"); ok || d.HasChange("mm7comfortamount") {
 		t, err := expandObjectFirewallMmsProfileMm7Comfortamount(d, v, "mm7comfortamount")
 		if err != nil {
 			return &obj, err
@@ -3633,7 +3633,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7comfortinterval"); ok {
+	if v, ok := d.GetOk("mm7comfortinterval"); ok || d.HasChange("mm7comfortinterval") {
 		t, err := expandObjectFirewallMmsProfileMm7Comfortinterval(d, v, "mm7comfortinterval")
 		if err != nil {
 			return &obj, err
@@ -3642,7 +3642,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mm7oversizelimit"); ok {
+	if v, ok := d.GetOk("mm7oversizelimit"); ok || d.HasChange("mm7oversizelimit") {
 		t, err := expandObjectFirewallMmsProfileMm7Oversizelimit(d, v, "mm7oversizelimit")
 		if err != nil {
 			return &obj, err
@@ -3651,7 +3651,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_antispam_mass_log"); ok {
+	if v, ok := d.GetOk("mms_antispam_mass_log"); ok || d.HasChange("mms_antispam_mass_log") {
 		t, err := expandObjectFirewallMmsProfileMmsAntispamMassLog(d, v, "mms_antispam_mass_log")
 		if err != nil {
 			return &obj, err
@@ -3660,7 +3660,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_av_block_log"); ok {
+	if v, ok := d.GetOk("mms_av_block_log"); ok || d.HasChange("mms_av_block_log") {
 		t, err := expandObjectFirewallMmsProfileMmsAvBlockLog(d, v, "mms_av_block_log")
 		if err != nil {
 			return &obj, err
@@ -3669,7 +3669,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_av_oversize_log"); ok {
+	if v, ok := d.GetOk("mms_av_oversize_log"); ok || d.HasChange("mms_av_oversize_log") {
 		t, err := expandObjectFirewallMmsProfileMmsAvOversizeLog(d, v, "mms_av_oversize_log")
 		if err != nil {
 			return &obj, err
@@ -3678,7 +3678,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_av_virus_log"); ok {
+	if v, ok := d.GetOk("mms_av_virus_log"); ok || d.HasChange("mms_av_virus_log") {
 		t, err := expandObjectFirewallMmsProfileMmsAvVirusLog(d, v, "mms_av_virus_log")
 		if err != nil {
 			return &obj, err
@@ -3687,7 +3687,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_carrier_endpoint_filter_log"); ok {
+	if v, ok := d.GetOk("mms_carrier_endpoint_filter_log"); ok || d.HasChange("mms_carrier_endpoint_filter_log") {
 		t, err := expandObjectFirewallMmsProfileMmsCarrierEndpointFilterLog(d, v, "mms_carrier_endpoint_filter_log")
 		if err != nil {
 			return &obj, err
@@ -3696,7 +3696,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_checksum_log"); ok {
+	if v, ok := d.GetOk("mms_checksum_log"); ok || d.HasChange("mms_checksum_log") {
 		t, err := expandObjectFirewallMmsProfileMmsChecksumLog(d, v, "mms_checksum_log")
 		if err != nil {
 			return &obj, err
@@ -3705,7 +3705,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_checksum_table"); ok {
+	if v, ok := d.GetOk("mms_checksum_table"); ok || d.HasChange("mms_checksum_table") {
 		t, err := expandObjectFirewallMmsProfileMmsChecksumTable(d, v, "mms_checksum_table")
 		if err != nil {
 			return &obj, err
@@ -3714,7 +3714,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_notification_log"); ok {
+	if v, ok := d.GetOk("mms_notification_log"); ok || d.HasChange("mms_notification_log") {
 		t, err := expandObjectFirewallMmsProfileMmsNotificationLog(d, v, "mms_notification_log")
 		if err != nil {
 			return &obj, err
@@ -3723,7 +3723,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mms_web_content_log"); ok {
+	if v, ok := d.GetOk("mms_web_content_log"); ok || d.HasChange("mms_web_content_log") {
 		t, err := expandObjectFirewallMmsProfileMmsWebContentLog(d, v, "mms_web_content_log")
 		if err != nil {
 			return &obj, err
@@ -3732,7 +3732,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("mmsbwordthreshold"); ok {
+	if v, ok := d.GetOk("mmsbwordthreshold"); ok || d.HasChange("mmsbwordthreshold") {
 		t, err := expandObjectFirewallMmsProfileMmsbwordthreshold(d, v, "mmsbwordthreshold")
 		if err != nil {
 			return &obj, err
@@ -3741,7 +3741,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallMmsProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -3750,7 +3750,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("notif_msisdn"); ok {
+	if v, ok := d.GetOk("notif_msisdn"); ok || d.HasChange("notif_msisdn") {
 		t, err := expandObjectFirewallMmsProfileNotifMsisdn(d, v, "notif_msisdn")
 		if err != nil {
 			return &obj, err
@@ -3759,7 +3759,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("notification"); ok {
+	if v, ok := d.GetOk("notification"); ok || d.HasChange("notification") {
 		t, err := expandObjectFirewallMmsProfileNotification(d, v, "notification")
 		if err != nil {
 			return &obj, err
@@ -3768,7 +3768,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention"); ok {
+	if v, ok := d.GetOk("outbreak_prevention"); ok || d.HasChange("outbreak_prevention") {
 		t, err := expandObjectFirewallMmsProfileOutbreakPrevention(d, v, "outbreak_prevention")
 		if err != nil {
 			return &obj, err
@@ -3777,7 +3777,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("remove_blocked_const_length"); ok {
+	if v, ok := d.GetOk("remove_blocked_const_length"); ok || d.HasChange("remove_blocked_const_length") {
 		t, err := expandObjectFirewallMmsProfileRemoveBlockedConstLength(d, v, "remove_blocked_const_length")
 		if err != nil {
 			return &obj, err
@@ -3786,7 +3786,7 @@ func getObjectObjectFirewallMmsProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectFirewallMmsProfileReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err

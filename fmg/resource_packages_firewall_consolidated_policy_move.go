@@ -246,7 +246,7 @@ func expandPackagesFirewallConsolidatedPolicyMoveOption(d *schema.ResourceData, 
 func getObjectPackagesFirewallConsolidatedPolicyMove(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("target"); ok {
+	if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
 		t, err := expandPackagesFirewallConsolidatedPolicyMoveTarget(d, v, "target")
 		if err != nil {
 			return &obj, err
@@ -255,7 +255,7 @@ func getObjectPackagesFirewallConsolidatedPolicyMove(d *schema.ResourceData) (*m
 		}
 	}
 
-	if v, ok := d.GetOk("option"); ok {
+	if v, ok := d.GetOk("option"); ok || d.HasChange("option") {
 		t, err := expandPackagesFirewallConsolidatedPolicyMoveOption(d, v, "option")
 		if err != nil {
 			return &obj, err

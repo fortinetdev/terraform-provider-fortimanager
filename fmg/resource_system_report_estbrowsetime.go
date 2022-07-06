@@ -162,7 +162,7 @@ func expandSystemReportEstBrowseTimeStatus(d *schema.ResourceData, v interface{}
 func getObjectSystemReportEstBrowseTime(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("max_read_time"); ok {
+	if v, ok := d.GetOk("max_read_time"); ok || d.HasChange("max_read_time") {
 		t, err := expandSystemReportEstBrowseTimeMaxReadTime(d, v, "max_read_time")
 		if err != nil {
 			return &obj, err
@@ -171,7 +171,7 @@ func getObjectSystemReportEstBrowseTime(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemReportEstBrowseTimeStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

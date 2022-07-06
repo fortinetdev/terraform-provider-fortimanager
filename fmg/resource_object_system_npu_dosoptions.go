@@ -217,7 +217,7 @@ func expandObjectSystemNpuDosOptionsNpuDosTpeMode(d *schema.ResourceData, v inte
 func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("npu_dos_meter_mode"); ok {
+	if v, ok := d.GetOk("npu_dos_meter_mode"); ok || d.HasChange("npu_dos_meter_mode") {
 		t, err := expandObjectSystemNpuDosOptionsNpuDosMeterMode(d, v, "npu_dos_meter_mode")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("npu_dos_synproxy_mode"); ok {
+	if v, ok := d.GetOk("npu_dos_synproxy_mode"); ok || d.HasChange("npu_dos_synproxy_mode") {
 		t, err := expandObjectSystemNpuDosOptionsNpuDosSynproxyMode(d, v, "npu_dos_synproxy_mode")
 		if err != nil {
 			return &obj, err
@@ -235,7 +235,7 @@ func getObjectObjectSystemNpuDosOptions(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
-	if v, ok := d.GetOk("npu_dos_tpe_mode"); ok {
+	if v, ok := d.GetOk("npu_dos_tpe_mode"); ok || d.HasChange("npu_dos_tpe_mode") {
 		t, err := expandObjectSystemNpuDosOptionsNpuDosTpeMode(d, v, "npu_dos_tpe_mode")
 		if err != nil {
 			return &obj, err

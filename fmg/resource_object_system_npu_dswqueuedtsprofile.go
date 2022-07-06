@@ -290,7 +290,7 @@ func expandObjectSystemNpuDswQueueDtsProfileQueueSelect(d *schema.ResourceData, 
 func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("iport"); ok {
+	if v, ok := d.GetOk("iport"); ok || d.HasChange("iport") {
 		t, err := expandObjectSystemNpuDswQueueDtsProfileIport(d, v, "iport")
 		if err != nil {
 			return &obj, err
@@ -299,7 +299,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemNpuDswQueueDtsProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -308,7 +308,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("oport"); ok {
+	if v, ok := d.GetOk("oport"); ok || d.HasChange("oport") {
 		t, err := expandObjectSystemNpuDswQueueDtsProfileOport(d, v, "oport")
 		if err != nil {
 			return &obj, err
@@ -317,7 +317,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("profile_id"); ok {
+	if v, ok := d.GetOk("profile_id"); ok || d.HasChange("profile_id") {
 		t, err := expandObjectSystemNpuDswQueueDtsProfileProfileId(d, v, "profile_id")
 		if err != nil {
 			return &obj, err
@@ -326,7 +326,7 @@ func getObjectObjectSystemNpuDswQueueDtsProfile(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("queue_select"); ok {
+	if v, ok := d.GetOk("queue_select"); ok || d.HasChange("queue_select") {
 		t, err := expandObjectSystemNpuDswQueueDtsProfileQueueSelect(d, v, "queue_select")
 		if err != nil {
 			return &obj, err

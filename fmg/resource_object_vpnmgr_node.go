@@ -1757,12 +1757,12 @@ func expandObjectVpnmgrNodeScopeMember(d *schema.ResourceData, v interface{}, pr
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectVpnmgrNodeScopeMemberName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectVpnmgrNodeScopeMemberVdom(d, i["vdom"], pre_append)
 		}
 
@@ -1893,17 +1893,17 @@ func expandObjectVpnmgrNodeIpRange(d *schema.ResourceData, v interface{}, pre st
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectVpnmgrNodeIpRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectVpnmgrNodeIpRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectVpnmgrNodeIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -1962,17 +1962,17 @@ func expandObjectVpnmgrNodeIpv4ExcludeRange(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectVpnmgrNodeIpv4ExcludeRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectVpnmgrNodeIpv4ExcludeRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectVpnmgrNodeIpv4ExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -2075,12 +2075,12 @@ func expandObjectVpnmgrNodeProtectedSubnet(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr"], _ = expandObjectVpnmgrNodeProtectedSubnetAddr(d, i["addr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["seq"], _ = expandObjectVpnmgrNodeProtectedSubnetSeq(d, i["seq"], pre_append)
 		}
 
@@ -2131,17 +2131,17 @@ func expandObjectVpnmgrNodeSummaryAddr(d *schema.ResourceData, v interface{}, pr
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr"], _ = expandObjectVpnmgrNodeSummaryAddrAddr(d, i["addr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectVpnmgrNodeSummaryAddrPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["seq"], _ = expandObjectVpnmgrNodeSummaryAddrSeq(d, i["seq"], pre_append)
 		}
 
@@ -2196,7 +2196,7 @@ func expandObjectVpnmgrNodeXauthtype(d *schema.ResourceData, v interface{}, pre 
 func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("scopemember"); ok {
+	if v, ok := d.GetOk("scopemember"); ok || d.HasChange("scopemember") {
 		t, err := expandObjectVpnmgrNodeScopeMember(d, v, "scopemember")
 		if err != nil {
 			return &obj, err
@@ -2205,7 +2205,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("add_route"); ok {
+	if v, ok := d.GetOk("add_route"); ok || d.HasChange("add_route") {
 		t, err := expandObjectVpnmgrNodeAddRoute(d, v, "add_route")
 		if err != nil {
 			return &obj, err
@@ -2214,7 +2214,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("assign_ip"); ok {
+	if v, ok := d.GetOk("assign_ip"); ok || d.HasChange("assign_ip") {
 		t, err := expandObjectVpnmgrNodeAssignIp(d, v, "assign_ip")
 		if err != nil {
 			return &obj, err
@@ -2223,7 +2223,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("assign_ip_from"); ok {
+	if v, ok := d.GetOk("assign_ip_from"); ok || d.HasChange("assign_ip_from") {
 		t, err := expandObjectVpnmgrNodeAssignIpFrom(d, v, "assign_ip_from")
 		if err != nil {
 			return &obj, err
@@ -2232,7 +2232,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("authpasswd"); ok {
+	if v, ok := d.GetOk("authpasswd"); ok || d.HasChange("authpasswd") {
 		t, err := expandObjectVpnmgrNodeAuthpasswd(d, v, "authpasswd")
 		if err != nil {
 			return &obj, err
@@ -2241,7 +2241,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("authusr"); ok {
+	if v, ok := d.GetOk("authusr"); ok || d.HasChange("authusr") {
 		t, err := expandObjectVpnmgrNodeAuthusr(d, v, "authusr")
 		if err != nil {
 			return &obj, err
@@ -2250,7 +2250,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("authusrgrp"); ok {
+	if v, ok := d.GetOk("authusrgrp"); ok || d.HasChange("authusrgrp") {
 		t, err := expandObjectVpnmgrNodeAuthusrgrp(d, v, "authusrgrp")
 		if err != nil {
 			return &obj, err
@@ -2259,7 +2259,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("auto_configuration"); ok {
+	if v, ok := d.GetOk("auto_configuration"); ok || d.HasChange("auto_configuration") {
 		t, err := expandObjectVpnmgrNodeAutoConfiguration(d, v, "auto_configuration")
 		if err != nil {
 			return &obj, err
@@ -2268,7 +2268,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("automatic_routing"); ok {
+	if v, ok := d.GetOk("automatic_routing"); ok || d.HasChange("automatic_routing") {
 		t, err := expandObjectVpnmgrNodeAutomaticRouting(d, v, "automatic_routing")
 		if err != nil {
 			return &obj, err
@@ -2277,7 +2277,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("banner"); ok {
+	if v, ok := d.GetOk("banner"); ok || d.HasChange("banner") {
 		t, err := expandObjectVpnmgrNodeBanner(d, v, "banner")
 		if err != nil {
 			return &obj, err
@@ -2286,7 +2286,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("default_gateway"); ok {
+	if v, ok := d.GetOk("default_gateway"); ok || d.HasChange("default_gateway") {
 		t, err := expandObjectVpnmgrNodeDefaultGateway(d, v, "default_gateway")
 		if err != nil {
 			return &obj, err
@@ -2295,7 +2295,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_server"); ok {
+	if v, ok := d.GetOk("dhcp_server"); ok || d.HasChange("dhcp_server") {
 		t, err := expandObjectVpnmgrNodeDhcpServer(d, v, "dhcp_server")
 		if err != nil {
 			return &obj, err
@@ -2304,7 +2304,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("dns_mode"); ok {
+	if v, ok := d.GetOk("dns_mode"); ok || d.HasChange("dns_mode") {
 		t, err := expandObjectVpnmgrNodeDnsMode(d, v, "dns_mode")
 		if err != nil {
 			return &obj, err
@@ -2313,7 +2313,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("dns_service"); ok {
+	if v, ok := d.GetOk("dns_service"); ok || d.HasChange("dns_service") {
 		t, err := expandObjectVpnmgrNodeDnsService(d, v, "dns_service")
 		if err != nil {
 			return &obj, err
@@ -2322,7 +2322,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("domain"); ok {
+	if v, ok := d.GetOk("domain"); ok || d.HasChange("domain") {
 		t, err := expandObjectVpnmgrNodeDomain(d, v, "domain")
 		if err != nil {
 			return &obj, err
@@ -2331,7 +2331,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("encapsulation"); ok {
+	if v, ok := d.GetOk("encapsulation"); ok || d.HasChange("encapsulation") {
 		t, err := expandObjectVpnmgrNodeEncapsulation(d, v, "encapsulation")
 		if err != nil {
 			return &obj, err
@@ -2340,7 +2340,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("exchange_interface_ip"); ok {
+	if v, ok := d.GetOk("exchange_interface_ip"); ok || d.HasChange("exchange_interface_ip") {
 		t, err := expandObjectVpnmgrNodeExchangeInterfaceIp(d, v, "exchange_interface_ip")
 		if err != nil {
 			return &obj, err
@@ -2349,7 +2349,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("extgw"); ok {
+	if v, ok := d.GetOk("extgw"); ok || d.HasChange("extgw") {
 		t, err := expandObjectVpnmgrNodeExtgw(d, v, "extgw")
 		if err != nil {
 			return &obj, err
@@ -2358,7 +2358,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("extgw_hubip"); ok {
+	if v, ok := d.GetOk("extgw_hubip"); ok || d.HasChange("extgw_hubip") {
 		t, err := expandObjectVpnmgrNodeExtgwHubip(d, v, "extgw_hubip")
 		if err != nil {
 			return &obj, err
@@ -2367,7 +2367,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("extgw_p2_per_net"); ok {
+	if v, ok := d.GetOk("extgw_p2_per_net"); ok || d.HasChange("extgw_p2_per_net") {
 		t, err := expandObjectVpnmgrNodeExtgwP2PerNet(d, v, "extgw_p2_per_net")
 		if err != nil {
 			return &obj, err
@@ -2376,7 +2376,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("extgwip"); ok {
+	if v, ok := d.GetOk("extgwip"); ok || d.HasChange("extgwip") {
 		t, err := expandObjectVpnmgrNodeExtgwip(d, v, "extgwip")
 		if err != nil {
 			return &obj, err
@@ -2385,7 +2385,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("hub_public_ip"); ok {
+	if v, ok := d.GetOk("hub_public_ip"); ok || d.HasChange("hub_public_ip") {
 		t, err := expandObjectVpnmgrNodeHubPublicIp(d, v, "hub_public_ip")
 		if err != nil {
 			return &obj, err
@@ -2394,7 +2394,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("hub_iface"); ok {
+	if v, ok := d.GetOk("hub_iface"); ok || d.HasChange("hub_iface") {
 		t, err := expandObjectVpnmgrNodeHubIface(d, v, "hub_iface")
 		if err != nil {
 			return &obj, err
@@ -2403,7 +2403,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectVpnmgrNodeId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -2412,7 +2412,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("iface"); ok {
+	if v, ok := d.GetOk("iface"); ok || d.HasChange("iface") {
 		t, err := expandObjectVpnmgrNodeIface(d, v, "iface")
 		if err != nil {
 			return &obj, err
@@ -2421,7 +2421,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ip_range"); ok {
+	if v, ok := d.GetOk("ip_range"); ok || d.HasChange("ip_range") {
 		t, err := expandObjectVpnmgrNodeIpRange(d, v, "ip_range")
 		if err != nil {
 			return &obj, err
@@ -2430,7 +2430,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_lease_hold"); ok {
+	if v, ok := d.GetOk("ipsec_lease_hold"); ok || d.HasChange("ipsec_lease_hold") {
 		t, err := expandObjectVpnmgrNodeIpsecLeaseHold(d, v, "ipsec_lease_hold")
 		if err != nil {
 			return &obj, err
@@ -2439,7 +2439,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_dns_server1"); ok {
+	if v, ok := d.GetOk("ipv4_dns_server1"); ok || d.HasChange("ipv4_dns_server1") {
 		t, err := expandObjectVpnmgrNodeIpv4DnsServer1(d, v, "ipv4_dns_server1")
 		if err != nil {
 			return &obj, err
@@ -2448,7 +2448,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_dns_server2"); ok {
+	if v, ok := d.GetOk("ipv4_dns_server2"); ok || d.HasChange("ipv4_dns_server2") {
 		t, err := expandObjectVpnmgrNodeIpv4DnsServer2(d, v, "ipv4_dns_server2")
 		if err != nil {
 			return &obj, err
@@ -2457,7 +2457,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_dns_server3"); ok {
+	if v, ok := d.GetOk("ipv4_dns_server3"); ok || d.HasChange("ipv4_dns_server3") {
 		t, err := expandObjectVpnmgrNodeIpv4DnsServer3(d, v, "ipv4_dns_server3")
 		if err != nil {
 			return &obj, err
@@ -2466,7 +2466,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_end_ip"); ok {
+	if v, ok := d.GetOk("ipv4_end_ip"); ok || d.HasChange("ipv4_end_ip") {
 		t, err := expandObjectVpnmgrNodeIpv4EndIp(d, v, "ipv4_end_ip")
 		if err != nil {
 			return &obj, err
@@ -2475,7 +2475,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_exclude_range"); ok {
+	if v, ok := d.GetOk("ipv4_exclude_range"); ok || d.HasChange("ipv4_exclude_range") {
 		t, err := expandObjectVpnmgrNodeIpv4ExcludeRange(d, v, "ipv4_exclude_range")
 		if err != nil {
 			return &obj, err
@@ -2484,7 +2484,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_netmask"); ok {
+	if v, ok := d.GetOk("ipv4_netmask"); ok || d.HasChange("ipv4_netmask") {
 		t, err := expandObjectVpnmgrNodeIpv4Netmask(d, v, "ipv4_netmask")
 		if err != nil {
 			return &obj, err
@@ -2493,7 +2493,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_split_exclude"); ok {
+	if v, ok := d.GetOk("ipv4_split_exclude"); ok || d.HasChange("ipv4_split_exclude") {
 		t, err := expandObjectVpnmgrNodeIpv4SplitExclude(d, v, "ipv4_split_exclude")
 		if err != nil {
 			return &obj, err
@@ -2502,7 +2502,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_split_include"); ok {
+	if v, ok := d.GetOk("ipv4_split_include"); ok || d.HasChange("ipv4_split_include") {
 		t, err := expandObjectVpnmgrNodeIpv4SplitInclude(d, v, "ipv4_split_include")
 		if err != nil {
 			return &obj, err
@@ -2511,7 +2511,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_start_ip"); ok {
+	if v, ok := d.GetOk("ipv4_start_ip"); ok || d.HasChange("ipv4_start_ip") {
 		t, err := expandObjectVpnmgrNodeIpv4StartIp(d, v, "ipv4_start_ip")
 		if err != nil {
 			return &obj, err
@@ -2520,7 +2520,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_wins_server1"); ok {
+	if v, ok := d.GetOk("ipv4_wins_server1"); ok || d.HasChange("ipv4_wins_server1") {
 		t, err := expandObjectVpnmgrNodeIpv4WinsServer1(d, v, "ipv4_wins_server1")
 		if err != nil {
 			return &obj, err
@@ -2529,7 +2529,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_wins_server2"); ok {
+	if v, ok := d.GetOk("ipv4_wins_server2"); ok || d.HasChange("ipv4_wins_server2") {
 		t, err := expandObjectVpnmgrNodeIpv4WinsServer2(d, v, "ipv4_wins_server2")
 		if err != nil {
 			return &obj, err
@@ -2538,7 +2538,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("l2tp"); ok {
+	if v, ok := d.GetOk("l2tp"); ok || d.HasChange("l2tp") {
 		t, err := expandObjectVpnmgrNodeL2Tp(d, v, "l2tp")
 		if err != nil {
 			return &obj, err
@@ -2547,7 +2547,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("local_gw"); ok {
+	if v, ok := d.GetOk("local_gw"); ok || d.HasChange("local_gw") {
 		t, err := expandObjectVpnmgrNodeLocalGw(d, v, "local_gw")
 		if err != nil {
 			return &obj, err
@@ -2556,7 +2556,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("localid"); ok {
+	if v, ok := d.GetOk("localid"); ok || d.HasChange("localid") {
 		t, err := expandObjectVpnmgrNodeLocalid(d, v, "localid")
 		if err != nil {
 			return &obj, err
@@ -2565,7 +2565,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("mode_cfg"); ok {
+	if v, ok := d.GetOk("mode_cfg"); ok || d.HasChange("mode_cfg") {
 		t, err := expandObjectVpnmgrNodeModeCfg(d, v, "mode_cfg")
 		if err != nil {
 			return &obj, err
@@ -2574,7 +2574,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("mode_cfg_ip_version"); ok {
+	if v, ok := d.GetOk("mode_cfg_ip_version"); ok || d.HasChange("mode_cfg_ip_version") {
 		t, err := expandObjectVpnmgrNodeModeCfgIpVersion(d, v, "mode_cfg_ip_version")
 		if err != nil {
 			return &obj, err
@@ -2583,7 +2583,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("net_device"); ok {
+	if v, ok := d.GetOk("net_device"); ok || d.HasChange("net_device") {
 		t, err := expandObjectVpnmgrNodeNetDevice(d, v, "net_device")
 		if err != nil {
 			return &obj, err
@@ -2592,7 +2592,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("peer"); ok {
+	if v, ok := d.GetOk("peer"); ok || d.HasChange("peer") {
 		t, err := expandObjectVpnmgrNodePeer(d, v, "peer")
 		if err != nil {
 			return &obj, err
@@ -2601,7 +2601,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("peergrp"); ok {
+	if v, ok := d.GetOk("peergrp"); ok || d.HasChange("peergrp") {
 		t, err := expandObjectVpnmgrNodePeergrp(d, v, "peergrp")
 		if err != nil {
 			return &obj, err
@@ -2610,7 +2610,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("peerid"); ok {
+	if v, ok := d.GetOk("peerid"); ok || d.HasChange("peerid") {
 		t, err := expandObjectVpnmgrNodePeerid(d, v, "peerid")
 		if err != nil {
 			return &obj, err
@@ -2619,7 +2619,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("peertype"); ok {
+	if v, ok := d.GetOk("peertype"); ok || d.HasChange("peertype") {
 		t, err := expandObjectVpnmgrNodePeertype(d, v, "peertype")
 		if err != nil {
 			return &obj, err
@@ -2628,7 +2628,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("protected_subnet"); ok {
+	if v, ok := d.GetOk("protected_subnet"); ok || d.HasChange("protected_subnet") {
 		t, err := expandObjectVpnmgrNodeProtectedSubnet(d, v, "protected_subnet")
 		if err != nil {
 			return &obj, err
@@ -2637,7 +2637,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("public_ip"); ok {
+	if v, ok := d.GetOk("public_ip"); ok || d.HasChange("public_ip") {
 		t, err := expandObjectVpnmgrNodePublicIp(d, v, "public_ip")
 		if err != nil {
 			return &obj, err
@@ -2646,7 +2646,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("role"); ok {
+	if v, ok := d.GetOk("role"); ok || d.HasChange("role") {
 		t, err := expandObjectVpnmgrNodeRole(d, v, "role")
 		if err != nil {
 			return &obj, err
@@ -2655,7 +2655,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("route_overlap"); ok {
+	if v, ok := d.GetOk("route_overlap"); ok || d.HasChange("route_overlap") {
 		t, err := expandObjectVpnmgrNodeRouteOverlap(d, v, "route_overlap")
 		if err != nil {
 			return &obj, err
@@ -2664,7 +2664,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("spoke_zone"); ok {
+	if v, ok := d.GetOk("spoke_zone"); ok || d.HasChange("spoke_zone") {
 		t, err := expandObjectVpnmgrNodeSpokeZone(d, v, "spoke_zone")
 		if err != nil {
 			return &obj, err
@@ -2673,7 +2673,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("summary_addr"); ok {
+	if v, ok := d.GetOk("summary_addr"); ok || d.HasChange("summary_addr") {
 		t, err := expandObjectVpnmgrNodeSummaryAddr(d, v, "summary_addr")
 		if err != nil {
 			return &obj, err
@@ -2682,7 +2682,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("tunnel_search"); ok {
+	if v, ok := d.GetOk("tunnel_search"); ok || d.HasChange("tunnel_search") {
 		t, err := expandObjectVpnmgrNodeTunnelSearch(d, v, "tunnel_search")
 		if err != nil {
 			return &obj, err
@@ -2691,7 +2691,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("unity_support"); ok {
+	if v, ok := d.GetOk("unity_support"); ok || d.HasChange("unity_support") {
 		t, err := expandObjectVpnmgrNodeUnitySupport(d, v, "unity_support")
 		if err != nil {
 			return &obj, err
@@ -2700,7 +2700,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("usrgrp"); ok {
+	if v, ok := d.GetOk("usrgrp"); ok || d.HasChange("usrgrp") {
 		t, err := expandObjectVpnmgrNodeUsrgrp(d, v, "usrgrp")
 		if err != nil {
 			return &obj, err
@@ -2709,7 +2709,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("vpn_interface_priority"); ok {
+	if v, ok := d.GetOk("vpn_interface_priority"); ok || d.HasChange("vpn_interface_priority") {
 		t, err := expandObjectVpnmgrNodeVpnInterfacePriority(d, v, "vpn_interface_priority")
 		if err != nil {
 			return &obj, err
@@ -2718,7 +2718,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("vpn_zone"); ok {
+	if v, ok := d.GetOk("vpn_zone"); ok || d.HasChange("vpn_zone") {
 		t, err := expandObjectVpnmgrNodeVpnZone(d, v, "vpn_zone")
 		if err != nil {
 			return &obj, err
@@ -2727,7 +2727,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("vpntable"); ok {
+	if v, ok := d.GetOk("vpntable"); ok || d.HasChange("vpntable") {
 		t, err := expandObjectVpnmgrNodeVpntable(d, v, "vpntable")
 		if err != nil {
 			return &obj, err
@@ -2736,7 +2736,7 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
-	if v, ok := d.GetOk("xauthtype"); ok {
+	if v, ok := d.GetOk("xauthtype"); ok || d.HasChange("xauthtype") {
 		t, err := expandObjectVpnmgrNodeXauthtype(d, v, "xauthtype")
 		if err != nil {
 			return &obj, err

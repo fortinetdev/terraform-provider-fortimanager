@@ -268,12 +268,12 @@ func expandSecurityconsoleInstallDeviceScope(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSecurityconsoleInstallDeviceScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandSecurityconsoleInstallDeviceScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -296,7 +296,7 @@ func expandSecurityconsoleInstallDeviceScopeVdom(d *schema.ResourceData, v inter
 func getObjectSecurityconsoleInstallDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsoleInstallDeviceAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -305,7 +305,7 @@ func getObjectSecurityconsoleInstallDevice(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("dev_rev_comments"); ok {
+	if v, ok := d.GetOk("dev_rev_comments"); ok || d.HasChange("dev_rev_comments") {
 		t, err := expandSecurityconsoleInstallDeviceDevRevComments(d, v, "dev_rev_comments")
 		if err != nil {
 			return &obj, err
@@ -314,7 +314,7 @@ func getObjectSecurityconsoleInstallDevice(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("flags"); ok {
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
 		t, err := expandSecurityconsoleInstallDeviceFlags(d, v, "flags")
 		if err != nil {
 			return &obj, err
@@ -323,7 +323,7 @@ func getObjectSecurityconsoleInstallDevice(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("scope"); ok {
+	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
 		t, err := expandSecurityconsoleInstallDeviceScope(d, v, "scope")
 		if err != nil {
 			return &obj, err

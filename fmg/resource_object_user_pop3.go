@@ -290,7 +290,7 @@ func expandObjectUserPop3SslMinProtoVersion(d *schema.ResourceData, v interface{
 func getObjectObjectUserPop3(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserPop3Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -299,7 +299,7 @@ func getObjectObjectUserPop3(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectUserPop3Port(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -308,7 +308,7 @@ func getObjectObjectUserPop3(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("secure"); ok {
+	if v, ok := d.GetOk("secure"); ok || d.HasChange("secure") {
 		t, err := expandObjectUserPop3Secure(d, v, "secure")
 		if err != nil {
 			return &obj, err
@@ -317,7 +317,7 @@ func getObjectObjectUserPop3(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectUserPop3Server(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -326,7 +326,7 @@ func getObjectObjectUserPop3(d *schema.ResourceData) (*map[string]interface{}, e
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_min_proto_version"); ok {
+	if v, ok := d.GetOk("ssl_min_proto_version"); ok || d.HasChange("ssl_min_proto_version") {
 		t, err := expandObjectUserPop3SslMinProtoVersion(d, v, "ssl_min_proto_version")
 		if err != nil {
 			return &obj, err

@@ -551,7 +551,7 @@ func expandPackagesFirewallMulticastPolicy6Uuid(d *schema.ResourceData, v interf
 func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("action"); ok {
+	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesFirewallMulticastPolicy6Action(d, v, "action")
 		if err != nil {
 			return &obj, err
@@ -560,7 +560,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("auto_asic_offload"); ok {
+	if v, ok := d.GetOk("auto_asic_offload"); ok || d.HasChange("auto_asic_offload") {
 		t, err := expandPackagesFirewallMulticastPolicy6AutoAsicOffload(d, v, "auto_asic_offload")
 		if err != nil {
 			return &obj, err
@@ -569,7 +569,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandPackagesFirewallMulticastPolicy6Comments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -578,7 +578,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("dstaddr"); ok {
+	if v, ok := d.GetOk("dstaddr"); ok || d.HasChange("dstaddr") {
 		t, err := expandPackagesFirewallMulticastPolicy6Dstaddr(d, v, "dstaddr")
 		if err != nil {
 			return &obj, err
@@ -587,7 +587,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("dstintf"); ok {
+	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
 		t, err := expandPackagesFirewallMulticastPolicy6Dstintf(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
@@ -596,7 +596,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("end_port"); ok {
+	if v, ok := d.GetOk("end_port"); ok || d.HasChange("end_port") {
 		t, err := expandPackagesFirewallMulticastPolicy6EndPort(d, v, "end_port")
 		if err != nil {
 			return &obj, err
@@ -605,7 +605,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandPackagesFirewallMulticastPolicy6Id(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -614,7 +614,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("logtraffic"); ok {
+	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
 		t, err := expandPackagesFirewallMulticastPolicy6Logtraffic(d, v, "logtraffic")
 		if err != nil {
 			return &obj, err
@@ -623,7 +623,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandPackagesFirewallMulticastPolicy6Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -632,7 +632,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandPackagesFirewallMulticastPolicy6Protocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -641,7 +641,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("srcaddr"); ok {
+	if v, ok := d.GetOk("srcaddr"); ok || d.HasChange("srcaddr") {
 		t, err := expandPackagesFirewallMulticastPolicy6Srcaddr(d, v, "srcaddr")
 		if err != nil {
 			return &obj, err
@@ -650,7 +650,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("srcintf"); ok {
+	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesFirewallMulticastPolicy6Srcintf(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
@@ -659,7 +659,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("start_port"); ok {
+	if v, ok := d.GetOk("start_port"); ok || d.HasChange("start_port") {
 		t, err := expandPackagesFirewallMulticastPolicy6StartPort(d, v, "start_port")
 		if err != nil {
 			return &obj, err
@@ -668,7 +668,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandPackagesFirewallMulticastPolicy6Status(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -677,7 +677,7 @@ func getObjectPackagesFirewallMulticastPolicy6(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandPackagesFirewallMulticastPolicy6Uuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

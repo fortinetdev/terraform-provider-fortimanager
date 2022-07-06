@@ -185,7 +185,7 @@ func expandSystemFortiviewSettingResolveIp(d *schema.ResourceData, v interface{}
 func getObjectSystemFortiviewSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("data_source"); ok {
+	if v, ok := d.GetOk("data_source"); ok || d.HasChange("data_source") {
 		t, err := expandSystemFortiviewSettingDataSource(d, v, "data_source")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemFortiviewSetting(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("not_scanned_apps"); ok {
+	if v, ok := d.GetOk("not_scanned_apps"); ok || d.HasChange("not_scanned_apps") {
 		t, err := expandSystemFortiviewSettingNotScannedApps(d, v, "not_scanned_apps")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectSystemFortiviewSetting(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("resolve_ip"); ok {
+	if v, ok := d.GetOk("resolve_ip"); ok || d.HasChange("resolve_ip") {
 		t, err := expandSystemFortiviewSettingResolveIp(d, v, "resolve_ip")
 		if err != nil {
 			return &obj, err

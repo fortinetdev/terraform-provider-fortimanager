@@ -244,7 +244,7 @@ func expandObjectWirelessControllerHotspot20AnqpNetworkAuthTypeUrl(d *schema.Res
 func getObjectObjectWirelessControllerHotspot20AnqpNetworkAuthType(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auth_type"); ok {
+	if v, ok := d.GetOk("auth_type"); ok || d.HasChange("auth_type") {
 		t, err := expandObjectWirelessControllerHotspot20AnqpNetworkAuthTypeAuthType(d, v, "auth_type")
 		if err != nil {
 			return &obj, err
@@ -253,7 +253,7 @@ func getObjectObjectWirelessControllerHotspot20AnqpNetworkAuthType(d *schema.Res
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20AnqpNetworkAuthTypeName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -262,7 +262,7 @@ func getObjectObjectWirelessControllerHotspot20AnqpNetworkAuthType(d *schema.Res
 		}
 	}
 
-	if v, ok := d.GetOk("url"); ok {
+	if v, ok := d.GetOk("url"); ok || d.HasChange("url") {
 		t, err := expandObjectWirelessControllerHotspot20AnqpNetworkAuthTypeUrl(d, v, "url")
 		if err != nil {
 			return &obj, err

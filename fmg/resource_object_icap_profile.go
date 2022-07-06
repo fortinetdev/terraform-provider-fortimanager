@@ -930,22 +930,22 @@ func expandObjectIcapProfileIcapHeaders(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "base64_encoding"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["base64-encoding"], _ = expandObjectIcapProfileIcapHeadersBase64Encoding(d, i["base64_encoding"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "content"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["content"], _ = expandObjectIcapProfileIcapHeadersContent(d, i["content"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectIcapProfileIcapHeadersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectIcapProfileIcapHeadersName(d, i["name"], pre_append)
 		}
 
@@ -1028,31 +1028,31 @@ func expandObjectIcapProfileRespmodForwardRules(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectIcapProfileRespmodForwardRulesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header-group"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroup(d, i["header_group"], pre_append)
 		} else {
 			tmp["header-group"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "host"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["host"], _ = expandObjectIcapProfileRespmodForwardRulesHost(d, i["host"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_resp_status_code"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-resp-status-code"], _ = expandObjectIcapProfileRespmodForwardRulesHttpRespStatusCode(d, i["http_resp_status_code"], pre_append)
 		} else {
 			tmp["http-resp-status-code"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectIcapProfileRespmodForwardRulesName(d, i["name"], pre_append)
 		}
 
@@ -1083,22 +1083,22 @@ func expandObjectIcapProfileRespmodForwardRulesHeaderGroup(d *schema.ResourceDat
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "case_sensitivity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["case-sensitivity"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroupCaseSensitivity(d, i["case_sensitivity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroupHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header-name"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroupHeaderName(d, i["header_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroupId(d, i["id"], pre_append)
 		}
 
@@ -1169,7 +1169,7 @@ func expandObjectIcapProfileStreamingContentBypass(d *schema.ResourceData, v int
 func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("chunk_encap"); ok {
+	if v, ok := d.GetOk("chunk_encap"); ok || d.HasChange("chunk_encap") {
 		t, err := expandObjectIcapProfileChunkEncap(d, v, "chunk_encap")
 		if err != nil {
 			return &obj, err
@@ -1178,7 +1178,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("extension_feature"); ok {
+	if v, ok := d.GetOk("extension_feature"); ok || d.HasChange("extension_feature") {
 		t, err := expandObjectIcapProfileExtensionFeature(d, v, "extension_feature")
 		if err != nil {
 			return &obj, err
@@ -1187,7 +1187,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("icap_block_log"); ok {
+	if v, ok := d.GetOk("icap_block_log"); ok || d.HasChange("icap_block_log") {
 		t, err := expandObjectIcapProfileIcapBlockLog(d, v, "icap_block_log")
 		if err != nil {
 			return &obj, err
@@ -1196,7 +1196,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("icap_headers"); ok {
+	if v, ok := d.GetOk("icap_headers"); ok || d.HasChange("icap_headers") {
 		t, err := expandObjectIcapProfileIcapHeaders(d, v, "icap_headers")
 		if err != nil {
 			return &obj, err
@@ -1205,7 +1205,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("methods"); ok {
+	if v, ok := d.GetOk("methods"); ok || d.HasChange("methods") {
 		t, err := expandObjectIcapProfileMethods(d, v, "methods")
 		if err != nil {
 			return &obj, err
@@ -1214,7 +1214,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectIcapProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -1223,7 +1223,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("preview"); ok {
+	if v, ok := d.GetOk("preview"); ok || d.HasChange("preview") {
 		t, err := expandObjectIcapProfilePreview(d, v, "preview")
 		if err != nil {
 			return &obj, err
@@ -1232,7 +1232,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("preview_data_length"); ok {
+	if v, ok := d.GetOk("preview_data_length"); ok || d.HasChange("preview_data_length") {
 		t, err := expandObjectIcapProfilePreviewDataLength(d, v, "preview_data_length")
 		if err != nil {
 			return &obj, err
@@ -1241,7 +1241,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectIcapProfileReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -1250,7 +1250,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("request"); ok {
+	if v, ok := d.GetOk("request"); ok || d.HasChange("request") {
 		t, err := expandObjectIcapProfileRequest(d, v, "request")
 		if err != nil {
 			return &obj, err
@@ -1259,7 +1259,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("request_failure"); ok {
+	if v, ok := d.GetOk("request_failure"); ok || d.HasChange("request_failure") {
 		t, err := expandObjectIcapProfileRequestFailure(d, v, "request_failure")
 		if err != nil {
 			return &obj, err
@@ -1268,7 +1268,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("request_path"); ok {
+	if v, ok := d.GetOk("request_path"); ok || d.HasChange("request_path") {
 		t, err := expandObjectIcapProfileRequestPath(d, v, "request_path")
 		if err != nil {
 			return &obj, err
@@ -1277,7 +1277,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("request_server"); ok {
+	if v, ok := d.GetOk("request_server"); ok || d.HasChange("request_server") {
 		t, err := expandObjectIcapProfileRequestServer(d, v, "request_server")
 		if err != nil {
 			return &obj, err
@@ -1286,7 +1286,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("respmod_default_action"); ok {
+	if v, ok := d.GetOk("respmod_default_action"); ok || d.HasChange("respmod_default_action") {
 		t, err := expandObjectIcapProfileRespmodDefaultAction(d, v, "respmod_default_action")
 		if err != nil {
 			return &obj, err
@@ -1295,7 +1295,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("respmod_forward_rules"); ok {
+	if v, ok := d.GetOk("respmod_forward_rules"); ok || d.HasChange("respmod_forward_rules") {
 		t, err := expandObjectIcapProfileRespmodForwardRules(d, v, "respmod_forward_rules")
 		if err != nil {
 			return &obj, err
@@ -1304,7 +1304,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("response"); ok {
+	if v, ok := d.GetOk("response"); ok || d.HasChange("response") {
 		t, err := expandObjectIcapProfileResponse(d, v, "response")
 		if err != nil {
 			return &obj, err
@@ -1313,7 +1313,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("response_failure"); ok {
+	if v, ok := d.GetOk("response_failure"); ok || d.HasChange("response_failure") {
 		t, err := expandObjectIcapProfileResponseFailure(d, v, "response_failure")
 		if err != nil {
 			return &obj, err
@@ -1322,7 +1322,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("response_path"); ok {
+	if v, ok := d.GetOk("response_path"); ok || d.HasChange("response_path") {
 		t, err := expandObjectIcapProfileResponsePath(d, v, "response_path")
 		if err != nil {
 			return &obj, err
@@ -1331,7 +1331,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("response_req_hdr"); ok {
+	if v, ok := d.GetOk("response_req_hdr"); ok || d.HasChange("response_req_hdr") {
 		t, err := expandObjectIcapProfileResponseReqHdr(d, v, "response_req_hdr")
 		if err != nil {
 			return &obj, err
@@ -1340,7 +1340,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("response_server"); ok {
+	if v, ok := d.GetOk("response_server"); ok || d.HasChange("response_server") {
 		t, err := expandObjectIcapProfileResponseServer(d, v, "response_server")
 		if err != nil {
 			return &obj, err
@@ -1349,7 +1349,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("scan_progress_interval"); ok {
+	if v, ok := d.GetOk("scan_progress_interval"); ok || d.HasChange("scan_progress_interval") {
 		t, err := expandObjectIcapProfileScanProgressInterval(d, v, "scan_progress_interval")
 		if err != nil {
 			return &obj, err
@@ -1358,7 +1358,7 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("streaming_content_bypass"); ok {
+	if v, ok := d.GetOk("streaming_content_bypass"); ok || d.HasChange("streaming_content_bypass") {
 		t, err := expandObjectIcapProfileStreamingContentBypass(d, v, "streaming_content_bypass")
 		if err != nil {
 			return &obj, err

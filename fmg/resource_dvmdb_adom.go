@@ -578,7 +578,7 @@ func expandDvmdbAdomWorkspaceMode(d *schema.ResourceData, v interface{}, pre str
 func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("create_time"); ok {
+	if v, ok := d.GetOk("create_time"); ok || d.HasChange("create_time") {
 		t, err := expandDvmdbAdomCreateTime(d, v, "create_time")
 		if err != nil {
 			return &obj, err
@@ -587,7 +587,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("desc"); ok {
+	if v, ok := d.GetOk("desc"); ok || d.HasChange("desc") {
 		t, err := expandDvmdbAdomDesc(d, v, "desc")
 		if err != nil {
 			return &obj, err
@@ -596,7 +596,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("flags"); ok {
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
 		t, err := expandDvmdbAdomFlags(d, v, "flags")
 		if err != nil {
 			return &obj, err
@@ -605,7 +605,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("log_db_retention_hours"); ok {
+	if v, ok := d.GetOk("log_db_retention_hours"); ok || d.HasChange("log_db_retention_hours") {
 		t, err := expandDvmdbAdomLogDbRetentionHours(d, v, "log_db_retention_hours")
 		if err != nil {
 			return &obj, err
@@ -614,7 +614,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("log_disk_quota"); ok {
+	if v, ok := d.GetOk("log_disk_quota"); ok || d.HasChange("log_disk_quota") {
 		t, err := expandDvmdbAdomLogDiskQuota(d, v, "log_disk_quota")
 		if err != nil {
 			return &obj, err
@@ -623,7 +623,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("log_disk_quota_alert_thres"); ok {
+	if v, ok := d.GetOk("log_disk_quota_alert_thres"); ok || d.HasChange("log_disk_quota_alert_thres") {
 		t, err := expandDvmdbAdomLogDiskQuotaAlertThres(d, v, "log_disk_quota_alert_thres")
 		if err != nil {
 			return &obj, err
@@ -632,7 +632,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("log_disk_quota_split_ratio"); ok {
+	if v, ok := d.GetOk("log_disk_quota_split_ratio"); ok || d.HasChange("log_disk_quota_split_ratio") {
 		t, err := expandDvmdbAdomLogDiskQuotaSplitRatio(d, v, "log_disk_quota_split_ratio")
 		if err != nil {
 			return &obj, err
@@ -641,7 +641,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("log_file_retention_hours"); ok {
+	if v, ok := d.GetOk("log_file_retention_hours"); ok || d.HasChange("log_file_retention_hours") {
 		t, err := expandDvmdbAdomLogFileRetentionHours(d, v, "log_file_retention_hours")
 		if err != nil {
 			return &obj, err
@@ -650,7 +650,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("metafields"); ok {
+	if v, ok := d.GetOk("metafields"); ok || d.HasChange("metafields") {
 		t, err := expandDvmdbAdomMetaFields(d, v, "metafields")
 		if err != nil {
 			return &obj, err
@@ -659,7 +659,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("mig_mr"); ok {
+	if v, ok := d.GetOk("mig_mr"); ok || d.HasChange("mig_mr") {
 		t, err := expandDvmdbAdomMigMr(d, v, "mig_mr")
 		if err != nil {
 			return &obj, err
@@ -668,7 +668,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("mig_os_ver"); ok {
+	if v, ok := d.GetOk("mig_os_ver"); ok || d.HasChange("mig_os_ver") {
 		t, err := expandDvmdbAdomMigOsVer(d, v, "mig_os_ver")
 		if err != nil {
 			return &obj, err
@@ -677,7 +677,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("mode"); ok {
+	if v, ok := d.GetOk("mode"); ok || d.HasChange("mode") {
 		t, err := expandDvmdbAdomMode(d, v, "mode")
 		if err != nil {
 			return &obj, err
@@ -686,7 +686,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("mr"); ok {
+	if v, ok := d.GetOk("mr"); ok || d.HasChange("mr") {
 		t, err := expandDvmdbAdomMr(d, v, "mr")
 		if err != nil {
 			return &obj, err
@@ -695,7 +695,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandDvmdbAdomName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -704,7 +704,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("os_ver"); ok {
+	if v, ok := d.GetOk("os_ver"); ok || d.HasChange("os_ver") {
 		t, err := expandDvmdbAdomOsVer(d, v, "os_ver")
 		if err != nil {
 			return &obj, err
@@ -713,7 +713,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("restricted_prds"); ok {
+	if v, ok := d.GetOk("restricted_prds"); ok || d.HasChange("restricted_prds") {
 		t, err := expandDvmdbAdomRestrictedPrds(d, v, "restricted_prds")
 		if err != nil {
 			return &obj, err
@@ -722,7 +722,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("state"); ok {
+	if v, ok := d.GetOk("state"); ok || d.HasChange("state") {
 		t, err := expandDvmdbAdomState(d, v, "state")
 		if err != nil {
 			return &obj, err
@@ -731,7 +731,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandDvmdbAdomUuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err
@@ -740,7 +740,7 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 		}
 	}
 
-	if v, ok := d.GetOk("workspace_mode"); ok {
+	if v, ok := d.GetOk("workspace_mode"); ok || d.HasChange("workspace_mode") {
 		t, err := expandDvmdbAdomWorkspaceMode(d, v, "workspace_mode")
 		if err != nil {
 			return &obj, err

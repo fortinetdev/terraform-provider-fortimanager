@@ -6983,927 +6983,927 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_centmgmt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_centmgmt"], _ = expandObjectWirelessControllerVapDynamicMappingCentmgmt(d, i["_centmgmt"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_dhcp_svr_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_dhcp_svr_id"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpSvrId(d, i["_dhcp_svr_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_allowaccess"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_allowaccess"], _ = expandObjectWirelessControllerVapDynamicMappingIntfAllowaccess(d, i["_intf_allowaccess"], pre_append)
 		} else {
 			tmp["_intf_allowaccess"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_device_access_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_device-access-list"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDeviceAccessList(d, i["_intf_device_access_list"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_device_identification"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_device-identification"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDeviceIdentification(d, i["_intf_device_identification"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_device_netscan"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_device-netscan"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDeviceNetscan(d, i["_intf_device_netscan"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_dhcp_relay_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_dhcp-relay-ip"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDhcpRelayIp(d, i["_intf_dhcp_relay_ip"], pre_append)
 		} else {
 			tmp["_intf_dhcp-relay-ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_dhcp_relay_service"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_dhcp-relay-service"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDhcpRelayService(d, i["_intf_dhcp_relay_service"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_dhcp_relay_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_dhcp-relay-type"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDhcpRelayType(d, i["_intf_dhcp_relay_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_dhcp6_relay_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_dhcp6-relay-ip"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDhcp6RelayIp(d, i["_intf_dhcp6_relay_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_dhcp6_relay_service"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_dhcp6-relay-service"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDhcp6RelayService(d, i["_intf_dhcp6_relay_service"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_dhcp6_relay_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_dhcp6-relay-type"], _ = expandObjectWirelessControllerVapDynamicMappingIntfDhcp6RelayType(d, i["_intf_dhcp6_relay_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_ip"], _ = expandObjectWirelessControllerVapDynamicMappingIntfIp(d, i["_intf_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_ip6_address"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_ip6-address"], _ = expandObjectWirelessControllerVapDynamicMappingIntfIp6Address(d, i["_intf_ip6_address"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_ip6_allowaccess"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_ip6-allowaccess"], _ = expandObjectWirelessControllerVapDynamicMappingIntfIp6Allowaccess(d, i["_intf_ip6_allowaccess"], pre_append)
 		} else {
 			tmp["_intf_ip6-allowaccess"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_intf_listen_forticlient_connection"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_intf_listen-forticlient-connection"], _ = expandObjectWirelessControllerVapDynamicMappingIntfListenForticlientConnection(d, i["_intf_listen_forticlient_connection"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectWirelessControllerVapDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "access_control_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["access-control-list"], _ = expandObjectWirelessControllerVapDynamicMappingAccessControlList(d, i["access_control_list"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "acct_interim_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["acct-interim-interval"], _ = expandObjectWirelessControllerVapDynamicMappingAcctInterimInterval(d, i["acct_interim_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "additional_akms"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["additional-akms"], _ = expandObjectWirelessControllerVapDynamicMappingAdditionalAkms(d, i["additional_akms"], pre_append)
 		} else {
 			tmp["additional-akms"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "address_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["address-group"], _ = expandObjectWirelessControllerVapDynamicMappingAddressGroup(d, i["address_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "alias"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["alias"], _ = expandObjectWirelessControllerVapDynamicMappingAlias(d, i["alias"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "antivirus_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["antivirus-profile"], _ = expandObjectWirelessControllerVapDynamicMappingAntivirusProfile(d, i["antivirus_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["application-list"], _ = expandObjectWirelessControllerVapDynamicMappingApplicationList(d, i["application_list"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "atf_weight"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["atf-weight"], _ = expandObjectWirelessControllerVapDynamicMappingAtfWeight(d, i["atf_weight"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth"], _ = expandObjectWirelessControllerVapDynamicMappingAuth(d, i["auth"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_cert"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-cert"], _ = expandObjectWirelessControllerVapDynamicMappingAuthCert(d, i["auth_cert"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_portal_addr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-portal-addr"], _ = expandObjectWirelessControllerVapDynamicMappingAuthPortalAddr(d, i["auth_portal_addr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "beacon_advertising"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["beacon-advertising"], _ = expandObjectWirelessControllerVapDynamicMappingBeaconAdvertising(d, i["beacon_advertising"], pre_append)
 		} else {
 			tmp["beacon-advertising"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "broadcast_ssid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["broadcast-ssid"], _ = expandObjectWirelessControllerVapDynamicMappingBroadcastSsid(d, i["broadcast_ssid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "broadcast_suppression"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["broadcast-suppression"], _ = expandObjectWirelessControllerVapDynamicMappingBroadcastSuppression(d, i["broadcast_suppression"], pre_append)
 		} else {
 			tmp["broadcast-suppression"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bss_color_partial"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bss-color-partial"], _ = expandObjectWirelessControllerVapDynamicMappingBssColorPartial(d, i["bss_color_partial"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bstm_disassociation_imminent"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bstm-disassociation-imminent"], _ = expandObjectWirelessControllerVapDynamicMappingBstmDisassociationImminent(d, i["bstm_disassociation_imminent"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bstm_load_balancing_disassoc_timer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bstm-load-balancing-disassoc-timer"], _ = expandObjectWirelessControllerVapDynamicMappingBstmLoadBalancingDisassocTimer(d, i["bstm_load_balancing_disassoc_timer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bstm_rssi_disassoc_timer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["bstm-rssi-disassoc-timer"], _ = expandObjectWirelessControllerVapDynamicMappingBstmRssiDisassocTimer(d, i["bstm_rssi_disassoc_timer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_ac_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-ac-name"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalAcName(d, i["captive_portal_ac_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_auth_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-auth-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalAuthTimeout(d, i["captive_portal_auth_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_macauth_radius_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-macauth-radius-secret"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalMacauthRadiusSecret(d, i["captive_portal_macauth_radius_secret"], pre_append)
 		} else {
 			tmp["captive-portal-macauth-radius-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_macauth_radius_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-macauth-radius-server"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalMacauthRadiusServer(d, i["captive_portal_macauth_radius_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_radius_secret"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-radius-secret"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalRadiusSecret(d, i["captive_portal_radius_secret"], pre_append)
 		} else {
 			tmp["captive-portal-radius-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_radius_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-radius-server"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalRadiusServer(d, i["captive_portal_radius_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_session_timeout_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-session-timeout-interval"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalSessionTimeoutInterval(d, i["captive_portal_session_timeout_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_count"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-count"], _ = expandObjectWirelessControllerVapDynamicMappingClientCount(d, i["client_count"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_address_enforcement"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-address-enforcement"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpAddressEnforcement(d, i["dhcp_address_enforcement"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_lease_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-lease-time"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpLeaseTime(d, i["dhcp_lease_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_option43_insertion"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-option43-insertion"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpOption43Insertion(d, i["dhcp_option43_insertion"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_option82_circuit_id_insertion"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-option82-circuit-id-insertion"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpOption82CircuitIdInsertion(d, i["dhcp_option82_circuit_id_insertion"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_option82_insertion"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-option82-insertion"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpOption82Insertion(d, i["dhcp_option82_insertion"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_option82_remote_id_insertion"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-option82-remote-id-insertion"], _ = expandObjectWirelessControllerVapDynamicMappingDhcpOption82RemoteIdInsertion(d, i["dhcp_option82_remote_id_insertion"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dynamic_vlan"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dynamic-vlan"], _ = expandObjectWirelessControllerVapDynamicMappingDynamicVlan(d, i["dynamic_vlan"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "eap_reauth"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["eap-reauth"], _ = expandObjectWirelessControllerVapDynamicMappingEapReauth(d, i["eap_reauth"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "eap_reauth_intv"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["eap-reauth-intv"], _ = expandObjectWirelessControllerVapDynamicMappingEapReauthIntv(d, i["eap_reauth_intv"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "eapol_key_retries"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["eapol-key-retries"], _ = expandObjectWirelessControllerVapDynamicMappingEapolKeyRetries(d, i["eapol_key_retries"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "encrypt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["encrypt"], _ = expandObjectWirelessControllerVapDynamicMappingEncrypt(d, i["encrypt"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "external_fast_roaming"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["external-fast-roaming"], _ = expandObjectWirelessControllerVapDynamicMappingExternalFastRoaming(d, i["external_fast_roaming"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "external_logout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["external-logout"], _ = expandObjectWirelessControllerVapDynamicMappingExternalLogout(d, i["external_logout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "external_web"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["external-web"], _ = expandObjectWirelessControllerVapDynamicMappingExternalWeb(d, i["external_web"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "external_web_format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["external-web-format"], _ = expandObjectWirelessControllerVapDynamicMappingExternalWebFormat(d, i["external_web_format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fast_bss_transition"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fast-bss-transition"], _ = expandObjectWirelessControllerVapDynamicMappingFastBssTransition(d, i["fast_bss_transition"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fast_roaming"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fast-roaming"], _ = expandObjectWirelessControllerVapDynamicMappingFastRoaming(d, i["fast_roaming"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ft_mobility_domain"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ft-mobility-domain"], _ = expandObjectWirelessControllerVapDynamicMappingFtMobilityDomain(d, i["ft_mobility_domain"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ft_over_ds"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ft-over-ds"], _ = expandObjectWirelessControllerVapDynamicMappingFtOverDs(d, i["ft_over_ds"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ft_r0_key_lifetime"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ft-r0-key-lifetime"], _ = expandObjectWirelessControllerVapDynamicMappingFtR0KeyLifetime(d, i["ft_r0_key_lifetime"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gas_comeback_delay"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gas-comeback-delay"], _ = expandObjectWirelessControllerVapDynamicMappingGasComebackDelay(d, i["gas_comeback_delay"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gas_fragmentation_limit"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gas-fragmentation-limit"], _ = expandObjectWirelessControllerVapDynamicMappingGasFragmentationLimit(d, i["gas_fragmentation_limit"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gtk_rekey"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gtk-rekey"], _ = expandObjectWirelessControllerVapDynamicMappingGtkRekey(d, i["gtk_rekey"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gtk_rekey_intv"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gtk-rekey-intv"], _ = expandObjectWirelessControllerVapDynamicMappingGtkRekeyIntv(d, i["gtk_rekey_intv"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "high_efficiency"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["high-efficiency"], _ = expandObjectWirelessControllerVapDynamicMappingHighEfficiency(d, i["high_efficiency"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "hotspot20_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["hotspot20-profile"], _ = expandObjectWirelessControllerVapDynamicMappingHotspot20Profile(d, i["hotspot20_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "igmp_snooping"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["igmp-snooping"], _ = expandObjectWirelessControllerVapDynamicMappingIgmpSnooping(d, i["igmp_snooping"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "intra_vap_privacy"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["intra-vap-privacy"], _ = expandObjectWirelessControllerVapDynamicMappingIntraVapPrivacy(d, i["intra_vap_privacy"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectWirelessControllerVapDynamicMappingIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ips_sensor"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ips-sensor"], _ = expandObjectWirelessControllerVapDynamicMappingIpsSensor(d, i["ips_sensor"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ipv6_rules"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ipv6-rules"], _ = expandObjectWirelessControllerVapDynamicMappingIpv6Rules(d, i["ipv6_rules"], pre_append)
 		} else {
 			tmp["ipv6-rules"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key"], _ = expandObjectWirelessControllerVapDynamicMappingKey(d, i["key"], pre_append)
 		} else {
 			tmp["key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "keyindex"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["keyindex"], _ = expandObjectWirelessControllerVapDynamicMappingKeyindex(d, i["keyindex"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldpc"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ldpc"], _ = expandObjectWirelessControllerVapDynamicMappingLdpc(d, i["ldpc"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_authentication"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-authentication"], _ = expandObjectWirelessControllerVapDynamicMappingLocalAuthentication(d, i["local_authentication"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_bridging"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-bridging"], _ = expandObjectWirelessControllerVapDynamicMappingLocalBridging(d, i["local_bridging"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_lan"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-lan"], _ = expandObjectWirelessControllerVapDynamicMappingLocalLan(d, i["local_lan"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_standalone"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-standalone"], _ = expandObjectWirelessControllerVapDynamicMappingLocalStandalone(d, i["local_standalone"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_standalone_dns"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-standalone-dns"], _ = expandObjectWirelessControllerVapDynamicMappingLocalStandaloneDns(d, i["local_standalone_dns"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_standalone_dns_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-standalone-dns-ip"], _ = expandObjectWirelessControllerVapDynamicMappingLocalStandaloneDnsIp(d, i["local_standalone_dns_ip"], pre_append)
 		} else {
 			tmp["local-standalone-dns-ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_standalone_nat"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-standalone-nat"], _ = expandObjectWirelessControllerVapDynamicMappingLocalStandaloneNat(d, i["local_standalone_nat"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_switching"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-switching"], _ = expandObjectWirelessControllerVapDynamicMappingLocalSwitching(d, i["local_switching"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_auth_bypass"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-auth-bypass"], _ = expandObjectWirelessControllerVapDynamicMappingMacAuthBypass(d, i["mac_auth_bypass"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_called_station_delimiter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-called-station-delimiter"], _ = expandObjectWirelessControllerVapDynamicMappingMacCalledStationDelimiter(d, i["mac_called_station_delimiter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_calling_station_delimiter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-calling-station-delimiter"], _ = expandObjectWirelessControllerVapDynamicMappingMacCallingStationDelimiter(d, i["mac_calling_station_delimiter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_case"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-case"], _ = expandObjectWirelessControllerVapDynamicMappingMacCase(d, i["mac_case"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_filter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-filter"], _ = expandObjectWirelessControllerVapDynamicMappingMacFilter(d, i["mac_filter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_filter_policy_other"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-filter-policy-other"], _ = expandObjectWirelessControllerVapDynamicMappingMacFilterPolicyOther(d, i["mac_filter_policy_other"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_password_delimiter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-password-delimiter"], _ = expandObjectWirelessControllerVapDynamicMappingMacPasswordDelimiter(d, i["mac_password_delimiter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_username_delimiter"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-username-delimiter"], _ = expandObjectWirelessControllerVapDynamicMappingMacUsernameDelimiter(d, i["mac_username_delimiter"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_clients"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-clients"], _ = expandObjectWirelessControllerVapDynamicMappingMaxClients(d, i["max_clients"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_clients_ap"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["max-clients-ap"], _ = expandObjectWirelessControllerVapDynamicMappingMaxClientsAp(d, i["max_clients_ap"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mbo"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mbo"], _ = expandObjectWirelessControllerVapDynamicMappingMbo(d, i["mbo"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mbo_cell_data_conn_pref"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mbo-cell-data-conn-pref"], _ = expandObjectWirelessControllerVapDynamicMappingMboCellDataConnPref(d, i["mbo_cell_data_conn_pref"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "me_disable_thresh"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["me-disable-thresh"], _ = expandObjectWirelessControllerVapDynamicMappingMeDisableThresh(d, i["me_disable_thresh"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mesh_backhaul"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mesh-backhaul"], _ = expandObjectWirelessControllerVapDynamicMappingMeshBackhaul(d, i["mesh_backhaul"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mpsk"], _ = expandObjectWirelessControllerVapDynamicMappingMpsk(d, i["mpsk"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk_concurrent_clients"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mpsk-concurrent-clients"], _ = expandObjectWirelessControllerVapDynamicMappingMpskConcurrentClients(d, i["mpsk_concurrent_clients"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mpsk-profile"], _ = expandObjectWirelessControllerVapDynamicMappingMpskProfile(d, i["mpsk_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mu_mimo"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mu-mimo"], _ = expandObjectWirelessControllerVapDynamicMappingMuMimo(d, i["mu_mimo"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "multicast_enhance"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["multicast-enhance"], _ = expandObjectWirelessControllerVapDynamicMappingMulticastEnhance(d, i["multicast_enhance"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "multicast_rate"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["multicast-rate"], _ = expandObjectWirelessControllerVapDynamicMappingMulticastRate(d, i["multicast_rate"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nac"], _ = expandObjectWirelessControllerVapDynamicMappingNac(d, i["nac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nac_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nac-profile"], _ = expandObjectWirelessControllerVapDynamicMappingNacProfile(d, i["nac_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "neighbor_report_dual_band"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["neighbor-report-dual-band"], _ = expandObjectWirelessControllerVapDynamicMappingNeighborReportDualBand(d, i["neighbor_report_dual_band"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "okc"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["okc"], _ = expandObjectWirelessControllerVapDynamicMappingOkc(d, i["okc"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "osen"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["osen"], _ = expandObjectWirelessControllerVapDynamicMappingOsen(d, i["osen"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "owe_groups"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["owe-groups"], _ = expandObjectWirelessControllerVapDynamicMappingOweGroups(d, i["owe_groups"], pre_append)
 		} else {
 			tmp["owe-groups"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "owe_transition"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["owe-transition"], _ = expandObjectWirelessControllerVapDynamicMappingOweTransition(d, i["owe_transition"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "owe_transition_ssid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["owe-transition-ssid"], _ = expandObjectWirelessControllerVapDynamicMappingOweTransitionSsid(d, i["owe_transition_ssid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["passphrase"], _ = expandObjectWirelessControllerVapDynamicMappingPassphrase(d, i["passphrase"], pre_append)
 		} else {
 			tmp["passphrase"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmf"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pmf"], _ = expandObjectWirelessControllerVapDynamicMappingPmf(d, i["pmf"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmf_assoc_comeback_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pmf-assoc-comeback-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingPmfAssocComebackTimeout(d, i["pmf_assoc_comeback_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmf_sa_query_retry_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pmf-sa-query-retry-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingPmfSaQueryRetryTimeout(d, i["pmf_sa_query_retry_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port_macauth"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port-macauth"], _ = expandObjectWirelessControllerVapDynamicMappingPortMacauth(d, i["port_macauth"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port_macauth_reauth_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port-macauth-reauth-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingPortMacauthReauthTimeout(d, i["port_macauth_reauth_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port_macauth_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port-macauth-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingPortMacauthTimeout(d, i["port_macauth_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "portal_message_override_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["portal-message-override-group"], _ = expandObjectWirelessControllerVapDynamicMappingPortalMessageOverrideGroup(d, i["portal_message_override_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "portal_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["portal-type"], _ = expandObjectWirelessControllerVapDynamicMappingPortalType(d, i["portal_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "primary_wag_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["primary-wag-profile"], _ = expandObjectWirelessControllerVapDynamicMappingPrimaryWagProfile(d, i["primary_wag_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "probe_resp_suppression"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["probe-resp-suppression"], _ = expandObjectWirelessControllerVapDynamicMappingProbeRespSuppression(d, i["probe_resp_suppression"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "probe_resp_threshold"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["probe-resp-threshold"], _ = expandObjectWirelessControllerVapDynamicMappingProbeRespThreshold(d, i["probe_resp_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ptk_rekey"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ptk-rekey"], _ = expandObjectWirelessControllerVapDynamicMappingPtkRekey(d, i["ptk_rekey"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ptk_rekey_intv"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ptk-rekey-intv"], _ = expandObjectWirelessControllerVapDynamicMappingPtkRekeyIntv(d, i["ptk_rekey_intv"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "qos_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["qos-profile"], _ = expandObjectWirelessControllerVapDynamicMappingQosProfile(d, i["qos_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["quarantine"], _ = expandObjectWirelessControllerVapDynamicMappingQuarantine(d, i["quarantine"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radio_2g_threshold"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radio-2g-threshold"], _ = expandObjectWirelessControllerVapDynamicMappingRadio2GThreshold(d, i["radio_2g_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radio_5g_threshold"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radio-5g-threshold"], _ = expandObjectWirelessControllerVapDynamicMappingRadio5GThreshold(d, i["radio_5g_threshold"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radio_sensitivity"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radio-sensitivity"], _ = expandObjectWirelessControllerVapDynamicMappingRadioSensitivity(d, i["radio_sensitivity"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-mac-auth"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacAuth(d, i["radius_mac_auth"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-mac-auth-server"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacAuthServer(d, i["radius_mac_auth_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth_usergroups"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-mac-auth-usergroups"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacAuthUsergroups(d, i["radius_mac_auth_usergroups"], pre_append)
 		} else {
 			tmp["radius-mac-auth-usergroups"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_mpsk_auth"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-mac-mpsk-auth"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacMpskAuth(d, i["radius_mac_mpsk_auth"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_mpsk_timeout"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-mac-mpsk-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacMpskTimeout(d, i["radius_mac_mpsk_timeout"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-server"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusServer(d, i["radius_server"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11a"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11a"], _ = expandObjectWirelessControllerVapDynamicMappingRates11A(d, i["rates_11a"], pre_append)
 		} else {
 			tmp["rates-11a"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11ac_ss12"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11ac-ss12"], _ = expandObjectWirelessControllerVapDynamicMappingRates11AcSs12(d, i["rates_11ac_ss12"], pre_append)
 		} else {
 			tmp["rates-11ac-ss12"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11ac_ss34"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11ac-ss34"], _ = expandObjectWirelessControllerVapDynamicMappingRates11AcSs34(d, i["rates_11ac_ss34"], pre_append)
 		} else {
 			tmp["rates-11ac-ss34"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11ax_ss12"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11ax-ss12"], _ = expandObjectWirelessControllerVapDynamicMappingRates11AxSs12(d, i["rates_11ax_ss12"], pre_append)
 		} else {
 			tmp["rates-11ax-ss12"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11ax_ss34"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11ax-ss34"], _ = expandObjectWirelessControllerVapDynamicMappingRates11AxSs34(d, i["rates_11ax_ss34"], pre_append)
 		} else {
 			tmp["rates-11ax-ss34"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11bg"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11bg"], _ = expandObjectWirelessControllerVapDynamicMappingRates11Bg(d, i["rates_11bg"], pre_append)
 		} else {
 			tmp["rates-11bg"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11n_ss12"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11n-ss12"], _ = expandObjectWirelessControllerVapDynamicMappingRates11NSs12(d, i["rates_11n_ss12"], pre_append)
 		} else {
 			tmp["rates-11n-ss12"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rates_11n_ss34"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rates-11n-ss34"], _ = expandObjectWirelessControllerVapDynamicMappingRates11NSs34(d, i["rates_11n_ss34"], pre_append)
 		} else {
 			tmp["rates-11n-ss34"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sae_groups"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sae-groups"], _ = expandObjectWirelessControllerVapDynamicMappingSaeGroups(d, i["sae_groups"], pre_append)
 		} else {
 			tmp["sae-groups"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sae_password"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sae-password"], _ = expandObjectWirelessControllerVapDynamicMappingSaePassword(d, i["sae_password"], pre_append)
 		} else {
 			tmp["sae-password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "scan_botnet_connections"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["scan-botnet-connections"], _ = expandObjectWirelessControllerVapDynamicMappingScanBotnetConnections(d, i["scan_botnet_connections"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "schedule"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["schedule"], _ = expandObjectWirelessControllerVapDynamicMappingSchedule(d, i["schedule"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_wag_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-wag-profile"], _ = expandObjectWirelessControllerVapDynamicMappingSecondaryWagProfile(d, i["secondary_wag_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["security"], _ = expandObjectWirelessControllerVapDynamicMappingSecurity(d, i["security"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security_exempt_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["security-exempt-list"], _ = expandObjectWirelessControllerVapDynamicMappingSecurityExemptList(d, i["security_exempt_list"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security_obsolete_option"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["security-obsolete-option"], _ = expandObjectWirelessControllerVapDynamicMappingSecurityObsoleteOption(d, i["security_obsolete_option"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "security_redirect_url"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["security-redirect-url"], _ = expandObjectWirelessControllerVapDynamicMappingSecurityRedirectUrl(d, i["security_redirect_url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "selected_usergroups"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["selected-usergroups"], _ = expandObjectWirelessControllerVapDynamicMappingSelectedUsergroups(d, i["selected_usergroups"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "split_tunneling"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["split-tunneling"], _ = expandObjectWirelessControllerVapDynamicMappingSplitTunneling(d, i["split_tunneling"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssid"], _ = expandObjectWirelessControllerVapDynamicMappingSsid(d, i["ssid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sticky_client_remove"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sticky-client-remove"], _ = expandObjectWirelessControllerVapDynamicMappingStickyClientRemove(d, i["sticky_client_remove"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sticky_client_threshold_2g"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sticky-client-threshold-2g"], _ = expandObjectWirelessControllerVapDynamicMappingStickyClientThreshold2G(d, i["sticky_client_threshold_2g"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sticky_client_threshold_5g"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sticky-client-threshold-5g"], _ = expandObjectWirelessControllerVapDynamicMappingStickyClientThreshold5G(d, i["sticky_client_threshold_5g"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "target_wake_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["target-wake-time"], _ = expandObjectWirelessControllerVapDynamicMappingTargetWakeTime(d, i["target_wake_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tkip_counter_measure"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tkip-counter-measure"], _ = expandObjectWirelessControllerVapDynamicMappingTkipCounterMeasure(d, i["tkip_counter_measure"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tunnel_echo_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tunnel-echo-interval"], _ = expandObjectWirelessControllerVapDynamicMappingTunnelEchoInterval(d, i["tunnel_echo_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tunnel_fallback_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tunnel-fallback-interval"], _ = expandObjectWirelessControllerVapDynamicMappingTunnelFallbackInterval(d, i["tunnel_fallback_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "usergroup"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["usergroup"], _ = expandObjectWirelessControllerVapDynamicMappingUsergroup(d, i["usergroup"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "utm_log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["utm-log"], _ = expandObjectWirelessControllerVapDynamicMappingUtmLog(d, i["utm_log"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "utm_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["utm-profile"], _ = expandObjectWirelessControllerVapDynamicMappingUtmProfile(d, i["utm_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "utm_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["utm-status"], _ = expandObjectWirelessControllerVapDynamicMappingUtmStatus(d, i["utm_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectWirelessControllerVapDynamicMappingVdom(d, i["vdom"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_auto"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan-auto"], _ = expandObjectWirelessControllerVapDynamicMappingVlanAuto(d, i["vlan_auto"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_pooling"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan-pooling"], _ = expandObjectWirelessControllerVapDynamicMappingVlanPooling(d, i["vlan_pooling"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlanid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlanid"], _ = expandObjectWirelessControllerVapDynamicMappingVlanid(d, i["vlanid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "voice_enterprise"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["voice-enterprise"], _ = expandObjectWirelessControllerVapDynamicMappingVoiceEnterprise(d, i["voice_enterprise"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "webfilter_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["webfilter-profile"], _ = expandObjectWirelessControllerVapDynamicMappingWebfilterProfile(d, i["webfilter_profile"], pre_append)
 		}
 
@@ -7994,12 +7994,12 @@ func expandObjectWirelessControllerVapDynamicMappingScope(d *schema.ResourceData
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerVapDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectWirelessControllerVapDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -8822,17 +8822,17 @@ func expandObjectWirelessControllerVapMacFilterList(d *schema.ResourceData, v in
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWirelessControllerVapMacFilterListId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectWirelessControllerVapMacFilterListMac(d, i["mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_filter_policy"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-filter-policy"], _ = expandObjectWirelessControllerVapMacFilterListMacFilterPolicy(d, i["mac_filter_policy"], pre_append)
 		}
 
@@ -8915,27 +8915,27 @@ func expandObjectWirelessControllerVapMpskKey(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["comment"], _ = expandObjectWirelessControllerVapMpskKeyComment(d, i["comment"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "concurrent_clients"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["concurrent-clients"], _ = expandObjectWirelessControllerVapMpskKeyConcurrentClients(d, i["concurrent_clients"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key-name"], _ = expandObjectWirelessControllerVapMpskKeyKeyName(d, i["key_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk_schedules"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mpsk-schedules"], _ = expandObjectWirelessControllerVapMpskKeyMpskSchedules(d, i["mpsk_schedules"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["passphrase"], _ = expandObjectWirelessControllerVapMpskKeyPassphrase(d, i["passphrase"], pre_append)
 		} else {
 			tmp["passphrase"] = make([]string, 0)
@@ -9064,19 +9064,19 @@ func expandObjectWirelessControllerVapPortalMessageOverrides(d *schema.ResourceD
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "auth_disclaimer_page"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-disclaimer-page"], _ = expandObjectWirelessControllerVapPortalMessageOverridesAuthDisclaimerPage(d, i["auth_disclaimer_page"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_login_failed_page"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-login-failed-page"], _ = expandObjectWirelessControllerVapPortalMessageOverridesAuthLoginFailedPage(d, i["auth_login_failed_page"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_login_page"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-login-page"], _ = expandObjectWirelessControllerVapPortalMessageOverridesAuthLoginPage(d, i["auth_login_page"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_reject_page"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-reject-page"], _ = expandObjectWirelessControllerVapPortalMessageOverridesAuthRejectPage(d, i["auth_reject_page"], pre_append)
 	}
 
@@ -9314,12 +9314,12 @@ func expandObjectWirelessControllerVapVlanName(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerVapVlanNameName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vlan_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vlan-id"], _ = expandObjectWirelessControllerVapVlanNameVlanId(d, i["vlan_id"], pre_append)
 		}
 
@@ -9354,12 +9354,12 @@ func expandObjectWirelessControllerVapVlanPool(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_wtp_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_wtp-group"], _ = expandObjectWirelessControllerVapVlanPoolWtpGroup(d, i["_wtp_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWirelessControllerVapVlanPoolId(d, i["id"], pre_append)
 		}
 
@@ -9398,7 +9398,7 @@ func expandObjectWirelessControllerVapWebfilterProfile(d *schema.ResourceData, v
 func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_centmgmt"); ok {
+	if v, ok := d.GetOk("_centmgmt"); ok || d.HasChange("_centmgmt") {
 		t, err := expandObjectWirelessControllerVapCentmgmt(d, v, "_centmgmt")
 		if err != nil {
 			return &obj, err
@@ -9407,7 +9407,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_dhcp_svr_id"); ok {
+	if v, ok := d.GetOk("_dhcp_svr_id"); ok || d.HasChange("_dhcp_svr_id") {
 		t, err := expandObjectWirelessControllerVapDhcpSvrId(d, v, "_dhcp_svr_id")
 		if err != nil {
 			return &obj, err
@@ -9416,7 +9416,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_allowaccess"); ok {
+	if v, ok := d.GetOk("_intf_allowaccess"); ok || d.HasChange("_intf_allowaccess") {
 		t, err := expandObjectWirelessControllerVapIntfAllowaccess(d, v, "_intf_allowaccess")
 		if err != nil {
 			return &obj, err
@@ -9425,7 +9425,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_device_access_list"); ok {
+	if v, ok := d.GetOk("_intf_device_access_list"); ok || d.HasChange("_intf_device_access_list") {
 		t, err := expandObjectWirelessControllerVapIntfDeviceAccessList(d, v, "_intf_device_access_list")
 		if err != nil {
 			return &obj, err
@@ -9434,7 +9434,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_device_identification"); ok {
+	if v, ok := d.GetOk("_intf_device_identification"); ok || d.HasChange("_intf_device_identification") {
 		t, err := expandObjectWirelessControllerVapIntfDeviceIdentification(d, v, "_intf_device_identification")
 		if err != nil {
 			return &obj, err
@@ -9443,7 +9443,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_device_netscan"); ok {
+	if v, ok := d.GetOk("_intf_device_netscan"); ok || d.HasChange("_intf_device_netscan") {
 		t, err := expandObjectWirelessControllerVapIntfDeviceNetscan(d, v, "_intf_device_netscan")
 		if err != nil {
 			return &obj, err
@@ -9452,7 +9452,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_dhcp_relay_ip"); ok {
+	if v, ok := d.GetOk("_intf_dhcp_relay_ip"); ok || d.HasChange("_intf_dhcp_relay_ip") {
 		t, err := expandObjectWirelessControllerVapIntfDhcpRelayIp(d, v, "_intf_dhcp_relay_ip")
 		if err != nil {
 			return &obj, err
@@ -9461,7 +9461,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_dhcp_relay_service"); ok {
+	if v, ok := d.GetOk("_intf_dhcp_relay_service"); ok || d.HasChange("_intf_dhcp_relay_service") {
 		t, err := expandObjectWirelessControllerVapIntfDhcpRelayService(d, v, "_intf_dhcp_relay_service")
 		if err != nil {
 			return &obj, err
@@ -9470,7 +9470,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_dhcp_relay_type"); ok {
+	if v, ok := d.GetOk("_intf_dhcp_relay_type"); ok || d.HasChange("_intf_dhcp_relay_type") {
 		t, err := expandObjectWirelessControllerVapIntfDhcpRelayType(d, v, "_intf_dhcp_relay_type")
 		if err != nil {
 			return &obj, err
@@ -9479,7 +9479,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_dhcp6_relay_ip"); ok {
+	if v, ok := d.GetOk("_intf_dhcp6_relay_ip"); ok || d.HasChange("_intf_dhcp6_relay_ip") {
 		t, err := expandObjectWirelessControllerVapIntfDhcp6RelayIp(d, v, "_intf_dhcp6_relay_ip")
 		if err != nil {
 			return &obj, err
@@ -9488,7 +9488,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_dhcp6_relay_service"); ok {
+	if v, ok := d.GetOk("_intf_dhcp6_relay_service"); ok || d.HasChange("_intf_dhcp6_relay_service") {
 		t, err := expandObjectWirelessControllerVapIntfDhcp6RelayService(d, v, "_intf_dhcp6_relay_service")
 		if err != nil {
 			return &obj, err
@@ -9497,7 +9497,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_dhcp6_relay_type"); ok {
+	if v, ok := d.GetOk("_intf_dhcp6_relay_type"); ok || d.HasChange("_intf_dhcp6_relay_type") {
 		t, err := expandObjectWirelessControllerVapIntfDhcp6RelayType(d, v, "_intf_dhcp6_relay_type")
 		if err != nil {
 			return &obj, err
@@ -9506,7 +9506,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_ip"); ok {
+	if v, ok := d.GetOk("_intf_ip"); ok || d.HasChange("_intf_ip") {
 		t, err := expandObjectWirelessControllerVapIntfIp(d, v, "_intf_ip")
 		if err != nil {
 			return &obj, err
@@ -9515,7 +9515,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_ip6_address"); ok {
+	if v, ok := d.GetOk("_intf_ip6_address"); ok || d.HasChange("_intf_ip6_address") {
 		t, err := expandObjectWirelessControllerVapIntfIp6Address(d, v, "_intf_ip6_address")
 		if err != nil {
 			return &obj, err
@@ -9524,7 +9524,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_ip6_allowaccess"); ok {
+	if v, ok := d.GetOk("_intf_ip6_allowaccess"); ok || d.HasChange("_intf_ip6_allowaccess") {
 		t, err := expandObjectWirelessControllerVapIntfIp6Allowaccess(d, v, "_intf_ip6_allowaccess")
 		if err != nil {
 			return &obj, err
@@ -9533,7 +9533,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("_intf_listen_forticlient_connection"); ok {
+	if v, ok := d.GetOk("_intf_listen_forticlient_connection"); ok || d.HasChange("_intf_listen_forticlient_connection") {
 		t, err := expandObjectWirelessControllerVapIntfListenForticlientConnection(d, v, "_intf_listen_forticlient_connection")
 		if err != nil {
 			return &obj, err
@@ -9542,7 +9542,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("access_control_list"); ok {
+	if v, ok := d.GetOk("access_control_list"); ok || d.HasChange("access_control_list") {
 		t, err := expandObjectWirelessControllerVapAccessControlList(d, v, "access_control_list")
 		if err != nil {
 			return &obj, err
@@ -9551,7 +9551,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("additional_akms"); ok {
+	if v, ok := d.GetOk("additional_akms"); ok || d.HasChange("additional_akms") {
 		t, err := expandObjectWirelessControllerVapAdditionalAkms(d, v, "additional_akms")
 		if err != nil {
 			return &obj, err
@@ -9560,7 +9560,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("acct_interim_interval"); ok {
+	if v, ok := d.GetOk("acct_interim_interval"); ok || d.HasChange("acct_interim_interval") {
 		t, err := expandObjectWirelessControllerVapAcctInterimInterval(d, v, "acct_interim_interval")
 		if err != nil {
 			return &obj, err
@@ -9569,7 +9569,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("address_group"); ok {
+	if v, ok := d.GetOk("address_group"); ok || d.HasChange("address_group") {
 		t, err := expandObjectWirelessControllerVapAddressGroup(d, v, "address_group")
 		if err != nil {
 			return &obj, err
@@ -9578,7 +9578,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("alias"); ok {
+	if v, ok := d.GetOk("alias"); ok || d.HasChange("alias") {
 		t, err := expandObjectWirelessControllerVapAlias(d, v, "alias")
 		if err != nil {
 			return &obj, err
@@ -9587,7 +9587,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("antivirus_profile"); ok {
+	if v, ok := d.GetOk("antivirus_profile"); ok || d.HasChange("antivirus_profile") {
 		t, err := expandObjectWirelessControllerVapAntivirusProfile(d, v, "antivirus_profile")
 		if err != nil {
 			return &obj, err
@@ -9596,7 +9596,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("application_list"); ok {
+	if v, ok := d.GetOk("application_list"); ok || d.HasChange("application_list") {
 		t, err := expandObjectWirelessControllerVapApplicationList(d, v, "application_list")
 		if err != nil {
 			return &obj, err
@@ -9605,7 +9605,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("atf_weight"); ok {
+	if v, ok := d.GetOk("atf_weight"); ok || d.HasChange("atf_weight") {
 		t, err := expandObjectWirelessControllerVapAtfWeight(d, v, "atf_weight")
 		if err != nil {
 			return &obj, err
@@ -9614,7 +9614,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("auth"); ok {
+	if v, ok := d.GetOk("auth"); ok || d.HasChange("auth") {
 		t, err := expandObjectWirelessControllerVapAuth(d, v, "auth")
 		if err != nil {
 			return &obj, err
@@ -9623,7 +9623,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("auth_cert"); ok {
+	if v, ok := d.GetOk("auth_cert"); ok || d.HasChange("auth_cert") {
 		t, err := expandObjectWirelessControllerVapAuthCert(d, v, "auth_cert")
 		if err != nil {
 			return &obj, err
@@ -9632,7 +9632,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("auth_portal_addr"); ok {
+	if v, ok := d.GetOk("auth_portal_addr"); ok || d.HasChange("auth_portal_addr") {
 		t, err := expandObjectWirelessControllerVapAuthPortalAddr(d, v, "auth_portal_addr")
 		if err != nil {
 			return &obj, err
@@ -9641,7 +9641,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("beacon_advertising"); ok {
+	if v, ok := d.GetOk("beacon_advertising"); ok || d.HasChange("beacon_advertising") {
 		t, err := expandObjectWirelessControllerVapBeaconAdvertising(d, v, "beacon_advertising")
 		if err != nil {
 			return &obj, err
@@ -9650,7 +9650,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("broadcast_ssid"); ok {
+	if v, ok := d.GetOk("broadcast_ssid"); ok || d.HasChange("broadcast_ssid") {
 		t, err := expandObjectWirelessControllerVapBroadcastSsid(d, v, "broadcast_ssid")
 		if err != nil {
 			return &obj, err
@@ -9659,7 +9659,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("broadcast_suppression"); ok {
+	if v, ok := d.GetOk("broadcast_suppression"); ok || d.HasChange("broadcast_suppression") {
 		t, err := expandObjectWirelessControllerVapBroadcastSuppression(d, v, "broadcast_suppression")
 		if err != nil {
 			return &obj, err
@@ -9668,7 +9668,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("bss_color_partial"); ok {
+	if v, ok := d.GetOk("bss_color_partial"); ok || d.HasChange("bss_color_partial") {
 		t, err := expandObjectWirelessControllerVapBssColorPartial(d, v, "bss_color_partial")
 		if err != nil {
 			return &obj, err
@@ -9677,7 +9677,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("bstm_disassociation_imminent"); ok {
+	if v, ok := d.GetOk("bstm_disassociation_imminent"); ok || d.HasChange("bstm_disassociation_imminent") {
 		t, err := expandObjectWirelessControllerVapBstmDisassociationImminent(d, v, "bstm_disassociation_imminent")
 		if err != nil {
 			return &obj, err
@@ -9686,7 +9686,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("bstm_load_balancing_disassoc_timer"); ok {
+	if v, ok := d.GetOk("bstm_load_balancing_disassoc_timer"); ok || d.HasChange("bstm_load_balancing_disassoc_timer") {
 		t, err := expandObjectWirelessControllerVapBstmLoadBalancingDisassocTimer(d, v, "bstm_load_balancing_disassoc_timer")
 		if err != nil {
 			return &obj, err
@@ -9695,7 +9695,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("bstm_rssi_disassoc_timer"); ok {
+	if v, ok := d.GetOk("bstm_rssi_disassoc_timer"); ok || d.HasChange("bstm_rssi_disassoc_timer") {
 		t, err := expandObjectWirelessControllerVapBstmRssiDisassocTimer(d, v, "bstm_rssi_disassoc_timer")
 		if err != nil {
 			return &obj, err
@@ -9704,7 +9704,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_ac_name"); ok {
+	if v, ok := d.GetOk("captive_portal_ac_name"); ok || d.HasChange("captive_portal_ac_name") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalAcName(d, v, "captive_portal_ac_name")
 		if err != nil {
 			return &obj, err
@@ -9713,7 +9713,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_auth_timeout"); ok {
+	if v, ok := d.GetOk("captive_portal_auth_timeout"); ok || d.HasChange("captive_portal_auth_timeout") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalAuthTimeout(d, v, "captive_portal_auth_timeout")
 		if err != nil {
 			return &obj, err
@@ -9722,7 +9722,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_address_enforcement"); ok {
+	if v, ok := d.GetOk("dhcp_address_enforcement"); ok || d.HasChange("dhcp_address_enforcement") {
 		t, err := expandObjectWirelessControllerVapDhcpAddressEnforcement(d, v, "dhcp_address_enforcement")
 		if err != nil {
 			return &obj, err
@@ -9731,7 +9731,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_macauth_radius_secret"); ok {
+	if v, ok := d.GetOk("captive_portal_macauth_radius_secret"); ok || d.HasChange("captive_portal_macauth_radius_secret") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalMacauthRadiusSecret(d, v, "captive_portal_macauth_radius_secret")
 		if err != nil {
 			return &obj, err
@@ -9740,7 +9740,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_macauth_radius_server"); ok {
+	if v, ok := d.GetOk("captive_portal_macauth_radius_server"); ok || d.HasChange("captive_portal_macauth_radius_server") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalMacauthRadiusServer(d, v, "captive_portal_macauth_radius_server")
 		if err != nil {
 			return &obj, err
@@ -9749,7 +9749,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_radius_secret"); ok {
+	if v, ok := d.GetOk("captive_portal_radius_secret"); ok || d.HasChange("captive_portal_radius_secret") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalRadiusSecret(d, v, "captive_portal_radius_secret")
 		if err != nil {
 			return &obj, err
@@ -9758,7 +9758,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_radius_server"); ok {
+	if v, ok := d.GetOk("captive_portal_radius_server"); ok || d.HasChange("captive_portal_radius_server") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalRadiusServer(d, v, "captive_portal_radius_server")
 		if err != nil {
 			return &obj, err
@@ -9767,7 +9767,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_session_timeout_interval"); ok {
+	if v, ok := d.GetOk("captive_portal_session_timeout_interval"); ok || d.HasChange("captive_portal_session_timeout_interval") {
 		t, err := expandObjectWirelessControllerVapCaptivePortalSessionTimeoutInterval(d, v, "captive_portal_session_timeout_interval")
 		if err != nil {
 			return &obj, err
@@ -9776,7 +9776,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_lease_time"); ok {
+	if v, ok := d.GetOk("dhcp_lease_time"); ok || d.HasChange("dhcp_lease_time") {
 		t, err := expandObjectWirelessControllerVapDhcpLeaseTime(d, v, "dhcp_lease_time")
 		if err != nil {
 			return &obj, err
@@ -9785,7 +9785,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_option43_insertion"); ok {
+	if v, ok := d.GetOk("dhcp_option43_insertion"); ok || d.HasChange("dhcp_option43_insertion") {
 		t, err := expandObjectWirelessControllerVapDhcpOption43Insertion(d, v, "dhcp_option43_insertion")
 		if err != nil {
 			return &obj, err
@@ -9794,7 +9794,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_option82_circuit_id_insertion"); ok {
+	if v, ok := d.GetOk("dhcp_option82_circuit_id_insertion"); ok || d.HasChange("dhcp_option82_circuit_id_insertion") {
 		t, err := expandObjectWirelessControllerVapDhcpOption82CircuitIdInsertion(d, v, "dhcp_option82_circuit_id_insertion")
 		if err != nil {
 			return &obj, err
@@ -9803,7 +9803,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_option82_insertion"); ok {
+	if v, ok := d.GetOk("dhcp_option82_insertion"); ok || d.HasChange("dhcp_option82_insertion") {
 		t, err := expandObjectWirelessControllerVapDhcpOption82Insertion(d, v, "dhcp_option82_insertion")
 		if err != nil {
 			return &obj, err
@@ -9812,7 +9812,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_option82_remote_id_insertion"); ok {
+	if v, ok := d.GetOk("dhcp_option82_remote_id_insertion"); ok || d.HasChange("dhcp_option82_remote_id_insertion") {
 		t, err := expandObjectWirelessControllerVapDhcpOption82RemoteIdInsertion(d, v, "dhcp_option82_remote_id_insertion")
 		if err != nil {
 			return &obj, err
@@ -9821,7 +9821,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_vlan"); ok {
+	if v, ok := d.GetOk("dynamic_vlan"); ok || d.HasChange("dynamic_vlan") {
 		t, err := expandObjectWirelessControllerVapDynamicVlan(d, v, "dynamic_vlan")
 		if err != nil {
 			return &obj, err
@@ -9830,7 +9830,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectWirelessControllerVapDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -9839,7 +9839,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("eap_reauth"); ok {
+	if v, ok := d.GetOk("eap_reauth"); ok || d.HasChange("eap_reauth") {
 		t, err := expandObjectWirelessControllerVapEapReauth(d, v, "eap_reauth")
 		if err != nil {
 			return &obj, err
@@ -9848,7 +9848,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("eap_reauth_intv"); ok {
+	if v, ok := d.GetOk("eap_reauth_intv"); ok || d.HasChange("eap_reauth_intv") {
 		t, err := expandObjectWirelessControllerVapEapReauthIntv(d, v, "eap_reauth_intv")
 		if err != nil {
 			return &obj, err
@@ -9857,7 +9857,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("eapol_key_retries"); ok {
+	if v, ok := d.GetOk("eapol_key_retries"); ok || d.HasChange("eapol_key_retries") {
 		t, err := expandObjectWirelessControllerVapEapolKeyRetries(d, v, "eapol_key_retries")
 		if err != nil {
 			return &obj, err
@@ -9866,7 +9866,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("encrypt"); ok {
+	if v, ok := d.GetOk("encrypt"); ok || d.HasChange("encrypt") {
 		t, err := expandObjectWirelessControllerVapEncrypt(d, v, "encrypt")
 		if err != nil {
 			return &obj, err
@@ -9875,7 +9875,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("external_fast_roaming"); ok {
+	if v, ok := d.GetOk("external_fast_roaming"); ok || d.HasChange("external_fast_roaming") {
 		t, err := expandObjectWirelessControllerVapExternalFastRoaming(d, v, "external_fast_roaming")
 		if err != nil {
 			return &obj, err
@@ -9884,7 +9884,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("external_logout"); ok {
+	if v, ok := d.GetOk("external_logout"); ok || d.HasChange("external_logout") {
 		t, err := expandObjectWirelessControllerVapExternalLogout(d, v, "external_logout")
 		if err != nil {
 			return &obj, err
@@ -9893,7 +9893,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("external_web"); ok {
+	if v, ok := d.GetOk("external_web"); ok || d.HasChange("external_web") {
 		t, err := expandObjectWirelessControllerVapExternalWeb(d, v, "external_web")
 		if err != nil {
 			return &obj, err
@@ -9902,7 +9902,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("external_web_format"); ok {
+	if v, ok := d.GetOk("external_web_format"); ok || d.HasChange("external_web_format") {
 		t, err := expandObjectWirelessControllerVapExternalWebFormat(d, v, "external_web_format")
 		if err != nil {
 			return &obj, err
@@ -9911,7 +9911,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fast_bss_transition"); ok {
+	if v, ok := d.GetOk("fast_bss_transition"); ok || d.HasChange("fast_bss_transition") {
 		t, err := expandObjectWirelessControllerVapFastBssTransition(d, v, "fast_bss_transition")
 		if err != nil {
 			return &obj, err
@@ -9920,7 +9920,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fast_roaming"); ok {
+	if v, ok := d.GetOk("fast_roaming"); ok || d.HasChange("fast_roaming") {
 		t, err := expandObjectWirelessControllerVapFastRoaming(d, v, "fast_roaming")
 		if err != nil {
 			return &obj, err
@@ -9929,7 +9929,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ft_mobility_domain"); ok {
+	if v, ok := d.GetOk("ft_mobility_domain"); ok || d.HasChange("ft_mobility_domain") {
 		t, err := expandObjectWirelessControllerVapFtMobilityDomain(d, v, "ft_mobility_domain")
 		if err != nil {
 			return &obj, err
@@ -9938,7 +9938,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ft_over_ds"); ok {
+	if v, ok := d.GetOk("ft_over_ds"); ok || d.HasChange("ft_over_ds") {
 		t, err := expandObjectWirelessControllerVapFtOverDs(d, v, "ft_over_ds")
 		if err != nil {
 			return &obj, err
@@ -9947,7 +9947,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ft_r0_key_lifetime"); ok {
+	if v, ok := d.GetOk("ft_r0_key_lifetime"); ok || d.HasChange("ft_r0_key_lifetime") {
 		t, err := expandObjectWirelessControllerVapFtR0KeyLifetime(d, v, "ft_r0_key_lifetime")
 		if err != nil {
 			return &obj, err
@@ -9956,7 +9956,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("gas_comeback_delay"); ok {
+	if v, ok := d.GetOk("gas_comeback_delay"); ok || d.HasChange("gas_comeback_delay") {
 		t, err := expandObjectWirelessControllerVapGasComebackDelay(d, v, "gas_comeback_delay")
 		if err != nil {
 			return &obj, err
@@ -9965,7 +9965,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("gas_fragmentation_limit"); ok {
+	if v, ok := d.GetOk("gas_fragmentation_limit"); ok || d.HasChange("gas_fragmentation_limit") {
 		t, err := expandObjectWirelessControllerVapGasFragmentationLimit(d, v, "gas_fragmentation_limit")
 		if err != nil {
 			return &obj, err
@@ -9974,7 +9974,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("gtk_rekey"); ok {
+	if v, ok := d.GetOk("gtk_rekey"); ok || d.HasChange("gtk_rekey") {
 		t, err := expandObjectWirelessControllerVapGtkRekey(d, v, "gtk_rekey")
 		if err != nil {
 			return &obj, err
@@ -9983,7 +9983,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("gtk_rekey_intv"); ok {
+	if v, ok := d.GetOk("gtk_rekey_intv"); ok || d.HasChange("gtk_rekey_intv") {
 		t, err := expandObjectWirelessControllerVapGtkRekeyIntv(d, v, "gtk_rekey_intv")
 		if err != nil {
 			return &obj, err
@@ -9992,7 +9992,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("high_efficiency"); ok {
+	if v, ok := d.GetOk("high_efficiency"); ok || d.HasChange("high_efficiency") {
 		t, err := expandObjectWirelessControllerVapHighEfficiency(d, v, "high_efficiency")
 		if err != nil {
 			return &obj, err
@@ -10001,7 +10001,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("hotspot20_profile"); ok {
+	if v, ok := d.GetOk("hotspot20_profile"); ok || d.HasChange("hotspot20_profile") {
 		t, err := expandObjectWirelessControllerVapHotspot20Profile(d, v, "hotspot20_profile")
 		if err != nil {
 			return &obj, err
@@ -10010,7 +10010,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("igmp_snooping"); ok {
+	if v, ok := d.GetOk("igmp_snooping"); ok || d.HasChange("igmp_snooping") {
 		t, err := expandObjectWirelessControllerVapIgmpSnooping(d, v, "igmp_snooping")
 		if err != nil {
 			return &obj, err
@@ -10019,7 +10019,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("intra_vap_privacy"); ok {
+	if v, ok := d.GetOk("intra_vap_privacy"); ok || d.HasChange("intra_vap_privacy") {
 		t, err := expandObjectWirelessControllerVapIntraVapPrivacy(d, v, "intra_vap_privacy")
 		if err != nil {
 			return &obj, err
@@ -10028,7 +10028,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandObjectWirelessControllerVapIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -10037,7 +10037,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ips_sensor"); ok {
+	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
 		t, err := expandObjectWirelessControllerVapIpsSensor(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
@@ -10046,7 +10046,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_rules"); ok {
+	if v, ok := d.GetOk("ipv6_rules"); ok || d.HasChange("ipv6_rules") {
 		t, err := expandObjectWirelessControllerVapIpv6Rules(d, v, "ipv6_rules")
 		if err != nil {
 			return &obj, err
@@ -10055,7 +10055,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("key"); ok {
+	if v, ok := d.GetOk("key"); ok || d.HasChange("key") {
 		t, err := expandObjectWirelessControllerVapKey(d, v, "key")
 		if err != nil {
 			return &obj, err
@@ -10064,7 +10064,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("keyindex"); ok {
+	if v, ok := d.GetOk("keyindex"); ok || d.HasChange("keyindex") {
 		t, err := expandObjectWirelessControllerVapKeyindex(d, v, "keyindex")
 		if err != nil {
 			return &obj, err
@@ -10073,7 +10073,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ldpc"); ok {
+	if v, ok := d.GetOk("ldpc"); ok || d.HasChange("ldpc") {
 		t, err := expandObjectWirelessControllerVapLdpc(d, v, "ldpc")
 		if err != nil {
 			return &obj, err
@@ -10082,7 +10082,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_authentication"); ok {
+	if v, ok := d.GetOk("local_authentication"); ok || d.HasChange("local_authentication") {
 		t, err := expandObjectWirelessControllerVapLocalAuthentication(d, v, "local_authentication")
 		if err != nil {
 			return &obj, err
@@ -10091,7 +10091,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_bridging"); ok {
+	if v, ok := d.GetOk("local_bridging"); ok || d.HasChange("local_bridging") {
 		t, err := expandObjectWirelessControllerVapLocalBridging(d, v, "local_bridging")
 		if err != nil {
 			return &obj, err
@@ -10100,7 +10100,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_lan"); ok {
+	if v, ok := d.GetOk("local_lan"); ok || d.HasChange("local_lan") {
 		t, err := expandObjectWirelessControllerVapLocalLan(d, v, "local_lan")
 		if err != nil {
 			return &obj, err
@@ -10109,7 +10109,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_standalone"); ok {
+	if v, ok := d.GetOk("local_standalone"); ok || d.HasChange("local_standalone") {
 		t, err := expandObjectWirelessControllerVapLocalStandalone(d, v, "local_standalone")
 		if err != nil {
 			return &obj, err
@@ -10118,7 +10118,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_standalone_dns"); ok {
+	if v, ok := d.GetOk("local_standalone_dns"); ok || d.HasChange("local_standalone_dns") {
 		t, err := expandObjectWirelessControllerVapLocalStandaloneDns(d, v, "local_standalone_dns")
 		if err != nil {
 			return &obj, err
@@ -10127,7 +10127,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_standalone_dns_ip"); ok {
+	if v, ok := d.GetOk("local_standalone_dns_ip"); ok || d.HasChange("local_standalone_dns_ip") {
 		t, err := expandObjectWirelessControllerVapLocalStandaloneDnsIp(d, v, "local_standalone_dns_ip")
 		if err != nil {
 			return &obj, err
@@ -10136,7 +10136,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("local_standalone_nat"); ok {
+	if v, ok := d.GetOk("local_standalone_nat"); ok || d.HasChange("local_standalone_nat") {
 		t, err := expandObjectWirelessControllerVapLocalStandaloneNat(d, v, "local_standalone_nat")
 		if err != nil {
 			return &obj, err
@@ -10145,7 +10145,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_auth_bypass"); ok {
+	if v, ok := d.GetOk("mac_auth_bypass"); ok || d.HasChange("mac_auth_bypass") {
 		t, err := expandObjectWirelessControllerVapMacAuthBypass(d, v, "mac_auth_bypass")
 		if err != nil {
 			return &obj, err
@@ -10154,7 +10154,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_called_station_delimiter"); ok {
+	if v, ok := d.GetOk("mac_called_station_delimiter"); ok || d.HasChange("mac_called_station_delimiter") {
 		t, err := expandObjectWirelessControllerVapMacCalledStationDelimiter(d, v, "mac_called_station_delimiter")
 		if err != nil {
 			return &obj, err
@@ -10163,7 +10163,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_calling_station_delimiter"); ok {
+	if v, ok := d.GetOk("mac_calling_station_delimiter"); ok || d.HasChange("mac_calling_station_delimiter") {
 		t, err := expandObjectWirelessControllerVapMacCallingStationDelimiter(d, v, "mac_calling_station_delimiter")
 		if err != nil {
 			return &obj, err
@@ -10172,7 +10172,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_case"); ok {
+	if v, ok := d.GetOk("mac_case"); ok || d.HasChange("mac_case") {
 		t, err := expandObjectWirelessControllerVapMacCase(d, v, "mac_case")
 		if err != nil {
 			return &obj, err
@@ -10181,7 +10181,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_filter"); ok {
+	if v, ok := d.GetOk("mac_filter"); ok || d.HasChange("mac_filter") {
 		t, err := expandObjectWirelessControllerVapMacFilter(d, v, "mac_filter")
 		if err != nil {
 			return &obj, err
@@ -10190,7 +10190,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_filter_list"); ok {
+	if v, ok := d.GetOk("mac_filter_list"); ok || d.HasChange("mac_filter_list") {
 		t, err := expandObjectWirelessControllerVapMacFilterList(d, v, "mac_filter_list")
 		if err != nil {
 			return &obj, err
@@ -10199,7 +10199,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_filter_policy_other"); ok {
+	if v, ok := d.GetOk("mac_filter_policy_other"); ok || d.HasChange("mac_filter_policy_other") {
 		t, err := expandObjectWirelessControllerVapMacFilterPolicyOther(d, v, "mac_filter_policy_other")
 		if err != nil {
 			return &obj, err
@@ -10208,7 +10208,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_password_delimiter"); ok {
+	if v, ok := d.GetOk("mac_password_delimiter"); ok || d.HasChange("mac_password_delimiter") {
 		t, err := expandObjectWirelessControllerVapMacPasswordDelimiter(d, v, "mac_password_delimiter")
 		if err != nil {
 			return &obj, err
@@ -10217,7 +10217,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mac_username_delimiter"); ok {
+	if v, ok := d.GetOk("mac_username_delimiter"); ok || d.HasChange("mac_username_delimiter") {
 		t, err := expandObjectWirelessControllerVapMacUsernameDelimiter(d, v, "mac_username_delimiter")
 		if err != nil {
 			return &obj, err
@@ -10226,7 +10226,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("max_clients"); ok {
+	if v, ok := d.GetOk("max_clients"); ok || d.HasChange("max_clients") {
 		t, err := expandObjectWirelessControllerVapMaxClients(d, v, "max_clients")
 		if err != nil {
 			return &obj, err
@@ -10235,7 +10235,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("max_clients_ap"); ok {
+	if v, ok := d.GetOk("max_clients_ap"); ok || d.HasChange("max_clients_ap") {
 		t, err := expandObjectWirelessControllerVapMaxClientsAp(d, v, "max_clients_ap")
 		if err != nil {
 			return &obj, err
@@ -10244,7 +10244,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mbo"); ok {
+	if v, ok := d.GetOk("mbo"); ok || d.HasChange("mbo") {
 		t, err := expandObjectWirelessControllerVapMbo(d, v, "mbo")
 		if err != nil {
 			return &obj, err
@@ -10253,7 +10253,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mbo_cell_data_conn_pref"); ok {
+	if v, ok := d.GetOk("mbo_cell_data_conn_pref"); ok || d.HasChange("mbo_cell_data_conn_pref") {
 		t, err := expandObjectWirelessControllerVapMboCellDataConnPref(d, v, "mbo_cell_data_conn_pref")
 		if err != nil {
 			return &obj, err
@@ -10262,7 +10262,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("me_disable_thresh"); ok {
+	if v, ok := d.GetOk("me_disable_thresh"); ok || d.HasChange("me_disable_thresh") {
 		t, err := expandObjectWirelessControllerVapMeDisableThresh(d, v, "me_disable_thresh")
 		if err != nil {
 			return &obj, err
@@ -10271,7 +10271,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mesh_backhaul"); ok {
+	if v, ok := d.GetOk("mesh_backhaul"); ok || d.HasChange("mesh_backhaul") {
 		t, err := expandObjectWirelessControllerVapMeshBackhaul(d, v, "mesh_backhaul")
 		if err != nil {
 			return &obj, err
@@ -10280,7 +10280,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mpsk"); ok {
+	if v, ok := d.GetOk("mpsk"); ok || d.HasChange("mpsk") {
 		t, err := expandObjectWirelessControllerVapMpsk(d, v, "mpsk")
 		if err != nil {
 			return &obj, err
@@ -10289,7 +10289,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mpsk_concurrent_clients"); ok {
+	if v, ok := d.GetOk("mpsk_concurrent_clients"); ok || d.HasChange("mpsk_concurrent_clients") {
 		t, err := expandObjectWirelessControllerVapMpskConcurrentClients(d, v, "mpsk_concurrent_clients")
 		if err != nil {
 			return &obj, err
@@ -10298,7 +10298,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mpsk_key"); ok {
+	if v, ok := d.GetOk("mpsk_key"); ok || d.HasChange("mpsk_key") {
 		t, err := expandObjectWirelessControllerVapMpskKey(d, v, "mpsk_key")
 		if err != nil {
 			return &obj, err
@@ -10307,7 +10307,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mpsk_profile"); ok {
+	if v, ok := d.GetOk("mpsk_profile"); ok || d.HasChange("mpsk_profile") {
 		t, err := expandObjectWirelessControllerVapMpskProfile(d, v, "mpsk_profile")
 		if err != nil {
 			return &obj, err
@@ -10316,7 +10316,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mu_mimo"); ok {
+	if v, ok := d.GetOk("mu_mimo"); ok || d.HasChange("mu_mimo") {
 		t, err := expandObjectWirelessControllerVapMuMimo(d, v, "mu_mimo")
 		if err != nil {
 			return &obj, err
@@ -10325,7 +10325,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("multicast_enhance"); ok {
+	if v, ok := d.GetOk("multicast_enhance"); ok || d.HasChange("multicast_enhance") {
 		t, err := expandObjectWirelessControllerVapMulticastEnhance(d, v, "multicast_enhance")
 		if err != nil {
 			return &obj, err
@@ -10334,7 +10334,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("multicast_rate"); ok {
+	if v, ok := d.GetOk("multicast_rate"); ok || d.HasChange("multicast_rate") {
 		t, err := expandObjectWirelessControllerVapMulticastRate(d, v, "multicast_rate")
 		if err != nil {
 			return &obj, err
@@ -10343,7 +10343,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("nac"); ok {
+	if v, ok := d.GetOk("nac"); ok || d.HasChange("nac") {
 		t, err := expandObjectWirelessControllerVapNac(d, v, "nac")
 		if err != nil {
 			return &obj, err
@@ -10352,7 +10352,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("nac_profile"); ok {
+	if v, ok := d.GetOk("nac_profile"); ok || d.HasChange("nac_profile") {
 		t, err := expandObjectWirelessControllerVapNacProfile(d, v, "nac_profile")
 		if err != nil {
 			return &obj, err
@@ -10361,7 +10361,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerVapName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -10370,7 +10370,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("neighbor_report_dual_band"); ok {
+	if v, ok := d.GetOk("neighbor_report_dual_band"); ok || d.HasChange("neighbor_report_dual_band") {
 		t, err := expandObjectWirelessControllerVapNeighborReportDualBand(d, v, "neighbor_report_dual_band")
 		if err != nil {
 			return &obj, err
@@ -10379,7 +10379,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("okc"); ok {
+	if v, ok := d.GetOk("okc"); ok || d.HasChange("okc") {
 		t, err := expandObjectWirelessControllerVapOkc(d, v, "okc")
 		if err != nil {
 			return &obj, err
@@ -10388,7 +10388,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("osen"); ok {
+	if v, ok := d.GetOk("osen"); ok || d.HasChange("osen") {
 		t, err := expandObjectWirelessControllerVapOsen(d, v, "osen")
 		if err != nil {
 			return &obj, err
@@ -10397,7 +10397,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("owe_groups"); ok {
+	if v, ok := d.GetOk("owe_groups"); ok || d.HasChange("owe_groups") {
 		t, err := expandObjectWirelessControllerVapOweGroups(d, v, "owe_groups")
 		if err != nil {
 			return &obj, err
@@ -10406,7 +10406,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("owe_transition"); ok {
+	if v, ok := d.GetOk("owe_transition"); ok || d.HasChange("owe_transition") {
 		t, err := expandObjectWirelessControllerVapOweTransition(d, v, "owe_transition")
 		if err != nil {
 			return &obj, err
@@ -10415,7 +10415,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("owe_transition_ssid"); ok {
+	if v, ok := d.GetOk("owe_transition_ssid"); ok || d.HasChange("owe_transition_ssid") {
 		t, err := expandObjectWirelessControllerVapOweTransitionSsid(d, v, "owe_transition_ssid")
 		if err != nil {
 			return &obj, err
@@ -10424,7 +10424,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("passphrase"); ok {
+	if v, ok := d.GetOk("passphrase"); ok || d.HasChange("passphrase") {
 		t, err := expandObjectWirelessControllerVapPassphrase(d, v, "passphrase")
 		if err != nil {
 			return &obj, err
@@ -10433,7 +10433,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pmf"); ok {
+	if v, ok := d.GetOk("pmf"); ok || d.HasChange("pmf") {
 		t, err := expandObjectWirelessControllerVapPmf(d, v, "pmf")
 		if err != nil {
 			return &obj, err
@@ -10442,7 +10442,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pmf_assoc_comeback_timeout"); ok {
+	if v, ok := d.GetOk("pmf_assoc_comeback_timeout"); ok || d.HasChange("pmf_assoc_comeback_timeout") {
 		t, err := expandObjectWirelessControllerVapPmfAssocComebackTimeout(d, v, "pmf_assoc_comeback_timeout")
 		if err != nil {
 			return &obj, err
@@ -10451,7 +10451,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pmf_sa_query_retry_timeout"); ok {
+	if v, ok := d.GetOk("pmf_sa_query_retry_timeout"); ok || d.HasChange("pmf_sa_query_retry_timeout") {
 		t, err := expandObjectWirelessControllerVapPmfSaQueryRetryTimeout(d, v, "pmf_sa_query_retry_timeout")
 		if err != nil {
 			return &obj, err
@@ -10460,7 +10460,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("port_macauth"); ok {
+	if v, ok := d.GetOk("port_macauth"); ok || d.HasChange("port_macauth") {
 		t, err := expandObjectWirelessControllerVapPortMacauth(d, v, "port_macauth")
 		if err != nil {
 			return &obj, err
@@ -10469,7 +10469,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("port_macauth_reauth_timeout"); ok {
+	if v, ok := d.GetOk("port_macauth_reauth_timeout"); ok || d.HasChange("port_macauth_reauth_timeout") {
 		t, err := expandObjectWirelessControllerVapPortMacauthReauthTimeout(d, v, "port_macauth_reauth_timeout")
 		if err != nil {
 			return &obj, err
@@ -10478,7 +10478,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("port_macauth_timeout"); ok {
+	if v, ok := d.GetOk("port_macauth_timeout"); ok || d.HasChange("port_macauth_timeout") {
 		t, err := expandObjectWirelessControllerVapPortMacauthTimeout(d, v, "port_macauth_timeout")
 		if err != nil {
 			return &obj, err
@@ -10487,7 +10487,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("portal_message_override_group"); ok {
+	if v, ok := d.GetOk("portal_message_override_group"); ok || d.HasChange("portal_message_override_group") {
 		t, err := expandObjectWirelessControllerVapPortalMessageOverrideGroup(d, v, "portal_message_override_group")
 		if err != nil {
 			return &obj, err
@@ -10496,7 +10496,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("portal_message_overrides"); ok {
+	if v, ok := d.GetOk("portal_message_overrides"); ok || d.HasChange("portal_message_overrides") {
 		t, err := expandObjectWirelessControllerVapPortalMessageOverrides(d, v, "portal_message_overrides")
 		if err != nil {
 			return &obj, err
@@ -10505,7 +10505,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("portal_type"); ok {
+	if v, ok := d.GetOk("portal_type"); ok || d.HasChange("portal_type") {
 		t, err := expandObjectWirelessControllerVapPortalType(d, v, "portal_type")
 		if err != nil {
 			return &obj, err
@@ -10514,7 +10514,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("primary_wag_profile"); ok {
+	if v, ok := d.GetOk("primary_wag_profile"); ok || d.HasChange("primary_wag_profile") {
 		t, err := expandObjectWirelessControllerVapPrimaryWagProfile(d, v, "primary_wag_profile")
 		if err != nil {
 			return &obj, err
@@ -10523,7 +10523,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("probe_resp_suppression"); ok {
+	if v, ok := d.GetOk("probe_resp_suppression"); ok || d.HasChange("probe_resp_suppression") {
 		t, err := expandObjectWirelessControllerVapProbeRespSuppression(d, v, "probe_resp_suppression")
 		if err != nil {
 			return &obj, err
@@ -10532,7 +10532,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("probe_resp_threshold"); ok {
+	if v, ok := d.GetOk("probe_resp_threshold"); ok || d.HasChange("probe_resp_threshold") {
 		t, err := expandObjectWirelessControllerVapProbeRespThreshold(d, v, "probe_resp_threshold")
 		if err != nil {
 			return &obj, err
@@ -10541,7 +10541,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ptk_rekey"); ok {
+	if v, ok := d.GetOk("ptk_rekey"); ok || d.HasChange("ptk_rekey") {
 		t, err := expandObjectWirelessControllerVapPtkRekey(d, v, "ptk_rekey")
 		if err != nil {
 			return &obj, err
@@ -10550,7 +10550,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ptk_rekey_intv"); ok {
+	if v, ok := d.GetOk("ptk_rekey_intv"); ok || d.HasChange("ptk_rekey_intv") {
 		t, err := expandObjectWirelessControllerVapPtkRekeyIntv(d, v, "ptk_rekey_intv")
 		if err != nil {
 			return &obj, err
@@ -10559,7 +10559,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("qos_profile"); ok {
+	if v, ok := d.GetOk("qos_profile"); ok || d.HasChange("qos_profile") {
 		t, err := expandObjectWirelessControllerVapQosProfile(d, v, "qos_profile")
 		if err != nil {
 			return &obj, err
@@ -10568,7 +10568,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("quarantine"); ok {
+	if v, ok := d.GetOk("quarantine"); ok || d.HasChange("quarantine") {
 		t, err := expandObjectWirelessControllerVapQuarantine(d, v, "quarantine")
 		if err != nil {
 			return &obj, err
@@ -10577,7 +10577,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radio_2g_threshold"); ok {
+	if v, ok := d.GetOk("radio_2g_threshold"); ok || d.HasChange("radio_2g_threshold") {
 		t, err := expandObjectWirelessControllerVapRadio2GThreshold(d, v, "radio_2g_threshold")
 		if err != nil {
 			return &obj, err
@@ -10586,7 +10586,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radio_5g_threshold"); ok {
+	if v, ok := d.GetOk("radio_5g_threshold"); ok || d.HasChange("radio_5g_threshold") {
 		t, err := expandObjectWirelessControllerVapRadio5GThreshold(d, v, "radio_5g_threshold")
 		if err != nil {
 			return &obj, err
@@ -10595,7 +10595,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radio_sensitivity"); ok {
+	if v, ok := d.GetOk("radio_sensitivity"); ok || d.HasChange("radio_sensitivity") {
 		t, err := expandObjectWirelessControllerVapRadioSensitivity(d, v, "radio_sensitivity")
 		if err != nil {
 			return &obj, err
@@ -10604,7 +10604,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radius_mac_auth"); ok {
+	if v, ok := d.GetOk("radius_mac_auth"); ok || d.HasChange("radius_mac_auth") {
 		t, err := expandObjectWirelessControllerVapRadiusMacAuth(d, v, "radius_mac_auth")
 		if err != nil {
 			return &obj, err
@@ -10613,7 +10613,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radius_mac_auth_server"); ok {
+	if v, ok := d.GetOk("radius_mac_auth_server"); ok || d.HasChange("radius_mac_auth_server") {
 		t, err := expandObjectWirelessControllerVapRadiusMacAuthServer(d, v, "radius_mac_auth_server")
 		if err != nil {
 			return &obj, err
@@ -10622,7 +10622,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radius_mac_auth_usergroups"); ok {
+	if v, ok := d.GetOk("radius_mac_auth_usergroups"); ok || d.HasChange("radius_mac_auth_usergroups") {
 		t, err := expandObjectWirelessControllerVapRadiusMacAuthUsergroups(d, v, "radius_mac_auth_usergroups")
 		if err != nil {
 			return &obj, err
@@ -10631,7 +10631,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radius_mac_mpsk_auth"); ok {
+	if v, ok := d.GetOk("radius_mac_mpsk_auth"); ok || d.HasChange("radius_mac_mpsk_auth") {
 		t, err := expandObjectWirelessControllerVapRadiusMacMpskAuth(d, v, "radius_mac_mpsk_auth")
 		if err != nil {
 			return &obj, err
@@ -10640,7 +10640,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radius_mac_mpsk_timeout"); ok {
+	if v, ok := d.GetOk("radius_mac_mpsk_timeout"); ok || d.HasChange("radius_mac_mpsk_timeout") {
 		t, err := expandObjectWirelessControllerVapRadiusMacMpskTimeout(d, v, "radius_mac_mpsk_timeout")
 		if err != nil {
 			return &obj, err
@@ -10649,7 +10649,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("radius_server"); ok {
+	if v, ok := d.GetOk("radius_server"); ok || d.HasChange("radius_server") {
 		t, err := expandObjectWirelessControllerVapRadiusServer(d, v, "radius_server")
 		if err != nil {
 			return &obj, err
@@ -10658,7 +10658,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11a"); ok {
+	if v, ok := d.GetOk("rates_11a"); ok || d.HasChange("rates_11a") {
 		t, err := expandObjectWirelessControllerVapRates11A(d, v, "rates_11a")
 		if err != nil {
 			return &obj, err
@@ -10667,7 +10667,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11ac_ss12"); ok {
+	if v, ok := d.GetOk("rates_11ac_ss12"); ok || d.HasChange("rates_11ac_ss12") {
 		t, err := expandObjectWirelessControllerVapRates11AcSs12(d, v, "rates_11ac_ss12")
 		if err != nil {
 			return &obj, err
@@ -10676,7 +10676,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11ac_ss34"); ok {
+	if v, ok := d.GetOk("rates_11ac_ss34"); ok || d.HasChange("rates_11ac_ss34") {
 		t, err := expandObjectWirelessControllerVapRates11AcSs34(d, v, "rates_11ac_ss34")
 		if err != nil {
 			return &obj, err
@@ -10685,7 +10685,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11ax_ss12"); ok {
+	if v, ok := d.GetOk("rates_11ax_ss12"); ok || d.HasChange("rates_11ax_ss12") {
 		t, err := expandObjectWirelessControllerVapRates11AxSs12(d, v, "rates_11ax_ss12")
 		if err != nil {
 			return &obj, err
@@ -10694,7 +10694,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11ax_ss34"); ok {
+	if v, ok := d.GetOk("rates_11ax_ss34"); ok || d.HasChange("rates_11ax_ss34") {
 		t, err := expandObjectWirelessControllerVapRates11AxSs34(d, v, "rates_11ax_ss34")
 		if err != nil {
 			return &obj, err
@@ -10703,7 +10703,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11bg"); ok {
+	if v, ok := d.GetOk("rates_11bg"); ok || d.HasChange("rates_11bg") {
 		t, err := expandObjectWirelessControllerVapRates11Bg(d, v, "rates_11bg")
 		if err != nil {
 			return &obj, err
@@ -10712,7 +10712,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11n_ss12"); ok {
+	if v, ok := d.GetOk("rates_11n_ss12"); ok || d.HasChange("rates_11n_ss12") {
 		t, err := expandObjectWirelessControllerVapRates11NSs12(d, v, "rates_11n_ss12")
 		if err != nil {
 			return &obj, err
@@ -10721,7 +10721,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("rates_11n_ss34"); ok {
+	if v, ok := d.GetOk("rates_11n_ss34"); ok || d.HasChange("rates_11n_ss34") {
 		t, err := expandObjectWirelessControllerVapRates11NSs34(d, v, "rates_11n_ss34")
 		if err != nil {
 			return &obj, err
@@ -10730,7 +10730,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sae_groups"); ok {
+	if v, ok := d.GetOk("sae_groups"); ok || d.HasChange("sae_groups") {
 		t, err := expandObjectWirelessControllerVapSaeGroups(d, v, "sae_groups")
 		if err != nil {
 			return &obj, err
@@ -10739,7 +10739,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sae_password"); ok {
+	if v, ok := d.GetOk("sae_password"); ok || d.HasChange("sae_password") {
 		t, err := expandObjectWirelessControllerVapSaePassword(d, v, "sae_password")
 		if err != nil {
 			return &obj, err
@@ -10748,7 +10748,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("scan_botnet_connections"); ok {
+	if v, ok := d.GetOk("scan_botnet_connections"); ok || d.HasChange("scan_botnet_connections") {
 		t, err := expandObjectWirelessControllerVapScanBotnetConnections(d, v, "scan_botnet_connections")
 		if err != nil {
 			return &obj, err
@@ -10757,7 +10757,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("schedule"); ok {
+	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
 		t, err := expandObjectWirelessControllerVapSchedule(d, v, "schedule")
 		if err != nil {
 			return &obj, err
@@ -10766,7 +10766,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("secondary_wag_profile"); ok {
+	if v, ok := d.GetOk("secondary_wag_profile"); ok || d.HasChange("secondary_wag_profile") {
 		t, err := expandObjectWirelessControllerVapSecondaryWagProfile(d, v, "secondary_wag_profile")
 		if err != nil {
 			return &obj, err
@@ -10775,7 +10775,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("security"); ok {
+	if v, ok := d.GetOk("security"); ok || d.HasChange("security") {
 		t, err := expandObjectWirelessControllerVapSecurity(d, v, "security")
 		if err != nil {
 			return &obj, err
@@ -10784,7 +10784,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("security_exempt_list"); ok {
+	if v, ok := d.GetOk("security_exempt_list"); ok || d.HasChange("security_exempt_list") {
 		t, err := expandObjectWirelessControllerVapSecurityExemptList(d, v, "security_exempt_list")
 		if err != nil {
 			return &obj, err
@@ -10793,7 +10793,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("security_obsolete_option"); ok {
+	if v, ok := d.GetOk("security_obsolete_option"); ok || d.HasChange("security_obsolete_option") {
 		t, err := expandObjectWirelessControllerVapSecurityObsoleteOption(d, v, "security_obsolete_option")
 		if err != nil {
 			return &obj, err
@@ -10802,7 +10802,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("security_redirect_url"); ok {
+	if v, ok := d.GetOk("security_redirect_url"); ok || d.HasChange("security_redirect_url") {
 		t, err := expandObjectWirelessControllerVapSecurityRedirectUrl(d, v, "security_redirect_url")
 		if err != nil {
 			return &obj, err
@@ -10811,7 +10811,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("selected_usergroups"); ok {
+	if v, ok := d.GetOk("selected_usergroups"); ok || d.HasChange("selected_usergroups") {
 		t, err := expandObjectWirelessControllerVapSelectedUsergroups(d, v, "selected_usergroups")
 		if err != nil {
 			return &obj, err
@@ -10820,7 +10820,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("split_tunneling"); ok {
+	if v, ok := d.GetOk("split_tunneling"); ok || d.HasChange("split_tunneling") {
 		t, err := expandObjectWirelessControllerVapSplitTunneling(d, v, "split_tunneling")
 		if err != nil {
 			return &obj, err
@@ -10829,7 +10829,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ssid"); ok {
+	if v, ok := d.GetOk("ssid"); ok || d.HasChange("ssid") {
 		t, err := expandObjectWirelessControllerVapSsid(d, v, "ssid")
 		if err != nil {
 			return &obj, err
@@ -10838,7 +10838,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sticky_client_remove"); ok {
+	if v, ok := d.GetOk("sticky_client_remove"); ok || d.HasChange("sticky_client_remove") {
 		t, err := expandObjectWirelessControllerVapStickyClientRemove(d, v, "sticky_client_remove")
 		if err != nil {
 			return &obj, err
@@ -10847,7 +10847,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sticky_client_threshold_2g"); ok {
+	if v, ok := d.GetOk("sticky_client_threshold_2g"); ok || d.HasChange("sticky_client_threshold_2g") {
 		t, err := expandObjectWirelessControllerVapStickyClientThreshold2G(d, v, "sticky_client_threshold_2g")
 		if err != nil {
 			return &obj, err
@@ -10856,7 +10856,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sticky_client_threshold_5g"); ok {
+	if v, ok := d.GetOk("sticky_client_threshold_5g"); ok || d.HasChange("sticky_client_threshold_5g") {
 		t, err := expandObjectWirelessControllerVapStickyClientThreshold5G(d, v, "sticky_client_threshold_5g")
 		if err != nil {
 			return &obj, err
@@ -10865,7 +10865,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("target_wake_time"); ok {
+	if v, ok := d.GetOk("target_wake_time"); ok || d.HasChange("target_wake_time") {
 		t, err := expandObjectWirelessControllerVapTargetWakeTime(d, v, "target_wake_time")
 		if err != nil {
 			return &obj, err
@@ -10874,7 +10874,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tkip_counter_measure"); ok {
+	if v, ok := d.GetOk("tkip_counter_measure"); ok || d.HasChange("tkip_counter_measure") {
 		t, err := expandObjectWirelessControllerVapTkipCounterMeasure(d, v, "tkip_counter_measure")
 		if err != nil {
 			return &obj, err
@@ -10883,7 +10883,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tunnel_echo_interval"); ok {
+	if v, ok := d.GetOk("tunnel_echo_interval"); ok || d.HasChange("tunnel_echo_interval") {
 		t, err := expandObjectWirelessControllerVapTunnelEchoInterval(d, v, "tunnel_echo_interval")
 		if err != nil {
 			return &obj, err
@@ -10892,7 +10892,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("tunnel_fallback_interval"); ok {
+	if v, ok := d.GetOk("tunnel_fallback_interval"); ok || d.HasChange("tunnel_fallback_interval") {
 		t, err := expandObjectWirelessControllerVapTunnelFallbackInterval(d, v, "tunnel_fallback_interval")
 		if err != nil {
 			return &obj, err
@@ -10901,7 +10901,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("usergroup"); ok {
+	if v, ok := d.GetOk("usergroup"); ok || d.HasChange("usergroup") {
 		t, err := expandObjectWirelessControllerVapUsergroup(d, v, "usergroup")
 		if err != nil {
 			return &obj, err
@@ -10910,7 +10910,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("utm_log"); ok {
+	if v, ok := d.GetOk("utm_log"); ok || d.HasChange("utm_log") {
 		t, err := expandObjectWirelessControllerVapUtmLog(d, v, "utm_log")
 		if err != nil {
 			return &obj, err
@@ -10919,7 +10919,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("utm_profile"); ok {
+	if v, ok := d.GetOk("utm_profile"); ok || d.HasChange("utm_profile") {
 		t, err := expandObjectWirelessControllerVapUtmProfile(d, v, "utm_profile")
 		if err != nil {
 			return &obj, err
@@ -10928,7 +10928,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vdom"); ok {
+	if v, ok := d.GetOk("vdom"); ok || d.HasChange("vdom") {
 		t, err := expandObjectWirelessControllerVapVdom(d, v, "vdom")
 		if err != nil {
 			return &obj, err
@@ -10937,7 +10937,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("utm_status"); ok {
+	if v, ok := d.GetOk("utm_status"); ok || d.HasChange("utm_status") {
 		t, err := expandObjectWirelessControllerVapUtmStatus(d, v, "utm_status")
 		if err != nil {
 			return &obj, err
@@ -10946,7 +10946,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vlan_auto"); ok {
+	if v, ok := d.GetOk("vlan_auto"); ok || d.HasChange("vlan_auto") {
 		t, err := expandObjectWirelessControllerVapVlanAuto(d, v, "vlan_auto")
 		if err != nil {
 			return &obj, err
@@ -10955,7 +10955,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vlan_name"); ok {
+	if v, ok := d.GetOk("vlan_name"); ok || d.HasChange("vlan_name") {
 		t, err := expandObjectWirelessControllerVapVlanName(d, v, "vlan_name")
 		if err != nil {
 			return &obj, err
@@ -10964,7 +10964,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vlan_pool"); ok {
+	if v, ok := d.GetOk("vlan_pool"); ok || d.HasChange("vlan_pool") {
 		t, err := expandObjectWirelessControllerVapVlanPool(d, v, "vlan_pool")
 		if err != nil {
 			return &obj, err
@@ -10973,7 +10973,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vlan_pooling"); ok {
+	if v, ok := d.GetOk("vlan_pooling"); ok || d.HasChange("vlan_pooling") {
 		t, err := expandObjectWirelessControllerVapVlanPooling(d, v, "vlan_pooling")
 		if err != nil {
 			return &obj, err
@@ -10982,7 +10982,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vlanid"); ok {
+	if v, ok := d.GetOk("vlanid"); ok || d.HasChange("vlanid") {
 		t, err := expandObjectWirelessControllerVapVlanid(d, v, "vlanid")
 		if err != nil {
 			return &obj, err
@@ -10991,7 +10991,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("voice_enterprise"); ok {
+	if v, ok := d.GetOk("voice_enterprise"); ok || d.HasChange("voice_enterprise") {
 		t, err := expandObjectWirelessControllerVapVoiceEnterprise(d, v, "voice_enterprise")
 		if err != nil {
 			return &obj, err
@@ -11000,7 +11000,7 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_profile"); ok {
+	if v, ok := d.GetOk("webfilter_profile"); ok || d.HasChange("webfilter_profile") {
 		t, err := expandObjectWirelessControllerVapWebfilterProfile(d, v, "webfilter_profile")
 		if err != nil {
 			return &obj, err

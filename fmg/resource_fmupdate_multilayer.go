@@ -139,7 +139,7 @@ func expandFmupdateMultilayerWebspamRating(d *schema.ResourceData, v interface{}
 func getObjectFmupdateMultilayer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("webspam_rating"); ok {
+	if v, ok := d.GetOk("webspam_rating"); ok || d.HasChange("webspam_rating") {
 		t, err := expandFmupdateMultilayerWebspamRating(d, v, "webspam_rating")
 		if err != nil {
 			return &obj, err

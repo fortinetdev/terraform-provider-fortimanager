@@ -231,7 +231,7 @@ func expandSystemSqlCustomSkipidxLogType(d *schema.ResourceData, v interface{}, 
 func getObjectSystemSqlCustomSkipidx(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("device_type"); ok {
+	if v, ok := d.GetOk("device_type"); ok || d.HasChange("device_type") {
 		t, err := expandSystemSqlCustomSkipidxDeviceType(d, v, "device_type")
 		if err != nil {
 			return &obj, err
@@ -240,7 +240,7 @@ func getObjectSystemSqlCustomSkipidx(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandSystemSqlCustomSkipidxId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -249,7 +249,7 @@ func getObjectSystemSqlCustomSkipidx(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("index_field"); ok {
+	if v, ok := d.GetOk("index_field"); ok || d.HasChange("index_field") {
 		t, err := expandSystemSqlCustomSkipidxIndexField(d, v, "index_field")
 		if err != nil {
 			return &obj, err
@@ -258,7 +258,7 @@ func getObjectSystemSqlCustomSkipidx(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("log_type"); ok {
+	if v, ok := d.GetOk("log_type"); ok || d.HasChange("log_type") {
 		t, err := expandSystemSqlCustomSkipidxLogType(d, v, "log_type")
 		if err != nil {
 			return &obj, err

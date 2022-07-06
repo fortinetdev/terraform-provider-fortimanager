@@ -301,12 +301,12 @@ func expandSecurityconsoleReinstallPackageTarget(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pkg"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pkg"], _ = expandSecurityconsoleReinstallPackageTargetPkg(d, i["pkg"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["scope"], _ = expandSecurityconsoleReinstallPackageTargetScope(d, i["scope"], pre_append)
 		} else {
 			tmp["scope"] = make([]string, 0)
@@ -339,12 +339,12 @@ func expandSecurityconsoleReinstallPackageTargetScope(d *schema.ResourceData, v 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSecurityconsoleReinstallPackageTargetScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandSecurityconsoleReinstallPackageTargetScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -367,7 +367,7 @@ func expandSecurityconsoleReinstallPackageTargetScopeVdom(d *schema.ResourceData
 func getObjectSecurityconsoleReinstallPackage(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsoleReinstallPackageAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -376,7 +376,7 @@ func getObjectSecurityconsoleReinstallPackage(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("flags"); ok {
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
 		t, err := expandSecurityconsoleReinstallPackageFlags(d, v, "flags")
 		if err != nil {
 			return &obj, err
@@ -385,7 +385,7 @@ func getObjectSecurityconsoleReinstallPackage(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("target"); ok {
+	if v, ok := d.GetOk("target"); ok || d.HasChange("target") {
 		t, err := expandSecurityconsoleReinstallPackageTarget(d, v, "target")
 		if err != nil {
 			return &obj, err

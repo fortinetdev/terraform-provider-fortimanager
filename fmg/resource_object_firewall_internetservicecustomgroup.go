@@ -245,7 +245,7 @@ func expandObjectFirewallInternetServiceCustomGroupName(d *schema.ResourceData, 
 func getObjectObjectFirewallInternetServiceCustomGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallInternetServiceCustomGroupComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -254,7 +254,7 @@ func getObjectObjectFirewallInternetServiceCustomGroup(d *schema.ResourceData) (
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallInternetServiceCustomGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -263,7 +263,7 @@ func getObjectObjectFirewallInternetServiceCustomGroup(d *schema.ResourceData) (
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallInternetServiceCustomGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err

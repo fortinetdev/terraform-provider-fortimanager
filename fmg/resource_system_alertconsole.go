@@ -163,7 +163,7 @@ func expandSystemAlertConsoleSeverityLevel(d *schema.ResourceData, v interface{}
 func getObjectSystemAlertConsole(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("period"); ok {
+	if v, ok := d.GetOk("period"); ok || d.HasChange("period") {
 		t, err := expandSystemAlertConsolePeriod(d, v, "period")
 		if err != nil {
 			return &obj, err
@@ -172,7 +172,7 @@ func getObjectSystemAlertConsole(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("severity_level"); ok {
+	if v, ok := d.GetOk("severity_level"); ok || d.HasChange("severity_level") {
 		t, err := expandSystemAlertConsoleSeverityLevel(d, v, "severity_level")
 		if err != nil {
 			return &obj, err

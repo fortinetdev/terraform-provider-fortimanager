@@ -405,7 +405,7 @@ func expandObjectFirewallShaperPerIpShaperName(d *schema.ResourceData, v interfa
 func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("bandwidth_unit"); ok {
+	if v, ok := d.GetOk("bandwidth_unit"); ok || d.HasChange("bandwidth_unit") {
 		t, err := expandObjectFirewallShaperPerIpShaperBandwidthUnit(d, v, "bandwidth_unit")
 		if err != nil {
 			return &obj, err
@@ -414,7 +414,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv_forward"); ok {
+	if v, ok := d.GetOk("diffserv_forward"); ok || d.HasChange("diffserv_forward") {
 		t, err := expandObjectFirewallShaperPerIpShaperDiffservForward(d, v, "diffserv_forward")
 		if err != nil {
 			return &obj, err
@@ -423,7 +423,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("diffserv_reverse"); ok {
+	if v, ok := d.GetOk("diffserv_reverse"); ok || d.HasChange("diffserv_reverse") {
 		t, err := expandObjectFirewallShaperPerIpShaperDiffservReverse(d, v, "diffserv_reverse")
 		if err != nil {
 			return &obj, err
@@ -432,7 +432,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode_forward"); ok {
+	if v, ok := d.GetOk("diffservcode_forward"); ok || d.HasChange("diffservcode_forward") {
 		t, err := expandObjectFirewallShaperPerIpShaperDiffservcodeForward(d, v, "diffservcode_forward")
 		if err != nil {
 			return &obj, err
@@ -441,7 +441,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("diffservcode_rev"); ok {
+	if v, ok := d.GetOk("diffservcode_rev"); ok || d.HasChange("diffservcode_rev") {
 		t, err := expandObjectFirewallShaperPerIpShaperDiffservcodeRev(d, v, "diffservcode_rev")
 		if err != nil {
 			return &obj, err
@@ -450,7 +450,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("max_bandwidth"); ok {
+	if v, ok := d.GetOk("max_bandwidth"); ok || d.HasChange("max_bandwidth") {
 		t, err := expandObjectFirewallShaperPerIpShaperMaxBandwidth(d, v, "max_bandwidth")
 		if err != nil {
 			return &obj, err
@@ -459,7 +459,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("max_concurrent_session"); ok {
+	if v, ok := d.GetOk("max_concurrent_session"); ok || d.HasChange("max_concurrent_session") {
 		t, err := expandObjectFirewallShaperPerIpShaperMaxConcurrentSession(d, v, "max_concurrent_session")
 		if err != nil {
 			return &obj, err
@@ -468,7 +468,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("max_concurrent_tcp_session"); ok {
+	if v, ok := d.GetOk("max_concurrent_tcp_session"); ok || d.HasChange("max_concurrent_tcp_session") {
 		t, err := expandObjectFirewallShaperPerIpShaperMaxConcurrentTcpSession(d, v, "max_concurrent_tcp_session")
 		if err != nil {
 			return &obj, err
@@ -477,7 +477,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("max_concurrent_udp_session"); ok {
+	if v, ok := d.GetOk("max_concurrent_udp_session"); ok || d.HasChange("max_concurrent_udp_session") {
 		t, err := expandObjectFirewallShaperPerIpShaperMaxConcurrentUdpSession(d, v, "max_concurrent_udp_session")
 		if err != nil {
 			return &obj, err
@@ -486,7 +486,7 @@ func getObjectObjectFirewallShaperPerIpShaper(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallShaperPerIpShaperName(d, v, "name")
 		if err != nil {
 			return &obj, err

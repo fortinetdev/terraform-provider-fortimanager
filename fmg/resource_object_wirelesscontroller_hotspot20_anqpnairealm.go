@@ -476,24 +476,24 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(d *schema.Resour
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "eap_method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["eap-method"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d, i["eap_method"], pre_append)
 		} else {
 			tmp["eap-method"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "encoding"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["encoding"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEncoding(d, i["encoding"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nai_realm"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nai-realm"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListNaiRealm(d, i["nai_realm"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListName(d, i["name"], pre_append)
 		}
 
@@ -520,19 +520,19 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d *sche
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_param"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["auth-param"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(d, i["auth_param"], pre_append)
 		} else {
 			tmp["auth-param"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["index"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodIndex(d, i["index"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "method"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["method"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodMethod(d, i["method"], pre_append)
 		}
 
@@ -559,17 +559,17 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPara
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["index"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamIndex(d, i["index"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "val"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["val"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamVal(d, i["val"], pre_append)
 		}
 
@@ -620,7 +620,7 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmName(d *schema.ResourceD
 func getObjectObjectWirelessControllerHotspot20AnqpNaiRealm(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("nai_list"); ok {
+	if v, ok := d.GetOk("nai_list"); ok || d.HasChange("nai_list") {
 		t, err := expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(d, v, "nai_list")
 		if err != nil {
 			return &obj, err
@@ -629,7 +629,7 @@ func getObjectObjectWirelessControllerHotspot20AnqpNaiRealm(d *schema.ResourceDa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20AnqpNaiRealmName(d, v, "name")
 		if err != nil {
 			return &obj, err

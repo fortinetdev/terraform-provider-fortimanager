@@ -217,7 +217,7 @@ func expandObjectSystemNpuPriorityProtocolSlbc(d *schema.ResourceData, v interfa
 func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("bfd"); ok {
+	if v, ok := d.GetOk("bfd"); ok || d.HasChange("bfd") {
 		t, err := expandObjectSystemNpuPriorityProtocolBfd(d, v, "bfd")
 		if err != nil {
 			return &obj, err
@@ -226,7 +226,7 @@ func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("bgp"); ok {
+	if v, ok := d.GetOk("bgp"); ok || d.HasChange("bgp") {
 		t, err := expandObjectSystemNpuPriorityProtocolBgp(d, v, "bgp")
 		if err != nil {
 			return &obj, err
@@ -235,7 +235,7 @@ func getObjectObjectSystemNpuPriorityProtocol(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("slbc"); ok {
+	if v, ok := d.GetOk("slbc"); ok || d.HasChange("slbc") {
 		t, err := expandObjectSystemNpuPriorityProtocolSlbc(d, v, "slbc")
 		if err != nil {
 			return &obj, err

@@ -245,7 +245,7 @@ func expandObjectWirelessControllerVapGroupVaps(d *schema.ResourceData, v interf
 func getObjectObjectWirelessControllerVapGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWirelessControllerVapGroupComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -254,7 +254,7 @@ func getObjectObjectWirelessControllerVapGroup(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerVapGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -263,7 +263,7 @@ func getObjectObjectWirelessControllerVapGroup(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("vaps"); ok {
+	if v, ok := d.GetOk("vaps"); ok || d.HasChange("vaps") {
 		t, err := expandObjectWirelessControllerVapGroupVaps(d, v, "vaps")
 		if err != nil {
 			return &obj, err

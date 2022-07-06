@@ -2248,7 +2248,7 @@ func expandSystemAdminUserAdom(d *schema.ResourceData, v interface{}, pre string
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adom_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["adom-name"], _ = expandSystemAdminUserAdomAdomName(d, i["adom_name"], pre_append)
 		}
 
@@ -2283,7 +2283,7 @@ func expandSystemAdminUserAdomExclude(d *schema.ResourceData, v interface{}, pre
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adom_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["adom-name"], _ = expandSystemAdminUserAdomExcludeAdomName(d, i["adom_name"], pre_append)
 		}
 
@@ -2314,7 +2314,7 @@ func expandSystemAdminUserAppFilter(d *schema.ResourceData, v interface{}, pre s
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "app_filter_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["app-filter-name"], _ = expandSystemAdminUserAppFilterAppFilterName(d, i["app_filter_name"], pre_append)
 		}
 
@@ -2357,87 +2357,87 @@ func expandSystemAdminUserDashboard(d *schema.ResourceData, v interface{}, pre s
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "column"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["column"], _ = expandSystemAdminUserDashboardColumn(d, i["column"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "diskio_content_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["diskio-content-type"], _ = expandSystemAdminUserDashboardDiskioContentType(d, i["diskio_content_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "diskio_period"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["diskio-period"], _ = expandSystemAdminUserDashboardDiskioPeriod(d, i["diskio_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_rate_period"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-rate-period"], _ = expandSystemAdminUserDashboardLogRatePeriod(d, i["log_rate_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_rate_topn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-rate-topn"], _ = expandSystemAdminUserDashboardLogRateTopn(d, i["log_rate_topn"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_rate_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-rate-type"], _ = expandSystemAdminUserDashboardLogRateType(d, i["log_rate_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "moduleid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["moduleid"], _ = expandSystemAdminUserDashboardModuleid(d, i["moduleid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSystemAdminUserDashboardName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "num_entries"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["num-entries"], _ = expandSystemAdminUserDashboardNumEntries(d, i["num_entries"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "refresh_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["refresh-interval"], _ = expandSystemAdminUserDashboardRefreshInterval(d, i["refresh_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "res_cpu_display"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["res-cpu-display"], _ = expandSystemAdminUserDashboardResCpuDisplay(d, i["res_cpu_display"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "res_period"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["res-period"], _ = expandSystemAdminUserDashboardResPeriod(d, i["res_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "res_view_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["res-view-type"], _ = expandSystemAdminUserDashboardResViewType(d, i["res_view_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandSystemAdminUserDashboardStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tabid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tabid"], _ = expandSystemAdminUserDashboardTabid(d, i["tabid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "time_period"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["time-period"], _ = expandSystemAdminUserDashboardTimePeriod(d, i["time_period"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "widget_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["widget-type"], _ = expandSystemAdminUserDashboardWidgetType(d, i["widget_type"], pre_append)
 		}
 
@@ -2532,12 +2532,12 @@ func expandSystemAdminUserDashboardTabs(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandSystemAdminUserDashboardTabsName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tabid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tabid"], _ = expandSystemAdminUserDashboardTabsTabid(d, i["tabid"], pre_append)
 		}
 
@@ -2612,7 +2612,7 @@ func expandSystemAdminUserIpsFilter(d *schema.ResourceData, v interface{}, pre s
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ips_filter_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ips-filter-name"], _ = expandSystemAdminUserIpsFilterIpsFilterName(d, i["ips_filter_name"], pre_append)
 		}
 
@@ -2695,27 +2695,27 @@ func expandSystemAdminUserMetaData(d *schema.ResourceData, v interface{}, pre st
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fieldlength"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fieldlength"], _ = expandSystemAdminUserMetaDataFieldlength(d, i["fieldlength"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fieldname"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fieldname"], _ = expandSystemAdminUserMetaDataFieldname(d, i["fieldname"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fieldvalue"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fieldvalue"], _ = expandSystemAdminUserMetaDataFieldvalue(d, i["fieldvalue"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "importance"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["importance"], _ = expandSystemAdminUserMetaDataImportance(d, i["importance"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandSystemAdminUserMetaDataStatus(d, i["status"], pre_append)
 		}
 
@@ -2782,7 +2782,7 @@ func expandSystemAdminUserPolicyPackage(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "policy_package_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["policy-package-name"], _ = expandSystemAdminUserPolicyPackagePolicyPackageName(d, i["policy_package_name"], pre_append)
 		}
 
@@ -2913,7 +2913,7 @@ func expandSystemAdminUserWebFilter(d *schema.ResourceData, v interface{}, pre s
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "web_filter_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["web-filter-name"], _ = expandSystemAdminUserWebFilterWebFilterName(d, i["web_filter_name"], pre_append)
 		}
 
@@ -2936,7 +2936,7 @@ func expandSystemAdminUserWildcard(d *schema.ResourceData, v interface{}, pre st
 func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSystemAdminUserAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -2945,7 +2945,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("adom_access"); ok {
+	if v, ok := d.GetOk("adom_access"); ok || d.HasChange("adom_access") {
 		t, err := expandSystemAdminUserAdomAccess(d, v, "adom_access")
 		if err != nil {
 			return &obj, err
@@ -2954,7 +2954,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("adom_exclude"); ok {
+	if v, ok := d.GetOk("adom_exclude"); ok || d.HasChange("adom_exclude") {
 		t, err := expandSystemAdminUserAdomExclude(d, v, "adom_exclude")
 		if err != nil {
 			return &obj, err
@@ -2963,7 +2963,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("app_filter"); ok {
+	if v, ok := d.GetOk("app_filter"); ok || d.HasChange("app_filter") {
 		t, err := expandSystemAdminUserAppFilter(d, v, "app_filter")
 		if err != nil {
 			return &obj, err
@@ -2972,7 +2972,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("avatar"); ok {
+	if v, ok := d.GetOk("avatar"); ok || d.HasChange("avatar") {
 		t, err := expandSystemAdminUserAvatar(d, v, "avatar")
 		if err != nil {
 			return &obj, err
@@ -2981,7 +2981,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ca"); ok {
+	if v, ok := d.GetOk("ca"); ok || d.HasChange("ca") {
 		t, err := expandSystemAdminUserCa(d, v, "ca")
 		if err != nil {
 			return &obj, err
@@ -2990,7 +2990,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("change_password"); ok {
+	if v, ok := d.GetOk("change_password"); ok || d.HasChange("change_password") {
 		t, err := expandSystemAdminUserChangePassword(d, v, "change_password")
 		if err != nil {
 			return &obj, err
@@ -2999,7 +2999,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dashboard"); ok {
+	if v, ok := d.GetOk("dashboard"); ok || d.HasChange("dashboard") {
 		t, err := expandSystemAdminUserDashboard(d, v, "dashboard")
 		if err != nil {
 			return &obj, err
@@ -3008,7 +3008,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dashboard_tabs"); ok {
+	if v, ok := d.GetOk("dashboard_tabs"); ok || d.HasChange("dashboard_tabs") {
 		t, err := expandSystemAdminUserDashboardTabs(d, v, "dashboard_tabs")
 		if err != nil {
 			return &obj, err
@@ -3017,7 +3017,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandSystemAdminUserDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -3026,7 +3026,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("dev_group"); ok {
+	if v, ok := d.GetOk("dev_group"); ok || d.HasChange("dev_group") {
 		t, err := expandSystemAdminUserDevGroup(d, v, "dev_group")
 		if err != nil {
 			return &obj, err
@@ -3035,7 +3035,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("email_address"); ok {
+	if v, ok := d.GetOk("email_address"); ok || d.HasChange("email_address") {
 		t, err := expandSystemAdminUserEmailAddress(d, v, "email_address")
 		if err != nil {
 			return &obj, err
@@ -3044,7 +3044,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ext_auth_accprofile_override"); ok {
+	if v, ok := d.GetOk("ext_auth_accprofile_override"); ok || d.HasChange("ext_auth_accprofile_override") {
 		t, err := expandSystemAdminUserExtAuthAccprofileOverride(d, v, "ext_auth_accprofile_override")
 		if err != nil {
 			return &obj, err
@@ -3053,7 +3053,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ext_auth_adom_override"); ok {
+	if v, ok := d.GetOk("ext_auth_adom_override"); ok || d.HasChange("ext_auth_adom_override") {
 		t, err := expandSystemAdminUserExtAuthAdomOverride(d, v, "ext_auth_adom_override")
 		if err != nil {
 			return &obj, err
@@ -3062,7 +3062,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ext_auth_group_match"); ok {
+	if v, ok := d.GetOk("ext_auth_group_match"); ok || d.HasChange("ext_auth_group_match") {
 		t, err := expandSystemAdminUserExtAuthGroupMatch(d, v, "ext_auth_group_match")
 		if err != nil {
 			return &obj, err
@@ -3071,7 +3071,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("first_name"); ok {
+	if v, ok := d.GetOk("first_name"); ok || d.HasChange("first_name") {
 		t, err := expandSystemAdminUserFirstName(d, v, "first_name")
 		if err != nil {
 			return &obj, err
@@ -3080,7 +3080,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("force_password_change"); ok {
+	if v, ok := d.GetOk("force_password_change"); ok || d.HasChange("force_password_change") {
 		t, err := expandSystemAdminUserForcePasswordChange(d, v, "force_password_change")
 		if err != nil {
 			return &obj, err
@@ -3089,7 +3089,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("group"); ok {
+	if v, ok := d.GetOk("group"); ok || d.HasChange("group") {
 		t, err := expandSystemAdminUserGroup(d, v, "group")
 		if err != nil {
 			return &obj, err
@@ -3098,7 +3098,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("hidden"); ok {
+	if v, ok := d.GetOk("hidden"); ok || d.HasChange("hidden") {
 		t, err := expandSystemAdminUserHidden(d, v, "hidden")
 		if err != nil {
 			return &obj, err
@@ -3107,7 +3107,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ips_filter"); ok {
+	if v, ok := d.GetOk("ips_filter"); ok || d.HasChange("ips_filter") {
 		t, err := expandSystemAdminUserIpsFilter(d, v, "ips_filter")
 		if err != nil {
 			return &obj, err
@@ -3116,7 +3116,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost1"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost1"); ok || d.HasChange("ipv6_trusthost1") {
 		t, err := expandSystemAdminUserIpv6Trusthost1(d, v, "ipv6_trusthost1")
 		if err != nil {
 			return &obj, err
@@ -3125,7 +3125,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost10"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost10"); ok || d.HasChange("ipv6_trusthost10") {
 		t, err := expandSystemAdminUserIpv6Trusthost10(d, v, "ipv6_trusthost10")
 		if err != nil {
 			return &obj, err
@@ -3134,7 +3134,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost2"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost2"); ok || d.HasChange("ipv6_trusthost2") {
 		t, err := expandSystemAdminUserIpv6Trusthost2(d, v, "ipv6_trusthost2")
 		if err != nil {
 			return &obj, err
@@ -3143,7 +3143,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost3"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost3"); ok || d.HasChange("ipv6_trusthost3") {
 		t, err := expandSystemAdminUserIpv6Trusthost3(d, v, "ipv6_trusthost3")
 		if err != nil {
 			return &obj, err
@@ -3152,7 +3152,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost4"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost4"); ok || d.HasChange("ipv6_trusthost4") {
 		t, err := expandSystemAdminUserIpv6Trusthost4(d, v, "ipv6_trusthost4")
 		if err != nil {
 			return &obj, err
@@ -3161,7 +3161,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost5"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost5"); ok || d.HasChange("ipv6_trusthost5") {
 		t, err := expandSystemAdminUserIpv6Trusthost5(d, v, "ipv6_trusthost5")
 		if err != nil {
 			return &obj, err
@@ -3170,7 +3170,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost6"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost6"); ok || d.HasChange("ipv6_trusthost6") {
 		t, err := expandSystemAdminUserIpv6Trusthost6(d, v, "ipv6_trusthost6")
 		if err != nil {
 			return &obj, err
@@ -3179,7 +3179,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost7"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost7"); ok || d.HasChange("ipv6_trusthost7") {
 		t, err := expandSystemAdminUserIpv6Trusthost7(d, v, "ipv6_trusthost7")
 		if err != nil {
 			return &obj, err
@@ -3188,7 +3188,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost8"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost8"); ok || d.HasChange("ipv6_trusthost8") {
 		t, err := expandSystemAdminUserIpv6Trusthost8(d, v, "ipv6_trusthost8")
 		if err != nil {
 			return &obj, err
@@ -3197,7 +3197,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_trusthost9"); ok {
+	if v, ok := d.GetOk("ipv6_trusthost9"); ok || d.HasChange("ipv6_trusthost9") {
 		t, err := expandSystemAdminUserIpv6Trusthost9(d, v, "ipv6_trusthost9")
 		if err != nil {
 			return &obj, err
@@ -3206,7 +3206,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("last_name"); ok {
+	if v, ok := d.GetOk("last_name"); ok || d.HasChange("last_name") {
 		t, err := expandSystemAdminUserLastName(d, v, "last_name")
 		if err != nil {
 			return &obj, err
@@ -3215,7 +3215,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_server"); ok {
+	if v, ok := d.GetOk("ldap_server"); ok || d.HasChange("ldap_server") {
 		t, err := expandSystemAdminUserLdapServer(d, v, "ldap_server")
 		if err != nil {
 			return &obj, err
@@ -3224,7 +3224,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("login_max"); ok {
+	if v, ok := d.GetOk("login_max"); ok || d.HasChange("login_max") {
 		t, err := expandSystemAdminUserLoginMax(d, v, "login_max")
 		if err != nil {
 			return &obj, err
@@ -3233,7 +3233,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("meta_data"); ok {
+	if v, ok := d.GetOk("meta_data"); ok || d.HasChange("meta_data") {
 		t, err := expandSystemAdminUserMetaData(d, v, "meta_data")
 		if err != nil {
 			return &obj, err
@@ -3242,7 +3242,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("mobile_number"); ok {
+	if v, ok := d.GetOk("mobile_number"); ok || d.HasChange("mobile_number") {
 		t, err := expandSystemAdminUserMobileNumber(d, v, "mobile_number")
 		if err != nil {
 			return &obj, err
@@ -3251,7 +3251,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("pager_number"); ok {
+	if v, ok := d.GetOk("pager_number"); ok || d.HasChange("pager_number") {
 		t, err := expandSystemAdminUserPagerNumber(d, v, "pager_number")
 		if err != nil {
 			return &obj, err
@@ -3260,7 +3260,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemAdminUserPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -3269,7 +3269,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("password_expire"); ok {
+	if v, ok := d.GetOk("password_expire"); ok || d.HasChange("password_expire") {
 		t, err := expandSystemAdminUserPasswordExpire(d, v, "password_expire")
 		if err != nil {
 			return &obj, err
@@ -3278,7 +3278,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("phone_number"); ok {
+	if v, ok := d.GetOk("phone_number"); ok || d.HasChange("phone_number") {
 		t, err := expandSystemAdminUserPhoneNumber(d, v, "phone_number")
 		if err != nil {
 			return &obj, err
@@ -3287,7 +3287,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("policy_package"); ok {
+	if v, ok := d.GetOk("policy_package"); ok || d.HasChange("policy_package") {
 		t, err := expandSystemAdminUserPolicyPackage(d, v, "policy_package")
 		if err != nil {
 			return &obj, err
@@ -3296,7 +3296,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("profileid"); ok {
+	if v, ok := d.GetOk("profileid"); ok || d.HasChange("profileid") {
 		t, err := expandSystemAdminUserProfileid(d, v, "profileid")
 		if err != nil {
 			return &obj, err
@@ -3305,7 +3305,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("radius_server"); ok {
+	if v, ok := d.GetOk("radius_server"); ok || d.HasChange("radius_server") {
 		t, err := expandSystemAdminUserRadiusServer(d, v, "radius_server")
 		if err != nil {
 			return &obj, err
@@ -3314,7 +3314,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("rpc_permit"); ok {
+	if v, ok := d.GetOk("rpc_permit"); ok || d.HasChange("rpc_permit") {
 		t, err := expandSystemAdminUserRpcPermit(d, v, "rpc_permit")
 		if err != nil {
 			return &obj, err
@@ -3323,7 +3323,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_public_key1"); ok {
+	if v, ok := d.GetOk("ssh_public_key1"); ok || d.HasChange("ssh_public_key1") {
 		t, err := expandSystemAdminUserSshPublicKey1(d, v, "ssh_public_key1")
 		if err != nil {
 			return &obj, err
@@ -3332,7 +3332,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_public_key2"); ok {
+	if v, ok := d.GetOk("ssh_public_key2"); ok || d.HasChange("ssh_public_key2") {
 		t, err := expandSystemAdminUserSshPublicKey2(d, v, "ssh_public_key2")
 		if err != nil {
 			return &obj, err
@@ -3341,7 +3341,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ssh_public_key3"); ok {
+	if v, ok := d.GetOk("ssh_public_key3"); ok || d.HasChange("ssh_public_key3") {
 		t, err := expandSystemAdminUserSshPublicKey3(d, v, "ssh_public_key3")
 		if err != nil {
 			return &obj, err
@@ -3350,7 +3350,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("subject"); ok {
+	if v, ok := d.GetOk("subject"); ok || d.HasChange("subject") {
 		t, err := expandSystemAdminUserSubject(d, v, "subject")
 		if err != nil {
 			return &obj, err
@@ -3359,7 +3359,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("tacacs_plus_server"); ok {
+	if v, ok := d.GetOk("tacacs_plus_server"); ok || d.HasChange("tacacs_plus_server") {
 		t, err := expandSystemAdminUserTacacsPlusServer(d, v, "tacacs_plus_server")
 		if err != nil {
 			return &obj, err
@@ -3368,7 +3368,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("th_from_profile"); ok {
+	if v, ok := d.GetOk("th_from_profile"); ok || d.HasChange("th_from_profile") {
 		t, err := expandSystemAdminUserThFromProfile(d, v, "th_from_profile")
 		if err != nil {
 			return &obj, err
@@ -3377,7 +3377,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("th6_from_profile"); ok {
+	if v, ok := d.GetOk("th6_from_profile"); ok || d.HasChange("th6_from_profile") {
 		t, err := expandSystemAdminUserTh6FromProfile(d, v, "th6_from_profile")
 		if err != nil {
 			return &obj, err
@@ -3386,7 +3386,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost1"); ok {
+	if v, ok := d.GetOk("trusthost1"); ok || d.HasChange("trusthost1") {
 		t, err := expandSystemAdminUserTrusthost1(d, v, "trusthost1")
 		if err != nil {
 			return &obj, err
@@ -3395,7 +3395,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost10"); ok {
+	if v, ok := d.GetOk("trusthost10"); ok || d.HasChange("trusthost10") {
 		t, err := expandSystemAdminUserTrusthost10(d, v, "trusthost10")
 		if err != nil {
 			return &obj, err
@@ -3404,7 +3404,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost2"); ok {
+	if v, ok := d.GetOk("trusthost2"); ok || d.HasChange("trusthost2") {
 		t, err := expandSystemAdminUserTrusthost2(d, v, "trusthost2")
 		if err != nil {
 			return &obj, err
@@ -3413,7 +3413,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost3"); ok {
+	if v, ok := d.GetOk("trusthost3"); ok || d.HasChange("trusthost3") {
 		t, err := expandSystemAdminUserTrusthost3(d, v, "trusthost3")
 		if err != nil {
 			return &obj, err
@@ -3422,7 +3422,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost4"); ok {
+	if v, ok := d.GetOk("trusthost4"); ok || d.HasChange("trusthost4") {
 		t, err := expandSystemAdminUserTrusthost4(d, v, "trusthost4")
 		if err != nil {
 			return &obj, err
@@ -3431,7 +3431,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost5"); ok {
+	if v, ok := d.GetOk("trusthost5"); ok || d.HasChange("trusthost5") {
 		t, err := expandSystemAdminUserTrusthost5(d, v, "trusthost5")
 		if err != nil {
 			return &obj, err
@@ -3440,7 +3440,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost6"); ok {
+	if v, ok := d.GetOk("trusthost6"); ok || d.HasChange("trusthost6") {
 		t, err := expandSystemAdminUserTrusthost6(d, v, "trusthost6")
 		if err != nil {
 			return &obj, err
@@ -3449,7 +3449,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost7"); ok {
+	if v, ok := d.GetOk("trusthost7"); ok || d.HasChange("trusthost7") {
 		t, err := expandSystemAdminUserTrusthost7(d, v, "trusthost7")
 		if err != nil {
 			return &obj, err
@@ -3458,7 +3458,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost8"); ok {
+	if v, ok := d.GetOk("trusthost8"); ok || d.HasChange("trusthost8") {
 		t, err := expandSystemAdminUserTrusthost8(d, v, "trusthost8")
 		if err != nil {
 			return &obj, err
@@ -3467,7 +3467,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("trusthost9"); ok {
+	if v, ok := d.GetOk("trusthost9"); ok || d.HasChange("trusthost9") {
 		t, err := expandSystemAdminUserTrusthost9(d, v, "trusthost9")
 		if err != nil {
 			return &obj, err
@@ -3476,7 +3476,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor_auth"); ok {
+	if v, ok := d.GetOk("two_factor_auth"); ok || d.HasChange("two_factor_auth") {
 		t, err := expandSystemAdminUserTwoFactorAuth(d, v, "two_factor_auth")
 		if err != nil {
 			return &obj, err
@@ -3485,7 +3485,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("use_global_theme"); ok {
+	if v, ok := d.GetOk("use_global_theme"); ok || d.HasChange("use_global_theme") {
 		t, err := expandSystemAdminUserUseGlobalTheme(d, v, "use_global_theme")
 		if err != nil {
 			return &obj, err
@@ -3494,7 +3494,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("user_theme"); ok {
+	if v, ok := d.GetOk("user_theme"); ok || d.HasChange("user_theme") {
 		t, err := expandSystemAdminUserUserTheme(d, v, "user_theme")
 		if err != nil {
 			return &obj, err
@@ -3503,7 +3503,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("user_type"); ok {
+	if v, ok := d.GetOk("user_type"); ok || d.HasChange("user_type") {
 		t, err := expandSystemAdminUserUserType(d, v, "user_type")
 		if err != nil {
 			return &obj, err
@@ -3512,7 +3512,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("userid"); ok {
+	if v, ok := d.GetOk("userid"); ok || d.HasChange("userid") {
 		t, err := expandSystemAdminUserUserid(d, v, "userid")
 		if err != nil {
 			return &obj, err
@@ -3521,7 +3521,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("web_filter"); ok {
+	if v, ok := d.GetOk("web_filter"); ok || d.HasChange("web_filter") {
 		t, err := expandSystemAdminUserWebFilter(d, v, "web_filter")
 		if err != nil {
 			return &obj, err
@@ -3530,7 +3530,7 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard"); ok {
+	if v, ok := d.GetOk("wildcard"); ok || d.HasChange("wildcard") {
 		t, err := expandSystemAdminUserWildcard(d, v, "wildcard")
 		if err != nil {
 			return &obj, err

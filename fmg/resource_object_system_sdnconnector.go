@@ -2037,14 +2037,14 @@ func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "region_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["region-list"], _ = expandObjectSystemSdnConnectorExternalAccountListRegionList(d, i["region_list"], pre_append)
 		} else {
 			tmp["region-list"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "role_arn"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["role-arn"], _ = expandObjectSystemSdnConnectorExternalAccountListRoleArn(d, i["role_arn"], pre_append)
 		}
 
@@ -2079,7 +2079,7 @@ func expandObjectSystemSdnConnectorExternalIp(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemSdnConnectorExternalIpName(d, i["name"], pre_append)
 		}
 
@@ -2110,12 +2110,12 @@ func expandObjectSystemSdnConnectorForwardingRule(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rule_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rule-name"], _ = expandObjectSystemSdnConnectorForwardingRuleRuleName(d, i["rule_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "target"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["target"], _ = expandObjectSystemSdnConnectorForwardingRuleTarget(d, i["target"], pre_append)
 		}
 
@@ -2154,14 +2154,14 @@ func expandObjectSystemSdnConnectorGcpProjectList(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gcp_zone_list"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gcp-zone-list"], _ = expandObjectSystemSdnConnectorGcpProjectListGcpZoneList(d, i["gcp_zone_list"], pre_append)
 		} else {
 			tmp["gcp-zone-list"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemSdnConnectorGcpProjectListId(d, i["id"], pre_append)
 		}
 
@@ -2232,14 +2232,14 @@ func expandObjectSystemSdnConnectorNic(d *schema.ResourceData, v interface{}, pr
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectSystemSdnConnectorNicIp(d, i["ip"], pre_append)
 		} else {
 			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemSdnConnectorNicName(d, i["name"], pre_append)
 		}
 
@@ -2266,17 +2266,17 @@ func expandObjectSystemSdnConnectorNicIp(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemSdnConnectorNicIpName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "public_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["public-ip"], _ = expandObjectSystemSdnConnectorNicIpPublicIp(d, i["public_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "resource_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["resource-group"], _ = expandObjectSystemSdnConnectorNicIpResourceGroup(d, i["resource_group"], pre_append)
 		}
 
@@ -2375,7 +2375,7 @@ func expandObjectSystemSdnConnectorRoute(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemSdnConnectorRouteName(d, i["name"], pre_append)
 		}
 
@@ -2406,24 +2406,24 @@ func expandObjectSystemSdnConnectorRouteTable(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemSdnConnectorRouteTableName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "resource_group"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["resource-group"], _ = expandObjectSystemSdnConnectorRouteTableResourceGroup(d, i["resource_group"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "route"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["route"], _ = expandObjectSystemSdnConnectorRouteTableRoute(d, i["route"], pre_append)
 		} else {
 			tmp["route"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subscription_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subscription-id"], _ = expandObjectSystemSdnConnectorRouteTableSubscriptionId(d, i["subscription_id"], pre_append)
 		}
 
@@ -2458,12 +2458,12 @@ func expandObjectSystemSdnConnectorRouteTableRoute(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectSystemSdnConnectorRouteTableRouteName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "next_hop"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["next-hop"], _ = expandObjectSystemSdnConnectorRouteTableRouteNextHop(d, i["next_hop"], pre_append)
 		}
 
@@ -2578,7 +2578,7 @@ func expandObjectSystemSdnConnectorVpcId(d *schema.ResourceData, v interface{}, 
 func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_local_cert"); ok {
+	if v, ok := d.GetOk("_local_cert"); ok || d.HasChange("_local_cert") {
 		t, err := expandObjectSystemSdnConnectorLocalCert(d, v, "_local_cert")
 		if err != nil {
 			return &obj, err
@@ -2587,7 +2587,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("access_key"); ok {
+	if v, ok := d.GetOk("access_key"); ok || d.HasChange("access_key") {
 		t, err := expandObjectSystemSdnConnectorAccessKey(d, v, "access_key")
 		if err != nil {
 			return &obj, err
@@ -2596,7 +2596,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("api_key"); ok {
+	if v, ok := d.GetOk("api_key"); ok || d.HasChange("api_key") {
 		t, err := expandObjectSystemSdnConnectorApiKey(d, v, "api_key")
 		if err != nil {
 			return &obj, err
@@ -2605,7 +2605,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("azure_region"); ok {
+	if v, ok := d.GetOk("azure_region"); ok || d.HasChange("azure_region") {
 		t, err := expandObjectSystemSdnConnectorAzureRegion(d, v, "azure_region")
 		if err != nil {
 			return &obj, err
@@ -2614,7 +2614,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("client_id"); ok {
+	if v, ok := d.GetOk("client_id"); ok || d.HasChange("client_id") {
 		t, err := expandObjectSystemSdnConnectorClientId(d, v, "client_id")
 		if err != nil {
 			return &obj, err
@@ -2623,7 +2623,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("client_secret"); ok {
+	if v, ok := d.GetOk("client_secret"); ok || d.HasChange("client_secret") {
 		t, err := expandObjectSystemSdnConnectorClientSecret(d, v, "client_secret")
 		if err != nil {
 			return &obj, err
@@ -2632,7 +2632,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("compartment_id"); ok {
+	if v, ok := d.GetOk("compartment_id"); ok || d.HasChange("compartment_id") {
 		t, err := expandObjectSystemSdnConnectorCompartmentId(d, v, "compartment_id")
 		if err != nil {
 			return &obj, err
@@ -2641,7 +2641,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("compute_generation"); ok {
+	if v, ok := d.GetOk("compute_generation"); ok || d.HasChange("compute_generation") {
 		t, err := expandObjectSystemSdnConnectorComputeGeneration(d, v, "compute_generation")
 		if err != nil {
 			return &obj, err
@@ -2650,7 +2650,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("domain"); ok {
+	if v, ok := d.GetOk("domain"); ok || d.HasChange("domain") {
 		t, err := expandObjectSystemSdnConnectorDomain(d, v, "domain")
 		if err != nil {
 			return &obj, err
@@ -2659,7 +2659,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("external_account_list"); ok {
+	if v, ok := d.GetOk("external_account_list"); ok || d.HasChange("external_account_list") {
 		t, err := expandObjectSystemSdnConnectorExternalAccountList(d, v, "external_account_list")
 		if err != nil {
 			return &obj, err
@@ -2668,7 +2668,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("external_ip"); ok {
+	if v, ok := d.GetOk("external_ip"); ok || d.HasChange("external_ip") {
 		t, err := expandObjectSystemSdnConnectorExternalIp(d, v, "external_ip")
 		if err != nil {
 			return &obj, err
@@ -2677,7 +2677,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("forwarding_rule"); ok {
+	if v, ok := d.GetOk("forwarding_rule"); ok || d.HasChange("forwarding_rule") {
 		t, err := expandObjectSystemSdnConnectorForwardingRule(d, v, "forwarding_rule")
 		if err != nil {
 			return &obj, err
@@ -2686,7 +2686,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("gcp_project"); ok {
+	if v, ok := d.GetOk("gcp_project"); ok || d.HasChange("gcp_project") {
 		t, err := expandObjectSystemSdnConnectorGcpProject(d, v, "gcp_project")
 		if err != nil {
 			return &obj, err
@@ -2695,7 +2695,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("gcp_project_list"); ok {
+	if v, ok := d.GetOk("gcp_project_list"); ok || d.HasChange("gcp_project_list") {
 		t, err := expandObjectSystemSdnConnectorGcpProjectList(d, v, "gcp_project_list")
 		if err != nil {
 			return &obj, err
@@ -2704,7 +2704,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("group_name"); ok {
+	if v, ok := d.GetOk("group_name"); ok || d.HasChange("group_name") {
 		t, err := expandObjectSystemSdnConnectorGroupName(d, v, "group_name")
 		if err != nil {
 			return &obj, err
@@ -2713,7 +2713,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ha_status"); ok {
+	if v, ok := d.GetOk("ha_status"); ok || d.HasChange("ha_status") {
 		t, err := expandObjectSystemSdnConnectorHaStatus(d, v, "ha_status")
 		if err != nil {
 			return &obj, err
@@ -2722,7 +2722,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ibm_region"); ok {
+	if v, ok := d.GetOk("ibm_region"); ok || d.HasChange("ibm_region") {
 		t, err := expandObjectSystemSdnConnectorIbmRegion(d, v, "ibm_region")
 		if err != nil {
 			return &obj, err
@@ -2731,7 +2731,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ibm_region_gen1"); ok {
+	if v, ok := d.GetOk("ibm_region_gen1"); ok || d.HasChange("ibm_region_gen1") {
 		t, err := expandObjectSystemSdnConnectorIbmRegionGen1(d, v, "ibm_region_gen1")
 		if err != nil {
 			return &obj, err
@@ -2740,7 +2740,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ibm_region_gen2"); ok {
+	if v, ok := d.GetOk("ibm_region_gen2"); ok || d.HasChange("ibm_region_gen2") {
 		t, err := expandObjectSystemSdnConnectorIbmRegionGen2(d, v, "ibm_region_gen2")
 		if err != nil {
 			return &obj, err
@@ -2749,7 +2749,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("key_passwd"); ok {
+	if v, ok := d.GetOk("key_passwd"); ok || d.HasChange("key_passwd") {
 		t, err := expandObjectSystemSdnConnectorKeyPasswd(d, v, "key_passwd")
 		if err != nil {
 			return &obj, err
@@ -2758,7 +2758,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("last_update"); ok {
+	if v, ok := d.GetOk("last_update"); ok || d.HasChange("last_update") {
 		t, err := expandObjectSystemSdnConnectorLastUpdate(d, v, "last_update")
 		if err != nil {
 			return &obj, err
@@ -2767,7 +2767,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("login_endpoint"); ok {
+	if v, ok := d.GetOk("login_endpoint"); ok || d.HasChange("login_endpoint") {
 		t, err := expandObjectSystemSdnConnectorLoginEndpoint(d, v, "login_endpoint")
 		if err != nil {
 			return &obj, err
@@ -2776,7 +2776,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemSdnConnectorName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -2785,7 +2785,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("nic"); ok {
+	if v, ok := d.GetOk("nic"); ok || d.HasChange("nic") {
 		t, err := expandObjectSystemSdnConnectorNic(d, v, "nic")
 		if err != nil {
 			return &obj, err
@@ -2794,7 +2794,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("nsx_cert_fingerprint"); ok {
+	if v, ok := d.GetOk("nsx_cert_fingerprint"); ok || d.HasChange("nsx_cert_fingerprint") {
 		t, err := expandObjectSystemSdnConnectorNsxCertFingerprint(d, v, "nsx_cert_fingerprint")
 		if err != nil {
 			return &obj, err
@@ -2803,7 +2803,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("oci_cert"); ok {
+	if v, ok := d.GetOk("oci_cert"); ok || d.HasChange("oci_cert") {
 		t, err := expandObjectSystemSdnConnectorOciCert(d, v, "oci_cert")
 		if err != nil {
 			return &obj, err
@@ -2812,7 +2812,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("oci_fingerprint"); ok {
+	if v, ok := d.GetOk("oci_fingerprint"); ok || d.HasChange("oci_fingerprint") {
 		t, err := expandObjectSystemSdnConnectorOciFingerprint(d, v, "oci_fingerprint")
 		if err != nil {
 			return &obj, err
@@ -2821,7 +2821,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("oci_region"); ok {
+	if v, ok := d.GetOk("oci_region"); ok || d.HasChange("oci_region") {
 		t, err := expandObjectSystemSdnConnectorOciRegion(d, v, "oci_region")
 		if err != nil {
 			return &obj, err
@@ -2830,7 +2830,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("oci_region_type"); ok {
+	if v, ok := d.GetOk("oci_region_type"); ok || d.HasChange("oci_region_type") {
 		t, err := expandObjectSystemSdnConnectorOciRegionType(d, v, "oci_region_type")
 		if err != nil {
 			return &obj, err
@@ -2839,7 +2839,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandObjectSystemSdnConnectorPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -2848,7 +2848,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("private_key"); ok {
+	if v, ok := d.GetOk("private_key"); ok || d.HasChange("private_key") {
 		t, err := expandObjectSystemSdnConnectorPrivateKey(d, v, "private_key")
 		if err != nil {
 			return &obj, err
@@ -2857,7 +2857,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("region"); ok {
+	if v, ok := d.GetOk("region"); ok || d.HasChange("region") {
 		t, err := expandObjectSystemSdnConnectorRegion(d, v, "region")
 		if err != nil {
 			return &obj, err
@@ -2866,7 +2866,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("resource_group"); ok {
+	if v, ok := d.GetOk("resource_group"); ok || d.HasChange("resource_group") {
 		t, err := expandObjectSystemSdnConnectorResourceGroup(d, v, "resource_group")
 		if err != nil {
 			return &obj, err
@@ -2875,7 +2875,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("resource_url"); ok {
+	if v, ok := d.GetOk("resource_url"); ok || d.HasChange("resource_url") {
 		t, err := expandObjectSystemSdnConnectorResourceUrl(d, v, "resource_url")
 		if err != nil {
 			return &obj, err
@@ -2884,7 +2884,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("rest_interface"); ok {
+	if v, ok := d.GetOk("rest_interface"); ok || d.HasChange("rest_interface") {
 		t, err := expandObjectSystemSdnConnectorRestInterface(d, v, "rest_interface")
 		if err != nil {
 			return &obj, err
@@ -2893,7 +2893,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("rest_password"); ok {
+	if v, ok := d.GetOk("rest_password"); ok || d.HasChange("rest_password") {
 		t, err := expandObjectSystemSdnConnectorRestPassword(d, v, "rest_password")
 		if err != nil {
 			return &obj, err
@@ -2902,7 +2902,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("rest_sport"); ok {
+	if v, ok := d.GetOk("rest_sport"); ok || d.HasChange("rest_sport") {
 		t, err := expandObjectSystemSdnConnectorRestSport(d, v, "rest_sport")
 		if err != nil {
 			return &obj, err
@@ -2911,7 +2911,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("rest_ssl"); ok {
+	if v, ok := d.GetOk("rest_ssl"); ok || d.HasChange("rest_ssl") {
 		t, err := expandObjectSystemSdnConnectorRestSsl(d, v, "rest_ssl")
 		if err != nil {
 			return &obj, err
@@ -2920,7 +2920,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("route"); ok {
+	if v, ok := d.GetOk("route"); ok || d.HasChange("route") {
 		t, err := expandObjectSystemSdnConnectorRoute(d, v, "route")
 		if err != nil {
 			return &obj, err
@@ -2929,7 +2929,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("route_table"); ok {
+	if v, ok := d.GetOk("route_table"); ok || d.HasChange("route_table") {
 		t, err := expandObjectSystemSdnConnectorRouteTable(d, v, "route_table")
 		if err != nil {
 			return &obj, err
@@ -2938,7 +2938,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("secret_key"); ok {
+	if v, ok := d.GetOk("secret_key"); ok || d.HasChange("secret_key") {
 		t, err := expandObjectSystemSdnConnectorSecretKey(d, v, "secret_key")
 		if err != nil {
 			return &obj, err
@@ -2947,7 +2947,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("secret_token"); ok {
+	if v, ok := d.GetOk("secret_token"); ok || d.HasChange("secret_token") {
 		t, err := expandObjectSystemSdnConnectorSecretToken(d, v, "secret_token")
 		if err != nil {
 			return &obj, err
@@ -2956,7 +2956,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectSystemSdnConnectorServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -2965,7 +2965,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("server_list"); ok {
+	if v, ok := d.GetOk("server_list"); ok || d.HasChange("server_list") {
 		t, err := expandObjectSystemSdnConnectorServerList(d, v, "server_list")
 		if err != nil {
 			return &obj, err
@@ -2974,7 +2974,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("server_port"); ok {
+	if v, ok := d.GetOk("server_port"); ok || d.HasChange("server_port") {
 		t, err := expandObjectSystemSdnConnectorServerPort(d, v, "server_port")
 		if err != nil {
 			return &obj, err
@@ -2983,7 +2983,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("service_account"); ok {
+	if v, ok := d.GetOk("service_account"); ok || d.HasChange("service_account") {
 		t, err := expandObjectSystemSdnConnectorServiceAccount(d, v, "service_account")
 		if err != nil {
 			return &obj, err
@@ -2992,7 +2992,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectSystemSdnConnectorStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -3001,7 +3001,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("subscription_id"); ok {
+	if v, ok := d.GetOk("subscription_id"); ok || d.HasChange("subscription_id") {
 		t, err := expandObjectSystemSdnConnectorSubscriptionId(d, v, "subscription_id")
 		if err != nil {
 			return &obj, err
@@ -3010,7 +3010,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("tenant_id"); ok {
+	if v, ok := d.GetOk("tenant_id"); ok || d.HasChange("tenant_id") {
 		t, err := expandObjectSystemSdnConnectorTenantId(d, v, "tenant_id")
 		if err != nil {
 			return &obj, err
@@ -3019,7 +3019,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectSystemSdnConnectorType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -3028,7 +3028,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("update_interval"); ok {
+	if v, ok := d.GetOk("update_interval"); ok || d.HasChange("update_interval") {
 		t, err := expandObjectSystemSdnConnectorUpdateInterval(d, v, "update_interval")
 		if err != nil {
 			return &obj, err
@@ -3037,7 +3037,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("updating"); ok {
+	if v, ok := d.GetOk("updating"); ok || d.HasChange("updating") {
 		t, err := expandObjectSystemSdnConnectorUpdating(d, v, "updating")
 		if err != nil {
 			return &obj, err
@@ -3046,7 +3046,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("use_metadata_iam"); ok {
+	if v, ok := d.GetOk("use_metadata_iam"); ok || d.HasChange("use_metadata_iam") {
 		t, err := expandObjectSystemSdnConnectorUseMetadataIam(d, v, "use_metadata_iam")
 		if err != nil {
 			return &obj, err
@@ -3055,7 +3055,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("user_id"); ok {
+	if v, ok := d.GetOk("user_id"); ok || d.HasChange("user_id") {
 		t, err := expandObjectSystemSdnConnectorUserId(d, v, "user_id")
 		if err != nil {
 			return &obj, err
@@ -3064,7 +3064,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("username"); ok {
+	if v, ok := d.GetOk("username"); ok || d.HasChange("username") {
 		t, err := expandObjectSystemSdnConnectorUsername(d, v, "username")
 		if err != nil {
 			return &obj, err
@@ -3073,7 +3073,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vcenter_password"); ok {
+	if v, ok := d.GetOk("vcenter_password"); ok || d.HasChange("vcenter_password") {
 		t, err := expandObjectSystemSdnConnectorVcenterPassword(d, v, "vcenter_password")
 		if err != nil {
 			return &obj, err
@@ -3082,7 +3082,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vcenter_server"); ok {
+	if v, ok := d.GetOk("vcenter_server"); ok || d.HasChange("vcenter_server") {
 		t, err := expandObjectSystemSdnConnectorVcenterServer(d, v, "vcenter_server")
 		if err != nil {
 			return &obj, err
@@ -3091,7 +3091,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vcenter_username"); ok {
+	if v, ok := d.GetOk("vcenter_username"); ok || d.HasChange("vcenter_username") {
 		t, err := expandObjectSystemSdnConnectorVcenterUsername(d, v, "vcenter_username")
 		if err != nil {
 			return &obj, err
@@ -3100,7 +3100,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("verify_certificate"); ok {
+	if v, ok := d.GetOk("verify_certificate"); ok || d.HasChange("verify_certificate") {
 		t, err := expandObjectSystemSdnConnectorVerifyCertificate(d, v, "verify_certificate")
 		if err != nil {
 			return &obj, err
@@ -3109,7 +3109,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vmx_image_url"); ok {
+	if v, ok := d.GetOk("vmx_image_url"); ok || d.HasChange("vmx_image_url") {
 		t, err := expandObjectSystemSdnConnectorVmxImageUrl(d, v, "vmx_image_url")
 		if err != nil {
 			return &obj, err
@@ -3118,7 +3118,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vmx_service_name"); ok {
+	if v, ok := d.GetOk("vmx_service_name"); ok || d.HasChange("vmx_service_name") {
 		t, err := expandObjectSystemSdnConnectorVmxServiceName(d, v, "vmx_service_name")
 		if err != nil {
 			return &obj, err
@@ -3127,7 +3127,7 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vpc_id"); ok {
+	if v, ok := d.GetOk("vpc_id"); ok || d.HasChange("vpc_id") {
 		t, err := expandObjectSystemSdnConnectorVpcId(d, v, "vpc_id")
 		if err != nil {
 			return &obj, err

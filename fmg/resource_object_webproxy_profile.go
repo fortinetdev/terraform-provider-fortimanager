@@ -632,47 +632,47 @@ func expandObjectWebProxyProfileHeaders(d *schema.ResourceData, v interface{}, p
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectWebProxyProfileHeadersAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_option"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-option"], _ = expandObjectWebProxyProfileHeadersAddOption(d, i["add_option"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "base64_encoding"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["base64-encoding"], _ = expandObjectWebProxyProfileHeadersBase64Encoding(d, i["base64_encoding"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "content"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["content"], _ = expandObjectWebProxyProfileHeadersContent(d, i["content"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dstaddr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dstaddr"], _ = expandObjectWebProxyProfileHeadersDstaddr(d, i["dstaddr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dstaddr6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dstaddr6"], _ = expandObjectWebProxyProfileHeadersDstaddr6(d, i["dstaddr6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWebProxyProfileHeadersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectWebProxyProfileHeadersName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectWebProxyProfileHeadersProtocol(d, i["protocol"], pre_append)
 		} else {
 			tmp["protocol"] = make([]string, 0)
@@ -737,7 +737,7 @@ func expandObjectWebProxyProfileStripEncoding(d *schema.ResourceData, v interfac
 func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("header_client_ip"); ok {
+	if v, ok := d.GetOk("header_client_ip"); ok || d.HasChange("header_client_ip") {
 		t, err := expandObjectWebProxyProfileHeaderClientIp(d, v, "header_client_ip")
 		if err != nil {
 			return &obj, err
@@ -746,7 +746,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_front_end_https"); ok {
+	if v, ok := d.GetOk("header_front_end_https"); ok || d.HasChange("header_front_end_https") {
 		t, err := expandObjectWebProxyProfileHeaderFrontEndHttps(d, v, "header_front_end_https")
 		if err != nil {
 			return &obj, err
@@ -755,7 +755,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_via_request"); ok {
+	if v, ok := d.GetOk("header_via_request"); ok || d.HasChange("header_via_request") {
 		t, err := expandObjectWebProxyProfileHeaderViaRequest(d, v, "header_via_request")
 		if err != nil {
 			return &obj, err
@@ -764,7 +764,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_via_response"); ok {
+	if v, ok := d.GetOk("header_via_response"); ok || d.HasChange("header_via_response") {
 		t, err := expandObjectWebProxyProfileHeaderViaResponse(d, v, "header_via_response")
 		if err != nil {
 			return &obj, err
@@ -773,7 +773,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_x_authenticated_groups"); ok {
+	if v, ok := d.GetOk("header_x_authenticated_groups"); ok || d.HasChange("header_x_authenticated_groups") {
 		t, err := expandObjectWebProxyProfileHeaderXAuthenticatedGroups(d, v, "header_x_authenticated_groups")
 		if err != nil {
 			return &obj, err
@@ -782,7 +782,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_x_authenticated_user"); ok {
+	if v, ok := d.GetOk("header_x_authenticated_user"); ok || d.HasChange("header_x_authenticated_user") {
 		t, err := expandObjectWebProxyProfileHeaderXAuthenticatedUser(d, v, "header_x_authenticated_user")
 		if err != nil {
 			return &obj, err
@@ -791,7 +791,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_x_forwarded_client_cert"); ok {
+	if v, ok := d.GetOk("header_x_forwarded_client_cert"); ok || d.HasChange("header_x_forwarded_client_cert") {
 		t, err := expandObjectWebProxyProfileHeaderXForwardedClientCert(d, v, "header_x_forwarded_client_cert")
 		if err != nil {
 			return &obj, err
@@ -800,7 +800,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("header_x_forwarded_for"); ok {
+	if v, ok := d.GetOk("header_x_forwarded_for"); ok || d.HasChange("header_x_forwarded_for") {
 		t, err := expandObjectWebProxyProfileHeaderXForwardedFor(d, v, "header_x_forwarded_for")
 		if err != nil {
 			return &obj, err
@@ -809,7 +809,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("headers"); ok {
+	if v, ok := d.GetOk("headers"); ok || d.HasChange("headers") {
 		t, err := expandObjectWebProxyProfileHeaders(d, v, "headers")
 		if err != nil {
 			return &obj, err
@@ -818,7 +818,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("log_header_change"); ok {
+	if v, ok := d.GetOk("log_header_change"); ok || d.HasChange("log_header_change") {
 		t, err := expandObjectWebProxyProfileLogHeaderChange(d, v, "log_header_change")
 		if err != nil {
 			return &obj, err
@@ -827,7 +827,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWebProxyProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -836,7 +836,7 @@ func getObjectObjectWebProxyProfile(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("strip_encoding"); ok {
+	if v, ok := d.GetOk("strip_encoding"); ok || d.HasChange("strip_encoding") {
 		t, err := expandObjectWebProxyProfileStripEncoding(d, v, "strip_encoding")
 		if err != nil {
 			return &obj, err

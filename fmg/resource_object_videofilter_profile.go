@@ -508,7 +508,7 @@ func expandObjectVideofilterProfileFortiguardCategory(d *schema.ResourceData, v 
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "filters"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["filters"], _ = expandObjectVideofilterProfileFortiguardCategoryFilters(d, i["filters"], pre_append)
 	} else {
 		result["filters"] = make([]string, 0)
@@ -532,22 +532,22 @@ func expandObjectVideofilterProfileFortiguardCategoryFilters(d *schema.ResourceD
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectVideofilterProfileFortiguardCategoryFiltersAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "category_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["category-id"], _ = expandObjectVideofilterProfileFortiguardCategoryFiltersCategoryId(d, i["category_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectVideofilterProfileFortiguardCategoryFiltersId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log"], _ = expandObjectVideofilterProfileFortiguardCategoryFiltersLog(d, i["log"], pre_append)
 		}
 
@@ -606,7 +606,7 @@ func expandObjectVideofilterProfileYoutubeRestrict(d *schema.ResourceData, v int
 func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectVideofilterProfileComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -615,7 +615,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("dailymotion"); ok {
+	if v, ok := d.GetOk("dailymotion"); ok || d.HasChange("dailymotion") {
 		t, err := expandObjectVideofilterProfileDailymotion(d, v, "dailymotion")
 		if err != nil {
 			return &obj, err
@@ -624,7 +624,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("fortiguard_category"); ok {
+	if v, ok := d.GetOk("fortiguard_category"); ok || d.HasChange("fortiguard_category") {
 		t, err := expandObjectVideofilterProfileFortiguardCategory(d, v, "fortiguard_category")
 		if err != nil {
 			return &obj, err
@@ -633,7 +633,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectVideofilterProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -642,7 +642,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("replacemsg_group"); ok {
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
 		t, err := expandObjectVideofilterProfileReplacemsgGroup(d, v, "replacemsg_group")
 		if err != nil {
 			return &obj, err
@@ -651,7 +651,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vimeo"); ok {
+	if v, ok := d.GetOk("vimeo"); ok || d.HasChange("vimeo") {
 		t, err := expandObjectVideofilterProfileVimeo(d, v, "vimeo")
 		if err != nil {
 			return &obj, err
@@ -660,7 +660,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("vimeo_restrict"); ok {
+	if v, ok := d.GetOk("vimeo_restrict"); ok || d.HasChange("vimeo_restrict") {
 		t, err := expandObjectVideofilterProfileVimeoRestrict(d, v, "vimeo_restrict")
 		if err != nil {
 			return &obj, err
@@ -669,7 +669,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("youtube"); ok {
+	if v, ok := d.GetOk("youtube"); ok || d.HasChange("youtube") {
 		t, err := expandObjectVideofilterProfileYoutube(d, v, "youtube")
 		if err != nil {
 			return &obj, err
@@ -678,7 +678,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("youtube_channel_filter"); ok {
+	if v, ok := d.GetOk("youtube_channel_filter"); ok || d.HasChange("youtube_channel_filter") {
 		t, err := expandObjectVideofilterProfileYoutubeChannelFilter(d, v, "youtube_channel_filter")
 		if err != nil {
 			return &obj, err
@@ -687,7 +687,7 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("youtube_restrict"); ok {
+	if v, ok := d.GetOk("youtube_restrict"); ok || d.HasChange("youtube_restrict") {
 		t, err := expandObjectVideofilterProfileYoutubeRestrict(d, v, "youtube_restrict")
 		if err != nil {
 			return &obj, err

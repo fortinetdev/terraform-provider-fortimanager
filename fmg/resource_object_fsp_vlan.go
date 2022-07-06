@@ -10051,245 +10051,245 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "auto_configuration"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-configuration"], _ = expandObjectFspVlanDhcpServerAutoConfiguration(d, i["auto_configuration"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_managed_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-managed-status"], _ = expandObjectFspVlanDhcpServerAutoManagedStatus(d, i["auto_managed_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "conflicted_ip_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["conflicted-ip-timeout"], _ = expandObjectFspVlanDhcpServerConflictedIpTimeout(d, i["conflicted_ip_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_auth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-auth"], _ = expandObjectFspVlanDhcpServerDdnsAuth(d, i["ddns_auth"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_key"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-key"], _ = expandObjectFspVlanDhcpServerDdnsKey(d, i["ddns_key"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_keyname"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-keyname"], _ = expandObjectFspVlanDhcpServerDdnsKeyname(d, i["ddns_keyname"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-server-ip"], _ = expandObjectFspVlanDhcpServerDdnsServerIp(d, i["ddns_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_ttl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-ttl"], _ = expandObjectFspVlanDhcpServerDdnsTtl(d, i["ddns_ttl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_update"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-update"], _ = expandObjectFspVlanDhcpServerDdnsUpdate(d, i["ddns_update"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_update_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-update-override"], _ = expandObjectFspVlanDhcpServerDdnsUpdateOverride(d, i["ddns_update_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_zone"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-zone"], _ = expandObjectFspVlanDhcpServerDdnsZone(d, i["ddns_zone"], pre_append)
 	}
 	pre_append = pre + ".0." + "default_gateway"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["default-gateway"], _ = expandObjectFspVlanDhcpServerDefaultGateway(d, i["default_gateway"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_settings_from_fortiipam"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-settings-from-fortiipam"], _ = expandObjectFspVlanDhcpServerDhcpSettingsFromFortiipam(d, i["dhcp_settings_from_fortiipam"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server1"], _ = expandObjectFspVlanDhcpServerDnsServer1(d, i["dns_server1"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server2"], _ = expandObjectFspVlanDhcpServerDnsServer2(d, i["dns_server2"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server3"], _ = expandObjectFspVlanDhcpServerDnsServer3(d, i["dns_server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server4"], _ = expandObjectFspVlanDhcpServerDnsServer4(d, i["dns_server4"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-service"], _ = expandObjectFspVlanDhcpServerDnsService(d, i["dns_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "domain"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["domain"], _ = expandObjectFspVlanDhcpServerDomain(d, i["domain"], pre_append)
 	}
 	pre_append = pre + ".0." + "enable"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["enable"], _ = expandObjectFspVlanDhcpServerEnable(d, i["enable"], pre_append)
 	}
 	pre_append = pre + ".0." + "exclude_range"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["exclude-range"], _ = expandObjectFspVlanDhcpServerExcludeRange(d, i["exclude_range"], pre_append)
 	} else {
 		result["exclude-range"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "filename"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["filename"], _ = expandObjectFspVlanDhcpServerFilename(d, i["filename"], pre_append)
 	}
 	pre_append = pre + ".0." + "forticlient_on_net_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["forticlient-on-net-status"], _ = expandObjectFspVlanDhcpServerForticlientOnNetStatus(d, i["forticlient_on_net_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["id"], _ = expandObjectFspVlanDhcpServerId(d, i["id"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-mode"], _ = expandObjectFspVlanDhcpServerIpMode(d, i["ip_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_range"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-range"], _ = expandObjectFspVlanDhcpServerIpRange(d, i["ip_range"], pre_append)
 	} else {
 		result["ip-range"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ipsec_lease_hold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipsec-lease-hold"], _ = expandObjectFspVlanDhcpServerIpsecLeaseHold(d, i["ipsec_lease_hold"], pre_append)
 	}
 	pre_append = pre + ".0." + "lease_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lease-time"], _ = expandObjectFspVlanDhcpServerLeaseTime(d, i["lease_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "mac_acl_default_action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mac-acl-default-action"], _ = expandObjectFspVlanDhcpServerMacAclDefaultAction(d, i["mac_acl_default_action"], pre_append)
 	}
 	pre_append = pre + ".0." + "netmask"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["netmask"], _ = expandObjectFspVlanDhcpServerNetmask(d, i["netmask"], pre_append)
 	}
 	pre_append = pre + ".0." + "next_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["next-server"], _ = expandObjectFspVlanDhcpServerNextServer(d, i["next_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_server1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-server1"], _ = expandObjectFspVlanDhcpServerNtpServer1(d, i["ntp_server1"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_server2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-server2"], _ = expandObjectFspVlanDhcpServerNtpServer2(d, i["ntp_server2"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_server3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-server3"], _ = expandObjectFspVlanDhcpServerNtpServer3(d, i["ntp_server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-service"], _ = expandObjectFspVlanDhcpServerNtpService(d, i["ntp_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "option1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option1"], _ = expandObjectFspVlanDhcpServerOption1(d, i["option1"], pre_append)
 	} else {
 		result["option1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option2"], _ = expandObjectFspVlanDhcpServerOption2(d, i["option2"], pre_append)
 	} else {
 		result["option2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option3"], _ = expandObjectFspVlanDhcpServerOption3(d, i["option3"], pre_append)
 	} else {
 		result["option3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option4"], _ = expandObjectFspVlanDhcpServerOption4(d, i["option4"], pre_append)
 	}
 	pre_append = pre + ".0." + "option5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option5"], _ = expandObjectFspVlanDhcpServerOption5(d, i["option5"], pre_append)
 	}
 	pre_append = pre + ".0." + "option6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option6"], _ = expandObjectFspVlanDhcpServerOption6(d, i["option6"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFspVlanDhcpServerOptions(d, i["options"], pre_append)
 	} else {
 		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "reserved_address"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["reserved-address"], _ = expandObjectFspVlanDhcpServerReservedAddress(d, i["reserved_address"], pre_append)
 	} else {
 		result["reserved-address"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "server_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["server-type"], _ = expandObjectFspVlanDhcpServerServerType(d, i["server_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectFspVlanDhcpServerStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "tftp_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tftp-server"], _ = expandObjectFspVlanDhcpServerTftpServer(d, i["tftp_server"], pre_append)
 	} else {
 		result["tftp-server"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "timezone"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["timezone"], _ = expandObjectFspVlanDhcpServerTimezone(d, i["timezone"], pre_append)
 	}
 	pre_append = pre + ".0." + "timezone_option"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["timezone-option"], _ = expandObjectFspVlanDhcpServerTimezoneOption(d, i["timezone_option"], pre_append)
 	}
 	pre_append = pre + ".0." + "vci_match"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci-match"], _ = expandObjectFspVlanDhcpServerVciMatch(d, i["vci_match"], pre_append)
 	}
 	pre_append = pre + ".0." + "vci_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci-string"], _ = expandObjectFspVlanDhcpServerVciString(d, i["vci_string"], pre_append)
 	} else {
 		result["vci-string"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_ac_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac-service"], _ = expandObjectFspVlanDhcpServerWifiAcService(d, i["wifi_ac_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ac1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac1"], _ = expandObjectFspVlanDhcpServerWifiAc1(d, i["wifi_ac1"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ac2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac2"], _ = expandObjectFspVlanDhcpServerWifiAc2(d, i["wifi_ac2"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ac3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac3"], _ = expandObjectFspVlanDhcpServerWifiAc3(d, i["wifi_ac3"], pre_append)
 	}
 	pre_append = pre + ".0." + "wins_server1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wins-server1"], _ = expandObjectFspVlanDhcpServerWinsServer1(d, i["wins_server1"], pre_append)
 	}
 	pre_append = pre + ".0." + "wins_server2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wins-server2"], _ = expandObjectFspVlanDhcpServerWinsServer2(d, i["wins_server2"], pre_append)
 	}
 
@@ -10391,17 +10391,17 @@ func expandObjectFspVlanDhcpServerExcludeRange(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectFspVlanDhcpServerExcludeRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDhcpServerExcludeRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFspVlanDhcpServerExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -10456,17 +10456,17 @@ func expandObjectFspVlanDhcpServerIpRange(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectFspVlanDhcpServerIpRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDhcpServerIpRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFspVlanDhcpServerIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -10565,29 +10565,29 @@ func expandObjectFspVlanDhcpServerOptions(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "code"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["code"], _ = expandObjectFspVlanDhcpServerOptionsCode(d, i["code"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDhcpServerOptionsId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDhcpServerOptionsIp(d, i["ip"], pre_append)
 		} else {
 			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFspVlanDhcpServerOptionsType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectFspVlanDhcpServerOptionsValue(d, i["value"], pre_append)
 		}
 
@@ -10634,52 +10634,52 @@ func expandObjectFspVlanDhcpServerReservedAddress(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectFspVlanDhcpServerReservedAddressAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "circuit_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["circuit-id"], _ = expandObjectFspVlanDhcpServerReservedAddressCircuitId(d, i["circuit_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "circuit_id_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["circuit-id-type"], _ = expandObjectFspVlanDhcpServerReservedAddressCircuitIdType(d, i["circuit_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["description"], _ = expandObjectFspVlanDhcpServerReservedAddressDescription(d, i["description"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDhcpServerReservedAddressId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDhcpServerReservedAddressIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectFspVlanDhcpServerReservedAddressMac(d, i["mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "remote_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["remote-id"], _ = expandObjectFspVlanDhcpServerReservedAddressRemoteId(d, i["remote_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "remote_id_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["remote-id-type"], _ = expandObjectFspVlanDhcpServerReservedAddressRemoteIdType(d, i["remote_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFspVlanDhcpServerReservedAddressType(d, i["type"], pre_append)
 		}
 
@@ -10798,26 +10798,26 @@ func expandObjectFspVlanDynamicMapping(d *schema.ResourceData, v interface{}, pr
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_dhcp_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_dhcp-status"], _ = expandObjectFspVlanDynamicMappingDhcpStatus(d, i["_dhcp_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["_scope"], _ = expandObjectFspVlanDynamicMappingScope(d, i["_scope"], pre_append)
 		} else {
 			tmp["_scope"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_server"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dhcp-server"], _ = expandObjectFspVlanDynamicMappingDhcpServer(d, i["dhcp_server"], pre_append)
 		} else {
 			tmp["dhcp-server"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface"], _ = expandObjectFspVlanDynamicMappingInterface(d, i["interface"], pre_append)
 		} else {
 			tmp["interface"] = make([]string, 0)
@@ -10850,12 +10850,12 @@ func expandObjectFspVlanDynamicMappingScope(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["name"], _ = expandObjectFspVlanDynamicMappingScopeName(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vdom"], _ = expandObjectFspVlanDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
@@ -10886,245 +10886,245 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "auto_configuration"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-configuration"], _ = expandObjectFspVlanDynamicMappingDhcpServerAutoConfiguration(d, i["auto_configuration"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_managed_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-managed-status"], _ = expandObjectFspVlanDynamicMappingDhcpServerAutoManagedStatus(d, i["auto_managed_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "conflicted_ip_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["conflicted-ip-timeout"], _ = expandObjectFspVlanDynamicMappingDhcpServerConflictedIpTimeout(d, i["conflicted_ip_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_auth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-auth"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsAuth(d, i["ddns_auth"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_key"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-key"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsKey(d, i["ddns_key"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_keyname"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-keyname"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsKeyname(d, i["ddns_keyname"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-server-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsServerIp(d, i["ddns_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_ttl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-ttl"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsTtl(d, i["ddns_ttl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_update"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-update"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsUpdate(d, i["ddns_update"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_update_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-update-override"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsUpdateOverride(d, i["ddns_update_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_zone"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-zone"], _ = expandObjectFspVlanDynamicMappingDhcpServerDdnsZone(d, i["ddns_zone"], pre_append)
 	}
 	pre_append = pre + ".0." + "default_gateway"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["default-gateway"], _ = expandObjectFspVlanDynamicMappingDhcpServerDefaultGateway(d, i["default_gateway"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_settings_from_fortiipam"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-settings-from-fortiipam"], _ = expandObjectFspVlanDynamicMappingDhcpServerDhcpSettingsFromFortiipam(d, i["dhcp_settings_from_fortiipam"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server1"], _ = expandObjectFspVlanDynamicMappingDhcpServerDnsServer1(d, i["dns_server1"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server2"], _ = expandObjectFspVlanDynamicMappingDhcpServerDnsServer2(d, i["dns_server2"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server3"], _ = expandObjectFspVlanDynamicMappingDhcpServerDnsServer3(d, i["dns_server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server4"], _ = expandObjectFspVlanDynamicMappingDhcpServerDnsServer4(d, i["dns_server4"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-service"], _ = expandObjectFspVlanDynamicMappingDhcpServerDnsService(d, i["dns_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "domain"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["domain"], _ = expandObjectFspVlanDynamicMappingDhcpServerDomain(d, i["domain"], pre_append)
 	}
 	pre_append = pre + ".0." + "enable"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["enable"], _ = expandObjectFspVlanDynamicMappingDhcpServerEnable(d, i["enable"], pre_append)
 	}
 	pre_append = pre + ".0." + "exclude_range"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["exclude-range"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d, i["exclude_range"], pre_append)
 	} else {
 		result["exclude-range"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "filename"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["filename"], _ = expandObjectFspVlanDynamicMappingDhcpServerFilename(d, i["filename"], pre_append)
 	}
 	pre_append = pre + ".0." + "forticlient_on_net_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["forticlient-on-net-status"], _ = expandObjectFspVlanDynamicMappingDhcpServerForticlientOnNetStatus(d, i["forticlient_on_net_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["id"], _ = expandObjectFspVlanDynamicMappingDhcpServerId(d, i["id"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-mode"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpMode(d, i["ip_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_range"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-range"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRange(d, i["ip_range"], pre_append)
 	} else {
 		result["ip-range"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ipsec_lease_hold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipsec-lease-hold"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpsecLeaseHold(d, i["ipsec_lease_hold"], pre_append)
 	}
 	pre_append = pre + ".0." + "lease_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lease-time"], _ = expandObjectFspVlanDynamicMappingDhcpServerLeaseTime(d, i["lease_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "mac_acl_default_action"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mac-acl-default-action"], _ = expandObjectFspVlanDynamicMappingDhcpServerMacAclDefaultAction(d, i["mac_acl_default_action"], pre_append)
 	}
 	pre_append = pre + ".0." + "netmask"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["netmask"], _ = expandObjectFspVlanDynamicMappingDhcpServerNetmask(d, i["netmask"], pre_append)
 	}
 	pre_append = pre + ".0." + "next_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["next-server"], _ = expandObjectFspVlanDynamicMappingDhcpServerNextServer(d, i["next_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_server1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-server1"], _ = expandObjectFspVlanDynamicMappingDhcpServerNtpServer1(d, i["ntp_server1"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_server2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-server2"], _ = expandObjectFspVlanDynamicMappingDhcpServerNtpServer2(d, i["ntp_server2"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_server3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-server3"], _ = expandObjectFspVlanDynamicMappingDhcpServerNtpServer3(d, i["ntp_server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "ntp_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ntp-service"], _ = expandObjectFspVlanDynamicMappingDhcpServerNtpService(d, i["ntp_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "option1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option1"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption1(d, i["option1"], pre_append)
 	} else {
 		result["option1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option2"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption2(d, i["option2"], pre_append)
 	} else {
 		result["option2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option3"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption3(d, i["option3"], pre_append)
 	} else {
 		result["option3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option4"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option4"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption4(d, i["option4"], pre_append)
 	}
 	pre_append = pre + ".0." + "option5"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option5"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption5(d, i["option5"], pre_append)
 	}
 	pre_append = pre + ".0." + "option6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option6"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption6(d, i["option6"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptions(d, i["options"], pre_append)
 	} else {
 		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "reserved_address"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["reserved-address"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d, i["reserved_address"], pre_append)
 	} else {
 		result["reserved-address"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "server_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["server-type"], _ = expandObjectFspVlanDynamicMappingDhcpServerServerType(d, i["server_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectFspVlanDynamicMappingDhcpServerStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "tftp_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tftp-server"], _ = expandObjectFspVlanDynamicMappingDhcpServerTftpServer(d, i["tftp_server"], pre_append)
 	} else {
 		result["tftp-server"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "timezone"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["timezone"], _ = expandObjectFspVlanDynamicMappingDhcpServerTimezone(d, i["timezone"], pre_append)
 	}
 	pre_append = pre + ".0." + "timezone_option"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["timezone-option"], _ = expandObjectFspVlanDynamicMappingDhcpServerTimezoneOption(d, i["timezone_option"], pre_append)
 	}
 	pre_append = pre + ".0." + "vci_match"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci-match"], _ = expandObjectFspVlanDynamicMappingDhcpServerVciMatch(d, i["vci_match"], pre_append)
 	}
 	pre_append = pre + ".0." + "vci_string"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerVciString(d, i["vci_string"], pre_append)
 	} else {
 		result["vci-string"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_ac_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac-service"], _ = expandObjectFspVlanDynamicMappingDhcpServerWifiAcService(d, i["wifi_ac_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ac1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac1"], _ = expandObjectFspVlanDynamicMappingDhcpServerWifiAc1(d, i["wifi_ac1"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ac2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac2"], _ = expandObjectFspVlanDynamicMappingDhcpServerWifiAc2(d, i["wifi_ac2"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ac3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ac3"], _ = expandObjectFspVlanDynamicMappingDhcpServerWifiAc3(d, i["wifi_ac3"], pre_append)
 	}
 	pre_append = pre + ".0." + "wins_server1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wins-server1"], _ = expandObjectFspVlanDynamicMappingDhcpServerWinsServer1(d, i["wins_server1"], pre_append)
 	}
 	pre_append = pre + ".0." + "wins_server2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wins-server2"], _ = expandObjectFspVlanDynamicMappingDhcpServerWinsServer2(d, i["wins_server2"], pre_append)
 	}
 
@@ -11226,17 +11226,17 @@ func expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d *schema.ResourceD
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -11291,17 +11291,17 @@ func expandObjectFspVlanDynamicMappingDhcpServerIpRange(d *schema.ResourceData, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -11400,29 +11400,29 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptions(d *schema.ResourceData, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "code"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["code"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsCode(d, i["code"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsIp(d, i["ip"], pre_append)
 		} else {
 			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsValue(d, i["value"], pre_append)
 		}
 
@@ -11469,52 +11469,52 @@ func expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d *schema.Resour
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "circuit_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["circuit-id"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressCircuitId(d, i["circuit_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "circuit_id_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["circuit-id-type"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressCircuitIdType(d, i["circuit_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["description"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressDescription(d, i["description"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressMac(d, i["mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "remote_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["remote-id"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressRemoteId(d, i["remote_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "remote_id_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["remote-id-type"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressRemoteIdType(d, i["remote_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressType(d, i["type"], pre_append)
 		}
 
@@ -11629,45 +11629,45 @@ func expandObjectFspVlanDynamicMappingInterface(d *schema.ResourceData, v interf
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "dhcp_relay_agent_option"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-agent-option"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayAgentOption(d, i["dhcp_relay_agent_option"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-ip"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayIp(d, i["dhcp_relay_ip"], pre_append)
 	} else {
 		result["dhcp-relay-ip"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-service"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayService(d, i["dhcp_relay_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-type"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayType(d, i["dhcp_relay_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip"], _ = expandObjectFspVlanDynamicMappingInterfaceIp(d, i["ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6(d, i["ipv6"], pre_append)
 	} else {
 		result["ipv6"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "secondary_IP"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["secondary-IP"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryIp(d, i["secondary_IP"], pre_append)
 	}
 	pre_append = pre + ".0." + "secondaryip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["secondaryip"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d, i["secondaryip"], pre_append)
 	} else {
 		result["secondaryip"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vlanid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vlanid"], _ = expandObjectFspVlanDynamicMappingInterfaceVlanid(d, i["vlanid"], pre_append)
 	}
 
@@ -11705,193 +11705,193 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "autoconf"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["autoconf"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Autoconf(d, i["autoconf"], pre_append)
 	}
 	pre_append = pre + ".0." + "cli_conn6_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cli-conn6-status"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6CliConn6Status(d, i["cli_conn6_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_client_options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-client-options"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6ClientOptions(d, i["dhcp6_client_options"], pre_append)
 	} else {
 		result["dhcp6-client-options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp6_information_request"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-information-request"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6InformationRequest(d, i["dhcp6_information_request"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_delegation"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-delegation"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixDelegation(d, i["dhcp6_prefix_delegation"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_hint"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHint(d, i["dhcp6_prefix_hint"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_hint_plt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint-plt"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHintPlt(d, i["dhcp6_prefix_hint_plt"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_hint_vlt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint-vlt"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHintVlt(d, i["dhcp6_prefix_hint_vlt"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-ip"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayIp(d, i["dhcp6_relay_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-service"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayService(d, i["dhcp6_relay_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-type"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayType(d, i["dhcp6_relay_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp6_send_redirect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp6-send-redirect"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Icmp6SendRedirect(d, i["icmp6_send_redirect"], pre_append)
 	}
 	pre_append = pre + ".0." + "interface_identifier"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["interface-identifier"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6InterfaceIdentifier(d, i["interface_identifier"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_address"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-address"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6Address(d, i["ip6_address"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_allowaccess"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-allowaccess"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6Allowaccess(d, i["ip6_allowaccess"], pre_append)
 	} else {
 		result["ip6-allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_default_life"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-default-life"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DefaultLife(d, i["ip6_default_life"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_iaid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-delegated-prefix-iaid"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixIaid(d, i["ip6_delegated_prefix_iaid"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-delegated-prefix-list"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
 	} else {
 		result["ip6-delegated-prefix-list"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_dns_server_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-dns-server-override"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DnsServerOverride(d, i["ip6_dns_server_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_extra_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-extra-addr"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(d, i["ip6_extra_addr"], pre_append)
 	} else {
 		result["ip6-extra-addr"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_hop_limit"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-hop-limit"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6HopLimit(d, i["ip6_hop_limit"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_link_mtu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-link-mtu"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6LinkMtu(d, i["ip6_link_mtu"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_manage_flag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-manage-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ManageFlag(d, i["ip6_manage_flag"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_max_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-max-interval"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6MaxInterval(d, i["ip6_max_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_min_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-min-interval"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6MinInterval(d, i["ip6_min_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-mode"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6Mode(d, i["ip6_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_other_flag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-other-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6OtherFlag(d, i["ip6_other_flag"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_prefix_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-prefix-list"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d, i["ip6_prefix_list"], pre_append)
 	} else {
 		result["ip6-prefix-list"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_prefix_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-prefix-mode"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixMode(d, i["ip6_prefix_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_reachable_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-reachable-time"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ReachableTime(d, i["ip6_reachable_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_retrans_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-retrans-time"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6RetransTime(d, i["ip6_retrans_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_send_adv"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-send-adv"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6SendAdv(d, i["ip6_send_adv"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_subnet"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-subnet"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6Subnet(d, i["ip6_subnet"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_upstream_interface"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-upstream-interface"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6UpstreamInterface(d, i["ip6_upstream_interface"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_cert"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-cert"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdCert(d, i["nd_cert"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_cga_modifier"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-cga-modifier"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdCgaModifier(d, i["nd_cga_modifier"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-mode"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdMode(d, i["nd_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_security_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-security-level"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdSecurityLevel(d, i["nd_security_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_timestamp_delta"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-timestamp-delta"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampDelta(d, i["nd_timestamp_delta"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_timestamp_fuzz"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-timestamp-fuzz"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6NdTimestampFuzz(d, i["nd_timestamp_fuzz"], pre_append)
 	}
 	pre_append = pre + ".0." + "ra_send_mtu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ra-send-mtu"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6RaSendMtu(d, i["ra_send_mtu"], pre_append)
 	}
 	pre_append = pre + ".0." + "unique_autoconf_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["unique-autoconf-addr"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6UniqueAutoconfAddr(d, i["unique_autoconf_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrip6_link_local"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrip6_link_local"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrip6LinkLocal(d, i["vrip6_link_local"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrrp_virtual_mac6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrrp-virtual-mac6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6VrrpVirtualMac6(d, i["vrrp_virtual_mac6"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrrp6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrrp6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d, i["vrrp6"], pre_append)
 	} else {
 		result["vrrp6"] = make([]string, 0)
@@ -11983,44 +11983,44 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *sch
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "autonomous_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["autonomous-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(d, i["autonomous_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "delegated_prefix_iaid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["delegated-prefix-iaid"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(d, i["delegated_prefix_iaid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["onlink-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListOnlinkFlag(d, i["onlink_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix-id"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListPrefixId(d, i["prefix_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListRdnss(d, i["rdnss"], pre_append)
 		} else {
 			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss_service"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss-service"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListRdnssService(d, i["rdnss_service"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subnet"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListSubnet(d, i["subnet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "upstream_interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["upstream-interface"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface(d, i["upstream_interface"], pre_append)
 		}
 
@@ -12083,7 +12083,7 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(d *schema.Resour
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddrPrefix(d, i["prefix"], pre_append)
 		}
 
@@ -12142,41 +12142,41 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d *schema.Resou
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "autonomous_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["autonomous-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListAutonomousFlag(d, i["autonomous_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dnssl"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dnssl"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListDnssl(d, i["dnssl"], pre_append)
 		} else {
 			tmp["dnssl"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["onlink-flag"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListOnlinkFlag(d, i["onlink_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preferred_life_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preferred-life-time"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListPreferredLifeTime(d, i["preferred_life_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListPrefix(d, i["prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListRdnss(d, i["rdnss"], pre_append)
 		} else {
 			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "valid_life_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["valid-life-time"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListValidLifeTime(d, i["valid_life_time"], pre_append)
 		}
 
@@ -12295,52 +12295,52 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d *schema.ResourceData,
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accept_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["accept-mode"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AcceptMode(d, i["accept_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adv_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["adv-interval"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6AdvInterval(d, i["adv_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preempt"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Preempt(d, i["preempt"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Priority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-time"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6StartTime(d, i["start_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Status(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrdst6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrdst6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Vrdst6(d, i["vrdst6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrgrp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrgrp"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Vrgrp(d, i["vrgrp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrid"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Vrid(d, i["vrid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrip6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrip6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Vrip6(d, i["vrip6"], pre_append)
 		}
 
@@ -12411,51 +12411,51 @@ func expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d *schema.ResourceDat
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allowaccess"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["allowaccess"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipAllowaccess(d, i["allowaccess"], pre_append)
 		} else {
 			tmp["allowaccess"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectprotocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["detectprotocol"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipDetectprotocol(d, i["detectprotocol"], pre_append)
 		} else {
 			tmp["detectprotocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectserver"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["detectserver"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipDetectserver(d, i["detectserver"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gwdetect"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gwdetect"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipGwdetect(d, i["gwdetect"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ha_priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ha-priority"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipHaPriority(d, i["ha_priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ping_serv_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ping-serv-status"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipPingServStatus(d, i["ping_serv_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["seq"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipSeq(d, i["seq"], pre_append)
 		}
 
@@ -12518,1197 +12518,1197 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "vlan_op_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vlan-op-mode"], _ = expandObjectFspVlanInterfaceVlanOpMode(d, i["vlan_op_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ac_name"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ac-name"], _ = expandObjectFspVlanInterfaceAcName(d, i["ac_name"], pre_append)
 	}
 	pre_append = pre + ".0." + "aggregate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aggregate"], _ = expandObjectFspVlanInterfaceAggregate(d, i["aggregate"], pre_append)
 	}
 	pre_append = pre + ".0." + "algorithm"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["algorithm"], _ = expandObjectFspVlanInterfaceAlgorithm(d, i["algorithm"], pre_append)
 	}
 	pre_append = pre + ".0." + "alias"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["alias"], _ = expandObjectFspVlanInterfaceAlias(d, i["alias"], pre_append)
 	}
 	pre_append = pre + ".0." + "allowaccess"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["allowaccess"], _ = expandObjectFspVlanInterfaceAllowaccess(d, i["allowaccess"], pre_append)
 	} else {
 		result["allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ap_discover"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ap-discover"], _ = expandObjectFspVlanInterfaceApDiscover(d, i["ap_discover"], pre_append)
 	}
 	pre_append = pre + ".0." + "arpforward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arpforward"], _ = expandObjectFspVlanInterfaceArpforward(d, i["arpforward"], pre_append)
 	}
 	pre_append = pre + ".0." + "atm_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["atm-protocol"], _ = expandObjectFspVlanInterfaceAtmProtocol(d, i["atm_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_cert"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-cert"], _ = expandObjectFspVlanInterfaceAuthCert(d, i["auth_cert"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_portal_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-portal-addr"], _ = expandObjectFspVlanInterfaceAuthPortalAddr(d, i["auth_portal_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "auth_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auth-type"], _ = expandObjectFspVlanInterfaceAuthType(d, i["auth_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "auto_auth_extension_device"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["auto-auth-extension-device"], _ = expandObjectFspVlanInterfaceAutoAuthExtensionDevice(d, i["auto_auth_extension_device"], pre_append)
 	}
 	pre_append = pre + ".0." + "bandwidth_measure_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bandwidth-measure-time"], _ = expandObjectFspVlanInterfaceBandwidthMeasureTime(d, i["bandwidth_measure_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "bfd"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bfd"], _ = expandObjectFspVlanInterfaceBfd(d, i["bfd"], pre_append)
 	}
 	pre_append = pre + ".0." + "bfd_desired_min_tx"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bfd-desired-min-tx"], _ = expandObjectFspVlanInterfaceBfdDesiredMinTx(d, i["bfd_desired_min_tx"], pre_append)
 	}
 	pre_append = pre + ".0." + "bfd_detect_mult"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bfd-detect-mult"], _ = expandObjectFspVlanInterfaceBfdDetectMult(d, i["bfd_detect_mult"], pre_append)
 	}
 	pre_append = pre + ".0." + "bfd_required_min_rx"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bfd-required-min-rx"], _ = expandObjectFspVlanInterfaceBfdRequiredMinRx(d, i["bfd_required_min_rx"], pre_append)
 	}
 	pre_append = pre + ".0." + "broadcast_forticlient_discovery"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["broadcast-forticlient-discovery"], _ = expandObjectFspVlanInterfaceBroadcastForticlientDiscovery(d, i["broadcast_forticlient_discovery"], pre_append)
 	}
 	pre_append = pre + ".0." + "broadcast_forward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["broadcast-forward"], _ = expandObjectFspVlanInterfaceBroadcastForward(d, i["broadcast_forward"], pre_append)
 	}
 	pre_append = pre + ".0." + "captive_portal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["captive-portal"], _ = expandObjectFspVlanInterfaceCaptivePortal(d, i["captive_portal"], pre_append)
 	}
 	pre_append = pre + ".0." + "cli_conn_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cli-conn-status"], _ = expandObjectFspVlanInterfaceCliConnStatus(d, i["cli_conn_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "color"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["color"], _ = expandObjectFspVlanInterfaceColor(d, i["color"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns"], _ = expandObjectFspVlanInterfaceDdns(d, i["ddns"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_auth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-auth"], _ = expandObjectFspVlanInterfaceDdnsAuth(d, i["ddns_auth"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_domain"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-domain"], _ = expandObjectFspVlanInterfaceDdnsDomain(d, i["ddns_domain"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_key"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-key"], _ = expandObjectFspVlanInterfaceDdnsKey(d, i["ddns_key"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_keyname"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-keyname"], _ = expandObjectFspVlanInterfaceDdnsKeyname(d, i["ddns_keyname"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-password"], _ = expandObjectFspVlanInterfaceDdnsPassword(d, i["ddns_password"], pre_append)
 	} else {
 		result["ddns-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ddns_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-server"], _ = expandObjectFspVlanInterfaceDdnsServer(d, i["ddns_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-server-ip"], _ = expandObjectFspVlanInterfaceDdnsServerIp(d, i["ddns_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_sn"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-sn"], _ = expandObjectFspVlanInterfaceDdnsSn(d, i["ddns_sn"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_ttl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-ttl"], _ = expandObjectFspVlanInterfaceDdnsTtl(d, i["ddns_ttl"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-username"], _ = expandObjectFspVlanInterfaceDdnsUsername(d, i["ddns_username"], pre_append)
 	}
 	pre_append = pre + ".0." + "ddns_zone"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-zone"], _ = expandObjectFspVlanInterfaceDdnsZone(d, i["ddns_zone"], pre_append)
 	}
 	pre_append = pre + ".0." + "dedicated_to"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dedicated-to"], _ = expandObjectFspVlanInterfaceDedicatedTo(d, i["dedicated_to"], pre_append)
 	}
 	pre_append = pre + ".0." + "defaultgw"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["defaultgw"], _ = expandObjectFspVlanInterfaceDefaultgw(d, i["defaultgw"], pre_append)
 	}
 	pre_append = pre + ".0." + "description"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["description"], _ = expandObjectFspVlanInterfaceDescription(d, i["description"], pre_append)
 	}
 	pre_append = pre + ".0." + "detected_peer_mtu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["detected-peer-mtu"], _ = expandObjectFspVlanInterfaceDetectedPeerMtu(d, i["detected_peer_mtu"], pre_append)
 	}
 	pre_append = pre + ".0." + "detectprotocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["detectprotocol"], _ = expandObjectFspVlanInterfaceDetectprotocol(d, i["detectprotocol"], pre_append)
 	} else {
 		result["detectprotocol"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "detectserver"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["detectserver"], _ = expandObjectFspVlanInterfaceDetectserver(d, i["detectserver"], pre_append)
 	}
 	pre_append = pre + ".0." + "device_access_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["device-access-list"], _ = expandObjectFspVlanInterfaceDeviceAccessList(d, i["device_access_list"], pre_append)
 	}
 	pre_append = pre + ".0." + "device_identification"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["device-identification"], _ = expandObjectFspVlanInterfaceDeviceIdentification(d, i["device_identification"], pre_append)
 	}
 	pre_append = pre + ".0." + "device_identification_active_scan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["device-identification-active-scan"], _ = expandObjectFspVlanInterfaceDeviceIdentificationActiveScan(d, i["device_identification_active_scan"], pre_append)
 	}
 	pre_append = pre + ".0." + "device_netscan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["device-netscan"], _ = expandObjectFspVlanInterfaceDeviceNetscan(d, i["device_netscan"], pre_append)
 	}
 	pre_append = pre + ".0." + "device_user_identification"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["device-user-identification"], _ = expandObjectFspVlanInterfaceDeviceUserIdentification(d, i["device_user_identification"], pre_append)
 	}
 	pre_append = pre + ".0." + "devindex"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["devindex"], _ = expandObjectFspVlanInterfaceDevindex(d, i["devindex"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_classless_route_addition"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-classless-route-addition"], _ = expandObjectFspVlanInterfaceDhcpClasslessRouteAddition(d, i["dhcp_classless_route_addition"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_client_identifier"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-client-identifier"], _ = expandObjectFspVlanInterfaceDhcpClientIdentifier(d, i["dhcp_client_identifier"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_agent_option"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-agent-option"], _ = expandObjectFspVlanInterfaceDhcpRelayAgentOption(d, i["dhcp_relay_agent_option"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_interface"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-interface"], _ = expandObjectFspVlanInterfaceDhcpRelayInterface(d, i["dhcp_relay_interface"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_interface_select_method"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-interface-select-method"], _ = expandObjectFspVlanInterfaceDhcpRelayInterfaceSelectMethod(d, i["dhcp_relay_interface_select_method"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-ip"], _ = expandObjectFspVlanInterfaceDhcpRelayIp(d, i["dhcp_relay_ip"], pre_append)
 	} else {
 		result["dhcp-relay-ip"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_link_selection"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-link-selection"], _ = expandObjectFspVlanInterfaceDhcpRelayLinkSelection(d, i["dhcp_relay_link_selection"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_request_all_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-request-all-server"], _ = expandObjectFspVlanInterfaceDhcpRelayRequestAllServer(d, i["dhcp_relay_request_all_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-service"], _ = expandObjectFspVlanInterfaceDhcpRelayService(d, i["dhcp_relay_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-type"], _ = expandObjectFspVlanInterfaceDhcpRelayType(d, i["dhcp_relay_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_renew_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-renew-time"], _ = expandObjectFspVlanInterfaceDhcpRenewTime(d, i["dhcp_renew_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "disc_retry_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["disc-retry-timeout"], _ = expandObjectFspVlanInterfaceDiscRetryTimeout(d, i["disc_retry_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "disconnect_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["disconnect-threshold"], _ = expandObjectFspVlanInterfaceDisconnectThreshold(d, i["disconnect_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "distance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["distance"], _ = expandObjectFspVlanInterfaceDistance(d, i["distance"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_query"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-query"], _ = expandObjectFspVlanInterfaceDnsQuery(d, i["dns_query"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server-override"], _ = expandObjectFspVlanInterfaceDnsServerOverride(d, i["dns_server_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "dns_server_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server-protocol"], _ = expandObjectFspVlanInterfaceDnsServerProtocol(d, i["dns_server_protocol"], pre_append)
 	} else {
 		result["dns-server-protocol"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "drop_fragment"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drop-fragment"], _ = expandObjectFspVlanInterfaceDropFragment(d, i["drop_fragment"], pre_append)
 	}
 	pre_append = pre + ".0." + "drop_overlapped_fragment"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drop-overlapped-fragment"], _ = expandObjectFspVlanInterfaceDropOverlappedFragment(d, i["drop_overlapped_fragment"], pre_append)
 	}
 	pre_append = pre + ".0." + "egress_cos"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["egress-cos"], _ = expandObjectFspVlanInterfaceEgressCos(d, i["egress_cos"], pre_append)
 	}
 	pre_append = pre + ".0." + "egress_shaping_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["egress-shaping-profile"], _ = expandObjectFspVlanInterfaceEgressShapingProfile(d, i["egress_shaping_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "eip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["eip"], _ = expandObjectFspVlanInterfaceEip(d, i["eip"], pre_append)
 	}
 	pre_append = pre + ".0." + "endpoint_compliance"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["endpoint-compliance"], _ = expandObjectFspVlanInterfaceEndpointCompliance(d, i["endpoint_compliance"], pre_append)
 	}
 	pre_append = pre + ".0." + "estimated_downstream_bandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["estimated-downstream-bandwidth"], _ = expandObjectFspVlanInterfaceEstimatedDownstreamBandwidth(d, i["estimated_downstream_bandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "estimated_upstream_bandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["estimated-upstream-bandwidth"], _ = expandObjectFspVlanInterfaceEstimatedUpstreamBandwidth(d, i["estimated_upstream_bandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "explicit_ftp_proxy"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["explicit-ftp-proxy"], _ = expandObjectFspVlanInterfaceExplicitFtpProxy(d, i["explicit_ftp_proxy"], pre_append)
 	}
 	pre_append = pre + ".0." + "explicit_web_proxy"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["explicit-web-proxy"], _ = expandObjectFspVlanInterfaceExplicitWebProxy(d, i["explicit_web_proxy"], pre_append)
 	}
 	pre_append = pre + ".0." + "external"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["external"], _ = expandObjectFspVlanInterfaceExternal(d, i["external"], pre_append)
 	}
 	pre_append = pre + ".0." + "fail_action_on_extender"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fail-action-on-extender"], _ = expandObjectFspVlanInterfaceFailActionOnExtender(d, i["fail_action_on_extender"], pre_append)
 	}
 	pre_append = pre + ".0." + "fail_alert_interfaces"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fail-alert-interfaces"], _ = expandObjectFspVlanInterfaceFailAlertInterfaces(d, i["fail_alert_interfaces"], pre_append)
 	}
 	pre_append = pre + ".0." + "fail_alert_method"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fail-alert-method"], _ = expandObjectFspVlanInterfaceFailAlertMethod(d, i["fail_alert_method"], pre_append)
 	}
 	pre_append = pre + ".0." + "fail_detect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fail-detect"], _ = expandObjectFspVlanInterfaceFailDetect(d, i["fail_detect"], pre_append)
 	}
 	pre_append = pre + ".0." + "fail_detect_option"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fail-detect-option"], _ = expandObjectFspVlanInterfaceFailDetectOption(d, i["fail_detect_option"], pre_append)
 	} else {
 		result["fail-detect-option"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "fdp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fdp"], _ = expandObjectFspVlanInterfaceFdp(d, i["fdp"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortiheartbeat"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiheartbeat"], _ = expandObjectFspVlanInterfaceFortiheartbeat(d, i["fortiheartbeat"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortilink"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortilink"], _ = expandObjectFspVlanInterfaceFortilink(d, i["fortilink"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortilink_backup_link"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortilink-backup-link"], _ = expandObjectFspVlanInterfaceFortilinkBackupLink(d, i["fortilink_backup_link"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortilink_neighbor_detect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortilink-neighbor-detect"], _ = expandObjectFspVlanInterfaceFortilinkNeighborDetect(d, i["fortilink_neighbor_detect"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortilink_split_interface"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortilink-split-interface"], _ = expandObjectFspVlanInterfaceFortilinkSplitInterface(d, i["fortilink_split_interface"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortilink_stacking"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortilink-stacking"], _ = expandObjectFspVlanInterfaceFortilinkStacking(d, i["fortilink_stacking"], pre_append)
 	}
 	pre_append = pre + ".0." + "forward_domain"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["forward-domain"], _ = expandObjectFspVlanInterfaceForwardDomain(d, i["forward_domain"], pre_append)
 	}
 	pre_append = pre + ".0." + "forward_error_correction"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["forward-error-correction"], _ = expandObjectFspVlanInterfaceForwardErrorCorrection(d, i["forward_error_correction"], pre_append)
 	}
 	pre_append = pre + ".0." + "fp_anomaly"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fp-anomaly"], _ = expandObjectFspVlanInterfaceFpAnomaly(d, i["fp_anomaly"], pre_append)
 	} else {
 		result["fp-anomaly"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "fp_disable"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fp-disable"], _ = expandObjectFspVlanInterfaceFpDisable(d, i["fp_disable"], pre_append)
 	} else {
 		result["fp-disable"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "gateway_address"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gateway-address"], _ = expandObjectFspVlanInterfaceGatewayAddress(d, i["gateway_address"], pre_append)
 	}
 	pre_append = pre + ".0." + "gi_gk"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gi-gk"], _ = expandObjectFspVlanInterfaceGiGk(d, i["gi_gk"], pre_append)
 	}
 	pre_append = pre + ".0." + "gwaddr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gwaddr"], _ = expandObjectFspVlanInterfaceGwaddr(d, i["gwaddr"], pre_append)
 	}
 	pre_append = pre + ".0." + "gwdetect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gwdetect"], _ = expandObjectFspVlanInterfaceGwdetect(d, i["gwdetect"], pre_append)
 	}
 	pre_append = pre + ".0." + "ha_priority"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ha-priority"], _ = expandObjectFspVlanInterfaceHaPriority(d, i["ha_priority"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_accept_redirect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-accept-redirect"], _ = expandObjectFspVlanInterfaceIcmpAcceptRedirect(d, i["icmp_accept_redirect"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_redirect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-redirect"], _ = expandObjectFspVlanInterfaceIcmpRedirect(d, i["icmp_redirect"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp_send_redirect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp-send-redirect"], _ = expandObjectFspVlanInterfaceIcmpSendRedirect(d, i["icmp_send_redirect"], pre_append)
 	}
 	pre_append = pre + ".0." + "ident_accept"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ident-accept"], _ = expandObjectFspVlanInterfaceIdentAccept(d, i["ident_accept"], pre_append)
 	}
 	pre_append = pre + ".0." + "idle_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["idle-timeout"], _ = expandObjectFspVlanInterfaceIdleTimeout(d, i["idle_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "if_mdix"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["if-mdix"], _ = expandObjectFspVlanInterfaceIfMdix(d, i["if_mdix"], pre_append)
 	}
 	pre_append = pre + ".0." + "if_media"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["if-media"], _ = expandObjectFspVlanInterfaceIfMedia(d, i["if_media"], pre_append)
 	}
 	pre_append = pre + ".0." + "in_force_vlan_cos"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["in-force-vlan-cos"], _ = expandObjectFspVlanInterfaceInForceVlanCos(d, i["in_force_vlan_cos"], pre_append)
 	}
 	pre_append = pre + ".0." + "inbandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["inbandwidth"], _ = expandObjectFspVlanInterfaceInbandwidth(d, i["inbandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "ingress_cos"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ingress-cos"], _ = expandObjectFspVlanInterfaceIngressCos(d, i["ingress_cos"], pre_append)
 	}
 	pre_append = pre + ".0." + "ingress_shaping_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ingress-shaping-profile"], _ = expandObjectFspVlanInterfaceIngressShapingProfile(d, i["ingress_shaping_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "ingress_spillover_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ingress-spillover-threshold"], _ = expandObjectFspVlanInterfaceIngressSpilloverThreshold(d, i["ingress_spillover_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "internal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["internal"], _ = expandObjectFspVlanInterfaceInternal(d, i["internal"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip"], _ = expandObjectFspVlanInterfaceIp(d, i["ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip_managed_by_fortiipam"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip-managed-by-fortiipam"], _ = expandObjectFspVlanInterfaceIpManagedByFortiipam(d, i["ip_managed_by_fortiipam"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipmac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipmac"], _ = expandObjectFspVlanInterfaceIpmac(d, i["ipmac"], pre_append)
 	}
 	pre_append = pre + ".0." + "ips_sniffer_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ips-sniffer-mode"], _ = expandObjectFspVlanInterfaceIpsSnifferMode(d, i["ips_sniffer_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipunnumbered"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipunnumbered"], _ = expandObjectFspVlanInterfaceIpunnumbered(d, i["ipunnumbered"], pre_append)
 	}
 	pre_append = pre + ".0." + "ipv6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ipv6"], _ = expandObjectFspVlanInterfaceIpv6(d, i["ipv6"], pre_append)
 	} else {
 		result["ipv6"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "l2forward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["l2forward"], _ = expandObjectFspVlanInterfaceL2Forward(d, i["l2forward"], pre_append)
 	}
 	pre_append = pre + ".0." + "l2tp_client"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["l2tp-client"], _ = expandObjectFspVlanInterfaceL2TpClient(d, i["l2tp_client"], pre_append)
 	}
 	pre_append = pre + ".0." + "lacp_ha_secondary"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lacp-ha-secondary"], _ = expandObjectFspVlanInterfaceLacpHaSecondary(d, i["lacp_ha_secondary"], pre_append)
 	}
 	pre_append = pre + ".0." + "lacp_ha_slave"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lacp-ha-slave"], _ = expandObjectFspVlanInterfaceLacpHaSlave(d, i["lacp_ha_slave"], pre_append)
 	}
 	pre_append = pre + ".0." + "lacp_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lacp-mode"], _ = expandObjectFspVlanInterfaceLacpMode(d, i["lacp_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "lacp_speed"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lacp-speed"], _ = expandObjectFspVlanInterfaceLacpSpeed(d, i["lacp_speed"], pre_append)
 	}
 	pre_append = pre + ".0." + "lcp_echo_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lcp-echo-interval"], _ = expandObjectFspVlanInterfaceLcpEchoInterval(d, i["lcp_echo_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "lcp_max_echo_fails"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lcp-max-echo-fails"], _ = expandObjectFspVlanInterfaceLcpMaxEchoFails(d, i["lcp_max_echo_fails"], pre_append)
 	}
 	pre_append = pre + ".0." + "link_up_delay"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["link-up-delay"], _ = expandObjectFspVlanInterfaceLinkUpDelay(d, i["link_up_delay"], pre_append)
 	}
 	pre_append = pre + ".0." + "listen_forticlient_connection"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["listen-forticlient-connection"], _ = expandObjectFspVlanInterfaceListenForticlientConnection(d, i["listen_forticlient_connection"], pre_append)
 	}
 	pre_append = pre + ".0." + "lldp_network_policy"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lldp-network-policy"], _ = expandObjectFspVlanInterfaceLldpNetworkPolicy(d, i["lldp_network_policy"], pre_append)
 	}
 	pre_append = pre + ".0." + "lldp_reception"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lldp-reception"], _ = expandObjectFspVlanInterfaceLldpReception(d, i["lldp_reception"], pre_append)
 	}
 	pre_append = pre + ".0." + "lldp_transmission"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lldp-transmission"], _ = expandObjectFspVlanInterfaceLldpTransmission(d, i["lldp_transmission"], pre_append)
 	}
 	pre_append = pre + ".0." + "log"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["log"], _ = expandObjectFspVlanInterfaceLog(d, i["log"], pre_append)
 	}
 	pre_append = pre + ".0." + "macaddr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["macaddr"], _ = expandObjectFspVlanInterfaceMacaddr(d, i["macaddr"], pre_append)
 	}
 	pre_append = pre + ".0." + "managed_subnetwork_size"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["managed-subnetwork-size"], _ = expandObjectFspVlanInterfaceManagedSubnetworkSize(d, i["managed_subnetwork_size"], pre_append)
 	}
 	pre_append = pre + ".0." + "management_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["management-ip"], _ = expandObjectFspVlanInterfaceManagementIp(d, i["management_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_egress_burst_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-egress-burst-rate"], _ = expandObjectFspVlanInterfaceMaxEgressBurstRate(d, i["max_egress_burst_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "max_egress_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-egress-rate"], _ = expandObjectFspVlanInterfaceMaxEgressRate(d, i["max_egress_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "measured_downstream_bandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["measured-downstream-bandwidth"], _ = expandObjectFspVlanInterfaceMeasuredDownstreamBandwidth(d, i["measured_downstream_bandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "measured_upstream_bandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["measured-upstream-bandwidth"], _ = expandObjectFspVlanInterfaceMeasuredUpstreamBandwidth(d, i["measured_upstream_bandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "mediatype"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mediatype"], _ = expandObjectFspVlanInterfaceMediatype(d, i["mediatype"], pre_append)
 	}
 	pre_append = pre + ".0." + "member"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["member"], _ = expandObjectFspVlanInterfaceMember(d, i["member"], pre_append)
 	}
 	pre_append = pre + ".0." + "min_links"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["min-links"], _ = expandObjectFspVlanInterfaceMinLinks(d, i["min_links"], pre_append)
 	}
 	pre_append = pre + ".0." + "min_links_down"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["min-links-down"], _ = expandObjectFspVlanInterfaceMinLinksDown(d, i["min_links_down"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectFspVlanInterfaceMode(d, i["mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "monitor_bandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["monitor-bandwidth"], _ = expandObjectFspVlanInterfaceMonitorBandwidth(d, i["monitor_bandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "mtu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mtu"], _ = expandObjectFspVlanInterfaceMtu(d, i["mtu"], pre_append)
 	}
 	pre_append = pre + ".0." + "mtu_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mtu-override"], _ = expandObjectFspVlanInterfaceMtuOverride(d, i["mtu_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "mux_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mux-type"], _ = expandObjectFspVlanInterfaceMuxType(d, i["mux_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "name"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["name"], _ = expandObjectFspVlanInterfaceName(d, i["name"], pre_append)
 	}
 	pre_append = pre + ".0." + "ndiscforward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ndiscforward"], _ = expandObjectFspVlanInterfaceNdiscforward(d, i["ndiscforward"], pre_append)
 	}
 	pre_append = pre + ".0." + "netbios_forward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["netbios-forward"], _ = expandObjectFspVlanInterfaceNetbiosForward(d, i["netbios_forward"], pre_append)
 	}
 	pre_append = pre + ".0." + "netflow_sampler"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["netflow-sampler"], _ = expandObjectFspVlanInterfaceNetflowSampler(d, i["netflow_sampler"], pre_append)
 	}
 	pre_append = pre + ".0." + "np_qos_profile"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["np-qos-profile"], _ = expandObjectFspVlanInterfaceNpQosProfile(d, i["np_qos_profile"], pre_append)
 	}
 	pre_append = pre + ".0." + "npu_fastpath"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["npu-fastpath"], _ = expandObjectFspVlanInterfaceNpuFastpath(d, i["npu_fastpath"], pre_append)
 	}
 	pre_append = pre + ".0." + "nst"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nst"], _ = expandObjectFspVlanInterfaceNst(d, i["nst"], pre_append)
 	}
 	pre_append = pre + ".0." + "out_force_vlan_cos"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["out-force-vlan-cos"], _ = expandObjectFspVlanInterfaceOutForceVlanCos(d, i["out_force_vlan_cos"], pre_append)
 	}
 	pre_append = pre + ".0." + "outbandwidth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["outbandwidth"], _ = expandObjectFspVlanInterfaceOutbandwidth(d, i["outbandwidth"], pre_append)
 	}
 	pre_append = pre + ".0." + "padt_retry_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["padt-retry-timeout"], _ = expandObjectFspVlanInterfacePadtRetryTimeout(d, i["padt_retry_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password"], _ = expandObjectFspVlanInterfacePassword(d, i["password"], pre_append)
 	} else {
 		result["password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "peer_interface"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["peer-interface"], _ = expandObjectFspVlanInterfacePeerInterface(d, i["peer_interface"], pre_append)
 	}
 	pre_append = pre + ".0." + "phy_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["phy-mode"], _ = expandObjectFspVlanInterfacePhyMode(d, i["phy_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ping_serv_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ping-serv-status"], _ = expandObjectFspVlanInterfacePingServStatus(d, i["ping_serv_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "poe"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["poe"], _ = expandObjectFspVlanInterfacePoe(d, i["poe"], pre_append)
 	}
 	pre_append = pre + ".0." + "polling_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["polling-interval"], _ = expandObjectFspVlanInterfacePollingInterval(d, i["polling_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "pppoe_unnumbered_negotiate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pppoe-unnumbered-negotiate"], _ = expandObjectFspVlanInterfacePppoeUnnumberedNegotiate(d, i["pppoe_unnumbered_negotiate"], pre_append)
 	}
 	pre_append = pre + ".0." + "pptp_auth_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-auth-type"], _ = expandObjectFspVlanInterfacePptpAuthType(d, i["pptp_auth_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "pptp_client"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-client"], _ = expandObjectFspVlanInterfacePptpClient(d, i["pptp_client"], pre_append)
 	}
 	pre_append = pre + ".0." + "pptp_password"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-password"], _ = expandObjectFspVlanInterfacePptpPassword(d, i["pptp_password"], pre_append)
 	} else {
 		result["pptp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "pptp_server_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-server-ip"], _ = expandObjectFspVlanInterfacePptpServerIp(d, i["pptp_server_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "pptp_timeout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-timeout"], _ = expandObjectFspVlanInterfacePptpTimeout(d, i["pptp_timeout"], pre_append)
 	}
 	pre_append = pre + ".0." + "pptp_user"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-user"], _ = expandObjectFspVlanInterfacePptpUser(d, i["pptp_user"], pre_append)
 	}
 	pre_append = pre + ".0." + "preserve_session_route"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["preserve-session-route"], _ = expandObjectFspVlanInterfacePreserveSessionRoute(d, i["preserve_session_route"], pre_append)
 	}
 	pre_append = pre + ".0." + "priority"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["priority"], _ = expandObjectFspVlanInterfacePriority(d, i["priority"], pre_append)
 	}
 	pre_append = pre + ".0." + "priority_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["priority-override"], _ = expandObjectFspVlanInterfacePriorityOverride(d, i["priority_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "proxy_captive_portal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["proxy-captive-portal"], _ = expandObjectFspVlanInterfaceProxyCaptivePortal(d, i["proxy_captive_portal"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_atm_qos"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-atm-qos"], _ = expandObjectFspVlanInterfacePvcAtmQos(d, i["pvc_atm_qos"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_chan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-chan"], _ = expandObjectFspVlanInterfacePvcChan(d, i["pvc_chan"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_crc"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-crc"], _ = expandObjectFspVlanInterfacePvcCrc(d, i["pvc_crc"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_pcr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-pcr"], _ = expandObjectFspVlanInterfacePvcPcr(d, i["pvc_pcr"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_scr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-scr"], _ = expandObjectFspVlanInterfacePvcScr(d, i["pvc_scr"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_vlan_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-vlan-id"], _ = expandObjectFspVlanInterfacePvcVlanId(d, i["pvc_vlan_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_vlan_rx_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-vlan-rx-id"], _ = expandObjectFspVlanInterfacePvcVlanRxId(d, i["pvc_vlan_rx_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_vlan_rx_op"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-vlan-rx-op"], _ = expandObjectFspVlanInterfacePvcVlanRxOp(d, i["pvc_vlan_rx_op"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_vlan_tx_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-vlan-tx-id"], _ = expandObjectFspVlanInterfacePvcVlanTxId(d, i["pvc_vlan_tx_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "pvc_vlan_tx_op"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pvc-vlan-tx-op"], _ = expandObjectFspVlanInterfacePvcVlanTxOp(d, i["pvc_vlan_tx_op"], pre_append)
 	}
 	pre_append = pre + ".0." + "reachable_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["reachable-time"], _ = expandObjectFspVlanInterfaceReachableTime(d, i["reachable_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "redundant_interface"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["redundant-interface"], _ = expandObjectFspVlanInterfaceRedundantInterface(d, i["redundant_interface"], pre_append)
 	}
 	pre_append = pre + ".0." + "remote_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["remote-ip"], _ = expandObjectFspVlanInterfaceRemoteIp(d, i["remote_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "replacemsg_override_group"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["replacemsg-override-group"], _ = expandObjectFspVlanInterfaceReplacemsgOverrideGroup(d, i["replacemsg_override_group"], pre_append)
 	}
 	pre_append = pre + ".0." + "retransmission"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["retransmission"], _ = expandObjectFspVlanInterfaceRetransmission(d, i["retransmission"], pre_append)
 	}
 	pre_append = pre + ".0." + "ring_rx"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ring-rx"], _ = expandObjectFspVlanInterfaceRingRx(d, i["ring_rx"], pre_append)
 	}
 	pre_append = pre + ".0." + "ring_tx"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ring-tx"], _ = expandObjectFspVlanInterfaceRingTx(d, i["ring_tx"], pre_append)
 	}
 	pre_append = pre + ".0." + "role"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["role"], _ = expandObjectFspVlanInterfaceRole(d, i["role"], pre_append)
 	}
 	pre_append = pre + ".0." + "sample_direction"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sample-direction"], _ = expandObjectFspVlanInterfaceSampleDirection(d, i["sample_direction"], pre_append)
 	}
 	pre_append = pre + ".0." + "sample_rate"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sample-rate"], _ = expandObjectFspVlanInterfaceSampleRate(d, i["sample_rate"], pre_append)
 	}
 	pre_append = pre + ".0." + "scan_botnet_connections"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scan-botnet-connections"], _ = expandObjectFspVlanInterfaceScanBotnetConnections(d, i["scan_botnet_connections"], pre_append)
 	}
 	pre_append = pre + ".0." + "secondary_IP"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["secondary-IP"], _ = expandObjectFspVlanInterfaceSecondaryIp(d, i["secondary_IP"], pre_append)
 	}
 	pre_append = pre + ".0." + "secondaryip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["secondaryip"], _ = expandObjectFspVlanInterfaceSecondaryip(d, i["secondaryip"], pre_append)
 	} else {
 		result["secondaryip"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "security_8021x_dynamic_vlan_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-8021x-dynamic-vlan-id"], _ = expandObjectFspVlanInterfaceSecurity8021XDynamicVlanId(d, i["security_8021x_dynamic_vlan_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_8021x_master"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-8021x-master"], _ = expandObjectFspVlanInterfaceSecurity8021XMaster(d, i["security_8021x_master"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_8021x_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-8021x-mode"], _ = expandObjectFspVlanInterfaceSecurity8021XMode(d, i["security_8021x_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_exempt_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-exempt-list"], _ = expandObjectFspVlanInterfaceSecurityExemptList(d, i["security_exempt_list"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_external_logout"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-external-logout"], _ = expandObjectFspVlanInterfaceSecurityExternalLogout(d, i["security_external_logout"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_external_web"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-external-web"], _ = expandObjectFspVlanInterfaceSecurityExternalWeb(d, i["security_external_web"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_groups"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-groups"], _ = expandObjectFspVlanInterfaceSecurityGroups(d, i["security_groups"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_mac_auth_bypass"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-mac-auth-bypass"], _ = expandObjectFspVlanInterfaceSecurityMacAuthBypass(d, i["security_mac_auth_bypass"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-mode"], _ = expandObjectFspVlanInterfaceSecurityMode(d, i["security_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "security_redirect_url"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["security-redirect-url"], _ = expandObjectFspVlanInterfaceSecurityRedirectUrl(d, i["security_redirect_url"], pre_append)
 	}
 	pre_append = pre + ".0." + "select_profile_30a_35b"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["select-profile-30a-35b"], _ = expandObjectFspVlanInterfaceSelectProfile30A35B(d, i["select_profile_30a_35b"], pre_append)
 	}
 	pre_append = pre + ".0." + "service_name"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["service-name"], _ = expandObjectFspVlanInterfaceServiceName(d, i["service_name"], pre_append)
 	}
 	pre_append = pre + ".0." + "sflow_sampler"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sflow-sampler"], _ = expandObjectFspVlanInterfaceSflowSampler(d, i["sflow_sampler"], pre_append)
 	}
 	pre_append = pre + ".0." + "sfp_dsl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sfp-dsl"], _ = expandObjectFspVlanInterfaceSfpDsl(d, i["sfp_dsl"], pre_append)
 	}
 	pre_append = pre + ".0." + "sfp_dsl_adsl_fallback"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sfp-dsl-adsl-fallback"], _ = expandObjectFspVlanInterfaceSfpDslAdslFallback(d, i["sfp_dsl_adsl_fallback"], pre_append)
 	}
 	pre_append = pre + ".0." + "sfp_dsl_autodetect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sfp-dsl-autodetect"], _ = expandObjectFspVlanInterfaceSfpDslAutodetect(d, i["sfp_dsl_autodetect"], pre_append)
 	}
 	pre_append = pre + ".0." + "sfp_dsl_mac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sfp-dsl-mac"], _ = expandObjectFspVlanInterfaceSfpDslMac(d, i["sfp_dsl_mac"], pre_append)
 	}
 	pre_append = pre + ".0." + "speed"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["speed"], _ = expandObjectFspVlanInterfaceSpeed(d, i["speed"], pre_append)
 	}
 	pre_append = pre + ".0." + "spillover_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["spillover-threshold"], _ = expandObjectFspVlanInterfaceSpilloverThreshold(d, i["spillover_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "src_check"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["src-check"], _ = expandObjectFspVlanInterfaceSrcCheck(d, i["src_check"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectFspVlanInterfaceStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "stp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stp"], _ = expandObjectFspVlanInterfaceStp(d, i["stp"], pre_append)
 	}
 	pre_append = pre + ".0." + "stp_ha_secondary"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stp-ha-secondary"], _ = expandObjectFspVlanInterfaceStpHaSecondary(d, i["stp_ha_secondary"], pre_append)
 	}
 	pre_append = pre + ".0." + "stp_ha_slave"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stp-ha-slave"], _ = expandObjectFspVlanInterfaceStpHaSlave(d, i["stp_ha_slave"], pre_append)
 	}
 	pre_append = pre + ".0." + "stpforward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stpforward"], _ = expandObjectFspVlanInterfaceStpforward(d, i["stpforward"], pre_append)
 	}
 	pre_append = pre + ".0." + "stpforward_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stpforward-mode"], _ = expandObjectFspVlanInterfaceStpforwardMode(d, i["stpforward_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "strip_priority_vlan_tag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["strip-priority-vlan-tag"], _ = expandObjectFspVlanInterfaceStripPriorityVlanTag(d, i["strip_priority_vlan_tag"], pre_append)
 	}
 	pre_append = pre + ".0." + "subst"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["subst"], _ = expandObjectFspVlanInterfaceSubst(d, i["subst"], pre_append)
 	}
 	pre_append = pre + ".0." + "substitute_dst_mac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["substitute-dst-mac"], _ = expandObjectFspVlanInterfaceSubstituteDstMac(d, i["substitute_dst_mac"], pre_append)
 	}
 	pre_append = pre + ".0." + "sw_algorithm"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sw-algorithm"], _ = expandObjectFspVlanInterfaceSwAlgorithm(d, i["sw_algorithm"], pre_append)
 	}
 	pre_append = pre + ".0." + "swc_first_create"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["swc-first-create"], _ = expandObjectFspVlanInterfaceSwcFirstCreate(d, i["swc_first_create"], pre_append)
 	}
 	pre_append = pre + ".0." + "swc_vlan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["swc-vlan"], _ = expandObjectFspVlanInterfaceSwcVlan(d, i["swc_vlan"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch"], _ = expandObjectFspVlanInterfaceSwitch(d, i["switch"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_access_vlan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-access-vlan"], _ = expandObjectFspVlanInterfaceSwitchControllerAccessVlan(d, i["switch_controller_access_vlan"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_arp_inspection"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-arp-inspection"], _ = expandObjectFspVlanInterfaceSwitchControllerArpInspection(d, i["switch_controller_arp_inspection"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_auth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-auth"], _ = expandObjectFspVlanInterfaceSwitchControllerAuth(d, i["switch_controller_auth"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_dhcp_snooping"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-dhcp-snooping"], _ = expandObjectFspVlanInterfaceSwitchControllerDhcpSnooping(d, i["switch_controller_dhcp_snooping"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_dhcp_snooping_option82"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-dhcp-snooping-option82"], _ = expandObjectFspVlanInterfaceSwitchControllerDhcpSnoopingOption82(d, i["switch_controller_dhcp_snooping_option82"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_dhcp_snooping_verify_mac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-dhcp-snooping-verify-mac"], _ = expandObjectFspVlanInterfaceSwitchControllerDhcpSnoopingVerifyMac(d, i["switch_controller_dhcp_snooping_verify_mac"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_dynamic"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-dynamic"], _ = expandObjectFspVlanInterfaceSwitchControllerDynamic(d, i["switch_controller_dynamic"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_feature"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-feature"], _ = expandObjectFspVlanInterfaceSwitchControllerFeature(d, i["switch_controller_feature"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_igmp_snooping"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-igmp-snooping"], _ = expandObjectFspVlanInterfaceSwitchControllerIgmpSnooping(d, i["switch_controller_igmp_snooping"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_igmp_snooping_fast_leave"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-igmp-snooping-fast-leave"], _ = expandObjectFspVlanInterfaceSwitchControllerIgmpSnoopingFastLeave(d, i["switch_controller_igmp_snooping_fast_leave"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_igmp_snooping_proxy"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-igmp-snooping-proxy"], _ = expandObjectFspVlanInterfaceSwitchControllerIgmpSnoopingProxy(d, i["switch_controller_igmp_snooping_proxy"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_iot_scanning"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-iot-scanning"], _ = expandObjectFspVlanInterfaceSwitchControllerIotScanning(d, i["switch_controller_iot_scanning"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_learning_limit"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-learning-limit"], _ = expandObjectFspVlanInterfaceSwitchControllerLearningLimit(d, i["switch_controller_learning_limit"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_mgmt_vlan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-mgmt-vlan"], _ = expandObjectFspVlanInterfaceSwitchControllerMgmtVlan(d, i["switch_controller_mgmt_vlan"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_nac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-nac"], _ = expandObjectFspVlanInterfaceSwitchControllerNac(d, i["switch_controller_nac"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_radius_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-radius-server"], _ = expandObjectFspVlanInterfaceSwitchControllerRadiusServer(d, i["switch_controller_radius_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_rspan_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-rspan-mode"], _ = expandObjectFspVlanInterfaceSwitchControllerRspanMode(d, i["switch_controller_rspan_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_source_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-source-ip"], _ = expandObjectFspVlanInterfaceSwitchControllerSourceIp(d, i["switch_controller_source_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_controller_traffic_policy"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-traffic-policy"], _ = expandObjectFspVlanInterfaceSwitchControllerTrafficPolicy(d, i["switch_controller_traffic_policy"], pre_append)
 	}
 	pre_append = pre + ".0." + "system_id"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["system-id"], _ = expandObjectFspVlanInterfaceSystemId(d, i["system_id"], pre_append)
 	}
 	pre_append = pre + ".0." + "system_id_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["system-id-type"], _ = expandObjectFspVlanInterfaceSystemIdType(d, i["system_id_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "tc_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tc-mode"], _ = expandObjectFspVlanInterfaceTcMode(d, i["tc_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "tcp_mss"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tcp-mss"], _ = expandObjectFspVlanInterfaceTcpMss(d, i["tcp_mss"], pre_append)
 	}
 	pre_append = pre + ".0." + "trunk"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trunk"], _ = expandObjectFspVlanInterfaceTrunk(d, i["trunk"], pre_append)
 	}
 	pre_append = pre + ".0." + "trust_ip_1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trust-ip-1"], _ = expandObjectFspVlanInterfaceTrustIp1(d, i["trust_ip_1"], pre_append)
 	}
 	pre_append = pre + ".0." + "trust_ip_2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trust-ip-2"], _ = expandObjectFspVlanInterfaceTrustIp2(d, i["trust_ip_2"], pre_append)
 	}
 	pre_append = pre + ".0." + "trust_ip_3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trust-ip-3"], _ = expandObjectFspVlanInterfaceTrustIp3(d, i["trust_ip_3"], pre_append)
 	}
 	pre_append = pre + ".0." + "trust_ip6_1"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trust-ip6-1"], _ = expandObjectFspVlanInterfaceTrustIp61(d, i["trust_ip6_1"], pre_append)
 	}
 	pre_append = pre + ".0." + "trust_ip6_2"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trust-ip6-2"], _ = expandObjectFspVlanInterfaceTrustIp62(d, i["trust_ip6_2"], pre_append)
 	}
 	pre_append = pre + ".0." + "trust_ip6_3"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["trust-ip6-3"], _ = expandObjectFspVlanInterfaceTrustIp63(d, i["trust_ip6_3"], pre_append)
 	}
 	pre_append = pre + ".0." + "type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["type"], _ = expandObjectFspVlanInterfaceType(d, i["type"], pre_append)
 	}
 	pre_append = pre + ".0." + "username"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["username"], _ = expandObjectFspVlanInterfaceUsername(d, i["username"], pre_append)
 	}
 	pre_append = pre + ".0." + "vci"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci"], _ = expandObjectFspVlanInterfaceVci(d, i["vci"], pre_append)
 	}
 	pre_append = pre + ".0." + "vectoring"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vectoring"], _ = expandObjectFspVlanInterfaceVectoring(d, i["vectoring"], pre_append)
 	}
 	pre_append = pre + ".0." + "vindex"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vindex"], _ = expandObjectFspVlanInterfaceVindex(d, i["vindex"], pre_append)
 	}
 	pre_append = pre + ".0." + "vlan_protocol"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vlan-protocol"], _ = expandObjectFspVlanInterfaceVlanProtocol(d, i["vlan_protocol"], pre_append)
 	}
 	pre_append = pre + ".0." + "vlanforward"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vlanforward"], _ = expandObjectFspVlanInterfaceVlanforward(d, i["vlanforward"], pre_append)
 	}
 	pre_append = pre + ".0." + "vlanid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vlanid"], _ = expandObjectFspVlanInterfaceVlanid(d, i["vlanid"], pre_append)
 	}
 	pre_append = pre + ".0." + "vpi"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vpi"], _ = expandObjectFspVlanInterfaceVpi(d, i["vpi"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrf"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrf"], _ = expandObjectFspVlanInterfaceVrf(d, i["vrf"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrrp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrrp"], _ = expandObjectFspVlanInterfaceVrrp(d, i["vrrp"], pre_append)
 	} else {
 		result["vrrp"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vrrp_virtual_mac"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrrp-virtual-mac"], _ = expandObjectFspVlanInterfaceVrrpVirtualMac(d, i["vrrp_virtual_mac"], pre_append)
 	}
 	pre_append = pre + ".0." + "wccp"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wccp"], _ = expandObjectFspVlanInterfaceWccp(d, i["wccp"], pre_append)
 	}
 	pre_append = pre + ".0." + "weight"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["weight"], _ = expandObjectFspVlanInterfaceWeight(d, i["weight"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_5g_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-5g-threshold"], _ = expandObjectFspVlanInterfaceWifi5GThreshold(d, i["wifi_5g_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_acl"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-acl"], _ = expandObjectFspVlanInterfaceWifiAcl(d, i["wifi_acl"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ap_band"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ap-band"], _ = expandObjectFspVlanInterfaceWifiApBand(d, i["wifi_ap_band"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_auth"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-auth"], _ = expandObjectFspVlanInterfaceWifiAuth(d, i["wifi_auth"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_auto_connect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-auto-connect"], _ = expandObjectFspVlanInterfaceWifiAutoConnect(d, i["wifi_auto_connect"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_auto_save"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-auto-save"], _ = expandObjectFspVlanInterfaceWifiAutoSave(d, i["wifi_auto_save"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_broadcast_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-broadcast-ssid"], _ = expandObjectFspVlanInterfaceWifiBroadcastSsid(d, i["wifi_broadcast_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_encrypt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-encrypt"], _ = expandObjectFspVlanInterfaceWifiEncrypt(d, i["wifi_encrypt"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_fragment_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-fragment-threshold"], _ = expandObjectFspVlanInterfaceWifiFragmentThreshold(d, i["wifi_fragment_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_key"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-key"], _ = expandObjectFspVlanInterfaceWifiKey(d, i["wifi_key"], pre_append)
 	} else {
 		result["wifi-key"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_keyindex"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-keyindex"], _ = expandObjectFspVlanInterfaceWifiKeyindex(d, i["wifi_keyindex"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_mac_filter"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-mac-filter"], _ = expandObjectFspVlanInterfaceWifiMacFilter(d, i["wifi_mac_filter"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_passphrase"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-passphrase"], _ = expandObjectFspVlanInterfaceWifiPassphrase(d, i["wifi_passphrase"], pre_append)
 	} else {
 		result["wifi-passphrase"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_radius_server"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-radius-server"], _ = expandObjectFspVlanInterfaceWifiRadiusServer(d, i["wifi_radius_server"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_rts_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-rts-threshold"], _ = expandObjectFspVlanInterfaceWifiRtsThreshold(d, i["wifi_rts_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_security"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-security"], _ = expandObjectFspVlanInterfaceWifiSecurity(d, i["wifi_security"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_ssid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-ssid"], _ = expandObjectFspVlanInterfaceWifiSsid(d, i["wifi_ssid"], pre_append)
 	}
 	pre_append = pre + ".0." + "wifi_usergroup"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-usergroup"], _ = expandObjectFspVlanInterfaceWifiUsergroup(d, i["wifi_usergroup"], pre_append)
 	}
 	pre_append = pre + ".0." + "wins_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wins-ip"], _ = expandObjectFspVlanInterfaceWinsIp(d, i["wins_ip"], pre_append)
 	}
 
@@ -14182,193 +14182,193 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "autoconf"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["autoconf"], _ = expandObjectFspVlanInterfaceIpv6Autoconf(d, i["autoconf"], pre_append)
 	}
 	pre_append = pre + ".0." + "cli_conn6_status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["cli-conn6-status"], _ = expandObjectFspVlanInterfaceIpv6CliConn6Status(d, i["cli_conn6_status"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_client_options"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-client-options"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6ClientOptions(d, i["dhcp6_client_options"], pre_append)
 	} else {
 		result["dhcp6-client-options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp6_information_request"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-information-request"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6InformationRequest(d, i["dhcp6_information_request"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_delegation"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-delegation"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6PrefixDelegation(d, i["dhcp6_prefix_delegation"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_hint"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6PrefixHint(d, i["dhcp6_prefix_hint"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_hint_plt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint-plt"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6PrefixHintPlt(d, i["dhcp6_prefix_hint_plt"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_prefix_hint_vlt"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint-vlt"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6PrefixHintVlt(d, i["dhcp6_prefix_hint_vlt"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_ip"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-ip"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelayIp(d, i["dhcp6_relay_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_service"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-service"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelayService(d, i["dhcp6_relay_service"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_type"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-type"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelayType(d, i["dhcp6_relay_type"], pre_append)
 	}
 	pre_append = pre + ".0." + "icmp6_send_redirect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["icmp6-send-redirect"], _ = expandObjectFspVlanInterfaceIpv6Icmp6SendRedirect(d, i["icmp6_send_redirect"], pre_append)
 	}
 	pre_append = pre + ".0." + "interface_identifier"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["interface-identifier"], _ = expandObjectFspVlanInterfaceIpv6InterfaceIdentifier(d, i["interface_identifier"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_address"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-address"], _ = expandObjectFspVlanInterfaceIpv6Ip6Address(d, i["ip6_address"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_allowaccess"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-allowaccess"], _ = expandObjectFspVlanInterfaceIpv6Ip6Allowaccess(d, i["ip6_allowaccess"], pre_append)
 	} else {
 		result["ip6-allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_default_life"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-default-life"], _ = expandObjectFspVlanInterfaceIpv6Ip6DefaultLife(d, i["ip6_default_life"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_iaid"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-delegated-prefix-iaid"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixIaid(d, i["ip6_delegated_prefix_iaid"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-delegated-prefix-list"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
 	} else {
 		result["ip6-delegated-prefix-list"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_dns_server_override"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-dns-server-override"], _ = expandObjectFspVlanInterfaceIpv6Ip6DnsServerOverride(d, i["ip6_dns_server_override"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_extra_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-extra-addr"], _ = expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr(d, i["ip6_extra_addr"], pre_append)
 	} else {
 		result["ip6-extra-addr"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_hop_limit"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-hop-limit"], _ = expandObjectFspVlanInterfaceIpv6Ip6HopLimit(d, i["ip6_hop_limit"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_link_mtu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-link-mtu"], _ = expandObjectFspVlanInterfaceIpv6Ip6LinkMtu(d, i["ip6_link_mtu"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_manage_flag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-manage-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6ManageFlag(d, i["ip6_manage_flag"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_max_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-max-interval"], _ = expandObjectFspVlanInterfaceIpv6Ip6MaxInterval(d, i["ip6_max_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_min_interval"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-min-interval"], _ = expandObjectFspVlanInterfaceIpv6Ip6MinInterval(d, i["ip6_min_interval"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-mode"], _ = expandObjectFspVlanInterfaceIpv6Ip6Mode(d, i["ip6_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_other_flag"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-other-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6OtherFlag(d, i["ip6_other_flag"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_prefix_list"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-prefix-list"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d, i["ip6_prefix_list"], pre_append)
 	} else {
 		result["ip6-prefix-list"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_prefix_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-prefix-mode"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixMode(d, i["ip6_prefix_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_reachable_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-reachable-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6ReachableTime(d, i["ip6_reachable_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_retrans_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-retrans-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6RetransTime(d, i["ip6_retrans_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_send_adv"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-send-adv"], _ = expandObjectFspVlanInterfaceIpv6Ip6SendAdv(d, i["ip6_send_adv"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_subnet"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-subnet"], _ = expandObjectFspVlanInterfaceIpv6Ip6Subnet(d, i["ip6_subnet"], pre_append)
 	}
 	pre_append = pre + ".0." + "ip6_upstream_interface"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-upstream-interface"], _ = expandObjectFspVlanInterfaceIpv6Ip6UpstreamInterface(d, i["ip6_upstream_interface"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_cert"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-cert"], _ = expandObjectFspVlanInterfaceIpv6NdCert(d, i["nd_cert"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_cga_modifier"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-cga-modifier"], _ = expandObjectFspVlanInterfaceIpv6NdCgaModifier(d, i["nd_cga_modifier"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_mode"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-mode"], _ = expandObjectFspVlanInterfaceIpv6NdMode(d, i["nd_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_security_level"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-security-level"], _ = expandObjectFspVlanInterfaceIpv6NdSecurityLevel(d, i["nd_security_level"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_timestamp_delta"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-timestamp-delta"], _ = expandObjectFspVlanInterfaceIpv6NdTimestampDelta(d, i["nd_timestamp_delta"], pre_append)
 	}
 	pre_append = pre + ".0." + "nd_timestamp_fuzz"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nd-timestamp-fuzz"], _ = expandObjectFspVlanInterfaceIpv6NdTimestampFuzz(d, i["nd_timestamp_fuzz"], pre_append)
 	}
 	pre_append = pre + ".0." + "ra_send_mtu"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ra-send-mtu"], _ = expandObjectFspVlanInterfaceIpv6RaSendMtu(d, i["ra_send_mtu"], pre_append)
 	}
 	pre_append = pre + ".0." + "unique_autoconf_addr"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["unique-autoconf-addr"], _ = expandObjectFspVlanInterfaceIpv6UniqueAutoconfAddr(d, i["unique_autoconf_addr"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrip6_link_local"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrip6_link_local"], _ = expandObjectFspVlanInterfaceIpv6Vrip6LinkLocal(d, i["vrip6_link_local"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrrp_virtual_mac6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrrp-virtual-mac6"], _ = expandObjectFspVlanInterfaceIpv6VrrpVirtualMac6(d, i["vrrp_virtual_mac6"], pre_append)
 	}
 	pre_append = pre + ".0." + "vrrp6"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vrrp6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6(d, i["vrrp6"], pre_append)
 	} else {
 		result["vrrp6"] = make([]string, 0)
@@ -14460,44 +14460,44 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceDa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "autonomous_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["autonomous-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListAutonomousFlag(d, i["autonomous_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "delegated_prefix_iaid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["delegated-prefix-iaid"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListDelegatedPrefixIaid(d, i["delegated_prefix_iaid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["onlink-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListOnlinkFlag(d, i["onlink_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix-id"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListPrefixId(d, i["prefix_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListRdnss(d, i["rdnss"], pre_append)
 		} else {
 			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss_service"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss-service"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListRdnssService(d, i["rdnss_service"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subnet"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListSubnet(d, i["subnet"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "upstream_interface"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["upstream-interface"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface(d, i["upstream_interface"], pre_append)
 		}
 
@@ -14560,7 +14560,7 @@ func expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectFspVlanInterfaceIpv6Ip6ExtraAddrPrefix(d, i["prefix"], pre_append)
 		}
 
@@ -14619,41 +14619,41 @@ func expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "autonomous_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["autonomous-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListAutonomousFlag(d, i["autonomous_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dnssl"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dnssl"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListDnssl(d, i["dnssl"], pre_append)
 		} else {
 			tmp["dnssl"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["onlink-flag"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListOnlinkFlag(d, i["onlink_flag"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preferred_life_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preferred-life-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListPreferredLifeTime(d, i["preferred_life_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "prefix"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["prefix"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListPrefix(d, i["prefix"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListRdnss(d, i["rdnss"], pre_append)
 		} else {
 			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "valid_life_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["valid-life-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListValidLifeTime(d, i["valid_life_time"], pre_append)
 		}
 
@@ -14772,52 +14772,52 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accept_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["accept-mode"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6AcceptMode(d, i["accept_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adv_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["adv-interval"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6AdvInterval(d, i["adv_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preempt"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Preempt(d, i["preempt"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Priority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-time"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6StartTime(d, i["start_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Status(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrdst6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrdst6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrdst6(d, i["vrdst6"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrgrp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrgrp"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrgrp(d, i["vrgrp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrid"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrid(d, i["vrid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrip6"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrip6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrip6(d, i["vrip6"], pre_append)
 		}
 
@@ -15200,51 +15200,51 @@ func expandObjectFspVlanInterfaceSecondaryip(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allowaccess"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["allowaccess"], _ = expandObjectFspVlanInterfaceSecondaryipAllowaccess(d, i["allowaccess"], pre_append)
 		} else {
 			tmp["allowaccess"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectprotocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["detectprotocol"], _ = expandObjectFspVlanInterfaceSecondaryipDetectprotocol(d, i["detectprotocol"], pre_append)
 		} else {
 			tmp["detectprotocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectserver"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["detectserver"], _ = expandObjectFspVlanInterfaceSecondaryipDetectserver(d, i["detectserver"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gwdetect"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gwdetect"], _ = expandObjectFspVlanInterfaceSecondaryipGwdetect(d, i["gwdetect"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ha_priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ha-priority"], _ = expandObjectFspVlanInterfaceSecondaryipHaPriority(d, i["ha_priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFspVlanInterfaceSecondaryipId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanInterfaceSecondaryipIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ping_serv_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ping-serv-status"], _ = expandObjectFspVlanInterfaceSecondaryipPingServStatus(d, i["ping_serv_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["seq"], _ = expandObjectFspVlanInterfaceSecondaryipSeq(d, i["seq"], pre_append)
 		}
 
@@ -15599,69 +15599,69 @@ func expandObjectFspVlanInterfaceVrrp(d *schema.ResourceData, v interface{}, pre
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accept_mode"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["accept-mode"], _ = expandObjectFspVlanInterfaceVrrpAcceptMode(d, i["accept_mode"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "adv_interval"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["adv-interval"], _ = expandObjectFspVlanInterfaceVrrpAdvInterval(d, i["adv_interval"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ignore_default_route"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ignore-default-route"], _ = expandObjectFspVlanInterfaceVrrpIgnoreDefaultRoute(d, i["ignore_default_route"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "preempt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["preempt"], _ = expandObjectFspVlanInterfaceVrrpPreempt(d, i["preempt"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectFspVlanInterfaceVrrpPriority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_time"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-time"], _ = expandObjectFspVlanInterfaceVrrpStartTime(d, i["start_time"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectFspVlanInterfaceVrrpStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "version"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["version"], _ = expandObjectFspVlanInterfaceVrrpVersion(d, i["version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrdst"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrdst"], _ = expandObjectFspVlanInterfaceVrrpVrdst(d, i["vrdst"], pre_append)
 		} else {
 			tmp["vrdst"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrdst_priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrdst-priority"], _ = expandObjectFspVlanInterfaceVrrpVrdstPriority(d, i["vrdst_priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrgrp"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrgrp"], _ = expandObjectFspVlanInterfaceVrrpVrgrp(d, i["vrgrp"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrid"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrid"], _ = expandObjectFspVlanInterfaceVrrpVrid(d, i["vrid"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrip"], _ = expandObjectFspVlanInterfaceVrrpVrip(d, i["vrip"], pre_append)
 		}
 
@@ -15828,7 +15828,7 @@ func expandObjectFspVlanVlanid(d *schema.ResourceData, v interface{}, pre string
 func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_dhcp_status"); ok {
+	if v, ok := d.GetOk("_dhcp_status"); ok || d.HasChange("_dhcp_status") {
 		t, err := expandObjectFspVlanDhcpStatus(d, v, "_dhcp_status")
 		if err != nil {
 			return &obj, err
@@ -15837,7 +15837,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFspVlanColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -15846,7 +15846,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_server"); ok {
+	if v, ok := d.GetOk("dhcp_server"); ok || d.HasChange("dhcp_server") {
 		t, err := expandObjectFspVlanDhcpServer(d, v, "dhcp_server")
 		if err != nil {
 			return &obj, err
@@ -15855,7 +15855,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectFspVlanDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
 			return &obj, err
@@ -15864,7 +15864,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectFspVlanInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -15873,7 +15873,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFspVlanName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -15882,7 +15882,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("vdom"); ok {
+	if v, ok := d.GetOk("vdom"); ok || d.HasChange("vdom") {
 		t, err := expandObjectFspVlanVdom(d, v, "vdom")
 		if err != nil {
 			return &obj, err
@@ -15891,7 +15891,7 @@ func getObjectObjectFspVlan(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
-	if v, ok := d.GetOk("vlanid"); ok {
+	if v, ok := d.GetOk("vlanid"); ok || d.HasChange("vlanid") {
 		t, err := expandObjectFspVlanVlanid(d, v, "vlanid")
 		if err != nil {
 			return &obj, err

@@ -757,7 +757,7 @@ func expandObjectUserLocalWorkstation(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auth_concurrent_override"); ok {
+	if v, ok := d.GetOk("auth_concurrent_override"); ok || d.HasChange("auth_concurrent_override") {
 		t, err := expandObjectUserLocalAuthConcurrentOverride(d, v, "auth_concurrent_override")
 		if err != nil {
 			return &obj, err
@@ -766,7 +766,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("auth_concurrent_value"); ok {
+	if v, ok := d.GetOk("auth_concurrent_value"); ok || d.HasChange("auth_concurrent_value") {
 		t, err := expandObjectUserLocalAuthConcurrentValue(d, v, "auth_concurrent_value")
 		if err != nil {
 			return &obj, err
@@ -775,7 +775,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("authtimeout"); ok {
+	if v, ok := d.GetOk("authtimeout"); ok || d.HasChange("authtimeout") {
 		t, err := expandObjectUserLocalAuthtimeout(d, v, "authtimeout")
 		if err != nil {
 			return &obj, err
@@ -784,7 +784,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("email_to"); ok {
+	if v, ok := d.GetOk("email_to"); ok || d.HasChange("email_to") {
 		t, err := expandObjectUserLocalEmailTo(d, v, "email_to")
 		if err != nil {
 			return &obj, err
@@ -793,7 +793,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fortitoken"); ok {
+	if v, ok := d.GetOk("fortitoken"); ok || d.HasChange("fortitoken") {
 		t, err := expandObjectUserLocalFortitoken(d, v, "fortitoken")
 		if err != nil {
 			return &obj, err
@@ -802,7 +802,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectUserLocalId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -811,7 +811,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ldap_server"); ok {
+	if v, ok := d.GetOk("ldap_server"); ok || d.HasChange("ldap_server") {
 		t, err := expandObjectUserLocalLdapServer(d, v, "ldap_server")
 		if err != nil {
 			return &obj, err
@@ -820,7 +820,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserLocalName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -829,7 +829,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("passwd"); ok {
+	if v, ok := d.GetOk("passwd"); ok || d.HasChange("passwd") {
 		t, err := expandObjectUserLocalPasswd(d, v, "passwd")
 		if err != nil {
 			return &obj, err
@@ -838,7 +838,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("passwd_policy"); ok {
+	if v, ok := d.GetOk("passwd_policy"); ok || d.HasChange("passwd_policy") {
 		t, err := expandObjectUserLocalPasswdPolicy(d, v, "passwd_policy")
 		if err != nil {
 			return &obj, err
@@ -847,7 +847,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ppk_identity"); ok {
+	if v, ok := d.GetOk("ppk_identity"); ok || d.HasChange("ppk_identity") {
 		t, err := expandObjectUserLocalPpkIdentity(d, v, "ppk_identity")
 		if err != nil {
 			return &obj, err
@@ -856,7 +856,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("ppk_secret"); ok {
+	if v, ok := d.GetOk("ppk_secret"); ok || d.HasChange("ppk_secret") {
 		t, err := expandObjectUserLocalPpkSecret(d, v, "ppk_secret")
 		if err != nil {
 			return &obj, err
@@ -865,7 +865,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("radius_server"); ok {
+	if v, ok := d.GetOk("radius_server"); ok || d.HasChange("radius_server") {
 		t, err := expandObjectUserLocalRadiusServer(d, v, "radius_server")
 		if err != nil {
 			return &obj, err
@@ -874,7 +874,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sms_custom_server"); ok {
+	if v, ok := d.GetOk("sms_custom_server"); ok || d.HasChange("sms_custom_server") {
 		t, err := expandObjectUserLocalSmsCustomServer(d, v, "sms_custom_server")
 		if err != nil {
 			return &obj, err
@@ -883,7 +883,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sms_phone"); ok {
+	if v, ok := d.GetOk("sms_phone"); ok || d.HasChange("sms_phone") {
 		t, err := expandObjectUserLocalSmsPhone(d, v, "sms_phone")
 		if err != nil {
 			return &obj, err
@@ -892,7 +892,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("sms_server"); ok {
+	if v, ok := d.GetOk("sms_server"); ok || d.HasChange("sms_server") {
 		t, err := expandObjectUserLocalSmsServer(d, v, "sms_server")
 		if err != nil {
 			return &obj, err
@@ -901,7 +901,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserLocalStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -910,7 +910,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("tacacs_server"); ok {
+	if v, ok := d.GetOk("tacacs_server"); ok || d.HasChange("tacacs_server") {
 		t, err := expandObjectUserLocalTacacsServer(d, v, "tacacs_server")
 		if err != nil {
 			return &obj, err
@@ -919,7 +919,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor"); ok {
+	if v, ok := d.GetOk("two_factor"); ok || d.HasChange("two_factor") {
 		t, err := expandObjectUserLocalTwoFactor(d, v, "two_factor")
 		if err != nil {
 			return &obj, err
@@ -928,7 +928,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor_authentication"); ok {
+	if v, ok := d.GetOk("two_factor_authentication"); ok || d.HasChange("two_factor_authentication") {
 		t, err := expandObjectUserLocalTwoFactorAuthentication(d, v, "two_factor_authentication")
 		if err != nil {
 			return &obj, err
@@ -937,7 +937,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("two_factor_notification"); ok {
+	if v, ok := d.GetOk("two_factor_notification"); ok || d.HasChange("two_factor_notification") {
 		t, err := expandObjectUserLocalTwoFactorNotification(d, v, "two_factor_notification")
 		if err != nil {
 			return &obj, err
@@ -946,7 +946,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectUserLocalType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -955,7 +955,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("username_case_insensitivity"); ok {
+	if v, ok := d.GetOk("username_case_insensitivity"); ok || d.HasChange("username_case_insensitivity") {
 		t, err := expandObjectUserLocalUsernameCaseInsensitivity(d, v, "username_case_insensitivity")
 		if err != nil {
 			return &obj, err
@@ -964,7 +964,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("username_case_sensitivity"); ok {
+	if v, ok := d.GetOk("username_case_sensitivity"); ok || d.HasChange("username_case_sensitivity") {
 		t, err := expandObjectUserLocalUsernameCaseSensitivity(d, v, "username_case_sensitivity")
 		if err != nil {
 			return &obj, err
@@ -973,7 +973,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("username_sensitivity"); ok {
+	if v, ok := d.GetOk("username_sensitivity"); ok || d.HasChange("username_sensitivity") {
 		t, err := expandObjectUserLocalUsernameSensitivity(d, v, "username_sensitivity")
 		if err != nil {
 			return &obj, err
@@ -982,7 +982,7 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("workstation"); ok {
+	if v, ok := d.GetOk("workstation"); ok || d.HasChange("workstation") {
 		t, err := expandObjectUserLocalWorkstation(d, v, "workstation")
 		if err != nil {
 			return &obj, err

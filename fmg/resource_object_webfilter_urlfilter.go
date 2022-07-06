@@ -505,54 +505,54 @@ func expandObjectWebfilterUrlfilterEntries(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectWebfilterUrlfilterEntriesAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "antiphish_action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["antiphish-action"], _ = expandObjectWebfilterUrlfilterEntriesAntiphishAction(d, i["antiphish_action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dns_address_family"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dns-address-family"], _ = expandObjectWebfilterUrlfilterEntriesDnsAddressFamily(d, i["dns_address_family"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exempt"], _ = expandObjectWebfilterUrlfilterEntriesExempt(d, i["exempt"], pre_append)
 		} else {
 			tmp["exempt"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectWebfilterUrlfilterEntriesId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "referrer_host"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["referrer-host"], _ = expandObjectWebfilterUrlfilterEntriesReferrerHost(d, i["referrer_host"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["status"], _ = expandObjectWebfilterUrlfilterEntriesStatus(d, i["status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectWebfilterUrlfilterEntriesType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "url"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["url"], _ = expandObjectWebfilterUrlfilterEntriesUrl(d, i["url"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "web_proxy_profile"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["web-proxy-profile"], _ = expandObjectWebfilterUrlfilterEntriesWebProxyProfile(d, i["web_proxy_profile"], pre_append)
 		}
 
@@ -623,7 +623,7 @@ func expandObjectWebfilterUrlfilterOneArmIpsUrlfilter(d *schema.ResourceData, v 
 func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectWebfilterUrlfilterComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -632,7 +632,7 @@ func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectWebfilterUrlfilterEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -641,7 +641,7 @@ func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectWebfilterUrlfilterId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -650,7 +650,7 @@ func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("ip_addr_block"); ok {
+	if v, ok := d.GetOk("ip_addr_block"); ok || d.HasChange("ip_addr_block") {
 		t, err := expandObjectWebfilterUrlfilterIpAddrBlock(d, v, "ip_addr_block")
 		if err != nil {
 			return &obj, err
@@ -659,7 +659,7 @@ func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWebfilterUrlfilterName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -668,7 +668,7 @@ func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("one_arm_ips_urlfilter"); ok {
+	if v, ok := d.GetOk("one_arm_ips_urlfilter"); ok || d.HasChange("one_arm_ips_urlfilter") {
 		t, err := expandObjectWebfilterUrlfilterOneArmIpsUrlfilter(d, v, "one_arm_ips_urlfilter")
 		if err != nil {
 			return &obj, err

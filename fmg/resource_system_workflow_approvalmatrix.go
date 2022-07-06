@@ -310,12 +310,12 @@ func expandSystemWorkflowApprovalMatrixApprover(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["member"], _ = expandSystemWorkflowApprovalMatrixApproverMember(d, i["member"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "seq_num"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["seq_num"], _ = expandSystemWorkflowApprovalMatrixApproverSeqNum(d, i["seq_num"], pre_append)
 		}
 
@@ -346,7 +346,7 @@ func expandSystemWorkflowApprovalMatrixNotify(d *schema.ResourceData, v interfac
 func getObjectSystemWorkflowApprovalMatrix(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("adom_name"); ok {
+	if v, ok := d.GetOk("adom_name"); ok || d.HasChange("adom_name") {
 		t, err := expandSystemWorkflowApprovalMatrixAdomName(d, v, "adom_name")
 		if err != nil {
 			return &obj, err
@@ -355,7 +355,7 @@ func getObjectSystemWorkflowApprovalMatrix(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("approver"); ok {
+	if v, ok := d.GetOk("approver"); ok || d.HasChange("approver") {
 		t, err := expandSystemWorkflowApprovalMatrixApprover(d, v, "approver")
 		if err != nil {
 			return &obj, err
@@ -364,7 +364,7 @@ func getObjectSystemWorkflowApprovalMatrix(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("mail_server"); ok {
+	if v, ok := d.GetOk("mail_server"); ok || d.HasChange("mail_server") {
 		t, err := expandSystemWorkflowApprovalMatrixMailServer(d, v, "mail_server")
 		if err != nil {
 			return &obj, err
@@ -373,7 +373,7 @@ func getObjectSystemWorkflowApprovalMatrix(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("notify"); ok {
+	if v, ok := d.GetOk("notify"); ok || d.HasChange("notify") {
 		t, err := expandSystemWorkflowApprovalMatrixNotify(d, v, "notify")
 		if err != nil {
 			return &obj, err

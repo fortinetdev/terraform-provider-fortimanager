@@ -660,7 +660,7 @@ func expandObjectEndpointControlFctemsWebsocketOverride(d *schema.ResourceData, 
 func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("admin_password"); ok {
+	if v, ok := d.GetOk("admin_password"); ok || d.HasChange("admin_password") {
 		t, err := expandObjectEndpointControlFctemsAdminPassword(d, v, "admin_password")
 		if err != nil {
 			return &obj, err
@@ -669,7 +669,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("admin_username"); ok {
+	if v, ok := d.GetOk("admin_username"); ok || d.HasChange("admin_username") {
 		t, err := expandObjectEndpointControlFctemsAdminUsername(d, v, "admin_username")
 		if err != nil {
 			return &obj, err
@@ -678,7 +678,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("call_timeout"); ok {
+	if v, ok := d.GetOk("call_timeout"); ok || d.HasChange("call_timeout") {
 		t, err := expandObjectEndpointControlFctemsCallTimeout(d, v, "call_timeout")
 		if err != nil {
 			return &obj, err
@@ -687,7 +687,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("certificate"); ok {
+	if v, ok := d.GetOk("certificate"); ok || d.HasChange("certificate") {
 		t, err := expandObjectEndpointControlFctemsCertificate(d, v, "certificate")
 		if err != nil {
 			return &obj, err
@@ -696,7 +696,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("capabilities"); ok {
+	if v, ok := d.GetOk("capabilities"); ok || d.HasChange("capabilities") {
 		t, err := expandObjectEndpointControlFctemsCapabilities(d, v, "capabilities")
 		if err != nil {
 			return &obj, err
@@ -705,7 +705,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("certificate_fingerprint"); ok {
+	if v, ok := d.GetOk("certificate_fingerprint"); ok || d.HasChange("certificate_fingerprint") {
 		t, err := expandObjectEndpointControlFctemsCertificateFingerprint(d, v, "certificate_fingerprint")
 		if err != nil {
 			return &obj, err
@@ -714,7 +714,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("cloud_server_type"); ok {
+	if v, ok := d.GetOk("cloud_server_type"); ok || d.HasChange("cloud_server_type") {
 		t, err := expandObjectEndpointControlFctemsCloudServerType(d, v, "cloud_server_type")
 		if err != nil {
 			return &obj, err
@@ -723,7 +723,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fortinetone_cloud_authentication"); ok {
+	if v, ok := d.GetOk("fortinetone_cloud_authentication"); ok || d.HasChange("fortinetone_cloud_authentication") {
 		t, err := expandObjectEndpointControlFctemsFortinetoneCloudAuthentication(d, v, "fortinetone_cloud_authentication")
 		if err != nil {
 			return &obj, err
@@ -732,7 +732,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("https_port"); ok {
+	if v, ok := d.GetOk("https_port"); ok || d.HasChange("https_port") {
 		t, err := expandObjectEndpointControlFctemsHttpsPort(d, v, "https_port")
 		if err != nil {
 			return &obj, err
@@ -741,7 +741,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectEndpointControlFctemsName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -750,7 +750,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("serial_number"); ok {
+	if v, ok := d.GetOk("serial_number"); ok || d.HasChange("serial_number") {
 		t, err := expandObjectEndpointControlFctemsSerialNumber(d, v, "serial_number")
 		if err != nil {
 			return &obj, err
@@ -759,7 +759,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("preserve_ssl_session"); ok {
+	if v, ok := d.GetOk("preserve_ssl_session"); ok || d.HasChange("preserve_ssl_session") {
 		t, err := expandObjectEndpointControlFctemsPreserveSslSession(d, v, "preserve_ssl_session")
 		if err != nil {
 			return &obj, err
@@ -768,7 +768,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pull_avatars"); ok {
+	if v, ok := d.GetOk("pull_avatars"); ok || d.HasChange("pull_avatars") {
 		t, err := expandObjectEndpointControlFctemsPullAvatars(d, v, "pull_avatars")
 		if err != nil {
 			return &obj, err
@@ -777,7 +777,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pull_malware_hash"); ok {
+	if v, ok := d.GetOk("pull_malware_hash"); ok || d.HasChange("pull_malware_hash") {
 		t, err := expandObjectEndpointControlFctemsPullMalwareHash(d, v, "pull_malware_hash")
 		if err != nil {
 			return &obj, err
@@ -786,7 +786,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pull_sysinfo"); ok {
+	if v, ok := d.GetOk("pull_sysinfo"); ok || d.HasChange("pull_sysinfo") {
 		t, err := expandObjectEndpointControlFctemsPullSysinfo(d, v, "pull_sysinfo")
 		if err != nil {
 			return &obj, err
@@ -795,7 +795,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pull_tags"); ok {
+	if v, ok := d.GetOk("pull_tags"); ok || d.HasChange("pull_tags") {
 		t, err := expandObjectEndpointControlFctemsPullTags(d, v, "pull_tags")
 		if err != nil {
 			return &obj, err
@@ -804,7 +804,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("pull_vulnerabilities"); ok {
+	if v, ok := d.GetOk("pull_vulnerabilities"); ok || d.HasChange("pull_vulnerabilities") {
 		t, err := expandObjectEndpointControlFctemsPullVulnerabilities(d, v, "pull_vulnerabilities")
 		if err != nil {
 			return &obj, err
@@ -813,7 +813,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("server"); ok {
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
 		t, err := expandObjectEndpointControlFctemsServer(d, v, "server")
 		if err != nil {
 			return &obj, err
@@ -822,7 +822,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectEndpointControlFctemsSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -831,7 +831,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("status_check_interval"); ok {
+	if v, ok := d.GetOk("status_check_interval"); ok || d.HasChange("status_check_interval") {
 		t, err := expandObjectEndpointControlFctemsStatusCheckInterval(d, v, "status_check_interval")
 		if err != nil {
 			return &obj, err
@@ -840,7 +840,7 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("websocket_override"); ok {
+	if v, ok := d.GetOk("websocket_override"); ok || d.HasChange("websocket_override") {
 		t, err := expandObjectEndpointControlFctemsWebsocketOverride(d, v, "websocket_override")
 		if err != nil {
 			return &obj, err

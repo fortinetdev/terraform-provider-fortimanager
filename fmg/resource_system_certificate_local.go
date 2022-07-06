@@ -272,7 +272,7 @@ func expandSystemCertificateLocalPrivateKey(d *schema.ResourceData, v interface{
 func getObjectSystemCertificateLocal(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("certificate"); ok {
+	if v, ok := d.GetOk("certificate"); ok || d.HasChange("certificate") {
 		t, err := expandSystemCertificateLocalCertificate(d, v, "certificate")
 		if err != nil {
 			return &obj, err
@@ -281,7 +281,7 @@ func getObjectSystemCertificateLocal(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandSystemCertificateLocalComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -290,7 +290,7 @@ func getObjectSystemCertificateLocal(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("csr"); ok {
+	if v, ok := d.GetOk("csr"); ok || d.HasChange("csr") {
 		t, err := expandSystemCertificateLocalCsr(d, v, "csr")
 		if err != nil {
 			return &obj, err
@@ -299,7 +299,7 @@ func getObjectSystemCertificateLocal(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemCertificateLocalName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -308,7 +308,7 @@ func getObjectSystemCertificateLocal(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("password"); ok {
+	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemCertificateLocalPassword(d, v, "password")
 		if err != nil {
 			return &obj, err
@@ -317,7 +317,7 @@ func getObjectSystemCertificateLocal(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("private_key"); ok {
+	if v, ok := d.GetOk("private_key"); ok || d.HasChange("private_key") {
 		t, err := expandSystemCertificateLocalPrivateKey(d, v, "private_key")
 		if err != nil {
 			return &obj, err

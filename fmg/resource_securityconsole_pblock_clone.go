@@ -157,7 +157,7 @@ func expandSecurityconsolePblockClonePblock(d *schema.ResourceData, v interface{
 func getObjectSecurityconsolePblockClone(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandSecurityconsolePblockCloneAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -166,7 +166,7 @@ func getObjectSecurityconsolePblockClone(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("dst_name"); ok {
+	if v, ok := d.GetOk("dst_name"); ok || d.HasChange("dst_name") {
 		t, err := expandSecurityconsolePblockCloneDstName(d, v, "dst_name")
 		if err != nil {
 			return &obj, err
@@ -175,7 +175,7 @@ func getObjectSecurityconsolePblockClone(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("pblock"); ok {
+	if v, ok := d.GetOk("pblock"); ok || d.HasChange("pblock") {
 		t, err := expandSecurityconsolePblockClonePblock(d, v, "pblock")
 		if err != nil {
 			return &obj, err

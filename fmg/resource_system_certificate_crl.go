@@ -255,7 +255,7 @@ func expandSystemCertificateCrlUpdateInterval(d *schema.ResourceData, v interfac
 func getObjectSystemCertificateCrl(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandSystemCertificateCrlComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -264,7 +264,7 @@ func getObjectSystemCertificateCrl(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("crl"); ok {
+	if v, ok := d.GetOk("crl"); ok || d.HasChange("crl") {
 		t, err := expandSystemCertificateCrlCrl(d, v, "crl")
 		if err != nil {
 			return &obj, err
@@ -273,7 +273,7 @@ func getObjectSystemCertificateCrl(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("http_url"); ok {
+	if v, ok := d.GetOk("http_url"); ok || d.HasChange("http_url") {
 		t, err := expandSystemCertificateCrlHttpUrl(d, v, "http_url")
 		if err != nil {
 			return &obj, err
@@ -282,7 +282,7 @@ func getObjectSystemCertificateCrl(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemCertificateCrlName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -291,7 +291,7 @@ func getObjectSystemCertificateCrl(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("update_interval"); ok {
+	if v, ok := d.GetOk("update_interval"); ok || d.HasChange("update_interval") {
 		t, err := expandSystemCertificateCrlUpdateInterval(d, v, "update_interval")
 		if err != nil {
 			return &obj, err

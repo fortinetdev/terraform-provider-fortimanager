@@ -314,7 +314,7 @@ func expandObjectSystemVirtualWirePairWildcardVlan(d *schema.ResourceData, v int
 func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectSystemVirtualWirePairMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -323,7 +323,7 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemVirtualWirePairName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -332,7 +332,7 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("poweroff_bypass"); ok {
+	if v, ok := d.GetOk("poweroff_bypass"); ok || d.HasChange("poweroff_bypass") {
 		t, err := expandObjectSystemVirtualWirePairPoweroffBypass(d, v, "poweroff_bypass")
 		if err != nil {
 			return &obj, err
@@ -341,7 +341,7 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("poweron_bypass"); ok {
+	if v, ok := d.GetOk("poweron_bypass"); ok || d.HasChange("poweron_bypass") {
 		t, err := expandObjectSystemVirtualWirePairPoweronBypass(d, v, "poweron_bypass")
 		if err != nil {
 			return &obj, err
@@ -350,7 +350,7 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("vlan_filter"); ok {
+	if v, ok := d.GetOk("vlan_filter"); ok || d.HasChange("vlan_filter") {
 		t, err := expandObjectSystemVirtualWirePairVlanFilter(d, v, "vlan_filter")
 		if err != nil {
 			return &obj, err
@@ -359,7 +359,7 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("wildcard_vlan"); ok {
+	if v, ok := d.GetOk("wildcard_vlan"); ok || d.HasChange("wildcard_vlan") {
 		t, err := expandObjectSystemVirtualWirePairWildcardVlan(d, v, "wildcard_vlan")
 		if err != nil {
 			return &obj, err

@@ -337,7 +337,7 @@ func expandObjectCliTemplateVariables(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectCliTemplateDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -346,7 +346,7 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("modification_time"); ok {
+	if v, ok := d.GetOk("modification_time"); ok || d.HasChange("modification_time") {
 		t, err := expandObjectCliTemplateModificationTime(d, v, "modification_time")
 		if err != nil {
 			return &obj, err
@@ -355,7 +355,7 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCliTemplateName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -364,7 +364,7 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("provision"); ok {
+	if v, ok := d.GetOk("provision"); ok || d.HasChange("provision") {
 		t, err := expandObjectCliTemplateProvision(d, v, "provision")
 		if err != nil {
 			return &obj, err
@@ -373,7 +373,7 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("script"); ok {
+	if v, ok := d.GetOk("script"); ok || d.HasChange("script") {
 		t, err := expandObjectCliTemplateScript(d, v, "script")
 		if err != nil {
 			return &obj, err
@@ -382,7 +382,7 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectCliTemplateType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectCliTemplate(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
-	if v, ok := d.GetOk("variables"); ok {
+	if v, ok := d.GetOk("variables"); ok || d.HasChange("variables") {
 		t, err := expandObjectCliTemplateVariables(d, v, "variables")
 		if err != nil {
 			return &obj, err

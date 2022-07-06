@@ -1700,17 +1700,17 @@ func expandObjectSystemDhcpServerExcludeRange(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectSystemDhcpServerExcludeRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemDhcpServerExcludeRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectSystemDhcpServerExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -1769,17 +1769,17 @@ func expandObjectSystemDhcpServerIpRange(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "end_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["end-ip"], _ = expandObjectSystemDhcpServerIpRangeEndIp(d, i["end_ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemDhcpServerIpRangeId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectSystemDhcpServerIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
@@ -1854,29 +1854,29 @@ func expandObjectSystemDhcpServerOptions(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "code"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["code"], _ = expandObjectSystemDhcpServerOptionsCode(d, i["code"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemDhcpServerOptionsId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectSystemDhcpServerOptionsIp(d, i["ip"], pre_append)
 		} else {
 			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSystemDhcpServerOptionsType(d, i["type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["value"], _ = expandObjectSystemDhcpServerOptionsValue(d, i["value"], pre_append)
 		}
 
@@ -1923,52 +1923,52 @@ func expandObjectSystemDhcpServerReservedAddress(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "action"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["action"], _ = expandObjectSystemDhcpServerReservedAddressAction(d, i["action"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "circuit_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["circuit-id"], _ = expandObjectSystemDhcpServerReservedAddressCircuitId(d, i["circuit_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "circuit_id_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["circuit-id-type"], _ = expandObjectSystemDhcpServerReservedAddressCircuitIdType(d, i["circuit_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "description"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["description"], _ = expandObjectSystemDhcpServerReservedAddressDescription(d, i["description"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectSystemDhcpServerReservedAddressId(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectSystemDhcpServerReservedAddressIp(d, i["ip"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac"], _ = expandObjectSystemDhcpServerReservedAddressMac(d, i["mac"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "remote_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["remote-id"], _ = expandObjectSystemDhcpServerReservedAddressRemoteId(d, i["remote_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "remote_id_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["remote-id-type"], _ = expandObjectSystemDhcpServerReservedAddressRemoteIdType(d, i["remote_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectSystemDhcpServerReservedAddressType(d, i["type"], pre_append)
 		}
 
@@ -2075,7 +2075,7 @@ func expandObjectSystemDhcpServerWinsServer2(d *schema.ResourceData, v interface
 func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auto_configuration"); ok {
+	if v, ok := d.GetOk("auto_configuration"); ok || d.HasChange("auto_configuration") {
 		t, err := expandObjectSystemDhcpServerAutoConfiguration(d, v, "auto_configuration")
 		if err != nil {
 			return &obj, err
@@ -2084,7 +2084,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("auto_managed_status"); ok {
+	if v, ok := d.GetOk("auto_managed_status"); ok || d.HasChange("auto_managed_status") {
 		t, err := expandObjectSystemDhcpServerAutoManagedStatus(d, v, "auto_managed_status")
 		if err != nil {
 			return &obj, err
@@ -2093,7 +2093,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("conflicted_ip_timeout"); ok {
+	if v, ok := d.GetOk("conflicted_ip_timeout"); ok || d.HasChange("conflicted_ip_timeout") {
 		t, err := expandObjectSystemDhcpServerConflictedIpTimeout(d, v, "conflicted_ip_timeout")
 		if err != nil {
 			return &obj, err
@@ -2102,7 +2102,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_auth"); ok {
+	if v, ok := d.GetOk("ddns_auth"); ok || d.HasChange("ddns_auth") {
 		t, err := expandObjectSystemDhcpServerDdnsAuth(d, v, "ddns_auth")
 		if err != nil {
 			return &obj, err
@@ -2111,7 +2111,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_key"); ok {
+	if v, ok := d.GetOk("ddns_key"); ok || d.HasChange("ddns_key") {
 		t, err := expandObjectSystemDhcpServerDdnsKey(d, v, "ddns_key")
 		if err != nil {
 			return &obj, err
@@ -2120,7 +2120,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_keyname"); ok {
+	if v, ok := d.GetOk("ddns_keyname"); ok || d.HasChange("ddns_keyname") {
 		t, err := expandObjectSystemDhcpServerDdnsKeyname(d, v, "ddns_keyname")
 		if err != nil {
 			return &obj, err
@@ -2129,7 +2129,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_server_ip"); ok {
+	if v, ok := d.GetOk("ddns_server_ip"); ok || d.HasChange("ddns_server_ip") {
 		t, err := expandObjectSystemDhcpServerDdnsServerIp(d, v, "ddns_server_ip")
 		if err != nil {
 			return &obj, err
@@ -2138,7 +2138,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_ttl"); ok {
+	if v, ok := d.GetOk("ddns_ttl"); ok || d.HasChange("ddns_ttl") {
 		t, err := expandObjectSystemDhcpServerDdnsTtl(d, v, "ddns_ttl")
 		if err != nil {
 			return &obj, err
@@ -2147,7 +2147,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_update"); ok {
+	if v, ok := d.GetOk("ddns_update"); ok || d.HasChange("ddns_update") {
 		t, err := expandObjectSystemDhcpServerDdnsUpdate(d, v, "ddns_update")
 		if err != nil {
 			return &obj, err
@@ -2156,7 +2156,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_update_override"); ok {
+	if v, ok := d.GetOk("ddns_update_override"); ok || d.HasChange("ddns_update_override") {
 		t, err := expandObjectSystemDhcpServerDdnsUpdateOverride(d, v, "ddns_update_override")
 		if err != nil {
 			return &obj, err
@@ -2165,7 +2165,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_zone"); ok {
+	if v, ok := d.GetOk("ddns_zone"); ok || d.HasChange("ddns_zone") {
 		t, err := expandObjectSystemDhcpServerDdnsZone(d, v, "ddns_zone")
 		if err != nil {
 			return &obj, err
@@ -2174,7 +2174,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("default_gateway"); ok {
+	if v, ok := d.GetOk("default_gateway"); ok || d.HasChange("default_gateway") {
 		t, err := expandObjectSystemDhcpServerDefaultGateway(d, v, "default_gateway")
 		if err != nil {
 			return &obj, err
@@ -2183,7 +2183,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dhcp_settings_from_fortiipam"); ok {
+	if v, ok := d.GetOk("dhcp_settings_from_fortiipam"); ok || d.HasChange("dhcp_settings_from_fortiipam") {
 		t, err := expandObjectSystemDhcpServerDhcpSettingsFromFortiipam(d, v, "dhcp_settings_from_fortiipam")
 		if err != nil {
 			return &obj, err
@@ -2192,7 +2192,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dns_server1"); ok {
+	if v, ok := d.GetOk("dns_server1"); ok || d.HasChange("dns_server1") {
 		t, err := expandObjectSystemDhcpServerDnsServer1(d, v, "dns_server1")
 		if err != nil {
 			return &obj, err
@@ -2201,7 +2201,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dns_server2"); ok {
+	if v, ok := d.GetOk("dns_server2"); ok || d.HasChange("dns_server2") {
 		t, err := expandObjectSystemDhcpServerDnsServer2(d, v, "dns_server2")
 		if err != nil {
 			return &obj, err
@@ -2210,7 +2210,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dns_server3"); ok {
+	if v, ok := d.GetOk("dns_server3"); ok || d.HasChange("dns_server3") {
 		t, err := expandObjectSystemDhcpServerDnsServer3(d, v, "dns_server3")
 		if err != nil {
 			return &obj, err
@@ -2219,7 +2219,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dns_server4"); ok {
+	if v, ok := d.GetOk("dns_server4"); ok || d.HasChange("dns_server4") {
 		t, err := expandObjectSystemDhcpServerDnsServer4(d, v, "dns_server4")
 		if err != nil {
 			return &obj, err
@@ -2228,7 +2228,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("dns_service"); ok {
+	if v, ok := d.GetOk("dns_service"); ok || d.HasChange("dns_service") {
 		t, err := expandObjectSystemDhcpServerDnsService(d, v, "dns_service")
 		if err != nil {
 			return &obj, err
@@ -2237,7 +2237,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("domain"); ok {
+	if v, ok := d.GetOk("domain"); ok || d.HasChange("domain") {
 		t, err := expandObjectSystemDhcpServerDomain(d, v, "domain")
 		if err != nil {
 			return &obj, err
@@ -2246,7 +2246,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("exclude_range"); ok {
+	if v, ok := d.GetOk("exclude_range"); ok || d.HasChange("exclude_range") {
 		t, err := expandObjectSystemDhcpServerExcludeRange(d, v, "exclude_range")
 		if err != nil {
 			return &obj, err
@@ -2255,7 +2255,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("filename"); ok {
+	if v, ok := d.GetOk("filename"); ok || d.HasChange("filename") {
 		t, err := expandObjectSystemDhcpServerFilename(d, v, "filename")
 		if err != nil {
 			return &obj, err
@@ -2264,7 +2264,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("forticlient_on_net_status"); ok {
+	if v, ok := d.GetOk("forticlient_on_net_status"); ok || d.HasChange("forticlient_on_net_status") {
 		t, err := expandObjectSystemDhcpServerForticlientOnNetStatus(d, v, "forticlient_on_net_status")
 		if err != nil {
 			return &obj, err
@@ -2273,7 +2273,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectSystemDhcpServerId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -2282,7 +2282,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectSystemDhcpServerInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -2291,7 +2291,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ip_mode"); ok {
+	if v, ok := d.GetOk("ip_mode"); ok || d.HasChange("ip_mode") {
 		t, err := expandObjectSystemDhcpServerIpMode(d, v, "ip_mode")
 		if err != nil {
 			return &obj, err
@@ -2300,7 +2300,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ip_range"); ok {
+	if v, ok := d.GetOk("ip_range"); ok || d.HasChange("ip_range") {
 		t, err := expandObjectSystemDhcpServerIpRange(d, v, "ip_range")
 		if err != nil {
 			return &obj, err
@@ -2309,7 +2309,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ipsec_lease_hold"); ok {
+	if v, ok := d.GetOk("ipsec_lease_hold"); ok || d.HasChange("ipsec_lease_hold") {
 		t, err := expandObjectSystemDhcpServerIpsecLeaseHold(d, v, "ipsec_lease_hold")
 		if err != nil {
 			return &obj, err
@@ -2318,7 +2318,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("lease_time"); ok {
+	if v, ok := d.GetOk("lease_time"); ok || d.HasChange("lease_time") {
 		t, err := expandObjectSystemDhcpServerLeaseTime(d, v, "lease_time")
 		if err != nil {
 			return &obj, err
@@ -2327,7 +2327,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("mac_acl_default_action"); ok {
+	if v, ok := d.GetOk("mac_acl_default_action"); ok || d.HasChange("mac_acl_default_action") {
 		t, err := expandObjectSystemDhcpServerMacAclDefaultAction(d, v, "mac_acl_default_action")
 		if err != nil {
 			return &obj, err
@@ -2336,7 +2336,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("netmask"); ok {
+	if v, ok := d.GetOk("netmask"); ok || d.HasChange("netmask") {
 		t, err := expandObjectSystemDhcpServerNetmask(d, v, "netmask")
 		if err != nil {
 			return &obj, err
@@ -2345,7 +2345,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("next_server"); ok {
+	if v, ok := d.GetOk("next_server"); ok || d.HasChange("next_server") {
 		t, err := expandObjectSystemDhcpServerNextServer(d, v, "next_server")
 		if err != nil {
 			return &obj, err
@@ -2354,7 +2354,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ntp_server1"); ok {
+	if v, ok := d.GetOk("ntp_server1"); ok || d.HasChange("ntp_server1") {
 		t, err := expandObjectSystemDhcpServerNtpServer1(d, v, "ntp_server1")
 		if err != nil {
 			return &obj, err
@@ -2363,7 +2363,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ntp_server2"); ok {
+	if v, ok := d.GetOk("ntp_server2"); ok || d.HasChange("ntp_server2") {
 		t, err := expandObjectSystemDhcpServerNtpServer2(d, v, "ntp_server2")
 		if err != nil {
 			return &obj, err
@@ -2372,7 +2372,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ntp_server3"); ok {
+	if v, ok := d.GetOk("ntp_server3"); ok || d.HasChange("ntp_server3") {
 		t, err := expandObjectSystemDhcpServerNtpServer3(d, v, "ntp_server3")
 		if err != nil {
 			return &obj, err
@@ -2381,7 +2381,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ntp_service"); ok {
+	if v, ok := d.GetOk("ntp_service"); ok || d.HasChange("ntp_service") {
 		t, err := expandObjectSystemDhcpServerNtpService(d, v, "ntp_service")
 		if err != nil {
 			return &obj, err
@@ -2390,7 +2390,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("options"); ok {
+	if v, ok := d.GetOk("options"); ok || d.HasChange("options") {
 		t, err := expandObjectSystemDhcpServerOptions(d, v, "options")
 		if err != nil {
 			return &obj, err
@@ -2399,7 +2399,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("reserved_address"); ok {
+	if v, ok := d.GetOk("reserved_address"); ok || d.HasChange("reserved_address") {
 		t, err := expandObjectSystemDhcpServerReservedAddress(d, v, "reserved_address")
 		if err != nil {
 			return &obj, err
@@ -2408,7 +2408,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("server_type"); ok {
+	if v, ok := d.GetOk("server_type"); ok || d.HasChange("server_type") {
 		t, err := expandObjectSystemDhcpServerServerType(d, v, "server_type")
 		if err != nil {
 			return &obj, err
@@ -2417,7 +2417,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectSystemDhcpServerStatus(d, v, "status")
 		if err != nil {
 			return &obj, err
@@ -2426,7 +2426,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("tftp_server"); ok {
+	if v, ok := d.GetOk("tftp_server"); ok || d.HasChange("tftp_server") {
 		t, err := expandObjectSystemDhcpServerTftpServer(d, v, "tftp_server")
 		if err != nil {
 			return &obj, err
@@ -2435,7 +2435,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("timezone"); ok {
+	if v, ok := d.GetOk("timezone"); ok || d.HasChange("timezone") {
 		t, err := expandObjectSystemDhcpServerTimezone(d, v, "timezone")
 		if err != nil {
 			return &obj, err
@@ -2444,7 +2444,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("timezone_option"); ok {
+	if v, ok := d.GetOk("timezone_option"); ok || d.HasChange("timezone_option") {
 		t, err := expandObjectSystemDhcpServerTimezoneOption(d, v, "timezone_option")
 		if err != nil {
 			return &obj, err
@@ -2453,7 +2453,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("vci_match"); ok {
+	if v, ok := d.GetOk("vci_match"); ok || d.HasChange("vci_match") {
 		t, err := expandObjectSystemDhcpServerVciMatch(d, v, "vci_match")
 		if err != nil {
 			return &obj, err
@@ -2462,7 +2462,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("vci_string"); ok {
+	if v, ok := d.GetOk("vci_string"); ok || d.HasChange("vci_string") {
 		t, err := expandObjectSystemDhcpServerVciString(d, v, "vci_string")
 		if err != nil {
 			return &obj, err
@@ -2471,7 +2471,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wifi_ac_service"); ok {
+	if v, ok := d.GetOk("wifi_ac_service"); ok || d.HasChange("wifi_ac_service") {
 		t, err := expandObjectSystemDhcpServerWifiAcService(d, v, "wifi_ac_service")
 		if err != nil {
 			return &obj, err
@@ -2480,7 +2480,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wifi_ac1"); ok {
+	if v, ok := d.GetOk("wifi_ac1"); ok || d.HasChange("wifi_ac1") {
 		t, err := expandObjectSystemDhcpServerWifiAc1(d, v, "wifi_ac1")
 		if err != nil {
 			return &obj, err
@@ -2489,7 +2489,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wifi_ac2"); ok {
+	if v, ok := d.GetOk("wifi_ac2"); ok || d.HasChange("wifi_ac2") {
 		t, err := expandObjectSystemDhcpServerWifiAc2(d, v, "wifi_ac2")
 		if err != nil {
 			return &obj, err
@@ -2498,7 +2498,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wifi_ac3"); ok {
+	if v, ok := d.GetOk("wifi_ac3"); ok || d.HasChange("wifi_ac3") {
 		t, err := expandObjectSystemDhcpServerWifiAc3(d, v, "wifi_ac3")
 		if err != nil {
 			return &obj, err
@@ -2507,7 +2507,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wins_server1"); ok {
+	if v, ok := d.GetOk("wins_server1"); ok || d.HasChange("wins_server1") {
 		t, err := expandObjectSystemDhcpServerWinsServer1(d, v, "wins_server1")
 		if err != nil {
 			return &obj, err
@@ -2516,7 +2516,7 @@ func getObjectObjectSystemDhcpServer(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("wins_server2"); ok {
+	if v, ok := d.GetOk("wins_server2"); ok || d.HasChange("wins_server2") {
 		t, err := expandObjectSystemDhcpServerWinsServer2(d, v, "wins_server2")
 		if err != nil {
 			return &obj, err

@@ -268,7 +268,7 @@ func expandObjectCliTemplateGroupName(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectCliTemplateGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectCliTemplateGroupDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -277,7 +277,7 @@ func getObjectObjectCliTemplateGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectCliTemplateGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -286,7 +286,7 @@ func getObjectObjectCliTemplateGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("modification_time"); ok {
+	if v, ok := d.GetOk("modification_time"); ok || d.HasChange("modification_time") {
 		t, err := expandObjectCliTemplateGroupModificationTime(d, v, "modification_time")
 		if err != nil {
 			return &obj, err
@@ -295,7 +295,7 @@ func getObjectObjectCliTemplateGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectCliTemplateGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err

@@ -232,7 +232,7 @@ func expandSystemPasswordPolicyStatus(d *schema.ResourceData, v interface{}, pre
 func getObjectSystemPasswordPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("change_4_characters"); ok {
+	if v, ok := d.GetOk("change_4_characters"); ok || d.HasChange("change_4_characters") {
 		t, err := expandSystemPasswordPolicyChange4Characters(d, v, "change_4_characters")
 		if err != nil {
 			return &obj, err
@@ -241,7 +241,7 @@ func getObjectSystemPasswordPolicy(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("expire"); ok {
+	if v, ok := d.GetOk("expire"); ok || d.HasChange("expire") {
 		t, err := expandSystemPasswordPolicyExpire(d, v, "expire")
 		if err != nil {
 			return &obj, err
@@ -250,7 +250,7 @@ func getObjectSystemPasswordPolicy(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("minimum_length"); ok {
+	if v, ok := d.GetOk("minimum_length"); ok || d.HasChange("minimum_length") {
 		t, err := expandSystemPasswordPolicyMinimumLength(d, v, "minimum_length")
 		if err != nil {
 			return &obj, err
@@ -259,7 +259,7 @@ func getObjectSystemPasswordPolicy(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("must_contain"); ok {
+	if v, ok := d.GetOk("must_contain"); ok || d.HasChange("must_contain") {
 		t, err := expandSystemPasswordPolicyMustContain(d, v, "must_contain")
 		if err != nil {
 			return &obj, err
@@ -268,7 +268,7 @@ func getObjectSystemPasswordPolicy(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemPasswordPolicyStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

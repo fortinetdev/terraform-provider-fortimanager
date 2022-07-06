@@ -185,7 +185,7 @@ func expandSystemFipsStatus(d *schema.ResourceData, v interface{}, pre string) (
 func getObjectSystemFips(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("entropy_token"); ok {
+	if v, ok := d.GetOk("entropy_token"); ok || d.HasChange("entropy_token") {
 		t, err := expandSystemFipsEntropyToken(d, v, "entropy_token")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemFips(d *schema.ResourceData) (*map[string]interface{}, error
 		}
 	}
 
-	if v, ok := d.GetOk("re_seed_interval"); ok {
+	if v, ok := d.GetOk("re_seed_interval"); ok || d.HasChange("re_seed_interval") {
 		t, err := expandSystemFipsReSeedInterval(d, v, "re_seed_interval")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectSystemFips(d *schema.ResourceData) (*map[string]interface{}, error
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandSystemFipsStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

@@ -1338,7 +1338,7 @@ func expandObjectSystemFortiguardWebfilterTimeout(d *schema.ResourceData, v inte
 func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("antispam_cache"); ok {
+	if v, ok := d.GetOk("antispam_cache"); ok || d.HasChange("antispam_cache") {
 		t, err := expandObjectSystemFortiguardAntispamCache(d, v, "antispam_cache")
 		if err != nil {
 			return &obj, err
@@ -1347,7 +1347,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("antispam_cache_mpercent"); ok {
+	if v, ok := d.GetOk("antispam_cache_mpercent"); ok || d.HasChange("antispam_cache_mpercent") {
 		t, err := expandObjectSystemFortiguardAntispamCacheMpercent(d, v, "antispam_cache_mpercent")
 		if err != nil {
 			return &obj, err
@@ -1356,7 +1356,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("antispam_cache_ttl"); ok {
+	if v, ok := d.GetOk("antispam_cache_ttl"); ok || d.HasChange("antispam_cache_ttl") {
 		t, err := expandObjectSystemFortiguardAntispamCacheTtl(d, v, "antispam_cache_ttl")
 		if err != nil {
 			return &obj, err
@@ -1365,7 +1365,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("antispam_expiration"); ok {
+	if v, ok := d.GetOk("antispam_expiration"); ok || d.HasChange("antispam_expiration") {
 		t, err := expandObjectSystemFortiguardAntispamExpiration(d, v, "antispam_expiration")
 		if err != nil {
 			return &obj, err
@@ -1374,7 +1374,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("antispam_force_off"); ok {
+	if v, ok := d.GetOk("antispam_force_off"); ok || d.HasChange("antispam_force_off") {
 		t, err := expandObjectSystemFortiguardAntispamForceOff(d, v, "antispam_force_off")
 		if err != nil {
 			return &obj, err
@@ -1383,7 +1383,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("antispam_license"); ok {
+	if v, ok := d.GetOk("antispam_license"); ok || d.HasChange("antispam_license") {
 		t, err := expandObjectSystemFortiguardAntispamLicense(d, v, "antispam_license")
 		if err != nil {
 			return &obj, err
@@ -1392,7 +1392,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("antispam_timeout"); ok {
+	if v, ok := d.GetOk("antispam_timeout"); ok || d.HasChange("antispam_timeout") {
 		t, err := expandObjectSystemFortiguardAntispamTimeout(d, v, "antispam_timeout")
 		if err != nil {
 			return &obj, err
@@ -1401,7 +1401,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("anycast_sdns_server_ip"); ok {
+	if v, ok := d.GetOk("anycast_sdns_server_ip"); ok || d.HasChange("anycast_sdns_server_ip") {
 		t, err := expandObjectSystemFortiguardAnycastSdnsServerIp(d, v, "anycast_sdns_server_ip")
 		if err != nil {
 			return &obj, err
@@ -1410,7 +1410,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("anycast_sdns_server_port"); ok {
+	if v, ok := d.GetOk("anycast_sdns_server_port"); ok || d.HasChange("anycast_sdns_server_port") {
 		t, err := expandObjectSystemFortiguardAnycastSdnsServerPort(d, v, "anycast_sdns_server_port")
 		if err != nil {
 			return &obj, err
@@ -1419,7 +1419,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("auto_join_forticloud"); ok {
+	if v, ok := d.GetOk("auto_join_forticloud"); ok || d.HasChange("auto_join_forticloud") {
 		t, err := expandObjectSystemFortiguardAutoJoinForticloud(d, v, "auto_join_forticloud")
 		if err != nil {
 			return &obj, err
@@ -1428,7 +1428,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_server_ip"); ok {
+	if v, ok := d.GetOk("ddns_server_ip"); ok || d.HasChange("ddns_server_ip") {
 		t, err := expandObjectSystemFortiguardDdnsServerIp(d, v, "ddns_server_ip")
 		if err != nil {
 			return &obj, err
@@ -1437,7 +1437,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_server_ip6"); ok {
+	if v, ok := d.GetOk("ddns_server_ip6"); ok || d.HasChange("ddns_server_ip6") {
 		t, err := expandObjectSystemFortiguardDdnsServerIp6(d, v, "ddns_server_ip6")
 		if err != nil {
 			return &obj, err
@@ -1446,7 +1446,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ddns_server_port"); ok {
+	if v, ok := d.GetOk("ddns_server_port"); ok || d.HasChange("ddns_server_port") {
 		t, err := expandObjectSystemFortiguardDdnsServerPort(d, v, "ddns_server_port")
 		if err != nil {
 			return &obj, err
@@ -1455,7 +1455,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("fortiguard_anycast"); ok {
+	if v, ok := d.GetOk("fortiguard_anycast"); ok || d.HasChange("fortiguard_anycast") {
 		t, err := expandObjectSystemFortiguardFortiguardAnycast(d, v, "fortiguard_anycast")
 		if err != nil {
 			return &obj, err
@@ -1464,7 +1464,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("fortiguard_anycast_source"); ok {
+	if v, ok := d.GetOk("fortiguard_anycast_source"); ok || d.HasChange("fortiguard_anycast_source") {
 		t, err := expandObjectSystemFortiguardFortiguardAnycastSource(d, v, "fortiguard_anycast_source")
 		if err != nil {
 			return &obj, err
@@ -1473,7 +1473,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("interface"); ok {
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
 		t, err := expandObjectSystemFortiguardInterface(d, v, "interface")
 		if err != nil {
 			return &obj, err
@@ -1482,7 +1482,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("interface_select_method"); ok {
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
 		t, err := expandObjectSystemFortiguardInterfaceSelectMethod(d, v, "interface_select_method")
 		if err != nil {
 			return &obj, err
@@ -1491,7 +1491,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("load_balance_servers"); ok {
+	if v, ok := d.GetOk("load_balance_servers"); ok || d.HasChange("load_balance_servers") {
 		t, err := expandObjectSystemFortiguardLoadBalanceServers(d, v, "load_balance_servers")
 		if err != nil {
 			return &obj, err
@@ -1500,7 +1500,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_cache"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_cache"); ok || d.HasChange("outbreak_prevention_cache") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionCache(d, v, "outbreak_prevention_cache")
 		if err != nil {
 			return &obj, err
@@ -1509,7 +1509,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_cache_mpercent"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_cache_mpercent"); ok || d.HasChange("outbreak_prevention_cache_mpercent") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionCacheMpercent(d, v, "outbreak_prevention_cache_mpercent")
 		if err != nil {
 			return &obj, err
@@ -1518,7 +1518,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_cache_ttl"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_cache_ttl"); ok || d.HasChange("outbreak_prevention_cache_ttl") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionCacheTtl(d, v, "outbreak_prevention_cache_ttl")
 		if err != nil {
 			return &obj, err
@@ -1527,7 +1527,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_expiration"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_expiration"); ok || d.HasChange("outbreak_prevention_expiration") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionExpiration(d, v, "outbreak_prevention_expiration")
 		if err != nil {
 			return &obj, err
@@ -1536,7 +1536,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_force_off"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_force_off"); ok || d.HasChange("outbreak_prevention_force_off") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionForceOff(d, v, "outbreak_prevention_force_off")
 		if err != nil {
 			return &obj, err
@@ -1545,7 +1545,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_license"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_license"); ok || d.HasChange("outbreak_prevention_license") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionLicense(d, v, "outbreak_prevention_license")
 		if err != nil {
 			return &obj, err
@@ -1554,7 +1554,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("outbreak_prevention_timeout"); ok {
+	if v, ok := d.GetOk("outbreak_prevention_timeout"); ok || d.HasChange("outbreak_prevention_timeout") {
 		t, err := expandObjectSystemFortiguardOutbreakPreventionTimeout(d, v, "outbreak_prevention_timeout")
 		if err != nil {
 			return &obj, err
@@ -1563,7 +1563,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("persistent_connection"); ok {
+	if v, ok := d.GetOk("persistent_connection"); ok || d.HasChange("persistent_connection") {
 		t, err := expandObjectSystemFortiguardPersistentConnection(d, v, "persistent_connection")
 		if err != nil {
 			return &obj, err
@@ -1572,7 +1572,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandObjectSystemFortiguardPort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -1581,7 +1581,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectSystemFortiguardProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -1590,7 +1590,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("proxy_password"); ok {
+	if v, ok := d.GetOk("proxy_password"); ok || d.HasChange("proxy_password") {
 		t, err := expandObjectSystemFortiguardProxyPassword(d, v, "proxy_password")
 		if err != nil {
 			return &obj, err
@@ -1599,7 +1599,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("proxy_server_ip"); ok {
+	if v, ok := d.GetOk("proxy_server_ip"); ok || d.HasChange("proxy_server_ip") {
 		t, err := expandObjectSystemFortiguardProxyServerIp(d, v, "proxy_server_ip")
 		if err != nil {
 			return &obj, err
@@ -1608,7 +1608,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("proxy_server_port"); ok {
+	if v, ok := d.GetOk("proxy_server_port"); ok || d.HasChange("proxy_server_port") {
 		t, err := expandObjectSystemFortiguardProxyServerPort(d, v, "proxy_server_port")
 		if err != nil {
 			return &obj, err
@@ -1617,7 +1617,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("proxy_username"); ok {
+	if v, ok := d.GetOk("proxy_username"); ok || d.HasChange("proxy_username") {
 		t, err := expandObjectSystemFortiguardProxyUsername(d, v, "proxy_username")
 		if err != nil {
 			return &obj, err
@@ -1626,7 +1626,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("sandbox_region"); ok {
+	if v, ok := d.GetOk("sandbox_region"); ok || d.HasChange("sandbox_region") {
 		t, err := expandObjectSystemFortiguardSandboxRegion(d, v, "sandbox_region")
 		if err != nil {
 			return &obj, err
@@ -1635,7 +1635,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("sdns_options"); ok {
+	if v, ok := d.GetOk("sdns_options"); ok || d.HasChange("sdns_options") {
 		t, err := expandObjectSystemFortiguardSdnsOptions(d, v, "sdns_options")
 		if err != nil {
 			return &obj, err
@@ -1644,7 +1644,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("sdns_server_ip"); ok {
+	if v, ok := d.GetOk("sdns_server_ip"); ok || d.HasChange("sdns_server_ip") {
 		t, err := expandObjectSystemFortiguardSdnsServerIp(d, v, "sdns_server_ip")
 		if err != nil {
 			return &obj, err
@@ -1653,7 +1653,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("sdns_server_port"); ok {
+	if v, ok := d.GetOk("sdns_server_port"); ok || d.HasChange("sdns_server_port") {
 		t, err := expandObjectSystemFortiguardSdnsServerPort(d, v, "sdns_server_port")
 		if err != nil {
 			return &obj, err
@@ -1662,7 +1662,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("service_account_id"); ok {
+	if v, ok := d.GetOk("service_account_id"); ok || d.HasChange("service_account_id") {
 		t, err := expandObjectSystemFortiguardServiceAccountId(d, v, "service_account_id")
 		if err != nil {
 			return &obj, err
@@ -1671,7 +1671,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectSystemFortiguardSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -1680,7 +1680,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip6"); ok {
+	if v, ok := d.GetOk("source_ip6"); ok || d.HasChange("source_ip6") {
 		t, err := expandObjectSystemFortiguardSourceIp6(d, v, "source_ip6")
 		if err != nil {
 			return &obj, err
@@ -1689,7 +1689,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("update_build_proxy"); ok {
+	if v, ok := d.GetOk("update_build_proxy"); ok || d.HasChange("update_build_proxy") {
 		t, err := expandObjectSystemFortiguardUpdateBuildProxy(d, v, "update_build_proxy")
 		if err != nil {
 			return &obj, err
@@ -1698,7 +1698,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("update_extdb"); ok {
+	if v, ok := d.GetOk("update_extdb"); ok || d.HasChange("update_extdb") {
 		t, err := expandObjectSystemFortiguardUpdateExtdb(d, v, "update_extdb")
 		if err != nil {
 			return &obj, err
@@ -1707,7 +1707,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("update_ffdb"); ok {
+	if v, ok := d.GetOk("update_ffdb"); ok || d.HasChange("update_ffdb") {
 		t, err := expandObjectSystemFortiguardUpdateFfdb(d, v, "update_ffdb")
 		if err != nil {
 			return &obj, err
@@ -1716,7 +1716,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("update_server_location"); ok {
+	if v, ok := d.GetOk("update_server_location"); ok || d.HasChange("update_server_location") {
 		t, err := expandObjectSystemFortiguardUpdateServerLocation(d, v, "update_server_location")
 		if err != nil {
 			return &obj, err
@@ -1725,7 +1725,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("update_uwdb"); ok {
+	if v, ok := d.GetOk("update_uwdb"); ok || d.HasChange("update_uwdb") {
 		t, err := expandObjectSystemFortiguardUpdateUwdb(d, v, "update_uwdb")
 		if err != nil {
 			return &obj, err
@@ -1734,7 +1734,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("videofilter_expiration"); ok {
+	if v, ok := d.GetOk("videofilter_expiration"); ok || d.HasChange("videofilter_expiration") {
 		t, err := expandObjectSystemFortiguardVideofilterExpiration(d, v, "videofilter_expiration")
 		if err != nil {
 			return &obj, err
@@ -1743,7 +1743,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("videofilter_license"); ok {
+	if v, ok := d.GetOk("videofilter_license"); ok || d.HasChange("videofilter_license") {
 		t, err := expandObjectSystemFortiguardVideofilterLicense(d, v, "videofilter_license")
 		if err != nil {
 			return &obj, err
@@ -1752,7 +1752,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_cache"); ok {
+	if v, ok := d.GetOk("webfilter_cache"); ok || d.HasChange("webfilter_cache") {
 		t, err := expandObjectSystemFortiguardWebfilterCache(d, v, "webfilter_cache")
 		if err != nil {
 			return &obj, err
@@ -1761,7 +1761,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_cache_ttl"); ok {
+	if v, ok := d.GetOk("webfilter_cache_ttl"); ok || d.HasChange("webfilter_cache_ttl") {
 		t, err := expandObjectSystemFortiguardWebfilterCacheTtl(d, v, "webfilter_cache_ttl")
 		if err != nil {
 			return &obj, err
@@ -1770,7 +1770,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_expiration"); ok {
+	if v, ok := d.GetOk("webfilter_expiration"); ok || d.HasChange("webfilter_expiration") {
 		t, err := expandObjectSystemFortiguardWebfilterExpiration(d, v, "webfilter_expiration")
 		if err != nil {
 			return &obj, err
@@ -1779,7 +1779,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_force_off"); ok {
+	if v, ok := d.GetOk("webfilter_force_off"); ok || d.HasChange("webfilter_force_off") {
 		t, err := expandObjectSystemFortiguardWebfilterForceOff(d, v, "webfilter_force_off")
 		if err != nil {
 			return &obj, err
@@ -1788,7 +1788,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_license"); ok {
+	if v, ok := d.GetOk("webfilter_license"); ok || d.HasChange("webfilter_license") {
 		t, err := expandObjectSystemFortiguardWebfilterLicense(d, v, "webfilter_license")
 		if err != nil {
 			return &obj, err
@@ -1797,7 +1797,7 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("webfilter_timeout"); ok {
+	if v, ok := d.GetOk("webfilter_timeout"); ok || d.HasChange("webfilter_timeout") {
 		t, err := expandObjectSystemFortiguardWebfilterTimeout(d, v, "webfilter_timeout")
 		if err != nil {
 			return &obj, err

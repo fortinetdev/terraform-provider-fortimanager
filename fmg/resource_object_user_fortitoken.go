@@ -267,7 +267,7 @@ func expandObjectUserFortitokenStatus(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectUserFortitoken(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectUserFortitokenComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectUserFortitoken(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("license"); ok {
+	if v, ok := d.GetOk("license"); ok || d.HasChange("license") {
 		t, err := expandObjectUserFortitokenLicense(d, v, "license")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectUserFortitoken(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("serial_number"); ok {
+	if v, ok := d.GetOk("serial_number"); ok || d.HasChange("serial_number") {
 		t, err := expandObjectUserFortitokenSerialNumber(d, v, "serial_number")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectUserFortitoken(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectUserFortitokenStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

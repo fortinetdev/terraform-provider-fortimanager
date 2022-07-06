@@ -562,7 +562,7 @@ func expandPackagesAuthenticationSettingUserCertCa(d *schema.ResourceData, v int
 func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("active_auth_scheme"); ok {
+	if v, ok := d.GetOk("active_auth_scheme"); ok || d.HasChange("active_auth_scheme") {
 		t, err := expandPackagesAuthenticationSettingActiveAuthScheme(d, v, "active_auth_scheme")
 		if err != nil {
 			return &obj, err
@@ -571,7 +571,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("auth_https"); ok {
+	if v, ok := d.GetOk("auth_https"); ok || d.HasChange("auth_https") {
 		t, err := expandPackagesAuthenticationSettingAuthHttps(d, v, "auth_https")
 		if err != nil {
 			return &obj, err
@@ -580,7 +580,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal"); ok {
+	if v, ok := d.GetOk("captive_portal"); ok || d.HasChange("captive_portal") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortal(d, v, "captive_portal")
 		if err != nil {
 			return &obj, err
@@ -589,7 +589,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_ip"); ok {
+	if v, ok := d.GetOk("captive_portal_ip"); ok || d.HasChange("captive_portal_ip") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortalIp(d, v, "captive_portal_ip")
 		if err != nil {
 			return &obj, err
@@ -598,7 +598,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_ip6"); ok {
+	if v, ok := d.GetOk("captive_portal_ip6"); ok || d.HasChange("captive_portal_ip6") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortalIp6(d, v, "captive_portal_ip6")
 		if err != nil {
 			return &obj, err
@@ -607,7 +607,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_port"); ok {
+	if v, ok := d.GetOk("captive_portal_port"); ok || d.HasChange("captive_portal_port") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortalPort(d, v, "captive_portal_port")
 		if err != nil {
 			return &obj, err
@@ -616,7 +616,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_ssl_port"); ok {
+	if v, ok := d.GetOk("captive_portal_ssl_port"); ok || d.HasChange("captive_portal_ssl_port") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortalSslPort(d, v, "captive_portal_ssl_port")
 		if err != nil {
 			return &obj, err
@@ -625,7 +625,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal_type"); ok {
+	if v, ok := d.GetOk("captive_portal_type"); ok || d.HasChange("captive_portal_type") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortalType(d, v, "captive_portal_type")
 		if err != nil {
 			return &obj, err
@@ -634,7 +634,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("captive_portal6"); ok {
+	if v, ok := d.GetOk("captive_portal6"); ok || d.HasChange("captive_portal6") {
 		t, err := expandPackagesAuthenticationSettingCaptivePortal6(d, v, "captive_portal6")
 		if err != nil {
 			return &obj, err
@@ -643,7 +643,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("cert_auth"); ok {
+	if v, ok := d.GetOk("cert_auth"); ok || d.HasChange("cert_auth") {
 		t, err := expandPackagesAuthenticationSettingCertAuth(d, v, "cert_auth")
 		if err != nil {
 			return &obj, err
@@ -652,7 +652,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("cert_captive_portal"); ok {
+	if v, ok := d.GetOk("cert_captive_portal"); ok || d.HasChange("cert_captive_portal") {
 		t, err := expandPackagesAuthenticationSettingCertCaptivePortal(d, v, "cert_captive_portal")
 		if err != nil {
 			return &obj, err
@@ -661,7 +661,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("cert_captive_portal_ip"); ok {
+	if v, ok := d.GetOk("cert_captive_portal_ip"); ok || d.HasChange("cert_captive_portal_ip") {
 		t, err := expandPackagesAuthenticationSettingCertCaptivePortalIp(d, v, "cert_captive_portal_ip")
 		if err != nil {
 			return &obj, err
@@ -670,7 +670,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("cert_captive_portal_port"); ok {
+	if v, ok := d.GetOk("cert_captive_portal_port"); ok || d.HasChange("cert_captive_portal_port") {
 		t, err := expandPackagesAuthenticationSettingCertCaptivePortalPort(d, v, "cert_captive_portal_port")
 		if err != nil {
 			return &obj, err
@@ -679,7 +679,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("dev_range"); ok {
+	if v, ok := d.GetOk("dev_range"); ok || d.HasChange("dev_range") {
 		t, err := expandPackagesAuthenticationSettingDevRange(d, v, "dev_range")
 		if err != nil {
 			return &obj, err
@@ -688,7 +688,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("rewrite_https_port"); ok {
+	if v, ok := d.GetOk("rewrite_https_port"); ok || d.HasChange("rewrite_https_port") {
 		t, err := expandPackagesAuthenticationSettingRewriteHttpsPort(d, v, "rewrite_https_port")
 		if err != nil {
 			return &obj, err
@@ -697,7 +697,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("sso_auth_scheme"); ok {
+	if v, ok := d.GetOk("sso_auth_scheme"); ok || d.HasChange("sso_auth_scheme") {
 		t, err := expandPackagesAuthenticationSettingSsoAuthScheme(d, v, "sso_auth_scheme")
 		if err != nil {
 			return &obj, err
@@ -706,7 +706,7 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("user_cert_ca"); ok {
+	if v, ok := d.GetOk("user_cert_ca"); ok || d.HasChange("user_cert_ca") {
 		t, err := expandPackagesAuthenticationSettingUserCertCa(d, v, "user_cert_ca")
 		if err != nil {
 			return &obj, err

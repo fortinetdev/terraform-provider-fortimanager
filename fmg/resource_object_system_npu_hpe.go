@@ -516,7 +516,7 @@ func expandObjectSystemNpuHpeUdpMax(d *schema.ResourceData, v interface{}, pre s
 func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("all_protocol"); ok {
+	if v, ok := d.GetOk("all_protocol"); ok || d.HasChange("all_protocol") {
 		t, err := expandObjectSystemNpuHpeAllProtocol(d, v, "all_protocol")
 		if err != nil {
 			return &obj, err
@@ -525,7 +525,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("arp_max"); ok {
+	if v, ok := d.GetOk("arp_max"); ok || d.HasChange("arp_max") {
 		t, err := expandObjectSystemNpuHpeArpMax(d, v, "arp_max")
 		if err != nil {
 			return &obj, err
@@ -534,7 +534,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("enable_shaper"); ok {
+	if v, ok := d.GetOk("enable_shaper"); ok || d.HasChange("enable_shaper") {
 		t, err := expandObjectSystemNpuHpeEnableShaper(d, v, "enable_shaper")
 		if err != nil {
 			return &obj, err
@@ -543,7 +543,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("esp_max"); ok {
+	if v, ok := d.GetOk("esp_max"); ok || d.HasChange("esp_max") {
 		t, err := expandObjectSystemNpuHpeEspMax(d, v, "esp_max")
 		if err != nil {
 			return &obj, err
@@ -552,7 +552,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("high_priority"); ok {
+	if v, ok := d.GetOk("high_priority"); ok || d.HasChange("high_priority") {
 		t, err := expandObjectSystemNpuHpeHighPriority(d, v, "high_priority")
 		if err != nil {
 			return &obj, err
@@ -561,7 +561,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("icmp_max"); ok {
+	if v, ok := d.GetOk("icmp_max"); ok || d.HasChange("icmp_max") {
 		t, err := expandObjectSystemNpuHpeIcmpMax(d, v, "icmp_max")
 		if err != nil {
 			return &obj, err
@@ -570,7 +570,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ip_frag_max"); ok {
+	if v, ok := d.GetOk("ip_frag_max"); ok || d.HasChange("ip_frag_max") {
 		t, err := expandObjectSystemNpuHpeIpFragMax(d, v, "ip_frag_max")
 		if err != nil {
 			return &obj, err
@@ -579,7 +579,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("ip_others_max"); ok {
+	if v, ok := d.GetOk("ip_others_max"); ok || d.HasChange("ip_others_max") {
 		t, err := expandObjectSystemNpuHpeIpOthersMax(d, v, "ip_others_max")
 		if err != nil {
 			return &obj, err
@@ -588,7 +588,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("l2_others_max"); ok {
+	if v, ok := d.GetOk("l2_others_max"); ok || d.HasChange("l2_others_max") {
 		t, err := expandObjectSystemNpuHpeL2OthersMax(d, v, "l2_others_max")
 		if err != nil {
 			return &obj, err
@@ -597,7 +597,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("pri_type_max"); ok {
+	if v, ok := d.GetOk("pri_type_max"); ok || d.HasChange("pri_type_max") {
 		t, err := expandObjectSystemNpuHpePriTypeMax(d, v, "pri_type_max")
 		if err != nil {
 			return &obj, err
@@ -606,7 +606,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("sctp_max"); ok {
+	if v, ok := d.GetOk("sctp_max"); ok || d.HasChange("sctp_max") {
 		t, err := expandObjectSystemNpuHpeSctpMax(d, v, "sctp_max")
 		if err != nil {
 			return &obj, err
@@ -615,7 +615,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("tcp_max"); ok {
+	if v, ok := d.GetOk("tcp_max"); ok || d.HasChange("tcp_max") {
 		t, err := expandObjectSystemNpuHpeTcpMax(d, v, "tcp_max")
 		if err != nil {
 			return &obj, err
@@ -624,7 +624,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("tcpfin_rst_max"); ok {
+	if v, ok := d.GetOk("tcpfin_rst_max"); ok || d.HasChange("tcpfin_rst_max") {
 		t, err := expandObjectSystemNpuHpeTcpfinRstMax(d, v, "tcpfin_rst_max")
 		if err != nil {
 			return &obj, err
@@ -633,7 +633,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("tcpsyn_ack_max"); ok {
+	if v, ok := d.GetOk("tcpsyn_ack_max"); ok || d.HasChange("tcpsyn_ack_max") {
 		t, err := expandObjectSystemNpuHpeTcpsynAckMax(d, v, "tcpsyn_ack_max")
 		if err != nil {
 			return &obj, err
@@ -642,7 +642,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("tcpsyn_max"); ok {
+	if v, ok := d.GetOk("tcpsyn_max"); ok || d.HasChange("tcpsyn_max") {
 		t, err := expandObjectSystemNpuHpeTcpsynMax(d, v, "tcpsyn_max")
 		if err != nil {
 			return &obj, err
@@ -651,7 +651,7 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("udp_max"); ok {
+	if v, ok := d.GetOk("udp_max"); ok || d.HasChange("udp_max") {
 		t, err := expandObjectSystemNpuHpeUdpMax(d, v, "udp_max")
 		if err != nil {
 			return &obj, err

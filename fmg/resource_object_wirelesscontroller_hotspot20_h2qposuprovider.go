@@ -500,17 +500,17 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyName(d *schem
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "friendly_name"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["friendly-name"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyNameFriendlyName(d, i["friendly_name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["index"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyNameIndex(d, i["index"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "lang"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["lang"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyNameLang(d, i["lang"], pre_append)
 		}
 
@@ -569,17 +569,17 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(d 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "lang"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["lang"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionLang(d, i["lang"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_description"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["service-description"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionServiceDescription(d, i["service_description"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "service_id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["service-id"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionServiceId(d, i["service_id"], pre_append)
 		}
 
@@ -606,7 +606,7 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionSer
 func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("friendly_name"); ok {
+	if v, ok := d.GetOk("friendly_name"); ok || d.HasChange("friendly_name") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyName(d, v, "friendly_name")
 		if err != nil {
 			return &obj, err
@@ -615,7 +615,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.Resourc
 		}
 	}
 
-	if v, ok := d.GetOk("icon"); ok {
+	if v, ok := d.GetOk("icon"); ok || d.HasChange("icon") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderIcon(d, v, "icon")
 		if err != nil {
 			return &obj, err
@@ -624,7 +624,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.Resourc
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -633,7 +633,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.Resourc
 		}
 	}
 
-	if v, ok := d.GetOk("osu_method"); ok {
+	if v, ok := d.GetOk("osu_method"); ok || d.HasChange("osu_method") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderOsuMethod(d, v, "osu_method")
 		if err != nil {
 			return &obj, err
@@ -642,7 +642,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.Resourc
 		}
 	}
 
-	if v, ok := d.GetOk("osu_nai"); ok {
+	if v, ok := d.GetOk("osu_nai"); ok || d.HasChange("osu_nai") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderOsuNai(d, v, "osu_nai")
 		if err != nil {
 			return &obj, err
@@ -651,7 +651,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.Resourc
 		}
 	}
 
-	if v, ok := d.GetOk("server_uri"); ok {
+	if v, ok := d.GetOk("server_uri"); ok || d.HasChange("server_uri") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderServerUri(d, v, "server_uri")
 		if err != nil {
 			return &obj, err
@@ -660,7 +660,7 @@ func getObjectObjectWirelessControllerHotspot20H2QpOsuProvider(d *schema.Resourc
 		}
 	}
 
-	if v, ok := d.GetOk("service_description"); ok {
+	if v, ok := d.GetOk("service_description"); ok || d.HasChange("service_description") {
 		t, err := expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(d, v, "service_description")
 		if err != nil {
 			return &obj, err

@@ -185,7 +185,7 @@ func expandSystemLogFetchServerSettingsSessionTimeout(d *schema.ResourceData, v 
 func getObjectSystemLogFetchServerSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("max_conn_per_session"); ok {
+	if v, ok := d.GetOk("max_conn_per_session"); ok || d.HasChange("max_conn_per_session") {
 		t, err := expandSystemLogFetchServerSettingsMaxConnPerSession(d, v, "max_conn_per_session")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectSystemLogFetchServerSettings(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("max_sessions"); ok {
+	if v, ok := d.GetOk("max_sessions"); ok || d.HasChange("max_sessions") {
 		t, err := expandSystemLogFetchServerSettingsMaxSessions(d, v, "max_sessions")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectSystemLogFetchServerSettings(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("session_timeout"); ok {
+	if v, ok := d.GetOk("session_timeout"); ok || d.HasChange("session_timeout") {
 		t, err := expandSystemLogFetchServerSettingsSessionTimeout(d, v, "session_timeout")
 		if err != nil {
 			return &obj, err

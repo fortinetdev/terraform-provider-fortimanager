@@ -624,41 +624,41 @@ func expandObjectExtenderControllerSimProfileAutoSwitchProfile(d *schema.Resourc
 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "dataplan"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dataplan"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileDataplan(d, i["dataplan"], pre_append)
 	}
 	pre_append = pre + ".0." + "disconnect"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["disconnect"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileDisconnect(d, i["disconnect"], pre_append)
 	}
 	pre_append = pre + ".0." + "disconnect_period"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["disconnect-period"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileDisconnectPeriod(d, i["disconnect_period"], pre_append)
 	}
 	pre_append = pre + ".0." + "disconnect_threshold"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["disconnect-threshold"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileDisconnectThreshold(d, i["disconnect_threshold"], pre_append)
 	}
 	pre_append = pre + ".0." + "signal"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["signal"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileSignal(d, i["signal"], pre_append)
 	}
 	pre_append = pre + ".0." + "status"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["status"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileStatus(d, i["status"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_back"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-back"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBack(d, i["switch_back"], pre_append)
 	} else {
 		result["switch-back"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "switch_back_time"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-back-time"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBackTime(d, i["switch_back_time"], pre_append)
 	}
 	pre_append = pre + ".0." + "switch_back_timer"
-	if _, ok := d.GetOk(pre_append); ok {
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-back-timer"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBackTimer(d, i["switch_back_timer"], pre_append)
 	}
 
@@ -760,7 +760,7 @@ func expandObjectExtenderControllerSimProfileStatus(d *schema.ResourceData, v in
 func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("auto_switch_profile"); ok {
+	if v, ok := d.GetOk("auto_switch_profile"); ok || d.HasChange("auto_switch_profile") {
 		t, err := expandObjectExtenderControllerSimProfileAutoSwitchProfile(d, v, "auto_switch_profile")
 		if err != nil {
 			return &obj, err
@@ -769,7 +769,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("conn_status"); ok {
+	if v, ok := d.GetOk("conn_status"); ok || d.HasChange("conn_status") {
 		t, err := expandObjectExtenderControllerSimProfileConnStatus(d, v, "conn_status")
 		if err != nil {
 			return &obj, err
@@ -778,7 +778,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("default_sim"); ok {
+	if v, ok := d.GetOk("default_sim"); ok || d.HasChange("default_sim") {
 		t, err := expandObjectExtenderControllerSimProfileDefaultSim(d, v, "default_sim")
 		if err != nil {
 			return &obj, err
@@ -787,7 +787,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectExtenderControllerSimProfileDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -796,7 +796,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("gps"); ok {
+	if v, ok := d.GetOk("gps"); ok || d.HasChange("gps") {
 		t, err := expandObjectExtenderControllerSimProfileGps(d, v, "gps")
 		if err != nil {
 			return &obj, err
@@ -805,7 +805,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("modem_id"); ok {
+	if v, ok := d.GetOk("modem_id"); ok || d.HasChange("modem_id") {
 		t, err := expandObjectExtenderControllerSimProfileModemId(d, v, "modem_id")
 		if err != nil {
 			return &obj, err
@@ -814,7 +814,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectExtenderControllerSimProfileName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -823,7 +823,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("preferred_carrier"); ok {
+	if v, ok := d.GetOk("preferred_carrier"); ok || d.HasChange("preferred_carrier") {
 		t, err := expandObjectExtenderControllerSimProfilePreferredCarrier(d, v, "preferred_carrier")
 		if err != nil {
 			return &obj, err
@@ -832,7 +832,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("redundant_intf"); ok {
+	if v, ok := d.GetOk("redundant_intf"); ok || d.HasChange("redundant_intf") {
 		t, err := expandObjectExtenderControllerSimProfileRedundantIntf(d, v, "redundant_intf")
 		if err != nil {
 			return &obj, err
@@ -841,7 +841,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("redundant_mode"); ok {
+	if v, ok := d.GetOk("redundant_mode"); ok || d.HasChange("redundant_mode") {
 		t, err := expandObjectExtenderControllerSimProfileRedundantMode(d, v, "redundant_mode")
 		if err != nil {
 			return &obj, err
@@ -850,7 +850,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("sim1_pin"); ok {
+	if v, ok := d.GetOk("sim1_pin"); ok || d.HasChange("sim1_pin") {
 		t, err := expandObjectExtenderControllerSimProfileSim1Pin(d, v, "sim1_pin")
 		if err != nil {
 			return &obj, err
@@ -859,7 +859,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("sim1_pin_code"); ok {
+	if v, ok := d.GetOk("sim1_pin_code"); ok || d.HasChange("sim1_pin_code") {
 		t, err := expandObjectExtenderControllerSimProfileSim1PinCode(d, v, "sim1_pin_code")
 		if err != nil {
 			return &obj, err
@@ -868,7 +868,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("sim2_pin"); ok {
+	if v, ok := d.GetOk("sim2_pin"); ok || d.HasChange("sim2_pin") {
 		t, err := expandObjectExtenderControllerSimProfileSim2Pin(d, v, "sim2_pin")
 		if err != nil {
 			return &obj, err
@@ -877,7 +877,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("sim2_pin_code"); ok {
+	if v, ok := d.GetOk("sim2_pin_code"); ok || d.HasChange("sim2_pin_code") {
 		t, err := expandObjectExtenderControllerSimProfileSim2PinCode(d, v, "sim2_pin_code")
 		if err != nil {
 			return &obj, err
@@ -886,7 +886,7 @@ func getObjectObjectExtenderControllerSimProfile(d *schema.ResourceData) (*map[s
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandObjectExtenderControllerSimProfileStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

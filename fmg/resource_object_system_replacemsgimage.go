@@ -244,7 +244,7 @@ func expandObjectSystemReplacemsgImageName(d *schema.ResourceData, v interface{}
 func getObjectObjectSystemReplacemsgImage(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("image_base64"); ok {
+	if v, ok := d.GetOk("image_base64"); ok || d.HasChange("image_base64") {
 		t, err := expandObjectSystemReplacemsgImageImageBase64(d, v, "image_base64")
 		if err != nil {
 			return &obj, err
@@ -253,7 +253,7 @@ func getObjectObjectSystemReplacemsgImage(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("image_type"); ok {
+	if v, ok := d.GetOk("image_type"); ok || d.HasChange("image_type") {
 		t, err := expandObjectSystemReplacemsgImageImageType(d, v, "image_type")
 		if err != nil {
 			return &obj, err
@@ -262,7 +262,7 @@ func getObjectObjectSystemReplacemsgImage(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemReplacemsgImageName(d, v, "name")
 		if err != nil {
 			return &obj, err

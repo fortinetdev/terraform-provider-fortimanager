@@ -361,22 +361,22 @@ func expandObjectFirewallIdentityBasedRouteRule(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "device"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["device"], _ = expandObjectFirewallIdentityBasedRouteRuleDevice(d, i["device"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gateway"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gateway"], _ = expandObjectFirewallIdentityBasedRouteRuleGateway(d, i["gateway"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "groups"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["groups"], _ = expandObjectFirewallIdentityBasedRouteRuleGroups(d, i["groups"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallIdentityBasedRouteRuleId(d, i["id"], pre_append)
 		}
 
@@ -407,7 +407,7 @@ func expandObjectFirewallIdentityBasedRouteRuleId(d *schema.ResourceData, v inte
 func getObjectObjectFirewallIdentityBasedRoute(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectFirewallIdentityBasedRouteComments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -416,7 +416,7 @@ func getObjectObjectFirewallIdentityBasedRoute(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallIdentityBasedRouteName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -425,7 +425,7 @@ func getObjectObjectFirewallIdentityBasedRoute(d *schema.ResourceData) (*map[str
 		}
 	}
 
-	if v, ok := d.GetOk("rule"); ok {
+	if v, ok := d.GetOk("rule"); ok || d.HasChange("rule") {
 		t, err := expandObjectFirewallIdentityBasedRouteRule(d, v, "rule")
 		if err != nil {
 			return &obj, err

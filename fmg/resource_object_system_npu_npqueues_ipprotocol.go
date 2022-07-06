@@ -267,7 +267,7 @@ func expandObjectSystemNpuNpQueuesIpProtocolWeight(d *schema.ResourceData, v int
 func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemNpuNpQueuesIpProtocolName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("protocol"); ok {
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
 		t, err := expandObjectSystemNpuNpQueuesIpProtocolProtocol(d, v, "protocol")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("queue"); ok {
+	if v, ok := d.GetOk("queue"); ok || d.HasChange("queue") {
 		t, err := expandObjectSystemNpuNpQueuesIpProtocolQueue(d, v, "queue")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectSystemNpuNpQueuesIpProtocol(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("weight"); ok {
+	if v, ok := d.GetOk("weight"); ok || d.HasChange("weight") {
 		t, err := expandObjectSystemNpuNpQueuesIpProtocolWeight(d, v, "weight")
 		if err != nil {
 			return &obj, err

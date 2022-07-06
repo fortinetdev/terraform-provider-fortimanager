@@ -291,7 +291,7 @@ func expandObjectFirewallScheduleGroupName(d *schema.ResourceData, v interface{}
 func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallScheduleGroupColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -300,7 +300,7 @@ func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallScheduleGroupFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallScheduleGroupGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallScheduleGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectObjectFirewallScheduleGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallScheduleGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err

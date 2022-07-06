@@ -244,7 +244,7 @@ func expandObjectWirelessControllerAddrgrpId(d *schema.ResourceData, v interface
 func getObjectObjectWirelessControllerAddrgrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("addresses"); ok {
+	if v, ok := d.GetOk("addresses"); ok || d.HasChange("addresses") {
 		t, err := expandObjectWirelessControllerAddrgrpAddresses(d, v, "addresses")
 		if err != nil {
 			return &obj, err
@@ -253,7 +253,7 @@ func getObjectObjectWirelessControllerAddrgrp(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("default_policy"); ok {
+	if v, ok := d.GetOk("default_policy"); ok || d.HasChange("default_policy") {
 		t, err := expandObjectWirelessControllerAddrgrpDefaultPolicy(d, v, "default_policy")
 		if err != nil {
 			return &obj, err
@@ -262,7 +262,7 @@ func getObjectObjectWirelessControllerAddrgrp(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectWirelessControllerAddrgrpId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

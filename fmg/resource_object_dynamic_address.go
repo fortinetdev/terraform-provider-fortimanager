@@ -351,12 +351,12 @@ func expandObjectDynamicAddressDynamicAddrMapping(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr"], _ = expandObjectDynamicAddressDynamicAddrMappingAddr(d, i["addr"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectDynamicAddressDynamicAddrMappingId(d, i["id"], pre_append)
 		}
 
@@ -383,7 +383,7 @@ func expandObjectDynamicAddressName(d *schema.ResourceData, v interface{}, pre s
 func getObjectObjectDynamicAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("default"); ok {
+	if v, ok := d.GetOk("default"); ok || d.HasChange("default") {
 		t, err := expandObjectDynamicAddressDefault(d, v, "default")
 		if err != nil {
 			return &obj, err
@@ -392,7 +392,7 @@ func getObjectObjectDynamicAddress(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectDynamicAddressDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -401,7 +401,7 @@ func getObjectObjectDynamicAddress(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("dynamic_addr_mapping"); ok {
+	if v, ok := d.GetOk("dynamic_addr_mapping"); ok || d.HasChange("dynamic_addr_mapping") {
 		t, err := expandObjectDynamicAddressDynamicAddrMapping(d, v, "dynamic_addr_mapping")
 		if err != nil {
 			return &obj, err
@@ -410,7 +410,7 @@ func getObjectObjectDynamicAddress(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDynamicAddressName(d, v, "name")
 		if err != nil {
 			return &obj, err

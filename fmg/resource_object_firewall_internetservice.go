@@ -684,29 +684,29 @@ func expandObjectFirewallInternetServiceEntryOfia(d *schema.ResourceData, v inte
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallInternetServiceEntryIdOfia(d, i["id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_number"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip-number"], _ = expandObjectFirewallInternetServiceEntryIpNumberOfia(d, i["ip_number"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_range_number"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip-range-number"], _ = expandObjectFirewallInternetServiceEntryIpRangeNumberOfia(d, i["ip_range_number"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectFirewallInternetServiceEntryPortOfia(d, i["port"], pre_append)
 		} else {
 			tmp["port"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectFirewallInternetServiceEntryProtocolOfia(d, i["protocol"], pre_append)
 		}
 
@@ -801,7 +801,7 @@ func expandObjectFirewallInternetServiceSldIdOfia(d *schema.ResourceData, v inte
 func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("city"); ok {
+	if v, ok := d.GetOk("city"); ok || d.HasChange("city") {
 		t, err := expandObjectFirewallInternetServiceCityOfia(d, v, "city")
 		if err != nil {
 			return &obj, err
@@ -810,7 +810,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("country"); ok {
+	if v, ok := d.GetOk("country"); ok || d.HasChange("country") {
 		t, err := expandObjectFirewallInternetServiceCountryOfia(d, v, "country")
 		if err != nil {
 			return &obj, err
@@ -819,7 +819,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("database"); ok {
+	if v, ok := d.GetOk("database"); ok || d.HasChange("database") {
 		t, err := expandObjectFirewallInternetServiceDatabaseOfia(d, v, "database")
 		if err != nil {
 			return &obj, err
@@ -828,7 +828,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("direction"); ok {
+	if v, ok := d.GetOk("direction"); ok || d.HasChange("direction") {
 		t, err := expandObjectFirewallInternetServiceDirectionOfia(d, v, "direction")
 		if err != nil {
 			return &obj, err
@@ -837,7 +837,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("entry"); ok {
+	if v, ok := d.GetOk("entry"); ok || d.HasChange("entry") {
 		t, err := expandObjectFirewallInternetServiceEntryOfia(d, v, "entry")
 		if err != nil {
 			return &obj, err
@@ -846,7 +846,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("extra_ip_range_number"); ok {
+	if v, ok := d.GetOk("extra_ip_range_number"); ok || d.HasChange("extra_ip_range_number") {
 		t, err := expandObjectFirewallInternetServiceExtraIpRangeNumberOfia(d, v, "extra_ip_range_number")
 		if err != nil {
 			return &obj, err
@@ -855,7 +855,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("icon_id"); ok {
+	if v, ok := d.GetOk("icon_id"); ok || d.HasChange("icon_id") {
 		t, err := expandObjectFirewallInternetServiceIconIdOfia(d, v, "icon_id")
 		if err != nil {
 			return &obj, err
@@ -864,7 +864,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectFirewallInternetServiceIdOfia(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -873,7 +873,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("ip_number"); ok {
+	if v, ok := d.GetOk("ip_number"); ok || d.HasChange("ip_number") {
 		t, err := expandObjectFirewallInternetServiceIpNumberOfia(d, v, "ip_number")
 		if err != nil {
 			return &obj, err
@@ -882,7 +882,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("ip_range_number"); ok {
+	if v, ok := d.GetOk("ip_range_number"); ok || d.HasChange("ip_range_number") {
 		t, err := expandObjectFirewallInternetServiceIpRangeNumberOfia(d, v, "ip_range_number")
 		if err != nil {
 			return &obj, err
@@ -891,7 +891,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("jitter_threshold"); ok {
+	if v, ok := d.GetOk("jitter_threshold"); ok || d.HasChange("jitter_threshold") {
 		t, err := expandObjectFirewallInternetServiceJitterThresholdOfia(d, v, "jitter_threshold")
 		if err != nil {
 			return &obj, err
@@ -900,7 +900,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("latency_threshold"); ok {
+	if v, ok := d.GetOk("latency_threshold"); ok || d.HasChange("latency_threshold") {
 		t, err := expandObjectFirewallInternetServiceLatencyThresholdOfia(d, v, "latency_threshold")
 		if err != nil {
 			return &obj, err
@@ -909,7 +909,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallInternetServiceNameOfia(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -918,7 +918,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("offset"); ok {
+	if v, ok := d.GetOk("offset"); ok || d.HasChange("offset") {
 		t, err := expandObjectFirewallInternetServiceOffsetOfia(d, v, "offset")
 		if err != nil {
 			return &obj, err
@@ -927,7 +927,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("obsolete"); ok {
+	if v, ok := d.GetOk("obsolete"); ok || d.HasChange("obsolete") {
 		t, err := expandObjectFirewallInternetServiceObsoleteOfia(d, v, "obsolete")
 		if err != nil {
 			return &obj, err
@@ -936,7 +936,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("region"); ok {
+	if v, ok := d.GetOk("region"); ok || d.HasChange("region") {
 		t, err := expandObjectFirewallInternetServiceRegionOfia(d, v, "region")
 		if err != nil {
 			return &obj, err
@@ -945,7 +945,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("packetloss_threshold"); ok {
+	if v, ok := d.GetOk("packetloss_threshold"); ok || d.HasChange("packetloss_threshold") {
 		t, err := expandObjectFirewallInternetServicePacketlossThresholdOfia(d, v, "packetloss_threshold")
 		if err != nil {
 			return &obj, err
@@ -954,7 +954,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("reputation"); ok {
+	if v, ok := d.GetOk("reputation"); ok || d.HasChange("reputation") {
 		t, err := expandObjectFirewallInternetServiceReputationOfia(d, v, "reputation")
 		if err != nil {
 			return &obj, err
@@ -963,7 +963,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("singularity"); ok {
+	if v, ok := d.GetOk("singularity"); ok || d.HasChange("singularity") {
 		t, err := expandObjectFirewallInternetServiceSingularityOfia(d, v, "singularity")
 		if err != nil {
 			return &obj, err
@@ -972,7 +972,7 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("sld_id"); ok {
+	if v, ok := d.GetOk("sld_id"); ok || d.HasChange("sld_id") {
 		t, err := expandObjectFirewallInternetServiceSldIdOfia(d, v, "sld_id")
 		if err != nil {
 			return &obj, err

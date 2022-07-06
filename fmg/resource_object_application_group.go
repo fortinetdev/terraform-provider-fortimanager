@@ -432,7 +432,7 @@ func expandObjectApplicationGroupVendor(d *schema.ResourceData, v interface{}, p
 func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("application"); ok {
+	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
 		t, err := expandObjectApplicationGroupApplication(d, v, "application")
 		if err != nil {
 			return &obj, err
@@ -441,7 +441,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("behavior"); ok {
+	if v, ok := d.GetOk("behavior"); ok || d.HasChange("behavior") {
 		t, err := expandObjectApplicationGroupBehavior(d, v, "behavior")
 		if err != nil {
 			return &obj, err
@@ -450,7 +450,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("category"); ok {
+	if v, ok := d.GetOk("category"); ok || d.HasChange("category") {
 		t, err := expandObjectApplicationGroupCategory(d, v, "category")
 		if err != nil {
 			return &obj, err
@@ -459,7 +459,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectApplicationGroupComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -468,7 +468,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectApplicationGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -477,7 +477,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("popularity"); ok {
+	if v, ok := d.GetOk("popularity"); ok || d.HasChange("popularity") {
 		t, err := expandObjectApplicationGroupPopularity(d, v, "popularity")
 		if err != nil {
 			return &obj, err
@@ -486,7 +486,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("protocols"); ok {
+	if v, ok := d.GetOk("protocols"); ok || d.HasChange("protocols") {
 		t, err := expandObjectApplicationGroupProtocols(d, v, "protocols")
 		if err != nil {
 			return &obj, err
@@ -495,7 +495,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("risk"); ok {
+	if v, ok := d.GetOk("risk"); ok || d.HasChange("risk") {
 		t, err := expandObjectApplicationGroupRisk(d, v, "risk")
 		if err != nil {
 			return &obj, err
@@ -504,7 +504,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("technology"); ok {
+	if v, ok := d.GetOk("technology"); ok || d.HasChange("technology") {
 		t, err := expandObjectApplicationGroupTechnology(d, v, "technology")
 		if err != nil {
 			return &obj, err
@@ -513,7 +513,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("type"); ok {
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
 		t, err := expandObjectApplicationGroupType(d, v, "type")
 		if err != nil {
 			return &obj, err
@@ -522,7 +522,7 @@ func getObjectObjectApplicationGroup(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("vendor"); ok {
+	if v, ok := d.GetOk("vendor"); ok || d.HasChange("vendor") {
 		t, err := expandObjectApplicationGroupVendor(d, v, "vendor")
 		if err != nil {
 			return &obj, err

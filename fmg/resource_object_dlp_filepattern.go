@@ -361,17 +361,17 @@ func expandObjectDlpFilepatternEntries(d *schema.ResourceData, v interface{}, pr
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectDlpFilepatternEntriesFileType(d, i["file_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["filter-type"], _ = expandObjectDlpFilepatternEntriesFilterType(d, i["filter_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern"], _ = expandObjectDlpFilepatternEntriesPattern(d, i["pattern"], pre_append)
 		}
 
@@ -406,7 +406,7 @@ func expandObjectDlpFilepatternName(d *schema.ResourceData, v interface{}, pre s
 func getObjectObjectDlpFilepattern(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectDlpFilepatternComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -415,7 +415,7 @@ func getObjectObjectDlpFilepattern(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("entries"); ok {
+	if v, ok := d.GetOk("entries"); ok || d.HasChange("entries") {
 		t, err := expandObjectDlpFilepatternEntries(d, v, "entries")
 		if err != nil {
 			return &obj, err
@@ -424,7 +424,7 @@ func getObjectObjectDlpFilepattern(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectDlpFilepatternId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -433,7 +433,7 @@ func getObjectObjectDlpFilepattern(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectDlpFilepatternName(d, v, "name")
 		if err != nil {
 			return &obj, err

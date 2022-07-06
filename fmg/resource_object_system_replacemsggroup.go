@@ -3784,22 +3784,22 @@ func expandObjectSystemReplacemsgGroupAdmin(d *schema.ResourceData, v interface{
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupAdminBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupAdminFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupAdminHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAdminMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -3842,22 +3842,22 @@ func expandObjectSystemReplacemsgGroupAlertmail(d *schema.ResourceData, v interf
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupAlertmailBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupAlertmailFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupAlertmailHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAlertmailMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -3900,22 +3900,22 @@ func expandObjectSystemReplacemsgGroupAuth(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupAuthBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupAuthFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupAuthHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAuthMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -3958,22 +3958,22 @@ func expandObjectSystemReplacemsgGroupAutomation(d *schema.ResourceData, v inter
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupAutomationBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupAutomationFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupAutomationHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAutomationMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4020,22 +4020,22 @@ func expandObjectSystemReplacemsgGroupCustomMessage(d *schema.ResourceData, v in
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupCustomMessageBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupCustomMessageFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupCustomMessageHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupCustomMessageMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4078,22 +4078,22 @@ func expandObjectSystemReplacemsgGroupDeviceDetectionPortal(d *schema.ResourceDa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupDeviceDetectionPortalBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupDeviceDetectionPortalFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupDeviceDetectionPortalHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupDeviceDetectionPortalMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4136,22 +4136,22 @@ func expandObjectSystemReplacemsgGroupEc(d *schema.ResourceData, v interface{}, 
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupEcBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupEcFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupEcHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupEcMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4194,22 +4194,22 @@ func expandObjectSystemReplacemsgGroupFortiguardWf(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupFortiguardWfBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupFortiguardWfFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupFortiguardWfHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupFortiguardWfMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4252,22 +4252,22 @@ func expandObjectSystemReplacemsgGroupFtp(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupFtpBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupFtpFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupFtpHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupFtpMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4314,22 +4314,22 @@ func expandObjectSystemReplacemsgGroupHttp(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupHttpBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupHttpFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupHttpHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupHttpMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4372,22 +4372,22 @@ func expandObjectSystemReplacemsgGroupIcap(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupIcapBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupIcapFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupIcapHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupIcapMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4430,22 +4430,22 @@ func expandObjectSystemReplacemsgGroupMail(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupMailBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupMailFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupMailHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMailMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -4488,82 +4488,82 @@ func expandObjectSystemReplacemsgGroupMm1(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_smil"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-smil"], _ = expandObjectSystemReplacemsgGroupMm1AddSmil(d, i["add_smil"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "charset"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["charset"], _ = expandObjectSystemReplacemsgGroupMm1Charset(d, i["charset"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["class"], _ = expandObjectSystemReplacemsgGroupMm1Class(d, i["class"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupMm1Format(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from"], _ = expandObjectSystemReplacemsgGroupMm1From(d, i["from"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from_sender"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from-sender"], _ = expandObjectSystemReplacemsgGroupMm1FromSender(d, i["from_sender"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupMm1Header(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "image"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["image"], _ = expandObjectSystemReplacemsgGroupMm1Image(d, i["image"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "message"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["message"], _ = expandObjectSystemReplacemsgGroupMm1Message(d, i["message"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMm1MsgType(d, i["msg_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectSystemReplacemsgGroupMm1Priority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsp_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsp-status"], _ = expandObjectSystemReplacemsgGroupMm1RspStatus(d, i["rsp_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsp_text"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsp-text"], _ = expandObjectSystemReplacemsgGroupMm1RspText(d, i["rsp_text"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sender_visibility"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sender-visibility"], _ = expandObjectSystemReplacemsgGroupMm1SenderVisibility(d, i["sender_visibility"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "smil_part"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["smil-part"], _ = expandObjectSystemReplacemsgGroupMm1SmilPart(d, i["smil_part"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subject"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm1Subject(d, i["subject"], pre_append)
 		}
 
@@ -4654,62 +4654,62 @@ func expandObjectSystemReplacemsgGroupMm3(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_html"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-html"], _ = expandObjectSystemReplacemsgGroupMm3AddHtml(d, i["add_html"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "charset"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["charset"], _ = expandObjectSystemReplacemsgGroupMm3Charset(d, i["charset"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupMm3Format(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from"], _ = expandObjectSystemReplacemsgGroupMm3From(d, i["from"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from_sender"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from-sender"], _ = expandObjectSystemReplacemsgGroupMm3FromSender(d, i["from_sender"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupMm3Header(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "html_part"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["html-part"], _ = expandObjectSystemReplacemsgGroupMm3HtmlPart(d, i["html_part"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "image"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["image"], _ = expandObjectSystemReplacemsgGroupMm3Image(d, i["image"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "message"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["message"], _ = expandObjectSystemReplacemsgGroupMm3Message(d, i["message"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMm3MsgType(d, i["msg_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectSystemReplacemsgGroupMm3Priority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subject"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm3Subject(d, i["subject"], pre_append)
 		}
 
@@ -4784,77 +4784,77 @@ func expandObjectSystemReplacemsgGroupMm4(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_smil"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-smil"], _ = expandObjectSystemReplacemsgGroupMm4AddSmil(d, i["add_smil"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "charset"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["charset"], _ = expandObjectSystemReplacemsgGroupMm4Charset(d, i["charset"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["class"], _ = expandObjectSystemReplacemsgGroupMm4Class(d, i["class"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "domain"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["domain"], _ = expandObjectSystemReplacemsgGroupMm4Domain(d, i["domain"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupMm4Format(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from"], _ = expandObjectSystemReplacemsgGroupMm4From(d, i["from"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from_sender"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from-sender"], _ = expandObjectSystemReplacemsgGroupMm4FromSender(d, i["from_sender"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupMm4Header(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "image"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["image"], _ = expandObjectSystemReplacemsgGroupMm4Image(d, i["image"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "message"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["message"], _ = expandObjectSystemReplacemsgGroupMm4Message(d, i["message"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMm4MsgType(d, i["msg_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectSystemReplacemsgGroupMm4Priority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsp_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsp-status"], _ = expandObjectSystemReplacemsgGroupMm4RspStatus(d, i["rsp_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "smil_part"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["smil-part"], _ = expandObjectSystemReplacemsgGroupMm4SmilPart(d, i["smil_part"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subject"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm4Subject(d, i["subject"], pre_append)
 		}
 
@@ -4941,82 +4941,82 @@ func expandObjectSystemReplacemsgGroupMm7(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_smil"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["add-smil"], _ = expandObjectSystemReplacemsgGroupMm7AddSmil(d, i["add_smil"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr-type"], _ = expandObjectSystemReplacemsgGroupMm7AddrType(d, i["addr_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allow_content_adaptation"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["allow-content-adaptation"], _ = expandObjectSystemReplacemsgGroupMm7AllowContentAdaptation(d, i["allow_content_adaptation"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "charset"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["charset"], _ = expandObjectSystemReplacemsgGroupMm7Charset(d, i["charset"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["class"], _ = expandObjectSystemReplacemsgGroupMm7Class(d, i["class"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupMm7Format(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from"], _ = expandObjectSystemReplacemsgGroupMm7From(d, i["from"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "from_sender"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["from-sender"], _ = expandObjectSystemReplacemsgGroupMm7FromSender(d, i["from_sender"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupMm7Header(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "image"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["image"], _ = expandObjectSystemReplacemsgGroupMm7Image(d, i["image"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "message"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["message"], _ = expandObjectSystemReplacemsgGroupMm7Message(d, i["message"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMm7MsgType(d, i["msg_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandObjectSystemReplacemsgGroupMm7Priority(d, i["priority"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsp_status"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsp-status"], _ = expandObjectSystemReplacemsgGroupMm7RspStatus(d, i["rsp_status"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "smil_part"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["smil-part"], _ = expandObjectSystemReplacemsgGroupMm7SmilPart(d, i["smil_part"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subject"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm7Subject(d, i["subject"], pre_append)
 		}
 
@@ -5107,32 +5107,32 @@ func expandObjectSystemReplacemsgGroupMms(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupMmsBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "charset"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["charset"], _ = expandObjectSystemReplacemsgGroupMmsCharset(d, i["charset"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupMmsFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupMmsHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "image"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["image"], _ = expandObjectSystemReplacemsgGroupMmsImage(d, i["image"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMmsMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5183,22 +5183,22 @@ func expandObjectSystemReplacemsgGroupNacQuar(d *schema.ResourceData, v interfac
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupNacQuarBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupNacQuarFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupNacQuarHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupNacQuarMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5245,22 +5245,22 @@ func expandObjectSystemReplacemsgGroupNntp(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupNntpBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupNntpFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupNntpHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupNntpMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5303,22 +5303,22 @@ func expandObjectSystemReplacemsgGroupSpam(d *schema.ResourceData, v interface{}
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupSpamBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupSpamFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupSpamHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupSpamMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5361,22 +5361,22 @@ func expandObjectSystemReplacemsgGroupSslvpn(d *schema.ResourceData, v interface
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupSslvpnBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupSslvpnFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupSslvpnHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupSslvpnMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5419,22 +5419,22 @@ func expandObjectSystemReplacemsgGroupTrafficQuota(d *schema.ResourceData, v int
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupTrafficQuotaBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupTrafficQuotaFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupTrafficQuotaHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupTrafficQuotaMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5477,22 +5477,22 @@ func expandObjectSystemReplacemsgGroupUtm(d *schema.ResourceData, v interface{},
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupUtmBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupUtmFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupUtmHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupUtmMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5535,22 +5535,22 @@ func expandObjectSystemReplacemsgGroupWebproxy(d *schema.ResourceData, v interfa
 		pre_append := "" // table
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "buffer"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["buffer"], _ = expandObjectSystemReplacemsgGroupWebproxyBuffer(d, i["buffer"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "format"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["format"], _ = expandObjectSystemReplacemsgGroupWebproxyFormat(d, i["format"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupWebproxyHeader(d, i["header"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
-		if _, ok := d.GetOk(pre_append); ok {
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupWebproxyMsgType(d, i["msg_type"], pre_append)
 		}
 
@@ -5581,7 +5581,7 @@ func expandObjectSystemReplacemsgGroupWebproxyMsgType(d *schema.ResourceData, v 
 func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("admin"); ok {
+	if v, ok := d.GetOk("admin"); ok || d.HasChange("admin") {
 		t, err := expandObjectSystemReplacemsgGroupAdmin(d, v, "admin")
 		if err != nil {
 			return &obj, err
@@ -5590,7 +5590,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("alertmail"); ok {
+	if v, ok := d.GetOk("alertmail"); ok || d.HasChange("alertmail") {
 		t, err := expandObjectSystemReplacemsgGroupAlertmail(d, v, "alertmail")
 		if err != nil {
 			return &obj, err
@@ -5599,7 +5599,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("auth"); ok {
+	if v, ok := d.GetOk("auth"); ok || d.HasChange("auth") {
 		t, err := expandObjectSystemReplacemsgGroupAuth(d, v, "auth")
 		if err != nil {
 			return &obj, err
@@ -5608,7 +5608,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("automation"); ok {
+	if v, ok := d.GetOk("automation"); ok || d.HasChange("automation") {
 		t, err := expandObjectSystemReplacemsgGroupAutomation(d, v, "automation")
 		if err != nil {
 			return &obj, err
@@ -5617,7 +5617,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectSystemReplacemsgGroupComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -5626,7 +5626,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("custom_message"); ok {
+	if v, ok := d.GetOk("custom_message"); ok || d.HasChange("custom_message") {
 		t, err := expandObjectSystemReplacemsgGroupCustomMessage(d, v, "custom_message")
 		if err != nil {
 			return &obj, err
@@ -5635,7 +5635,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("device_detection_portal"); ok {
+	if v, ok := d.GetOk("device_detection_portal"); ok || d.HasChange("device_detection_portal") {
 		t, err := expandObjectSystemReplacemsgGroupDeviceDetectionPortal(d, v, "device_detection_portal")
 		if err != nil {
 			return &obj, err
@@ -5644,7 +5644,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ec"); ok {
+	if v, ok := d.GetOk("ec"); ok || d.HasChange("ec") {
 		t, err := expandObjectSystemReplacemsgGroupEc(d, v, "ec")
 		if err != nil {
 			return &obj, err
@@ -5653,7 +5653,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fortiguard_wf"); ok {
+	if v, ok := d.GetOk("fortiguard_wf"); ok || d.HasChange("fortiguard_wf") {
 		t, err := expandObjectSystemReplacemsgGroupFortiguardWf(d, v, "fortiguard_wf")
 		if err != nil {
 			return &obj, err
@@ -5662,7 +5662,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("ftp"); ok {
+	if v, ok := d.GetOk("ftp"); ok || d.HasChange("ftp") {
 		t, err := expandObjectSystemReplacemsgGroupFtp(d, v, "ftp")
 		if err != nil {
 			return &obj, err
@@ -5671,7 +5671,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("group_type"); ok {
+	if v, ok := d.GetOk("group_type"); ok || d.HasChange("group_type") {
 		t, err := expandObjectSystemReplacemsgGroupGroupType(d, v, "group_type")
 		if err != nil {
 			return &obj, err
@@ -5680,7 +5680,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("http"); ok {
+	if v, ok := d.GetOk("http"); ok || d.HasChange("http") {
 		t, err := expandObjectSystemReplacemsgGroupHttp(d, v, "http")
 		if err != nil {
 			return &obj, err
@@ -5689,7 +5689,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("icap"); ok {
+	if v, ok := d.GetOk("icap"); ok || d.HasChange("icap") {
 		t, err := expandObjectSystemReplacemsgGroupIcap(d, v, "icap")
 		if err != nil {
 			return &obj, err
@@ -5698,7 +5698,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mail"); ok {
+	if v, ok := d.GetOk("mail"); ok || d.HasChange("mail") {
 		t, err := expandObjectSystemReplacemsgGroupMail(d, v, "mail")
 		if err != nil {
 			return &obj, err
@@ -5707,7 +5707,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mm1"); ok {
+	if v, ok := d.GetOk("mm1"); ok || d.HasChange("mm1") {
 		t, err := expandObjectSystemReplacemsgGroupMm1(d, v, "mm1")
 		if err != nil {
 			return &obj, err
@@ -5716,7 +5716,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mm3"); ok {
+	if v, ok := d.GetOk("mm3"); ok || d.HasChange("mm3") {
 		t, err := expandObjectSystemReplacemsgGroupMm3(d, v, "mm3")
 		if err != nil {
 			return &obj, err
@@ -5725,7 +5725,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mm4"); ok {
+	if v, ok := d.GetOk("mm4"); ok || d.HasChange("mm4") {
 		t, err := expandObjectSystemReplacemsgGroupMm4(d, v, "mm4")
 		if err != nil {
 			return &obj, err
@@ -5734,7 +5734,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mm7"); ok {
+	if v, ok := d.GetOk("mm7"); ok || d.HasChange("mm7") {
 		t, err := expandObjectSystemReplacemsgGroupMm7(d, v, "mm7")
 		if err != nil {
 			return &obj, err
@@ -5743,7 +5743,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("mms"); ok {
+	if v, ok := d.GetOk("mms"); ok || d.HasChange("mms") {
 		t, err := expandObjectSystemReplacemsgGroupMms(d, v, "mms")
 		if err != nil {
 			return &obj, err
@@ -5752,7 +5752,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("nac_quar"); ok {
+	if v, ok := d.GetOk("nac_quar"); ok || d.HasChange("nac_quar") {
 		t, err := expandObjectSystemReplacemsgGroupNacQuar(d, v, "nac_quar")
 		if err != nil {
 			return &obj, err
@@ -5761,7 +5761,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSystemReplacemsgGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -5770,7 +5770,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("nntp"); ok {
+	if v, ok := d.GetOk("nntp"); ok || d.HasChange("nntp") {
 		t, err := expandObjectSystemReplacemsgGroupNntp(d, v, "nntp")
 		if err != nil {
 			return &obj, err
@@ -5779,7 +5779,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("spam"); ok {
+	if v, ok := d.GetOk("spam"); ok || d.HasChange("spam") {
 		t, err := expandObjectSystemReplacemsgGroupSpam(d, v, "spam")
 		if err != nil {
 			return &obj, err
@@ -5788,7 +5788,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("sslvpn"); ok {
+	if v, ok := d.GetOk("sslvpn"); ok || d.HasChange("sslvpn") {
 		t, err := expandObjectSystemReplacemsgGroupSslvpn(d, v, "sslvpn")
 		if err != nil {
 			return &obj, err
@@ -5797,7 +5797,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("traffic_quota"); ok {
+	if v, ok := d.GetOk("traffic_quota"); ok || d.HasChange("traffic_quota") {
 		t, err := expandObjectSystemReplacemsgGroupTrafficQuota(d, v, "traffic_quota")
 		if err != nil {
 			return &obj, err
@@ -5806,7 +5806,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("utm"); ok {
+	if v, ok := d.GetOk("utm"); ok || d.HasChange("utm") {
 		t, err := expandObjectSystemReplacemsgGroupUtm(d, v, "utm")
 		if err != nil {
 			return &obj, err
@@ -5815,7 +5815,7 @@ func getObjectObjectSystemReplacemsgGroup(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("webproxy"); ok {
+	if v, ok := d.GetOk("webproxy"); ok || d.HasChange("webproxy") {
 		t, err := expandObjectSystemReplacemsgGroupWebproxy(d, v, "webproxy")
 		if err != nil {
 			return &obj, err

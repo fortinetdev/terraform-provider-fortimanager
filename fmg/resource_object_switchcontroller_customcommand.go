@@ -244,7 +244,7 @@ func expandObjectSwitchControllerCustomCommandDescription(d *schema.ResourceData
 func getObjectObjectSwitchControllerCustomCommand(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("command"); ok {
+	if v, ok := d.GetOk("command"); ok || d.HasChange("command") {
 		t, err := expandObjectSwitchControllerCustomCommandCommand(d, v, "command")
 		if err != nil {
 			return &obj, err
@@ -253,7 +253,7 @@ func getObjectObjectSwitchControllerCustomCommand(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("command_name"); ok {
+	if v, ok := d.GetOk("command_name"); ok || d.HasChange("command_name") {
 		t, err := expandObjectSwitchControllerCustomCommandCommandName(d, v, "command_name")
 		if err != nil {
 			return &obj, err
@@ -262,7 +262,7 @@ func getObjectObjectSwitchControllerCustomCommand(d *schema.ResourceData) (*map[
 		}
 	}
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectSwitchControllerCustomCommandDescription(d, v, "description")
 		if err != nil {
 			return &obj, err

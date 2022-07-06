@@ -185,7 +185,7 @@ func expandFmupdateFdsSettingPushOverrideStatus(d *schema.ResourceData, v interf
 func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("ip"); ok {
+	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandFmupdateFdsSettingPushOverrideIp(d, v, "ip")
 		if err != nil {
 			return &obj, err
@@ -194,7 +194,7 @@ func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("port"); ok {
+	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandFmupdateFdsSettingPushOverridePort(d, v, "port")
 		if err != nil {
 			return &obj, err
@@ -203,7 +203,7 @@ func getObjectFmupdateFdsSettingPushOverride(d *schema.ResourceData) (*map[strin
 		}
 	}
 
-	if v, ok := d.GetOk("status"); ok {
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
 		t, err := expandFmupdateFdsSettingPushOverrideStatus(d, v, "status")
 		if err != nil {
 			return &obj, err

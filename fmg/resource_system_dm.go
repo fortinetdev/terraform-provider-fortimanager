@@ -668,7 +668,7 @@ func expandSystemDmVerifyInstall(d *schema.ResourceData, v interface{}, pre stri
 func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("concurrent_install_image_limit"); ok {
+	if v, ok := d.GetOk("concurrent_install_image_limit"); ok || d.HasChange("concurrent_install_image_limit") {
 		t, err := expandSystemDmConcurrentInstallImageLimit(d, v, "concurrent_install_image_limit")
 		if err != nil {
 			return &obj, err
@@ -677,7 +677,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("concurrent_install_limit"); ok {
+	if v, ok := d.GetOk("concurrent_install_limit"); ok || d.HasChange("concurrent_install_limit") {
 		t, err := expandSystemDmConcurrentInstallLimit(d, v, "concurrent_install_limit")
 		if err != nil {
 			return &obj, err
@@ -686,7 +686,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("concurrent_install_script_limit"); ok {
+	if v, ok := d.GetOk("concurrent_install_script_limit"); ok || d.HasChange("concurrent_install_script_limit") {
 		t, err := expandSystemDmConcurrentInstallScriptLimit(d, v, "concurrent_install_script_limit")
 		if err != nil {
 			return &obj, err
@@ -695,7 +695,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("conf_merge_after_script"); ok {
+	if v, ok := d.GetOk("conf_merge_after_script"); ok || d.HasChange("conf_merge_after_script") {
 		t, err := expandSystemDmConfMergeAfterScript(d, v, "conf_merge_after_script")
 		if err != nil {
 			return &obj, err
@@ -704,7 +704,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("discover_timeout"); ok {
+	if v, ok := d.GetOk("discover_timeout"); ok || d.HasChange("discover_timeout") {
 		t, err := expandSystemDmDiscoverTimeout(d, v, "discover_timeout")
 		if err != nil {
 			return &obj, err
@@ -713,7 +713,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("dpm_logsize"); ok {
+	if v, ok := d.GetOk("dpm_logsize"); ok || d.HasChange("dpm_logsize") {
 		t, err := expandSystemDmDpmLogsize(d, v, "dpm_logsize")
 		if err != nil {
 			return &obj, err
@@ -722,7 +722,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("fgfm_install_refresh_count"); ok {
+	if v, ok := d.GetOk("fgfm_install_refresh_count"); ok || d.HasChange("fgfm_install_refresh_count") {
 		t, err := expandSystemDmFgfmInstallRefreshCount(d, v, "fgfm_install_refresh_count")
 		if err != nil {
 			return &obj, err
@@ -731,7 +731,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("fgfm_sock_timeout"); ok {
+	if v, ok := d.GetOk("fgfm_sock_timeout"); ok || d.HasChange("fgfm_sock_timeout") {
 		t, err := expandSystemDmFgfmSockTimeout(d, v, "fgfm_sock_timeout")
 		if err != nil {
 			return &obj, err
@@ -740,7 +740,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("fgfm_keepalive_itvl"); ok {
+	if v, ok := d.GetOk("fgfm_keepalive_itvl"); ok || d.HasChange("fgfm_keepalive_itvl") {
 		t, err := expandSystemDmFgfmKeepaliveItvl(d, v, "fgfm_keepalive_itvl")
 		if err != nil {
 			return &obj, err
@@ -749,7 +749,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("force_remote_diff"); ok {
+	if v, ok := d.GetOk("force_remote_diff"); ok || d.HasChange("force_remote_diff") {
 		t, err := expandSystemDmForceRemoteDiff(d, v, "force_remote_diff")
 		if err != nil {
 			return &obj, err
@@ -758,7 +758,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("fortiap_refresh_cnt"); ok {
+	if v, ok := d.GetOk("fortiap_refresh_cnt"); ok || d.HasChange("fortiap_refresh_cnt") {
 		t, err := expandSystemDmFortiapRefreshCnt(d, v, "fortiap_refresh_cnt")
 		if err != nil {
 			return &obj, err
@@ -767,7 +767,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("fortiap_refresh_itvl"); ok {
+	if v, ok := d.GetOk("fortiap_refresh_itvl"); ok || d.HasChange("fortiap_refresh_itvl") {
 		t, err := expandSystemDmFortiapRefreshItvl(d, v, "fortiap_refresh_itvl")
 		if err != nil {
 			return &obj, err
@@ -776,7 +776,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("fortiext_refresh_cnt"); ok {
+	if v, ok := d.GetOk("fortiext_refresh_cnt"); ok || d.HasChange("fortiext_refresh_cnt") {
 		t, err := expandSystemDmFortiextRefreshCnt(d, v, "fortiext_refresh_cnt")
 		if err != nil {
 			return &obj, err
@@ -785,7 +785,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("install_image_timeout"); ok {
+	if v, ok := d.GetOk("install_image_timeout"); ok || d.HasChange("install_image_timeout") {
 		t, err := expandSystemDmInstallImageTimeout(d, v, "install_image_timeout")
 		if err != nil {
 			return &obj, err
@@ -794,7 +794,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("install_tunnel_retry_itvl"); ok {
+	if v, ok := d.GetOk("install_tunnel_retry_itvl"); ok || d.HasChange("install_tunnel_retry_itvl") {
 		t, err := expandSystemDmInstallTunnelRetryItvl(d, v, "install_tunnel_retry_itvl")
 		if err != nil {
 			return &obj, err
@@ -803,7 +803,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("max_revs"); ok {
+	if v, ok := d.GetOk("max_revs"); ok || d.HasChange("max_revs") {
 		t, err := expandSystemDmMaxRevs(d, v, "max_revs")
 		if err != nil {
 			return &obj, err
@@ -812,7 +812,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("nr_retry"); ok {
+	if v, ok := d.GetOk("nr_retry"); ok || d.HasChange("nr_retry") {
 		t, err := expandSystemDmNrRetry(d, v, "nr_retry")
 		if err != nil {
 			return &obj, err
@@ -821,7 +821,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("retry"); ok {
+	if v, ok := d.GetOk("retry"); ok || d.HasChange("retry") {
 		t, err := expandSystemDmRetry(d, v, "retry")
 		if err != nil {
 			return &obj, err
@@ -830,7 +830,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("retry_intvl"); ok {
+	if v, ok := d.GetOk("retry_intvl"); ok || d.HasChange("retry_intvl") {
 		t, err := expandSystemDmRetryIntvl(d, v, "retry_intvl")
 		if err != nil {
 			return &obj, err
@@ -839,7 +839,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("rollback_allow_reboot"); ok {
+	if v, ok := d.GetOk("rollback_allow_reboot"); ok || d.HasChange("rollback_allow_reboot") {
 		t, err := expandSystemDmRollbackAllowReboot(d, v, "rollback_allow_reboot")
 		if err != nil {
 			return &obj, err
@@ -848,7 +848,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("script_logsize"); ok {
+	if v, ok := d.GetOk("script_logsize"); ok || d.HasChange("script_logsize") {
 		t, err := expandSystemDmScriptLogsize(d, v, "script_logsize")
 		if err != nil {
 			return &obj, err
@@ -857,7 +857,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("skip_scep_check"); ok {
+	if v, ok := d.GetOk("skip_scep_check"); ok || d.HasChange("skip_scep_check") {
 		t, err := expandSystemDmSkipScepCheck(d, v, "skip_scep_check")
 		if err != nil {
 			return &obj, err
@@ -866,7 +866,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("skip_tunnel_fcp_req"); ok {
+	if v, ok := d.GetOk("skip_tunnel_fcp_req"); ok || d.HasChange("skip_tunnel_fcp_req") {
 		t, err := expandSystemDmSkipTunnelFcpReq(d, v, "skip_tunnel_fcp_req")
 		if err != nil {
 			return &obj, err
@@ -875,7 +875,7 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
-	if v, ok := d.GetOk("verify_install"); ok {
+	if v, ok := d.GetOk("verify_install"); ok || d.HasChange("verify_install") {
 		t, err := expandSystemDmVerifyInstall(d, v, "verify_install")
 		if err != nil {
 			return &obj, err

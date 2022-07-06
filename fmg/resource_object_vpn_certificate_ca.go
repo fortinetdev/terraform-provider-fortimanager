@@ -474,7 +474,7 @@ func expandObjectVpnCertificateCaSslInspectionTrusted(d *schema.ResourceData, v 
 func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("_private_key"); ok {
+	if v, ok := d.GetOk("_private_key"); ok || d.HasChange("_private_key") {
 		t, err := expandObjectVpnCertificateCaPrivateKey(d, v, "_private_key")
 		if err != nil {
 			return &obj, err
@@ -483,7 +483,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("auto_update_days"); ok {
+	if v, ok := d.GetOk("auto_update_days"); ok || d.HasChange("auto_update_days") {
 		t, err := expandObjectVpnCertificateCaAutoUpdateDays(d, v, "auto_update_days")
 		if err != nil {
 			return &obj, err
@@ -492,7 +492,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("auto_update_days_warning"); ok {
+	if v, ok := d.GetOk("auto_update_days_warning"); ok || d.HasChange("auto_update_days_warning") {
 		t, err := expandObjectVpnCertificateCaAutoUpdateDaysWarning(d, v, "auto_update_days_warning")
 		if err != nil {
 			return &obj, err
@@ -501,7 +501,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ca"); ok {
+	if v, ok := d.GetOk("ca"); ok || d.HasChange("ca") {
 		t, err := expandObjectVpnCertificateCaCa(d, v, "ca")
 		if err != nil {
 			return &obj, err
@@ -510,7 +510,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ca_identifier"); ok {
+	if v, ok := d.GetOk("ca_identifier"); ok || d.HasChange("ca_identifier") {
 		t, err := expandObjectVpnCertificateCaCaIdentifier(d, v, "ca_identifier")
 		if err != nil {
 			return &obj, err
@@ -519,7 +519,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("last_updated"); ok {
+	if v, ok := d.GetOk("last_updated"); ok || d.HasChange("last_updated") {
 		t, err := expandObjectVpnCertificateCaLastUpdated(d, v, "last_updated")
 		if err != nil {
 			return &obj, err
@@ -528,7 +528,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectVpnCertificateCaName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -537,7 +537,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("range"); ok {
+	if v, ok := d.GetOk("range"); ok || d.HasChange("range") {
 		t, err := expandObjectVpnCertificateCaRange(d, v, "range")
 		if err != nil {
 			return &obj, err
@@ -546,7 +546,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("scep_url"); ok {
+	if v, ok := d.GetOk("scep_url"); ok || d.HasChange("scep_url") {
 		t, err := expandObjectVpnCertificateCaScepUrl(d, v, "scep_url")
 		if err != nil {
 			return &obj, err
@@ -555,7 +555,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("source"); ok {
+	if v, ok := d.GetOk("source"); ok || d.HasChange("source") {
 		t, err := expandObjectVpnCertificateCaSource(d, v, "source")
 		if err != nil {
 			return &obj, err
@@ -564,7 +564,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("source_ip"); ok {
+	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectVpnCertificateCaSourceIp(d, v, "source_ip")
 		if err != nil {
 			return &obj, err
@@ -573,7 +573,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("trusted"); ok {
+	if v, ok := d.GetOk("trusted"); ok || d.HasChange("trusted") {
 		t, err := expandObjectVpnCertificateCaTrusted(d, v, "trusted")
 		if err != nil {
 			return &obj, err
@@ -582,7 +582,7 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("ssl_inspection_trusted"); ok {
+	if v, ok := d.GetOk("ssl_inspection_trusted"); ok || d.HasChange("ssl_inspection_trusted") {
 		t, err := expandObjectVpnCertificateCaSslInspectionTrusted(d, v, "ssl_inspection_trusted")
 		if err != nil {
 			return &obj, err

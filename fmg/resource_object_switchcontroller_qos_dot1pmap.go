@@ -428,7 +428,7 @@ func expandObjectSwitchControllerQosDot1PMapPriority7(d *schema.ResourceData, v 
 func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("description"); ok {
+	if v, ok := d.GetOk("description"); ok || d.HasChange("description") {
 		t, err := expandObjectSwitchControllerQosDot1PMapDescription(d, v, "description")
 		if err != nil {
 			return &obj, err
@@ -437,7 +437,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("egress_pri_tagging"); ok {
+	if v, ok := d.GetOk("egress_pri_tagging"); ok || d.HasChange("egress_pri_tagging") {
 		t, err := expandObjectSwitchControllerQosDot1PMapEgressPriTagging(d, v, "egress_pri_tagging")
 		if err != nil {
 			return &obj, err
@@ -446,7 +446,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectSwitchControllerQosDot1PMapName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -455,7 +455,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_0"); ok {
+	if v, ok := d.GetOk("priority_0"); ok || d.HasChange("priority_0") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority0(d, v, "priority_0")
 		if err != nil {
 			return &obj, err
@@ -464,7 +464,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_1"); ok {
+	if v, ok := d.GetOk("priority_1"); ok || d.HasChange("priority_1") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority1(d, v, "priority_1")
 		if err != nil {
 			return &obj, err
@@ -473,7 +473,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_2"); ok {
+	if v, ok := d.GetOk("priority_2"); ok || d.HasChange("priority_2") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority2(d, v, "priority_2")
 		if err != nil {
 			return &obj, err
@@ -482,7 +482,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_3"); ok {
+	if v, ok := d.GetOk("priority_3"); ok || d.HasChange("priority_3") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority3(d, v, "priority_3")
 		if err != nil {
 			return &obj, err
@@ -491,7 +491,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_4"); ok {
+	if v, ok := d.GetOk("priority_4"); ok || d.HasChange("priority_4") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority4(d, v, "priority_4")
 		if err != nil {
 			return &obj, err
@@ -500,7 +500,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_5"); ok {
+	if v, ok := d.GetOk("priority_5"); ok || d.HasChange("priority_5") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority5(d, v, "priority_5")
 		if err != nil {
 			return &obj, err
@@ -509,7 +509,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_6"); ok {
+	if v, ok := d.GetOk("priority_6"); ok || d.HasChange("priority_6") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority6(d, v, "priority_6")
 		if err != nil {
 			return &obj, err
@@ -518,7 +518,7 @@ func getObjectObjectSwitchControllerQosDot1PMap(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("priority_7"); ok {
+	if v, ok := d.GetOk("priority_7"); ok || d.HasChange("priority_7") {
 		t, err := expandObjectSwitchControllerQosDot1PMapPriority7(d, v, "priority_7")
 		if err != nil {
 			return &obj, err

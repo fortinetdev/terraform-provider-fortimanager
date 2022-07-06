@@ -291,7 +291,7 @@ func expandObjectFirewallVipgrp64Uuid(d *schema.ResourceData, v interface{}, pre
 func getObjectObjectFirewallVipgrp64(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallVipgrp64Color(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -300,7 +300,7 @@ func getObjectObjectFirewallVipgrp64(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("comments"); ok {
+	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
 		t, err := expandObjectFirewallVipgrp64Comments(d, v, "comments")
 		if err != nil {
 			return &obj, err
@@ -309,7 +309,7 @@ func getObjectObjectFirewallVipgrp64(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallVipgrp64Member(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -318,7 +318,7 @@ func getObjectObjectFirewallVipgrp64(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallVipgrp64Name(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -327,7 +327,7 @@ func getObjectObjectFirewallVipgrp64(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("uuid"); ok {
+	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
 		t, err := expandObjectFirewallVipgrp64Uuid(d, v, "uuid")
 		if err != nil {
 			return &obj, err

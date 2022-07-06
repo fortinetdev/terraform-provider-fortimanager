@@ -158,7 +158,7 @@ func expandDvmCmdUpdateDeviceFlags(d *schema.ResourceData, v interface{}, pre st
 func getObjectDvmCmdUpdateDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
 		t, err := expandDvmCmdUpdateDeviceAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
@@ -167,7 +167,7 @@ func getObjectDvmCmdUpdateDevice(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("device"); ok {
+	if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
 		t, err := expandDvmCmdUpdateDeviceDevice(d, v, "device")
 		if err != nil {
 			return &obj, err
@@ -176,7 +176,7 @@ func getObjectDvmCmdUpdateDevice(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
-	if v, ok := d.GetOk("flags"); ok {
+	if v, ok := d.GetOk("flags"); ok || d.HasChange("flags") {
 		t, err := expandDvmCmdUpdateDeviceFlags(d, v, "flags")
 		if err != nil {
 			return &obj, err

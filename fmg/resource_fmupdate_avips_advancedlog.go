@@ -162,7 +162,7 @@ func expandFmupdateAvIpsAdvancedLogLogServer(d *schema.ResourceData, v interface
 func getObjectFmupdateAvIpsAdvancedLog(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("log_fortigate"); ok {
+	if v, ok := d.GetOk("log_fortigate"); ok || d.HasChange("log_fortigate") {
 		t, err := expandFmupdateAvIpsAdvancedLogLogFortigate(d, v, "log_fortigate")
 		if err != nil {
 			return &obj, err
@@ -171,7 +171,7 @@ func getObjectFmupdateAvIpsAdvancedLog(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
-	if v, ok := d.GetOk("log_server"); ok {
+	if v, ok := d.GetOk("log_server"); ok || d.HasChange("log_server") {
 		t, err := expandFmupdateAvIpsAdvancedLogLogServer(d, v, "log_server")
 		if err != nil {
 			return &obj, err

@@ -337,7 +337,7 @@ func expandObjectFirewallServiceGroupProxy(d *schema.ResourceData, v interface{}
 func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("color"); ok {
+	if v, ok := d.GetOk("color"); ok || d.HasChange("color") {
 		t, err := expandObjectFirewallServiceGroupColor(d, v, "color")
 		if err != nil {
 			return &obj, err
@@ -346,7 +346,7 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallServiceGroupComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -355,7 +355,7 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallServiceGroupFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -364,7 +364,7 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallServiceGroupGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -373,7 +373,7 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("member"); ok {
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
 		t, err := expandObjectFirewallServiceGroupMember(d, v, "member")
 		if err != nil {
 			return &obj, err
@@ -382,7 +382,7 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallServiceGroupName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -391,7 +391,7 @@ func getObjectObjectFirewallServiceGroup(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
-	if v, ok := d.GetOk("proxy"); ok {
+	if v, ok := d.GetOk("proxy"); ok || d.HasChange("proxy") {
 		t, err := expandObjectFirewallServiceGroupProxy(d, v, "proxy")
 		if err != nil {
 			return &obj, err

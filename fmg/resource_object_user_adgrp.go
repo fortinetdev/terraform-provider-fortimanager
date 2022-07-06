@@ -267,7 +267,7 @@ func expandObjectUserAdgrpServerName(d *schema.ResourceData, v interface{}, pre 
 func getObjectObjectUserAdgrp(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("connector_source"); ok {
+	if v, ok := d.GetOk("connector_source"); ok || d.HasChange("connector_source") {
 		t, err := expandObjectUserAdgrpConnectorSource(d, v, "connector_source")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectUserAdgrp(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectUserAdgrpId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectUserAdgrp(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserAdgrpName(d, v, "name")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectUserAdgrp(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("server_name"); ok {
+	if v, ok := d.GetOk("server_name"); ok || d.HasChange("server_name") {
 		t, err := expandObjectUserAdgrpServerName(d, v, "server_name")
 		if err != nil {
 			return &obj, err

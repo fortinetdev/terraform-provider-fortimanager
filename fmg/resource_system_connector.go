@@ -231,7 +231,7 @@ func expandSystemConnectorPxSvrTimeout(d *schema.ResourceData, v interface{}, pr
 func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("conn_refresh_interval"); ok {
+	if v, ok := d.GetOk("conn_refresh_interval"); ok || d.HasChange("conn_refresh_interval") {
 		t, err := expandSystemConnectorConnRefreshInterval(d, v, "conn_refresh_interval")
 		if err != nil {
 			return &obj, err
@@ -240,7 +240,7 @@ func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fsso_refresh_interval"); ok {
+	if v, ok := d.GetOk("fsso_refresh_interval"); ok || d.HasChange("fsso_refresh_interval") {
 		t, err := expandSystemConnectorFssoRefreshInterval(d, v, "fsso_refresh_interval")
 		if err != nil {
 			return &obj, err
@@ -249,7 +249,7 @@ func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("fsso_sess_timeout"); ok {
+	if v, ok := d.GetOk("fsso_sess_timeout"); ok || d.HasChange("fsso_sess_timeout") {
 		t, err := expandSystemConnectorFssoSessTimeout(d, v, "fsso_sess_timeout")
 		if err != nil {
 			return &obj, err
@@ -258,7 +258,7 @@ func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("px_refresh_interval"); ok {
+	if v, ok := d.GetOk("px_refresh_interval"); ok || d.HasChange("px_refresh_interval") {
 		t, err := expandSystemConnectorPxRefreshInterval(d, v, "px_refresh_interval")
 		if err != nil {
 			return &obj, err
@@ -267,7 +267,7 @@ func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
-	if v, ok := d.GetOk("px_svr_timeout"); ok {
+	if v, ok := d.GetOk("px_svr_timeout"); ok || d.HasChange("px_svr_timeout") {
 		t, err := expandSystemConnectorPxSvrTimeout(d, v, "px_svr_timeout")
 		if err != nil {
 			return &obj, err

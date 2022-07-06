@@ -359,7 +359,7 @@ func expandObjectLogNpuServerServerInfoVdom(d *schema.ResourceData, v interface{
 func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("dest_port"); ok {
+	if v, ok := d.GetOk("dest_port"); ok || d.HasChange("dest_port") {
 		t, err := expandObjectLogNpuServerServerInfoDestPort(d, v, "dest_port")
 		if err != nil {
 			return &obj, err
@@ -368,7 +368,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
 		t, err := expandObjectLogNpuServerServerInfoId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
@@ -377,7 +377,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("ip_family"); ok {
+	if v, ok := d.GetOk("ip_family"); ok || d.HasChange("ip_family") {
 		t, err := expandObjectLogNpuServerServerInfoIpFamily(d, v, "ip_family")
 		if err != nil {
 			return &obj, err
@@ -386,7 +386,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("ipv4_server"); ok {
+	if v, ok := d.GetOk("ipv4_server"); ok || d.HasChange("ipv4_server") {
 		t, err := expandObjectLogNpuServerServerInfoIpv4Server(d, v, "ipv4_server")
 		if err != nil {
 			return &obj, err
@@ -395,7 +395,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("ipv6_server"); ok {
+	if v, ok := d.GetOk("ipv6_server"); ok || d.HasChange("ipv6_server") {
 		t, err := expandObjectLogNpuServerServerInfoIpv6Server(d, v, "ipv6_server")
 		if err != nil {
 			return &obj, err
@@ -404,7 +404,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("source_port"); ok {
+	if v, ok := d.GetOk("source_port"); ok || d.HasChange("source_port") {
 		t, err := expandObjectLogNpuServerServerInfoSourcePort(d, v, "source_port")
 		if err != nil {
 			return &obj, err
@@ -413,7 +413,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("template_tx_timeout"); ok {
+	if v, ok := d.GetOk("template_tx_timeout"); ok || d.HasChange("template_tx_timeout") {
 		t, err := expandObjectLogNpuServerServerInfoTemplateTxTimeout(d, v, "template_tx_timeout")
 		if err != nil {
 			return &obj, err
@@ -422,7 +422,7 @@ func getObjectObjectLogNpuServerServerInfo(d *schema.ResourceData) (*map[string]
 		}
 	}
 
-	if v, ok := d.GetOk("vdom"); ok {
+	if v, ok := d.GetOk("vdom"); ok || d.HasChange("vdom") {
 		t, err := expandObjectLogNpuServerServerInfoVdom(d, v, "vdom")
 		if err != nil {
 			return &obj, err

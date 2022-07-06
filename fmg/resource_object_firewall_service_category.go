@@ -267,7 +267,7 @@ func expandObjectFirewallServiceCategoryName(d *schema.ResourceData, v interface
 func getObjectObjectFirewallServiceCategory(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("comment"); ok {
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
 		t, err := expandObjectFirewallServiceCategoryComment(d, v, "comment")
 		if err != nil {
 			return &obj, err
@@ -276,7 +276,7 @@ func getObjectObjectFirewallServiceCategory(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("fabric_object"); ok {
+	if v, ok := d.GetOk("fabric_object"); ok || d.HasChange("fabric_object") {
 		t, err := expandObjectFirewallServiceCategoryFabricObject(d, v, "fabric_object")
 		if err != nil {
 			return &obj, err
@@ -285,7 +285,7 @@ func getObjectObjectFirewallServiceCategory(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("global_object"); ok {
+	if v, ok := d.GetOk("global_object"); ok || d.HasChange("global_object") {
 		t, err := expandObjectFirewallServiceCategoryGlobalObject(d, v, "global_object")
 		if err != nil {
 			return &obj, err
@@ -294,7 +294,7 @@ func getObjectObjectFirewallServiceCategory(d *schema.ResourceData) (*map[string
 		}
 	}
 
-	if v, ok := d.GetOk("name"); ok {
+	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectFirewallServiceCategoryName(d, v, "name")
 		if err != nil {
 			return &obj, err
