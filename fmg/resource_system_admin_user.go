@@ -1246,7 +1246,7 @@ func flattenSystemAdminUserPassword(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenSystemAdminUserPasswordExpire(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convstrlist2str(v)
 }
 
 func flattenSystemAdminUserPhoneNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -781,8 +781,8 @@ func flattenSystemLogSettingsRollingAnalyzerSlsa(v interface{}, d *schema.Resour
 	pre_append = pre + ".0." + "password"
 	if _, ok := i["password"]; ok {
 		result["password"] = flattenSystemLogSettingsRollingAnalyzerPasswordSlsa(i["password"], d, pre_append)
-		c := d.Get(pre_append).(string)
-		if c != "" {
+		c := d.Get(pre_append).(*schema.Set)
+		if c.Len() > 0 {
 			result["password"] = c
 		}
 	}
@@ -1041,8 +1041,8 @@ func flattenSystemLogSettingsRollingLocalSlsa(v interface{}, d *schema.ResourceD
 	pre_append = pre + ".0." + "password"
 	if _, ok := i["password"]; ok {
 		result["password"] = flattenSystemLogSettingsRollingLocalPasswordSlsa(i["password"], d, pre_append)
-		c := d.Get(pre_append).(string)
-		if c != "" {
+		c := d.Get(pre_append).(*schema.Set)
+		if c.Len() > 0 {
 			result["password"] = c
 		}
 	}

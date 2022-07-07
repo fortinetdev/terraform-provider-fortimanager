@@ -125,10 +125,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Computed: true,
 			},
 			"datamask_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"datamask_unmasked_time": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -883,43 +884,43 @@ func flattenSystemAdminProfileTriageEvents(v interface{}, d *schema.ResourceData
 }
 
 func flattenSystemAdminProfileTrusthost1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost10(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost5(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost7(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost8(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileTrusthost9(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenSystemAdminProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1096,16 +1097,6 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading datamask_fields: %v", err)
-		}
-	}
-
-	if err = d.Set("datamask_key", flattenSystemAdminProfileDatamaskKey(o["datamask-key"], d, "datamask_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["datamask-key"], "SystemAdminProfile-DatamaskKey"); ok {
-			if err = d.Set("datamask_key", vv); err != nil {
-				return fmt.Errorf("Error reading datamask_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading datamask_key: %v", err)
 		}
 	}
 

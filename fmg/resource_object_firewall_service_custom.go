@@ -375,7 +375,7 @@ func flattenObjectFirewallServiceCustomSctpPortrange(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallServiceCustomSessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallServiceCustomTcpHalfcloseTimer(v interface{}, d *schema.ResourceData, pre string) interface{} {

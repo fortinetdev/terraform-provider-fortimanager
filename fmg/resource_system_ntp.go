@@ -201,8 +201,8 @@ func flattenSystemNtpNtpserverSna(v interface{}, d *schema.ResourceData, pre str
 		if _, ok := i["key"]; ok {
 			v := flattenSystemNtpNtpserverKeySna(i["key"], d, pre_append)
 			tmp["key"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Key")
-			c := d.Get(pre_append).(string)
-			if c != "" {
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
 				tmp["key"] = c
 			}
 		}

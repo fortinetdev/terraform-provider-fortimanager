@@ -406,6 +406,32 @@ func convintflist2str(v interface{}) interface{} {
 	return res
 }
 
+func convstrlist2str(v interface{}) interface{} {
+	res := ""
+	if _, ok := v.(string); ok {
+		return v
+	}
+	if t, ok := v.([]interface{}); ok {
+		if len(t) == 0 {
+			return res
+		}
+
+		bFirst := true
+		for _, v1 := range t {
+			if t1, ok := v1.(string); ok {
+				if bFirst == true {
+					res += t1
+					bFirst = false
+				} else {
+					res += " "
+					res += t1
+				}
+			}
+		}
+	}
+	return res
+}
+
 func intBetweenWithZero(min, max int) schema.SchemaValidateFunc {
 	return func(i interface{}, k string) (warnings []string, errors []error) {
 		v, ok := i.(int)
