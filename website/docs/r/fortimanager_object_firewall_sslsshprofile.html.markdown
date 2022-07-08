@@ -58,6 +58,8 @@ The following arguments are supported:
 * `ssl_anomaly_log` - Enable/disable logging SSL anomalies. Valid values: `disable`, `enable`.
 
 * `ssl_exempt` - Ssl-Exempt. The structure of `ssl_exempt` block is documented below.
+* `ssl_exemption_ip_rating` - Enable/disable IP based URL rating. Valid values: `disable`, `enable`.
+
 * `ssl_exemption_log` - Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.
 
 * `ssl_exemptions_log` - Enable/disable logging SSL exemptions. Valid values: `disable`, `enable`.

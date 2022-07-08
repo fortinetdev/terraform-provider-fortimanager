@@ -102,6 +102,11 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"scep_ca_identifier": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"scep_password": &schema.Schema{
 				Type:      schema.TypeSet,
 				Elem:      &schema.Schema{Type: schema.TypeString},
@@ -283,6 +288,10 @@ func flattenObjectCertificateTemplateOrganizationUnit(v interface{}, d *schema.R
 	return flattenStringList(v)
 }
 
+func flattenObjectCertificateTemplateScepCaIdentifier(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectCertificateTemplateScepPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -420,6 +429,16 @@ func refreshObjectObjectCertificateTemplate(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("scep_ca_identifier", flattenObjectCertificateTemplateScepCaIdentifier(o["scep-ca-identifier"], d, "scep_ca_identifier")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scep-ca-identifier"], "ObjectCertificateTemplate-ScepCaIdentifier"); ok {
+			if err = d.Set("scep_ca_identifier", vv); err != nil {
+				return fmt.Errorf("Error reading scep_ca_identifier: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scep_ca_identifier: %v", err)
+		}
+	}
+
 	if err = d.Set("scep_server", flattenObjectCertificateTemplateScepServer(o["scep-server"], d, "scep_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["scep-server"], "ObjectCertificateTemplate-ScepServer"); ok {
 			if err = d.Set("scep_server", vv); err != nil {
@@ -511,6 +530,10 @@ func expandObjectCertificateTemplateOrganization(d *schema.ResourceData, v inter
 
 func expandObjectCertificateTemplateOrganizationUnit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectCertificateTemplateScepCaIdentifier(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectCertificateTemplateScepPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -632,6 +655,15 @@ func getObjectObjectCertificateTemplate(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["organization-unit"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scep_ca_identifier"); ok || d.HasChange("scep_ca_identifier") {
+		t, err := expandObjectCertificateTemplateScepCaIdentifier(d, v, "scep_ca_identifier")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scep-ca-identifier"] = t
 		}
 	}
 

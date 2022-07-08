@@ -66,6 +66,11 @@ func resourceDvmCmdAddDevice() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"deviceblueprint": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"fazquota": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -235,6 +240,11 @@ func flattenDvmCmdAddDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 		result["deviceaction"] = flattenDvmCmdAddDeviceDeviceDeviceAction(i["device action"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "deviceblueprint"
+	if _, ok := i["device blueprint"]; ok {
+		result["deviceblueprint"] = flattenDvmCmdAddDeviceDeviceDeviceBlueprint(i["device blueprint"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "fazquota"
 	if _, ok := i["faz.quota"]; ok {
 		result["fazquota"] = flattenDvmCmdAddDeviceDeviceFazQuota(i["faz.quota"], d, pre_append)
@@ -312,6 +322,10 @@ func flattenDvmCmdAddDeviceDeviceDesc(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenDvmCmdAddDeviceDeviceDeviceAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmCmdAddDeviceDeviceDeviceBlueprint(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -530,6 +544,10 @@ func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre stri
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["device action"], _ = expandDvmCmdAddDeviceDeviceDeviceAction(d, i["deviceaction"], pre_append)
 	}
+	pre_append = pre + ".0." + "deviceblueprint"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["device blueprint"], _ = expandDvmCmdAddDeviceDeviceDeviceBlueprint(d, i["deviceblueprint"], pre_append)
+	}
 	pre_append = pre + ".0." + "fazquota"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["faz.quota"], _ = expandDvmCmdAddDeviceDeviceFazQuota(d, i["fazquota"], pre_append)
@@ -611,6 +629,10 @@ func expandDvmCmdAddDeviceDeviceDesc(d *schema.ResourceData, v interface{}, pre 
 }
 
 func expandDvmCmdAddDeviceDeviceDeviceAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmCmdAddDeviceDeviceDeviceBlueprint(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

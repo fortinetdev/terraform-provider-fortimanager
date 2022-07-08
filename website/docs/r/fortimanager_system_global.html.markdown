@@ -125,6 +125,8 @@ The following arguments are supported:
 
 * `ssl_static_key_ciphers` - Enable/disable SSL static key ciphers. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `table_entry_blink` - Enable/disable table entry blink in GUI disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `task_list_size` - Maximum number of completed tasks to keep.
 * `tftp` - Enable/disable TFTP in `exec restore image` command (disabled by default in FIPS mode) disable - Disable TFTP enable - Enable TFTP Valid values: `disable`, `enable`.
 

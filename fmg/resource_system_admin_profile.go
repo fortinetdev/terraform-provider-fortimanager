@@ -161,6 +161,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"device_fortiextender": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"device_fortiswitch": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -257,6 +262,11 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Computed: true,
 			},
 			"ips_filter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ips_objects": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -703,6 +713,10 @@ func flattenSystemAdminProfileDeviceForticlient(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenSystemAdminProfileDeviceFortiextender(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminProfileDeviceFortiswitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -780,6 +794,10 @@ func flattenSystemAdminProfileIpsBaselineOvrd(v interface{}, d *schema.ResourceD
 }
 
 func flattenSystemAdminProfileIpsFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminProfileIpsObjects(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1160,6 +1178,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("device_fortiextender", flattenSystemAdminProfileDeviceFortiextender(o["device-fortiextender"], d, "device_fortiextender")); err != nil {
+		if vv, ok := fortiAPIPatch(o["device-fortiextender"], "SystemAdminProfile-DeviceFortiextender"); ok {
+			if err = d.Set("device_fortiextender", vv); err != nil {
+				return fmt.Errorf("Error reading device_fortiextender: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading device_fortiextender: %v", err)
+		}
+	}
+
 	if err = d.Set("device_fortiswitch", flattenSystemAdminProfileDeviceFortiswitch(o["device-fortiswitch"], d, "device_fortiswitch")); err != nil {
 		if vv, ok := fortiAPIPatch(o["device-fortiswitch"], "SystemAdminProfile-DeviceFortiswitch"); ok {
 			if err = d.Set("device_fortiswitch", vv); err != nil {
@@ -1357,6 +1385,16 @@ func refreshObjectSystemAdminProfile(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading ips_filter: %v", err)
+		}
+	}
+
+	if err = d.Set("ips_objects", flattenSystemAdminProfileIpsObjects(o["ips-objects"], d, "ips_objects")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-objects"], "SystemAdminProfile-IpsObjects"); ok {
+			if err = d.Set("ips_objects", vv); err != nil {
+				return fmt.Errorf("Error reading ips_objects: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_objects: %v", err)
 		}
 	}
 
@@ -1899,6 +1937,10 @@ func expandSystemAdminProfileDeviceForticlient(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandSystemAdminProfileDeviceFortiextender(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminProfileDeviceFortiswitch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1976,6 +2018,10 @@ func expandSystemAdminProfileIpsBaselineOvrd(d *schema.ResourceData, v interface
 }
 
 func expandSystemAdminProfileIpsFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminProfileIpsObjects(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2327,6 +2373,15 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("device_fortiextender"); ok || d.HasChange("device_fortiextender") {
+		t, err := expandSystemAdminProfileDeviceFortiextender(d, v, "device_fortiextender")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["device-fortiextender"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("device_fortiswitch"); ok || d.HasChange("device_fortiswitch") {
 		t, err := expandSystemAdminProfileDeviceFortiswitch(d, v, "device_fortiswitch")
 		if err != nil {
@@ -2504,6 +2559,15 @@ func getObjectSystemAdminProfile(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["ips-filter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ips_objects"); ok || d.HasChange("ips_objects") {
+		t, err := expandSystemAdminProfileIpsObjects(d, v, "ips_objects")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-objects"] = t
 		}
 	}
 

@@ -131,6 +131,8 @@ The `ftp` block supports:
 
 The `http` block supports:
 
+* `address_ip_rating` - Enable/disable IP based URL rating. Valid values: `disable`, `enable`.
+
 * `block_page_status_code` - Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).

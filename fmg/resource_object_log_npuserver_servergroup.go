@@ -56,12 +56,22 @@ func resourceObjectLogNpuServerServerGroup() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"log_gen_event": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"log_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"log_tx_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"log_user_info": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -199,11 +209,19 @@ func flattenObjectLogNpuServerServerGroupLogFormat(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectLogNpuServerServerGroupLogGenEvent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectLogNpuServerServerGroupLogMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectLogNpuServerServerGroupLogTxMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectLogNpuServerServerGroupLogUserInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -246,6 +264,16 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("log_gen_event", flattenObjectLogNpuServerServerGroupLogGenEvent(o["log-gen-event"], d, "log_gen_event")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-gen-event"], "ObjectLogNpuServerServerGroup-LogGenEvent"); ok {
+			if err = d.Set("log_gen_event", vv); err != nil {
+				return fmt.Errorf("Error reading log_gen_event: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_gen_event: %v", err)
+		}
+	}
+
 	if err = d.Set("log_mode", flattenObjectLogNpuServerServerGroupLogMode(o["log-mode"], d, "log_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-mode"], "ObjectLogNpuServerServerGroup-LogMode"); ok {
 			if err = d.Set("log_mode", vv); err != nil {
@@ -263,6 +291,16 @@ func refreshObjectObjectLogNpuServerServerGroup(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading log_tx_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("log_user_info", flattenObjectLogNpuServerServerGroupLogUserInfo(o["log-user-info"], d, "log_user_info")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-user-info"], "ObjectLogNpuServerServerGroup-LogUserInfo"); ok {
+			if err = d.Set("log_user_info", vv); err != nil {
+				return fmt.Errorf("Error reading log_user_info: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_user_info: %v", err)
 		}
 	}
 
@@ -313,11 +351,19 @@ func expandObjectLogNpuServerServerGroupLogFormat(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectLogNpuServerServerGroupLogGenEvent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectLogNpuServerServerGroupLogMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectLogNpuServerServerGroupLogTxMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectLogNpuServerServerGroupLogUserInfo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -354,6 +400,15 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("log_gen_event"); ok || d.HasChange("log_gen_event") {
+		t, err := expandObjectLogNpuServerServerGroupLogGenEvent(d, v, "log_gen_event")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-gen-event"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("log_mode"); ok || d.HasChange("log_mode") {
 		t, err := expandObjectLogNpuServerServerGroupLogMode(d, v, "log_mode")
 		if err != nil {
@@ -369,6 +424,15 @@ func getObjectObjectLogNpuServerServerGroup(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["log-tx-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_user_info"); ok || d.HasChange("log_user_info") {
+		t, err := expandObjectLogNpuServerServerGroupLogUserInfo(d, v, "log_user_info")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-user-info"] = t
 		}
 	}
 

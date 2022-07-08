@@ -218,6 +218,11 @@ func resourceObjectUserRadius() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"delimiter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"dp_carrier_endpoint_attribute": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1072,6 +1077,12 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["class"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-Class")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "delimiter"
+		if _, ok := i["delimiter"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingDelimiter(i["delimiter"], d, pre_append)
+			tmp["delimiter"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-Delimiter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_carrier_endpoint_attribute"
 		if _, ok := i["dp-carrier-endpoint-attribute"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingDpCarrierEndpointAttribute(i["dp-carrier-endpoint-attribute"], d, pre_append)
@@ -1666,6 +1677,10 @@ func flattenObjectUserRadiusDynamicMappingAuthType(v interface{}, d *schema.Reso
 
 func flattenObjectUserRadiusDynamicMappingClass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectUserRadiusDynamicMappingDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectUserRadiusDynamicMappingDpCarrierEndpointAttribute(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2721,6 +2736,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["class"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "delimiter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["delimiter"], _ = expandObjectUserRadiusDynamicMappingDelimiter(d, i["delimiter"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_carrier_endpoint_attribute"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-carrier-endpoint-attribute"], _ = expandObjectUserRadiusDynamicMappingDpCarrierEndpointAttribute(d, i["dp_carrier_endpoint_attribute"], pre_append)
@@ -3244,6 +3264,10 @@ func expandObjectUserRadiusDynamicMappingAuthType(d *schema.ResourceData, v inte
 
 func expandObjectUserRadiusDynamicMappingClass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserRadiusDynamicMappingDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectUserRadiusDynamicMappingDpCarrierEndpointAttribute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

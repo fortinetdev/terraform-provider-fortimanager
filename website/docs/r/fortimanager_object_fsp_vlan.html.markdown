@@ -287,6 +287,8 @@ The `interface` block supports:
 
 * `dhcp_relay_agent_option` - Dhcp-Relay-Agent-Option. Valid values: `disable`, `enable`.
 
+* `dhcp_relay_interface_select_method` - Dhcp-Relay-Interface-Select-Method. Valid values: `auto`, `sdwan`, `specify`.
+
 * `dhcp_relay_ip` - Dhcp-Relay-Ip.
 * `dhcp_relay_service` - Dhcp-Relay-Service. Valid values: `disable`, `enable`.
 
@@ -526,6 +528,14 @@ The `interface` block supports:
 
 * `drop_overlapped_fragment` - Enable/disable drop overlapped fragment packets. Valid values: `disable`, `enable`.
 
+* `eap_ca_cert` - Eap-Ca-Cert.
+* `eap_identity` - Eap-Identity.
+* `eap_method` - Eap-Method. Valid values: `tls`, `peap`.
+
+* `eap_password` - Eap-Password.
+* `eap_supplicant` - Eap-Supplicant. Valid values: `disable`, `enable`.
+
+* `eap_user_cert` - Eap-User-Cert.
 * `egress_cos` - Override outgoing CoS in user VLAN tag. Valid values: `disable`, `cos0`, `cos1`, `cos2`, `cos3`, `cos4`, `cos5`, `cos6`, `cos7`.
 
 * `egress_shaping_profile` - Outgoing traffic shaping profile.
@@ -589,6 +599,7 @@ The `interface` block supports:
 
 * `if_media` - If-Media. Valid values: `auto`, `copper`, `fiber`.
 
+* `ike_saml_server` - Ike-Saml-Server.
 * `in_force_vlan_cos` - In-Force-Vlan-Cos.
 * `inbandwidth` - Bandwidth limit for incoming traffic (0 - 16776000 kbps), 0 means unlimited.
 * `ingress_cos` - Override incoming CoS in user VLAN tag on VLAN interface or assign a priority VLAN tag on physical interface. Valid values: `disable`, `cos0`, `cos1`, `cos2`, `cos3`, `cos4`, `cos5`, `cos6`, `cos7`.

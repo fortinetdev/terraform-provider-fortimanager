@@ -67,8 +67,10 @@ The `service_providers` block supports:
 * `idp_single_sign_on_url` - IDP single sign-on URL.
 * `name` - Name.
 * `prefix` - Prefix.
+* `sp_adom` - SP adom name.
 * `sp_cert` - SP certificate name.
 * `sp_entity_id` - SP Entity ID.
+* `sp_profile` - SP profile name.
 * `sp_single_logout_url` - SP single logout URL.
 * `sp_single_sign_on_url` - SP single sign-on URL.
 

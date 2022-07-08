@@ -420,6 +420,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"address_group_policy": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"alias": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -430,8 +435,18 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"application_detection_engine": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"application_list": &schema.Schema{
 							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"application_report_intv": &schema.Schema{
+							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
 						},
@@ -698,6 +713,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						},
 						"keyindex": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"l3_roaming": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -2430,6 +2450,12 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["address_group"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-AddressGroup")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "address_group_policy"
+		if _, ok := i["address-group-policy"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingAddressGroupPolicy(i["address-group-policy"], d, pre_append)
+			tmp["address_group_policy"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-AddressGroupPolicy")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "alias"
 		if _, ok := i["alias"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingAlias(i["alias"], d, pre_append)
@@ -2442,10 +2468,22 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["antivirus_profile"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-AntivirusProfile")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_detection_engine"
+		if _, ok := i["application-detection-engine"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingApplicationDetectionEngine(i["application-detection-engine"], d, pre_append)
+			tmp["application_detection_engine"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-ApplicationDetectionEngine")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_list"
 		if _, ok := i["application-list"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingApplicationList(i["application-list"], d, pre_append)
 			tmp["application_list"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-ApplicationList")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_report_intv"
+		if _, ok := i["application-report-intv"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingApplicationReportIntv(i["application-report-intv"], d, pre_append)
+			tmp["application_report_intv"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-ApplicationReportIntv")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "atf_weight"
@@ -2758,6 +2796,12 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 		if _, ok := i["keyindex"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingKeyindex(i["keyindex"], d, pre_append)
 			tmp["keyindex"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-Keyindex")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "l3_roaming"
+		if _, ok := i["l3-roaming"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingL3Roaming(i["l3-roaming"], d, pre_append)
+			tmp["l3_roaming"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-L3Roaming")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldpc"
@@ -3489,6 +3533,10 @@ func flattenObjectWirelessControllerVapDynamicMappingAddressGroup(v interface{},
 	return v
 }
 
+func flattenObjectWirelessControllerVapDynamicMappingAddressGroupPolicy(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerVapDynamicMappingAlias(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3497,7 +3545,15 @@ func flattenObjectWirelessControllerVapDynamicMappingAntivirusProfile(v interfac
 	return v
 }
 
+func flattenObjectWirelessControllerVapDynamicMappingApplicationDetectionEngine(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerVapDynamicMappingApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerVapDynamicMappingApplicationReportIntv(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3706,6 +3762,10 @@ func flattenObjectWirelessControllerVapDynamicMappingKey(v interface{}, d *schem
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingKeyindex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerVapDynamicMappingL3Roaming(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7097,6 +7157,11 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 			tmp["address-group"], _ = expandObjectWirelessControllerVapDynamicMappingAddressGroup(d, i["address_group"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "address_group_policy"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["address-group-policy"], _ = expandObjectWirelessControllerVapDynamicMappingAddressGroupPolicy(d, i["address_group_policy"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "alias"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["alias"], _ = expandObjectWirelessControllerVapDynamicMappingAlias(d, i["alias"], pre_append)
@@ -7107,9 +7172,19 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 			tmp["antivirus-profile"], _ = expandObjectWirelessControllerVapDynamicMappingAntivirusProfile(d, i["antivirus_profile"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_detection_engine"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["application-detection-engine"], _ = expandObjectWirelessControllerVapDynamicMappingApplicationDetectionEngine(d, i["application_detection_engine"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_list"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["application-list"], _ = expandObjectWirelessControllerVapDynamicMappingApplicationList(d, i["application_list"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application_report_intv"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["application-report-intv"], _ = expandObjectWirelessControllerVapDynamicMappingApplicationReportIntv(d, i["application_report_intv"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "atf_weight"
@@ -7382,6 +7457,11 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "keyindex"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["keyindex"], _ = expandObjectWirelessControllerVapDynamicMappingKeyindex(d, i["keyindex"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "l3_roaming"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["l3-roaming"], _ = expandObjectWirelessControllerVapDynamicMappingL3Roaming(d, i["l3_roaming"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ldpc"
@@ -8035,6 +8115,10 @@ func expandObjectWirelessControllerVapDynamicMappingAddressGroup(d *schema.Resou
 	return v, nil
 }
 
+func expandObjectWirelessControllerVapDynamicMappingAddressGroupPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerVapDynamicMappingAlias(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8043,7 +8127,15 @@ func expandObjectWirelessControllerVapDynamicMappingAntivirusProfile(d *schema.R
 	return v, nil
 }
 
+func expandObjectWirelessControllerVapDynamicMappingApplicationDetectionEngine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerVapDynamicMappingApplicationList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerVapDynamicMappingApplicationReportIntv(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8252,6 +8344,10 @@ func expandObjectWirelessControllerVapDynamicMappingKey(d *schema.ResourceData, 
 }
 
 func expandObjectWirelessControllerVapDynamicMappingKeyindex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerVapDynamicMappingL3Roaming(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

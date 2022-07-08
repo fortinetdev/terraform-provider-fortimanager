@@ -918,6 +918,11 @@ func resourceObjectFspVlan() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"dhcp_relay_interface_select_method": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
 									"dhcp_relay_ip": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
@@ -1732,6 +1737,39 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"eap_ca_cert": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"eap_identity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"eap_method": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"eap_password": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"eap_supplicant": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"eap_user_cert": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"egress_cos": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1917,6 +1955,12 @@ func resourceObjectFspVlan() *schema.Resource {
 						},
 						"if_media": &schema.Schema{
 							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ike_saml_server": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
 							Computed: true,
 						},
@@ -5255,6 +5299,11 @@ func flattenObjectFspVlanDynamicMappingInterface(v interface{}, d *schema.Resour
 		result["dhcp_relay_agent_option"] = flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayAgentOption(i["dhcp-relay-agent-option"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "dhcp_relay_interface_select_method"
+	if _, ok := i["dhcp-relay-interface-select-method"]; ok {
+		result["dhcp_relay_interface_select_method"] = flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayInterfaceSelectMethod(i["dhcp-relay-interface-select-method"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "dhcp_relay_ip"
 	if _, ok := i["dhcp-relay-ip"]; ok {
 		result["dhcp_relay_ip"] = flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayIp(i["dhcp-relay-ip"], d, pre_append)
@@ -5300,6 +5349,10 @@ func flattenObjectFspVlanDynamicMappingInterface(v interface{}, d *schema.Resour
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayAgentOption(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingInterfaceDhcpRelayInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -6553,6 +6606,36 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["drop_overlapped_fragment"] = flattenObjectFspVlanInterfaceDropOverlappedFragment(i["drop-overlapped-fragment"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "eap_ca_cert"
+	if _, ok := i["eap-ca-cert"]; ok {
+		result["eap_ca_cert"] = flattenObjectFspVlanInterfaceEapCaCert(i["eap-ca-cert"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "eap_identity"
+	if _, ok := i["eap-identity"]; ok {
+		result["eap_identity"] = flattenObjectFspVlanInterfaceEapIdentity(i["eap-identity"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "eap_method"
+	if _, ok := i["eap-method"]; ok {
+		result["eap_method"] = flattenObjectFspVlanInterfaceEapMethod(i["eap-method"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "eap_password"
+	if _, ok := i["eap-password"]; ok {
+		result["eap_password"] = flattenObjectFspVlanInterfaceEapPassword(i["eap-password"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "eap_supplicant"
+	if _, ok := i["eap-supplicant"]; ok {
+		result["eap_supplicant"] = flattenObjectFspVlanInterfaceEapSupplicant(i["eap-supplicant"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "eap_user_cert"
+	if _, ok := i["eap-user-cert"]; ok {
+		result["eap_user_cert"] = flattenObjectFspVlanInterfaceEapUserCert(i["eap-user-cert"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "egress_cos"
 	if _, ok := i["egress-cos"]; ok {
 		result["egress_cos"] = flattenObjectFspVlanInterfaceEgressCos(i["egress-cos"], d, pre_append)
@@ -6736,6 +6819,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "if_media"
 	if _, ok := i["if-media"]; ok {
 		result["if_media"] = flattenObjectFspVlanInterfaceIfMedia(i["if-media"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "ike_saml_server"
+	if _, ok := i["ike-saml-server"]; ok {
+		result["ike_saml_server"] = flattenObjectFspVlanInterfaceIkeSamlServer(i["ike-saml-server"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "in_force_vlan_cos"
@@ -7946,6 +8034,30 @@ func flattenObjectFspVlanInterfaceDropOverlappedFragment(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectFspVlanInterfaceEapCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFspVlanInterfaceEapIdentity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceEapMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceEapPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFspVlanInterfaceEapSupplicant(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceEapUserCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFspVlanInterfaceEgressCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -8092,6 +8204,10 @@ func flattenObjectFspVlanInterfaceIfMdix(v interface{}, d *schema.ResourceData, 
 
 func flattenObjectFspVlanInterfaceIfMedia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanInterfaceIkeSamlServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanInterfaceInForceVlanCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -11632,6 +11748,10 @@ func expandObjectFspVlanDynamicMappingInterface(d *schema.ResourceData, v interf
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-agent-option"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayAgentOption(d, i["dhcp_relay_agent_option"], pre_append)
 	}
+	pre_append = pre + ".0." + "dhcp_relay_interface_select_method"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp-relay-interface-select-method"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayInterfaceSelectMethod(d, i["dhcp_relay_interface_select_method"], pre_append)
+	}
 	pre_append = pre + ".0." + "dhcp_relay_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-ip"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayIp(d, i["dhcp_relay_ip"], pre_append)
@@ -11675,6 +11795,10 @@ func expandObjectFspVlanDynamicMappingInterface(d *schema.ResourceData, v interf
 }
 
 func expandObjectFspVlanDynamicMappingInterfaceDhcpRelayAgentOption(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingInterfaceDhcpRelayInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -12791,6 +12915,36 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["drop-overlapped-fragment"], _ = expandObjectFspVlanInterfaceDropOverlappedFragment(d, i["drop_overlapped_fragment"], pre_append)
 	}
+	pre_append = pre + ".0." + "eap_ca_cert"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["eap-ca-cert"], _ = expandObjectFspVlanInterfaceEapCaCert(d, i["eap_ca_cert"], pre_append)
+	} else {
+		result["eap-ca-cert"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "eap_identity"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["eap-identity"], _ = expandObjectFspVlanInterfaceEapIdentity(d, i["eap_identity"], pre_append)
+	}
+	pre_append = pre + ".0." + "eap_method"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["eap-method"], _ = expandObjectFspVlanInterfaceEapMethod(d, i["eap_method"], pre_append)
+	}
+	pre_append = pre + ".0." + "eap_password"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["eap-password"], _ = expandObjectFspVlanInterfaceEapPassword(d, i["eap_password"], pre_append)
+	} else {
+		result["eap-password"] = make([]string, 0)
+	}
+	pre_append = pre + ".0." + "eap_supplicant"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["eap-supplicant"], _ = expandObjectFspVlanInterfaceEapSupplicant(d, i["eap_supplicant"], pre_append)
+	}
+	pre_append = pre + ".0." + "eap_user_cert"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["eap-user-cert"], _ = expandObjectFspVlanInterfaceEapUserCert(d, i["eap_user_cert"], pre_append)
+	} else {
+		result["eap-user-cert"] = make([]string, 0)
+	}
 	pre_append = pre + ".0." + "egress_cos"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["egress-cos"], _ = expandObjectFspVlanInterfaceEgressCos(d, i["egress_cos"], pre_append)
@@ -12944,6 +13098,12 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "if_media"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["if-media"], _ = expandObjectFspVlanInterfaceIfMedia(d, i["if_media"], pre_append)
+	}
+	pre_append = pre + ".0." + "ike_saml_server"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["ike-saml-server"], _ = expandObjectFspVlanInterfaceIkeSamlServer(d, i["ike_saml_server"], pre_append)
+	} else {
+		result["ike-saml-server"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "in_force_vlan_cos"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13979,6 +14139,30 @@ func expandObjectFspVlanInterfaceDropOverlappedFragment(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceEapCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFspVlanInterfaceEapIdentity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceEapMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceEapPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFspVlanInterfaceEapSupplicant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceEapUserCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFspVlanInterfaceEgressCos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -14125,6 +14309,10 @@ func expandObjectFspVlanInterfaceIfMdix(d *schema.ResourceData, v interface{}, p
 
 func expandObjectFspVlanInterfaceIfMedia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanInterfaceIkeSamlServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanInterfaceInForceVlanCos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

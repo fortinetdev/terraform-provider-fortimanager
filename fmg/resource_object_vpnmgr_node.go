@@ -114,6 +114,11 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dhcp_ra_giaddr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dhcp_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -257,6 +262,11 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 						},
 					},
 				},
+			},
+			"ipv4_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"ipv4_netmask": &schema.Schema{
 				Type:     schema.TypeString,
@@ -640,6 +650,10 @@ func flattenObjectVpnmgrNodeDefaultGateway(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectVpnmgrNodeDhcpRaGiaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnmgrNodeDhcpServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -827,6 +841,10 @@ func flattenObjectVpnmgrNodeIpv4ExcludeRangeId(v interface{}, d *schema.Resource
 }
 
 func flattenObjectVpnmgrNodeIpv4ExcludeRangeStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeIpv4Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1177,6 +1195,16 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("dhcp_ra_giaddr", flattenObjectVpnmgrNodeDhcpRaGiaddr(o["dhcp-ra-giaddr"], d, "dhcp_ra_giaddr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dhcp-ra-giaddr"], "ObjectVpnmgrNode-DhcpRaGiaddr"); ok {
+			if err = d.Set("dhcp_ra_giaddr", vv); err != nil {
+				return fmt.Errorf("Error reading dhcp_ra_giaddr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dhcp_ra_giaddr: %v", err)
+		}
+	}
+
 	if err = d.Set("dhcp_server", flattenObjectVpnmgrNodeDhcpServer(o["dhcp-server"], d, "dhcp_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dhcp-server"], "ObjectVpnmgrNode-DhcpServer"); ok {
 			if err = d.Set("dhcp_server", vv); err != nil {
@@ -1412,6 +1440,16 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 					return fmt.Errorf("Error reading ipv4_exclude_range: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("ipv4_name", flattenObjectVpnmgrNodeIpv4Name(o["ipv4-name"], d, "ipv4_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv4-name"], "ObjectVpnmgrNode-Ipv4Name"); ok {
+			if err = d.Set("ipv4_name", vv); err != nil {
+				return fmt.Errorf("Error reading ipv4_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv4_name: %v", err)
 		}
 	}
 
@@ -1822,6 +1860,10 @@ func expandObjectVpnmgrNodeDefaultGateway(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectVpnmgrNodeDhcpRaGiaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnmgrNodeDhcpServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1993,6 +2035,10 @@ func expandObjectVpnmgrNodeIpv4ExcludeRangeId(d *schema.ResourceData, v interfac
 }
 
 func expandObjectVpnmgrNodeIpv4ExcludeRangeStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnmgrNodeIpv4Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2295,6 +2341,15 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
+	if v, ok := d.GetOk("dhcp_ra_giaddr"); ok || d.HasChange("dhcp_ra_giaddr") {
+		t, err := expandObjectVpnmgrNodeDhcpRaGiaddr(d, v, "dhcp_ra_giaddr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dhcp-ra-giaddr"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dhcp_server"); ok || d.HasChange("dhcp_server") {
 		t, err := expandObjectVpnmgrNodeDhcpServer(d, v, "dhcp_server")
 		if err != nil {
@@ -2481,6 +2536,15 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["ipv4-exclude-range"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv4_name"); ok || d.HasChange("ipv4_name") {
+		t, err := expandObjectVpnmgrNodeIpv4Name(d, v, "ipv4_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv4-name"] = t
 		}
 	}
 

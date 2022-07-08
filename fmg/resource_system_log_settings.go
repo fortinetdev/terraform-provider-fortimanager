@@ -220,7 +220,22 @@ func resourceSystemLogSettings() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"server": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"server_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"server2": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"server3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -369,7 +384,22 @@ func resourceSystemLogSettings() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"server": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"server_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"server2": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"server3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -517,7 +547,22 @@ func resourceSystemLogSettings() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"server": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"server_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"server2": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"server3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -817,9 +862,24 @@ func flattenSystemLogSettingsRollingAnalyzerSlsa(v interface{}, d *schema.Resour
 		result["rolling_upgrade_status"] = flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(i["rolling-upgrade-status"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "server"
+	if _, ok := i["server"]; ok {
+		result["server"] = flattenSystemLogSettingsRollingAnalyzerServerSlsa(i["server"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := i["server-type"]; ok {
 		result["server_type"] = flattenSystemLogSettingsRollingAnalyzerServerTypeSlsa(i["server-type"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "server2"
+	if _, ok := i["server2"]; ok {
+		result["server2"] = flattenSystemLogSettingsRollingAnalyzerServer2Slsa(i["server2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "server3"
+	if _, ok := i["server3"]; ok {
+		result["server3"] = flattenSystemLogSettingsRollingAnalyzerServer3Slsa(i["server3"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "upload"
@@ -938,7 +998,19 @@ func flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(v interface
 	return v
 }
 
+func flattenSystemLogSettingsRollingAnalyzerServerSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogSettingsRollingAnalyzerServerTypeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingAnalyzerServer2Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingAnalyzerServer3Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1077,9 +1149,24 @@ func flattenSystemLogSettingsRollingLocalSlsa(v interface{}, d *schema.ResourceD
 		result["rolling_upgrade_status"] = flattenSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(i["rolling-upgrade-status"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "server"
+	if _, ok := i["server"]; ok {
+		result["server"] = flattenSystemLogSettingsRollingLocalServerSlsa(i["server"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := i["server-type"]; ok {
 		result["server_type"] = flattenSystemLogSettingsRollingLocalServerTypeSlsa(i["server-type"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "server2"
+	if _, ok := i["server2"]; ok {
+		result["server2"] = flattenSystemLogSettingsRollingLocalServer2Slsa(i["server2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "server3"
+	if _, ok := i["server3"]; ok {
+		result["server3"] = flattenSystemLogSettingsRollingLocalServer3Slsa(i["server3"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "upload"
@@ -1198,7 +1285,19 @@ func flattenSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(v interface{},
 	return v
 }
 
+func flattenSystemLogSettingsRollingLocalServerSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogSettingsRollingLocalServerTypeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingLocalServer2Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingLocalServer3Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1333,9 +1432,24 @@ func flattenSystemLogSettingsRollingRegularSlsa(v interface{}, d *schema.Resourc
 		result["rolling_upgrade_status"] = flattenSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(i["rolling-upgrade-status"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "server"
+	if _, ok := i["server"]; ok {
+		result["server"] = flattenSystemLogSettingsRollingRegularServerSlsa(i["server"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := i["server-type"]; ok {
 		result["server_type"] = flattenSystemLogSettingsRollingRegularServerTypeSlsa(i["server-type"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "server2"
+	if _, ok := i["server2"]; ok {
+		result["server2"] = flattenSystemLogSettingsRollingRegularServer2Slsa(i["server2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "server3"
+	if _, ok := i["server3"]; ok {
+		result["server3"] = flattenSystemLogSettingsRollingRegularServer3Slsa(i["server3"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "upload"
@@ -1454,7 +1568,19 @@ func flattenSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(v interface{
 	return v
 }
 
+func flattenSystemLogSettingsRollingRegularServerSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogSettingsRollingRegularServerTypeSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingRegularServer2Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingRegularServer3Slsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1930,9 +2056,21 @@ func expandSystemLogSettingsRollingAnalyzerSlsa(d *schema.ResourceData, v interf
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rolling-upgrade-status"], _ = expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(d, i["rolling_upgrade_status"], pre_append)
 	}
+	pre_append = pre + ".0." + "server"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server"], _ = expandSystemLogSettingsRollingAnalyzerServerSlsa(d, i["server"], pre_append)
+	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["server-type"], _ = expandSystemLogSettingsRollingAnalyzerServerTypeSlsa(d, i["server_type"], pre_append)
+	}
+	pre_append = pre + ".0." + "server2"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server2"], _ = expandSystemLogSettingsRollingAnalyzerServer2Slsa(d, i["server2"], pre_append)
+	}
+	pre_append = pre + ".0." + "server3"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server3"], _ = expandSystemLogSettingsRollingAnalyzerServer3Slsa(d, i["server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "upload"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2042,7 +2180,19 @@ func expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatusSlsa(d *schema.Re
 	return v, nil
 }
 
+func expandSystemLogSettingsRollingAnalyzerServerSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogSettingsRollingAnalyzerServerTypeSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingAnalyzerServer2Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingAnalyzerServer3Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2168,9 +2318,21 @@ func expandSystemLogSettingsRollingLocalSlsa(d *schema.ResourceData, v interface
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rolling-upgrade-status"], _ = expandSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(d, i["rolling_upgrade_status"], pre_append)
 	}
+	pre_append = pre + ".0." + "server"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server"], _ = expandSystemLogSettingsRollingLocalServerSlsa(d, i["server"], pre_append)
+	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["server-type"], _ = expandSystemLogSettingsRollingLocalServerTypeSlsa(d, i["server_type"], pre_append)
+	}
+	pre_append = pre + ".0." + "server2"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server2"], _ = expandSystemLogSettingsRollingLocalServer2Slsa(d, i["server2"], pre_append)
+	}
+	pre_append = pre + ".0." + "server3"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server3"], _ = expandSystemLogSettingsRollingLocalServer3Slsa(d, i["server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "upload"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2280,7 +2442,19 @@ func expandSystemLogSettingsRollingLocalRollingUpgradeStatusSlsa(d *schema.Resou
 	return v, nil
 }
 
+func expandSystemLogSettingsRollingLocalServerSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogSettingsRollingLocalServerTypeSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingLocalServer2Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingLocalServer3Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2406,9 +2580,21 @@ func expandSystemLogSettingsRollingRegularSlsa(d *schema.ResourceData, v interfa
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["rolling-upgrade-status"], _ = expandSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(d, i["rolling_upgrade_status"], pre_append)
 	}
+	pre_append = pre + ".0." + "server"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server"], _ = expandSystemLogSettingsRollingRegularServerSlsa(d, i["server"], pre_append)
+	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["server-type"], _ = expandSystemLogSettingsRollingRegularServerTypeSlsa(d, i["server_type"], pre_append)
+	}
+	pre_append = pre + ".0." + "server2"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server2"], _ = expandSystemLogSettingsRollingRegularServer2Slsa(d, i["server2"], pre_append)
+	}
+	pre_append = pre + ".0." + "server3"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["server3"], _ = expandSystemLogSettingsRollingRegularServer3Slsa(d, i["server3"], pre_append)
 	}
 	pre_append = pre + ".0." + "upload"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2518,7 +2704,19 @@ func expandSystemLogSettingsRollingRegularRollingUpgradeStatusSlsa(d *schema.Res
 	return v, nil
 }
 
+func expandSystemLogSettingsRollingRegularServerSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogSettingsRollingRegularServerTypeSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingRegularServer2Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingRegularServer3Slsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

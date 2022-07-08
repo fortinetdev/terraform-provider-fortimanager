@@ -362,6 +362,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"table_entry_blink": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"task_list_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -812,6 +817,10 @@ func flattenSystemGlobalSslProtocolSga(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemGlobalSslStaticKeyCiphersSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalTableEntryBlinkSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1496,6 +1505,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("table_entry_blink", flattenSystemGlobalTableEntryBlinkSga(o["table-entry-blink"], d, "table_entry_blink")); err != nil {
+		if vv, ok := fortiAPIPatch(o["table-entry-blink"], "SystemGlobal-TableEntryBlink"); ok {
+			if err = d.Set("table_entry_blink", vv); err != nil {
+				return fmt.Errorf("Error reading table_entry_blink: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading table_entry_blink: %v", err)
+		}
+	}
+
 	if err = d.Set("task_list_size", flattenSystemGlobalTaskListSizeSga(o["task-list-size"], d, "task_list_size")); err != nil {
 		if vv, ok := fortiAPIPatch(o["task-list-size"], "SystemGlobal-TaskListSize"); ok {
 			if err = d.Set("task_list_size", vv); err != nil {
@@ -1908,6 +1927,10 @@ func expandSystemGlobalSslProtocolSga(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemGlobalSslStaticKeyCiphersSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalTableEntryBlinkSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2496,6 +2519,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-static-key-ciphers"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("table_entry_blink"); ok || d.HasChange("table_entry_blink") {
+		t, err := expandSystemGlobalTableEntryBlinkSga(d, v, "table_entry_blink")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["table-entry-blink"] = t
 		}
 	}
 

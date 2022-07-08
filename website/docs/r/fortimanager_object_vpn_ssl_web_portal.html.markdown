@@ -51,6 +51,10 @@ The following arguments are supported:
 * `custom_lang` - Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 * `customize_forticlient_download_url` - Enable support of customized download URL for FortiClient. Valid values: `disable`, `enable`.
 
+* `default_window_height` - Screen height (range from 0 - 65535, default = 768).
+* `default_window_width` - Screen width (range from 0 - 65535, default = 1024).
+* `dhcp_ip_overlap` - Configure overlapping DHCP IP allocation assignment. Valid values: `use-old`, `use-new`.
+
 * `display_bookmark` - Enable to display the web portal bookmark widget. Valid values: `disable`, `enable`.
 
 * `display_connection_tools` - Enable to display the web portal connection tools widget. Valid values: `disable`, `enable`.

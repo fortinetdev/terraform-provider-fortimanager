@@ -27,15 +27,35 @@ The following arguments are supported:
 
 
 * `clusterid` - Cluster ID range (1 - 64).
+* `failover_mode` - HA failover mode. manual - Manual Failove vrrp - Use VRRP Valid values: `manual`, `vrrp`.
+
 * `file_quota` - File quota in MB (2048 - 20480).
 * `hb_interval` - Heartbeat interval (1 - 255).
 * `hb_lost_threshold` - Heartbeat lost threshold (1 - 255).
 * `local_cert` - set the ha local certificate.
 * `mode` - Mode. standalone - Standalone. primary - Primary. secondary - Secondary. Valid values: `standalone`, `primary`, `secondary`.
 
+* `monitored_interfaces` - Monitored-Interfaces. The structure of `monitored_interfaces` block is documented below.
+* `monitored_ips` - Monitored-Ips. The structure of `monitored_ips` block is documented below.
 * `password` - Group password.
 * `peer` - Peer. The structure of `peer` block is documented below.
+* `priority` - Runtime priority [1 (lowest) - 253 (highest)]
+* `unicast` - Use unitcast for VRRP message. disable - Disable. enable - Enable. Valid values: `disable`, `enable`.
+
+* `vip` - Virtual IP.
+* `vrrp_adv_interval` - VRRP advert interval [1 - 30 seconnds]
+* `vrrp_interface` - VRRP and vip interface.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `monitored_interfaces` block supports:
+
+* `interface_name` - Interface name.
+
+The `monitored_ips` block supports:
+
+* `id` - Id.
+* `interface` - Interface name.
+* `ip` - IP address.
 
 The `peer` block supports:
 

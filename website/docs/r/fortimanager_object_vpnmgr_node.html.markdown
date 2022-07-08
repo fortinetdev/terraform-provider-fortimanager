@@ -72,6 +72,7 @@ The following arguments are supported:
 
 * `banner` - Banner.
 * `default_gateway` - Default-Gateway.
+* `dhcp_ra_giaddr` - Dhcp-Ra-Giaddr.
 * `dhcp_server` - Dhcp-Server. Valid values: `disable`, `enable`.
 
 * `dns_mode` - Dns-Mode. Valid values: `auto`, `manual`.
@@ -99,6 +100,7 @@ The following arguments are supported:
 * `ipv4_dns_server3` - Ipv4-Dns-Server3.
 * `ipv4_end_ip` - Ipv4-End-Ip.
 * `ipv4_exclude_range` - Ipv4-Exclude-Range. The structure of `ipv4_exclude_range` block is documented below.
+* `ipv4_name` - Ipv4-Name.
 * `ipv4_netmask` - Ipv4-Netmask.
 * `ipv4_split_exclude` - Ipv4-Split-Exclude.
 * `ipv4_split_include` - Ipv4-Split-Include.

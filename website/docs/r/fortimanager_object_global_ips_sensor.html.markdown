@@ -39,8 +39,13 @@ The `entries` block supports:
 
 * `application` - Operating systems to be protected. Use all for every application and other for unlisted application.
 * `cve` - List of CVE IDs of the signatures to add to the sensor.
+* `default_action` - Default-Action. Valid values: `block`, `pass`, `all`, `drop`.
+
+* `default_status` - Default-Status. Valid values: `disable`, `enable`, `all`.
+
 * `exempt_ip` - Exempt-Ip. The structure of `exempt_ip` block is documented below.
 * `id` - Rule ID in IPS database (0 - 4294967295).
+* `last_modified` - Last-Modified.
 * `location` - Protect client or server traffic.
 * `log` - Enable/disable logging of signatures included in filter. Valid values: `disable`, `enable`.
 
@@ -68,6 +73,7 @@ The `entries` block supports:
 * `status` - Status of the signatures included in filter. Only those filters with a status to enable are used. Valid values: `disable`, `enable`, `default`.
 
 * `tags` - Tags.
+* `vuln_type` - Vuln-Type.
 
 The `exempt_ip` block supports:
 

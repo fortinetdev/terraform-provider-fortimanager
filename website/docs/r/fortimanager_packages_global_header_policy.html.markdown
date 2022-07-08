@@ -147,6 +147,7 @@ The following arguments are supported:
 * `diffservcode_rev` - Change packet's reverse (reply) DiffServ to this value.
 * `disclaimer` - Enable/disable user authentication disclaimer. Valid values: `disable`, `enable`.
 
+* `dlp_profile` - Dlp-Profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `dponly` - Dponly. Valid values: `disable`, `enable`.
@@ -307,6 +308,9 @@ The following arguments are supported:
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
 
 * `pfcp_profile` - PFCP profile.
+* `policy_expiry` - Policy-Expiry. Valid values: `disable`, `enable`.
+
+* `policy_expiry_date` - Policy-Expiry-Date.
 * `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).

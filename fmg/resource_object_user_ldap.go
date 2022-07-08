@@ -123,6 +123,17 @@ func resourceObjectUserLdap() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"client_cert": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"client_cert_auth": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"cnid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -641,6 +652,18 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["ca_cert"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-CaCert")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert"
+		if _, ok := i["client-cert"]; ok {
+			v := flattenObjectUserLdapDynamicMappingClientCert(i["client-cert"], d, pre_append)
+			tmp["client_cert"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-ClientCert")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert_auth"
+		if _, ok := i["client-cert-auth"]; ok {
+			v := flattenObjectUserLdapDynamicMappingClientCertAuth(i["client-cert-auth"], d, pre_append)
+			tmp["client_cert_auth"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-ClientCertAuth")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cnid"
 		if _, ok := i["cnid"]; ok {
 			v := flattenObjectUserLdapDynamicMappingCnid(i["cnid"], d, pre_append)
@@ -917,6 +940,14 @@ func flattenObjectUserLdapDynamicMappingAntiphish(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserLdapDynamicMappingCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapDynamicMappingClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLdapDynamicMappingClientCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1626,6 +1657,18 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["ca-cert"], _ = expandObjectUserLdapDynamicMappingCaCert(d, i["ca_cert"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["client-cert"], _ = expandObjectUserLdapDynamicMappingClientCert(d, i["client_cert"], pre_append)
+		} else {
+			tmp["client-cert"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert_auth"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["client-cert-auth"], _ = expandObjectUserLdapDynamicMappingClientCertAuth(d, i["client_cert_auth"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cnid"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cnid"], _ = expandObjectUserLdapDynamicMappingCnid(d, i["cnid"], pre_append)
@@ -1865,6 +1908,14 @@ func expandObjectUserLdapDynamicMappingAntiphish(d *schema.ResourceData, v inter
 }
 
 func expandObjectUserLdapDynamicMappingCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapDynamicMappingClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLdapDynamicMappingClientCertAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

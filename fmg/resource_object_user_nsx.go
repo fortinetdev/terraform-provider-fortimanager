@@ -62,6 +62,11 @@ func resourceObjectUserNsx() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"if_allgroup": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -80,9 +85,47 @@ func resourceObjectUserNsx() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"service": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"integration": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ref_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
 			"service_id": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"service_manager_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"service_manager_rev": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -95,6 +138,11 @@ func resourceObjectUserNsx() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
 			},
 		},
 	}
@@ -218,6 +266,10 @@ func flattenObjectUserNsxFmguser(v interface{}, d *schema.ResourceData, pre stri
 	return v
 }
 
+func flattenObjectUserNsxIfAllgroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserNsxName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -230,8 +282,83 @@ func flattenObjectUserNsxServer(v interface{}, d *schema.ResourceData, pre strin
 	return v
 }
 
+func flattenObjectUserNsxService(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectUserNsxServiceId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectUserNsx-Service-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "integration"
+		if _, ok := i["integration"]; ok {
+			v := flattenObjectUserNsxServiceIntegration(i["integration"], d, pre_append)
+			tmp["integration"] = fortiAPISubPartPatch(v, "ObjectUserNsx-Service-Integration")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectUserNsxServiceName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectUserNsx-Service-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ref_id"
+		if _, ok := i["ref-id"]; ok {
+			v := flattenObjectUserNsxServiceRefId(i["ref-id"], d, pre_append)
+			tmp["ref_id"] = fortiAPISubPartPatch(v, "ObjectUserNsx-Service-RefId")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
 func flattenObjectUserNsxServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserNsxServiceIntegration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserNsxServiceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserNsxServiceRefId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserNsxServiceIdU(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectUserNsxServiceManagerId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserNsxServiceManagerRev(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectUserNsxStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -247,6 +374,10 @@ func refreshObjectObjectUserNsx(d *schema.ResourceData, o map[string]interface{}
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
 	}
 
 	if err = d.Set("fmgip", flattenObjectUserNsxFmgip(o["fmgip"], d, "fmgip")); err != nil {
@@ -266,6 +397,16 @@ func refreshObjectObjectUserNsx(d *schema.ResourceData, o map[string]interface{}
 			}
 		} else {
 			return fmt.Errorf("Error reading fmguser: %v", err)
+		}
+	}
+
+	if err = d.Set("if_allgroup", flattenObjectUserNsxIfAllgroup(o["if-allgroup"], d, "if_allgroup")); err != nil {
+		if vv, ok := fortiAPIPatch(o["if-allgroup"], "ObjectUserNsx-IfAllgroup"); ok {
+			if err = d.Set("if_allgroup", vv); err != nil {
+				return fmt.Errorf("Error reading if_allgroup: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading if_allgroup: %v", err)
 		}
 	}
 
@@ -289,13 +430,57 @@ func refreshObjectObjectUserNsx(d *schema.ResourceData, o map[string]interface{}
 		}
 	}
 
-	if err = d.Set("service_id", flattenObjectUserNsxServiceId(o["service-id"], d, "service_id")); err != nil {
+	if isImportTable() {
+		if err = d.Set("service", flattenObjectUserNsxService(o["service"], d, "service")); err != nil {
+			if vv, ok := fortiAPIPatch(o["service"], "ObjectUserNsx-Service"); ok {
+				if err = d.Set("service", vv); err != nil {
+					return fmt.Errorf("Error reading service: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading service: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("service"); ok {
+			if err = d.Set("service", flattenObjectUserNsxService(o["service"], d, "service")); err != nil {
+				if vv, ok := fortiAPIPatch(o["service"], "ObjectUserNsx-Service"); ok {
+					if err = d.Set("service", vv); err != nil {
+						return fmt.Errorf("Error reading service: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading service: %v", err)
+				}
+			}
+		}
+	}
+
+	if err = d.Set("service_id", flattenObjectUserNsxServiceIdU(o["service-id"], d, "service_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service-id"], "ObjectUserNsx-ServiceId"); ok {
 			if err = d.Set("service_id", vv); err != nil {
 				return fmt.Errorf("Error reading service_id: %v", err)
 			}
 		} else {
 			return fmt.Errorf("Error reading service_id: %v", err)
+		}
+	}
+
+	if err = d.Set("service_manager_id", flattenObjectUserNsxServiceManagerId(o["service-manager-id"], d, "service_manager_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-manager-id"], "ObjectUserNsx-ServiceManagerId"); ok {
+			if err = d.Set("service_manager_id", vv); err != nil {
+				return fmt.Errorf("Error reading service_manager_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_manager_id: %v", err)
+		}
+	}
+
+	if err = d.Set("service_manager_rev", flattenObjectUserNsxServiceManagerRev(o["service-manager-rev"], d, "service_manager_rev")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-manager-rev"], "ObjectUserNsx-ServiceManagerRev"); ok {
+			if err = d.Set("service_manager_rev", vv); err != nil {
+				return fmt.Errorf("Error reading service_manager_rev: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_manager_rev: %v", err)
 		}
 	}
 
@@ -340,6 +525,10 @@ func expandObjectUserNsxFmguser(d *schema.ResourceData, v interface{}, pre strin
 	return v, nil
 }
 
+func expandObjectUserNsxIfAllgroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserNsxName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -352,8 +541,74 @@ func expandObjectUserNsxServer(d *schema.ResourceData, v interface{}, pre string
 	return v, nil
 }
 
+func expandObjectUserNsxService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectUserNsxServiceId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "integration"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["integration"], _ = expandObjectUserNsxServiceIntegration(d, i["integration"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectUserNsxServiceName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ref_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ref-id"], _ = expandObjectUserNsxServiceRefId(d, i["ref_id"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
 func expandObjectUserNsxServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserNsxServiceIntegration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserNsxServiceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserNsxServiceRefId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserNsxServiceIdU(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserNsxServiceManagerId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserNsxServiceManagerRev(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectUserNsxStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -394,6 +649,15 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
+	if v, ok := d.GetOk("if_allgroup"); ok || d.HasChange("if_allgroup") {
+		t, err := expandObjectUserNsxIfAllgroup(d, v, "if_allgroup")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["if-allgroup"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserNsxName(d, v, "name")
 		if err != nil {
@@ -421,12 +685,39 @@ func getObjectObjectUserNsx(d *schema.ResourceData) (*map[string]interface{}, er
 		}
 	}
 
+	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
+		t, err := expandObjectUserNsxService(d, v, "service")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("service_id"); ok || d.HasChange("service_id") {
-		t, err := expandObjectUserNsxServiceId(d, v, "service_id")
+		t, err := expandObjectUserNsxServiceIdU(d, v, "service_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["service-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_manager_id"); ok || d.HasChange("service_manager_id") {
+		t, err := expandObjectUserNsxServiceManagerId(d, v, "service_manager_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-manager-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_manager_rev"); ok || d.HasChange("service_manager_rev") {
+		t, err := expandObjectUserNsxServiceManagerRev(d, v, "service_manager_rev")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-manager-rev"] = t
 		}
 	}
 

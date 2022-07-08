@@ -75,12 +75,22 @@ func resourceObjectLogNpuServer() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"log_gen_event": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"log_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"log_tx_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"log_user_info": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -293,6 +303,12 @@ func flattenObjectLogNpuServerServerGroupOlna(v interface{}, d *schema.ResourceD
 			tmp["log_format"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogFormat")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_gen_event"
+		if _, ok := i["log-gen-event"]; ok {
+			v := flattenObjectLogNpuServerServerGroupLogGenEventOlna(i["log-gen-event"], d, pre_append)
+			tmp["log_gen_event"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogGenEvent")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_mode"
 		if _, ok := i["log-mode"]; ok {
 			v := flattenObjectLogNpuServerServerGroupLogModeOlna(i["log-mode"], d, pre_append)
@@ -303,6 +319,12 @@ func flattenObjectLogNpuServerServerGroupOlna(v interface{}, d *schema.ResourceD
 		if _, ok := i["log-tx-mode"]; ok {
 			v := flattenObjectLogNpuServerServerGroupLogTxModeOlna(i["log-tx-mode"], d, pre_append)
 			tmp["log_tx_mode"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogTxMode")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_user_info"
+		if _, ok := i["log-user-info"]; ok {
+			v := flattenObjectLogNpuServerServerGroupLogUserInfoOlna(i["log-user-info"], d, pre_append)
+			tmp["log_user_info"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-LogUserInfo")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_number"
@@ -339,11 +361,19 @@ func flattenObjectLogNpuServerServerGroupLogFormatOlna(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectLogNpuServerServerGroupLogGenEventOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectLogNpuServerServerGroupLogModeOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectLogNpuServerServerGroupLogTxModeOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectLogNpuServerServerGroupLogUserInfoOlna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -628,6 +658,11 @@ func expandObjectLogNpuServerServerGroupOlna(d *schema.ResourceData, v interface
 			tmp["log-format"], _ = expandObjectLogNpuServerServerGroupLogFormatOlna(d, i["log_format"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_gen_event"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["log-gen-event"], _ = expandObjectLogNpuServerServerGroupLogGenEventOlna(d, i["log_gen_event"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-mode"], _ = expandObjectLogNpuServerServerGroupLogModeOlna(d, i["log_mode"], pre_append)
@@ -636,6 +671,11 @@ func expandObjectLogNpuServerServerGroupOlna(d *schema.ResourceData, v interface
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_tx_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["log-tx-mode"], _ = expandObjectLogNpuServerServerGroupLogTxModeOlna(d, i["log_tx_mode"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "log_user_info"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["log-user-info"], _ = expandObjectLogNpuServerServerGroupLogUserInfoOlna(d, i["log_user_info"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_number"
@@ -669,11 +709,19 @@ func expandObjectLogNpuServerServerGroupLogFormatOlna(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectLogNpuServerServerGroupLogGenEventOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectLogNpuServerServerGroupLogModeOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectLogNpuServerServerGroupLogTxModeOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectLogNpuServerServerGroupLogUserInfoOlna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

@@ -157,12 +157,22 @@ func resourceSystemSaml() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"sp_adom": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"sp_cert": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"sp_entity_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"sp_profile": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -461,6 +471,12 @@ func flattenSystemSamlServiceProvidersSSa(v interface{}, d *schema.ResourceData,
 			tmp["prefix"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-Prefix")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_adom"
+		if _, ok := i["sp-adom"]; ok {
+			v := flattenSystemSamlServiceProvidersSpAdomSSa(i["sp-adom"], d, pre_append)
+			tmp["sp_adom"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpAdom")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_cert"
 		if _, ok := i["sp-cert"]; ok {
 			v := flattenSystemSamlServiceProvidersSpCertSSa(i["sp-cert"], d, pre_append)
@@ -471,6 +487,12 @@ func flattenSystemSamlServiceProvidersSSa(v interface{}, d *schema.ResourceData,
 		if _, ok := i["sp-entity-id"]; ok {
 			v := flattenSystemSamlServiceProvidersSpEntityIdSSa(i["sp-entity-id"], d, pre_append)
 			tmp["sp_entity_id"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpEntityId")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_profile"
+		if _, ok := i["sp-profile"]; ok {
+			v := flattenSystemSamlServiceProvidersSpProfileSSa(i["sp-profile"], d, pre_append)
+			tmp["sp_profile"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpProfile")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_single_logout_url"
@@ -513,11 +535,19 @@ func flattenSystemSamlServiceProvidersPrefixSSa(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenSystemSamlServiceProvidersSpAdomSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemSamlServiceProvidersSpCertSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemSamlServiceProvidersSpEntityIdSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemSamlServiceProvidersSpProfileSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -918,6 +948,11 @@ func expandSystemSamlServiceProvidersSSa(d *schema.ResourceData, v interface{}, 
 			tmp["prefix"], _ = expandSystemSamlServiceProvidersPrefixSSa(d, i["prefix"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_adom"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sp-adom"], _ = expandSystemSamlServiceProvidersSpAdomSSa(d, i["sp_adom"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_cert"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sp-cert"], _ = expandSystemSamlServiceProvidersSpCertSSa(d, i["sp_cert"], pre_append)
@@ -926,6 +961,11 @@ func expandSystemSamlServiceProvidersSSa(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_entity_id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sp-entity-id"], _ = expandSystemSamlServiceProvidersSpEntityIdSSa(d, i["sp_entity_id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_profile"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sp-profile"], _ = expandSystemSamlServiceProvidersSpProfileSSa(d, i["sp_profile"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sp_single_logout_url"
@@ -966,11 +1006,19 @@ func expandSystemSamlServiceProvidersPrefixSSa(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandSystemSamlServiceProvidersSpAdomSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemSamlServiceProvidersSpCertSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandSystemSamlServiceProvidersSpEntityIdSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSamlServiceProvidersSpProfileSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

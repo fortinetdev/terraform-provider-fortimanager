@@ -42,6 +42,7 @@ The following arguments are supported:
 
 * `hash_config` - Configure NPU trunk hash. Valid values: `5-tuple`, `src-ip`, `src-dst-ip`.
 
+* `hash_ipv6_sel` - Select which 4bytes of the IPv6 address are used for traffic hash(0~3).
 * `hash_tbl_spread` - Enable/disable hash table entry spread (default enabled). Valid values: `disable`, `enable`.
 
 * `host_shortcut_mode` - Set np6 host shortcut mode. Valid values: `bi-directional`, `host-shortcut`.
@@ -61,6 +62,8 @@ The following arguments are supported:
 * `ip_reassembly` - Ip-Reassembly. The structure of `ip_reassembly` block is documented below.
 * `intf_shaping_offload` - Enable/disable NPU offload when doing interface-based traffic shaping according to the egress-shaping-profile. Valid values: `disable`, `enable`.
 
+* `ip_fragment_offload` - Enable/disable NP7 NPU IP fragment offload. Valid values: `disable`, `enable`.
+
 * `iph_rsvd_re_cksum` - Enable/disable IP checksum re-calculation for packets with iph.reserved bit set. Valid values: `disable`, `enable`.
 
 * `ippool_overload_high` - High threshold for overload ippool port reuse (100%-2000%, default = 200).
@@ -79,6 +82,8 @@ The following arguments are supported:
 * `ipsec_over_vlink` - Enable/disable IPSEC over vlink. Valid values: `disable`, `enable`.
 
 * `isf_np_queues` - Isf-Np-Queues. The structure of `isf_np_queues` block is documented below.
+* `isf_np_rx_tr_distr` - Select ISF NP Rx trunk distribution (PSC) mode. Valid values: `port-flow`, `round-robin`, `randomized`.
+
 * `lag_out_port_select` - Enable/disable LAG outgoing port selection based on incoming traffic port. Valid values: `disable`, `enable`.
 
 * `max_session_timeout` - Maximum time interval for refreshing NPU-offloaded sessions (10 - 1000 sec, default 40 sec).
@@ -118,11 +123,14 @@ The following arguments are supported:
 
 * `recover_np6_link` - Enable/disable internal link failure check and recovery after boot up. Valid values: `disable`, `enable`.
 
+* `rps_mode` - Enable/disable receive packet steering (RPS) optimization mode. Valid values: `disable`, `enable`.
+
 * `session_acct_interval` - Session accounting update interval (1 - 10 sec, default 5 sec).
 * `session_denied_offload` - Enable/disable offloading of denied sessions. Requires ses-denied-traffic to be set. Valid values: `disable`, `enable`.
 
 * `sse_backpressure` - Enable/disable sse backpressure. Valid values: `disable`, `enable`.
 
+* `sse_ha_scan` - Sse-Ha-Scan. The structure of `sse_ha_scan` block is documented below.
 * `strip_clear_text_padding` - Enable/disable stripping clear text padding. Valid values: `disable`, `enable`.
 
 * `strip_esp_padding` - Enable/disable stripping ESP padding. Valid values: `disable`, `enable`.
@@ -136,6 +144,8 @@ The following arguments are supported:
 * `tcp_timeout_profile` - Tcp-Timeout-Profile. The structure of `tcp_timeout_profile` block is documented below.
 * `udp_timeout_profile` - Udp-Timeout-Profile. The structure of `udp_timeout_profile` block is documented below.
 * `uesp_offload` - Enable/disable UDP-encapsulated ESP offload (default = disable). Valid values: `disable`, `enable`.
+
+* `ull_port_mode` - Set ULL port's speed to 10G/25G (default 10G). Valid values: `10G`, `25G`.
 
 * `vlan_lookup_cache` - Enable/disable vlan lookup cache (default enabled). Valid values: `disable`, `enable`.
 
@@ -556,6 +566,12 @@ The `priority_protocol` block supports:
 
 * `slbc` - Enable/disable NPU SLBC priority protocol. Valid values: `disable`, `enable`.
 
+
+The `sse_ha_scan` block supports:
+
+* `gap` - Scanning message gap(0~32767, default 6000)
+* `max_session_cnt` - If the session count(in millions) is larger than this, HA scan will be skipped. (0~0xffff, default 0xffff)
+* `min_duration` - Scanning filter for minimum duration of the session. (0~3600, default 0)
 
 The `sw_eh_hash` block supports:
 

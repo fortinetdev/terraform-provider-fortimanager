@@ -114,6 +114,9 @@ The `dynamic_mapping` block supports:
 * `antiphish` - Antiphish. Valid values: `disable`, `enable`.
 
 * `ca_cert` - CA certificate name.
+* `client_cert` - Client-Cert.
+* `client_cert_auth` - Client-Cert-Auth. Valid values: `disable`, `enable`.
+
 * `cnid` - Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
 * `dn` - Distinguished name used to look up entries on the LDAP server.
 * `filter` - Filter.

@@ -258,6 +258,12 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dlp_profile": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -765,6 +771,16 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"pfcp_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"policy_expiry": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"policy_expiry_date": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1540,6 +1556,10 @@ func flattenPackagesGlobalFooterPolicyDisclaimer(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyDlpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenPackagesGlobalFooterPolicyDlpSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1937,6 +1957,14 @@ func flattenPackagesGlobalFooterPolicyPermitStunHost(v interface{}, d *schema.Re
 }
 
 func flattenPackagesGlobalFooterPolicyPfcpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyPolicyExpiry(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyPolicyExpiryDate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2748,6 +2776,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading disclaimer: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_profile", flattenPackagesGlobalFooterPolicyDlpProfile(o["dlp-profile"], d, "dlp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-profile"], "PackagesGlobalFooterPolicy-DlpProfile"); ok {
+			if err = d.Set("dlp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_profile: %v", err)
 		}
 	}
 
@@ -3748,6 +3786,26 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading pfcp_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("policy_expiry", flattenPackagesGlobalFooterPolicyPolicyExpiry(o["policy-expiry"], d, "policy_expiry")); err != nil {
+		if vv, ok := fortiAPIPatch(o["policy-expiry"], "PackagesGlobalFooterPolicy-PolicyExpiry"); ok {
+			if err = d.Set("policy_expiry", vv); err != nil {
+				return fmt.Errorf("Error reading policy_expiry: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading policy_expiry: %v", err)
+		}
+	}
+
+	if err = d.Set("policy_expiry_date", flattenPackagesGlobalFooterPolicyPolicyExpiryDate(o["policy-expiry-date"], d, "policy_expiry_date")); err != nil {
+		if vv, ok := fortiAPIPatch(o["policy-expiry-date"], "PackagesGlobalFooterPolicy-PolicyExpiryDate"); ok {
+			if err = d.Set("policy_expiry_date", vv); err != nil {
+				return fmt.Errorf("Error reading policy_expiry_date: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading policy_expiry_date: %v", err)
 		}
 	}
 
@@ -4856,6 +4914,10 @@ func expandPackagesGlobalFooterPolicyDisclaimer(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyDlpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandPackagesGlobalFooterPolicyDlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5253,6 +5315,14 @@ func expandPackagesGlobalFooterPolicyPermitStunHost(d *schema.ResourceData, v in
 }
 
 func expandPackagesGlobalFooterPolicyPfcpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyPolicyExpiry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyPolicyExpiryDate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6020,6 +6090,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["disclaimer"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_profile"); ok || d.HasChange("dlp_profile") {
+		t, err := expandPackagesGlobalFooterPolicyDlpProfile(d, v, "dlp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-profile"] = t
 		}
 	}
 
@@ -6920,6 +6999,24 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["pfcp-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("policy_expiry"); ok || d.HasChange("policy_expiry") {
+		t, err := expandPackagesGlobalFooterPolicyPolicyExpiry(d, v, "policy_expiry")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["policy-expiry"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("policy_expiry_date"); ok || d.HasChange("policy_expiry_date") {
+		t, err := expandPackagesGlobalFooterPolicyPolicyExpiryDate(d, v, "policy_expiry_date")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["policy-expiry-date"] = t
 		}
 	}
 

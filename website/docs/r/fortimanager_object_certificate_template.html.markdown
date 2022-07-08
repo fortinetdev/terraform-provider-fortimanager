@@ -58,6 +58,7 @@ The following arguments are supported:
 * `name` - Name.
 * `organization` - Organization.
 * `organization_unit` - Organization-Unit.
+* `scep_ca_identifier` - Scep-Ca-Identifier.
 * `scep_password` - Scep-Password.
 * `scep_server` - Scep-Server.
 * `state` - State.

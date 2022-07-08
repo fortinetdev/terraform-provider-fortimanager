@@ -124,7 +124,22 @@ func resourceSystemLogSettingsRollingAnalyzer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"server_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server2": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server3": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -313,7 +328,19 @@ func flattenSystemLogSettingsRollingAnalyzerRollingUpgradeStatus(v interface{}, 
 	return v
 }
 
+func flattenSystemLogSettingsRollingAnalyzerServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogSettingsRollingAnalyzerServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingAnalyzerServer2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingAnalyzerServer3(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -522,6 +549,16 @@ func refreshObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData, o map
 		}
 	}
 
+	if err = d.Set("server", flattenSystemLogSettingsRollingAnalyzerServer(o["server"], d, "server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server"], "SystemLogSettingsRollingAnalyzer-Server"); ok {
+			if err = d.Set("server", vv); err != nil {
+				return fmt.Errorf("Error reading server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server: %v", err)
+		}
+	}
+
 	if err = d.Set("server_type", flattenSystemLogSettingsRollingAnalyzerServerType(o["server-type"], d, "server_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-type"], "SystemLogSettingsRollingAnalyzer-ServerType"); ok {
 			if err = d.Set("server_type", vv); err != nil {
@@ -529,6 +566,26 @@ func refreshObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData, o map
 			}
 		} else {
 			return fmt.Errorf("Error reading server_type: %v", err)
+		}
+	}
+
+	if err = d.Set("server2", flattenSystemLogSettingsRollingAnalyzerServer2(o["server2"], d, "server2")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server2"], "SystemLogSettingsRollingAnalyzer-Server2"); ok {
+			if err = d.Set("server2", vv); err != nil {
+				return fmt.Errorf("Error reading server2: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server2: %v", err)
+		}
+	}
+
+	if err = d.Set("server3", flattenSystemLogSettingsRollingAnalyzerServer3(o["server3"], d, "server3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server3"], "SystemLogSettingsRollingAnalyzer-Server3"); ok {
+			if err = d.Set("server3", vv); err != nil {
+				return fmt.Errorf("Error reading server3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server3: %v", err)
 		}
 	}
 
@@ -693,7 +750,19 @@ func expandSystemLogSettingsRollingAnalyzerRollingUpgradeStatus(d *schema.Resour
 	return v, nil
 }
 
+func expandSystemLogSettingsRollingAnalyzerServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogSettingsRollingAnalyzerServerType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingAnalyzerServer2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingAnalyzerServer3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -894,12 +963,39 @@ func getObjectSystemLogSettingsRollingAnalyzer(d *schema.ResourceData) (*map[str
 		}
 	}
 
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
+		t, err := expandSystemLogSettingsRollingAnalyzerServer(d, v, "server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("server_type"); ok || d.HasChange("server_type") {
 		t, err := expandSystemLogSettingsRollingAnalyzerServerType(d, v, "server_type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["server-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server2"); ok || d.HasChange("server2") {
+		t, err := expandSystemLogSettingsRollingAnalyzerServer2(d, v, "server2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server3"); ok || d.HasChange("server3") {
+		t, err := expandSystemLogSettingsRollingAnalyzerServer3(d, v, "server3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server3"] = t
 		}
 	}
 

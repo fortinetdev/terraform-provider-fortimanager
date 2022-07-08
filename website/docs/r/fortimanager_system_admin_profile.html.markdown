@@ -64,6 +64,8 @@ The following arguments are supported:
 
 * `device_forticlient` - Manage FortiClient. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
+* `device_fortiextender` - Manage FortiExtender. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
 * `device_fortiswitch` - Manage FortiSwitch. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `device_manager` - Device manager. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
@@ -103,6 +105,8 @@ The following arguments are supported:
 * `ips_baseline_ovrd` - Enable/disable override baseline ips sensor. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `ips_filter` - IPS filter. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
+* `ips_objects` - Ips objects configuration. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `ipv6_trusthost1` - Admin user trusted host IPv6, default ::/0 for all.
 * `ipv6_trusthost10` - Admin user trusted host IPv6, default ffff:ffff:ffff:ffff:ffff:ffff:ffff:ffff/128 for none.

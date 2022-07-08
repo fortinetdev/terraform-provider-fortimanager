@@ -34,9 +34,13 @@ The `server_group` block supports:
 * `group_name` - server group name.
 * `log_format` - Set the log format Valid values: `syslog`, `netflow`.
 
+* `log_gen_event` - Enable/disbale generating event for Per-Mapping log Valid values: `disable`, `enable`.
+
 * `log_mode` - Set the log mode Valid values: `per-session`, `per-nat-mapping`, `per-session-ending`.
 
 * `log_tx_mode` - Configure log transmit mode. Valid values: `multicast`, `roundrobin`.
+
+* `log_user_info` - Enable/disbale logging user information. Valid values: `disable`, `enable`.
 
 * `server_number` - server number in this group.
 * `server_start_id` - the start id of the continuous server series in this group,[1,16].

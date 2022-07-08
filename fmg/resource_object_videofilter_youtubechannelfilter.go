@@ -99,6 +99,11 @@ func resourceObjectVideofilterYoutubeChannelFilter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"override_category": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -301,6 +306,10 @@ func flattenObjectVideofilterYoutubeChannelFilterName(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectVideofilterYoutubeChannelFilterOverrideCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -383,6 +392,16 @@ func refreshObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData, 
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("override_category", flattenObjectVideofilterYoutubeChannelFilterOverrideCategory(o["override-category"], d, "override_category")); err != nil {
+		if vv, ok := fortiAPIPatch(o["override-category"], "ObjectVideofilterYoutubeChannelFilter-OverrideCategory"); ok {
+			if err = d.Set("override_category", vv); err != nil {
+				return fmt.Errorf("Error reading override_category: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading override_category: %v", err)
 		}
 	}
 
@@ -473,6 +492,10 @@ func expandObjectVideofilterYoutubeChannelFilterName(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectVideofilterYoutubeChannelFilterOverrideCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -527,6 +550,15 @@ func getObjectObjectVideofilterYoutubeChannelFilter(d *schema.ResourceData) (*ma
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("override_category"); ok || d.HasChange("override_category") {
+		t, err := expandObjectVideofilterYoutubeChannelFilterOverrideCategory(d, v, "override_category")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["override-category"] = t
 		}
 	}
 

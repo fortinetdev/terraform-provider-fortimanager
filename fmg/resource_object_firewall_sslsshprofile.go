@@ -899,6 +899,11 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 					},
 				},
 			},
+			"ssl_exemption_ip_rating": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ssl_exemption_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -2592,6 +2597,10 @@ func flattenObjectFirewallSslSshProfileSslExemptWildcardFqdn(v interface{}, d *s
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallSslSshProfileSslExemptionIpRating(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallSslSshProfileSslExemptionLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3139,6 +3148,16 @@ func refreshObjectObjectFirewallSslSshProfile(d *schema.ResourceData, o map[stri
 					return fmt.Errorf("Error reading ssl_exempt: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("ssl_exemption_ip_rating", flattenObjectFirewallSslSshProfileSslExemptionIpRating(o["ssl-exemption-ip-rating"], d, "ssl_exemption_ip_rating")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-exemption-ip-rating"], "ObjectFirewallSslSshProfile-SslExemptionIpRating"); ok {
+			if err = d.Set("ssl_exemption_ip_rating", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_exemption_ip_rating: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_exemption_ip_rating: %v", err)
 		}
 	}
 
@@ -4594,6 +4613,10 @@ func expandObjectFirewallSslSshProfileSslExemptWildcardFqdn(d *schema.ResourceDa
 	return expandStringList(v.([]interface{})), nil
 }
 
+func expandObjectFirewallSslSshProfileSslExemptionIpRating(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallSslSshProfileSslExemptionLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4967,6 +4990,15 @@ func getObjectObjectFirewallSslSshProfile(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-exempt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_exemption_ip_rating"); ok || d.HasChange("ssl_exemption_ip_rating") {
+		t, err := expandObjectFirewallSslSshProfileSslExemptionIpRating(d, v, "ssl_exemption_ip_rating")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-exemption-ip-rating"] = t
 		}
 	}
 

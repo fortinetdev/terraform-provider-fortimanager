@@ -543,6 +543,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"hash_ipv6_sel": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"hash_tbl_spread": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -707,6 +712,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ip_fragment_offload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"iph_rsvd_re_cksum": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -810,6 +820,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 						},
 					},
 				},
+			},
+			"isf_np_rx_tr_distr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"lag_out_port_select": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1485,6 +1500,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"rps_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"session_acct_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -1499,6 +1519,30 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"sse_ha_scan": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"gap": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"max_session_cnt": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"min_duration": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"strip_clear_text_padding": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1641,6 +1685,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				},
 			},
 			"uesp_offload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ull_port_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -2605,6 +2654,10 @@ func flattenObjectSystemNpuHashConfigOsna(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectSystemNpuHashIpv6SelOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuHashTblSpreadOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2842,6 +2895,10 @@ func flattenObjectSystemNpuIntfShapingOffloadOsna(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectSystemNpuIpFragmentOffloadOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuIphRsvdReCksumOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2968,6 +3025,10 @@ func flattenObjectSystemNpuIsfNpQueuesCos6Osna(v interface{}, d *schema.Resource
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos7Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIsfNpRxTrDistrOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4286,6 +4347,10 @@ func flattenObjectSystemNpuRecoverNp6LinkOsna(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectSystemNpuRpsModeOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuSessionAcctIntervalOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4295,6 +4360,46 @@ func flattenObjectSystemNpuSessionDeniedOffloadOsna(v interface{}, d *schema.Res
 }
 
 func flattenObjectSystemNpuSseBackpressureOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuSseHaScanOsna(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "gap"
+	if _, ok := i["gap"]; ok {
+		result["gap"] = flattenObjectSystemNpuSseHaScanGapOsna(i["gap"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_session_cnt"
+	if _, ok := i["max-session-cnt"]; ok {
+		result["max_session_cnt"] = flattenObjectSystemNpuSseHaScanMaxSessionCntOsna(i["max-session-cnt"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "min_duration"
+	if _, ok := i["min-duration"]; ok {
+		result["min_duration"] = flattenObjectSystemNpuSseHaScanMinDurationOsna(i["min-duration"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectSystemNpuSseHaScanGapOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuSseHaScanMaxSessionCntOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuSseHaScanMinDurationOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4560,6 +4665,10 @@ func flattenObjectSystemNpuUespOffloadOsna(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectSystemNpuUllPortModeOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuVlanLookupCacheOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4805,6 +4914,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("hash_ipv6_sel", flattenObjectSystemNpuHashIpv6SelOsna(o["hash-ipv6-sel"], d, "hash_ipv6_sel")); err != nil {
+		if vv, ok := fortiAPIPatch(o["hash-ipv6-sel"], "ObjectSystemNpu-HashIpv6Sel"); ok {
+			if err = d.Set("hash_ipv6_sel", vv); err != nil {
+				return fmt.Errorf("Error reading hash_ipv6_sel: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading hash_ipv6_sel: %v", err)
+		}
+	}
+
 	if err = d.Set("hash_tbl_spread", flattenObjectSystemNpuHashTblSpreadOsna(o["hash-tbl-spread"], d, "hash_tbl_spread")); err != nil {
 		if vv, ok := fortiAPIPatch(o["hash-tbl-spread"], "ObjectSystemNpu-HashTblSpread"); ok {
 			if err = d.Set("hash_tbl_spread", vv); err != nil {
@@ -4953,6 +5072,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("ip_fragment_offload", flattenObjectSystemNpuIpFragmentOffloadOsna(o["ip-fragment-offload"], d, "ip_fragment_offload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ip-fragment-offload"], "ObjectSystemNpu-IpFragmentOffload"); ok {
+			if err = d.Set("ip_fragment_offload", vv); err != nil {
+				return fmt.Errorf("Error reading ip_fragment_offload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ip_fragment_offload: %v", err)
+		}
+	}
+
 	if err = d.Set("iph_rsvd_re_cksum", flattenObjectSystemNpuIphRsvdReCksumOsna(o["iph-rsvd-re-cksum"], d, "iph_rsvd_re_cksum")); err != nil {
 		if vv, ok := fortiAPIPatch(o["iph-rsvd-re-cksum"], "ObjectSystemNpu-IphRsvdReCksum"); ok {
 			if err = d.Set("iph_rsvd_re_cksum", vv); err != nil {
@@ -5084,6 +5213,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 					return fmt.Errorf("Error reading isf_np_queues: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("isf_np_rx_tr_distr", flattenObjectSystemNpuIsfNpRxTrDistrOsna(o["isf-np-rx-tr-distr"], d, "isf_np_rx_tr_distr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["isf-np-rx-tr-distr"], "ObjectSystemNpu-IsfNpRxTrDistr"); ok {
+			if err = d.Set("isf_np_rx_tr_distr", vv); err != nil {
+				return fmt.Errorf("Error reading isf_np_rx_tr_distr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading isf_np_rx_tr_distr: %v", err)
 		}
 	}
 
@@ -5397,6 +5536,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("rps_mode", flattenObjectSystemNpuRpsModeOsna(o["rps-mode"], d, "rps_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rps-mode"], "ObjectSystemNpu-RpsMode"); ok {
+			if err = d.Set("rps_mode", vv); err != nil {
+				return fmt.Errorf("Error reading rps_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rps_mode: %v", err)
+		}
+	}
+
 	if err = d.Set("session_acct_interval", flattenObjectSystemNpuSessionAcctIntervalOsna(o["session-acct-interval"], d, "session_acct_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["session-acct-interval"], "ObjectSystemNpu-SessionAcctInterval"); ok {
 			if err = d.Set("session_acct_interval", vv); err != nil {
@@ -5424,6 +5573,30 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading sse_backpressure: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("sse_ha_scan", flattenObjectSystemNpuSseHaScanOsna(o["sse-ha-scan"], d, "sse_ha_scan")); err != nil {
+			if vv, ok := fortiAPIPatch(o["sse-ha-scan"], "ObjectSystemNpu-SseHaScan"); ok {
+				if err = d.Set("sse_ha_scan", vv); err != nil {
+					return fmt.Errorf("Error reading sse_ha_scan: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading sse_ha_scan: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("sse_ha_scan"); ok {
+			if err = d.Set("sse_ha_scan", flattenObjectSystemNpuSseHaScanOsna(o["sse-ha-scan"], d, "sse_ha_scan")); err != nil {
+				if vv, ok := fortiAPIPatch(o["sse-ha-scan"], "ObjectSystemNpu-SseHaScan"); ok {
+					if err = d.Set("sse_ha_scan", vv); err != nil {
+						return fmt.Errorf("Error reading sse_ha_scan: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading sse_ha_scan: %v", err)
+				}
+			}
 		}
 	}
 
@@ -5556,6 +5729,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading uesp_offload: %v", err)
+		}
+	}
+
+	if err = d.Set("ull_port_mode", flattenObjectSystemNpuUllPortModeOsna(o["ull-port-mode"], d, "ull_port_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ull-port-mode"], "ObjectSystemNpu-UllPortMode"); ok {
+			if err = d.Set("ull_port_mode", vv); err != nil {
+				return fmt.Errorf("Error reading ull_port_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ull_port_mode: %v", err)
 		}
 	}
 
@@ -6357,6 +6540,10 @@ func expandObjectSystemNpuHashConfigOsna(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandObjectSystemNpuHashIpv6SelOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuHashTblSpreadOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -6577,6 +6764,10 @@ func expandObjectSystemNpuIntfShapingOffloadOsna(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectSystemNpuIpFragmentOffloadOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuIphRsvdReCksumOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -6696,6 +6887,10 @@ func expandObjectSystemNpuIsfNpQueuesCos6Osna(d *schema.ResourceData, v interfac
 }
 
 func expandObjectSystemNpuIsfNpQueuesCos7Osna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIsfNpRxTrDistrOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -7890,6 +8085,10 @@ func expandObjectSystemNpuRecoverNp6LinkOsna(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectSystemNpuRpsModeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuSessionAcctIntervalOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -7899,6 +8098,44 @@ func expandObjectSystemNpuSessionDeniedOffloadOsna(d *schema.ResourceData, v int
 }
 
 func expandObjectSystemNpuSseBackpressureOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuSseHaScanOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "gap"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["gap"], _ = expandObjectSystemNpuSseHaScanGapOsna(d, i["gap"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_session_cnt"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-session-cnt"], _ = expandObjectSystemNpuSseHaScanMaxSessionCntOsna(d, i["max_session_cnt"], pre_append)
+	}
+	pre_append = pre + ".0." + "min_duration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["min-duration"], _ = expandObjectSystemNpuSseHaScanMinDurationOsna(d, i["min_duration"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemNpuSseHaScanGapOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuSseHaScanMaxSessionCntOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuSseHaScanMinDurationOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8137,6 +8374,10 @@ func expandObjectSystemNpuUespOffloadOsna(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectSystemNpuUllPortModeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuVlanLookupCacheOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8288,6 +8529,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("hash_ipv6_sel"); ok || d.HasChange("hash_ipv6_sel") {
+		t, err := expandObjectSystemNpuHashIpv6SelOsna(d, v, "hash_ipv6_sel")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["hash-ipv6-sel"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("hash_tbl_spread"); ok || d.HasChange("hash_tbl_spread") {
 		t, err := expandObjectSystemNpuHashTblSpreadOsna(d, v, "hash_tbl_spread")
 		if err != nil {
@@ -8396,6 +8646,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("ip_fragment_offload"); ok || d.HasChange("ip_fragment_offload") {
+		t, err := expandObjectSystemNpuIpFragmentOffloadOsna(d, v, "ip_fragment_offload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ip-fragment-offload"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("iph_rsvd_re_cksum"); ok || d.HasChange("iph_rsvd_re_cksum") {
 		t, err := expandObjectSystemNpuIphRsvdReCksumOsna(d, v, "iph_rsvd_re_cksum")
 		if err != nil {
@@ -8501,6 +8760,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["isf-np-queues"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("isf_np_rx_tr_distr"); ok || d.HasChange("isf_np_rx_tr_distr") {
+		t, err := expandObjectSystemNpuIsfNpRxTrDistrOsna(d, v, "isf_np_rx_tr_distr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["isf-np-rx-tr-distr"] = t
 		}
 	}
 
@@ -8720,6 +8988,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("rps_mode"); ok || d.HasChange("rps_mode") {
+		t, err := expandObjectSystemNpuRpsModeOsna(d, v, "rps_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rps-mode"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("session_acct_interval"); ok || d.HasChange("session_acct_interval") {
 		t, err := expandObjectSystemNpuSessionAcctIntervalOsna(d, v, "session_acct_interval")
 		if err != nil {
@@ -8744,6 +9021,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["sse-backpressure"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sse_ha_scan"); ok || d.HasChange("sse_ha_scan") {
+		t, err := expandObjectSystemNpuSseHaScanOsna(d, v, "sse_ha_scan")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sse-ha-scan"] = t
 		}
 	}
 
@@ -8825,6 +9111,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["uesp-offload"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ull_port_mode"); ok || d.HasChange("ull_port_mode") {
+		t, err := expandObjectSystemNpuUllPortModeOsna(d, v, "ull_port_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ull-port-mode"] = t
 		}
 	}
 

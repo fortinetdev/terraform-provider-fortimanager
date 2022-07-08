@@ -35,6 +35,7 @@ The following arguments are supported:
 * `hcache_lossless` - Usableness of ready-with-loss hcaches. disable - Use ready-with-loss hcaches. enable - Do not use ready-with-loss hcaches. Valid values: `disable`, `enable`.
 
 * `ldap_cache_timeout` - LDAP cache timeout in minutes, default 60, 0 means not use cache.
+* `max_rpt_pdf_rows` - Maximum number of rows can be generated in a single pdf.
 * `max_table_rows` - Maximum number of rows can be generated in a single table.
 * `report_priority` - Priority of sql report. high - High low - Low auto - Auto Valid values: `high`, `low`, `auto`.
 

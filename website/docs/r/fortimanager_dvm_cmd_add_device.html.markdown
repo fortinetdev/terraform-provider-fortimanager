@@ -44,6 +44,7 @@ The `device` block supports:
 * `adm_usr` - <i>add real and promote device</i>.
 * `desc` - <i>available for all operations</i>.
 * `deviceaction` - Specify add device operations, or leave blank to add real device:<ul><li>"add_model" - add a model device.<li>"promote_unreg" - promote an unregistered device to be managed by FortiManager using information from database.</ul>
+* `deviceblueprint` - <i>add model device only</i>. Device blueprint to apply to the new model device.
 * `fazquota` - <i>available for all operations</i>.
 * `ip` - <i>add real device only</i>. Add device will probe with this IP using the log in credential specified.
 * `metafields` - <i>add real and model device. The type of `metafields` has changed to map since FortiManager v6.4.7. We keep `metafields` as string to keep forward compatible. Please use `metafields_map` for FortiManager version above 6.4.7(included).</i>.

@@ -411,9 +411,14 @@ The `dynamic_mapping` block supports:
 * `additional_akms` - Additional-Akms. Valid values: `akm6`.
 
 * `address_group` - Address group ID.
+* `address_group_policy` - Address-Group-Policy. Valid values: `disable`, `allow`, `deny`.
+
 * `alias` - Alias.
 * `antivirus_profile` - AntiVirus profile name.
+* `application_detection_engine` - Application-Detection-Engine. Valid values: `disable`, `enable`.
+
 * `application_list` - Application control list name.
+* `application_report_intv` - Application-Report-Intv.
 * `atf_weight` - Airtime weight in percentage (default = 20).
 * `auth` - Authentication protocol. Valid values: `PSK`, `psk`, `RADIUS`, `radius`, `usergroup`.
 
@@ -491,6 +496,8 @@ The `dynamic_mapping` block supports:
 
 * `key` - WEP Key.
 * `keyindex` - WEP key index (1 - 4).
+* `l3_roaming` - L3-Roaming. Valid values: `disable`, `enable`.
+
 * `ldpc` - VAP low-density parity-check (LDPC) coding configuration. Valid values: `disable`, `tx`, `rx`, `rxtx`.
 
 * `local_authentication` - Enable/disable AP local authentication. Valid values: `disable`, `enable`.

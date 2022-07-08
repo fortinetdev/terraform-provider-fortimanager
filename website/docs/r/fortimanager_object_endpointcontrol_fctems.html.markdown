@@ -29,6 +29,9 @@ The following arguments are supported:
 * `fortinetone_cloud_authentication` - Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `disable`, `enable`.
 
 * `https_port` - FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
+* `interface` - Specify outgoing interface to reach server.
+* `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+
 * `name` - FortiClient Enterprise Management Server (EMS) name.
 * `serial_number` - FortiClient EMS Serial Number.
 * `preserve_ssl_session` - Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `disable`, `enable`.

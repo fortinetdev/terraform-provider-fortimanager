@@ -59,6 +59,11 @@ func resourceSystemReportSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"max_rpt_pdf_rows": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"max_table_rows": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -175,6 +180,10 @@ func flattenSystemReportSettingLdapCacheTimeout(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenSystemReportSettingMaxRptPdfRows(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemReportSettingMaxTableRows(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -254,6 +263,16 @@ func refreshObjectSystemReportSetting(d *schema.ResourceData, o map[string]inter
 		}
 	}
 
+	if err = d.Set("max_rpt_pdf_rows", flattenSystemReportSettingMaxRptPdfRows(o["max-rpt-pdf-rows"], d, "max_rpt_pdf_rows")); err != nil {
+		if vv, ok := fortiAPIPatch(o["max-rpt-pdf-rows"], "SystemReportSetting-MaxRptPdfRows"); ok {
+			if err = d.Set("max_rpt_pdf_rows", vv); err != nil {
+				return fmt.Errorf("Error reading max_rpt_pdf_rows: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading max_rpt_pdf_rows: %v", err)
+		}
+	}
+
 	if err = d.Set("max_table_rows", flattenSystemReportSettingMaxTableRows(o["max-table-rows"], d, "max_table_rows")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-table-rows"], "SystemReportSetting-MaxTableRows"); ok {
 			if err = d.Set("max_table_rows", vv); err != nil {
@@ -327,6 +346,10 @@ func expandSystemReportSettingLdapCacheTimeout(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandSystemReportSettingMaxRptPdfRows(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemReportSettingMaxTableRows(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -397,6 +420,15 @@ func getObjectSystemReportSetting(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["ldap-cache-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("max_rpt_pdf_rows"); ok || d.HasChange("max_rpt_pdf_rows") {
+		t, err := expandSystemReportSettingMaxRptPdfRows(d, v, "max_rpt_pdf_rows")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["max-rpt-pdf-rows"] = t
 		}
 	}
 

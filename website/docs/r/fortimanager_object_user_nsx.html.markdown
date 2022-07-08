@@ -36,13 +36,27 @@ The following arguments are supported:
 * `fmgip` - Fmgip.
 * `fmgpasswd` - Fmgpasswd.
 * `fmguser` - Fmguser.
+* `if_allgroup` - If-Allgroup. Valid values: `disable`, `enable`.
+
 * `name` - Name.
 * `password` - Password.
 * `server` - Server.
+* `service` - Service. The structure of `service` block is documented below.
 * `service_id` - Service-Id.
+* `service_manager_id` - Service-Manager-Id.
+* `service_manager_rev` - Service-Manager-Rev.
 * `status` - Status. Valid values: `disable`, `enable`.
 
 * `user` - User.
+* `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `service` block supports:
+
+* `id` - Id.
+* `integration` - Integration. Valid values: `east-west`, `north-south`.
+
+* `name` - Name.
+* `ref_id` - Ref-Id.
 
 
 ## Attribute Reference

@@ -331,6 +331,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				MaxItems: 1,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"address_ip_rating": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"block_page_status_code": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1527,6 +1532,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "address_ip_rating"
+	if _, ok := i["address-ip-rating"]; ok {
+		result["address_ip_rating"] = flattenObjectFirewallProfileProtocolOptionsHttpAddressIpRating(i["address-ip-rating"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "block_page_status_code"
 	if _, ok := i["block-page-status-code"]; ok {
 		result["block_page_status_code"] = flattenObjectFirewallProfileProtocolOptionsHttpBlockPageStatusCode(i["block-page-status-code"], d, pre_append)
@@ -1674,6 +1684,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpAddressIpRating(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpBlockPageStatusCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3308,6 +3322,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "address_ip_rating"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["address-ip-rating"], _ = expandObjectFirewallProfileProtocolOptionsHttpAddressIpRating(d, i["address_ip_rating"], pre_append)
+	}
 	pre_append = pre + ".0." + "block_page_status_code"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["block-page-status-code"], _ = expandObjectFirewallProfileProtocolOptionsHttpBlockPageStatusCode(d, i["block_page_status_code"], pre_append)
@@ -3432,6 +3450,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	}
 
 	return result, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpAddressIpRating(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpBlockPageStatusCode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -110,6 +110,7 @@ The `dynamic_mapping` block supports:
 * `server3` - Domain name or IP address of the third FSSO collector agent.
 * `server4` - Domain name or IP address of the fourth FSSO collector agent.
 * `server5` - Domain name or IP address of the fifth FSSO collector agent.
+* `sni` - Sni.
 * `source_ip` - Source IP for communications to FSSO agent.
 * `source_ip6` - IPv6 source for communications to FSSO agent.
 * `ssl` - Enable/disable use of SSL. Valid values: `disable`, `enable`.

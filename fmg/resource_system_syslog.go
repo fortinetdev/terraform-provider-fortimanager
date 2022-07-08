@@ -34,14 +34,34 @@ func resourceSystemSyslog() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"local_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
+			"peer_cert_cn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"reliable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"secure_connection": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -143,11 +163,27 @@ func flattenSystemSyslogIp(v interface{}, d *schema.ResourceData, pre string) in
 	return v
 }
 
+func flattenSystemSyslogLocalCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemSyslogName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenSystemSyslogPeerCertCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemSyslogPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemSyslogReliable(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemSyslogSecureConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -164,6 +200,16 @@ func refreshObjectSystemSyslog(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("local_cert", flattenSystemSyslogLocalCert(o["local-cert"], d, "local_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["local-cert"], "SystemSyslog-LocalCert"); ok {
+			if err = d.Set("local_cert", vv); err != nil {
+				return fmt.Errorf("Error reading local_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading local_cert: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenSystemSyslogName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "SystemSyslog-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -174,6 +220,16 @@ func refreshObjectSystemSyslog(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("peer_cert_cn", flattenSystemSyslogPeerCertCn(o["peer-cert-cn"], d, "peer_cert_cn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["peer-cert-cn"], "SystemSyslog-PeerCertCn"); ok {
+			if err = d.Set("peer_cert_cn", vv); err != nil {
+				return fmt.Errorf("Error reading peer_cert_cn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading peer_cert_cn: %v", err)
+		}
+	}
+
 	if err = d.Set("port", flattenSystemSyslogPort(o["port"], d, "port")); err != nil {
 		if vv, ok := fortiAPIPatch(o["port"], "SystemSyslog-Port"); ok {
 			if err = d.Set("port", vv); err != nil {
@@ -181,6 +237,26 @@ func refreshObjectSystemSyslog(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading port: %v", err)
+		}
+	}
+
+	if err = d.Set("reliable", flattenSystemSyslogReliable(o["reliable"], d, "reliable")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reliable"], "SystemSyslog-Reliable"); ok {
+			if err = d.Set("reliable", vv); err != nil {
+				return fmt.Errorf("Error reading reliable: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reliable: %v", err)
+		}
+	}
+
+	if err = d.Set("secure_connection", flattenSystemSyslogSecureConnection(o["secure-connection"], d, "secure_connection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["secure-connection"], "SystemSyslog-SecureConnection"); ok {
+			if err = d.Set("secure_connection", vv); err != nil {
+				return fmt.Errorf("Error reading secure_connection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading secure_connection: %v", err)
 		}
 	}
 
@@ -197,11 +273,27 @@ func expandSystemSyslogIp(d *schema.ResourceData, v interface{}, pre string) (in
 	return v, nil
 }
 
+func expandSystemSyslogLocalCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemSyslogName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
+func expandSystemSyslogPeerCertCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemSyslogPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSyslogReliable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSyslogSecureConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -217,6 +309,15 @@ func getObjectSystemSyslog(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("local_cert"); ok || d.HasChange("local_cert") {
+		t, err := expandSystemSyslogLocalCert(d, v, "local_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["local-cert"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandSystemSyslogName(d, v, "name")
 		if err != nil {
@@ -226,12 +327,39 @@ func getObjectSystemSyslog(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("peer_cert_cn"); ok || d.HasChange("peer_cert_cn") {
+		t, err := expandSystemSyslogPeerCertCn(d, v, "peer_cert_cn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["peer-cert-cn"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("port"); ok || d.HasChange("port") {
 		t, err := expandSystemSyslogPort(d, v, "port")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reliable"); ok || d.HasChange("reliable") {
+		t, err := expandSystemSyslogReliable(d, v, "reliable")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reliable"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("secure_connection"); ok || d.HasChange("secure_connection") {
+		t, err := expandSystemSyslogSecureConnection(d, v, "secure_connection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["secure-connection"] = t
 		}
 	}
 

@@ -123,7 +123,22 @@ func resourceSystemLogSettingsRollingRegular() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"server_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server2": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"server3": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -312,7 +327,19 @@ func flattenSystemLogSettingsRollingRegularRollingUpgradeStatus(v interface{}, d
 	return v
 }
 
+func flattenSystemLogSettingsRollingRegularServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLogSettingsRollingRegularServerType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingRegularServer2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsRollingRegularServer3(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -531,6 +558,16 @@ func refreshObjectSystemLogSettingsRollingRegular(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("server", flattenSystemLogSettingsRollingRegularServer(o["server"], d, "server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server"], "SystemLogSettingsRollingRegular-Server"); ok {
+			if err = d.Set("server", vv); err != nil {
+				return fmt.Errorf("Error reading server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server: %v", err)
+		}
+	}
+
 	if err = d.Set("server_type", flattenSystemLogSettingsRollingRegularServerType(o["server-type"], d, "server_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["server-type"], "SystemLogSettingsRollingRegular-ServerType"); ok {
 			if err = d.Set("server_type", vv); err != nil {
@@ -538,6 +575,26 @@ func refreshObjectSystemLogSettingsRollingRegular(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading server_type: %v", err)
+		}
+	}
+
+	if err = d.Set("server2", flattenSystemLogSettingsRollingRegularServer2(o["server2"], d, "server2")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server2"], "SystemLogSettingsRollingRegular-Server2"); ok {
+			if err = d.Set("server2", vv); err != nil {
+				return fmt.Errorf("Error reading server2: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server2: %v", err)
+		}
+	}
+
+	if err = d.Set("server3", flattenSystemLogSettingsRollingRegularServer3(o["server3"], d, "server3")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server3"], "SystemLogSettingsRollingRegular-Server3"); ok {
+			if err = d.Set("server3", vv); err != nil {
+				return fmt.Errorf("Error reading server3: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server3: %v", err)
 		}
 	}
 
@@ -702,7 +759,19 @@ func expandSystemLogSettingsRollingRegularRollingUpgradeStatus(d *schema.Resourc
 	return v, nil
 }
 
+func expandSystemLogSettingsRollingRegularServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLogSettingsRollingRegularServerType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingRegularServer2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsRollingRegularServer3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -903,12 +972,39 @@ func getObjectSystemLogSettingsRollingRegular(d *schema.ResourceData) (*map[stri
 		}
 	}
 
+	if v, ok := d.GetOk("server"); ok || d.HasChange("server") {
+		t, err := expandSystemLogSettingsRollingRegularServer(d, v, "server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("server_type"); ok || d.HasChange("server_type") {
 		t, err := expandSystemLogSettingsRollingRegularServerType(d, v, "server_type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["server-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server2"); ok || d.HasChange("server2") {
+		t, err := expandSystemLogSettingsRollingRegularServer2(d, v, "server2")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server2"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server3"); ok || d.HasChange("server3") {
+		t, err := expandSystemLogSettingsRollingRegularServer3(d, v, "server3")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server3"] = t
 		}
 	}
 

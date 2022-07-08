@@ -262,6 +262,21 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"default_window_height": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"default_window_width": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"dhcp_ip_overlap": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"display_bookmark": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1214,6 +1229,18 @@ func flattenObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(v interface{}, 
 	return v
 }
 
+func flattenObjectVpnSslWebPortalDefaultWindowHeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalDefaultWindowWidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalDhcpIpOverlap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalDisplayBookmark(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1729,6 +1756,36 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading customize_forticlient_download_url: %v", err)
+		}
+	}
+
+	if err = d.Set("default_window_height", flattenObjectVpnSslWebPortalDefaultWindowHeight(o["default-window-height"], d, "default_window_height")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-window-height"], "ObjectVpnSslWebPortal-DefaultWindowHeight"); ok {
+			if err = d.Set("default_window_height", vv); err != nil {
+				return fmt.Errorf("Error reading default_window_height: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_window_height: %v", err)
+		}
+	}
+
+	if err = d.Set("default_window_width", flattenObjectVpnSslWebPortalDefaultWindowWidth(o["default-window-width"], d, "default_window_width")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-window-width"], "ObjectVpnSslWebPortal-DefaultWindowWidth"); ok {
+			if err = d.Set("default_window_width", vv); err != nil {
+				return fmt.Errorf("Error reading default_window_width: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_window_width: %v", err)
+		}
+	}
+
+	if err = d.Set("dhcp_ip_overlap", flattenObjectVpnSslWebPortalDhcpIpOverlap(o["dhcp-ip-overlap"], d, "dhcp_ip_overlap")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dhcp-ip-overlap"], "ObjectVpnSslWebPortal-DhcpIpOverlap"); ok {
+			if err = d.Set("dhcp_ip_overlap", vv); err != nil {
+				return fmt.Errorf("Error reading dhcp_ip_overlap: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dhcp_ip_overlap: %v", err)
 		}
 	}
 
@@ -2814,6 +2871,18 @@ func expandObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(d *schema.Resour
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalDefaultWindowHeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalDefaultWindowWidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalDhcpIpOverlap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalDisplayBookmark(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3281,6 +3350,33 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["customize-forticlient-download-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("default_window_height"); ok || d.HasChange("default_window_height") {
+		t, err := expandObjectVpnSslWebPortalDefaultWindowHeight(d, v, "default_window_height")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-window-height"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("default_window_width"); ok || d.HasChange("default_window_width") {
+		t, err := expandObjectVpnSslWebPortalDefaultWindowWidth(d, v, "default_window_width")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-window-width"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dhcp_ip_overlap"); ok || d.HasChange("dhcp_ip_overlap") {
+		t, err := expandObjectVpnSslWebPortalDhcpIpOverlap(d, v, "dhcp_ip_overlap")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dhcp-ip-overlap"] = t
 		}
 	}
 

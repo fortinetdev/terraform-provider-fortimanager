@@ -198,6 +198,11 @@ func resourceObjectUserFsso() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"sni": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"source_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -685,6 +690,12 @@ func flattenObjectUserFssoDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["server5"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Server5")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sni"
+		if _, ok := i["sni"]; ok {
+			v := flattenObjectUserFssoDynamicMappingSni(i["sni"], d, pre_append)
+			tmp["sni"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Sni")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
 		if _, ok := i["source-ip"]; ok {
 			v := flattenObjectUserFssoDynamicMappingSourceIp(i["source-ip"], d, pre_append)
@@ -875,6 +886,10 @@ func flattenObjectUserFssoDynamicMappingServer4(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectUserFssoDynamicMappingServer5(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserFssoDynamicMappingSni(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1549,6 +1564,11 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["server5"], _ = expandObjectUserFssoDynamicMappingServer5(d, i["server5"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sni"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sni"], _ = expandObjectUserFssoDynamicMappingSni(d, i["sni"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "source_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["source-ip"], _ = expandObjectUserFssoDynamicMappingSourceIp(d, i["source_ip"], pre_append)
@@ -1725,6 +1745,10 @@ func expandObjectUserFssoDynamicMappingServer4(d *schema.ResourceData, v interfa
 }
 
 func expandObjectUserFssoDynamicMappingServer5(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserFssoDynamicMappingSni(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

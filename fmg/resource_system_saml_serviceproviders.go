@@ -55,12 +55,22 @@ func resourceSystemSamlServiceProviders() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sp_adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"sp_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"sp_entity_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"sp_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -189,11 +199,19 @@ func flattenSystemSamlServiceProvidersPrefix(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenSystemSamlServiceProvidersSpAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemSamlServiceProvidersSpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemSamlServiceProvidersSpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemSamlServiceProvidersSpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -258,6 +276,16 @@ func refreshObjectSystemSamlServiceProviders(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("sp_adom", flattenSystemSamlServiceProvidersSpAdom(o["sp-adom"], d, "sp_adom")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sp-adom"], "SystemSamlServiceProviders-SpAdom"); ok {
+			if err = d.Set("sp_adom", vv); err != nil {
+				return fmt.Errorf("Error reading sp_adom: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sp_adom: %v", err)
+		}
+	}
+
 	if err = d.Set("sp_cert", flattenSystemSamlServiceProvidersSpCert(o["sp-cert"], d, "sp_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sp-cert"], "SystemSamlServiceProviders-SpCert"); ok {
 			if err = d.Set("sp_cert", vv); err != nil {
@@ -275,6 +303,16 @@ func refreshObjectSystemSamlServiceProviders(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading sp_entity_id: %v", err)
+		}
+	}
+
+	if err = d.Set("sp_profile", flattenSystemSamlServiceProvidersSpProfile(o["sp-profile"], d, "sp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sp-profile"], "SystemSamlServiceProviders-SpProfile"); ok {
+			if err = d.Set("sp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading sp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sp_profile: %v", err)
 		}
 	}
 
@@ -327,11 +365,19 @@ func expandSystemSamlServiceProvidersPrefix(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandSystemSamlServiceProvidersSpAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemSamlServiceProvidersSpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandSystemSamlServiceProvidersSpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSamlServiceProvidersSpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -391,6 +437,15 @@ func getObjectSystemSamlServiceProviders(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("sp_adom"); ok || d.HasChange("sp_adom") {
+		t, err := expandSystemSamlServiceProvidersSpAdom(d, v, "sp_adom")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sp-adom"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("sp_cert"); ok || d.HasChange("sp_cert") {
 		t, err := expandSystemSamlServiceProvidersSpCert(d, v, "sp_cert")
 		if err != nil {
@@ -406,6 +461,15 @@ func getObjectSystemSamlServiceProviders(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["sp-entity-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sp_profile"); ok || d.HasChange("sp_profile") {
+		t, err := expandSystemSamlServiceProvidersSpProfile(d, v, "sp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sp-profile"] = t
 		}
 	}
 

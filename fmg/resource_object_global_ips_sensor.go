@@ -77,6 +77,16 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"default_action": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"default_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"exempt_ip": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
@@ -102,6 +112,11 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"last_modified": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -198,6 +213,12 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						"tags": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"vuln_type": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
 							Computed: true,
 						},
@@ -564,6 +585,18 @@ func flattenObjectGlobalIpsSensorEntries(v interface{}, d *schema.ResourceData, 
 			tmp["cve"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-Cve")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_action"
+		if _, ok := i["default-action"]; ok {
+			v := flattenObjectGlobalIpsSensorEntriesDefaultAction(i["default-action"], d, pre_append)
+			tmp["default_action"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-DefaultAction")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_status"
+		if _, ok := i["default-status"]; ok {
+			v := flattenObjectGlobalIpsSensorEntriesDefaultStatus(i["default-status"], d, pre_append)
+			tmp["default_status"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-DefaultStatus")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
 		if _, ok := i["exempt-ip"]; ok {
 			v := flattenObjectGlobalIpsSensorEntriesExemptIp(i["exempt-ip"], d, pre_append)
@@ -574,6 +607,12 @@ func flattenObjectGlobalIpsSensorEntries(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["id"]; ok {
 			v := flattenObjectGlobalIpsSensorEntriesId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "last_modified"
+		if _, ok := i["last-modified"]; ok {
+			v := flattenObjectGlobalIpsSensorEntriesLastModified(i["last-modified"], d, pre_append)
+			tmp["last_modified"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-LastModified")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
@@ -684,6 +723,12 @@ func flattenObjectGlobalIpsSensorEntries(v interface{}, d *schema.ResourceData, 
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-Tags")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vuln_type"
+		if _, ok := i["vuln-type"]; ok {
+			v := flattenObjectGlobalIpsSensorEntriesVulnType(i["vuln-type"], d, pre_append)
+			tmp["vuln_type"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-VulnType")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -702,6 +747,14 @@ func flattenObjectGlobalIpsSensorEntriesApplication(v interface{}, d *schema.Res
 
 func flattenObjectGlobalIpsSensorEntriesCve(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectGlobalIpsSensorEntriesDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectGlobalIpsSensorEntriesDefaultStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectGlobalIpsSensorEntriesExemptIp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -762,6 +815,10 @@ func flattenObjectGlobalIpsSensorEntriesExemptIpSrcIp(v interface{}, d *schema.R
 }
 
 func flattenObjectGlobalIpsSensorEntriesId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectGlobalIpsSensorEntriesLastModified(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -835,6 +892,10 @@ func flattenObjectGlobalIpsSensorEntriesStatus(v interface{}, d *schema.Resource
 
 func flattenObjectGlobalIpsSensorEntriesTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectGlobalIpsSensorEntriesVulnType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
 }
 
 func flattenObjectGlobalIpsSensorExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1437,6 +1498,16 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 			tmp["cve"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["default-action"], _ = expandObjectGlobalIpsSensorEntriesDefaultAction(d, i["default_action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_status"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["default-status"], _ = expandObjectGlobalIpsSensorEntriesDefaultStatus(d, i["default_status"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exempt-ip"], _ = expandObjectGlobalIpsSensorEntriesExemptIp(d, i["exempt_ip"], pre_append)
@@ -1447,6 +1518,11 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectGlobalIpsSensorEntriesId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "last_modified"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["last-modified"], _ = expandObjectGlobalIpsSensorEntriesLastModified(d, i["last_modified"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
@@ -1551,6 +1627,13 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 			tmp["tags"] = make([]string, 0)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vuln_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vuln-type"], _ = expandObjectGlobalIpsSensorEntriesVulnType(d, i["vuln_type"], pre_append)
+		} else {
+			tmp["vuln-type"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -1569,6 +1652,14 @@ func expandObjectGlobalIpsSensorEntriesApplication(d *schema.ResourceData, v int
 
 func expandObjectGlobalIpsSensorEntriesCve(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectGlobalIpsSensorEntriesDefaultAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectGlobalIpsSensorEntriesDefaultStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectGlobalIpsSensorEntriesExemptIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1621,6 +1712,10 @@ func expandObjectGlobalIpsSensorEntriesExemptIpSrcIp(d *schema.ResourceData, v i
 }
 
 func expandObjectGlobalIpsSensorEntriesId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectGlobalIpsSensorEntriesLastModified(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1694,6 +1789,10 @@ func expandObjectGlobalIpsSensorEntriesStatus(d *schema.ResourceData, v interfac
 
 func expandObjectGlobalIpsSensorEntriesTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectGlobalIpsSensorEntriesVulnType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectGlobalIpsSensorExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -92,6 +92,16 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"interface": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"interface_select_method": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -299,6 +309,14 @@ func flattenObjectEndpointControlFctemsHttpsPort(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectEndpointControlFctemsInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectEndpointControlFctemsName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -441,6 +459,26 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading https_port: %v", err)
+		}
+	}
+
+	if err = d.Set("interface", flattenObjectEndpointControlFctemsInterface(o["interface"], d, "interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["interface"], "ObjectEndpointControlFctems-Interface"); ok {
+			if err = d.Set("interface", vv); err != nil {
+				return fmt.Errorf("Error reading interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading interface: %v", err)
+		}
+	}
+
+	if err = d.Set("interface_select_method", flattenObjectEndpointControlFctemsInterfaceSelectMethod(o["interface-select-method"], d, "interface_select_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["interface-select-method"], "ObjectEndpointControlFctems-InterfaceSelectMethod"); ok {
+			if err = d.Set("interface_select_method", vv); err != nil {
+				return fmt.Errorf("Error reading interface_select_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading interface_select_method: %v", err)
 		}
 	}
 
@@ -609,6 +647,14 @@ func expandObjectEndpointControlFctemsHttpsPort(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectEndpointControlFctemsInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectEndpointControlFctemsName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -738,6 +784,24 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["https-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
+		t, err := expandObjectEndpointControlFctemsInterface(d, v, "interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["interface"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("interface_select_method"); ok || d.HasChange("interface_select_method") {
+		t, err := expandObjectEndpointControlFctemsInterfaceSelectMethod(d, v, "interface_select_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["interface-select-method"] = t
 		}
 	}
 

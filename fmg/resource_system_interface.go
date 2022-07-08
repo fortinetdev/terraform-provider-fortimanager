@@ -34,7 +34,7 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
-			"type": &schema.Schema{
+			"aggregate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -51,6 +51,11 @@ func resourceSystemInterface() *schema.Resource {
 				Computed: true,
 			},
 			"description": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -86,6 +91,44 @@ func resourceSystemInterface() *schema.Resource {
 					},
 				},
 			},
+			"lacp_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"lacp_speed": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"link_up_delay": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"member": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"interface_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
+			"min_links": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"min_links_down": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"mtu": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -119,11 +162,31 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"update_service_ip": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"vlan_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vlanid": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
 			},
 		},
 	}
@@ -232,6 +295,10 @@ func resourceSystemInterfaceRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenSystemInterfaceAggregate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemInterfaceAlias(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -241,6 +308,10 @@ func flattenSystemInterfaceAllowaccess(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemInterfaceDescription(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -288,6 +359,63 @@ func flattenSystemInterfaceIpv6Ip6Autoconf(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenSystemInterfaceLacpMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceLacpSpeed(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceLinkUpDelay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceMember(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_name"
+		if _, ok := i["interface-name"]; ok {
+			v := flattenSystemInterfaceMemberInterfaceName(i["interface-name"], d, pre_append)
+			tmp["interface_name"] = fortiAPISubPartPatch(v, "SystemInterface-Member-InterfaceName")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenSystemInterfaceMemberInterfaceName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceMinLinks(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceMinLinksDown(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemInterfaceMtu(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -312,12 +440,38 @@ func flattenSystemInterfaceStatus(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenSystemInterfaceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemInterfaceUpdateServiceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
+func flattenSystemInterfaceVlanProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemInterfaceVlanid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("aggregate", flattenSystemInterfaceAggregate(o["aggregate"], d, "aggregate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["aggregate"], "SystemInterface-Aggregate"); ok {
+			if err = d.Set("aggregate", vv); err != nil {
+				return fmt.Errorf("Error reading aggregate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading aggregate: %v", err)
+		}
+	}
 
 	if err = d.Set("alias", flattenSystemInterfaceAlias(o["alias"], d, "alias")); err != nil {
 		if vv, ok := fortiAPIPatch(o["alias"], "SystemInterface-Alias"); ok {
@@ -346,6 +500,16 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading description: %v", err)
+		}
+	}
+
+	if err = d.Set("interface", flattenSystemInterfaceInterface(o["interface"], d, "interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["interface"], "SystemInterface-Interface"); ok {
+			if err = d.Set("interface", vv); err != nil {
+				return fmt.Errorf("Error reading interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading interface: %v", err)
 		}
 	}
 
@@ -380,6 +544,80 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 					return fmt.Errorf("Error reading ipv6: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("lacp_mode", flattenSystemInterfaceLacpMode(o["lacp-mode"], d, "lacp_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["lacp-mode"], "SystemInterface-LacpMode"); ok {
+			if err = d.Set("lacp_mode", vv); err != nil {
+				return fmt.Errorf("Error reading lacp_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading lacp_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("lacp_speed", flattenSystemInterfaceLacpSpeed(o["lacp-speed"], d, "lacp_speed")); err != nil {
+		if vv, ok := fortiAPIPatch(o["lacp-speed"], "SystemInterface-LacpSpeed"); ok {
+			if err = d.Set("lacp_speed", vv); err != nil {
+				return fmt.Errorf("Error reading lacp_speed: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading lacp_speed: %v", err)
+		}
+	}
+
+	if err = d.Set("link_up_delay", flattenSystemInterfaceLinkUpDelay(o["link-up-delay"], d, "link_up_delay")); err != nil {
+		if vv, ok := fortiAPIPatch(o["link-up-delay"], "SystemInterface-LinkUpDelay"); ok {
+			if err = d.Set("link_up_delay", vv); err != nil {
+				return fmt.Errorf("Error reading link_up_delay: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading link_up_delay: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("member", flattenSystemInterfaceMember(o["member"], d, "member")); err != nil {
+			if vv, ok := fortiAPIPatch(o["member"], "SystemInterface-Member"); ok {
+				if err = d.Set("member", vv); err != nil {
+					return fmt.Errorf("Error reading member: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading member: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("member"); ok {
+			if err = d.Set("member", flattenSystemInterfaceMember(o["member"], d, "member")); err != nil {
+				if vv, ok := fortiAPIPatch(o["member"], "SystemInterface-Member"); ok {
+					if err = d.Set("member", vv); err != nil {
+						return fmt.Errorf("Error reading member: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading member: %v", err)
+				}
+			}
+		}
+	}
+
+	if err = d.Set("min_links", flattenSystemInterfaceMinLinks(o["min-links"], d, "min_links")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-links"], "SystemInterface-MinLinks"); ok {
+			if err = d.Set("min_links", vv); err != nil {
+				return fmt.Errorf("Error reading min_links: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_links: %v", err)
+		}
+	}
+
+	if err = d.Set("min_links_down", flattenSystemInterfaceMinLinksDown(o["min-links-down"], d, "min_links_down")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-links-down"], "SystemInterface-MinLinksDown"); ok {
+			if err = d.Set("min_links_down", vv); err != nil {
+				return fmt.Errorf("Error reading min_links_down: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_links_down: %v", err)
 		}
 	}
 
@@ -443,6 +681,16 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("type", flattenSystemInterfaceType(o["type"], d, "type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["type"], "SystemInterface-Type"); ok {
+			if err = d.Set("type", vv); err != nil {
+				return fmt.Errorf("Error reading type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
 	if err = d.Set("update_service_ip", flattenSystemInterfaceUpdateServiceIp(o["update-service-ip"], d, "update_service_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-service-ip"], "SystemInterface-UpdateServiceIp"); ok {
 			if err = d.Set("update_service_ip", vv); err != nil {
@@ -450,6 +698,26 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading update_service_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("vlan_protocol", flattenSystemInterfaceVlanProtocol(o["vlan-protocol"], d, "vlan_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vlan-protocol"], "SystemInterface-VlanProtocol"); ok {
+			if err = d.Set("vlan_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading vlan_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vlan_protocol: %v", err)
+		}
+	}
+
+	if err = d.Set("vlanid", flattenSystemInterfaceVlanid(o["vlanid"], d, "vlanid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vlanid"], "SystemInterface-Vlanid"); ok {
+			if err = d.Set("vlanid", vv); err != nil {
+				return fmt.Errorf("Error reading vlanid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vlanid: %v", err)
 		}
 	}
 
@@ -462,6 +730,10 @@ func flattenSystemInterfaceFortiTestDebug(d *schema.ResourceData, fosdebugsn int
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemInterfaceAggregate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemInterfaceAlias(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -471,6 +743,10 @@ func expandSystemInterfaceAllowaccess(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemInterfaceDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -518,6 +794,57 @@ func expandSystemInterfaceIpv6Ip6Autoconf(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystemInterfaceLacpMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceLacpSpeed(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceLinkUpDelay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["interface-name"], _ = expandSystemInterfaceMemberInterfaceName(d, i["interface_name"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandSystemInterfaceMemberInterfaceName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceMinLinks(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceMinLinksDown(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemInterfaceMtu(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -542,12 +869,33 @@ func expandSystemInterfaceStatus(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
+func expandSystemInterfaceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemInterfaceUpdateServiceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
 
+func expandSystemInterfaceVlanProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemInterfaceVlanid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("aggregate"); ok || d.HasChange("aggregate") {
+		t, err := expandSystemInterfaceAggregate(d, v, "aggregate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["aggregate"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("alias"); ok || d.HasChange("alias") {
 		t, err := expandSystemInterfaceAlias(d, v, "alias")
@@ -576,6 +924,15 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("interface"); ok || d.HasChange("interface") {
+		t, err := expandSystemInterfaceInterface(d, v, "interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["interface"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ip"); ok || d.HasChange("ip") {
 		t, err := expandSystemInterfaceIp(d, v, "ip")
 		if err != nil {
@@ -591,6 +948,60 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["ipv6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("lacp_mode"); ok || d.HasChange("lacp_mode") {
+		t, err := expandSystemInterfaceLacpMode(d, v, "lacp_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["lacp-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("lacp_speed"); ok || d.HasChange("lacp_speed") {
+		t, err := expandSystemInterfaceLacpSpeed(d, v, "lacp_speed")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["lacp-speed"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("link_up_delay"); ok || d.HasChange("link_up_delay") {
+		t, err := expandSystemInterfaceLinkUpDelay(d, v, "link_up_delay")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["link-up-delay"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
+		t, err := expandSystemInterfaceMember(d, v, "member")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["member"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("min_links"); ok || d.HasChange("min_links") {
+		t, err := expandSystemInterfaceMinLinks(d, v, "min_links")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-links"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("min_links_down"); ok || d.HasChange("min_links_down") {
+		t, err := expandSystemInterfaceMinLinksDown(d, v, "min_links_down")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-links-down"] = t
 		}
 	}
 
@@ -648,12 +1059,39 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("type"); ok || d.HasChange("type") {
+		t, err := expandSystemInterfaceType(d, v, "type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["type"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("update_service_ip"); ok || d.HasChange("update_service_ip") {
 		t, err := expandSystemInterfaceUpdateServiceIp(d, v, "update_service_ip")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["update-service-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vlan_protocol"); ok || d.HasChange("vlan_protocol") {
+		t, err := expandSystemInterfaceVlanProtocol(d, v, "vlan_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vlan-protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vlanid"); ok || d.HasChange("vlanid") {
+		t, err := expandSystemInterfaceVlanid(d, v, "vlanid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vlanid"] = t
 		}
 	}
 

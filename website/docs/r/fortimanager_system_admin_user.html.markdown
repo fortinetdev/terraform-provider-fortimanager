@@ -44,6 +44,7 @@ The following arguments are supported:
 * `ext_auth_adom_override` - Allow to use the ADOM provided by the remote authentication server. disable - Disable ADOM override. enable - Enable ADOM override. Valid values: `disable`, `enable`.
 
 * `ext_auth_group_match` - Only administrators belonging to this group can login.
+* `fingerprint` - PKI user certificate fingerprint (MD5, SHA1, SHA256) constraints.
 * `first_name` - First name.
 * `force_password_change` - Enable/disable force password change on next login. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 

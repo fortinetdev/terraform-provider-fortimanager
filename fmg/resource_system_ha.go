@@ -34,6 +34,11 @@ func resourceSystemHa() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"failover_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"file_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -58,6 +63,42 @@ func resourceSystemHa() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"monitored_interfaces": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"interface_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
+			},
+			"monitored_ips": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"interface": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -98,6 +139,31 @@ func resourceSystemHa() *schema.Resource {
 						},
 					},
 				},
+			},
+			"priority": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"unicast": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"vrrp_adv_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"vrrp_interface": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -180,6 +246,10 @@ func flattenSystemHaClusteridSha(v interface{}, d *schema.ResourceData, pre stri
 	return v
 }
 
+func flattenSystemHaFailoverModeSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemHaFileQuotaSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -197,6 +267,100 @@ func flattenSystemHaLocalCertSha(v interface{}, d *schema.ResourceData, pre stri
 }
 
 func flattenSystemHaModeSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaMonitoredInterfacesSha(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_name"
+		if _, ok := i["interface-name"]; ok {
+			v := flattenSystemHaMonitoredInterfacesInterfaceNameSha(i["interface-name"], d, pre_append)
+			tmp["interface_name"] = fortiAPISubPartPatch(v, "SystemHa-MonitoredInterfaces-InterfaceName")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenSystemHaMonitoredInterfacesInterfaceNameSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaMonitoredIpsSha(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenSystemHaMonitoredIpsIdSha(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "SystemHa-MonitoredIps-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
+		if _, ok := i["interface"]; ok {
+			v := flattenSystemHaMonitoredIpsInterfaceSha(i["interface"], d, pre_append)
+			tmp["interface"] = fortiAPISubPartPatch(v, "SystemHa-MonitoredIps-Interface")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
+		if _, ok := i["ip"]; ok {
+			v := flattenSystemHaMonitoredIpsIpSha(i["ip"], d, pre_append)
+			tmp["ip"] = fortiAPISubPartPatch(v, "SystemHa-MonitoredIps-Ip")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenSystemHaMonitoredIpsIdSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaMonitoredIpsInterfaceSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaMonitoredIpsIpSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -281,6 +445,26 @@ func flattenSystemHaPeerStatusSha(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenSystemHaPrioritySha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaUnicastSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaVipSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaVrrpAdvIntervalSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemHaVrrpInterfaceSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -295,6 +479,16 @@ func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) err
 			}
 		} else {
 			return fmt.Errorf("Error reading clusterid: %v", err)
+		}
+	}
+
+	if err = d.Set("failover_mode", flattenSystemHaFailoverModeSha(o["failover-mode"], d, "failover_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["failover-mode"], "SystemHa-FailoverMode"); ok {
+			if err = d.Set("failover_mode", vv); err != nil {
+				return fmt.Errorf("Error reading failover_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading failover_mode: %v", err)
 		}
 	}
 
@@ -349,6 +543,54 @@ func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) err
 	}
 
 	if isImportTable() {
+		if err = d.Set("monitored_interfaces", flattenSystemHaMonitoredInterfacesSha(o["monitored-interfaces"], d, "monitored_interfaces")); err != nil {
+			if vv, ok := fortiAPIPatch(o["monitored-interfaces"], "SystemHa-MonitoredInterfaces"); ok {
+				if err = d.Set("monitored_interfaces", vv); err != nil {
+					return fmt.Errorf("Error reading monitored_interfaces: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading monitored_interfaces: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("monitored_interfaces"); ok {
+			if err = d.Set("monitored_interfaces", flattenSystemHaMonitoredInterfacesSha(o["monitored-interfaces"], d, "monitored_interfaces")); err != nil {
+				if vv, ok := fortiAPIPatch(o["monitored-interfaces"], "SystemHa-MonitoredInterfaces"); ok {
+					if err = d.Set("monitored_interfaces", vv); err != nil {
+						return fmt.Errorf("Error reading monitored_interfaces: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading monitored_interfaces: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("monitored_ips", flattenSystemHaMonitoredIpsSha(o["monitored-ips"], d, "monitored_ips")); err != nil {
+			if vv, ok := fortiAPIPatch(o["monitored-ips"], "SystemHa-MonitoredIps"); ok {
+				if err = d.Set("monitored_ips", vv); err != nil {
+					return fmt.Errorf("Error reading monitored_ips: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading monitored_ips: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("monitored_ips"); ok {
+			if err = d.Set("monitored_ips", flattenSystemHaMonitoredIpsSha(o["monitored-ips"], d, "monitored_ips")); err != nil {
+				if vv, ok := fortiAPIPatch(o["monitored-ips"], "SystemHa-MonitoredIps"); ok {
+					if err = d.Set("monitored_ips", vv); err != nil {
+						return fmt.Errorf("Error reading monitored_ips: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading monitored_ips: %v", err)
+				}
+			}
+		}
+	}
+
+	if isImportTable() {
 		if err = d.Set("peer", flattenSystemHaPeerSha(o["peer"], d, "peer")); err != nil {
 			if vv, ok := fortiAPIPatch(o["peer"], "SystemHa-Peer"); ok {
 				if err = d.Set("peer", vv); err != nil {
@@ -372,6 +614,56 @@ func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) err
 		}
 	}
 
+	if err = d.Set("priority", flattenSystemHaPrioritySha(o["priority"], d, "priority")); err != nil {
+		if vv, ok := fortiAPIPatch(o["priority"], "SystemHa-Priority"); ok {
+			if err = d.Set("priority", vv); err != nil {
+				return fmt.Errorf("Error reading priority: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading priority: %v", err)
+		}
+	}
+
+	if err = d.Set("unicast", flattenSystemHaUnicastSha(o["unicast"], d, "unicast")); err != nil {
+		if vv, ok := fortiAPIPatch(o["unicast"], "SystemHa-Unicast"); ok {
+			if err = d.Set("unicast", vv); err != nil {
+				return fmt.Errorf("Error reading unicast: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading unicast: %v", err)
+		}
+	}
+
+	if err = d.Set("vip", flattenSystemHaVipSha(o["vip"], d, "vip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vip"], "SystemHa-Vip"); ok {
+			if err = d.Set("vip", vv); err != nil {
+				return fmt.Errorf("Error reading vip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vip: %v", err)
+		}
+	}
+
+	if err = d.Set("vrrp_adv_interval", flattenSystemHaVrrpAdvIntervalSha(o["vrrp-adv-interval"], d, "vrrp_adv_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrrp-adv-interval"], "SystemHa-VrrpAdvInterval"); ok {
+			if err = d.Set("vrrp_adv_interval", vv); err != nil {
+				return fmt.Errorf("Error reading vrrp_adv_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrrp_adv_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("vrrp_interface", flattenSystemHaVrrpInterfaceSha(o["vrrp-interface"], d, "vrrp_interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vrrp-interface"], "SystemHa-VrrpInterface"); ok {
+			if err = d.Set("vrrp_interface", vv); err != nil {
+				return fmt.Errorf("Error reading vrrp_interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vrrp_interface: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -382,6 +674,10 @@ func flattenSystemHaFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fosde
 }
 
 func expandSystemHaClusteridSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaFailoverModeSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -402,6 +698,86 @@ func expandSystemHaLocalCertSha(d *schema.ResourceData, v interface{}, pre strin
 }
 
 func expandSystemHaModeSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaMonitoredInterfacesSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["interface-name"], _ = expandSystemHaMonitoredInterfacesInterfaceNameSha(d, i["interface_name"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandSystemHaMonitoredInterfacesInterfaceNameSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaMonitoredIpsSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandSystemHaMonitoredIpsIdSha(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["interface"], _ = expandSystemHaMonitoredIpsInterfaceSha(d, i["interface"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ip"], _ = expandSystemHaMonitoredIpsIpSha(d, i["ip"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandSystemHaMonitoredIpsIdSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaMonitoredIpsInterfaceSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaMonitoredIpsIpSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -476,6 +852,26 @@ func expandSystemHaPeerStatusSha(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
+func expandSystemHaPrioritySha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaUnicastSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaVipSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaVrrpAdvIntervalSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemHaVrrpInterfaceSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -485,6 +881,15 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 			return &obj, err
 		} else if t != nil {
 			obj["clusterid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("failover_mode"); ok || d.HasChange("failover_mode") {
+		t, err := expandSystemHaFailoverModeSha(d, v, "failover_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["failover-mode"] = t
 		}
 	}
 
@@ -533,6 +938,24 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
+	if v, ok := d.GetOk("monitored_interfaces"); ok || d.HasChange("monitored_interfaces") {
+		t, err := expandSystemHaMonitoredInterfacesSha(d, v, "monitored_interfaces")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["monitored-interfaces"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("monitored_ips"); ok || d.HasChange("monitored_ips") {
+		t, err := expandSystemHaMonitoredIpsSha(d, v, "monitored_ips")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["monitored-ips"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("password"); ok || d.HasChange("password") {
 		t, err := expandSystemHaPasswordSha(d, v, "password")
 		if err != nil {
@@ -548,6 +971,51 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 			return &obj, err
 		} else if t != nil {
 			obj["peer"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("priority"); ok || d.HasChange("priority") {
+		t, err := expandSystemHaPrioritySha(d, v, "priority")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["priority"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("unicast"); ok || d.HasChange("unicast") {
+		t, err := expandSystemHaUnicastSha(d, v, "unicast")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["unicast"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vip"); ok || d.HasChange("vip") {
+		t, err := expandSystemHaVipSha(d, v, "vip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrrp_adv_interval"); ok || d.HasChange("vrrp_adv_interval") {
+		t, err := expandSystemHaVrrpAdvIntervalSha(d, v, "vrrp_adv_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrrp-adv-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vrrp_interface"); ok || d.HasChange("vrrp_interface") {
+		t, err := expandSystemHaVrrpInterfaceSha(d, v, "vrrp_interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vrrp-interface"] = t
 		}
 	}
 
