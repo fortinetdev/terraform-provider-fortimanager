@@ -50,7 +50,7 @@ func EscapeURLString(v string) string { // doesn't support "<>()"'#"
 }
 
 func escapeURLString(v string) string { // doesn't support "<>()"'#"
-	return v
+	return strings.Replace(v, "/", "\\/", -1)
 	// return strings.Replace(url.QueryEscape(v), "+", "%20", -1)
 }
 

@@ -585,7 +585,7 @@ func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre stri
 		result["mgmt_mode"], _ = expandDvmCmdAddDeviceDeviceMgmtMode(d, i["mgmt_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "mr"
-	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+	if _, ok := d.GetOkExists(pre_append); ok || d.HasChange(pre_append) {
 		result["mr"], _ = expandDvmCmdAddDeviceDeviceMr(d, i["mr"], pre_append)
 	}
 	pre_append = pre + ".0." + "name"
@@ -728,7 +728,7 @@ func expandDvmCmdAddDeviceGroupsVdom(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
-func getObjectDvmCmdAddDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectDvmCmdAddDevice(d *schema.ResourceData, deviceVersion string) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
@@ -741,7 +741,7 @@ func getObjectDvmCmdAddDevice(d *schema.ResourceData) (*map[string]interface{}, 
 	}
 
 	if v, ok := d.GetOk("device"); ok || d.HasChange("device") {
-		t, err := expandDvmCmdAddDeviceDevice(d, v, "device")
+		t, err := expandDvmCmdAddDeviceDevice(d, v, "device", deviceVersion)
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

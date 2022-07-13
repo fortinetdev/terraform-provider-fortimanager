@@ -20065,6 +20065,25 @@ func (c *FortiSDKClient) UpdateSecurityconsoleAbort(params *map[string]interface
 
 
 
+// UpdateSecurityconsoleAssignPackage API operation for FortiManager updates the specified AssignPackage.
+// Returns the index value of the AssignPackage and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the securityconsole - assign package chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdateSecurityconsoleAssignPackage(params *map[string]interface{}, globaladom, mkey string, paralist []string) (output map[string]interface{}, err error) {
+	path := "/securityconsole/assign/package"
+	path, err = replaceParaWithValue(path, paralist)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+
+	output, err = createUpdate(c, globaladom, path, "exec", params, false)
+	return
+}
+
+
+
+
 // UpdateSecurityconsoleInstallDevice API operation for FortiManager updates the specified InstallDevice.
 // Returns the index value of the InstallDevice and execution result when the request executes successfully.
 // Returns error for service API and SDK errors.

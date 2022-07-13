@@ -422,6 +422,7 @@ func Provider() terraform.ResourceProvider {
 			"fortimanager_packages_global_header_shapingpolicy":                       resourcePackagesGlobalHeaderShapingPolicy(),
 			"fortimanager_packages_pkg":                                               resourcePackagesPkg(),
 			"fortimanager_securityconsole_abort":                                      resourceSecurityconsoleAbort(),
+			"fortimanager_securityconsole_assign_package":                             resourceSecurityconsoleAssignPackage(),
 			"fortimanager_securityconsole_install_device":                             resourceSecurityconsoleInstallDevice(),
 			"fortimanager_securityconsole_install_package":                            resourceSecurityconsoleInstallPackage(),
 			"fortimanager_securityconsole_install_preview":                            resourceSecurityconsoleInstallPreview(),
