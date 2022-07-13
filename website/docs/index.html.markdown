@@ -146,6 +146,18 @@ The following arguments are supported:
 ## Release
 Check out the FortiManager provider release notes and additional information from: [the FortiManager provider releases](https://github.com/fortinetdev/terraform-provider-fortimanager/releases).
 
+
+## FortiManager best practices
+
+FortiManager is an integrated platform for the centralized management of products in a Fortinet security infrastructure, including FortiGates.
+
+Once FortiGates are managed by a FortiManager that is operating in Normal Mode, whenever possible, configuration changes should be made on the FortiManager and not the FortiGate. This recommendation also applies when the configuration of FortiGates and FortiManager is executed through the [FortiOS](https://registry.terraform.io/providers/fortinetdev/fortios/latest) and [FortiManager](https://registry.terraform.io/providers/fortinetdev/fortimanager/latest) providers.
+
+To help you get the most out of your FortiManager products, maximize performance, and avoid potential problems, please refer to the [FortiManager documentation](https://docs.fortinet.com/product/fortimanager), including the Administration Guide and Best Practices documents.
+
+Fortinet also provides a developer community to help administrators and advanced users enhance and increase the effectiveness of Fortinet products. The [Fortinet Developer Network (FNDN)](https://fndn.fortinet.net/) provides the official documentation and advanced tools for developing custom solutions using Fortinet products.
+
+
 ## Versioning
 
-The provider can cover FortiManager 6.4 to 7.0 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
+The provider can cover FortiManager 6.4 to 7.2 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
