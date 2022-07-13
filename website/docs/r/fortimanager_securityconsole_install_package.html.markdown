@@ -14,11 +14,9 @@ Copy and install a policy package to devices.
 ```hcl
 resource "fortimanager_securityconsole_install_package" "trname" {
   fmgadom           = "root"
-  adom_rev_comments = "terraform-comment"
-  adom_rev_name     = "terraform-tefv"
-  dev_rev_comments  = "terraform-comment"
-  flags             = ["none", "cp_all_objs", "preview", "generate_rev", "copy_assigned_pkg", "unassign", "ifpolicy_only", "no_ifpolicy", "objs_only", "auto_lock_ws", "check_pkg_st", "copy_only"]
+  flags             = ["none"]
   pkg               = "default"
+  force_recreate    = uuid()
 }
 ```
 

@@ -9,6 +9,19 @@ description: |-
 # fortimanager_securityconsole_assign_package
 Assign or unassign global policy package to ADOM packages.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_securityconsole_assign_package" "trname" {
+  flags = ["none"]
+  pkg     = "default"
+  target {
+    adom = "root"
+    excluded = "enable"
+  }
+}
+```
+
 ## Argument Reference
 
 
