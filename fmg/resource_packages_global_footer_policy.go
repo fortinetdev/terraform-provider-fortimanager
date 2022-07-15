@@ -1965,7 +1965,7 @@ func flattenPackagesGlobalFooterPolicyPolicyExpiry(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesGlobalFooterPolicyPolicyExpiryDate(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convstrlist2str(v)
 }
 
 func flattenPackagesGlobalFooterPolicyPolicyOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2069,7 +2069,7 @@ func flattenPackagesGlobalFooterPolicyServiceNegate(v interface{}, d *schema.Res
 }
 
 func flattenPackagesGlobalFooterPolicySessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenPackagesGlobalFooterPolicySessions(v interface{}, d *schema.ResourceData, pre string) interface{} {

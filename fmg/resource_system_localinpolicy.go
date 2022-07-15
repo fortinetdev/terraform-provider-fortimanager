@@ -40,12 +40,14 @@ func resourceSystemLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"dst": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -60,7 +62,8 @@ func resourceSystemLocalInPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"src": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -85,7 +88,7 @@ func resourceSystemLocalInPolicyCreate(d *schema.ResourceData, m interface{}) er
 		return fmt.Errorf("Error creating SystemLocalInPolicy resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLocalInPolicyRead(d, m)
 }
@@ -109,7 +112,7 @@ func resourceSystemLocalInPolicyUpdate(d *schema.ResourceData, m interface{}) er
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLocalInPolicyRead(d, m)
 }
@@ -167,7 +170,7 @@ func flattenSystemLocalInPolicyDport(v interface{}, d *schema.ResourceData, pre 
 }
 
 func flattenSystemLocalInPolicyDst(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenSystemLocalInPolicyId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -183,7 +186,7 @@ func flattenSystemLocalInPolicyProtocol(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemLocalInPolicySrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func refreshObjectSystemLocalInPolicy(d *schema.ResourceData, o map[string]interface{}) error {
@@ -277,7 +280,7 @@ func expandSystemLocalInPolicyDport(d *schema.ResourceData, v interface{}, pre s
 }
 
 func expandSystemLocalInPolicyDst(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandSystemLocalInPolicyId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -293,7 +296,7 @@ func expandSystemLocalInPolicyProtocol(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandSystemLocalInPolicySrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func getObjectSystemLocalInPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {

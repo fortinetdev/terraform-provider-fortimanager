@@ -31,6 +31,7 @@ func resourceSystemHaMonitoredIps() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -65,7 +66,7 @@ func resourceSystemHaMonitoredIpsCreate(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating SystemHaMonitoredIps resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemHaMonitoredIpsRead(d, m)
 }
@@ -89,7 +90,7 @@ func resourceSystemHaMonitoredIpsUpdate(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemHaMonitoredIpsRead(d, m)
 }

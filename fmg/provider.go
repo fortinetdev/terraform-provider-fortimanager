@@ -467,7 +467,6 @@ func Provider() terraform.ResourceProvider {
 			"fortimanager_system_guiact":                                              resourceSystemGuiact(),
 			"fortimanager_system_ha":                                                  resourceSystemHa(),
 			"fortimanager_system_hascheduledcheck":                                    resourceSystemHaScheduledCheck(),
-			"fortimanager_system_ha_monitoredinterfaces":                              resourceSystemHaMonitoredInterfaces(),
 			"fortimanager_system_ha_monitoredips":                                     resourceSystemHaMonitoredIps(),
 			"fortimanager_system_ha_peer":                                             resourceSystemHaPeer(),
 			"fortimanager_system_interface":                                           resourceSystemInterface(),

@@ -29,7 +29,7 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{fosid}}.
 
 ## Import
 
@@ -37,7 +37,7 @@ System LocalInPolicy6 can be imported using any of these accepted formats:
 ```
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_localinpolicy6.labelname SystemLocalInPolicy6
+$ terraform import fortimanager_system_localinpolicy6.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 

@@ -46,6 +46,7 @@ func resourceSystemLocalInPolicy6() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 				Computed: true,
 			},
@@ -85,7 +86,7 @@ func resourceSystemLocalInPolicy6Create(d *schema.ResourceData, m interface{}) e
 		return fmt.Errorf("Error creating SystemLocalInPolicy6 resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLocalInPolicy6Read(d, m)
 }
@@ -109,7 +110,7 @@ func resourceSystemLocalInPolicy6Update(d *schema.ResourceData, m interface{}) e
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemLocalInPolicy6Read(d, m)
 }
