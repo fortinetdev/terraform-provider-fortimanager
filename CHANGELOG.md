@@ -1,4 +1,28 @@
-## 1.5.0 (Unreleased)
+## 1.6.0 (Unreleased)
+
+## 1.5.0 (July 15, 2022)
+
+IMPROVEMENTS:
+
+* Support FortiManager version from 7.0.4 to 7.2.0
+* Update difference check functionality for arguments
+* Fix some argument type convert issues
+* Fix error of name can't contain slash
+
+FEATURES:
+
+* **New Resource:** `fortimanager_object_fmg_device_blueprint`
+* **New Resource:** `fortimanager_object_fmg_variable`
+* **New Resource:** `fortimanager_object_system_npu_ssehascan`
+* **New Resource:** `fortimanager_object_vpn_ipsec_fec`
+* **New Resource:** `fortimanager_packages_firewall_acl`
+* **New Resource:** `fortimanager_packages_firewall_acl6`
+* **New Resource:** `fortimanager_packages_firewall_acl6_move`
+* **New Resource:** `fortimanager_packages_firewall_acl_move`
+* **New Resource:** `fortimanager_securityconsole_assign_package`
+* **New Resource:** `fortimanager_system_ha_monitoredips`
+* **New Resource:** `fortimanager_system_localinpolicy`
+* **New Resource:** `fortimanager_system_localinpolicy6`
 
 ## 1.4.0 (Apr 6, 2022)
 
