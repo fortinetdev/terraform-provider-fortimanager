@@ -3336,8 +3336,6 @@ func expandObjectWebfilterProfileWeb(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "whitelist"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["whitelist"], _ = expandObjectWebfilterProfileWebWhitelist(d, i["whitelist"], pre_append)
-	} else {
-		result["whitelist"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "youtube_restrict"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
