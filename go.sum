@@ -48,6 +48,8 @@ github.com/fortinetdev/forti-sdk-go v1.7.1 h1:3WSfUIqlUc4J6Et+/obKOywkBLcqhDTz1H
 github.com/fortinetdev/forti-sdk-go v1.7.1/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
 github.com/fortinetdev/forti-sdk-go v1.7.2 h1:kpxw//rfdNLyrqhA2jw0VjTYilKg3F0aIftYGd77ZNo=
 github.com/fortinetdev/forti-sdk-go v1.7.2/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
+github.com/fortinetdev/forti-sdk-go v1.8.0 h1:IFIzOVfp3FkDsov6YS0j5exZDv6hZ6ZxFII8gKHYeOI=
+github.com/fortinetdev/forti-sdk-go v1.8.0/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
 github.com/go-test/deep v1.0.3 h1:ZrJSEWsXzPOxaZnFteGEfooLba+ju3FYIbOrS+rQd68=
 github.com/go-test/deep v1.0.3/go.mod h1:wGDj63lr65AM2AQyKZd/NYHGb0R+1RLqB8NKt3aSFNA=
 github.com/golang/glog v0.0.0-20160126235308-23def4e6c14b h1:VKtxabqXZkF25pY9ekfRL6a582T4P37/31XEstQ5p58=
