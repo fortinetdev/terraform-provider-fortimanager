@@ -48,7 +48,6 @@ func resourceObjectFmgVariable() *schema.Resource {
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
@@ -63,12 +62,10 @@ func resourceObjectFmgVariable() *schema.Resource {
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"vdom": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -76,7 +73,6 @@ func resourceObjectFmgVariable() *schema.Resource {
 						"value": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -85,12 +81,10 @@ func resourceObjectFmgVariable() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"value": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

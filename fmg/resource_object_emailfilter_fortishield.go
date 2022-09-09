@@ -48,17 +48,14 @@ func resourceObjectEmailfilterFortishield() *schema.Resource {
 			"spam_submit_force": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"spam_submit_srv": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"spam_submit_txt2htm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

@@ -43,13 +43,11 @@ func resourceSecurityconsoleInstallDevice() *schema.Resource {
 			"dev_rev_comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"flags": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeList,
@@ -59,12 +57,10 @@ func resourceSecurityconsoleInstallDevice() *schema.Resource {
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"vdom": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

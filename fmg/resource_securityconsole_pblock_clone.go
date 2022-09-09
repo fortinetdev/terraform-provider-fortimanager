@@ -43,12 +43,10 @@ func resourceSecurityconsolePblockClone() *schema.Resource {
 			"dst_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"pblock": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

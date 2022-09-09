@@ -48,18 +48,15 @@ func resourceDvmdbGroup() *schema.Resource {
 			"desc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"metafields": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"os_type": &schema.Schema{
 				Type:     schema.TypeString,

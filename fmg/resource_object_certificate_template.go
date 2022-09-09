@@ -48,12 +48,10 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 			"city": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"country": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"curve_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -68,7 +66,6 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 			"email": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"id_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -89,23 +86,19 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"organization": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"organization_unit": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"scep_ca_identifier": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"scep_password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -117,17 +110,14 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 			"scep_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"state": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"subject_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,

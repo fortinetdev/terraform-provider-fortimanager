@@ -37,7 +37,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"adom_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -55,7 +54,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"adom_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -68,7 +66,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"app_filter_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -76,12 +73,10 @@ func resourceSystemAdminUser() *schema.Resource {
 			"avatar": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"ca": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"change_password": &schema.Schema{
 				Type:     schema.TypeString,
@@ -96,7 +91,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"column": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"diskio_content_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -111,7 +105,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"log_rate_period": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"log_rate_topn": &schema.Schema{
 							Type:     schema.TypeString,
@@ -126,12 +119,10 @@ func resourceSystemAdminUser() *schema.Resource {
 						"moduleid": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"num_entries": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -166,7 +157,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"tabid": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"time_period": &schema.Schema{
 							Type:     schema.TypeString,
@@ -176,7 +166,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"widget_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -189,12 +178,10 @@ func resourceSystemAdminUser() *schema.Resource {
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"tabid": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -202,17 +189,14 @@ func resourceSystemAdminUser() *schema.Resource {
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dev_group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"email_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"ext_auth_accprofile_override": &schema.Schema{
 				Type:     schema.TypeString,
@@ -227,17 +211,14 @@ func resourceSystemAdminUser() *schema.Resource {
 			"ext_auth_group_match": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fingerprint": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"first_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"force_password_change": &schema.Schema{
 				Type:     schema.TypeString,
@@ -247,12 +228,10 @@ func resourceSystemAdminUser() *schema.Resource {
 			"group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"hidden": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"ips_filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -262,7 +241,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"ips_filter_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -320,12 +298,10 @@ func resourceSystemAdminUser() *schema.Resource {
 			"last_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"ldap_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"login_max": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -340,17 +316,14 @@ func resourceSystemAdminUser() *schema.Resource {
 						"fieldlength": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"fieldname": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"fieldvalue": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"importance": &schema.Schema{
 							Type:     schema.TypeString,
@@ -368,12 +341,10 @@ func resourceSystemAdminUser() *schema.Resource {
 			"mobile_number": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"pager_number": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -385,12 +356,10 @@ func resourceSystemAdminUser() *schema.Resource {
 			"password_expire": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"phone_number": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"policy_package": &schema.Schema{
 				Type:     schema.TypeList,
@@ -400,7 +369,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"policy_package_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -413,7 +381,6 @@ func resourceSystemAdminUser() *schema.Resource {
 			"radius_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"rpc_permit": &schema.Schema{
 				Type:     schema.TypeString,
@@ -424,39 +391,32 @@ func resourceSystemAdminUser() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"ssh_public_key2": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"ssh_public_key3": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"subject": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"tacacs_plus_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"th_from_profile": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"th6_from_profile": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"trusthost1": &schema.Schema{
 				Type:     schema.TypeList,
@@ -542,7 +502,6 @@ func resourceSystemAdminUser() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"web_filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -552,7 +511,6 @@ func resourceSystemAdminUser() *schema.Resource {
 						"web_filter_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

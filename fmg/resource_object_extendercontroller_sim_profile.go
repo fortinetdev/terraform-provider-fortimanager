@@ -85,7 +85,6 @@ func resourceObjectExtenderControllerSimProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"switch_back_time": &schema.Schema{
 							Type:     schema.TypeString,
@@ -103,7 +102,6 @@ func resourceObjectExtenderControllerSimProfile() *schema.Resource {
 			"conn_status": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"default_sim": &schema.Schema{
 				Type:     schema.TypeString,
@@ -113,7 +111,6 @@ func resourceObjectExtenderControllerSimProfile() *schema.Resource {
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"gps": &schema.Schema{
 				Type:     schema.TypeString,
@@ -123,23 +120,19 @@ func resourceObjectExtenderControllerSimProfile() *schema.Resource {
 			"modem_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"preferred_carrier": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"redundant_intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"redundant_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -155,7 +148,6 @@ func resourceObjectExtenderControllerSimProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"sim2_pin": &schema.Schema{
 				Type:     schema.TypeString,
@@ -166,7 +158,6 @@ func resourceObjectExtenderControllerSimProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

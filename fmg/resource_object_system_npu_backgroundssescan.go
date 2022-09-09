@@ -48,17 +48,14 @@ func resourceObjectSystemNpuBackgroundSseScan() *schema.Resource {
 			"scan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"stats_update_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"udp_keepalive_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

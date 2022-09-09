@@ -32,7 +32,6 @@ func resourceSystemSyslog() *schema.Resource {
 			"ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"local_cert": &schema.Schema{
 				Type:     schema.TypeString,
@@ -43,12 +42,10 @@ func resourceSystemSyslog() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"peer_cert_cn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,

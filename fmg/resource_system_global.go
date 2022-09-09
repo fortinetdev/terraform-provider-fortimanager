@@ -123,7 +123,6 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"enc_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
@@ -138,12 +137,10 @@ func resourceSystemGlobal() *schema.Resource {
 			"fgfm_ca_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fgfm_local_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fgfm_ssl_protocol": &schema.Schema{
 				Type:     schema.TypeString,
@@ -173,7 +170,6 @@ func resourceSystemGlobal() *schema.Resource {
 			"latitude": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"ldap_cache_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -198,12 +194,10 @@ func resourceSystemGlobal() *schema.Resource {
 			"log_forward_cache_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"longitude": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"max_log_forward": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -223,7 +217,6 @@ func resourceSystemGlobal() *schema.Resource {
 						"adom_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -306,7 +299,6 @@ func resourceSystemGlobal() *schema.Resource {
 			"pre_login_banner_message": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"private_data_encryption": &schema.Schema{
 				Type:     schema.TypeString,
@@ -331,12 +323,10 @@ func resourceSystemGlobal() *schema.Resource {
 						"cipher": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"priority": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"version": &schema.Schema{
 							Type:     schema.TypeString,
@@ -355,7 +345,6 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"ssl_static_key_ciphers": &schema.Schema{
 				Type:     schema.TypeString,
@@ -401,7 +390,6 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"workflow_max_sessions": &schema.Schema{
 				Type:     schema.TypeInt,

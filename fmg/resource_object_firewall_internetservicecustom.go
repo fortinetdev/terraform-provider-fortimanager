@@ -48,7 +48,6 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"disable_entry": &schema.Schema{
 				Type:     schema.TypeList,
@@ -58,7 +57,6 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ip_range": &schema.Schema{
 							Type:     schema.TypeList,
@@ -68,17 +66,14 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 									"end_ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"start_ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -87,12 +82,10 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
-							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -105,12 +98,10 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 						"dst": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port_range": &schema.Schema{
 							Type:     schema.TypeList,
@@ -120,17 +111,14 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 									"end_port": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"start_port": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -138,7 +126,6 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -146,23 +133,19 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 			"master_service_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"reputation": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

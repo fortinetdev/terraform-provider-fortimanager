@@ -49,7 +49,6 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortium() *schema.Re
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"oi_list": &schema.Schema{
 				Type:     schema.TypeList,
@@ -59,17 +58,14 @@ func resourceObjectWirelessControllerHotspot20AnqpRoamingConsortium() *schema.Re
 						"comment": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"index": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"oi": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

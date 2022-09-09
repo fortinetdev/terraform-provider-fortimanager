@@ -32,7 +32,6 @@ func resourceSystemWebProxy() *schema.Resource {
 			"address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -43,7 +42,6 @@ func resourceSystemWebProxy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -58,7 +56,6 @@ func resourceSystemWebProxy() *schema.Resource {
 			"username": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

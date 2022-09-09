@@ -32,7 +32,6 @@ func resourceFmupdateWebSpamWebProxy() *schema.Resource {
 			"address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -59,7 +58,6 @@ func resourceFmupdateWebSpamWebProxy() *schema.Resource {
 			"username": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

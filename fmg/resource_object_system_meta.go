@@ -49,7 +49,6 @@ func resourceObjectSystemMeta() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"sys_meta_fields": &schema.Schema{
 				Type:     schema.TypeList,
@@ -59,17 +58,14 @@ func resourceObjectSystemMeta() *schema.Resource {
 						"fieldlength": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"importance": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

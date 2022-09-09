@@ -38,7 +38,6 @@ func resourceSystemMetadataAdmins() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"importance": &schema.Schema{
 				Type:     schema.TypeString,

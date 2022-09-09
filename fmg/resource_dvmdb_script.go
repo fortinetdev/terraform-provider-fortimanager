@@ -48,27 +48,22 @@ func resourceDvmdbScript() *schema.Resource {
 			"content": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"desc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"filter_build": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"filter_device": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"filter_hostname": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"filter_ostype": &schema.Schema{
 				Type:     schema.TypeString,
@@ -83,23 +78,19 @@ func resourceDvmdbScript() *schema.Resource {
 			"filter_platform": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"filter_serial": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"modification_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"script_schedule": &schema.Schema{
 				Type:     schema.TypeList,
@@ -109,7 +100,6 @@ func resourceDvmdbScript() *schema.Resource {
 						"datetime": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"day_of_week": &schema.Schema{
 							Type:     schema.TypeString,
@@ -119,12 +109,10 @@ func resourceDvmdbScript() *schema.Resource {
 						"device": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"run_on_db": &schema.Schema{
 							Type:     schema.TypeString,
@@ -134,7 +122,6 @@ func resourceDvmdbScript() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -147,7 +134,6 @@ func resourceDvmdbScript() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

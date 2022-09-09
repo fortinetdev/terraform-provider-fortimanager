@@ -49,7 +49,6 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorName() *schema.Resourc
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"value_list": &schema.Schema{
 				Type:     schema.TypeList,
@@ -59,17 +58,14 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorName() *schema.Resourc
 						"index": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"lang": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"value": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

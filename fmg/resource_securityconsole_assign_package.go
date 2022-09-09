@@ -39,12 +39,10 @@ func resourceSecurityconsoleAssignPackage() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"target": &schema.Schema{
 				Type:     schema.TypeList,
@@ -54,7 +52,6 @@ func resourceSecurityconsoleAssignPackage() *schema.Resource {
 						"adom": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"excluded": &schema.Schema{
 							Type:     schema.TypeString,
@@ -64,7 +61,6 @@ func resourceSecurityconsoleAssignPackage() *schema.Resource {
 						"pkg": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

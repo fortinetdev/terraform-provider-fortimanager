@@ -48,7 +48,6 @@ func resourceObjectEmailfilterOptions() *schema.Resource {
 			"dns_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

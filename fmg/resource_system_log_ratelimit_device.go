@@ -32,7 +32,6 @@ func resourceSystemLogRatelimitDevice() *schema.Resource {
 			"device": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"filter_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -43,12 +42,10 @@ func resourceSystemLogRatelimitDevice() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"ratelimit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

@@ -57,7 +57,6 @@ func resourceSystemAdminSetting() *schema.Resource {
 			"auth_addr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"auth_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -72,7 +71,6 @@ func resourceSystemAdminSetting() *schema.Resource {
 			"banner_message": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"central_ftgd_local_cat_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -137,12 +135,10 @@ func resourceSystemAdminSetting() *schema.Resource {
 			"mgmt_addr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"mgmt_fqdn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"objects_force_deletion": &schema.Schema{
 				Type:     schema.TypeString,
@@ -157,13 +153,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 			"preferred_fgfm_intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"register_passwd": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"sdwan_monitor_history": &schema.Schema{
 				Type:     schema.TypeString,
@@ -184,7 +178,6 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"show_add_multiple": &schema.Schema{
 				Type:     schema.TypeString,

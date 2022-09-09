@@ -37,7 +37,6 @@ func resourceSystemLogRatelimit() *schema.Resource {
 						"device": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"filter_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -47,12 +46,10 @@ func resourceSystemLogRatelimit() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ratelimit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -60,7 +57,6 @@ func resourceSystemLogRatelimit() *schema.Resource {
 			"device_ratelimit_default": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -75,7 +71,6 @@ func resourceSystemLogRatelimit() *schema.Resource {
 						"filter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"filter_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -85,12 +80,10 @@ func resourceSystemLogRatelimit() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ratelimit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -98,7 +91,6 @@ func resourceSystemLogRatelimit() *schema.Resource {
 			"system_ratelimit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

@@ -32,7 +32,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 			"client_adom": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"data_range": &schema.Schema{
 				Type:     schema.TypeString,
@@ -62,7 +61,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"vdom": &schema.Schema{
 							Type:     schema.TypeString,
@@ -76,13 +74,11 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"index_fetch_logs": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,12 +93,10 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 						"field": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"oper": &schema.Schema{
 							Type:     schema.TypeString,
@@ -112,7 +106,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 						"value": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -130,7 +123,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -142,7 +134,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 			"peer_cert_cn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"secure_connection": &schema.Schema{
 				Type:     schema.TypeString,
@@ -152,7 +143,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 			"server_adom": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"server_ip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -163,7 +153,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"sync_adom_config": &schema.Schema{
 				Type:     schema.TypeString,
@@ -173,7 +162,6 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 			"user": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

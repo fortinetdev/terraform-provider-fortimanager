@@ -49,12 +49,10 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"bandwidth_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"cellular": &schema.Schema{
 				Type:     schema.TypeList,
@@ -71,17 +69,14 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"interval": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"signal_threshold": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -89,7 +84,6 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 						"dataplan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"modem1": &schema.Schema{
 							Type:     schema.TypeList,
@@ -106,43 +100,35 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 												"dataplan": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"disconnect_period": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
-													Computed: true,
 												},
 												"disconnect_threshold": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
-													Computed: true,
 												},
 												"signal": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"switch_back": &schema.Schema{
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
-													Computed: true,
 												},
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"switch_back_timer": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
-													Computed: true,
 												},
 											},
 										},
@@ -150,59 +136,48 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"conn_status": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"default_sim": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"gps": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"preferred_carrier": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"redundant_intf": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"redundant_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"sim1_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
-										Computed: true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -222,43 +197,35 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 												"dataplan": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"disconnect_period": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
-													Computed: true,
 												},
 												"disconnect_threshold": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
-													Computed: true,
 												},
 												"signal": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"switch_back": &schema.Schema{
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
-													Computed: true,
 												},
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"switch_back_timer": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
-													Computed: true,
 												},
 											},
 										},
@@ -266,59 +233,48 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"conn_status": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"default_sim": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"gps": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"preferred_carrier": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"redundant_intf": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"redundant_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"sim1_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
-										Computed: true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -338,37 +294,30 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 												"data_exhausted": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"fgt_backup_mode_switch": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"low_signal_strength": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"mode_switch": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"os_image_fallback": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"session_disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"system_reboot": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 											},
 										},
@@ -382,22 +331,18 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
-													Computed: true,
 												},
 												"name": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"phone_number": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 												"status": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
-													Computed: true,
 												},
 											},
 										},
@@ -405,7 +350,6 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -416,17 +360,14 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 			"enforce_bandwidth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"extension": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"lan_extension": &schema.Schema{
 				Type:     schema.TypeList,
@@ -442,22 +383,18 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"port": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"role": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -465,22 +402,18 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 						"backhaul_interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"backhaul_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"ipsec_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"link_loadbalance": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -489,23 +422,19 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"login_password_change": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"model": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

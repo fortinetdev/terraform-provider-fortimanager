@@ -42,7 +42,6 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 			"log_disk_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"max_log_file_num": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -58,7 +57,6 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"roll_schedule": &schema.Schema{
 				Type:     schema.TypeString,
@@ -68,7 +66,6 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 			"roll_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"server_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -98,12 +95,10 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 			"upload_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"uploaddir": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"uploadip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -114,12 +109,10 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"uploadport": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"uploadsched": &schema.Schema{
 				Type:     schema.TypeString,
@@ -130,12 +123,10 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"uploaduser": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"uploadzip": &schema.Schema{
 				Type:     schema.TypeString,

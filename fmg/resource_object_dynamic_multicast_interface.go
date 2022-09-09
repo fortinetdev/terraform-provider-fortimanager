@@ -48,17 +48,14 @@ func resourceObjectDynamicMulticastInterface() *schema.Resource {
 			"default_mapping": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"defmap_intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
@@ -73,12 +70,10 @@ func resourceObjectDynamicMulticastInterface() *schema.Resource {
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"vdom": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -86,7 +81,6 @@ func resourceObjectDynamicMulticastInterface() *schema.Resource {
 						"local_intf": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -95,7 +89,6 @@ func resourceObjectDynamicMulticastInterface() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"zone_only": &schema.Schema{
 				Type:     schema.TypeString,

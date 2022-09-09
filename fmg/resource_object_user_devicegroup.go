@@ -48,12 +48,10 @@ func resourceObjectUserDeviceGroup() *schema.Resource {
 			"_if_unmanaged": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
@@ -63,7 +61,6 @@ func resourceObjectUserDeviceGroup() *schema.Resource {
 						"_if_unmanaged": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"_scope": &schema.Schema{
 							Type:     schema.TypeList,
@@ -73,12 +70,10 @@ func resourceObjectUserDeviceGroup() *schema.Resource {
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"vdom": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -86,12 +81,10 @@ func resourceObjectUserDeviceGroup() *schema.Resource {
 						"comment": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"member": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -99,13 +92,11 @@ func resourceObjectUserDeviceGroup() *schema.Resource {
 			"member": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"tagging": &schema.Schema{
 				Type:     schema.TypeList,
@@ -115,18 +106,15 @@ func resourceObjectUserDeviceGroup() *schema.Resource {
 						"category": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"tags": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},

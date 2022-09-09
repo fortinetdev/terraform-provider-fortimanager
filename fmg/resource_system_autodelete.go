@@ -43,7 +43,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"runat": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -53,7 +52,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"value": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -72,7 +70,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"runat": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -82,7 +79,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"value": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -101,7 +97,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"runat": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -111,7 +106,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"value": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -130,7 +124,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"runat": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -140,7 +133,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 						"value": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -148,7 +140,6 @@ func resourceSystemAutoDelete() *schema.Resource {
 			"status_fake": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

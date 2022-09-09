@@ -33,7 +33,6 @@ func resourceSystemWorkflowApprovalMatrix() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"approver": &schema.Schema{
 				Type:     schema.TypeList,
@@ -43,12 +42,10 @@ func resourceSystemWorkflowApprovalMatrix() *schema.Resource {
 						"member": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"seq_num": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -56,12 +53,10 @@ func resourceSystemWorkflowApprovalMatrix() *schema.Resource {
 			"mail_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"notify": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

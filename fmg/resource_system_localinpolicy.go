@@ -37,7 +37,6 @@ func resourceSystemLocalInPolicy() *schema.Resource {
 			"dport": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"dst": &schema.Schema{
 				Type:     schema.TypeList,
@@ -49,12 +48,10 @@ func resourceSystemLocalInPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"intf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,

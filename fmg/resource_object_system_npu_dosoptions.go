@@ -48,17 +48,14 @@ func resourceObjectSystemNpuDosOptions() *schema.Resource {
 			"npu_dos_meter_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"npu_dos_synproxy_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"npu_dos_tpe_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

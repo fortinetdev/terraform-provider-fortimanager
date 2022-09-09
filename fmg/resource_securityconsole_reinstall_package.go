@@ -44,7 +44,6 @@ func resourceSecurityconsoleReinstallPackage() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"target": &schema.Schema{
 				Type:     schema.TypeList,
@@ -54,7 +53,6 @@ func resourceSecurityconsoleReinstallPackage() *schema.Resource {
 						"pkg": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"scope": &schema.Schema{
 							Type:     schema.TypeList,
@@ -64,12 +62,10 @@ func resourceSecurityconsoleReinstallPackage() *schema.Resource {
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"vdom": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},

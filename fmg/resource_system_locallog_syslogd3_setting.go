@@ -32,7 +32,6 @@ func resourceSystemLocallogSyslogd3Setting() *schema.Resource {
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"csv": &schema.Schema{
 				Type:     schema.TypeString,
@@ -67,7 +66,6 @@ func resourceSystemLocallogSyslogd3Setting() *schema.Resource {
 			"syslog_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

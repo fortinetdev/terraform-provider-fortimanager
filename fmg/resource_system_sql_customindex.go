@@ -43,12 +43,10 @@ func resourceSystemSqlCustomIndex() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"index_field": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"log_type": &schema.Schema{
 				Type:     schema.TypeString,

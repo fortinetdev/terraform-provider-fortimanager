@@ -48,7 +48,6 @@ func resourceObjectApplicationCategories() *schema.Resource {
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

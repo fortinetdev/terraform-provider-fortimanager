@@ -32,7 +32,6 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"crptpasswd": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -44,7 +43,6 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 			"directory": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"passwd": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -61,7 +59,6 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -71,18 +68,15 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 			"time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"user": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"week_days": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

@@ -48,13 +48,11 @@ func resourceObjectWafSignature() *schema.Resource {
 			"desc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

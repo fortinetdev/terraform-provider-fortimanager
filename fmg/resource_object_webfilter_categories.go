@@ -48,7 +48,6 @@ func resourceObjectWebfilterCategories() *schema.Resource {
 			"fosid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

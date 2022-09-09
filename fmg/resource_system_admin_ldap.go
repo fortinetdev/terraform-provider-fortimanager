@@ -37,7 +37,6 @@ func resourceSystemAdminLdap() *schema.Resource {
 						"adom_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -50,7 +49,6 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"adom_attr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"attributes": &schema.Schema{
 				Type:     schema.TypeString,
@@ -60,7 +58,6 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"ca_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"cnid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -75,7 +72,6 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"dn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"filter": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,18 +81,15 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"memberof_attr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -113,12 +106,10 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"profile_attr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"secure": &schema.Schema{
 				Type:     schema.TypeString,
@@ -128,12 +119,10 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -143,7 +132,6 @@ func resourceSystemAdminLdap() *schema.Resource {
 			"username": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

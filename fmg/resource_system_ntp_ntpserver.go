@@ -38,7 +38,6 @@ func resourceSystemNtpNtpserver() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"key": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -50,7 +49,6 @@ func resourceSystemNtpNtpserver() *schema.Resource {
 			"key_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"maxpoll": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -70,7 +68,6 @@ func resourceSystemNtpNtpserver() *schema.Resource {
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

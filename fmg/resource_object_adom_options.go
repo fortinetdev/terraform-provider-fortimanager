@@ -48,12 +48,10 @@ func resourceObjectAdomOptions() *schema.Resource {
 			"assign_excluded": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"specify_assign_pkg_list": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

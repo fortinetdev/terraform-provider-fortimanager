@@ -37,7 +37,6 @@ func resourceFmupdateFdsSettingPushOverrideToClient() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,

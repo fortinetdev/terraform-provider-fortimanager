@@ -50,7 +50,6 @@ func resourceSystemAdminTacacs() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -67,12 +66,10 @@ func resourceSystemAdminTacacs() *schema.Resource {
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"tertiary_key": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -84,7 +81,6 @@ func resourceSystemAdminTacacs() *schema.Resource {
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

@@ -37,28 +37,23 @@ func resourceSystemInterface() *schema.Resource {
 			"aggregate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"alias": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"allowaccess": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"ip": &schema.Schema{
 				Type:     schema.TypeList,
@@ -81,7 +76,6 @@ func resourceSystemInterface() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"ip6_autoconf": &schema.Schema{
 							Type:     schema.TypeString,
@@ -114,7 +108,6 @@ func resourceSystemInterface() *schema.Resource {
 						"interface_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -138,7 +131,6 @@ func resourceSystemInterface() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"rating_service_ip": &schema.Schema{
 				Type:     schema.TypeList,
@@ -150,7 +142,6 @@ func resourceSystemInterface() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"speed": &schema.Schema{
 				Type:     schema.TypeString,
@@ -181,7 +172,6 @@ func resourceSystemInterface() *schema.Resource {
 			"vlanid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

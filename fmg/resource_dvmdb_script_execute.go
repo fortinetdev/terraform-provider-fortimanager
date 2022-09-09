@@ -59,7 +59,6 @@ func resourceDvmdbScriptExecute() *schema.Resource {
 			"package": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeList,
@@ -69,12 +68,10 @@ func resourceDvmdbScriptExecute() *schema.Resource {
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"vdom": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -82,7 +79,6 @@ func resourceDvmdbScriptExecute() *schema.Resource {
 			"script": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

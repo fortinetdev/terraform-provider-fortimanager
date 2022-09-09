@@ -32,57 +32,46 @@ func resourceSystemLogSettings() *schema.Resource {
 			"fac_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"faz_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fch_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fct_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fdd_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fgt_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fmg_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fml_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fpx_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fsa_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"fwb_custom_field1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"browse_max_logfiles": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -129,7 +118,6 @@ func resourceSystemLogSettings() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"del_files": &schema.Schema{
 							Type:     schema.TypeString,
@@ -139,7 +127,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"directory": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"file_size": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -154,7 +141,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"hour": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -179,7 +165,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"min": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"password": &schema.Schema{
 							Type:      schema.TypeSet,
@@ -192,38 +177,31 @@ func resourceSystemLogSettings() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"password3": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port2": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port3": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"rolling_upgrade_status": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"server_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -233,12 +211,10 @@ func resourceSystemLogSettings() *schema.Resource {
 						"server2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"server3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"upload": &schema.Schema{
 							Type:     schema.TypeString,
@@ -248,7 +224,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"upload_hour": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"upload_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -263,17 +238,14 @@ func resourceSystemLogSettings() *schema.Resource {
 						"username": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"username2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"username3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"when": &schema.Schema{
 							Type:     schema.TypeString,
@@ -293,7 +265,6 @@ func resourceSystemLogSettings() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"del_files": &schema.Schema{
 							Type:     schema.TypeString,
@@ -303,7 +274,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"directory": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"file_size": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -318,7 +288,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"hour": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -343,7 +312,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"min": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"password": &schema.Schema{
 							Type:      schema.TypeSet,
@@ -356,38 +324,31 @@ func resourceSystemLogSettings() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"password3": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port2": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port3": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"rolling_upgrade_status": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"server_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -397,12 +358,10 @@ func resourceSystemLogSettings() *schema.Resource {
 						"server2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"server3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"upload": &schema.Schema{
 							Type:     schema.TypeString,
@@ -412,7 +371,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"upload_hour": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"upload_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -427,17 +385,14 @@ func resourceSystemLogSettings() *schema.Resource {
 						"username": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"username2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"username3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"when": &schema.Schema{
 							Type:     schema.TypeString,
@@ -457,7 +412,6 @@ func resourceSystemLogSettings() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"del_files": &schema.Schema{
 							Type:     schema.TypeString,
@@ -467,7 +421,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"directory": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"file_size": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -482,7 +435,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"hour": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -507,50 +459,41 @@ func resourceSystemLogSettings() *schema.Resource {
 						"min": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"password": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"password2": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"password3": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port2": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"port3": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"rolling_upgrade_status": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"server_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -560,12 +503,10 @@ func resourceSystemLogSettings() *schema.Resource {
 						"server2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"server3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"upload": &schema.Schema{
 							Type:     schema.TypeString,
@@ -575,7 +516,6 @@ func resourceSystemLogSettings() *schema.Resource {
 						"upload_hour": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
-							Computed: true,
 						},
 						"upload_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -590,17 +530,14 @@ func resourceSystemLogSettings() *schema.Resource {
 						"username": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"username2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"username3": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"when": &schema.Schema{
 							Type:     schema.TypeString,

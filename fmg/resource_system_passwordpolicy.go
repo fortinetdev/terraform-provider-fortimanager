@@ -37,7 +37,6 @@ func resourceSystemPasswordPolicy() *schema.Resource {
 			"expire": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"minimum_length": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -48,7 +47,6 @@ func resourceSystemPasswordPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

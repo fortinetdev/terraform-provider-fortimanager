@@ -53,17 +53,14 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfCharge() *schema.Resou
 						"nai_realm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"nai_realm_encoding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"plan_info": &schema.Schema{
 							Type:     schema.TypeList,
@@ -73,22 +70,18 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfCharge() *schema.Resou
 									"currency": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"info_file": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"lang": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -96,7 +89,6 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfCharge() *schema.Resou
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 					},
 				},
@@ -105,7 +97,6 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfCharge() *schema.Resou
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

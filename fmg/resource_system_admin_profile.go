@@ -93,12 +93,10 @@ func resourceSystemAdminProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
-							Computed: true,
 						},
 						"field_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"field_status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -122,7 +120,6 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"datamask_key": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -134,7 +131,6 @@ func resourceSystemAdminProfile() *schema.Resource {
 			"datamask_unmasked_time": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"deploy_management": &schema.Schema{
 				Type:     schema.TypeString,
@@ -144,7 +140,6 @@ func resourceSystemAdminProfile() *schema.Resource {
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"device_ap": &schema.Schema{
 				Type:     schema.TypeString,
@@ -335,7 +330,6 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 			"read_passwd": &schema.Schema{
 				Type:     schema.TypeString,

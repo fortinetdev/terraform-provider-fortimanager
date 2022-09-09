@@ -32,7 +32,6 @@ func resourceSystemRoute() *schema.Resource {
 			"device": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"dst": &schema.Schema{
 				Type:     schema.TypeList,
@@ -49,7 +48,6 @@ func resourceSystemRoute() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

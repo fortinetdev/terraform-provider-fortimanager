@@ -32,12 +32,10 @@ func resourceSystemGlobalSslCipherSuites() *schema.Resource {
 			"cipher": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"priority": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"version": &schema.Schema{
 				Type:     schema.TypeString,

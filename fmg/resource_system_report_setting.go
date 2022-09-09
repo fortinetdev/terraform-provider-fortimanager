@@ -42,7 +42,6 @@ func resourceSystemReportSetting() *schema.Resource {
 			"capwap_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"exclude_capwap": &schema.Schema{
 				Type:     schema.TypeString,

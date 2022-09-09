@@ -32,7 +32,6 @@ func resourceSystemSocFabric() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -43,7 +42,6 @@ func resourceSystemSocFabric() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
-				Computed: true,
 			},
 			"role": &schema.Schema{
 				Type:     schema.TypeString,
@@ -63,7 +61,6 @@ func resourceSystemSocFabric() *schema.Resource {
 			"supervisor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}

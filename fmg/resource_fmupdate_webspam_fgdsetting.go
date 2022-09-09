@@ -122,7 +122,6 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 			"max_client_worker": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"max_log_quota": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -137,42 +136,34 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 			"restrict_as1_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_as2_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_as4_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_av_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_av2_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_fq_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_iots_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"restrict_wf_dbver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"server_override": &schema.Schema{
 				Type:     schema.TypeList,
@@ -188,7 +179,6 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
-										Computed: true,
 									},
 									"ip": &schema.Schema{
 										Type:     schema.TypeString,
@@ -208,7 +198,6 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 									"service_type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
-										Computed: true,
 									},
 								},
 							},
@@ -244,7 +233,6 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 			"wf_cache": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"wf_dn_cache_expire_time": &schema.Schema{
 				Type:     schema.TypeInt,

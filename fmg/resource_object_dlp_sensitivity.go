@@ -48,7 +48,6 @@ func resourceObjectDlpSensitivity() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 		},
 	}
