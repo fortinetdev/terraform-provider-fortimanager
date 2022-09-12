@@ -867,7 +867,7 @@ func flattenObjectWebfilterProfileAntiphishDefaultAction(v interface{}, d *schem
 }
 
 func flattenObjectWebfilterProfileAntiphishDomainController(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWebfilterProfileAntiphishInspectionEntries(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1260,7 +1260,7 @@ func flattenObjectWebfilterProfileFtgdWfFiltersAuthUsrGrp(v interface{}, d *sche
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWebfilterProfileFtgdWfFiltersId(v interface{}, d *schema.ResourceData, pre string) interface{} {

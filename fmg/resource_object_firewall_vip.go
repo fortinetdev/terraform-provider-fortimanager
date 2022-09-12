@@ -1661,7 +1661,7 @@ func flattenObjectFirewallVipDynamicMappingExtintf(v interface{}, d *schema.Reso
 }
 
 func flattenObjectFirewallVipDynamicMappingExtip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallVipDynamicMappingExtport(v interface{}, d *schema.ResourceData, pre string) interface{} {

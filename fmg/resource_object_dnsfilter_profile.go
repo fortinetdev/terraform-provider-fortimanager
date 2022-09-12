@@ -539,7 +539,7 @@ func flattenObjectDnsfilterProfileFtgdDnsFiltersAction(v interface{}, d *schema.
 }
 
 func flattenObjectDnsfilterProfileFtgdDnsFiltersCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectDnsfilterProfileFtgdDnsFiltersId(v interface{}, d *schema.ResourceData, pre string) interface{} {

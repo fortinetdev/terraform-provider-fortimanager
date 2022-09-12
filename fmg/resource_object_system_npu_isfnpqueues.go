@@ -186,7 +186,7 @@ func flattenObjectSystemNpuIsfNpQueuesCos5(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos6(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos7(v interface{}, d *schema.ResourceData, pre string) interface{} {

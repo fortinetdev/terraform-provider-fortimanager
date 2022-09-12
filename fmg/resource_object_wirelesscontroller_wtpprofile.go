@@ -2306,7 +2306,7 @@ func flattenObjectWirelessControllerWtpProfileLanPortEslMode(v interface{}, d *s
 }
 
 func flattenObjectWirelessControllerWtpProfileLanPortEslSsid(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileLanPortMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3417,7 +3417,7 @@ func flattenObjectWirelessControllerWtpProfileRadio1Vaps(v interface{}, d *schem
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1WidsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1ZeroWaitDfs(v interface{}, d *schema.ResourceData, pre string) interface{} {

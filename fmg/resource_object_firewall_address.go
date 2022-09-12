@@ -1107,7 +1107,7 @@ func flattenObjectFirewallAddressDynamicMappingSubType(v interface{}, d *schema.
 }
 
 func flattenObjectFirewallAddressDynamicMappingSubnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallAddressDynamicMappingSubnetName(v interface{}, d *schema.ResourceData, pre string) interface{} {

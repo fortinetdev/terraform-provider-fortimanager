@@ -362,7 +362,7 @@ func flattenObjectFirewallVipgrpDynamicMappingInterface(v interface{}, d *schema
 }
 
 func flattenObjectFirewallVipgrpDynamicMappingMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallVipgrpDynamicMappingUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {

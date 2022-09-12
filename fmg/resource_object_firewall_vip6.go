@@ -1586,7 +1586,7 @@ func flattenObjectFirewallVip6DynamicMappingLdbMethod(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallVip6DynamicMappingMappedip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallVip6DynamicMappingMappedport(v interface{}, d *schema.ResourceData, pre string) interface{} {

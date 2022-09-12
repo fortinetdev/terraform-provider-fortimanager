@@ -913,7 +913,7 @@ func flattenObjectWafProfileAddressListStatus(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectWafProfileAddressListTrustedAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWafProfileComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
