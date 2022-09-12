@@ -49,6 +49,10 @@ func resourceDvmdbGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fosid": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"metafields": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -182,6 +186,10 @@ func flattenDvmdbGroupDesc(v interface{}, d *schema.ResourceData, pre string) in
 	return v
 }
 
+func flattenDvmdbGroupId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenDvmdbGroupMetaFields(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -212,6 +220,16 @@ func refreshObjectDvmdbGroup(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading desc: %v", err)
+		}
+	}
+
+	if err = d.Set("fosid", flattenDvmdbGroupId(o["id"], d, "fosid")); err != nil {
+		if vv, ok := fortiAPIPatch(o["id"], "DvmdbGroup-Id"); ok {
+			if err = d.Set("fosid", vv); err != nil {
+				return fmt.Errorf("Error reading fosid: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fosid: %v", err)
 		}
 	}
 
@@ -268,6 +286,10 @@ func expandDvmdbGroupDesc(d *schema.ResourceData, v interface{}, pre string) (in
 	return v, nil
 }
 
+func expandDvmdbGroupId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandDvmdbGroupMetaFields(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -293,6 +315,15 @@ func getObjectDvmdbGroup(d *schema.ResourceData) (*map[string]interface{}, error
 			return &obj, err
 		} else if t != nil {
 			obj["desc"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+		t, err := expandDvmdbGroupId(d, v, "fosid")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["id"] = t
 		}
 	}
 

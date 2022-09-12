@@ -260,6 +260,10 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"two_factor_filter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"two_factor_notification": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -798,6 +802,12 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["two_factor_authentication"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-TwoFactorAuthentication")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_filter"
+		if _, ok := i["two-factor-filter"]; ok {
+			v := flattenObjectUserLdapDynamicMappingTwoFactorFilter(i["two-factor-filter"], d, pre_append)
+			tmp["two_factor_filter"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-TwoFactorFilter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_notification"
 		if _, ok := i["two-factor-notification"]; ok {
 			v := flattenObjectUserLdapDynamicMappingTwoFactorNotification(i["two-factor-notification"], d, pre_append)
@@ -1022,6 +1032,10 @@ func flattenObjectUserLdapDynamicMappingTwoFactor(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserLdapDynamicMappingTwoFactorAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapDynamicMappingTwoFactorFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1777,6 +1791,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["two-factor-authentication"], _ = expandObjectUserLdapDynamicMappingTwoFactorAuthentication(d, i["two_factor_authentication"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_filter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["two-factor-filter"], _ = expandObjectUserLdapDynamicMappingTwoFactorFilter(d, i["two_factor_filter"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "two_factor_notification"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["two-factor-notification"], _ = expandObjectUserLdapDynamicMappingTwoFactorNotification(d, i["two_factor_notification"], pre_append)
@@ -1990,6 +2009,10 @@ func expandObjectUserLdapDynamicMappingTwoFactor(d *schema.ResourceData, v inter
 }
 
 func expandObjectUserLdapDynamicMappingTwoFactorAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapDynamicMappingTwoFactorFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

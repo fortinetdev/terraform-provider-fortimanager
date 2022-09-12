@@ -63,6 +63,8 @@ The following arguments are supported:
 * `lacp_speed` - How often the interface sends LACP messages. slow - Send LACP message every 30 seconds. fast - Send LACP message every second. Valid values: `slow`, `fast`.
 
 * `link_up_delay` - Number of milliseconds to wait before considering a link is up.
+* `lldp` - Enable/disable LLDP (Link Layer Discovery Protocol). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `member` - Member. The structure of `member` block is documented below.
 * `min_links` - Minimum number of aggregated ports that must be up.
 * `min_links_down` - Action to take when less than the configured minimum number of links are active. operational - Set the aggregate operationally down. administrative - Set the aggregate administratively down. Valid values: `operational`, `administrative`.

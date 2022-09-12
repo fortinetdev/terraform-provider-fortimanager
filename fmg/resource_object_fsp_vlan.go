@@ -156,6 +156,15 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeString,
 										Optional: true,
 									},
+									"vci_match": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vci_string": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
+										Optional: true,
+									},
 								},
 							},
 						},
@@ -190,6 +199,15 @@ func resourceObjectFspVlan() *schema.Resource {
 									},
 									"start_ip": &schema.Schema{
 										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vci_match": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vci_string": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
 									},
 								},
@@ -282,6 +300,15 @@ func resourceObjectFspVlan() *schema.Resource {
 									},
 									"value": &schema.Schema{
 										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vci_match": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vci_string": &schema.Schema{
+										Type:     schema.TypeSet,
+										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
 									},
 								},
@@ -520,6 +547,15 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeString,
 													Optional: true,
 												},
+												"vci_match": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"vci_string": &schema.Schema{
+													Type:     schema.TypeSet,
+													Elem:     &schema.Schema{Type: schema.TypeString},
+													Optional: true,
+												},
 											},
 										},
 									},
@@ -554,6 +590,15 @@ func resourceObjectFspVlan() *schema.Resource {
 												},
 												"start_ip": &schema.Schema{
 													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"vci_match": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"vci_string": &schema.Schema{
+													Type:     schema.TypeSet,
+													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
 												},
 											},
@@ -646,6 +691,15 @@ func resourceObjectFspVlan() *schema.Resource {
 												},
 												"value": &schema.Schema{
 													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"vci_match": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"vci_string": &schema.Schema{
+													Type:     schema.TypeSet,
+													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
 												},
 											},
@@ -1179,6 +1233,10 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"aggregate_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"algorithm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1570,6 +1628,10 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"generic_receive_offload": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"gi_gk": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1637,6 +1699,10 @@ func resourceObjectFspVlan() *schema.Resource {
 						},
 						"ingress_spillover_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"interconnect_profile": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"internal": &schema.Schema{
@@ -1998,6 +2064,10 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 						},
 						"lacp_speed": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"large_receive_offload": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -2530,6 +2600,10 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 						},
 						"switch_controller_nac": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"switch_controller_netflow_collect": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -3333,6 +3407,18 @@ func flattenObjectFspVlanDhcpServerExcludeRange(v interface{}, d *schema.Resourc
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-ExcludeRange-StartIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := i["vci-match"]; ok {
+			v := flattenObjectFspVlanDhcpServerExcludeRangeVciMatch(i["vci-match"], d, pre_append)
+			tmp["vci_match"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-ExcludeRange-VciMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := i["vci-string"]; ok {
+			v := flattenObjectFspVlanDhcpServerExcludeRangeVciString(i["vci-string"], d, pre_append)
+			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-ExcludeRange-VciString")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -3351,6 +3437,14 @@ func flattenObjectFspVlanDhcpServerExcludeRangeId(v interface{}, d *schema.Resou
 
 func flattenObjectFspVlanDhcpServerExcludeRangeStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanDhcpServerExcludeRangeVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDhcpServerExcludeRangeVciString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDhcpServerFilename(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3406,6 +3500,18 @@ func flattenObjectFspVlanDhcpServerIpRange(v interface{}, d *schema.ResourceData
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-IpRange-StartIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := i["vci-match"]; ok {
+			v := flattenObjectFspVlanDhcpServerIpRangeVciMatch(i["vci-match"], d, pre_append)
+			tmp["vci_match"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-IpRange-VciMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := i["vci-string"]; ok {
+			v := flattenObjectFspVlanDhcpServerIpRangeVciString(i["vci-string"], d, pre_append)
+			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-IpRange-VciString")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -3424,6 +3530,14 @@ func flattenObjectFspVlanDhcpServerIpRangeId(v interface{}, d *schema.ResourceDa
 
 func flattenObjectFspVlanDhcpServerIpRangeStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanDhcpServerIpRangeVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDhcpServerIpRangeVciString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDhcpServerIpsecLeaseHold(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3535,6 +3649,18 @@ func flattenObjectFspVlanDhcpServerOptions(v interface{}, d *schema.ResourceData
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-Options-Value")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := i["vci-match"]; ok {
+			v := flattenObjectFspVlanDhcpServerOptionsVciMatch(i["vci-match"], d, pre_append)
+			tmp["vci_match"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-Options-VciMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := i["vci-string"]; ok {
+			v := flattenObjectFspVlanDhcpServerOptionsVciString(i["vci-string"], d, pre_append)
+			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-Options-VciString")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -3561,6 +3687,14 @@ func flattenObjectFspVlanDhcpServerOptionsType(v interface{}, d *schema.Resource
 
 func flattenObjectFspVlanDhcpServerOptionsValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanDhcpServerOptionsVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDhcpServerOptionsVciString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDhcpServerReservedAddress(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -4254,6 +4388,18 @@ func flattenObjectFspVlanDynamicMappingDhcpServerExcludeRange(v interface{}, d *
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-ExcludeRange-StartIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := i["vci-match"]; ok {
+			v := flattenObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciMatch(i["vci-match"], d, pre_append)
+			tmp["vci_match"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-ExcludeRange-VciMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := i["vci-string"]; ok {
+			v := flattenObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciString(i["vci-string"], d, pre_append)
+			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-ExcludeRange-VciString")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -4272,6 +4418,14 @@ func flattenObjectFspVlanDynamicMappingDhcpServerExcludeRangeId(v interface{}, d
 
 func flattenObjectFspVlanDynamicMappingDhcpServerExcludeRangeStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerFilename(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4327,6 +4481,18 @@ func flattenObjectFspVlanDynamicMappingDhcpServerIpRange(v interface{}, d *schem
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-IpRange-StartIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := i["vci-match"]; ok {
+			v := flattenObjectFspVlanDynamicMappingDhcpServerIpRangeVciMatch(i["vci-match"], d, pre_append)
+			tmp["vci_match"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-IpRange-VciMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := i["vci-string"]; ok {
+			v := flattenObjectFspVlanDynamicMappingDhcpServerIpRangeVciString(i["vci-string"], d, pre_append)
+			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-IpRange-VciString")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -4345,6 +4511,14 @@ func flattenObjectFspVlanDynamicMappingDhcpServerIpRangeId(v interface{}, d *sch
 
 func flattenObjectFspVlanDynamicMappingDhcpServerIpRangeStartIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanDynamicMappingDhcpServerIpRangeVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingDhcpServerIpRangeVciString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerIpsecLeaseHold(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4456,6 +4630,18 @@ func flattenObjectFspVlanDynamicMappingDhcpServerOptions(v interface{}, d *schem
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-Options-Value")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := i["vci-match"]; ok {
+			v := flattenObjectFspVlanDynamicMappingDhcpServerOptionsVciMatch(i["vci-match"], d, pre_append)
+			tmp["vci_match"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-Options-VciMatch")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := i["vci-string"]; ok {
+			v := flattenObjectFspVlanDynamicMappingDhcpServerOptionsVciString(i["vci-string"], d, pre_append)
+			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-Options-VciString")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -4482,6 +4668,14 @@ func flattenObjectFspVlanDynamicMappingDhcpServerOptionsType(v interface{}, d *s
 
 func flattenObjectFspVlanDynamicMappingDhcpServerOptionsValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFspVlanDynamicMappingDhcpServerOptionsVciMatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingDhcpServerOptionsVciString(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddress(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -5669,6 +5863,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["aggregate"] = flattenObjectFspVlanInterfaceAggregate(i["aggregate"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "aggregate_type"
+	if _, ok := i["aggregate-type"]; ok {
+		result["aggregate_type"] = flattenObjectFspVlanInterfaceAggregateType(i["aggregate-type"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "algorithm"
 	if _, ok := i["algorithm"]; ok {
 		result["algorithm"] = flattenObjectFspVlanInterfaceAlgorithm(i["algorithm"], d, pre_append)
@@ -6144,6 +6343,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["gateway_address"] = flattenObjectFspVlanInterfaceGatewayAddress(i["gateway-address"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "generic_receive_offload"
+	if _, ok := i["generic-receive-offload"]; ok {
+		result["generic_receive_offload"] = flattenObjectFspVlanInterfaceGenericReceiveOffload(i["generic-receive-offload"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "gi_gk"
 	if _, ok := i["gi-gk"]; ok {
 		result["gi_gk"] = flattenObjectFspVlanInterfaceGiGk(i["gi-gk"], d, pre_append)
@@ -6229,6 +6433,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["ingress_spillover_threshold"] = flattenObjectFspVlanInterfaceIngressSpilloverThreshold(i["ingress-spillover-threshold"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "interconnect_profile"
+	if _, ok := i["interconnect-profile"]; ok {
+		result["interconnect_profile"] = flattenObjectFspVlanInterfaceInterconnectProfile(i["interconnect-profile"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "internal"
 	if _, ok := i["internal"]; ok {
 		result["internal"] = flattenObjectFspVlanInterfaceInternal(i["internal"], d, pre_append)
@@ -6292,6 +6501,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "lacp_speed"
 	if _, ok := i["lacp-speed"]; ok {
 		result["lacp_speed"] = flattenObjectFspVlanInterfaceLacpSpeed(i["lacp-speed"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "large_receive_offload"
+	if _, ok := i["large-receive-offload"]; ok {
+		result["large_receive_offload"] = flattenObjectFspVlanInterfaceLargeReceiveOffload(i["large-receive-offload"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "lcp_echo_interval"
@@ -6904,6 +7118,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["switch_controller_nac"] = flattenObjectFspVlanInterfaceSwitchControllerNac(i["switch-controller-nac"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "switch_controller_netflow_collect"
+	if _, ok := i["switch-controller-netflow-collect"]; ok {
+		result["switch_controller_netflow_collect"] = flattenObjectFspVlanInterfaceSwitchControllerNetflowCollect(i["switch-controller-netflow-collect"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "switch_controller_radius_server"
 	if _, ok := i["switch-controller-radius-server"]; ok {
 		result["switch_controller_radius_server"] = flattenObjectFspVlanInterfaceSwitchControllerRadiusServer(i["switch-controller-radius-server"], d, pre_append)
@@ -7157,6 +7376,10 @@ func flattenObjectFspVlanInterfaceAcName(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenObjectFspVlanInterfaceAggregate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceAggregateType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7540,6 +7763,10 @@ func flattenObjectFspVlanInterfaceGatewayAddress(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectFspVlanInterfaceGenericReceiveOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceGiGk(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -7605,6 +7832,10 @@ func flattenObjectFspVlanInterfaceIngressShapingProfile(v interface{}, d *schema
 }
 
 func flattenObjectFspVlanInterfaceIngressSpilloverThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceInterconnectProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -8426,6 +8657,10 @@ func flattenObjectFspVlanInterfaceLacpSpeed(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectFspVlanInterfaceLargeReceiveOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceLcpEchoInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -9024,6 +9259,10 @@ func flattenObjectFspVlanInterfaceSwitchControllerMgmtVlan(v interface{}, d *sch
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerNac(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSwitchControllerNetflowCollect(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -9899,6 +10138,18 @@ func expandObjectFspVlanDhcpServerExcludeRange(d *schema.ResourceData, v interfa
 			tmp["start-ip"], _ = expandObjectFspVlanDhcpServerExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-match"], _ = expandObjectFspVlanDhcpServerExcludeRangeVciMatch(d, i["vci_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
+		} else {
+			tmp["vci-string"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -9917,6 +10168,14 @@ func expandObjectFspVlanDhcpServerExcludeRangeId(d *schema.ResourceData, v inter
 
 func expandObjectFspVlanDhcpServerExcludeRangeStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanDhcpServerExcludeRangeVciMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDhcpServerExcludeRangeVciString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanDhcpServerFilename(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -9964,6 +10223,18 @@ func expandObjectFspVlanDhcpServerIpRange(d *schema.ResourceData, v interface{},
 			tmp["start-ip"], _ = expandObjectFspVlanDhcpServerIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-match"], _ = expandObjectFspVlanDhcpServerIpRangeVciMatch(d, i["vci_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
+		} else {
+			tmp["vci-string"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -9982,6 +10253,14 @@ func expandObjectFspVlanDhcpServerIpRangeId(d *schema.ResourceData, v interface{
 
 func expandObjectFspVlanDhcpServerIpRangeStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanDhcpServerIpRangeVciMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDhcpServerIpRangeVciString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanDhcpServerIpsecLeaseHold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -10085,6 +10364,18 @@ func expandObjectFspVlanDhcpServerOptions(d *schema.ResourceData, v interface{},
 			tmp["value"], _ = expandObjectFspVlanDhcpServerOptionsValue(d, i["value"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-match"], _ = expandObjectFspVlanDhcpServerOptionsVciMatch(d, i["vci_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
+		} else {
+			tmp["vci-string"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -10111,6 +10402,14 @@ func expandObjectFspVlanDhcpServerOptionsType(d *schema.ResourceData, v interfac
 
 func expandObjectFspVlanDhcpServerOptionsValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanDhcpServerOptionsVciMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDhcpServerOptionsVciString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanDhcpServerReservedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -10734,6 +11033,18 @@ func expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d *schema.ResourceD
 			tmp["start-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-match"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciMatch(d, i["vci_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
+		} else {
+			tmp["vci-string"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -10752,6 +11063,14 @@ func expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeId(d *schema.Resourc
 
 func expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanDynamicMappingDhcpServerFilename(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -10799,6 +11118,18 @@ func expandObjectFspVlanDynamicMappingDhcpServerIpRange(d *schema.ResourceData, 
 			tmp["start-ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-match"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeVciMatch(d, i["vci_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
+		} else {
+			tmp["vci-string"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -10817,6 +11148,14 @@ func expandObjectFspVlanDynamicMappingDhcpServerIpRangeId(d *schema.ResourceData
 
 func expandObjectFspVlanDynamicMappingDhcpServerIpRangeStartIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingDhcpServerIpRangeVciMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingDhcpServerIpRangeVciString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanDynamicMappingDhcpServerIpsecLeaseHold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -10920,6 +11259,18 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptions(d *schema.ResourceData, 
 			tmp["value"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsValue(d, i["value"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_match"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-match"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsVciMatch(d, i["vci_match"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
+		} else {
+			tmp["vci-string"] = make([]string, 0)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -10946,6 +11297,14 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptionsType(d *schema.ResourceDa
 
 func expandObjectFspVlanDynamicMappingDhcpServerOptionsValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingDhcpServerOptionsVciMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingDhcpServerOptionsVciString(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -12031,6 +12390,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["aggregate"], _ = expandObjectFspVlanInterfaceAggregate(d, i["aggregate"], pre_append)
 	}
+	pre_append = pre + ".0." + "aggregate_type"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["aggregate-type"], _ = expandObjectFspVlanInterfaceAggregateType(d, i["aggregate_type"], pre_append)
+	}
 	pre_append = pre + ".0." + "algorithm"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["algorithm"], _ = expandObjectFspVlanInterfaceAlgorithm(d, i["algorithm"], pre_append)
@@ -12433,6 +12796,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gateway-address"], _ = expandObjectFspVlanInterfaceGatewayAddress(d, i["gateway_address"], pre_append)
 	}
+	pre_append = pre + ".0." + "generic_receive_offload"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["generic-receive-offload"], _ = expandObjectFspVlanInterfaceGenericReceiveOffload(d, i["generic_receive_offload"], pre_append)
+	}
 	pre_append = pre + ".0." + "gi_gk"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["gi-gk"], _ = expandObjectFspVlanInterfaceGiGk(d, i["gi_gk"], pre_append)
@@ -12503,6 +12870,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ingress-spillover-threshold"], _ = expandObjectFspVlanInterfaceIngressSpilloverThreshold(d, i["ingress_spillover_threshold"], pre_append)
 	}
+	pre_append = pre + ".0." + "interconnect_profile"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["interconnect-profile"], _ = expandObjectFspVlanInterfaceInterconnectProfile(d, i["interconnect_profile"], pre_append)
+	}
 	pre_append = pre + ".0." + "internal"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["internal"], _ = expandObjectFspVlanInterfaceInternal(d, i["internal"], pre_append)
@@ -12556,6 +12927,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "lacp_speed"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["lacp-speed"], _ = expandObjectFspVlanInterfaceLacpSpeed(d, i["lacp_speed"], pre_append)
+	}
+	pre_append = pre + ".0." + "large_receive_offload"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["large-receive-offload"], _ = expandObjectFspVlanInterfaceLargeReceiveOffload(d, i["large_receive_offload"], pre_append)
 	}
 	pre_append = pre + ".0." + "lcp_echo_interval"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13051,6 +13426,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-nac"], _ = expandObjectFspVlanInterfaceSwitchControllerNac(d, i["switch_controller_nac"], pre_append)
 	}
+	pre_append = pre + ".0." + "switch_controller_netflow_collect"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["switch-controller-netflow-collect"], _ = expandObjectFspVlanInterfaceSwitchControllerNetflowCollect(d, i["switch_controller_netflow_collect"], pre_append)
+	}
 	pre_append = pre + ".0." + "switch_controller_radius_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-radius-server"], _ = expandObjectFspVlanInterfaceSwitchControllerRadiusServer(d, i["switch_controller_radius_server"], pre_append)
@@ -13262,6 +13641,10 @@ func expandObjectFspVlanInterfaceAcName(d *schema.ResourceData, v interface{}, p
 }
 
 func expandObjectFspVlanInterfaceAggregate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceAggregateType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -13645,6 +14028,10 @@ func expandObjectFspVlanInterfaceGatewayAddress(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceGenericReceiveOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceGiGk(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -13710,6 +14097,10 @@ func expandObjectFspVlanInterfaceIngressShapingProfile(d *schema.ResourceData, v
 }
 
 func expandObjectFspVlanInterfaceIngressSpilloverThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceInterconnectProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14459,6 +14850,10 @@ func expandObjectFspVlanInterfaceLacpSpeed(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceLargeReceiveOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceLcpEchoInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -15047,6 +15442,10 @@ func expandObjectFspVlanInterfaceSwitchControllerMgmtVlan(d *schema.ResourceData
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerNac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSwitchControllerNetflowCollect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

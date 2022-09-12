@@ -230,6 +230,10 @@ func resourcePackagesGlobalHeaderShapingPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid_idx": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -532,6 +536,10 @@ func flattenPackagesGlobalHeaderShapingPolicyUsers(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesGlobalHeaderShapingPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderShapingPolicyUuidIdx(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -988,6 +996,16 @@ func refreshObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData, o ma
 		}
 	}
 
+	if err = d.Set("uuid_idx", flattenPackagesGlobalHeaderShapingPolicyUuidIdx(o["uuid-idx"], d, "uuid_idx")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid-idx"], "PackagesGlobalHeaderShapingPolicy-UuidIdx"); ok {
+			if err = d.Set("uuid_idx", vv); err != nil {
+				return fmt.Errorf("Error reading uuid_idx: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid_idx: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1174,6 +1192,10 @@ func expandPackagesGlobalHeaderShapingPolicyUsers(d *schema.ResourceData, v inte
 }
 
 func expandPackagesGlobalHeaderShapingPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderShapingPolicyUuidIdx(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1582,6 +1604,15 @@ func getObjectPackagesGlobalHeaderShapingPolicy(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid_idx"); ok || d.HasChange("uuid_idx") {
+		t, err := expandPackagesGlobalHeaderShapingPolicyUuidIdx(d, v, "uuid_idx")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid-idx"] = t
 		}
 	}
 

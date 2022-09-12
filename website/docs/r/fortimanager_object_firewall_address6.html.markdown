@@ -79,6 +79,7 @@ The `dynamic_mapping` block supports:
 * `country` - Country.
 * `end_ip` - Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `end_mac` - Last MAC address in the range.
+* `epg_name` - Epg-Name.
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
 
 * `fqdn` - Fully qualified domain name.
@@ -90,11 +91,13 @@ The `dynamic_mapping` block supports:
 * `macaddr` - Macaddr.
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
+* `sdn_tag` - Sdn-Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `start_mac` - First MAC address in the range.
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.
 * `tags` - Tags.
 * `template` - IPv6 address template.
+* `tenant` - Tenant.
 * `type` - Type of IPv6 address object (default = ipprefix). Valid values: `ipprefix`, `iprange`, `nsx`, `dynamic`, `fqdn`, `template`, `mac`, `geography`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

@@ -122,12 +122,18 @@ The `exclude_range` block supports:
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
+* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+
+* `vci_string` - Vci-String.
 
 The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
+* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+
+* `vci_string` - Vci-String.
 
 The `options` block supports:
 
@@ -137,6 +143,9 @@ The `options` block supports:
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
 * `value` - DHCP option value.
+* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+
+* `vci_string` - Vci-String.
 
 The `reserved_address` block supports:
 
@@ -250,12 +259,18 @@ The `exclude_range` block supports:
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
+* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+
+* `vci_string` - Vci-String.
 
 The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
+* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+
+* `vci_string` - Vci-String.
 
 The `options` block supports:
 
@@ -265,6 +280,9 @@ The `options` block supports:
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
 * `value` - DHCP option value.
+* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+
+* `vci_string` - Vci-String.
 
 The `reserved_address` block supports:
 
@@ -434,6 +452,8 @@ The `interface` block supports:
 
 * `ac_name` - PPPoE server name.
 * `aggregate` - Aggregate.
+* `aggregate_type` - Aggregate-Type. Valid values: `physical`, `vxlan`.
+
 * `algorithm` - Frame distribution algorithm. Valid values: `L2`, `L3`, `L4`.
 
 * `alias` - Alias will be displayed with the interface name to make it easier to distinguish.
@@ -580,6 +600,8 @@ The `interface` block supports:
 * `fp_disable` - Fp-Disable. Valid values: `all`, `ipsec`, `none`.
 
 * `gateway_address` - Gateway address
+* `generic_receive_offload` - Generic-Receive-Offload. Valid values: `disable`, `enable`.
+
 * `gi_gk` - Enable/disable Gi Gatekeeper. Valid values: `disable`, `enable`.
 
 * `gwaddr` - Gateway address
@@ -606,6 +628,8 @@ The `interface` block supports:
 
 * `ingress_shaping_profile` - Incoming traffic shaping profile.
 * `ingress_spillover_threshold` - Ingress Spillover threshold (0 - 16776000 kbps), 0 means unlimited.
+* `interconnect_profile` - Set interconnect profile. Valid values: `default`, `profile1`, `profile2`.
+
 * `internal` - Implicitly created.
 * `ip` - Interface IPv4 address and subnet mask, syntax: X.X.X.X/24.
 * `ip_managed_by_fortiipam` - Enable/disable automatic IP address assignment of this interface by FortiIPAM. Valid values: `disable`, `enable`.
@@ -627,6 +651,8 @@ The `interface` block supports:
 * `lacp_mode` - LACP mode. Valid values: `static`, `passive`, `active`.
 
 * `lacp_speed` - How often the interface sends LACP messages. Valid values: `slow`, `fast`.
+
+* `large_receive_offload` - Large-Receive-Offload. Valid values: `disable`, `enable`.
 
 * `lcp_echo_interval` - Time in seconds between PPPoE Link Control Protocol (LCP) echo requests.
 * `lcp_max_echo_fails` - Maximum missed LCP echo messages before disconnect.
@@ -812,6 +838,8 @@ The `interface` block supports:
 * `switch_controller_learning_limit` - Limit the number of dynamic MAC addresses on this VLAN (1 - 128, 0 = no limit, default).
 * `switch_controller_mgmt_vlan` - VLAN to use for FortiLink management purposes.
 * `switch_controller_nac` - Integrated NAC settings for managed FortiSwitch.
+* `switch_controller_netflow_collect` - Switch-Controller-Netflow-Collect. Valid values: `disable`, `enable`.
+
 * `switch_controller_radius_server` - Switch-Controller-Radius-Server.
 * `switch_controller_rspan_mode` - Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 

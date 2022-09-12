@@ -158,6 +158,7 @@ The `dynamic_mapping` block supports:
 
 * `two_factor_authentication` - Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
 
+* `two_factor_filter` - Two-Factor-Filter.
 * `two_factor_notification` - Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
 
 * `type` - Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.

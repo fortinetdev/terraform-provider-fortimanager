@@ -101,6 +101,11 @@ func resourceSystemInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"lldp": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"member": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -362,6 +367,10 @@ func flattenSystemInterfaceLinkUpDelay(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenSystemInterfaceLldp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemInterfaceMember(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -565,6 +574,16 @@ func refreshObjectSystemInterface(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading link_up_delay: %v", err)
+		}
+	}
+
+	if err = d.Set("lldp", flattenSystemInterfaceLldp(o["lldp"], d, "lldp")); err != nil {
+		if vv, ok := fortiAPIPatch(o["lldp"], "SystemInterface-Lldp"); ok {
+			if err = d.Set("lldp", vv); err != nil {
+				return fmt.Errorf("Error reading lldp: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading lldp: %v", err)
 		}
 	}
 
@@ -797,6 +816,10 @@ func expandSystemInterfaceLinkUpDelay(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandSystemInterfaceLldp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemInterfaceMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -966,6 +989,15 @@ func getObjectSystemInterface(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["link-up-delay"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("lldp"); ok || d.HasChange("lldp") {
+		t, err := expandSystemInterfaceLldp(d, v, "lldp")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["lldp"] = t
 		}
 	}
 

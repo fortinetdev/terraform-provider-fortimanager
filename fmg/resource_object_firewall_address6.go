@@ -114,6 +114,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"epg_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"fabric_object": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -155,6 +159,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"sdn_tag": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"start_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -188,6 +196,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Optional: true,
 						},
 						"template": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"tenant": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -551,6 +563,12 @@ func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["end_mac"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-EndMac")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "epg_name"
+		if _, ok := i["epg-name"]; ok {
+			v := flattenObjectFirewallAddress6DynamicMappingEpgName(i["epg-name"], d, pre_append)
+			tmp["epg_name"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-EpgName")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
 		if _, ok := i["fabric-object"]; ok {
 			v := flattenObjectFirewallAddress6DynamicMappingFabricObject(i["fabric-object"], d, pre_append)
@@ -605,6 +623,12 @@ func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["sdn"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-Sdn")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn_tag"
+		if _, ok := i["sdn-tag"]; ok {
+			v := flattenObjectFirewallAddress6DynamicMappingSdnTag(i["sdn-tag"], d, pre_append)
+			tmp["sdn_tag"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-SdnTag")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
 		if _, ok := i["start-ip"]; ok {
 			v := flattenObjectFirewallAddress6DynamicMappingStartIp(i["start-ip"], d, pre_append)
@@ -633,6 +657,12 @@ func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.Resour
 		if _, ok := i["template"]; ok {
 			v := flattenObjectFirewallAddress6DynamicMappingTemplate(i["template"], d, pre_append)
 			tmp["template"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-Template")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tenant"
+		if _, ok := i["tenant"]; ok {
+			v := flattenObjectFirewallAddress6DynamicMappingTenant(i["tenant"], d, pre_append)
+			tmp["tenant"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-Tenant")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
@@ -736,6 +766,10 @@ func flattenObjectFirewallAddress6DynamicMappingEndMac(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFirewallAddress6DynamicMappingEpgName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6DynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -769,6 +803,10 @@ func flattenObjectFirewallAddress6DynamicMappingObjId(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallAddress6DynamicMappingSdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingSdnTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -842,6 +880,10 @@ func flattenObjectFirewallAddress6DynamicMappingTags(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallAddress6DynamicMappingTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingTenant(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1522,6 +1564,11 @@ func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interf
 			tmp["end-mac"], _ = expandObjectFirewallAddress6DynamicMappingEndMac(d, i["end_mac"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "epg_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["epg-name"], _ = expandObjectFirewallAddress6DynamicMappingEpgName(d, i["epg_name"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fabric-object"], _ = expandObjectFirewallAddress6DynamicMappingFabricObject(d, i["fabric_object"], pre_append)
@@ -1569,6 +1616,11 @@ func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interf
 			tmp["sdn"], _ = expandObjectFirewallAddress6DynamicMappingSdn(d, i["sdn"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn_tag"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["sdn-tag"], _ = expandObjectFirewallAddress6DynamicMappingSdnTag(d, i["sdn_tag"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "start_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["start-ip"], _ = expandObjectFirewallAddress6DynamicMappingStartIp(d, i["start_ip"], pre_append)
@@ -1594,6 +1646,11 @@ func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "template"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["template"], _ = expandObjectFirewallAddress6DynamicMappingTemplate(d, i["template"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "tenant"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["tenant"], _ = expandObjectFirewallAddress6DynamicMappingTenant(d, i["tenant"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
@@ -1687,6 +1744,10 @@ func expandObjectFirewallAddress6DynamicMappingEndMac(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectFirewallAddress6DynamicMappingEpgName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6DynamicMappingFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1720,6 +1781,10 @@ func expandObjectFirewallAddress6DynamicMappingObjId(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallAddress6DynamicMappingSdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingSdnTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1785,6 +1850,10 @@ func expandObjectFirewallAddress6DynamicMappingTags(d *schema.ResourceData, v in
 }
 
 func expandObjectFirewallAddress6DynamicMappingTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingTenant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

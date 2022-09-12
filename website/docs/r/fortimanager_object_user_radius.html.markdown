@@ -207,6 +207,12 @@ The `dynamic_mapping` block supports:
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
+* `mac_case` - Mac-Case. Valid values: `uppercase`, `lowercase`.
+
+* `mac_password_delimiter` - Mac-Password-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_username_delimiter` - Mac-Username-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
 * `nas_ip` - IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 * `password_encoding` - Password encoding. Valid values: `ISO-8859-1`, `auto`.
 

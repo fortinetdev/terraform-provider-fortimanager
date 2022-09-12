@@ -356,6 +356,18 @@ func resourceObjectUserRadius() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"mac_case": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"mac_password_delimiter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"mac_username_delimiter": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"nas_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1211,6 +1223,24 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["interface_select_method"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-InterfaceSelectMethod")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_case"
+		if _, ok := i["mac-case"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingMacCase(i["mac-case"], d, pre_append)
+			tmp["mac_case"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-MacCase")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_password_delimiter"
+		if _, ok := i["mac-password-delimiter"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingMacPasswordDelimiter(i["mac-password-delimiter"], d, pre_append)
+			tmp["mac_password_delimiter"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-MacPasswordDelimiter")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_username_delimiter"
+		if _, ok := i["mac-username-delimiter"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingMacUsernameDelimiter(i["mac-username-delimiter"], d, pre_append)
+			tmp["mac_username_delimiter"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-MacUsernameDelimiter")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nas_ip"
 		if _, ok := i["nas-ip"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingNasIp(i["nas-ip"], d, pre_append)
@@ -1740,6 +1770,18 @@ func flattenObjectUserRadiusDynamicMappingInterface(v interface{}, d *schema.Res
 }
 
 func flattenObjectUserRadiusDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingMacCase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingMacPasswordDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingMacUsernameDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2841,6 +2883,21 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["interface-select-method"], _ = expandObjectUserRadiusDynamicMappingInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_case"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["mac-case"], _ = expandObjectUserRadiusDynamicMappingMacCase(d, i["mac_case"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_password_delimiter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["mac-password-delimiter"], _ = expandObjectUserRadiusDynamicMappingMacPasswordDelimiter(d, i["mac_password_delimiter"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_username_delimiter"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["mac-username-delimiter"], _ = expandObjectUserRadiusDynamicMappingMacUsernameDelimiter(d, i["mac_username_delimiter"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nas_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nas-ip"], _ = expandObjectUserRadiusDynamicMappingNasIp(d, i["nas_ip"], pre_append)
@@ -3327,6 +3384,18 @@ func expandObjectUserRadiusDynamicMappingInterface(d *schema.ResourceData, v int
 }
 
 func expandObjectUserRadiusDynamicMappingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingMacCase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingMacPasswordDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingMacUsernameDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

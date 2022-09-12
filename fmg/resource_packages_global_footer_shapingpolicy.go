@@ -230,6 +230,10 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"uuid_idx": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -532,6 +536,10 @@ func flattenPackagesGlobalFooterShapingPolicyUsers(v interface{}, d *schema.Reso
 }
 
 func flattenPackagesGlobalFooterShapingPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterShapingPolicyUuidIdx(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -988,6 +996,16 @@ func refreshObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData, o ma
 		}
 	}
 
+	if err = d.Set("uuid_idx", flattenPackagesGlobalFooterShapingPolicyUuidIdx(o["uuid-idx"], d, "uuid_idx")); err != nil {
+		if vv, ok := fortiAPIPatch(o["uuid-idx"], "PackagesGlobalFooterShapingPolicy-UuidIdx"); ok {
+			if err = d.Set("uuid_idx", vv); err != nil {
+				return fmt.Errorf("Error reading uuid_idx: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading uuid_idx: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1174,6 +1192,10 @@ func expandPackagesGlobalFooterShapingPolicyUsers(d *schema.ResourceData, v inte
 }
 
 func expandPackagesGlobalFooterShapingPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterShapingPolicyUuidIdx(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1582,6 +1604,15 @@ func getObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("uuid_idx"); ok || d.HasChange("uuid_idx") {
+		t, err := expandPackagesGlobalFooterShapingPolicyUuidIdx(d, v, "uuid_idx")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["uuid-idx"] = t
 		}
 	}
 

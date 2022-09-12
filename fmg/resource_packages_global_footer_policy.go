@@ -201,7 +201,15 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"device_ownership": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"devices": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"diffserv_copy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -276,6 +284,10 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"dstaddr6_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -523,6 +535,62 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"internet_service6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"internet_service6_custom": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_custom_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_name": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"internet_service6_src": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"internet_service6_src_custom": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_src_custom_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_src_group": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_src_name": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"internet_service6_src_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ip_based": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -620,6 +688,16 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			},
 			"natoutbound": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"network_service_dynamic": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+			},
+			"network_service_src_dynamic": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 			},
 			"np_acceleration": &schema.Schema{
@@ -731,7 +809,15 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"reputation_direction6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"reputation_minimum": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"reputation_minimum6": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
@@ -833,12 +919,20 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"srcaddr6_negate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 			},
 			"ssh_filter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ssh_policy_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -1362,7 +1456,15 @@ func flattenPackagesGlobalFooterPolicyDeviceDetectionPortal(v interface{}, d *sc
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyDeviceOwnership(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyDevices(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyDiffservCopy(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1428,6 +1530,10 @@ func flattenPackagesGlobalFooterPolicyDstaddrNegate(v interface{}, d *schema.Res
 
 func flattenPackagesGlobalFooterPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyDstaddr6Negate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenPackagesGlobalFooterPolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1658,6 +1764,54 @@ func flattenPackagesGlobalFooterPolicyInternetServiceSrcNegate(v interface{}, d 
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyInternetService6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6Custom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6CustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6Group(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6Name(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6Negate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6Src(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6SrcCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6SrcCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6SrcGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6SrcName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyInternetService6SrcNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyIpBased(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1744,6 +1898,14 @@ func flattenPackagesGlobalFooterPolicyNatip(v interface{}, d *schema.ResourceDat
 
 func flattenPackagesGlobalFooterPolicyNatoutbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesGlobalFooterPolicyNetworkServiceDynamic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenPackagesGlobalFooterPolicyNetworkServiceSrcDynamic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicyNpAcceleration(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1846,7 +2008,15 @@ func flattenPackagesGlobalFooterPolicyReputationDirection(v interface{}, d *sche
 	return v
 }
 
+func flattenPackagesGlobalFooterPolicyReputationDirection6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicyReputationMinimum(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicyReputationMinimum6(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1934,11 +2104,19 @@ func flattenPackagesGlobalFooterPolicySrcaddr6(v interface{}, d *schema.Resource
 	return flattenStringList(v)
 }
 
+func flattenPackagesGlobalFooterPolicySrcaddr6Negate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
 func flattenPackagesGlobalFooterPolicySshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterPolicySshPolicyCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2549,6 +2727,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("device_ownership", flattenPackagesGlobalFooterPolicyDeviceOwnership(o["device-ownership"], d, "device_ownership")); err != nil {
+		if vv, ok := fortiAPIPatch(o["device-ownership"], "PackagesGlobalFooterPolicy-DeviceOwnership"); ok {
+			if err = d.Set("device_ownership", vv); err != nil {
+				return fmt.Errorf("Error reading device_ownership: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading device_ownership: %v", err)
+		}
+	}
+
 	if err = d.Set("devices", flattenPackagesGlobalFooterPolicyDevices(o["devices"], d, "devices")); err != nil {
 		if vv, ok := fortiAPIPatch(o["devices"], "PackagesGlobalFooterPolicy-Devices"); ok {
 			if err = d.Set("devices", vv); err != nil {
@@ -2556,6 +2744,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading devices: %v", err)
+		}
+	}
+
+	if err = d.Set("diffserv_copy", flattenPackagesGlobalFooterPolicyDiffservCopy(o["diffserv-copy"], d, "diffserv_copy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["diffserv-copy"], "PackagesGlobalFooterPolicy-DiffservCopy"); ok {
+			if err = d.Set("diffserv_copy", vv); err != nil {
+				return fmt.Errorf("Error reading diffserv_copy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading diffserv_copy: %v", err)
 		}
 	}
 
@@ -2716,6 +2914,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading dstaddr6: %v", err)
+		}
+	}
+
+	if err = d.Set("dstaddr6_negate", flattenPackagesGlobalFooterPolicyDstaddr6Negate(o["dstaddr6-negate"], d, "dstaddr6_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dstaddr6-negate"], "PackagesGlobalFooterPolicy-Dstaddr6Negate"); ok {
+			if err = d.Set("dstaddr6_negate", vv); err != nil {
+				return fmt.Errorf("Error reading dstaddr6_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dstaddr6_negate: %v", err)
 		}
 	}
 
@@ -3289,6 +3497,126 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("internet_service6", flattenPackagesGlobalFooterPolicyInternetService6(o["internet-service6"], d, "internet_service6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6"], "PackagesGlobalFooterPolicy-InternetService6"); ok {
+			if err = d.Set("internet_service6", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_custom", flattenPackagesGlobalFooterPolicyInternetService6Custom(o["internet-service6-custom"], d, "internet_service6_custom")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-custom"], "PackagesGlobalFooterPolicy-InternetService6Custom"); ok {
+			if err = d.Set("internet_service6_custom", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_custom: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_custom: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_custom_group", flattenPackagesGlobalFooterPolicyInternetService6CustomGroup(o["internet-service6-custom-group"], d, "internet_service6_custom_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-custom-group"], "PackagesGlobalFooterPolicy-InternetService6CustomGroup"); ok {
+			if err = d.Set("internet_service6_custom_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_custom_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_custom_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_group", flattenPackagesGlobalFooterPolicyInternetService6Group(o["internet-service6-group"], d, "internet_service6_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-group"], "PackagesGlobalFooterPolicy-InternetService6Group"); ok {
+			if err = d.Set("internet_service6_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_name", flattenPackagesGlobalFooterPolicyInternetService6Name(o["internet-service6-name"], d, "internet_service6_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-name"], "PackagesGlobalFooterPolicy-InternetService6Name"); ok {
+			if err = d.Set("internet_service6_name", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_name: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_negate", flattenPackagesGlobalFooterPolicyInternetService6Negate(o["internet-service6-negate"], d, "internet_service6_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-negate"], "PackagesGlobalFooterPolicy-InternetService6Negate"); ok {
+			if err = d.Set("internet_service6_negate", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_negate: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_src", flattenPackagesGlobalFooterPolicyInternetService6Src(o["internet-service6-src"], d, "internet_service6_src")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-src"], "PackagesGlobalFooterPolicy-InternetService6Src"); ok {
+			if err = d.Set("internet_service6_src", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_src: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_src: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_src_custom", flattenPackagesGlobalFooterPolicyInternetService6SrcCustom(o["internet-service6-src-custom"], d, "internet_service6_src_custom")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-src-custom"], "PackagesGlobalFooterPolicy-InternetService6SrcCustom"); ok {
+			if err = d.Set("internet_service6_src_custom", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_src_custom: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_src_custom: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_src_custom_group", flattenPackagesGlobalFooterPolicyInternetService6SrcCustomGroup(o["internet-service6-src-custom-group"], d, "internet_service6_src_custom_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-src-custom-group"], "PackagesGlobalFooterPolicy-InternetService6SrcCustomGroup"); ok {
+			if err = d.Set("internet_service6_src_custom_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_src_custom_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_src_custom_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_src_group", flattenPackagesGlobalFooterPolicyInternetService6SrcGroup(o["internet-service6-src-group"], d, "internet_service6_src_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-src-group"], "PackagesGlobalFooterPolicy-InternetService6SrcGroup"); ok {
+			if err = d.Set("internet_service6_src_group", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_src_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_src_group: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_src_name", flattenPackagesGlobalFooterPolicyInternetService6SrcName(o["internet-service6-src-name"], d, "internet_service6_src_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-src-name"], "PackagesGlobalFooterPolicy-InternetService6SrcName"); ok {
+			if err = d.Set("internet_service6_src_name", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_src_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_src_name: %v", err)
+		}
+	}
+
+	if err = d.Set("internet_service6_src_negate", flattenPackagesGlobalFooterPolicyInternetService6SrcNegate(o["internet-service6-src-negate"], d, "internet_service6_src_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["internet-service6-src-negate"], "PackagesGlobalFooterPolicy-InternetService6SrcNegate"); ok {
+			if err = d.Set("internet_service6_src_negate", vv); err != nil {
+				return fmt.Errorf("Error reading internet_service6_src_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading internet_service6_src_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("ip_based", flattenPackagesGlobalFooterPolicyIpBased(o["ip-based"], d, "ip_based")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ip-based"], "PackagesGlobalFooterPolicy-IpBased"); ok {
 			if err = d.Set("ip_based", vv); err != nil {
@@ -3506,6 +3834,26 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading natoutbound: %v", err)
+		}
+	}
+
+	if err = d.Set("network_service_dynamic", flattenPackagesGlobalFooterPolicyNetworkServiceDynamic(o["network-service-dynamic"], d, "network_service_dynamic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["network-service-dynamic"], "PackagesGlobalFooterPolicy-NetworkServiceDynamic"); ok {
+			if err = d.Set("network_service_dynamic", vv); err != nil {
+				return fmt.Errorf("Error reading network_service_dynamic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading network_service_dynamic: %v", err)
+		}
+	}
+
+	if err = d.Set("network_service_src_dynamic", flattenPackagesGlobalFooterPolicyNetworkServiceSrcDynamic(o["network-service-src-dynamic"], d, "network_service_src_dynamic")); err != nil {
+		if vv, ok := fortiAPIPatch(o["network-service-src-dynamic"], "PackagesGlobalFooterPolicy-NetworkServiceSrcDynamic"); ok {
+			if err = d.Set("network_service_src_dynamic", vv); err != nil {
+				return fmt.Errorf("Error reading network_service_src_dynamic: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading network_service_src_dynamic: %v", err)
 		}
 	}
 
@@ -3759,6 +4107,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("reputation_direction6", flattenPackagesGlobalFooterPolicyReputationDirection6(o["reputation-direction6"], d, "reputation_direction6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reputation-direction6"], "PackagesGlobalFooterPolicy-ReputationDirection6"); ok {
+			if err = d.Set("reputation_direction6", vv); err != nil {
+				return fmt.Errorf("Error reading reputation_direction6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reputation_direction6: %v", err)
+		}
+	}
+
 	if err = d.Set("reputation_minimum", flattenPackagesGlobalFooterPolicyReputationMinimum(o["reputation-minimum"], d, "reputation_minimum")); err != nil {
 		if vv, ok := fortiAPIPatch(o["reputation-minimum"], "PackagesGlobalFooterPolicy-ReputationMinimum"); ok {
 			if err = d.Set("reputation_minimum", vv); err != nil {
@@ -3766,6 +4124,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading reputation_minimum: %v", err)
+		}
+	}
+
+	if err = d.Set("reputation_minimum6", flattenPackagesGlobalFooterPolicyReputationMinimum6(o["reputation-minimum6"], d, "reputation_minimum6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reputation-minimum6"], "PackagesGlobalFooterPolicy-ReputationMinimum6"); ok {
+			if err = d.Set("reputation_minimum6", vv); err != nil {
+				return fmt.Errorf("Error reading reputation_minimum6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reputation_minimum6: %v", err)
 		}
 	}
 
@@ -3979,6 +4347,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("srcaddr6_negate", flattenPackagesGlobalFooterPolicySrcaddr6Negate(o["srcaddr6-negate"], d, "srcaddr6_negate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["srcaddr6-negate"], "PackagesGlobalFooterPolicy-Srcaddr6Negate"); ok {
+			if err = d.Set("srcaddr6_negate", vv); err != nil {
+				return fmt.Errorf("Error reading srcaddr6_negate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading srcaddr6_negate: %v", err)
+		}
+	}
+
 	if err = d.Set("srcintf", flattenPackagesGlobalFooterPolicySrcintf(o["srcintf"], d, "srcintf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcintf"], "PackagesGlobalFooterPolicy-Srcintf"); ok {
 			if err = d.Set("srcintf", vv); err != nil {
@@ -3996,6 +4374,16 @@ func refreshObjectPackagesGlobalFooterPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading ssh_filter_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("ssh_policy_check", flattenPackagesGlobalFooterPolicySshPolicyCheck(o["ssh-policy-check"], d, "ssh_policy_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssh-policy-check"], "PackagesGlobalFooterPolicy-SshPolicyCheck"); ok {
+			if err = d.Set("ssh_policy_check", vv); err != nil {
+				return fmt.Errorf("Error reading ssh_policy_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssh_policy_check: %v", err)
 		}
 	}
 
@@ -4720,7 +5108,15 @@ func expandPackagesGlobalFooterPolicyDeviceDetectionPortal(d *schema.ResourceDat
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyDeviceOwnership(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyDevices(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyDiffservCopy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4786,6 +5182,10 @@ func expandPackagesGlobalFooterPolicyDstaddrNegate(d *schema.ResourceData, v int
 
 func expandPackagesGlobalFooterPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
+}
+
+func expandPackagesGlobalFooterPolicyDstaddr6Negate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandPackagesGlobalFooterPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5016,6 +5416,54 @@ func expandPackagesGlobalFooterPolicyInternetServiceSrcNegate(d *schema.Resource
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyInternetService6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6Custom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6CustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6Group(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6Name(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6Negate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6Src(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6SrcCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6SrcCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6SrcGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6SrcName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyInternetService6SrcNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyIpBased(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5102,6 +5550,14 @@ func expandPackagesGlobalFooterPolicyNatip(d *schema.ResourceData, v interface{}
 
 func expandPackagesGlobalFooterPolicyNatoutbound(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyNetworkServiceDynamic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandPackagesGlobalFooterPolicyNetworkServiceSrcDynamic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandPackagesGlobalFooterPolicyNpAcceleration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -5204,7 +5660,15 @@ func expandPackagesGlobalFooterPolicyReputationDirection(d *schema.ResourceData,
 	return v, nil
 }
 
+func expandPackagesGlobalFooterPolicyReputationDirection6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicyReputationMinimum(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicyReputationMinimum6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5292,11 +5756,19 @@ func expandPackagesGlobalFooterPolicySrcaddr6(d *schema.ResourceData, v interfac
 	return expandStringList(v.([]interface{})), nil
 }
 
+func expandPackagesGlobalFooterPolicySrcaddr6Negate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
 
 func expandPackagesGlobalFooterPolicySshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterPolicySshPolicyCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5869,12 +6341,30 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("device_ownership"); ok || d.HasChange("device_ownership") {
+		t, err := expandPackagesGlobalFooterPolicyDeviceOwnership(d, v, "device_ownership")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["device-ownership"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("devices"); ok || d.HasChange("devices") {
 		t, err := expandPackagesGlobalFooterPolicyDevices(d, v, "devices")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["devices"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("diffserv_copy"); ok || d.HasChange("diffserv_copy") {
+		t, err := expandPackagesGlobalFooterPolicyDiffservCopy(d, v, "diffserv_copy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["diffserv-copy"] = t
 		}
 	}
 
@@ -6019,6 +6509,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["dstaddr6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dstaddr6_negate"); ok || d.HasChange("dstaddr6_negate") {
+		t, err := expandPackagesGlobalFooterPolicyDstaddr6Negate(d, v, "dstaddr6_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dstaddr6-negate"] = t
 		}
 	}
 
@@ -6535,6 +7034,114 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("internet_service6"); ok || d.HasChange("internet_service6") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6(d, v, "internet_service6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_custom"); ok || d.HasChange("internet_service6_custom") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6Custom(d, v, "internet_service6_custom")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-custom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_custom_group"); ok || d.HasChange("internet_service6_custom_group") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6CustomGroup(d, v, "internet_service6_custom_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-custom-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_group"); ok || d.HasChange("internet_service6_group") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6Group(d, v, "internet_service6_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_name"); ok || d.HasChange("internet_service6_name") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6Name(d, v, "internet_service6_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_negate"); ok || d.HasChange("internet_service6_negate") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6Negate(d, v, "internet_service6_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-negate"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_src"); ok || d.HasChange("internet_service6_src") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6Src(d, v, "internet_service6_src")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-src"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_src_custom"); ok || d.HasChange("internet_service6_src_custom") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6SrcCustom(d, v, "internet_service6_src_custom")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-src-custom"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_src_custom_group"); ok || d.HasChange("internet_service6_src_custom_group") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6SrcCustomGroup(d, v, "internet_service6_src_custom_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-src-custom-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_src_group"); ok || d.HasChange("internet_service6_src_group") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6SrcGroup(d, v, "internet_service6_src_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-src-group"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_src_name"); ok || d.HasChange("internet_service6_src_name") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6SrcName(d, v, "internet_service6_src_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-src-name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("internet_service6_src_negate"); ok || d.HasChange("internet_service6_src_negate") {
+		t, err := expandPackagesGlobalFooterPolicyInternetService6SrcNegate(d, v, "internet_service6_src_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["internet-service6-src-negate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ip_based"); ok || d.HasChange("ip_based") {
 		t, err := expandPackagesGlobalFooterPolicyIpBased(d, v, "ip_based")
 		if err != nil {
@@ -6730,6 +7337,24 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["natoutbound"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("network_service_dynamic"); ok || d.HasChange("network_service_dynamic") {
+		t, err := expandPackagesGlobalFooterPolicyNetworkServiceDynamic(d, v, "network_service_dynamic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["network-service-dynamic"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("network_service_src_dynamic"); ok || d.HasChange("network_service_src_dynamic") {
+		t, err := expandPackagesGlobalFooterPolicyNetworkServiceSrcDynamic(d, v, "network_service_src_dynamic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["network-service-src-dynamic"] = t
 		}
 	}
 
@@ -6958,12 +7583,30 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("reputation_direction6"); ok || d.HasChange("reputation_direction6") {
+		t, err := expandPackagesGlobalFooterPolicyReputationDirection6(d, v, "reputation_direction6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reputation-direction6"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("reputation_minimum"); ok || d.HasChange("reputation_minimum") {
 		t, err := expandPackagesGlobalFooterPolicyReputationMinimum(d, v, "reputation_minimum")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["reputation-minimum"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reputation_minimum6"); ok || d.HasChange("reputation_minimum6") {
+		t, err := expandPackagesGlobalFooterPolicyReputationMinimum6(d, v, "reputation_minimum6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reputation-minimum6"] = t
 		}
 	}
 
@@ -7156,6 +7799,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("srcaddr6_negate"); ok || d.HasChange("srcaddr6_negate") {
+		t, err := expandPackagesGlobalFooterPolicySrcaddr6Negate(d, v, "srcaddr6_negate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["srcaddr6-negate"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
 		t, err := expandPackagesGlobalFooterPolicySrcintf(d, v, "srcintf")
 		if err != nil {
@@ -7171,6 +7823,15 @@ func getObjectPackagesGlobalFooterPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ssh-filter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssh_policy_check"); ok || d.HasChange("ssh_policy_check") {
+		t, err := expandPackagesGlobalFooterPolicySshPolicyCheck(d, v, "ssh_policy_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssh-policy-check"] = t
 		}
 	}
 

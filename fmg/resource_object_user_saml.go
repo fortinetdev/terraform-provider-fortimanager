@@ -64,6 +64,98 @@ func resourceObjectUserSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dynamic_mapping": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"_scope": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"vdom": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+								},
+							},
+						},
+						"adfs_claim": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"auth_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"clock_tolerance": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"digest_method": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"entity_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"group_claim_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"group_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"idp_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"idp_entity_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"idp_single_logout_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"idp_single_sign_on_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"limit_relaystate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"single_logout_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"single_sign_on_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"user_claim_type": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"user_name": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"entity_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -117,6 +209,11 @@ func resourceObjectUserSaml() *schema.Resource {
 			"user_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"dynamic_sort_subtable": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "false",
 			},
 		},
 	}
@@ -244,6 +341,256 @@ func flattenObjectUserSamlDigestMethod(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectUserSamlDynamicMapping(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
+		if _, ok := i["_scope"]; ok {
+			v := flattenObjectUserSamlDynamicMappingScope(i["_scope"], d, pre_append)
+			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-Scope")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "adfs_claim"
+		if _, ok := i["adfs-claim"]; ok {
+			v := flattenObjectUserSamlDynamicMappingAdfsClaim(i["adfs-claim"], d, pre_append)
+			tmp["adfs_claim"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-AdfsClaim")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_url"
+		if _, ok := i["auth-url"]; ok {
+			v := flattenObjectUserSamlDynamicMappingAuthUrl(i["auth-url"], d, pre_append)
+			tmp["auth_url"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-AuthUrl")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "cert"
+		if _, ok := i["cert"]; ok {
+			v := flattenObjectUserSamlDynamicMappingCert(i["cert"], d, pre_append)
+			tmp["cert"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-Cert")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "clock_tolerance"
+		if _, ok := i["clock-tolerance"]; ok {
+			v := flattenObjectUserSamlDynamicMappingClockTolerance(i["clock-tolerance"], d, pre_append)
+			tmp["clock_tolerance"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-ClockTolerance")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "digest_method"
+		if _, ok := i["digest-method"]; ok {
+			v := flattenObjectUserSamlDynamicMappingDigestMethod(i["digest-method"], d, pre_append)
+			tmp["digest_method"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-DigestMethod")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "entity_id"
+		if _, ok := i["entity-id"]; ok {
+			v := flattenObjectUserSamlDynamicMappingEntityId(i["entity-id"], d, pre_append)
+			tmp["entity_id"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-EntityId")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_claim_type"
+		if _, ok := i["group-claim-type"]; ok {
+			v := flattenObjectUserSamlDynamicMappingGroupClaimType(i["group-claim-type"], d, pre_append)
+			tmp["group_claim_type"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-GroupClaimType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_name"
+		if _, ok := i["group-name"]; ok {
+			v := flattenObjectUserSamlDynamicMappingGroupName(i["group-name"], d, pre_append)
+			tmp["group_name"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-GroupName")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_cert"
+		if _, ok := i["idp-cert"]; ok {
+			v := flattenObjectUserSamlDynamicMappingIdpCert(i["idp-cert"], d, pre_append)
+			tmp["idp_cert"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-IdpCert")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_entity_id"
+		if _, ok := i["idp-entity-id"]; ok {
+			v := flattenObjectUserSamlDynamicMappingIdpEntityId(i["idp-entity-id"], d, pre_append)
+			tmp["idp_entity_id"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-IdpEntityId")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_logout_url"
+		if _, ok := i["idp-single-logout-url"]; ok {
+			v := flattenObjectUserSamlDynamicMappingIdpSingleLogoutUrl(i["idp-single-logout-url"], d, pre_append)
+			tmp["idp_single_logout_url"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-IdpSingleLogoutUrl")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_sign_on_url"
+		if _, ok := i["idp-single-sign-on-url"]; ok {
+			v := flattenObjectUserSamlDynamicMappingIdpSingleSignOnUrl(i["idp-single-sign-on-url"], d, pre_append)
+			tmp["idp_single_sign_on_url"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-IdpSingleSignOnUrl")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "limit_relaystate"
+		if _, ok := i["limit-relaystate"]; ok {
+			v := flattenObjectUserSamlDynamicMappingLimitRelaystate(i["limit-relaystate"], d, pre_append)
+			tmp["limit_relaystate"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-LimitRelaystate")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_logout_url"
+		if _, ok := i["single-logout-url"]; ok {
+			v := flattenObjectUserSamlDynamicMappingSingleLogoutUrl(i["single-logout-url"], d, pre_append)
+			tmp["single_logout_url"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-SingleLogoutUrl")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_sign_on_url"
+		if _, ok := i["single-sign-on-url"]; ok {
+			v := flattenObjectUserSamlDynamicMappingSingleSignOnUrl(i["single-sign-on-url"], d, pre_append)
+			tmp["single_sign_on_url"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-SingleSignOnUrl")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_claim_type"
+		if _, ok := i["user-claim-type"]; ok {
+			v := flattenObjectUserSamlDynamicMappingUserClaimType(i["user-claim-type"], d, pre_append)
+			tmp["user_claim_type"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-UserClaimType")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_name"
+		if _, ok := i["user-name"]; ok {
+			v := flattenObjectUserSamlDynamicMappingUserName(i["user-name"], d, pre_append)
+			tmp["user_name"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-UserName")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectUserSamlDynamicMappingScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectUserSamlDynamicMappingScopeName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectUserSamlDynamicMapping-Scope-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := i["vdom"]; ok {
+			v := flattenObjectUserSamlDynamicMappingScopeVdom(i["vdom"], d, pre_append)
+			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserSamlDynamicMapping-Scope-Vdom")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectUserSamlDynamicMappingScopeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingScopeVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingAdfsClaim(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingAuthUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingClockTolerance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingDigestMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingGroupClaimType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingIdpCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingIdpEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingIdpSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingIdpSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingLimitRelaystate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingSingleSignOnUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingUserClaimType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlDynamicMappingUserName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlEntityId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -303,6 +650,10 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		d.Set("scopetype", "inherit")
 	}
 
+	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
+		d.Set("dynamic_sort_subtable", "false")
+	}
+
 	if err = d.Set("adfs_claim", flattenObjectUserSamlAdfsClaim(o["adfs-claim"], d, "adfs_claim")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adfs-claim"], "ObjectUserSaml-AdfsClaim"); ok {
 			if err = d.Set("adfs_claim", vv); err != nil {
@@ -340,6 +691,30 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading digest_method: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("dynamic_mapping", flattenObjectUserSamlDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
+			if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectUserSaml-DynamicMapping"); ok {
+				if err = d.Set("dynamic_mapping", vv); err != nil {
+					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("dynamic_mapping"); ok {
+			if err = d.Set("dynamic_mapping", flattenObjectUserSamlDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
+				if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectUserSaml-DynamicMapping"); ok {
+					if err = d.Set("dynamic_mapping", vv); err != nil {
+						return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading dynamic_mapping: %v", err)
+				}
+			}
 		}
 	}
 
@@ -498,6 +873,228 @@ func expandObjectUserSamlDigestMethod(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["_scope"], _ = expandObjectUserSamlDynamicMappingScope(d, i["_scope"], pre_append)
+		} else {
+			tmp["_scope"] = make([]string, 0)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "adfs_claim"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["adfs-claim"], _ = expandObjectUserSamlDynamicMappingAdfsClaim(d, i["adfs_claim"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_url"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["auth-url"], _ = expandObjectUserSamlDynamicMappingAuthUrl(d, i["auth_url"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "cert"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["cert"], _ = expandObjectUserSamlDynamicMappingCert(d, i["cert"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "clock_tolerance"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["clock-tolerance"], _ = expandObjectUserSamlDynamicMappingClockTolerance(d, i["clock_tolerance"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "digest_method"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["digest-method"], _ = expandObjectUserSamlDynamicMappingDigestMethod(d, i["digest_method"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "entity_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["entity-id"], _ = expandObjectUserSamlDynamicMappingEntityId(d, i["entity_id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_claim_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["group-claim-type"], _ = expandObjectUserSamlDynamicMappingGroupClaimType(d, i["group_claim_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["group-name"], _ = expandObjectUserSamlDynamicMappingGroupName(d, i["group_name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_cert"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["idp-cert"], _ = expandObjectUserSamlDynamicMappingIdpCert(d, i["idp_cert"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_entity_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["idp-entity-id"], _ = expandObjectUserSamlDynamicMappingIdpEntityId(d, i["idp_entity_id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_logout_url"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["idp-single-logout-url"], _ = expandObjectUserSamlDynamicMappingIdpSingleLogoutUrl(d, i["idp_single_logout_url"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "idp_single_sign_on_url"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["idp-single-sign-on-url"], _ = expandObjectUserSamlDynamicMappingIdpSingleSignOnUrl(d, i["idp_single_sign_on_url"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "limit_relaystate"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["limit-relaystate"], _ = expandObjectUserSamlDynamicMappingLimitRelaystate(d, i["limit_relaystate"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_logout_url"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["single-logout-url"], _ = expandObjectUserSamlDynamicMappingSingleLogoutUrl(d, i["single_logout_url"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_sign_on_url"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["single-sign-on-url"], _ = expandObjectUserSamlDynamicMappingSingleSignOnUrl(d, i["single_sign_on_url"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_claim_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["user-claim-type"], _ = expandObjectUserSamlDynamicMappingUserClaimType(d, i["user_claim_type"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "user_name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["user-name"], _ = expandObjectUserSamlDynamicMappingUserName(d, i["user_name"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectUserSamlDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectUserSamlDynamicMappingScopeName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vdom"], _ = expandObjectUserSamlDynamicMappingScopeVdom(d, i["vdom"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectUserSamlDynamicMappingScopeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingScopeVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingAdfsClaim(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingAuthUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingClockTolerance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingDigestMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingGroupClaimType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingIdpCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingIdpEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingIdpSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingIdpSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingLimitRelaystate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingSingleSignOnUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingUserClaimType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlDynamicMappingUserName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlEntityId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -586,6 +1183,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["digest-method"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
+		t, err := expandObjectUserSamlDynamicMapping(d, v, "dynamic_mapping")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dynamic_mapping"] = t
 		}
 	}
 

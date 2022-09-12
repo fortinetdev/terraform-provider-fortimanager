@@ -148,6 +148,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"gui_polling_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"ha_member_auto_grouping": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -574,6 +579,10 @@ func flattenSystemGlobalFgfmLocalCertSga(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenSystemGlobalFgfmSslProtocolSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalGuiPollingIntervalSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1095,6 +1104,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading fgfm_ssl_protocol: %v", err)
+		}
+	}
+
+	if err = d.Set("gui_polling_interval", flattenSystemGlobalGuiPollingIntervalSga(o["gui-polling-interval"], d, "gui_polling_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gui-polling-interval"], "SystemGlobal-GuiPollingInterval"); ok {
+			if err = d.Set("gui_polling_interval", vv); err != nil {
+				return fmt.Errorf("Error reading gui_polling_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gui_polling_interval: %v", err)
 		}
 	}
 
@@ -1701,6 +1720,10 @@ func expandSystemGlobalFgfmSslProtocolSga(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystemGlobalGuiPollingIntervalSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalHaMemberAutoGroupingSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2177,6 +2200,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["fgfm-ssl-protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gui_polling_interval"); ok || d.HasChange("gui_polling_interval") {
+		t, err := expandSystemGlobalGuiPollingIntervalSga(d, v, "gui_polling_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gui-polling-interval"] = t
 		}
 	}
 
