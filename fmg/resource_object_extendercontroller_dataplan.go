@@ -52,10 +52,12 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"auth_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"billing_date": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"capacity": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -72,6 +74,7 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"modem_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"monthly_fee": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -85,6 +88,7 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"overage": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -96,6 +100,7 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"pdn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"preferred_subnet": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -104,14 +109,17 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"private_network": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"signal_period": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"signal_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"slot": &schema.Schema{
 				Type:     schema.TypeString,
@@ -124,6 +132,7 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username": &schema.Schema{
 				Type:     schema.TypeString,

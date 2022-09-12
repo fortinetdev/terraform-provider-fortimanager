@@ -52,6 +52,7 @@ func resourceObjectFirewallInternetServiceGroup() *schema.Resource {
 			"direction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"member": &schema.Schema{
 				Type:     schema.TypeSet,

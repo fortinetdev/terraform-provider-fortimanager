@@ -37,10 +37,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"anti_replay": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"app_category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -54,11 +56,13 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_charts": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -67,6 +71,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"auto_asic_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"av_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -111,10 +116,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -147,6 +154,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"dsri": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -155,6 +163,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeString,
@@ -168,6 +177,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_profile_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -232,6 +242,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"inspection_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ippool": &schema.Schema{
 				Type:     schema.TypeString,
@@ -248,10 +259,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"logtraffic_start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -264,6 +277,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"nat": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"natinbound": &schema.Schema{
 				Type:     schema.TypeString,
@@ -280,6 +294,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"np_acceleration": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"outbound": &schema.Schema{
 				Type:     schema.TypeString,
@@ -297,6 +312,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"poolname": &schema.Schema{
 				Type:     schema.TypeString,
@@ -309,10 +325,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"profile_protocol_options": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"profile_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"replacemsg_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -341,10 +359,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"spamfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -357,6 +377,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeString,
@@ -373,6 +394,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"ssl_mirror": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_mirror_intf": &schema.Schema{
 				Type:     schema.TypeString,
@@ -397,6 +419,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tags": &schema.Schema{
 				Type:     schema.TypeString,
@@ -405,30 +428,37 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"tcp_mss_receiver": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_mss_sender": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_session_without_syn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"timeout_send_rst": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -453,18 +483,22 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"utm_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_cos_fwd": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_cos_rev": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_filter": &schema.Schema{
 				Type:     schema.TypeString,
@@ -485,10 +519,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"webcache": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webcache_https": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,

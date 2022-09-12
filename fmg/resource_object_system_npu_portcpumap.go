@@ -48,11 +48,13 @@ func resourceObjectSystemNpuPortCpuMap() *schema.Resource {
 			"cpu_core": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

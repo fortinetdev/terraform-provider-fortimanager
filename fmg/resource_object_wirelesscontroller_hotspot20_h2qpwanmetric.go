@@ -52,14 +52,17 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetric() *schema.Resource {
 			"downlink_speed": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"link_at_capacity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"link_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"load_measurement_duration": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -73,6 +76,7 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetric() *schema.Resource {
 			"symmetric_wan_link": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uplink_load": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -81,6 +85,7 @@ func resourceObjectWirelessControllerHotspot20H2QpWanMetric() *schema.Resource {
 			"uplink_speed": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

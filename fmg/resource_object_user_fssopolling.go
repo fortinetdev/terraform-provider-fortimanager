@@ -77,15 +77,19 @@ func resourceObjectUserFssoPolling() *schema.Resource {
 			"logon_history": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"polling_frequency": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -98,14 +102,17 @@ func resourceObjectUserFssoPolling() *schema.Resource {
 			"smb_ntlmv1_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"smbv1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"user": &schema.Schema{
 				Type:     schema.TypeString,
@@ -397,16 +404,6 @@ func refreshObjectObjectUserFssoPolling(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading logon_history: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectUserFssoPollingPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectUserFssoPolling-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

@@ -52,6 +52,7 @@ func resourceObjectWirelessControllerAddrgrp() *schema.Resource {
 			"default_policy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeString,

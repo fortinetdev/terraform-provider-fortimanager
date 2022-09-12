@@ -56,6 +56,7 @@ func resourceObjectFirewallMulticastAddress6() *schema.Resource {
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

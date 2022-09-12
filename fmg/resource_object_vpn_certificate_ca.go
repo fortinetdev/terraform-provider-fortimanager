@@ -77,6 +77,7 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 			"range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"scep_url": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,10 +86,12 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 			"source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"trusted": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,6 +100,7 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 			"ssl_inspection_trusted": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

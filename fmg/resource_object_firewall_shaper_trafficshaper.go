@@ -48,10 +48,12 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"bandwidth_unit": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -60,6 +62,7 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"dscp_marking_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"exceed_bandwidth": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -68,10 +71,12 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"exceed_class_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"exceed_dscp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"guaranteed_bandwidth": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -84,6 +89,7 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"maximum_dscp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,10 +103,12 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"per_policy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"priority": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

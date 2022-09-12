@@ -57,6 +57,7 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 			"auth_https": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal": &schema.Schema{
 				Type:     schema.TypeString,
@@ -73,14 +74,17 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 			"captive_portal_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_ssl_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -89,6 +93,7 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 			"cert_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cert_captive_portal": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,10 +102,12 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 			"cert_captive_portal_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cert_captive_portal_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dev_range": &schema.Schema{
 				Type:     schema.TypeString,

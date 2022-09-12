@@ -56,15 +56,19 @@ func resourceObjectUserPeer() *schema.Resource {
 			"cn_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ldap_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ldap_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"ldap_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -77,6 +81,7 @@ func resourceObjectUserPeer() *schema.Resource {
 			"mandatory_ca_verify": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -99,6 +104,7 @@ func resourceObjectUserPeer() *schema.Resource {
 			"two_factor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -306,16 +312,6 @@ func refreshObjectObjectUserPeer(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading ldap_mode: %v", err)
-		}
-	}
-
-	if err = d.Set("ldap_password", flattenObjectUserPeerLdapPassword(o["ldap-password"], d, "ldap_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["ldap-password"], "ObjectUserPeer-LdapPassword"); ok {
-			if err = d.Set("ldap_password", vv); err != nil {
-				return fmt.Errorf("Error reading ldap_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading ldap_password: %v", err)
 		}
 	}
 

@@ -57,6 +57,7 @@ func resourceObjectSwitchControllerQosQosPolicy() *schema.Resource {
 			"queue_policy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"trust_dot1p_map": &schema.Schema{
 				Type:     schema.TypeString,

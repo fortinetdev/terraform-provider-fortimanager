@@ -152,6 +152,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"atf_weight": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"auth": &schema.Schema{
 				Type:     schema.TypeString,
@@ -173,27 +174,33 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"broadcast_ssid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"broadcast_suppression": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"bss_color_partial": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"bstm_disassociation_imminent": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"bstm_load_balancing_disassoc_timer": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"bstm_rssi_disassoc_timer": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_ac_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -236,18 +243,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"dhcp_option43_insertion": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_option82_circuit_id_insertion": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_option82_insertion": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_option82_remote_id_insertion": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_vlan": &schema.Schema{
 				Type:     schema.TypeString,
@@ -393,6 +404,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"atf_weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"auth": &schema.Schema{
 							Type:     schema.TypeString,
@@ -414,6 +426,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"broadcast_ssid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"broadcast_suppression": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -423,18 +436,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"bss_color_partial": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"bstm_disassociation_imminent": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"bstm_load_balancing_disassoc_timer": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"bstm_rssi_disassoc_timer": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"captive_portal_ac_name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -481,18 +498,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"dhcp_option43_insertion": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_option82_circuit_id_insertion": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_option82_insertion": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_option82_remote_id_insertion": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dynamic_vlan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -501,22 +522,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"eap_reauth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"eap_reauth_intv": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"eapol_key_retries": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"encrypt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_fast_roaming": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_logout": &schema.Schema{
 							Type:     schema.TypeString,
@@ -533,10 +559,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"fast_bss_transition": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fast_roaming": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ft_mobility_domain": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -553,22 +581,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"gas_comeback_delay": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"gas_fragmentation_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"gtk_rekey": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gtk_rekey_intv": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"high_efficiency": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"hotspot20_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -577,10 +610,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"igmp_snooping": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"intra_vap_privacy": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -594,6 +629,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"key": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -611,6 +647,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"ldpc": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"local_authentication": &schema.Schema{
 							Type:     schema.TypeString,
@@ -619,18 +656,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"local_bridging": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"local_lan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"local_standalone": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"local_standalone_dns": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"local_standalone_dns_ip": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -648,34 +689,42 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"mac_auth_bypass": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_called_station_delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_calling_station_delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_case": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_filter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_filter_policy_other": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_password_delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_username_delimiter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"max_clients": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -688,18 +737,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"mbo": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mbo_cell_data_conn_pref": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"me_disable_thresh": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"mesh_backhaul": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mpsk": &schema.Schema{
 							Type:     schema.TypeString,
@@ -716,18 +769,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"mu_mimo": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"multicast_enhance": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"multicast_rate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nac_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -736,14 +793,17 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"neighbor_report_dual_band": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"okc": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"osen": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"owe_groups": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -753,39 +813,48 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"owe_transition": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"owe_transition_ssid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"passphrase": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"pmf": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pmf_assoc_comeback_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"pmf_sa_query_retry_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"port_macauth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port_macauth_reauth_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"port_macauth_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"portal_message_override_group": &schema.Schema{
 							Type:     schema.TypeString,
@@ -802,18 +871,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"probe_resp_suppression": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"probe_resp_threshold": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ptk_rekey": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ptk_rekey_intv": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"qos_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -822,22 +895,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radio_2g_threshold": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radio_5g_threshold": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radio_sensitivity": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radius_mac_auth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radius_mac_auth_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -851,10 +929,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"radius_mac_mpsk_auth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radius_mac_mpsk_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"radius_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -913,6 +993,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"scan_botnet_connections": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"schedule": &schema.Schema{
 							Type:     schema.TypeString,
@@ -925,6 +1006,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"security": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"security_exempt_list": &schema.Schema{
 							Type:     schema.TypeString,
@@ -933,6 +1015,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"security_obsolete_option": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"security_redirect_url": &schema.Schema{
 							Type:     schema.TypeString,
@@ -945,30 +1028,37 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"split_tunneling": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sticky_client_remove": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sticky_client_threshold_2g": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sticky_client_threshold_5g": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"target_wake_time": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tkip_counter_measure": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_echo_interval": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -985,6 +1075,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"utm_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"utm_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -993,6 +1084,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"utm_status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vdom": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1001,10 +1093,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"vlan_auto": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vlan_pooling": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vlanid": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1013,6 +1107,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"voice_enterprise": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"webfilter_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1024,22 +1119,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"eap_reauth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"eap_reauth_intv": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"eapol_key_retries": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"encrypt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"external_fast_roaming": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"external_logout": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1056,10 +1156,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"fast_bss_transition": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fast_roaming": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ft_mobility_domain": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1076,22 +1178,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"gas_comeback_delay": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"gas_fragmentation_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"gtk_rekey": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"gtk_rekey_intv": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"high_efficiency": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"hotspot20_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1100,10 +1207,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"igmp_snooping": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"intra_vap_privacy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1117,6 +1226,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"key": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -1130,6 +1240,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"ldpc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"local_authentication": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1138,18 +1249,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"local_bridging": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"local_lan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"local_standalone": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"local_standalone_dns": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"local_standalone_dns_ip": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -1163,22 +1278,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"mac_auth_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_called_station_delimiter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_calling_station_delimiter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_case": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_filter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_filter_list": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1192,10 +1312,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac_filter_policy": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1203,14 +1325,17 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"mac_filter_policy_other": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_password_delimiter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_username_delimiter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"max_clients": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1223,18 +1348,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"mbo": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mbo_cell_data_conn_pref": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"me_disable_thresh": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"mesh_backhaul": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mpsk": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1280,18 +1409,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"mu_mimo": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"multicast_enhance": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"multicast_rate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nac": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nac_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1305,14 +1438,17 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"neighbor_report_dual_band": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"okc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"osen": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"owe_groups": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -1322,39 +1458,48 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"owe_transition": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"owe_transition_ssid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"passphrase": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"pmf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pmf_assoc_comeback_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"pmf_sa_query_retry_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port_macauth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"port_macauth_reauth_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port_macauth_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"portal_message_override_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1396,18 +1541,22 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"probe_resp_suppression": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"probe_resp_threshold": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ptk_rekey": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ptk_rekey_intv": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"qos_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1416,22 +1565,27 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"quarantine": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radio_2g_threshold": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radio_5g_threshold": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radio_sensitivity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_mac_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_mac_auth_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1445,10 +1599,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"radius_mac_mpsk_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_mac_mpsk_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1507,6 +1663,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"schedule": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1520,6 +1677,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"security": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"security_exempt_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1528,6 +1686,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"security_obsolete_option": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"security_redirect_url": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1540,30 +1699,37 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"split_tunneling": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sticky_client_remove": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sticky_client_threshold_2g": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sticky_client_threshold_5g": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"target_wake_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tkip_counter_measure": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tunnel_echo_interval": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1580,6 +1746,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"utm_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"utm_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1592,10 +1759,12 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"utm_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_auto": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_name": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1632,6 +1801,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"vlan_pooling": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlanid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1640,6 +1810,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"voice_enterprise": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2677,6 +2848,10 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 		if _, ok := i["passphrase"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingPassphrase(i["passphrase"], d, pre_append)
 			tmp["passphrase"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-Passphrase")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["passphrase"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmf"
@@ -5779,16 +5954,6 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading owe_transition_ssid: %v", err)
-		}
-	}
-
-	if err = d.Set("passphrase", flattenObjectWirelessControllerVapPassphrase(o["passphrase"], d, "passphrase")); err != nil {
-		if vv, ok := fortiAPIPatch(o["passphrase"], "ObjectWirelessControllerVap-Passphrase"); ok {
-			if err = d.Set("passphrase", vv); err != nil {
-				return fmt.Errorf("Error reading passphrase: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading passphrase: %v", err)
 		}
 	}
 

@@ -57,6 +57,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"call_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"certificate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -74,14 +75,17 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"cloud_server_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortinetone_cloud_authentication": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"https_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -103,26 +107,32 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"preserve_ssl_session": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pull_avatars": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pull_malware_hash": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pull_sysinfo": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pull_tags": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pull_vulnerabilities": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -131,6 +141,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status_check_interval": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -139,6 +150,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"websocket_override": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

@@ -48,6 +48,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"add_nat64_route": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"arp_intf": &schema.Schema{
 				Type:     schema.TypeString,
@@ -56,6 +57,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"arp_reply": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"associated_interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -129,6 +131,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 						"add_nat64_route": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"arp_intf": &schema.Schema{
 							Type:     schema.TypeString,
@@ -137,6 +140,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 						"arp_reply": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"associated_interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -193,10 +197,12 @@ func resourceObjectFirewallIppool() *schema.Resource {
 						"endport": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"nat64": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"num_blocks_per_user": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -229,10 +235,12 @@ func resourceObjectFirewallIppool() *schema.Resource {
 						"startport": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"utilization_alarm_clear": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -252,6 +260,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"endport": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -261,6 +270,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"num_blocks_per_user": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -293,10 +303,12 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"startport": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"utilization_alarm_clear": &schema.Schema{
 				Type:     schema.TypeInt,

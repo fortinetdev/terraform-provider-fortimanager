@@ -52,6 +52,7 @@ func resourceObjectFirewallScheduleGroup() *schema.Resource {
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,

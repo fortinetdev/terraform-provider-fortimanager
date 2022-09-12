@@ -93,6 +93,7 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 			"profile_protocol_options": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"spamfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -109,6 +110,7 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 			"ssl_ssh_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
 				Type:     schema.TypeString,

@@ -48,6 +48,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"chunk_encap": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"extension_feature": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -57,6 +58,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"icap_block_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"icap_headers": &schema.Schema{
 				Type:     schema.TypeList,
@@ -66,6 +68,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 						"base64_encoding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"content": &schema.Schema{
 							Type:     schema.TypeString,
@@ -74,6 +77,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -86,6 +90,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -95,6 +100,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"preview": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"preview_data_length": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -107,6 +113,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"request": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"request_failure": &schema.Schema{
 				Type:     schema.TypeString,
@@ -176,6 +183,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"response": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"response_failure": &schema.Schema{
 				Type:     schema.TypeString,
@@ -196,10 +204,12 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"scan_progress_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"streaming_content_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

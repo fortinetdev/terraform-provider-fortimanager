@@ -56,10 +56,12 @@ func resourceObjectFirewallScheduleOnetime() *schema.Resource {
 			"expiration_days": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,

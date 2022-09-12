@@ -56,6 +56,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"analytics_db": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"analytics_ignore_filetype": &schema.Schema{
 				Type:     schema.TypeString,
@@ -72,10 +73,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"av_block_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"av_virus_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cifs": &schema.Schema{
 				Type:     schema.TypeList,
@@ -96,14 +99,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -117,10 +123,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -217,10 +225,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"ems_threat_feed": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"external_blocklist": &schema.Schema{
 				Type:     schema.TypeList,
@@ -234,10 +244,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"external_blocklist_enable_all": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortiai_error_action": &schema.Schema{
 				Type:     schema.TypeString,
@@ -270,14 +282,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -291,10 +306,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -322,6 +339,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
@@ -330,10 +348,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -347,10 +367,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -374,6 +396,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
@@ -382,14 +405,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"executables": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -403,10 +429,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -470,6 +498,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"mobile_malware_db": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nac_quar": &schema.Schema{
 				Type:     schema.TypeList,
@@ -480,14 +509,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"expiry": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"infected": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -516,14 +548,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -537,10 +572,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -548,6 +585,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"outbreak_prevention_archive_scan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"outbreak_prevention": &schema.Schema{
 				Type:     schema.TypeList,
@@ -585,6 +623,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
@@ -593,14 +632,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"executables": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -614,10 +656,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -681,6 +725,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
@@ -689,14 +734,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"executables": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
@@ -710,10 +758,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

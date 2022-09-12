@@ -57,6 +57,7 @@ func resourceObjectUserPop3() *schema.Resource {
 			"secure": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -65,6 +66,7 @@ func resourceObjectUserPop3() *schema.Resource {
 			"ssl_min_proto_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

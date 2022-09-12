@@ -53,6 +53,7 @@ func resourceObjectVpnSslWebHostCheckSoftware() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -70,6 +71,7 @@ func resourceObjectVpnSslWebHostCheckSoftware() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"version": &schema.Schema{
 							Type:     schema.TypeString,
@@ -81,6 +83,7 @@ func resourceObjectVpnSslWebHostCheckSoftware() *schema.Resource {
 			"guid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -90,10 +93,12 @@ func resourceObjectVpnSslWebHostCheckSoftware() *schema.Resource {
 			"os_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"version": &schema.Schema{
 				Type:     schema.TypeString,

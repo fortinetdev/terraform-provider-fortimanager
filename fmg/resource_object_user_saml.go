@@ -48,6 +48,7 @@ func resourceObjectUserSaml() *schema.Resource {
 			"adfs_claim": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
@@ -56,10 +57,12 @@ func resourceObjectUserSaml() *schema.Resource {
 			"clock_tolerance": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"digest_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"entity_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -92,6 +95,7 @@ func resourceObjectUserSaml() *schema.Resource {
 			"limit_relaystate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

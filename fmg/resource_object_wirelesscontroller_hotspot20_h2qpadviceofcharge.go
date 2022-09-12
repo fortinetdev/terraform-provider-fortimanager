@@ -89,6 +89,7 @@ func resourceObjectWirelessControllerHotspot20H2QpAdviceOfCharge() *schema.Resou
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

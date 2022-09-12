@@ -52,22 +52,27 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"access_network_asra": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"access_network_esr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"access_network_internet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"access_network_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"access_network_uesa": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"advice_of_charge": &schema.Schema{
 				Type:     schema.TypeString,
@@ -80,6 +85,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"bss_transition": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"conn_cap": &schema.Schema{
 				Type:     schema.TypeString,
@@ -88,10 +94,12 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"deauth_request_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dgaf": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"domain_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -100,14 +108,17 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"gas_comeback_delay": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"gas_fragmentation_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"hessid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_addr_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -116,6 +127,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"l2tif": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nai_realm": &schema.Schema{
 				Type:     schema.TypeString,
@@ -154,10 +166,12 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"pame_bi": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"proxy_arp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"qos_map": &schema.Schema{
 				Type:     schema.TypeString,
@@ -166,6 +180,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"release": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"roaming_consortium": &schema.Schema{
 				Type:     schema.TypeString,
@@ -178,6 +193,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"venue_group": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"venue_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -186,6 +202,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"venue_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"venue_url": &schema.Schema{
 				Type:     schema.TypeString,
@@ -198,6 +215,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 			"wnm_sleep_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

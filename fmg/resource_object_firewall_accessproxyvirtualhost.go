@@ -52,6 +52,7 @@ func resourceObjectFirewallAccessProxyVirtualHost() *schema.Resource {
 			"host_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

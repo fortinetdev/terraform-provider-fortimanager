@@ -52,10 +52,12 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 			"allow_routing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -93,10 +95,12 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 						"allow_routing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"category": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"color": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -109,6 +113,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 						"exclude": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"exclude_member": &schema.Schema{
 							Type:     schema.TypeString,
@@ -117,6 +122,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 						"fabric_object": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"global_object": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -133,6 +139,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,
@@ -148,6 +155,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 			"exclude": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"exclude_member": &schema.Schema{
 				Type:     schema.TypeList,
@@ -157,6 +165,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -196,10 +205,12 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,

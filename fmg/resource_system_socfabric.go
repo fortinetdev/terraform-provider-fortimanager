@@ -39,9 +39,11 @@ func resourceSystemSocFabric() *schema.Resource {
 				Computed: true,
 			},
 			"psk": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"role": &schema.Schema{
 				Type:     schema.TypeString,
@@ -182,16 +184,6 @@ func refreshObjectSystemSocFabric(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading port: %v", err)
-		}
-	}
-
-	if err = d.Set("psk", flattenSystemSocFabricPsk(o["psk"], d, "psk")); err != nil {
-		if vv, ok := fortiAPIPatch(o["psk"], "SystemSocFabric-Psk"); ok {
-			if err = d.Set("psk", vv); err != nil {
-				return fmt.Errorf("Error reading psk: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading psk: %v", err)
 		}
 	}
 

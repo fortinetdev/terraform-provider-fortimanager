@@ -64,19 +64,24 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"add_route": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"assign_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"assign_ip_from": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"authpasswd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"authusr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -89,6 +94,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"auto_configuration": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"automatic_routing": &schema.Schema{
 				Type:     schema.TypeString,
@@ -101,10 +107,12 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"default_gateway": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_ra_giaddr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -113,10 +121,12 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"dns_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dns_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"domain": &schema.Schema{
 				Type:     schema.TypeString,
@@ -125,10 +135,12 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"encapsulation": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"exchange_interface_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"extgw": &schema.Schema{
 				Type:     schema.TypeString,
@@ -188,22 +200,27 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"ipsec_lease_hold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_dns_server1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_dns_server2": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_dns_server3": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_end_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_exclude_range": &schema.Schema{
 				Type:     schema.TypeList,
@@ -232,6 +249,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"ipv4_netmask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_split_exclude": &schema.Schema{
 				Type:     schema.TypeString,
@@ -244,22 +262,27 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"ipv4_start_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_wins_server1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_wins_server2": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"l2tp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"local_gw": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"localid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -268,6 +291,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"mode_cfg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mode_cfg_ip_version": &schema.Schema{
 				Type:     schema.TypeString,
@@ -276,6 +300,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"net_device": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"peer": &schema.Schema{
 				Type:     schema.TypeList,
@@ -293,6 +318,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"peertype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"protected_subnet": &schema.Schema{
 				Type:     schema.TypeList,
@@ -354,6 +380,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"unity_support": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"usrgrp": &schema.Schema{
 				Type:     schema.TypeString,
@@ -376,6 +403,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"xauthtype": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1051,16 +1079,6 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading assign_ip_from: %v", err)
-		}
-	}
-
-	if err = d.Set("authpasswd", flattenObjectVpnmgrNodeAuthpasswd(o["authpasswd"], d, "authpasswd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["authpasswd"], "ObjectVpnmgrNode-Authpasswd"); ok {
-			if err = d.Set("authpasswd", vv); err != nil {
-				return fmt.Errorf("Error reading authpasswd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading authpasswd: %v", err)
 		}
 	}
 

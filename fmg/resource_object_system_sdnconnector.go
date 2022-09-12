@@ -54,9 +54,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 			},
 			"api_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"azure_region": &schema.Schema{
 				Type:     schema.TypeString,
@@ -78,6 +80,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"compute_generation": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"domain": &schema.Schema{
 				Type:     schema.TypeString,
@@ -160,6 +163,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"ibm_region": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ibm_region_gen1": &schema.Schema{
 				Type:     schema.TypeString,
@@ -263,19 +267,24 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"rest_interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"rest_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"rest_sport": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"rest_ssl": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"route": &schema.Schema{
 				Type:     schema.TypeList,
@@ -326,9 +335,11 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				},
 			},
 			"secret_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"secret_token": &schema.Schema{
 				Type:     schema.TypeString,
@@ -354,6 +365,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subscription_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -366,10 +378,12 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"update_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"updating": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1207,16 +1221,6 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("api_key", flattenObjectSystemSdnConnectorApiKey(o["api-key"], d, "api_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["api-key"], "ObjectSystemSdnConnector-ApiKey"); ok {
-			if err = d.Set("api_key", vv); err != nil {
-				return fmt.Errorf("Error reading api_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading api_key: %v", err)
-		}
-	}
-
 	if err = d.Set("azure_region", flattenObjectSystemSdnConnectorAzureRegion(o["azure-region"], d, "azure_region")); err != nil {
 		if vv, ok := fortiAPIPatch(o["azure-region"], "ObjectSystemSdnConnector-AzureRegion"); ok {
 			if err = d.Set("azure_region", vv); err != nil {
@@ -1607,16 +1611,6 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("rest_password", flattenObjectSystemSdnConnectorRestPassword(o["rest-password"], d, "rest_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["rest-password"], "ObjectSystemSdnConnector-RestPassword"); ok {
-			if err = d.Set("rest_password", vv); err != nil {
-				return fmt.Errorf("Error reading rest_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading rest_password: %v", err)
-		}
-	}
-
 	if err = d.Set("rest_sport", flattenObjectSystemSdnConnectorRestSport(o["rest-sport"], d, "rest_sport")); err != nil {
 		if vv, ok := fortiAPIPatch(o["rest-sport"], "ObjectSystemSdnConnector-RestSport"); ok {
 			if err = d.Set("rest_sport", vv); err != nil {
@@ -1682,16 +1676,6 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 					return fmt.Errorf("Error reading route_table: %v", err)
 				}
 			}
-		}
-	}
-
-	if err = d.Set("secret_key", flattenObjectSystemSdnConnectorSecretKey(o["secret-key"], d, "secret_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secret-key"], "ObjectSystemSdnConnector-SecretKey"); ok {
-			if err = d.Set("secret_key", vv); err != nil {
-				return fmt.Errorf("Error reading secret_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secret_key: %v", err)
 		}
 	}
 

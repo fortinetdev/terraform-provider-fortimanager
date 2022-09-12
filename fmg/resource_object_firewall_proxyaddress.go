@@ -52,6 +52,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 			"case_sensitivity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -126,6 +127,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 			"referrer": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tagging": &schema.Schema{
 				Type:     schema.TypeList,
@@ -151,6 +153,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ua": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -160,6 +163,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,

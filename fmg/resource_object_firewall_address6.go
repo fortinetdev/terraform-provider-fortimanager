@@ -117,6 +117,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"fabric_object": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fqdn": &schema.Schema{
 							Type:     schema.TypeString,
@@ -129,14 +130,17 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"host": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"host_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ip6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"macaddr": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -190,6 +194,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,
@@ -213,6 +218,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fqdn": &schema.Schema{
 				Type:     schema.TypeString,
@@ -225,14 +231,17 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 			"host": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"host_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"list": &schema.Schema{
 				Type:     schema.TypeList,
@@ -292,6 +301,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"value": &schema.Schema{
 							Type:     schema.TypeString,
@@ -328,10 +338,12 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,

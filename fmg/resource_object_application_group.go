@@ -53,6 +53,7 @@ func resourceObjectApplicationGroup() *schema.Resource {
 			"behavior": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"category": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -72,10 +73,12 @@ func resourceObjectApplicationGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"protocols": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"risk": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -85,14 +88,17 @@ func resourceObjectApplicationGroup() *schema.Resource {
 			"technology": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vendor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

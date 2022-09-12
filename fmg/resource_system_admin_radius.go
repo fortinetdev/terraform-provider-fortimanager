@@ -50,18 +50,22 @@ func resourceSystemAdminRadius() *schema.Resource {
 				Computed: true,
 			},
 			"secondary_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -236,16 +240,6 @@ func refreshObjectSystemAdminRadius(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
-	if err = d.Set("secondary_secret", flattenSystemAdminRadiusSecondarySecret(o["secondary-secret"], d, "secondary_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secondary-secret"], "SystemAdminRadius-SecondarySecret"); ok {
-			if err = d.Set("secondary_secret", vv); err != nil {
-				return fmt.Errorf("Error reading secondary_secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secondary_secret: %v", err)
-		}
-	}
-
 	if err = d.Set("secondary_server", flattenSystemAdminRadiusSecondaryServer(o["secondary-server"], d, "secondary_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["secondary-server"], "SystemAdminRadius-SecondaryServer"); ok {
 			if err = d.Set("secondary_server", vv); err != nil {
@@ -253,16 +247,6 @@ func refreshObjectSystemAdminRadius(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading secondary_server: %v", err)
-		}
-	}
-
-	if err = d.Set("secret", flattenSystemAdminRadiusSecret(o["secret"], d, "secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secret"], "SystemAdminRadius-Secret"); ok {
-			if err = d.Set("secret", vv); err != nil {
-				return fmt.Errorf("Error reading secret: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secret: %v", err)
 		}
 	}
 

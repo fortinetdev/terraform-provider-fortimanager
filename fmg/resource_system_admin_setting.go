@@ -155,9 +155,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 			},
 			"register_passwd": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"sdwan_monitor_history": &schema.Schema{
 				Type:     schema.TypeString,
@@ -175,9 +177,11 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Computed: true,
 			},
 			"shell_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"show_add_multiple": &schema.Schema{
 				Type:     schema.TypeString,
@@ -755,16 +759,6 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("register_passwd", flattenSystemAdminSettingRegisterPasswd(o["register_passwd"], d, "register_passwd")); err != nil {
-		if vv, ok := fortiAPIPatch(o["register_passwd"], "SystemAdminSetting-RegisterPasswd"); ok {
-			if err = d.Set("register_passwd", vv); err != nil {
-				return fmt.Errorf("Error reading register_passwd: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading register_passwd: %v", err)
-		}
-	}
-
 	if err = d.Set("sdwan_monitor_history", flattenSystemAdminSettingSdwanMonitorHistory(o["sdwan-monitor-history"], d, "sdwan_monitor_history")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sdwan-monitor-history"], "SystemAdminSetting-SdwanMonitorHistory"); ok {
 			if err = d.Set("sdwan_monitor_history", vv); err != nil {
@@ -792,16 +786,6 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading shell_access: %v", err)
-		}
-	}
-
-	if err = d.Set("shell_password", flattenSystemAdminSettingShellPassword(o["shell-password"], d, "shell_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["shell-password"], "SystemAdminSetting-ShellPassword"); ok {
-			if err = d.Set("shell_password", vv); err != nil {
-				return fmt.Errorf("Error reading shell_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading shell_password: %v", err)
 		}
 	}
 

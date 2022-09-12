@@ -395,6 +395,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_cos_fwd": &schema.Schema{
 				Type:     schema.TypeInt,

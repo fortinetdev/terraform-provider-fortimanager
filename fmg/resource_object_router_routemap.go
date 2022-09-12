@@ -62,6 +62,7 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -110,10 +111,12 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"match_origin": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"match_route_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"match_tag": &schema.Schema{
 							Type:     schema.TypeString,
@@ -130,6 +133,7 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"set_aggregator_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_aspath": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -139,10 +143,12 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"set_aspath_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_atomic_aggregate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_community": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -194,14 +200,17 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"set_ip_nexthop": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_ip6_nexthop": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_ip6_nexthop_local": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_local_preference": &schema.Schema{
 							Type:     schema.TypeString,
@@ -214,14 +223,17 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"set_metric_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_origin": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_originator_id": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"set_route_tag": &schema.Schema{
 							Type:     schema.TypeString,

@@ -65,10 +65,12 @@ func resourceObjectVpnCertificateOcspServer() *schema.Resource {
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"unavail_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"url": &schema.Schema{
 				Type:     schema.TypeString,

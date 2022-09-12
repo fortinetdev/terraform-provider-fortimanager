@@ -48,6 +48,7 @@ func resourceObjectApplicationList() *schema.Resource {
 			"app_replacemsg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -56,10 +57,12 @@ func resourceObjectApplicationList() *schema.Resource {
 			"control_default_network_services": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"deep_app_inspection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"default_network_services": &schema.Schema{
 				Type:     schema.TypeList,
@@ -82,6 +85,7 @@ func resourceObjectApplicationList() *schema.Resource {
 						"violation_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -89,6 +93,7 @@ func resourceObjectApplicationList() *schema.Resource {
 			"enforce_default_app_port": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"entries": &schema.Schema{
 				Type:     schema.TypeList,
@@ -246,10 +251,12 @@ func resourceObjectApplicationList() *schema.Resource {
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"force_inclusion_ssl_di_sigs": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -260,14 +267,17 @@ func resourceObjectApplicationList() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"other_application_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"other_application_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"p2p_block_list": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -286,10 +296,12 @@ func resourceObjectApplicationList() *schema.Resource {
 			"unknown_application_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"unknown_application_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

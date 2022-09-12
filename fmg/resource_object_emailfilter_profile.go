@@ -52,6 +52,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 			"external": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"file_filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -115,6 +116,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"gmail": &schema.Schema{
 				Type:     schema.TypeList,
@@ -129,6 +131,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -150,6 +153,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tag_msg": &schema.Schema{
 							Type:     schema.TypeString,
@@ -197,6 +201,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -241,6 +246,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tag_msg": &schema.Schema{
 							Type:     schema.TypeString,
@@ -283,6 +289,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tag_msg": &schema.Schema{
 							Type:     schema.TypeString,
@@ -311,10 +318,12 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 			"spam_bword_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"spam_filtering": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"spam_iptrust_table": &schema.Schema{
 				Type:     schema.TypeString,
@@ -323,10 +332,12 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 			"spam_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"spam_log_fortiguard_response": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"spam_mheader_table": &schema.Schema{
 				Type:     schema.TypeString,

@@ -53,6 +53,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"address_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,6 +62,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"application_list_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"av_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -69,6 +71,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"av_profile_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,6 +88,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"dsri": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -99,6 +103,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"emailfilter_profile_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeList,
@@ -112,6 +117,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"ips_sensor_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"label": &schema.Schema{
 				Type:     schema.TypeString,
@@ -120,6 +126,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -151,10 +158,12 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -163,6 +172,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"webfilter_profile_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

@@ -123,6 +123,7 @@ func resourceSystemSql() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -145,6 +146,7 @@ func resourceSystemSql() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -154,6 +156,7 @@ func resourceSystemSql() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

@@ -48,10 +48,12 @@ func resourceObjectFirewallLdbMonitor() *schema.Resource {
 			"dns_match_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dns_protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dns_request_domain": &schema.Schema{
 				Type:     schema.TypeString,
@@ -72,6 +74,7 @@ func resourceObjectFirewallLdbMonitor() *schema.Resource {
 			"interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,14 +88,17 @@ func resourceObjectFirewallLdbMonitor() *schema.Resource {
 			"retry": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"src_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,

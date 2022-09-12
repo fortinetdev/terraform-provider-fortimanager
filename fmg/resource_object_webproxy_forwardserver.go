@@ -48,6 +48,7 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 			"addr_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -60,14 +61,17 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 			"healthcheck": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"monitor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -75,17 +79,21 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"server_down_option": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username": &schema.Schema{
 				Type:     schema.TypeString,
@@ -319,16 +327,6 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectWebProxyForwardServerPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectWebProxyForwardServer-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

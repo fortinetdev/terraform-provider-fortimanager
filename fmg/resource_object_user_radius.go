@@ -61,15 +61,18 @@ func resourceObjectUserRadius() *schema.Resource {
 						"interface_select_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
 						"secret": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -82,6 +85,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -89,6 +93,7 @@ func resourceObjectUserRadius() *schema.Resource {
 			"acct_all_servers": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"acct_interim_interval": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -97,10 +102,12 @@ func resourceObjectUserRadius() *schema.Resource {
 			"all_usergroup": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auth_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"class": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -144,15 +151,18 @@ func resourceObjectUserRadius() *schema.Resource {
 									"interface_select_method": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"port": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
 									},
 									"secret": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"server": &schema.Schema{
 										Type:     schema.TypeString,
@@ -165,6 +175,7 @@ func resourceObjectUserRadius() *schema.Resource {
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -172,6 +183,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"acct_all_servers": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"acct_interim_interval": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -180,10 +192,12 @@ func resourceObjectUserRadius() *schema.Resource {
 						"all_usergroup": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"auth_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"class": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -331,6 +345,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"h3c_compatibility": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -339,22 +354,27 @@ func resourceObjectUserRadius() *schema.Resource {
 						"interface_select_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nas_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"password_encoding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"password_renewal": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radius_coa": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"radius_port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -363,6 +383,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"rsso": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rsso_context_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -379,6 +400,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"rsso_ep_one_ip_only": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rsso_flush_ip_session": &schema.Schema{
 							Type:     schema.TypeString,
@@ -443,10 +465,12 @@ func resourceObjectUserRadius() *schema.Resource {
 						"sso_attribute_value_override": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"switch_controller_acct_fast_framedip_detect": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"switch_controller_service_type": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -465,6 +489,7 @@ func resourceObjectUserRadius() *schema.Resource {
 						"timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"use_group_for_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -473,10 +498,12 @@ func resourceObjectUserRadius() *schema.Resource {
 						"use_management_vdom": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"username_case_sensitive": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -488,6 +515,7 @@ func resourceObjectUserRadius() *schema.Resource {
 			"h3c_compatibility": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -496,6 +524,7 @@ func resourceObjectUserRadius() *schema.Resource {
 			"interface_select_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -505,18 +534,22 @@ func resourceObjectUserRadius() *schema.Resource {
 			"nas_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"password_encoding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"password_renewal": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_coa": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -525,6 +558,7 @@ func resourceObjectUserRadius() *schema.Resource {
 			"rsso": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"rsso_context_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -541,6 +575,7 @@ func resourceObjectUserRadius() *schema.Resource {
 			"rsso_ep_one_ip_only": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"rsso_flush_ip_session": &schema.Schema{
 				Type:     schema.TypeString,
@@ -609,10 +644,12 @@ func resourceObjectUserRadius() *schema.Resource {
 			"sso_attribute_value_override": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"switch_controller_acct_fast_framedip_detect": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"switch_controller_service_type": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -633,14 +670,17 @@ func resourceObjectUserRadius() *schema.Resource {
 			"timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"use_management_vdom": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username_case_sensitive": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -804,6 +844,10 @@ func flattenObjectUserRadiusAccountingServer(v interface{}, d *schema.ResourceDa
 		if _, ok := i["secret"]; ok {
 			v := flattenObjectUserRadiusAccountingServerSecret(i["secret"], d, pre_append)
 			tmp["secret"] = fortiAPISubPartPatch(v, "ObjectUserRadius-AccountingServer-Secret")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["secret"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
@@ -1467,6 +1511,10 @@ func flattenObjectUserRadiusDynamicMappingAccountingServer(v interface{}, d *sch
 		if _, ok := i["secret"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingAccountingServerSecret(i["secret"], d, pre_append)
 			tmp["secret"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-AccountingServer-Secret")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["secret"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"

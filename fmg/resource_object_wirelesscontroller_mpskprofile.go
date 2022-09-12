@@ -66,14 +66,17 @@ func resourceObjectWirelessControllerMpskProfile() *schema.Resource {
 									"concurrent_client_limit_type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"concurrent_clients": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"mac": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mpsk_schedules": &schema.Schema{
 										Type:     schema.TypeString,
@@ -84,9 +87,11 @@ func resourceObjectWirelessControllerMpskProfile() *schema.Resource {
 										Optional: true,
 									},
 									"passphrase": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"pmk": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -107,6 +112,7 @@ func resourceObjectWirelessControllerMpskProfile() *schema.Resource {
 						"vlan_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -349,6 +355,10 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKey(v interface{}, d
 		if _, ok := i["passphrase"]; ok {
 			v := flattenObjectWirelessControllerMpskProfileMpskGroupMpskKeyPassphrase(i["passphrase"], d, pre_append)
 			tmp["passphrase"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfileMpskGroup-MpskKey-Passphrase")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["passphrase"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmk"

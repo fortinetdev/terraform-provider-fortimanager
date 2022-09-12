@@ -43,9 +43,11 @@ func resourceSystemAlertemail() *schema.Resource {
 				Optional: true,
 			},
 			"smtppassword": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"smtpport": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -190,16 +192,6 @@ func refreshObjectSystemAlertemail(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading fromname: %v", err)
-		}
-	}
-
-	if err = d.Set("smtppassword", flattenSystemAlertemailSmtppassword(o["smtppassword"], d, "smtppassword")); err != nil {
-		if vv, ok := fortiAPIPatch(o["smtppassword"], "SystemAlertemail-Smtppassword"); ok {
-			if err = d.Set("smtppassword", vv); err != nil {
-				return fmt.Errorf("Error reading smtppassword: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading smtppassword: %v", err)
 		}
 	}
 

@@ -53,10 +53,12 @@ func resourcePackagesFirewallMulticastPolicy() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_asic_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
@@ -65,6 +67,7 @@ func resourcePackagesFirewallMulticastPolicy() *schema.Resource {
 			"dnat": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -100,6 +103,7 @@ func resourcePackagesFirewallMulticastPolicy() *schema.Resource {
 			"snat": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"snat_ip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -122,10 +126,12 @@ func resourcePackagesFirewallMulticastPolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

@@ -69,14 +69,17 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"capwap_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dedicated_management_affinity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dedicated_management_cpu": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"default_qos_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -166,6 +169,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"fastpath": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fp_anomaly": &schema.Schema{
 				Type:     schema.TypeList,
@@ -180,6 +184,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"esp_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"gre_csum_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -192,6 +197,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"icmp_csum_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"icmp_frag": &schema.Schema{
 							Type:     schema.TypeString,
@@ -204,14 +210,17 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"icmp_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_csum_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_ihl_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_land": &schema.Schema{
 							Type:     schema.TypeString,
@@ -220,10 +229,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"ipv4_len_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_opt_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_optlsrr": &schema.Schema{
 							Type:     schema.TypeString,
@@ -256,6 +267,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"ipv4_ttlzero_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_unknopt": &schema.Schema{
 							Type:     schema.TypeString,
@@ -264,6 +276,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"ipv4_ver_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_daddr_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -272,14 +285,17 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"ipv6_exthdr_len_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_exthdr_order_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_ihl_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_land": &schema.Schema{
 							Type:     schema.TypeString,
@@ -316,6 +332,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"ipv6_plen_zero": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_proto_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -332,6 +349,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"ipv6_ver_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nvgre_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -352,6 +370,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"tcp_csum_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_fin_noack": &schema.Schema{
 							Type:     schema.TypeString,
@@ -364,6 +383,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"tcp_hlen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_hlenvsl4len_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -380,6 +400,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"tcp_plen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_syn_data": &schema.Schema{
 							Type:     schema.TypeString,
@@ -396,10 +417,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"udp_csum_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"udp_hlen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"udp_land": &schema.Schema{
 							Type:     schema.TypeString,
@@ -408,18 +431,22 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"udp_len_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"udp_plen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"udplite_cover_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"udplite_csum_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uesp_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -428,6 +455,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"unknproto_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vxlan_minlen_err": &schema.Schema{
 							Type:     schema.TypeString,
@@ -439,10 +467,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"gtp_enhanced_cpu_range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"gtp_enhanced_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"gtp_support": &schema.Schema{
 				Type:     schema.TypeString,
@@ -463,6 +493,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"host_shortcut_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"hpe": &schema.Schema{
 				Type:     schema.TypeList,
@@ -548,6 +579,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"htx_gtse_quota": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"htx_icmp_csum_chk": &schema.Schema{
 				Type:     schema.TypeString,
@@ -590,6 +622,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"intf_shaping_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_fragment_offload": &schema.Schema{
 				Type:     schema.TypeString,
@@ -598,6 +631,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"iph_rsvd_re_cksum": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ippool_overload_high": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -610,10 +644,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"ipsec_dec_subengine_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipsec_enc_subengine_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipsec_host_dfclr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -622,6 +658,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"ipsec_inbound_cache": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipsec_local_uesp_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -630,6 +667,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"ipsec_mtu_override": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipsec_ob_np_sel": &schema.Schema{
 				Type:     schema.TypeString,
@@ -638,6 +676,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"ipsec_over_vlink": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"isf_np_queues": &schema.Schema{
 				Type:     schema.TypeList,
@@ -687,6 +726,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"lag_out_port_select": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"max_session_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -695,6 +735,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"mcast_session_accounting": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mcast_session_counting": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1128,6 +1169,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"np6_cps_optimization_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pba_eim": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1140,6 +1182,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"per_session_accounting": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"policy_offload_level": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1153,10 +1196,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"cpu_core": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"interface": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1200,14 +1245,17 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"bfd": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"bgp": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"slbc": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1227,6 +1275,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"qos_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"qtm_buf_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1235,10 +1284,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"rdp_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"recover_np6_link": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"rps_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1251,10 +1302,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"session_denied_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sse_backpressure": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sse_ha_scan": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1280,10 +1333,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"strip_clear_text_padding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"strip_esp_padding": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sw_eh_hash": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1294,38 +1349,47 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"computation": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"destination_ip_lower_16": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"destination_ip_upper_16": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"destination_port": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ip_protocol": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"netmask_length": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"source_ip_lower_16": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_ip_upper_16": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_port": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1333,10 +1397,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"sw_np_bandwidth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"switch_np_hash": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_rst_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1397,6 +1463,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"uesp_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ull_port_mode": &schema.Schema{
 				Type:     schema.TypeString,

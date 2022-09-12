@@ -53,14 +53,17 @@ func resourceObjectFirewallScheduleRecurring() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"end": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -74,6 +77,7 @@ func resourceObjectFirewallScheduleRecurring() *schema.Resource {
 			"start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

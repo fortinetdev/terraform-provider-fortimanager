@@ -56,6 +56,7 @@ func resourceObjectVpnSslWebRealm() *schema.Resource {
 			"nas_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -77,6 +78,7 @@ func resourceObjectVpnSslWebRealm() *schema.Resource {
 			"virtual_host_only": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"virtual_host_server_cert": &schema.Schema{
 				Type:     schema.TypeString,

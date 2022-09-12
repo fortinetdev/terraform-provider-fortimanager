@@ -74,6 +74,7 @@ func resourceObjectFirewallMulticastAddress() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"tagging": &schema.Schema{
 				Type:     schema.TypeList,
@@ -99,6 +100,7 @@ func resourceObjectFirewallMulticastAddress() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,

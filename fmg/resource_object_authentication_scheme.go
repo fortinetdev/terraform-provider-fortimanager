@@ -90,6 +90,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"saml_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"ssh_ca": &schema.Schema{
 				Type:     schema.TypeString,
@@ -98,6 +99,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"user_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"user_database": &schema.Schema{
 				Type:     schema.TypeList,

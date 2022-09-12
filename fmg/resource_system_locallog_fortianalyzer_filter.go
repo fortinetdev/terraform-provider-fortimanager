@@ -177,6 +177,7 @@ func resourceSystemLocallogFortianalyzerFilter() *schema.Resource {
 			"logfile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"logging": &schema.Schema{
 				Type:     schema.TypeString,

@@ -48,14 +48,17 @@ func resourceObjectFirewallShaperPerIpShaper() *schema.Resource {
 			"bandwidth_unit": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,

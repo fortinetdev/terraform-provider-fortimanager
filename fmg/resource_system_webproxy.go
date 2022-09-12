@@ -39,9 +39,11 @@ func resourceSystemWebProxy() *schema.Resource {
 				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -173,16 +175,6 @@ func refreshObjectSystemWebProxy(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading mode: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemWebProxyPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemWebProxy-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

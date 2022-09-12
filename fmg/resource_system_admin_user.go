@@ -356,6 +356,7 @@ func resourceSystemAdminUser() *schema.Resource {
 			"password_expire": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"phone_number": &schema.Schema{
 				Type:     schema.TypeString,
@@ -391,16 +392,19 @@ func resourceSystemAdminUser() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ssh_public_key2": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ssh_public_key3": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"subject": &schema.Schema{
 				Type:     schema.TypeString,

@@ -58,10 +58,12 @@ func resourceObjectSwitchControllerLldpProfile() *schema.Resource {
 			"auto_isl": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_isl_hello_timer": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_isl_port_group": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -70,10 +72,12 @@ func resourceObjectSwitchControllerLldpProfile() *schema.Resource {
 			"auto_isl_receive_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_mclag_icl": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"custom_tlvs": &schema.Schema{
 				Type:     schema.TypeList,
@@ -91,6 +95,7 @@ func resourceObjectSwitchControllerLldpProfile() *schema.Resource {
 						"oui": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"subtype": &schema.Schema{
 							Type:     schema.TypeInt,

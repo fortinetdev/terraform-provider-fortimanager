@@ -74,6 +74,7 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -153,6 +154,7 @@ func resourceSystemLogFetchClientProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"sync_adom_config": &schema.Schema{
 				Type:     schema.TypeString,

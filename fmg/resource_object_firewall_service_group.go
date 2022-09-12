@@ -56,6 +56,7 @@ func resourceObjectFirewallServiceGroup() *schema.Resource {
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -74,6 +75,7 @@ func resourceObjectFirewallServiceGroup() *schema.Resource {
 			"proxy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

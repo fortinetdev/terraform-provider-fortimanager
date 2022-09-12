@@ -53,14 +53,17 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"_policy_block": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"anti_replay": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"app_category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -74,6 +77,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -106,10 +110,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"block_notification": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_exempt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"capture_packet": &schema.Schema{
 				Type:     schema.TypeString,
@@ -130,10 +136,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"cgn_resource_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_session_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -154,6 +162,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"delay_tcp_npu_session": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"devices": &schema.Schema{
 				Type:     schema.TypeString,
@@ -162,10 +171,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -202,6 +213,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"dsri": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -216,6 +228,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -225,10 +238,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"dynamic_shaping": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"email_collect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"emailfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -237,6 +252,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"fec": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"file_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -262,14 +278,17 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"geoip_anycast": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"geoip_match": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_label": &schema.Schema{
 				Type:     schema.TypeString,
@@ -279,6 +298,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"gtp_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -307,6 +327,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"internet_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -335,6 +356,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"internet_service_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_src_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -379,18 +401,22 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"logtraffic_start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"match_vip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"match_vip_only": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -407,10 +433,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"nat46": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"natinbound": &schema.Schema{
 				Type:     schema.TypeString,
@@ -420,6 +448,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"natoutbound": &schema.Schema{
 				Type:     schema.TypeString,
@@ -428,6 +457,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"np_acceleration": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ntlm": &schema.Schema{
 				Type:     schema.TypeString,
@@ -437,6 +467,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ntlm_guest": &schema.Schema{
 				Type:     schema.TypeString,
@@ -449,6 +480,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"passive_wan_health_measurement": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"per_ip_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -457,6 +489,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"permit_any_host": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"permit_stun_host": &schema.Schema{
 				Type:     schema.TypeString,
@@ -474,6 +507,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"poolname": &schema.Schema{
 				Type:     schema.TypeString,
@@ -494,10 +528,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"profile_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radius_mac_auth_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"redirect_url": &schema.Schema{
 				Type:     schema.TypeString,
@@ -514,6 +550,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"reputation_minimum": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"rsso": &schema.Schema{
 				Type:     schema.TypeString,
@@ -526,6 +563,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"rtp_nat": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
@@ -538,6 +576,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"schedule_timeout": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sctp_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -546,6 +585,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"send_deny_packet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"service": &schema.Schema{
 				Type:     schema.TypeList,
@@ -555,6 +595,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
 				Type:     schema.TypeString,
@@ -568,15 +609,18 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"sgt_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"src_vendor_mac": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -586,11 +630,13 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -620,18 +666,22 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_mss_receiver": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_mss_sender": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_session_without_syn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_timeout_pid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -644,14 +694,17 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"tos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -673,6 +726,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"utm_status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -681,6 +735,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -689,10 +744,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"vlan_cos_fwd": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_cos_rev": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_filter": &schema.Schema{
 				Type:     schema.TypeString,
@@ -773,6 +830,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"wccp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webcache": &schema.Schema{
 				Type:     schema.TypeString,
@@ -797,14 +855,17 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"ztna_ems_tag": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ztna_geo_tag": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ztna_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wsso": &schema.Schema{
 				Type:     schema.TypeString,

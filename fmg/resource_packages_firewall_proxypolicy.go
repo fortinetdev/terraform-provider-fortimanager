@@ -62,6 +62,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -74,6 +75,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"block_notification": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -90,10 +92,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"device_ownership": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"disclaimer": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -107,6 +111,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr6": &schema.Schema{
 				Type:     schema.TypeList,
@@ -138,6 +143,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"http_tunnel_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"icap_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -146,6 +152,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"internet_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -186,6 +193,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"logtraffic_start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -216,6 +224,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"profile_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"proxy": &schema.Schema{
 				Type:     schema.TypeString,
@@ -249,6 +258,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -266,6 +276,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
 				Type:     schema.TypeList,
@@ -283,6 +294,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"ssh_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_ssh_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -291,6 +303,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"transparent": &schema.Schema{
 				Type:     schema.TypeString,
@@ -308,6 +321,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -324,10 +338,12 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"webcache": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webcache_https": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -349,6 +365,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 			"ztna_tags_match_logic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

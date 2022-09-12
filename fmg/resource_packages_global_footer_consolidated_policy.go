@@ -363,6 +363,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"voip_profile": &schema.Schema{
 				Type:     schema.TypeString,

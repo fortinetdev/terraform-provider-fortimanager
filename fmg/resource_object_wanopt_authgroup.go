@@ -48,6 +48,7 @@ func resourceObjectWanoptAuthGroup() *schema.Resource {
 			"auth_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
@@ -65,6 +66,7 @@ func resourceObjectWanoptAuthGroup() *schema.Resource {
 			"peer_accept": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"psk": &schema.Schema{
 				Type:     schema.TypeSet,

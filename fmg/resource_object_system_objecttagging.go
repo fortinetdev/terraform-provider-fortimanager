@@ -48,6 +48,7 @@ func resourceObjectSystemObjectTagging() *schema.Resource {
 			"address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,14 +62,17 @@ func resourceObjectSystemObjectTagging() *schema.Resource {
 			"device": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"multiple": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tags": &schema.Schema{
 				Type:     schema.TypeSet,

@@ -48,6 +48,7 @@ func resourceObjectSystemGeoipOverride() *schema.Resource {
 			"country_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,6 +62,7 @@ func resourceObjectSystemGeoipOverride() *schema.Resource {
 						"end_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -69,6 +71,7 @@ func resourceObjectSystemGeoipOverride() *schema.Resource {
 						"start_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -81,6 +84,7 @@ func resourceObjectSystemGeoipOverride() *schema.Resource {
 						"end_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -89,6 +93,7 @@ func resourceObjectSystemGeoipOverride() *schema.Resource {
 						"start_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

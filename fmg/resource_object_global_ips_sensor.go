@@ -48,6 +48,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 			"block_malicious_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -197,6 +198,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -359,6 +361,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

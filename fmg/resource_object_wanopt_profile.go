@@ -58,10 +58,12 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"byte_caching": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_traffic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -71,22 +73,27 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"prefer_chunking": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol_opt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"secure_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_sharing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -104,10 +111,12 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"byte_caching": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_traffic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -117,26 +126,32 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"prefer_chunking": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol_opt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"secure_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_sharing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -150,10 +165,12 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"byte_caching": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_traffic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -163,18 +180,22 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"prefer_chunking": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol_opt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"secure_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_port": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -184,6 +205,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_non_http": &schema.Schema{
 							Type:     schema.TypeString,
@@ -192,6 +214,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"tunnel_sharing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"unknown_http_version": &schema.Schema{
 							Type:     schema.TypeString,
@@ -209,10 +232,12 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"byte_caching": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_traffic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -222,14 +247,17 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"secure_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_sharing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -248,26 +276,32 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"byte_caching": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"byte_caching_opt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_traffic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"secure_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_port": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -277,10 +311,12 @@ func resourceObjectWanoptProfile() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_sharing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -288,6 +324,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 			"transparent": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

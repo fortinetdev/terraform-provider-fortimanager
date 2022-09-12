@@ -61,6 +61,7 @@ func resourceObjectWirelessControllerHotspot20Icon() *schema.Resource {
 						"lang": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -69,6 +70,7 @@ func resourceObjectWirelessControllerHotspot20Icon() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"width": &schema.Schema{
 							Type:     schema.TypeInt,

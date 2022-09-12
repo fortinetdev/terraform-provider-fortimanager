@@ -123,6 +123,7 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"enc_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
@@ -345,6 +346,7 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_static_key_ciphers": &schema.Schema{
 				Type:     schema.TypeString,
@@ -390,6 +392,7 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"workflow_max_sessions": &schema.Schema{
 				Type:     schema.TypeInt,

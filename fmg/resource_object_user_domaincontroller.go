@@ -48,6 +48,7 @@ func resourceObjectUserDomainController() *schema.Resource {
 			"ad_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"adlds_dn": &schema.Schema{
 				Type:     schema.TypeString,
@@ -56,18 +57,22 @@ func resourceObjectUserDomainController() *schema.Resource {
 			"adlds_ip_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"adlds_ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"adlds_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dns_srv_lookup": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"domain_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,14 +90,17 @@ func resourceObjectUserDomainController() *schema.Resource {
 						"ip_address": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"source_ip_address": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -112,14 +120,17 @@ func resourceObjectUserDomainController() *schema.Resource {
 			"interface_select_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ldap_server": &schema.Schema{
 				Type:     schema.TypeList,
@@ -132,13 +143,16 @@ func resourceObjectUserDomainController() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"replication_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -147,10 +161,12 @@ func resourceObjectUserDomainController() *schema.Resource {
 			"source_ip_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -608,16 +624,6 @@ func refreshObjectObjectUserDomainController(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectUserDomainControllerPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectUserDomainController-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

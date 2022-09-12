@@ -48,6 +48,7 @@ func resourceObjectUserGroup() *schema.Resource {
 			"auth_concurrent_override": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auth_concurrent_value": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -85,6 +86,7 @@ func resourceObjectUserGroup() *schema.Resource {
 						"auth_concurrent_override": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"auth_concurrent_value": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -113,6 +115,7 @@ func resourceObjectUserGroup() *schema.Resource {
 						"group_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"guest": &schema.Schema{
 							Type:     schema.TypeList,
@@ -238,6 +241,7 @@ func resourceObjectUserGroup() *schema.Resource {
 						"sms_server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sponsor": &schema.Schema{
 							Type:     schema.TypeString,
@@ -379,6 +383,7 @@ func resourceObjectUserGroup() *schema.Resource {
 			"group_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"guest": &schema.Schema{
 				Type:     schema.TypeList,
@@ -494,6 +499,7 @@ func resourceObjectUserGroup() *schema.Resource {
 			"sms_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sponsor": &schema.Schema{
 				Type:     schema.TypeString,

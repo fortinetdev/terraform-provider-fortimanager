@@ -53,6 +53,7 @@ func resourceObjectVpnCertificateRemote() *schema.Resource {
 			"range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"remote": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,6 +62,7 @@ func resourceObjectVpnCertificateRemote() *schema.Resource {
 			"source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

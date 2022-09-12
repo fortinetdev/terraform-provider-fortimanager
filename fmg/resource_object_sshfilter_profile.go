@@ -53,6 +53,7 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 			"default_command_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"file_filter": &schema.Schema{
 				Type:     schema.TypeList,

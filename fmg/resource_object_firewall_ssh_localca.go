@@ -51,9 +51,11 @@ func resourceObjectFirewallSshLocalCa() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"private_key": &schema.Schema{
 				Type:     schema.TypeString,
@@ -66,6 +68,7 @@ func resourceObjectFirewallSshLocalCa() *schema.Resource {
 			"source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -211,16 +214,6 @@ func refreshObjectObjectFirewallSshLocalCa(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectFirewallSshLocalCaPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectFirewallSshLocalCa-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

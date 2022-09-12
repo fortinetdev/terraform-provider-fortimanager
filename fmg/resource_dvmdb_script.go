@@ -56,6 +56,7 @@ func resourceDvmdbScript() *schema.Resource {
 			"filter_build": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"filter_device": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -86,6 +87,7 @@ func resourceDvmdbScript() *schema.Resource {
 			"modification_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

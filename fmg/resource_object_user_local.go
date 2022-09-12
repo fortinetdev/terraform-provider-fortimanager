@@ -48,6 +48,7 @@ func resourceObjectUserLocal() *schema.Resource {
 			"auth_concurrent_override": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auth_concurrent_value": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -115,10 +116,12 @@ func resourceObjectUserLocal() *schema.Resource {
 			"sms_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tacacs_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -127,6 +130,7 @@ func resourceObjectUserLocal() *schema.Resource {
 			"two_factor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"two_factor_authentication": &schema.Schema{
 				Type:     schema.TypeString,
@@ -139,6 +143,7 @@ func resourceObjectUserLocal() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username_case_insensitivity": &schema.Schema{
 				Type:     schema.TypeString,
@@ -151,6 +156,7 @@ func resourceObjectUserLocal() *schema.Resource {
 			"username_sensitivity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"workstation": &schema.Schema{
 				Type:     schema.TypeString,

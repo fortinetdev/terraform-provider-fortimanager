@@ -73,6 +73,7 @@ func resourceObjectWirelessControllerHotspot20QosMap() *schema.Resource {
 						"high": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"index": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -81,6 +82,7 @@ func resourceObjectWirelessControllerHotspot20QosMap() *schema.Resource {
 						"low": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"up": &schema.Schema{
 							Type:     schema.TypeInt,

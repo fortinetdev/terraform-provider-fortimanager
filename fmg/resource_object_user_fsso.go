@@ -85,6 +85,7 @@ func resourceObjectUserFsso() *schema.Resource {
 						"interface_select_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ldap_poll": &schema.Schema{
 							Type:     schema.TypeString,
@@ -105,51 +106,67 @@ func resourceObjectUserFsso() *schema.Resource {
 						"logon_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"password": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password2": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password3": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password4": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"password5": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"port2": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"port3": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"port4": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"port5": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -178,18 +195,22 @@ func resourceObjectUserFsso() *schema.Resource {
 						"source_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_ip6": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_server_host_ip_check": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_trusted_cert": &schema.Schema{
 							Type:     schema.TypeString,
@@ -198,6 +219,7 @@ func resourceObjectUserFsso() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"user_info_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -217,6 +239,7 @@ func resourceObjectUserFsso() *schema.Resource {
 			"interface_select_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ldap_poll": &schema.Schema{
 				Type:     schema.TypeString,
@@ -237,6 +260,7 @@ func resourceObjectUserFsso() *schema.Resource {
 			"logon_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -244,49 +268,64 @@ func resourceObjectUserFsso() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password2": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password3": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password4": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password5": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port2": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port3": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port4": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"port5": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -311,18 +350,22 @@ func resourceObjectUserFsso() *schema.Resource {
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_server_host_ip_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_trusted_cert": &schema.Schema{
 				Type:     schema.TypeString,
@@ -331,6 +374,7 @@ func resourceObjectUserFsso() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"user_info_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -538,30 +582,50 @@ func flattenObjectUserFssoDynamicMapping(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["password"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPassword(i["password"], d, pre_append)
 			tmp["password"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["password"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password2"
 		if _, ok := i["password2"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPassword2(i["password2"], d, pre_append)
 			tmp["password2"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password2")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["password2"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password3"
 		if _, ok := i["password3"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPassword3(i["password3"], d, pre_append)
 			tmp["password3"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password3")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["password3"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password4"
 		if _, ok := i["password4"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPassword4(i["password4"], d, pre_append)
 			tmp["password4"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password4")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["password4"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password5"
 		if _, ok := i["password5"]; ok {
 			v := flattenObjectUserFssoDynamicMappingPassword5(i["password5"], d, pre_append)
 			tmp["password5"] = fortiAPISubPartPatch(v, "ObjectUserFsso-DynamicMapping-Password5")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["password5"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
@@ -1111,56 +1175,6 @@ func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectUserFssoPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectUserFsso-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
-		}
-	}
-
-	if err = d.Set("password2", flattenObjectUserFssoPassword2(o["password2"], d, "password2")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password2"], "ObjectUserFsso-Password2"); ok {
-			if err = d.Set("password2", vv); err != nil {
-				return fmt.Errorf("Error reading password2: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password2: %v", err)
-		}
-	}
-
-	if err = d.Set("password3", flattenObjectUserFssoPassword3(o["password3"], d, "password3")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password3"], "ObjectUserFsso-Password3"); ok {
-			if err = d.Set("password3", vv); err != nil {
-				return fmt.Errorf("Error reading password3: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password3: %v", err)
-		}
-	}
-
-	if err = d.Set("password4", flattenObjectUserFssoPassword4(o["password4"], d, "password4")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password4"], "ObjectUserFsso-Password4"); ok {
-			if err = d.Set("password4", vv); err != nil {
-				return fmt.Errorf("Error reading password4: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password4: %v", err)
-		}
-	}
-
-	if err = d.Set("password5", flattenObjectUserFssoPassword5(o["password5"], d, "password5")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password5"], "ObjectUserFsso-Password5"); ok {
-			if err = d.Set("password5", vv); err != nil {
-				return fmt.Errorf("Error reading password5: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password5: %v", err)
 		}
 	}
 

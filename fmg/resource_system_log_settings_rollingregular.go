@@ -82,19 +82,25 @@ func resourceSystemLogSettingsRollingRegular() *schema.Resource {
 				Optional: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password2": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password3": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -467,36 +473,6 @@ func refreshObjectSystemLogSettingsRollingRegular(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading min: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenSystemLogSettingsRollingRegularPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "SystemLogSettingsRollingRegular-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
-		}
-	}
-
-	if err = d.Set("password2", flattenSystemLogSettingsRollingRegularPassword2(o["password2"], d, "password2")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password2"], "SystemLogSettingsRollingRegular-Password2"); ok {
-			if err = d.Set("password2", vv); err != nil {
-				return fmt.Errorf("Error reading password2: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password2: %v", err)
-		}
-	}
-
-	if err = d.Set("password3", flattenSystemLogSettingsRollingRegularPassword3(o["password3"], d, "password3")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password3"], "SystemLogSettingsRollingRegular-Password3"); ok {
-			if err = d.Set("password3", vv); err != nil {
-				return fmt.Errorf("Error reading password3: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password3: %v", err)
 		}
 	}
 

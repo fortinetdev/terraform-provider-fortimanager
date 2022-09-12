@@ -58,10 +58,12 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -70,6 +72,7 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine_expiry": &schema.Schema{
 							Type:     schema.TypeString,
@@ -82,6 +85,7 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"synproxy_tcp_mss": &schema.Schema{
 							Type:     schema.TypeString,
@@ -158,10 +162,12 @@ func resourcePackagesFirewallDosPolicy6() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

@@ -62,6 +62,7 @@ func resourceObjectRouterPrefixList6() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"flags": &schema.Schema{
 							Type:     schema.TypeInt,

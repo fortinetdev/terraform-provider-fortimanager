@@ -56,10 +56,12 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 			"burst": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"call_admission_control": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"call_capacity": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -90,6 +92,7 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 			"dscp_wmm_mapping": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_wmm_vi": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -117,10 +120,12 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 			"wmm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wmm_be_dscp": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"wmm_bk_dscp": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -129,18 +134,22 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 			"wmm_dscp_marking": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wmm_uapsd": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wmm_vi_dscp": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"wmm_vo_dscp": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

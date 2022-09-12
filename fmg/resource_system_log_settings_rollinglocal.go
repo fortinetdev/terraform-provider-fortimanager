@@ -89,14 +89,18 @@ func resourceSystemLogSettingsRollingLocal() *schema.Resource {
 				Computed:  true,
 			},
 			"password2": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"password3": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -469,26 +473,6 @@ func refreshObjectSystemLogSettingsRollingLocal(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading min: %v", err)
-		}
-	}
-
-	if err = d.Set("password2", flattenSystemLogSettingsRollingLocalPassword2(o["password2"], d, "password2")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password2"], "SystemLogSettingsRollingLocal-Password2"); ok {
-			if err = d.Set("password2", vv); err != nil {
-				return fmt.Errorf("Error reading password2: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password2: %v", err)
-		}
-	}
-
-	if err = d.Set("password3", flattenSystemLogSettingsRollingLocalPassword3(o["password3"], d, "password3")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password3"], "SystemLogSettingsRollingLocal-Password3"); ok {
-			if err = d.Set("password3", vv); err != nil {
-				return fmt.Errorf("Error reading password3: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password3: %v", err)
 		}
 	}
 

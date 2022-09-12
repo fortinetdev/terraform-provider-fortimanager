@@ -68,6 +68,7 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 			"class_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -76,10 +77,12 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -116,6 +119,7 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 			"internet_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_custom": &schema.Schema{
 				Type:     schema.TypeList,
@@ -144,6 +148,7 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 			"internet_service_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_src_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -208,14 +213,17 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 			"tos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -238,6 +246,7 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

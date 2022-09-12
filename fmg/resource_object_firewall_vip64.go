@@ -48,6 +48,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 			"arp_reply": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -153,6 +154,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 			"extport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -161,6 +163,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 			"ldb_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mappedip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -169,6 +172,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 			"mappedport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"monitor": &schema.Schema{
 				Type:     schema.TypeList,
@@ -183,10 +187,12 @@ func resourceObjectFirewallVip64() *schema.Resource {
 			"portforward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"realservers": &schema.Schema{
 				Type:     schema.TypeList,
@@ -200,10 +206,12 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"healthcheck": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"holddown_interval": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -212,6 +220,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"max_connections": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -228,10 +237,12 @@ func resourceObjectFirewallVip64() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -252,6 +263,7 @@ func resourceObjectFirewallVip64() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

@@ -53,6 +53,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"app_service_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"application": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -66,6 +67,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"check_reset_range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -78,6 +80,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fqdn": &schema.Schema{
 				Type:     schema.TypeString,
@@ -90,6 +93,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"helper": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"icmpcode": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -102,6 +106,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"iprange": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -111,6 +116,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"protocol_number": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -119,6 +125,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"proxy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sctp_portrange": &schema.Schema{
 				Type:     schema.TypeString,
@@ -127,6 +134,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"session_ttl": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_halfclose_timer": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -159,6 +167,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

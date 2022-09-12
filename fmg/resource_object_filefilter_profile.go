@@ -52,14 +52,17 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -78,6 +81,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"comment": &schema.Schema{
 							Type:     schema.TypeString,
@@ -86,6 +90,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 						"direction": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"file_type": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -99,6 +104,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 						"password_protected": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -111,6 +117,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 			"scan_archive_contents": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

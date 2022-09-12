@@ -52,18 +52,22 @@ func resourceObjectUserExchange() *schema.Resource {
 			"auth_level": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auth_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_discover_kdc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"connect_protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"domain_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -72,10 +76,12 @@ func resourceObjectUserExchange() *schema.Resource {
 			"http_auth_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -105,6 +111,7 @@ func resourceObjectUserExchange() *schema.Resource {
 			"ssl_min_proto_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username": &schema.Schema{
 				Type:     schema.TypeString,

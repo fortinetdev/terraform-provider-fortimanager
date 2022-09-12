@@ -69,10 +69,12 @@ func resourceObjectWirelessControllerUtmProfile() *schema.Resource {
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"utm_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,

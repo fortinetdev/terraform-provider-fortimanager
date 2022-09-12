@@ -69,18 +69,22 @@ func resourcePackagesPkg() *schema.Resource {
 						"central_nat": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"consolidated_firewall_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwpolicy_implicit_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwpolicy6_implicit_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"inspection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -89,10 +93,12 @@ func resourcePackagesPkg() *schema.Resource {
 						"ngfw_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"policy_offload_level": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_ssh_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -110,18 +116,22 @@ func resourcePackagesPkg() *schema.Resource {
 						"central_nat": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"consolidated_firewall_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwpolicy_implicit_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fwpolicy6_implicit_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"inspection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -130,6 +140,7 @@ func resourcePackagesPkg() *schema.Resource {
 						"ngfw_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_ssh_profile": &schema.Schema{
 							Type:     schema.TypeString,

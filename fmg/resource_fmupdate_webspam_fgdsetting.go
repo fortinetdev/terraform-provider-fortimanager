@@ -233,6 +233,7 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 			"wf_cache": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"wf_dn_cache_expire_time": &schema.Schema{
 				Type:     schema.TypeInt,

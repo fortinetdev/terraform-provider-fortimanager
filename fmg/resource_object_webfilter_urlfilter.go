@@ -57,6 +57,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"antiphish_action": &schema.Schema{
 							Type:     schema.TypeString,
@@ -65,6 +66,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 						"dns_address_family": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"exempt": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -82,10 +84,12 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"url": &schema.Schema{
 							Type:     schema.TypeString,
@@ -106,6 +110,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 			"ip_addr_block": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -114,6 +119,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 			"one_arm_ips_urlfilter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

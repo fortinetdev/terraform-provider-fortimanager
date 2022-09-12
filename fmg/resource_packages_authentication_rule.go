@@ -71,6 +71,7 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 			"ip_based": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -80,6 +81,7 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -103,6 +105,7 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"transaction_based": &schema.Schema{
 				Type:     schema.TypeString,

@@ -48,6 +48,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"application": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -66,10 +67,12 @@ func resourceObjectIpsCustom() *schema.Resource {
 			"log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_packet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"os": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -83,6 +86,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 			"rule_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"severity": &schema.Schema{
 				Type:     schema.TypeString,
@@ -99,6 +103,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tag": &schema.Schema{
 				Type:     schema.TypeString,

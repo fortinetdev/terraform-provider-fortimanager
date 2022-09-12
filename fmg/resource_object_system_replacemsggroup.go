@@ -57,10 +57,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -81,10 +83,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -105,10 +109,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -129,10 +135,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -157,10 +165,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -181,10 +191,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -205,10 +217,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -229,10 +243,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -253,10 +269,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -268,6 +286,7 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 			"group_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"http": &schema.Schema{
 				Type:     schema.TypeList,
@@ -281,10 +300,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -305,10 +326,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -329,10 +352,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -653,10 +678,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -682,10 +709,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -706,10 +735,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -730,10 +761,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -754,10 +787,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -778,10 +813,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -802,10 +839,12 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 						"format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,

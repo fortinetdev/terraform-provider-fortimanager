@@ -48,6 +48,7 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 			"add_nat46_route": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
@@ -77,6 +78,7 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 						"add_nat46_route": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"comments": &schema.Schema{
 							Type:     schema.TypeString,
@@ -89,6 +91,7 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 						"nat46": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"startip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -109,6 +112,7 @@ func resourceObjectFirewallIppool6() *schema.Resource {
 			"nat46": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"startip": &schema.Schema{
 				Type:     schema.TypeString,

@@ -48,14 +48,17 @@ func resourceObjectUserLdap() *schema.Resource {
 			"account_key_filter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"account_key_processing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"antiphish": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ca_cert": &schema.Schema{
 				Type:     schema.TypeString,
@@ -64,6 +67,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"cnid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dn": &schema.Schema{
 				Type:     schema.TypeString,
@@ -93,6 +97,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"account_key_filter": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"account_key_name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -101,10 +106,12 @@ func resourceObjectUserLdap() *schema.Resource {
 						"account_key_processing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"antiphish": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ca_cert": &schema.Schema{
 							Type:     schema.TypeString,
@@ -118,10 +125,12 @@ func resourceObjectUserLdap() *schema.Resource {
 						"client_cert_auth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"cnid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dn": &schema.Schema{
 							Type:     schema.TypeString,
@@ -142,6 +151,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"group_member_check": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"group_object_filter": &schema.Schema{
 							Type:     schema.TypeString,
@@ -162,14 +172,17 @@ func resourceObjectUserLdap() *schema.Resource {
 						"interface_select_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"member_attr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"obtain_user_info": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"password": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -183,14 +196,17 @@ func resourceObjectUserLdap() *schema.Resource {
 						"password_expiry_warning": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"password_renewal": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"retrieve_protection_profile": &schema.Schema{
 							Type:     schema.TypeString,
@@ -208,6 +224,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"secure": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -228,6 +245,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"ssl_min_proto_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tertiary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -236,6 +254,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"two_factor": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"two_factor_authentication": &schema.Schema{
 							Type:     schema.TypeString,
@@ -248,6 +267,7 @@ func resourceObjectUserLdap() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"user_info_exchange_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -267,6 +287,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"group_member_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"group_object_filter": &schema.Schema{
 				Type:     schema.TypeString,
@@ -283,10 +304,12 @@ func resourceObjectUserLdap() *schema.Resource {
 			"interface_select_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"member_attr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -296,6 +319,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"obtain_user_info": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"password": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -311,14 +335,17 @@ func resourceObjectUserLdap() *schema.Resource {
 			"password_expiry_warning": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"password_renewal": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"search_type": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -332,6 +359,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"secure": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -352,6 +380,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"ssl_min_proto_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -360,6 +389,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"two_factor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"two_factor_authentication": &schema.Schema{
 				Type:     schema.TypeString,
@@ -372,6 +402,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"user_info_exchange_server": &schema.Schema{
 				Type:     schema.TypeString,

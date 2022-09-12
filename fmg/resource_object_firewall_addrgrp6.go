@@ -93,6 +93,7 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 						"fabric_object": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"global_object": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -120,6 +121,7 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_object": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -159,6 +161,7 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,

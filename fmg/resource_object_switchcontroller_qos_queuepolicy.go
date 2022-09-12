@@ -97,10 +97,12 @@ func resourceObjectSwitchControllerQosQueuePolicy() *schema.Resource {
 			"rate_by": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"schedule": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

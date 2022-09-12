@@ -58,10 +58,12 @@ func resourceObjectSystemVirtualWirePair() *schema.Resource {
 			"poweroff_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"poweron_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_filter": &schema.Schema{
 				Type:     schema.TypeString,
@@ -70,6 +72,7 @@ func resourceObjectSystemVirtualWirePair() *schema.Resource {
 			"wildcard_vlan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

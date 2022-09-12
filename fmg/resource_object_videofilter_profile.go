@@ -52,6 +52,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 			"dailymotion": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortiguard_category": &schema.Schema{
 				Type:     schema.TypeList,
@@ -67,6 +68,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 									"action": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"category_id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -79,6 +81,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 									"log": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -98,6 +101,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 			"vimeo": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vimeo_restrict": &schema.Schema{
 				Type:     schema.TypeString,
@@ -106,6 +110,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 			"youtube": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"youtube_channel_filter": &schema.Schema{
 				Type:     schema.TypeString,

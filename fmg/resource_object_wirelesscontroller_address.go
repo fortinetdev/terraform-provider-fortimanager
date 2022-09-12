@@ -53,10 +53,12 @@ func resourceObjectWirelessControllerAddress() *schema.Resource {
 			"mac": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"policy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

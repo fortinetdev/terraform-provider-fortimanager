@@ -57,6 +57,7 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"roll_schedule": &schema.Schema{
 				Type:     schema.TypeString,
@@ -66,6 +67,7 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 			"roll_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -95,6 +97,7 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 			"upload_time": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uploaddir": &schema.Schema{
 				Type:     schema.TypeString,
@@ -106,9 +109,11 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Computed: true,
 			},
 			"uploadpass": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"uploadport": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -123,6 +128,7 @@ func resourceSystemLocallogDiskSetting() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"uploaduser": &schema.Schema{
 				Type:     schema.TypeString,
@@ -453,16 +459,6 @@ func refreshObjectSystemLocallogDiskSetting(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading uploadip: %v", err)
-		}
-	}
-
-	if err = d.Set("uploadpass", flattenSystemLocallogDiskSettingUploadpass(o["uploadpass"], d, "uploadpass")); err != nil {
-		if vv, ok := fortiAPIPatch(o["uploadpass"], "SystemLocallogDiskSetting-Uploadpass"); ok {
-			if err = d.Set("uploadpass", vv); err != nil {
-				return fmt.Errorf("Error reading uploadpass: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading uploadpass: %v", err)
 		}
 	}
 

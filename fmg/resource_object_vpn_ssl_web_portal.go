@@ -49,6 +49,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"auto_connect": &schema.Schema{
 				Type:     schema.TypeString,
@@ -223,14 +224,17 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"customize_forticlient_download_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"default_window_height": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"default_window_width": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_ip_overlap": &schema.Schema{
 				Type:     schema.TypeString,
@@ -267,14 +271,17 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"exclusive_routing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"forticlient_download": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"forticlient_download_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"heading": &schema.Schema{
 				Type:     schema.TypeString,
@@ -315,6 +322,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"ipv6_exclusive_routing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv6_pools": &schema.Schema{
 				Type:     schema.TypeString,
@@ -323,6 +331,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"ipv6_service_restriction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv6_split_tunneling": &schema.Schema{
 				Type:     schema.TypeString,
@@ -336,10 +345,12 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"ipv6_split_tunneling_routing_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv6_tunnel_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv6_wins_server1": &schema.Schema{
 				Type:     schema.TypeString,
@@ -356,6 +367,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"limit_user_logins": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mac_addr_action": &schema.Schema{
 				Type:     schema.TypeString,
@@ -427,6 +439,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"prefer_ipv6_dns": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"redir_url": &schema.Schema{
 				Type:     schema.TypeString,
@@ -435,6 +448,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"rewrite_ip_uri_ui": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"save_password": &schema.Schema{
 				Type:     schema.TypeString,
@@ -443,6 +457,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"service_restriction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"skip_check_for_unsupported_browser": &schema.Schema{
 				Type:     schema.TypeString,
@@ -516,6 +531,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"split_tunneling_routing_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"theme": &schema.Schema{
 				Type:     schema.TypeString,
@@ -528,6 +544,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"tunnel_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"use_sdwan": &schema.Schema{
 				Type:     schema.TypeString,
@@ -544,6 +561,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"web_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"windows_forticlient_download_url": &schema.Schema{
 				Type:     schema.TypeString,

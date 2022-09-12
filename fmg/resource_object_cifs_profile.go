@@ -48,6 +48,7 @@ func resourceObjectCifsProfile() *schema.Resource {
 			"domain_controller": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"file_filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -91,10 +92,12 @@ func resourceObjectCifsProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

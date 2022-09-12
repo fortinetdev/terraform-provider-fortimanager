@@ -46,14 +46,17 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"class_id": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"class_id_reverse": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -62,10 +65,12 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -95,10 +100,12 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -123,6 +130,7 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"internet_service_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_src_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -147,6 +155,7 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"ip_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -183,18 +192,22 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"traffic_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -215,6 +228,7 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

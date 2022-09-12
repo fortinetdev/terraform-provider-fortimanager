@@ -315,6 +315,7 @@ func resourcePackagesFirewallSecurityPolicy() *schema.Resource {
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
 				Type:     schema.TypeString,

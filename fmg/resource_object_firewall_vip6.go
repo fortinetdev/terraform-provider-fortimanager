@@ -48,10 +48,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"add_nat64_route": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"arp_reply": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"color": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -446,6 +448,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"embedded_ipv4_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"extip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -454,10 +457,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"extport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"http_cookie_age": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"http_cookie_domain": &schema.Schema{
 				Type:     schema.TypeString,
@@ -466,6 +471,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"http_cookie_domain_from_host": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"http_cookie_generation": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -478,10 +484,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"http_cookie_share": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"http_ip_header": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"http_ip_header_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -490,14 +498,17 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"http_multiplex": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"http_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"https_cookie_secure": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -510,10 +521,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ipv4_mappedport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ldb_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mappedip": &schema.Schema{
 				Type:     schema.TypeList,
@@ -523,10 +536,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"mappedport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"max_embryonic_connections": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"monitor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -540,30 +555,37 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"nat_source_vip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nat66": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"outlook_web_access": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"persistence": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"portforward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"realservers": &schema.Schema{
 				Type:     schema.TypeList,
@@ -629,6 +651,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ssl_accept_ffdhe_groups": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
@@ -662,6 +685,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ssl_client_fallback": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_client_rekey_count": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -714,18 +738,22 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ssl_hsts": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_hsts_age": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_hsts_include_subdomains": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_http_location_conversion": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_http_match_host": &schema.Schema{
 				Type:     schema.TypeString,
@@ -754,6 +782,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ssl_server_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_server_cipher_suites": &schema.Schema{
 				Type:     schema.TypeList,
@@ -779,10 +808,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ssl_server_max_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_server_min_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_server_session_state_max": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -795,22 +826,27 @@ func resourceObjectFirewallVip6() *schema.Resource {
 			"ssl_server_session_state_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"weblogic_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"websphere_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

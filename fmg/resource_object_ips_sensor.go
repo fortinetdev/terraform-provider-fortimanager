@@ -52,6 +52,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 			"block_malicious_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -65,6 +66,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"application": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -108,14 +110,17 @@ func resourceObjectIpsSensor() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_attack_context": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_packet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"os": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -130,6 +135,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine_expiry": &schema.Schema{
 							Type:     schema.TypeString,
@@ -167,6 +173,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -174,6 +181,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -187,6 +195,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

@@ -66,6 +66,7 @@ func resourceObjectFirewallIdentityBasedRoute() *schema.Resource {
 						"gateway": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"groups": &schema.Schema{
 							Type:     schema.TypeString,

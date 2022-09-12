@@ -48,10 +48,12 @@ func resourceObjectUserTacacs() *schema.Resource {
 			"authen_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"authorization": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
@@ -77,10 +79,12 @@ func resourceObjectUserTacacs() *schema.Resource {
 						"authen_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"authorization": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -89,20 +93,26 @@ func resourceObjectUserTacacs() *schema.Resource {
 						"interface_select_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"secondary_key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"secondary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -117,9 +127,11 @@ func resourceObjectUserTacacs() *schema.Resource {
 							Optional: true,
 						},
 						"tertiary_key": &schema.Schema{
-							Type:     schema.TypeSet,
-							Elem:     &schema.Schema{Type: schema.TypeString},
-							Optional: true,
+							Type:      schema.TypeSet,
+							Elem:      &schema.Schema{Type: schema.TypeString},
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"tertiary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -135,11 +147,14 @@ func resourceObjectUserTacacs() *schema.Resource {
 			"interface_select_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -149,11 +164,14 @@ func resourceObjectUserTacacs() *schema.Resource {
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"secondary_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -168,9 +186,11 @@ func resourceObjectUserTacacs() *schema.Resource {
 				Optional: true,
 			},
 			"tertiary_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"tertiary_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -352,6 +372,10 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["key"]; ok {
 			v := flattenObjectUserTacacsDynamicMappingKey(i["key"], d, pre_append)
 			tmp["key"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-Key")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["key"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
@@ -364,6 +388,10 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["secondary-key"]; ok {
 			v := flattenObjectUserTacacsDynamicMappingSecondaryKey(i["secondary-key"], d, pre_append)
 			tmp["secondary_key"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-SecondaryKey")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["secondary_key"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
@@ -388,6 +416,10 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["tertiary-key"]; ok {
 			v := flattenObjectUserTacacsDynamicMappingTertiaryKey(i["tertiary-key"], d, pre_append)
 			tmp["tertiary_key"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-TertiaryKey")
+			c := d.Get(pre_append).(*schema.Set)
+			if c.Len() > 0 {
+				tmp["tertiary_key"] = c
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -618,16 +650,6 @@ func refreshObjectObjectUserTacacs(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
-	if err = d.Set("key", flattenObjectUserTacacsKey(o["key"], d, "key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["key"], "ObjectUserTacacs-Key"); ok {
-			if err = d.Set("key", vv); err != nil {
-				return fmt.Errorf("Error reading key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading key: %v", err)
-		}
-	}
-
 	if err = d.Set("name", flattenObjectUserTacacsName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectUserTacacs-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -645,16 +667,6 @@ func refreshObjectObjectUserTacacs(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading port: %v", err)
-		}
-	}
-
-	if err = d.Set("secondary_key", flattenObjectUserTacacsSecondaryKey(o["secondary-key"], d, "secondary_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["secondary-key"], "ObjectUserTacacs-SecondaryKey"); ok {
-			if err = d.Set("secondary_key", vv); err != nil {
-				return fmt.Errorf("Error reading secondary_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading secondary_key: %v", err)
 		}
 	}
 
@@ -685,16 +697,6 @@ func refreshObjectObjectUserTacacs(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading source_ip: %v", err)
-		}
-	}
-
-	if err = d.Set("tertiary_key", flattenObjectUserTacacsTertiaryKey(o["tertiary-key"], d, "tertiary_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["tertiary-key"], "ObjectUserTacacs-TertiaryKey"); ok {
-			if err = d.Set("tertiary_key", vv); err != nil {
-				return fmt.Errorf("Error reading tertiary_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading tertiary_key: %v", err)
 		}
 	}
 
