@@ -575,6 +575,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 			"oversize_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"pop3": &schema.Schema{
 				Type:     schema.TypeList,
@@ -634,6 +635,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 			"rpc_over_http": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"smtp": &schema.Schema{
 				Type:     schema.TypeList,
@@ -755,6 +757,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 			"switching_protocols_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

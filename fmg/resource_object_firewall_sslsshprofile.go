@@ -800,6 +800,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 			"ssl_anomalies_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_anomaly_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -860,6 +861,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 			"ssl_exemptions_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_handshake_log": &schema.Schema{
 				Type:     schema.TypeString,

@@ -66,10 +66,12 @@ func resourceObjectSwitchControllerDynamicPortPolicy() *schema.Resource {
 						"bounce_port_link": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"category": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"description": &schema.Schema{
 							Type:     schema.TypeString,
@@ -111,6 +113,7 @@ func resourceObjectSwitchControllerDynamicPortPolicy() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,

@@ -53,10 +53,12 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"ap_country": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ap_handoff": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"apcfg_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -73,11 +75,13 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"console_login": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"control_message_offload": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"deny_mac_list": &schema.Schema{
 				Type:     schema.TypeList,
@@ -87,10 +91,12 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -103,10 +109,12 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"energy_efficient_ethernet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"esl_ses_dongle": &schema.Schema{
 				Type:     schema.TypeList,
@@ -117,6 +125,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"apc_addr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"apc_fqdn": &schema.Schema{
 							Type:     schema.TypeString,
@@ -125,6 +134,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"apc_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"apc_port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -133,30 +143,37 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"coex_level": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"compliance_level": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"esl_channel": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"output_power": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"scd_enable": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tls_cert_verification": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tls_fqdn_verification": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -164,31 +181,38 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"ext_info_enable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"frequency_handoff": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"handoff_roaming": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"handoff_rssi": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"handoff_sta_thresh": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"indoor_outdoor_deployment": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_fragment_preventing": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"lan": &schema.Schema{
 				Type:     schema.TypeList,
@@ -288,30 +312,37 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"aeroscout": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_ap_mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_mmu_report": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_mu": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_mu_factor": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_mu_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_server_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"aeroscout_server_port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -320,26 +351,32 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"ekahau_blink_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ekahau_tag": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"erc_server_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"erc_server_port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"fortipresence": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortipresence_ble": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortipresence_frequency": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -381,6 +418,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"station_locate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -393,10 +431,12 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"led_state": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"lldp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"login_passwd": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -406,6 +446,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"login_passwd_change": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"max_clients": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -429,6 +470,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"ddscan": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -437,6 +479,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -444,6 +487,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"poe_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"radio_1": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1804,10 +1848,12 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"split_tunneling_acl_local_ap_subnet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"split_tunneling_acl_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"syslog_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1824,15 +1870,19 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"wan_port_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wan_port_auth_methods": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wan_port_auth_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"wan_port_auth_usrname": &schema.Schema{
 				Type:     schema.TypeString,
@@ -6302,16 +6352,6 @@ func refreshObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData, o m
 			}
 		} else {
 			return fmt.Errorf("Error reading wan_port_auth_methods: %v", err)
-		}
-	}
-
-	if err = d.Set("wan_port_auth_password", flattenObjectWirelessControllerWtpProfileWanPortAuthPassword(o["wan-port-auth-password"], d, "wan_port_auth_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["wan-port-auth-password"], "ObjectWirelessControllerWtpProfile-WanPortAuthPassword"); ok {
-			if err = d.Set("wan_port_auth_password", vv); err != nil {
-				return fmt.Errorf("Error reading wan_port_auth_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading wan_port_auth_password: %v", err)
 		}
 	}
 

@@ -65,6 +65,7 @@ func resourceObjectWirelessControllerAccessControlList() *schema.Resource {
 						"dstaddr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -73,6 +74,7 @@ func resourceObjectWirelessControllerAccessControlList() *schema.Resource {
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"rule_id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -81,6 +83,7 @@ func resourceObjectWirelessControllerAccessControlList() *schema.Resource {
 						"srcaddr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -105,6 +108,7 @@ func resourceObjectWirelessControllerAccessControlList() *schema.Resource {
 						"dstaddr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dstport": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -113,6 +117,7 @@ func resourceObjectWirelessControllerAccessControlList() *schema.Resource {
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"rule_id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -121,6 +126,7 @@ func resourceObjectWirelessControllerAccessControlList() *schema.Resource {
 						"srcaddr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"srcport": &schema.Schema{
 							Type:     schema.TypeInt,

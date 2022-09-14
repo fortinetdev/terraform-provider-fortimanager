@@ -213,6 +213,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"dhcp_address_enforcement": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_macauth_radius_secret": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -787,7 +788,6 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						"multicast_rate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
-							Computed: true,
 						},
 						"nac": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1451,7 +1451,6 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"multicast_rate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Computed: true,
 			},
 			"nac": &schema.Schema{
 				Type:     schema.TypeString,

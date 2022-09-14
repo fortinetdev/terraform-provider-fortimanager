@@ -48,10 +48,12 @@ func resourceObjectSwitchControllerMacPolicy() *schema.Resource {
 			"bounce_port_link": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fmgcount": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,

@@ -53,6 +53,7 @@ func resourcePackagesUserNacPolicy() *schema.Resource {
 			"category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -102,6 +103,7 @@ func resourcePackagesUserNacPolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sw_version": &schema.Schema{
 				Type:     schema.TypeString,

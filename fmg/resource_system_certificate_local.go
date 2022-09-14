@@ -30,10 +30,11 @@ func resourceSystemCertificateLocal() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"certificate": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -58,10 +59,11 @@ func resourceSystemCertificateLocal() *schema.Resource {
 				Computed:  true,
 			},
 			"private_key": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 		},
 	}
@@ -184,16 +186,6 @@ func flattenSystemCertificateLocalPrivateKey(v interface{}, d *schema.ResourceDa
 func refreshObjectSystemCertificateLocal(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
-	if err = d.Set("certificate", flattenSystemCertificateLocalCertificate(o["certificate"], d, "certificate")); err != nil {
-		if vv, ok := fortiAPIPatch(o["certificate"], "SystemCertificateLocal-Certificate"); ok {
-			if err = d.Set("certificate", vv); err != nil {
-				return fmt.Errorf("Error reading certificate: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading certificate: %v", err)
-		}
-	}
-
 	if err = d.Set("comment", flattenSystemCertificateLocalComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "SystemCertificateLocal-Comment"); ok {
 			if err = d.Set("comment", vv); err != nil {
@@ -221,16 +213,6 @@ func refreshObjectSystemCertificateLocal(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
-		}
-	}
-
-	if err = d.Set("private_key", flattenSystemCertificateLocalPrivateKey(o["private-key"], d, "private_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["private-key"], "SystemCertificateLocal-PrivateKey"); ok {
-			if err = d.Set("private_key", vv); err != nil {
-				return fmt.Errorf("Error reading private_key: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading private_key: %v", err)
 		}
 	}
 

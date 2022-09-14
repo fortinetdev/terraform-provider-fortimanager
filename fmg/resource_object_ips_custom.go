@@ -99,6 +99,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 			"signature": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

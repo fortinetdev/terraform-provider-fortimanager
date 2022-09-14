@@ -52,6 +52,7 @@ func resourceObjectWirelessControllerSyslogProfile() *schema.Resource {
 			"log_level": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,6 +62,7 @@ func resourceObjectWirelessControllerSyslogProfile() *schema.Resource {
 			"server_addr_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server_fqdn": &schema.Schema{
 				Type:     schema.TypeString,
@@ -69,14 +71,17 @@ func resourceObjectWirelessControllerSyslogProfile() *schema.Resource {
 			"server_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"server_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

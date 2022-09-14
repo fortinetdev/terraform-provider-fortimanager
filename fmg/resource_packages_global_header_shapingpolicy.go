@@ -46,7 +46,6 @@ func resourcePackagesGlobalHeaderShapingPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
-				Computed: true,
 			},
 			"class_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -56,7 +55,6 @@ func resourcePackagesGlobalHeaderShapingPolicy() *schema.Resource {
 			"class_id_reverse": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
-				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,

@@ -94,6 +94,7 @@ func resourceObjectSwitchControllerSecurityPolicy8021X() *schema.Resource {
 			"guest_vlan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"guest_vlan_id": &schema.Schema{
 				Type:     schema.TypeString,

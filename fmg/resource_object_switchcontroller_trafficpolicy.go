@@ -56,10 +56,12 @@ func resourceObjectSwitchControllerTrafficPolicy() *schema.Resource {
 			"guaranteed_bandwidth": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"guaranteed_burst": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -68,6 +70,7 @@ func resourceObjectSwitchControllerTrafficPolicy() *schema.Resource {
 			"maximum_burst": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -77,10 +80,12 @@ func resourceObjectSwitchControllerTrafficPolicy() *schema.Resource {
 			"policer_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

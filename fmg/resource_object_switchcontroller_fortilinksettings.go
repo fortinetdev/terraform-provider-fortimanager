@@ -48,14 +48,17 @@ func resourceObjectSwitchControllerFortilinkSettings() *schema.Resource {
 			"fortilink": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"inactive_timer": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"link_down_flush": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nac_ports": &schema.Schema{
 				Type:     schema.TypeList,
@@ -70,6 +73,7 @@ func resourceObjectSwitchControllerFortilinkSettings() *schema.Resource {
 						"lan_segment": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"member_change": &schema.Schema{
 							Type:     schema.TypeInt,

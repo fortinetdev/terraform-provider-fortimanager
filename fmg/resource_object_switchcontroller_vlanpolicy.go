@@ -53,6 +53,7 @@ func resourceObjectSwitchControllerVlanPolicy() *schema.Resource {
 			"allowed_vlans_all": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,6 +62,7 @@ func resourceObjectSwitchControllerVlanPolicy() *schema.Resource {
 			"discard_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

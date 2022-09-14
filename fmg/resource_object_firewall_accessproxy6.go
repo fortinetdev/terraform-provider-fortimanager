@@ -53,6 +53,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_domain": &schema.Schema{
 							Type:     schema.TypeString,
@@ -61,6 +62,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_domain_from_host": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_generation": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -73,10 +75,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_share": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"https_cookie_secure": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -85,10 +89,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"ldb_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"persistence": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"realservers": &schema.Schema{
 							Type:     schema.TypeList,
@@ -98,6 +104,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"addr_type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"address": &schema.Schema{
 										Type:     schema.TypeString,
@@ -110,14 +117,17 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"health_check": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"health_check_proto": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"holddown_interval": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"http_host": &schema.Schema{
 										Type:     schema.TypeString,
@@ -130,6 +140,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mappedport": &schema.Schema{
 										Type:     schema.TypeString,
@@ -138,6 +149,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"port": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"ssh_client_cert": &schema.Schema{
 										Type:     schema.TypeString,
@@ -151,18 +163,22 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"ssh_host_key_validation": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -170,6 +186,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"saml_redirect": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"saml_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -178,10 +195,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"service": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_algorithm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_cipher_suites": &schema.Schema{
 							Type:     schema.TypeList,
@@ -207,6 +226,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"ssl_dh_bits": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_max_version": &schema.Schema{
 							Type:     schema.TypeString,
@@ -223,6 +243,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"url_map": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"url_map_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -243,6 +264,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_domain": &schema.Schema{
 							Type:     schema.TypeString,
@@ -251,6 +273,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_domain_from_host": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"http_cookie_generation": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -263,10 +286,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"http_cookie_share": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"https_cookie_secure": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -275,10 +300,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"ldb_method": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"persistence": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"realservers": &schema.Schema{
 							Type:     schema.TypeList,
@@ -288,6 +315,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"addr_type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"address": &schema.Schema{
 										Type:     schema.TypeString,
@@ -300,14 +328,17 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"health_check": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"health_check_proto": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"holddown_interval": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"http_host": &schema.Schema{
 										Type:     schema.TypeString,
@@ -320,6 +351,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"mappedport": &schema.Schema{
 										Type:     schema.TypeString,
@@ -328,6 +360,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"port": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"ssh_client_cert": &schema.Schema{
 										Type:     schema.TypeString,
@@ -341,18 +374,22 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"ssh_host_key_validation": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -360,6 +397,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"saml_redirect": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"saml_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -368,10 +406,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"service": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_algorithm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_cipher_suites": &schema.Schema{
 							Type:     schema.TypeList,
@@ -397,6 +437,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"ssl_dh_bits": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_max_version": &schema.Schema{
 							Type:     schema.TypeString,
@@ -413,10 +454,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"url_map": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"url_map_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"virtual_host": &schema.Schema{
 							Type:     schema.TypeString,
@@ -428,6 +471,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 			"auth_portal": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auth_virtual_host": &schema.Schema{
 				Type:     schema.TypeString,
@@ -436,6 +480,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 			"client_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"decrypted_traffic_mirror": &schema.Schema{
 				Type:     schema.TypeString,
@@ -444,10 +489,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 			"empty_cert_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_blocked_traffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

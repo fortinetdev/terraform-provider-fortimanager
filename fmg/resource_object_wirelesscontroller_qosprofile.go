@@ -130,6 +130,7 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 			"wmm_bk_dscp": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"wmm_dscp_marking": &schema.Schema{
 				Type:     schema.TypeString,

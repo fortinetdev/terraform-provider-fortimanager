@@ -30,10 +30,11 @@ func resourceSystemCertificateRemote() *schema.Resource {
 
 		Schema: map[string]*schema.Schema{
 			"cert": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
-				Computed: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -152,16 +153,6 @@ func flattenSystemCertificateRemoteName(v interface{}, d *schema.ResourceData, p
 
 func refreshObjectSystemCertificateRemote(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
-
-	if err = d.Set("cert", flattenSystemCertificateRemoteCert(o["cert"], d, "cert")); err != nil {
-		if vv, ok := fortiAPIPatch(o["cert"], "SystemCertificateRemote-Cert"); ok {
-			if err = d.Set("cert", vv); err != nil {
-				return fmt.Errorf("Error reading cert: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading cert: %v", err)
-		}
-	}
 
 	if err = d.Set("comment", flattenSystemCertificateRemoteComment(o["comment"], d, "comment")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comment"], "SystemCertificateRemote-Comment"); ok {

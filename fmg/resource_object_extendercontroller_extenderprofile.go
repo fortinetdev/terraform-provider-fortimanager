@@ -53,6 +53,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 			"bandwidth_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cellular": &schema.Schema{
 				Type:     schema.TypeList,
@@ -360,6 +361,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 			"enforce_bandwidth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"extension": &schema.Schema{
 				Type:     schema.TypeString,
@@ -368,6 +370,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"lan_extension": &schema.Schema{
 				Type:     schema.TypeList,
@@ -387,14 +390,17 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"port": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"role": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -414,22 +420,27 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 						"link_loadbalance": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
 			},
 			"login_password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"login_password_change": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"model": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1466,16 +1477,6 @@ func refreshObjectObjectExtenderControllerExtenderProfile(d *schema.ResourceData
 					return fmt.Errorf("Error reading lan_extension: %v", err)
 				}
 			}
-		}
-	}
-
-	if err = d.Set("login_password", flattenObjectExtenderControllerExtenderProfileLoginPassword(o["login-password"], d, "login_password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["login-password"], "ObjectExtenderControllerExtenderProfile-LoginPassword"); ok {
-			if err = d.Set("login_password", vv); err != nil {
-				return fmt.Errorf("Error reading login_password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading login_password: %v", err)
 		}
 	}
 
