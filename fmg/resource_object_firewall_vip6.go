@@ -1518,7 +1518,7 @@ func flattenObjectFirewallVip6DynamicMappingEmbeddedIpv4Address(v interface{}, d
 }
 
 func flattenObjectFirewallVip6DynamicMappingExtip(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallVip6DynamicMappingExtport(v interface{}, d *schema.ResourceData, pre string) interface{} {

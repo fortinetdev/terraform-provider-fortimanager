@@ -162,27 +162,27 @@ func resourceObjectSystemNpuIsfNpQueuesRead(d *schema.ResourceData, m interface{
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos0(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos1(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos2(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos3(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos4(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos5(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos6(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -190,7 +190,7 @@ func flattenObjectSystemNpuIsfNpQueuesCos6(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos7(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func refreshObjectObjectSystemNpuIsfNpQueues(d *schema.ResourceData, o map[string]interface{}) error {

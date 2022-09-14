@@ -3199,7 +3199,7 @@ func flattenObjectWirelessControllerWtpProfileRadio1ApSnifferMgmtProbe(v interfa
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1ArrpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1AutoPowerHigh(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3932,7 +3932,7 @@ func flattenObjectWirelessControllerWtpProfileRadio2ApSnifferMgmtProbe(v interfa
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2ArrpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2AutoPowerHigh(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4200,7 +4200,7 @@ func flattenObjectWirelessControllerWtpProfileRadio2Vaps(v interface{}, d *schem
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2WidsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2ZeroWaitDfs(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4665,7 +4665,7 @@ func flattenObjectWirelessControllerWtpProfileRadio3ApSnifferMgmtProbe(v interfa
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3ArrpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3AutoPowerHigh(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -4933,7 +4933,7 @@ func flattenObjectWirelessControllerWtpProfileRadio3Vaps(v interface{}, d *schem
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3WidsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3ZeroWaitDfs(v interface{}, d *schema.ResourceData, pre string) interface{} {

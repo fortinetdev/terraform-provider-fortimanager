@@ -928,7 +928,7 @@ func flattenObjectWebfilterProfileAntiphishInspectionEntriesName(v interface{}, 
 }
 
 func flattenObjectWebfilterProfileAntiphishLdap(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWebfilterProfileAntiphishMaxBodyLen(v interface{}, d *schema.ResourceData, pre string) interface{} {

@@ -7863,7 +7863,7 @@ func flattenObjectFspVlanInterfaceIngressCos(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFspVlanInterfaceIngressShapingProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFspVlanInterfaceIngressSpilloverThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {

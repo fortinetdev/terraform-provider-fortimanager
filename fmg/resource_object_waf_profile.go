@@ -969,7 +969,7 @@ func flattenObjectWafProfileAddressList(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectWafProfileAddressListBlockedAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWafProfileAddressListBlockedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {

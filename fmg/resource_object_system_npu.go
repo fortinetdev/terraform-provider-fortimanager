@@ -2771,27 +2771,27 @@ func flattenObjectSystemNpuIsfNpQueuesOsna(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos0Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos1Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos2Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos3Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos4Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos5Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos6Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -2799,7 +2799,7 @@ func flattenObjectSystemNpuIsfNpQueuesCos6Osna(v interface{}, d *schema.Resource
 }
 
 func flattenObjectSystemNpuIsfNpQueuesCos7Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSystemNpuIsfNpRxTrDistrOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
