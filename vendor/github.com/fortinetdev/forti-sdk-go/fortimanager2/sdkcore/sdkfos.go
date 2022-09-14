@@ -4747,6 +4747,7 @@ func (c *FortiSDKClient) UpdateObjectFirewallInternetService(params *map[string]
 		return nil, fmt.Errorf("%v", err)
 	}
 
+	path += "/" + escapeURLString(mkey)
 
 	output, err = createUpdate(c, globaladom, path, "set", params, false)
 	return
@@ -4773,6 +4774,7 @@ func (c *FortiSDKClient) ReadObjectFirewallInternetService(globaladom, mkey stri
 		return nil, fmt.Errorf("%v", err)
 	}
 
+	path += "/" + escapeURLString(mkey)
 
 	mapTmp, err = read(c, globaladom, path, "get", false)
 	return

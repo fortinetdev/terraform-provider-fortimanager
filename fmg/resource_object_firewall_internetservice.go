@@ -185,7 +185,7 @@ func resourceObjectFirewallInternetServiceUpdate(d *schema.ResourceData, m inter
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId("ObjectFirewallInternetService")
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceObjectFirewallInternetServiceRead(d, m)
 }
