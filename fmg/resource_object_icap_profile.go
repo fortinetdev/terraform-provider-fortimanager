@@ -130,6 +130,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"respmod_default_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"respmod_forward_rules": &schema.Schema{
 				Type:     schema.TypeList,
@@ -196,6 +197,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"response_req_hdr": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"response_server": &schema.Schema{
 				Type:     schema.TypeString,

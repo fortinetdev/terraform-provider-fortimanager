@@ -150,10 +150,12 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"cgn_resource_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_session_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,

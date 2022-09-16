@@ -211,6 +211,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"visibility": &schema.Schema{
 							Type:     schema.TypeString,
@@ -226,6 +227,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 			"end_mac": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
@@ -300,6 +302,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 			"start_mac": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"subnet_segment": &schema.Schema{
 				Type:     schema.TypeList,

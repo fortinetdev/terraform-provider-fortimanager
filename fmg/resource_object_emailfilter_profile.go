@@ -127,6 +127,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
@@ -149,6 +150,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
@@ -197,6 +199,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
@@ -242,6 +245,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,
@@ -285,6 +289,7 @@ func resourceObjectEmailfilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_all": &schema.Schema{
 							Type:     schema.TypeString,

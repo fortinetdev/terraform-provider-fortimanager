@@ -148,10 +148,12 @@ func resourceObjectUserLocal() *schema.Resource {
 			"username_case_insensitivity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username_case_sensitivity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"username_sensitivity": &schema.Schema{
 				Type:     schema.TypeString,

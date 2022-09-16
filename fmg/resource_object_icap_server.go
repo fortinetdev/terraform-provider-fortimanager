@@ -53,6 +53,7 @@ func resourceObjectIcapServer() *schema.Resource {
 			"ip_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6_address": &schema.Schema{
 				Type:     schema.TypeString,

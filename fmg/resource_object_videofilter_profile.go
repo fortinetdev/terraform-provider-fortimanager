@@ -119,6 +119,7 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 			"youtube_restrict": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

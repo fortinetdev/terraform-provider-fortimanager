@@ -70,6 +70,7 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"cgn_block_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_client_endip": &schema.Schema{
 				Type:     schema.TypeString,
@@ -86,22 +87,27 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"cgn_fixedalloc": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_overload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_port_end": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_port_start": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_spa": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
@@ -313,10 +319,12 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			"utilization_alarm_clear": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"utilization_alarm_raise": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

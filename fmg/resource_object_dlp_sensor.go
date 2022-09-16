@@ -52,14 +52,17 @@ func resourceObjectDlpSensor() *schema.Resource {
 			"dlp_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -146,6 +149,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 			"nac_quar_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

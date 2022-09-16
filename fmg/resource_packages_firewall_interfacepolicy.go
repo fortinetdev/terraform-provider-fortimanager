@@ -84,6 +84,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 			"dlp_sensor_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dsri": &schema.Schema{
 				Type:     schema.TypeString,

@@ -143,10 +143,12 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 									"action": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"category": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -155,6 +157,7 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 									"log": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},

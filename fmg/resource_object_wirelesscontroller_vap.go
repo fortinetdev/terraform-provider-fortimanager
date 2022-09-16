@@ -1198,14 +1198,17 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"ft_mobility_domain": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"ft_over_ds": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ft_r0_key_lifetime": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"gas_comeback_delay": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1400,6 +1403,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"mpsk": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mpsk_concurrent_clients": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1451,6 +1455,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"multicast_rate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nac": &schema.Schema{
 				Type:     schema.TypeString,

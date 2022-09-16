@@ -376,6 +376,7 @@ func resourceObjectUserLdap() *schema.Resource {
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_port": &schema.Schema{
 				Type:     schema.TypeInt,

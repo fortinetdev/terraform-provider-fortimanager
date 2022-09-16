@@ -82,10 +82,12 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 			"anycast_sdns_server_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"anycast_sdns_server_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_join_forticloud": &schema.Schema{
 				Type:     schema.TypeString,
@@ -109,10 +111,12 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 			"fortiguard_anycast": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortiguard_anycast_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
@@ -210,6 +214,7 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"sdns_server_port": &schema.Schema{
 				Type:     schema.TypeInt,

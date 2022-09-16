@@ -216,6 +216,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"clipboard": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"custom_lang": &schema.Schema{
 				Type:     schema.TypeString,
@@ -466,6 +467,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"skip_check_for_browser": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"skip_check_for_unsupported_os": &schema.Schema{
 				Type:     schema.TypeString,
@@ -549,6 +551,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"use_sdwan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"user_bookmark": &schema.Schema{
 				Type:     schema.TypeString,

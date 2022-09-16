@@ -376,6 +376,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 			"tunnel_search": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"unity_support": &schema.Schema{
 				Type:     schema.TypeString,

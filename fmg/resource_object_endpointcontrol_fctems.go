@@ -94,6 +94,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"interface_select_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -146,6 +147,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"status_check_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"websocket_override": &schema.Schema{
 				Type:     schema.TypeString,

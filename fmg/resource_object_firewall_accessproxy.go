@@ -493,6 +493,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 			"ldb_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_blocked_traffic": &schema.Schema{
 				Type:     schema.TypeString,
@@ -535,6 +536,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 			"server_pubkey_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server_pubkey_auth_settings": &schema.Schema{
 				Type:     schema.TypeList,

@@ -113,6 +113,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"allow_routing": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"associated_interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -125,6 +126,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"clearpass_spt": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"color": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -141,6 +143,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"dirty": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"end_ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -157,6 +160,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"fabric_object": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"filter": &schema.Schema{
 							Type:     schema.TypeString,
@@ -186,6 +190,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"node_ip_only": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"obj_id": &schema.Schema{
 							Type:     schema.TypeString,
@@ -198,6 +203,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"obj_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"organization": &schema.Schema{
 							Type:     schema.TypeString,
@@ -222,6 +228,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"sdn_addr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sdn_tag": &schema.Schema{
 							Type:     schema.TypeString,
@@ -242,6 +249,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"subnet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"subnet_name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -266,6 +274,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"url": &schema.Schema{
 							Type:     schema.TypeString,
@@ -274,6 +283,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"visibility": &schema.Schema{
 							Type:     schema.TypeString,
@@ -297,6 +307,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 			"end_mac": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"epg_name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -403,6 +414,7 @@ func resourceObjectFirewallAddress() *schema.Resource {
 			"start_mac": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"sub_type": &schema.Schema{
 				Type:     schema.TypeString,

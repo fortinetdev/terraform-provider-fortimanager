@@ -58,14 +58,17 @@ func resourceObjectWafProfile() *schema.Resource {
 						"blocked_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"severity": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"trusted_address": &schema.Schema{
 							Type:     schema.TypeString,
@@ -668,6 +671,7 @@ func resourceObjectWafProfile() *schema.Resource {
 						"credit_card_detection_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"custom_signature": &schema.Schema{
 							Type:     schema.TypeList,
@@ -2293,11 +2297,11 @@ func flattenObjectWafProfileSignatureCustomSignatureTarget(v interface{}, d *sch
 }
 
 func flattenObjectWafProfileSignatureDisabledSignature(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWafProfileSignatureDisabledSubClass(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWafProfileSignatureMainClass(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

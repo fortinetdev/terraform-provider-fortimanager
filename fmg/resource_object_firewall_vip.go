@@ -94,6 +94,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"arp_reply": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"color": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -118,6 +119,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"extip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"extport": &schema.Schema{
 							Type:     schema.TypeString,
@@ -166,6 +168,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"http_redirect": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"https_cookie_secure": &schema.Schema{
 							Type:     schema.TypeString,
@@ -178,6 +181,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"ipv6_mappedip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_mappedport": &schema.Schema{
 							Type:     schema.TypeString,
@@ -211,14 +215,17 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"nat_source_vip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nat44": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nat46": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"outlook_web_access": &schema.Schema{
 							Type:     schema.TypeString,
@@ -231,6 +238,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"portforward": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"portmapping_type": &schema.Schema{
 							Type:     schema.TypeString,
@@ -326,6 +334,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"ssl_accept_ffdhe_groups": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_algorithm": &schema.Schema{
 							Type:     schema.TypeString,
@@ -363,6 +372,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"ssl_client_fallback": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_client_rekey_count": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -455,14 +465,17 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"ssl_server_algorithm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_server_max_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_server_min_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_server_session_state_max": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -479,14 +492,17 @@ func resourceObjectFirewallVip() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uuid": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"weblogic_server": &schema.Schema{
 							Type:     schema.TypeString,

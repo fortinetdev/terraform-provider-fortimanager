@@ -58,10 +58,12 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 			"database": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"direction": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"entry": &schema.Schema{
 				Type:     schema.TypeList,

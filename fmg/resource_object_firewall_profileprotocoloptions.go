@@ -205,6 +205,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ftp": &schema.Schema{
 				Type:     schema.TypeList,

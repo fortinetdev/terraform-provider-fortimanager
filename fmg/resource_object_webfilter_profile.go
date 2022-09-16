@@ -54,18 +54,22 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"authentication": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"check_basic_auth": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"check_uri": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"check_username_only": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"custom_patterns": &schema.Schema{
 							Type:     schema.TypeList,
@@ -90,6 +94,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"default_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"domain_controller": &schema.Schema{
 							Type:     schema.TypeString,
@@ -123,10 +128,12 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"max_body_len": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -138,6 +145,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"extended_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"file_filter": &schema.Schema{
 				Type:     schema.TypeList,
@@ -205,6 +213,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"feature_set": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ftgd_wf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -333,6 +342,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"https_replacemsg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"inspection_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -341,6 +351,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"log_all_url": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -403,6 +414,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"post_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"replacemsg_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -509,10 +521,12 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"web_content_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"web_extended_all_action_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"web_filter_activex_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -525,10 +539,12 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"web_filter_command_block_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"web_filter_cookie_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"web_filter_cookie_removal_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -557,6 +573,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"web_ftgd_err_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"web_ftgd_quota_usage": &schema.Schema{
 				Type:     schema.TypeString,
@@ -565,18 +582,22 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"web_invalid_domain_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"web_url_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wisp": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wisp_algorithm": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wisp_servers": &schema.Schema{
 				Type:     schema.TypeString,

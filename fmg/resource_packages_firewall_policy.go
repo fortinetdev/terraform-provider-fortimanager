@@ -122,10 +122,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"cgn_eif": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_eim": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_log_server_grp": &schema.Schema{
 				Type:     schema.TypeString,
@@ -134,10 +136,12 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"cgn_resource_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_session_quota": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -495,6 +499,7 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 			"policy_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,

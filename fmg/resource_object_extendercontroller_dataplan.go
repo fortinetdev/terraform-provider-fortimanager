@@ -105,6 +105,7 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"preferred_subnet": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"private_network": &schema.Schema{
 				Type:     schema.TypeString,
@@ -128,6 +129,7 @@ func resourceObjectExtenderControllerDataplan() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,

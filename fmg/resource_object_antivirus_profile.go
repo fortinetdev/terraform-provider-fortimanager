@@ -114,6 +114,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -240,6 +241,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"external_blocklist_archive_scan": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"external_blocklist_enable_all": &schema.Schema{
 				Type:     schema.TypeString,
@@ -254,14 +256,17 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"fortiai_error_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortiai_timeout_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ftgd_analytics": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ftp": &schema.Schema{
 				Type:     schema.TypeList,
@@ -297,6 +302,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -358,6 +364,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -420,6 +427,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -563,6 +571,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -647,6 +656,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -749,6 +759,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortiai": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,

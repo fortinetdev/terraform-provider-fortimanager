@@ -52,6 +52,7 @@ func resourceObjectAuthenticationScheme() *schema.Resource {
 			"ems_device_owner": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fsso_agent_for_ntlm": &schema.Schema{
 				Type:     schema.TypeString,
