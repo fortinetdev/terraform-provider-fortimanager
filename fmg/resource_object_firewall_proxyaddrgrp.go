@@ -452,11 +452,11 @@ func expandObjectFirewallProxyAddrgrpName(d *schema.ResourceData, v interface{},
 
 func expandObjectFirewallProxyAddrgrpTagging(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -477,8 +477,6 @@ func expandObjectFirewallProxyAddrgrpTagging(d *schema.ResourceData, v interface
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallProxyAddrgrpTaggingTags(d, i["tags"], pre_append)
-		} else {
-			tmp["tags"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)

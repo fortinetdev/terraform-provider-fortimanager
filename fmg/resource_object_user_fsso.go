@@ -1363,11 +1363,11 @@ func expandObjectUserFssoGuiMeta(d *schema.ResourceData, v interface{}, pre stri
 
 func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1382,9 +1382,12 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectUserFssoDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectUserFssoDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "group_poll_interval"
@@ -1430,36 +1433,26 @@ func expandObjectUserFssoDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserFssoDynamicMappingPassword(d, i["password"], pre_append)
-		} else {
-			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password2"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password2"], _ = expandObjectUserFssoDynamicMappingPassword2(d, i["password2"], pre_append)
-		} else {
-			tmp["password2"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password3"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password3"], _ = expandObjectUserFssoDynamicMappingPassword3(d, i["password3"], pre_append)
-		} else {
-			tmp["password3"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password4"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password4"], _ = expandObjectUserFssoDynamicMappingPassword4(d, i["password4"], pre_append)
-		} else {
-			tmp["password4"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password5"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password5"], _ = expandObjectUserFssoDynamicMappingPassword5(d, i["password5"], pre_append)
-		} else {
-			tmp["password5"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
@@ -1566,11 +1559,11 @@ func expandObjectUserFssoDynamicMappingGuiMeta(d *schema.ResourceData, v interfa
 
 func expandObjectUserFssoDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

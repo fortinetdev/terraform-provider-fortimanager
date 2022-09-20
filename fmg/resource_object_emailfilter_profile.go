@@ -1372,9 +1372,12 @@ func expandObjectEmailfilterProfileFileFilter(d *schema.ResourceData, v interfac
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["entries"], _ = expandObjectEmailfilterProfileFileFilterEntries(d, i["entries"], pre_append)
-	} else {
-		result["entries"] = make([]string, 0)
+		t, err := expandObjectEmailfilterProfileFileFilterEntries(d, i["entries"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["entries"] = t
+		}
 	}
 	pre_append = pre + ".0." + "log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1394,11 +1397,11 @@ func expandObjectEmailfilterProfileFileFilter(d *schema.ResourceData, v interfac
 
 func expandObjectEmailfilterProfileFileFilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1424,8 +1427,6 @@ func expandObjectEmailfilterProfileFileFilterEntries(d *schema.ResourceData, v i
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectEmailfilterProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
-		} else {
-			tmp["file-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
@@ -1441,8 +1442,6 @@ func expandObjectEmailfilterProfileFileFilterEntries(d *schema.ResourceData, v i
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectEmailfilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
-		} else {
-			tmp["protocol"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -1556,8 +1555,6 @@ func expandObjectEmailfilterProfileImap(d *schema.ResourceData, v interface{}, p
 	pre_append = pre + ".0." + "tag_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectEmailfilterProfileImapTagType(d, i["tag_type"], pre_append)
-	} else {
-		result["tag-type"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -1710,8 +1707,6 @@ func expandObjectEmailfilterProfilePop3(d *schema.ResourceData, v interface{}, p
 	pre_append = pre + ".0." + "tag_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectEmailfilterProfilePop3TagType(d, i["tag_type"], pre_append)
-	} else {
-		result["tag-type"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -1778,8 +1773,6 @@ func expandObjectEmailfilterProfileSmtp(d *schema.ResourceData, v interface{}, p
 	pre_append = pre + ".0." + "tag_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectEmailfilterProfileSmtpTagType(d, i["tag_type"], pre_append)
-	} else {
-		result["tag-type"] = make([]string, 0)
 	}
 
 	return result, nil

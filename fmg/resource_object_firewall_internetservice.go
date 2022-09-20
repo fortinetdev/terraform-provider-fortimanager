@@ -649,11 +649,11 @@ func expandObjectFirewallInternetServiceDirectionOfia(d *schema.ResourceData, v 
 
 func expandObjectFirewallInternetServiceEntryOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -679,8 +679,6 @@ func expandObjectFirewallInternetServiceEntryOfia(d *schema.ResourceData, v inte
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectFirewallInternetServiceEntryPortOfia(d, i["port"], pre_append)
-		} else {
-			tmp["port"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"

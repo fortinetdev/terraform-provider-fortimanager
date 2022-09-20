@@ -759,11 +759,11 @@ func expandObjectDynamicInterfaceDescription(d *schema.ResourceData, v interface
 
 func expandObjectDynamicInterfaceDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -773,9 +773,12 @@ func expandObjectDynamicInterfaceDynamicMapping(d *schema.ResourceData, v interf
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectDynamicInterfaceDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectDynamicInterfaceDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "egress_shaping_profile"
@@ -796,8 +799,6 @@ func expandObjectDynamicInterfaceDynamicMapping(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_intf"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["local-intf"], _ = expandObjectDynamicInterfaceDynamicMappingLocalIntf(d, i["local_intf"], pre_append)
-		} else {
-			tmp["local-intf"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -810,11 +811,11 @@ func expandObjectDynamicInterfaceDynamicMapping(d *schema.ResourceData, v interf
 
 func expandObjectDynamicInterfaceDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -878,11 +879,11 @@ func expandObjectDynamicInterfaceName(d *schema.ResourceData, v interface{}, pre
 
 func expandObjectDynamicInterfacePlatformMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

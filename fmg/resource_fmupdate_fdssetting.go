@@ -1106,9 +1106,12 @@ func expandFmupdateFdsSettingPushOverrideToClientFfa(d *schema.ResourceData, v i
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "announce_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["announce-ip"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d, i["announce_ip"], pre_append)
-	} else {
-		result["announce-ip"] = make([]string, 0)
+		t, err := expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d, i["announce_ip"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["announce-ip"] = t
+		}
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1120,11 +1123,11 @@ func expandFmupdateFdsSettingPushOverrideToClientFfa(d *schema.ResourceData, v i
 
 func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1191,9 +1194,12 @@ func expandFmupdateFdsSettingServerOverrideFfa(d *schema.ResourceData, v interfa
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "servlist"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["servlist"], _ = expandFmupdateFdsSettingServerOverrideServlistFfa(d, i["servlist"], pre_append)
-	} else {
-		result["servlist"] = make([]string, 0)
+		t, err := expandFmupdateFdsSettingServerOverrideServlistFfa(d, i["servlist"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["servlist"] = t
+		}
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1205,11 +1211,11 @@ func expandFmupdateFdsSettingServerOverrideFfa(d *schema.ResourceData, v interfa
 
 func expandFmupdateFdsSettingServerOverrideServlistFfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1335,8 +1341,6 @@ func expandFmupdateFdsSettingUpdateScheduleFfa(d *schema.ResourceData, v interfa
 	pre_append = pre + ".0." + "time"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["time"], _ = expandFmupdateFdsSettingUpdateScheduleTimeFfa(d, i["time"], pre_append)
-	} else {
-		result["time"] = make([]string, 0)
 	}
 
 	return result, nil

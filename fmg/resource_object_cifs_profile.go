@@ -553,9 +553,12 @@ func expandObjectCifsProfileFileFilter(d *schema.ResourceData, v interface{}, pr
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["entries"], _ = expandObjectCifsProfileFileFilterEntries(d, i["entries"], pre_append)
-	} else {
-		result["entries"] = make([]string, 0)
+		t, err := expandObjectCifsProfileFileFilterEntries(d, i["entries"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["entries"] = t
+		}
 	}
 	pre_append = pre + ".0." + "log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -571,11 +574,11 @@ func expandObjectCifsProfileFileFilter(d *schema.ResourceData, v interface{}, pr
 
 func expandObjectCifsProfileFileFilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -611,8 +614,6 @@ func expandObjectCifsProfileFileFilterEntries(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectCifsProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
-		} else {
-			tmp["protocol"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -665,11 +666,11 @@ func expandObjectCifsProfileServerCredentialType(d *schema.ResourceData, v inter
 
 func expandObjectCifsProfileServerKeytab(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -685,8 +686,6 @@ func expandObjectCifsProfileServerKeytab(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectCifsProfileServerKeytabPassword(d, i["password"], pre_append)
-		} else {
-			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "principal"

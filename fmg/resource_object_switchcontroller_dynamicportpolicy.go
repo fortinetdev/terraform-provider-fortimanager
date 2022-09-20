@@ -500,11 +500,11 @@ func expandObjectSwitchControllerDynamicPortPolicyName(d *schema.ResourceData, v
 
 func expandObjectSwitchControllerDynamicPortPolicyPolicy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -550,8 +550,6 @@ func expandObjectSwitchControllerDynamicPortPolicyPolicy(d *schema.ResourceData,
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_tags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-tags"], _ = expandObjectSwitchControllerDynamicPortPolicyPolicyInterfaceTags(d, i["interface_tags"], pre_append)
-		} else {
-			tmp["interface-tags"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "lldp_profile"

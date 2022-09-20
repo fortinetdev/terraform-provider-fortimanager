@@ -535,11 +535,11 @@ func expandObjectUserDeviceGroupComment(d *schema.ResourceData, v interface{}, p
 
 func expandObjectUserDeviceGroupDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -554,9 +554,12 @@ func expandObjectUserDeviceGroupDynamicMapping(d *schema.ResourceData, v interfa
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectUserDeviceGroupDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectUserDeviceGroupDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "comment"
@@ -583,11 +586,11 @@ func expandObjectUserDeviceGroupDynamicMappingIfUnmanaged(d *schema.ResourceData
 
 func expandObjectUserDeviceGroupDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -639,11 +642,11 @@ func expandObjectUserDeviceGroupName(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectUserDeviceGroupTagging(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -664,8 +667,6 @@ func expandObjectUserDeviceGroupTagging(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectUserDeviceGroupTaggingTags(d, i["tags"], pre_append)
-		} else {
-			tmp["tags"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)

@@ -648,11 +648,11 @@ func expandObjectFirewallInternetServiceCustomComment(d *schema.ResourceData, v 
 
 func expandObjectFirewallInternetServiceCustomDisableEntry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -667,16 +667,17 @@ func expandObjectFirewallInternetServiceCustomDisableEntry(d *schema.ResourceDat
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_range"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip-range"], _ = expandObjectFirewallInternetServiceCustomDisableEntryIpRange(d, i["ip_range"], pre_append)
-		} else {
-			tmp["ip-range"] = make([]string, 0)
+			t, err := expandObjectFirewallInternetServiceCustomDisableEntryIpRange(d, i["ip_range"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["ip-range"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["port"], _ = expandObjectFirewallInternetServiceCustomDisableEntryPort(d, i["port"], pre_append)
-		} else {
-			tmp["port"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
@@ -698,11 +699,11 @@ func expandObjectFirewallInternetServiceCustomDisableEntryId(d *schema.ResourceD
 
 func expandObjectFirewallInternetServiceCustomDisableEntryIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -755,11 +756,11 @@ func expandObjectFirewallInternetServiceCustomDisableEntryProtocol(d *schema.Res
 
 func expandObjectFirewallInternetServiceCustomEntry(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -779,9 +780,12 @@ func expandObjectFirewallInternetServiceCustomEntry(d *schema.ResourceData, v in
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port_range"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["port-range"], _ = expandObjectFirewallInternetServiceCustomEntryPortRange(d, i["port_range"], pre_append)
-		} else {
-			tmp["port-range"] = make([]string, 0)
+			t, err := expandObjectFirewallInternetServiceCustomEntryPortRange(d, i["port_range"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["port-range"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
@@ -807,11 +811,11 @@ func expandObjectFirewallInternetServiceCustomEntryId(d *schema.ResourceData, v 
 
 func expandObjectFirewallInternetServiceCustomEntryPortRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

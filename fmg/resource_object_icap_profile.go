@@ -897,11 +897,11 @@ func expandObjectIcapProfileIcapBlockLog(d *schema.ResourceData, v interface{}, 
 
 func expandObjectIcapProfileIcapHeaders(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -995,11 +995,11 @@ func expandObjectIcapProfileRespmodDefaultAction(d *schema.ResourceData, v inter
 
 func expandObjectIcapProfileRespmodForwardRules(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1014,9 +1014,12 @@ func expandObjectIcapProfileRespmodForwardRules(d *schema.ResourceData, v interf
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "header_group"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["header-group"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroup(d, i["header_group"], pre_append)
-		} else {
-			tmp["header-group"] = make([]string, 0)
+			t, err := expandObjectIcapProfileRespmodForwardRulesHeaderGroup(d, i["header_group"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["header-group"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "host"
@@ -1027,8 +1030,6 @@ func expandObjectIcapProfileRespmodForwardRules(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_resp_status_code"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-resp-status-code"], _ = expandObjectIcapProfileRespmodForwardRulesHttpRespStatusCode(d, i["http_resp_status_code"], pre_append)
-		} else {
-			tmp["http-resp-status-code"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
@@ -1050,11 +1051,11 @@ func expandObjectIcapProfileRespmodForwardRulesAction(d *schema.ResourceData, v 
 
 func expandObjectIcapProfileRespmodForwardRulesHeaderGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

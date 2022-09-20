@@ -2886,14 +2886,10 @@ func expandObjectAntivirusProfileCifs(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileCifsArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileCifsArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2914,8 +2910,6 @@ func expandObjectAntivirusProfileCifs(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileCifsOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3184,14 +3178,10 @@ func expandObjectAntivirusProfileFtp(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileFtpArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileFtpArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3212,8 +3202,6 @@ func expandObjectAntivirusProfileFtp(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileFtpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3276,14 +3264,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileHttpArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileHttpArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3312,8 +3296,6 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileHttpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3384,14 +3366,10 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileImapArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileImapArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3420,8 +3398,6 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileImapOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3496,14 +3472,10 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileMapiArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileMapiArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3528,8 +3500,6 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileMapiOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3642,14 +3612,10 @@ func expandObjectAntivirusProfileNntp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileNntpArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileNntpArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3670,8 +3636,6 @@ func expandObjectAntivirusProfileNntp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileNntpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3768,14 +3732,10 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfilePop3ArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfilePop3ArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3804,8 +3764,6 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfilePop3Options(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3884,14 +3842,10 @@ func expandObjectAntivirusProfileSmb(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileSmbArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileSmbArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "emulator"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3900,8 +3854,6 @@ func expandObjectAntivirusProfileSmb(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileSmbOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3944,14 +3896,10 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileSmtpArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileSmtpArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3980,8 +3928,6 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileSmtpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -4052,14 +3998,10 @@ func expandObjectAntivirusProfileSsh(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "archive_block"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-block"], _ = expandObjectAntivirusProfileSshArchiveBlock(d, i["archive_block"], pre_append)
-	} else {
-		result["archive-block"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "archive_log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["archive-log"], _ = expandObjectAntivirusProfileSshArchiveLog(d, i["archive_log"], pre_append)
-	} else {
-		result["archive-log"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "av_scan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -4080,8 +4022,6 @@ func expandObjectAntivirusProfileSsh(d *schema.ResourceData, v interface{}, pre 
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileSshOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "outbreak_prevention"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

@@ -428,11 +428,11 @@ func expandObjectDynamicMulticastInterfaceDescription(d *schema.ResourceData, v 
 
 func expandObjectDynamicMulticastInterfaceDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -442,9 +442,12 @@ func expandObjectDynamicMulticastInterfaceDynamicMapping(d *schema.ResourceData,
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectDynamicMulticastInterfaceDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "local_intf"
@@ -462,11 +465,11 @@ func expandObjectDynamicMulticastInterfaceDynamicMapping(d *schema.ResourceData,
 
 func expandObjectDynamicMulticastInterfaceDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

@@ -694,11 +694,11 @@ func expandSystemHaModeSha(d *schema.ResourceData, v interface{}, pre string) (i
 
 func expandSystemHaMonitoredInterfacesSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -725,11 +725,11 @@ func expandSystemHaMonitoredInterfacesInterfaceNameSha(d *schema.ResourceData, v
 
 func expandSystemHaMonitoredIpsSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -778,11 +778,11 @@ func expandSystemHaPasswordSha(d *schema.ResourceData, v interface{}, pre string
 
 func expandSystemHaPeerSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

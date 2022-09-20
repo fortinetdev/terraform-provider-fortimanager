@@ -1936,11 +1936,11 @@ func expandObjectSystemSdnConnectorDomain(d *schema.ResourceData, v interface{},
 
 func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1951,8 +1951,6 @@ func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "region_list"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["region-list"], _ = expandObjectSystemSdnConnectorExternalAccountListRegionList(d, i["region_list"], pre_append)
-		} else {
-			tmp["region-list"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "role_arn"
@@ -1978,11 +1976,11 @@ func expandObjectSystemSdnConnectorExternalAccountListRoleArn(d *schema.Resource
 
 func expandObjectSystemSdnConnectorExternalIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2009,11 +2007,11 @@ func expandObjectSystemSdnConnectorExternalIpName(d *schema.ResourceData, v inte
 
 func expandObjectSystemSdnConnectorForwardingRule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2053,11 +2051,11 @@ func expandObjectSystemSdnConnectorGcpProject(d *schema.ResourceData, v interfac
 
 func expandObjectSystemSdnConnectorGcpProjectList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2068,8 +2066,6 @@ func expandObjectSystemSdnConnectorGcpProjectList(d *schema.ResourceData, v inte
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "gcp_zone_list"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["gcp-zone-list"], _ = expandObjectSystemSdnConnectorGcpProjectListGcpZoneList(d, i["gcp_zone_list"], pre_append)
-		} else {
-			tmp["gcp-zone-list"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
@@ -2131,11 +2127,11 @@ func expandObjectSystemSdnConnectorName(d *schema.ResourceData, v interface{}, p
 
 func expandObjectSystemSdnConnectorNic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2145,9 +2141,12 @@ func expandObjectSystemSdnConnectorNic(d *schema.ResourceData, v interface{}, pr
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ip"], _ = expandObjectSystemSdnConnectorNicIp(d, i["ip"], pre_append)
-		} else {
-			tmp["ip"] = make([]string, 0)
+			t, err := expandObjectSystemSdnConnectorNicIp(d, i["ip"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["ip"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
@@ -2165,11 +2164,11 @@ func expandObjectSystemSdnConnectorNic(d *schema.ResourceData, v interface{}, pr
 
 func expandObjectSystemSdnConnectorNicIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2274,11 +2273,11 @@ func expandObjectSystemSdnConnectorRestSsl(d *schema.ResourceData, v interface{}
 
 func expandObjectSystemSdnConnectorRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2305,11 +2304,11 @@ func expandObjectSystemSdnConnectorRouteName(d *schema.ResourceData, v interface
 
 func expandObjectSystemSdnConnectorRouteTable(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2329,9 +2328,12 @@ func expandObjectSystemSdnConnectorRouteTable(d *schema.ResourceData, v interfac
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "route"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["route"], _ = expandObjectSystemSdnConnectorRouteTableRoute(d, i["route"], pre_append)
-		} else {
-			tmp["route"] = make([]string, 0)
+			t, err := expandObjectSystemSdnConnectorRouteTableRoute(d, i["route"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["route"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "subscription_id"
@@ -2357,11 +2359,11 @@ func expandObjectSystemSdnConnectorRouteTableResourceGroup(d *schema.ResourceDat
 
 func expandObjectSystemSdnConnectorRouteTableRoute(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

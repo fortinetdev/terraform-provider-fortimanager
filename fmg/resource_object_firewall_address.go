@@ -1962,11 +1962,11 @@ func expandObjectFirewallAddressDirty(d *schema.ResourceData, v interface{}, pre
 
 func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1981,9 +1981,12 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectFirewallAddressDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectFirewallAddressDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allow_routing"
@@ -2074,8 +2077,6 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "macaddr"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["macaddr"], _ = expandObjectFirewallAddressDynamicMappingMacaddr(d, i["macaddr"], pre_append)
-		} else {
-			tmp["macaddr"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "node_ip_only"
@@ -2222,11 +2223,11 @@ func expandObjectFirewallAddressDynamicMappingImageBase64(d *schema.ResourceData
 
 func expandObjectFirewallAddressDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2474,11 +2475,11 @@ func expandObjectFirewallAddressInterface(d *schema.ResourceData, v interface{},
 
 func expandObjectFirewallAddressList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2595,11 +2596,11 @@ func expandObjectFirewallAddressTagType(d *schema.ResourceData, v interface{}, p
 
 func expandObjectFirewallAddressTagging(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2620,8 +2621,6 @@ func expandObjectFirewallAddressTagging(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectFirewallAddressTaggingTags(d, i["tags"], pre_append)
-		} else {
-			tmp["tags"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)

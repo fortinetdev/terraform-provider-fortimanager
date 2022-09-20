@@ -6492,11 +6492,11 @@ func expandObjectWirelessControllerWtpProfileControlMessageOffload(d *schema.Res
 
 func expandObjectWirelessControllerWtpProfileDenyMacList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -6931,8 +6931,6 @@ func expandObjectWirelessControllerWtpProfileLbs(d *schema.ResourceData, v inter
 	pre_append = pre + ".0." + "fortipresence_secret"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-secret"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceSecret(d, i["fortipresence_secret"], pre_append)
-	} else {
-		result["fortipresence-secret"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "fortipresence_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7245,8 +7243,6 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "channel"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio1Channel(d, i["channel"], pre_append)
-	} else {
-		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7319,8 +7315,6 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "powersave_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio1PowersaveOptimize(d, i["powersave_optimize"], pre_append)
-	} else {
-		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7353,8 +7347,6 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_cwp_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio1SamCwpPassword(d, i["sam_cwp_password"], pre_append)
-	} else {
-		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7371,8 +7363,6 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio1SamPassword(d, i["sam_password"], pre_append)
-	} else {
-		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7421,8 +7411,6 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "transmit_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio1TransmitOptimize(d, i["transmit_optimize"], pre_append)
-	} else {
-		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7909,8 +7897,6 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "channel"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio2Channel(d, i["channel"], pre_append)
-	} else {
-		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7983,8 +7969,6 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "powersave_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio2PowersaveOptimize(d, i["powersave_optimize"], pre_append)
-	} else {
-		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8017,8 +8001,6 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_cwp_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio2SamCwpPassword(d, i["sam_cwp_password"], pre_append)
-	} else {
-		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8035,8 +8017,6 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio2SamPassword(d, i["sam_password"], pre_append)
-	} else {
-		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8085,8 +8065,6 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "transmit_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio2TransmitOptimize(d, i["transmit_optimize"], pre_append)
-	} else {
-		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8573,8 +8551,6 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "channel"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio3Channel(d, i["channel"], pre_append)
-	} else {
-		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8647,8 +8623,6 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "powersave_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio3PowersaveOptimize(d, i["powersave_optimize"], pre_append)
-	} else {
-		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8681,8 +8655,6 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_cwp_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio3SamCwpPassword(d, i["sam_cwp_password"], pre_append)
-	} else {
-		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8699,8 +8671,6 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio3SamPassword(d, i["sam_password"], pre_append)
-	} else {
-		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -8749,8 +8719,6 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "transmit_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio3TransmitOptimize(d, i["transmit_optimize"], pre_append)
-	} else {
-		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9237,8 +9205,6 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "channel"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["channel"], _ = expandObjectWirelessControllerWtpProfileRadio4Channel(d, i["channel"], pre_append)
-	} else {
-		result["channel"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "channel_bonding"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9311,8 +9277,6 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "powersave_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["powersave-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio4PowersaveOptimize(d, i["powersave_optimize"], pre_append)
-	} else {
-		result["powersave-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "protection_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9345,8 +9309,6 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_cwp_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-cwp-password"], _ = expandObjectWirelessControllerWtpProfileRadio4SamCwpPassword(d, i["sam_cwp_password"], pre_append)
-	} else {
-		result["sam-cwp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_cwp_success_string"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9363,8 +9325,6 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "sam_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sam-password"], _ = expandObjectWirelessControllerWtpProfileRadio4SamPassword(d, i["sam_password"], pre_append)
-	} else {
-		result["sam-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sam_report_intv"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9413,8 +9373,6 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "transmit_optimize"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["transmit-optimize"], _ = expandObjectWirelessControllerWtpProfileRadio4TransmitOptimize(d, i["transmit_optimize"], pre_append)
-	} else {
-		result["transmit-optimize"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "vap_all"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9794,11 +9752,11 @@ func expandObjectWirelessControllerWtpProfileSnmp(d *schema.ResourceData, v inte
 
 func expandObjectWirelessControllerWtpProfileSplitTunnelingAcl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

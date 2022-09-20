@@ -818,11 +818,11 @@ func expandSystemSqlCompressTableMinAgeSqa(d *schema.ResourceData, v interface{}
 
 func expandSystemSqlCustomIndexSqa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -885,11 +885,11 @@ func expandSystemSqlCustomIndexLogTypeSqa(d *schema.ResourceData, v interface{},
 
 func expandSystemSqlCustomSkipidxSqa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1003,11 +1003,11 @@ func expandSystemSqlTrafficTablePartitionTimeSqa(d *schema.ResourceData, v inter
 
 func expandSystemSqlTsIndexFieldSqa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

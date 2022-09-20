@@ -2387,11 +2387,11 @@ func expandObjectVpnSslWebPortalAutoConnect(d *schema.ResourceData, v interface{
 
 func expandObjectVpnSslWebPortalBookmarkGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2401,9 +2401,12 @@ func expandObjectVpnSslWebPortalBookmarkGroup(d *schema.ResourceData, v interfac
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bookmarks"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["bookmarks"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d, i["bookmarks"], pre_append)
-		} else {
-			tmp["bookmarks"] = make([]string, 0)
+			t, err := expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d, i["bookmarks"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["bookmarks"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
@@ -2421,11 +2424,11 @@ func expandObjectVpnSslWebPortalBookmarkGroup(d *schema.ResourceData, v interfac
 
 func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2465,9 +2468,12 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "form_data"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["form-data"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormData(d, i["form_data"], pre_append)
-		} else {
-			tmp["form-data"] = make([]string, 0)
+			t, err := expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormData(d, i["form_data"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["form-data"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "height"
@@ -2498,8 +2504,6 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["logon-password"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksLogonPassword(d, i["logon_password"], pre_append)
-		} else {
-			tmp["logon-password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "logon_user"
@@ -2575,8 +2579,6 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sso-password"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksSsoPassword(d, i["sso_password"], pre_append)
-		} else {
-			tmp["sso-password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sso_username"
@@ -2628,11 +2630,11 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksFolder(d *schema.ResourceD
 
 func expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormData(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2920,11 +2922,11 @@ func expandObjectVpnSslWebPortalMacAddrCheck(d *schema.ResourceData, v interface
 
 func expandObjectVpnSslWebPortalMacAddrCheckRule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2935,8 +2937,6 @@ func expandObjectVpnSslWebPortalMacAddrCheckRule(d *schema.ResourceData, v inter
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_addr_list"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mac-addr-list"], _ = expandObjectVpnSslWebPortalMacAddrCheckRuleMacAddrList(d, i["mac_addr_list"], pre_append)
-		} else {
-			tmp["mac-addr-list"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mac_addr_mask"
@@ -3077,11 +3077,11 @@ func expandObjectVpnSslWebPortalSmbv1(d *schema.ResourceData, v interface{}, pre
 
 func expandObjectVpnSslWebPortalSplitDns(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

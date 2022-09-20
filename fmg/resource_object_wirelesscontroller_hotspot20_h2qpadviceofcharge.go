@@ -414,11 +414,11 @@ func flattenObjectWirelessControllerHotspot20H2QpAdviceOfChargeFortiTestDebug(d 
 
 func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -443,9 +443,12 @@ func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(d *schema.
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "plan_info"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["plan-info"], _ = expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo(d, i["plan_info"], pre_append)
-		} else {
-			tmp["plan-info"] = make([]string, 0)
+			t, err := expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo(d, i["plan_info"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["plan-info"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
@@ -475,11 +478,11 @@ func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListName(d *sch
 
 func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

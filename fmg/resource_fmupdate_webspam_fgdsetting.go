@@ -1127,9 +1127,12 @@ func expandFmupdateWebSpamFgdSettingServerOverrideFwfa(d *schema.ResourceData, v
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "servlist"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["servlist"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d, i["servlist"], pre_append)
-	} else {
-		result["servlist"] = make([]string, 0)
+		t, err := expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d, i["servlist"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["servlist"] = t
+		}
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1141,11 +1144,11 @@ func expandFmupdateWebSpamFgdSettingServerOverrideFwfa(d *schema.ResourceData, v
 
 func expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

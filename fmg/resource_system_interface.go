@@ -781,8 +781,6 @@ func expandSystemInterfaceIpv6(d *schema.ResourceData, v interface{}, pre string
 	pre_append = pre + ".0." + "ip6_allowaccess"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-allowaccess"], _ = expandSystemInterfaceIpv6Ip6Allowaccess(d, i["ip6_allowaccess"], pre_append)
-	} else {
-		result["ip6-allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_autoconf"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -822,11 +820,11 @@ func expandSystemInterfaceLldp(d *schema.ResourceData, v interface{}, pre string
 
 func expandSystemInterfaceMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

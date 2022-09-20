@@ -483,11 +483,11 @@ func expandObjectWebfilterUrlfilterComment(d *schema.ResourceData, v interface{}
 
 func expandObjectWebfilterUrlfilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -513,8 +513,6 @@ func expandObjectWebfilterUrlfilterEntries(d *schema.ResourceData, v interface{}
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["exempt"], _ = expandObjectWebfilterUrlfilterEntriesExempt(d, i["exempt"], pre_append)
-		} else {
-			tmp["exempt"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"

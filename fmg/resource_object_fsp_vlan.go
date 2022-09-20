@@ -9900,9 +9900,12 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 	}
 	pre_append = pre + ".0." + "exclude_range"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["exclude-range"], _ = expandObjectFspVlanDhcpServerExcludeRange(d, i["exclude_range"], pre_append)
-	} else {
-		result["exclude-range"] = make([]string, 0)
+		t, err := expandObjectFspVlanDhcpServerExcludeRange(d, i["exclude_range"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["exclude-range"] = t
+		}
 	}
 	pre_append = pre + ".0." + "filename"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9922,9 +9925,12 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 	}
 	pre_append = pre + ".0." + "ip_range"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip-range"], _ = expandObjectFspVlanDhcpServerIpRange(d, i["ip_range"], pre_append)
-	} else {
-		result["ip-range"] = make([]string, 0)
+		t, err := expandObjectFspVlanDhcpServerIpRange(d, i["ip_range"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip-range"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ipsec_lease_hold"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9965,20 +9971,14 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "option1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option1"], _ = expandObjectFspVlanDhcpServerOption1(d, i["option1"], pre_append)
-	} else {
-		result["option1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option2"], _ = expandObjectFspVlanDhcpServerOption2(d, i["option2"], pre_append)
-	} else {
-		result["option2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option3"], _ = expandObjectFspVlanDhcpServerOption3(d, i["option3"], pre_append)
-	} else {
-		result["option3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option4"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -9994,15 +9994,21 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["options"], _ = expandObjectFspVlanDhcpServerOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
+		t, err := expandObjectFspVlanDhcpServerOptions(d, i["options"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["options"] = t
+		}
 	}
 	pre_append = pre + ".0." + "reserved_address"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["reserved-address"], _ = expandObjectFspVlanDhcpServerReservedAddress(d, i["reserved_address"], pre_append)
-	} else {
-		result["reserved-address"] = make([]string, 0)
+		t, err := expandObjectFspVlanDhcpServerReservedAddress(d, i["reserved_address"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["reserved-address"] = t
+		}
 	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10015,8 +10021,6 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "tftp_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tftp-server"], _ = expandObjectFspVlanDhcpServerTftpServer(d, i["tftp_server"], pre_append)
-	} else {
-		result["tftp-server"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "timezone"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10033,8 +10037,6 @@ func expandObjectFspVlanDhcpServer(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "vci_string"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci-string"], _ = expandObjectFspVlanDhcpServerVciString(d, i["vci_string"], pre_append)
-	} else {
-		result["vci-string"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_ac_service"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10146,11 +10148,11 @@ func expandObjectFspVlanDhcpServerEnable(d *schema.ResourceData, v interface{}, 
 
 func expandObjectFspVlanDhcpServerExcludeRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -10181,8 +10183,6 @@ func expandObjectFspVlanDhcpServerExcludeRange(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
-		} else {
-			tmp["vci-string"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -10231,11 +10231,11 @@ func expandObjectFspVlanDhcpServerIpMode(d *schema.ResourceData, v interface{}, 
 
 func expandObjectFspVlanDhcpServerIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -10266,8 +10266,6 @@ func expandObjectFspVlanDhcpServerIpRange(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
-		} else {
-			tmp["vci-string"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -10360,11 +10358,11 @@ func expandObjectFspVlanDhcpServerOption6(d *schema.ResourceData, v interface{},
 
 func expandObjectFspVlanDhcpServerOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -10385,8 +10383,6 @@ func expandObjectFspVlanDhcpServerOptions(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDhcpServerOptionsIp(d, i["ip"], pre_append)
-		} else {
-			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
@@ -10407,8 +10403,6 @@ func expandObjectFspVlanDhcpServerOptions(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
-		} else {
-			tmp["vci-string"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -10449,11 +10443,11 @@ func expandObjectFspVlanDhcpServerOptionsVciString(d *schema.ResourceData, v int
 
 func expandObjectFspVlanDhcpServerReservedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -10613,11 +10607,11 @@ func expandObjectFspVlanDhcpServerWinsServer2(d *schema.ResourceData, v interfac
 
 func expandObjectFspVlanDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -10632,23 +10626,32 @@ func expandObjectFspVlanDynamicMapping(d *schema.ResourceData, v interface{}, pr
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectFspVlanDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectFspVlanDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dhcp_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["dhcp-server"], _ = expandObjectFspVlanDynamicMappingDhcpServer(d, i["dhcp_server"], pre_append)
-		} else {
-			tmp["dhcp-server"] = make([]string, 0)
+			t, err := expandObjectFspVlanDynamicMappingDhcpServer(d, i["dhcp_server"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["dhcp-server"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["interface"], _ = expandObjectFspVlanDynamicMappingInterface(d, i["interface"], pre_append)
-		} else {
-			tmp["interface"] = make([]string, 0)
+			t, err := expandObjectFspVlanDynamicMappingInterface(d, i["interface"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["interface"] = t
+			}
 		}
 
 		result = append(result, tmp)
@@ -10665,11 +10668,11 @@ func expandObjectFspVlanDynamicMappingDhcpStatus(d *schema.ResourceData, v inter
 
 func expandObjectFspVlanDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -10795,9 +10798,12 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 	}
 	pre_append = pre + ".0." + "exclude_range"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["exclude-range"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d, i["exclude_range"], pre_append)
-	} else {
-		result["exclude-range"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d, i["exclude_range"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["exclude-range"] = t
+		}
 	}
 	pre_append = pre + ".0." + "filename"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10817,9 +10823,12 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 	}
 	pre_append = pre + ".0." + "ip_range"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip-range"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRange(d, i["ip_range"], pre_append)
-	} else {
-		result["ip-range"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingDhcpServerIpRange(d, i["ip_range"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip-range"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ipsec_lease_hold"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10860,20 +10869,14 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 	pre_append = pre + ".0." + "option1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option1"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption1(d, i["option1"], pre_append)
-	} else {
-		result["option1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option2"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption2(d, i["option2"], pre_append)
-	} else {
-		result["option2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["option3"], _ = expandObjectFspVlanDynamicMappingDhcpServerOption3(d, i["option3"], pre_append)
-	} else {
-		result["option3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "option4"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10889,15 +10892,21 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["options"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingDhcpServerOptions(d, i["options"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["options"] = t
+		}
 	}
 	pre_append = pre + ".0." + "reserved_address"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["reserved-address"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d, i["reserved_address"], pre_append)
-	} else {
-		result["reserved-address"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d, i["reserved_address"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["reserved-address"] = t
+		}
 	}
 	pre_append = pre + ".0." + "server_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10910,8 +10919,6 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 	pre_append = pre + ".0." + "tftp_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tftp-server"], _ = expandObjectFspVlanDynamicMappingDhcpServerTftpServer(d, i["tftp_server"], pre_append)
-	} else {
-		result["tftp-server"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "timezone"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -10928,8 +10935,6 @@ func expandObjectFspVlanDynamicMappingDhcpServer(d *schema.ResourceData, v inter
 	pre_append = pre + ".0." + "vci_string"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerVciString(d, i["vci_string"], pre_append)
-	} else {
-		result["vci-string"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_ac_service"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11041,11 +11046,11 @@ func expandObjectFspVlanDynamicMappingDhcpServerEnable(d *schema.ResourceData, v
 
 func expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -11076,8 +11081,6 @@ func expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d *schema.ResourceD
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
-		} else {
-			tmp["vci-string"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -11126,11 +11129,11 @@ func expandObjectFspVlanDynamicMappingDhcpServerIpMode(d *schema.ResourceData, v
 
 func expandObjectFspVlanDynamicMappingDhcpServerIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -11161,8 +11164,6 @@ func expandObjectFspVlanDynamicMappingDhcpServerIpRange(d *schema.ResourceData, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
-		} else {
-			tmp["vci-string"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -11255,11 +11256,11 @@ func expandObjectFspVlanDynamicMappingDhcpServerOption6(d *schema.ResourceData, 
 
 func expandObjectFspVlanDynamicMappingDhcpServerOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -11280,8 +11281,6 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptions(d *schema.ResourceData, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsIp(d, i["ip"], pre_append)
-		} else {
-			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
@@ -11302,8 +11301,6 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptions(d *schema.ResourceData, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vci_string"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
-		} else {
-			tmp["vci-string"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -11344,11 +11341,11 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptionsVciString(d *schema.Resou
 
 func expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -11527,8 +11524,6 @@ func expandObjectFspVlanDynamicMappingInterface(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "dhcp_relay_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-ip"], _ = expandObjectFspVlanDynamicMappingInterfaceDhcpRelayIp(d, i["dhcp_relay_ip"], pre_append)
-	} else {
-		result["dhcp-relay-ip"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_service"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11544,9 +11539,12 @@ func expandObjectFspVlanDynamicMappingInterface(d *schema.ResourceData, v interf
 	}
 	pre_append = pre + ".0." + "ipv6"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ipv6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6(d, i["ipv6"], pre_append)
-	} else {
-		result["ipv6"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingInterfaceIpv6(d, i["ipv6"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ipv6"] = t
+		}
 	}
 	pre_append = pre + ".0." + "secondary_IP"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11554,9 +11552,12 @@ func expandObjectFspVlanDynamicMappingInterface(d *schema.ResourceData, v interf
 	}
 	pre_append = pre + ".0." + "secondaryip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["secondaryip"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d, i["secondaryip"], pre_append)
-	} else {
-		result["secondaryip"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d, i["secondaryip"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["secondaryip"] = t
+		}
 	}
 	pre_append = pre + ".0." + "vlanid"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11611,8 +11612,6 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "dhcp6_client_options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-client-options"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6ClientOptions(d, i["dhcp6_client_options"], pre_append)
-	} else {
-		result["dhcp6-client-options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp6_information_request"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11661,8 +11660,6 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ip6_allowaccess"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-allowaccess"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6Allowaccess(d, i["ip6_allowaccess"], pre_append)
-	} else {
-		result["ip6-allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_default_life"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11674,9 +11671,12 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip6-delegated-prefix-list"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
-	} else {
-		result["ip6-delegated-prefix-list"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip6-delegated-prefix-list"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip6_dns_server_override"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11684,9 +11684,12 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	}
 	pre_append = pre + ".0." + "ip6_extra_addr"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip6-extra-addr"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(d, i["ip6_extra_addr"], pre_append)
-	} else {
-		result["ip6-extra-addr"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(d, i["ip6_extra_addr"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip6-extra-addr"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip6_hop_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11718,9 +11721,12 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	}
 	pre_append = pre + ".0." + "ip6_prefix_list"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip6-prefix-list"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d, i["ip6_prefix_list"], pre_append)
-	} else {
-		result["ip6-prefix-list"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d, i["ip6_prefix_list"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip6-prefix-list"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip6_prefix_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -11788,9 +11794,12 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	}
 	pre_append = pre + ".0." + "vrrp6"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["vrrp6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d, i["vrrp6"], pre_append)
-	} else {
-		result["vrrp6"] = make([]string, 0)
+		t, err := expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d, i["vrrp6"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["vrrp6"] = t
+		}
 	}
 
 	return result, nil
@@ -11866,11 +11875,11 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixIaid(d *sch
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -11901,8 +11910,6 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *sch
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListRdnss(d, i["rdnss"], pre_append)
-		} else {
-			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss_service"
@@ -11966,11 +11973,11 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DnsServerOverride(d *schem
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -12025,11 +12032,11 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6OtherFlag(d *schema.Resour
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -12045,8 +12052,6 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d *schema.Resou
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dnssl"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dnssl"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListDnssl(d, i["dnssl"], pre_append)
-		} else {
-			tmp["dnssl"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
@@ -12067,8 +12072,6 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d *schema.Resou
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListRdnss(d, i["rdnss"], pre_append)
-		} else {
-			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "valid_life_time"
@@ -12178,11 +12181,11 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6VrrpVirtualMac6(d *schema.Res
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -12294,11 +12297,11 @@ func expandObjectFspVlanDynamicMappingInterfaceSecondaryIp(d *schema.ResourceDat
 
 func expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -12309,15 +12312,11 @@ func expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d *schema.ResourceDat
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allowaccess"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["allowaccess"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipAllowaccess(d, i["allowaccess"], pre_append)
-		} else {
-			tmp["allowaccess"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectprotocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["detectprotocol"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipDetectprotocol(d, i["detectprotocol"], pre_append)
-		} else {
-			tmp["detectprotocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectserver"
@@ -12440,8 +12439,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "allowaccess"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["allowaccess"], _ = expandObjectFspVlanInterfaceAllowaccess(d, i["allowaccess"], pre_append)
-	} else {
-		result["allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ap_discover"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12534,8 +12531,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "ddns_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ddns-password"], _ = expandObjectFspVlanInterfaceDdnsPassword(d, i["ddns_password"], pre_append)
-	} else {
-		result["ddns-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ddns_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12580,8 +12575,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "detectprotocol"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["detectprotocol"], _ = expandObjectFspVlanInterfaceDetectprotocol(d, i["detectprotocol"], pre_append)
-	} else {
-		result["detectprotocol"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "detectserver"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12634,8 +12627,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "dhcp_relay_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-ip"], _ = expandObjectFspVlanInterfaceDhcpRelayIp(d, i["dhcp_relay_ip"], pre_append)
-	} else {
-		result["dhcp-relay-ip"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_link_selection"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12680,8 +12671,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "dns_server_protocol"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dns-server-protocol"], _ = expandObjectFspVlanInterfaceDnsServerProtocol(d, i["dns_server_protocol"], pre_append)
-	} else {
-		result["dns-server-protocol"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "drop_fragment"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12694,8 +12683,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "eap_ca_cert"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["eap-ca-cert"], _ = expandObjectFspVlanInterfaceEapCaCert(d, i["eap_ca_cert"], pre_append)
-	} else {
-		result["eap-ca-cert"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "eap_identity"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12708,8 +12695,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "eap_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["eap-password"], _ = expandObjectFspVlanInterfaceEapPassword(d, i["eap_password"], pre_append)
-	} else {
-		result["eap-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "eap_supplicant"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12718,8 +12703,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "eap_user_cert"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["eap-user-cert"], _ = expandObjectFspVlanInterfaceEapUserCert(d, i["eap_user_cert"], pre_append)
-	} else {
-		result["eap-user-cert"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "egress_cos"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12776,8 +12759,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "fail_detect_option"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fail-detect-option"], _ = expandObjectFspVlanInterfaceFailDetectOption(d, i["fail_detect_option"], pre_append)
-	} else {
-		result["fail-detect-option"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "fdp"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12818,14 +12799,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "fp_anomaly"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fp-anomaly"], _ = expandObjectFspVlanInterfaceFpAnomaly(d, i["fp_anomaly"], pre_append)
-	} else {
-		result["fp-anomaly"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "fp_disable"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fp-disable"], _ = expandObjectFspVlanInterfaceFpDisable(d, i["fp_disable"], pre_append)
-	} else {
-		result["fp-disable"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "gateway_address"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12882,8 +12859,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "ike_saml_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ike-saml-server"], _ = expandObjectFspVlanInterfaceIkeSamlServer(d, i["ike_saml_server"], pre_append)
-	} else {
-		result["ike-saml-server"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "in_force_vlan_cos"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -12935,9 +12910,12 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	}
 	pre_append = pre + ".0." + "ipv6"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ipv6"], _ = expandObjectFspVlanInterfaceIpv6(d, i["ipv6"], pre_append)
-	} else {
-		result["ipv6"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceIpv6(d, i["ipv6"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ipv6"] = t
+		}
 	}
 	pre_append = pre + ".0." + "l2forward"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13106,8 +13084,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password"], _ = expandObjectFspVlanInterfacePassword(d, i["password"], pre_append)
-	} else {
-		result["password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "peer_interface"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13144,8 +13120,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "pptp_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pptp-password"], _ = expandObjectFspVlanInterfacePptpPassword(d, i["pptp_password"], pre_append)
-	} else {
-		result["pptp-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "pptp_server_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13265,9 +13239,12 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	}
 	pre_append = pre + ".0." + "secondaryip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["secondaryip"], _ = expandObjectFspVlanInterfaceSecondaryip(d, i["secondaryip"], pre_append)
-	} else {
-		result["secondaryip"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceSecondaryip(d, i["secondaryip"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["secondaryip"] = t
+		}
 	}
 	pre_append = pre + ".0." + "security_8021x_dynamic_vlan_id"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13567,9 +13544,12 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	}
 	pre_append = pre + ".0." + "vrrp"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["vrrp"], _ = expandObjectFspVlanInterfaceVrrp(d, i["vrrp"], pre_append)
-	} else {
-		result["vrrp"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceVrrp(d, i["vrrp"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["vrrp"] = t
+		}
 	}
 	pre_append = pre + ".0." + "vrrp_virtual_mac"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13622,8 +13602,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "wifi_key"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-key"], _ = expandObjectFspVlanInterfaceWifiKey(d, i["wifi_key"], pre_append)
-	} else {
-		result["wifi-key"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_keyindex"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13636,8 +13614,6 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "wifi_passphrase"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["wifi-passphrase"], _ = expandObjectFspVlanInterfaceWifiPassphrase(d, i["wifi_passphrase"], pre_append)
-	} else {
-		result["wifi-passphrase"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "wifi_radius_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14184,8 +14160,6 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "dhcp6_client_options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-client-options"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6ClientOptions(d, i["dhcp6_client_options"], pre_append)
-	} else {
-		result["dhcp6-client-options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "dhcp6_information_request"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14234,8 +14208,6 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "ip6_allowaccess"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ip6-allowaccess"], _ = expandObjectFspVlanInterfaceIpv6Ip6Allowaccess(d, i["ip6_allowaccess"], pre_append)
-	} else {
-		result["ip6-allowaccess"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "ip6_default_life"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14247,9 +14219,12 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	}
 	pre_append = pre + ".0." + "ip6_delegated_prefix_list"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip6-delegated-prefix-list"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
-	} else {
-		result["ip6-delegated-prefix-list"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d, i["ip6_delegated_prefix_list"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip6-delegated-prefix-list"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip6_dns_server_override"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14257,9 +14232,12 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	}
 	pre_append = pre + ".0." + "ip6_extra_addr"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip6-extra-addr"], _ = expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr(d, i["ip6_extra_addr"], pre_append)
-	} else {
-		result["ip6-extra-addr"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr(d, i["ip6_extra_addr"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip6-extra-addr"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip6_hop_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14291,9 +14269,12 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	}
 	pre_append = pre + ".0." + "ip6_prefix_list"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip6-prefix-list"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d, i["ip6_prefix_list"], pre_append)
-	} else {
-		result["ip6-prefix-list"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d, i["ip6_prefix_list"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip6-prefix-list"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip6_prefix_mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14361,9 +14342,12 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	}
 	pre_append = pre + ".0." + "vrrp6"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["vrrp6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6(d, i["vrrp6"], pre_append)
-	} else {
-		result["vrrp6"] = make([]string, 0)
+		t, err := expandObjectFspVlanInterfaceIpv6Vrrp6(d, i["vrrp6"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["vrrp6"] = t
+		}
 	}
 
 	return result, nil
@@ -14439,11 +14423,11 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixIaid(d *schema.ResourceDa
 
 func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -14474,8 +14458,6 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceDa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListRdnss(d, i["rdnss"], pre_append)
-		} else {
-			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss_service"
@@ -14539,11 +14521,11 @@ func expandObjectFspVlanInterfaceIpv6Ip6DnsServerOverride(d *schema.ResourceData
 
 func expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -14598,11 +14580,11 @@ func expandObjectFspVlanInterfaceIpv6Ip6OtherFlag(d *schema.ResourceData, v inte
 
 func expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -14618,8 +14600,6 @@ func expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d *schema.ResourceData, v int
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dnssl"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dnssl"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListDnssl(d, i["dnssl"], pre_append)
-		} else {
-			tmp["dnssl"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "onlink_flag"
@@ -14640,8 +14620,6 @@ func expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d *schema.ResourceData, v int
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rdnss"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rdnss"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListRdnss(d, i["rdnss"], pre_append)
-		} else {
-			tmp["rdnss"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "valid_life_time"
@@ -14751,11 +14729,11 @@ func expandObjectFspVlanInterfaceIpv6VrrpVirtualMac6(d *schema.ResourceData, v i
 
 func expandObjectFspVlanInterfaceIpv6Vrrp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -15183,11 +15161,11 @@ func expandObjectFspVlanInterfaceSecondaryIp(d *schema.ResourceData, v interface
 
 func expandObjectFspVlanInterfaceSecondaryip(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -15198,15 +15176,11 @@ func expandObjectFspVlanInterfaceSecondaryip(d *schema.ResourceData, v interface
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "allowaccess"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["allowaccess"], _ = expandObjectFspVlanInterfaceSecondaryipAllowaccess(d, i["allowaccess"], pre_append)
-		} else {
-			tmp["allowaccess"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectprotocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["detectprotocol"], _ = expandObjectFspVlanInterfaceSecondaryipDetectprotocol(d, i["detectprotocol"], pre_append)
-		} else {
-			tmp["detectprotocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detectserver"
@@ -15586,11 +15560,11 @@ func expandObjectFspVlanInterfaceVrf(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectFspVlanInterfaceVrrp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -15641,8 +15615,6 @@ func expandObjectFspVlanInterfaceVrrp(d *schema.ResourceData, v interface{}, pre
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrdst"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vrdst"], _ = expandObjectFspVlanInterfaceVrrpVrdst(d, i["vrdst"], pre_append)
-		} else {
-			tmp["vrdst"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vrdst_priority"

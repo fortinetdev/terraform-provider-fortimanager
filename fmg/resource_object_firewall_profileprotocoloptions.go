@@ -2704,15 +2704,16 @@ func expandObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData, v in
 	}
 	pre_append = pre + ".0." + "file_filter"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["file-filter"], _ = expandObjectFirewallProfileProtocolOptionsCifsFileFilter(d, i["file_filter"], pre_append)
-	} else {
-		result["file-filter"] = make([]string, 0)
+		t, err := expandObjectFirewallProfileProtocolOptionsCifsFileFilter(d, i["file_filter"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["file-filter"] = t
+		}
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsCifsOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2721,8 +2722,6 @@ func expandObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsCifsPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "scan_bzip2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2734,9 +2733,12 @@ func expandObjectFirewallProfileProtocolOptionsCifs(d *schema.ResourceData, v in
 	}
 	pre_append = pre + ".0." + "server_keytab"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["server-keytab"], _ = expandObjectFirewallProfileProtocolOptionsCifsServerKeytab(d, i["server_keytab"], pre_append)
-	} else {
-		result["server-keytab"] = make([]string, 0)
+		t, err := expandObjectFirewallProfileProtocolOptionsCifsServerKeytab(d, i["server_keytab"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["server-keytab"] = t
+		}
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2786,9 +2788,12 @@ func expandObjectFirewallProfileProtocolOptionsCifsFileFilter(d *schema.Resource
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["entries"], _ = expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(d, i["entries"], pre_append)
-	} else {
-		result["entries"] = make([]string, 0)
+		t, err := expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(d, i["entries"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["entries"] = t
+		}
 	}
 	pre_append = pre + ".0." + "log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2804,11 +2809,11 @@ func expandObjectFirewallProfileProtocolOptionsCifsFileFilter(d *schema.Resource
 
 func expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2834,8 +2839,6 @@ func expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(d *schema.R
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesFileType(d, i["file_type"], pre_append)
-		} else {
-			tmp["file-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
@@ -2846,8 +2849,6 @@ func expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntries(d *schema.R
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesProtocol(d, i["protocol"], pre_append)
-		} else {
-			tmp["protocol"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -2912,11 +2913,11 @@ func expandObjectFirewallProfileProtocolOptionsCifsServerCredentialType(d *schem
 
 func expandObjectFirewallProfileProtocolOptionsCifsServerKeytab(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2932,8 +2933,6 @@ func expandObjectFirewallProfileProtocolOptionsCifsServerKeytab(d *schema.Resour
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectFirewallProfileProtocolOptionsCifsServerKeytabPassword(d, i["password"], pre_append)
-		} else {
-			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "principal"
@@ -3006,8 +3005,6 @@ func expandObjectFirewallProfileProtocolOptionsDns(d *schema.ResourceData, v int
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsDnsPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3054,8 +3051,6 @@ func expandObjectFirewallProfileProtocolOptionsFtp(d *schema.ResourceData, v int
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsFtpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3064,8 +3059,6 @@ func expandObjectFirewallProfileProtocolOptionsFtp(d *schema.ResourceData, v int
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsFtpPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "scan_bzip2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3220,8 +3213,6 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsHttpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3230,14 +3221,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsHttpPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "post_lang"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["post-lang"], _ = expandObjectFirewallProfileProtocolOptionsHttpPostLang(d, i["post_lang"], pre_append)
-	} else {
-		result["post-lang"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3452,8 +3439,6 @@ func expandObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsImapOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3462,8 +3447,6 @@ func expandObjectFirewallProfileProtocolOptionsImap(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsImapPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3576,8 +3559,6 @@ func expandObjectFirewallProfileProtocolOptionsMapi(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsMapiOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3586,8 +3567,6 @@ func expandObjectFirewallProfileProtocolOptionsMapi(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsMapiPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "scan_bzip2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3658,8 +3637,6 @@ func expandObjectFirewallProfileProtocolOptionsNntp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsNntpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3668,8 +3645,6 @@ func expandObjectFirewallProfileProtocolOptionsNntp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsNntpPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3752,8 +3727,6 @@ func expandObjectFirewallProfileProtocolOptionsPop3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsPop3Options(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3762,8 +3735,6 @@ func expandObjectFirewallProfileProtocolOptionsPop3(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsPop3Ports(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3858,8 +3829,6 @@ func expandObjectFirewallProfileProtocolOptionsSmtp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsSmtpOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3868,8 +3837,6 @@ func expandObjectFirewallProfileProtocolOptionsSmtp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallProfileProtocolOptionsSmtpPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3968,8 +3935,6 @@ func expandObjectFirewallProfileProtocolOptionsSsh(d *schema.ResourceData, v int
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectFirewallProfileProtocolOptionsSshOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "oversize_limit"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

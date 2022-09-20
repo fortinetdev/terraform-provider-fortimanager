@@ -1539,9 +1539,12 @@ func expandObjectExtenderControllerExtenderProfileCellular(d *schema.ResourceDat
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "controller_report"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["controller-report"], _ = expandObjectExtenderControllerExtenderProfileCellularControllerReport(d, i["controller_report"], pre_append)
-	} else {
-		result["controller-report"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularControllerReport(d, i["controller_report"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["controller-report"] = t
+		}
 	}
 	pre_append = pre + ".0." + "dataplan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1549,21 +1552,30 @@ func expandObjectExtenderControllerExtenderProfileCellular(d *schema.ResourceDat
 	}
 	pre_append = pre + ".0." + "modem1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["modem1"], _ = expandObjectExtenderControllerExtenderProfileCellularModem1(d, i["modem1"], pre_append)
-	} else {
-		result["modem1"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularModem1(d, i["modem1"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["modem1"] = t
+		}
 	}
 	pre_append = pre + ".0." + "modem2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["modem2"], _ = expandObjectExtenderControllerExtenderProfileCellularModem2(d, i["modem2"], pre_append)
-	} else {
-		result["modem2"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularModem2(d, i["modem2"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["modem2"] = t
+		}
 	}
 	pre_append = pre + ".0." + "sms_notification"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["sms-notification"], _ = expandObjectExtenderControllerExtenderProfileCellularSmsNotification(d, i["sms_notification"], pre_append)
-	} else {
-		result["sms-notification"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularSmsNotification(d, i["sms_notification"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["sms-notification"] = t
+		}
 	}
 
 	return result, nil
@@ -1623,9 +1635,12 @@ func expandObjectExtenderControllerExtenderProfileCellularModem1(d *schema.Resou
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "auto_switch"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["auto-switch"], _ = expandObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(d, i["auto_switch"], pre_append)
-	} else {
-		result["auto-switch"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(d, i["auto_switch"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["auto-switch"] = t
+		}
 	}
 	pre_append = pre + ".0." + "conn_status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1662,8 +1677,6 @@ func expandObjectExtenderControllerExtenderProfileCellularModem1(d *schema.Resou
 	pre_append = pre + ".0." + "sim1_pin_code"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sim1-pin-code"], _ = expandObjectExtenderControllerExtenderProfileCellularModem1Sim1PinCode(d, i["sim1_pin_code"], pre_append)
-	} else {
-		result["sim1-pin-code"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1672,8 +1685,6 @@ func expandObjectExtenderControllerExtenderProfileCellularModem1(d *schema.Resou
 	pre_append = pre + ".0." + "sim2_pin_code"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sim2-pin-code"], _ = expandObjectExtenderControllerExtenderProfileCellularModem1Sim2PinCode(d, i["sim2_pin_code"], pre_append)
-	} else {
-		result["sim2-pin-code"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -1712,8 +1723,6 @@ func expandObjectExtenderControllerExtenderProfileCellularModem1AutoSwitch(d *sc
 	pre_append = pre + ".0." + "switch_back"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-back"], _ = expandObjectExtenderControllerExtenderProfileCellularModem1AutoSwitchSwitchBack(d, i["switch_back"], pre_append)
-	} else {
-		result["switch-back"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "switch_back_time"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1815,9 +1824,12 @@ func expandObjectExtenderControllerExtenderProfileCellularModem2(d *schema.Resou
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "auto_switch"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["auto-switch"], _ = expandObjectExtenderControllerExtenderProfileCellularModem2AutoSwitch(d, i["auto_switch"], pre_append)
-	} else {
-		result["auto-switch"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularModem2AutoSwitch(d, i["auto_switch"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["auto-switch"] = t
+		}
 	}
 	pre_append = pre + ".0." + "conn_status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1854,8 +1866,6 @@ func expandObjectExtenderControllerExtenderProfileCellularModem2(d *schema.Resou
 	pre_append = pre + ".0." + "sim1_pin_code"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sim1-pin-code"], _ = expandObjectExtenderControllerExtenderProfileCellularModem2Sim1PinCode(d, i["sim1_pin_code"], pre_append)
-	} else {
-		result["sim1-pin-code"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "sim2_pin"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1864,8 +1874,6 @@ func expandObjectExtenderControllerExtenderProfileCellularModem2(d *schema.Resou
 	pre_append = pre + ".0." + "sim2_pin_code"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["sim2-pin-code"], _ = expandObjectExtenderControllerExtenderProfileCellularModem2Sim2PinCode(d, i["sim2_pin_code"], pre_append)
-	} else {
-		result["sim2-pin-code"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -1904,8 +1912,6 @@ func expandObjectExtenderControllerExtenderProfileCellularModem2AutoSwitch(d *sc
 	pre_append = pre + ".0." + "switch_back"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-back"], _ = expandObjectExtenderControllerExtenderProfileCellularModem2AutoSwitchSwitchBack(d, i["switch_back"], pre_append)
-	} else {
-		result["switch-back"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "switch_back_time"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2007,15 +2013,21 @@ func expandObjectExtenderControllerExtenderProfileCellularSmsNotification(d *sch
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "alert"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["alert"], _ = expandObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(d, i["alert"], pre_append)
-	} else {
-		result["alert"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(d, i["alert"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["alert"] = t
+		}
 	}
 	pre_append = pre + ".0." + "receiver"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["receiver"], _ = expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiver(d, i["receiver"], pre_append)
-	} else {
-		result["receiver"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiver(d, i["receiver"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["receiver"] = t
+		}
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2097,11 +2109,11 @@ func expandObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertSy
 
 func expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2112,8 +2124,6 @@ func expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceive
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "alert"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["alert"], _ = expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiverAlert(d, i["alert"], pre_append)
-		} else {
-			tmp["alert"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
@@ -2183,9 +2193,12 @@ func expandObjectExtenderControllerExtenderProfileLanExtension(d *schema.Resourc
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "backhaul"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["backhaul"], _ = expandObjectExtenderControllerExtenderProfileLanExtensionBackhaul(d, i["backhaul"], pre_append)
-	} else {
-		result["backhaul"] = make([]string, 0)
+		t, err := expandObjectExtenderControllerExtenderProfileLanExtensionBackhaul(d, i["backhaul"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["backhaul"] = t
+		}
 	}
 	pre_append = pre + ".0." + "backhaul_interface"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2209,11 +2222,11 @@ func expandObjectExtenderControllerExtenderProfileLanExtension(d *schema.Resourc
 
 func expandObjectExtenderControllerExtenderProfileLanExtensionBackhaul(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

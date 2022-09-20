@@ -427,8 +427,6 @@ func expandObjectSwitchControllerFortilinkSettingsNacPorts(d *schema.ResourceDat
 	pre_append = pre + ".0." + "nac_segment_vlans"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["nac-segment-vlans"], _ = expandObjectSwitchControllerFortilinkSettingsNacPortsNacSegmentVlans(d, i["nac_segment_vlans"], pre_append)
-	} else {
-		result["nac-segment-vlans"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "onboarding_vlan"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

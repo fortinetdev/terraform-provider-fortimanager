@@ -354,11 +354,11 @@ func expandObjectSwitchControllerQosIpDscpMapDescription(d *schema.ResourceData,
 
 func expandObjectSwitchControllerQosIpDscpMapMap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -374,15 +374,11 @@ func expandObjectSwitchControllerQosIpDscpMapMap(d *schema.ResourceData, v inter
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "diffserv"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["diffserv"], _ = expandObjectSwitchControllerQosIpDscpMapMapDiffserv(d, i["diffserv"], pre_append)
-		} else {
-			tmp["diffserv"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip_precedence"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip-precedence"], _ = expandObjectSwitchControllerQosIpDscpMapMapIpPrecedence(d, i["ip_precedence"], pre_append)
-		} else {
-			tmp["ip-precedence"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"

@@ -1725,11 +1725,11 @@ func flattenObjectSystemNpuNpQueuesFortiTestDebug(d *schema.ResourceData, fosdeb
 
 func expandObjectSystemNpuNpQueuesEthernetTypeOsnna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1783,11 +1783,11 @@ func expandObjectSystemNpuNpQueuesEthernetTypeWeightOsnna(d *schema.ResourceData
 
 func expandObjectSystemNpuNpQueuesIpProtocolOsnna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1841,11 +1841,11 @@ func expandObjectSystemNpuNpQueuesIpProtocolWeightOsnna(d *schema.ResourceData, 
 
 func expandObjectSystemNpuNpQueuesIpServiceOsnna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1917,11 +1917,11 @@ func expandObjectSystemNpuNpQueuesIpServiceWeightOsnna(d *schema.ResourceData, v
 
 func expandObjectSystemNpuNpQueuesProfileOsnna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2614,11 +2614,11 @@ func expandObjectSystemNpuNpQueuesProfileWeightOsnna(d *schema.ResourceData, v i
 
 func expandObjectSystemNpuNpQueuesSchedulerOsnna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

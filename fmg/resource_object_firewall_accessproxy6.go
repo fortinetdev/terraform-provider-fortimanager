@@ -1808,11 +1808,11 @@ func flattenObjectFirewallAccessProxy6FortiTestDebug(d *schema.ResourceData, fos
 
 func expandObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1872,9 +1872,12 @@ func expandObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData, v interf
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["realservers"], _ = expandObjectFirewallAccessProxy6ApiGatewayRealservers(d, i["realservers"], pre_append)
-		} else {
-			tmp["realservers"] = make([]string, 0)
+			t, err := expandObjectFirewallAccessProxy6ApiGatewayRealservers(d, i["realservers"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["realservers"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "saml_redirect"
@@ -1899,9 +1902,12 @@ func expandObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData, v interf
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_cipher_suites"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ssl-cipher-suites"], _ = expandObjectFirewallAccessProxy6ApiGatewaySslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
-		} else {
-			tmp["ssl-cipher-suites"] = make([]string, 0)
+			t, err := expandObjectFirewallAccessProxy6ApiGatewaySslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["ssl-cipher-suites"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_dh_bits"
@@ -1989,11 +1995,11 @@ func expandObjectFirewallAccessProxy6ApiGatewayPersistence(d *schema.ResourceDat
 
 func expandObjectFirewallAccessProxy6ApiGatewayRealservers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2064,8 +2070,6 @@ func expandObjectFirewallAccessProxy6ApiGatewayRealservers(d *schema.ResourceDat
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssh_host_key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssh-host-key"], _ = expandObjectFirewallAccessProxy6ApiGatewayRealserversSshHostKey(d, i["ssh_host_key"], pre_append)
-		} else {
-			tmp["ssh-host-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssh_host_key_validation"
@@ -2182,11 +2186,11 @@ func expandObjectFirewallAccessProxy6ApiGatewaySslAlgorithm(d *schema.ResourceDa
 
 func expandObjectFirewallAccessProxy6ApiGatewaySslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2207,8 +2211,6 @@ func expandObjectFirewallAccessProxy6ApiGatewaySslCipherSuites(d *schema.Resourc
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallAccessProxy6ApiGatewaySslCipherSuitesVersions(d, i["versions"], pre_append)
-		} else {
-			tmp["versions"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -2261,11 +2263,11 @@ func expandObjectFirewallAccessProxy6ApiGatewayVirtualHost(d *schema.ResourceDat
 
 func expandObjectFirewallAccessProxy6ApiGateway6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2325,9 +2327,12 @@ func expandObjectFirewallAccessProxy6ApiGateway6(d *schema.ResourceData, v inter
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["realservers"], _ = expandObjectFirewallAccessProxy6ApiGateway6Realservers(d, i["realservers"], pre_append)
-		} else {
-			tmp["realservers"] = make([]string, 0)
+			t, err := expandObjectFirewallAccessProxy6ApiGateway6Realservers(d, i["realservers"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["realservers"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "saml_redirect"
@@ -2352,9 +2357,12 @@ func expandObjectFirewallAccessProxy6ApiGateway6(d *schema.ResourceData, v inter
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_cipher_suites"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ssl-cipher-suites"], _ = expandObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
-		} else {
-			tmp["ssl-cipher-suites"] = make([]string, 0)
+			t, err := expandObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["ssl-cipher-suites"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_dh_bits"
@@ -2442,11 +2450,11 @@ func expandObjectFirewallAccessProxy6ApiGateway6Persistence(d *schema.ResourceDa
 
 func expandObjectFirewallAccessProxy6ApiGateway6Realservers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2517,8 +2525,6 @@ func expandObjectFirewallAccessProxy6ApiGateway6Realservers(d *schema.ResourceDa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssh_host_key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssh-host-key"], _ = expandObjectFirewallAccessProxy6ApiGateway6RealserversSshHostKey(d, i["ssh_host_key"], pre_append)
-		} else {
-			tmp["ssh-host-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssh_host_key_validation"
@@ -2635,11 +2641,11 @@ func expandObjectFirewallAccessProxy6ApiGateway6SslAlgorithm(d *schema.ResourceD
 
 func expandObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2660,8 +2666,6 @@ func expandObjectFirewallAccessProxy6ApiGateway6SslCipherSuites(d *schema.Resour
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallAccessProxy6ApiGateway6SslCipherSuitesVersions(d, i["versions"], pre_append)
-		} else {
-			tmp["versions"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)

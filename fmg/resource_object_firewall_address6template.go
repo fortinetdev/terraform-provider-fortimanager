@@ -477,11 +477,11 @@ func expandObjectFirewallAddress6TemplateName(d *schema.ResourceData, v interfac
 
 func expandObjectFirewallAddress6TemplateSubnetSegment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -511,9 +511,12 @@ func expandObjectFirewallAddress6TemplateSubnetSegment(d *schema.ResourceData, v
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "values"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["values"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentValues(d, i["values"], pre_append)
-		} else {
-			tmp["values"] = make([]string, 0)
+			t, err := expandObjectFirewallAddress6TemplateSubnetSegmentValues(d, i["values"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["values"] = t
+			}
 		}
 
 		result = append(result, tmp)
@@ -542,11 +545,11 @@ func expandObjectFirewallAddress6TemplateSubnetSegmentName(d *schema.ResourceDat
 
 func expandObjectFirewallAddress6TemplateSubnetSegmentValues(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

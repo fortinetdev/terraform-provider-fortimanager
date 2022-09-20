@@ -3727,11 +3727,11 @@ func expandObjectFirewallVipDnsMappingTtl(d *schema.ResourceData, v interface{},
 
 func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -3741,9 +3741,12 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectFirewallVipDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectFirewallVipDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "add_nat46_route"
@@ -3879,8 +3882,6 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mappedip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["mappedip"], _ = expandObjectFirewallVipDynamicMappingMappedip(d, i["mappedip"], pre_append)
-		} else {
-			tmp["mappedip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mappedport"
@@ -3940,9 +3941,12 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["realservers"], _ = expandObjectFirewallVipDynamicMappingRealservers(d, i["realservers"], pre_append)
-		} else {
-			tmp["realservers"] = make([]string, 0)
+			t, err := expandObjectFirewallVipDynamicMappingRealservers(d, i["realservers"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["realservers"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server_type"
@@ -3958,15 +3962,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "src_filter"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["src-filter"], _ = expandObjectFirewallVipDynamicMappingSrcFilter(d, i["src_filter"], pre_append)
-		} else {
-			tmp["src-filter"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "srcintf_filter"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["srcintf-filter"], _ = expandObjectFirewallVipDynamicMappingSrcintfFilter(d, i["srcintf_filter"], pre_append)
-		} else {
-			tmp["srcintf-filter"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_accept_ffdhe_groups"
@@ -3986,9 +3986,12 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_cipher_suites"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["ssl-cipher-suites"], _ = expandObjectFirewallVipDynamicMappingSslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
-		} else {
-			tmp["ssl-cipher-suites"] = make([]string, 0)
+			t, err := expandObjectFirewallVipDynamicMappingSslCipherSuites(d, i["ssl_cipher_suites"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["ssl-cipher-suites"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_client_fallback"
@@ -4171,11 +4174,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 
 func expandObjectFirewallVipDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -4363,11 +4366,11 @@ func expandObjectFirewallVipDynamicMappingProtocol(d *schema.ResourceData, v int
 
 func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -4383,8 +4386,6 @@ func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-ip"], _ = expandObjectFirewallVipDynamicMappingRealserversClientIp(d, i["client_ip"], pre_append)
-		} else {
-			tmp["client-ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
@@ -4541,11 +4542,11 @@ func expandObjectFirewallVipDynamicMappingSslCertificate(d *schema.ResourceData,
 
 func expandObjectFirewallVipDynamicMappingSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -4571,8 +4572,6 @@ func expandObjectFirewallVipDynamicMappingSslCipherSuites(d *schema.ResourceData
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallVipDynamicMappingSslCipherSuitesVersions(d, i["versions"], pre_append)
-		} else {
-			tmp["versions"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -4873,11 +4872,11 @@ func expandObjectFirewallVipProtocol(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -4893,8 +4892,6 @@ func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-ip"], _ = expandObjectFirewallVipRealserversClientIp(d, i["client_ip"], pre_append)
-		} else {
-			tmp["client-ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
@@ -5051,11 +5048,11 @@ func expandObjectFirewallVipSslCertificate(d *schema.ResourceData, v interface{}
 
 func expandObjectFirewallVipSslCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -5081,8 +5078,6 @@ func expandObjectFirewallVipSslCipherSuites(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallVipSslCipherSuitesVersions(d, i["versions"], pre_append)
-		} else {
-			tmp["versions"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -5207,11 +5202,11 @@ func expandObjectFirewallVipSslServerAlgorithm(d *schema.ResourceData, v interfa
 
 func expandObjectFirewallVipSslServerCipherSuites(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -5232,8 +5227,6 @@ func expandObjectFirewallVipSslServerCipherSuites(d *schema.ResourceData, v inte
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "versions"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["versions"], _ = expandObjectFirewallVipSslServerCipherSuitesVersions(d, i["versions"], pre_append)
-		} else {
-			tmp["versions"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)

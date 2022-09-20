@@ -1015,8 +1015,6 @@ func expandObjectSpamfilterProfileImap(d *schema.ResourceData, v interface{}, pr
 	pre_append = pre + ".0." + "tag_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectSpamfilterProfileImapTagType(d, i["tag_type"], pre_append)
-	} else {
-		result["tag-type"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -1123,8 +1121,6 @@ func expandObjectSpamfilterProfilePop3(d *schema.ResourceData, v interface{}, pr
 	pre_append = pre + ".0." + "tag_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectSpamfilterProfilePop3TagType(d, i["tag_type"], pre_append)
-	} else {
-		result["tag-type"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -1183,8 +1179,6 @@ func expandObjectSpamfilterProfileSmtp(d *schema.ResourceData, v interface{}, pr
 	pre_append = pre + ".0." + "tag_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["tag-type"], _ = expandObjectSpamfilterProfileSmtpTagType(d, i["tag_type"], pre_append)
-	} else {
-		result["tag-type"] = make([]string, 0)
 	}
 
 	return result, nil

@@ -1620,11 +1620,11 @@ func expandObjectSystemDhcpServerDomain(d *schema.ResourceData, v interface{}, p
 
 func expandObjectSystemDhcpServerExcludeRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1689,11 +1689,11 @@ func expandObjectSystemDhcpServerIpMode(d *schema.ResourceData, v interface{}, p
 
 func expandObjectSystemDhcpServerIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1774,11 +1774,11 @@ func expandObjectSystemDhcpServerNtpService(d *schema.ResourceData, v interface{
 
 func expandObjectSystemDhcpServerOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1799,8 +1799,6 @@ func expandObjectSystemDhcpServerOptions(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ip"], _ = expandObjectSystemDhcpServerOptionsIp(d, i["ip"], pre_append)
-		} else {
-			tmp["ip"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
@@ -1843,11 +1841,11 @@ func expandObjectSystemDhcpServerOptionsValue(d *schema.ResourceData, v interfac
 
 func expandObjectSystemDhcpServerReservedAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

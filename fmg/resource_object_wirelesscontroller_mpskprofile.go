@@ -507,11 +507,11 @@ func expandObjectWirelessControllerMpskProfileMpskConcurrentClients(d *schema.Re
 
 func expandObjectWirelessControllerMpskProfileMpskGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -521,9 +521,12 @@ func expandObjectWirelessControllerMpskProfileMpskGroup(d *schema.ResourceData, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "mpsk_key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["mpsk-key"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d, i["mpsk_key"], pre_append)
-		} else {
-			tmp["mpsk-key"] = make([]string, 0)
+			t, err := expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d, i["mpsk_key"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["mpsk-key"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
@@ -551,11 +554,11 @@ func expandObjectWirelessControllerMpskProfileMpskGroup(d *schema.ResourceData, 
 
 func expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -596,15 +599,11 @@ func expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d *schema.Resourc
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "passphrase"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["passphrase"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyPassphrase(d, i["passphrase"], pre_append)
-		} else {
-			tmp["passphrase"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pmk"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pmk"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk(d, i["pmk"], pre_append)
-		} else {
-			tmp["pmk"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)

@@ -2525,11 +2525,11 @@ func flattenObjectUserRadiusFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 
 func expandObjectUserRadiusAccountingServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2560,8 +2560,6 @@ func expandObjectUserRadiusAccountingServer(d *schema.ResourceData, v interface{
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secret"], _ = expandObjectUserRadiusAccountingServerSecret(d, i["secret"], pre_append)
-		} else {
-			tmp["secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
@@ -2641,11 +2639,11 @@ func expandObjectUserRadiusClass(d *schema.ResourceData, v interface{}, pre stri
 
 func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2655,16 +2653,22 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectUserRadiusDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectUserRadiusDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accounting_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["accounting-server"], _ = expandObjectUserRadiusDynamicMappingAccountingServer(d, i["accounting_server"], pre_append)
-		} else {
-			tmp["accounting-server"] = make([]string, 0)
+			t, err := expandObjectUserRadiusDynamicMappingAccountingServer(d, i["accounting_server"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["accounting-server"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "acct_all_servers"
@@ -2690,8 +2694,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["class"], _ = expandObjectUserRadiusDynamicMappingClass(d, i["class"], pre_append)
-		} else {
-			tmp["class"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "delimiter"
@@ -2747,8 +2749,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_log_dyn_flags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-log-dyn_flags"], _ = expandObjectUserRadiusDynamicMappingDpLogDynFlags(d, i["dp_log_dyn_flags"], pre_append)
-		} else {
-			tmp["dp-log-dyn_flags"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_log_period"
@@ -2784,8 +2784,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["dp-secret"], _ = expandObjectUserRadiusDynamicMappingDpSecret(d, i["dp_secret"], pre_append)
-		} else {
-			tmp["dp-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "dp_validate_request_secret"
@@ -2956,8 +2954,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_log_flags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-log-flags"], _ = expandObjectUserRadiusDynamicMappingRssoLogFlags(d, i["rsso_log_flags"], pre_append)
-		} else {
-			tmp["rsso-log-flags"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_log_period"
@@ -2978,8 +2974,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rsso-secret"], _ = expandObjectUserRadiusDynamicMappingRssoSecret(d, i["rsso_secret"], pre_append)
-		} else {
-			tmp["rsso-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rsso_validate_request_secret"
@@ -2990,8 +2984,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-secret"], _ = expandObjectUserRadiusDynamicMappingSecondarySecret(d, i["secondary_secret"], pre_append)
-		} else {
-			tmp["secondary-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
@@ -3002,8 +2994,6 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secret"], _ = expandObjectUserRadiusDynamicMappingSecret(d, i["secret"], pre_append)
-		} else {
-			tmp["secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"
@@ -3039,15 +3029,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "switch_controller_service_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["switch-controller-service-type"], _ = expandObjectUserRadiusDynamicMappingSwitchControllerServiceType(d, i["switch_controller_service_type"], pre_append)
-		} else {
-			tmp["switch-controller-service-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-secret"], _ = expandObjectUserRadiusDynamicMappingTertiarySecret(d, i["tertiary_secret"], pre_append)
-		} else {
-			tmp["tertiary-secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -3085,11 +3071,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 
 func expandObjectUserRadiusDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -3125,11 +3111,11 @@ func expandObjectUserRadiusDynamicMappingScopeVdom(d *schema.ResourceData, v int
 
 func expandObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -3160,8 +3146,6 @@ func expandObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceData
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secret"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secret"], _ = expandObjectUserRadiusDynamicMappingAccountingServerSecret(d, i["secret"], pre_append)
-		} else {
-			tmp["secret"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "server"

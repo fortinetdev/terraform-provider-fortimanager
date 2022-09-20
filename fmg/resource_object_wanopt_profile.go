@@ -1114,8 +1114,6 @@ func expandObjectWanoptProfileCifs(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port"], _ = expandObjectWanoptProfileCifsPort(d, i["port"], pre_append)
-	} else {
-		result["port"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "prefer_chunking"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1198,8 +1196,6 @@ func expandObjectWanoptProfileFtp(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port"], _ = expandObjectWanoptProfileFtpPort(d, i["port"], pre_append)
-	} else {
-		result["port"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "prefer_chunking"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1286,8 +1282,6 @@ func expandObjectWanoptProfileHttp(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port"], _ = expandObjectWanoptProfileHttpPort(d, i["port"], pre_append)
-	} else {
-		result["port"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "prefer_chunking"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1308,8 +1302,6 @@ func expandObjectWanoptProfileHttp(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "ssl_port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-port"], _ = expandObjectWanoptProfileHttpSslPort(d, i["ssl_port"], pre_append)
-	} else {
-		result["ssl-port"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1400,8 +1392,6 @@ func expandObjectWanoptProfileMapi(d *schema.ResourceData, v interface{}, pre st
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["port"], _ = expandObjectWanoptProfileMapiPort(d, i["port"], pre_append)
-	} else {
-		result["port"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "secure_tunnel"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -1484,8 +1474,6 @@ func expandObjectWanoptProfileTcp(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "ssl_port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ssl-port"], _ = expandObjectWanoptProfileTcpSslPort(d, i["ssl_port"], pre_append)
-	} else {
-		result["ssl-port"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "status"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

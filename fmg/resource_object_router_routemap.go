@@ -904,11 +904,11 @@ func expandObjectRouterRouteMapName(d *schema.ResourceData, v interface{}, pre s
 
 func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1009,8 +1009,6 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_aspath"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-aspath"], _ = expandObjectRouterRouteMapRuleSetAspath(d, i["set_aspath"], pre_append)
-		} else {
-			tmp["set-aspath"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_aspath_action"
@@ -1026,8 +1024,6 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_community"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-community"], _ = expandObjectRouterRouteMapRuleSetCommunity(d, i["set_community"], pre_append)
-		} else {
-			tmp["set-community"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_community_additive"
@@ -1068,15 +1064,11 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_extcommunity_rt"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-extcommunity-rt"], _ = expandObjectRouterRouteMapRuleSetExtcommunityRt(d, i["set_extcommunity_rt"], pre_append)
-		} else {
-			tmp["set-extcommunity-rt"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_extcommunity_soo"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-extcommunity-soo"], _ = expandObjectRouterRouteMapRuleSetExtcommunitySoo(d, i["set_extcommunity_soo"], pre_append)
-		} else {
-			tmp["set-extcommunity-soo"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_flags"

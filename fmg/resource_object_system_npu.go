@@ -5686,11 +5686,11 @@ func expandObjectSystemNpuDseTimeoutOsna(d *schema.ResourceData, v interface{}, 
 
 func expandObjectSystemNpuDswDtsProfileOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -5744,11 +5744,11 @@ func expandObjectSystemNpuDswDtsProfileStepOsna(d *schema.ResourceData, v interf
 
 func expandObjectSystemNpuDswQueueDtsProfileOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -6757,33 +6757,48 @@ func expandObjectSystemNpuNpQueuesOsna(d *schema.ResourceData, v interface{}, pr
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "ethernet_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ethernet-type"], _ = expandObjectSystemNpuNpQueuesEthernetTypeOsna(d, i["ethernet_type"], pre_append)
-	} else {
-		result["ethernet-type"] = make([]string, 0)
+		t, err := expandObjectSystemNpuNpQueuesEthernetTypeOsna(d, i["ethernet_type"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ethernet-type"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip_protocol"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip-protocol"], _ = expandObjectSystemNpuNpQueuesIpProtocolOsna(d, i["ip_protocol"], pre_append)
-	} else {
-		result["ip-protocol"] = make([]string, 0)
+		t, err := expandObjectSystemNpuNpQueuesIpProtocolOsna(d, i["ip_protocol"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip-protocol"] = t
+		}
 	}
 	pre_append = pre + ".0." + "ip_service"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["ip-service"], _ = expandObjectSystemNpuNpQueuesIpServiceOsna(d, i["ip_service"], pre_append)
-	} else {
-		result["ip-service"] = make([]string, 0)
+		t, err := expandObjectSystemNpuNpQueuesIpServiceOsna(d, i["ip_service"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["ip-service"] = t
+		}
 	}
 	pre_append = pre + ".0." + "profile"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["profile"], _ = expandObjectSystemNpuNpQueuesProfileOsna(d, i["profile"], pre_append)
-	} else {
-		result["profile"] = make([]string, 0)
+		t, err := expandObjectSystemNpuNpQueuesProfileOsna(d, i["profile"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["profile"] = t
+		}
 	}
 	pre_append = pre + ".0." + "scheduler"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["scheduler"], _ = expandObjectSystemNpuNpQueuesSchedulerOsna(d, i["scheduler"], pre_append)
-	} else {
-		result["scheduler"] = make([]string, 0)
+		t, err := expandObjectSystemNpuNpQueuesSchedulerOsna(d, i["scheduler"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["scheduler"] = t
+		}
 	}
 
 	return result, nil
@@ -6791,11 +6806,11 @@ func expandObjectSystemNpuNpQueuesOsna(d *schema.ResourceData, v interface{}, pr
 
 func expandObjectSystemNpuNpQueuesEthernetTypeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -6849,11 +6864,11 @@ func expandObjectSystemNpuNpQueuesEthernetTypeWeightOsna(d *schema.ResourceData,
 
 func expandObjectSystemNpuNpQueuesIpProtocolOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -6907,11 +6922,11 @@ func expandObjectSystemNpuNpQueuesIpProtocolWeightOsna(d *schema.ResourceData, v
 
 func expandObjectSystemNpuNpQueuesIpServiceOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -6983,11 +6998,11 @@ func expandObjectSystemNpuNpQueuesIpServiceWeightOsna(d *schema.ResourceData, v 
 
 func expandObjectSystemNpuNpQueuesProfileOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -7680,11 +7695,11 @@ func expandObjectSystemNpuNpQueuesProfileWeightOsna(d *schema.ResourceData, v in
 
 func expandObjectSystemNpuNpQueuesSchedulerOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -7740,11 +7755,11 @@ func expandObjectSystemNpuPolicyOffloadLevelOsna(d *schema.ResourceData, v inter
 
 func expandObjectSystemNpuPortCpuMapOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -7780,11 +7795,11 @@ func expandObjectSystemNpuPortCpuMapInterfaceOsna(d *schema.ResourceData, v inte
 
 func expandObjectSystemNpuPortNpuMapOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -7831,8 +7846,6 @@ func expandObjectSystemNpuPortPathOptionOsna(d *schema.ResourceData, v interface
 	pre_append = pre + ".0." + "ports_using_npu"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports-using-npu"], _ = expandObjectSystemNpuPortPathOptionPortsUsingNpuOsna(d, i["ports_using_npu"], pre_append)
-	} else {
-		result["ports-using-npu"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -8070,11 +8083,11 @@ func expandObjectSystemNpuTcpRstTimeoutOsna(d *schema.ResourceData, v interface{
 
 func expandObjectSystemNpuTcpTimeoutProfileOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -8155,11 +8168,11 @@ func expandObjectSystemNpuTcpTimeoutProfileTimeWaitOsna(d *schema.ResourceData, 
 
 func expandObjectSystemNpuUdpTimeoutProfileOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

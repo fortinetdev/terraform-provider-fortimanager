@@ -344,11 +344,11 @@ func flattenSystemNtpFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fosd
 
 func expandSystemNtpNtpserverSna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -369,8 +369,6 @@ func expandSystemNtpNtpserverSna(d *schema.ResourceData, v interface{}, pre stri
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key"], _ = expandSystemNtpNtpserverKeySna(d, i["key"], pre_append)
-		} else {
-			tmp["key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key_id"

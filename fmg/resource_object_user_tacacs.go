@@ -729,11 +729,11 @@ func expandObjectUserTacacsAuthorization(d *schema.ResourceData, v interface{}, 
 
 func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -743,9 +743,12 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectUserTacacsDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectUserTacacsDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "authen_type"
@@ -771,8 +774,6 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["key"], _ = expandObjectUserTacacsDynamicMappingKey(d, i["key"], pre_append)
-		} else {
-			tmp["key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "port"
@@ -783,8 +784,6 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["secondary-key"], _ = expandObjectUserTacacsDynamicMappingSecondaryKey(d, i["secondary_key"], pre_append)
-		} else {
-			tmp["secondary-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
@@ -805,8 +804,6 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_key"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tertiary-key"], _ = expandObjectUserTacacsDynamicMappingTertiaryKey(d, i["tertiary_key"], pre_append)
-		} else {
-			tmp["tertiary-key"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tertiary_server"
@@ -824,11 +821,11 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 
 func expandObjectUserTacacsDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

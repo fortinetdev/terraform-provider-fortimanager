@@ -3401,8 +3401,6 @@ func expandObjectFirewallSslSshProfileFtps(d *schema.ResourceData, v interface{}
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallSslSshProfileFtpsPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "revoked_server_cert"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3565,8 +3563,6 @@ func expandObjectFirewallSslSshProfileHttps(d *schema.ResourceData, v interface{
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallSslSshProfileHttpsPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3737,8 +3733,6 @@ func expandObjectFirewallSslSshProfileImaps(d *schema.ResourceData, v interface{
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallSslSshProfileImapsPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3913,8 +3907,6 @@ func expandObjectFirewallSslSshProfilePop3S(d *schema.ResourceData, v interface{
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallSslSshProfilePop3SPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -4093,8 +4085,6 @@ func expandObjectFirewallSslSshProfileSmtps(d *schema.ResourceData, v interface{
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallSslSshProfileSmtpsPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -4233,8 +4223,6 @@ func expandObjectFirewallSslSshProfileSsh(d *schema.ResourceData, v interface{},
 	pre_append = pre + ".0." + "ports"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["ports"], _ = expandObjectFirewallSslSshProfileSshPorts(d, i["ports"], pre_append)
-	} else {
-		result["ports"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "proxy_after_tcp_handshake"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -4464,11 +4452,11 @@ func expandObjectFirewallSslSshProfileSslAnomalyLog(d *schema.ResourceData, v in
 
 func expandObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -4569,11 +4557,11 @@ func expandObjectFirewallSslSshProfileSslNegotiationLog(d *schema.ResourceData, 
 
 func expandObjectFirewallSslSshProfileSslServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

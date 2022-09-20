@@ -1958,8 +1958,6 @@ func expandSystemLogSettingsRollingAnalyzerSlsa(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "days"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["days"], _ = expandSystemLogSettingsRollingAnalyzerDaysSlsa(d, i["days"], pre_append)
-	} else {
-		result["days"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "del_files"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2004,20 +2002,14 @@ func expandSystemLogSettingsRollingAnalyzerSlsa(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password"], _ = expandSystemLogSettingsRollingAnalyzerPasswordSlsa(d, i["password"], pre_append)
-	} else {
-		result["password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "password2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password2"], _ = expandSystemLogSettingsRollingAnalyzerPassword2Slsa(d, i["password2"], pre_append)
-	} else {
-		result["password2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "password3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password3"], _ = expandSystemLogSettingsRollingAnalyzerPassword3Slsa(d, i["password3"], pre_append)
-	} else {
-		result["password3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2220,8 +2212,6 @@ func expandSystemLogSettingsRollingLocalSlsa(d *schema.ResourceData, v interface
 	pre_append = pre + ".0." + "days"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["days"], _ = expandSystemLogSettingsRollingLocalDaysSlsa(d, i["days"], pre_append)
-	} else {
-		result["days"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "del_files"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2266,20 +2256,14 @@ func expandSystemLogSettingsRollingLocalSlsa(d *schema.ResourceData, v interface
 	pre_append = pre + ".0." + "password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password"], _ = expandSystemLogSettingsRollingLocalPasswordSlsa(d, i["password"], pre_append)
-	} else {
-		result["password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "password2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password2"], _ = expandSystemLogSettingsRollingLocalPassword2Slsa(d, i["password2"], pre_append)
-	} else {
-		result["password2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "password3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password3"], _ = expandSystemLogSettingsRollingLocalPassword3Slsa(d, i["password3"], pre_append)
-	} else {
-		result["password3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2482,8 +2466,6 @@ func expandSystemLogSettingsRollingRegularSlsa(d *schema.ResourceData, v interfa
 	pre_append = pre + ".0." + "days"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["days"], _ = expandSystemLogSettingsRollingRegularDaysSlsa(d, i["days"], pre_append)
-	} else {
-		result["days"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "del_files"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2528,20 +2510,14 @@ func expandSystemLogSettingsRollingRegularSlsa(d *schema.ResourceData, v interfa
 	pre_append = pre + ".0." + "password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password"], _ = expandSystemLogSettingsRollingRegularPasswordSlsa(d, i["password"], pre_append)
-	} else {
-		result["password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "password2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password2"], _ = expandSystemLogSettingsRollingRegularPassword2Slsa(d, i["password2"], pre_append)
-	} else {
-		result["password2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "password3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["password3"], _ = expandSystemLogSettingsRollingRegularPassword3Slsa(d, i["password3"], pre_append)
-	} else {
-		result["password3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

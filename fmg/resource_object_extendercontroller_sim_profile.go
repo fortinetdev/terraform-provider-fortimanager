@@ -625,8 +625,6 @@ func expandObjectExtenderControllerSimProfileAutoSwitchProfile(d *schema.Resourc
 	pre_append = pre + ".0." + "switch_back"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-back"], _ = expandObjectExtenderControllerSimProfileAutoSwitchProfileSwitchBack(d, i["switch_back"], pre_append)
-	} else {
-		result["switch-back"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "switch_back_time"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

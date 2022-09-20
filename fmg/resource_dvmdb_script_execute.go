@@ -270,11 +270,11 @@ func expandDvmdbScriptExecutePackage(d *schema.ResourceData, v interface{}, pre 
 
 func expandDvmdbScriptExecuteScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

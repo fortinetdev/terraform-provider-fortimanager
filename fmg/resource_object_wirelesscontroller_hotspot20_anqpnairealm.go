@@ -454,11 +454,11 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmFortiTestDebug(d *schem
 
 func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -468,9 +468,12 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(d *schema.Resour
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "eap_method"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["eap-method"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d, i["eap_method"], pre_append)
-		} else {
-			tmp["eap-method"] = make([]string, 0)
+			t, err := expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d, i["eap_method"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["eap-method"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "encoding"
@@ -498,11 +501,11 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(d *schema.Resour
 
 func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -512,9 +515,12 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d *sche
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_param"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["auth-param"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(d, i["auth_param"], pre_append)
-		} else {
-			tmp["auth-param"] = make([]string, 0)
+			t, err := expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(d, i["auth_param"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["auth-param"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "index"
@@ -537,11 +543,11 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d *sche
 
 func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParam(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

@@ -832,11 +832,11 @@ func expandObjectDnsfilterProfileComment(d *schema.ResourceData, v interface{}, 
 
 func expandObjectDnsfilterProfileDnsTranslation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -971,15 +971,16 @@ func expandObjectDnsfilterProfileFtgdDns(d *schema.ResourceData, v interface{}, 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "filters"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["filters"], _ = expandObjectDnsfilterProfileFtgdDnsFilters(d, i["filters"], pre_append)
-	} else {
-		result["filters"] = make([]string, 0)
+		t, err := expandObjectDnsfilterProfileFtgdDnsFilters(d, i["filters"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["filters"] = t
+		}
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectDnsfilterProfileFtgdDnsOptions(d, i["options"], pre_append)
-	} else {
-		result["options"] = make([]string, 0)
 	}
 
 	return result, nil
@@ -987,11 +988,11 @@ func expandObjectDnsfilterProfileFtgdDns(d *schema.ResourceData, v interface{}, 
 
 func expandObjectDnsfilterProfileFtgdDnsFilters(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

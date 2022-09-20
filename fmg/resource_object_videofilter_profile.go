@@ -502,9 +502,12 @@ func expandObjectVideofilterProfileFortiguardCategory(d *schema.ResourceData, v 
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "filters"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["filters"], _ = expandObjectVideofilterProfileFortiguardCategoryFilters(d, i["filters"], pre_append)
-	} else {
-		result["filters"] = make([]string, 0)
+		t, err := expandObjectVideofilterProfileFortiguardCategoryFilters(d, i["filters"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["filters"] = t
+		}
 	}
 
 	return result, nil
@@ -512,11 +515,11 @@ func expandObjectVideofilterProfileFortiguardCategory(d *schema.ResourceData, v 
 
 func expandObjectVideofilterProfileFortiguardCategoryFilters(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

@@ -2035,11 +2035,11 @@ func expandObjectUserGroupCompany(d *schema.ResourceData, v interface{}, pre str
 
 func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2049,9 +2049,12 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectUserGroupDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectUserGroupDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "auth_concurrent_override"
@@ -2096,9 +2099,12 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "guest"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["guest"], _ = expandObjectUserGroupDynamicMappingGuest(d, i["guest"], pre_append)
-		} else {
-			tmp["guest"] = make([]string, 0)
+			t, err := expandObjectUserGroupDynamicMappingGuest(d, i["guest"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["guest"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_digest_realm"
@@ -2123,9 +2129,12 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["match"], _ = expandObjectUserGroupDynamicMappingMatch(d, i["match"], pre_append)
-		} else {
-			tmp["match"] = make([]string, 0)
+			t, err := expandObjectUserGroupDynamicMappingMatch(d, i["match"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["match"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_accounts"
@@ -2186,8 +2195,6 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_client_check"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sslvpn-client-check"], _ = expandObjectUserGroupDynamicMappingSslvpnClientCheck(d, i["sslvpn_client_check"], pre_append)
-		} else {
-			tmp["sslvpn-client-check"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_ftp"
@@ -2207,9 +2214,12 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_os_check_list"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["sslvpn-os-check-list"], _ = expandObjectUserGroupDynamicMappingSslvpnOsCheckList(d, i["sslvpn_os_check_list"], pre_append)
-		} else {
-			tmp["sslvpn-os-check-list"] = make([]string, 0)
+			t, err := expandObjectUserGroupDynamicMappingSslvpnOsCheckList(d, i["sslvpn_os_check_list"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["sslvpn-os-check-list"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sslvpn_portal"
@@ -2307,11 +2317,11 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 
 func expandObjectUserGroupDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2379,11 +2389,11 @@ func expandObjectUserGroupDynamicMappingGroupType(d *schema.ResourceData, v inte
 
 func expandObjectUserGroupDynamicMappingGuest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2434,8 +2444,6 @@ func expandObjectUserGroupDynamicMappingGuest(d *schema.ResourceData, v interfac
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserGroupDynamicMappingGuestPassword(d, i["password"], pre_append)
-		} else {
-			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
@@ -2518,11 +2526,11 @@ func expandObjectUserGroupDynamicMappingLogicType(d *schema.ResourceData, v inte
 
 func expandObjectUserGroupDynamicMappingMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2766,11 +2774,11 @@ func expandObjectUserGroupGroupType(d *schema.ResourceData, v interface{}, pre s
 
 func expandObjectUserGroupGuest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2816,8 +2824,6 @@ func expandObjectUserGroupGuest(d *schema.ResourceData, v interface{}, pre strin
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserGroupGuestPassword(d, i["password"], pre_append)
-		} else {
-			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sponsor"
@@ -2888,11 +2894,11 @@ func expandObjectUserGroupId(d *schema.ResourceData, v interface{}, pre string) 
 
 func expandObjectUserGroupMatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

@@ -476,11 +476,11 @@ func flattenObjectWirelessControllerHotspot20H2QpOsuProviderFortiTestDebug(d *sc
 
 func expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -545,11 +545,11 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderServerUri(d *schema.R
 
 func expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

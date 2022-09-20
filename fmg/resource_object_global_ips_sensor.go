@@ -1405,11 +1405,11 @@ func expandObjectGlobalIpsSensorComment(d *schema.ResourceData, v interface{}, p
 
 func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1425,15 +1425,11 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["application"], _ = expandObjectGlobalIpsSensorEntriesApplication(d, i["application"], pre_append)
-		} else {
-			tmp["application"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "cve"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["cve"], _ = expandObjectGlobalIpsSensorEntriesCve(d, i["cve"], pre_append)
-		} else {
-			tmp["cve"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_action"
@@ -1448,9 +1444,12 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["exempt-ip"], _ = expandObjectGlobalIpsSensorEntriesExemptIp(d, i["exempt_ip"], pre_append)
-		} else {
-			tmp["exempt-ip"] = make([]string, 0)
+			t, err := expandObjectGlobalIpsSensorEntriesExemptIp(d, i["exempt_ip"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["exempt-ip"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
@@ -1466,8 +1465,6 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["location"], _ = expandObjectGlobalIpsSensorEntriesLocation(d, i["location"], pre_append)
-		} else {
-			tmp["location"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
@@ -1488,8 +1485,6 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "os"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["os"], _ = expandObjectGlobalIpsSensorEntriesOs(d, i["os"], pre_append)
-		} else {
-			tmp["os"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "position"
@@ -1500,8 +1495,6 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectGlobalIpsSensorEntriesProtocol(d, i["protocol"], pre_append)
-		} else {
-			tmp["protocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "quarantine"
@@ -1542,15 +1535,11 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "rule"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["rule"], _ = expandObjectGlobalIpsSensorEntriesRule(d, i["rule"], pre_append)
-		} else {
-			tmp["rule"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "severity"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["severity"], _ = expandObjectGlobalIpsSensorEntriesSeverity(d, i["severity"], pre_append)
-		} else {
-			tmp["severity"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "status"
@@ -1561,15 +1550,11 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "tags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["tags"], _ = expandObjectGlobalIpsSensorEntriesTags(d, i["tags"], pre_append)
-		} else {
-			tmp["tags"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vuln_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["vuln-type"], _ = expandObjectGlobalIpsSensorEntriesVulnType(d, i["vuln_type"], pre_append)
-		} else {
-			tmp["vuln-type"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -1602,11 +1587,11 @@ func expandObjectGlobalIpsSensorEntriesDefaultStatus(d *schema.ResourceData, v i
 
 func expandObjectGlobalIpsSensorEntriesExemptIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1739,11 +1724,11 @@ func expandObjectGlobalIpsSensorExtendedLog(d *schema.ResourceData, v interface{
 
 func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1759,8 +1744,6 @@ func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pr
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["application"], _ = expandObjectGlobalIpsSensorFilterApplication(d, i["application"], pre_append)
-		} else {
-			tmp["application"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "applicationreal"
@@ -1771,8 +1754,6 @@ func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pr
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["location"], _ = expandObjectGlobalIpsSensorFilterLocation(d, i["location"], pre_append)
-		} else {
-			tmp["location"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "locationreal"
@@ -1798,8 +1779,6 @@ func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pr
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "os"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["os"], _ = expandObjectGlobalIpsSensorFilterOs(d, i["os"], pre_append)
-		} else {
-			tmp["os"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "osreal"
@@ -1810,8 +1789,6 @@ func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pr
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectGlobalIpsSensorFilterProtocol(d, i["protocol"], pre_append)
-		} else {
-			tmp["protocol"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocolreal"
@@ -1837,8 +1814,6 @@ func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pr
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "severity"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["severity"], _ = expandObjectGlobalIpsSensorFilterSeverity(d, i["severity"], pre_append)
-		} else {
-			tmp["severity"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "severityreal"
@@ -1941,11 +1916,11 @@ func expandObjectGlobalIpsSensorName(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectGlobalIpsSensorOverride(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1960,9 +1935,12 @@ func expandObjectGlobalIpsSensorOverride(d *schema.ResourceData, v interface{}, 
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["exempt-ip"], _ = expandObjectGlobalIpsSensorOverrideExemptIp(d, i["exempt_ip"], pre_append)
-		} else {
-			tmp["exempt-ip"] = make([]string, 0)
+			t, err := expandObjectGlobalIpsSensorOverrideExemptIp(d, i["exempt_ip"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["exempt-ip"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "log"
@@ -2014,11 +1992,11 @@ func expandObjectGlobalIpsSensorOverrideAction(d *schema.ResourceData, v interfa
 
 func expandObjectGlobalIpsSensorOverrideExemptIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

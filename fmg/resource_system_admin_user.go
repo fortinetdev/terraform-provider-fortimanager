@@ -2216,11 +2216,11 @@ func flattenSystemAdminUserFortiTestDebug(d *schema.ResourceData, fosdebugsn int
 
 func expandSystemAdminUserAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2251,11 +2251,11 @@ func expandSystemAdminUserAdomAccess(d *schema.ResourceData, v interface{}, pre 
 
 func expandSystemAdminUserAdomExclude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2282,11 +2282,11 @@ func expandSystemAdminUserAdomExcludeAdomName(d *schema.ResourceData, v interfac
 
 func expandSystemAdminUserAppFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2325,11 +2325,11 @@ func expandSystemAdminUserChangePassword(d *schema.ResourceData, v interface{}, 
 
 func expandSystemAdminUserDashboard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2500,11 +2500,11 @@ func expandSystemAdminUserDashboardWidgetType(d *schema.ResourceData, v interfac
 
 func expandSystemAdminUserDashboardTabs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2584,11 +2584,11 @@ func expandSystemAdminUserHidden(d *schema.ResourceData, v interface{}, pre stri
 
 func expandSystemAdminUserIpsFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2667,11 +2667,11 @@ func expandSystemAdminUserLoginMax(d *schema.ResourceData, v interface{}, pre st
 
 func expandSystemAdminUserMetaData(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2754,11 +2754,11 @@ func expandSystemAdminUserPhoneNumber(d *schema.ResourceData, v interface{}, pre
 
 func expandSystemAdminUserPolicyPackage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2885,11 +2885,11 @@ func expandSystemAdminUserUserid(d *schema.ResourceData, v interface{}, pre stri
 
 func expandSystemAdminUserWebFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

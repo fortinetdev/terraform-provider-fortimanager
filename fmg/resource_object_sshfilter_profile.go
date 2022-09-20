@@ -658,9 +658,12 @@ func expandObjectSshFilterProfileFileFilter(d *schema.ResourceData, v interface{
 	pre_append := "" // complex
 	pre_append = pre + ".0." + "entries"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-		result["entries"], _ = expandObjectSshFilterProfileFileFilterEntries(d, i["entries"], pre_append)
-	} else {
-		result["entries"] = make([]string, 0)
+		t, err := expandObjectSshFilterProfileFileFilterEntries(d, i["entries"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["entries"] = t
+		}
 	}
 	pre_append = pre + ".0." + "log"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -680,11 +683,11 @@ func expandObjectSshFilterProfileFileFilter(d *schema.ResourceData, v interface{
 
 func expandObjectSshFilterProfileFileFilterEntries(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -710,8 +713,6 @@ func expandObjectSshFilterProfileFileFilterEntries(d *schema.ResourceData, v int
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "file_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["file-type"], _ = expandObjectSshFilterProfileFileFilterEntriesFileType(d, i["file_type"], pre_append)
-		} else {
-			tmp["file-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "filter"
@@ -727,8 +728,6 @@ func expandObjectSshFilterProfileFileFilterEntries(d *schema.ResourceData, v int
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "protocol"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["protocol"], _ = expandObjectSshFilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
-		} else {
-			tmp["protocol"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -789,11 +788,11 @@ func expandObjectSshFilterProfileName(d *schema.ResourceData, v interface{}, pre
 
 func expandObjectSshFilterProfileShellCommands(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

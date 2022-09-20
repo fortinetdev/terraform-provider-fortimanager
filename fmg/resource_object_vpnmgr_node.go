@@ -1730,11 +1730,11 @@ func flattenObjectVpnmgrNodeFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 
 func expandObjectVpnmgrNodeScopeMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1870,11 +1870,11 @@ func expandObjectVpnmgrNodeIface(d *schema.ResourceData, v interface{}, pre stri
 
 func expandObjectVpnmgrNodeIpRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1939,11 +1939,11 @@ func expandObjectVpnmgrNodeIpv4EndIp(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectVpnmgrNodeIpv4ExcludeRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2056,11 +2056,11 @@ func expandObjectVpnmgrNodePeertype(d *schema.ResourceData, v interface{}, pre s
 
 func expandObjectVpnmgrNodeProtectedSubnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2112,11 +2112,11 @@ func expandObjectVpnmgrNodeSpokeZone(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectVpnmgrNodeSummaryAddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {

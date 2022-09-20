@@ -2339,20 +2339,14 @@ func expandObjectFirewallMmsProfileDupe(d *schema.ResourceData, v interface{}, p
 	pre_append = pre + ".0." + "action1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action1"], _ = expandObjectFirewallMmsProfileDupeAction1(d, i["action1"], pre_append)
-	} else {
-		result["action1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action2"], _ = expandObjectFirewallMmsProfileDupeAction2(d, i["action2"], pre_append)
-	} else {
-		result["action2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action3"], _ = expandObjectFirewallMmsProfileDupeAction3(d, i["action3"], pre_append)
-	} else {
-		result["action3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "block_time1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2491,20 +2485,14 @@ func expandObjectFirewallMmsProfileFlood(d *schema.ResourceData, v interface{}, 
 	pre_append = pre + ".0." + "action1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action1"], _ = expandObjectFirewallMmsProfileFloodAction1(d, i["action1"], pre_append)
-	} else {
-		result["action1"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action2"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action2"], _ = expandObjectFirewallMmsProfileFloodAction2(d, i["action2"], pre_append)
-	} else {
-		result["action2"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "action3"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["action3"], _ = expandObjectFirewallMmsProfileFloodAction3(d, i["action3"], pre_append)
-	} else {
-		result["action3"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "block_time1"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2768,11 +2756,11 @@ func expandObjectFirewallMmsProfileName(d *schema.ResourceData, v interface{}, p
 
 func expandObjectFirewallMmsProfileNotifMsisdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -2788,8 +2776,6 @@ func expandObjectFirewallMmsProfileNotifMsisdn(d *schema.ResourceData, v interfa
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "threshold"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["threshold"], _ = expandObjectFirewallMmsProfileNotifMsisdnThreshold(d, i["threshold"], pre_append)
-		} else {
-			tmp["threshold"] = make([]string, 0)
 		}
 
 		result = append(result, tmp)
@@ -2861,8 +2847,6 @@ func expandObjectFirewallMmsProfileNotification(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "days_allowed"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["days-allowed"], _ = expandObjectFirewallMmsProfileNotificationDaysAllowed(d, i["days_allowed"], pre_append)
-	} else {
-		result["days-allowed"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "detect_server"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2927,8 +2911,6 @@ func expandObjectFirewallMmsProfileNotification(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "mmsc_password"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mmsc-password"], _ = expandObjectFirewallMmsProfileNotificationMmscPassword(d, i["mmsc_password"], pre_append)
-	} else {
-		result["mmsc-password"] = make([]string, 0)
 	}
 	pre_append = pre + ".0." + "mmsc_port"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {

@@ -1582,11 +1582,11 @@ func expandObjectUserLdapDn(d *schema.ResourceData, v interface{}, pre string) (
 
 func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
@@ -1596,9 +1596,12 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["_scope"], _ = expandObjectUserLdapDynamicMappingScope(d, i["_scope"], pre_append)
-		} else {
-			tmp["_scope"] = make([]string, 0)
+			t, err := expandObjectUserLdapDynamicMappingScope(d, i["_scope"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["_scope"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_filter"
@@ -1629,8 +1632,6 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["client-cert"], _ = expandObjectUserLdapDynamicMappingClientCert(d, i["client_cert"], pre_append)
-		} else {
-			tmp["client-cert"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "client_cert_auth"
@@ -1706,8 +1707,6 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["password"], _ = expandObjectUserLdapDynamicMappingPassword(d, i["password"], pre_append)
-		} else {
-			tmp["password"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "password_attr"
@@ -1738,8 +1737,6 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "search_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["search-type"], _ = expandObjectUserLdapDynamicMappingSearchType(d, i["search_type"], pre_append)
-		} else {
-			tmp["search-type"] = make([]string, 0)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "secondary_server"
@@ -1827,11 +1824,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 
 func expandObjectUserLdapDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil, nil
-	}
-
 	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
 
 	con := 0
 	for _, r := range l {
