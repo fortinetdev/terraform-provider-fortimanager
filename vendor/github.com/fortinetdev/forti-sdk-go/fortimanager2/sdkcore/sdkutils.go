@@ -118,8 +118,8 @@ func read(c *FortiSDKClient, globaladom, path string, method string, move bool) 
 	return
 }
 
-func readMove(c *FortiSDKClient, globaladom, path string, method string, move bool) (listTmp []interface{}, err error) {
-	data := encodeData(c, globaladom, path, method, nil, move)
+func readMove(c *FortiSDKClient, globaladom, path string, method string, params *map[string]interface{}, move bool) (listTmp []interface{}, err error) {
+	data := encodeData(c, globaladom, path, method, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)

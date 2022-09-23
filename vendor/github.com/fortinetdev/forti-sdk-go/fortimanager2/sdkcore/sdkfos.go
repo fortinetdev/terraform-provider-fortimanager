@@ -4168,7 +4168,10 @@ func (c *FortiSDKClient) ReadObjectFirewallAccessProxy6Move(globaladom, mkey str
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"name"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -4203,7 +4206,10 @@ func (c *FortiSDKClient) ReadObjectFirewallAccessProxyMove(globaladom, mkey stri
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"name"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -18326,7 +18332,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallDosPolicy6Move(globaladom, mkey str
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -18361,7 +18370,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallDosPolicyMove(globaladom, mkey stri
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -18528,7 +18540,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallAcl6Move(globaladom, mkey string, p
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -18563,7 +18578,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallAclMove(globaladom, mkey string, pa
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -18664,7 +18682,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallCentralSnatMapMove(globaladom, mkey
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -18765,7 +18786,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallConsolidatedPolicyMove(globaladom, 
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19196,7 +19220,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallInterfacePolicy6Move(globaladom, mk
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19231,7 +19258,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallInterfacePolicyMove(globaladom, mke
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19398,7 +19428,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallLocalInPolicy6Move(globaladom, mkey
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19433,7 +19466,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallLocalInPolicyMove(globaladom, mkey 
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19600,7 +19636,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallMulticastPolicy6Move(globaladom, mk
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"id"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19635,7 +19674,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallMulticastPolicyMove(globaladom, mke
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"id"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19802,7 +19844,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallPolicy46Move(globaladom, mkey strin
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -19969,7 +20014,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallPolicy64Move(globaladom, mkey strin
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -20004,7 +20052,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallPolicy6Move(globaladom, mkey string
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -20039,7 +20090,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallPolicyMove(globaladom, mkey string,
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -20140,7 +20194,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallProxyPolicyMove(globaladom, mkey st
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -20241,7 +20298,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallSecurityPolicyMove(globaladom, mkey
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"policyid"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -20342,7 +20402,10 @@ func (c *FortiSDKClient) ReadPackagesFirewallShapingPolicyMove(globaladom, mkey 
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"id"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
@@ -21037,7 +21100,10 @@ func (c *FortiSDKClient) ReadPackagesUserNacPolicyMove(globaladom, mkey string, 
 	}
 
 
-	listTmp, err = readMove(c, globaladom, path, "get", false)
+	params := map[string]interface{}{
+		"fields": []string{"name"},
+	}
+	listTmp, err = readMove(c, globaladom, path, "get", &params, true)
 	return
 }
 
