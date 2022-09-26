@@ -83,11 +83,13 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_wmm_bk": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_wmm_mapping": &schema.Schema{
 				Type:     schema.TypeString,
@@ -98,11 +100,13 @@ func resourceObjectWirelessControllerQosProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_wmm_vo": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,

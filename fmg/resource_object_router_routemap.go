@@ -139,6 +139,7 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"set_aspath_action": &schema.Schema{
 							Type:     schema.TypeString,
@@ -154,6 +155,7 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"set_community_additive": &schema.Schema{
 							Type:     schema.TypeString,
@@ -187,11 +189,13 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"set_extcommunity_soo": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"set_flags": &schema.Schema{
 							Type:     schema.TypeInt,

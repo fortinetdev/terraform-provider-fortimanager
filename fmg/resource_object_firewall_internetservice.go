@@ -49,11 +49,13 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"country": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"database": &schema.Schema{
 				Type:     schema.TypeString,
@@ -86,6 +88,7 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -138,6 +141,7 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"packetloss_threshold": &schema.Schema{
 				Type:     schema.TypeInt,

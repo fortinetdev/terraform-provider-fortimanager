@@ -250,10 +250,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 									"healthcheck": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"holddown_interval": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"http_host": &schema.Schema{
 										Type:     schema.TypeString,
@@ -266,6 +268,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 									"ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"max_connections": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -282,10 +285,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -298,6 +303,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_accept_ffdhe_groups": &schema.Schema{
 							Type:     schema.TypeString,
@@ -329,6 +335,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -568,6 +575,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mappedport": &schema.Schema{
 				Type:     schema.TypeString,
@@ -635,10 +643,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 						"healthcheck": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"holddown_interval": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_host": &schema.Schema{
 							Type:     schema.TypeString,
@@ -651,6 +661,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"max_connections": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -667,10 +678,12 @@ func resourceObjectFirewallVip6() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -683,6 +696,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_accept_ffdhe_groups": &schema.Schema{
 				Type:     schema.TypeString,
@@ -714,6 +728,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -837,6 +852,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

@@ -108,11 +108,13 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 									"action": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"fortiguard_category": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
@@ -178,6 +180,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"filter": &schema.Schema{
 										Type:     schema.TypeString,
@@ -191,6 +194,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -225,6 +229,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Type:     schema.TypeList,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"filters": &schema.Schema{
 							Type:     schema.TypeList,
@@ -234,6 +239,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 									"action": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"auth_usr_grp": &schema.Schema{
 										Type:     schema.TypeString,
@@ -242,6 +248,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 									"category": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -250,6 +257,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 									"log": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"override_replacemsg": &schema.Schema{
 										Type:     schema.TypeString,
@@ -273,16 +281,19 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"max_quota_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"ovrd": &schema.Schema{
 							Type:     schema.TypeList,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"quota": &schema.Schema{
 							Type:     schema.TypeList,
@@ -323,18 +334,22 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"rate_crl_urls": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rate_css_urls": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rate_image_urls": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rate_javascript_urls": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -362,6 +377,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"override": &schema.Schema{
 				Type:     schema.TypeList,
@@ -372,36 +388,44 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"ovrd_cookie": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ovrd_dur": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ovrd_dur_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ovrd_scope": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ovrd_user_group": &schema.Schema{
 							Type:     schema.TypeList,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"profile": &schema.Schema{
 							Type:     schema.TypeList,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"profile_attribute": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"profile_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -410,6 +434,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"post_action": &schema.Schema{
 				Type:     schema.TypeString,
@@ -459,6 +484,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"blocklist": &schema.Schema{
 							Type:     schema.TypeString,
@@ -467,6 +493,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"blacklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"bword_table": &schema.Schema{
 							Type:     schema.TypeString,
@@ -475,6 +502,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"bword_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"content_header_list": &schema.Schema{
 							Type:     schema.TypeString,
@@ -484,15 +512,18 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"log_search": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"safe_search": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"urlfilter_table": &schema.Schema{
 							Type:     schema.TypeString,
@@ -506,10 +537,12 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"youtube_restrict": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -626,6 +659,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 			"youtube_channel_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

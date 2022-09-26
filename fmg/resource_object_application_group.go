@@ -49,6 +49,7 @@ func resourceObjectApplicationGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"behavior": &schema.Schema{
 				Type:     schema.TypeString,
@@ -59,6 +60,7 @@ func resourceObjectApplicationGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -84,6 +86,7 @@ func resourceObjectApplicationGroup() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"technology": &schema.Schema{
 				Type:     schema.TypeString,

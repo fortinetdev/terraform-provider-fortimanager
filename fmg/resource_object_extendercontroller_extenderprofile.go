@@ -49,6 +49,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"bandwidth_limit": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -122,6 +123,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
@@ -170,6 +172,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
@@ -179,6 +182,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -219,6 +223,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
@@ -267,6 +272,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
@@ -276,6 +282,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -332,6 +339,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"name": &schema.Schema{
 													Type:     schema.TypeString,
@@ -1132,7 +1140,7 @@ func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertD
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertFgtBackupModeSwitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertLowSignalStrength(v interface{}, d *schema.ResourceData, pre string) interface{} {

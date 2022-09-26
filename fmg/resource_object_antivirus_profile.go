@@ -90,11 +90,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -120,6 +122,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -147,78 +150,97 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"cover_page": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"detect_only": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"error_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"office_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"office_dde": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"office_embed": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"office_hylink": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"office_linked": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"office_macro": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"original_file_destination": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_act_form": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_act_gotor": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_act_java": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_act_launch": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_act_movie": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_act_sound": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_embedfile": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_hyperlink": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pdf_javacode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -237,6 +259,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"external_blocklist_archive_scan": &schema.Schema{
 				Type:     schema.TypeString,
@@ -278,11 +301,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -308,6 +333,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -332,11 +358,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_optimize": &schema.Schema{
 							Type:     schema.TypeString,
@@ -350,6 +378,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
@@ -370,6 +399,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -394,11 +424,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -408,6 +440,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
@@ -433,6 +466,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -461,11 +495,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -491,6 +527,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -547,11 +584,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -577,6 +616,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -605,10 +645,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"external_blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ftgd_service": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -623,11 +665,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -637,6 +681,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
@@ -662,6 +707,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -694,11 +740,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
@@ -708,6 +756,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -726,11 +775,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -740,6 +791,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"content_disarm": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"emulator": &schema.Schema{
 							Type:     schema.TypeString,
@@ -765,6 +817,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,
@@ -789,11 +842,13 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"archive_log": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"av_scan": &schema.Schema{
 							Type:     schema.TypeString,
@@ -815,6 +870,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"outbreak_prevention": &schema.Schema{
 							Type:     schema.TypeString,

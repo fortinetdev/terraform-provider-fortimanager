@@ -63,6 +63,7 @@ func resourceObjectFirewallShaperPerIpShaper() *schema.Resource {
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_rev": &schema.Schema{
 				Type:     schema.TypeString,

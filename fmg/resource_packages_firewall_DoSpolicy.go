@@ -134,11 +134,13 @@ func resourcePackagesFirewallDosPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -153,11 +155,13 @@ func resourcePackagesFirewallDosPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

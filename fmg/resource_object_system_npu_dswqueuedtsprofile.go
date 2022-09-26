@@ -48,6 +48,7 @@ func resourceObjectSystemNpuDswQueueDtsProfile() *schema.Resource {
 			"iport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -57,6 +58,7 @@ func resourceObjectSystemNpuDswQueueDtsProfile() *schema.Resource {
 			"oport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"profile_id": &schema.Schema{
 				Type:     schema.TypeInt,

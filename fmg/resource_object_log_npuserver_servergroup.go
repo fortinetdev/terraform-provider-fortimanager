@@ -53,6 +53,7 @@ func resourceObjectLogNpuServerServerGroup() *schema.Resource {
 			"log_format": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_gen_event": &schema.Schema{
 				Type:     schema.TypeString,
@@ -61,10 +62,12 @@ func resourceObjectLogNpuServerServerGroup() *schema.Resource {
 			"log_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_tx_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_user_info": &schema.Schema{
 				Type:     schema.TypeString,

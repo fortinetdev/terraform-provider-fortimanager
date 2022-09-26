@@ -46,6 +46,7 @@ func resourcePackagesGlobalHeaderShapingPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"class_id": &schema.Schema{
 				Type:     schema.TypeString,

@@ -37,6 +37,7 @@ func resourceSystemAutoDeleteLogAutoDeletion() *schema.Resource {
 			"runat": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -46,6 +47,7 @@ func resourceSystemAutoDeleteLogAutoDeletion() *schema.Resource {
 			"value": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

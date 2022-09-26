@@ -54,6 +54,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"access_proxy6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -107,6 +108,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -117,11 +119,13 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"emailfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -139,6 +143,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"http_tunnel_auth": &schema.Schema{
 				Type:     schema.TypeString,
@@ -212,6 +217,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"profile_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -254,6 +260,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -272,6 +279,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -282,6 +290,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeString,
@@ -313,6 +322,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"utm_status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -361,6 +371,7 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ztna_tags_match_logic": &schema.Schema{
 				Type:     schema.TypeString,

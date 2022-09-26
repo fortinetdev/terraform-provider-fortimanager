@@ -159,6 +159,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"ssh_host_key_validation": &schema.Schema{
 										Type:     schema.TypeString,
@@ -219,6 +220,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -370,6 +372,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"ssh_host_key_validation": &schema.Schema{
 										Type:     schema.TypeString,
@@ -430,6 +433,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},

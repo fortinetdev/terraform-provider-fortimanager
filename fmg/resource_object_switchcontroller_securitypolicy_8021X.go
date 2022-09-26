@@ -138,6 +138,7 @@ func resourceObjectSwitchControllerSecurityPolicy8021X() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

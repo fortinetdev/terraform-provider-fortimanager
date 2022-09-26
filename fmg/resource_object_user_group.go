@@ -158,6 +158,7 @@ func resourceObjectUserGroup() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"sponsor": &schema.Schema{
 										Type:     schema.TypeString,
@@ -259,6 +260,7 @@ func resourceObjectUserGroup() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sslvpn_ftp": &schema.Schema{
 							Type:     schema.TypeString,
@@ -422,6 +424,7 @@ func resourceObjectUserGroup() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sponsor": &schema.Schema{
 							Type:     schema.TypeString,
@@ -474,6 +477,7 @@ func resourceObjectUserGroup() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mobile_phone": &schema.Schema{
 				Type:     schema.TypeString,

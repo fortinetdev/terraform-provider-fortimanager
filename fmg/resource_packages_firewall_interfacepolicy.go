@@ -95,11 +95,13 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"emailfilter_profile": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"emailfilter_profile_status": &schema.Schema{
 				Type:     schema.TypeString,
@@ -110,6 +112,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ips_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -142,6 +145,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"spamfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -155,6 +159,7 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

@@ -199,6 +199,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"mappedport": &schema.Schema{
 							Type:     schema.TypeString,
@@ -261,6 +262,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"healthcheck": &schema.Schema{
 										Type:     schema.TypeString,
@@ -325,11 +327,13 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"srcintf_filter": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_accept_ffdhe_groups": &schema.Schema{
 							Type:     schema.TypeString,
@@ -365,6 +369,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -519,6 +524,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"extintf": &schema.Schema{
 				Type:     schema.TypeString,
@@ -607,6 +613,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mappedport": &schema.Schema{
 				Type:     schema.TypeString,
@@ -674,6 +681,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"healthcheck": &schema.Schema{
 							Type:     schema.TypeString,
@@ -734,16 +742,19 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"src_filter": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf_filter": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_accept_ffdhe_groups": &schema.Schema{
 				Type:     schema.TypeString,
@@ -779,6 +790,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -898,6 +910,7 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

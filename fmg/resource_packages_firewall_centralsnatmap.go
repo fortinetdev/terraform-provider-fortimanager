@@ -58,6 +58,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dst_addr6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -67,6 +68,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"nat": &schema.Schema{
 				Type:     schema.TypeString,
@@ -76,11 +78,13 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"nat_ippool6": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"nat_port": &schema.Schema{
 				Type:     schema.TypeString,
@@ -98,6 +102,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"orig_addr6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -120,6 +125,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,

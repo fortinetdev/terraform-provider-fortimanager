@@ -58,6 +58,7 @@ func resourceObjectFirewallCarrierEndpointBwl() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"carrier_endpoint": &schema.Schema{
 							Type:     schema.TypeString,
@@ -67,6 +68,7 @@ func resourceObjectFirewallCarrierEndpointBwl() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"pattern_type": &schema.Schema{
 							Type:     schema.TypeString,

@@ -57,14 +57,17 @@ func resourceObjectLogNpuServerServerInfo() *schema.Resource {
 			"ip_family": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv4_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ipv6_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -73,6 +76,7 @@ func resourceObjectLogNpuServerServerInfo() *schema.Resource {
 			"template_tx_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"vdom": &schema.Schema{
 				Type:     schema.TypeString,

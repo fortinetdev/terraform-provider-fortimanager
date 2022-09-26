@@ -87,16 +87,19 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"action2": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"action3": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"block_time1": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -167,16 +170,19 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"action2": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"action3": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"block_time1": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -237,6 +243,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mm1_addr_hdr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -278,6 +285,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mm3_outbreak_prevention": &schema.Schema{
 				Type:     schema.TypeString,
@@ -291,6 +299,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mm4_outbreak_prevention": &schema.Schema{
 				Type:     schema.TypeString,
@@ -304,6 +313,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mm7_addr_hdr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -391,6 +401,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -445,6 +456,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"detect_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -510,6 +522,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"mmsc_port": &schema.Schema{
 							Type:     schema.TypeInt,

@@ -67,11 +67,13 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"cve": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"default_action": &schema.Schema{
 							Type:     schema.TypeString,
@@ -113,6 +115,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
@@ -130,6 +133,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"position": &schema.Schema{
 							Type:     schema.TypeString,
@@ -139,6 +143,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
@@ -172,11 +177,13 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"severity": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -186,11 +193,13 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"vuln_type": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -213,6 +222,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"applicationreal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -222,6 +232,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"locationreal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -243,6 +254,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"osreal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -252,6 +264,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protocolreal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -273,6 +286,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"severityreal": &schema.Schema{
 							Type:     schema.TypeString,

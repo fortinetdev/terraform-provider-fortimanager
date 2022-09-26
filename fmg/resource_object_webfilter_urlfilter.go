@@ -62,6 +62,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 						"antiphish_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dns_address_family": &schema.Schema{
 							Type:     schema.TypeString,
@@ -72,6 +73,7 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,

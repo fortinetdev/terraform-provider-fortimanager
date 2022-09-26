@@ -113,6 +113,7 @@ func resourceObjectUserRadius() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
@@ -203,6 +204,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"delimiter": &schema.Schema{
 							Type:     schema.TypeString,
@@ -248,6 +250,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"dp_log_period": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -277,6 +280,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"dp_validate_request_secret": &schema.Schema{
 							Type:     schema.TypeString,
@@ -422,6 +426,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rsso_log_period": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -439,6 +444,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rsso_validate_request_secret": &schema.Schema{
 							Type:     schema.TypeString,
@@ -448,6 +454,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"secondary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -457,6 +464,7 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -488,11 +496,13 @@ func resourceObjectUserRadius() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"tertiary_secret": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"tertiary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -597,6 +607,7 @@ func resourceObjectUserRadius() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rsso_log_period": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -614,6 +625,7 @@ func resourceObjectUserRadius() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rsso_validate_request_secret": &schema.Schema{
 				Type:     schema.TypeString,
@@ -667,6 +679,7 @@ func resourceObjectUserRadius() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"tertiary_secret": &schema.Schema{
 				Type:      schema.TypeSet,

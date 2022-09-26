@@ -49,6 +49,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ap_country": &schema.Schema{
 				Type:     schema.TypeString,
@@ -399,6 +400,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"fortipresence_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -428,6 +430,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"led_state": &schema.Schema{
 				Type:     schema.TypeString,
@@ -443,6 +446,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"login_passwd_change": &schema.Schema{
 				Type:     schema.TypeString,
@@ -618,6 +622,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"channel_bonding": &schema.Schema{
 							Type:     schema.TypeString,
@@ -703,6 +708,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -739,6 +745,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -756,6 +763,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -988,6 +996,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"channel_bonding": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1073,6 +1082,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1109,6 +1119,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1126,6 +1137,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1341,6 +1353,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"channel_bonding": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1414,6 +1427,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1447,6 +1461,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1464,6 +1479,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1513,6 +1529,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"vap_all": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1675,6 +1692,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"channel_bonding": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1748,6 +1766,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protection_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1781,6 +1800,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_cwp_success_string": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1798,6 +1818,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sam_report_intv": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1847,6 +1868,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"vap_all": &schema.Schema{
 							Type:     schema.TypeString,
@@ -5791,7 +5813,7 @@ func flattenObjectWirelessControllerWtpProfileSplitTunnelingAcl(v interface{}, d
 }
 
 func flattenObjectWirelessControllerWtpProfileSplitTunnelingAclDestIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectWirelessControllerWtpProfileSplitTunnelingAclId(v interface{}, d *schema.ResourceData, pre string) interface{} {

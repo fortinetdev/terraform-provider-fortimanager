@@ -135,6 +135,7 @@ func resourceObjectFirewallVip46() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"srcintf_filter": &schema.Schema{
 							Type:     schema.TypeString,
@@ -183,6 +184,7 @@ func resourceObjectFirewallVip46() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -260,6 +262,7 @@ func resourceObjectFirewallVip46() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf_filter": &schema.Schema{
 				Type:     schema.TypeString,
@@ -268,6 +271,7 @@ func resourceObjectFirewallVip46() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,

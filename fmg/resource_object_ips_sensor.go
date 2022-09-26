@@ -72,11 +72,13 @@ func resourceObjectIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"cve": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"exempt_ip": &schema.Schema{
 							Type:     schema.TypeList,
@@ -106,6 +108,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
@@ -126,11 +129,13 @@ func resourceObjectIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protocol": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
@@ -169,6 +174,7 @@ func resourceObjectIpsSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,

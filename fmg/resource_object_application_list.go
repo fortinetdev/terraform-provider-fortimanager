@@ -81,6 +81,7 @@ func resourceObjectApplicationList() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"violation_action": &schema.Schema{
 							Type:     schema.TypeString,
@@ -103,16 +104,19 @@ func resourceObjectApplicationList() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"application": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"behavior": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"category": &schema.Schema{
 							Type:     schema.TypeString,
@@ -122,6 +126,7 @@ func resourceObjectApplicationList() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -130,10 +135,12 @@ func resourceObjectApplicationList() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_packet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"parameters": &schema.Schema{
 							Type:     schema.TypeList,
@@ -179,23 +186,28 @@ func resourceObjectApplicationList() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"protocols": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine_expiry": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine_log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rate_count": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -204,19 +216,23 @@ func resourceObjectApplicationList() *schema.Resource {
 						"rate_duration": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"rate_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"rate_track": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"risk": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"session_ttl": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -234,16 +250,19 @@ func resourceObjectApplicationList() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"technology": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"vendor": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -283,11 +302,13 @@ func resourceObjectApplicationList() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"p2p_black_list": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"replacemsg_group": &schema.Schema{
 				Type:     schema.TypeString,

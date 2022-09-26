@@ -58,6 +58,7 @@ func resourceFmupdateAvIpsWebProxy() *schema.Resource {
 			"username": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

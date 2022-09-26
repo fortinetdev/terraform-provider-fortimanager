@@ -58,6 +58,7 @@ func resourceObjectWirelessControllerArrpProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"include_dfs_channel": &schema.Schema{
 				Type:     schema.TypeString,

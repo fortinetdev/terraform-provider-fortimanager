@@ -50,6 +50,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -58,6 +59,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"auto_asic_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"av_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -66,6 +68,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"captive_portal_exempt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -78,18 +81,22 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_rev": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -102,6 +109,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr4": &schema.Schema{
 				Type:     schema.TypeString,
@@ -126,6 +134,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"fixedport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fsso_groups": &schema.Schema{
 				Type:     schema.TypeString,
@@ -142,6 +151,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"http_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"icap_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -150,14 +160,17 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"inbound": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"inspection_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -182,10 +195,12 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"internet_service_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_src_custom": &schema.Schema{
 				Type:     schema.TypeString,
@@ -210,10 +225,12 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"internet_service_src_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ippool": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ips_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -222,10 +239,12 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"logtraffic_start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -238,10 +257,12 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"nat": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"outbound": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"per_ip_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -251,6 +272,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"poolname4": &schema.Schema{
 				Type:     schema.TypeString,
@@ -271,6 +293,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"profile_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"schedule": &schema.Schema{
 				Type:     schema.TypeString,
@@ -287,6 +310,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -299,6 +323,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr4": &schema.Schema{
 				Type:     schema.TypeString,
@@ -319,6 +344,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"ssh_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_ssh_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -359,6 +385,7 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"utm_status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -380,14 +407,17 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"wanopt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wanopt_detection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wanopt_passive_opt": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wanopt_peer": &schema.Schema{
 				Type:     schema.TypeString,
@@ -400,10 +430,12 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 			"webcache": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webcache_https": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"webfilter_profile": &schema.Schema{
 				Type:     schema.TypeString,

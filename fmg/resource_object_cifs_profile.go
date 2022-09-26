@@ -85,6 +85,7 @@ func resourceObjectCifsProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -124,6 +125,7 @@ func resourceObjectCifsProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"principal": &schema.Schema{
 							Type:     schema.TypeString,

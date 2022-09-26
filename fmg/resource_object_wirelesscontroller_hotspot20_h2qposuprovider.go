@@ -61,6 +61,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProvider() *schema.Resource
 						"lang": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -78,6 +79,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProvider() *schema.Resource
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"osu_nai": &schema.Schema{
 				Type:     schema.TypeString,
@@ -95,6 +97,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProvider() *schema.Resource
 						"lang": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"service_description": &schema.Schema{
 							Type:     schema.TypeString,

@@ -154,6 +154,7 @@ func resourceObjectWirelessControllerHotspot20HsProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"osu_provider_nai": &schema.Schema{
 				Type:     schema.TypeString,

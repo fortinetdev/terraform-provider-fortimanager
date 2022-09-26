@@ -38,6 +38,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
@@ -65,11 +66,13 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_charts": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -177,6 +180,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"decrypted_traffic_mirror": &schema.Schema{
 				Type:     schema.TypeString,
@@ -237,6 +241,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -271,6 +276,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -281,6 +287,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr6_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -290,6 +297,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_bypass": &schema.Schema{
 				Type:     schema.TypeString,
@@ -303,6 +311,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_profile_fallthrough": &schema.Schema{
 				Type:     schema.TypeString,
@@ -379,6 +388,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"forticlient_compliance_enforcement_portal": &schema.Schema{
 				Type:     schema.TypeString,
@@ -404,6 +414,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"geo_location": &schema.Schema{
 				Type:     schema.TypeString,
@@ -427,6 +438,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"gtp_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -444,6 +456,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"icap_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -535,21 +548,25 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_custom_group": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_group": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_name": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -563,21 +580,25 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src_custom_group": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src_group": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src_name": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -599,6 +620,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"label": &schema.Schema{
 				Type:     schema.TypeString,
@@ -684,11 +706,13 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"network_service_src_dynamic": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"np_acceleration": &schema.Schema{
 				Type:     schema.TypeString,
@@ -703,6 +727,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ntlm_guest": &schema.Schema{
 				Type:     schema.TypeString,
@@ -860,6 +885,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -879,6 +905,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"sgt_check": &schema.Schema{
 				Type:     schema.TypeString,
@@ -893,11 +920,13 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -908,6 +937,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr6_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -917,6 +947,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ssh_filter_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1039,6 +1070,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"utm_inspection_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1148,11 +1180,13 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ztna_geo_tag": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ztna_status": &schema.Schema{
 				Type:     schema.TypeString,

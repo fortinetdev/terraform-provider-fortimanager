@@ -58,6 +58,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 			"block_blacklisted_certificates": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"caname": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,6 +98,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"min_allowed_ssl_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
 							Type:     schema.TypeString,
@@ -382,6 +384,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"min_allowed_ssl_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -491,6 +494,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"min_allowed_ssl_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -604,6 +608,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"min_allowed_ssl_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -844,6 +849,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Type:     schema.TypeList,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -881,10 +887,12 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"ftps_client_certificate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"https_client_certificate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ftps_client_cert_request": &schema.Schema{
 							Type:     schema.TypeString,
@@ -901,6 +909,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"imaps_client_certificate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"imaps_client_cert_request": &schema.Schema{
 							Type:     schema.TypeString,
@@ -909,18 +918,22 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pop3s_client_certificate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"smtps_client_certificate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_other_client_certificate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pop3s_client_cert_request": &schema.Schema{
 							Type:     schema.TypeString,
@@ -960,6 +973,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 			"whitelist": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

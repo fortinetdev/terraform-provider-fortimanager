@@ -53,6 +53,7 @@ func resourceObjectWirelessControllerWidsProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ap_bgscan_disable_end": &schema.Schema{
 				Type:     schema.TypeString,
@@ -62,6 +63,7 @@ func resourceObjectWirelessControllerWidsProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ap_bgscan_disable_start": &schema.Schema{
 				Type:     schema.TypeString,

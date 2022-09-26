@@ -63,6 +63,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealm() *schema.Resource {
 												"id": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"index": &schema.Schema{
 													Type:     schema.TypeInt,
@@ -71,6 +72,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealm() *schema.Resource {
 												"val": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -82,6 +84,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealm() *schema.Resource {
 									"method": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -89,6 +92,7 @@ func resourceObjectWirelessControllerHotspot20AnqpNaiRealm() *schema.Resource {
 						"encoding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"nai_realm": &schema.Schema{
 							Type:     schema.TypeString,

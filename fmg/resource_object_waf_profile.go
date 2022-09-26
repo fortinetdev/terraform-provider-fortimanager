@@ -608,6 +608,7 @@ func resourceObjectWafProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
@@ -627,6 +628,7 @@ func resourceObjectWafProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -681,18 +683,22 @@ func resourceObjectWafProfile() *schema.Resource {
 									"action": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"case_sensitivity": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"direction": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"log": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"name": &schema.Schema{
 										Type:     schema.TypeString,
@@ -705,15 +711,18 @@ func resourceObjectWafProfile() *schema.Resource {
 									"severity": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"target": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},

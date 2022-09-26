@@ -110,6 +110,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -146,6 +147,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -159,6 +161,7 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,

@@ -150,6 +150,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"obj_id": &schema.Schema{
 							Type:     schema.TypeString,
@@ -183,6 +184,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"value": &schema.Schema{
 										Type:     schema.TypeString,
@@ -281,6 +283,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -342,6 +345,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

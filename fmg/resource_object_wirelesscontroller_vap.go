@@ -58,6 +58,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"_intf_device_access_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -77,6 +78,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"_intf_dhcp_relay_service": &schema.Schema{
 				Type:     schema.TypeString,
@@ -114,6 +116,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"_intf_listen_forticlient_connection": &schema.Schema{
 				Type:     schema.TypeString,
@@ -128,6 +131,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"acct_interim_interval": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -170,6 +174,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"broadcast_ssid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -219,6 +224,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_macauth_radius_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -228,6 +234,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"captive_portal_radius_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -283,6 +290,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"_intf_device_access_list": &schema.Schema{
 							Type:     schema.TypeString,
@@ -302,6 +310,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"_intf_dhcp_relay_service": &schema.Schema{
 							Type:     schema.TypeString,
@@ -339,6 +348,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"_intf_listen_forticlient_connection": &schema.Schema{
 							Type:     schema.TypeString,
@@ -373,6 +383,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"address_group": &schema.Schema{
 							Type:     schema.TypeString,
@@ -427,6 +438,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"broadcast_ssid": &schema.Schema{
 							Type:     schema.TypeString,
@@ -437,6 +449,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"bss_color_partial": &schema.Schema{
 							Type:     schema.TypeString,
@@ -470,6 +483,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"captive_portal_macauth_radius_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -479,6 +493,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"captive_portal_radius_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -640,6 +655,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"keyindex": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -686,6 +702,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"local_standalone_nat": &schema.Schema{
 							Type:     schema.TypeString,
@@ -817,6 +834,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"owe_transition": &schema.Schema{
 							Type:     schema.TypeString,
@@ -933,6 +951,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"radius_mac_mpsk_auth": &schema.Schema{
 							Type:     schema.TypeString,
@@ -952,6 +971,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11ac_mcs_map": &schema.Schema{
 							Type:     schema.TypeString,
@@ -961,11 +981,13 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11ac_ss34": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11ax_mcs_map": &schema.Schema{
 							Type:     schema.TypeString,
@@ -975,31 +997,37 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11ax_ss34": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11bg": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11n_ss12": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"rates_11n_ss34": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sae_groups": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sae_h2e_only": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1009,6 +1037,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"sae_pk": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1267,6 +1296,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"keyindex": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -1305,6 +1335,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"local_standalone_nat": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1434,6 +1465,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1490,6 +1522,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"owe_transition": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1631,6 +1664,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"radius_mac_mpsk_auth": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1650,51 +1684,61 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11ac_ss12": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11ac_ss34": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11ax_ss12": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11ax_ss34": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11bg": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11n_ss12": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"rates_11n_ss34": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"sae_groups": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"sae_password": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"scan_botnet_connections": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1705,6 +1749,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"secondary_wag_profile": &schema.Schema{
 				Type:     schema.TypeString,

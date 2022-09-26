@@ -49,6 +49,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"admin_username": &schema.Schema{
 				Type:     schema.TypeString,
@@ -67,6 +68,7 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"certificate_fingerprint": &schema.Schema{
 				Type:     schema.TypeString,

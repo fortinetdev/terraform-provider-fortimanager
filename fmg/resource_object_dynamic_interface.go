@@ -65,6 +65,7 @@ func resourceObjectDynamicInterface() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -107,6 +108,7 @@ func resourceObjectDynamicInterface() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

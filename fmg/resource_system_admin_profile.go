@@ -93,6 +93,7 @@ func resourceSystemAdminProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"field_name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -120,6 +121,7 @@ func resourceSystemAdminProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"datamask_key": &schema.Schema{
 				Type:      schema.TypeSet,

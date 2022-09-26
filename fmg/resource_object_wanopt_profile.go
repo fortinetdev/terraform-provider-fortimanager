@@ -69,6 +69,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"prefer_chunking": &schema.Schema{
 							Type:     schema.TypeString,
@@ -122,6 +123,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"prefer_chunking": &schema.Schema{
 							Type:     schema.TypeString,
@@ -176,6 +178,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"prefer_chunking": &schema.Schema{
 							Type:     schema.TypeString,
@@ -201,6 +204,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
@@ -243,6 +247,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"secure_tunnel": &schema.Schema{
 							Type:     schema.TypeString,
@@ -307,6 +312,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,

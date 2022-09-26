@@ -63,6 +63,7 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -73,6 +74,7 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -87,6 +89,7 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,6 +100,7 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,

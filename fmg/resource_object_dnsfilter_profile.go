@@ -128,6 +128,7 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ftgd_dns": &schema.Schema{
 				Type:     schema.TypeList,
@@ -166,6 +167,7 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

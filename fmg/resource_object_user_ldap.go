@@ -121,6 +121,7 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"client_cert_auth": &schema.Schema{
 							Type:     schema.TypeString,
@@ -188,6 +189,7 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"password_attr": &schema.Schema{
 							Type:     schema.TypeString,
@@ -216,6 +218,7 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"secondary_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -355,6 +358,7 @@ func resourceObjectUserLdap() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"secondary_server": &schema.Schema{
 				Type:     schema.TypeString,

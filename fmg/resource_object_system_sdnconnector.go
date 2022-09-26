@@ -72,6 +72,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"compartment_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -95,6 +96,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"role_arn": &schema.Schema{
 							Type:     schema.TypeString,
@@ -144,6 +146,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeString,
@@ -168,15 +171,18 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"ibm_region_gen1": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ibm_region_gen2": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"key_passwd": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"last_update": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -247,6 +253,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"private_key": &schema.Schema{
 				Type:     schema.TypeString,
@@ -353,6 +360,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"server_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -405,6 +413,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"vcenter_server": &schema.Schema{
 				Type:     schema.TypeString,
@@ -417,6 +426,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"verify_certificate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vmx_image_url": &schema.Schema{
 				Type:     schema.TypeString,

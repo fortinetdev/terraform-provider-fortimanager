@@ -82,6 +82,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"filter": &schema.Schema{
 													Type:     schema.TypeString,
@@ -91,6 +92,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -110,6 +112,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -119,6 +122,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
@@ -141,6 +145,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"principal": &schema.Schema{
 										Type:     schema.TypeString,
@@ -194,10 +199,12 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -216,40 +223,49 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"comfort_amount": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"comfort_interval": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_offloaded": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"stream_based_uncompressed_limit": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -258,26 +274,32 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"tcp_window_maximum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_minimum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_size": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -291,26 +313,32 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"address_ip_rating": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"block_page_status_code": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"comfort_amount": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"comfort_interval": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"fortinet_bar": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortinet_bar_port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"http_policy": &schema.Schema{
 							Type:     schema.TypeString,
@@ -319,33 +347,40 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"post_lang": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"range_block": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"retry_count": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -354,14 +389,17 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_offloaded": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"stream_based_uncompressed_limit": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -370,46 +408,57 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"streaming_content_bypass": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"strip_x_forwarded_for": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"switching_protocols": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_maximum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_minimum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_size": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tunnel_non_http": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"unknown_http_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -423,44 +472,54 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_offloaded": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -478,6 +537,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -492,31 +552,38 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -535,40 +602,49 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -587,44 +663,54 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_offloaded": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -647,48 +733,59 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server_busy": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_offloaded": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -702,27 +799,33 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"comfort_amount": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"comfort_interval": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_offloaded": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"stream_based_uncompressed_limit": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -731,26 +834,32 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"tcp_window_maximum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_minimum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_size": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -959,7 +1068,7 @@ func flattenObjectFirewallProfileProtocolOptionsCifs(v interface{}, d *schema.Re
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsDomainController(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallProfileProtocolOptionsCifsFileFilter(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

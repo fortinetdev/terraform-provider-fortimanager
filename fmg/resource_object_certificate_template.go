@@ -95,6 +95,7 @@ func resourceObjectCertificateTemplate() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"scep_ca_identifier": &schema.Schema{
 				Type:     schema.TypeString,

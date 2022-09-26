@@ -62,6 +62,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOperatorName() *schema.Resourc
 						"lang": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"value": &schema.Schema{
 							Type:     schema.TypeString,

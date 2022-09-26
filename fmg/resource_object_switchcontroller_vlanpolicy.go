@@ -49,6 +49,7 @@ func resourceObjectSwitchControllerVlanPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"allowed_vlans_all": &schema.Schema{
 				Type:     schema.TypeString,
@@ -73,6 +74,7 @@ func resourceObjectSwitchControllerVlanPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"vlan": &schema.Schema{
 				Type:     schema.TypeString,

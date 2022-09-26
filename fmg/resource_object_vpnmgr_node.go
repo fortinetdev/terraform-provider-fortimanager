@@ -166,6 +166,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -176,6 +177,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ip_range": &schema.Schema{
 				Type:     schema.TypeList,
@@ -306,6 +308,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"peergrp": &schema.Schema{
 				Type:     schema.TypeString,
@@ -352,6 +355,7 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"summary_addr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -395,11 +399,13 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"vpntable": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"xauthtype": &schema.Schema{
 				Type:     schema.TypeString,

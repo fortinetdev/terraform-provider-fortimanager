@@ -48,6 +48,7 @@ func resourceFmupdateFdsSettingUpdateSchedule() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

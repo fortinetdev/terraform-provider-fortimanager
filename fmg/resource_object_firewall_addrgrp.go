@@ -162,6 +162,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
@@ -176,6 +177,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -199,6 +201,7 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -553,7 +556,7 @@ func flattenObjectFirewallAddrgrpDynamicMappingGlobalObject(v interface{}, d *sc
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingTags(v interface{}, d *schema.ResourceData, pre string) interface{} {

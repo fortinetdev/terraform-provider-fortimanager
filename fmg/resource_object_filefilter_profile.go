@@ -96,6 +96,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -110,6 +111,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

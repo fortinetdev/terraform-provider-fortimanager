@@ -62,6 +62,7 @@ func resourceObjectFirewallInternetServiceEntry() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeInt,

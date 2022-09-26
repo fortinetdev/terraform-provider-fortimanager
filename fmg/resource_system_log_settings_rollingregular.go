@@ -33,6 +33,7 @@ func resourceSystemLogSettingsRollingRegular() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"del_files": &schema.Schema{
 				Type:     schema.TypeString,

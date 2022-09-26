@@ -49,6 +49,7 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"default_command_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -82,6 +83,7 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"filter": &schema.Schema{
 										Type:     schema.TypeString,
@@ -95,6 +97,7 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -118,6 +121,7 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -132,10 +136,12 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"alert": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -144,6 +150,7 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"pattern": &schema.Schema{
 							Type:     schema.TypeString,
@@ -152,10 +159,12 @@ func resourceObjectSshFilterProfile() *schema.Resource {
 						"severity": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

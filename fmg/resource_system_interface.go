@@ -77,6 +77,7 @@ func resourceSystemInterface() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"ip6_autoconf": &schema.Schema{
 							Type:     schema.TypeString,
@@ -148,6 +149,7 @@ func resourceSystemInterface() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"speed": &schema.Schema{
 				Type:     schema.TypeString,

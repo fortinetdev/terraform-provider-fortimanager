@@ -54,6 +54,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"icap_block_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -140,6 +141,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"header_group": &schema.Schema{
 							Type:     schema.TypeList,
@@ -149,6 +151,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 									"case_sensitivity": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"header": &schema.Schema{
 										Type:     schema.TypeString,
@@ -173,6 +176,7 @@ func resourceObjectIcapProfile() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeInt},
 							Optional: true,
+							Computed: true,
 						},
 						"name": &schema.Schema{
 							Type:     schema.TypeString,

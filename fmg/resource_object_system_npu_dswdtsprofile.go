@@ -48,6 +48,7 @@ func resourceObjectSystemNpuDswDtsProfile() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"min_limit": &schema.Schema{
 				Type:     schema.TypeInt,

@@ -57,6 +57,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"anti_replay": &schema.Schema{
 				Type:     schema.TypeString,
@@ -74,6 +75,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -170,6 +172,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 			"fixedport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fsso_groups": &schema.Schema{
 				Type:     schema.TypeString,
@@ -202,6 +205,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 			"ippool": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ips_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -214,10 +218,12 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 			"logtraffic": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"logtraffic_start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -343,6 +349,7 @@ func resourcePackagesFirewallPolicy6() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_mss_receiver": &schema.Schema{
 				Type:     schema.TypeInt,

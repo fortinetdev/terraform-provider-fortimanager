@@ -54,6 +54,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"comment": &schema.Schema{
 				Type:     schema.TypeString,
@@ -63,6 +64,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -78,6 +80,7 @@ func resourceObjectIpsCustom() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,

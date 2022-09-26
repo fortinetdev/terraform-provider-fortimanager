@@ -48,14 +48,17 @@ func resourceObjectLogNpuServer() *schema.Resource {
 			"log_processing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_processor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"netflow_ver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"server_group": &schema.Schema{
 				Type:     schema.TypeList,
@@ -69,6 +72,7 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"log_format": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_gen_event": &schema.Schema{
 							Type:     schema.TypeString,
@@ -77,10 +81,12 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"log_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_tx_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_user_info": &schema.Schema{
 							Type:     schema.TypeString,
@@ -117,14 +123,17 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"ip_family": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv4_server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipv6_server": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -133,6 +142,7 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"template_tx_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"vdom": &schema.Schema{
 							Type:     schema.TypeString,
@@ -144,10 +154,12 @@ func resourceObjectLogNpuServer() *schema.Resource {
 			"syslog_facility": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"syslog_severity": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

@@ -53,10 +53,12 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"auto_asic_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cgn_eif": &schema.Schema{
 				Type:     schema.TypeString,
@@ -85,6 +87,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"delay_tcp_npu_session": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -93,6 +96,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"dstaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstaddr6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -105,6 +109,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"firewall_session_dirty": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"global_label": &schema.Schema{
 				Type:     schema.TypeString,
@@ -129,6 +134,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"policy_offload": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"policyid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -146,6 +152,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"send_deny_packet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"service": &schema.Schema{
 				Type:     schema.TypeString,
@@ -154,6 +161,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"service_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr": &schema.Schema{
 				Type:     schema.TypeString,
@@ -162,6 +170,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"srcaddr_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcaddr6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -174,6 +183,7 @@ func resourcePackagesFirewallHyperscalePolicy() *schema.Resource {
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_timeout_pid": &schema.Schema{
 				Type:     schema.TypeString,

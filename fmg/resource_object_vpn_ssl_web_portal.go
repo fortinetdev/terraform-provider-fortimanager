@@ -129,6 +129,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"logon_user": &schema.Schema{
 										Type:     schema.TypeString,
@@ -190,6 +191,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"sso_username": &schema.Schema{
 										Type:     schema.TypeString,
@@ -342,6 +344,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"ipv6_split_tunneling_routing_negate": &schema.Schema{
 				Type:     schema.TypeString,
@@ -387,6 +390,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"mac_addr_mask": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -529,6 +533,7 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"split_tunneling_routing_negate": &schema.Schema{
 				Type:     schema.TypeString,

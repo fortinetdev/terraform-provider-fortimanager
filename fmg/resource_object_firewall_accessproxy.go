@@ -213,11 +213,13 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 									"priority": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"versions": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -429,6 +431,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -517,6 +520,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"port": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -525,10 +529,12 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1891,7 +1897,7 @@ func flattenObjectFirewallAccessProxyServerPubkeyAuthSettings(v interface{}, d *
 }
 
 func flattenObjectFirewallAccessProxyServerPubkeyAuthSettingsAuthCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

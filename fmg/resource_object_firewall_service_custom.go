@@ -49,6 +49,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"app_service_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -59,6 +60,7 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"category": &schema.Schema{
 				Type:     schema.TypeString,

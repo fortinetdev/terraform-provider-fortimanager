@@ -49,6 +49,7 @@ func resourceObjectSystemNpuPortNpuMap() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 			"npu_group_index": &schema.Schema{
 				Type:     schema.TypeInt,

@@ -42,6 +42,7 @@ func resourceDvmdbAdom() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"log_db_retention_hours": &schema.Schema{
 				Type:     schema.TypeInt,

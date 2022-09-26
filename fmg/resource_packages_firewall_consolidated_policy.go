@@ -70,6 +70,7 @@ func resourcePackagesFirewallConsolidatedPolicy() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,

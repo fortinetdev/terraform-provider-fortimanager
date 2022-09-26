@@ -93,6 +93,7 @@ func resourceObjectSwitchControllerDynamicPortPolicy() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"lldp_profile": &schema.Schema{
 							Type:     schema.TypeString,

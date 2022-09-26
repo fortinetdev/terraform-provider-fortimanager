@@ -179,6 +179,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -225,6 +226,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -277,16 +279,19 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"option2": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"option3": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"option4": &schema.Schema{
 							Type:     schema.TypeString,
@@ -317,6 +322,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
@@ -334,6 +340,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -400,6 +407,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"timezone": &schema.Schema{
 							Type:     schema.TypeString,
@@ -420,6 +428,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"wifi_ac_service": &schema.Schema{
 							Type:     schema.TypeString,
@@ -590,6 +599,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -635,6 +645,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -679,16 +690,19 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"option2": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"option3": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"option4": &schema.Schema{
 										Type:     schema.TypeString,
@@ -719,6 +733,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"type": &schema.Schema{
 													Type:     schema.TypeString,
@@ -736,6 +751,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -800,6 +816,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"timezone": &schema.Schema{
 										Type:     schema.TypeString,
@@ -817,6 +834,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"wifi_ac_service": &schema.Schema{
 										Type:     schema.TypeString,
@@ -863,6 +881,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"dhcp_relay_service": &schema.Schema{
 										Type:     schema.TypeString,
@@ -894,6 +913,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"dhcp6_information_request": &schema.Schema{
 													Type:     schema.TypeString,
@@ -943,6 +963,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"ip6_default_life": &schema.Schema{
 													Type:     schema.TypeInt,
@@ -977,6 +998,7 @@ func resourceObjectFspVlan() *schema.Resource {
 																Type:     schema.TypeSet,
 																Elem:     &schema.Schema{Type: schema.TypeString},
 																Optional: true,
+																Computed: true,
 															},
 															"rdnss_service": &schema.Schema{
 																Type:     schema.TypeString,
@@ -1050,6 +1072,7 @@ func resourceObjectFspVlan() *schema.Resource {
 																Type:     schema.TypeSet,
 																Elem:     &schema.Schema{Type: schema.TypeString},
 																Optional: true,
+																Computed: true,
 															},
 															"onlink_flag": &schema.Schema{
 																Type:     schema.TypeString,
@@ -1067,6 +1090,7 @@ func resourceObjectFspVlan() *schema.Resource {
 																Type:     schema.TypeSet,
 																Elem:     &schema.Schema{Type: schema.TypeString},
 																Optional: true,
+																Computed: true,
 															},
 															"valid_life_time": &schema.Schema{
 																Type:     schema.TypeInt,
@@ -1203,11 +1227,13 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"detectprotocol": &schema.Schema{
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"detectserver": &schema.Schema{
 													Type:     schema.TypeString,
@@ -1284,6 +1310,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"ap_discover": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1377,6 +1404,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"ddns_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1422,6 +1450,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"detectserver": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1475,6 +1504,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_relay_link_selection": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1520,6 +1550,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"drop_fragment": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1533,6 +1564,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"eap_identity": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1546,6 +1578,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"eap_supplicant": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1555,6 +1588,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"egress_cos": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1612,6 +1646,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"fdp": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1653,11 +1688,13 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"fp_disable": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"gateway_address": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1715,6 +1752,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"in_force_vlan_cos": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1782,6 +1820,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"dhcp6_information_request": &schema.Schema{
 										Type:     schema.TypeString,
@@ -1831,6 +1870,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"ip6_default_life": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1865,6 +1905,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"rdnss_service": &schema.Schema{
 													Type:     schema.TypeString,
@@ -1938,6 +1979,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"onlink_flag": &schema.Schema{
 													Type:     schema.TypeString,
@@ -1955,6 +1997,7 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeSet,
 													Elem:     &schema.Schema{Type: schema.TypeString},
 													Optional: true,
+													Computed: true,
 												},
 												"valid_life_time": &schema.Schema{
 													Type:     schema.TypeInt,
@@ -2246,6 +2289,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"peer_interface": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2283,6 +2327,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"pptp_server_ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2409,11 +2454,13 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"detectprotocol": &schema.Schema{
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"detectserver": &schema.Schema{
 										Type:     schema.TypeString,
@@ -2783,6 +2830,7 @@ func resourceObjectFspVlan() *schema.Resource {
 										Type:     schema.TypeSet,
 										Elem:     &schema.Schema{Type: schema.TypeString},
 										Optional: true,
+										Computed: true,
 									},
 									"vrdst_priority": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -2855,6 +2903,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"wifi_keyindex": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -2868,6 +2917,7 @@ func resourceObjectFspVlan() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"wifi_radius_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -7443,7 +7493,7 @@ func flattenObjectFspVlanInterfaceAtmProtocol(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFspVlanInterfaceAuthCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectFspVlanInterfaceAuthPortalAddr(v interface{}, d *schema.ResourceData, pre string) interface{} {

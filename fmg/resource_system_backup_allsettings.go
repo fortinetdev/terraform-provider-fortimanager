@@ -72,11 +72,13 @@ func resourceSystemBackupAllSettings() *schema.Resource {
 			"user": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"week_days": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

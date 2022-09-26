@@ -56,11 +56,13 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
+				Computed: true,
 			},
 			"application_charts": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"application_list": &schema.Schema{
 				Type:     schema.TypeString,
@@ -124,10 +126,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"diffservcode_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffservcode_rev": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -175,6 +179,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_profile_group": &schema.Schema{
 				Type:     schema.TypeString,
@@ -195,10 +200,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"firewall_session_dirty": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fixedport": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fsae": &schema.Schema{
 				Type:     schema.TypeString,
@@ -219,6 +226,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"http_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"icap_profile": &schema.Schema{
 				Type:     schema.TypeString,
@@ -235,6 +243,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"inbound": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"inspection_mode": &schema.Schema{
 				Type:     schema.TypeString,
@@ -244,6 +253,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"ippool": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ips_sensor": &schema.Schema{
 				Type:     schema.TypeString,
@@ -279,10 +289,12 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"natinbound": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"natoutbound": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"np_accelation": &schema.Schema{
 				Type:     schema.TypeString,
@@ -296,6 +308,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"outbound": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"per_ip_shaper": &schema.Schema{
 				Type:     schema.TypeString,
@@ -348,6 +361,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"send_deny_packet": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"service": &schema.Schema{
 				Type:     schema.TypeString,
@@ -387,6 +401,7 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 			"ssh_policy_redirect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ssl_mirror": &schema.Schema{
 				Type:     schema.TypeString,

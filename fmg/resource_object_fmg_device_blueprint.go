@@ -49,6 +49,7 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"description": &schema.Schema{
 				Type:     schema.TypeString,
@@ -58,6 +59,7 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"folder": &schema.Schema{
 				Type:     schema.TypeString,
@@ -84,6 +86,7 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"prov_type": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,6 +100,7 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

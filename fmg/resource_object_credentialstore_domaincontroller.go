@@ -56,15 +56,19 @@ func resourceObjectCredentialStoreDomainController() *schema.Resource {
 			"ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"password": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
-				Optional: true,
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
 			},
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -265,16 +269,6 @@ func refreshObjectObjectCredentialStoreDomainController(d *schema.ResourceData, 
 			}
 		} else {
 			return fmt.Errorf("Error reading ip6: %v", err)
-		}
-	}
-
-	if err = d.Set("password", flattenObjectCredentialStoreDomainControllerPassword(o["password"], d, "password")); err != nil {
-		if vv, ok := fortiAPIPatch(o["password"], "ObjectCredentialStoreDomainController-Password"); ok {
-			if err = d.Set("password", vv); err != nil {
-				return fmt.Errorf("Error reading password: %v", err)
-			}
-		} else {
-			return fmt.Errorf("Error reading password: %v", err)
 		}
 	}
 

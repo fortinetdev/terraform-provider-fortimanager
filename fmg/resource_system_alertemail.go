@@ -37,10 +37,12 @@ func resourceSystemAlertemail() *schema.Resource {
 			"fromaddress": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fromname": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"smtppassword": &schema.Schema{
 				Type:      schema.TypeSet,
@@ -57,6 +59,7 @@ func resourceSystemAlertemail() *schema.Resource {
 			"smtpserver": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"smtpuser": &schema.Schema{
 				Type:     schema.TypeString,

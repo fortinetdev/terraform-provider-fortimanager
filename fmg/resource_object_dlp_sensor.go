@@ -72,10 +72,12 @@ func resourceObjectDlpSensor() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"archive": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"company_identifier": &schema.Schema{
 							Type:     schema.TypeString,
@@ -96,6 +98,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 						"filter_by": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fp_sensitivity": &schema.Schema{
 							Type:     schema.TypeString,
@@ -117,6 +120,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"regexp": &schema.Schema{
 							Type:     schema.TypeString,
@@ -129,10 +133,12 @@ func resourceObjectDlpSensor() *schema.Resource {
 						"severity": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -145,6 +151,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"nac_quar_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -168,6 +175,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,

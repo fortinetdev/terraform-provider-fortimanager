@@ -68,11 +68,13 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"end_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -101,11 +103,13 @@ func resourcePackagesFirewallMulticastPolicy6() *schema.Resource {
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"start_port": &schema.Schema{
 				Type:     schema.TypeInt,
