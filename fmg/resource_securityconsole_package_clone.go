@@ -313,7 +313,7 @@ func expandSecurityconsolePackageCloneScopeVdom(d *schema.ResourceData, v interf
 func getObjectSecurityconsolePackageClone(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandSecurityconsolePackageCloneAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

@@ -269,7 +269,7 @@ func expandSecurityconsoleSignCertificateTemplateTemplate(d *schema.ResourceData
 func getObjectSecurityconsoleSignCertificateTemplate(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandSecurityconsoleSignCertificateTemplateAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

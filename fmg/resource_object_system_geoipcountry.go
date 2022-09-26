@@ -219,7 +219,7 @@ func expandObjectSystemGeoipCountryName(d *schema.ResourceData, v interface{}, p
 func getObjectObjectSystemGeoipCountry(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectSystemGeoipCountryId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

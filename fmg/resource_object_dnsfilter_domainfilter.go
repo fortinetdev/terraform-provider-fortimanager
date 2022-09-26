@@ -464,7 +464,7 @@ func getObjectObjectDnsfilterDomainFilter(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectDnsfilterDomainFilterId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

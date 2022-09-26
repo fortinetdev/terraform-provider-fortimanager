@@ -177,7 +177,7 @@ func expandSecurityconsolePackageMovePkg(d *schema.ResourceData, v interface{}, 
 func getObjectSecurityconsolePackageMove(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandSecurityconsolePackageMoveAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

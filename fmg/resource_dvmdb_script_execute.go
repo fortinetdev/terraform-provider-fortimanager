@@ -315,7 +315,7 @@ func expandDvmdbScriptExecuteScript(d *schema.ResourceData, v interface{}, pre s
 func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandDvmdbScriptExecuteAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

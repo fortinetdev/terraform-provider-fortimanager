@@ -287,7 +287,7 @@ func expandObjectFirewallInternetServiceEntryProtocol(d *schema.ResourceData, v 
 func getObjectObjectFirewallInternetServiceEntry(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectFirewallInternetServiceEntryId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

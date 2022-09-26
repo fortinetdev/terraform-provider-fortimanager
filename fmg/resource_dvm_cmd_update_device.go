@@ -157,7 +157,7 @@ func expandDvmCmdUpdateDeviceFlags(d *schema.ResourceData, v interface{}, pre st
 func getObjectDvmCmdUpdateDevice(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandDvmCmdUpdateDeviceAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

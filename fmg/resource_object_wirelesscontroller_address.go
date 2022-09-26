@@ -243,7 +243,7 @@ func expandObjectWirelessControllerAddressPolicy(d *schema.ResourceData, v inter
 func getObjectObjectWirelessControllerAddress(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectWirelessControllerAddressId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

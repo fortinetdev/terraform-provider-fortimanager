@@ -29,7 +29,7 @@ func resourceSystemAdminLdap() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
-			"adom": &schema.Schema{
+			"fmgadom": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem: &schema.Resource{
@@ -693,7 +693,7 @@ func expandSystemAdminLdapUsername(d *schema.ResourceData, v interface{}, pre st
 func getObjectSystemAdminLdap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandSystemAdminLdapAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

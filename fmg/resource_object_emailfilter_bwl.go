@@ -556,7 +556,7 @@ func getObjectObjectEmailfilterBwl(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectEmailfilterBwlId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

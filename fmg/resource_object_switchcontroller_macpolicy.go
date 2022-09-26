@@ -340,7 +340,7 @@ func getObjectObjectSwitchControllerMacPolicy(d *schema.ResourceData) (*map[stri
 		}
 	}
 
-	if v, ok := d.GetOk("fmgcount"); ok || d.HasChange("count") {
+	if v, ok := d.GetOk("fmgcount"); ok || d.HasChange("fmgcount") {
 		t, err := expandObjectSwitchControllerMacPolicyCount(d, v, "fmgcount")
 		if err != nil {
 			return &obj, err

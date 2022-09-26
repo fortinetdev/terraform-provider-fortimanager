@@ -710,7 +710,7 @@ func expandDvmCmdAddDeviceGroupsVdom(d *schema.ResourceData, v interface{}, pre 
 func getObjectDvmCmdAddDevice(d *schema.ResourceData, deviceVersion string) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandDvmCmdAddDeviceAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

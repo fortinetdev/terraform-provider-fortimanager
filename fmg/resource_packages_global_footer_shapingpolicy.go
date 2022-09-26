@@ -1327,7 +1327,7 @@ func getObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData) (*map[st
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandPackagesGlobalFooterShapingPolicyId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

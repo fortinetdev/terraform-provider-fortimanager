@@ -359,7 +359,7 @@ func expandSecurityconsoleInstallPackageScopeVdom(d *schema.ResourceData, v inte
 func getObjectSecurityconsoleInstallPackage(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
-	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("adom") {
+	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
 		t, err := expandSecurityconsoleInstallPackageAdom(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err

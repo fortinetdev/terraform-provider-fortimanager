@@ -270,7 +270,7 @@ func getObjectSystemSqlCustomIndex(d *schema.ResourceData) (*map[string]interfac
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandSystemSqlCustomIndexId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

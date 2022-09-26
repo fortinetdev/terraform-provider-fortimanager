@@ -238,7 +238,7 @@ func getObjectSystemSqlCustomSkipidx(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandSystemSqlCustomSkipidxId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

@@ -487,7 +487,7 @@ func getObjectObjectSpamfilterMheader(d *schema.ResourceData) (*map[string]inter
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectSpamfilterMheaderId(d, v, "fosid")
 		if err != nil {
 			return &obj, err

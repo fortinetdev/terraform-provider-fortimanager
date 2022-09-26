@@ -599,7 +599,7 @@ func getObjectObjectUserFssoPolling(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
-	if v, ok := d.GetOk("fosid"); ok || d.HasChange("id") {
+	if v, ok := d.GetOk("fosid"); ok || d.HasChange("fosid") {
 		t, err := expandObjectUserFssoPollingId(d, v, "fosid")
 		if err != nil {
 			return &obj, err
