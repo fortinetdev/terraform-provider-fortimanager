@@ -69,6 +69,8 @@ github.com/fatih/color v1.13.0/go.mod h1:kLAiJbzzSOZDVNGyDpeOxJ47H46qBXwg5ILebYF
 github.com/flynn/go-shlex v0.0.0-20150515145356-3f9db97f8568/go.mod h1:xEzjJPgXI435gkrCt3MPfRiAkVrwSbHsst4LCFVfpJc=
 github.com/fortinetdev/forti-sdk-go v1.8.0 h1:IFIzOVfp3FkDsov6YS0j5exZDv6hZ6ZxFII8gKHYeOI=
 github.com/fortinetdev/forti-sdk-go v1.8.0/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
+github.com/fortinetdev/forti-sdk-go v1.9.1 h1:Bjc5DSQXVyl7ngm4LunXL0t3EdMZFX9i+e2bfD/F3g8=
+github.com/fortinetdev/forti-sdk-go v1.9.1/go.mod h1:7ZX6yVsDHI9cnWK4m4zVboM38MQpiPTTe0mcGAHXqQM=
 github.com/ghodss/yaml v1.0.0/go.mod h1:4dBDuWmgqj2HViK6kFavaiC9ZROes6MMH2rRYeMEF04=
 github.com/gliderlabs/ssh v0.2.2/go.mod h1:U7qILu1NlMHj9FlMhZLlkCdDnU1DBEAqr0aevW3Awn0=
 github.com/go-git/gcfg v1.5.0/go.mod h1:5m20vg6GwYabIxaOonVkTdrILxQMpEShl1xiMF4ua+E=
