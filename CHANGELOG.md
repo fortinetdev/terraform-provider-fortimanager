@@ -1,4 +1,36 @@
+## 1.7.0 (Unreleased)
+
 ## 1.6.0 (Unreleased)
+
+IMPROVEMENTS:
+
+* Support FortiManager version 7.2.1
+* Update parameters' Computed feature to allow remove operation of parameters
+* Fix some argument type convert issues
+* Fix some panic issues
+* Upgrade Terraform SDK to v2
+* Fix block parameter could not be deleted issue
+* Improve performance of move resources
+* Fix capital letter issue
+
+FEATURES:
+
+* **New Resource:** `fortimanager_object_firewall_accessproxy6`
+* **New Resource:** `fortimanager_object_firewall_accessproxy6_move`
+* **New Resource:** `fortimanager_object_fmg_fabric_authorization_template`
+* **New Resource:** `fortimanager_object_switchcontroller_dynamicportpolicy`
+* **New Resource:** `fortimanager_object_switchcontroller_fortilinksettings`
+* **New Resource:** `fortimanager_object_switchcontroller_macpolicy`
+* **New Resource:** `fortimanager_object_switchcontroller_switchinterfacetag`
+* **New Resource:** `fortimanager_object_switchcontroller_trafficpolicy`
+* **New Resource:** `fortimanager_object_switchcontroller_vlanpolicy`
+* **New Resource:** `fortimanager_object_user_flexvm`
+* **New Resource:** `fortimanager_object_user_json`
+* **New Resource:** `fortimanager_object_wirelesscontroller_accesscontrollist`
+* **New Resource:** `fortimanager_object_wirelesscontroller_ssidpolicy`
+* **New Resource:** `fortimanager_object_wirelesscontroller_syslogprofile`
+* **New Resource:** `fortimanager_packages_user_nacpolicy`
+* **New Resource:** `fortimanager_packages_user_nacpolicy_move`
 
 ## 1.5.0 (July 15, 2022)
 
