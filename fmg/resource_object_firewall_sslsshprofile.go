@@ -73,6 +73,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"cert_validation_failure": &schema.Schema{
@@ -147,6 +148,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allow_invalid_server_cert": &schema.Schema{
@@ -242,6 +244,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allow_invalid_server_cert": &schema.Schema{
@@ -347,6 +350,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allow_invalid_server_cert": &schema.Schema{
@@ -457,6 +461,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allow_invalid_server_cert": &schema.Schema{
@@ -571,6 +576,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allow_invalid_server_cert": &schema.Schema{
@@ -671,6 +677,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"inspect_all": &schema.Schema{
@@ -720,6 +727,7 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allow_invalid_server_cert": &schema.Schema{

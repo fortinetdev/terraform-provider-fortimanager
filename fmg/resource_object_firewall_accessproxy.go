@@ -548,6 +548,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"auth_ca": &schema.Schema{
@@ -562,6 +563,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 									"critical": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"data": &schema.Schema{
 										Type:     schema.TypeString,
@@ -574,6 +576,7 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -581,26 +584,32 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 						"permit_agent_forwarding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"permit_port_forwarding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"permit_pty": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"permit_user_rc": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"permit_x11_forwarding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"source_address": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

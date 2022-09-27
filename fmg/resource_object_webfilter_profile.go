@@ -49,6 +49,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"authentication": &schema.Schema{
@@ -153,6 +154,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"entries": &schema.Schema{
@@ -223,6 +225,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"exempt_quota": &schema.Schema{
@@ -383,6 +386,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ovrd_cookie": &schema.Schema{
@@ -449,6 +453,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"redirect_header": &schema.Schema{
@@ -478,6 +483,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"allowlist": &schema.Schema{
@@ -489,6 +495,7 @@ func resourceObjectWebfilterProfile() *schema.Resource {
 						"blocklist": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"blacklist": &schema.Schema{
 							Type:     schema.TypeString,

@@ -49,6 +49,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"domain_controller": &schema.Schema{
@@ -59,6 +60,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
+							Computed: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"entries": &schema.Schema{
@@ -117,6 +119,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ports": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -127,10 +130,12 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"scan_bzip2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server_credential_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server_keytab": &schema.Schema{
 							Type:     schema.TypeList,
@@ -157,30 +162,37 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_maximum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_minimum": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_size": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_window_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_nest_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"uncompressed_oversize_limit": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -193,6 +205,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ports": &schema.Schema{
@@ -218,6 +231,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"comfort_amount": &schema.Schema{
@@ -308,6 +322,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"address_ip_rating": &schema.Schema{
@@ -467,6 +482,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"inspect_all": &schema.Schema{
@@ -528,6 +544,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"signature": &schema.Schema{
@@ -546,6 +563,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"options": &schema.Schema{
@@ -597,6 +615,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"inspect_all": &schema.Schema{
@@ -658,6 +677,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"inspect_all": &schema.Schema{
@@ -728,6 +748,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"inspect_all": &schema.Schema{
@@ -794,6 +815,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"comfort_amount": &schema.Schema{

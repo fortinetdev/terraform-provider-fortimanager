@@ -81,6 +81,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"action1": &schema.Schema{
@@ -164,6 +165,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"action1": &schema.Schema{
@@ -410,6 +412,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"alert_int": &schema.Schema{
@@ -595,6 +598,7 @@ func resourceObjectFirewallMmsProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"external_blocklist": &schema.Schema{

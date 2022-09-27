@@ -47,6 +47,7 @@ func resourceObjectSystemNpuUdpTimeoutProfile() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 			"udp_idle": &schema.Schema{
@@ -78,7 +79,7 @@ func resourceObjectSystemNpuUdpTimeoutProfileCreate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error creating ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceObjectSystemNpuUdpTimeoutProfileRead(d, m)
 }
@@ -106,7 +107,7 @@ func resourceObjectSystemNpuUdpTimeoutProfileUpdate(d *schema.ResourceData, m in
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceObjectSystemNpuUdpTimeoutProfileRead(d, m)
 }

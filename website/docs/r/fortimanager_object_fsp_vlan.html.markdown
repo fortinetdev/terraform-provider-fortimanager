@@ -314,7 +314,7 @@ The `interface` block supports:
 
 * `ip` - Ip.
 * `ipv6` - Ipv6. The structure of `ipv6` block is documented below.
-* `secondary_IP` - Secondary-Ip. Valid values: `disable`, `enable`.
+* `secondary_ip` - Secondary-Ip. Valid values: `disable`, `enable`.
 
 * `secondaryip` - Secondaryip. The structure of `secondaryip` block is documented below.
 * `vlanid` - Vlanid.
@@ -757,7 +757,7 @@ The `interface` block supports:
 * `sample_rate` - sFlow sample rate (10 - 99999).
 * `scan_botnet_connections` - Scan-Botnet-Connections. Valid values: `disable`, `block`, `monitor`.
 
-* `secondary_IP` - Enable/disable adding a secondary IP to this interface. Valid values: `disable`, `enable`.
+* `secondary_ip` - Enable/disable adding a secondary IP to this interface. Valid values: `disable`, `enable`.
 
 * `secondaryip` - Secondaryip. The structure of `secondaryip` block is documented below.
 * `security_8021x_dynamic_vlan_id` - VLAN ID for virtual switch.

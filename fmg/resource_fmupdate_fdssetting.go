@@ -78,6 +78,7 @@ func resourceFmupdateFdsSetting() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ip": &schema.Schema{
@@ -102,6 +103,7 @@ func resourceFmupdateFdsSetting() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"announce_ip": &schema.Schema{
@@ -148,6 +150,7 @@ func resourceFmupdateFdsSetting() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"servlist": &schema.Schema{
@@ -246,6 +249,7 @@ func resourceFmupdateFdsSetting() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"day": &schema.Schema{

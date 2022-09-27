@@ -84,6 +84,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -145,6 +146,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"cover_page": &schema.Schema{
@@ -295,6 +297,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -352,6 +355,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -418,6 +422,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -489,6 +494,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -549,6 +555,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"expiry": &schema.Schema{
@@ -578,6 +585,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -640,6 +648,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"external_blocklist": &schema.Schema{
@@ -659,6 +668,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -734,6 +744,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -769,6 +780,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{
@@ -836,6 +848,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"archive_block": &schema.Schema{

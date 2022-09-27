@@ -49,6 +49,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"scan": &schema.Schema{
@@ -90,6 +91,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"npu_dos_meter_mode": &schema.Schema{
@@ -183,6 +185,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"capwap_minlen_err": &schema.Schema{
@@ -540,6 +543,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"all_protocol": &schema.Schema{
@@ -663,6 +667,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"max_timeout": &schema.Schema{
@@ -749,6 +754,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"cos0": &schema.Schema{
@@ -827,6 +833,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ethernet_type": &schema.Schema{
@@ -1378,6 +1385,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"ports_using_npu": &schema.Schema{
@@ -1393,6 +1401,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"bfd": &schema.Schema{
@@ -1469,6 +1478,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"gap": &schema.Schema{
@@ -1500,6 +1510,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"computation": &schema.Schema{

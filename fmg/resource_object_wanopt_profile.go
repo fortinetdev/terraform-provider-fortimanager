@@ -53,6 +53,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"byte_caching": &schema.Schema{
@@ -107,6 +108,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"byte_caching": &schema.Schema{
@@ -162,6 +164,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"byte_caching": &schema.Schema{
@@ -231,6 +234,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"byte_caching": &schema.Schema{
@@ -276,6 +280,7 @@ func resourceObjectWanoptProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"byte_caching": &schema.Schema{

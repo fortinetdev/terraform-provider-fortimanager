@@ -115,6 +115,7 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"domain_filter_table": &schema.Schema{
@@ -134,6 +135,7 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"filters": &schema.Schema{

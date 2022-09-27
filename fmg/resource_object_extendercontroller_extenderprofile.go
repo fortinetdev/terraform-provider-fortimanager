@@ -60,25 +60,30 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"controller_report": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
+							Computed: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"interval": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"signal_threshold": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -91,33 +96,40 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
+							Computed: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"auto_switch": &schema.Schema{
 										Type:     schema.TypeList,
 										Optional: true,
 										MaxItems: 1,
+										Computed: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"dataplan": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_period": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_threshold": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"signal": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back": &schema.Schema{
 													Type:     schema.TypeSet,
@@ -128,10 +140,12 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back_timer": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -143,10 +157,12 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"default_sim": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gps": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -163,26 +179,31 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"redundant_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 								},
 							},
@@ -191,33 +212,40 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
+							Computed: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"auto_switch": &schema.Schema{
 										Type:     schema.TypeList,
 										Optional: true,
 										MaxItems: 1,
+										Computed: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"dataplan": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_period": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_threshold": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"signal": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back": &schema.Schema{
 													Type:     schema.TypeSet,
@@ -228,10 +256,12 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back_timer": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -243,14 +273,17 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"default_sim": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gps": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"preferred_carrier": &schema.Schema{
 										Type:     schema.TypeString,
@@ -263,26 +296,31 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"redundant_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
-										Type:     schema.TypeSet,
-										Elem:     &schema.Schema{Type: schema.TypeString},
-										Optional: true,
-										Computed: true,
+										Type:      schema.TypeSet,
+										Elem:      &schema.Schema{Type: schema.TypeString},
+										Optional:  true,
+										Sensitive: true,
+										Computed:  true,
 									},
 								},
 							},
@@ -291,41 +329,50 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 							Type:     schema.TypeList,
 							Optional: true,
 							MaxItems: 1,
+							Computed: true,
 							Elem: &schema.Resource{
 								Schema: map[string]*schema.Schema{
 									"alert": &schema.Schema{
 										Type:     schema.TypeList,
 										Optional: true,
 										MaxItems: 1,
+										Computed: true,
 										Elem: &schema.Resource{
 											Schema: map[string]*schema.Schema{
 												"data_exhausted": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"fgt_backup_mode_switch": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"low_signal_strength": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"mode_switch": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"os_image_fallback": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"session_disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"system_reboot": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -359,6 +406,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -384,6 +432,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 				Type:     schema.TypeList,
 				Optional: true,
 				MaxItems: 1,
+				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"backhaul": &schema.Schema{
@@ -652,7 +701,7 @@ func flattenObjectExtenderControllerExtenderProfileCellularControllerReportStatu
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularDataplan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularModem1(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -712,6 +761,10 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem1(v interface{},
 	pre_append = pre + ".0." + "sim1_pin_code"
 	if _, ok := i["sim1-pin-code"]; ok {
 		result["sim1_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem1Sim1PinCode(i["sim1-pin-code"], d, pre_append)
+		c := d.Get(pre_append).(*schema.Set)
+		if c.Len() > 0 {
+			result["sim1_pin_code"] = c
+		}
 	}
 
 	pre_append = pre + ".0." + "sim2_pin"
@@ -722,6 +775,10 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem1(v interface{},
 	pre_append = pre + ".0." + "sim2_pin_code"
 	if _, ok := i["sim2-pin-code"]; ok {
 		result["sim2_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem1Sim2PinCode(i["sim2-pin-code"], d, pre_append)
+		c := d.Get(pre_append).(*schema.Set)
+		if c.Len() > 0 {
+			result["sim2_pin_code"] = c
+		}
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -914,6 +971,10 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem2(v interface{},
 	pre_append = pre + ".0." + "sim1_pin_code"
 	if _, ok := i["sim1-pin-code"]; ok {
 		result["sim1_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem2Sim1PinCode(i["sim1-pin-code"], d, pre_append)
+		c := d.Get(pre_append).(*schema.Set)
+		if c.Len() > 0 {
+			result["sim1_pin_code"] = c
+		}
 	}
 
 	pre_append = pre + ".0." + "sim2_pin"
@@ -924,6 +985,10 @@ func flattenObjectExtenderControllerExtenderProfileCellularModem2(v interface{},
 	pre_append = pre + ".0." + "sim2_pin_code"
 	if _, ok := i["sim2-pin-code"]; ok {
 		result["sim2_pin_code"] = flattenObjectExtenderControllerExtenderProfileCellularModem2Sim2PinCode(i["sim2-pin-code"], d, pre_append)
+		c := d.Get(pre_append).(*schema.Set)
+		if c.Len() > 0 {
+			result["sim2_pin_code"] = c
+		}
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -1136,7 +1201,7 @@ func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlert(
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertDataExhausted(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertFgtBackupModeSwitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1144,23 +1209,23 @@ func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertF
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertLowSignalStrength(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertModeSwitch(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertOsImageFallback(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertSessionDisconnect(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationAlertSystemReboot(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiver(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {

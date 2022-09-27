@@ -25,7 +25,7 @@ resource "fortimanager_fmupdate_fdssetting" "trname" {
 The following arguments are supported:
 
 
-* `User_Agent` - Configure the user agent string.
+* `user_agent` - Configure the user agent string.
 * `fds_clt_ssl_protocol` - The SSL protocols version for connecting fds server (default = tlsv1.2). sslv3 - set SSLv3 as the client version. tlsv1.0 - set TLSv1.0 as the client version. tlsv1.1 - set TLSv1.1 as the client version. tlsv1.2 - set TLSv1.2 as the client version (default). tlsv1.3 - set TLSv1.3 as the client version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
 
 * `fds_ssl_protocol` - The SSL protocols version for receiving fgt connection (default = tlsv1.2). sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.

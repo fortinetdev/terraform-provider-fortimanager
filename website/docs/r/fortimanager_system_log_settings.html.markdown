@@ -25,17 +25,17 @@ resource "fortimanager_system_log_settings" "trname" {
 The following arguments are supported:
 
 
-* `FAC_custom_field1` - Name of custom log field to index.
-* `FAZ_custom_field1` - Name of custom log field to index.
-* `FCH_custom_field1` - Name of custom log field to index.
-* `FCT_custom_field1` - Name of custom log field to index.
-* `FDD_custom_field1` - Name of custom log field to index.
-* `FGT_custom_field1` - Name of custom log field to index.
-* `FMG_custom_field1` - Name of custom log field to index.
-* `FML_custom_field1` - Name of custom log field to index.
-* `FPX_custom_field1` - Name of custom log field to index.
-* `FSA_custom_field1` - Name of custom log field to index.
-* `FWB_custom_field1` - Name of custom log field to index.
+* `fac_custom_field1` - Name of custom log field to index.
+* `faz_custom_field1` - Name of custom log field to index.
+* `fch_custom_field1` - Name of custom log field to index.
+* `fct_custom_field1` - Name of custom log field to index.
+* `fdd_custom_field1` - Name of custom log field to index.
+* `fgt_custom_field1` - Name of custom log field to index.
+* `fmg_custom_field1` - Name of custom log field to index.
+* `fml_custom_field1` - Name of custom log field to index.
+* `fpx_custom_field1` - Name of custom log field to index.
+* `fsa_custom_field1` - Name of custom log field to index.
+* `fwb_custom_field1` - Name of custom log field to index.
 * `browse_max_logfiles` - Maximum number of log files for each log browse attempt for each Adom.
 * `dns_resolve_dstip` - Enable/Disable resolving destination IP by DNS. disable - Disable resolving destination IP by DNS. enable - Enable resolving destination IP by DNS. Valid values: `disable`, `enable`.
 
