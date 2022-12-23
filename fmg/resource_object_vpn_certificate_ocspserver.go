@@ -84,18 +84,20 @@ func resourceObjectVpnCertificateOcspServerCreate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnCertificateOcspServer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnCertificateOcspServer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVpnCertificateOcspServer(obj, adomv, nil)
+	_, err = c.CreateObjectVpnCertificateOcspServer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnCertificateOcspServer resource: %v", err)
@@ -111,18 +113,20 @@ func resourceObjectVpnCertificateOcspServerUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnCertificateOcspServer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnCertificateOcspServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnCertificateOcspServer(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVpnCertificateOcspServer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnCertificateOcspServer resource: %v", err)
 	}
@@ -140,13 +144,15 @@ func resourceObjectVpnCertificateOcspServerDelete(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnCertificateOcspServer(adomv, mkey, nil)
+	err = c.DeleteObjectVpnCertificateOcspServer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnCertificateOcspServer resource: %v", err)
 	}
@@ -162,13 +168,15 @@ func resourceObjectVpnCertificateOcspServerRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVpnCertificateOcspServer(adomv, mkey, nil)
+	o, err := c.ReadObjectVpnCertificateOcspServer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVpnCertificateOcspServer resource: %v", err)
 	}

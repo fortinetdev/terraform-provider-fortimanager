@@ -100,14 +100,16 @@ func resourceSystemNtpUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemNtp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemNtp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemNtp(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemNtp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemNtp resource: %v", err)
 	}
@@ -125,9 +127,11 @@ func resourceSystemNtpDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemNtp(adomv, mkey, nil)
+	err = c.DeleteSystemNtp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemNtp resource: %v", err)
 	}
@@ -143,9 +147,11 @@ func resourceSystemNtpRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemNtp(adomv, mkey, nil)
+	o, err := c.ReadSystemNtp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemNtp resource: %v", err)
 	}

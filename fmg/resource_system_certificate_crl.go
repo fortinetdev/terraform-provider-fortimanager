@@ -61,14 +61,16 @@ func resourceSystemCertificateCrlCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateCrl(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateCrl resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemCertificateCrl(obj, adomv, nil)
+	_, err = c.CreateSystemCertificateCrl(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateCrl resource: %v", err)
@@ -84,14 +86,16 @@ func resourceSystemCertificateCrlUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateCrl(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateCrl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCertificateCrl(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemCertificateCrl(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateCrl resource: %v", err)
 	}
@@ -109,9 +113,11 @@ func resourceSystemCertificateCrlDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCertificateCrl(adomv, mkey, nil)
+	err = c.DeleteSystemCertificateCrl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCertificateCrl resource: %v", err)
 	}
@@ -127,9 +133,11 @@ func resourceSystemCertificateCrlRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemCertificateCrl(adomv, mkey, nil)
+	o, err := c.ReadSystemCertificateCrl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemCertificateCrl resource: %v", err)
 	}

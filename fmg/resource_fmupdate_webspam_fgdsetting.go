@@ -265,14 +265,16 @@ func resourceFmupdateWebSpamFgdSettingUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateWebSpamFgdSetting(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateWebSpamFgdSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateWebSpamFgdSetting(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateWebSpamFgdSetting(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateWebSpamFgdSetting resource: %v", err)
 	}
@@ -290,9 +292,11 @@ func resourceFmupdateWebSpamFgdSettingDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateWebSpamFgdSetting(adomv, mkey, nil)
+	err = c.DeleteFmupdateWebSpamFgdSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateWebSpamFgdSetting resource: %v", err)
 	}
@@ -308,9 +312,11 @@ func resourceFmupdateWebSpamFgdSettingRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateWebSpamFgdSetting(adomv, mkey, nil)
+	o, err := c.ReadFmupdateWebSpamFgdSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateWebSpamFgdSetting resource: %v", err)
 	}

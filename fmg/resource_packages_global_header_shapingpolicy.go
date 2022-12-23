@@ -241,18 +241,19 @@ func resourcePackagesGlobalHeaderShapingPolicyCreate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderShapingPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderShapingPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderShapingPolicy resource: %v", err)
@@ -277,18 +278,19 @@ func resourcePackagesGlobalHeaderShapingPolicyUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderShapingPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalHeaderShapingPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalHeaderShapingPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}
@@ -306,13 +308,14 @@ func resourcePackagesGlobalHeaderShapingPolicyDelete(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalHeaderShapingPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalHeaderShapingPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}
@@ -328,7 +331,9 @@ func resourcePackagesGlobalHeaderShapingPolicyRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -337,10 +342,9 @@ func resourcePackagesGlobalHeaderShapingPolicyRead(d *schema.ResourceData, m int
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalHeaderShapingPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalHeaderShapingPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalHeaderShapingPolicy resource: %v", err)
 	}

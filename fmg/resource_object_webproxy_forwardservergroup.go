@@ -94,18 +94,20 @@ func resourceObjectWebProxyForwardServerGroupCreate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebProxyForwardServerGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyForwardServerGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWebProxyForwardServerGroup(obj, adomv, nil)
+	_, err = c.CreateObjectWebProxyForwardServerGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyForwardServerGroup resource: %v", err)
@@ -121,18 +123,20 @@ func resourceObjectWebProxyForwardServerGroupUpdate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebProxyForwardServerGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyForwardServerGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebProxyForwardServerGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWebProxyForwardServerGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyForwardServerGroup resource: %v", err)
 	}
@@ -150,13 +154,15 @@ func resourceObjectWebProxyForwardServerGroupDelete(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebProxyForwardServerGroup(adomv, mkey, nil)
+	err = c.DeleteObjectWebProxyForwardServerGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebProxyForwardServerGroup resource: %v", err)
 	}
@@ -172,13 +178,15 @@ func resourceObjectWebProxyForwardServerGroupRead(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWebProxyForwardServerGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectWebProxyForwardServerGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWebProxyForwardServerGroup resource: %v", err)
 	}

@@ -68,14 +68,16 @@ func resourceFmupdateWebSpamWebProxyUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateWebSpamWebProxy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateWebSpamWebProxy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateWebSpamWebProxy(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateWebSpamWebProxy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateWebSpamWebProxy resource: %v", err)
 	}
@@ -93,9 +95,11 @@ func resourceFmupdateWebSpamWebProxyDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateWebSpamWebProxy(adomv, mkey, nil)
+	err = c.DeleteFmupdateWebSpamWebProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateWebSpamWebProxy resource: %v", err)
 	}
@@ -111,9 +115,11 @@ func resourceFmupdateWebSpamWebProxyRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateWebSpamWebProxy(adomv, mkey, nil)
+	o, err := c.ReadFmupdateWebSpamWebProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateWebSpamWebProxy resource: %v", err)
 	}

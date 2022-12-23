@@ -99,18 +99,20 @@ func resourceObjectDnsfilterDomainFilterCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDnsfilterDomainFilter(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterDomainFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDnsfilterDomainFilter(obj, adomv, nil)
+	_, err = c.CreateObjectDnsfilterDomainFilter(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDnsfilterDomainFilter resource: %v", err)
@@ -126,18 +128,20 @@ func resourceObjectDnsfilterDomainFilterUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDnsfilterDomainFilter(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterDomainFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDnsfilterDomainFilter(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDnsfilterDomainFilter(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDnsfilterDomainFilter resource: %v", err)
 	}
@@ -155,13 +159,15 @@ func resourceObjectDnsfilterDomainFilterDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDnsfilterDomainFilter(adomv, mkey, nil)
+	err = c.DeleteObjectDnsfilterDomainFilter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDnsfilterDomainFilter resource: %v", err)
 	}
@@ -177,13 +183,15 @@ func resourceObjectDnsfilterDomainFilterRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDnsfilterDomainFilter(adomv, mkey, nil)
+	o, err := c.ReadObjectDnsfilterDomainFilter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDnsfilterDomainFilter resource: %v", err)
 	}

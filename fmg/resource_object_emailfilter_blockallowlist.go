@@ -78,6 +78,10 @@ func resourceObjectEmailfilterBlockAllowList() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"pattern": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"pattern_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -115,18 +119,20 @@ func resourceObjectEmailfilterBlockAllowListCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterBlockAllowList(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBlockAllowList resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectEmailfilterBlockAllowList(obj, adomv, nil)
+	_, err = c.CreateObjectEmailfilterBlockAllowList(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBlockAllowList resource: %v", err)
@@ -142,18 +148,20 @@ func resourceObjectEmailfilterBlockAllowListUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterBlockAllowList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBlockAllowList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBlockAllowList(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEmailfilterBlockAllowList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBlockAllowList resource: %v", err)
 	}
@@ -171,13 +179,15 @@ func resourceObjectEmailfilterBlockAllowListDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterBlockAllowList(adomv, mkey, nil)
+	err = c.DeleteObjectEmailfilterBlockAllowList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterBlockAllowList resource: %v", err)
 	}
@@ -193,13 +203,15 @@ func resourceObjectEmailfilterBlockAllowListRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEmailfilterBlockAllowList(adomv, mkey, nil)
+	o, err := c.ReadObjectEmailfilterBlockAllowList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEmailfilterBlockAllowList resource: %v", err)
 	}
@@ -276,6 +288,12 @@ func flattenObjectEmailfilterBlockAllowListEntries(v interface{}, d *schema.Reso
 			tmp["ip6_subnet"] = fortiAPISubPartPatch(v, "ObjectEmailfilterBlockAllowList-Entries-Ip6Subnet")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
+		if _, ok := i["pattern"]; ok {
+			v := flattenObjectEmailfilterBlockAllowListEntriesPattern(i["pattern"], d, pre_append)
+			tmp["pattern"] = fortiAPISubPartPatch(v, "ObjectEmailfilterBlockAllowList-Entries-Pattern")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_type"
 		if _, ok := i["pattern-type"]; ok {
 			v := flattenObjectEmailfilterBlockAllowListEntriesPatternType(i["pattern-type"], d, pre_append)
@@ -323,6 +341,10 @@ func flattenObjectEmailfilterBlockAllowListEntriesIp4Subnet(v interface{}, d *sc
 }
 
 func flattenObjectEmailfilterBlockAllowListEntriesIp6Subnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEmailfilterBlockAllowListEntriesPattern(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -468,6 +490,11 @@ func expandObjectEmailfilterBlockAllowListEntries(d *schema.ResourceData, v inte
 			tmp["ip6-subnet"], _ = expandObjectEmailfilterBlockAllowListEntriesIp6Subnet(d, i["ip6_subnet"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["pattern"], _ = expandObjectEmailfilterBlockAllowListEntriesPattern(d, i["pattern"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "pattern_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["pattern-type"], _ = expandObjectEmailfilterBlockAllowListEntriesPatternType(d, i["pattern_type"], pre_append)
@@ -512,6 +539,10 @@ func expandObjectEmailfilterBlockAllowListEntriesIp4Subnet(d *schema.ResourceDat
 }
 
 func expandObjectEmailfilterBlockAllowListEntriesIp6Subnet(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEmailfilterBlockAllowListEntriesPattern(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

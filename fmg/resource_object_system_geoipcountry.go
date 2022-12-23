@@ -62,18 +62,20 @@ func resourceObjectSystemGeoipCountryCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemGeoipCountry(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemGeoipCountry resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemGeoipCountry(obj, adomv, nil)
+	_, err = c.CreateObjectSystemGeoipCountry(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemGeoipCountry resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectSystemGeoipCountryUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemGeoipCountry(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemGeoipCountry resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemGeoipCountry(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemGeoipCountry(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemGeoipCountry resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectSystemGeoipCountryDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemGeoipCountry(adomv, mkey, nil)
+	err = c.DeleteObjectSystemGeoipCountry(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemGeoipCountry resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectSystemGeoipCountryRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemGeoipCountry(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemGeoipCountry(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemGeoipCountry resource: %v", err)
 	}

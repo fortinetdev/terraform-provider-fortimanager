@@ -61,14 +61,16 @@ func resourceSecurityconsolePackageMoveUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSecurityconsolePackageMove(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsolePackageMove(obj, adomv, mkey, nil)
+	_, err = c.UpdateSecurityconsolePackageMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageMove resource: %v", err)
 	}

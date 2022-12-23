@@ -77,17 +77,18 @@ func resourcePackagesFirewallInterfacePolicyMoveUpdate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	interface_policy := d.Get("interface_policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, interface_policy)
+	paradict["pkg"] = pkg
+	paradict["interface_policy"] = interface_policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallInterfacePolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallInterfacePolicyMoveUpdate(d *schema.ResourceData, m
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallInterfacePolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallInterfacePolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallInterfacePolicyMoveRead(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("interface_policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallInterfacePolicyMoveRead(d *schema.ResourceData, m i
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallInterfacePolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallInterfacePolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallInterfacePolicyMove resource: %v", err)
 	}

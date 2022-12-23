@@ -50,14 +50,16 @@ func resourceSystemHaMonitoredIpsCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemHaMonitoredIps(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemHaMonitoredIps resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemHaMonitoredIps(obj, adomv, nil)
+	_, err = c.CreateSystemHaMonitoredIps(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemHaMonitoredIps resource: %v", err)
@@ -73,14 +75,16 @@ func resourceSystemHaMonitoredIpsUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemHaMonitoredIps(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaMonitoredIps resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemHaMonitoredIps(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemHaMonitoredIps(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaMonitoredIps resource: %v", err)
 	}
@@ -98,9 +102,11 @@ func resourceSystemHaMonitoredIpsDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemHaMonitoredIps(adomv, mkey, nil)
+	err = c.DeleteSystemHaMonitoredIps(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemHaMonitoredIps resource: %v", err)
 	}
@@ -116,9 +122,11 @@ func resourceSystemHaMonitoredIpsRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemHaMonitoredIps(adomv, mkey, nil)
+	o, err := c.ReadSystemHaMonitoredIps(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemHaMonitoredIps resource: %v", err)
 	}

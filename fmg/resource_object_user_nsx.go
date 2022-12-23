@@ -141,18 +141,20 @@ func resourceObjectUserNsxCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserNsx(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserNsx resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserNsx(obj, adomv, nil)
+	_, err = c.CreateObjectUserNsx(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserNsx resource: %v", err)
@@ -168,18 +170,20 @@ func resourceObjectUserNsxUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserNsx(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserNsx resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserNsx(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserNsx(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserNsx resource: %v", err)
 	}
@@ -197,13 +201,15 @@ func resourceObjectUserNsxDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserNsx(adomv, mkey, nil)
+	err = c.DeleteObjectUserNsx(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserNsx resource: %v", err)
 	}
@@ -219,13 +225,15 @@ func resourceObjectUserNsxRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserNsx(adomv, mkey, nil)
+	o, err := c.ReadObjectUserNsx(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserNsx resource: %v", err)
 	}

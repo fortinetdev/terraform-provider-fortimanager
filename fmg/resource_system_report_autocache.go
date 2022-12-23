@@ -53,14 +53,16 @@ func resourceSystemReportAutoCacheUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemReportAutoCache(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportAutoCache resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemReportAutoCache(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemReportAutoCache(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportAutoCache resource: %v", err)
 	}
@@ -78,9 +80,11 @@ func resourceSystemReportAutoCacheDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemReportAutoCache(adomv, mkey, nil)
+	err = c.DeleteSystemReportAutoCache(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemReportAutoCache resource: %v", err)
 	}
@@ -96,9 +100,11 @@ func resourceSystemReportAutoCacheRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemReportAutoCache(adomv, mkey, nil)
+	o, err := c.ReadSystemReportAutoCache(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemReportAutoCache resource: %v", err)
 	}

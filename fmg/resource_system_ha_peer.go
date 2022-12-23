@@ -61,14 +61,16 @@ func resourceSystemHaPeerCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemHaPeer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemHaPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemHaPeer(obj, adomv, nil)
+	_, err = c.CreateSystemHaPeer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemHaPeer resource: %v", err)
@@ -84,14 +86,16 @@ func resourceSystemHaPeerUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemHaPeer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemHaPeer(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemHaPeer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaPeer resource: %v", err)
 	}
@@ -109,9 +113,11 @@ func resourceSystemHaPeerDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemHaPeer(adomv, mkey, nil)
+	err = c.DeleteSystemHaPeer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemHaPeer resource: %v", err)
 	}
@@ -127,9 +133,11 @@ func resourceSystemHaPeerRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemHaPeer(adomv, mkey, nil)
+	o, err := c.ReadSystemHaPeer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemHaPeer resource: %v", err)
 	}

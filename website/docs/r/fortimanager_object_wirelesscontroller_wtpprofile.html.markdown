@@ -225,6 +225,8 @@ The `platform` block supports:
 
 The `radio_1` block supports:
 
+* `n80211d` - Enable/disable 802.11d countryie(default = enable). Valid values: `disable`, `enable`.
+
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
 * `amsdu` - Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `disable`, `enable`.
@@ -342,6 +344,8 @@ The `radio_1` block supports:
 
 
 The `radio_2` block supports:
+
+* `n80211d` - Enable/disable 802.11d countryie(default = enable). Valid values: `disable`, `enable`.
 
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
@@ -461,6 +465,8 @@ The `radio_2` block supports:
 
 The `radio_3` block supports:
 
+* `n80211d` - Enable/disable 802.11d countryie(default = enable). Valid values: `disable`, `enable`.
+
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 
 * `amsdu` - Enable/disable 802.11n AMSDU support. AMSDU can improve performance if supported by your WiFi clients (default = enable). Valid values: `disable`, `enable`.
@@ -578,6 +584,8 @@ The `radio_3` block supports:
 
 
 The `radio_4` block supports:
+
+* `n80211d` - Enable/disable 802.11d countryie(default = enable). Valid values: `disable`, `enable`.
 
 * `airtime_fairness` - Enable/disable airtime fairness (default = disable). Valid values: `disable`, `enable`.
 

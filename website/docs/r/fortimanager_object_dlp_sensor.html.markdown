@@ -32,6 +32,10 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `comment` - Comment.
+* `entries` - Entries. The structure of `entries` block is documented below.
+* `eval` - Expression to evaluate.
+* `match_type` - Logical relation between entries (default = match-any). Valid values: `match-all`, `match-any`, `match-eval`.
+
 * `dlp_log` - Enable/disable DLP logging. Valid values: `disable`, `enable`.
 
 * `extended_log` - Enable/disable extended logging for data leak prevention. Valid values: `disable`, `enable`.
@@ -52,6 +56,14 @@ The following arguments are supported:
 * `summary_proto` - Protocols to always log summary. Valid values: `imap`, `smtp`, `pop3`, `ftp`, `nntp`, `mm1`, `mm3`, `mm4`, `mm7`, `mapi`, `aim`, `icq`, `msn`, `yahoo`, `http-get`, `http-post`, `cifs`, `ssh`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `entries` block supports:
+
+* `count` - Count of dictionary matches to trigger sensor entry match (Dictionary might not be able to trigger more than once based on its 'repeat' option, 1 - 255, default = 1).
+* `dictionary` - Select a DLP dictionary.
+* `id` - ID.
+* `status` - Enable/disable this entry. Valid values: `disable`, `enable`.
+
 
 The `filter` block supports:
 

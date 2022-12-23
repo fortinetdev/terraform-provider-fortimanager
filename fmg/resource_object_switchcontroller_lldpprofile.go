@@ -186,18 +186,20 @@ func resourceObjectSwitchControllerLldpProfileCreate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerLldpProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerLldpProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerLldpProfile(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerLldpProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerLldpProfile resource: %v", err)
@@ -213,18 +215,20 @@ func resourceObjectSwitchControllerLldpProfileUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerLldpProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerLldpProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerLldpProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerLldpProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerLldpProfile resource: %v", err)
 	}
@@ -242,13 +246,15 @@ func resourceObjectSwitchControllerLldpProfileDelete(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerLldpProfile(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerLldpProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerLldpProfile resource: %v", err)
 	}
@@ -264,13 +270,15 @@ func resourceObjectSwitchControllerLldpProfileRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerLldpProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerLldpProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerLldpProfile resource: %v", err)
 	}

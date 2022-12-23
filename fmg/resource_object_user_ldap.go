@@ -64,6 +64,15 @@ func resourceObjectUserLdap() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"client_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"client_cert_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"cnid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -404,6 +413,10 @@ func resourceObjectUserLdap() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"two_factor_filter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"two_factor_notification": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -434,18 +447,20 @@ func resourceObjectUserLdapCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserLdap(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLdap resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserLdap(obj, adomv, nil)
+	_, err = c.CreateObjectUserLdap(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLdap resource: %v", err)
@@ -461,18 +476,20 @@ func resourceObjectUserLdapUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserLdap(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLdap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserLdap(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserLdap(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLdap resource: %v", err)
 	}
@@ -490,13 +507,15 @@ func resourceObjectUserLdapDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserLdap(adomv, mkey, nil)
+	err = c.DeleteObjectUserLdap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserLdap resource: %v", err)
 	}
@@ -512,13 +531,15 @@ func resourceObjectUserLdapRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserLdap(adomv, mkey, nil)
+	o, err := c.ReadObjectUserLdap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserLdap resource: %v", err)
 	}
@@ -549,6 +570,14 @@ func flattenObjectUserLdapAntiphish(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectUserLdapCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapClientCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapClientCertAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1160,6 +1189,10 @@ func flattenObjectUserLdapTwoFactorAuthentication(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectUserLdapTwoFactorFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapTwoFactorNotification(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1224,6 +1257,26 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading ca_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("client_cert", flattenObjectUserLdapClientCert(o["client-cert"], d, "client_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert"], "ObjectUserLdap-ClientCert"); ok {
+			if err = d.Set("client_cert", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("client_cert_auth", flattenObjectUserLdapClientCertAuth(o["client-cert-auth"], d, "client_cert_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-cert-auth"], "ObjectUserLdap-ClientCertAuth"); ok {
+			if err = d.Set("client_cert_auth", vv); err != nil {
+				return fmt.Errorf("Error reading client_cert_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_cert_auth: %v", err)
 		}
 	}
 
@@ -1511,6 +1564,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("two_factor_filter", flattenObjectUserLdapTwoFactorFilter(o["two-factor-filter"], d, "two_factor_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["two-factor-filter"], "ObjectUserLdap-TwoFactorFilter"); ok {
+			if err = d.Set("two_factor_filter", vv); err != nil {
+				return fmt.Errorf("Error reading two_factor_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading two_factor_filter: %v", err)
+		}
+	}
+
 	if err = d.Set("two_factor_notification", flattenObjectUserLdapTwoFactorNotification(o["two-factor-notification"], d, "two_factor_notification")); err != nil {
 		if vv, ok := fortiAPIPatch(o["two-factor-notification"], "ObjectUserLdap-TwoFactorNotification"); ok {
 			if err = d.Set("two_factor_notification", vv); err != nil {
@@ -1573,6 +1636,14 @@ func expandObjectUserLdapAntiphish(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectUserLdapCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapClientCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapClientCertAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2134,6 +2205,10 @@ func expandObjectUserLdapTwoFactorAuthentication(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectUserLdapTwoFactorFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapTwoFactorNotification(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2186,6 +2261,24 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["ca-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("client_cert"); ok || d.HasChange("client_cert") {
+		t, err := expandObjectUserLdapClientCert(d, v, "client_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("client_cert_auth"); ok || d.HasChange("client_cert_auth") {
+		t, err := expandObjectUserLdapClientCertAuth(d, v, "client_cert_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-cert-auth"] = t
 		}
 	}
 
@@ -2438,6 +2531,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["two-factor-authentication"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("two_factor_filter"); ok || d.HasChange("two_factor_filter") {
+		t, err := expandObjectUserLdapTwoFactorFilter(d, v, "two_factor_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["two-factor-filter"] = t
 		}
 	}
 

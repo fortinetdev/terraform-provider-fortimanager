@@ -75,18 +75,20 @@ func resourceObjectSwitchControllerQosQosPolicyCreate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerQosQosPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosQosPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerQosQosPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerQosQosPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosQosPolicy resource: %v", err)
@@ -102,18 +104,20 @@ func resourceObjectSwitchControllerQosQosPolicyUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerQosQosPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosQosPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerQosQosPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerQosQosPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosQosPolicy resource: %v", err)
 	}
@@ -131,13 +135,15 @@ func resourceObjectSwitchControllerQosQosPolicyDelete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerQosQosPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerQosQosPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerQosQosPolicy resource: %v", err)
 	}
@@ -153,13 +159,15 @@ func resourceObjectSwitchControllerQosQosPolicyRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerQosQosPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerQosQosPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerQosQosPolicy resource: %v", err)
 	}

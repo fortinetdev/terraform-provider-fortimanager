@@ -46,14 +46,16 @@ func resourceSystemSqlTsIndexFieldCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSqlTsIndexField(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlTsIndexField resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSqlTsIndexField(obj, adomv, nil)
+	_, err = c.CreateSystemSqlTsIndexField(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlTsIndexField resource: %v", err)
@@ -69,14 +71,16 @@ func resourceSystemSqlTsIndexFieldUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSqlTsIndexField(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlTsIndexField resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSqlTsIndexField(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSqlTsIndexField(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlTsIndexField resource: %v", err)
 	}
@@ -94,9 +98,11 @@ func resourceSystemSqlTsIndexFieldDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSqlTsIndexField(adomv, mkey, nil)
+	err = c.DeleteSystemSqlTsIndexField(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSqlTsIndexField resource: %v", err)
 	}
@@ -112,9 +118,11 @@ func resourceSystemSqlTsIndexFieldRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSqlTsIndexField(adomv, mkey, nil)
+	o, err := c.ReadSystemSqlTsIndexField(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSqlTsIndexField resource: %v", err)
 	}

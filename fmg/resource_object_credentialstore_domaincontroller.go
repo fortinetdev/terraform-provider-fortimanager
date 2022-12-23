@@ -91,18 +91,20 @@ func resourceObjectCredentialStoreDomainControllerCreate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCredentialStoreDomainController(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCredentialStoreDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectCredentialStoreDomainController(obj, adomv, nil)
+	_, err = c.CreateObjectCredentialStoreDomainController(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCredentialStoreDomainController resource: %v", err)
@@ -118,18 +120,20 @@ func resourceObjectCredentialStoreDomainControllerUpdate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCredentialStoreDomainController(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCredentialStoreDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCredentialStoreDomainController(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectCredentialStoreDomainController(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCredentialStoreDomainController resource: %v", err)
 	}
@@ -147,13 +151,15 @@ func resourceObjectCredentialStoreDomainControllerDelete(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCredentialStoreDomainController(adomv, mkey, nil)
+	err = c.DeleteObjectCredentialStoreDomainController(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCredentialStoreDomainController resource: %v", err)
 	}
@@ -169,13 +175,15 @@ func resourceObjectCredentialStoreDomainControllerRead(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectCredentialStoreDomainController(adomv, mkey, nil)
+	o, err := c.ReadObjectCredentialStoreDomainController(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectCredentialStoreDomainController resource: %v", err)
 	}

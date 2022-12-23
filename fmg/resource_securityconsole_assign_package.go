@@ -80,14 +80,16 @@ func resourceSecurityconsoleAssignPackageUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSecurityconsoleAssignPackage(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAssignPackage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsoleAssignPackage(obj, adomv, mkey, nil)
+	_, err = c.UpdateSecurityconsoleAssignPackage(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAssignPackage resource: %v", err)
 	}

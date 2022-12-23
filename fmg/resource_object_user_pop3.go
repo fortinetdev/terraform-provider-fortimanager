@@ -53,6 +53,7 @@ func resourceObjectUserPop3() *schema.Resource {
 			"port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"secure": &schema.Schema{
 				Type:     schema.TypeString,
@@ -76,18 +77,20 @@ func resourceObjectUserPop3Create(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPop3(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPop3 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserPop3(obj, adomv, nil)
+	_, err = c.CreateObjectUserPop3(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPop3 resource: %v", err)
@@ -103,18 +106,20 @@ func resourceObjectUserPop3Update(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPop3(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPop3 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPop3(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserPop3(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPop3 resource: %v", err)
 	}
@@ -132,13 +137,15 @@ func resourceObjectUserPop3Delete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPop3(adomv, mkey, nil)
+	err = c.DeleteObjectUserPop3(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPop3 resource: %v", err)
 	}
@@ -154,13 +161,15 @@ func resourceObjectUserPop3Read(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserPop3(adomv, mkey, nil)
+	o, err := c.ReadObjectUserPop3(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserPop3 resource: %v", err)
 	}

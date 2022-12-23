@@ -91,18 +91,20 @@ func resourceObjectDlpFilepatternCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDlpFilepattern(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFilepattern resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDlpFilepattern(obj, adomv, nil)
+	_, err = c.CreateObjectDlpFilepattern(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpFilepattern resource: %v", err)
@@ -118,18 +120,20 @@ func resourceObjectDlpFilepatternUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDlpFilepattern(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpFilepattern resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpFilepattern(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDlpFilepattern(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpFilepattern resource: %v", err)
 	}
@@ -147,13 +151,15 @@ func resourceObjectDlpFilepatternDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpFilepattern(adomv, mkey, nil)
+	err = c.DeleteObjectDlpFilepattern(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpFilepattern resource: %v", err)
 	}
@@ -169,13 +175,15 @@ func resourceObjectDlpFilepatternRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDlpFilepattern(adomv, mkey, nil)
+	o, err := c.ReadObjectDlpFilepattern(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDlpFilepattern resource: %v", err)
 	}

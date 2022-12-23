@@ -33,10 +33,19 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `n204_response` - Enable/disable allowance of 204 response from ICAP server. Valid values: `disable`, `enable`.
+
+* `n204_size_limit` - 204 response size limit to be saved by ICAP client in megabytes (1 - 10, default = 1 MB).
 * `chunk_encap` - Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 
 * `extension_feature` - Enable/disable ICAP extension features. Valid values: `scan-progress`.
 
+* `file_transfer` - Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.
+
+* `file_transfer_failure` - Action to take if the ICAP server cannot be contacted when processing a file transfer. Valid values: `error`, `bypass`.
+
+* `file_transfer_path` - Path component of the ICAP URI that identifies the file transfer processing service.
+* `file_transfer_server` - ICAP server to use for a file transfer.
 * `icap_block_log` - Enable/disable UTM log when infection found (default = disable). Valid values: `disable`, `enable`.
 
 * `icap_headers` - Icap-Headers. The structure of `icap_headers` block is documented below.
@@ -67,6 +76,7 @@ The following arguments are supported:
 * `scan_progress_interval` - Scan progress interval value.
 * `streaming_content_bypass` - Enable/disable bypassing of ICAP server for streaming content. Valid values: `disable`, `enable`.
 
+* `timeout` - Time (in seconds) that ICAP client waits for the response from ICAP server.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 
 The `icap_headers` block supports:

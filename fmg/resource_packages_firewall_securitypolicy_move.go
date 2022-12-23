@@ -77,17 +77,18 @@ func resourcePackagesFirewallSecurityPolicyMoveUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	security_policy := d.Get("security_policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, security_policy)
+	paradict["pkg"] = pkg
+	paradict["security_policy"] = security_policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallSecurityPolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallSecurityPolicyMoveUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating PackagesFirewallSecurityPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallSecurityPolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallSecurityPolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallSecurityPolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallSecurityPolicyMoveRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("security_policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallSecurityPolicyMoveRead(d *schema.ResourceData, m in
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallSecurityPolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallSecurityPolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallSecurityPolicyMove resource: %v", err)
 	}

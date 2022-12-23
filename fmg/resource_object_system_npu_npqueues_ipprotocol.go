@@ -71,18 +71,20 @@ func resourceObjectSystemNpuNpQueuesIpProtocolCreate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuNpQueuesIpProtocol(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesIpProtocol resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemNpuNpQueuesIpProtocol(obj, adomv, nil)
+	_, err = c.CreateObjectSystemNpuNpQueuesIpProtocol(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
@@ -98,18 +100,20 @@ func resourceObjectSystemNpuNpQueuesIpProtocolUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuNpQueuesIpProtocol(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesIpProtocol resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueuesIpProtocol(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuNpQueuesIpProtocol(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
 	}
@@ -127,13 +131,15 @@ func resourceObjectSystemNpuNpQueuesIpProtocolDelete(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueuesIpProtocol(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuNpQueuesIpProtocol(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
 	}
@@ -149,13 +155,15 @@ func resourceObjectSystemNpuNpQueuesIpProtocolRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuNpQueuesIpProtocol(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuNpQueuesIpProtocol(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuNpQueuesIpProtocol resource: %v", err)
 	}

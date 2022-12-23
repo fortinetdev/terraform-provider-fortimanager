@@ -189,18 +189,20 @@ func resourceObjectUserDeviceCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDevice(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserDevice(obj, adomv, nil)
+	_, err = c.CreateObjectUserDevice(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDevice resource: %v", err)
@@ -216,18 +218,20 @@ func resourceObjectUserDeviceUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDevice(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDevice(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserDevice(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDevice resource: %v", err)
 	}
@@ -245,13 +249,15 @@ func resourceObjectUserDeviceDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDevice(adomv, mkey, nil)
+	err = c.DeleteObjectUserDevice(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDevice resource: %v", err)
 	}
@@ -267,13 +273,15 @@ func resourceObjectUserDeviceRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserDevice(adomv, mkey, nil)
+	o, err := c.ReadObjectUserDevice(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserDevice resource: %v", err)
 	}

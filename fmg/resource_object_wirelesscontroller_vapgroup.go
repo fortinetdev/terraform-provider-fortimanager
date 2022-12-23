@@ -68,18 +68,20 @@ func resourceObjectWirelessControllerVapGroupCreate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerVapGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerVapGroup(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerVapGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerVapGroup resource: %v", err)
@@ -95,18 +97,20 @@ func resourceObjectWirelessControllerVapGroupUpdate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerVapGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerVapGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerVapGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerVapGroup resource: %v", err)
 	}
@@ -124,13 +128,15 @@ func resourceObjectWirelessControllerVapGroupDelete(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerVapGroup(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerVapGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerVapGroup resource: %v", err)
 	}
@@ -146,13 +152,15 @@ func resourceObjectWirelessControllerVapGroupRead(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerVapGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerVapGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerVapGroup resource: %v", err)
 	}

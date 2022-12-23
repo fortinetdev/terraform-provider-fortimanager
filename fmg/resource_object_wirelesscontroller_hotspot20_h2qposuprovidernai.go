@@ -79,18 +79,20 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiCreate(d *schema
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerHotspot20H2QpOsuProviderNai(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOsuProviderNai resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOsuProviderNai(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerHotspot20H2QpOsuProviderNai(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20H2QpOsuProviderNai resource: %v", err)
@@ -106,18 +108,20 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiUpdate(d *schema
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerHotspot20H2QpOsuProviderNai(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOsuProviderNai resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOsuProviderNai(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerHotspot20H2QpOsuProviderNai(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20H2QpOsuProviderNai resource: %v", err)
 	}
@@ -135,13 +139,15 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiDelete(d *schema
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20H2QpOsuProviderNai(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerHotspot20H2QpOsuProviderNai(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20H2QpOsuProviderNai resource: %v", err)
 	}
@@ -157,13 +163,15 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNaiRead(d *schema.R
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerHotspot20H2QpOsuProviderNai(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerHotspot20H2QpOsuProviderNai(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerHotspot20H2QpOsuProviderNai resource: %v", err)
 	}

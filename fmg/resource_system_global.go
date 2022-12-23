@@ -89,6 +89,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"contentpack_fgt_install": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"country_flag": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -176,6 +181,7 @@ func resourceSystemGlobal() *schema.Resource {
 			"latitude": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ldap_cache_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -204,6 +210,7 @@ func resourceSystemGlobal() *schema.Resource {
 			"longitude": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"max_log_forward": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -423,14 +430,16 @@ func resourceSystemGlobalUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemGlobal(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemGlobal(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemGlobal(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobal resource: %v", err)
 	}
@@ -448,9 +457,11 @@ func resourceSystemGlobalDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemGlobal(adomv, mkey, nil)
+	err = c.DeleteSystemGlobal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemGlobal resource: %v", err)
 	}
@@ -466,9 +477,11 @@ func resourceSystemGlobalRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemGlobal(adomv, mkey, nil)
+	o, err := c.ReadSystemGlobal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemGlobal resource: %v", err)
 	}
@@ -531,6 +544,10 @@ func flattenSystemGlobalCltCertReqSga(v interface{}, d *schema.ResourceData, pre
 }
 
 func flattenSystemGlobalConsoleOutputSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalContentpackFgtInstallSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -984,6 +1001,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading console_output: %v", err)
+		}
+	}
+
+	if err = d.Set("contentpack_fgt_install", flattenSystemGlobalContentpackFgtInstallSga(o["contentpack-fgt-install"], d, "contentpack_fgt_install")); err != nil {
+		if vv, ok := fortiAPIPatch(o["contentpack-fgt-install"], "SystemGlobal-ContentpackFgtInstall"); ok {
+			if err = d.Set("contentpack_fgt_install", vv); err != nil {
+				return fmt.Errorf("Error reading contentpack_fgt_install: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading contentpack_fgt_install: %v", err)
 		}
 	}
 
@@ -1672,6 +1699,10 @@ func expandSystemGlobalConsoleOutputSga(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandSystemGlobalContentpackFgtInstallSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalCountryFlagSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2092,6 +2123,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["console-output"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("contentpack_fgt_install"); ok || d.HasChange("contentpack_fgt_install") {
+		t, err := expandSystemGlobalContentpackFgtInstallSga(d, v, "contentpack_fgt_install")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["contentpack-fgt-install"] = t
 		}
 	}
 

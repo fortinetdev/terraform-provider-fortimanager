@@ -70,14 +70,16 @@ func resourceFmupdateFdsSettingPushOverrideToClientUpdate(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateFdsSettingPushOverrideToClient(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverrideToClient resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFdsSettingPushOverrideToClient(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateFdsSettingPushOverrideToClient(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingPushOverrideToClient resource: %v", err)
 	}
@@ -95,9 +97,11 @@ func resourceFmupdateFdsSettingPushOverrideToClientDelete(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingPushOverrideToClient(adomv, mkey, nil)
+	err = c.DeleteFmupdateFdsSettingPushOverrideToClient(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFdsSettingPushOverrideToClient resource: %v", err)
 	}
@@ -113,9 +117,11 @@ func resourceFmupdateFdsSettingPushOverrideToClientRead(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateFdsSettingPushOverrideToClient(adomv, mkey, nil)
+	o, err := c.ReadFmupdateFdsSettingPushOverrideToClient(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateFdsSettingPushOverrideToClient resource: %v", err)
 	}

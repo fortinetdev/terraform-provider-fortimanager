@@ -345,18 +345,20 @@ func resourceObjectWanoptProfileCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWanoptProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWanoptProfile(obj, adomv, nil)
+	_, err = c.CreateObjectWanoptProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptProfile resource: %v", err)
@@ -372,18 +374,20 @@ func resourceObjectWanoptProfileUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWanoptProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWanoptProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptProfile resource: %v", err)
 	}
@@ -401,13 +405,15 @@ func resourceObjectWanoptProfileDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWanoptProfile(adomv, mkey, nil)
+	err = c.DeleteObjectWanoptProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptProfile resource: %v", err)
 	}
@@ -423,13 +429,15 @@ func resourceObjectWanoptProfileRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWanoptProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectWanoptProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWanoptProfile resource: %v", err)
 	}

@@ -144,14 +144,16 @@ func resourceSystemSnmpCommunityCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSnmpCommunity(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpCommunity resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSnmpCommunity(obj, adomv, nil)
+	_, err = c.CreateSystemSnmpCommunity(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpCommunity resource: %v", err)
@@ -167,14 +169,16 @@ func resourceSystemSnmpCommunityUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSnmpCommunity(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpCommunity resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpCommunity(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSnmpCommunity(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpCommunity resource: %v", err)
 	}
@@ -192,9 +196,11 @@ func resourceSystemSnmpCommunityDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSnmpCommunity(adomv, mkey, nil)
+	err = c.DeleteSystemSnmpCommunity(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpCommunity resource: %v", err)
 	}
@@ -210,9 +216,11 @@ func resourceSystemSnmpCommunityRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSnmpCommunity(adomv, mkey, nil)
+	o, err := c.ReadSystemSnmpCommunity(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSnmpCommunity resource: %v", err)
 	}

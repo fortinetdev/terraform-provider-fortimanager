@@ -43,14 +43,16 @@ func resourceFmupdatePublicnetworkUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdatePublicnetwork(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdatePublicnetwork resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdatePublicnetwork(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdatePublicnetwork(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdatePublicnetwork resource: %v", err)
 	}
@@ -68,9 +70,11 @@ func resourceFmupdatePublicnetworkDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdatePublicnetwork(adomv, mkey, nil)
+	err = c.DeleteFmupdatePublicnetwork(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdatePublicnetwork resource: %v", err)
 	}
@@ -86,9 +90,11 @@ func resourceFmupdatePublicnetworkRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdatePublicnetwork(adomv, mkey, nil)
+	o, err := c.ReadFmupdatePublicnetwork(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdatePublicnetwork resource: %v", err)
 	}

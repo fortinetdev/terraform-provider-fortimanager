@@ -239,6 +239,10 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"set_priority": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"set_route_tag": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -267,18 +271,20 @@ func resourceObjectRouterRouteMapCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectRouterRouteMap(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterRouteMap resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectRouterRouteMap(obj, adomv, nil)
+	_, err = c.CreateObjectRouterRouteMap(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterRouteMap resource: %v", err)
@@ -294,18 +300,20 @@ func resourceObjectRouterRouteMapUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectRouterRouteMap(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterRouteMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterRouteMap(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectRouterRouteMap(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterRouteMap resource: %v", err)
 	}
@@ -323,13 +331,15 @@ func resourceObjectRouterRouteMapDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectRouterRouteMap(adomv, mkey, nil)
+	err = c.DeleteObjectRouterRouteMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterRouteMap resource: %v", err)
 	}
@@ -345,13 +355,15 @@ func resourceObjectRouterRouteMapRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectRouterRouteMap(adomv, mkey, nil)
+	o, err := c.ReadObjectRouterRouteMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectRouterRouteMap resource: %v", err)
 	}
@@ -636,6 +648,12 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 			tmp["set_originator_id"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetOriginatorId")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_priority"
+		if _, ok := i["set-priority"]; ok {
+			v := flattenObjectRouterRouteMapRuleSetPriority(i["set-priority"], d, pre_append)
+			tmp["set_priority"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetPriority")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_route_tag"
 		if _, ok := i["set-route-tag"]; ok {
 			v := flattenObjectRouterRouteMapRuleSetRouteTag(i["set-route-tag"], d, pre_append)
@@ -819,6 +837,10 @@ func flattenObjectRouterRouteMapRuleSetOrigin(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectRouterRouteMapRuleSetOriginatorId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1120,6 +1142,11 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 			tmp["set-originator-id"], _ = expandObjectRouterRouteMapRuleSetOriginatorId(d, i["set_originator_id"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_priority"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["set-priority"], _ = expandObjectRouterRouteMapRuleSetPriority(d, i["set_priority"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_route_tag"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-route-tag"], _ = expandObjectRouterRouteMapRuleSetRouteTag(d, i["set_route_tag"], pre_append)
@@ -1300,6 +1327,10 @@ func expandObjectRouterRouteMapRuleSetOrigin(d *schema.ResourceData, v interface
 }
 
 func expandObjectRouterRouteMapRuleSetOriginatorId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

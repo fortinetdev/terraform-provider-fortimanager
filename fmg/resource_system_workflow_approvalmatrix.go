@@ -71,14 +71,16 @@ func resourceSystemWorkflowApprovalMatrixCreate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemWorkflowApprovalMatrix(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemWorkflowApprovalMatrix resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemWorkflowApprovalMatrix(obj, adomv, nil)
+	_, err = c.CreateSystemWorkflowApprovalMatrix(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemWorkflowApprovalMatrix resource: %v", err)
@@ -94,14 +96,16 @@ func resourceSystemWorkflowApprovalMatrixUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemWorkflowApprovalMatrix(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemWorkflowApprovalMatrix resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemWorkflowApprovalMatrix(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemWorkflowApprovalMatrix(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemWorkflowApprovalMatrix resource: %v", err)
 	}
@@ -119,9 +123,11 @@ func resourceSystemWorkflowApprovalMatrixDelete(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemWorkflowApprovalMatrix(adomv, mkey, nil)
+	err = c.DeleteSystemWorkflowApprovalMatrix(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemWorkflowApprovalMatrix resource: %v", err)
 	}
@@ -137,9 +143,11 @@ func resourceSystemWorkflowApprovalMatrixRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemWorkflowApprovalMatrix(adomv, mkey, nil)
+	o, err := c.ReadSystemWorkflowApprovalMatrix(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemWorkflowApprovalMatrix resource: %v", err)
 	}

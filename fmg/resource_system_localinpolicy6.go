@@ -70,14 +70,16 @@ func resourceSystemLocalInPolicy6Create(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLocalInPolicy6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLocalInPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemLocalInPolicy6(obj, adomv, nil)
+	_, err = c.CreateSystemLocalInPolicy6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLocalInPolicy6 resource: %v", err)
@@ -93,14 +95,16 @@ func resourceSystemLocalInPolicy6Update(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLocalInPolicy6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocalInPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocalInPolicy6(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLocalInPolicy6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocalInPolicy6 resource: %v", err)
 	}
@@ -118,9 +122,11 @@ func resourceSystemLocalInPolicy6Delete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocalInPolicy6(adomv, mkey, nil)
+	err = c.DeleteSystemLocalInPolicy6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocalInPolicy6 resource: %v", err)
 	}
@@ -136,9 +142,11 @@ func resourceSystemLocalInPolicy6Read(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLocalInPolicy6(adomv, mkey, nil)
+	o, err := c.ReadSystemLocalInPolicy6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLocalInPolicy6 resource: %v", err)
 	}

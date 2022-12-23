@@ -69,14 +69,16 @@ func resourceFmupdateAvIpsWebProxyUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateAvIpsWebProxy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsWebProxy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateAvIpsWebProxy(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateAvIpsWebProxy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsWebProxy resource: %v", err)
 	}
@@ -94,9 +96,11 @@ func resourceFmupdateAvIpsWebProxyDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateAvIpsWebProxy(adomv, mkey, nil)
+	err = c.DeleteFmupdateAvIpsWebProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateAvIpsWebProxy resource: %v", err)
 	}
@@ -112,9 +116,11 @@ func resourceFmupdateAvIpsWebProxyRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateAvIpsWebProxy(adomv, mkey, nil)
+	o, err := c.ReadFmupdateAvIpsWebProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateAvIpsWebProxy resource: %v", err)
 	}

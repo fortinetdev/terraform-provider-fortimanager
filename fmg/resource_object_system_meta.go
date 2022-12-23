@@ -83,18 +83,20 @@ func resourceObjectSystemMetaCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemMeta(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemMeta resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemMeta(obj, adomv, nil)
+	_, err = c.CreateObjectSystemMeta(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemMeta resource: %v", err)
@@ -110,18 +112,20 @@ func resourceObjectSystemMetaUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemMeta(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemMeta resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemMeta(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemMeta(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemMeta resource: %v", err)
 	}
@@ -139,13 +143,15 @@ func resourceObjectSystemMetaDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemMeta(adomv, mkey, nil)
+	err = c.DeleteObjectSystemMeta(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemMeta resource: %v", err)
 	}
@@ -161,13 +167,15 @@ func resourceObjectSystemMetaRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemMeta(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemMeta(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemMeta resource: %v", err)
 	}

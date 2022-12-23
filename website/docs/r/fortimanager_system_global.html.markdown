@@ -43,6 +43,8 @@ The following arguments are supported:
 
 * `console_output` - Console output mode. standard - Standard output. more - More page output. Valid values: `standard`, `more`.
 
+* `contentpack_fgt_install` - Enable/disable outbreak alert auto install for FGT ADOMS . disable - Disable the sql report auto outbreak auto install. enable - Enable the sql report auto outbreak auto install. Valid values: `disable`, `enable`.
+
 * `country_flag` - Country flag Status. disable - Disable country flag icon beside ip address. enable - Enable country flag icon beside ip address. Valid values: `disable`, `enable`.
 
 * `create_revision` - Enable/disable create revision by default. disable - Disable create revision by default. enable - Enable create revision by default. Valid values: `disable`, `enable`.

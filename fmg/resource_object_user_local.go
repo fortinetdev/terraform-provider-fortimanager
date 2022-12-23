@@ -172,18 +172,20 @@ func resourceObjectUserLocalCreate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserLocal(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLocal resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserLocal(obj, adomv, nil)
+	_, err = c.CreateObjectUserLocal(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserLocal resource: %v", err)
@@ -199,18 +201,20 @@ func resourceObjectUserLocalUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserLocal(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLocal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserLocal(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserLocal(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserLocal resource: %v", err)
 	}
@@ -228,13 +232,15 @@ func resourceObjectUserLocalDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserLocal(adomv, mkey, nil)
+	err = c.DeleteObjectUserLocal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserLocal resource: %v", err)
 	}
@@ -250,13 +256,15 @@ func resourceObjectUserLocalRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserLocal(adomv, mkey, nil)
+	o, err := c.ReadObjectUserLocal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserLocal resource: %v", err)
 	}

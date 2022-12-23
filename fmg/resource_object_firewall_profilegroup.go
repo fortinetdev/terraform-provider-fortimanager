@@ -57,6 +57,10 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"dlp_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -136,18 +140,20 @@ func resourceObjectFirewallProfileGroupCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallProfileGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallProfileGroup(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallProfileGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileGroup resource: %v", err)
@@ -163,18 +169,20 @@ func resourceObjectFirewallProfileGroupUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallProfileGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallProfileGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileGroup resource: %v", err)
 	}
@@ -192,13 +200,15 @@ func resourceObjectFirewallProfileGroupDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileGroup(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallProfileGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileGroup resource: %v", err)
 	}
@@ -214,13 +224,15 @@ func resourceObjectFirewallProfileGroupRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallProfileGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallProfileGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallProfileGroup resource: %v", err)
 	}
@@ -247,6 +259,10 @@ func flattenObjectFirewallProfileGroupAvProfile(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectFirewallProfileGroupCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileGroupDlpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -352,6 +368,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading cifs_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_profile", flattenObjectFirewallProfileGroupDlpProfile(o["dlp-profile"], d, "dlp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-profile"], "ObjectFirewallProfileGroup-DlpProfile"); ok {
+			if err = d.Set("dlp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_profile: %v", err)
 		}
 	}
 
@@ -546,6 +572,10 @@ func expandObjectFirewallProfileGroupCifsProfile(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectFirewallProfileGroupDlpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileGroupDlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -641,6 +671,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["cifs-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_profile"); ok || d.HasChange("dlp_profile") {
+		t, err := expandObjectFirewallProfileGroupDlpProfile(d, v, "dlp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-profile"] = t
 		}
 	}
 

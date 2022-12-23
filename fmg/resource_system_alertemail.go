@@ -74,14 +74,16 @@ func resourceSystemAlertemailUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAlertemail(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertemail resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAlertemail(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAlertemail(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAlertemail resource: %v", err)
 	}
@@ -99,9 +101,11 @@ func resourceSystemAlertemailDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAlertemail(adomv, mkey, nil)
+	err = c.DeleteSystemAlertemail(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAlertemail resource: %v", err)
 	}
@@ -117,9 +121,11 @@ func resourceSystemAlertemailRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAlertemail(adomv, mkey, nil)
+	o, err := c.ReadSystemAlertemail(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAlertemail resource: %v", err)
 	}

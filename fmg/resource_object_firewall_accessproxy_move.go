@@ -72,15 +72,16 @@ func resourceObjectFirewallAccessProxyMoveUpdate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	access_proxy := d.Get("access_proxy").(string)
-	var paralist []string
-	paralist = append(paralist, access_proxy)
+	paradict["access_proxy"] = access_proxy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectObjectFirewallAccessProxyMove(d)
@@ -88,7 +89,7 @@ func resourceObjectFirewallAccessProxyMoveUpdate(d *schema.ResourceData, m inter
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdateObjectFirewallAccessProxyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyMove resource: %v", err)
 	}
@@ -112,11 +113,13 @@ func resourceObjectFirewallAccessProxyMoveRead(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("access_proxy").(string))
 	if err != nil {
@@ -128,7 +131,7 @@ func resourceObjectFirewallAccessProxyMoveRead(d *schema.ResourceData, m interfa
 	}
 	action := d.Get("option").(string)
 
-	o, err := c.ReadObjectFirewallAccessProxyMove(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallAccessProxyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxyMove resource: %v", err)
 	}

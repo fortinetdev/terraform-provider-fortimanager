@@ -62,18 +62,20 @@ func resourceObjectSystemNpuUdpTimeoutProfileCreate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuUdpTimeoutProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuUdpTimeoutProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemNpuUdpTimeoutProfile(obj, adomv, nil)
+	_, err = c.CreateObjectSystemNpuUdpTimeoutProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectSystemNpuUdpTimeoutProfileUpdate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuUdpTimeoutProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuUdpTimeoutProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuUdpTimeoutProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuUdpTimeoutProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectSystemNpuUdpTimeoutProfileDelete(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuUdpTimeoutProfile(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuUdpTimeoutProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectSystemNpuUdpTimeoutProfileRead(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuUdpTimeoutProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuUdpTimeoutProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuUdpTimeoutProfile resource: %v", err)
 	}

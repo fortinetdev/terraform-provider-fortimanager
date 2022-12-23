@@ -66,18 +66,20 @@ func resourceObjectSystemCustomLanguageCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemCustomLanguage(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemCustomLanguage resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemCustomLanguage(obj, adomv, nil)
+	_, err = c.CreateObjectSystemCustomLanguage(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemCustomLanguage resource: %v", err)
@@ -93,18 +95,20 @@ func resourceObjectSystemCustomLanguageUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemCustomLanguage(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemCustomLanguage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemCustomLanguage(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemCustomLanguage(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemCustomLanguage resource: %v", err)
 	}
@@ -122,13 +126,15 @@ func resourceObjectSystemCustomLanguageDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemCustomLanguage(adomv, mkey, nil)
+	err = c.DeleteObjectSystemCustomLanguage(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemCustomLanguage resource: %v", err)
 	}
@@ -144,13 +150,15 @@ func resourceObjectSystemCustomLanguageRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemCustomLanguage(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemCustomLanguage(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemCustomLanguage resource: %v", err)
 	}

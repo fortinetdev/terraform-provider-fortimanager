@@ -148,18 +148,20 @@ func resourceObjectCifsProfileCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCifsProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectCifsProfile(obj, adomv, nil)
+	_, err = c.CreateObjectCifsProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsProfile resource: %v", err)
@@ -175,18 +177,20 @@ func resourceObjectCifsProfileUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCifsProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCifsProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCifsProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectCifsProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCifsProfile resource: %v", err)
 	}
@@ -204,13 +208,15 @@ func resourceObjectCifsProfileDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCifsProfile(adomv, mkey, nil)
+	err = c.DeleteObjectCifsProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCifsProfile resource: %v", err)
 	}
@@ -226,13 +232,15 @@ func resourceObjectCifsProfileRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectCifsProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectCifsProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectCifsProfile resource: %v", err)
 	}

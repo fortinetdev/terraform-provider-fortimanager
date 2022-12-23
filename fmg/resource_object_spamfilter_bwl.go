@@ -115,18 +115,20 @@ func resourceObjectSpamfilterBwlCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSpamfilterBwl(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterBwl resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSpamfilterBwl(obj, adomv, nil)
+	_, err = c.CreateObjectSpamfilterBwl(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterBwl resource: %v", err)
@@ -142,18 +144,20 @@ func resourceObjectSpamfilterBwlUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSpamfilterBwl(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSpamfilterBwl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSpamfilterBwl(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSpamfilterBwl(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSpamfilterBwl resource: %v", err)
 	}
@@ -171,13 +175,15 @@ func resourceObjectSpamfilterBwlDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSpamfilterBwl(adomv, mkey, nil)
+	err = c.DeleteObjectSpamfilterBwl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSpamfilterBwl resource: %v", err)
 	}
@@ -193,13 +199,15 @@ func resourceObjectSpamfilterBwlRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSpamfilterBwl(adomv, mkey, nil)
+	o, err := c.ReadObjectSpamfilterBwl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSpamfilterBwl resource: %v", err)
 	}

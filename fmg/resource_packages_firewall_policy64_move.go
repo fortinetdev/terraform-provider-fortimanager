@@ -77,17 +77,18 @@ func resourcePackagesFirewallPolicy64MoveUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	policy64 := d.Get("policy64").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, policy64)
+	paradict["pkg"] = pkg
+	paradict["policy64"] = policy64
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallPolicy64Move(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallPolicy64MoveUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating PackagesFirewallPolicy64Move resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicy64Move(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallPolicy64Move(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy64Move resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallPolicy64MoveRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("policy64").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallPolicy64MoveRead(d *schema.ResourceData, m interfac
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallPolicy64Move(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallPolicy64Move(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicy64Move resource: %v", err)
 	}

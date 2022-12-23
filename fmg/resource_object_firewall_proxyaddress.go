@@ -49,6 +49,12 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"application": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"case_sensitivity": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -185,18 +191,20 @@ func resourceObjectFirewallProxyAddressCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallProxyAddress(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallProxyAddress(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallProxyAddress(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProxyAddress resource: %v", err)
@@ -212,18 +220,20 @@ func resourceObjectFirewallProxyAddressUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallProxyAddress(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProxyAddress(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallProxyAddress(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProxyAddress resource: %v", err)
 	}
@@ -241,13 +251,15 @@ func resourceObjectFirewallProxyAddressDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProxyAddress(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallProxyAddress(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProxyAddress resource: %v", err)
 	}
@@ -263,13 +275,15 @@ func resourceObjectFirewallProxyAddressRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallProxyAddress(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallProxyAddress(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallProxyAddress resource: %v", err)
 	}
@@ -289,6 +303,10 @@ func resourceObjectFirewallProxyAddressRead(d *schema.ResourceData, m interface{
 
 func flattenObjectFirewallProxyAddressImageBase64(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallProxyAddressApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallProxyAddressCaseSensitivity(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -501,6 +519,16 @@ func refreshObjectObjectFirewallProxyAddress(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading _image_base64: %v", err)
+		}
+	}
+
+	if err = d.Set("application", flattenObjectFirewallProxyAddressApplication(o["application"], d, "application")); err != nil {
+		if vv, ok := fortiAPIPatch(o["application"], "ObjectFirewallProxyAddress-Application"); ok {
+			if err = d.Set("application", vv); err != nil {
+				return fmt.Errorf("Error reading application: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading application: %v", err)
 		}
 	}
 
@@ -735,6 +763,10 @@ func expandObjectFirewallProxyAddressImageBase64(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectFirewallProxyAddressApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallProxyAddressCaseSensitivity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -919,6 +951,15 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["_image-base64"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
+		t, err := expandObjectFirewallProxyAddressApplication(d, v, "application")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["application"] = t
 		}
 	}
 

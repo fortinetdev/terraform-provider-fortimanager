@@ -53,14 +53,16 @@ func resourceSystemHaScheduledCheckUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemHaScheduledCheck(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaScheduledCheck resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemHaScheduledCheck(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemHaScheduledCheck(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHaScheduledCheck resource: %v", err)
 	}
@@ -78,9 +80,11 @@ func resourceSystemHaScheduledCheckDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemHaScheduledCheck(adomv, mkey, nil)
+	err = c.DeleteSystemHaScheduledCheck(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemHaScheduledCheck resource: %v", err)
 	}
@@ -96,9 +100,11 @@ func resourceSystemHaScheduledCheckRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemHaScheduledCheck(adomv, mkey, nil)
+	o, err := c.ReadSystemHaScheduledCheck(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemHaScheduledCheck resource: %v", err)
 	}

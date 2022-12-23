@@ -122,18 +122,20 @@ func resourceObjectIpsCustomCreate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIpsCustom(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectIpsCustom(obj, adomv, nil)
+	_, err = c.CreateObjectIpsCustom(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsCustom resource: %v", err)
@@ -149,18 +151,20 @@ func resourceObjectIpsCustomUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIpsCustom(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIpsCustom(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectIpsCustom(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsCustom resource: %v", err)
 	}
@@ -178,13 +182,15 @@ func resourceObjectIpsCustomDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIpsCustom(adomv, mkey, nil)
+	err = c.DeleteObjectIpsCustom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIpsCustom resource: %v", err)
 	}
@@ -200,13 +206,15 @@ func resourceObjectIpsCustomRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectIpsCustom(adomv, mkey, nil)
+	o, err := c.ReadObjectIpsCustom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectIpsCustom resource: %v", err)
 	}

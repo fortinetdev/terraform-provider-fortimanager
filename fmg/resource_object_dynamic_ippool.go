@@ -62,18 +62,20 @@ func resourceObjectDynamicIppoolCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicIppool(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicIppool resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDynamicIppool(obj, adomv, nil)
+	_, err = c.CreateObjectDynamicIppool(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicIppool resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectDynamicIppoolUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicIppool(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicIppool resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicIppool(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDynamicIppool(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicIppool resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectDynamicIppoolDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicIppool(adomv, mkey, nil)
+	err = c.DeleteObjectDynamicIppool(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicIppool resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectDynamicIppoolRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDynamicIppool(adomv, mkey, nil)
+	o, err := c.ReadObjectDynamicIppool(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDynamicIppool resource: %v", err)
 	}

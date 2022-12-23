@@ -132,22 +132,23 @@ func resourcePackagesAuthenticationRuleCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesAuthenticationRule(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesAuthenticationRule resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesAuthenticationRule(obj, adomv, paralist)
+	_, err = c.CreatePackagesAuthenticationRule(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesAuthenticationRule resource: %v", err)
@@ -163,22 +164,23 @@ func resourcePackagesAuthenticationRuleUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesAuthenticationRule(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesAuthenticationRule resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesAuthenticationRule(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesAuthenticationRule(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesAuthenticationRule resource: %v", err)
 	}
@@ -196,17 +198,18 @@ func resourcePackagesAuthenticationRuleDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesAuthenticationRule(adomv, mkey, paralist)
+	err = c.DeletePackagesAuthenticationRule(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesAuthenticationRule resource: %v", err)
 	}
@@ -222,11 +225,13 @@ func resourcePackagesAuthenticationRuleRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -235,10 +240,9 @@ func resourcePackagesAuthenticationRuleRead(d *schema.ResourceData, m interface{
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesAuthenticationRule(adomv, mkey, paralist)
+	o, err := c.ReadPackagesAuthenticationRule(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesAuthenticationRule resource: %v", err)
 	}

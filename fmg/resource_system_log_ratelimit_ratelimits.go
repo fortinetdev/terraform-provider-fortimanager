@@ -55,14 +55,16 @@ func resourceSystemLogRatelimitRatelimitsCreate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogRatelimitRatelimits(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitRatelimits resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemLogRatelimitRatelimits(obj, adomv, nil)
+	_, err = c.CreateSystemLogRatelimitRatelimits(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitRatelimits resource: %v", err)
@@ -78,14 +80,16 @@ func resourceSystemLogRatelimitRatelimitsUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogRatelimitRatelimits(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimitRatelimits resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogRatelimitRatelimits(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogRatelimitRatelimits(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimitRatelimits resource: %v", err)
 	}
@@ -103,9 +107,11 @@ func resourceSystemLogRatelimitRatelimitsDelete(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogRatelimitRatelimits(adomv, mkey, nil)
+	err = c.DeleteSystemLogRatelimitRatelimits(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogRatelimitRatelimits resource: %v", err)
 	}
@@ -121,9 +127,11 @@ func resourceSystemLogRatelimitRatelimitsRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogRatelimitRatelimits(adomv, mkey, nil)
+	o, err := c.ReadSystemLogRatelimitRatelimits(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogRatelimitRatelimits resource: %v", err)
 	}

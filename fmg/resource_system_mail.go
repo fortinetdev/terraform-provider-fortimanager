@@ -81,14 +81,16 @@ func resourceSystemMailCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemMail(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemMail resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemMail(obj, adomv, nil)
+	_, err = c.CreateSystemMail(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemMail resource: %v", err)
@@ -104,14 +106,16 @@ func resourceSystemMailUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemMail(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemMail resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemMail(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemMail(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemMail resource: %v", err)
 	}
@@ -129,9 +133,11 @@ func resourceSystemMailDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemMail(adomv, mkey, nil)
+	err = c.DeleteSystemMail(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemMail resource: %v", err)
 	}
@@ -147,9 +153,11 @@ func resourceSystemMailRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemMail(adomv, mkey, nil)
+	o, err := c.ReadSystemMail(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemMail resource: %v", err)
 	}

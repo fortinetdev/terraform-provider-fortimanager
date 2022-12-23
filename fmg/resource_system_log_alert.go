@@ -43,14 +43,16 @@ func resourceSystemLogAlertUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogAlert(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogAlert resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogAlert(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogAlert(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogAlert resource: %v", err)
 	}
@@ -68,9 +70,11 @@ func resourceSystemLogAlertDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogAlert(adomv, mkey, nil)
+	err = c.DeleteSystemLogAlert(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogAlert resource: %v", err)
 	}
@@ -86,9 +90,11 @@ func resourceSystemLogAlertRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogAlert(adomv, mkey, nil)
+	o, err := c.ReadSystemLogAlert(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogAlert resource: %v", err)
 	}

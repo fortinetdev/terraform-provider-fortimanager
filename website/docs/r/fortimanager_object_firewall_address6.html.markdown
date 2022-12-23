@@ -43,6 +43,7 @@ The following arguments are supported:
 * `country` - IPv6 addresses associated to a specific country.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `end_ip` - Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
+* `epg_name` - Endpoint group name.
 * `end_mac` - Last MAC address in the range.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
 
@@ -57,11 +58,13 @@ The following arguments are supported:
 * `name` - Address name.
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
+* `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `start_mac` - First MAC address in the range.
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
 * `template` - IPv6 address template.
+* `tenant` - Tenant.
 * `type` - Type of IPv6 address object (default = ipprefix). Valid values: `ipprefix`, `iprange`, `nsx`, `dynamic`, `fqdn`, `template`, `mac`, `geography`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
@@ -79,7 +82,7 @@ The `dynamic_mapping` block supports:
 * `country` - Country.
 * `end_ip` - Final IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `end_mac` - Last MAC address in the range.
-* `epg_name` - Epg-Name.
+* `epg_name` - Endpoint group name.
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
 
 * `fqdn` - Fully qualified domain name.
@@ -91,7 +94,7 @@ The `dynamic_mapping` block supports:
 * `macaddr` - Macaddr.
 * `obj_id` - Object ID for NSX.
 * `sdn` - SDN.
-* `sdn_tag` - Sdn-Tag.
+* `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
 * `start_mac` - First MAC address in the range.
 * `subnet_segment` - Subnet-Segment. The structure of `subnet_segment` block is documented below.

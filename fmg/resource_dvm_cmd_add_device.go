@@ -160,14 +160,16 @@ func resourceDvmCmdAddDeviceUpdate(d *schema.ResourceData, m interface{}) error 
 		log.Printf("Could not get device version: %v", err)
 	}
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmCmdAddDevice(d, deviceVersion)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdAddDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmCmdAddDevice(obj, adomv, mkey, nil)
+	_, err = c.UpdateDvmCmdAddDevice(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdAddDevice resource: %v", err)
 	}

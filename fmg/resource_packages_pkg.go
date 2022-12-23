@@ -196,18 +196,20 @@ func resourcePackagesPkgCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectPackagesPkg(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPkg resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesPkg(obj, adomv, nil)
+	_, err = c.CreatePackagesPkg(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesPkg resource: %v", err)
@@ -223,18 +225,20 @@ func resourcePackagesPkgUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectPackagesPkg(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPkg resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesPkg(obj, adomv, mkey, nil)
+	_, err = c.UpdatePackagesPkg(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesPkg resource: %v", err)
 	}
@@ -252,13 +256,15 @@ func resourcePackagesPkgDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeletePackagesPkg(adomv, mkey, nil)
+	err = c.DeletePackagesPkg(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPkg resource: %v", err)
 	}
@@ -274,13 +280,15 @@ func resourcePackagesPkgRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadPackagesPkg(adomv, mkey, nil)
+	o, err := c.ReadPackagesPkg(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesPkg resource: %v", err)
 	}

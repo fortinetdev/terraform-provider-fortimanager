@@ -130,14 +130,16 @@ func resourceDvmdbAdomCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbAdom(d)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbAdom resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateDvmdbAdom(obj, adomv, nil)
+	_, err = c.CreateDvmdbAdom(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbAdom resource: %v", err)
@@ -153,14 +155,16 @@ func resourceDvmdbAdomUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbAdom(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbAdom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbAdom(obj, adomv, mkey, nil)
+	_, err = c.UpdateDvmdbAdom(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbAdom resource: %v", err)
 	}
@@ -178,9 +182,11 @@ func resourceDvmdbAdomDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteDvmdbAdom(adomv, mkey, nil)
+	err = c.DeleteDvmdbAdom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbAdom resource: %v", err)
 	}
@@ -196,9 +202,11 @@ func resourceDvmdbAdomRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadDvmdbAdom(adomv, mkey, nil)
+	o, err := c.ReadDvmdbAdom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading DvmdbAdom resource: %v", err)
 	}

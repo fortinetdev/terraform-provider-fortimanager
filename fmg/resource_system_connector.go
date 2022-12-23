@@ -63,14 +63,16 @@ func resourceSystemConnectorUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemConnector(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemConnector(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemConnector(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemConnector resource: %v", err)
 	}
@@ -88,9 +90,11 @@ func resourceSystemConnectorDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemConnector(adomv, mkey, nil)
+	err = c.DeleteSystemConnector(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemConnector resource: %v", err)
 	}
@@ -106,9 +110,11 @@ func resourceSystemConnectorRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemConnector(adomv, mkey, nil)
+	o, err := c.ReadSystemConnector(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemConnector resource: %v", err)
 	}

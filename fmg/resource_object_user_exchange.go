@@ -126,18 +126,20 @@ func resourceObjectUserExchangeCreate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserExchange(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserExchange resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserExchange(obj, adomv, nil)
+	_, err = c.CreateObjectUserExchange(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserExchange resource: %v", err)
@@ -153,18 +155,20 @@ func resourceObjectUserExchangeUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserExchange(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserExchange resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserExchange(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserExchange(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserExchange resource: %v", err)
 	}
@@ -182,13 +186,15 @@ func resourceObjectUserExchangeDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserExchange(adomv, mkey, nil)
+	err = c.DeleteObjectUserExchange(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserExchange resource: %v", err)
 	}
@@ -204,13 +210,15 @@ func resourceObjectUserExchangeRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserExchange(adomv, mkey, nil)
+	o, err := c.ReadObjectUserExchange(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserExchange resource: %v", err)
 	}

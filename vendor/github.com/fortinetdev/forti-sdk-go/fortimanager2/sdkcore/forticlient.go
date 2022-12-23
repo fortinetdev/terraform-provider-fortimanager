@@ -204,11 +204,11 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
 	log.Printf("Get divice version response: %v\n", string(body))
-	if result == nil {
-		err = fmt.Errorf("Cannot Unmarshal the response: %s", string(body))
+	err = fortiAPIErrorFormat(result, string(body))
+	if err != nil {
 		return "", err
 	}
-
+	
 	if version, ok := result["result"].([]interface{})[0].(map[string]interface{})["data"].(map[string]interface{})["Version"].(string); ok {
 		regexp, err := regexp.Compile(`v([\d.]+)`)
 		match := regexp.FindStringSubmatch(version)

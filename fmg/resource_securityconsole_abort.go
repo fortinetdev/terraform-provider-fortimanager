@@ -49,14 +49,16 @@ func resourceSecurityconsoleAbortUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSecurityconsoleAbort(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAbort resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsoleAbort(obj, adomv, mkey, nil)
+	_, err = c.UpdateSecurityconsoleAbort(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsoleAbort resource: %v", err)
 	}

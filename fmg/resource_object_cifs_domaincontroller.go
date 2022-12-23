@@ -87,18 +87,20 @@ func resourceObjectCifsDomainControllerCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCifsDomainController(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectCifsDomainController(obj, adomv, nil)
+	_, err = c.CreateObjectCifsDomainController(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCifsDomainController resource: %v", err)
@@ -114,18 +116,20 @@ func resourceObjectCifsDomainControllerUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCifsDomainController(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCifsDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCifsDomainController(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectCifsDomainController(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCifsDomainController resource: %v", err)
 	}
@@ -143,13 +147,15 @@ func resourceObjectCifsDomainControllerDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCifsDomainController(adomv, mkey, nil)
+	err = c.DeleteObjectCifsDomainController(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCifsDomainController resource: %v", err)
 	}
@@ -165,13 +171,15 @@ func resourceObjectCifsDomainControllerRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectCifsDomainController(adomv, mkey, nil)
+	o, err := c.ReadObjectCifsDomainController(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectCifsDomainController resource: %v", err)
 	}

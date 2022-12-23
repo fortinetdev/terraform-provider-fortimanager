@@ -62,18 +62,20 @@ func resourceObjectSystemSmsServerCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemSmsServer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSmsServer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemSmsServer(obj, adomv, nil)
+	_, err = c.CreateObjectSystemSmsServer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSmsServer resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectSystemSmsServerUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemSmsServer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSmsServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSmsServer(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemSmsServer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSmsServer resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectSystemSmsServerDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemSmsServer(adomv, mkey, nil)
+	err = c.DeleteObjectSystemSmsServer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSmsServer resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectSystemSmsServerRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemSmsServer(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemSmsServer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemSmsServer resource: %v", err)
 	}

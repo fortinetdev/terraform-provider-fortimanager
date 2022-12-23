@@ -56,14 +56,16 @@ func resourceSystemSqlCustomSkipidxCreate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSqlCustomSkipidx(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomSkipidx resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSqlCustomSkipidx(obj, adomv, nil)
+	_, err = c.CreateSystemSqlCustomSkipidx(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomSkipidx resource: %v", err)
@@ -79,14 +81,16 @@ func resourceSystemSqlCustomSkipidxUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSqlCustomSkipidx(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlCustomSkipidx resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSqlCustomSkipidx(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSqlCustomSkipidx(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlCustomSkipidx resource: %v", err)
 	}
@@ -104,9 +108,11 @@ func resourceSystemSqlCustomSkipidxDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSqlCustomSkipidx(adomv, mkey, nil)
+	err = c.DeleteSystemSqlCustomSkipidx(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSqlCustomSkipidx resource: %v", err)
 	}
@@ -122,9 +128,11 @@ func resourceSystemSqlCustomSkipidxRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSqlCustomSkipidx(adomv, mkey, nil)
+	o, err := c.ReadSystemSqlCustomSkipidx(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSqlCustomSkipidx resource: %v", err)
 	}

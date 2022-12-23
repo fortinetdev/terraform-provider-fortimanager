@@ -80,6 +80,16 @@ func resourceObjectIpsSensor() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"default_action": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"default_status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"exempt_ip": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
@@ -103,6 +113,11 @@ func resourceObjectIpsSensor() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+						},
+						"last_modified": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
 						},
 						"location": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -181,6 +196,12 @@ func resourceObjectIpsSensor() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"vuln_type": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeInt},
+							Optional: true,
+							Computed: true,
+						},
 					},
 				},
 			},
@@ -216,18 +237,20 @@ func resourceObjectIpsSensorCreate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIpsSensor(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectIpsSensor(obj, adomv, nil)
+	_, err = c.CreateObjectIpsSensor(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIpsSensor resource: %v", err)
@@ -243,18 +266,20 @@ func resourceObjectIpsSensorUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIpsSensor(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIpsSensor(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectIpsSensor(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIpsSensor resource: %v", err)
 	}
@@ -272,13 +297,15 @@ func resourceObjectIpsSensorDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIpsSensor(adomv, mkey, nil)
+	err = c.DeleteObjectIpsSensor(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIpsSensor resource: %v", err)
 	}
@@ -294,13 +321,15 @@ func resourceObjectIpsSensorRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectIpsSensor(adomv, mkey, nil)
+	o, err := c.ReadObjectIpsSensor(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectIpsSensor resource: %v", err)
 	}
@@ -367,6 +396,18 @@ func flattenObjectIpsSensorEntries(v interface{}, d *schema.ResourceData, pre st
 			tmp["cve"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-Cve")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_action"
+		if _, ok := i["default-action"]; ok {
+			v := flattenObjectIpsSensorEntriesDefaultAction(i["default-action"], d, pre_append)
+			tmp["default_action"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-DefaultAction")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_status"
+		if _, ok := i["default-status"]; ok {
+			v := flattenObjectIpsSensorEntriesDefaultStatus(i["default-status"], d, pre_append)
+			tmp["default_status"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-DefaultStatus")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
 		if _, ok := i["exempt-ip"]; ok {
 			v := flattenObjectIpsSensorEntriesExemptIp(i["exempt-ip"], d, pre_append)
@@ -377,6 +418,12 @@ func flattenObjectIpsSensorEntries(v interface{}, d *schema.ResourceData, pre st
 		if _, ok := i["id"]; ok {
 			v := flattenObjectIpsSensorEntriesId(i["id"], d, pre_append)
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-Id")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "last_modified"
+		if _, ok := i["last-modified"]; ok {
+			v := flattenObjectIpsSensorEntriesLastModified(i["last-modified"], d, pre_append)
+			tmp["last_modified"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-LastModified")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
@@ -475,6 +522,12 @@ func flattenObjectIpsSensorEntries(v interface{}, d *schema.ResourceData, pre st
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vuln_type"
+		if _, ok := i["vuln-type"]; ok {
+			v := flattenObjectIpsSensorEntriesVulnType(i["vuln-type"], d, pre_append)
+			tmp["vuln_type"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-VulnType")
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -493,6 +546,14 @@ func flattenObjectIpsSensorEntriesApplication(v interface{}, d *schema.ResourceD
 
 func flattenObjectIpsSensorEntriesCve(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectIpsSensorEntriesDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIpsSensorEntriesDefaultStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectIpsSensorEntriesExemptIp(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -554,6 +615,10 @@ func flattenObjectIpsSensorEntriesExemptIpSrcIp(v interface{}, d *schema.Resourc
 
 func flattenObjectIpsSensorEntriesId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectIpsSensorEntriesLastModified(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return conv2str(v)
 }
 
 func flattenObjectIpsSensorEntriesLocation(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -618,6 +683,10 @@ func flattenObjectIpsSensorEntriesSeverity(v interface{}, d *schema.ResourceData
 
 func flattenObjectIpsSensorEntriesStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectIpsSensorEntriesVulnType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
 }
 
 func flattenObjectIpsSensorExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -791,6 +860,16 @@ func expandObjectIpsSensorEntries(d *schema.ResourceData, v interface{}, pre str
 			tmp["cve"], _ = expandObjectIpsSensorEntriesCve(d, i["cve"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_action"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["default-action"], _ = expandObjectIpsSensorEntriesDefaultAction(d, i["default_action"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "default_status"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["default-status"], _ = expandObjectIpsSensorEntriesDefaultStatus(d, i["default_status"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "exempt_ip"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			t, err := expandObjectIpsSensorEntriesExemptIp(d, i["exempt_ip"], pre_append)
@@ -804,6 +883,11 @@ func expandObjectIpsSensorEntries(d *schema.ResourceData, v interface{}, pre str
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectIpsSensorEntriesId(d, i["id"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "last_modified"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["last-modified"], _ = expandObjectIpsSensorEntriesLastModified(d, i["last_modified"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "location"
@@ -886,6 +970,11 @@ func expandObjectIpsSensorEntries(d *schema.ResourceData, v interface{}, pre str
 			tmp["status"], _ = expandObjectIpsSensorEntriesStatus(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vuln_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vuln-type"], _ = expandObjectIpsSensorEntriesVulnType(d, i["vuln_type"], pre_append)
+		}
+
 		result = append(result, tmp)
 
 		con += 1
@@ -904,6 +993,14 @@ func expandObjectIpsSensorEntriesApplication(d *schema.ResourceData, v interface
 
 func expandObjectIpsSensorEntriesCve(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectIpsSensorEntriesDefaultAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIpsSensorEntriesDefaultStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectIpsSensorEntriesExemptIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -956,6 +1053,10 @@ func expandObjectIpsSensorEntriesExemptIpSrcIp(d *schema.ResourceData, v interfa
 }
 
 func expandObjectIpsSensorEntriesId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIpsSensorEntriesLastModified(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1021,6 +1122,10 @@ func expandObjectIpsSensorEntriesSeverity(d *schema.ResourceData, v interface{},
 
 func expandObjectIpsSensorEntriesStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectIpsSensorEntriesVulnType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectIpsSensorExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

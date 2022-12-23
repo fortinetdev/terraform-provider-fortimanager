@@ -73,6 +73,7 @@ The `rule` block supports:
 * `set_origin` - BGP origin code. Valid values: `none`, `egp`, `igp`, `incomplete`.
 
 * `set_originator_id` - BGP originator ID attribute.
+* `set_priority` - Priority for routing table.
 * `set_route_tag` - Route tag for routing table.
 * `set_tag` - Tag value.
 * `set_weight` - BGP weight for routing table.

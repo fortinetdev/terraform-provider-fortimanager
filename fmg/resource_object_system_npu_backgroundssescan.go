@@ -66,18 +66,20 @@ func resourceObjectSystemNpuBackgroundSseScanUpdate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuBackgroundSseScan(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuBackgroundSseScan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuBackgroundSseScan(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuBackgroundSseScan(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuBackgroundSseScan resource: %v", err)
 	}
@@ -95,13 +97,15 @@ func resourceObjectSystemNpuBackgroundSseScanDelete(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuBackgroundSseScan(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuBackgroundSseScan(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuBackgroundSseScan resource: %v", err)
 	}
@@ -117,13 +121,15 @@ func resourceObjectSystemNpuBackgroundSseScanRead(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuBackgroundSseScan(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuBackgroundSseScan(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuBackgroundSseScan resource: %v", err)
 	}

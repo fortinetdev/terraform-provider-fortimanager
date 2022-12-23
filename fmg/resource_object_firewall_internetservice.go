@@ -51,7 +51,19 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"city6": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
 			"country": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
+			"country6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
@@ -101,6 +113,10 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"extra_ip6_range_number": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"icon_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -114,6 +130,10 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 			},
 			"ip_range_number": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"ip6_range_number": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
@@ -138,6 +158,12 @@ func resourceObjectFirewallInternetService() *schema.Resource {
 				Optional: true,
 			},
 			"region": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
+			"region6": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeInt},
 				Optional: true,
@@ -173,18 +199,20 @@ func resourceObjectFirewallInternetServiceUpdate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallInternetService(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetService resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetService(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallInternetService(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetService resource: %v", err)
 	}
@@ -202,13 +230,15 @@ func resourceObjectFirewallInternetServiceDelete(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallInternetService(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallInternetService(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetService resource: %v", err)
 	}
@@ -224,13 +254,15 @@ func resourceObjectFirewallInternetServiceRead(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallInternetService(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallInternetService(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallInternetService resource: %v", err)
 	}
@@ -252,7 +284,15 @@ func flattenObjectFirewallInternetServiceCityOfia(v interface{}, d *schema.Resou
 	return flattenIntegerList(v)
 }
 
+func flattenObjectFirewallInternetServiceCity6Ofia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
 func flattenObjectFirewallInternetServiceCountryOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenObjectFirewallInternetServiceCountry6Ofia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
@@ -345,6 +385,10 @@ func flattenObjectFirewallInternetServiceExtraIpRangeNumberOfia(v interface{}, d
 	return v
 }
 
+func flattenObjectFirewallInternetServiceExtraIp6RangeNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallInternetServiceIconIdOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -358,6 +402,10 @@ func flattenObjectFirewallInternetServiceIpNumberOfia(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallInternetServiceIpRangeNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallInternetServiceIp6RangeNumberOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -382,6 +430,10 @@ func flattenObjectFirewallInternetServiceObsoleteOfia(v interface{}, d *schema.R
 }
 
 func flattenObjectFirewallInternetServiceRegionOfia(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
+func flattenObjectFirewallInternetServiceRegion6Ofia(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
@@ -422,6 +474,16 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("city6", flattenObjectFirewallInternetServiceCity6Ofia(o["city6"], d, "city6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["city6"], "ObjectFirewallInternetService-City6"); ok {
+			if err = d.Set("city6", vv); err != nil {
+				return fmt.Errorf("Error reading city6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading city6: %v", err)
+		}
+	}
+
 	if err = d.Set("country", flattenObjectFirewallInternetServiceCountryOfia(o["country"], d, "country")); err != nil {
 		if vv, ok := fortiAPIPatch(o["country"], "ObjectFirewallInternetService-Country"); ok {
 			if err = d.Set("country", vv); err != nil {
@@ -429,6 +491,16 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading country: %v", err)
+		}
+	}
+
+	if err = d.Set("country6", flattenObjectFirewallInternetServiceCountry6Ofia(o["country6"], d, "country6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["country6"], "ObjectFirewallInternetService-Country6"); ok {
+			if err = d.Set("country6", vv); err != nil {
+				return fmt.Errorf("Error reading country6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading country6: %v", err)
 		}
 	}
 
@@ -486,6 +558,16 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("extra_ip6_range_number", flattenObjectFirewallInternetServiceExtraIp6RangeNumberOfia(o["extra-ip6-range-number"], d, "extra_ip6_range_number")); err != nil {
+		if vv, ok := fortiAPIPatch(o["extra-ip6-range-number"], "ObjectFirewallInternetService-ExtraIp6RangeNumber"); ok {
+			if err = d.Set("extra_ip6_range_number", vv); err != nil {
+				return fmt.Errorf("Error reading extra_ip6_range_number: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading extra_ip6_range_number: %v", err)
+		}
+	}
+
 	if err = d.Set("icon_id", flattenObjectFirewallInternetServiceIconIdOfia(o["icon-id"], d, "icon_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icon-id"], "ObjectFirewallInternetService-IconId"); ok {
 			if err = d.Set("icon_id", vv); err != nil {
@@ -523,6 +605,16 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading ip_range_number: %v", err)
+		}
+	}
+
+	if err = d.Set("ip6_range_number", flattenObjectFirewallInternetServiceIp6RangeNumberOfia(o["ip6-range-number"], d, "ip6_range_number")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ip6-range-number"], "ObjectFirewallInternetService-Ip6RangeNumber"); ok {
+			if err = d.Set("ip6_range_number", vv); err != nil {
+				return fmt.Errorf("Error reading ip6_range_number: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ip6_range_number: %v", err)
 		}
 	}
 
@@ -586,6 +678,16 @@ func refreshObjectObjectFirewallInternetService(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("region6", flattenObjectFirewallInternetServiceRegion6Ofia(o["region6"], d, "region6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["region6"], "ObjectFirewallInternetService-Region6"); ok {
+			if err = d.Set("region6", vv); err != nil {
+				return fmt.Errorf("Error reading region6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading region6: %v", err)
+		}
+	}
+
 	if err = d.Set("packetloss_threshold", flattenObjectFirewallInternetServicePacketlossThresholdOfia(o["packetloss-threshold"], d, "packetloss_threshold")); err != nil {
 		if vv, ok := fortiAPIPatch(o["packetloss-threshold"], "ObjectFirewallInternetService-PacketlossThreshold"); ok {
 			if err = d.Set("packetloss_threshold", vv); err != nil {
@@ -639,7 +741,15 @@ func expandObjectFirewallInternetServiceCityOfia(d *schema.ResourceData, v inter
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallInternetServiceCity6Ofia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallInternetServiceCountryOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallInternetServiceCountry6Ofia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
@@ -722,6 +832,10 @@ func expandObjectFirewallInternetServiceExtraIpRangeNumberOfia(d *schema.Resourc
 	return v, nil
 }
 
+func expandObjectFirewallInternetServiceExtraIp6RangeNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallInternetServiceIconIdOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -735,6 +849,10 @@ func expandObjectFirewallInternetServiceIpNumberOfia(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallInternetServiceIpRangeNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallInternetServiceIp6RangeNumberOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -759,6 +877,10 @@ func expandObjectFirewallInternetServiceObsoleteOfia(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallInternetServiceRegionOfia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallInternetServiceRegion6Ofia(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
@@ -790,12 +912,30 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("city6"); ok || d.HasChange("city6") {
+		t, err := expandObjectFirewallInternetServiceCity6Ofia(d, v, "city6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["city6"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("country"); ok || d.HasChange("country") {
 		t, err := expandObjectFirewallInternetServiceCountryOfia(d, v, "country")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["country"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("country6"); ok || d.HasChange("country6") {
+		t, err := expandObjectFirewallInternetServiceCountry6Ofia(d, v, "country6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["country6"] = t
 		}
 	}
 
@@ -835,6 +975,15 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("extra_ip6_range_number"); ok || d.HasChange("extra_ip6_range_number") {
+		t, err := expandObjectFirewallInternetServiceExtraIp6RangeNumberOfia(d, v, "extra_ip6_range_number")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["extra-ip6-range-number"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("icon_id"); ok || d.HasChange("icon_id") {
 		t, err := expandObjectFirewallInternetServiceIconIdOfia(d, v, "icon_id")
 		if err != nil {
@@ -868,6 +1017,15 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["ip-range-number"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ip6_range_number"); ok || d.HasChange("ip6_range_number") {
+		t, err := expandObjectFirewallInternetServiceIp6RangeNumberOfia(d, v, "ip6_range_number")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ip6-range-number"] = t
 		}
 	}
 
@@ -922,6 +1080,15 @@ func getObjectObjectFirewallInternetService(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["region"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("region6"); ok || d.HasChange("region6") {
+		t, err := expandObjectFirewallInternetServiceRegion6Ofia(d, v, "region6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["region6"] = t
 		}
 	}
 

@@ -57,6 +57,9 @@ The following arguments are supported:
 * `antiphish` - Enable/disable AntiPhishing credential backend. Valid values: `disable`, `enable`.
 
 * `ca_cert` - CA certificate name.
+* `client_cert` - Client certificate name.
+* `client_cert_auth` - Enable/disable using client certificate for TLS authentication. Valid values: `disable`, `enable`.
+
 * `cnid` - Common name identifier for the LDAP server. The common name identifier for most LDAP servers is "cn".
 * `dn` - Distinguished name used to look up entries on the LDAP server.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
@@ -96,6 +99,7 @@ The following arguments are supported:
 
 * `two_factor_authentication` - Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
 
+* `two_factor_filter` - Filter used to synchronize users to FortiToken Cloud.
 * `two_factor_notification` - Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
 
 * `type` - Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.
@@ -158,7 +162,7 @@ The `dynamic_mapping` block supports:
 
 * `two_factor_authentication` - Authentication method by FortiToken Cloud. Valid values: `fortitoken`, `email`, `sms`.
 
-* `two_factor_filter` - Two-Factor-Filter.
+* `two_factor_filter` - Filter used to synchronize users to FortiToken Cloud.
 * `two_factor_notification` - Notification method for user activation by FortiToken Cloud. Valid values: `email`, `sms`.
 
 * `type` - Authentication type for LDAP searches. Valid values: `simple`, `anonymous`, `regular`.

@@ -95,18 +95,20 @@ func resourceObjectApplicationCustomCreate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectApplicationCustom(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectApplicationCustom(obj, adomv, nil)
+	_, err = c.CreateObjectApplicationCustom(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationCustom resource: %v", err)
@@ -122,18 +124,20 @@ func resourceObjectApplicationCustomUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectApplicationCustom(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationCustom(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectApplicationCustom(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationCustom resource: %v", err)
 	}
@@ -151,13 +155,15 @@ func resourceObjectApplicationCustomDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectApplicationCustom(adomv, mkey, nil)
+	err = c.DeleteObjectApplicationCustom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationCustom resource: %v", err)
 	}
@@ -173,13 +179,15 @@ func resourceObjectApplicationCustomRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectApplicationCustom(adomv, mkey, nil)
+	o, err := c.ReadObjectApplicationCustom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectApplicationCustom resource: %v", err)
 	}

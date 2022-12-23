@@ -120,18 +120,20 @@ func resourceObjectFirewallMulticastAddressCreate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallMulticastAddress(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMulticastAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallMulticastAddress(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallMulticastAddress(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallMulticastAddress resource: %v", err)
@@ -147,18 +149,20 @@ func resourceObjectFirewallMulticastAddressUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallMulticastAddress(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallMulticastAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallMulticastAddress(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallMulticastAddress(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallMulticastAddress resource: %v", err)
 	}
@@ -176,13 +180,15 @@ func resourceObjectFirewallMulticastAddressDelete(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallMulticastAddress(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallMulticastAddress(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallMulticastAddress resource: %v", err)
 	}
@@ -198,13 +204,15 @@ func resourceObjectFirewallMulticastAddressRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallMulticastAddress(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallMulticastAddress(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallMulticastAddress resource: %v", err)
 	}

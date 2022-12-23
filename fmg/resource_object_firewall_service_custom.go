@@ -179,18 +179,20 @@ func resourceObjectFirewallServiceCustomCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallServiceCustom(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallServiceCustom(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallServiceCustom(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCustom resource: %v", err)
@@ -206,18 +208,20 @@ func resourceObjectFirewallServiceCustomUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallServiceCustom(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceCustom resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallServiceCustom(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallServiceCustom(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceCustom resource: %v", err)
 	}
@@ -235,13 +239,15 @@ func resourceObjectFirewallServiceCustomDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallServiceCustom(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallServiceCustom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallServiceCustom resource: %v", err)
 	}
@@ -257,13 +263,15 @@ func resourceObjectFirewallServiceCustomRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallServiceCustom(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallServiceCustom(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallServiceCustom resource: %v", err)
 	}

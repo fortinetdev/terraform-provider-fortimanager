@@ -71,18 +71,20 @@ func resourceObjectFirewallServiceCategoryCreate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallServiceCategory(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCategory resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallServiceCategory(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallServiceCategory(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallServiceCategory resource: %v", err)
@@ -98,18 +100,20 @@ func resourceObjectFirewallServiceCategoryUpdate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallServiceCategory(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceCategory resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallServiceCategory(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallServiceCategory(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallServiceCategory resource: %v", err)
 	}
@@ -127,13 +131,15 @@ func resourceObjectFirewallServiceCategoryDelete(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallServiceCategory(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallServiceCategory(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallServiceCategory resource: %v", err)
 	}
@@ -149,13 +155,15 @@ func resourceObjectFirewallServiceCategoryRead(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallServiceCategory(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallServiceCategory(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallServiceCategory resource: %v", err)
 	}

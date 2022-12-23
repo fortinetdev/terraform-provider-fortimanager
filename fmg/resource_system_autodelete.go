@@ -162,14 +162,16 @@ func resourceSystemAutoDeleteUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAutoDelete(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDelete resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAutoDelete(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAutoDelete(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDelete resource: %v", err)
 	}
@@ -187,9 +189,11 @@ func resourceSystemAutoDeleteDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAutoDelete(adomv, mkey, nil)
+	err = c.DeleteSystemAutoDelete(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAutoDelete resource: %v", err)
 	}
@@ -205,9 +209,11 @@ func resourceSystemAutoDeleteRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAutoDelete(adomv, mkey, nil)
+	o, err := c.ReadSystemAutoDelete(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAutoDelete resource: %v", err)
 	}

@@ -82,6 +82,11 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"server_identity_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -93,6 +98,11 @@ func resourceObjectSystemExternalResource() *schema.Resource {
 				Computed: true,
 			},
 			"type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"update_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -119,18 +129,20 @@ func resourceObjectSystemExternalResourceCreate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemExternalResource(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemExternalResource resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemExternalResource(obj, adomv, nil)
+	_, err = c.CreateObjectSystemExternalResource(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemExternalResource resource: %v", err)
@@ -146,18 +158,20 @@ func resourceObjectSystemExternalResourceUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemExternalResource(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemExternalResource resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemExternalResource(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemExternalResource(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemExternalResource resource: %v", err)
 	}
@@ -175,13 +189,15 @@ func resourceObjectSystemExternalResourceDelete(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemExternalResource(adomv, mkey, nil)
+	err = c.DeleteObjectSystemExternalResource(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemExternalResource resource: %v", err)
 	}
@@ -197,13 +213,15 @@ func resourceObjectSystemExternalResourceRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemExternalResource(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemExternalResource(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemExternalResource resource: %v", err)
 	}
@@ -253,6 +271,10 @@ func flattenObjectSystemExternalResourceResource(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectSystemExternalResourceServerIdentityCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemExternalResourceSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -262,6 +284,10 @@ func flattenObjectSystemExternalResourceStatus(v interface{}, d *schema.Resource
 }
 
 func flattenObjectSystemExternalResourceType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemExternalResourceUpdateMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -364,6 +390,16 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 		}
 	}
 
+	if err = d.Set("server_identity_check", flattenObjectSystemExternalResourceServerIdentityCheck(o["server-identity-check"], d, "server_identity_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server-identity-check"], "ObjectSystemExternalResource-ServerIdentityCheck"); ok {
+			if err = d.Set("server_identity_check", vv); err != nil {
+				return fmt.Errorf("Error reading server_identity_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server_identity_check: %v", err)
+		}
+	}
+
 	if err = d.Set("source_ip", flattenObjectSystemExternalResourceSourceIp(o["source-ip"], d, "source_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["source-ip"], "ObjectSystemExternalResource-SourceIp"); ok {
 			if err = d.Set("source_ip", vv); err != nil {
@@ -391,6 +427,16 @@ func refreshObjectObjectSystemExternalResource(d *schema.ResourceData, o map[str
 			}
 		} else {
 			return fmt.Errorf("Error reading type: %v", err)
+		}
+	}
+
+	if err = d.Set("update_method", flattenObjectSystemExternalResourceUpdateMethod(o["update-method"], d, "update_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-method"], "ObjectSystemExternalResource-UpdateMethod"); ok {
+			if err = d.Set("update_method", vv); err != nil {
+				return fmt.Errorf("Error reading update_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_method: %v", err)
 		}
 	}
 
@@ -465,6 +511,10 @@ func expandObjectSystemExternalResourceResource(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectSystemExternalResourceServerIdentityCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemExternalResourceSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -474,6 +524,10 @@ func expandObjectSystemExternalResourceStatus(d *schema.ResourceData, v interfac
 }
 
 func expandObjectSystemExternalResourceType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemExternalResourceUpdateMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -564,6 +618,15 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 		}
 	}
 
+	if v, ok := d.GetOk("server_identity_check"); ok || d.HasChange("server_identity_check") {
+		t, err := expandObjectSystemExternalResourceServerIdentityCheck(d, v, "server_identity_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server-identity-check"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("source_ip"); ok || d.HasChange("source_ip") {
 		t, err := expandObjectSystemExternalResourceSourceIp(d, v, "source_ip")
 		if err != nil {
@@ -588,6 +651,15 @@ func getObjectObjectSystemExternalResource(d *schema.ResourceData) (*map[string]
 			return &obj, err
 		} else if t != nil {
 			obj["type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_method"); ok || d.HasChange("update_method") {
+		t, err := expandObjectSystemExternalResourceUpdateMethod(d, v, "update_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-method"] = t
 		}
 	}
 

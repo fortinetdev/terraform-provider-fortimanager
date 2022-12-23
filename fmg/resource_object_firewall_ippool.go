@@ -249,6 +249,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"subnet_broadcast_in_ippool": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -319,6 +324,11 @@ func resourceObjectFirewallIppool() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"subnet_broadcast_in_ippool": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -347,18 +357,20 @@ func resourceObjectFirewallIppoolCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallIppool(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppool resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallIppool(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallIppool(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppool resource: %v", err)
@@ -374,18 +386,20 @@ func resourceObjectFirewallIppoolUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallIppool(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIppool resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallIppool(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallIppool(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIppool resource: %v", err)
 	}
@@ -403,13 +417,15 @@ func resourceObjectFirewallIppoolDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallIppool(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallIppool(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallIppool resource: %v", err)
 	}
@@ -425,13 +441,15 @@ func resourceObjectFirewallIppoolRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallIppool(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallIppool(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallIppool resource: %v", err)
 	}
@@ -690,6 +708,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["startport"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Startport")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet_broadcast_in_ippool"
+		if _, ok := i["subnet-broadcast-in-ippool"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(i["subnet-broadcast-in-ippool"], d, pre_append)
+			tmp["subnet_broadcast_in_ippool"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-SubnetBroadcastInIppool")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := i["type"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingType(i["type"], d, pre_append)
@@ -867,6 +891,10 @@ func flattenObjectFirewallIppoolDynamicMappingStartport(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallIppoolDynamicMappingType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -924,6 +952,10 @@ func flattenObjectFirewallIppoolStartip(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallIppoolStartport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallIppoolSubnetBroadcastInIppool(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1244,6 +1276,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 		}
 	}
 
+	if err = d.Set("subnet_broadcast_in_ippool", flattenObjectFirewallIppoolSubnetBroadcastInIppool(o["subnet-broadcast-in-ippool"], d, "subnet_broadcast_in_ippool")); err != nil {
+		if vv, ok := fortiAPIPatch(o["subnet-broadcast-in-ippool"], "ObjectFirewallIppool-SubnetBroadcastInIppool"); ok {
+			if err = d.Set("subnet_broadcast_in_ippool", vv); err != nil {
+				return fmt.Errorf("Error reading subnet_broadcast_in_ippool: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading subnet_broadcast_in_ippool: %v", err)
+		}
+	}
+
 	if err = d.Set("type", flattenObjectFirewallIppoolType(o["type"], d, "type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["type"], "ObjectFirewallIppool-Type"); ok {
 			if err = d.Set("type", vv); err != nil {
@@ -1497,6 +1539,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["startport"], _ = expandObjectFirewallIppoolDynamicMappingStartport(d, i["startport"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "subnet_broadcast_in_ippool"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["subnet-broadcast-in-ippool"], _ = expandObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(d, i["subnet_broadcast_in_ippool"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallIppoolDynamicMappingType(d, i["type"], pre_append)
@@ -1664,6 +1711,10 @@ func expandObjectFirewallIppoolDynamicMappingStartport(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingSubnetBroadcastInIppool(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1721,6 +1772,10 @@ func expandObjectFirewallIppoolStartip(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallIppoolStartport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallIppoolSubnetBroadcastInIppool(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1988,6 +2043,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["startport"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("subnet_broadcast_in_ippool"); ok || d.HasChange("subnet_broadcast_in_ippool") {
+		t, err := expandObjectFirewallIppoolSubnetBroadcastInIppool(d, v, "subnet_broadcast_in_ippool")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["subnet-broadcast-in-ippool"] = t
 		}
 	}
 

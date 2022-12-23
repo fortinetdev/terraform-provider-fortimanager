@@ -67,18 +67,20 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeCreate(d *schem
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerHotspot20AnqpNetworkAuthType(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
@@ -94,18 +96,20 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeUpdate(d *schem
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerHotspot20AnqpNetworkAuthType(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerHotspot20AnqpNetworkAuthType(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
 	}
@@ -123,13 +127,15 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeDelete(d *schem
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerHotspot20AnqpNetworkAuthType(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerHotspot20AnqpNetworkAuthType(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
 	}
@@ -145,13 +151,15 @@ func resourceObjectWirelessControllerHotspot20AnqpNetworkAuthTypeRead(d *schema.
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerHotspot20AnqpNetworkAuthType(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerHotspot20AnqpNetworkAuthType(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerHotspot20AnqpNetworkAuthType resource: %v", err)
 	}

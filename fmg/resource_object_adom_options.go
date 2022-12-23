@@ -49,6 +49,10 @@ func resourceObjectAdomOptions() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"assign_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"specify_assign_pkg_list": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -62,18 +66,20 @@ func resourceObjectAdomOptionsUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAdomOptions(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAdomOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAdomOptions(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectAdomOptions(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAdomOptions resource: %v", err)
 	}
@@ -91,13 +97,15 @@ func resourceObjectAdomOptionsDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAdomOptions(adomv, mkey, nil)
+	err = c.DeleteObjectAdomOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAdomOptions resource: %v", err)
 	}
@@ -113,13 +121,15 @@ func resourceObjectAdomOptionsRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectAdomOptions(adomv, mkey, nil)
+	o, err := c.ReadObjectAdomOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectAdomOptions resource: %v", err)
 	}
@@ -141,6 +151,10 @@ func flattenObjectAdomOptionsAssignExcluded(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectAdomOptionsAssignName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAdomOptionsSpecifyAssignPkgList(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -159,6 +173,16 @@ func refreshObjectObjectAdomOptions(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading assign_excluded: %v", err)
+		}
+	}
+
+	if err = d.Set("assign_name", flattenObjectAdomOptionsAssignName(o["assign_name"], d, "assign_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["assign_name"], "ObjectAdomOptions-AssignName"); ok {
+			if err = d.Set("assign_name", vv); err != nil {
+				return fmt.Errorf("Error reading assign_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading assign_name: %v", err)
 		}
 	}
 
@@ -185,6 +209,10 @@ func expandObjectAdomOptionsAssignExcluded(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectAdomOptionsAssignName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAdomOptionsSpecifyAssignPkgList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -198,6 +226,15 @@ func getObjectObjectAdomOptions(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["assign_excluded"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("assign_name"); ok || d.HasChange("assign_name") {
+		t, err := expandObjectAdomOptionsAssignName(d, v, "assign_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["assign_name"] = t
 		}
 	}
 

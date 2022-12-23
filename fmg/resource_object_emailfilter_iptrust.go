@@ -99,18 +99,20 @@ func resourceObjectEmailfilterIptrustCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterIptrust(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterIptrust resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectEmailfilterIptrust(obj, adomv, nil)
+	_, err = c.CreateObjectEmailfilterIptrust(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterIptrust resource: %v", err)
@@ -126,18 +128,20 @@ func resourceObjectEmailfilterIptrustUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterIptrust(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterIptrust resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterIptrust(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEmailfilterIptrust(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterIptrust resource: %v", err)
 	}
@@ -155,13 +159,15 @@ func resourceObjectEmailfilterIptrustDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterIptrust(adomv, mkey, nil)
+	err = c.DeleteObjectEmailfilterIptrust(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterIptrust resource: %v", err)
 	}
@@ -177,13 +183,15 @@ func resourceObjectEmailfilterIptrustRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEmailfilterIptrust(adomv, mkey, nil)
+	o, err := c.ReadObjectEmailfilterIptrust(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEmailfilterIptrust resource: %v", err)
 	}

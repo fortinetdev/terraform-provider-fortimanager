@@ -58,14 +58,16 @@ func resourceSystemAutoDeleteLogAutoDeletionUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAutoDeleteLogAutoDeletion(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteLogAutoDeletion resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAutoDeleteLogAutoDeletion(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAutoDeleteLogAutoDeletion(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteLogAutoDeletion resource: %v", err)
 	}
@@ -83,9 +85,11 @@ func resourceSystemAutoDeleteLogAutoDeletionDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteLogAutoDeletion(adomv, mkey, nil)
+	err = c.DeleteSystemAutoDeleteLogAutoDeletion(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAutoDeleteLogAutoDeletion resource: %v", err)
 	}
@@ -101,9 +105,11 @@ func resourceSystemAutoDeleteLogAutoDeletionRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAutoDeleteLogAutoDeletion(adomv, mkey, nil)
+	o, err := c.ReadSystemAutoDeleteLogAutoDeletion(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAutoDeleteLogAutoDeletion resource: %v", err)
 	}

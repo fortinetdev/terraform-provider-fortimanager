@@ -190,18 +190,20 @@ func resourceObjectUserDomainControllerCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDomainController(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserDomainController(obj, adomv, nil)
+	_, err = c.CreateObjectUserDomainController(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDomainController resource: %v", err)
@@ -217,18 +219,20 @@ func resourceObjectUserDomainControllerUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDomainController(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDomainController resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDomainController(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserDomainController(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDomainController resource: %v", err)
 	}
@@ -246,13 +250,15 @@ func resourceObjectUserDomainControllerDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDomainController(adomv, mkey, nil)
+	err = c.DeleteObjectUserDomainController(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDomainController resource: %v", err)
 	}
@@ -268,13 +274,15 @@ func resourceObjectUserDomainControllerRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserDomainController(adomv, mkey, nil)
+	o, err := c.ReadObjectUserDomainController(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserDomainController resource: %v", err)
 	}

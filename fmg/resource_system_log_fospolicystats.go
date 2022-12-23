@@ -53,14 +53,16 @@ func resourceSystemLogFosPolicyStatsUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogFosPolicyStats(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFosPolicyStats resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogFosPolicyStats(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogFosPolicyStats(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFosPolicyStats resource: %v", err)
 	}
@@ -78,9 +80,11 @@ func resourceSystemLogFosPolicyStatsDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogFosPolicyStats(adomv, mkey, nil)
+	err = c.DeleteSystemLogFosPolicyStats(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogFosPolicyStats resource: %v", err)
 	}
@@ -96,9 +100,11 @@ func resourceSystemLogFosPolicyStatsRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogFosPolicyStats(adomv, mkey, nil)
+	o, err := c.ReadSystemLogFosPolicyStats(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogFosPolicyStats resource: %v", err)
 	}

@@ -52,6 +52,7 @@ func resourceObjectSystemNpuSseHaScan() *schema.Resource {
 			"max_session_cnt": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"min_duration": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -66,18 +67,20 @@ func resourceObjectSystemNpuSseHaScanUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuSseHaScan(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSseHaScan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuSseHaScan(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuSseHaScan(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSseHaScan resource: %v", err)
 	}
@@ -95,13 +98,15 @@ func resourceObjectSystemNpuSseHaScanDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuSseHaScan(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuSseHaScan(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuSseHaScan resource: %v", err)
 	}
@@ -117,13 +122,15 @@ func resourceObjectSystemNpuSseHaScanRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuSseHaScan(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuSseHaScan(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuSseHaScan resource: %v", err)
 	}

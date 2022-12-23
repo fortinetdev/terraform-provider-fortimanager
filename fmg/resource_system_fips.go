@@ -53,14 +53,16 @@ func resourceSystemFipsUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemFips(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFips resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemFips(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemFips(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemFips resource: %v", err)
 	}
@@ -78,9 +80,11 @@ func resourceSystemFipsDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemFips(adomv, mkey, nil)
+	err = c.DeleteSystemFips(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemFips resource: %v", err)
 	}
@@ -96,9 +100,11 @@ func resourceSystemFipsRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemFips(adomv, mkey, nil)
+	o, err := c.ReadSystemFips(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemFips resource: %v", err)
 	}

@@ -115,18 +115,20 @@ func resourceObjectUserPeerCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPeer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserPeer(obj, adomv, nil)
+	_, err = c.CreateObjectUserPeer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPeer resource: %v", err)
@@ -142,18 +144,20 @@ func resourceObjectUserPeerUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPeer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPeer(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserPeer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPeer resource: %v", err)
 	}
@@ -171,13 +175,15 @@ func resourceObjectUserPeerDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPeer(adomv, mkey, nil)
+	err = c.DeleteObjectUserPeer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPeer resource: %v", err)
 	}
@@ -193,13 +199,15 @@ func resourceObjectUserPeerRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserPeer(adomv, mkey, nil)
+	o, err := c.ReadObjectUserPeer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserPeer resource: %v", err)
 	}

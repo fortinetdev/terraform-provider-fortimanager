@@ -73,18 +73,20 @@ func resourceObjectWebfilterFtgdLocalRatingCreate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebfilterFtgdLocalRating(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalRating resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWebfilterFtgdLocalRating(obj, adomv, nil)
+	_, err = c.CreateObjectWebfilterFtgdLocalRating(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalRating resource: %v", err)
@@ -100,18 +102,20 @@ func resourceObjectWebfilterFtgdLocalRatingUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebfilterFtgdLocalRating(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterFtgdLocalRating resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterFtgdLocalRating(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWebfilterFtgdLocalRating(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterFtgdLocalRating resource: %v", err)
 	}
@@ -129,13 +133,15 @@ func resourceObjectWebfilterFtgdLocalRatingDelete(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterFtgdLocalRating(adomv, mkey, nil)
+	err = c.DeleteObjectWebfilterFtgdLocalRating(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterFtgdLocalRating resource: %v", err)
 	}
@@ -151,13 +157,15 @@ func resourceObjectWebfilterFtgdLocalRatingRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWebfilterFtgdLocalRating(adomv, mkey, nil)
+	o, err := c.ReadObjectWebfilterFtgdLocalRating(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWebfilterFtgdLocalRating resource: %v", err)
 	}

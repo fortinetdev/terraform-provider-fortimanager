@@ -58,14 +58,16 @@ func resourceSystemCertificateSshCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateSsh(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateSsh resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemCertificateSsh(obj, adomv, nil)
+	_, err = c.CreateSystemCertificateSsh(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateSsh resource: %v", err)
@@ -81,14 +83,16 @@ func resourceSystemCertificateSshUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateSsh(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateSsh resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCertificateSsh(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemCertificateSsh(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateSsh resource: %v", err)
 	}
@@ -106,9 +110,11 @@ func resourceSystemCertificateSshDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCertificateSsh(adomv, mkey, nil)
+	err = c.DeleteSystemCertificateSsh(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCertificateSsh resource: %v", err)
 	}
@@ -124,9 +130,11 @@ func resourceSystemCertificateSshRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemCertificateSsh(adomv, mkey, nil)
+	o, err := c.ReadSystemCertificateSsh(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemCertificateSsh resource: %v", err)
 	}

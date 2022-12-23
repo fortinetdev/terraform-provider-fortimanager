@@ -99,18 +99,20 @@ func resourceObjectSystemNpuSwEhHashUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuSwEhHash(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSwEhHash resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuSwEhHash(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuSwEhHash(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuSwEhHash resource: %v", err)
 	}
@@ -128,13 +130,15 @@ func resourceObjectSystemNpuSwEhHashDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuSwEhHash(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuSwEhHash(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuSwEhHash resource: %v", err)
 	}
@@ -150,13 +154,15 @@ func resourceObjectSystemNpuSwEhHashRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuSwEhHash(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuSwEhHash(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuSwEhHash resource: %v", err)
 	}

@@ -74,6 +74,11 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"obsolete": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -110,18 +115,20 @@ func resourceObjectVpnCertificateCaCreate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnCertificateCa(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnCertificateCa resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVpnCertificateCa(obj, adomv, nil)
+	_, err = c.CreateObjectVpnCertificateCa(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnCertificateCa resource: %v", err)
@@ -137,18 +144,20 @@ func resourceObjectVpnCertificateCaUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnCertificateCa(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnCertificateCa resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnCertificateCa(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVpnCertificateCa(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnCertificateCa resource: %v", err)
 	}
@@ -166,13 +175,15 @@ func resourceObjectVpnCertificateCaDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnCertificateCa(adomv, mkey, nil)
+	err = c.DeleteObjectVpnCertificateCa(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnCertificateCa resource: %v", err)
 	}
@@ -188,13 +199,15 @@ func resourceObjectVpnCertificateCaRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVpnCertificateCa(adomv, mkey, nil)
+	o, err := c.ReadObjectVpnCertificateCa(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVpnCertificateCa resource: %v", err)
 	}
@@ -237,6 +250,10 @@ func flattenObjectVpnCertificateCaLastUpdated(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectVpnCertificateCaName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnCertificateCaObsolete(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -341,6 +358,16 @@ func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("obsolete", flattenObjectVpnCertificateCaObsolete(o["obsolete"], d, "obsolete")); err != nil {
+		if vv, ok := fortiAPIPatch(o["obsolete"], "ObjectVpnCertificateCa-Obsolete"); ok {
+			if err = d.Set("obsolete", vv); err != nil {
+				return fmt.Errorf("Error reading obsolete: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading obsolete: %v", err)
+		}
+	}
+
 	if err = d.Set("range", flattenObjectVpnCertificateCaRange(o["range"], d, "range")); err != nil {
 		if vv, ok := fortiAPIPatch(o["range"], "ObjectVpnCertificateCa-Range"); ok {
 			if err = d.Set("range", vv); err != nil {
@@ -438,6 +465,10 @@ func expandObjectVpnCertificateCaName(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandObjectVpnCertificateCaObsolete(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnCertificateCaRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -525,6 +556,15 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("obsolete"); ok || d.HasChange("obsolete") {
+		t, err := expandObjectVpnCertificateCaObsolete(d, v, "obsolete")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["obsolete"] = t
 		}
 	}
 

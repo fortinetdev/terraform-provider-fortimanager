@@ -347,6 +347,10 @@ func resourceObjectUserFsso() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"sni": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"source_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -393,18 +397,20 @@ func resourceObjectUserFssoCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserFsso(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFsso resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserFsso(obj, adomv, nil)
+	_, err = c.CreateObjectUserFsso(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFsso resource: %v", err)
@@ -420,18 +426,20 @@ func resourceObjectUserFssoUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserFsso(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFsso resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserFsso(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserFsso(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFsso resource: %v", err)
 	}
@@ -449,13 +457,15 @@ func resourceObjectUserFssoDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserFsso(adomv, mkey, nil)
+	err = c.DeleteObjectUserFsso(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserFsso resource: %v", err)
 	}
@@ -471,13 +481,15 @@ func resourceObjectUserFssoRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserFsso(adomv, mkey, nil)
+	o, err := c.ReadObjectUserFsso(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserFsso resource: %v", err)
 	}
@@ -1015,6 +1027,10 @@ func flattenObjectUserFssoServer5(v interface{}, d *schema.ResourceData, pre str
 	return v
 }
 
+func flattenObjectUserFssoSni(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserFssoSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1275,6 +1291,16 @@ func refreshObjectObjectUserFsso(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading server5: %v", err)
+		}
+	}
+
+	if err = d.Set("sni", flattenObjectUserFssoSni(o["sni"], d, "sni")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sni"], "ObjectUserFsso-Sni"); ok {
+			if err = d.Set("sni", vv); err != nil {
+				return fmt.Errorf("Error reading sni: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sni: %v", err)
 		}
 	}
 
@@ -1817,6 +1843,10 @@ func expandObjectUserFssoServer5(d *schema.ResourceData, v interface{}, pre stri
 	return v, nil
 }
 
+func expandObjectUserFssoSni(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserFssoSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2079,6 +2109,15 @@ func getObjectObjectUserFsso(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["server5"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sni"); ok || d.HasChange("sni") {
+		t, err := expandObjectUserFssoSni(d, v, "sni")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sni"] = t
 		}
 	}
 

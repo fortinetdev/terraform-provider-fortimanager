@@ -62,18 +62,20 @@ func resourceObjectWafSubClassCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWafSubClass(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafSubClass resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWafSubClass(obj, adomv, nil)
+	_, err = c.CreateObjectWafSubClass(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafSubClass resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectWafSubClassUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWafSubClass(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafSubClass resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafSubClass(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWafSubClass(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafSubClass resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectWafSubClassDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWafSubClass(adomv, mkey, nil)
+	err = c.DeleteObjectWafSubClass(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafSubClass resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectWafSubClassRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWafSubClass(adomv, mkey, nil)
+	o, err := c.ReadObjectWafSubClass(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWafSubClass resource: %v", err)
 	}

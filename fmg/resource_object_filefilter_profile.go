@@ -134,18 +134,20 @@ func resourceObjectFileFilterProfileCreate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFileFilterProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFileFilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFileFilterProfile(obj, adomv, nil)
+	_, err = c.CreateObjectFileFilterProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFileFilterProfile resource: %v", err)
@@ -161,18 +163,20 @@ func resourceObjectFileFilterProfileUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFileFilterProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFileFilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFileFilterProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFileFilterProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFileFilterProfile resource: %v", err)
 	}
@@ -190,13 +194,15 @@ func resourceObjectFileFilterProfileDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFileFilterProfile(adomv, mkey, nil)
+	err = c.DeleteObjectFileFilterProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFileFilterProfile resource: %v", err)
 	}
@@ -212,13 +218,15 @@ func resourceObjectFileFilterProfileRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFileFilterProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectFileFilterProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFileFilterProfile resource: %v", err)
 	}

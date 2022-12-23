@@ -59,14 +59,16 @@ func resourceSystemAdminGroupCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemAdminGroup(obj, adomv, nil)
+	_, err = c.CreateSystemAdminGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminGroup resource: %v", err)
@@ -82,14 +84,16 @@ func resourceSystemAdminGroupUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAdminGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminGroup resource: %v", err)
 	}
@@ -107,9 +111,11 @@ func resourceSystemAdminGroupDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminGroup(adomv, mkey, nil)
+	err = c.DeleteSystemAdminGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminGroup resource: %v", err)
 	}
@@ -125,9 +131,11 @@ func resourceSystemAdminGroupRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAdminGroup(adomv, mkey, nil)
+	o, err := c.ReadSystemAdminGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAdminGroup resource: %v", err)
 	}

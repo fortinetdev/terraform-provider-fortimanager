@@ -21,6 +21,7 @@ The following arguments are supported:
 * `host_type` - Type of host pattern. Valid values: `sub-string`, `wildcard`.
 
 * `name` - Virtual host name.
+* `replacemsg_group` - Access-proxy-virtual-host replacement message override group.
 * `ssl_certificate` - SSL certificate for this host.
 
 

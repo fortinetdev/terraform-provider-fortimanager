@@ -107,18 +107,20 @@ func resourceObjectSwitchControllerQosDot1PMapCreate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerQosDot1PMap(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosDot1PMap resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerQosDot1PMap(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerQosDot1PMap(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerQosDot1PMap resource: %v", err)
@@ -134,18 +136,20 @@ func resourceObjectSwitchControllerQosDot1PMapUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerQosDot1PMap(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosDot1PMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerQosDot1PMap(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerQosDot1PMap(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerQosDot1PMap resource: %v", err)
 	}
@@ -163,13 +167,15 @@ func resourceObjectSwitchControllerQosDot1PMapDelete(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerQosDot1PMap(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerQosDot1PMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerQosDot1PMap resource: %v", err)
 	}
@@ -185,13 +191,15 @@ func resourceObjectSwitchControllerQosDot1PMapRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerQosDot1PMap(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerQosDot1PMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerQosDot1PMap resource: %v", err)
 	}

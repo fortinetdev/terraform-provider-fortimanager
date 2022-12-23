@@ -63,6 +63,7 @@ The following arguments are supported:
 * `start_port` - Integer value for starting TCP/UDP/SCTP destination port in range (1 - 65535, default = 1).
 * `status` - Enable/disable this policy. Valid values: `disable`, `enable`.
 
+* `traffic_shaper` - Traffic shaper to apply to traffic forwarded by the multicast policy.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 
 

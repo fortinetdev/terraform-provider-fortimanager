@@ -58,14 +58,16 @@ func resourceSystemLogInterfaceStatsUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogInterfaceStats(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogInterfaceStats resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogInterfaceStats(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogInterfaceStats(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogInterfaceStats resource: %v", err)
 	}
@@ -83,9 +85,11 @@ func resourceSystemLogInterfaceStatsDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogInterfaceStats(adomv, mkey, nil)
+	err = c.DeleteSystemLogInterfaceStats(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogInterfaceStats resource: %v", err)
 	}
@@ -101,9 +105,11 @@ func resourceSystemLogInterfaceStatsRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogInterfaceStats(adomv, mkey, nil)
+	o, err := c.ReadSystemLogInterfaceStats(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogInterfaceStats resource: %v", err)
 	}

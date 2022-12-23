@@ -95,18 +95,20 @@ func resourceObjectSpamfilterDnsblCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSpamfilterDnsbl(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterDnsbl resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSpamfilterDnsbl(obj, adomv, nil)
+	_, err = c.CreateObjectSpamfilterDnsbl(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSpamfilterDnsbl resource: %v", err)
@@ -122,18 +124,20 @@ func resourceObjectSpamfilterDnsblUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSpamfilterDnsbl(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSpamfilterDnsbl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSpamfilterDnsbl(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSpamfilterDnsbl(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSpamfilterDnsbl resource: %v", err)
 	}
@@ -151,13 +155,15 @@ func resourceObjectSpamfilterDnsblDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSpamfilterDnsbl(adomv, mkey, nil)
+	err = c.DeleteObjectSpamfilterDnsbl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSpamfilterDnsbl resource: %v", err)
 	}
@@ -173,13 +179,15 @@ func resourceObjectSpamfilterDnsblRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSpamfilterDnsbl(adomv, mkey, nil)
+	o, err := c.ReadObjectSpamfilterDnsbl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSpamfilterDnsbl resource: %v", err)
 	}

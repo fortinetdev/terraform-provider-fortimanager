@@ -83,18 +83,20 @@ func resourceObjectUserKrbKeytabCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserKrbKeytab(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserKrbKeytab resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserKrbKeytab(obj, adomv, nil)
+	_, err = c.CreateObjectUserKrbKeytab(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserKrbKeytab resource: %v", err)
@@ -110,18 +112,20 @@ func resourceObjectUserKrbKeytabUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserKrbKeytab(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserKrbKeytab resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserKrbKeytab(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserKrbKeytab(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserKrbKeytab resource: %v", err)
 	}
@@ -139,13 +143,15 @@ func resourceObjectUserKrbKeytabDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserKrbKeytab(adomv, mkey, nil)
+	err = c.DeleteObjectUserKrbKeytab(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserKrbKeytab resource: %v", err)
 	}
@@ -161,13 +167,15 @@ func resourceObjectUserKrbKeytabRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserKrbKeytab(adomv, mkey, nil)
+	o, err := c.ReadObjectUserKrbKeytab(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserKrbKeytab resource: %v", err)
 	}

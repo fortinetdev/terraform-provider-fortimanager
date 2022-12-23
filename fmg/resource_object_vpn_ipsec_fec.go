@@ -81,6 +81,7 @@ func resourceObjectVpnIpsecFec() *schema.Resource {
 						"seqno": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -103,18 +104,20 @@ func resourceObjectVpnIpsecFecCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnIpsecFec(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnIpsecFec resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVpnIpsecFec(obj, adomv, nil)
+	_, err = c.CreateObjectVpnIpsecFec(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnIpsecFec resource: %v", err)
@@ -130,18 +133,20 @@ func resourceObjectVpnIpsecFecUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnIpsecFec(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnIpsecFec resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnIpsecFec(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVpnIpsecFec(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnIpsecFec resource: %v", err)
 	}
@@ -159,13 +164,15 @@ func resourceObjectVpnIpsecFecDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnIpsecFec(adomv, mkey, nil)
+	err = c.DeleteObjectVpnIpsecFec(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnIpsecFec resource: %v", err)
 	}
@@ -181,13 +188,15 @@ func resourceObjectVpnIpsecFecRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVpnIpsecFec(adomv, mkey, nil)
+	o, err := c.ReadObjectVpnIpsecFec(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVpnIpsecFec resource: %v", err)
 	}

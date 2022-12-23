@@ -62,18 +62,20 @@ func resourceObjectWanoptPeerCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWanoptPeer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWanoptPeer(obj, adomv, nil)
+	_, err = c.CreateObjectWanoptPeer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptPeer resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectWanoptPeerUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWanoptPeer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptPeer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptPeer(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWanoptPeer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptPeer resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectWanoptPeerDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWanoptPeer(adomv, mkey, nil)
+	err = c.DeleteObjectWanoptPeer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptPeer resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectWanoptPeerRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWanoptPeer(adomv, mkey, nil)
+	o, err := c.ReadObjectWanoptPeer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWanoptPeer resource: %v", err)
 	}

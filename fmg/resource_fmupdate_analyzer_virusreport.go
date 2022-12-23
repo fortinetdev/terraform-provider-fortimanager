@@ -43,14 +43,16 @@ func resourceFmupdateAnalyzerVirusreportUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateAnalyzerVirusreport(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAnalyzerVirusreport resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateAnalyzerVirusreport(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateAnalyzerVirusreport(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAnalyzerVirusreport resource: %v", err)
 	}
@@ -68,9 +70,11 @@ func resourceFmupdateAnalyzerVirusreportDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateAnalyzerVirusreport(adomv, mkey, nil)
+	err = c.DeleteFmupdateAnalyzerVirusreport(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateAnalyzerVirusreport resource: %v", err)
 	}
@@ -86,9 +90,11 @@ func resourceFmupdateAnalyzerVirusreportRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateAnalyzerVirusreport(adomv, mkey, nil)
+	o, err := c.ReadFmupdateAnalyzerVirusreport(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateAnalyzerVirusreport resource: %v", err)
 	}

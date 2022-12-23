@@ -46,9 +46,16 @@ The following arguments are supported:
 * `cert_captive_portal` - Certificate captive portal host name.
 * `cert_captive_portal_ip` - Certificate captive portal IP address.
 * `cert_captive_portal_port` - Certificate captive portal port number (1 - 65535, default = 7832).
+* `cookie_max_age` - Persistent web portal cookie maximum age in minutes (30 - 10080 (1 week), default = 480 (8 hours)).
+* `cookie_refresh_div` - Refresh rate divider of persistent web portal cookie (default = 2). Refresh value = cookie-max-age/cookie-refresh-div.
 * `dev_range` - Address range for the IP based device query.
+* `ip_auth_cookie` - Enable/disable persistent cookie on IP based web portal authentication (default = disable). Valid values: `disable`, `enable`.
+
+* `persistent_cookie` - Enable/disable persistent cookie on web portal authentication (default = enable). Valid values: `disable`, `enable`.
+
 * `rewrite_https_port` - Rewrite-Https-Port.
 * `sso_auth_scheme` - Single-Sign-On authentication method (scheme name).
+* `update_time` - Time of the last update.
 * `user_cert_ca` - CA certificate used for client certificate verification.
 
 

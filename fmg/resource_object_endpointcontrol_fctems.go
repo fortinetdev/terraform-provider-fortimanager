@@ -79,6 +79,14 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dirty_reason": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ems_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"fortinetone_cloud_authentication": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -101,6 +109,10 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
+				Optional: true,
+			},
+			"out_of_sync_threshold": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"serial_number": &schema.Schema{
@@ -146,6 +158,14 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"tenant_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"status_check_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -164,18 +184,20 @@ func resourceObjectEndpointControlFctemsCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEndpointControlFctems(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEndpointControlFctems resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectEndpointControlFctems(obj, adomv, nil)
+	_, err = c.CreateObjectEndpointControlFctems(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEndpointControlFctems resource: %v", err)
@@ -191,18 +213,20 @@ func resourceObjectEndpointControlFctemsUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEndpointControlFctems(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEndpointControlFctems resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEndpointControlFctems(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEndpointControlFctems(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEndpointControlFctems resource: %v", err)
 	}
@@ -220,13 +244,15 @@ func resourceObjectEndpointControlFctemsDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEndpointControlFctems(adomv, mkey, nil)
+	err = c.DeleteObjectEndpointControlFctems(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEndpointControlFctems resource: %v", err)
 	}
@@ -242,13 +268,15 @@ func resourceObjectEndpointControlFctemsRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEndpointControlFctems(adomv, mkey, nil)
+	o, err := c.ReadObjectEndpointControlFctems(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEndpointControlFctems resource: %v", err)
 	}
@@ -294,6 +322,14 @@ func flattenObjectEndpointControlFctemsCloudServerType(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectEndpointControlFctemsDirtyReason(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsEmsId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectEndpointControlFctemsFortinetoneCloudAuthentication(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -311,6 +347,10 @@ func flattenObjectEndpointControlFctemsInterfaceSelectMethod(v interface{}, d *s
 }
 
 func flattenObjectEndpointControlFctemsName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsOutOfSyncThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -347,6 +387,14 @@ func flattenObjectEndpointControlFctemsServer(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectEndpointControlFctemsSourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectEndpointControlFctemsTenantId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -435,6 +483,26 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("dirty_reason", flattenObjectEndpointControlFctemsDirtyReason(o["dirty-reason"], d, "dirty_reason")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dirty-reason"], "ObjectEndpointControlFctems-DirtyReason"); ok {
+			if err = d.Set("dirty_reason", vv); err != nil {
+				return fmt.Errorf("Error reading dirty_reason: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dirty_reason: %v", err)
+		}
+	}
+
+	if err = d.Set("ems_id", flattenObjectEndpointControlFctemsEmsId(o["ems-id"], d, "ems_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ems-id"], "ObjectEndpointControlFctems-EmsId"); ok {
+			if err = d.Set("ems_id", vv); err != nil {
+				return fmt.Errorf("Error reading ems_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ems_id: %v", err)
+		}
+	}
+
 	if err = d.Set("fortinetone_cloud_authentication", flattenObjectEndpointControlFctemsFortinetoneCloudAuthentication(o["fortinetone-cloud-authentication"], d, "fortinetone_cloud_authentication")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fortinetone-cloud-authentication"], "ObjectEndpointControlFctems-FortinetoneCloudAuthentication"); ok {
 			if err = d.Set("fortinetone_cloud_authentication", vv); err != nil {
@@ -482,6 +550,16 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("out_of_sync_threshold", flattenObjectEndpointControlFctemsOutOfSyncThreshold(o["out-of-sync-threshold"], d, "out_of_sync_threshold")); err != nil {
+		if vv, ok := fortiAPIPatch(o["out-of-sync-threshold"], "ObjectEndpointControlFctems-OutOfSyncThreshold"); ok {
+			if err = d.Set("out_of_sync_threshold", vv); err != nil {
+				return fmt.Errorf("Error reading out_of_sync_threshold: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading out_of_sync_threshold: %v", err)
 		}
 	}
 
@@ -575,6 +653,26 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("status", flattenObjectEndpointControlFctemsStatus(o["status"], d, "status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["status"], "ObjectEndpointControlFctems-Status"); ok {
+			if err = d.Set("status", vv); err != nil {
+				return fmt.Errorf("Error reading status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading status: %v", err)
+		}
+	}
+
+	if err = d.Set("tenant_id", flattenObjectEndpointControlFctemsTenantId(o["tenant-id"], d, "tenant_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tenant-id"], "ObjectEndpointControlFctems-TenantId"); ok {
+			if err = d.Set("tenant_id", vv); err != nil {
+				return fmt.Errorf("Error reading tenant_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tenant_id: %v", err)
+		}
+	}
+
 	if err = d.Set("status_check_interval", flattenObjectEndpointControlFctemsStatusCheckInterval(o["status-check-interval"], d, "status_check_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status-check-interval"], "ObjectEndpointControlFctems-StatusCheckInterval"); ok {
 			if err = d.Set("status_check_interval", vv); err != nil {
@@ -632,6 +730,14 @@ func expandObjectEndpointControlFctemsCloudServerType(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectEndpointControlFctemsDirtyReason(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsEmsId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectEndpointControlFctemsFortinetoneCloudAuthentication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -649,6 +755,10 @@ func expandObjectEndpointControlFctemsInterfaceSelectMethod(d *schema.ResourceDa
 }
 
 func expandObjectEndpointControlFctemsName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsOutOfSyncThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -685,6 +795,14 @@ func expandObjectEndpointControlFctemsServer(d *schema.ResourceData, v interface
 }
 
 func expandObjectEndpointControlFctemsSourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectEndpointControlFctemsTenantId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -762,6 +880,24 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("dirty_reason"); ok || d.HasChange("dirty_reason") {
+		t, err := expandObjectEndpointControlFctemsDirtyReason(d, v, "dirty_reason")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dirty-reason"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ems_id"); ok || d.HasChange("ems_id") {
+		t, err := expandObjectEndpointControlFctemsEmsId(d, v, "ems_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ems-id"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fortinetone_cloud_authentication"); ok || d.HasChange("fortinetone_cloud_authentication") {
 		t, err := expandObjectEndpointControlFctemsFortinetoneCloudAuthentication(d, v, "fortinetone_cloud_authentication")
 		if err != nil {
@@ -804,6 +940,15 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("out_of_sync_threshold"); ok || d.HasChange("out_of_sync_threshold") {
+		t, err := expandObjectEndpointControlFctemsOutOfSyncThreshold(d, v, "out_of_sync_threshold")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["out-of-sync-threshold"] = t
 		}
 	}
 
@@ -885,6 +1030,24 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["source-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
+		t, err := expandObjectEndpointControlFctemsStatus(d, v, "status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tenant_id"); ok || d.HasChange("tenant_id") {
+		t, err := expandObjectEndpointControlFctemsTenantId(d, v, "tenant_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tenant-id"] = t
 		}
 	}
 

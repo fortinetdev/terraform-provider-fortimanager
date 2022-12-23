@@ -160,22 +160,23 @@ func resourcePackagesFirewallHyperscalePolicy64Create(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallHyperscalePolicy64(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallHyperscalePolicy64 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallHyperscalePolicy64(obj, adomv, paralist)
+	_, err = c.CreatePackagesFirewallHyperscalePolicy64(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallHyperscalePolicy64 resource: %v", err)
@@ -191,22 +192,23 @@ func resourcePackagesFirewallHyperscalePolicy64Update(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallHyperscalePolicy64(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallHyperscalePolicy64 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallHyperscalePolicy64(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallHyperscalePolicy64(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallHyperscalePolicy64 resource: %v", err)
 	}
@@ -224,17 +226,18 @@ func resourcePackagesFirewallHyperscalePolicy64Delete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallHyperscalePolicy64(adomv, mkey, paralist)
+	err = c.DeletePackagesFirewallHyperscalePolicy64(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallHyperscalePolicy64 resource: %v", err)
 	}
@@ -250,11 +253,13 @@ func resourcePackagesFirewallHyperscalePolicy64Read(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -263,10 +268,9 @@ func resourcePackagesFirewallHyperscalePolicy64Read(d *schema.ResourceData, m in
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallHyperscalePolicy64(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallHyperscalePolicy64(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallHyperscalePolicy64 resource: %v", err)
 	}

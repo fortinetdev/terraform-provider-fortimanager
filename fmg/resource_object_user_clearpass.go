@@ -81,18 +81,20 @@ func resourceObjectUserClearpassCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserClearpass(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserClearpass resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserClearpass(obj, adomv, nil)
+	_, err = c.CreateObjectUserClearpass(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserClearpass resource: %v", err)
@@ -108,18 +110,20 @@ func resourceObjectUserClearpassUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserClearpass(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserClearpass resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserClearpass(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserClearpass(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserClearpass resource: %v", err)
 	}
@@ -137,13 +141,15 @@ func resourceObjectUserClearpassDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserClearpass(adomv, mkey, nil)
+	err = c.DeleteObjectUserClearpass(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserClearpass resource: %v", err)
 	}
@@ -159,13 +165,15 @@ func resourceObjectUserClearpassRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserClearpass(adomv, mkey, nil)
+	o, err := c.ReadObjectUserClearpass(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserClearpass resource: %v", err)
 	}

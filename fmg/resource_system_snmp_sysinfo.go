@@ -74,14 +74,16 @@ func resourceSystemSnmpSysinfoUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSnmpSysinfo(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpSysinfo resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpSysinfo(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSnmpSysinfo(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpSysinfo resource: %v", err)
 	}
@@ -99,9 +101,11 @@ func resourceSystemSnmpSysinfoDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSnmpSysinfo(adomv, mkey, nil)
+	err = c.DeleteSystemSnmpSysinfo(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpSysinfo resource: %v", err)
 	}
@@ -117,9 +121,11 @@ func resourceSystemSnmpSysinfoRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSnmpSysinfo(adomv, mkey, nil)
+	o, err := c.ReadSystemSnmpSysinfo(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSnmpSysinfo resource: %v", err)
 	}

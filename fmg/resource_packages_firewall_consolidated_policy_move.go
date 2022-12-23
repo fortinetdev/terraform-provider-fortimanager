@@ -77,17 +77,18 @@ func resourcePackagesFirewallConsolidatedPolicyMoveUpdate(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	policy := d.Get("policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, policy)
+	paradict["pkg"] = pkg
+	paradict["policy"] = policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallConsolidatedPolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallConsolidatedPolicyMoveUpdate(d *schema.ResourceData
 		return fmt.Errorf("Error updating PackagesFirewallConsolidatedPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallConsolidatedPolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallConsolidatedPolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallConsolidatedPolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallConsolidatedPolicyMoveRead(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallConsolidatedPolicyMoveRead(d *schema.ResourceData, 
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallConsolidatedPolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallConsolidatedPolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallConsolidatedPolicyMove resource: %v", err)
 	}

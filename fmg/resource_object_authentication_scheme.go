@@ -117,18 +117,20 @@ func resourceObjectAuthenticationSchemeCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAuthenticationScheme(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectAuthenticationScheme(obj, adomv, nil)
+	_, err = c.CreateObjectAuthenticationScheme(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAuthenticationScheme resource: %v", err)
@@ -144,18 +146,20 @@ func resourceObjectAuthenticationSchemeUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAuthenticationScheme(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAuthenticationScheme resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAuthenticationScheme(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectAuthenticationScheme(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAuthenticationScheme resource: %v", err)
 	}
@@ -173,13 +177,15 @@ func resourceObjectAuthenticationSchemeDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAuthenticationScheme(adomv, mkey, nil)
+	err = c.DeleteObjectAuthenticationScheme(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAuthenticationScheme resource: %v", err)
 	}
@@ -195,13 +201,15 @@ func resourceObjectAuthenticationSchemeRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectAuthenticationScheme(adomv, mkey, nil)
+	o, err := c.ReadObjectAuthenticationScheme(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectAuthenticationScheme resource: %v", err)
 	}

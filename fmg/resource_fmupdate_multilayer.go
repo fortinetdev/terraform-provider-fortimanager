@@ -43,14 +43,16 @@ func resourceFmupdateMultilayerUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateMultilayer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateMultilayer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateMultilayer(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateMultilayer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateMultilayer resource: %v", err)
 	}
@@ -68,9 +70,11 @@ func resourceFmupdateMultilayerDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateMultilayer(adomv, mkey, nil)
+	err = c.DeleteFmupdateMultilayer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateMultilayer resource: %v", err)
 	}
@@ -86,9 +90,11 @@ func resourceFmupdateMultilayerRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateMultilayer(adomv, mkey, nil)
+	o, err := c.ReadFmupdateMultilayer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateMultilayer resource: %v", err)
 	}

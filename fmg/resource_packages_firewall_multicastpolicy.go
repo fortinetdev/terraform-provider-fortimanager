@@ -132,6 +132,10 @@ func resourcePackagesFirewallMulticastPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"traffic_shaper": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -145,22 +149,23 @@ func resourcePackagesFirewallMulticastPolicyCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallMulticastPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallMulticastPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallMulticastPolicy(obj, adomv, paralist)
+	_, err = c.CreatePackagesFirewallMulticastPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallMulticastPolicy resource: %v", err)
@@ -176,22 +181,23 @@ func resourcePackagesFirewallMulticastPolicyUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallMulticastPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallMulticastPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallMulticastPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallMulticastPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallMulticastPolicy resource: %v", err)
 	}
@@ -209,17 +215,18 @@ func resourcePackagesFirewallMulticastPolicyDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallMulticastPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesFirewallMulticastPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallMulticastPolicy resource: %v", err)
 	}
@@ -235,11 +242,13 @@ func resourcePackagesFirewallMulticastPolicyRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -248,10 +257,9 @@ func resourcePackagesFirewallMulticastPolicyRead(d *schema.ResourceData, m inter
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallMulticastPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallMulticastPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallMulticastPolicy resource: %v", err)
 	}
@@ -334,6 +342,10 @@ func flattenPackagesFirewallMulticastPolicyStartPort(v interface{}, d *schema.Re
 }
 
 func flattenPackagesFirewallMulticastPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallMulticastPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -518,6 +530,16 @@ func refreshObjectPackagesFirewallMulticastPolicy(d *schema.ResourceData, o map[
 		}
 	}
 
+	if err = d.Set("traffic_shaper", flattenPackagesFirewallMulticastPolicyTrafficShaper(o["traffic-shaper"], d, "traffic_shaper")); err != nil {
+		if vv, ok := fortiAPIPatch(o["traffic-shaper"], "PackagesFirewallMulticastPolicy-TrafficShaper"); ok {
+			if err = d.Set("traffic_shaper", vv); err != nil {
+				return fmt.Errorf("Error reading traffic_shaper: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading traffic_shaper: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenPackagesFirewallMulticastPolicyUuid(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "PackagesFirewallMulticastPolicy-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -602,6 +624,10 @@ func expandPackagesFirewallMulticastPolicyStartPort(d *schema.ResourceData, v in
 }
 
 func expandPackagesFirewallMulticastPolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallMulticastPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -762,6 +788,15 @@ func getObjectPackagesFirewallMulticastPolicy(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("traffic_shaper"); ok || d.HasChange("traffic_shaper") {
+		t, err := expandPackagesFirewallMulticastPolicyTrafficShaper(d, v, "traffic_shaper")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["traffic-shaper"] = t
 		}
 	}
 

@@ -122,18 +122,18 @@ The `exclude_range` block supports:
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
-* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
-* `vci_string` - Vci-String.
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
-* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
-* `vci_string` - Vci-String.
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `options` block supports:
 
@@ -143,9 +143,9 @@ The `options` block supports:
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
 * `value` - DHCP option value.
-* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
 
-* `vci_string` - Vci-String.
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `reserved_address` block supports:
 
@@ -259,18 +259,18 @@ The `exclude_range` block supports:
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
-* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
-* `vci_string` - Vci-String.
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
-* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
-* `vci_string` - Vci-String.
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `options` block supports:
 
@@ -280,9 +280,9 @@ The `options` block supports:
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
 * `value` - DHCP option value.
-* `vci_match` - Vci-Match. Valid values: `disable`, `enable`.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
 
-* `vci_string` - Vci-String.
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `reserved_address` block supports:
 
@@ -452,7 +452,7 @@ The `interface` block supports:
 
 * `ac_name` - PPPoE server name.
 * `aggregate` - Aggregate.
-* `aggregate_type` - Aggregate-Type. Valid values: `physical`, `vxlan`.
+* `aggregate_type` - Type of aggregation. Valid values: `physical`, `vxlan`.
 
 * `algorithm` - Frame distribution algorithm. Valid values: `L2`, `L3`, `L4`.
 
@@ -838,7 +838,7 @@ The `interface` block supports:
 * `switch_controller_learning_limit` - Limit the number of dynamic MAC addresses on this VLAN (1 - 128, 0 = no limit, default).
 * `switch_controller_mgmt_vlan` - VLAN to use for FortiLink management purposes.
 * `switch_controller_nac` - Integrated NAC settings for managed FortiSwitch.
-* `switch_controller_netflow_collect` - Switch-Controller-Netflow-Collect. Valid values: `disable`, `enable`.
+* `switch_controller_netflow_collect` - NetFlow collection and processing. Valid values: `disable`, `enable`.
 
 * `switch_controller_radius_server` - Switch-Controller-Radius-Server.
 * `switch_controller_rspan_mode` - Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.

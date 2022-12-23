@@ -113,6 +113,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"end_mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"epg_name": &schema.Schema{
 							Type:     schema.TypeString,
@@ -171,6 +172,7 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 						"start_mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"subnet_segment": &schema.Schema{
 							Type:     schema.TypeList,
@@ -223,6 +225,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				},
 			},
 			"end_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"epg_name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -298,6 +304,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"sdn_tag": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"start_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -354,6 +364,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"tenant": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -381,18 +395,20 @@ func resourceObjectFirewallAddress6Create(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAddress6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallAddress6(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallAddress6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6 resource: %v", err)
@@ -408,18 +424,20 @@ func resourceObjectFirewallAddress6Update(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAddress6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallAddress6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6 resource: %v", err)
 	}
@@ -437,13 +455,15 @@ func resourceObjectFirewallAddress6Delete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAddress6(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallAddress6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6 resource: %v", err)
 	}
@@ -459,13 +479,15 @@ func resourceObjectFirewallAddress6Read(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallAddress6(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallAddress6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallAddress6 resource: %v", err)
 	}
@@ -910,6 +932,10 @@ func flattenObjectFirewallAddress6EndIp(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenObjectFirewallAddress6EpgName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6EndMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1008,6 +1034,10 @@ func flattenObjectFirewallAddress6ObjId(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectFirewallAddress6Sdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6SdnTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1137,6 +1167,10 @@ func flattenObjectFirewallAddress6Template(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectFirewallAddress6Tenant(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAddress6Type(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1241,6 +1275,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading end_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("epg_name", flattenObjectFirewallAddress6EpgName(o["epg-name"], d, "epg_name")); err != nil {
+		if vv, ok := fortiAPIPatch(o["epg-name"], "ObjectFirewallAddress6-EpgName"); ok {
+			if err = d.Set("epg_name", vv); err != nil {
+				return fmt.Errorf("Error reading epg_name: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading epg_name: %v", err)
 		}
 	}
 
@@ -1378,6 +1422,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("sdn_tag", flattenObjectFirewallAddress6SdnTag(o["sdn-tag"], d, "sdn_tag")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sdn-tag"], "ObjectFirewallAddress6-SdnTag"); ok {
+			if err = d.Set("sdn_tag", vv); err != nil {
+				return fmt.Errorf("Error reading sdn_tag: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sdn_tag: %v", err)
+		}
+	}
+
 	if err = d.Set("start_ip", flattenObjectFirewallAddress6StartIp(o["start-ip"], d, "start_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["start-ip"], "ObjectFirewallAddress6-StartIp"); ok {
 			if err = d.Set("start_ip", vv); err != nil {
@@ -1453,6 +1507,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading template: %v", err)
+		}
+	}
+
+	if err = d.Set("tenant", flattenObjectFirewallAddress6Tenant(o["tenant"], d, "tenant")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tenant"], "ObjectFirewallAddress6-Tenant"); ok {
+			if err = d.Set("tenant", vv); err != nil {
+				return fmt.Errorf("Error reading tenant: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tenant: %v", err)
 		}
 	}
 
@@ -1884,6 +1948,10 @@ func expandObjectFirewallAddress6EndIp(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandObjectFirewallAddress6EpgName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6EndMac(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1974,6 +2042,10 @@ func expandObjectFirewallAddress6ObjId(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandObjectFirewallAddress6Sdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6SdnTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2087,6 +2159,10 @@ func expandObjectFirewallAddress6Template(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFirewallAddress6Tenant(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAddress6Type(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2162,6 +2238,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["end-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("epg_name"); ok || d.HasChange("epg_name") {
+		t, err := expandObjectFirewallAddress6EpgName(d, v, "epg_name")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["epg-name"] = t
 		}
 	}
 
@@ -2273,6 +2358,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 		}
 	}
 
+	if v, ok := d.GetOk("sdn_tag"); ok || d.HasChange("sdn_tag") {
+		t, err := expandObjectFirewallAddress6SdnTag(d, v, "sdn_tag")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sdn-tag"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("start_ip"); ok || d.HasChange("start_ip") {
 		t, err := expandObjectFirewallAddress6StartIp(d, v, "start_ip")
 		if err != nil {
@@ -2315,6 +2409,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["template"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tenant"); ok || d.HasChange("tenant") {
+		t, err := expandObjectFirewallAddress6Tenant(d, v, "tenant")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tenant"] = t
 		}
 	}
 

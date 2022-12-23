@@ -62,18 +62,20 @@ func resourceObjectUserJsonCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserJson(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserJson resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserJson(obj, adomv, nil)
+	_, err = c.CreateObjectUserJson(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserJson resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectUserJsonUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserJson(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserJson resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserJson(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserJson(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserJson resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectUserJsonDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserJson(adomv, mkey, nil)
+	err = c.DeleteObjectUserJson(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserJson resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectUserJsonRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserJson(adomv, mkey, nil)
+	o, err := c.ReadObjectUserJson(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserJson resource: %v", err)
 	}

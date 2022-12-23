@@ -58,18 +58,20 @@ func resourceObjectEmailfilterOptionsUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterOptions(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterOptions(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEmailfilterOptions(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterOptions resource: %v", err)
 	}
@@ -87,13 +89,15 @@ func resourceObjectEmailfilterOptionsDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterOptions(adomv, mkey, nil)
+	err = c.DeleteObjectEmailfilterOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterOptions resource: %v", err)
 	}
@@ -109,13 +113,15 @@ func resourceObjectEmailfilterOptionsRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEmailfilterOptions(adomv, mkey, nil)
+	o, err := c.ReadObjectEmailfilterOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEmailfilterOptions resource: %v", err)
 	}

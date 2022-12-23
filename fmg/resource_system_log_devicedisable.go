@@ -50,14 +50,16 @@ func resourceSystemLogDeviceDisableCreate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogDeviceDisable(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogDeviceDisable resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemLogDeviceDisable(obj, adomv, nil)
+	_, err = c.CreateSystemLogDeviceDisable(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogDeviceDisable resource: %v", err)
@@ -73,14 +75,16 @@ func resourceSystemLogDeviceDisableUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogDeviceDisable(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogDeviceDisable resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogDeviceDisable(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogDeviceDisable(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogDeviceDisable resource: %v", err)
 	}
@@ -98,9 +102,11 @@ func resourceSystemLogDeviceDisableDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogDeviceDisable(adomv, mkey, nil)
+	err = c.DeleteSystemLogDeviceDisable(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogDeviceDisable resource: %v", err)
 	}
@@ -116,9 +122,11 @@ func resourceSystemLogDeviceDisableRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogDeviceDisable(adomv, mkey, nil)
+	o, err := c.ReadSystemLogDeviceDisable(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogDeviceDisable resource: %v", err)
 	}

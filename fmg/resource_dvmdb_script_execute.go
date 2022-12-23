@@ -94,18 +94,20 @@ func resourceDvmdbScriptExecuteUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbScriptExecute(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbScriptExecute resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbScriptExecute(obj, adomv, mkey, nil)
+	_, err = c.UpdateDvmdbScriptExecute(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbScriptExecute resource: %v", err)
 	}

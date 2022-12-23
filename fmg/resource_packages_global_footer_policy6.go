@@ -556,18 +556,19 @@ func resourcePackagesGlobalFooterPolicy6Create(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterPolicy6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterPolicy6 resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalFooterPolicy6(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalFooterPolicy6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterPolicy6 resource: %v", err)
@@ -592,18 +593,19 @@ func resourcePackagesGlobalFooterPolicy6Update(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterPolicy6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalFooterPolicy6(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalFooterPolicy6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy6 resource: %v", err)
 	}
@@ -621,13 +623,14 @@ func resourcePackagesGlobalFooterPolicy6Delete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalFooterPolicy6(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalFooterPolicy6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalFooterPolicy6 resource: %v", err)
 	}
@@ -643,7 +646,9 @@ func resourcePackagesGlobalFooterPolicy6Read(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -652,10 +657,9 @@ func resourcePackagesGlobalFooterPolicy6Read(d *schema.ResourceData, m interface
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalFooterPolicy6(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalFooterPolicy6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalFooterPolicy6 resource: %v", err)
 	}

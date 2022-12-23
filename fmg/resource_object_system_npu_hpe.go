@@ -134,18 +134,20 @@ func resourceObjectSystemNpuHpeUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuHpe(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuHpe resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuHpe(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuHpe(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuHpe resource: %v", err)
 	}
@@ -163,13 +165,15 @@ func resourceObjectSystemNpuHpeDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuHpe(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuHpe(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuHpe resource: %v", err)
 	}
@@ -185,13 +189,15 @@ func resourceObjectSystemNpuHpeRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuHpe(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuHpe(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuHpe resource: %v", err)
 	}

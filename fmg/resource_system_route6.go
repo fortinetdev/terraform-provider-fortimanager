@@ -57,14 +57,16 @@ func resourceSystemRoute6Create(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemRoute6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemRoute6 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemRoute6(obj, adomv, nil)
+	_, err = c.CreateSystemRoute6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemRoute6 resource: %v", err)
@@ -80,14 +82,16 @@ func resourceSystemRoute6Update(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemRoute6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemRoute6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemRoute6(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemRoute6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemRoute6 resource: %v", err)
 	}
@@ -105,9 +109,11 @@ func resourceSystemRoute6Delete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemRoute6(adomv, mkey, nil)
+	err = c.DeleteSystemRoute6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemRoute6 resource: %v", err)
 	}
@@ -123,9 +129,11 @@ func resourceSystemRoute6Read(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemRoute6(adomv, mkey, nil)
+	o, err := c.ReadSystemRoute6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemRoute6 resource: %v", err)
 	}

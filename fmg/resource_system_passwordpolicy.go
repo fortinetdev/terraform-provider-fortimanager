@@ -63,14 +63,16 @@ func resourceSystemPasswordPolicyUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemPasswordPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemPasswordPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemPasswordPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemPasswordPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemPasswordPolicy resource: %v", err)
 	}
@@ -88,9 +90,11 @@ func resourceSystemPasswordPolicyDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemPasswordPolicy(adomv, mkey, nil)
+	err = c.DeleteSystemPasswordPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemPasswordPolicy resource: %v", err)
 	}
@@ -106,9 +110,11 @@ func resourceSystemPasswordPolicyRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemPasswordPolicy(adomv, mkey, nil)
+	o, err := c.ReadSystemPasswordPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemPasswordPolicy resource: %v", err)
 	}

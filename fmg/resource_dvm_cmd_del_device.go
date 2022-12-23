@@ -59,14 +59,16 @@ func resourceDvmCmdDelDeviceUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmCmdDelDevice(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdDelDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmCmdDelDevice(obj, adomv, mkey, nil)
+	_, err = c.UpdateDvmCmdDelDevice(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmCmdDelDevice resource: %v", err)
 	}

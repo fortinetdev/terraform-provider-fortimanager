@@ -129,22 +129,23 @@ func resourcePackagesUserNacPolicyCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesUserNacPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesUserNacPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesUserNacPolicy(obj, adomv, paralist)
+	_, err = c.CreatePackagesUserNacPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesUserNacPolicy resource: %v", err)
@@ -160,22 +161,23 @@ func resourcePackagesUserNacPolicyUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesUserNacPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesUserNacPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesUserNacPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesUserNacPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesUserNacPolicy resource: %v", err)
 	}
@@ -193,17 +195,18 @@ func resourcePackagesUserNacPolicyDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesUserNacPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesUserNacPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesUserNacPolicy resource: %v", err)
 	}
@@ -219,11 +222,13 @@ func resourcePackagesUserNacPolicyRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -232,10 +237,9 @@ func resourcePackagesUserNacPolicyRead(d *schema.ResourceData, m interface{}) er
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesUserNacPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesUserNacPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesUserNacPolicy resource: %v", err)
 	}

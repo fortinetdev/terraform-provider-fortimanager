@@ -422,6 +422,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 			"extension": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -512,18 +513,20 @@ func resourceObjectExtenderControllerExtenderProfileCreate(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectExtenderControllerExtenderProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerExtenderProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectExtenderControllerExtenderProfile(obj, adomv, nil)
+	_, err = c.CreateObjectExtenderControllerExtenderProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerExtenderProfile resource: %v", err)
@@ -539,18 +542,20 @@ func resourceObjectExtenderControllerExtenderProfileUpdate(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectExtenderControllerExtenderProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerExtenderProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectExtenderControllerExtenderProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerExtenderProfile resource: %v", err)
 	}
@@ -568,13 +573,15 @@ func resourceObjectExtenderControllerExtenderProfileDelete(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerExtenderProfile(adomv, mkey, nil)
+	err = c.DeleteObjectExtenderControllerExtenderProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerExtenderProfile resource: %v", err)
 	}
@@ -590,13 +597,15 @@ func resourceObjectExtenderControllerExtenderProfileRead(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectExtenderControllerExtenderProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectExtenderControllerExtenderProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectExtenderControllerExtenderProfile resource: %v", err)
 	}

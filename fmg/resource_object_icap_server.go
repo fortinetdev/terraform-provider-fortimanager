@@ -45,6 +45,24 @@ func resourceObjectIcapServer() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"addr_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fqdn": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"healthcheck": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"healthcheck_service": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ip_address": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -91,18 +109,20 @@ func resourceObjectIcapServerCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIcapServer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapServer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectIcapServer(obj, adomv, nil)
+	_, err = c.CreateObjectIcapServer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapServer resource: %v", err)
@@ -118,18 +138,20 @@ func resourceObjectIcapServerUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIcapServer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapServer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapServer(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectIcapServer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapServer resource: %v", err)
 	}
@@ -147,13 +169,15 @@ func resourceObjectIcapServerDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIcapServer(adomv, mkey, nil)
+	err = c.DeleteObjectIcapServer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapServer resource: %v", err)
 	}
@@ -169,13 +193,15 @@ func resourceObjectIcapServerRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectIcapServer(adomv, mkey, nil)
+	o, err := c.ReadObjectIcapServer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectIcapServer resource: %v", err)
 	}
@@ -191,6 +217,22 @@ func resourceObjectIcapServerRead(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error reading ObjectIcapServer resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectIcapServerAddrType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapServerFqdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapServerHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapServerHealthcheckService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectIcapServerIpAddress(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -230,6 +272,46 @@ func refreshObjectObjectIcapServer(d *schema.ResourceData, o map[string]interfac
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("addr_type", flattenObjectIcapServerAddrType(o["addr-type"], d, "addr_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["addr-type"], "ObjectIcapServer-AddrType"); ok {
+			if err = d.Set("addr_type", vv); err != nil {
+				return fmt.Errorf("Error reading addr_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading addr_type: %v", err)
+		}
+	}
+
+	if err = d.Set("fqdn", flattenObjectIcapServerFqdn(o["fqdn"], d, "fqdn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fqdn"], "ObjectIcapServer-Fqdn"); ok {
+			if err = d.Set("fqdn", vv); err != nil {
+				return fmt.Errorf("Error reading fqdn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fqdn: %v", err)
+		}
+	}
+
+	if err = d.Set("healthcheck", flattenObjectIcapServerHealthcheck(o["healthcheck"], d, "healthcheck")); err != nil {
+		if vv, ok := fortiAPIPatch(o["healthcheck"], "ObjectIcapServer-Healthcheck"); ok {
+			if err = d.Set("healthcheck", vv); err != nil {
+				return fmt.Errorf("Error reading healthcheck: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading healthcheck: %v", err)
+		}
+	}
+
+	if err = d.Set("healthcheck_service", flattenObjectIcapServerHealthcheckService(o["healthcheck-service"], d, "healthcheck_service")); err != nil {
+		if vv, ok := fortiAPIPatch(o["healthcheck-service"], "ObjectIcapServer-HealthcheckService"); ok {
+			if err = d.Set("healthcheck_service", vv); err != nil {
+				return fmt.Errorf("Error reading healthcheck_service: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading healthcheck_service: %v", err)
+		}
 	}
 
 	if err = d.Set("ip_address", flattenObjectIcapServerIpAddress(o["ip-address"], d, "ip_address")); err != nil {
@@ -321,6 +403,22 @@ func flattenObjectIcapServerFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectIcapServerAddrType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapServerFqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapServerHealthcheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapServerHealthcheckService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectIcapServerIpAddress(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -355,6 +453,42 @@ func expandObjectIcapServerSslCert(d *schema.ResourceData, v interface{}, pre st
 
 func getObjectObjectIcapServer(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("addr_type"); ok || d.HasChange("addr_type") {
+		t, err := expandObjectIcapServerAddrType(d, v, "addr_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["addr-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fqdn"); ok || d.HasChange("fqdn") {
+		t, err := expandObjectIcapServerFqdn(d, v, "fqdn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fqdn"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("healthcheck"); ok || d.HasChange("healthcheck") {
+		t, err := expandObjectIcapServerHealthcheck(d, v, "healthcheck")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["healthcheck"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("healthcheck_service"); ok || d.HasChange("healthcheck_service") {
+		t, err := expandObjectIcapServerHealthcheckService(d, v, "healthcheck_service")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["healthcheck-service"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("ip_address"); ok || d.HasChange("ip_address") {
 		t, err := expandObjectIcapServerIpAddress(d, v, "ip_address")

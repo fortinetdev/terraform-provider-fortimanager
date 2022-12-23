@@ -29,6 +29,12 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `addr_type` - Address type of the remote ICAP server: IPv4, IPv6 or FQDN. Valid values: `fqdn`, `ip4`, `ip6`.
+
+* `fqdn` - ICAP remote server Fully Qualified Domain Name (FQDN).
+* `healthcheck` - Enable/disable ICAP remote server health checking. Attempts to connect to the remote ICAP server to verify that the server is operating normally. Valid values: `disable`, `enable`.
+
+* `healthcheck_service` - ICAP Service name to use for health checks.
 * `ip_address` - IPv4 address of the ICAP server.
 * `ip_version` - IP version. Valid values: `4`, `6`.
 

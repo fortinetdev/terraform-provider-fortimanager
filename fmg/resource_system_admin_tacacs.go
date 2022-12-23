@@ -90,14 +90,16 @@ func resourceSystemAdminTacacsCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminTacacs(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminTacacs resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemAdminTacacs(obj, adomv, nil)
+	_, err = c.CreateSystemAdminTacacs(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminTacacs resource: %v", err)
@@ -113,14 +115,16 @@ func resourceSystemAdminTacacsUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminTacacs(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminTacacs resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminTacacs(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAdminTacacs(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminTacacs resource: %v", err)
 	}
@@ -138,9 +142,11 @@ func resourceSystemAdminTacacsDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminTacacs(adomv, mkey, nil)
+	err = c.DeleteSystemAdminTacacs(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminTacacs resource: %v", err)
 	}
@@ -156,9 +162,11 @@ func resourceSystemAdminTacacsRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAdminTacacs(adomv, mkey, nil)
+	o, err := c.ReadSystemAdminTacacs(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAdminTacacs resource: %v", err)
 	}

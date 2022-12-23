@@ -67,18 +67,20 @@ func resourceObjectSystemReplacemsgImageCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemReplacemsgImage(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgImage resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemReplacemsgImage(obj, adomv, nil)
+	_, err = c.CreateObjectSystemReplacemsgImage(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemReplacemsgImage resource: %v", err)
@@ -94,18 +96,20 @@ func resourceObjectSystemReplacemsgImageUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemReplacemsgImage(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgImage resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemReplacemsgImage(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemReplacemsgImage(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemReplacemsgImage resource: %v", err)
 	}
@@ -123,13 +127,15 @@ func resourceObjectSystemReplacemsgImageDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemReplacemsgImage(adomv, mkey, nil)
+	err = c.DeleteObjectSystemReplacemsgImage(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemReplacemsgImage resource: %v", err)
 	}
@@ -145,13 +151,15 @@ func resourceObjectSystemReplacemsgImageRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemReplacemsgImage(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemReplacemsgImage(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemReplacemsgImage resource: %v", err)
 	}

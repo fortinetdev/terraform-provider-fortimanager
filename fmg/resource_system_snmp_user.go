@@ -95,14 +95,16 @@ func resourceSystemSnmpUserCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSnmpUser(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpUser resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSnmpUser(obj, adomv, nil)
+	_, err = c.CreateSystemSnmpUser(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSnmpUser resource: %v", err)
@@ -118,14 +120,16 @@ func resourceSystemSnmpUserUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSnmpUser(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpUser resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSnmpUser(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSnmpUser(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSnmpUser resource: %v", err)
 	}
@@ -143,9 +147,11 @@ func resourceSystemSnmpUserDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSnmpUser(adomv, mkey, nil)
+	err = c.DeleteSystemSnmpUser(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSnmpUser resource: %v", err)
 	}
@@ -161,9 +167,11 @@ func resourceSystemSnmpUserRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSnmpUser(adomv, mkey, nil)
+	o, err := c.ReadSystemSnmpUser(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSnmpUser resource: %v", err)
 	}

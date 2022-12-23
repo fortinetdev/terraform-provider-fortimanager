@@ -118,6 +118,7 @@ The following arguments are supported:
 
 The `external_account_list` block supports:
 
+* `external_id` - AWS external ID.
 * `region_list` - AWS region name list.
 * `role_arn` - AWS role ARN to assume.
 

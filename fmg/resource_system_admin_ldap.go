@@ -146,14 +146,16 @@ func resourceSystemAdminLdapCreate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminLdap(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminLdap resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemAdminLdap(obj, adomv, nil)
+	_, err = c.CreateSystemAdminLdap(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminLdap resource: %v", err)
@@ -169,14 +171,16 @@ func resourceSystemAdminLdapUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminLdap(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminLdap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminLdap(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAdminLdap(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminLdap resource: %v", err)
 	}
@@ -194,9 +198,11 @@ func resourceSystemAdminLdapDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminLdap(adomv, mkey, nil)
+	err = c.DeleteSystemAdminLdap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminLdap resource: %v", err)
 	}
@@ -212,9 +218,11 @@ func resourceSystemAdminLdapRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAdminLdap(adomv, mkey, nil)
+	o, err := c.ReadSystemAdminLdap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAdminLdap resource: %v", err)
 	}

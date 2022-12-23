@@ -77,17 +77,18 @@ func resourcePackagesFirewallLocalInPolicyMoveUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	local_in_policy := d.Get("local_in_policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, local_in_policy)
+	paradict["pkg"] = pkg
+	paradict["local_in_policy"] = local_in_policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallLocalInPolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallLocalInPolicyMoveUpdate(d *schema.ResourceData, m i
 		return fmt.Errorf("Error updating PackagesFirewallLocalInPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallLocalInPolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallLocalInPolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallLocalInPolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallLocalInPolicyMoveRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("local_in_policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallLocalInPolicyMoveRead(d *schema.ResourceData, m int
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallLocalInPolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallLocalInPolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallLocalInPolicyMove resource: %v", err)
 	}

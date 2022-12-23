@@ -100,6 +100,10 @@ func resourcePackagesFirewallProxyPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"dlp_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -386,22 +390,23 @@ func resourcePackagesFirewallProxyPolicyCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallProxyPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallProxyPolicy(obj, adomv, paralist)
+	_, err = c.CreatePackagesFirewallProxyPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallProxyPolicy resource: %v", err)
@@ -417,22 +422,23 @@ func resourcePackagesFirewallProxyPolicyUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallProxyPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallProxyPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallProxyPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicy resource: %v", err)
 	}
@@ -450,17 +456,18 @@ func resourcePackagesFirewallProxyPolicyDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallProxyPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesFirewallProxyPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallProxyPolicy resource: %v", err)
 	}
@@ -476,11 +483,13 @@ func resourcePackagesFirewallProxyPolicyRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -489,10 +498,9 @@ func resourcePackagesFirewallProxyPolicyRead(d *schema.ResourceData, m interface
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallProxyPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallProxyPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallProxyPolicy resource: %v", err)
 	}
@@ -551,6 +559,10 @@ func flattenPackagesFirewallProxyPolicyDeviceOwnership(v interface{}, d *schema.
 }
 
 func flattenPackagesFirewallProxyPolicyDisclaimer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallProxyPolicyDlpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -912,6 +924,16 @@ func refreshObjectPackagesFirewallProxyPolicy(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading disclaimer: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_profile", flattenPackagesFirewallProxyPolicyDlpProfile(o["dlp-profile"], d, "dlp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-profile"], "PackagesFirewallProxyPolicy-DlpProfile"); ok {
+			if err = d.Set("dlp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_profile: %v", err)
 		}
 	}
 
@@ -1578,6 +1600,10 @@ func expandPackagesFirewallProxyPolicyDisclaimer(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandPackagesFirewallProxyPolicyDlpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallProxyPolicyDlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1921,6 +1947,15 @@ func getObjectPackagesFirewallProxyPolicy(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["disclaimer"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_profile"); ok || d.HasChange("dlp_profile") {
+		t, err := expandPackagesFirewallProxyPolicyDlpProfile(d, v, "dlp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-profile"] = t
 		}
 	}
 

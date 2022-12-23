@@ -170,14 +170,16 @@ func resourceSystemHaUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemHa(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHa resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemHa(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemHa(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemHa resource: %v", err)
 	}
@@ -195,9 +197,11 @@ func resourceSystemHaDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemHa(adomv, mkey, nil)
+	err = c.DeleteSystemHa(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemHa resource: %v", err)
 	}
@@ -213,9 +217,11 @@ func resourceSystemHaRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemHa(adomv, mkey, nil)
+	o, err := c.ReadSystemHa(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemHa resource: %v", err)
 	}

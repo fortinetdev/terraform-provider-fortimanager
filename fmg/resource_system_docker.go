@@ -119,14 +119,16 @@ func resourceSystemDockerUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemDocker(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemDocker resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemDocker(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemDocker(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemDocker resource: %v", err)
 	}
@@ -144,9 +146,11 @@ func resourceSystemDockerDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemDocker(adomv, mkey, nil)
+	err = c.DeleteSystemDocker(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemDocker resource: %v", err)
 	}
@@ -162,9 +166,11 @@ func resourceSystemDockerRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemDocker(adomv, mkey, nil)
+	o, err := c.ReadSystemDocker(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemDocker resource: %v", err)
 	}

@@ -476,14 +476,16 @@ func resourceSystemAdminProfileCreate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemAdminProfile(obj, adomv, nil)
+	_, err = c.CreateSystemAdminProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminProfile resource: %v", err)
@@ -499,14 +501,16 @@ func resourceSystemAdminProfileUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAdminProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminProfile resource: %v", err)
 	}
@@ -524,9 +528,11 @@ func resourceSystemAdminProfileDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminProfile(adomv, mkey, nil)
+	err = c.DeleteSystemAdminProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminProfile resource: %v", err)
 	}
@@ -542,9 +548,11 @@ func resourceSystemAdminProfileRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAdminProfile(adomv, mkey, nil)
+	o, err := c.ReadSystemAdminProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAdminProfile resource: %v", err)
 	}

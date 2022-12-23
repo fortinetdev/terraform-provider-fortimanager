@@ -77,17 +77,18 @@ func resourcePackagesFirewallPolicyMoveUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	policy := d.Get("policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, policy)
+	paradict["pkg"] = pkg
+	paradict["policy"] = policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallPolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallPolicyMoveUpdate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error updating PackagesFirewallPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallPolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallPolicyMoveRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallPolicyMoveRead(d *schema.ResourceData, m interface{
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallPolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallPolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicyMove resource: %v", err)
 	}

@@ -133,18 +133,20 @@ func resourceObjectUserDeviceGroupCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDeviceGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserDeviceGroup(obj, adomv, nil)
+	_, err = c.CreateObjectUserDeviceGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceGroup resource: %v", err)
@@ -160,18 +162,20 @@ func resourceObjectUserDeviceGroupUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDeviceGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDeviceGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserDeviceGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceGroup resource: %v", err)
 	}
@@ -189,13 +193,15 @@ func resourceObjectUserDeviceGroupDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDeviceGroup(adomv, mkey, nil)
+	err = c.DeleteObjectUserDeviceGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDeviceGroup resource: %v", err)
 	}
@@ -211,13 +217,15 @@ func resourceObjectUserDeviceGroupRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserDeviceGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectUserDeviceGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserDeviceGroup resource: %v", err)
 	}

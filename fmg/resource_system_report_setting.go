@@ -92,14 +92,16 @@ func resourceSystemReportSettingUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemReportSetting(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemReportSetting(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemReportSetting(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportSetting resource: %v", err)
 	}
@@ -117,9 +119,11 @@ func resourceSystemReportSettingDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemReportSetting(adomv, mkey, nil)
+	err = c.DeleteSystemReportSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemReportSetting resource: %v", err)
 	}
@@ -135,9 +139,11 @@ func resourceSystemReportSettingRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemReportSetting(adomv, mkey, nil)
+	o, err := c.ReadSystemReportSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemReportSetting resource: %v", err)
 	}

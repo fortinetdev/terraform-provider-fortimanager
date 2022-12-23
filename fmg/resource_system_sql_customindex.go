@@ -61,14 +61,16 @@ func resourceSystemSqlCustomIndexCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSqlCustomIndex(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomIndex resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSqlCustomIndex(obj, adomv, nil)
+	_, err = c.CreateSystemSqlCustomIndex(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSqlCustomIndex resource: %v", err)
@@ -84,14 +86,16 @@ func resourceSystemSqlCustomIndexUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSqlCustomIndex(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlCustomIndex resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSqlCustomIndex(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSqlCustomIndex(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSqlCustomIndex resource: %v", err)
 	}
@@ -109,9 +113,11 @@ func resourceSystemSqlCustomIndexDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSqlCustomIndex(adomv, mkey, nil)
+	err = c.DeleteSystemSqlCustomIndex(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSqlCustomIndex resource: %v", err)
 	}
@@ -127,9 +133,11 @@ func resourceSystemSqlCustomIndexRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSqlCustomIndex(adomv, mkey, nil)
+	o, err := c.ReadSystemSqlCustomIndex(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSqlCustomIndex resource: %v", err)
 	}

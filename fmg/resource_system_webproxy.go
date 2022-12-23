@@ -68,14 +68,16 @@ func resourceSystemWebProxyUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemWebProxy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemWebProxy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemWebProxy(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemWebProxy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemWebProxy resource: %v", err)
 	}
@@ -93,9 +95,11 @@ func resourceSystemWebProxyDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemWebProxy(adomv, mkey, nil)
+	err = c.DeleteSystemWebProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemWebProxy resource: %v", err)
 	}
@@ -111,9 +115,11 @@ func resourceSystemWebProxyRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemWebProxy(adomv, mkey, nil)
+	o, err := c.ReadSystemWebProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemWebProxy resource: %v", err)
 	}

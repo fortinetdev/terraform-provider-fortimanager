@@ -133,18 +133,20 @@ func resourceObjectCertificateTemplateCreate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCertificateTemplate(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCertificateTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectCertificateTemplate(obj, adomv, nil)
+	_, err = c.CreateObjectCertificateTemplate(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCertificateTemplate resource: %v", err)
@@ -160,18 +162,20 @@ func resourceObjectCertificateTemplateUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCertificateTemplate(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCertificateTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCertificateTemplate(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectCertificateTemplate(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCertificateTemplate resource: %v", err)
 	}
@@ -189,13 +193,15 @@ func resourceObjectCertificateTemplateDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCertificateTemplate(adomv, mkey, nil)
+	err = c.DeleteObjectCertificateTemplate(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCertificateTemplate resource: %v", err)
 	}
@@ -211,13 +217,15 @@ func resourceObjectCertificateTemplateRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectCertificateTemplate(adomv, mkey, nil)
+	o, err := c.ReadObjectCertificateTemplate(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectCertificateTemplate resource: %v", err)
 	}

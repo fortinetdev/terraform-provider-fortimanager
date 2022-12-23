@@ -89,14 +89,16 @@ func resourceSystemBackupAllSettingsUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemBackupAllSettings(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemBackupAllSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemBackupAllSettings(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemBackupAllSettings(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemBackupAllSettings resource: %v", err)
 	}
@@ -114,9 +116,11 @@ func resourceSystemBackupAllSettingsDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemBackupAllSettings(adomv, mkey, nil)
+	err = c.DeleteSystemBackupAllSettings(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemBackupAllSettings resource: %v", err)
 	}
@@ -132,9 +136,11 @@ func resourceSystemBackupAllSettingsRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemBackupAllSettings(adomv, mkey, nil)
+	o, err := c.ReadSystemBackupAllSettings(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemBackupAllSettings resource: %v", err)
 	}

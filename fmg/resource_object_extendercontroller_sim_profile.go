@@ -178,18 +178,20 @@ func resourceObjectExtenderControllerSimProfileCreate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectExtenderControllerSimProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerSimProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectExtenderControllerSimProfile(obj, adomv, nil)
+	_, err = c.CreateObjectExtenderControllerSimProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectExtenderControllerSimProfile resource: %v", err)
@@ -205,18 +207,20 @@ func resourceObjectExtenderControllerSimProfileUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectExtenderControllerSimProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerSimProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectExtenderControllerSimProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectExtenderControllerSimProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectExtenderControllerSimProfile resource: %v", err)
 	}
@@ -234,13 +238,15 @@ func resourceObjectExtenderControllerSimProfileDelete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectExtenderControllerSimProfile(adomv, mkey, nil)
+	err = c.DeleteObjectExtenderControllerSimProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectExtenderControllerSimProfile resource: %v", err)
 	}
@@ -256,13 +262,15 @@ func resourceObjectExtenderControllerSimProfileRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectExtenderControllerSimProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectExtenderControllerSimProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectExtenderControllerSimProfile resource: %v", err)
 	}

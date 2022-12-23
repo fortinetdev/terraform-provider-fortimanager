@@ -214,6 +214,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"diffserv_copy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -292,6 +293,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"dstaddr6_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -543,6 +545,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"internet_service6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_custom": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -571,10 +574,12 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"internet_service6_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src_custom": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -603,6 +608,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"internet_service6_src_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_based": &schema.Schema{
 				Type:     schema.TypeString,
@@ -829,6 +835,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"reputation_direction6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"reputation_minimum": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -942,6 +949,7 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 			"srcaddr6_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1205,18 +1213,19 @@ func resourcePackagesGlobalHeaderPolicyCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalHeaderPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy resource: %v", err)
@@ -1241,18 +1250,19 @@ func resourcePackagesGlobalHeaderPolicyUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalHeaderPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalHeaderPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy resource: %v", err)
 	}
@@ -1270,13 +1280,14 @@ func resourcePackagesGlobalHeaderPolicyDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalHeaderPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalHeaderPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalHeaderPolicy resource: %v", err)
 	}
@@ -1292,7 +1303,9 @@ func resourcePackagesGlobalHeaderPolicyRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -1301,10 +1314,9 @@ func resourcePackagesGlobalHeaderPolicyRead(d *schema.ResourceData, m interface{
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalHeaderPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalHeaderPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalHeaderPolicy resource: %v", err)
 	}

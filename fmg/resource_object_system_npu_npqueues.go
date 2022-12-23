@@ -542,18 +542,20 @@ func resourceObjectSystemNpuNpQueuesUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuNpQueues(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueues resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueues(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuNpQueues(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueues resource: %v", err)
 	}
@@ -571,13 +573,15 @@ func resourceObjectSystemNpuNpQueuesDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueues(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuNpQueues(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueues resource: %v", err)
 	}
@@ -593,13 +597,15 @@ func resourceObjectSystemNpuNpQueuesRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuNpQueues(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuNpQueues(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuNpQueues resource: %v", err)
 	}

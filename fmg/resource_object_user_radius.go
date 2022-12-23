@@ -115,6 +115,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"delimiter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_mapping": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -548,6 +553,21 @@ func resourceObjectUserRadius() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mac_case": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mac_password_delimiter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mac_username_delimiter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -720,18 +740,20 @@ func resourceObjectUserRadiusCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserRadius(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadius resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserRadius(obj, adomv, nil)
+	_, err = c.CreateObjectUserRadius(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserRadius resource: %v", err)
@@ -747,18 +769,20 @@ func resourceObjectUserRadiusUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserRadius(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserRadius resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserRadius(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserRadius(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserRadius resource: %v", err)
 	}
@@ -776,13 +800,15 @@ func resourceObjectUserRadiusDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserRadius(adomv, mkey, nil)
+	err = c.DeleteObjectUserRadius(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserRadius resource: %v", err)
 	}
@@ -798,13 +824,15 @@ func resourceObjectUserRadiusRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserRadius(adomv, mkey, nil)
+	o, err := c.ReadObjectUserRadius(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserRadius resource: %v", err)
 	}
@@ -951,6 +979,10 @@ func flattenObjectUserRadiusAuthType(v interface{}, d *schema.ResourceData, pre 
 
 func flattenObjectUserRadiusClass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectUserRadiusDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -1946,6 +1978,18 @@ func flattenObjectUserRadiusInterfaceSelectMethod(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectUserRadiusMacCase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusMacPasswordDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusMacUsernameDelimiter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2163,6 +2207,16 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("delimiter", flattenObjectUserRadiusDelimiter(o["delimiter"], d, "delimiter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["delimiter"], "ObjectUserRadius-Delimiter"); ok {
+			if err = d.Set("delimiter", vv); err != nil {
+				return fmt.Errorf("Error reading delimiter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading delimiter: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("dynamic_mapping", flattenObjectUserRadiusDynamicMapping(o["dynamic_mapping"], d, "dynamic_mapping")); err != nil {
 			if vv, ok := fortiAPIPatch(o["dynamic_mapping"], "ObjectUserRadius-DynamicMapping"); ok {
@@ -2224,6 +2278,36 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading interface_select_method: %v", err)
+		}
+	}
+
+	if err = d.Set("mac_case", flattenObjectUserRadiusMacCase(o["mac-case"], d, "mac_case")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mac-case"], "ObjectUserRadius-MacCase"); ok {
+			if err = d.Set("mac_case", vv); err != nil {
+				return fmt.Errorf("Error reading mac_case: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mac_case: %v", err)
+		}
+	}
+
+	if err = d.Set("mac_password_delimiter", flattenObjectUserRadiusMacPasswordDelimiter(o["mac-password-delimiter"], d, "mac_password_delimiter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mac-password-delimiter"], "ObjectUserRadius-MacPasswordDelimiter"); ok {
+			if err = d.Set("mac_password_delimiter", vv); err != nil {
+				return fmt.Errorf("Error reading mac_password_delimiter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mac_password_delimiter: %v", err)
+		}
+	}
+
+	if err = d.Set("mac_username_delimiter", flattenObjectUserRadiusMacUsernameDelimiter(o["mac-username-delimiter"], d, "mac_username_delimiter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mac-username-delimiter"], "ObjectUserRadius-MacUsernameDelimiter"); ok {
+			if err = d.Set("mac_username_delimiter", vv); err != nil {
+				return fmt.Errorf("Error reading mac_username_delimiter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mac_username_delimiter: %v", err)
 		}
 	}
 
@@ -2648,6 +2732,10 @@ func expandObjectUserRadiusAuthType(d *schema.ResourceData, v interface{}, pre s
 
 func expandObjectUserRadiusClass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserRadiusDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3544,6 +3632,18 @@ func expandObjectUserRadiusInterfaceSelectMethod(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectUserRadiusMacCase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusMacPasswordDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusMacUsernameDelimiter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3733,6 +3833,15 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 		}
 	}
 
+	if v, ok := d.GetOk("delimiter"); ok || d.HasChange("delimiter") {
+		t, err := expandObjectUserRadiusDelimiter(d, v, "delimiter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["delimiter"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dynamic_mapping"); ok || d.HasChange("dynamic_mapping") {
 		t, err := expandObjectUserRadiusDynamicMapping(d, v, "dynamic_mapping")
 		if err != nil {
@@ -3775,6 +3884,33 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["interface-select-method"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mac_case"); ok || d.HasChange("mac_case") {
+		t, err := expandObjectUserRadiusMacCase(d, v, "mac_case")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mac-case"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mac_password_delimiter"); ok || d.HasChange("mac_password_delimiter") {
+		t, err := expandObjectUserRadiusMacPasswordDelimiter(d, v, "mac_password_delimiter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mac-password-delimiter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mac_username_delimiter"); ok || d.HasChange("mac_username_delimiter") {
+		t, err := expandObjectUserRadiusMacUsernameDelimiter(d, v, "mac_username_delimiter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mac-username-delimiter"] = t
 		}
 	}
 

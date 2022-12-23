@@ -71,18 +71,20 @@ func resourceObjectFirewallIppoolGrpCreate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallIppoolGrp(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppoolGrp resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallIppoolGrp(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallIppoolGrp(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallIppoolGrp resource: %v", err)
@@ -98,18 +100,20 @@ func resourceObjectFirewallIppoolGrpUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallIppoolGrp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIppoolGrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallIppoolGrp(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallIppoolGrp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallIppoolGrp resource: %v", err)
 	}
@@ -127,13 +131,15 @@ func resourceObjectFirewallIppoolGrpDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallIppoolGrp(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallIppoolGrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallIppoolGrp resource: %v", err)
 	}
@@ -149,13 +155,15 @@ func resourceObjectFirewallIppoolGrpRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallIppoolGrp(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallIppoolGrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallIppoolGrp resource: %v", err)
 	}

@@ -112,18 +112,20 @@ func resourceObjectFirewallLdbMonitorCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallLdbMonitor(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallLdbMonitor resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallLdbMonitor(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallLdbMonitor(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallLdbMonitor resource: %v", err)
@@ -139,18 +141,20 @@ func resourceObjectFirewallLdbMonitorUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallLdbMonitor(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallLdbMonitor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallLdbMonitor(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallLdbMonitor(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallLdbMonitor resource: %v", err)
 	}
@@ -168,13 +172,15 @@ func resourceObjectFirewallLdbMonitorDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallLdbMonitor(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallLdbMonitor(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallLdbMonitor resource: %v", err)
 	}
@@ -190,13 +196,15 @@ func resourceObjectFirewallLdbMonitorRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallLdbMonitor(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallLdbMonitor(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallLdbMonitor resource: %v", err)
 	}

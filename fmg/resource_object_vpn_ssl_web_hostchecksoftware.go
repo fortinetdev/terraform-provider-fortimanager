@@ -118,18 +118,20 @@ func resourceObjectVpnSslWebHostCheckSoftwareCreate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnSslWebHostCheckSoftware(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebHostCheckSoftware resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVpnSslWebHostCheckSoftware(obj, adomv, nil)
+	_, err = c.CreateObjectVpnSslWebHostCheckSoftware(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebHostCheckSoftware resource: %v", err)
@@ -145,18 +147,20 @@ func resourceObjectVpnSslWebHostCheckSoftwareUpdate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnSslWebHostCheckSoftware(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebHostCheckSoftware resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebHostCheckSoftware(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVpnSslWebHostCheckSoftware(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebHostCheckSoftware resource: %v", err)
 	}
@@ -174,13 +178,15 @@ func resourceObjectVpnSslWebHostCheckSoftwareDelete(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnSslWebHostCheckSoftware(adomv, mkey, nil)
+	err = c.DeleteObjectVpnSslWebHostCheckSoftware(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebHostCheckSoftware resource: %v", err)
 	}
@@ -196,13 +202,15 @@ func resourceObjectVpnSslWebHostCheckSoftwareRead(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVpnSslWebHostCheckSoftware(adomv, mkey, nil)
+	o, err := c.ReadObjectVpnSslWebHostCheckSoftware(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVpnSslWebHostCheckSoftware resource: %v", err)
 	}

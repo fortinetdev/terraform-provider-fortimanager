@@ -390,18 +390,20 @@ func resourceObjectGlobalIpsSensorCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectGlobalIpsSensor(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectGlobalIpsSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectGlobalIpsSensor(obj, adomv, nil)
+	_, err = c.CreateObjectGlobalIpsSensor(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectGlobalIpsSensor resource: %v", err)
@@ -417,18 +419,20 @@ func resourceObjectGlobalIpsSensorUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectGlobalIpsSensor(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectGlobalIpsSensor resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectGlobalIpsSensor(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectGlobalIpsSensor(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectGlobalIpsSensor resource: %v", err)
 	}
@@ -446,13 +450,15 @@ func resourceObjectGlobalIpsSensorDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectGlobalIpsSensor(adomv, mkey, nil)
+	err = c.DeleteObjectGlobalIpsSensor(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectGlobalIpsSensor resource: %v", err)
 	}
@@ -468,13 +474,15 @@ func resourceObjectGlobalIpsSensorRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectGlobalIpsSensor(adomv, mkey, nil)
+	o, err := c.ReadObjectGlobalIpsSensor(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectGlobalIpsSensor resource: %v", err)
 	}

@@ -78,18 +78,20 @@ func resourceDvmdbRevisionCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbRevision(d)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbRevision resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateDvmdbRevision(obj, adomv, nil)
+	_, err = c.CreateDvmdbRevision(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbRevision resource: %v", err)
@@ -105,18 +107,20 @@ func resourceDvmdbRevisionUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbRevision(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbRevision resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbRevision(obj, adomv, mkey, nil)
+	_, err = c.UpdateDvmdbRevision(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbRevision resource: %v", err)
 	}
@@ -134,13 +138,15 @@ func resourceDvmdbRevisionDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteDvmdbRevision(adomv, mkey, nil)
+	err = c.DeleteDvmdbRevision(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbRevision resource: %v", err)
 	}
@@ -156,13 +162,15 @@ func resourceDvmdbRevisionRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadDvmdbRevision(adomv, mkey, nil)
+	o, err := c.ReadDvmdbRevision(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading DvmdbRevision resource: %v", err)
 	}

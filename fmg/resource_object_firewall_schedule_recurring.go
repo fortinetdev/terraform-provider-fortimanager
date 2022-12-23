@@ -87,18 +87,20 @@ func resourceObjectFirewallScheduleRecurringCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallScheduleRecurring(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleRecurring resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallScheduleRecurring(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallScheduleRecurring(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleRecurring resource: %v", err)
@@ -114,18 +116,20 @@ func resourceObjectFirewallScheduleRecurringUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallScheduleRecurring(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleRecurring resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallScheduleRecurring(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallScheduleRecurring(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleRecurring resource: %v", err)
 	}
@@ -143,13 +147,15 @@ func resourceObjectFirewallScheduleRecurringDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallScheduleRecurring(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallScheduleRecurring(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallScheduleRecurring resource: %v", err)
 	}
@@ -165,13 +171,15 @@ func resourceObjectFirewallScheduleRecurringRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallScheduleRecurring(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallScheduleRecurring(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallScheduleRecurring resource: %v", err)
 	}

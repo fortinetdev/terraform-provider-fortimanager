@@ -114,18 +114,20 @@ func resourceObjectSwitchControllerFortilinkSettingsCreate(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerFortilinkSettings(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerFortilinkSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerFortilinkSettings(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerFortilinkSettings(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerFortilinkSettings resource: %v", err)
@@ -141,18 +143,20 @@ func resourceObjectSwitchControllerFortilinkSettingsUpdate(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerFortilinkSettings(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerFortilinkSettings resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerFortilinkSettings(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerFortilinkSettings(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerFortilinkSettings resource: %v", err)
 	}
@@ -170,13 +174,15 @@ func resourceObjectSwitchControllerFortilinkSettingsDelete(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerFortilinkSettings(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerFortilinkSettings(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerFortilinkSettings resource: %v", err)
 	}
@@ -192,13 +198,15 @@ func resourceObjectSwitchControllerFortilinkSettingsRead(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerFortilinkSettings(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerFortilinkSettings(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerFortilinkSettings resource: %v", err)
 	}

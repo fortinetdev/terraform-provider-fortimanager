@@ -369,18 +369,20 @@ func resourceObjectSystemNpuFpAnomalyUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuFpAnomaly(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuFpAnomaly resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuFpAnomaly(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuFpAnomaly(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuFpAnomaly resource: %v", err)
 	}
@@ -398,13 +400,15 @@ func resourceObjectSystemNpuFpAnomalyDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuFpAnomaly(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuFpAnomaly(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuFpAnomaly resource: %v", err)
 	}
@@ -420,13 +424,15 @@ func resourceObjectSystemNpuFpAnomalyRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuFpAnomaly(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuFpAnomaly(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuFpAnomaly resource: %v", err)
 	}

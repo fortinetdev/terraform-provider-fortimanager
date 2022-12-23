@@ -87,18 +87,20 @@ func resourceObjectUserDeviceAccessListCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDeviceAccessList(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceAccessList resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserDeviceAccessList(obj, adomv, nil)
+	_, err = c.CreateObjectUserDeviceAccessList(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserDeviceAccessList resource: %v", err)
@@ -114,18 +116,20 @@ func resourceObjectUserDeviceAccessListUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserDeviceAccessList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceAccessList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserDeviceAccessList(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserDeviceAccessList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserDeviceAccessList resource: %v", err)
 	}
@@ -143,13 +147,15 @@ func resourceObjectUserDeviceAccessListDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserDeviceAccessList(adomv, mkey, nil)
+	err = c.DeleteObjectUserDeviceAccessList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserDeviceAccessList resource: %v", err)
 	}
@@ -165,13 +171,15 @@ func resourceObjectUserDeviceAccessListRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserDeviceAccessList(adomv, mkey, nil)
+	o, err := c.ReadObjectUserDeviceAccessList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserDeviceAccessList resource: %v", err)
 	}

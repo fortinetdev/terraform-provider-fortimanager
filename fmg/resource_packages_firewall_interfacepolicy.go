@@ -77,6 +77,15 @@ func resourcePackagesFirewallInterfacePolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"dlp_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"dlp_profile_status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dlp_sensor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -188,22 +197,23 @@ func resourcePackagesFirewallInterfacePolicyCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallInterfacePolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallInterfacePolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallInterfacePolicy(obj, adomv, paralist)
+	_, err = c.CreatePackagesFirewallInterfacePolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallInterfacePolicy resource: %v", err)
@@ -219,22 +229,23 @@ func resourcePackagesFirewallInterfacePolicyUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallInterfacePolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallInterfacePolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallInterfacePolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallInterfacePolicy resource: %v", err)
 	}
@@ -252,17 +263,18 @@ func resourcePackagesFirewallInterfacePolicyDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallInterfacePolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesFirewallInterfacePolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallInterfacePolicy resource: %v", err)
 	}
@@ -278,11 +290,13 @@ func resourcePackagesFirewallInterfacePolicyRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -291,10 +305,9 @@ func resourcePackagesFirewallInterfacePolicyRead(d *schema.ResourceData, m inter
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallInterfacePolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallInterfacePolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallInterfacePolicy resource: %v", err)
 	}
@@ -333,6 +346,14 @@ func flattenPackagesFirewallInterfacePolicyAvProfileStatus(v interface{}, d *sch
 }
 
 func flattenPackagesFirewallInterfacePolicyComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallInterfacePolicyDlpProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallInterfacePolicyDlpProfileStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -484,6 +505,26 @@ func refreshObjectPackagesFirewallInterfacePolicy(d *schema.ResourceData, o map[
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_profile", flattenPackagesFirewallInterfacePolicyDlpProfile(o["dlp-profile"], d, "dlp_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-profile"], "PackagesFirewallInterfacePolicy-DlpProfile"); ok {
+			if err = d.Set("dlp_profile", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("dlp_profile_status", flattenPackagesFirewallInterfacePolicyDlpProfileStatus(o["dlp-profile-status"], d, "dlp_profile_status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dlp-profile-status"], "PackagesFirewallInterfacePolicy-DlpProfileStatus"); ok {
+			if err = d.Set("dlp_profile_status", vv); err != nil {
+				return fmt.Errorf("Error reading dlp_profile_status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dlp_profile_status: %v", err)
 		}
 	}
 
@@ -730,6 +771,14 @@ func expandPackagesFirewallInterfacePolicyComments(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandPackagesFirewallInterfacePolicyDlpProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallInterfacePolicyDlpProfileStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallInterfacePolicyDlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -868,6 +917,24 @@ func getObjectPackagesFirewallInterfacePolicy(d *schema.ResourceData) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_profile"); ok || d.HasChange("dlp_profile") {
+		t, err := expandPackagesFirewallInterfacePolicyDlpProfile(d, v, "dlp_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dlp_profile_status"); ok || d.HasChange("dlp_profile_status") {
+		t, err := expandPackagesFirewallInterfacePolicyDlpProfileStatus(d, v, "dlp_profile_status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dlp-profile-status"] = t
 		}
 	}
 

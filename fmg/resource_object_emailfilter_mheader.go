@@ -103,18 +103,20 @@ func resourceObjectEmailfilterMheaderCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterMheader(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterMheader resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectEmailfilterMheader(obj, adomv, nil)
+	_, err = c.CreateObjectEmailfilterMheader(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterMheader resource: %v", err)
@@ -130,18 +132,20 @@ func resourceObjectEmailfilterMheaderUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterMheader(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterMheader resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterMheader(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEmailfilterMheader(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterMheader resource: %v", err)
 	}
@@ -159,13 +163,15 @@ func resourceObjectEmailfilterMheaderDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterMheader(adomv, mkey, nil)
+	err = c.DeleteObjectEmailfilterMheader(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterMheader resource: %v", err)
 	}
@@ -181,13 +187,15 @@ func resourceObjectEmailfilterMheaderRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEmailfilterMheader(adomv, mkey, nil)
+	o, err := c.ReadObjectEmailfilterMheader(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEmailfilterMheader resource: %v", err)
 	}

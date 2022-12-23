@@ -3117,18 +3117,20 @@ func resourceObjectFspVlanCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFspVlan(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlan resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFspVlan(obj, adomv, nil)
+	_, err = c.CreateObjectFspVlan(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFspVlan resource: %v", err)
@@ -3144,18 +3146,20 @@ func resourceObjectFspVlanUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFspVlan(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlan resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFspVlan(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFspVlan(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFspVlan resource: %v", err)
 	}
@@ -3173,13 +3177,15 @@ func resourceObjectFspVlanDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFspVlan(adomv, mkey, nil)
+	err = c.DeleteObjectFspVlan(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFspVlan resource: %v", err)
 	}
@@ -3195,13 +3201,15 @@ func resourceObjectFspVlanRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFspVlan(adomv, mkey, nil)
+	o, err := c.ReadObjectFspVlan(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFspVlan resource: %v", err)
 	}

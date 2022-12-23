@@ -233,18 +233,20 @@ func resourceObjectFirewallAddrgrpCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAddrgrp(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddrgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallAddrgrp(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallAddrgrp(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddrgrp resource: %v", err)
@@ -260,18 +262,20 @@ func resourceObjectFirewallAddrgrpUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAddrgrp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddrgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddrgrp(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallAddrgrp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddrgrp resource: %v", err)
 	}
@@ -289,13 +293,15 @@ func resourceObjectFirewallAddrgrpDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAddrgrp(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallAddrgrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddrgrp resource: %v", err)
 	}
@@ -311,13 +317,15 @@ func resourceObjectFirewallAddrgrpRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallAddrgrp(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallAddrgrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallAddrgrp resource: %v", err)
 	}

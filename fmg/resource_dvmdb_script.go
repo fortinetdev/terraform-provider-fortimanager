@@ -150,18 +150,20 @@ func resourceDvmdbScriptCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbScript(d)
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbScript resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateDvmdbScript(obj, adomv, nil)
+	_, err = c.CreateDvmdbScript(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbScript resource: %v", err)
@@ -177,18 +179,20 @@ func resourceDvmdbScriptUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectDvmdbScript(d)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbScript resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateDvmdbScript(obj, adomv, mkey, nil)
+	_, err = c.UpdateDvmdbScript(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating DvmdbScript resource: %v", err)
 	}
@@ -206,13 +210,15 @@ func resourceDvmdbScriptDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteDvmdbScript(adomv, mkey, nil)
+	err = c.DeleteDvmdbScript(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting DvmdbScript resource: %v", err)
 	}
@@ -228,13 +234,15 @@ func resourceDvmdbScriptRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadDvmdbScript(adomv, mkey, nil)
+	o, err := c.ReadDvmdbScript(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading DvmdbScript resource: %v", err)
 	}

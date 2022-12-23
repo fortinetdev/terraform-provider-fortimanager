@@ -108,6 +108,8 @@ The `ftp` block supports:
 
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+* `explicit_ftp_tls` - Enable/disable FTP redirection for explicit FTPS. Valid values: `disable`, `enable`.
+
 * `inspect_all` - Enable/disable the inspection of all ports for the protocol. Valid values: `disable`, `enable`.
 
 * `options` - One or more options that can be applied to the session. Valid values: `clientcomfort`, `no-content-summary`, `oversize`, `splice`, `bypass-rest-command`, `bypass-mode-command`.
@@ -136,6 +138,8 @@ The `http` block supports:
 * `block_page_status_code` - Code number returned for blocked HTTP pages (non-FortiGuard only) (100 - 599, default = 403).
 * `comfort_amount` - Amount of data to send in a transmission for client comforting (1 - 65535 bytes, default = 1).
 * `comfort_interval` - Period of time between start, or last transmission, and the next client comfort transmission of data (1 - 900 sec, default = 10).
+* `h2c` - Enable/disable h2c HTTP connection upgrade. Valid values: `disable`, `enable`.
+
 * `fortinet_bar` - Fortinet-Bar. Valid values: `disable`, `enable`.
 
 * `fortinet_bar_port` - Fortinet-Bar-Port.
@@ -177,6 +181,8 @@ The `http` block supports:
 * `uncompressed_nest_limit` - Maximum nested levels of compression that can be uncompressed and scanned (2 - 100, default = 12).
 * `uncompressed_oversize_limit` - Maximum in-memory uncompressed file size that can be scanned (0 - 383 MB, 0 = unlimited, default = 10).
 * `unknown_http_version` - How to handle HTTP sessions that do not comply with HTTP 0.9, 1.0, or 1.1. Valid values: `best-effort`, `reject`, `tunnel`.
+
+* `verify_dns_for_policy_matching` - Enable/disable verification of DNS for policy matching. Valid values: `disable`, `enable`.
 
 
 The `imap` block supports:

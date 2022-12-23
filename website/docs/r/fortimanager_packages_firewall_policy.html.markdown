@@ -115,6 +115,8 @@ The following arguments are supported:
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
 * `delay_tcp_npu_session` - Enable TCP NPU session delay to guarantee packet order of 3-way handshake. Valid values: `disable`, `enable`.
 
+* `diffserv_copy` - Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `disable`, `enable`.
+
 * `devices` - Names of devices or device groups that can be matched by the policy.
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
@@ -124,6 +126,7 @@ The following arguments are supported:
 * `diffservcode_rev` - Change packet's reverse (reply) DiffServ to this value.
 * `disclaimer` - Enable/disable user authentication disclaimer. Valid values: `disable`, `enable`.
 
+* `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `dscp_match` - Enable DSCP check. Valid values: `disable`, `enable`.
@@ -137,6 +140,8 @@ The following arguments are supported:
 * `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 
 * `dstaddr6` - Destination IPv6 address name and address group names.
+* `dstaddr6_negate` - When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
+
 * `dstintf` - Outgoing (egress) interface.
 * `dynamic_shaping` - Enable/disable dynamic RADIUS defined traffic shaping. Valid values: `disable`, `enable`.
 
@@ -187,6 +192,22 @@ The following arguments are supported:
 * `internet_service_src_id` - Internet Service source ID.
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
+* `internet_service6` - Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `disable`, `enable`.
+
+* `internet_service6_custom` - Custom IPv6 Internet Service name.
+* `internet_service6_custom_group` - Custom Internet Service6 group name.
+* `internet_service6_group` - Internet Service group name.
+* `internet_service6_name` - IPv6 Internet Service name.
+* `internet_service6_negate` - When enabled internet-service6 specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
+* `internet_service6_src` - Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
+
+* `internet_service6_src_custom` - Custom IPv6 Internet Service source name.
+* `internet_service6_src_custom_group` - Custom Internet Service6 source group name.
+* `internet_service6_src_group` - Internet Service6 source group name.
+* `internet_service6_src_name` - IPv6 Internet Service source name.
+* `internet_service6_src_negate` - When enabled internet-service6-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
 * `ippool` - Enable to use IP Pools for source NAT. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
@@ -214,6 +235,8 @@ The following arguments are supported:
 * `natip` - Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 * `natoutbound` - Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `disable`, `enable`.
 
+* `network_service_dynamic` - Dynamic Network Service name.
+* `network_service_src_dynamic` - Dynamic Network Service source name.
 * `np_acceleration` - Enable/disable UTM Network Processor acceleration. Valid values: `disable`, `enable`.
 
 * `ntlm` - Enable/disable NTLM authentication. Valid values: `disable`, `enable`.
@@ -231,6 +254,9 @@ The following arguments are supported:
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
 
 * `pfcp_profile` - PFCP profile.
+* `policy_expiry` - Enable/disable policy expiry. Valid values: `disable`, `enable`.
+
+* `policy_expiry_date` - Policy expiry date (YYYY-MM-DD HH:MM:SS).
 * `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
@@ -246,7 +272,10 @@ The following arguments are supported:
 * `replacemsg_override_group` - Override the default replacement message group for this policy.
 * `reputation_direction` - Direction of the initial traffic for reputation to take effect. Valid values: `source`, `destination`.
 
+* `reputation_direction6` - Direction of the initial traffic for IPv6 reputation to take effect. Valid values: `source`, `destination`.
+
 * `reputation_minimum` - Minimum Reputation to take action.
+* `reputation_minimum6` - IPv6 Minimum Reputation to take action.
 * `rsso` - Enable/disable RADIUS single sign-on (RSSO). Valid values: `disable`, `enable`.
 
 * `rtp_addr` - Address names if this is an RTP NAT policy.
@@ -273,6 +302,8 @@ The following arguments are supported:
 * `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
 
 * `srcaddr6` - Source IPv6 address name and address group names.
+* `srcaddr6_negate` - When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `disable`, `enable`.
+
 * `srcintf` - Incoming (ingress) interface.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssh_policy_redirect` - Redirect SSH traffic to matching transparent proxy policy. Valid values: `disable`, `enable`.

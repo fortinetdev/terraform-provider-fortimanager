@@ -458,18 +458,19 @@ func resourcePackagesGlobalHeaderConsolidatedPolicyCreate(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderConsolidatedPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderConsolidatedPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalHeaderConsolidatedPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderConsolidatedPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderConsolidatedPolicy resource: %v", err)
@@ -494,18 +495,19 @@ func resourcePackagesGlobalHeaderConsolidatedPolicyUpdate(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderConsolidatedPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderConsolidatedPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalHeaderConsolidatedPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalHeaderConsolidatedPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderConsolidatedPolicy resource: %v", err)
 	}
@@ -523,13 +525,14 @@ func resourcePackagesGlobalHeaderConsolidatedPolicyDelete(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalHeaderConsolidatedPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalHeaderConsolidatedPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalHeaderConsolidatedPolicy resource: %v", err)
 	}
@@ -545,7 +548,9 @@ func resourcePackagesGlobalHeaderConsolidatedPolicyRead(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -554,10 +559,9 @@ func resourcePackagesGlobalHeaderConsolidatedPolicyRead(d *schema.ResourceData, 
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalHeaderConsolidatedPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalHeaderConsolidatedPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalHeaderConsolidatedPolicy resource: %v", err)
 	}

@@ -130,18 +130,20 @@ func resourceObjectVideofilterProfileCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVideofilterProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVideofilterProfile(obj, adomv, nil)
+	_, err = c.CreateObjectVideofilterProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterProfile resource: %v", err)
@@ -157,18 +159,20 @@ func resourceObjectVideofilterProfileUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVideofilterProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVideofilterProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterProfile resource: %v", err)
 	}
@@ -186,13 +190,15 @@ func resourceObjectVideofilterProfileDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVideofilterProfile(adomv, mkey, nil)
+	err = c.DeleteObjectVideofilterProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterProfile resource: %v", err)
 	}
@@ -208,13 +214,15 @@ func resourceObjectVideofilterProfileRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVideofilterProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectVideofilterProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVideofilterProfile resource: %v", err)
 	}

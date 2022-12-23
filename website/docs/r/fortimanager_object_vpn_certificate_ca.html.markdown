@@ -39,6 +39,8 @@ The following arguments are supported:
 * `ca_identifier` - CA identifier of the SCEP server.
 * `last_updated` - Time at which CA was last updated.
 * `name` - Name.
+* `obsolete` - Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.
+
 * `range` - Either global or VDOM IP address range for the CA certificate. Valid values: `global`, `vdom`.
 
 * `scep_url` - URL of the SCEP server.

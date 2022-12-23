@@ -45,6 +45,14 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"n204_response": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"n204_size_limit": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"chunk_encap": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -55,6 +63,25 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
+			},
+			"file_transfer": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"file_transfer_failure": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"file_transfer_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"file_transfer_server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"icap_block_log": &schema.Schema{
 				Type:     schema.TypeString,
@@ -217,6 +244,11 @@ func resourceObjectIcapProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -230,18 +262,20 @@ func resourceObjectIcapProfileCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIcapProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectIcapProfile(obj, adomv, nil)
+	_, err = c.CreateObjectIcapProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectIcapProfile resource: %v", err)
@@ -257,18 +291,20 @@ func resourceObjectIcapProfileUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectIcapProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectIcapProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectIcapProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectIcapProfile resource: %v", err)
 	}
@@ -286,13 +322,15 @@ func resourceObjectIcapProfileDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectIcapProfile(adomv, mkey, nil)
+	err = c.DeleteObjectIcapProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectIcapProfile resource: %v", err)
 	}
@@ -308,13 +346,15 @@ func resourceObjectIcapProfileRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectIcapProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectIcapProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectIcapProfile resource: %v", err)
 	}
@@ -332,12 +372,36 @@ func resourceObjectIcapProfileRead(d *schema.ResourceData, m interface{}) error 
 	return nil
 }
 
+func flattenObjectIcapProfile204Response(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfile204SizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectIcapProfileChunkEncap(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectIcapProfileExtensionFeature(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectIcapProfileFileTransfer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectIcapProfileFileTransferFailure(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileFileTransferPath(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileFileTransferServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectIcapProfileIcapBlockLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -619,6 +683,10 @@ func flattenObjectIcapProfileStreamingContentBypass(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectIcapProfileTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -628,6 +696,26 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("n204_response", flattenObjectIcapProfile204Response(o["204-response"], d, "n204_response")); err != nil {
+		if vv, ok := fortiAPIPatch(o["204-response"], "ObjectIcapProfile-204Response"); ok {
+			if err = d.Set("n204_response", vv); err != nil {
+				return fmt.Errorf("Error reading n204_response: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading n204_response: %v", err)
+		}
+	}
+
+	if err = d.Set("n204_size_limit", flattenObjectIcapProfile204SizeLimit(o["204-size-limit"], d, "n204_size_limit")); err != nil {
+		if vv, ok := fortiAPIPatch(o["204-size-limit"], "ObjectIcapProfile-204SizeLimit"); ok {
+			if err = d.Set("n204_size_limit", vv); err != nil {
+				return fmt.Errorf("Error reading n204_size_limit: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading n204_size_limit: %v", err)
+		}
 	}
 
 	if err = d.Set("chunk_encap", flattenObjectIcapProfileChunkEncap(o["chunk-encap"], d, "chunk_encap")); err != nil {
@@ -647,6 +735,46 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading extension_feature: %v", err)
+		}
+	}
+
+	if err = d.Set("file_transfer", flattenObjectIcapProfileFileTransfer(o["file-transfer"], d, "file_transfer")); err != nil {
+		if vv, ok := fortiAPIPatch(o["file-transfer"], "ObjectIcapProfile-FileTransfer"); ok {
+			if err = d.Set("file_transfer", vv); err != nil {
+				return fmt.Errorf("Error reading file_transfer: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading file_transfer: %v", err)
+		}
+	}
+
+	if err = d.Set("file_transfer_failure", flattenObjectIcapProfileFileTransferFailure(o["file-transfer-failure"], d, "file_transfer_failure")); err != nil {
+		if vv, ok := fortiAPIPatch(o["file-transfer-failure"], "ObjectIcapProfile-FileTransferFailure"); ok {
+			if err = d.Set("file_transfer_failure", vv); err != nil {
+				return fmt.Errorf("Error reading file_transfer_failure: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading file_transfer_failure: %v", err)
+		}
+	}
+
+	if err = d.Set("file_transfer_path", flattenObjectIcapProfileFileTransferPath(o["file-transfer-path"], d, "file_transfer_path")); err != nil {
+		if vv, ok := fortiAPIPatch(o["file-transfer-path"], "ObjectIcapProfile-FileTransferPath"); ok {
+			if err = d.Set("file_transfer_path", vv); err != nil {
+				return fmt.Errorf("Error reading file_transfer_path: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading file_transfer_path: %v", err)
+		}
+	}
+
+	if err = d.Set("file_transfer_server", flattenObjectIcapProfileFileTransferServer(o["file-transfer-server"], d, "file_transfer_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["file-transfer-server"], "ObjectIcapProfile-FileTransferServer"); ok {
+			if err = d.Set("file_transfer_server", vv); err != nil {
+				return fmt.Errorf("Error reading file_transfer_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading file_transfer_server: %v", err)
 		}
 	}
 
@@ -878,6 +1006,16 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("timeout", flattenObjectIcapProfileTimeout(o["timeout"], d, "timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["timeout"], "ObjectIcapProfile-Timeout"); ok {
+			if err = d.Set("timeout", vv); err != nil {
+				return fmt.Errorf("Error reading timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading timeout: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -887,12 +1025,36 @@ func flattenObjectIcapProfileFortiTestDebug(d *schema.ResourceData, fosdebugsn i
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectIcapProfile204Response(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfile204SizeLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectIcapProfileChunkEncap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectIcapProfileExtensionFeature(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectIcapProfileFileTransfer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectIcapProfileFileTransferFailure(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileFileTransferPath(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileFileTransferServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectIcapProfileIcapBlockLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1151,8 +1313,30 @@ func expandObjectIcapProfileStreamingContentBypass(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectIcapProfileTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("n204_response"); ok || d.HasChange("n204_response") {
+		t, err := expandObjectIcapProfile204Response(d, v, "n204_response")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["204-response"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("n204_size_limit"); ok || d.HasChange("n204_size_limit") {
+		t, err := expandObjectIcapProfile204SizeLimit(d, v, "n204_size_limit")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["204-size-limit"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("chunk_encap"); ok || d.HasChange("chunk_encap") {
 		t, err := expandObjectIcapProfileChunkEncap(d, v, "chunk_encap")
@@ -1169,6 +1353,42 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["extension-feature"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("file_transfer"); ok || d.HasChange("file_transfer") {
+		t, err := expandObjectIcapProfileFileTransfer(d, v, "file_transfer")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["file-transfer"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("file_transfer_failure"); ok || d.HasChange("file_transfer_failure") {
+		t, err := expandObjectIcapProfileFileTransferFailure(d, v, "file_transfer_failure")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["file-transfer-failure"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("file_transfer_path"); ok || d.HasChange("file_transfer_path") {
+		t, err := expandObjectIcapProfileFileTransferPath(d, v, "file_transfer_path")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["file-transfer-path"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("file_transfer_server"); ok || d.HasChange("file_transfer_server") {
+		t, err := expandObjectIcapProfileFileTransferServer(d, v, "file_transfer_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["file-transfer-server"] = t
 		}
 	}
 
@@ -1349,6 +1569,15 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["streaming-content-bypass"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("timeout"); ok || d.HasChange("timeout") {
+		t, err := expandObjectIcapProfileTimeout(d, v, "timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["timeout"] = t
 		}
 	}
 

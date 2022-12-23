@@ -12,10 +12,10 @@ import (
 
 ////////////////////////////////////////////////////////////////////////
 
-func createUpdate(c *FortiSDKClient, globaladom, path string, method string, params *map[string]interface{}, move bool) (output map[string]interface{}, err error) {
-	log.Printf("shengh3: %v, %v:    %v\n", globaladom, path, params)
+func createUpdate(c *FortiSDKClient, path string, method string, params *map[string]interface{}, move bool) (output map[string]interface{}, err error) {
+	log.Printf("[INFO] Request infomation: %v:    %v\n", path, params)
 
-	data := encodeData(c, globaladom, path, method, params, move)
+	data := encodeData(c, path, method, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -49,8 +49,8 @@ func createUpdate(c *FortiSDKClient, globaladom, path string, method string, par
 	return
 }
 
-func delete(c *FortiSDKClient, globaladom, path string, method string, move bool) (err error) {
-	data := encodeData(c, globaladom, path, method, nil, move)
+func delete(c *FortiSDKClient, path string, method string, move bool) (err error) {
+	data := encodeData(c, path, method, nil, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -82,8 +82,8 @@ func delete(c *FortiSDKClient, globaladom, path string, method string, move bool
 	return
 }
 
-func read(c *FortiSDKClient, globaladom, path string, method string, move bool) (mapTmp map[string]interface{}, err error) {
-	data := encodeData(c, globaladom, path, method, nil, move)
+func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[string]interface{}, err error) {
+	data := encodeData(c, path, method, nil, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -118,8 +118,8 @@ func read(c *FortiSDKClient, globaladom, path string, method string, move bool) 
 	return
 }
 
-func readMove(c *FortiSDKClient, globaladom, path string, method string, params *map[string]interface{}, move bool) (listTmp []interface{}, err error) {
-	data := encodeData(c, globaladom, path, method, params, move)
+func readMove(c *FortiSDKClient, path string, method string, params *map[string]interface{}, move bool) (listTmp []interface{}, err error) {
+	data := encodeData(c, path, method, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -155,12 +155,7 @@ func readMove(c *FortiSDKClient, globaladom, path string, method string, params 
 }
 
 ////////////////////////////////////////////////////////////////////////
-func computerPath(globaladom, path string) string {
-	path = strings.ReplaceAll(path, "[*]", globaladom)
-	return path
-}
-
-func encodeData(c *FortiSDKClient, globaladom, path, method string, params *map[string]interface{}, move bool) map[string]interface{} {
+func encodeData(c *FortiSDKClient, path, method string, params *map[string]interface{}, move bool) map[string]interface{} {
 	data := make(map[string]interface{})
 	data["method"] = method
 	data["params"] = make([]map[string]interface{}, 0)
@@ -168,9 +163,9 @@ func encodeData(c *FortiSDKClient, globaladom, path, method string, params *map[
 	data["session"] = c.Session
 
 	paramItem := make(map[string]interface{})
-	paramItem["url"] = computerPath(globaladom, path) //"/cli/global/system/admin/setting"
+	paramItem["url"] = path //"/cli/global/system/admin/setting"
 
-	log.Printf("shengh: %v\n", paramItem["url"])
+	log.Printf("[INFO] Request URL: %v\n", paramItem["url"])
 
 	if move == false {
 		paramItem["data"] = params
@@ -281,27 +276,46 @@ func fortiIntValue(t interface{}) int {
 	}
 }
 
-func replaceParaWithValue(path string, paralist []string) (string, error) {
-	if paralist == nil {
+func replaceParaWithValue(path string, paradict map[string]string) (string, error) {
+	if !strings.ContainsAny(path, "[ | {") {
 		return path, nil
+	}
+	if paradict == nil {
+		return "", fmt.Errorf("Missing path parameters error %v, %v", path, paradict)
+	}
+	rstPath := path
+
+	if adomv, ok := paradict["adom"]; ok && adomv != "" {
+		rstPath = strings.ReplaceAll(rstPath, "[*]", adomv)
 	}
 
 	re := regexp.MustCompile(`{.*?}`)
 
-	len1 := len(re.FindAllString(path, -1))
-	len2 := len(paralist)
-
-	if len1 == 0 {
-		return path, nil
-	} else if len1 != len2 {
-		return "", fmt.Errorf("path parameters error %v, %v", path, paralist)
+	argUrl := re.FindAllString(path, -1)
+	argUrlMap := make(map[string]string)
+	for _, argName := range argUrl {
+		re = regexp.MustCompile(`[.()+/ ]`)
+		curTfName := re.ReplaceAllString(argName, "")
+		curTfName = strings.ReplaceAll(curTfName, "-", "_")
+		curTfName = strings.ToLower(curTfName)
+		argUrlMap[curTfName] = argName
 	}
 
-	re = regexp.MustCompile(`^(.*?)({.*?})(.*?)$`)
-
-	for _, v := range paralist {
-		path = re.ReplaceAllString(path, "${1}" + v + "${3}")
+	for argName, argVal := range paradict {
+		if argName == "adom" {
+			argVal = strings.Replace(argVal, "adom/", "", 1)
+		}
+		curArgName := "{" + argName + "}"
+		if curTfName, ok := argUrlMap[curArgName]; ok {
+			rstPath = strings.ReplaceAll(rstPath, curTfName, argVal)
+		} else {
+			log.Printf("[Warning] argument map: %v do not contain argument: %v", argUrlMap, curArgName)
+		}
 	}
 
-	return path, nil
+	if strings.ContainsAny(rstPath, "[ | {") {
+		return "", fmt.Errorf("path parameters error %v, %v", path, paradict)
+	}
+
+	return rstPath, nil
 }

@@ -48,14 +48,16 @@ func resourceFmupdateFctServicesUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateFctServices(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFctServices resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFctServices(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateFctServices(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFctServices resource: %v", err)
 	}
@@ -73,9 +75,11 @@ func resourceFmupdateFctServicesDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFctServices(adomv, mkey, nil)
+	err = c.DeleteFmupdateFctServices(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFctServices resource: %v", err)
 	}
@@ -91,9 +95,11 @@ func resourceFmupdateFctServicesRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateFctServices(adomv, mkey, nil)
+	o, err := c.ReadFmupdateFctServices(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateFctServices resource: %v", err)
 	}

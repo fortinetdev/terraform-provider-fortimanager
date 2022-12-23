@@ -26,10 +26,14 @@ The following arguments are supported:
 * `password` - HTTP basic authentication password.
 * `refresh_rate` - Time interval to refresh external resource (1 - 43200 min, default = 5 min).
 * `resource` - URI of external resource.
+* `server_identity_check` - Certificate verification option. Valid values: `none`, `basic`, `full`.
+
 * `source_ip` - Source IPv4 address used to communicate with server.
 * `status` - Enable/disable user resource. Valid values: `disable`, `enable`.
 
 * `type` - User resource type. Valid values: `category`, `address`, `domain`, `malware`.
+
+* `update_method` - External resource update method. Valid values: `feed`, `push`.
 
 * `user_agent` - Override HTTP User-Agent header used when retrieving this external resource.
 * `username` - HTTP basic authentication user name.

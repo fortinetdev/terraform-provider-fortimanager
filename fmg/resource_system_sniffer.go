@@ -77,14 +77,16 @@ func resourceSystemSnifferCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSniffer(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSniffer resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSniffer(obj, adomv, nil)
+	_, err = c.CreateSystemSniffer(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSniffer resource: %v", err)
@@ -100,14 +102,16 @@ func resourceSystemSnifferUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSniffer(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSniffer resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSniffer(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSniffer(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSniffer resource: %v", err)
 	}
@@ -125,9 +129,11 @@ func resourceSystemSnifferDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSniffer(adomv, mkey, nil)
+	err = c.DeleteSystemSniffer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSniffer resource: %v", err)
 	}
@@ -143,9 +149,11 @@ func resourceSystemSnifferRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSniffer(adomv, mkey, nil)
+	o, err := c.ReadSystemSniffer(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSniffer resource: %v", err)
 	}

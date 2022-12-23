@@ -92,6 +92,10 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"external_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"region_list": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -453,18 +457,20 @@ func resourceObjectSystemSdnConnectorCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemSdnConnector(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemSdnConnector(obj, adomv, nil)
+	_, err = c.CreateObjectSystemSdnConnector(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemSdnConnector resource: %v", err)
@@ -480,18 +486,20 @@ func resourceObjectSystemSdnConnectorUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemSdnConnector(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemSdnConnector(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemSdnConnector(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemSdnConnector resource: %v", err)
 	}
@@ -509,13 +517,15 @@ func resourceObjectSystemSdnConnectorDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemSdnConnector(adomv, mkey, nil)
+	err = c.DeleteObjectSystemSdnConnector(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemSdnConnector resource: %v", err)
 	}
@@ -531,13 +541,15 @@ func resourceObjectSystemSdnConnectorRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemSdnConnector(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemSdnConnector(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemSdnConnector resource: %v", err)
 	}
@@ -610,6 +622,12 @@ func flattenObjectSystemSdnConnectorExternalAccountList(v interface{}, d *schema
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "external_id"
+		if _, ok := i["external-id"]; ok {
+			v := flattenObjectSystemSdnConnectorExternalAccountListExternalId(i["external-id"], d, pre_append)
+			tmp["external_id"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ExternalAccountList-ExternalId")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "region_list"
 		if _, ok := i["region-list"]; ok {
 			v := flattenObjectSystemSdnConnectorExternalAccountListRegionList(i["region-list"], d, pre_append)
@@ -628,6 +646,10 @@ func flattenObjectSystemSdnConnectorExternalAccountList(v interface{}, d *schema
 	}
 
 	return result
+}
+
+func flattenObjectSystemSdnConnectorExternalAccountListExternalId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectSystemSdnConnectorExternalAccountListRegionList(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1958,6 +1980,11 @@ func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v
 		i := r.(map[string]interface{})
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "external_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["external-id"], _ = expandObjectSystemSdnConnectorExternalAccountListExternalId(d, i["external_id"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "region_list"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["region-list"], _ = expandObjectSystemSdnConnectorExternalAccountListRegionList(d, i["region_list"], pre_append)
@@ -1974,6 +2001,10 @@ func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v
 	}
 
 	return result, nil
+}
+
+func expandObjectSystemSdnConnectorExternalAccountListExternalId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSystemSdnConnectorExternalAccountListRegionList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

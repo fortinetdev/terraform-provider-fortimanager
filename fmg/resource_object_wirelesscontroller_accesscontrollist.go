@@ -153,18 +153,20 @@ func resourceObjectWirelessControllerAccessControlListCreate(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerAccessControlList(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerAccessControlList resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerAccessControlList(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerAccessControlList(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerAccessControlList resource: %v", err)
@@ -180,18 +182,20 @@ func resourceObjectWirelessControllerAccessControlListUpdate(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerAccessControlList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerAccessControlList(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerAccessControlList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerAccessControlList resource: %v", err)
 	}
@@ -209,13 +213,15 @@ func resourceObjectWirelessControllerAccessControlListDelete(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerAccessControlList(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerAccessControlList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerAccessControlList resource: %v", err)
 	}
@@ -231,13 +237,15 @@ func resourceObjectWirelessControllerAccessControlListRead(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerAccessControlList(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerAccessControlList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerAccessControlList resource: %v", err)
 	}

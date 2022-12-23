@@ -505,6 +505,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"n80211d": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"airtime_fairness": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -881,6 +885,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"n80211d": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"airtime_fairness": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1256,6 +1264,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"n80211d": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"airtime_fairness": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1596,6 +1608,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Computed: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"n80211d": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"airtime_fairness": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -2010,18 +2026,20 @@ func resourceObjectWirelessControllerWtpProfileCreate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerWtpProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWtpProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerWtpProfile(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerWtpProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerWtpProfile resource: %v", err)
@@ -2037,18 +2055,20 @@ func resourceObjectWirelessControllerWtpProfileUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerWtpProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerWtpProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerWtpProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerWtpProfile resource: %v", err)
 	}
@@ -2066,13 +2086,15 @@ func resourceObjectWirelessControllerWtpProfileDelete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerWtpProfile(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerWtpProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerWtpProfile resource: %v", err)
 	}
@@ -2088,13 +2110,15 @@ func resourceObjectWirelessControllerWtpProfileRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerWtpProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerWtpProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfile resource: %v", err)
 	}
@@ -2855,6 +2879,11 @@ func flattenObjectWirelessControllerWtpProfileRadio1(v interface{}, d *schema.Re
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := i["80211d"]; ok {
+		result["n80211d"] = flattenObjectWirelessControllerWtpProfileRadio180211D(i["80211d"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := i["airtime-fairness"]; ok {
 		result["airtime_fairness"] = flattenObjectWirelessControllerWtpProfileRadio1AirtimeFairness(i["airtime-fairness"], d, pre_append)
@@ -3259,6 +3288,10 @@ func flattenObjectWirelessControllerWtpProfileRadio1(v interface{}, d *schema.Re
 	return lastresult
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio180211D(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio1AirtimeFairness(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3588,6 +3621,11 @@ func flattenObjectWirelessControllerWtpProfileRadio2(v interface{}, d *schema.Re
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := i["80211d"]; ok {
+		result["n80211d"] = flattenObjectWirelessControllerWtpProfileRadio280211D(i["80211d"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := i["airtime-fairness"]; ok {
 		result["airtime_fairness"] = flattenObjectWirelessControllerWtpProfileRadio2AirtimeFairness(i["airtime-fairness"], d, pre_append)
@@ -3992,6 +4030,10 @@ func flattenObjectWirelessControllerWtpProfileRadio2(v interface{}, d *schema.Re
 	return lastresult
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio280211D(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio2AirtimeFairness(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4321,6 +4363,11 @@ func flattenObjectWirelessControllerWtpProfileRadio3(v interface{}, d *schema.Re
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := i["80211d"]; ok {
+		result["n80211d"] = flattenObjectWirelessControllerWtpProfileRadio380211D(i["80211d"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := i["airtime-fairness"]; ok {
 		result["airtime_fairness"] = flattenObjectWirelessControllerWtpProfileRadio3AirtimeFairness(i["airtime-fairness"], d, pre_append)
@@ -4725,6 +4772,10 @@ func flattenObjectWirelessControllerWtpProfileRadio3(v interface{}, d *schema.Re
 	return lastresult
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio380211D(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio3AirtimeFairness(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5054,6 +5105,11 @@ func flattenObjectWirelessControllerWtpProfileRadio4(v interface{}, d *schema.Re
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := i["80211d"]; ok {
+		result["n80211d"] = flattenObjectWirelessControllerWtpProfileRadio480211D(i["80211d"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := i["airtime-fairness"]; ok {
 		result["airtime_fairness"] = flattenObjectWirelessControllerWtpProfileRadio4AirtimeFairness(i["airtime-fairness"], d, pre_append)
@@ -5456,6 +5512,10 @@ func flattenObjectWirelessControllerWtpProfileRadio4(v interface{}, d *schema.Re
 
 	lastresult := []map[string]interface{}{result}
 	return lastresult
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio480211D(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio4AirtimeFairness(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -7171,6 +7231,10 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["80211d"], _ = expandObjectWirelessControllerWtpProfileRadio180211D(d, i["n80211d"], pre_append)
+	}
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio1AirtimeFairness(d, i["airtime_fairness"], pre_append)
@@ -7493,6 +7557,10 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	}
 
 	return result, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio180211D(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWirelessControllerWtpProfileRadio1AirtimeFairness(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -7825,6 +7893,10 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["80211d"], _ = expandObjectWirelessControllerWtpProfileRadio280211D(d, i["n80211d"], pre_append)
+	}
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio2AirtimeFairness(d, i["airtime_fairness"], pre_append)
@@ -8147,6 +8219,10 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	}
 
 	return result, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio280211D(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWirelessControllerWtpProfileRadio2AirtimeFairness(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -8479,6 +8555,10 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["80211d"], _ = expandObjectWirelessControllerWtpProfileRadio380211D(d, i["n80211d"], pre_append)
+	}
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio3AirtimeFairness(d, i["airtime_fairness"], pre_append)
@@ -8801,6 +8881,10 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	}
 
 	return result, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio380211D(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWirelessControllerWtpProfileRadio3AirtimeFairness(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -9133,6 +9217,10 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	result := make(map[string]interface{})
 
 	pre_append := "" // complex
+	pre_append = pre + ".0." + "n80211d"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["80211d"], _ = expandObjectWirelessControllerWtpProfileRadio480211D(d, i["n80211d"], pre_append)
+	}
 	pre_append = pre + ".0." + "airtime_fairness"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["airtime-fairness"], _ = expandObjectWirelessControllerWtpProfileRadio4AirtimeFairness(d, i["airtime_fairness"], pre_append)
@@ -9455,6 +9543,10 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	}
 
 	return result, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio480211D(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWirelessControllerWtpProfileRadio4AirtimeFairness(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

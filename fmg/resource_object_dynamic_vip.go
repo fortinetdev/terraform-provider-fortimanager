@@ -62,18 +62,20 @@ func resourceObjectDynamicVipCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicVip(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicVip resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDynamicVip(obj, adomv, nil)
+	_, err = c.CreateObjectDynamicVip(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicVip resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectDynamicVipUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicVip(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicVip resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicVip(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDynamicVip(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicVip resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectDynamicVipDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicVip(adomv, mkey, nil)
+	err = c.DeleteObjectDynamicVip(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicVip resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectDynamicVipRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDynamicVip(adomv, mkey, nil)
+	o, err := c.ReadObjectDynamicVip(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDynamicVip resource: %v", err)
 	}

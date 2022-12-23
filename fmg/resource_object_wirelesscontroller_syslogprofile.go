@@ -91,18 +91,20 @@ func resourceObjectWirelessControllerSyslogProfileCreate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerSyslogProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSyslogProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerSyslogProfile(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerSyslogProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSyslogProfile resource: %v", err)
@@ -118,18 +120,20 @@ func resourceObjectWirelessControllerSyslogProfileUpdate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerSyslogProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerSyslogProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerSyslogProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerSyslogProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerSyslogProfile resource: %v", err)
 	}
@@ -147,13 +151,15 @@ func resourceObjectWirelessControllerSyslogProfileDelete(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerSyslogProfile(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerSyslogProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerSyslogProfile resource: %v", err)
 	}
@@ -169,13 +175,15 @@ func resourceObjectWirelessControllerSyslogProfileRead(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerSyslogProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerSyslogProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerSyslogProfile resource: %v", err)
 	}

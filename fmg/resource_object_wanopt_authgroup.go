@@ -82,18 +82,20 @@ func resourceObjectWanoptAuthGroupCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWanoptAuthGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptAuthGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWanoptAuthGroup(obj, adomv, nil)
+	_, err = c.CreateObjectWanoptAuthGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWanoptAuthGroup resource: %v", err)
@@ -109,18 +111,20 @@ func resourceObjectWanoptAuthGroupUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWanoptAuthGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptAuthGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWanoptAuthGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWanoptAuthGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWanoptAuthGroup resource: %v", err)
 	}
@@ -138,13 +142,15 @@ func resourceObjectWanoptAuthGroupDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWanoptAuthGroup(adomv, mkey, nil)
+	err = c.DeleteObjectWanoptAuthGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWanoptAuthGroup resource: %v", err)
 	}
@@ -160,13 +166,15 @@ func resourceObjectWanoptAuthGroupRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWanoptAuthGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectWanoptAuthGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWanoptAuthGroup resource: %v", err)
 	}

@@ -57,18 +57,20 @@ func resourceObjectApplicationCategoriesCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectApplicationCategories(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationCategories resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectApplicationCategories(obj, adomv, nil)
+	_, err = c.CreateObjectApplicationCategories(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectApplicationCategories resource: %v", err)
@@ -84,18 +86,20 @@ func resourceObjectApplicationCategoriesUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectApplicationCategories(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationCategories resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectApplicationCategories(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectApplicationCategories(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectApplicationCategories resource: %v", err)
 	}
@@ -113,13 +117,15 @@ func resourceObjectApplicationCategoriesDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectApplicationCategories(adomv, mkey, nil)
+	err = c.DeleteObjectApplicationCategories(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectApplicationCategories resource: %v", err)
 	}
@@ -135,13 +141,15 @@ func resourceObjectApplicationCategoriesRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectApplicationCategories(adomv, mkey, nil)
+	o, err := c.ReadObjectApplicationCategories(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectApplicationCategories resource: %v", err)
 	}

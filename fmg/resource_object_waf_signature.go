@@ -62,18 +62,20 @@ func resourceObjectWafSignatureCreate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWafSignature(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafSignature resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWafSignature(obj, adomv, nil)
+	_, err = c.CreateObjectWafSignature(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafSignature resource: %v", err)
@@ -89,18 +91,20 @@ func resourceObjectWafSignatureUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWafSignature(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafSignature resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafSignature(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWafSignature(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafSignature resource: %v", err)
 	}
@@ -118,13 +122,15 @@ func resourceObjectWafSignatureDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWafSignature(adomv, mkey, nil)
+	err = c.DeleteObjectWafSignature(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafSignature resource: %v", err)
 	}
@@ -140,13 +146,15 @@ func resourceObjectWafSignatureRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWafSignature(adomv, mkey, nil)
+	o, err := c.ReadObjectWafSignature(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWafSignature resource: %v", err)
 	}

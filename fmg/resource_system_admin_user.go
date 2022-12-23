@@ -537,14 +537,16 @@ func resourceSystemAdminUserCreate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminUser(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUser resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemAdminUser(obj, adomv, nil)
+	_, err = c.CreateSystemAdminUser(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemAdminUser resource: %v", err)
@@ -560,14 +562,16 @@ func resourceSystemAdminUserUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminUser(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminUser resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminUser(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAdminUser(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminUser resource: %v", err)
 	}
@@ -585,9 +589,11 @@ func resourceSystemAdminUserDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminUser(adomv, mkey, nil)
+	err = c.DeleteSystemAdminUser(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminUser resource: %v", err)
 	}
@@ -603,9 +609,11 @@ func resourceSystemAdminUserRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAdminUser(adomv, mkey, nil)
+	o, err := c.ReadSystemAdminUser(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAdminUser resource: %v", err)
 	}

@@ -78,18 +78,20 @@ func resourceObjectFirewallDecryptedTrafficMirrorCreate(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallDecryptedTrafficMirror(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallDecryptedTrafficMirror resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallDecryptedTrafficMirror(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallDecryptedTrafficMirror(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallDecryptedTrafficMirror resource: %v", err)
@@ -105,18 +107,20 @@ func resourceObjectFirewallDecryptedTrafficMirrorUpdate(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallDecryptedTrafficMirror(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallDecryptedTrafficMirror resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallDecryptedTrafficMirror(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallDecryptedTrafficMirror(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallDecryptedTrafficMirror resource: %v", err)
 	}
@@ -134,13 +138,15 @@ func resourceObjectFirewallDecryptedTrafficMirrorDelete(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallDecryptedTrafficMirror(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallDecryptedTrafficMirror(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallDecryptedTrafficMirror resource: %v", err)
 	}
@@ -156,13 +162,15 @@ func resourceObjectFirewallDecryptedTrafficMirrorRead(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallDecryptedTrafficMirror(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallDecryptedTrafficMirror(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallDecryptedTrafficMirror resource: %v", err)
 	}

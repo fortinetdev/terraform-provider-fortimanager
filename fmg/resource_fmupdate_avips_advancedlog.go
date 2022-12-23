@@ -48,14 +48,16 @@ func resourceFmupdateAvIpsAdvancedLogUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateAvIpsAdvancedLog(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsAdvancedLog resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateAvIpsAdvancedLog(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateAvIpsAdvancedLog(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateAvIpsAdvancedLog resource: %v", err)
 	}
@@ -73,9 +75,11 @@ func resourceFmupdateAvIpsAdvancedLogDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateAvIpsAdvancedLog(adomv, mkey, nil)
+	err = c.DeleteFmupdateAvIpsAdvancedLog(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateAvIpsAdvancedLog resource: %v", err)
 	}
@@ -91,9 +95,11 @@ func resourceFmupdateAvIpsAdvancedLogRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateAvIpsAdvancedLog(adomv, mkey, nil)
+	o, err := c.ReadFmupdateAvIpsAdvancedLog(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateAvIpsAdvancedLog resource: %v", err)
 	}

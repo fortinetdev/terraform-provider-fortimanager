@@ -83,18 +83,20 @@ func resourceObjectRouterAspathListCreate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectRouterAspathList(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAspathList resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectRouterAspathList(obj, adomv, nil)
+	_, err = c.CreateObjectRouterAspathList(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterAspathList resource: %v", err)
@@ -110,18 +112,20 @@ func resourceObjectRouterAspathListUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectRouterAspathList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterAspathList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterAspathList(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectRouterAspathList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterAspathList resource: %v", err)
 	}
@@ -139,13 +143,15 @@ func resourceObjectRouterAspathListDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectRouterAspathList(adomv, mkey, nil)
+	err = c.DeleteObjectRouterAspathList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterAspathList resource: %v", err)
 	}
@@ -161,13 +167,15 @@ func resourceObjectRouterAspathListRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectRouterAspathList(adomv, mkey, nil)
+	o, err := c.ReadObjectRouterAspathList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectRouterAspathList resource: %v", err)
 	}

@@ -75,6 +75,12 @@ The following arguments are supported:
 * `antispam_timeout` - Antispam query time out (1 - 30 sec, default = 7).
 * `anycast_sdns_server_ip` - IP address of the FortiGuard anycast DNS rating server.
 * `anycast_sdns_server_port` - Port to connect to on the FortiGuard anycast DNS rating server.
+* `auto_firmware_upgrade` - Enable/disable automatic patch-level firmware upgrade from FortiGuard. The FortiGate unit searches for new patches only in the same major and minor version. Valid values: `disable`, `enable`.
+
+* `auto_firmware_upgrade_day` - Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
+
+* `auto_firmware_upgrade_end_hour` - End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
+* `auto_firmware_upgrade_start_hour` - Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
 * `auto_join_forticloud` - Automatically connect to and login to FortiCloud. Valid values: `disable`, `enable`.
 
 * `ddns_server_ip` - IP address of the FortiDDNS server.
@@ -107,6 +113,8 @@ The following arguments are supported:
 * `proxy_server_ip` - IP address of the proxy server.
 * `proxy_server_port` - Port used to communicate with the proxy server.
 * `proxy_username` - Proxy user name.
+* `sandbox_inline_scan` - Enable/disable FortiCloud Sandbox inline-scan. Valid values: `disable`, `enable`.
+
 * `sandbox_region` - Cloud sandbox region.
 * `sdns_options` - Customization options for the FortiGuard DNS service. Valid values: `include-question-section`.
 
@@ -125,6 +133,7 @@ The following arguments are supported:
 
 * `update_uwdb` - Enable/disable allowlist update. Valid values: `disable`, `enable`.
 
+* `vdom` - FortiGuard Service virtual domain name.
 * `videofilter_expiration` - Videofilter-Expiration.
 * `videofilter_license` - Videofilter-License.
 * `webfilter_cache` - Enable/disable FortiGuard web filter caching. Valid values: `disable`, `enable`.

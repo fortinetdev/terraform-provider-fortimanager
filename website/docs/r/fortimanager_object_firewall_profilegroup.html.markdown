@@ -30,6 +30,7 @@ The following arguments are supported:
 * `application_list` - Name of an existing Application list.
 * `av_profile` - Name of an existing Antivirus profile.
 * `cifs_profile` - Name of an existing CIFS profile.
+* `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `emailfilter_profile` - Name of an existing email filter profile.

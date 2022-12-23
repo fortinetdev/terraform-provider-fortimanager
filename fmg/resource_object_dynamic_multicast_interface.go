@@ -108,18 +108,20 @@ func resourceObjectDynamicMulticastInterfaceCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicMulticastInterface(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicMulticastInterface resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDynamicMulticastInterface(obj, adomv, nil)
+	_, err = c.CreateObjectDynamicMulticastInterface(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicMulticastInterface resource: %v", err)
@@ -135,18 +137,20 @@ func resourceObjectDynamicMulticastInterfaceUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicMulticastInterface(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicMulticastInterface resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicMulticastInterface(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDynamicMulticastInterface(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicMulticastInterface resource: %v", err)
 	}
@@ -164,13 +168,15 @@ func resourceObjectDynamicMulticastInterfaceDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicMulticastInterface(adomv, mkey, nil)
+	err = c.DeleteObjectDynamicMulticastInterface(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicMulticastInterface resource: %v", err)
 	}
@@ -186,13 +192,15 @@ func resourceObjectDynamicMulticastInterfaceRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDynamicMulticastInterface(adomv, mkey, nil)
+	o, err := c.ReadObjectDynamicMulticastInterface(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDynamicMulticastInterface resource: %v", err)
 	}

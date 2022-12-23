@@ -214,6 +214,7 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"diffserv_copy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -292,6 +293,7 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"dstaddr6_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -543,6 +545,7 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"internet_service6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_custom": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -571,10 +574,12 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"internet_service6_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service6_src_custom": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -603,6 +608,7 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"internet_service6_src_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ip_based": &schema.Schema{
 				Type:     schema.TypeString,
@@ -829,6 +835,7 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"reputation_direction6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"reputation_minimum": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -942,6 +949,7 @@ func resourcePackagesGlobalFooterPolicy() *schema.Resource {
 			"srcaddr6_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"srcintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1205,18 +1213,19 @@ func resourcePackagesGlobalFooterPolicyCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalFooterPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalFooterPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterPolicy resource: %v", err)
@@ -1241,18 +1250,19 @@ func resourcePackagesGlobalFooterPolicyUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalFooterPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalFooterPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterPolicy resource: %v", err)
 	}
@@ -1270,13 +1280,14 @@ func resourcePackagesGlobalFooterPolicyDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalFooterPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalFooterPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalFooterPolicy resource: %v", err)
 	}
@@ -1292,7 +1303,9 @@ func resourcePackagesGlobalFooterPolicyRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -1301,10 +1314,9 @@ func resourcePackagesGlobalFooterPolicyRead(d *schema.ResourceData, m interface{
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalFooterPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalFooterPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalFooterPolicy resource: %v", err)
 	}

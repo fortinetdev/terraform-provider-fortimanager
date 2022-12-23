@@ -77,17 +77,18 @@ func resourcePackagesFirewallPolicy46MoveUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	policy46 := d.Get("policy46").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, policy46)
+	paradict["pkg"] = pkg
+	paradict["policy46"] = policy46
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallPolicy46Move(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallPolicy46MoveUpdate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error updating PackagesFirewallPolicy46Move resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicy46Move(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallPolicy46Move(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy46Move resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallPolicy46MoveRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("policy46").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallPolicy46MoveRead(d *schema.ResourceData, m interfac
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallPolicy46Move(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallPolicy46Move(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicy46Move resource: %v", err)
 	}

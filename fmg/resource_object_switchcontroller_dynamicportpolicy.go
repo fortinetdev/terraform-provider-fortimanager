@@ -140,18 +140,20 @@ func resourceObjectSwitchControllerDynamicPortPolicyCreate(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerDynamicPortPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerDynamicPortPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerDynamicPortPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerDynamicPortPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerDynamicPortPolicy resource: %v", err)
@@ -167,18 +169,20 @@ func resourceObjectSwitchControllerDynamicPortPolicyUpdate(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerDynamicPortPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerDynamicPortPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerDynamicPortPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerDynamicPortPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerDynamicPortPolicy resource: %v", err)
 	}
@@ -196,13 +200,15 @@ func resourceObjectSwitchControllerDynamicPortPolicyDelete(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerDynamicPortPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerDynamicPortPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerDynamicPortPolicy resource: %v", err)
 	}
@@ -218,13 +224,15 @@ func resourceObjectSwitchControllerDynamicPortPolicyRead(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerDynamicPortPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerDynamicPortPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerDynamicPortPolicy resource: %v", err)
 	}

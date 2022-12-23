@@ -71,18 +71,20 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeCreate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuNpQueuesEthernetType(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesEthernetType resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemNpuNpQueuesEthernetType(obj, adomv, nil)
+	_, err = c.CreateObjectSystemNpuNpQueuesEthernetType(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
@@ -98,18 +100,20 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeUpdate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuNpQueuesEthernetType(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesEthernetType resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuNpQueuesEthernetType(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuNpQueuesEthernetType(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
 	}
@@ -127,13 +131,15 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeDelete(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuNpQueuesEthernetType(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuNpQueuesEthernetType(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
 	}
@@ -149,13 +155,15 @@ func resourceObjectSystemNpuNpQueuesEthernetTypeRead(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuNpQueuesEthernetType(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuNpQueuesEthernetType(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuNpQueuesEthernetType resource: %v", err)
 	}

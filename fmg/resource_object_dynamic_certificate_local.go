@@ -95,18 +95,20 @@ func resourceObjectDynamicCertificateLocalCreate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicCertificateLocal(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicCertificateLocal resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDynamicCertificateLocal(obj, adomv, nil)
+	_, err = c.CreateObjectDynamicCertificateLocal(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicCertificateLocal resource: %v", err)
@@ -122,18 +124,20 @@ func resourceObjectDynamicCertificateLocalUpdate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicCertificateLocal(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicCertificateLocal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicCertificateLocal(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDynamicCertificateLocal(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicCertificateLocal resource: %v", err)
 	}
@@ -151,13 +155,15 @@ func resourceObjectDynamicCertificateLocalDelete(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicCertificateLocal(adomv, mkey, nil)
+	err = c.DeleteObjectDynamicCertificateLocal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicCertificateLocal resource: %v", err)
 	}
@@ -173,13 +179,15 @@ func resourceObjectDynamicCertificateLocalRead(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDynamicCertificateLocal(adomv, mkey, nil)
+	o, err := c.ReadObjectDynamicCertificateLocal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDynamicCertificateLocal resource: %v", err)
 	}

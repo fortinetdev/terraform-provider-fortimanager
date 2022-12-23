@@ -77,17 +77,18 @@ func resourcePackagesFirewallCentralSnatMapMoveUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	central_snat_map := d.Get("central_snat_map").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, central_snat_map)
+	paradict["pkg"] = pkg
+	paradict["central_snat_map"] = central_snat_map
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallCentralSnatMapMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallCentralSnatMapMoveUpdate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMapMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallCentralSnatMapMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallCentralSnatMapMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMapMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallCentralSnatMapMoveRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("central_snat_map").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallCentralSnatMapMoveRead(d *schema.ResourceData, m in
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallCentralSnatMapMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallCentralSnatMapMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallCentralSnatMapMove resource: %v", err)
 	}

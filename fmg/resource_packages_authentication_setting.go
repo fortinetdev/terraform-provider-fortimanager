@@ -109,9 +109,29 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cookie_max_age": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"cookie_refresh_div": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"dev_range": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"ip_auth_cookie": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"persistent_cookie": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"rewrite_https_port": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -120,6 +140,11 @@ func resourcePackagesAuthenticationSetting() *schema.Resource {
 			"sso_auth_scheme": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"update_time": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"user_cert_ca": &schema.Schema{
 				Type:     schema.TypeString,
@@ -134,22 +159,23 @@ func resourcePackagesAuthenticationSettingUpdate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesAuthenticationSetting(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesAuthenticationSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesAuthenticationSetting(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesAuthenticationSetting(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesAuthenticationSetting resource: %v", err)
 	}
@@ -167,17 +193,18 @@ func resourcePackagesAuthenticationSettingDelete(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesAuthenticationSetting(adomv, mkey, paralist)
+	err = c.DeletePackagesAuthenticationSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesAuthenticationSetting resource: %v", err)
 	}
@@ -193,11 +220,13 @@ func resourcePackagesAuthenticationSettingRead(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -206,10 +235,9 @@ func resourcePackagesAuthenticationSettingRead(d *schema.ResourceData, m interfa
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesAuthenticationSetting(adomv, mkey, paralist)
+	o, err := c.ReadPackagesAuthenticationSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesAuthenticationSetting resource: %v", err)
 	}
@@ -279,7 +307,23 @@ func flattenPackagesAuthenticationSettingCertCaptivePortalPort(v interface{}, d 
 	return v
 }
 
+func flattenPackagesAuthenticationSettingCookieMaxAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingCookieRefreshDiv(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesAuthenticationSettingDevRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingIpAuthCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationSettingPersistentCookie(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -289,6 +333,10 @@ func flattenPackagesAuthenticationSettingRewriteHttpsPort(v interface{}, d *sche
 
 func flattenPackagesAuthenticationSettingSsoAuthScheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenPackagesAuthenticationSettingUpdateTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return conv2str(v)
 }
 
 func flattenPackagesAuthenticationSettingUserCertCa(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -432,6 +480,26 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("cookie_max_age", flattenPackagesAuthenticationSettingCookieMaxAge(o["cookie-max-age"], d, "cookie_max_age")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cookie-max-age"], "PackagesAuthenticationSetting-CookieMaxAge"); ok {
+			if err = d.Set("cookie_max_age", vv); err != nil {
+				return fmt.Errorf("Error reading cookie_max_age: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cookie_max_age: %v", err)
+		}
+	}
+
+	if err = d.Set("cookie_refresh_div", flattenPackagesAuthenticationSettingCookieRefreshDiv(o["cookie-refresh-div"], d, "cookie_refresh_div")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cookie-refresh-div"], "PackagesAuthenticationSetting-CookieRefreshDiv"); ok {
+			if err = d.Set("cookie_refresh_div", vv); err != nil {
+				return fmt.Errorf("Error reading cookie_refresh_div: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cookie_refresh_div: %v", err)
+		}
+	}
+
 	if err = d.Set("dev_range", flattenPackagesAuthenticationSettingDevRange(o["dev-range"], d, "dev_range")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dev-range"], "PackagesAuthenticationSetting-DevRange"); ok {
 			if err = d.Set("dev_range", vv); err != nil {
@@ -439,6 +507,26 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading dev_range: %v", err)
+		}
+	}
+
+	if err = d.Set("ip_auth_cookie", flattenPackagesAuthenticationSettingIpAuthCookie(o["ip-auth-cookie"], d, "ip_auth_cookie")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ip-auth-cookie"], "PackagesAuthenticationSetting-IpAuthCookie"); ok {
+			if err = d.Set("ip_auth_cookie", vv); err != nil {
+				return fmt.Errorf("Error reading ip_auth_cookie: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ip_auth_cookie: %v", err)
+		}
+	}
+
+	if err = d.Set("persistent_cookie", flattenPackagesAuthenticationSettingPersistentCookie(o["persistent-cookie"], d, "persistent_cookie")); err != nil {
+		if vv, ok := fortiAPIPatch(o["persistent-cookie"], "PackagesAuthenticationSetting-PersistentCookie"); ok {
+			if err = d.Set("persistent_cookie", vv); err != nil {
+				return fmt.Errorf("Error reading persistent_cookie: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading persistent_cookie: %v", err)
 		}
 	}
 
@@ -459,6 +547,16 @@ func refreshObjectPackagesAuthenticationSetting(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading sso_auth_scheme: %v", err)
+		}
+	}
+
+	if err = d.Set("update_time", flattenPackagesAuthenticationSettingUpdateTime(o["update-time"], d, "update_time")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-time"], "PackagesAuthenticationSetting-UpdateTime"); ok {
+			if err = d.Set("update_time", vv); err != nil {
+				return fmt.Errorf("Error reading update_time: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_time: %v", err)
 		}
 	}
 
@@ -533,7 +631,23 @@ func expandPackagesAuthenticationSettingCertCaptivePortalPort(d *schema.Resource
 	return v, nil
 }
 
+func expandPackagesAuthenticationSettingCookieMaxAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingCookieRefreshDiv(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesAuthenticationSettingDevRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingIpAuthCookie(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingPersistentCookie(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -542,6 +656,10 @@ func expandPackagesAuthenticationSettingRewriteHttpsPort(d *schema.ResourceData,
 }
 
 func expandPackagesAuthenticationSettingSsoAuthScheme(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationSettingUpdateTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -669,12 +787,48 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 		}
 	}
 
+	if v, ok := d.GetOk("cookie_max_age"); ok || d.HasChange("cookie_max_age") {
+		t, err := expandPackagesAuthenticationSettingCookieMaxAge(d, v, "cookie_max_age")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cookie-max-age"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cookie_refresh_div"); ok || d.HasChange("cookie_refresh_div") {
+		t, err := expandPackagesAuthenticationSettingCookieRefreshDiv(d, v, "cookie_refresh_div")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cookie-refresh-div"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dev_range"); ok || d.HasChange("dev_range") {
 		t, err := expandPackagesAuthenticationSettingDevRange(d, v, "dev_range")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["dev-range"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ip_auth_cookie"); ok || d.HasChange("ip_auth_cookie") {
+		t, err := expandPackagesAuthenticationSettingIpAuthCookie(d, v, "ip_auth_cookie")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ip-auth-cookie"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("persistent_cookie"); ok || d.HasChange("persistent_cookie") {
+		t, err := expandPackagesAuthenticationSettingPersistentCookie(d, v, "persistent_cookie")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["persistent-cookie"] = t
 		}
 	}
 
@@ -693,6 +847,15 @@ func getObjectPackagesAuthenticationSetting(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["sso-auth-scheme"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_time"); ok || d.HasChange("update_time") {
+		t, err := expandPackagesAuthenticationSettingUpdateTime(d, v, "update_time")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-time"] = t
 		}
 	}
 

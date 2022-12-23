@@ -1341,6 +1341,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ple_non_syn_tcp_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"policy_offload_level": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1488,6 +1493,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"max_session_cnt": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"min_duration": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1635,6 +1641,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"ull_port_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"vlan_lookup_cache": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1655,18 +1662,20 @@ func resourceObjectSystemNpuUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpu(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpu resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpu(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpu(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpu resource: %v", err)
 	}
@@ -1684,13 +1693,15 @@ func resourceObjectSystemNpuDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpu(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpu(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpu resource: %v", err)
 	}
@@ -1706,13 +1717,15 @@ func resourceObjectSystemNpuRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpu(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpu(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpu resource: %v", err)
 	}
@@ -4101,6 +4114,10 @@ func flattenObjectSystemNpuPerSessionAccountingOsna(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectSystemNpuPleNonSynTcpActionOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuPolicyOffloadLevelOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5299,6 +5316,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading per_session_accounting: %v", err)
+		}
+	}
+
+	if err = d.Set("ple_non_syn_tcp_action", flattenObjectSystemNpuPleNonSynTcpActionOsna(o["ple-non-syn-tcp-action"], d, "ple_non_syn_tcp_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ple-non-syn-tcp-action"], "ObjectSystemNpu-PleNonSynTcpAction"); ok {
+			if err = d.Set("ple_non_syn_tcp_action", vv); err != nil {
+				return fmt.Errorf("Error reading ple_non_syn_tcp_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ple_non_syn_tcp_action: %v", err)
 		}
 	}
 
@@ -7868,6 +7895,10 @@ func expandObjectSystemNpuPerSessionAccountingOsna(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectSystemNpuPleNonSynTcpActionOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuPolicyOffloadLevelOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8832,6 +8863,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["per-session-accounting"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ple_non_syn_tcp_action"); ok || d.HasChange("ple_non_syn_tcp_action") {
+		t, err := expandObjectSystemNpuPleNonSynTcpActionOsna(d, v, "ple_non_syn_tcp_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ple-non-syn-tcp-action"] = t
 		}
 	}
 

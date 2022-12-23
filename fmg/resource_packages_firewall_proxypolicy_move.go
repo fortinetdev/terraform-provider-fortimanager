@@ -77,17 +77,18 @@ func resourcePackagesFirewallProxyPolicyMoveUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	proxy_policy := d.Get("proxy_policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, proxy_policy)
+	paradict["pkg"] = pkg
+	paradict["proxy_policy"] = proxy_policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallProxyPolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallProxyPolicyMoveUpdate(d *schema.ResourceData, m int
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallProxyPolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallProxyPolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallProxyPolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallProxyPolicyMoveRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("proxy_policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallProxyPolicyMoveRead(d *schema.ResourceData, m inter
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallProxyPolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallProxyPolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallProxyPolicyMove resource: %v", err)
 	}

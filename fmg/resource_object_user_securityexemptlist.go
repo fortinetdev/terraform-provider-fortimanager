@@ -95,18 +95,20 @@ func resourceObjectUserSecurityExemptListCreate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserSecurityExemptList(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSecurityExemptList resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserSecurityExemptList(obj, adomv, nil)
+	_, err = c.CreateObjectUserSecurityExemptList(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSecurityExemptList resource: %v", err)
@@ -122,18 +124,20 @@ func resourceObjectUserSecurityExemptListUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserSecurityExemptList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSecurityExemptList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserSecurityExemptList(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserSecurityExemptList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSecurityExemptList resource: %v", err)
 	}
@@ -151,13 +155,15 @@ func resourceObjectUserSecurityExemptListDelete(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserSecurityExemptList(adomv, mkey, nil)
+	err = c.DeleteObjectUserSecurityExemptList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserSecurityExemptList resource: %v", err)
 	}
@@ -173,13 +179,15 @@ func resourceObjectUserSecurityExemptListRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserSecurityExemptList(adomv, mkey, nil)
+	o, err := c.ReadObjectUserSecurityExemptList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserSecurityExemptList resource: %v", err)
 	}

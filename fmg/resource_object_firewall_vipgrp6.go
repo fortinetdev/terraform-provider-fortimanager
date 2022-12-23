@@ -77,18 +77,20 @@ func resourceObjectFirewallVipgrp6Create(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallVipgrp6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipgrp6 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallVipgrp6(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallVipgrp6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVipgrp6 resource: %v", err)
@@ -104,18 +106,20 @@ func resourceObjectFirewallVipgrp6Update(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallVipgrp6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipgrp6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVipgrp6(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallVipgrp6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVipgrp6 resource: %v", err)
 	}
@@ -133,13 +137,15 @@ func resourceObjectFirewallVipgrp6Delete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVipgrp6(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallVipgrp6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVipgrp6 resource: %v", err)
 	}
@@ -155,13 +161,15 @@ func resourceObjectFirewallVipgrp6Read(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallVipgrp6(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallVipgrp6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallVipgrp6 resource: %v", err)
 	}

@@ -81,18 +81,20 @@ func resourceObjectFirewallWildcardFqdnGroupCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallWildcardFqdnGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallWildcardFqdnGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallWildcardFqdnGroup(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallWildcardFqdnGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallWildcardFqdnGroup resource: %v", err)
@@ -108,18 +110,20 @@ func resourceObjectFirewallWildcardFqdnGroupUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallWildcardFqdnGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallWildcardFqdnGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallWildcardFqdnGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallWildcardFqdnGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallWildcardFqdnGroup resource: %v", err)
 	}
@@ -137,13 +141,15 @@ func resourceObjectFirewallWildcardFqdnGroupDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallWildcardFqdnGroup(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallWildcardFqdnGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallWildcardFqdnGroup resource: %v", err)
 	}
@@ -159,13 +165,15 @@ func resourceObjectFirewallWildcardFqdnGroupRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallWildcardFqdnGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallWildcardFqdnGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallWildcardFqdnGroup resource: %v", err)
 	}

@@ -57,14 +57,16 @@ func resourceSystemRouteCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemRoute(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemRoute resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemRoute(obj, adomv, nil)
+	_, err = c.CreateSystemRoute(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemRoute resource: %v", err)
@@ -80,14 +82,16 @@ func resourceSystemRouteUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemRoute(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemRoute resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemRoute(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemRoute(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemRoute resource: %v", err)
 	}
@@ -105,9 +109,11 @@ func resourceSystemRouteDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemRoute(adomv, mkey, nil)
+	err = c.DeleteSystemRoute(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemRoute resource: %v", err)
 	}
@@ -123,9 +129,11 @@ func resourceSystemRouteRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemRoute(adomv, mkey, nil)
+	o, err := c.ReadSystemRoute(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemRoute resource: %v", err)
 	}

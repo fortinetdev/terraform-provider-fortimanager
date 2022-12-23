@@ -102,6 +102,8 @@ The following arguments are supported:
 
 * `nat66` - Enable/disable DNAT66. Valid values: `disable`, `enable`.
 
+* `ndp_reply` - Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
+
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 
 * `persistence` - Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`, `ssl-session-id`.
@@ -222,6 +224,8 @@ The `dynamic_mapping` block supports:
 * `nat64` - Enable/disable DNAT64. Valid values: `disable`, `enable`.
 
 * `nat66` - Enable/disable DNAT66. Valid values: `disable`, `enable`.
+
+* `ndp_reply` - Enable/disable this FortiGate unit's ability to respond to NDP requests for this virtual IP address (default = enable). Valid values: `disable`, `enable`.
 
 * `outlook_web_access` - Enable to add the Front-End-Https header for Microsoft Outlook Web Access. Valid values: `disable`, `enable`.
 

@@ -82,14 +82,16 @@ func resourceSecurityconsolePackageCloneUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSecurityconsolePackageClone(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageClone resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsolePackageClone(obj, adomv, mkey, nil)
+	_, err = c.UpdateSecurityconsolePackageClone(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageClone resource: %v", err)
 	}

@@ -49,14 +49,16 @@ func resourceSecurityconsolePackageCancelInstallUpdate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSecurityconsolePackageCancelInstall(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCancelInstall resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSecurityconsolePackageCancelInstall(obj, adomv, mkey, nil)
+	_, err = c.UpdateSecurityconsolePackageCancelInstall(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SecurityconsolePackageCancelInstall resource: %v", err)
 	}

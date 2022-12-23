@@ -859,18 +859,20 @@ func resourceObjectWafProfileCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWafProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWafProfile(obj, adomv, nil)
+	_, err = c.CreateObjectWafProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWafProfile resource: %v", err)
@@ -886,18 +888,20 @@ func resourceObjectWafProfileUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWafProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWafProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWafProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWafProfile resource: %v", err)
 	}
@@ -915,13 +919,15 @@ func resourceObjectWafProfileDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWafProfile(adomv, mkey, nil)
+	err = c.DeleteObjectWafProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWafProfile resource: %v", err)
 	}
@@ -937,13 +943,15 @@ func resourceObjectWafProfileRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWafProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectWafProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWafProfile resource: %v", err)
 	}

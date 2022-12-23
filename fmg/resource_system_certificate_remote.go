@@ -53,14 +53,16 @@ func resourceSystemCertificateRemoteCreate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateRemote(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateRemote resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemCertificateRemote(obj, adomv, nil)
+	_, err = c.CreateSystemCertificateRemote(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateRemote resource: %v", err)
@@ -76,14 +78,16 @@ func resourceSystemCertificateRemoteUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateRemote(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateRemote resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCertificateRemote(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemCertificateRemote(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateRemote resource: %v", err)
 	}
@@ -101,9 +105,11 @@ func resourceSystemCertificateRemoteDelete(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCertificateRemote(adomv, mkey, nil)
+	err = c.DeleteSystemCertificateRemote(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCertificateRemote resource: %v", err)
 	}
@@ -119,9 +125,11 @@ func resourceSystemCertificateRemoteRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemCertificateRemote(adomv, mkey, nil)
+	o, err := c.ReadSystemCertificateRemote(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemCertificateRemote resource: %v", err)
 	}

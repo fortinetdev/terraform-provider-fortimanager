@@ -50,6 +50,10 @@ func resourceObjectUserSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"auth_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -223,18 +227,20 @@ func resourceObjectUserSamlCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserSaml(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserSaml(obj, adomv, nil)
+	_, err = c.CreateObjectUserSaml(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserSaml resource: %v", err)
@@ -250,18 +256,20 @@ func resourceObjectUserSamlUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserSaml(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserSaml(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserSaml(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserSaml resource: %v", err)
 	}
@@ -279,13 +287,15 @@ func resourceObjectUserSamlDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserSaml(adomv, mkey, nil)
+	err = c.DeleteObjectUserSaml(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserSaml resource: %v", err)
 	}
@@ -301,13 +311,15 @@ func resourceObjectUserSamlRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserSaml(adomv, mkey, nil)
+	o, err := c.ReadObjectUserSaml(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserSaml resource: %v", err)
 	}
@@ -326,6 +338,10 @@ func resourceObjectUserSamlRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenObjectUserSamlAdfsClaim(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlAuthUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -664,6 +680,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("auth_url", flattenObjectUserSamlAuthUrl(o["auth-url"], d, "auth_url")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-url"], "ObjectUserSaml-AuthUrl"); ok {
+			if err = d.Set("auth_url", vv); err != nil {
+				return fmt.Errorf("Error reading auth_url: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_url: %v", err)
+		}
+	}
+
 	if err = d.Set("cert", flattenObjectUserSamlCert(o["cert"], d, "cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cert"], "ObjectUserSaml-Cert"); ok {
 			if err = d.Set("cert", vv); err != nil {
@@ -858,6 +884,10 @@ func flattenObjectUserSamlFortiTestDebug(d *schema.ResourceData, fosdebugsn int,
 }
 
 func expandObjectUserSamlAdfsClaim(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlAuthUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1159,6 +1189,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["adfs-claim"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auth_url"); ok || d.HasChange("auth_url") {
+		t, err := expandObjectUserSamlAuthUrl(d, v, "auth_url")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-url"] = t
 		}
 	}
 

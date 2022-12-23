@@ -140,18 +140,20 @@ func resourceObjectWirelessControllerMpskProfileCreate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerMpskProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerMpskProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerMpskProfile(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerMpskProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerMpskProfile resource: %v", err)
@@ -167,18 +169,20 @@ func resourceObjectWirelessControllerMpskProfileUpdate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerMpskProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerMpskProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerMpskProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerMpskProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerMpskProfile resource: %v", err)
 	}
@@ -196,13 +200,15 @@ func resourceObjectWirelessControllerMpskProfileDelete(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerMpskProfile(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerMpskProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerMpskProfile resource: %v", err)
 	}
@@ -218,13 +224,15 @@ func resourceObjectWirelessControllerMpskProfileRead(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerMpskProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerMpskProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerMpskProfile resource: %v", err)
 	}

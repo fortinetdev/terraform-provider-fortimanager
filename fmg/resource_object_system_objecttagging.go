@@ -88,18 +88,20 @@ func resourceObjectSystemObjectTaggingCreate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemObjectTagging(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemObjectTagging resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemObjectTagging(obj, adomv, nil)
+	_, err = c.CreateObjectSystemObjectTagging(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemObjectTagging resource: %v", err)
@@ -115,18 +117,20 @@ func resourceObjectSystemObjectTaggingUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemObjectTagging(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemObjectTagging resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemObjectTagging(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemObjectTagging(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemObjectTagging resource: %v", err)
 	}
@@ -144,13 +148,15 @@ func resourceObjectSystemObjectTaggingDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemObjectTagging(adomv, mkey, nil)
+	err = c.DeleteObjectSystemObjectTagging(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemObjectTagging resource: %v", err)
 	}
@@ -166,13 +172,15 @@ func resourceObjectSystemObjectTaggingRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemObjectTagging(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemObjectTagging(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemObjectTagging resource: %v", err)
 	}

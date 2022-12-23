@@ -30,6 +30,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `_image_base64` - _Image-Base64.
+* `application` - SaaS application.
 * `case_sensitivity` - Enable to make the pattern case sensitive. Valid values: `disable`, `enable`.
 
 * `category` - FortiGuard category ID.

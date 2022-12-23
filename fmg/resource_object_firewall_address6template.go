@@ -123,18 +123,20 @@ func resourceObjectFirewallAddress6TemplateCreate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAddress6Template(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6Template resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallAddress6Template(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallAddress6Template(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAddress6Template resource: %v", err)
@@ -150,18 +152,20 @@ func resourceObjectFirewallAddress6TemplateUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAddress6Template(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6Template resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAddress6Template(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallAddress6Template(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAddress6Template resource: %v", err)
 	}
@@ -179,13 +183,15 @@ func resourceObjectFirewallAddress6TemplateDelete(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAddress6Template(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallAddress6Template(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAddress6Template resource: %v", err)
 	}
@@ -201,13 +207,15 @@ func resourceObjectFirewallAddress6TemplateRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallAddress6Template(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallAddress6Template(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallAddress6Template resource: %v", err)
 	}

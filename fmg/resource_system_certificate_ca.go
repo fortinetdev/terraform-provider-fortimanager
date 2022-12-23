@@ -52,14 +52,16 @@ func resourceSystemCertificateCaCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateCa(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateCa resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemCertificateCa(obj, adomv, nil)
+	_, err = c.CreateSystemCertificateCa(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemCertificateCa resource: %v", err)
@@ -75,14 +77,16 @@ func resourceSystemCertificateCaUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemCertificateCa(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateCa resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemCertificateCa(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemCertificateCa(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemCertificateCa resource: %v", err)
 	}
@@ -100,9 +104,11 @@ func resourceSystemCertificateCaDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemCertificateCa(adomv, mkey, nil)
+	err = c.DeleteSystemCertificateCa(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemCertificateCa resource: %v", err)
 	}
@@ -118,9 +124,11 @@ func resourceSystemCertificateCaRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemCertificateCa(adomv, mkey, nil)
+	o, err := c.ReadSystemCertificateCa(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemCertificateCa resource: %v", err)
 	}

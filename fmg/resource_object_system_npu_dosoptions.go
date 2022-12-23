@@ -69,18 +69,20 @@ func resourceObjectSystemNpuDosOptionsUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuDosOptions(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuDosOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuDosOptions(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuDosOptions(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuDosOptions resource: %v", err)
 	}
@@ -98,13 +100,15 @@ func resourceObjectSystemNpuDosOptionsDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuDosOptions(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuDosOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuDosOptions resource: %v", err)
 	}
@@ -120,13 +124,15 @@ func resourceObjectSystemNpuDosOptionsRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuDosOptions(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuDosOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuDosOptions resource: %v", err)
 	}

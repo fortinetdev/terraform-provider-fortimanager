@@ -45,11 +45,22 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"add_vhost_domain_to_dnsdb": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"api_gateway": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"application": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -232,10 +243,12 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 						"ssl_max_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_min_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_vpn_web_portal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -263,6 +276,12 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"application": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -444,10 +463,12 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 						"ssl_max_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_min_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_vpn_web_portal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -507,6 +528,11 @@ func resourceObjectFirewallAccessProxy() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"user_agent_detect": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"realservers": &schema.Schema{
 				Type:     schema.TypeList,
@@ -631,18 +657,20 @@ func resourceObjectFirewallAccessProxyCreate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAccessProxy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallAccessProxy(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallAccessProxy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxy resource: %v", err)
@@ -658,18 +686,20 @@ func resourceObjectFirewallAccessProxyUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAccessProxy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallAccessProxy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxy resource: %v", err)
 	}
@@ -687,13 +717,15 @@ func resourceObjectFirewallAccessProxyDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAccessProxy(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallAccessProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxy resource: %v", err)
 	}
@@ -709,13 +741,15 @@ func resourceObjectFirewallAccessProxyRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallAccessProxy(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallAccessProxy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxy resource: %v", err)
 	}
@@ -731,6 +765,10 @@ func resourceObjectFirewallAccessProxyRead(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxy resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectFirewallAccessProxyAddVhostDomainToDnsdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallAccessProxyApiGateway(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
@@ -751,6 +789,12 @@ func flattenObjectFirewallAccessProxyApiGateway(v interface{}, d *schema.Resourc
 		i := r.(map[string]interface{})
 
 		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
+		if _, ok := i["application"]; ok {
+			v := flattenObjectFirewallAccessProxyApiGatewayApplication(i["application"], d, pre_append)
+			tmp["application"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy-ApiGateway-Application")
+		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := i["http-cookie-age"]; ok {
@@ -896,6 +940,10 @@ func flattenObjectFirewallAccessProxyApiGateway(v interface{}, d *schema.Resourc
 	}
 
 	return result
+}
+
+func flattenObjectFirewallAccessProxyApiGatewayApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAccessProxyApiGatewayHttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1255,6 +1303,12 @@ func flattenObjectFirewallAccessProxyApiGateway6(v interface{}, d *schema.Resour
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
+		if _, ok := i["application"]; ok {
+			v := flattenObjectFirewallAccessProxyApiGateway6Application(i["application"], d, pre_append)
+			tmp["application"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy-ApiGateway6-Application")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := i["http-cookie-age"]; ok {
 			v := flattenObjectFirewallAccessProxyApiGateway6HttpCookieAge(i["http-cookie-age"], d, pre_append)
@@ -1399,6 +1453,10 @@ func flattenObjectFirewallAccessProxyApiGateway6(v interface{}, d *schema.Resour
 	}
 
 	return result
+}
+
+func flattenObjectFirewallAccessProxyApiGateway6Application(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAccessProxyApiGateway6HttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1771,6 +1829,10 @@ func flattenObjectFirewallAccessProxyName(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectFirewallAccessProxyUserAgentDetect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAccessProxyRealservers(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -2015,6 +2077,16 @@ func refreshObjectObjectFirewallAccessProxy(d *schema.ResourceData, o map[string
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("add_vhost_domain_to_dnsdb", flattenObjectFirewallAccessProxyAddVhostDomainToDnsdb(o["add-vhost-domain-to-dnsdb"], d, "add_vhost_domain_to_dnsdb")); err != nil {
+		if vv, ok := fortiAPIPatch(o["add-vhost-domain-to-dnsdb"], "ObjectFirewallAccessProxy-AddVhostDomainToDnsdb"); ok {
+			if err = d.Set("add_vhost_domain_to_dnsdb", vv); err != nil {
+				return fmt.Errorf("Error reading add_vhost_domain_to_dnsdb: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading add_vhost_domain_to_dnsdb: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("api_gateway", flattenObjectFirewallAccessProxyApiGateway(o["api-gateway"], d, "api_gateway")); err != nil {
 			if vv, ok := fortiAPIPatch(o["api-gateway"], "ObjectFirewallAccessProxy-ApiGateway"); ok {
@@ -2143,6 +2215,16 @@ func refreshObjectObjectFirewallAccessProxy(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("user_agent_detect", flattenObjectFirewallAccessProxyUserAgentDetect(o["user-agent-detect"], d, "user_agent_detect")); err != nil {
+		if vv, ok := fortiAPIPatch(o["user-agent-detect"], "ObjectFirewallAccessProxy-UserAgentDetect"); ok {
+			if err = d.Set("user_agent_detect", vv); err != nil {
+				return fmt.Errorf("Error reading user_agent_detect: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading user_agent_detect: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("realservers", flattenObjectFirewallAccessProxyRealservers(o["realservers"], d, "realservers")); err != nil {
 			if vv, ok := fortiAPIPatch(o["realservers"], "ObjectFirewallAccessProxy-Realservers"); ok {
@@ -2220,6 +2302,10 @@ func flattenObjectFirewallAccessProxyFortiTestDebug(d *schema.ResourceData, fosd
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectFirewallAccessProxyAddVhostDomainToDnsdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAccessProxyApiGateway(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -2233,6 +2319,11 @@ func expandObjectFirewallAccessProxyApiGateway(d *schema.ResourceData, v interfa
 		tmp := make(map[string]interface{})
 		i := r.(map[string]interface{})
 		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["application"], _ = expandObjectFirewallAccessProxyApiGatewayApplication(d, i["application"], pre_append)
+		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2365,6 +2456,10 @@ func expandObjectFirewallAccessProxyApiGateway(d *schema.ResourceData, v interfa
 	}
 
 	return result, nil
+}
+
+func expandObjectFirewallAccessProxyApiGatewayApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAccessProxyApiGatewayHttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2689,6 +2784,11 @@ func expandObjectFirewallAccessProxyApiGateway6(d *schema.ResourceData, v interf
 		i := r.(map[string]interface{})
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "application"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["application"], _ = expandObjectFirewallAccessProxyApiGateway6Application(d, i["application"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-age"], _ = expandObjectFirewallAccessProxyApiGateway6HttpCookieAge(d, i["http_cookie_age"], pre_append)
@@ -2820,6 +2920,10 @@ func expandObjectFirewallAccessProxyApiGateway6(d *schema.ResourceData, v interf
 	}
 
 	return result, nil
+}
+
+func expandObjectFirewallAccessProxyApiGateway6Application(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAccessProxyApiGateway6HttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3162,6 +3266,10 @@ func expandObjectFirewallAccessProxyName(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandObjectFirewallAccessProxyUserAgentDetect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAccessProxyRealservers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -3377,6 +3485,15 @@ func expandObjectFirewallAccessProxyVip(d *schema.ResourceData, v interface{}, p
 func getObjectObjectFirewallAccessProxy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("add_vhost_domain_to_dnsdb"); ok || d.HasChange("add_vhost_domain_to_dnsdb") {
+		t, err := expandObjectFirewallAccessProxyAddVhostDomainToDnsdb(d, v, "add_vhost_domain_to_dnsdb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["add-vhost-domain-to-dnsdb"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("api_gateway"); ok || d.HasChange("api_gateway") {
 		t, err := expandObjectFirewallAccessProxyApiGateway(d, v, "api_gateway")
 		if err != nil {
@@ -3464,6 +3581,15 @@ func getObjectObjectFirewallAccessProxy(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("user_agent_detect"); ok || d.HasChange("user_agent_detect") {
+		t, err := expandObjectFirewallAccessProxyUserAgentDetect(d, v, "user_agent_detect")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["user-agent-detect"] = t
 		}
 	}
 

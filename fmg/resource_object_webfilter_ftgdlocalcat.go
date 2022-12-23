@@ -68,18 +68,20 @@ func resourceObjectWebfilterFtgdLocalCatCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebfilterFtgdLocalCat(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalCat resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWebfilterFtgdLocalCat(obj, adomv, nil)
+	_, err = c.CreateObjectWebfilterFtgdLocalCat(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterFtgdLocalCat resource: %v", err)
@@ -95,18 +97,20 @@ func resourceObjectWebfilterFtgdLocalCatUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebfilterFtgdLocalCat(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterFtgdLocalCat resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterFtgdLocalCat(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWebfilterFtgdLocalCat(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}
@@ -124,13 +128,15 @@ func resourceObjectWebfilterFtgdLocalCatDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterFtgdLocalCat(adomv, mkey, nil)
+	err = c.DeleteObjectWebfilterFtgdLocalCat(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}
@@ -146,13 +152,15 @@ func resourceObjectWebfilterFtgdLocalCatRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWebfilterFtgdLocalCat(adomv, mkey, nil)
+	o, err := c.ReadObjectWebfilterFtgdLocalCat(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWebfilterFtgdLocalCat resource: %v", err)
 	}

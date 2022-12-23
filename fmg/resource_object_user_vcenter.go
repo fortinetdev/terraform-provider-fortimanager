@@ -104,18 +104,20 @@ func resourceObjectUserVcenterCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserVcenter(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserVcenter resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserVcenter(obj, adomv, nil)
+	_, err = c.CreateObjectUserVcenter(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserVcenter resource: %v", err)
@@ -131,18 +133,20 @@ func resourceObjectUserVcenterUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserVcenter(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserVcenter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserVcenter(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserVcenter(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserVcenter resource: %v", err)
 	}
@@ -160,13 +164,15 @@ func resourceObjectUserVcenterDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserVcenter(adomv, mkey, nil)
+	err = c.DeleteObjectUserVcenter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserVcenter resource: %v", err)
 	}
@@ -182,13 +188,15 @@ func resourceObjectUserVcenterRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserVcenter(adomv, mkey, nil)
+	o, err := c.ReadObjectUserVcenter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserVcenter resource: %v", err)
 	}

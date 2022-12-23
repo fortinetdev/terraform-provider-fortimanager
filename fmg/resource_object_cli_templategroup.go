@@ -72,18 +72,20 @@ func resourceObjectCliTemplateGroupCreate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCliTemplateGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplateGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectCliTemplateGroup(obj, adomv, nil)
+	_, err = c.CreateObjectCliTemplateGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplateGroup resource: %v", err)
@@ -99,18 +101,20 @@ func resourceObjectCliTemplateGroupUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCliTemplateGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCliTemplateGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCliTemplateGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectCliTemplateGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCliTemplateGroup resource: %v", err)
 	}
@@ -128,13 +132,15 @@ func resourceObjectCliTemplateGroupDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCliTemplateGroup(adomv, mkey, nil)
+	err = c.DeleteObjectCliTemplateGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCliTemplateGroup resource: %v", err)
 	}
@@ -150,13 +156,15 @@ func resourceObjectCliTemplateGroupRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectCliTemplateGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectCliTemplateGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectCliTemplateGroup resource: %v", err)
 	}

@@ -82,18 +82,20 @@ func resourceObjectUserFlexvmCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserFlexvm(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFlexvm resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserFlexvm(obj, adomv, nil)
+	_, err = c.CreateObjectUserFlexvm(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserFlexvm resource: %v", err)
@@ -109,18 +111,20 @@ func resourceObjectUserFlexvmUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserFlexvm(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFlexvm resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserFlexvm(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserFlexvm(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserFlexvm resource: %v", err)
 	}
@@ -138,13 +142,15 @@ func resourceObjectUserFlexvmDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserFlexvm(adomv, mkey, nil)
+	err = c.DeleteObjectUserFlexvm(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserFlexvm resource: %v", err)
 	}
@@ -160,13 +166,15 @@ func resourceObjectUserFlexvmRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserFlexvm(adomv, mkey, nil)
+	o, err := c.ReadObjectUserFlexvm(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserFlexvm resource: %v", err)
 	}

@@ -84,18 +84,20 @@ func resourceObjectCliTemplateCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCliTemplate(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectCliTemplate(obj, adomv, nil)
+	_, err = c.CreateObjectCliTemplate(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectCliTemplate resource: %v", err)
@@ -111,18 +113,20 @@ func resourceObjectCliTemplateUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectCliTemplate(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCliTemplate resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectCliTemplate(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectCliTemplate(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectCliTemplate resource: %v", err)
 	}
@@ -140,13 +144,15 @@ func resourceObjectCliTemplateDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectCliTemplate(adomv, mkey, nil)
+	err = c.DeleteObjectCliTemplate(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectCliTemplate resource: %v", err)
 	}
@@ -162,13 +168,15 @@ func resourceObjectCliTemplateRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectCliTemplate(adomv, mkey, nil)
+	o, err := c.ReadObjectCliTemplate(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectCliTemplate resource: %v", err)
 	}

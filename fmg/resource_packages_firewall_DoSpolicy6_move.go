@@ -77,17 +77,18 @@ func resourcePackagesFirewallDosPolicy6MoveUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	dos_policy6 := d.Get("dos_policy6").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, dos_policy6)
+	paradict["pkg"] = pkg
+	paradict["dos_policy6"] = dos_policy6
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallDosPolicy6Move(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallDosPolicy6MoveUpdate(d *schema.ResourceData, m inte
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy6Move resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallDosPolicy6Move(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallDosPolicy6Move(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy6Move resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallDosPolicy6MoveRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("dos_policy6").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallDosPolicy6MoveRead(d *schema.ResourceData, m interf
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallDosPolicy6Move(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallDosPolicy6Move(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallDosPolicy6Move resource: %v", err)
 	}

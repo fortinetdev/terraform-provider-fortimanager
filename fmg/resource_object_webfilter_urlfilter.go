@@ -136,18 +136,20 @@ func resourceObjectWebfilterUrlfilterCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebfilterUrlfilter(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterUrlfilter resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWebfilterUrlfilter(obj, adomv, nil)
+	_, err = c.CreateObjectWebfilterUrlfilter(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebfilterUrlfilter resource: %v", err)
@@ -163,18 +165,20 @@ func resourceObjectWebfilterUrlfilterUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebfilterUrlfilter(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterUrlfilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebfilterUrlfilter(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWebfilterUrlfilter(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebfilterUrlfilter resource: %v", err)
 	}
@@ -192,13 +196,15 @@ func resourceObjectWebfilterUrlfilterDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebfilterUrlfilter(adomv, mkey, nil)
+	err = c.DeleteObjectWebfilterUrlfilter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebfilterUrlfilter resource: %v", err)
 	}
@@ -214,13 +220,15 @@ func resourceObjectWebfilterUrlfilterRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWebfilterUrlfilter(adomv, mkey, nil)
+	o, err := c.ReadObjectWebfilterUrlfilter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWebfilterUrlfilter resource: %v", err)
 	}

@@ -95,18 +95,20 @@ func resourceObjectSwitchControllerTrafficPolicyCreate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerTrafficPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerTrafficPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerTrafficPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerTrafficPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerTrafficPolicy resource: %v", err)
@@ -122,18 +124,20 @@ func resourceObjectSwitchControllerTrafficPolicyUpdate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerTrafficPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerTrafficPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerTrafficPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerTrafficPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerTrafficPolicy resource: %v", err)
 	}
@@ -151,13 +155,15 @@ func resourceObjectSwitchControllerTrafficPolicyDelete(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerTrafficPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerTrafficPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerTrafficPolicy resource: %v", err)
 	}
@@ -173,13 +179,15 @@ func resourceObjectSwitchControllerTrafficPolicyRead(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerTrafficPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerTrafficPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerTrafficPolicy resource: %v", err)
 	}

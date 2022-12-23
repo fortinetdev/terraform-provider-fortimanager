@@ -43,14 +43,16 @@ func resourceFmupdateDiskQuotaUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateDiskQuota(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateDiskQuota resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateDiskQuota(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateDiskQuota(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateDiskQuota resource: %v", err)
 	}
@@ -68,9 +70,11 @@ func resourceFmupdateDiskQuotaDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateDiskQuota(adomv, mkey, nil)
+	err = c.DeleteFmupdateDiskQuota(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateDiskQuota resource: %v", err)
 	}
@@ -86,9 +90,11 @@ func resourceFmupdateDiskQuotaRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateDiskQuota(adomv, mkey, nil)
+	o, err := c.ReadFmupdateDiskQuota(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateDiskQuota resource: %v", err)
 	}

@@ -1,6 +1,40 @@
-## 1.7.0 (Unreleased)
+## 1.8.0 (Unreleased)
 
-## 1.6.0 (Unreleased)
+## 1.7.0 (Dec 21, 2022)
+
+IMPROVEMENTS:
+
+* Support FortiManager version 7.0.5
+* Fix type convert issue
+* Update error message in GetDeviceVersion
+
+FEATURES:
+
+* **New Resource:** `fortimanager_fmupdate_fwmsetting_upgradetimeout`
+* **New Resource:** `fortimanager_object_dlp_datatype`
+* **New Resource:** `fortimanager_object_dlp_dictionary`
+* **New Resource:** `fortimanager_object_dlp_profile`
+* **New Resource:** `fortimanager_object_extensioncontroller_dataplan`
+* **New Resource:** `fortimanager_object_extensioncontroller_extenderprofile`
+* **New Resource:** `fortimanager_wan_template`
+* **New Resource:** `fortimanager_wantemp_system_sdwan`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_duplication`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_healthcheck`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_healthcheck_sla`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_members`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_neighbor`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_service`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_service_sla`
+* **New Resource:** `fortimanager_wantemp_system_sdwan_zone`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink_healthcheck`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink_healthcheck_sla`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink_members`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink_neighbor`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink_service`
+* **New Resource:** `fortimanager_wantemp_system_virtualwanlink_service_sla`
+
+## 1.6.0 (Sep 26, 2022)
 
 IMPROVEMENTS:
 

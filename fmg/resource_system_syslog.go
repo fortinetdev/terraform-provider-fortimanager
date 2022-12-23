@@ -70,14 +70,16 @@ func resourceSystemSyslogCreate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSyslog(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSyslog resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSyslog(obj, adomv, nil)
+	_, err = c.CreateSystemSyslog(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSyslog resource: %v", err)
@@ -93,14 +95,16 @@ func resourceSystemSyslogUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSyslog(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSyslog resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSyslog(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSyslog(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSyslog resource: %v", err)
 	}
@@ -118,9 +122,11 @@ func resourceSystemSyslogDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSyslog(adomv, mkey, nil)
+	err = c.DeleteSystemSyslog(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSyslog resource: %v", err)
 	}
@@ -136,9 +142,11 @@ func resourceSystemSyslogRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSyslog(adomv, mkey, nil)
+	o, err := c.ReadSystemSyslog(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSyslog resource: %v", err)
 	}

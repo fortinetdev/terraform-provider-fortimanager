@@ -241,18 +241,19 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterShapingPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalFooterShapingPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalFooterShapingPolicy resource: %v", err)
@@ -277,18 +278,19 @@ func resourcePackagesGlobalFooterShapingPolicyUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterShapingPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterShapingPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalFooterShapingPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalFooterShapingPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
@@ -306,13 +308,14 @@ func resourcePackagesGlobalFooterShapingPolicyDelete(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalFooterShapingPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalFooterShapingPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}
@@ -328,7 +331,9 @@ func resourcePackagesGlobalFooterShapingPolicyRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -337,10 +342,9 @@ func resourcePackagesGlobalFooterShapingPolicyRead(d *schema.ResourceData, m int
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalFooterShapingPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalFooterShapingPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalFooterShapingPolicy resource: %v", err)
 	}

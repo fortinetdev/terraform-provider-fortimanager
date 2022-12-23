@@ -77,14 +77,16 @@ func resourceSystemNtpNtpserverCreate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemNtpNtpserver(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemNtpNtpserver resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemNtpNtpserver(obj, adomv, nil)
+	_, err = c.CreateSystemNtpNtpserver(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemNtpNtpserver resource: %v", err)
@@ -100,14 +102,16 @@ func resourceSystemNtpNtpserverUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemNtpNtpserver(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemNtpNtpserver resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemNtpNtpserver(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemNtpNtpserver(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemNtpNtpserver resource: %v", err)
 	}
@@ -125,9 +129,11 @@ func resourceSystemNtpNtpserverDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemNtpNtpserver(adomv, mkey, nil)
+	err = c.DeleteSystemNtpNtpserver(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemNtpNtpserver resource: %v", err)
 	}
@@ -143,9 +149,11 @@ func resourceSystemNtpNtpserverRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemNtpNtpserver(adomv, mkey, nil)
+	o, err := c.ReadSystemNtpNtpserver(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemNtpNtpserver resource: %v", err)
 	}

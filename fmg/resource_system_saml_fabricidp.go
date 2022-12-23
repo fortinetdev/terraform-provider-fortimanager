@@ -63,14 +63,16 @@ func resourceSystemSamlFabricIdpCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSamlFabricIdp(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSamlFabricIdp resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSamlFabricIdp(obj, adomv, nil)
+	_, err = c.CreateSystemSamlFabricIdp(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSamlFabricIdp resource: %v", err)
@@ -86,14 +88,16 @@ func resourceSystemSamlFabricIdpUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSamlFabricIdp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSamlFabricIdp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSamlFabricIdp(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSamlFabricIdp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSamlFabricIdp resource: %v", err)
 	}
@@ -111,9 +115,11 @@ func resourceSystemSamlFabricIdpDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSamlFabricIdp(adomv, mkey, nil)
+	err = c.DeleteSystemSamlFabricIdp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSamlFabricIdp resource: %v", err)
 	}
@@ -129,9 +135,11 @@ func resourceSystemSamlFabricIdpRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSamlFabricIdp(adomv, mkey, nil)
+	o, err := c.ReadSystemSamlFabricIdp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSamlFabricIdp resource: %v", err)
 	}

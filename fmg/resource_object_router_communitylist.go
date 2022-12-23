@@ -92,18 +92,20 @@ func resourceObjectRouterCommunityListCreate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectRouterCommunityList(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterCommunityList resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectRouterCommunityList(obj, adomv, nil)
+	_, err = c.CreateObjectRouterCommunityList(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectRouterCommunityList resource: %v", err)
@@ -119,18 +121,20 @@ func resourceObjectRouterCommunityListUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectRouterCommunityList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterCommunityList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectRouterCommunityList(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectRouterCommunityList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectRouterCommunityList resource: %v", err)
 	}
@@ -148,13 +152,15 @@ func resourceObjectRouterCommunityListDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectRouterCommunityList(adomv, mkey, nil)
+	err = c.DeleteObjectRouterCommunityList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectRouterCommunityList resource: %v", err)
 	}
@@ -170,13 +176,15 @@ func resourceObjectRouterCommunityListRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectRouterCommunityList(adomv, mkey, nil)
+	o, err := c.ReadObjectRouterCommunityList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectRouterCommunityList resource: %v", err)
 	}

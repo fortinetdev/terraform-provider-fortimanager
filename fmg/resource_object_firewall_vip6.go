@@ -218,6 +218,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ndp_reply": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"outlook_web_access": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -611,6 +616,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ndp_reply": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"outlook_web_access": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -913,18 +923,20 @@ func resourceObjectFirewallVip6Create(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallVip6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip6 resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallVip6(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallVip6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallVip6 resource: %v", err)
@@ -940,18 +952,20 @@ func resourceObjectFirewallVip6Update(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallVip6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallVip6(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallVip6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallVip6 resource: %v", err)
 	}
@@ -969,13 +983,15 @@ func resourceObjectFirewallVip6Delete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallVip6(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallVip6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallVip6 resource: %v", err)
 	}
@@ -991,13 +1007,15 @@ func resourceObjectFirewallVip6Read(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallVip6(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallVip6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallVip6 resource: %v", err)
 	}
@@ -1228,6 +1246,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 		if _, ok := i["nat66"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingNat66(i["nat66"], d, pre_append)
 			tmp["nat66"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-Nat66")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ndp_reply"
+		if _, ok := i["ndp-reply"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingNdpReply(i["ndp-reply"], d, pre_append)
+			tmp["ndp_reply"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-NdpReply")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
@@ -1662,6 +1686,10 @@ func flattenObjectFirewallVip6DynamicMappingNat64(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallVip6DynamicMappingNat66(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingNdpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2128,6 +2156,10 @@ func flattenObjectFirewallVip6Nat64(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenObjectFirewallVip6Nat66(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6NdpReply(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2885,6 +2917,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("ndp_reply", flattenObjectFirewallVip6NdpReply(o["ndp-reply"], d, "ndp_reply")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ndp-reply"], "ObjectFirewallVip6-NdpReply"); ok {
+			if err = d.Set("ndp_reply", vv); err != nil {
+				return fmt.Errorf("Error reading ndp_reply: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ndp_reply: %v", err)
+		}
+	}
+
 	if err = d.Set("outlook_web_access", flattenObjectFirewallVip6OutlookWebAccess(o["outlook-web-access"], d, "outlook_web_access")); err != nil {
 		if vv, ok := fortiAPIPatch(o["outlook-web-access"], "ObjectFirewallVip6-OutlookWebAccess"); ok {
 			if err = d.Set("outlook_web_access", vv); err != nil {
@@ -3571,6 +3613,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["nat66"], _ = expandObjectFirewallVip6DynamicMappingNat66(d, i["nat66"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ndp_reply"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ndp-reply"], _ = expandObjectFirewallVip6DynamicMappingNdpReply(d, i["ndp_reply"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "outlook_web_access"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["outlook-web-access"], _ = expandObjectFirewallVip6DynamicMappingOutlookWebAccess(d, i["outlook_web_access"], pre_append)
@@ -3962,6 +4009,10 @@ func expandObjectFirewallVip6DynamicMappingNat64(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallVip6DynamicMappingNat66(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingNdpReply(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4404,6 +4455,10 @@ func expandObjectFirewallVip6Nat64(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandObjectFirewallVip6Nat66(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6NdpReply(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5073,6 +5128,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["nat66"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ndp_reply"); ok || d.HasChange("ndp_reply") {
+		t, err := expandObjectFirewallVip6NdpReply(d, v, "ndp_reply")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ndp-reply"] = t
 		}
 	}
 

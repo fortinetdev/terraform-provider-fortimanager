@@ -73,14 +73,16 @@ func resourceSystemSocFabricUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSocFabric(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSocFabric resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSocFabric(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSocFabric(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSocFabric resource: %v", err)
 	}
@@ -98,9 +100,11 @@ func resourceSystemSocFabricDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSocFabric(adomv, mkey, nil)
+	err = c.DeleteSystemSocFabric(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSocFabric resource: %v", err)
 	}
@@ -116,9 +120,11 @@ func resourceSystemSocFabricRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSocFabric(adomv, mkey, nil)
+	o, err := c.ReadSystemSocFabric(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSocFabric resource: %v", err)
 	}

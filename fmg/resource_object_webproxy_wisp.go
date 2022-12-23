@@ -87,18 +87,20 @@ func resourceObjectWebProxyWispCreate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebProxyWisp(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyWisp resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWebProxyWisp(obj, adomv, nil)
+	_, err = c.CreateObjectWebProxyWisp(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWebProxyWisp resource: %v", err)
@@ -114,18 +116,20 @@ func resourceObjectWebProxyWispUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWebProxyWisp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyWisp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWebProxyWisp(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWebProxyWisp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWebProxyWisp resource: %v", err)
 	}
@@ -143,13 +147,15 @@ func resourceObjectWebProxyWispDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWebProxyWisp(adomv, mkey, nil)
+	err = c.DeleteObjectWebProxyWisp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWebProxyWisp resource: %v", err)
 	}
@@ -165,13 +171,15 @@ func resourceObjectWebProxyWispRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWebProxyWisp(adomv, mkey, nil)
+	o, err := c.ReadObjectWebProxyWisp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWebProxyWisp resource: %v", err)
 	}

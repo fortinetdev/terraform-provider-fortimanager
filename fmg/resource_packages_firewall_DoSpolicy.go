@@ -186,22 +186,23 @@ func resourcePackagesFirewallDosPolicyCreate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallDosPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallDosPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesFirewallDosPolicy(obj, adomv, paralist)
+	v, err := c.CreatePackagesFirewallDosPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallDosPolicy resource: %v", err)
@@ -226,22 +227,23 @@ func resourcePackagesFirewallDosPolicyUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallDosPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallDosPolicy(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallDosPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallDosPolicy resource: %v", err)
 	}
@@ -259,17 +261,18 @@ func resourcePackagesFirewallDosPolicyDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallDosPolicy(adomv, mkey, paralist)
+	err = c.DeletePackagesFirewallDosPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallDosPolicy resource: %v", err)
 	}
@@ -285,11 +288,13 @@ func resourcePackagesFirewallDosPolicyRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -298,10 +303,9 @@ func resourcePackagesFirewallDosPolicyRead(d *schema.ResourceData, m interface{}
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallDosPolicy(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallDosPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallDosPolicy resource: %v", err)
 	}

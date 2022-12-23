@@ -105,6 +105,8 @@ The following arguments are supported:
 
 * `per_session_accounting` - Enable/disable per-session accounting. Valid values: `enable`, `disable`, `enable-by-log`, `all-enable`, `traffic-log-only`.
 
+* `ple_non_syn_tcp_action` - Configure action for the PLE to take on TCP packets that have the SYN field unset. Valid values: `forward`, `drop`.
+
 * `policy_offload_level` - Firewall Policy Offload Level(DISABLE/DOS/FULL). Valid values: `disable`, `dos-offload`, `full-offload`.
 
 * `port_cpu_map` - Port-Cpu-Map. The structure of `port_cpu_map` block is documented below.

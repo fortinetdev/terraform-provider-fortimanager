@@ -63,18 +63,20 @@ func resourceObjectSystemNpuPortNpuMapCreate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuPortNpuMap(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuPortNpuMap resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemNpuPortNpuMap(obj, adomv, nil)
+	_, err = c.CreateObjectSystemNpuPortNpuMap(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemNpuPortNpuMap resource: %v", err)
@@ -90,18 +92,20 @@ func resourceObjectSystemNpuPortNpuMapUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemNpuPortNpuMap(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuPortNpuMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemNpuPortNpuMap(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemNpuPortNpuMap(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemNpuPortNpuMap resource: %v", err)
 	}
@@ -119,13 +123,15 @@ func resourceObjectSystemNpuPortNpuMapDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemNpuPortNpuMap(adomv, mkey, nil)
+	err = c.DeleteObjectSystemNpuPortNpuMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemNpuPortNpuMap resource: %v", err)
 	}
@@ -141,13 +147,15 @@ func resourceObjectSystemNpuPortNpuMapRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemNpuPortNpuMap(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemNpuPortNpuMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemNpuPortNpuMap resource: %v", err)
 	}

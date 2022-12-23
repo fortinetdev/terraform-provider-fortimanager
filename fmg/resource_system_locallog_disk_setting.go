@@ -148,14 +148,16 @@ func resourceSystemLocallogDiskSettingUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLocallogDiskSetting(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogDiskSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogDiskSetting(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLocallogDiskSetting(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogDiskSetting resource: %v", err)
 	}
@@ -173,9 +175,11 @@ func resourceSystemLocallogDiskSettingDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogDiskSetting(adomv, mkey, nil)
+	err = c.DeleteSystemLocallogDiskSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogDiskSetting resource: %v", err)
 	}
@@ -191,9 +195,11 @@ func resourceSystemLocallogDiskSettingRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLocallogDiskSetting(adomv, mkey, nil)
+	o, err := c.ReadSystemLocallogDiskSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLocallogDiskSetting resource: %v", err)
 	}

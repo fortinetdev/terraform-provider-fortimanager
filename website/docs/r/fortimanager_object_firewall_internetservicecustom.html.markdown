@@ -50,7 +50,10 @@ The `ip_range` block supports:
 
 The `entry` block supports:
 
+* `addr_mode` - Address mode (IPv4 or IPv6) Valid values: `ipv4`, `ipv6`.
+
 * `dst` - Destination address or address group name.
+* `dst6` - Destination address6 or address6 group name.
 * `id` - Entry ID(1-255).
 * `port_range` - Port-Range. The structure of `port_range` block is documented below.
 * `protocol` - Integer value for the protocol type as defined by IANA (0 - 255).

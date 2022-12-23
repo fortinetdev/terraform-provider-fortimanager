@@ -77,18 +77,20 @@ func resourceObjectFirewallScheduleGroupCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallScheduleGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallScheduleGroup(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallScheduleGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallScheduleGroup resource: %v", err)
@@ -104,18 +106,20 @@ func resourceObjectFirewallScheduleGroupUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallScheduleGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallScheduleGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallScheduleGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallScheduleGroup resource: %v", err)
 	}
@@ -133,13 +137,15 @@ func resourceObjectFirewallScheduleGroupDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallScheduleGroup(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallScheduleGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallScheduleGroup resource: %v", err)
 	}
@@ -155,13 +161,15 @@ func resourceObjectFirewallScheduleGroupRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallScheduleGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallScheduleGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallScheduleGroup resource: %v", err)
 	}

@@ -683,18 +683,20 @@ func resourceObjectVoipProfileCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVoipProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVoipProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVoipProfile(obj, adomv, nil)
+	_, err = c.CreateObjectVoipProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVoipProfile resource: %v", err)
@@ -710,18 +712,20 @@ func resourceObjectVoipProfileUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVoipProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVoipProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVoipProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVoipProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVoipProfile resource: %v", err)
 	}
@@ -739,13 +743,15 @@ func resourceObjectVoipProfileDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVoipProfile(adomv, mkey, nil)
+	err = c.DeleteObjectVoipProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVoipProfile resource: %v", err)
 	}
@@ -761,13 +767,15 @@ func resourceObjectVoipProfileRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVoipProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectVoipProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVoipProfile resource: %v", err)
 	}

@@ -134,12 +134,18 @@ The `exclude_range` block supports:
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
+
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
 * `start_ip` - Start of IP range.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
+
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `options` block supports:
 
@@ -149,6 +155,9 @@ The `options` block supports:
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
 * `value` - DHCP option value.
+* `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
+
+* `vci_string` - One or more VCI strings in quotes separated by spaces.
 
 The `reserved_address` block supports:
 

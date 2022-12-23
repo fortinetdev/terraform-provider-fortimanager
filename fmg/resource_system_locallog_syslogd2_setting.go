@@ -76,14 +76,16 @@ func resourceSystemLocallogSyslogd2SettingUpdate(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLocallogSyslogd2Setting(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogSyslogd2Setting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogSyslogd2Setting(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLocallogSyslogd2Setting(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogSyslogd2Setting resource: %v", err)
 	}
@@ -101,9 +103,11 @@ func resourceSystemLocallogSyslogd2SettingDelete(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogSyslogd2Setting(adomv, mkey, nil)
+	err = c.DeleteSystemLocallogSyslogd2Setting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogSyslogd2Setting resource: %v", err)
 	}
@@ -119,9 +123,11 @@ func resourceSystemLocallogSyslogd2SettingRead(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLocallogSyslogd2Setting(adomv, mkey, nil)
+	o, err := c.ReadSystemLocallogSyslogd2Setting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLocallogSyslogd2Setting resource: %v", err)
 	}

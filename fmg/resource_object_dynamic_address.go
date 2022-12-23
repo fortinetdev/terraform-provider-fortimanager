@@ -89,18 +89,20 @@ func resourceObjectDynamicAddressCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicAddress(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDynamicAddress(obj, adomv, nil)
+	_, err = c.CreateObjectDynamicAddress(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDynamicAddress resource: %v", err)
@@ -116,18 +118,20 @@ func resourceObjectDynamicAddressUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDynamicAddress(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicAddress resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDynamicAddress(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDynamicAddress(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDynamicAddress resource: %v", err)
 	}
@@ -145,13 +149,15 @@ func resourceObjectDynamicAddressDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDynamicAddress(adomv, mkey, nil)
+	err = c.DeleteObjectDynamicAddress(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDynamicAddress resource: %v", err)
 	}
@@ -167,13 +173,15 @@ func resourceObjectDynamicAddressRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDynamicAddress(adomv, mkey, nil)
+	o, err := c.ReadObjectDynamicAddress(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDynamicAddress resource: %v", err)
 	}

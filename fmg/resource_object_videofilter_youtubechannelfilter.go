@@ -52,6 +52,7 @@ func resourceObjectVideofilterYoutubeChannelFilter() *schema.Resource {
 			"default_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"entries": &schema.Schema{
 				Type:     schema.TypeList,
@@ -85,6 +86,7 @@ func resourceObjectVideofilterYoutubeChannelFilter() *schema.Resource {
 			"log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -93,6 +95,7 @@ func resourceObjectVideofilterYoutubeChannelFilter() *schema.Resource {
 			"override_category": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -107,18 +110,20 @@ func resourceObjectVideofilterYoutubeChannelFilterCreate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVideofilterYoutubeChannelFilter(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterYoutubeChannelFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVideofilterYoutubeChannelFilter(obj, adomv, nil)
+	_, err = c.CreateObjectVideofilterYoutubeChannelFilter(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVideofilterYoutubeChannelFilter resource: %v", err)
@@ -134,18 +139,20 @@ func resourceObjectVideofilterYoutubeChannelFilterUpdate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVideofilterYoutubeChannelFilter(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterYoutubeChannelFilter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVideofilterYoutubeChannelFilter(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVideofilterYoutubeChannelFilter(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVideofilterYoutubeChannelFilter resource: %v", err)
 	}
@@ -163,13 +170,15 @@ func resourceObjectVideofilterYoutubeChannelFilterDelete(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVideofilterYoutubeChannelFilter(adomv, mkey, nil)
+	err = c.DeleteObjectVideofilterYoutubeChannelFilter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVideofilterYoutubeChannelFilter resource: %v", err)
 	}
@@ -185,13 +194,15 @@ func resourceObjectVideofilterYoutubeChannelFilterRead(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVideofilterYoutubeChannelFilter(adomv, mkey, nil)
+	o, err := c.ReadObjectVideofilterYoutubeChannelFilter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVideofilterYoutubeChannelFilter resource: %v", err)
 	}

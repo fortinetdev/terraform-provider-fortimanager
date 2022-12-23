@@ -115,18 +115,20 @@ func resourceObjectEmailfilterBwlCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterBwl(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBwl resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectEmailfilterBwl(obj, adomv, nil)
+	_, err = c.CreateObjectEmailfilterBwl(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectEmailfilterBwl resource: %v", err)
@@ -142,18 +144,20 @@ func resourceObjectEmailfilterBwlUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterBwl(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBwl resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterBwl(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEmailfilterBwl(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterBwl resource: %v", err)
 	}
@@ -171,13 +175,15 @@ func resourceObjectEmailfilterBwlDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterBwl(adomv, mkey, nil)
+	err = c.DeleteObjectEmailfilterBwl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterBwl resource: %v", err)
 	}
@@ -193,13 +199,15 @@ func resourceObjectEmailfilterBwlRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEmailfilterBwl(adomv, mkey, nil)
+	o, err := c.ReadObjectEmailfilterBwl(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEmailfilterBwl resource: %v", err)
 	}

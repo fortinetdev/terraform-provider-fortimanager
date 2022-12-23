@@ -80,14 +80,16 @@ func resourceFmupdateFdsSettingServerOverrideUpdate(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateFdsSettingServerOverride(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingServerOverride resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateFdsSettingServerOverride(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateFdsSettingServerOverride(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateFdsSettingServerOverride resource: %v", err)
 	}
@@ -105,9 +107,11 @@ func resourceFmupdateFdsSettingServerOverrideDelete(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateFdsSettingServerOverride(adomv, mkey, nil)
+	err = c.DeleteFmupdateFdsSettingServerOverride(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateFdsSettingServerOverride resource: %v", err)
 	}
@@ -123,9 +127,11 @@ func resourceFmupdateFdsSettingServerOverrideRead(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateFdsSettingServerOverride(adomv, mkey, nil)
+	o, err := c.ReadFmupdateFdsSettingServerOverride(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateFdsSettingServerOverride resource: %v", err)
 	}

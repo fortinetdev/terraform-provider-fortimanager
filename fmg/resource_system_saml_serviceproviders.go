@@ -82,14 +82,16 @@ func resourceSystemSamlServiceProvidersCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSamlServiceProviders(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSamlServiceProviders resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemSamlServiceProviders(obj, adomv, nil)
+	_, err = c.CreateSystemSamlServiceProviders(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemSamlServiceProviders resource: %v", err)
@@ -105,14 +107,16 @@ func resourceSystemSamlServiceProvidersUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSamlServiceProviders(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSamlServiceProviders resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSamlServiceProviders(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSamlServiceProviders(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSamlServiceProviders resource: %v", err)
 	}
@@ -130,9 +134,11 @@ func resourceSystemSamlServiceProvidersDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSamlServiceProviders(adomv, mkey, nil)
+	err = c.DeleteSystemSamlServiceProviders(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSamlServiceProviders resource: %v", err)
 	}
@@ -148,9 +154,11 @@ func resourceSystemSamlServiceProvidersRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSamlServiceProviders(adomv, mkey, nil)
+	o, err := c.ReadSystemSamlServiceProviders(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSamlServiceProviders resource: %v", err)
 	}

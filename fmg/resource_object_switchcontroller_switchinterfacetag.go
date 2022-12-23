@@ -57,18 +57,20 @@ func resourceObjectSwitchControllerSwitchInterfaceTagCreate(d *schema.ResourceDa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerSwitchInterfaceTag(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerSwitchInterfaceTag resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerSwitchInterfaceTag(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerSwitchInterfaceTag(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerSwitchInterfaceTag resource: %v", err)
@@ -84,18 +86,20 @@ func resourceObjectSwitchControllerSwitchInterfaceTagUpdate(d *schema.ResourceDa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerSwitchInterfaceTag(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerSwitchInterfaceTag resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerSwitchInterfaceTag(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerSwitchInterfaceTag(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerSwitchInterfaceTag resource: %v", err)
 	}
@@ -113,13 +117,15 @@ func resourceObjectSwitchControllerSwitchInterfaceTagDelete(d *schema.ResourceDa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerSwitchInterfaceTag(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerSwitchInterfaceTag(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerSwitchInterfaceTag resource: %v", err)
 	}
@@ -135,13 +141,15 @@ func resourceObjectSwitchControllerSwitchInterfaceTagRead(d *schema.ResourceData
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerSwitchInterfaceTag(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerSwitchInterfaceTag(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerSwitchInterfaceTag resource: %v", err)
 	}

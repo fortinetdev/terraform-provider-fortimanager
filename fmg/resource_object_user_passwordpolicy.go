@@ -73,18 +73,20 @@ func resourceObjectUserPasswordPolicyCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPasswordPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPasswordPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserPasswordPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectUserPasswordPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPasswordPolicy resource: %v", err)
@@ -100,18 +102,20 @@ func resourceObjectUserPasswordPolicyUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPasswordPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPasswordPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPasswordPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserPasswordPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPasswordPolicy resource: %v", err)
 	}
@@ -129,13 +133,15 @@ func resourceObjectUserPasswordPolicyDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPasswordPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectUserPasswordPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPasswordPolicy resource: %v", err)
 	}
@@ -151,13 +157,15 @@ func resourceObjectUserPasswordPolicyRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserPasswordPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectUserPasswordPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserPasswordPolicy resource: %v", err)
 	}

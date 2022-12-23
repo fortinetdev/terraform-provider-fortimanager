@@ -178,14 +178,16 @@ func resourceSystemLogFetchClientProfileCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogFetchClientProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogFetchClientProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemLogFetchClientProfile(obj, adomv, nil)
+	_, err = c.CreateSystemLogFetchClientProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogFetchClientProfile resource: %v", err)
@@ -201,14 +203,16 @@ func resourceSystemLogFetchClientProfileUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogFetchClientProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFetchClientProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogFetchClientProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogFetchClientProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogFetchClientProfile resource: %v", err)
 	}
@@ -226,9 +230,11 @@ func resourceSystemLogFetchClientProfileDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogFetchClientProfile(adomv, mkey, nil)
+	err = c.DeleteSystemLogFetchClientProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogFetchClientProfile resource: %v", err)
 	}
@@ -244,9 +250,11 @@ func resourceSystemLogFetchClientProfileRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogFetchClientProfile(adomv, mkey, nil)
+	o, err := c.ReadSystemLogFetchClientProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogFetchClientProfile resource: %v", err)
 	}

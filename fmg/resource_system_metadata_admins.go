@@ -57,14 +57,16 @@ func resourceSystemMetadataAdminsCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemMetadataAdmins(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemMetadataAdmins resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemMetadataAdmins(obj, adomv, nil)
+	_, err = c.CreateSystemMetadataAdmins(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemMetadataAdmins resource: %v", err)
@@ -80,14 +82,16 @@ func resourceSystemMetadataAdminsUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemMetadataAdmins(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemMetadataAdmins resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemMetadataAdmins(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemMetadataAdmins(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemMetadataAdmins resource: %v", err)
 	}
@@ -105,9 +109,11 @@ func resourceSystemMetadataAdminsDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemMetadataAdmins(adomv, mkey, nil)
+	err = c.DeleteSystemMetadataAdmins(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemMetadataAdmins resource: %v", err)
 	}
@@ -123,9 +129,11 @@ func resourceSystemMetadataAdminsRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemMetadataAdmins(adomv, mkey, nil)
+	o, err := c.ReadSystemMetadataAdmins(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemMetadataAdmins resource: %v", err)
 	}

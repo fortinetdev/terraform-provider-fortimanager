@@ -58,14 +58,16 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionUpdate(d *schema.Resourc
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAutoDeleteQuarantineFilesAutoDeletion(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteQuarantineFilesAutoDeletion resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAutoDeleteQuarantineFilesAutoDeletion(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAutoDeleteQuarantineFilesAutoDeletion(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAutoDeleteQuarantineFilesAutoDeletion resource: %v", err)
 	}
@@ -83,9 +85,11 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionDelete(d *schema.Resourc
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAutoDeleteQuarantineFilesAutoDeletion(adomv, mkey, nil)
+	err = c.DeleteSystemAutoDeleteQuarantineFilesAutoDeletion(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAutoDeleteQuarantineFilesAutoDeletion resource: %v", err)
 	}
@@ -101,9 +105,11 @@ func resourceSystemAutoDeleteQuarantineFilesAutoDeletionRead(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAutoDeleteQuarantineFilesAutoDeletion(adomv, mkey, nil)
+	o, err := c.ReadSystemAutoDeleteQuarantineFilesAutoDeletion(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAutoDeleteQuarantineFilesAutoDeletion resource: %v", err)
 	}

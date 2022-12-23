@@ -28,6 +28,7 @@ The following arguments are supported:
 * `av_profile` - Name of an existing Antivirus profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `comments` - Comment.
+* `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
 * `dnsfilter_profile` - Name of an existing DNS filter profile.
 * `dstaddr` - Destination IPv4 address name and address group names.
@@ -61,6 +62,22 @@ The following arguments are supported:
 * `internet_service_src_name` - Internet Service source name.
 * `internet_service_src_id` - Internet Service source ID.
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
+* `internet_service6` - Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address, service and default application port enforcement are not used. Valid values: `disable`, `enable`.
+
+* `internet_service6_custom` - Custom IPv6 Internet Service name.
+* `internet_service6_custom_group` - Custom IPv6 Internet Service group name.
+* `internet_service6_group` - Internet Service group name.
+* `internet_service6_name` - IPv6 Internet Service name.
+* `internet_service6_negate` - When enabled internet-service6 specifies what the service must NOT be. Valid values: `disable`, `enable`.
+
+* `internet_service6_src` - Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
+
+* `internet_service6_src_custom` - Custom IPv6 Internet Service source name.
+* `internet_service6_src_custom_group` - Custom Internet Service6 source group name.
+* `internet_service6_src_group` - Internet Service6 source group name.
+* `internet_service6_src_name` - IPv6 Internet Service source name.
+* `internet_service6_src_negate` - When enabled internet-service6-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
 * `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.

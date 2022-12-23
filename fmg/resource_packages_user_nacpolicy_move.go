@@ -77,17 +77,18 @@ func resourcePackagesUserNacPolicyMoveUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	nac_policy := d.Get("nac_policy").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, nac_policy)
+	paradict["pkg"] = pkg
+	paradict["nac_policy"] = nac_policy
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesUserNacPolicyMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesUserNacPolicyMoveUpdate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error updating PackagesUserNacPolicyMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesUserNacPolicyMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesUserNacPolicyMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesUserNacPolicyMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesUserNacPolicyMoveRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("nac_policy").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesUserNacPolicyMoveRead(d *schema.ResourceData, m interface{}
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesUserNacPolicyMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesUserNacPolicyMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesUserNacPolicyMove resource: %v", err)
 	}

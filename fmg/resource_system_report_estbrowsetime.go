@@ -48,14 +48,16 @@ func resourceSystemReportEstBrowseTimeUpdate(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemReportEstBrowseTime(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportEstBrowseTime resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemReportEstBrowseTime(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemReportEstBrowseTime(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemReportEstBrowseTime resource: %v", err)
 	}
@@ -73,9 +75,11 @@ func resourceSystemReportEstBrowseTimeDelete(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemReportEstBrowseTime(adomv, mkey, nil)
+	err = c.DeleteSystemReportEstBrowseTime(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemReportEstBrowseTime resource: %v", err)
 	}
@@ -91,9 +95,11 @@ func resourceSystemReportEstBrowseTimeRead(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemReportEstBrowseTime(adomv, mkey, nil)
+	o, err := c.ReadSystemReportEstBrowseTime(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemReportEstBrowseTime resource: %v", err)
 	}

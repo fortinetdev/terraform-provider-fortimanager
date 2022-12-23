@@ -18,23 +18,28 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
 * `city` - City sequence number list.
+* `city6` - IPv6 City sequence number list.
 * `country` - Country sequence number list.
+* `country6` - IPv6 Country sequence number list.
 * `database` - Database. Valid values: `isdb`, `irdb`.
 
 * `direction` - Direction. Valid values: `src`, `dst`, `both`.
 
 * `entry` - Entry. The structure of `entry` block is documented below.
 * `extra_ip_range_number` - Extra-Ip-Range-Number.
+* `extra_ip6_range_number` - Extra-Ip6-Range-Number.
 * `icon_id` - Icon-Id.
 * `fosid` - Id.
 * `ip_number` - Ip-Number.
 * `ip_range_number` - Ip-Range-Number.
+* `ip6_range_number` - Ip6-Range-Number.
 * `jitter_threshold` - Jitter-Threshold.
 * `latency_threshold` - Latency-Threshold.
 * `name` - Name.
 * `offset` - Offset.
 * `obsolete` - Obsolete.
 * `region` - Region sequence number list.
+* `region6` - IPv6 Region sequence number list.
 * `packetloss_threshold` - Packetloss-Threshold.
 * `reputation` - Reputation.
 * `singularity` - Singularity.

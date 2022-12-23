@@ -54,6 +54,11 @@ func resourceObjectFirewallInternetServiceAddition() *schema.Resource {
 				Optional: true,
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
+						"addr_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -105,18 +110,20 @@ func resourceObjectFirewallInternetServiceAdditionCreate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallInternetServiceAddition(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceAddition resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallInternetServiceAddition(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallInternetServiceAddition(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceAddition resource: %v", err)
@@ -132,18 +139,20 @@ func resourceObjectFirewallInternetServiceAdditionUpdate(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallInternetServiceAddition(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceAddition resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceAddition(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallInternetServiceAddition(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceAddition resource: %v", err)
 	}
@@ -161,13 +170,15 @@ func resourceObjectFirewallInternetServiceAdditionDelete(d *schema.ResourceData,
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallInternetServiceAddition(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallInternetServiceAddition(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceAddition resource: %v", err)
 	}
@@ -183,13 +194,15 @@ func resourceObjectFirewallInternetServiceAdditionRead(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallInternetServiceAddition(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallInternetServiceAddition(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallInternetServiceAddition resource: %v", err)
 	}
@@ -230,6 +243,12 @@ func flattenObjectFirewallInternetServiceAdditionEntry(v interface{}, d *schema.
 
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
+		if _, ok := i["addr-mode"]; ok {
+			v := flattenObjectFirewallInternetServiceAdditionEntryAddrMode(i["addr-mode"], d, pre_append)
+			tmp["addr_mode"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceAddition-Entry-AddrMode")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := i["id"]; ok {
 			v := flattenObjectFirewallInternetServiceAdditionEntryId(i["id"], d, pre_append)
@@ -254,6 +273,10 @@ func flattenObjectFirewallInternetServiceAdditionEntry(v interface{}, d *schema.
 	}
 
 	return result
+}
+
+func flattenObjectFirewallInternetServiceAdditionEntryAddrMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallInternetServiceAdditionEntryId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -407,6 +430,11 @@ func expandObjectFirewallInternetServiceAdditionEntry(d *schema.ResourceData, v 
 		i := r.(map[string]interface{})
 		pre_append := "" // table
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["addr-mode"], _ = expandObjectFirewallInternetServiceAdditionEntryAddrMode(d, i["addr_mode"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["id"], _ = expandObjectFirewallInternetServiceAdditionEntryId(d, i["id"], pre_append)
@@ -433,6 +461,10 @@ func expandObjectFirewallInternetServiceAdditionEntry(d *schema.ResourceData, v 
 	}
 
 	return result, nil
+}
+
+func expandObjectFirewallInternetServiceAdditionEntryAddrMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallInternetServiceAdditionEntryId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

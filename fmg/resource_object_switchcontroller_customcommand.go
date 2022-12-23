@@ -66,18 +66,20 @@ func resourceObjectSwitchControllerCustomCommandCreate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerCustomCommand(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerCustomCommand resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerCustomCommand(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerCustomCommand(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerCustomCommand resource: %v", err)
@@ -93,18 +95,20 @@ func resourceObjectSwitchControllerCustomCommandUpdate(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerCustomCommand(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerCustomCommand resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerCustomCommand(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerCustomCommand(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerCustomCommand resource: %v", err)
 	}
@@ -122,13 +126,15 @@ func resourceObjectSwitchControllerCustomCommandDelete(d *schema.ResourceData, m
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerCustomCommand(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerCustomCommand(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerCustomCommand resource: %v", err)
 	}
@@ -144,13 +150,15 @@ func resourceObjectSwitchControllerCustomCommandRead(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerCustomCommand(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerCustomCommand(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerCustomCommand resource: %v", err)
 	}

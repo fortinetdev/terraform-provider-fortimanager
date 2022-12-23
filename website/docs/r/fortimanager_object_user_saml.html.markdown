@@ -28,6 +28,7 @@ The following arguments are supported:
 
 * `adfs_claim` - Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `disable`, `enable`.
 
+* `auth_url` - URL to verify authentication.
 * `cert` - Certificate to sign SAML messages.
 * `clock_tolerance` - Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
 * `digest_method` - Digest Method Algorithm. (default = sha1). Valid values: `sha1`, `sha256`.
@@ -56,7 +57,7 @@ The `dynamic_mapping` block supports:
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
 * `adfs_claim` - Enable/disable ADFS Claim for user/group attribute in assertion statement (default = disable). Valid values: `disable`, `enable`.
 
-* `auth_url` - Auth-Url.
+* `auth_url` - URL to verify authentication.
 * `cert` - Certificate to sign SAML messages.
 * `clock_tolerance` - Clock skew tolerance in seconds (0 - 300, default = 15, 0 = no tolerance).
 * `digest_method` - Digest method algorithm (default = sha1). Valid values: `sha1`, `sha256`.

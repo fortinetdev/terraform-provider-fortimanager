@@ -74,18 +74,20 @@ func resourceObjectUserPxgridCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPxgrid(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPxgrid resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserPxgrid(obj, adomv, nil)
+	_, err = c.CreateObjectUserPxgrid(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPxgrid resource: %v", err)
@@ -101,18 +103,20 @@ func resourceObjectUserPxgridUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPxgrid(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPxgrid resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPxgrid(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserPxgrid(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPxgrid resource: %v", err)
 	}
@@ -130,13 +134,15 @@ func resourceObjectUserPxgridDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPxgrid(adomv, mkey, nil)
+	err = c.DeleteObjectUserPxgrid(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPxgrid resource: %v", err)
 	}
@@ -152,13 +158,15 @@ func resourceObjectUserPxgridRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserPxgrid(adomv, mkey, nil)
+	o, err := c.ReadObjectUserPxgrid(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserPxgrid resource: %v", err)
 	}

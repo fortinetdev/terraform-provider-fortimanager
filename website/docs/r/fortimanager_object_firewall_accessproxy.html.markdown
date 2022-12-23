@@ -17,6 +17,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `add_vhost_domain_to_dnsdb` - Enable/disable adding vhost/domain to dnsdb for ztna dox tunnel. Valid values: `disable`, `enable`.
+
 * `api_gateway` - Api-Gateway. The structure of `api_gateway` block is documented below.
 * `api_gateway6` - Api-Gateway6. The structure of `api_gateway6` block is documented below.
 * `auth_portal` - Enable/disable authentication portal. Valid values: `disable`, `enable`.
@@ -32,6 +34,8 @@ The following arguments are supported:
 * `log_blocked_traffic` - Enable/disable logging of blocked traffic. Valid values: `disable`, `enable`.
 
 * `name` - Access Proxy name.
+* `user_agent_detect` - Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
+
 * `realservers` - Realservers. The structure of `realservers` block is documented below.
 * `server_pubkey_auth` - Enable/disable SSH real server public key authentication. Valid values: `disable`, `enable`.
 
@@ -41,6 +45,7 @@ The following arguments are supported:
 
 The `api_gateway` block supports:
 
+* `application` - SaaS application controlled by this Access Proxy.
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -114,6 +119,7 @@ The `ssl_cipher_suites` block supports:
 
 The `api_gateway6` block supports:
 
+* `application` - SaaS application controlled by this Access Proxy.
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.

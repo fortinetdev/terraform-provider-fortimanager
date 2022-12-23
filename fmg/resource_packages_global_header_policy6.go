@@ -556,18 +556,19 @@ func resourcePackagesGlobalHeaderPolicy6Create(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy6(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, adomv, paralist)
+	v, err := c.CreatePackagesGlobalHeaderPolicy6(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesGlobalHeaderPolicy6 resource: %v", err)
@@ -592,18 +593,19 @@ func resourcePackagesGlobalHeaderPolicy6Update(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy6(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy6 resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesGlobalHeaderPolicy6(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesGlobalHeaderPolicy6(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
@@ -621,13 +623,14 @@ func resourcePackagesGlobalHeaderPolicy6Delete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesGlobalHeaderPolicy6(adomv, mkey, paralist)
+	err = c.DeletePackagesGlobalHeaderPolicy6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}
@@ -643,7 +646,9 @@ func resourcePackagesGlobalHeaderPolicy6Read(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -652,10 +657,9 @@ func resourcePackagesGlobalHeaderPolicy6Read(d *schema.ResourceData, m interface
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesGlobalHeaderPolicy6(adomv, mkey, paralist)
+	o, err := c.ReadPackagesGlobalHeaderPolicy6(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesGlobalHeaderPolicy6 resource: %v", err)
 	}

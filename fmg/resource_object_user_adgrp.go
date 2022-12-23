@@ -70,18 +70,20 @@ func resourceObjectUserAdgrpCreate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserAdgrp(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserAdgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserAdgrp(obj, adomv, nil)
+	_, err = c.CreateObjectUserAdgrp(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserAdgrp resource: %v", err)
@@ -97,18 +99,20 @@ func resourceObjectUserAdgrpUpdate(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserAdgrp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserAdgrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserAdgrp(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserAdgrp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserAdgrp resource: %v", err)
 	}
@@ -126,13 +130,15 @@ func resourceObjectUserAdgrpDelete(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserAdgrp(adomv, mkey, nil)
+	err = c.DeleteObjectUserAdgrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserAdgrp resource: %v", err)
 	}
@@ -148,13 +154,15 @@ func resourceObjectUserAdgrpRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserAdgrp(adomv, mkey, nil)
+	o, err := c.ReadObjectUserAdgrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserAdgrp resource: %v", err)
 	}

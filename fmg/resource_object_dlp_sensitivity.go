@@ -57,18 +57,20 @@ func resourceObjectDlpSensitivityCreate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDlpSensitivity(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensitivity resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectDlpSensitivity(obj, adomv, nil)
+	_, err = c.CreateObjectDlpSensitivity(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectDlpSensitivity resource: %v", err)
@@ -84,18 +86,20 @@ func resourceObjectDlpSensitivityUpdate(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectDlpSensitivity(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpSensitivity resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectDlpSensitivity(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectDlpSensitivity(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectDlpSensitivity resource: %v", err)
 	}
@@ -113,13 +117,15 @@ func resourceObjectDlpSensitivityDelete(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectDlpSensitivity(adomv, mkey, nil)
+	err = c.DeleteObjectDlpSensitivity(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectDlpSensitivity resource: %v", err)
 	}
@@ -135,13 +141,15 @@ func resourceObjectDlpSensitivityRead(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectDlpSensitivity(adomv, mkey, nil)
+	o, err := c.ReadObjectDlpSensitivity(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectDlpSensitivity resource: %v", err)
 	}

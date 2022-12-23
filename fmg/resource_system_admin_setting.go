@@ -257,14 +257,16 @@ func resourceSystemAdminSettingUpdate(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemAdminSetting(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminSetting resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemAdminSetting(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemAdminSetting(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemAdminSetting resource: %v", err)
 	}
@@ -282,9 +284,11 @@ func resourceSystemAdminSettingDelete(d *schema.ResourceData, m interface{}) err
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemAdminSetting(adomv, mkey, nil)
+	err = c.DeleteSystemAdminSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemAdminSetting resource: %v", err)
 	}
@@ -300,9 +304,11 @@ func resourceSystemAdminSettingRead(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemAdminSetting(adomv, mkey, nil)
+	o, err := c.ReadSystemAdminSetting(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemAdminSetting resource: %v", err)
 	}

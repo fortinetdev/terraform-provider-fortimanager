@@ -44,14 +44,16 @@ func resourceFmupdateCustomUrlListUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateCustomUrlList(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateCustomUrlList resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateCustomUrlList(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateCustomUrlList(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateCustomUrlList resource: %v", err)
 	}
@@ -69,9 +71,11 @@ func resourceFmupdateCustomUrlListDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateCustomUrlList(adomv, mkey, nil)
+	err = c.DeleteFmupdateCustomUrlList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateCustomUrlList resource: %v", err)
 	}
@@ -87,9 +91,11 @@ func resourceFmupdateCustomUrlListRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateCustomUrlList(adomv, mkey, nil)
+	o, err := c.ReadFmupdateCustomUrlList(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateCustomUrlList resource: %v", err)
 	}

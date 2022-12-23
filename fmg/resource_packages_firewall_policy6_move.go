@@ -77,17 +77,18 @@ func resourcePackagesFirewallPolicy6MoveUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	policy6 := d.Get("policy6").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, policy6)
+	paradict["pkg"] = pkg
+	paradict["policy6"] = policy6
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallPolicy6Move(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallPolicy6MoveUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating PackagesFirewallPolicy6Move resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicy6Move(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallPolicy6Move(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy6Move resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallPolicy6MoveRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("policy6").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallPolicy6MoveRead(d *schema.ResourceData, m interface
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallPolicy6Move(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallPolicy6Move(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicy6Move resource: %v", err)
 	}

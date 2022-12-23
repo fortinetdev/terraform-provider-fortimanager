@@ -133,9 +133,16 @@ The following arguments are supported:
 
 * `acct_interim_interval` - WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
 * `address_group` - Address group ID.
+* `address_group_policy` - Configure MAC address filtering policy for MAC addresses that are in the address-group. Valid values: `disable`, `allow`, `deny`.
+
 * `alias` - Alias.
 * `antivirus_profile` - AntiVirus profile name.
+* `application_detection_engine` - Enable/disable application detection engine (default = disable). Valid values: `disable`, `enable`.
+
+* `application_dscp_marking` - Enable/disable application attribute based DSCP marking (default = disable). Valid values: `disable`, `enable`.
+
 * `application_list` - Application control list name.
+* `application_report_intv` - Application report interval (30 - 864000 sec, default = 120).
 * `atf_weight` - Airtime weight in percentage (default = 20).
 * `auth` - Authentication protocol. Valid values: `PSK`, `psk`, `RADIUS`, `radius`, `usergroup`.
 
@@ -213,6 +220,10 @@ The following arguments are supported:
 
 * `key` - WEP Key.
 * `keyindex` - WEP key index (1 - 4).
+* `l3_roaming` - Enable/disable layer 3 roaming (default = disable). Valid values: `disable`, `enable`.
+
+* `l3_roaming_mode` - Select the way that layer 3 roaming traffic is passed (default = direct). Valid values: `direct`, `indirect`.
+
 * `ldpc` - VAP low-density parity-check (LDPC) coding configuration. Valid values: `disable`, `tx`, `rx`, `rxtx`.
 
 * `local_authentication` - Enable/disable AP local authentication. Valid values: `disable`, `enable`.
@@ -317,10 +328,12 @@ The following arguments are supported:
 * `radius_server` - RADIUS server to be used to authenticate WiFi users.
 * `rates_11a` - Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`, `11`, `11-basic`.
 
+* `rates_11ac_mcs_map` - Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 * `rates_11ac_ss12` - Allowed data rates for 802.11ac/ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/1`, `mcs11/1`, `mcs10/2`, `mcs11/2`.
 
 * `rates_11ac_ss34` - Allowed data rates for 802.11ac/ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/3`, `mcs11/3`, `mcs10/4`, `mcs11/4`.
 
+* `rates_11ax_mcs_map` - Comma separated list of max supported HE MCS for spatial streams 1 through 8.
 * `rates_11ax_ss12` - Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
 
 * `rates_11ax_ss34` - Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
@@ -333,7 +346,12 @@ The following arguments are supported:
 
 * `sae_groups` - SAE-Groups. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`.
 
+* `sae_h2e_only` - Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `disable`, `enable`.
+
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
+* `sae_pk` - Enable/disable WPA3 SAE-PK (default = disable). Valid values: `disable`, `enable`.
+
+* `sae_private_key` - Private key used for WPA3 SAE-PK authentication.
 * `scan_botnet_connections` - Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
 
 * `schedule` - Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
@@ -352,6 +370,7 @@ The following arguments are supported:
 
 * `sticky_client_threshold_2g` - Minimum signal level/threshold in dBm required for the 2G client to be serviced by the AP (-95 to -20, default = -79).
 * `sticky_client_threshold_5g` - Minimum signal level/threshold in dBm required for the 5G client to be serviced by the AP (-95 to -20, default = -76).
+* `sticky_client_threshold_6g` - Minimum signal level/threshold in dBm required for the 6G client to be serviced by the AP (-95 to -20, default = -76).
 * `target_wake_time` - Enable/disable 802.11ax target wake time (default = enable). Valid values: `disable`, `enable`.
 
 * `tkip_counter_measure` - Enable/disable TKIP counter measure. Valid values: `disable`, `enable`.
@@ -417,7 +436,7 @@ The `dynamic_mapping` block supports:
 * `antivirus_profile` - AntiVirus profile name.
 * `application_detection_engine` - Application-Detection-Engine. Valid values: `disable`, `enable`.
 
-* `application_dscp_marking` - Application-Dscp-Marking. Valid values: `disable`, `enable`.
+* `application_dscp_marking` - Enable/disable application attribute based DSCP marking (default = disable). Valid values: `disable`, `enable`.
 
 * `application_list` - Application control list name.
 * `application_report_intv` - Application-Report-Intv.
@@ -500,7 +519,7 @@ The `dynamic_mapping` block supports:
 * `keyindex` - WEP key index (1 - 4).
 * `l3_roaming` - L3-Roaming. Valid values: `disable`, `enable`.
 
-* `l3_roaming_mode` - L3-Roaming-Mode. Valid values: `direct`, `indirect`.
+* `l3_roaming_mode` - Select the way that layer 3 roaming traffic is passed (default = direct). Valid values: `direct`, `indirect`.
 
 * `ldpc` - VAP low-density parity-check (LDPC) coding configuration. Valid values: `disable`, `tx`, `rx`, `rxtx`.
 
@@ -604,12 +623,12 @@ The `dynamic_mapping` block supports:
 * `radius_server` - RADIUS server to be used to authenticate WiFi users.
 * `rates_11a` - Allowed data rates for 802.11a. Valid values: `1`, `1-basic`, `2`, `2-basic`, `5.5`, `5.5-basic`, `6`, `6-basic`, `9`, `9-basic`, `12`, `12-basic`, `18`, `18-basic`, `24`, `24-basic`, `36`, `36-basic`, `48`, `48-basic`, `54`, `54-basic`, `11`, `11-basic`.
 
-* `rates_11ac_mcs_map` - Rates-11Ac-Mcs-Map.
+* `rates_11ac_mcs_map` - Comma separated list of max supported VHT MCS for spatial streams 1 through 8.
 * `rates_11ac_ss12` - Allowed data rates for 802.11ac/ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/1`, `mcs11/1`, `mcs10/2`, `mcs11/2`.
 
 * `rates_11ac_ss34` - Allowed data rates for 802.11ac/ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/3`, `mcs11/3`, `mcs10/4`, `mcs11/4`.
 
-* `rates_11ax_mcs_map` - Rates-11Ax-Mcs-Map.
+* `rates_11ax_mcs_map` - Comma separated list of max supported HE MCS for spatial streams 1 through 8.
 * `rates_11ax_ss12` - Allowed data rates for 802.11ax with 1 or 2 spatial streams. Valid values: `mcs0/1`, `mcs1/1`, `mcs2/1`, `mcs3/1`, `mcs4/1`, `mcs5/1`, `mcs6/1`, `mcs7/1`, `mcs8/1`, `mcs9/1`, `mcs10/1`, `mcs11/1`, `mcs0/2`, `mcs1/2`, `mcs2/2`, `mcs3/2`, `mcs4/2`, `mcs5/2`, `mcs6/2`, `mcs7/2`, `mcs8/2`, `mcs9/2`, `mcs10/2`, `mcs11/2`.
 
 * `rates_11ax_ss34` - Allowed data rates for 802.11ax with 3 or 4 spatial streams. Valid values: `mcs0/3`, `mcs1/3`, `mcs2/3`, `mcs3/3`, `mcs4/3`, `mcs5/3`, `mcs6/3`, `mcs7/3`, `mcs8/3`, `mcs9/3`, `mcs10/3`, `mcs11/3`, `mcs0/4`, `mcs1/4`, `mcs2/4`, `mcs3/4`, `mcs4/4`, `mcs5/4`, `mcs6/4`, `mcs7/4`, `mcs8/4`, `mcs9/4`, `mcs10/4`, `mcs11/4`.
@@ -622,12 +641,12 @@ The `dynamic_mapping` block supports:
 
 * `sae_groups` - SAE-Groups. Valid values: `1`, `2`, `5`, `14`, `15`, `16`, `17`, `18`, `19`, `20`, `21`, `27`, `28`, `29`, `30`, `31`.
 
-* `sae_h2e_only` - Sae-H2E-Only. Valid values: `disable`, `enable`.
+* `sae_h2e_only` - Use hash-to-element-only mechanism for PWE derivation (default = disable). Valid values: `disable`, `enable`.
 
 * `sae_password` - WPA3 SAE password to be used to authenticate WiFi users.
-* `sae_pk` - Sae-Pk. Valid values: `disable`, `enable`.
+* `sae_pk` - Enable/disable WPA3 SAE-PK (default = disable). Valid values: `disable`, `enable`.
 
-* `sae_private_key` - Sae-Private-Key.
+* `sae_private_key` - Private key used for WPA3 SAE-PK authentication.
 * `scan_botnet_connections` - Block or monitor connections to Botnet servers or disable Botnet scanning. Valid values: `disable`, `block`, `monitor`.
 
 * `schedule` - Firewall schedules for enabling this VAP on the FortiAP. This VAP will be enabled when at least one of the schedules is valid. Separate multiple schedule names with a space.
@@ -646,7 +665,7 @@ The `dynamic_mapping` block supports:
 
 * `sticky_client_threshold_2g` - Sticky-Client-Threshold-2G.
 * `sticky_client_threshold_5g` - Sticky-Client-Threshold-5G.
-* `sticky_client_threshold_6g` - Sticky-Client-Threshold-6G.
+* `sticky_client_threshold_6g` - Minimum signal level/threshold in dBm required for the 6G client to be serviced by the AP (-95 to -20, default = -76).
 * `target_wake_time` - Enable/disable 802.11ax target wake time (default = enable). Valid values: `disable`, `enable`.
 
 * `tkip_counter_measure` - Enable/disable TKIP counter measure. Valid values: `disable`, `enable`.

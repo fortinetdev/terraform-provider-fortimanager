@@ -64,18 +64,20 @@ func resourceObjectUserPeergrpCreate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPeergrp(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPeergrp resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserPeergrp(obj, adomv, nil)
+	_, err = c.CreateObjectUserPeergrp(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserPeergrp resource: %v", err)
@@ -91,18 +93,20 @@ func resourceObjectUserPeergrpUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserPeergrp(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPeergrp resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserPeergrp(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserPeergrp(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserPeergrp resource: %v", err)
 	}
@@ -120,13 +124,15 @@ func resourceObjectUserPeergrpDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserPeergrp(adomv, mkey, nil)
+	err = c.DeleteObjectUserPeergrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserPeergrp resource: %v", err)
 	}
@@ -142,13 +148,15 @@ func resourceObjectUserPeergrpRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserPeergrp(adomv, mkey, nil)
+	o, err := c.ReadObjectUserPeergrp(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserPeergrp resource: %v", err)
 	}

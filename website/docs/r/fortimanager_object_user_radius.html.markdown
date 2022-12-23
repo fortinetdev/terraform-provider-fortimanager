@@ -63,6 +63,8 @@ The following arguments are supported:
 * `auth_type` - Authentication methods/protocols permitted for this RADIUS server. Valid values: `pap`, `chap`, `ms_chap`, `ms_chap_v2`, `auto`.
 
 * `class` - Class attribute name(s).
+* `delimiter` - Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
+
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `group_override_attr_type` - RADIUS attribute type to override user group information. Valid values: `filter-Id`, `class`.
 
@@ -70,6 +72,12 @@ The following arguments are supported:
 
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
+
+* `mac_case` - MAC authentication case (default = lowercase). Valid values: `uppercase`, `lowercase`.
+
+* `mac_password_delimiter` - MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+
+* `mac_username_delimiter` - MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
 
 * `name` - RADIUS server entry name.
 * `nas_ip` - IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
@@ -207,11 +215,11 @@ The `dynamic_mapping` block supports:
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
-* `mac_case` - Mac-Case. Valid values: `uppercase`, `lowercase`.
+* `mac_case` - MAC authentication case (default = lowercase). Valid values: `uppercase`, `lowercase`.
 
-* `mac_password_delimiter` - Mac-Password-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+* `mac_password_delimiter` - MAC authentication password delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
 
-* `mac_username_delimiter` - Mac-Username-Delimiter. Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
+* `mac_username_delimiter` - MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
 
 * `nas_ip` - IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 * `password_encoding` - Password encoding. Valid values: `ISO-8859-1`, `auto`.

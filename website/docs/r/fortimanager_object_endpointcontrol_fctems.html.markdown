@@ -26,6 +26,9 @@ The following arguments are supported:
 * `certificate_fingerprint` - EMS certificate fingerprint.
 * `cloud_server_type` - Cloud server type. Valid values: `production`, `alpha`, `beta`.
 
+* `dirty_reason` - Dirty Reason for FortiClient EMS. Valid values: `none`, `mismatched-ems-sn`.
+
+* `ems_id` - EMS ID in order (1 - 5)
 * `fortinetone_cloud_authentication` - Enable/disable authentication of FortiClient EMS Cloud through FortiCloud account. Valid values: `disable`, `enable`.
 
 * `https_port` - FortiClient EMS HTTPS access port number. (1 - 65535, default: 443).
@@ -33,6 +36,7 @@ The following arguments are supported:
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
 * `name` - FortiClient Enterprise Management Server (EMS) name.
+* `out_of_sync_threshold` - Outdated resource threshold in seconds (10 - 3600, default = 180).
 * `serial_number` - FortiClient EMS Serial Number.
 * `preserve_ssl_session` - Enable/disable preservation of EMS SSL session connection. WARNING: Most users should not touch this setting! Valid values: `disable`, `enable`.
 
@@ -48,6 +52,9 @@ The following arguments are supported:
 
 * `server` - FortiClient EMS FQDN or IPv4 address.
 * `source_ip` - REST API call source IP.
+* `status` - Enable or disable this EMS configuration. Valid values: `disable`, `enable`.
+
+* `tenant_id` - EMS Tenant ID.
 * `status_check_interval` - FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).
 * `websocket_override` - Enable/disable override behavior for how this FortiGate unit connects to EMS using a WebSocket connection. Valid values: `disable`, `enable`.
 

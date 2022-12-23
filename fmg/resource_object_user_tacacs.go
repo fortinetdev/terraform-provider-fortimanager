@@ -209,18 +209,20 @@ func resourceObjectUserTacacsCreate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserTacacs(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserTacacs resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserTacacs(obj, adomv, nil)
+	_, err = c.CreateObjectUserTacacs(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserTacacs resource: %v", err)
@@ -236,18 +238,20 @@ func resourceObjectUserTacacsUpdate(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserTacacs(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserTacacs resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserTacacs(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserTacacs(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserTacacs resource: %v", err)
 	}
@@ -265,13 +269,15 @@ func resourceObjectUserTacacsDelete(d *schema.ResourceData, m interface{}) error
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserTacacs(adomv, mkey, nil)
+	err = c.DeleteObjectUserTacacs(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserTacacs resource: %v", err)
 	}
@@ -287,13 +293,15 @@ func resourceObjectUserTacacsRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserTacacs(adomv, mkey, nil)
+	o, err := c.ReadObjectUserTacacs(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserTacacs resource: %v", err)
 	}

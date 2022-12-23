@@ -181,14 +181,16 @@ func resourceSystemLogSettingsRollingRegularUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogSettingsRollingRegular(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettingsRollingRegular resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogSettingsRollingRegular(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogSettingsRollingRegular(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogSettingsRollingRegular resource: %v", err)
 	}
@@ -206,9 +208,11 @@ func resourceSystemLogSettingsRollingRegularDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogSettingsRollingRegular(adomv, mkey, nil)
+	err = c.DeleteSystemLogSettingsRollingRegular(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogSettingsRollingRegular resource: %v", err)
 	}
@@ -224,9 +228,11 @@ func resourceSystemLogSettingsRollingRegularRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogSettingsRollingRegular(adomv, mkey, nil)
+	o, err := c.ReadSystemLogSettingsRollingRegular(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogSettingsRollingRegular resource: %v", err)
 	}

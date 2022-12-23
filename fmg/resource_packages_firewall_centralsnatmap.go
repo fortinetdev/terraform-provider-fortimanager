@@ -93,10 +93,12 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 			"nat46": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"nat64": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"orig_addr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -134,6 +136,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
@@ -148,22 +151,23 @@ func resourcePackagesFirewallCentralSnatMapCreate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallCentralSnatMap(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallCentralSnatMap resource while getting object: %v", err)
 	}
 
-	_, err = c.CreatePackagesFirewallCentralSnatMap(obj, adomv, paralist)
+	_, err = c.CreatePackagesFirewallCentralSnatMap(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallCentralSnatMap resource: %v", err)
@@ -179,22 +183,23 @@ func resourcePackagesFirewallCentralSnatMapUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallCentralSnatMap(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMap resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallCentralSnatMap(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallCentralSnatMap(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallCentralSnatMap resource: %v", err)
 	}
@@ -212,17 +217,18 @@ func resourcePackagesFirewallCentralSnatMapDelete(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallCentralSnatMap(adomv, mkey, paralist)
+	err = c.DeletePackagesFirewallCentralSnatMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallCentralSnatMap resource: %v", err)
 	}
@@ -238,11 +244,13 @@ func resourcePackagesFirewallCentralSnatMapRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	if pkg == "" {
@@ -251,10 +259,9 @@ func resourcePackagesFirewallCentralSnatMapRead(d *schema.ResourceData, m interf
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallCentralSnatMap(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallCentralSnatMap(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallCentralSnatMap resource: %v", err)
 	}

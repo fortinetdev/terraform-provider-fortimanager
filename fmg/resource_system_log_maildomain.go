@@ -55,14 +55,16 @@ func resourceSystemLogMailDomainCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogMailDomain(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogMailDomain resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemLogMailDomain(obj, adomv, nil)
+	_, err = c.CreateSystemLogMailDomain(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogMailDomain resource: %v", err)
@@ -78,14 +80,16 @@ func resourceSystemLogMailDomainUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogMailDomain(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogMailDomain resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogMailDomain(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogMailDomain(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogMailDomain resource: %v", err)
 	}
@@ -103,9 +107,11 @@ func resourceSystemLogMailDomainDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogMailDomain(adomv, mkey, nil)
+	err = c.DeleteSystemLogMailDomain(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogMailDomain resource: %v", err)
 	}
@@ -121,9 +127,11 @@ func resourceSystemLogMailDomainRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogMailDomain(adomv, mkey, nil)
+	o, err := c.ReadSystemLogMailDomain(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogMailDomain resource: %v", err)
 	}

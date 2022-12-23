@@ -48,14 +48,16 @@ func resourceSystemLogTopologyUpdate(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogTopology(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogTopology resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogTopology(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogTopology(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogTopology resource: %v", err)
 	}
@@ -73,9 +75,11 @@ func resourceSystemLogTopologyDelete(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogTopology(adomv, mkey, nil)
+	err = c.DeleteSystemLogTopology(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogTopology resource: %v", err)
 	}
@@ -91,9 +95,11 @@ func resourceSystemLogTopologyRead(d *schema.ResourceData, m interface{}) error 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogTopology(adomv, mkey, nil)
+	o, err := c.ReadSystemLogTopology(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogTopology resource: %v", err)
 	}

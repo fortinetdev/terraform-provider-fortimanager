@@ -597,18 +597,20 @@ func resourceObjectVpnSslWebPortalCreate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnSslWebPortal(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortal resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectVpnSslWebPortal(obj, adomv, nil)
+	_, err = c.CreateObjectVpnSslWebPortal(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectVpnSslWebPortal resource: %v", err)
@@ -624,18 +626,20 @@ func resourceObjectVpnSslWebPortalUpdate(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectVpnSslWebPortal(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortal resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectVpnSslWebPortal(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectVpnSslWebPortal(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectVpnSslWebPortal resource: %v", err)
 	}
@@ -653,13 +657,15 @@ func resourceObjectVpnSslWebPortalDelete(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectVpnSslWebPortal(adomv, mkey, nil)
+	err = c.DeleteObjectVpnSslWebPortal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectVpnSslWebPortal resource: %v", err)
 	}
@@ -675,13 +681,15 @@ func resourceObjectVpnSslWebPortalRead(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectVpnSslWebPortal(adomv, mkey, nil)
+	o, err := c.ReadObjectVpnSslWebPortal(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectVpnSslWebPortal resource: %v", err)
 	}

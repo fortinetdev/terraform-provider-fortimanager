@@ -62,6 +62,7 @@ func resourceObjectSwitchControllerMacPolicy() *schema.Resource {
 			"drop": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -84,18 +85,20 @@ func resourceObjectSwitchControllerMacPolicyCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerMacPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerMacPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerMacPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerMacPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerMacPolicy resource: %v", err)
@@ -111,18 +114,20 @@ func resourceObjectSwitchControllerMacPolicyUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerMacPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerMacPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerMacPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerMacPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerMacPolicy resource: %v", err)
 	}
@@ -140,13 +145,15 @@ func resourceObjectSwitchControllerMacPolicyDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerMacPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerMacPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerMacPolicy resource: %v", err)
 	}
@@ -162,13 +169,15 @@ func resourceObjectSwitchControllerMacPolicyRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerMacPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerMacPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerMacPolicy resource: %v", err)
 	}

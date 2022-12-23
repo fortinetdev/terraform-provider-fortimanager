@@ -83,18 +83,20 @@ func resourceObjectSystemVirtualWirePairCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemVirtualWirePair(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemVirtualWirePair resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSystemVirtualWirePair(obj, adomv, nil)
+	_, err = c.CreateObjectSystemVirtualWirePair(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSystemVirtualWirePair resource: %v", err)
@@ -110,18 +112,20 @@ func resourceObjectSystemVirtualWirePairUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSystemVirtualWirePair(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemVirtualWirePair resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSystemVirtualWirePair(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSystemVirtualWirePair(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSystemVirtualWirePair resource: %v", err)
 	}
@@ -139,13 +143,15 @@ func resourceObjectSystemVirtualWirePairDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSystemVirtualWirePair(adomv, mkey, nil)
+	err = c.DeleteObjectSystemVirtualWirePair(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSystemVirtualWirePair resource: %v", err)
 	}
@@ -161,13 +167,15 @@ func resourceObjectSystemVirtualWirePairRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSystemVirtualWirePair(adomv, mkey, nil)
+	o, err := c.ReadObjectSystemVirtualWirePair(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSystemVirtualWirePair resource: %v", err)
 	}

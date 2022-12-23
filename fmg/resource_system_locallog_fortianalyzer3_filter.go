@@ -248,14 +248,16 @@ func resourceSystemLocallogFortianalyzer3FilterUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLocallogFortianalyzer3Filter(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogFortianalyzer3Filter resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLocallogFortianalyzer3Filter(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLocallogFortianalyzer3Filter(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLocallogFortianalyzer3Filter resource: %v", err)
 	}
@@ -273,9 +275,11 @@ func resourceSystemLocallogFortianalyzer3FilterDelete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLocallogFortianalyzer3Filter(adomv, mkey, nil)
+	err = c.DeleteSystemLocallogFortianalyzer3Filter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLocallogFortianalyzer3Filter resource: %v", err)
 	}
@@ -291,9 +295,11 @@ func resourceSystemLocallogFortianalyzer3FilterRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLocallogFortianalyzer3Filter(adomv, mkey, nil)
+	o, err := c.ReadSystemLocallogFortianalyzer3Filter(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLocallogFortianalyzer3Filter resource: %v", err)
 	}

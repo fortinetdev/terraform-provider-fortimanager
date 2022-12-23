@@ -55,14 +55,16 @@ func resourceSystemLogRatelimitDeviceCreate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogRatelimitDevice(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemLogRatelimitDevice(obj, adomv, nil)
+	_, err = c.CreateSystemLogRatelimitDevice(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemLogRatelimitDevice resource: %v", err)
@@ -78,14 +80,16 @@ func resourceSystemLogRatelimitDeviceUpdate(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogRatelimitDevice(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimitDevice resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogRatelimitDevice(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogRatelimitDevice(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogRatelimitDevice resource: %v", err)
 	}
@@ -103,9 +107,11 @@ func resourceSystemLogRatelimitDeviceDelete(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogRatelimitDevice(adomv, mkey, nil)
+	err = c.DeleteSystemLogRatelimitDevice(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogRatelimitDevice resource: %v", err)
 	}
@@ -121,9 +127,11 @@ func resourceSystemLogRatelimitDeviceRead(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogRatelimitDevice(adomv, mkey, nil)
+	o, err := c.ReadSystemLogRatelimitDevice(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogRatelimitDevice resource: %v", err)
 	}

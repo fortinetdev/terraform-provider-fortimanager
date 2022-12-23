@@ -66,18 +66,20 @@ func resourceObjectWirelessControllerSsidPolicyCreate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerSsidPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSsidPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectWirelessControllerSsidPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectWirelessControllerSsidPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectWirelessControllerSsidPolicy resource: %v", err)
@@ -93,18 +95,20 @@ func resourceObjectWirelessControllerSsidPolicyUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectWirelessControllerSsidPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerSsidPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectWirelessControllerSsidPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectWirelessControllerSsidPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectWirelessControllerSsidPolicy resource: %v", err)
 	}
@@ -122,13 +126,15 @@ func resourceObjectWirelessControllerSsidPolicyDelete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectWirelessControllerSsidPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectWirelessControllerSsidPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectWirelessControllerSsidPolicy resource: %v", err)
 	}
@@ -144,13 +150,15 @@ func resourceObjectWirelessControllerSsidPolicyRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectWirelessControllerSsidPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectWirelessControllerSsidPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectWirelessControllerSsidPolicy resource: %v", err)
 	}

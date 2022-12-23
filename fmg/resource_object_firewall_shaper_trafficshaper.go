@@ -118,18 +118,20 @@ func resourceObjectFirewallShaperTrafficShaperCreate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallShaperTrafficShaper(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallShaperTrafficShaper resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallShaperTrafficShaper(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallShaperTrafficShaper(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallShaperTrafficShaper resource: %v", err)
@@ -145,18 +147,20 @@ func resourceObjectFirewallShaperTrafficShaperUpdate(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallShaperTrafficShaper(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallShaperTrafficShaper resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallShaperTrafficShaper(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallShaperTrafficShaper(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallShaperTrafficShaper resource: %v", err)
 	}
@@ -174,13 +178,15 @@ func resourceObjectFirewallShaperTrafficShaperDelete(d *schema.ResourceData, m i
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallShaperTrafficShaper(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallShaperTrafficShaper(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallShaperTrafficShaper resource: %v", err)
 	}
@@ -196,13 +202,15 @@ func resourceObjectFirewallShaperTrafficShaperRead(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallShaperTrafficShaper(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallShaperTrafficShaper(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallShaperTrafficShaper resource: %v", err)
 	}

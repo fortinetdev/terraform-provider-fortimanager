@@ -77,17 +77,18 @@ func resourcePackagesFirewallAclMoveUpdate(d *schema.ResourceData, m interface{}
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	pkg := d.Get("pkg").(string)
 	acl := d.Get("acl").(string)
-	var paralist []string
-	paralist = append(paralist, pkg)
-	paralist = append(paralist, acl)
+	paradict["pkg"] = pkg
+	paradict["acl"] = acl
 
 	target := d.Get("target").(string)
 	obj, err := getObjectPackagesFirewallAclMove(d)
@@ -95,7 +96,7 @@ func resourcePackagesFirewallAclMoveUpdate(d *schema.ResourceData, m interface{}
 		return fmt.Errorf("Error updating PackagesFirewallAclMove resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallAclMove(obj, adomv, mkey, paralist)
+	_, err = c.UpdatePackagesFirewallAclMove(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallAclMove resource: %v", err)
 	}
@@ -119,11 +120,13 @@ func resourcePackagesFirewallAclMoveRead(d *schema.ResourceData, m interface{}) 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	sid, err := strconv.Atoi(d.Get("acl").(string))
 	if err != nil {
@@ -142,10 +145,9 @@ func resourcePackagesFirewallAclMoveRead(d *schema.ResourceData, m interface{}) 
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
-	var paralist []string
-	paralist = append(paralist, pkg)
+	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallAclMove(adomv, mkey, paralist)
+	o, err := c.ReadPackagesFirewallAclMove(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallAclMove resource: %v", err)
 	}

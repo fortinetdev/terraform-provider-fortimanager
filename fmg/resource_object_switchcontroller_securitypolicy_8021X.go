@@ -148,18 +148,20 @@ func resourceObjectSwitchControllerSecurityPolicy8021XCreate(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerSecurityPolicy8021X(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerSecurityPolicy8021X resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerSecurityPolicy8021X(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerSecurityPolicy8021X(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
@@ -175,18 +177,20 @@ func resourceObjectSwitchControllerSecurityPolicy8021XUpdate(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerSecurityPolicy8021X(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerSecurityPolicy8021X resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerSecurityPolicy8021X(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerSecurityPolicy8021X(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
 	}
@@ -204,13 +208,15 @@ func resourceObjectSwitchControllerSecurityPolicy8021XDelete(d *schema.ResourceD
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerSecurityPolicy8021X(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerSecurityPolicy8021X(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
 	}
@@ -226,13 +232,15 @@ func resourceObjectSwitchControllerSecurityPolicy8021XRead(d *schema.ResourceDat
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerSecurityPolicy8021X(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerSecurityPolicy8021X(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerSecurityPolicy8021X resource: %v", err)
 	}

@@ -28,6 +28,7 @@ The following arguments are supported:
 
 * `assign_excluded` - Assign_Excluded. Valid values: `disable`, `enable`.
 
+* `assign_name` - Assign_Name.
 * `specify_assign_pkg_list` - Specify_Assign_Pkg_List. Valid values: `disable`, `enable`.
 
 

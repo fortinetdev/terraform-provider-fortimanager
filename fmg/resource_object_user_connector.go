@@ -66,18 +66,20 @@ func resourceObjectUserConnectorCreate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserConnector(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectUserConnector(obj, adomv, nil)
+	_, err = c.CreateObjectUserConnector(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectUserConnector resource: %v", err)
@@ -93,18 +95,20 @@ func resourceObjectUserConnectorUpdate(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectUserConnector(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserConnector resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectUserConnector(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectUserConnector(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectUserConnector resource: %v", err)
 	}
@@ -122,13 +126,15 @@ func resourceObjectUserConnectorDelete(d *schema.ResourceData, m interface{}) er
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectUserConnector(adomv, mkey, nil)
+	err = c.DeleteObjectUserConnector(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectUserConnector resource: %v", err)
 	}
@@ -144,13 +150,15 @@ func resourceObjectUserConnectorRead(d *schema.ResourceData, m interface{}) erro
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectUserConnector(adomv, mkey, nil)
+	o, err := c.ReadObjectUserConnector(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectUserConnector resource: %v", err)
 	}

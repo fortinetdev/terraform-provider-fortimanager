@@ -210,14 +210,16 @@ func resourceSystemSqlUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSql(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSql resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSql(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSql(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSql resource: %v", err)
 	}
@@ -235,9 +237,11 @@ func resourceSystemSqlDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemSql(adomv, mkey, nil)
+	err = c.DeleteSystemSql(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemSql resource: %v", err)
 	}
@@ -253,9 +257,11 @@ func resourceSystemSqlRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSql(adomv, mkey, nil)
+	o, err := c.ReadSystemSql(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSql resource: %v", err)
 	}

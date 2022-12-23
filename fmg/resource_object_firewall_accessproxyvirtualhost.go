@@ -59,6 +59,10 @@ func resourceObjectFirewallAccessProxyVirtualHost() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"replacemsg_group": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ssl_certificate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -71,18 +75,20 @@ func resourceObjectFirewallAccessProxyVirtualHostCreate(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAccessProxyVirtualHost(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyVirtualHost resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallAccessProxyVirtualHost(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallAccessProxyVirtualHost(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyVirtualHost resource: %v", err)
@@ -98,18 +104,20 @@ func resourceObjectFirewallAccessProxyVirtualHostUpdate(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallAccessProxyVirtualHost(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyVirtualHost resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallAccessProxyVirtualHost(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallAccessProxyVirtualHost(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallAccessProxyVirtualHost resource: %v", err)
 	}
@@ -127,13 +135,15 @@ func resourceObjectFirewallAccessProxyVirtualHostDelete(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallAccessProxyVirtualHost(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallAccessProxyVirtualHost(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallAccessProxyVirtualHost resource: %v", err)
 	}
@@ -149,13 +159,15 @@ func resourceObjectFirewallAccessProxyVirtualHostRead(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallAccessProxyVirtualHost(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallAccessProxyVirtualHost(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxyVirtualHost resource: %v", err)
 	}
@@ -182,6 +194,10 @@ func flattenObjectFirewallAccessProxyVirtualHostHostType(v interface{}, d *schem
 }
 
 func flattenObjectFirewallAccessProxyVirtualHostName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxyVirtualHostReplacemsgGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -226,6 +242,16 @@ func refreshObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData, o
 		}
 	}
 
+	if err = d.Set("replacemsg_group", flattenObjectFirewallAccessProxyVirtualHostReplacemsgGroup(o["replacemsg-group"], d, "replacemsg_group")); err != nil {
+		if vv, ok := fortiAPIPatch(o["replacemsg-group"], "ObjectFirewallAccessProxyVirtualHost-ReplacemsgGroup"); ok {
+			if err = d.Set("replacemsg_group", vv); err != nil {
+				return fmt.Errorf("Error reading replacemsg_group: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading replacemsg_group: %v", err)
+		}
+	}
+
 	if err = d.Set("ssl_certificate", flattenObjectFirewallAccessProxyVirtualHostSslCertificate(o["ssl-certificate"], d, "ssl_certificate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-certificate"], "ObjectFirewallAccessProxyVirtualHost-SslCertificate"); ok {
 			if err = d.Set("ssl_certificate", vv); err != nil {
@@ -254,6 +280,10 @@ func expandObjectFirewallAccessProxyVirtualHostHostType(d *schema.ResourceData, 
 }
 
 func expandObjectFirewallAccessProxyVirtualHostName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxyVirtualHostReplacemsgGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -288,6 +318,15 @@ func getObjectObjectFirewallAccessProxyVirtualHost(d *schema.ResourceData) (*map
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("replacemsg_group"); ok || d.HasChange("replacemsg_group") {
+		t, err := expandObjectFirewallAccessProxyVirtualHostReplacemsgGroup(d, v, "replacemsg_group")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["replacemsg-group"] = t
 		}
 	}
 

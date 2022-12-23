@@ -141,7 +141,7 @@ The following arguments are supported:
 * `device_ownership` - Device-Ownership. Valid values: `disable`, `enable`.
 
 * `devices` - Devices.
-* `diffserv_copy` - Diffserv-Copy. Valid values: `disable`, `enable`.
+* `diffserv_copy` - Enable to copy packet's DiffServ values from session's original direction to its reply direction. Valid values: `disable`, `enable`.
 
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
@@ -167,7 +167,7 @@ The following arguments are supported:
 * `dstaddr_negate` - When enabled dstaddr specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 
 * `dstaddr6` - Dstaddr6.
-* `dstaddr6_negate` - Dstaddr6-Negate. Valid values: `disable`, `enable`.
+* `dstaddr6_negate` - When enabled dstaddr6 specifies what the destination address must NOT be. Valid values: `disable`, `enable`.
 
 * `dstintf` - Outgoing (egress) interface.
 * `dynamic_bypass` - Dynamic-Bypass. Valid values: `disable`, `enable`.
@@ -258,21 +258,21 @@ The following arguments are supported:
 * `internet_service_src_name` - Internet-Service-Src-Name.
 * `internet_service_src_negate` - When enabled internet-service-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
-* `internet_service6` - Internet-Service6. Valid values: `disable`, `enable`.
+* `internet_service6` - Enable/disable use of IPv6 Internet Services for this policy. If enabled, destination address and service are not used. Valid values: `disable`, `enable`.
 
-* `internet_service6_custom` - Internet-Service6-Custom.
-* `internet_service6_custom_group` - Internet-Service6-Custom-Group.
-* `internet_service6_group` - Internet-Service6-Group.
-* `internet_service6_name` - Internet-Service6-Name.
-* `internet_service6_negate` - Internet-Service6-Negate. Valid values: `disable`, `enable`.
+* `internet_service6_custom` - Custom IPv6 Internet Service name.
+* `internet_service6_custom_group` - Custom Internet Service6 group name.
+* `internet_service6_group` - Internet Service group name.
+* `internet_service6_name` - IPv6 Internet Service name.
+* `internet_service6_negate` - When enabled internet-service6 specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
-* `internet_service6_src` - Internet-Service6-Src. Valid values: `disable`, `enable`.
+* `internet_service6_src` - Enable/disable use of IPv6 Internet Services in source for this policy. If enabled, source address is not used. Valid values: `disable`, `enable`.
 
-* `internet_service6_src_custom` - Internet-Service6-Src-Custom.
-* `internet_service6_src_custom_group` - Internet-Service6-Src-Custom-Group.
-* `internet_service6_src_group` - Internet-Service6-Src-Group.
-* `internet_service6_src_name` - Internet-Service6-Src-Name.
-* `internet_service6_src_negate` - Internet-Service6-Src-Negate. Valid values: `disable`, `enable`.
+* `internet_service6_src_custom` - Custom IPv6 Internet Service source name.
+* `internet_service6_src_custom_group` - Custom Internet Service6 source group name.
+* `internet_service6_src_group` - Internet Service6 source group name.
+* `internet_service6_src_name` - IPv6 Internet Service source name.
+* `internet_service6_src_negate` - When enabled internet-service6-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
 * `ip_based` - Ip-Based. Valid values: `disable`, `enable`.
 
@@ -311,8 +311,8 @@ The following arguments are supported:
 * `natip` - Policy-based IPsec VPN: source NAT IP address for outgoing traffic.
 * `natoutbound` - Policy-based IPsec VPN: apply source NAT to outbound traffic. Valid values: `disable`, `enable`.
 
-* `network_service_dynamic` - Network-Service-Dynamic.
-* `network_service_src_dynamic` - Network-Service-Src-Dynamic.
+* `network_service_dynamic` - Dynamic Network Service name.
+* `network_service_src_dynamic` - Dynamic Network Service source name.
 * `np_acceleration` - Enable/disable UTM Network Processor acceleration. Valid values: `disable`, `enable`.
 
 * `ntlm` - Enable/disable NTLM authentication. Valid values: `disable`, `enable`.
@@ -351,10 +351,10 @@ The following arguments are supported:
 * `replacemsg_override_group` - Override the default replacement message group for this policy.
 * `reputation_direction` - Direction of the initial traffic for reputation to take effect. Valid values: `source`, `destination`.
 
-* `reputation_direction6` - Reputation-Direction6. Valid values: `source`, `destination`.
+* `reputation_direction6` - Direction of the initial traffic for IPv6 reputation to take effect. Valid values: `source`, `destination`.
 
 * `reputation_minimum` - Minimum Reputation to take action.
-* `reputation_minimum6` - Reputation-Minimum6.
+* `reputation_minimum6` - IPv6 Minimum Reputation to take action.
 * `require_tfa` - Require-Tfa. Valid values: `disable`, `enable`.
 
 * `reverse_cache` - Reverse-Cache. Valid values: `disable`, `enable`.
@@ -387,7 +387,7 @@ The following arguments are supported:
 * `srcaddr_negate` - When enabled srcaddr specifies what the source address must NOT be. Valid values: `disable`, `enable`.
 
 * `srcaddr6` - Srcaddr6.
-* `srcaddr6_negate` - Srcaddr6-Negate. Valid values: `disable`, `enable`.
+* `srcaddr6_negate` - When enabled srcaddr6 specifies what the source address must NOT be. Valid values: `disable`, `enable`.
 
 * `srcintf` - Incoming (ingress) interface.
 * `ssh_filter_profile` - Name of an existing SSH filter profile.

@@ -73,18 +73,20 @@ func resourceObjectFirewallInternetServiceGroupCreate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallInternetServiceGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallInternetServiceGroup(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallInternetServiceGroup(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallInternetServiceGroup resource: %v", err)
@@ -100,18 +102,20 @@ func resourceObjectFirewallInternetServiceGroupUpdate(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallInternetServiceGroup(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceGroup resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallInternetServiceGroup(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallInternetServiceGroup(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallInternetServiceGroup resource: %v", err)
 	}
@@ -129,13 +133,15 @@ func resourceObjectFirewallInternetServiceGroupDelete(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallInternetServiceGroup(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallInternetServiceGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallInternetServiceGroup resource: %v", err)
 	}
@@ -151,13 +157,15 @@ func resourceObjectFirewallInternetServiceGroupRead(d *schema.ResourceData, m in
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallInternetServiceGroup(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallInternetServiceGroup(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallInternetServiceGroup resource: %v", err)
 	}

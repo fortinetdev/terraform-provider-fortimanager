@@ -69,18 +69,20 @@ func resourceObjectEmailfilterFortishieldUpdate(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectEmailfilterFortishield(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterFortishield resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectEmailfilterFortishield(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectEmailfilterFortishield(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectEmailfilterFortishield resource: %v", err)
 	}
@@ -98,13 +100,15 @@ func resourceObjectEmailfilterFortishieldDelete(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectEmailfilterFortishield(adomv, mkey, nil)
+	err = c.DeleteObjectEmailfilterFortishield(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectEmailfilterFortishield resource: %v", err)
 	}
@@ -120,13 +124,15 @@ func resourceObjectEmailfilterFortishieldRead(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectEmailfilterFortishield(adomv, mkey, nil)
+	o, err := c.ReadObjectEmailfilterFortishield(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectEmailfilterFortishield resource: %v", err)
 	}

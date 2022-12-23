@@ -996,18 +996,20 @@ func resourceObjectFirewallSslSshProfileCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallSslSshProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSslSshProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallSslSshProfile(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallSslSshProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallSslSshProfile resource: %v", err)
@@ -1023,18 +1025,20 @@ func resourceObjectFirewallSslSshProfileUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallSslSshProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallSslSshProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallSslSshProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallSslSshProfile resource: %v", err)
 	}
@@ -1052,13 +1056,15 @@ func resourceObjectFirewallSslSshProfileDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallSslSshProfile(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallSslSshProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallSslSshProfile resource: %v", err)
 	}
@@ -1074,13 +1080,15 @@ func resourceObjectFirewallSslSshProfileRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallSslSshProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallSslSshProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallSslSshProfile resource: %v", err)
 	}

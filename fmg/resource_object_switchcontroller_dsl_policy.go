@@ -104,18 +104,20 @@ func resourceObjectSwitchControllerDslPolicyCreate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerDslPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerDslPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectSwitchControllerDslPolicy(obj, adomv, nil)
+	_, err = c.CreateObjectSwitchControllerDslPolicy(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectSwitchControllerDslPolicy resource: %v", err)
@@ -131,18 +133,20 @@ func resourceObjectSwitchControllerDslPolicyUpdate(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectSwitchControllerDslPolicy(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerDslPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectSwitchControllerDslPolicy(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectSwitchControllerDslPolicy(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectSwitchControllerDslPolicy resource: %v", err)
 	}
@@ -160,13 +164,15 @@ func resourceObjectSwitchControllerDslPolicyDelete(d *schema.ResourceData, m int
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectSwitchControllerDslPolicy(adomv, mkey, nil)
+	err = c.DeleteObjectSwitchControllerDslPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectSwitchControllerDslPolicy resource: %v", err)
 	}
@@ -182,13 +188,15 @@ func resourceObjectSwitchControllerDslPolicyRead(d *schema.ResourceData, m inter
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectSwitchControllerDslPolicy(adomv, mkey, nil)
+	o, err := c.ReadObjectSwitchControllerDslPolicy(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectSwitchControllerDslPolicy resource: %v", err)
 	}

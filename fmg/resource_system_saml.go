@@ -194,14 +194,16 @@ func resourceSystemSamlUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSaml(d, false)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSaml(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSaml(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemSaml resource: %v", err)
 	}
@@ -218,7 +220,9 @@ func resourceSystemSamlDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemSaml(d, true)
 
@@ -226,7 +230,7 @@ func resourceSystemSamlDelete(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error updating SystemSaml resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemSaml(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemSaml(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error clearing SystemSaml resource: %v", err)
 	}
@@ -242,9 +246,11 @@ func resourceSystemSamlRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemSaml(adomv, mkey, nil)
+	o, err := c.ReadSystemSaml(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemSaml resource: %v", err)
 	}

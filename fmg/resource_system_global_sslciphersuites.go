@@ -50,14 +50,16 @@ func resourceSystemGlobalSslCipherSuitesCreate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemGlobalSslCipherSuites(d)
 	if err != nil {
 		return fmt.Errorf("Error creating SystemGlobalSslCipherSuites resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateSystemGlobalSslCipherSuites(obj, adomv, nil)
+	_, err = c.CreateSystemGlobalSslCipherSuites(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating SystemGlobalSslCipherSuites resource: %v", err)
@@ -73,14 +75,16 @@ func resourceSystemGlobalSslCipherSuitesUpdate(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemGlobalSslCipherSuites(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobalSslCipherSuites resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemGlobalSslCipherSuites(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemGlobalSslCipherSuites(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemGlobalSslCipherSuites resource: %v", err)
 	}
@@ -98,9 +102,11 @@ func resourceSystemGlobalSslCipherSuitesDelete(d *schema.ResourceData, m interfa
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemGlobalSslCipherSuites(adomv, mkey, nil)
+	err = c.DeleteSystemGlobalSslCipherSuites(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemGlobalSslCipherSuites resource: %v", err)
 	}
@@ -116,9 +122,11 @@ func resourceSystemGlobalSslCipherSuitesRead(d *schema.ResourceData, m interface
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemGlobalSslCipherSuites(adomv, mkey, nil)
+	o, err := c.ReadSystemGlobalSslCipherSuites(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemGlobalSslCipherSuites resource: %v", err)
 	}

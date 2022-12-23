@@ -85,14 +85,16 @@ func resourceFmupdateServerAccessPrioritiesUpdate(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectFmupdateServerAccessPriorities(d)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateServerAccessPriorities resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateFmupdateServerAccessPriorities(obj, adomv, mkey, nil)
+	_, err = c.UpdateFmupdateServerAccessPriorities(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating FmupdateServerAccessPriorities resource: %v", err)
 	}
@@ -110,9 +112,11 @@ func resourceFmupdateServerAccessPrioritiesDelete(d *schema.ResourceData, m inte
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteFmupdateServerAccessPriorities(adomv, mkey, nil)
+	err = c.DeleteFmupdateServerAccessPriorities(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting FmupdateServerAccessPriorities resource: %v", err)
 	}
@@ -128,9 +132,11 @@ func resourceFmupdateServerAccessPrioritiesRead(d *schema.ResourceData, m interf
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadFmupdateServerAccessPriorities(adomv, mkey, nil)
+	o, err := c.ReadFmupdateServerAccessPriorities(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading FmupdateServerAccessPriorities resource: %v", err)
 	}

@@ -244,6 +244,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"explicit_ftp_tls": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"inspect_all": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -342,6 +347,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						},
 						"comfort_interval": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"h2c": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
@@ -471,6 +481,11 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Computed: true,
 						},
 						"unknown_http_version": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"verify_dns_for_policy_matching": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -899,18 +914,20 @@ func resourceObjectFirewallProfileProtocolOptionsCreate(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallProfileProtocolOptions(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallProfileProtocolOptions(obj, adomv, nil)
+	_, err = c.CreateObjectFirewallProfileProtocolOptions(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallProfileProtocolOptions resource: %v", err)
@@ -926,18 +943,20 @@ func resourceObjectFirewallProfileProtocolOptionsUpdate(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectFirewallProfileProtocolOptions(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptions resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectFirewallProfileProtocolOptions(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectFirewallProfileProtocolOptions(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectFirewallProfileProtocolOptions resource: %v", err)
 	}
@@ -955,13 +974,15 @@ func resourceObjectFirewallProfileProtocolOptionsDelete(d *schema.ResourceData, 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectFirewallProfileProtocolOptions(adomv, mkey, nil)
+	err = c.DeleteObjectFirewallProfileProtocolOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectFirewallProfileProtocolOptions resource: %v", err)
 	}
@@ -977,13 +998,15 @@ func resourceObjectFirewallProfileProtocolOptionsRead(d *schema.ResourceData, m 
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectFirewallProfileProtocolOptions(adomv, mkey, nil)
+	o, err := c.ReadObjectFirewallProfileProtocolOptions(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectFirewallProfileProtocolOptions resource: %v", err)
 	}
@@ -1379,6 +1402,11 @@ func flattenObjectFirewallProfileProtocolOptionsFtp(v interface{}, d *schema.Res
 		result["comfort_interval"] = flattenObjectFirewallProfileProtocolOptionsFtpComfortInterval(i["comfort-interval"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "explicit_ftp_tls"
+	if _, ok := i["explicit-ftp-tls"]; ok {
+		result["explicit_ftp_tls"] = flattenObjectFirewallProfileProtocolOptionsFtpExplicitFtpTls(i["explicit-ftp-tls"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "inspect_all"
 	if _, ok := i["inspect-all"]; ok {
 		result["inspect_all"] = flattenObjectFirewallProfileProtocolOptionsFtpInspectAll(i["inspect-all"], d, pre_append)
@@ -1458,6 +1486,10 @@ func flattenObjectFirewallProfileProtocolOptionsFtpComfortAmount(v interface{}, 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsFtpComfortInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsFtpExplicitFtpTls(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1544,6 +1576,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 	pre_append = pre + ".0." + "comfort_interval"
 	if _, ok := i["comfort-interval"]; ok {
 		result["comfort_interval"] = flattenObjectFirewallProfileProtocolOptionsHttpComfortInterval(i["comfort-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "h2c"
+	if _, ok := i["h2c"]; ok {
+		result["h2c"] = flattenObjectFirewallProfileProtocolOptionsHttpH2C(i["h2c"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "fortinet_bar"
@@ -1676,6 +1713,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 		result["unknown_http_version"] = flattenObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(i["unknown-http-version"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "verify_dns_for_policy_matching"
+	if _, ok := i["verify-dns-for-policy-matching"]; ok {
+		result["verify_dns_for_policy_matching"] = flattenObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(i["verify-dns-for-policy-matching"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -1693,6 +1735,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpComfortAmount(v interface{},
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpComfortInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpH2C(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1797,6 +1843,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(v 
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3175,6 +3225,10 @@ func expandObjectFirewallProfileProtocolOptionsFtp(d *schema.ResourceData, v int
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["comfort-interval"], _ = expandObjectFirewallProfileProtocolOptionsFtpComfortInterval(d, i["comfort_interval"], pre_append)
 	}
+	pre_append = pre + ".0." + "explicit_ftp_tls"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["explicit-ftp-tls"], _ = expandObjectFirewallProfileProtocolOptionsFtpExplicitFtpTls(d, i["explicit_ftp_tls"], pre_append)
+	}
 	pre_append = pre + ".0." + "inspect_all"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["inspect-all"], _ = expandObjectFirewallProfileProtocolOptionsFtpInspectAll(d, i["inspect_all"], pre_append)
@@ -3240,6 +3294,10 @@ func expandObjectFirewallProfileProtocolOptionsFtpComfortAmount(d *schema.Resour
 }
 
 func expandObjectFirewallProfileProtocolOptionsFtpComfortInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsFtpExplicitFtpTls(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3324,6 +3382,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "comfort_interval"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["comfort-interval"], _ = expandObjectFirewallProfileProtocolOptionsHttpComfortInterval(d, i["comfort_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "h2c"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["h2c"], _ = expandObjectFirewallProfileProtocolOptionsHttpH2C(d, i["h2c"], pre_append)
 	}
 	pre_append = pre + ".0." + "fortinet_bar"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3429,6 +3491,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["unknown-http-version"], _ = expandObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(d, i["unknown_http_version"], pre_append)
 	}
+	pre_append = pre + ".0." + "verify_dns_for_policy_matching"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["verify-dns-for-policy-matching"], _ = expandObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(d, i["verify_dns_for_policy_matching"], pre_append)
+	}
 
 	return result, nil
 }
@@ -3446,6 +3512,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpComfortAmount(d *schema.Resou
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpComfortInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpH2C(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3550,6 +3620,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(d *
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpVerifyDnsForPolicyMatching(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

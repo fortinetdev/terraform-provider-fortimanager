@@ -119,6 +119,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -288,6 +296,30 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fortindr_error_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fortindr_timeout_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fortisandbox_error_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fortisandbox_max_upload": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"fortisandbox_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"fortisandbox_timeout_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ftgd_analytics": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -331,6 +363,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -399,6 +439,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -414,6 +462,10 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"unknown_content_encoding": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 					},
 				},
@@ -466,6 +518,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -522,6 +582,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 						},
 						"external_blocklist": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -620,6 +688,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -712,6 +788,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -825,6 +909,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -879,6 +971,14 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"fortindr": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"fortisandbox": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
 							Elem:     &schema.Schema{Type: schema.TypeString},
@@ -904,18 +1004,20 @@ func resourceObjectAntivirusProfileCreate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAntivirusProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectAntivirusProfile(obj, adomv, nil)
+	_, err = c.CreateObjectAntivirusProfile(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusProfile resource: %v", err)
@@ -931,18 +1033,20 @@ func resourceObjectAntivirusProfileUpdate(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAntivirusProfile(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfile resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusProfile(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectAntivirusProfile(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusProfile resource: %v", err)
 	}
@@ -960,13 +1064,15 @@ func resourceObjectAntivirusProfileDelete(d *schema.ResourceData, m interface{})
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusProfile(adomv, mkey, nil)
+	err = c.DeleteObjectAntivirusProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusProfile resource: %v", err)
 	}
@@ -982,13 +1088,15 @@ func resourceObjectAntivirusProfileRead(d *schema.ResourceData, m interface{}) e
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectAntivirusProfile(adomv, mkey, nil)
+	o, err := c.ReadObjectAntivirusProfile(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectAntivirusProfile resource: %v", err)
 	}
@@ -1077,6 +1185,16 @@ func flattenObjectAntivirusProfileCifs(v interface{}, d *schema.ResourceData, pr
 		result["fortiai"] = flattenObjectAntivirusProfileCifsFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileCifsFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileCifsFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileCifsOptions(i["options"], d, pre_append)
@@ -1117,6 +1235,14 @@ func flattenObjectAntivirusProfileCifsExternalBlocklist(v interface{}, d *schema
 }
 
 func flattenObjectAntivirusProfileCifsFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileCifsFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileCifsFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1352,6 +1478,30 @@ func flattenObjectAntivirusProfileFortiaiTimeoutAction(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectAntivirusProfileFortindrErrorAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortindrTimeoutAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortisandboxErrorAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortisandboxMaxUpload(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortisandboxMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFortisandboxTimeoutAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileFtgdAnalytics(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1395,6 +1545,16 @@ func flattenObjectAntivirusProfileFtp(v interface{}, d *schema.ResourceData, pre
 		result["fortiai"] = flattenObjectAntivirusProfileFtpFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileFtpFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileFtpFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileFtpOptions(i["options"], d, pre_append)
@@ -1435,6 +1595,14 @@ func flattenObjectAntivirusProfileFtpExternalBlocklist(v interface{}, d *schema.
 }
 
 func flattenObjectAntivirusProfileFtpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFtpFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileFtpFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1499,6 +1667,16 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 		result["fortiai"] = flattenObjectAntivirusProfileHttpFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileHttpFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileHttpFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileHttpOptions(i["options"], d, pre_append)
@@ -1512,6 +1690,11 @@ func flattenObjectAntivirusProfileHttp(v interface{}, d *schema.ResourceData, pr
 	pre_append = pre + ".0." + "quarantine"
 	if _, ok := i["quarantine"]; ok {
 		result["quarantine"] = flattenObjectAntivirusProfileHttpQuarantine(i["quarantine"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "unknown_content_encoding"
+	if _, ok := i["unknown-content-encoding"]; ok {
+		result["unknown_content_encoding"] = flattenObjectAntivirusProfileHttpUnknownContentEncoding(i["unknown-content-encoding"], d, pre_append)
 	}
 
 	lastresult := []map[string]interface{}{result}
@@ -1550,6 +1733,14 @@ func flattenObjectAntivirusProfileHttpFortiai(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectAntivirusProfileHttpFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileHttpFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectAntivirusProfileHttpOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1559,6 +1750,10 @@ func flattenObjectAntivirusProfileHttpOutbreakPrevention(v interface{}, d *schem
 }
 
 func flattenObjectAntivirusProfileHttpQuarantine(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileHttpUnknownContentEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1611,6 +1806,16 @@ func flattenObjectAntivirusProfileImap(v interface{}, d *schema.ResourceData, pr
 		result["fortiai"] = flattenObjectAntivirusProfileImapFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileImapFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileImapFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileImapOptions(i["options"], d, pre_append)
@@ -1659,6 +1864,14 @@ func flattenObjectAntivirusProfileImapExternalBlocklist(v interface{}, d *schema
 }
 
 func flattenObjectAntivirusProfileImapFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileImapFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileImapFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1717,6 +1930,16 @@ func flattenObjectAntivirusProfileMapi(v interface{}, d *schema.ResourceData, pr
 		result["external_blocklist"] = flattenObjectAntivirusProfileMapiExternalBlocklist(i["external-blocklist"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileMapiFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileMapiFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "fortiai"
 	if _, ok := i["fortiai"]; ok {
 		result["fortiai"] = flattenObjectAntivirusProfileMapiFortiai(i["fortiai"], d, pre_append)
@@ -1762,6 +1985,14 @@ func flattenObjectAntivirusProfileMapiExecutables(v interface{}, d *schema.Resou
 }
 
 func flattenObjectAntivirusProfileMapiExternalBlocklist(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileMapiFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileMapiFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1868,6 +2099,16 @@ func flattenObjectAntivirusProfileNntp(v interface{}, d *schema.ResourceData, pr
 		result["fortiai"] = flattenObjectAntivirusProfileNntpFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileNntpFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileNntpFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileNntpOptions(i["options"], d, pre_append)
@@ -1908,6 +2149,14 @@ func flattenObjectAntivirusProfileNntpExternalBlocklist(v interface{}, d *schema
 }
 
 func flattenObjectAntivirusProfileNntpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileNntpFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileNntpFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2007,6 +2256,16 @@ func flattenObjectAntivirusProfilePop3(v interface{}, d *schema.ResourceData, pr
 		result["fortiai"] = flattenObjectAntivirusProfilePop3Fortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfilePop3Fortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfilePop3Fortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfilePop3Options(i["options"], d, pre_append)
@@ -2055,6 +2314,14 @@ func flattenObjectAntivirusProfilePop3ExternalBlocklist(v interface{}, d *schema
 }
 
 func flattenObjectAntivirusProfilePop3Fortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfilePop3Fortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfilePop3Fortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2185,6 +2452,16 @@ func flattenObjectAntivirusProfileSmtp(v interface{}, d *schema.ResourceData, pr
 		result["fortiai"] = flattenObjectAntivirusProfileSmtpFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileSmtpFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileSmtpFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileSmtpOptions(i["options"], d, pre_append)
@@ -2233,6 +2510,14 @@ func flattenObjectAntivirusProfileSmtpExternalBlocklist(v interface{}, d *schema
 }
 
 func flattenObjectAntivirusProfileSmtpFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSmtpFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSmtpFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2287,6 +2572,16 @@ func flattenObjectAntivirusProfileSsh(v interface{}, d *schema.ResourceData, pre
 		result["fortiai"] = flattenObjectAntivirusProfileSshFortiai(i["fortiai"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := i["fortindr"]; ok {
+		result["fortindr"] = flattenObjectAntivirusProfileSshFortindr(i["fortindr"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := i["fortisandbox"]; ok {
+		result["fortisandbox"] = flattenObjectAntivirusProfileSshFortisandbox(i["fortisandbox"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "options"
 	if _, ok := i["options"]; ok {
 		result["options"] = flattenObjectAntivirusProfileSshOptions(i["options"], d, pre_append)
@@ -2327,6 +2622,14 @@ func flattenObjectAntivirusProfileSshExternalBlocklist(v interface{}, d *schema.
 }
 
 func flattenObjectAntivirusProfileSshFortiai(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSshFortindr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectAntivirusProfileSshFortisandbox(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2564,6 +2867,66 @@ func refreshObjectObjectAntivirusProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading fortiai_timeout_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fortindr_error_action", flattenObjectAntivirusProfileFortindrErrorAction(o["fortindr-error-action"], d, "fortindr_error_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortindr-error-action"], "ObjectAntivirusProfile-FortindrErrorAction"); ok {
+			if err = d.Set("fortindr_error_action", vv); err != nil {
+				return fmt.Errorf("Error reading fortindr_error_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortindr_error_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fortindr_timeout_action", flattenObjectAntivirusProfileFortindrTimeoutAction(o["fortindr-timeout-action"], d, "fortindr_timeout_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortindr-timeout-action"], "ObjectAntivirusProfile-FortindrTimeoutAction"); ok {
+			if err = d.Set("fortindr_timeout_action", vv); err != nil {
+				return fmt.Errorf("Error reading fortindr_timeout_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortindr_timeout_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fortisandbox_error_action", flattenObjectAntivirusProfileFortisandboxErrorAction(o["fortisandbox-error-action"], d, "fortisandbox_error_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortisandbox-error-action"], "ObjectAntivirusProfile-FortisandboxErrorAction"); ok {
+			if err = d.Set("fortisandbox_error_action", vv); err != nil {
+				return fmt.Errorf("Error reading fortisandbox_error_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortisandbox_error_action: %v", err)
+		}
+	}
+
+	if err = d.Set("fortisandbox_max_upload", flattenObjectAntivirusProfileFortisandboxMaxUpload(o["fortisandbox-max-upload"], d, "fortisandbox_max_upload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortisandbox-max-upload"], "ObjectAntivirusProfile-FortisandboxMaxUpload"); ok {
+			if err = d.Set("fortisandbox_max_upload", vv); err != nil {
+				return fmt.Errorf("Error reading fortisandbox_max_upload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortisandbox_max_upload: %v", err)
+		}
+	}
+
+	if err = d.Set("fortisandbox_mode", flattenObjectAntivirusProfileFortisandboxMode(o["fortisandbox-mode"], d, "fortisandbox_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortisandbox-mode"], "ObjectAntivirusProfile-FortisandboxMode"); ok {
+			if err = d.Set("fortisandbox_mode", vv); err != nil {
+				return fmt.Errorf("Error reading fortisandbox_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortisandbox_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("fortisandbox_timeout_action", flattenObjectAntivirusProfileFortisandboxTimeoutAction(o["fortisandbox-timeout-action"], d, "fortisandbox_timeout_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortisandbox-timeout-action"], "ObjectAntivirusProfile-FortisandboxTimeoutAction"); ok {
+			if err = d.Set("fortisandbox_timeout_action", vv); err != nil {
+				return fmt.Errorf("Error reading fortisandbox_timeout_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortisandbox_timeout_action: %v", err)
 		}
 	}
 
@@ -2976,6 +3339,14 @@ func expandObjectAntivirusProfileCifs(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileCifsFortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileCifsFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileCifsFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileCifsOptions(d, i["options"], pre_append)
@@ -3013,6 +3384,14 @@ func expandObjectAntivirusProfileCifsExternalBlocklist(d *schema.ResourceData, v
 }
 
 func expandObjectAntivirusProfileCifsFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileCifsFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileCifsFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3230,6 +3609,30 @@ func expandObjectAntivirusProfileFortiaiTimeoutAction(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectAntivirusProfileFortindrErrorAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortindrTimeoutAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortisandboxErrorAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortisandboxMaxUpload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortisandboxMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFortisandboxTimeoutAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileFtgdAnalytics(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3268,6 +3671,14 @@ func expandObjectAntivirusProfileFtp(d *schema.ResourceData, v interface{}, pre 
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileFtpFortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileFtpFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileFtpFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileFtpOptions(d, i["options"], pre_append)
@@ -3305,6 +3716,14 @@ func expandObjectAntivirusProfileFtpExternalBlocklist(d *schema.ResourceData, v 
 }
 
 func expandObjectAntivirusProfileFtpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFtpFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileFtpFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3362,6 +3781,14 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileHttpFortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileHttpFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileHttpFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileHttpOptions(d, i["options"], pre_append)
@@ -3373,6 +3800,10 @@ func expandObjectAntivirusProfileHttp(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "quarantine"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["quarantine"], _ = expandObjectAntivirusProfileHttpQuarantine(d, i["quarantine"], pre_append)
+	}
+	pre_append = pre + ".0." + "unknown_content_encoding"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["unknown-content-encoding"], _ = expandObjectAntivirusProfileHttpUnknownContentEncoding(d, i["unknown_content_encoding"], pre_append)
 	}
 
 	return result, nil
@@ -3410,6 +3841,14 @@ func expandObjectAntivirusProfileHttpFortiai(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectAntivirusProfileHttpFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileHttpFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectAntivirusProfileHttpOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -3419,6 +3858,10 @@ func expandObjectAntivirusProfileHttpOutbreakPrevention(d *schema.ResourceData, 
 }
 
 func expandObjectAntivirusProfileHttpQuarantine(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileHttpUnknownContentEncoding(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3463,6 +3906,14 @@ func expandObjectAntivirusProfileImap(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "fortiai"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileImapFortiai(d, i["fortiai"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileImapFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileImapFortisandbox(d, i["fortisandbox"], pre_append)
 	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -3509,6 +3960,14 @@ func expandObjectAntivirusProfileImapExternalBlocklist(d *schema.ResourceData, v
 }
 
 func expandObjectAntivirusProfileImapFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileImapFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileImapFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3562,6 +4021,14 @@ func expandObjectAntivirusProfileMapi(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["external-blocklist"], _ = expandObjectAntivirusProfileMapiExternalBlocklist(d, i["external_blocklist"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileMapiFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileMapiFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "fortiai"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileMapiFortiai(d, i["fortiai"], pre_append)
@@ -3603,6 +4070,14 @@ func expandObjectAntivirusProfileMapiExecutables(d *schema.ResourceData, v inter
 }
 
 func expandObjectAntivirusProfileMapiExternalBlocklist(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileMapiFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileMapiFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3702,6 +4177,14 @@ func expandObjectAntivirusProfileNntp(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileNntpFortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileNntpFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileNntpFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileNntpOptions(d, i["options"], pre_append)
@@ -3739,6 +4222,14 @@ func expandObjectAntivirusProfileNntpExternalBlocklist(d *schema.ResourceData, v
 }
 
 func expandObjectAntivirusProfileNntpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileNntpFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileNntpFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3830,6 +4321,14 @@ func expandObjectAntivirusProfilePop3(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfilePop3Fortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfilePop3Fortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfilePop3Fortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfilePop3Options(d, i["options"], pre_append)
@@ -3875,6 +4374,14 @@ func expandObjectAntivirusProfilePop3ExternalBlocklist(d *schema.ResourceData, v
 }
 
 func expandObjectAntivirusProfilePop3Fortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfilePop3Fortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfilePop3Fortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3994,6 +4501,14 @@ func expandObjectAntivirusProfileSmtp(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileSmtpFortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileSmtpFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileSmtpFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileSmtpOptions(d, i["options"], pre_append)
@@ -4039,6 +4554,14 @@ func expandObjectAntivirusProfileSmtpExternalBlocklist(d *schema.ResourceData, v
 }
 
 func expandObjectAntivirusProfileSmtpFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSmtpFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSmtpFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4088,6 +4611,14 @@ func expandObjectAntivirusProfileSsh(d *schema.ResourceData, v interface{}, pre 
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortiai"], _ = expandObjectAntivirusProfileSshFortiai(d, i["fortiai"], pre_append)
 	}
+	pre_append = pre + ".0." + "fortindr"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortindr"], _ = expandObjectAntivirusProfileSshFortindr(d, i["fortindr"], pre_append)
+	}
+	pre_append = pre + ".0." + "fortisandbox"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fortisandbox"], _ = expandObjectAntivirusProfileSshFortisandbox(d, i["fortisandbox"], pre_append)
+	}
 	pre_append = pre + ".0." + "options"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["options"], _ = expandObjectAntivirusProfileSshOptions(d, i["options"], pre_append)
@@ -4125,6 +4656,14 @@ func expandObjectAntivirusProfileSshExternalBlocklist(d *schema.ResourceData, v 
 }
 
 func expandObjectAntivirusProfileSshFortiai(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSshFortindr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectAntivirusProfileSshFortisandbox(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4311,6 +4850,60 @@ func getObjectObjectAntivirusProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["fortiai-timeout-action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortindr_error_action"); ok || d.HasChange("fortindr_error_action") {
+		t, err := expandObjectAntivirusProfileFortindrErrorAction(d, v, "fortindr_error_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortindr-error-action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortindr_timeout_action"); ok || d.HasChange("fortindr_timeout_action") {
+		t, err := expandObjectAntivirusProfileFortindrTimeoutAction(d, v, "fortindr_timeout_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortindr-timeout-action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortisandbox_error_action"); ok || d.HasChange("fortisandbox_error_action") {
+		t, err := expandObjectAntivirusProfileFortisandboxErrorAction(d, v, "fortisandbox_error_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortisandbox-error-action"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortisandbox_max_upload"); ok || d.HasChange("fortisandbox_max_upload") {
+		t, err := expandObjectAntivirusProfileFortisandboxMaxUpload(d, v, "fortisandbox_max_upload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortisandbox-max-upload"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortisandbox_mode"); ok || d.HasChange("fortisandbox_mode") {
+		t, err := expandObjectAntivirusProfileFortisandboxMode(d, v, "fortisandbox_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortisandbox-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fortisandbox_timeout_action"); ok || d.HasChange("fortisandbox_timeout_action") {
+		t, err := expandObjectAntivirusProfileFortisandboxTimeoutAction(d, v, "fortisandbox_timeout_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortisandbox-timeout-action"] = t
 		}
 	}
 

@@ -68,14 +68,16 @@ func resourceSystemLogIocUpdate(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
 	obj, err := getObjectSystemLogIoc(d)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogIoc resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateSystemLogIoc(obj, adomv, mkey, nil)
+	_, err = c.UpdateSystemLogIoc(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating SystemLogIoc resource: %v", err)
 	}
@@ -93,9 +95,11 @@ func resourceSystemLogIocDelete(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	err = c.DeleteSystemLogIoc(adomv, mkey, nil)
+	err = c.DeleteSystemLogIoc(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting SystemLogIoc resource: %v", err)
 	}
@@ -111,9 +115,11 @@ func resourceSystemLogIocRead(d *schema.ResourceData, m interface{}) error {
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	adomv, err := "global", fmt.Errorf("")
+	paradict["adom"] = adomv
 
-	o, err := c.ReadSystemLogIoc(adomv, mkey, nil)
+	o, err := c.ReadSystemLogIoc(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading SystemLogIoc resource: %v", err)
 	}

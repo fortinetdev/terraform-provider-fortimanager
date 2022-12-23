@@ -91,18 +91,20 @@ func resourceObjectAntivirusMmsChecksumCreate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAntivirusMmsChecksum(d)
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusMmsChecksum resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectAntivirusMmsChecksum(obj, adomv, nil)
+	_, err = c.CreateObjectAntivirusMmsChecksum(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectAntivirusMmsChecksum resource: %v", err)
@@ -118,18 +120,20 @@ func resourceObjectAntivirusMmsChecksumUpdate(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
 	obj, err := getObjectObjectAntivirusMmsChecksum(d)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusMmsChecksum resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdateObjectAntivirusMmsChecksum(obj, adomv, mkey, nil)
+	_, err = c.UpdateObjectAntivirusMmsChecksum(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating ObjectAntivirusMmsChecksum resource: %v", err)
 	}
@@ -147,13 +151,15 @@ func resourceObjectAntivirusMmsChecksumDelete(d *schema.ResourceData, m interfac
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	err = c.DeleteObjectAntivirusMmsChecksum(adomv, mkey, nil)
+	err = c.DeleteObjectAntivirusMmsChecksum(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting ObjectAntivirusMmsChecksum resource: %v", err)
 	}
@@ -169,13 +175,15 @@ func resourceObjectAntivirusMmsChecksumRead(d *schema.ResourceData, m interface{
 	c := m.(*FortiClient).Client
 	c.Retries = 1
 
+	paradict := make(map[string]string)
 	cfg := m.(*FortiClient).Cfg
 	adomv, err := adomChecking(cfg, d)
 	if err != nil {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
+	paradict["adom"] = adomv
 
-	o, err := c.ReadObjectAntivirusMmsChecksum(adomv, mkey, nil)
+	o, err := c.ReadObjectAntivirusMmsChecksum(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading ObjectAntivirusMmsChecksum resource: %v", err)
 	}
