@@ -1023,7 +1023,7 @@ func resourcePackagesFirewallPolicyBlockCreate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesFirewallPolicy(obj, paradict)
+	v, err := c.CreatePackagesFirewallPolicyBlock(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource: %v", err)
@@ -1064,7 +1064,7 @@ func resourcePackagesFirewallPolicyBlockUpdate(d *schema.ResourceData, m interfa
 		return fmt.Errorf("Error updating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicy(obj, mkey, paradict)
+	_, err = c.UpdatePackagesFirewallPolicyBlock(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1093,7 +1093,7 @@ func resourcePackagesFirewallPolicyBlockDelete(d *schema.ResourceData, m interfa
 	pblock := d.Get("pblock").(string)
 	paradict["pblock"] = pblock
 
-	err = c.DeletePackagesFirewallPolicy(mkey, paradict)
+	err = c.DeletePackagesFirewallPolicyBlock(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1126,7 +1126,7 @@ func resourcePackagesFirewallPolicyBlockRead(d *schema.ResourceData, m interface
 	}
 	paradict["pblock"] = pblock
 
-	o, err := c.ReadPackagesFirewallPolicy(mkey, paradict)
+	o, err := c.ReadPackagesFirewallPolicyBlock(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicy resource: %v", err)
 	}
