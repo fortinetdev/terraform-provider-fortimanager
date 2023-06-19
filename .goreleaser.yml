@@ -18,7 +18,7 @@ builds:
   goos:
     # - freebsd
     # - windows
-    # - linux
+    - linux
     - darwin
   goarch:
     - amd64
