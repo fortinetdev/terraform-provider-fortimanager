@@ -1,4 +1,4 @@
-module app
+module terraform-provider-fortimanager
 
 go 1.19
 
