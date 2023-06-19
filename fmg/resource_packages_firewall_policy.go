@@ -17,7 +17,7 @@ import (
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/validation"
 )
 
-func resourcePackagesFirewallPolicy() *schema.Resource {
+func resourcePackagesFirewallPolicyBlock() *schema.Resource {
 	return &schema.Resource{
 		Create: resourcePackagesFirewallPolicyCreate,
 		Read:   resourcePackagesFirewallPolicyRead,
@@ -1018,12 +1018,12 @@ func resourcePackagesFirewallPolicyCreate(d *schema.ResourceData, m interface{})
 	pkg := d.Get("pkg").(string)
 	paradict["pkg"] = pkg
 
-	obj, err := getObjectPackagesFirewallPolicy(d)
+	obj, err := getObjectPackagesFirewallPolicyBlock(d)
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
 
-	v, err := c.CreatePackagesFirewallPolicy(obj, paradict)
+	v, err := c.CreatePackagesFirewallPolicyBlock(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating PackagesFirewallPolicy resource: %v", err)
@@ -1059,12 +1059,12 @@ func resourcePackagesFirewallPolicyUpdate(d *schema.ResourceData, m interface{})
 	pkg := d.Get("pkg").(string)
 	paradict["pkg"] = pkg
 
-	obj, err := getObjectPackagesFirewallPolicy(d)
+	obj, err := getObjectPackagesFirewallPolicyBlock(d)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy resource while getting object: %v", err)
 	}
 
-	_, err = c.UpdatePackagesFirewallPolicy(obj, mkey, paradict)
+	_, err = c.UpdatePackagesFirewallPolicyBlock(obj, mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error updating PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1093,7 +1093,7 @@ func resourcePackagesFirewallPolicyDelete(d *schema.ResourceData, m interface{})
 	pkg := d.Get("pkg").(string)
 	paradict["pkg"] = pkg
 
-	err = c.DeletePackagesFirewallPolicy(mkey, paradict)
+	err = c.DeletePackagesFirewallPolicyBlock(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1126,7 +1126,7 @@ func resourcePackagesFirewallPolicyRead(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["pkg"] = pkg
 
-	o, err := c.ReadPackagesFirewallPolicy(mkey, paradict)
+	o, err := c.ReadPackagesFirewallPolicyBlock(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicy resource: %v", err)
 	}
@@ -1137,7 +1137,7 @@ func resourcePackagesFirewallPolicyRead(d *schema.ResourceData, m interface{}) e
 		return nil
 	}
 
-	err = refreshObjectPackagesFirewallPolicy(d, o)
+	err = refreshObjectPackagesFirewallPolicyBlock(d, o)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesFirewallPolicy resource from API: %v", err)
 	}
@@ -2050,7 +2050,7 @@ func flattenPackagesFirewallPolicyWsso(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
-func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]interface{}) error {
+func refreshObjectPackagesFirewallPolicyBlock(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
 	if stValue := d.Get("scopetype"); stValue == "" {
@@ -4988,7 +4988,7 @@ func expandPackagesFirewallPolicyWsso(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
-func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
+func getObjectPackagesFirewallPolicyBlock(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("_policy_block"); ok || d.HasChange("_policy_block") {
