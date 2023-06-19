@@ -418,6 +418,7 @@ func Provider() *schema.Provider {
 			"fortimanager_packages_firewall_multicastpolicy6_move":                    resourcePackagesFirewallMulticastPolicy6Move(),
 			"fortimanager_packages_firewall_multicastpolicy_move":                     resourcePackagesFirewallMulticastPolicyMove(),
 			"fortimanager_packages_firewall_policy":                                   resourcePackagesFirewallPolicy(),
+			"fortimanager_packages_firewall_policy_block":                             resourcePackagesFirewallPolicyBlock(),
 			"fortimanager_packages_firewall_policy46":                                 resourcePackagesFirewallPolicy46(),
 			"fortimanager_packages_firewall_policy46_move":                            resourcePackagesFirewallPolicy46Move(),
 			"fortimanager_packages_firewall_policy6":                                  resourcePackagesFirewallPolicy6(),
