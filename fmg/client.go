@@ -9,9 +9,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/fortinetdev/forti-sdk-go/fortimanager2/auth"
-	forticlient "github.com/fortinetdev/forti-sdk-go/fortimanager2/sdkcore"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/romanromanovv/forti-sdk-go/fortimanager2/auth"
+	forticlient "github.com/romanromanovv/forti-sdk-go/fortimanager2/sdkcore"
 )
 
 // Config gets the authentication information from the given metadata
