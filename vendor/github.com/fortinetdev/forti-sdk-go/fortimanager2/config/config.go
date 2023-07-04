@@ -3,7 +3,7 @@ package config
 import (
 	"net/http"
 
-	"github.com/romanromanovv/forti-sdk-go/fortimanager2/auth"
+	"github.com/fortinetdev/forti-sdk-go/fortimanager2/auth"
 )
 
 // Config provides configuration to a FMG client instance

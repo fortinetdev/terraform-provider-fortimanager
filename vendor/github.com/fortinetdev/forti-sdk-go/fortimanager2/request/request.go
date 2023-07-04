@@ -9,7 +9,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/romanromanovv/forti-sdk-go/fortimanager2/config"
+	"github.com/fortinetdev/forti-sdk-go/fortimanager2/config"
 )
 
 // Request describes the request to FMG service
@@ -71,6 +71,7 @@ func New(c config.Config, method string, path string, params interface{}, data *
 // Send request data to FMG.
 // If errors are encountered, it returns the error.
 func (r *Request) Send() error {
+
 
 	//Build FMG
 	//build Sign/Login INfo
