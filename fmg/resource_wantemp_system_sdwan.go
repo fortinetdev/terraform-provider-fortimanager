@@ -50,6 +50,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"app_perf_log_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"duplication": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -113,6 +117,12 @@ func resourceWantempSystemSdwan() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"fail_alert_interfaces": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"fail_detect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -127,6 +137,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Optional: true,
 						},
 						"addr_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"class_id": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -315,6 +329,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"source6": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"system_dns": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -400,6 +418,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Optional: true,
 						},
 						"interface": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"preferred_source": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -511,6 +533,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"addr_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"agent_exclusive": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -681,6 +707,14 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Optional: true,
 						},
 						"role": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"shortcut": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"shortcut_stickiness": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -889,6 +923,10 @@ func resourceWantempSystemSdwanRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
+func flattenWantempSystemSdwanAppPerfLogPeriodWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanDuplicationWssa(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -1040,6 +1078,10 @@ func flattenWantempSystemSdwanDuplicationMaxNumWssa(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenWantempSystemSdwanFailAlertInterfacesWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenWantempSystemSdwanFailDetectWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1073,6 +1115,12 @@ func flattenWantempSystemSdwanHealthCheckWssa(v interface{}, d *schema.ResourceD
 		if _, ok := i["addr-mode"]; ok {
 			v := flattenWantempSystemSdwanHealthCheckAddrModeWssa(i["addr-mode"], d, pre_append)
 			tmp["addr_mode"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-AddrMode")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "class_id"
+		if _, ok := i["class-id"]; ok {
+			v := flattenWantempSystemSdwanHealthCheckClassIdWssa(i["class-id"], d, pre_append)
+			tmp["class_id"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-ClassId")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detect_mode"
@@ -1267,6 +1315,12 @@ func flattenWantempSystemSdwanHealthCheckWssa(v interface{}, d *schema.ResourceD
 			tmp["source"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-Source")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source6"
+		if _, ok := i["source6"]; ok {
+			v := flattenWantempSystemSdwanHealthCheckSource6Wssa(i["source6"], d, pre_append)
+			tmp["source6"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-Source6")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "system_dns"
 		if _, ok := i["system-dns"]; ok {
 			v := flattenWantempSystemSdwanHealthCheckSystemDnsWssa(i["system-dns"], d, pre_append)
@@ -1346,6 +1400,10 @@ func flattenWantempSystemSdwanHealthCheckDynamicServerWssa(v interface{}, d *sch
 }
 
 func flattenWantempSystemSdwanHealthCheckAddrModeWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckClassIdWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1580,6 +1638,10 @@ func flattenWantempSystemSdwanHealthCheckSourceWssa(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenWantempSystemSdwanHealthCheckSource6Wssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanHealthCheckSystemDnsWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1689,6 +1751,12 @@ func flattenWantempSystemSdwanMembersWssa(v interface{}, d *schema.ResourceData,
 			tmp["interface"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Members-Interface")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "preferred_source"
+		if _, ok := i["preferred-source"]; ok {
+			v := flattenWantempSystemSdwanMembersPreferredSourceWssa(i["preferred-source"], d, pre_append)
+			tmp["preferred_source"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Members-PreferredSource")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
 		if _, ok := i["priority"]; ok {
 			v := flattenWantempSystemSdwanMembersPriorityWssa(i["priority"], d, pre_append)
@@ -1782,6 +1850,10 @@ func flattenWantempSystemSdwanMembersIngressSpilloverThresholdWssa(v interface{}
 }
 
 func flattenWantempSystemSdwanMembersInterfaceWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanMembersPreferredSourceWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1957,6 +2029,12 @@ func flattenWantempSystemSdwanServiceWssa(v interface{}, d *schema.ResourceData,
 		if _, ok := i["addr-mode"]; ok {
 			v := flattenWantempSystemSdwanServiceAddrModeWssa(i["addr-mode"], d, pre_append)
 			tmp["addr_mode"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Service-AddrMode")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "agent_exclusive"
+		if _, ok := i["agent-exclusive"]; ok {
+			v := flattenWantempSystemSdwanServiceAgentExclusiveWssa(i["agent-exclusive"], d, pre_append)
+			tmp["agent_exclusive"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Service-AgentExclusive")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_weight"
@@ -2205,6 +2283,18 @@ func flattenWantempSystemSdwanServiceWssa(v interface{}, d *schema.ResourceData,
 			tmp["role"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Service-Role")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "shortcut"
+		if _, ok := i["shortcut"]; ok {
+			v := flattenWantempSystemSdwanServiceShortcutWssa(i["shortcut"], d, pre_append)
+			tmp["shortcut"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Service-Shortcut")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "shortcut_stickiness"
+		if _, ok := i["shortcut-stickiness"]; ok {
+			v := flattenWantempSystemSdwanServiceShortcutStickinessWssa(i["shortcut-stickiness"], d, pre_append)
+			tmp["shortcut_stickiness"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Service-ShortcutStickiness")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_tag"
 		if _, ok := i["route-tag"]; ok {
 			v := flattenWantempSystemSdwanServiceRouteTagWssa(i["route-tag"], d, pre_append)
@@ -2298,6 +2388,10 @@ func flattenWantempSystemSdwanServiceWssa(v interface{}, d *schema.ResourceData,
 }
 
 func flattenWantempSystemSdwanServiceAddrModeWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceAgentExclusiveWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2462,6 +2556,14 @@ func flattenWantempSystemSdwanServiceQualityLinkWssa(v interface{}, d *schema.Re
 }
 
 func flattenWantempSystemSdwanServiceRoleWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceShortcutWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceShortcutStickinessWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2630,6 +2732,16 @@ func refreshObjectWantempSystemSdwan(d *schema.ResourceData, o map[string]interf
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("app_perf_log_period", flattenWantempSystemSdwanAppPerfLogPeriodWssa(o["app-perf-log-period"], d, "app_perf_log_period")); err != nil {
+		if vv, ok := fortiAPIPatch(o["app-perf-log-period"], "WantempSystemSdwan-AppPerfLogPeriod"); ok {
+			if err = d.Set("app_perf_log_period", vv); err != nil {
+				return fmt.Errorf("Error reading app_perf_log_period: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading app_perf_log_period: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("duplication", flattenWantempSystemSdwanDuplicationWssa(o["duplication"], d, "duplication")); err != nil {
 			if vv, ok := fortiAPIPatch(o["duplication"], "WantempSystemSdwan-Duplication"); ok {
@@ -2661,6 +2773,16 @@ func refreshObjectWantempSystemSdwan(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading duplication_max_num: %v", err)
+		}
+	}
+
+	if err = d.Set("fail_alert_interfaces", flattenWantempSystemSdwanFailAlertInterfacesWssa(o["fail-alert-interfaces"], d, "fail_alert_interfaces")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fail-alert-interfaces"], "WantempSystemSdwan-FailAlertInterfaces"); ok {
+			if err = d.Set("fail_alert_interfaces", vv); err != nil {
+				return fmt.Errorf("Error reading fail_alert_interfaces: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fail_alert_interfaces: %v", err)
 		}
 	}
 
@@ -2863,6 +2985,10 @@ func flattenWantempSystemSdwanFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
+func expandWantempSystemSdwanAppPerfLogPeriodWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanDuplicationWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -2997,6 +3123,10 @@ func expandWantempSystemSdwanDuplicationMaxNumWssa(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandWantempSystemSdwanFailAlertInterfacesWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandWantempSystemSdwanFailDetectWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3023,6 +3153,11 @@ func expandWantempSystemSdwanHealthCheckWssa(d *schema.ResourceData, v interface
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr-mode"], _ = expandWantempSystemSdwanHealthCheckAddrModeWssa(d, i["addr_mode"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "class_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["class-id"], _ = expandWantempSystemSdwanHealthCheckClassIdWssa(d, i["class_id"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "detect_mode"
@@ -3190,6 +3325,11 @@ func expandWantempSystemSdwanHealthCheckWssa(d *schema.ResourceData, v interface
 			tmp["source"], _ = expandWantempSystemSdwanHealthCheckSourceWssa(d, i["source"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "source6"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["source6"], _ = expandWantempSystemSdwanHealthCheckSource6Wssa(d, i["source6"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "system_dns"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["system-dns"], _ = expandWantempSystemSdwanHealthCheckSystemDnsWssa(d, i["system_dns"], pre_append)
@@ -3258,6 +3398,10 @@ func expandWantempSystemSdwanHealthCheckDynamicServerWssa(d *schema.ResourceData
 }
 
 func expandWantempSystemSdwanHealthCheckAddrModeWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckClassIdWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3479,6 +3623,10 @@ func expandWantempSystemSdwanHealthCheckSourceWssa(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandWantempSystemSdwanHealthCheckSource6Wssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanHealthCheckSystemDnsWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3576,6 +3724,11 @@ func expandWantempSystemSdwanMembersWssa(d *schema.ResourceData, v interface{}, 
 			tmp["interface"], _ = expandWantempSystemSdwanMembersInterfaceWssa(d, i["interface"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "preferred_source"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["preferred-source"], _ = expandWantempSystemSdwanMembersPreferredSourceWssa(d, i["preferred_source"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "priority"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["priority"], _ = expandWantempSystemSdwanMembersPriorityWssa(d, i["priority"], pre_append)
@@ -3659,6 +3812,10 @@ func expandWantempSystemSdwanMembersIngressSpilloverThresholdWssa(d *schema.Reso
 }
 
 func expandWantempSystemSdwanMembersInterfaceWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanMembersPreferredSourceWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3816,6 +3973,11 @@ func expandWantempSystemSdwanServiceWssa(d *schema.ResourceData, v interface{}, 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "addr_mode"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["addr-mode"], _ = expandWantempSystemSdwanServiceAddrModeWssa(d, i["addr_mode"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "agent_exclusive"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["agent-exclusive"], _ = expandWantempSystemSdwanServiceAgentExclusiveWssa(d, i["agent_exclusive"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "bandwidth_weight"
@@ -4023,6 +4185,16 @@ func expandWantempSystemSdwanServiceWssa(d *schema.ResourceData, v interface{}, 
 			tmp["role"], _ = expandWantempSystemSdwanServiceRoleWssa(d, i["role"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "shortcut"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["shortcut"], _ = expandWantempSystemSdwanServiceShortcutWssa(d, i["shortcut"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "shortcut_stickiness"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["shortcut-stickiness"], _ = expandWantempSystemSdwanServiceShortcutStickinessWssa(d, i["shortcut_stickiness"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_tag"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["route-tag"], _ = expandWantempSystemSdwanServiceRouteTagWssa(d, i["route_tag"], pre_append)
@@ -4107,6 +4279,10 @@ func expandWantempSystemSdwanServiceWssa(d *schema.ResourceData, v interface{}, 
 }
 
 func expandWantempSystemSdwanServiceAddrModeWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceAgentExclusiveWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4274,6 +4450,14 @@ func expandWantempSystemSdwanServiceRoleWssa(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandWantempSystemSdwanServiceShortcutWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceShortcutStickinessWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanServiceRouteTagWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4417,6 +4601,15 @@ func expandWantempSystemSdwanZoneServiceSlaTieBreakWssa(d *schema.ResourceData, 
 func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("app_perf_log_period"); ok || d.HasChange("app_perf_log_period") {
+		t, err := expandWantempSystemSdwanAppPerfLogPeriodWssa(d, v, "app_perf_log_period")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["app-perf-log-period"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("duplication"); ok || d.HasChange("duplication") {
 		t, err := expandWantempSystemSdwanDuplicationWssa(d, v, "duplication")
 		if err != nil {
@@ -4432,6 +4625,15 @@ func getObjectWantempSystemSdwan(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["duplication-max-num"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fail_alert_interfaces"); ok || d.HasChange("fail_alert_interfaces") {
+		t, err := expandWantempSystemSdwanFailAlertInterfacesWssa(d, v, "fail_alert_interfaces")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fail-alert-interfaces"] = t
 		}
 	}
 

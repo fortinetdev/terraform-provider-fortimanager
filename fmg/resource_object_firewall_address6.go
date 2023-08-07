@@ -157,6 +157,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"route_tag": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"sdn": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -298,6 +302,10 @@ func resourceObjectFirewallAddress6() *schema.Resource {
 			},
 			"obj_id": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"route_tag": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"sdn": &schema.Schema{
@@ -646,6 +654,12 @@ func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["obj_id"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-ObjId")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_tag"
+		if _, ok := i["route-tag"]; ok {
+			v := flattenObjectFirewallAddress6DynamicMappingRouteTag(i["route-tag"], d, pre_append)
+			tmp["route_tag"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-RouteTag")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn"
 		if _, ok := i["sdn"]; ok {
 			v := flattenObjectFirewallAddress6DynamicMappingSdn(i["sdn"], d, pre_append)
@@ -828,6 +842,10 @@ func flattenObjectFirewallAddress6DynamicMappingMacaddr(v interface{}, d *schema
 }
 
 func flattenObjectFirewallAddress6DynamicMappingObjId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6DynamicMappingRouteTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1030,6 +1048,10 @@ func flattenObjectFirewallAddress6Name(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenObjectFirewallAddress6ObjId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddress6RouteTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1412,6 +1434,16 @@ func refreshObjectObjectFirewallAddress6(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("route_tag", flattenObjectFirewallAddress6RouteTag(o["route-tag"], d, "route_tag")); err != nil {
+		if vv, ok := fortiAPIPatch(o["route-tag"], "ObjectFirewallAddress6-RouteTag"); ok {
+			if err = d.Set("route_tag", vv); err != nil {
+				return fmt.Errorf("Error reading route_tag: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading route_tag: %v", err)
+		}
+	}
+
 	if err = d.Set("sdn", flattenObjectFirewallAddress6Sdn(o["sdn"], d, "sdn")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sdn"], "ObjectFirewallAddress6-Sdn"); ok {
 			if err = d.Set("sdn", vv); err != nil {
@@ -1683,6 +1715,11 @@ func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interf
 			tmp["obj-id"], _ = expandObjectFirewallAddress6DynamicMappingObjId(d, i["obj_id"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "route_tag"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["route-tag"], _ = expandObjectFirewallAddress6DynamicMappingRouteTag(d, i["route_tag"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "sdn"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["sdn"], _ = expandObjectFirewallAddress6DynamicMappingSdn(d, i["sdn"], pre_append)
@@ -1852,6 +1889,10 @@ func expandObjectFirewallAddress6DynamicMappingMacaddr(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallAddress6DynamicMappingObjId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6DynamicMappingRouteTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2038,6 +2079,10 @@ func expandObjectFirewallAddress6Name(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectFirewallAddress6ObjId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddress6RouteTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2346,6 +2391,15 @@ func getObjectObjectFirewallAddress6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["obj-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("route_tag"); ok || d.HasChange("route_tag") {
+		t, err := expandObjectFirewallAddress6RouteTag(d, v, "route_tag")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["route-tag"] = t
 		}
 	}
 

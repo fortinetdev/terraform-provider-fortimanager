@@ -72,6 +72,7 @@ The `alertmail` block supports:
 
 * `header` - Header flag. Valid values: `none`, `http`, `8bit`.
 
+* `id` - Id.
 * `msg_type` - Message type.
 
 The `auth` block supports:
@@ -287,6 +288,7 @@ The `nac_quar` block supports:
 
 * `header` - Header flag. Valid values: `none`, `http`, `8bit`.
 
+* `id` - Id.
 * `msg_type` - Message type.
 
 The `nntp` block supports:

@@ -49,6 +49,9 @@ The following arguments are supported:
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
 * `comment` - Comment.
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
+* `exclude` - Enable/disable address6 exclusion. Valid values: `disable`, `enable`.
+
+* `exclude_member` - Address6 exclusion member.
 * `fabric_object` - Security Fabric global object setting. Valid values: `disable`, `enable`.
 
 * `global_object` - Global Object.
@@ -66,6 +69,9 @@ The `dynamic_mapping` block supports:
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
 * `color` - Integer value to determine the color of the icon in the GUI (1 - 32, default = 0, which sets the value to 1).
 * `comment` - Comment.
+* `exclude` - Enable/disable address6 exclusion. Valid values: `disable`, `enable`.
+
+* `exclude_member` - Address6 exclusion member.
 * `fabric_object` - Fabric-Object. Valid values: `disable`, `enable`.
 
 * `global_object` - Global-Object.

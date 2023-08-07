@@ -80,6 +80,14 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"match_extcommunity": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"match_extcommunity_exact": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"match_flags": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -205,6 +213,10 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"set_ip_prefsrc": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"set_ip6_nexthop": &schema.Schema{
 							Type:     schema.TypeString,
@@ -438,6 +450,18 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 			tmp["match_community_exact"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-MatchCommunityExact")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_extcommunity"
+		if _, ok := i["match-extcommunity"]; ok {
+			v := flattenObjectRouterRouteMapRuleMatchExtcommunity(i["match-extcommunity"], d, pre_append)
+			tmp["match_extcommunity"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-MatchExtcommunity")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_extcommunity_exact"
+		if _, ok := i["match-extcommunity-exact"]; ok {
+			v := flattenObjectRouterRouteMapRuleMatchExtcommunityExact(i["match-extcommunity-exact"], d, pre_append)
+			tmp["match_extcommunity_exact"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-MatchExtcommunityExact")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_flags"
 		if _, ok := i["match-flags"]; ok {
 			v := flattenObjectRouterRouteMapRuleMatchFlags(i["match-flags"], d, pre_append)
@@ -606,6 +630,12 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 			tmp["set_ip_nexthop"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetIpNexthop")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip_prefsrc"
+		if _, ok := i["set-ip-prefsrc"]; ok {
+			v := flattenObjectRouterRouteMapRuleSetIpPrefsrc(i["set-ip-prefsrc"], d, pre_append)
+			tmp["set_ip_prefsrc"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetIpPrefsrc")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip6_nexthop"
 		if _, ok := i["set-ip6-nexthop"]; ok {
 			v := flattenObjectRouterRouteMapRuleSetIp6Nexthop(i["set-ip6-nexthop"], d, pre_append)
@@ -697,6 +727,14 @@ func flattenObjectRouterRouteMapRuleMatchCommunity(v interface{}, d *schema.Reso
 }
 
 func flattenObjectRouterRouteMapRuleMatchCommunityExact(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleMatchExtcommunity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleMatchExtcommunityExact(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -809,6 +847,10 @@ func flattenObjectRouterRouteMapRuleSetFlags(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectRouterRouteMapRuleSetIpNexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetIpPrefsrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -967,6 +1009,16 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 			tmp["match-community-exact"], _ = expandObjectRouterRouteMapRuleMatchCommunityExact(d, i["match_community_exact"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_extcommunity"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["match-extcommunity"], _ = expandObjectRouterRouteMapRuleMatchExtcommunity(d, i["match_extcommunity"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_extcommunity_exact"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["match-extcommunity-exact"], _ = expandObjectRouterRouteMapRuleMatchExtcommunityExact(d, i["match_extcommunity_exact"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "match_flags"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["match-flags"], _ = expandObjectRouterRouteMapRuleMatchFlags(d, i["match_flags"], pre_append)
@@ -1107,6 +1159,11 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 			tmp["set-ip-nexthop"], _ = expandObjectRouterRouteMapRuleSetIpNexthop(d, i["set_ip_nexthop"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip_prefsrc"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["set-ip-prefsrc"], _ = expandObjectRouterRouteMapRuleSetIpPrefsrc(d, i["set_ip_prefsrc"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_ip6_nexthop"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-ip6-nexthop"], _ = expandObjectRouterRouteMapRuleSetIp6Nexthop(d, i["set_ip6_nexthop"], pre_append)
@@ -1187,6 +1244,14 @@ func expandObjectRouterRouteMapRuleMatchCommunity(d *schema.ResourceData, v inte
 }
 
 func expandObjectRouterRouteMapRuleMatchCommunityExact(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleMatchExtcommunity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleMatchExtcommunityExact(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1299,6 +1364,10 @@ func expandObjectRouterRouteMapRuleSetFlags(d *schema.ResourceData, v interface{
 }
 
 func expandObjectRouterRouteMapRuleSetIpNexthop(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetIpPrefsrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

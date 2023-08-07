@@ -1327,6 +1327,10 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"npu_group_effective_scope": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"pba_eim": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1427,6 +1431,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 					},
 				},
 			},
+			"prp_session_clear_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"process_icmp_by_host": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -1470,6 +1479,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Computed: true,
 			},
 			"session_denied_offload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"shaping_stats": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1571,6 +1585,24 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"sw_tr_hash": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"draco15": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"tcp_udp_port": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
 			},
 			"switch_np_hash": &schema.Schema{
 				Type:     schema.TypeString,
@@ -4102,6 +4134,10 @@ func flattenObjectSystemNpuNp6CpsOptimizationModeOsna(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectSystemNpuNpuGroupEffectiveScopeOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuPbaEimOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4278,6 +4314,10 @@ func flattenObjectSystemNpuPriorityProtocolSlbcOsna(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectSystemNpuPrpSessionClearModeOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuProcessIcmpByHostOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -4315,6 +4355,10 @@ func flattenObjectSystemNpuSessionAcctIntervalOsna(v interface{}, d *schema.Reso
 }
 
 func flattenObjectSystemNpuSessionDeniedOffloadOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuShapingStatsOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4465,6 +4509,37 @@ func flattenObjectSystemNpuSwEhHashSourcePortOsna(v interface{}, d *schema.Resou
 }
 
 func flattenObjectSystemNpuSwNpBandwidthOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuSwTrHashOsna(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "draco15"
+	if _, ok := i["draco15"]; ok {
+		result["draco15"] = flattenObjectSystemNpuSwTrHashDraco15Osna(i["draco15"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "tcp_udp_port"
+	if _, ok := i["tcp-udp-port"]; ok {
+		result["tcp_udp_port"] = flattenObjectSystemNpuSwTrHashTcpUdpPortOsna(i["tcp-udp-port"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectSystemNpuSwTrHashDraco15Osna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuSwTrHashTcpUdpPortOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -5289,6 +5364,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("npu_group_effective_scope", flattenObjectSystemNpuNpuGroupEffectiveScopeOsna(o["npu-group-effective-scope"], d, "npu_group_effective_scope")); err != nil {
+		if vv, ok := fortiAPIPatch(o["npu-group-effective-scope"], "ObjectSystemNpu-NpuGroupEffectiveScope"); ok {
+			if err = d.Set("npu_group_effective_scope", vv); err != nil {
+				return fmt.Errorf("Error reading npu_group_effective_scope: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading npu_group_effective_scope: %v", err)
+		}
+	}
+
 	if err = d.Set("pba_eim", flattenObjectSystemNpuPbaEimOsna(o["pba-eim"], d, "pba_eim")); err != nil {
 		if vv, ok := fortiAPIPatch(o["pba-eim"], "ObjectSystemNpu-PbaEim"); ok {
 			if err = d.Set("pba_eim", vv); err != nil {
@@ -5435,6 +5520,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("prp_session_clear_mode", flattenObjectSystemNpuPrpSessionClearModeOsna(o["prp-session-clear-mode"], d, "prp_session_clear_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["prp-session-clear-mode"], "ObjectSystemNpu-PrpSessionClearMode"); ok {
+			if err = d.Set("prp_session_clear_mode", vv); err != nil {
+				return fmt.Errorf("Error reading prp_session_clear_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading prp_session_clear_mode: %v", err)
+		}
+	}
+
 	if err = d.Set("process_icmp_by_host", flattenObjectSystemNpuProcessIcmpByHostOsna(o["process-icmp-by-host"], d, "process_icmp_by_host")); err != nil {
 		if vv, ok := fortiAPIPatch(o["process-icmp-by-host"], "ObjectSystemNpu-ProcessIcmpByHost"); ok {
 			if err = d.Set("process_icmp_by_host", vv); err != nil {
@@ -5535,6 +5630,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("shaping_stats", flattenObjectSystemNpuShapingStatsOsna(o["shaping-stats"], d, "shaping_stats")); err != nil {
+		if vv, ok := fortiAPIPatch(o["shaping-stats"], "ObjectSystemNpu-ShapingStats"); ok {
+			if err = d.Set("shaping_stats", vv); err != nil {
+				return fmt.Errorf("Error reading shaping_stats: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading shaping_stats: %v", err)
+		}
+	}
+
 	if err = d.Set("sse_backpressure", flattenObjectSystemNpuSseBackpressureOsna(o["sse-backpressure"], d, "sse_backpressure")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sse-backpressure"], "ObjectSystemNpu-SseBackpressure"); ok {
 			if err = d.Set("sse_backpressure", vv); err != nil {
@@ -5620,6 +5725,30 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading sw_np_bandwidth: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("sw_tr_hash", flattenObjectSystemNpuSwTrHashOsna(o["sw-tr-hash"], d, "sw_tr_hash")); err != nil {
+			if vv, ok := fortiAPIPatch(o["sw-tr-hash"], "ObjectSystemNpu-SwTrHash"); ok {
+				if err = d.Set("sw_tr_hash", vv); err != nil {
+					return fmt.Errorf("Error reading sw_tr_hash: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading sw_tr_hash: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("sw_tr_hash"); ok {
+			if err = d.Set("sw_tr_hash", flattenObjectSystemNpuSwTrHashOsna(o["sw-tr-hash"], d, "sw_tr_hash")); err != nil {
+				if vv, ok := fortiAPIPatch(o["sw-tr-hash"], "ObjectSystemNpu-SwTrHash"); ok {
+					if err = d.Set("sw_tr_hash", vv); err != nil {
+						return fmt.Errorf("Error reading sw_tr_hash: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading sw_tr_hash: %v", err)
+				}
+			}
 		}
 	}
 
@@ -7883,6 +8012,10 @@ func expandObjectSystemNpuNp6CpsOptimizationModeOsna(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectSystemNpuNpuGroupEffectiveScopeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuPbaEimOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8043,6 +8176,10 @@ func expandObjectSystemNpuPriorityProtocolSlbcOsna(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectSystemNpuPrpSessionClearModeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuProcessIcmpByHostOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8080,6 +8217,10 @@ func expandObjectSystemNpuSessionAcctIntervalOsna(d *schema.ResourceData, v inte
 }
 
 func expandObjectSystemNpuSessionDeniedOffloadOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuShapingStatsOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8220,6 +8361,36 @@ func expandObjectSystemNpuSwEhHashSourcePortOsna(d *schema.ResourceData, v inter
 }
 
 func expandObjectSystemNpuSwNpBandwidthOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuSwTrHashOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "draco15"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["draco15"], _ = expandObjectSystemNpuSwTrHashDraco15Osna(d, i["draco15"], pre_append)
+	}
+	pre_append = pre + ".0." + "tcp_udp_port"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["tcp-udp-port"], _ = expandObjectSystemNpuSwTrHashTcpUdpPortOsna(d, i["tcp_udp_port"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemNpuSwTrHashDraco15Osna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuSwTrHashTcpUdpPortOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8839,6 +9010,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("npu_group_effective_scope"); ok || d.HasChange("npu_group_effective_scope") {
+		t, err := expandObjectSystemNpuNpuGroupEffectiveScopeOsna(d, v, "npu_group_effective_scope")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["npu-group-effective-scope"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("pba_eim"); ok || d.HasChange("pba_eim") {
 		t, err := expandObjectSystemNpuPbaEimOsna(d, v, "pba_eim")
 		if err != nil {
@@ -8917,6 +9097,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["priority-protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("prp_session_clear_mode"); ok || d.HasChange("prp_session_clear_mode") {
+		t, err := expandObjectSystemNpuPrpSessionClearModeOsna(d, v, "prp_session_clear_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["prp-session-clear-mode"] = t
 		}
 	}
 
@@ -9010,6 +9199,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("shaping_stats"); ok || d.HasChange("shaping_stats") {
+		t, err := expandObjectSystemNpuShapingStatsOsna(d, v, "shaping_stats")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["shaping-stats"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("sse_backpressure"); ok || d.HasChange("sse_backpressure") {
 		t, err := expandObjectSystemNpuSseBackpressureOsna(d, v, "sse_backpressure")
 		if err != nil {
@@ -9061,6 +9259,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["sw-np-bandwidth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sw_tr_hash"); ok || d.HasChange("sw_tr_hash") {
+		t, err := expandObjectSystemNpuSwTrHashOsna(d, v, "sw_tr_hash")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sw-tr-hash"] = t
 		}
 	}
 

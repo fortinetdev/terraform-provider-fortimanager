@@ -31,6 +31,11 @@ The following arguments are supported:
 
 * `bandwidth_unit` - Unit of measurement for guaranteed and maximum bandwidth for this shaper (Kbps, Mbps or Gbps). Valid values: `kbps`, `mbps`, `gbps`.
 
+* `cos` - VLAN CoS mark.
+* `cos_marking` - Enable/disable VLAN CoS marking. Valid values: `disable`, `enable`.
+
+* `cos_marking_method` - Select VLAN CoS marking method. Valid values: `multi-stage`, `static`.
+
 * `diffserv` - Enable/disable changing the DiffServ setting applied to traffic accepted by this shaper. Valid values: `disable`, `enable`.
 
 * `diffservcode` - DiffServ setting to be applied to traffic accepted by this shaper.
@@ -38,9 +43,11 @@ The following arguments are supported:
 
 * `exceed_bandwidth` - Exceed bandwidth used for DSCP multi-stage marking. Units depend on the bandwidth-unit setting.
 * `exceed_class_id` - Class ID for traffic in [guaranteed-bandwidth, maximum-bandwidth].
+* `exceed_cos` - VLAN CoS mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 * `exceed_dscp` - DSCP mark for traffic in [guaranteed-bandwidth, exceed-bandwidth].
 * `guaranteed_bandwidth` - Amount of bandwidth guaranteed for this shaper (0 - 16776000). Units depend on the bandwidth-unit setting.
 * `maximum_bandwidth` - Upper bandwidth limit enforced by this shaper (0 - 16776000). 0 means no limit. Units depend on the bandwidth-unit setting.
+* `maximum_cos` - VLAN CoS mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 * `maximum_dscp` - DSCP mark for traffic in [exceed-bandwidth, maximum-bandwidth].
 * `name` - Traffic shaper name.
 * `overhead` - Per-packet size overhead used in rate computations.

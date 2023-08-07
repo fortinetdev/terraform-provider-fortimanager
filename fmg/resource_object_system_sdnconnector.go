@@ -50,6 +50,12 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 			},
 			"access_key": &schema.Schema{
+				Type:      schema.TypeString,
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"alt_resource_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -69,10 +75,23 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 			},
 			"client_secret": &schema.Schema{
-				Type:     schema.TypeSet,
-				Elem:     &schema.Schema{Type: schema.TypeString},
+				Type:      schema.TypeSet,
+				Elem:      &schema.Schema{Type: schema.TypeString},
+				Optional:  true,
+				Sensitive: true,
+				Computed:  true,
+			},
+			"compartment_list": &schema.Schema{
+				Type:     schema.TypeList,
 				Optional: true,
-				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"compartment_id": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
 			},
 			"compartment_id": &schema.Schema{
 				Type:     schema.TypeString,
@@ -245,6 +264,18 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"oci_region_list": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"region": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
 			"oci_region": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -260,6 +291,10 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Computed: true,
 			},
 			"private_key": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"proxy": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -357,6 +392,14 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 				Optional: true,
 			},
 			"server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"server_ca_cert": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"server_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -575,6 +618,10 @@ func flattenObjectSystemSdnConnectorAccessKey(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectSystemSdnConnectorAltResourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorApiKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -589,6 +636,43 @@ func flattenObjectSystemSdnConnectorClientId(v interface{}, d *schema.ResourceDa
 
 func flattenObjectSystemSdnConnectorClientSecret(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectSystemSdnConnectorCompartmentList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "compartment_id"
+		if _, ok := i["compartment-id"]; ok {
+			v := flattenObjectSystemSdnConnectorCompartmentListCompartmentId(i["compartment-id"], d, pre_append)
+			tmp["compartment_id"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-CompartmentList-CompartmentId")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemSdnConnectorCompartmentListCompartmentId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectSystemSdnConnectorCompartmentId(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -943,6 +1027,43 @@ func flattenObjectSystemSdnConnectorOciFingerprint(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectSystemSdnConnectorOciRegionList(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "region"
+		if _, ok := i["region"]; ok {
+			v := flattenObjectSystemSdnConnectorOciRegionListRegion(i["region"], d, pre_append)
+			tmp["region"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-OciRegionList-Region")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectSystemSdnConnectorOciRegionListRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorOciRegion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -956,6 +1077,10 @@ func flattenObjectSystemSdnConnectorPassword(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectSystemSdnConnectorPrivateKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorProxy(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1146,6 +1271,14 @@ func flattenObjectSystemSdnConnectorServer(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectSystemSdnConnectorServerCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemSdnConnectorServerCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemSdnConnectorServerList(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1243,13 +1376,13 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("access_key", flattenObjectSystemSdnConnectorAccessKey(o["access-key"], d, "access_key")); err != nil {
-		if vv, ok := fortiAPIPatch(o["access-key"], "ObjectSystemSdnConnector-AccessKey"); ok {
-			if err = d.Set("access_key", vv); err != nil {
-				return fmt.Errorf("Error reading access_key: %v", err)
+	if err = d.Set("alt_resource_ip", flattenObjectSystemSdnConnectorAltResourceIp(o["alt-resource-ip"], d, "alt_resource_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["alt-resource-ip"], "ObjectSystemSdnConnector-AltResourceIp"); ok {
+			if err = d.Set("alt_resource_ip", vv); err != nil {
+				return fmt.Errorf("Error reading alt_resource_ip: %v", err)
 			}
 		} else {
-			return fmt.Errorf("Error reading access_key: %v", err)
+			return fmt.Errorf("Error reading alt_resource_ip: %v", err)
 		}
 	}
 
@@ -1273,13 +1406,27 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
-	if err = d.Set("client_secret", flattenObjectSystemSdnConnectorClientSecret(o["client-secret"], d, "client_secret")); err != nil {
-		if vv, ok := fortiAPIPatch(o["client-secret"], "ObjectSystemSdnConnector-ClientSecret"); ok {
-			if err = d.Set("client_secret", vv); err != nil {
-				return fmt.Errorf("Error reading client_secret: %v", err)
+	if isImportTable() {
+		if err = d.Set("compartment_list", flattenObjectSystemSdnConnectorCompartmentList(o["compartment-list"], d, "compartment_list")); err != nil {
+			if vv, ok := fortiAPIPatch(o["compartment-list"], "ObjectSystemSdnConnector-CompartmentList"); ok {
+				if err = d.Set("compartment_list", vv); err != nil {
+					return fmt.Errorf("Error reading compartment_list: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading compartment_list: %v", err)
 			}
-		} else {
-			return fmt.Errorf("Error reading client_secret: %v", err)
+		}
+	} else {
+		if _, ok := d.GetOk("compartment_list"); ok {
+			if err = d.Set("compartment_list", flattenObjectSystemSdnConnectorCompartmentList(o["compartment-list"], d, "compartment_list")); err != nil {
+				if vv, ok := fortiAPIPatch(o["compartment-list"], "ObjectSystemSdnConnector-CompartmentList"); ok {
+					if err = d.Set("compartment_list", vv); err != nil {
+						return fmt.Errorf("Error reading compartment_list: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading compartment_list: %v", err)
+				}
+			}
 		}
 	}
 
@@ -1563,6 +1710,30 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if isImportTable() {
+		if err = d.Set("oci_region_list", flattenObjectSystemSdnConnectorOciRegionList(o["oci-region-list"], d, "oci_region_list")); err != nil {
+			if vv, ok := fortiAPIPatch(o["oci-region-list"], "ObjectSystemSdnConnector-OciRegionList"); ok {
+				if err = d.Set("oci_region_list", vv); err != nil {
+					return fmt.Errorf("Error reading oci_region_list: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading oci_region_list: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("oci_region_list"); ok {
+			if err = d.Set("oci_region_list", flattenObjectSystemSdnConnectorOciRegionList(o["oci-region-list"], d, "oci_region_list")); err != nil {
+				if vv, ok := fortiAPIPatch(o["oci-region-list"], "ObjectSystemSdnConnector-OciRegionList"); ok {
+					if err = d.Set("oci_region_list", vv); err != nil {
+						return fmt.Errorf("Error reading oci_region_list: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading oci_region_list: %v", err)
+				}
+			}
+		}
+	}
+
 	if err = d.Set("oci_region", flattenObjectSystemSdnConnectorOciRegion(o["oci-region"], d, "oci_region")); err != nil {
 		if vv, ok := fortiAPIPatch(o["oci-region"], "ObjectSystemSdnConnector-OciRegion"); ok {
 			if err = d.Set("oci_region", vv); err != nil {
@@ -1600,6 +1771,16 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading private_key: %v", err)
+		}
+	}
+
+	if err = d.Set("proxy", flattenObjectSystemSdnConnectorProxy(o["proxy"], d, "proxy")); err != nil {
+		if vv, ok := fortiAPIPatch(o["proxy"], "ObjectSystemSdnConnector-Proxy"); ok {
+			if err = d.Set("proxy", vv); err != nil {
+				return fmt.Errorf("Error reading proxy: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading proxy: %v", err)
 		}
 	}
 
@@ -1728,6 +1909,26 @@ func refreshObjectObjectSystemSdnConnector(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading server: %v", err)
+		}
+	}
+
+	if err = d.Set("server_ca_cert", flattenObjectSystemSdnConnectorServerCaCert(o["server-ca-cert"], d, "server_ca_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server-ca-cert"], "ObjectSystemSdnConnector-ServerCaCert"); ok {
+			if err = d.Set("server_ca_cert", vv); err != nil {
+				return fmt.Errorf("Error reading server_ca_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server_ca_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("server_cert", flattenObjectSystemSdnConnectorServerCert(o["server-cert"], d, "server_cert")); err != nil {
+		if vv, ok := fortiAPIPatch(o["server-cert"], "ObjectSystemSdnConnector-ServerCert"); ok {
+			if err = d.Set("server_cert", vv); err != nil {
+				return fmt.Errorf("Error reading server_cert: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading server_cert: %v", err)
 		}
 	}
 
@@ -1938,6 +2139,10 @@ func expandObjectSystemSdnConnectorAccessKey(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorAltResourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorApiKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -1952,6 +2157,37 @@ func expandObjectSystemSdnConnectorClientId(d *schema.ResourceData, v interface{
 
 func expandObjectSystemSdnConnectorClientSecret(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemSdnConnectorCompartmentList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "compartment_id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["compartment-id"], _ = expandObjectSystemSdnConnectorCompartmentListCompartmentId(d, i["compartment_id"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemSdnConnectorCompartmentListCompartmentId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSystemSdnConnectorCompartmentId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2268,6 +2504,37 @@ func expandObjectSystemSdnConnectorOciFingerprint(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorOciRegionList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "region"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["region"], _ = expandObjectSystemSdnConnectorOciRegionListRegion(d, i["region"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectSystemSdnConnectorOciRegionListRegion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorOciRegion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2281,6 +2548,10 @@ func expandObjectSystemSdnConnectorPassword(d *schema.ResourceData, v interface{
 }
 
 func expandObjectSystemSdnConnectorPrivateKey(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnConnectorProxy(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2454,6 +2725,14 @@ func expandObjectSystemSdnConnectorServer(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectSystemSdnConnectorServerCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemSdnConnectorServerCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemSdnConnectorServerList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -2551,6 +2830,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("alt_resource_ip"); ok || d.HasChange("alt_resource_ip") {
+		t, err := expandObjectSystemSdnConnectorAltResourceIp(d, v, "alt_resource_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["alt-resource-ip"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("api_key"); ok || d.HasChange("api_key") {
 		t, err := expandObjectSystemSdnConnectorApiKey(d, v, "api_key")
 		if err != nil {
@@ -2584,6 +2872,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["client-secret"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("compartment_list"); ok || d.HasChange("compartment_list") {
+		t, err := expandObjectSystemSdnConnectorCompartmentList(d, v, "compartment_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["compartment-list"] = t
 		}
 	}
 
@@ -2776,6 +3073,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("oci_region_list"); ok || d.HasChange("oci_region_list") {
+		t, err := expandObjectSystemSdnConnectorOciRegionList(d, v, "oci_region_list")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["oci-region-list"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("oci_region"); ok || d.HasChange("oci_region") {
 		t, err := expandObjectSystemSdnConnectorOciRegion(d, v, "oci_region")
 		if err != nil {
@@ -2809,6 +3115,15 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["private-key"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("proxy"); ok || d.HasChange("proxy") {
+		t, err := expandObjectSystemSdnConnectorProxy(d, v, "proxy")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["proxy"] = t
 		}
 	}
 
@@ -2917,6 +3232,24 @@ func getObjectObjectSystemSdnConnector(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server_ca_cert"); ok || d.HasChange("server_ca_cert") {
+		t, err := expandObjectSystemSdnConnectorServerCaCert(d, v, "server_ca_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server-ca-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("server_cert"); ok || d.HasChange("server_cert") {
+		t, err := expandObjectSystemSdnConnectorServerCert(d, v, "server_cert")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["server-cert"] = t
 		}
 	}
 

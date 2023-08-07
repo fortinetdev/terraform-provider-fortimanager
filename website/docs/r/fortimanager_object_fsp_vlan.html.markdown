@@ -96,8 +96,11 @@ The `dhcp_server` block supports:
 * `option5` - Option5.
 * `option6` - Option6.
 * `options` - Options. The structure of `options` block is documented below.
+* `relay_agent` - Relay agent IP.
 * `reserved_address` - Reserved-Address. The structure of `reserved_address` block is documented below.
 * `server_type` - DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
+
+* `shared_subnet` - Enable/disable shared subnet. Valid values: `disable`, `enable`.
 
 * `status` - Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
 
@@ -121,7 +124,11 @@ The `exclude_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
+* `lease_time` - Lease time in seconds, 0 means default lease time.
 * `start_ip` - Start of IP range.
+* `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+
+* `uci_string` - One or more UCI strings in quotes separated by spaces.
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
@@ -130,7 +137,11 @@ The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
+* `lease_time` - Lease time in seconds, 0 means default lease time.
 * `start_ip` - Start of IP range.
+* `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+
+* `uci_string` - One or more UCI strings in quotes separated by spaces.
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
@@ -142,6 +153,9 @@ The `options` block supports:
 * `ip` - DHCP option IPs.
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
+* `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+
+* `uci_string` - One or more UCI strings in quotes separated by spaces.
 * `value` - DHCP option value.
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
 
@@ -233,8 +247,11 @@ The `dhcp_server` block supports:
 * `option5` - Option5.
 * `option6` - Option6.
 * `options` - Options. The structure of `options` block is documented below.
+* `relay_agent` - Relay agent IP.
 * `reserved_address` - Reserved-Address. The structure of `reserved_address` block is documented below.
 * `server_type` - DHCP server can be a normal DHCP server or an IPsec DHCP server. Valid values: `regular`, `ipsec`.
+
+* `shared_subnet` - Enable/disable shared subnet. Valid values: `disable`, `enable`.
 
 * `status` - Enable/disable this DHCP configuration. Valid values: `disable`, `enable`.
 
@@ -258,7 +275,11 @@ The `exclude_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
+* `lease_time` - Lease time in seconds, 0 means default lease time.
 * `start_ip` - Start of IP range.
+* `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+
+* `uci_string` - One or more UCI strings in quotes separated by spaces.
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
@@ -267,7 +288,11 @@ The `ip_range` block supports:
 
 * `end_ip` - End of IP range.
 * `id` - ID.
+* `lease_time` - Lease time in seconds, 0 means default lease time.
 * `start_ip` - Start of IP range.
+* `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this range. Valid values: `disable`, `enable`.
+
+* `uci_string` - One or more UCI strings in quotes separated by spaces.
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this range. Valid values: `disable`, `enable`.
 
 * `vci_string` - One or more VCI strings in quotes separated by spaces.
@@ -279,6 +304,9 @@ The `options` block supports:
 * `ip` - DHCP option IPs.
 * `type` - DHCP option type. Valid values: `hex`, `string`, `ip`, `fqdn`.
 
+* `uci_match` - Enable/disable user class identifier (UCI) matching. When enabled only DHCP requests with a matching UCI are served with this option. Valid values: `disable`, `enable`.
+
+* `uci_string` - One or more UCI strings in quotes separated by spaces.
 * `value` - DHCP option value.
 * `vci_match` - Enable/disable vendor class identifier (VCI) matching. When enabled only DHCP requests with a matching VCI are served with this option. Valid values: `disable`, `enable`.
 
@@ -318,6 +346,7 @@ The `interface` block supports:
 
 * `secondaryip` - Secondaryip. The structure of `secondaryip` block is documented below.
 * `vlanid` - Vlanid.
+* `vrrp` - Vrrp. The structure of `vrrp` block is documented below.
 
 The `ipv6` block supports:
 
@@ -335,6 +364,8 @@ The `ipv6` block supports:
 * `dhcp6_prefix_hint_vlt` - DHCPv6 prefix hint valid life time (sec).
 * `dhcp6_relay_ip` - DHCPv6 relay IP address.
 * `dhcp6_relay_service` - Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
+
+* `dhcp6_relay_source_interface` - Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
 
 * `dhcp6_relay_type` - DHCPv6 relay type. Valid values: `regular`.
 
@@ -443,8 +474,36 @@ The `secondaryip` block supports:
 * `ha_priority` - HA election priority for the PING server.
 * `id` - ID.
 * `ip` - Secondary IP address of the interface.
+* `secip_relay_ip` - DHCP relay IP address.
 * `ping_serv_status` - Ping-Serv-Status.
 * `seq` - Seq.
+
+The `vrrp` block supports:
+
+* `accept_mode` - Enable/disable accept mode. Valid values: `disable`, `enable`.
+
+* `adv_interval` - Advertisement interval (1 - 255 seconds).
+* `ignore_default_route` - Enable/disable ignoring of default route when checking destination. Valid values: `disable`, `enable`.
+
+* `preempt` - Enable/disable preempt mode. Valid values: `disable`, `enable`.
+
+* `priority` - Priority of the virtual router (1 - 255).
+* `proxy_arp` - Proxy-Arp. The structure of `proxy_arp` block is documented below.
+* `start_time` - Startup time (1 - 255 seconds).
+* `status` - Enable/disable this VRRP configuration. Valid values: `disable`, `enable`.
+
+* `version` - VRRP version. Valid values: `2`, `3`.
+
+* `vrdst` - Monitor the route to this destination.
+* `vrdst_priority` - Priority of the virtual router when the virtual router destination becomes unreachable (0 - 254).
+* `vrgrp` - VRRP group ID (1 - 65535).
+* `vrid` - Virtual router identifier (1 - 255).
+* `vrip` - IP address of the virtual router.
+
+The `proxy_arp` block supports:
+
+* `id` - ID.
+* `ip` - Set IP addresses of proxy ARP.
 
 The `interface` block supports:
 
@@ -501,6 +560,8 @@ The `interface` block supports:
 * `ddns_zone` - Ddns-Zone.
 * `dedicated_to` - Configure interface for single purpose. Valid values: `none`, `management`.
 
+* `default_purdue_level` - default purdue level of device detected on this interface. Valid values: `1`, `2`, `3`, `4`, `5`, `1.5`, `2.5`, `3.5`, `5.5`.
+
 * `defaultgw` - Enable to get the gateway IP from the DHCP or PPPoE server. Valid values: `disable`, `enable`.
 
 * `description` - Description.
@@ -518,6 +579,8 @@ The `interface` block supports:
 * `device_user_identification` - Enable/disable passive gathering of user identity information about users on this interface. Valid values: `disable`, `enable`.
 
 * `devindex` - Devindex.
+* `dhcp_broadcast_flag` - Enable/disable setting of the broadcast flag in messages sent by the DHCP client (default = enable). Valid values: `disable`, `enable`.
+
 * `dhcp_classless_route_addition` - Enable/disable addition of classless static routes retrieved from DHCP server. Valid values: `disable`, `enable`.
 
 * `dhcp_client_identifier` - DHCP client identifier.
@@ -535,6 +598,8 @@ The `interface` block supports:
 * `dhcp_relay_type` - DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 
 * `dhcp_renew_time` - DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
+* `dhcp_smart_relay` - Enable/disable DHCP smart relay. Valid values: `disable`, `enable`.
+
 * `disc_retry_timeout` - Time in seconds to wait before retrying to start a PPPoE discovery, 0 means no timeout.
 * `disconnect_threshold` - Time in milliseconds to wait before sending a notification that this interface is down or disconnected.
 * `distance` - Distance for routes learned through PPPoE or DHCP, lower distance indicates preferred route.
@@ -840,6 +905,11 @@ The `interface` block supports:
 * `switch_controller_nac` - Integrated NAC settings for managed FortiSwitch.
 * `switch_controller_netflow_collect` - NetFlow collection and processing. Valid values: `disable`, `enable`.
 
+* `switch_controller_offloading` - Switch-Controller-Offloading. Valid values: `disable`, `enable`.
+
+* `switch_controller_offloading_gw` - Switch-Controller-Offloading-Gw. Valid values: `disable`, `enable`.
+
+* `switch_controller_offloading_ip` - Switch-Controller-Offloading-Ip.
 * `switch_controller_radius_server` - Switch-Controller-Radius-Server.
 * `switch_controller_rspan_mode` - Stop Layer2 MAC learning and interception of BPDUs and other packets on this interface. Valid values: `disable`, `enable`.
 
@@ -893,9 +963,12 @@ The `interface` block supports:
 
 * `wifi_broadcast_ssid` - Enable/disable SSID broadcast in the beacon. Valid values: `disable`, `enable`.
 
+* `wifi_dns_server1` - DNS server 1.
+* `wifi_dns_server2` - DNS server 2.
 * `wifi_encrypt` - Data encryption. Valid values: `TKIP`, `AES`.
 
 * `wifi_fragment_threshold` - WiFi fragment threshold (800 - 2346).
+* `wifi_gateway` - IPv4 default gateway IP address.
 * `wifi_key` - WiFi WEP Key.
 * `wifi_keyindex` - WEP key index (1 - 4).
 * `wifi_mac_filter` - Enable/disable MAC filter status. Valid values: `disable`, `enable`.
@@ -925,6 +998,8 @@ The `ipv6` block supports:
 * `dhcp6_prefix_hint_vlt` - DHCPv6 prefix hint valid life time (sec).
 * `dhcp6_relay_ip` - DHCPv6 relay IP address.
 * `dhcp6_relay_service` - Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
+
+* `dhcp6_relay_source_interface` - Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
 
 * `dhcp6_relay_type` - DHCPv6 relay type. Valid values: `regular`.
 
@@ -1033,6 +1108,7 @@ The `secondaryip` block supports:
 * `ha_priority` - HA election priority for the PING server.
 * `id` - ID.
 * `ip` - Secondary IP address of the interface.
+* `secip_relay_ip` - DHCP relay IP address.
 * `ping_serv_status` - Ping-Serv-Status.
 * `seq` - Seq.
 
@@ -1046,6 +1122,7 @@ The `vrrp` block supports:
 * `preempt` - Enable/disable preempt mode. Valid values: `disable`, `enable`.
 
 * `priority` - Priority of the virtual router (1 - 255).
+* `proxy_arp` - Proxy-Arp. The structure of `proxy_arp` block is documented below.
 * `start_time` - Startup time (1 - 255 seconds).
 * `status` - Enable/disable this VRRP configuration. Valid values: `disable`, `enable`.
 
@@ -1056,6 +1133,11 @@ The `vrrp` block supports:
 * `vrgrp` - VRRP group ID (1 - 65535).
 * `vrid` - Virtual router identifier (1 - 255).
 * `vrip` - IP address of the virtual router.
+
+The `proxy_arp` block supports:
+
+* `id` - ID.
+* `ip` - Set IP addresses of proxy ARP.
 
 
 ## Attribute Reference

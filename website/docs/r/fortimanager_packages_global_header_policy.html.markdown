@@ -79,6 +79,7 @@ The following arguments are supported:
 
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `access_proxy` - Access-Proxy.
 * `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
@@ -276,9 +277,12 @@ The following arguments are supported:
 
 * `ip_based` - Ip-Based. Valid values: `disable`, `enable`.
 
+* `ip_version_type` - IP version of the policy.
 * `ippool` - Enable to use IP Pools for source NAT. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
+* `ips_voip_filter` - Name of an existing VoIP (ips) profile.
+* `isolator_profile` - Isolator-Profile.
 * `isolator_server` - Isolator-Server.
 * `label` - Label for the policy that appears when the GUI is in Section View mode.
 * `learning_mode` - Learning-Mode. Valid values: `disable`, `enable`.
@@ -326,15 +330,22 @@ The following arguments are supported:
 
 * `passive_wan_health_measurement` - Passive-Wan-Health-Measurement. Valid values: `disable`, `enable`.
 
+* `pcp_inbound` - Enable/disable PCP inbound DNAT. Valid values: `disable`, `enable`.
+
+* `pcp_outbound` - Enable/disable PCP outbound SNAT. Valid values: `disable`, `enable`.
+
+* `pcp_poolname` - PCP pool names.
 * `per_ip_shaper` - Per-IP traffic shaper.
 * `permit_any_host` - Accept UDP packets from any host. Valid values: `disable`, `enable`.
 
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
 
 * `pfcp_profile` - PFCP profile.
+* `policy_behaviour_type` - Behaviour of the policy.
 * `policy_expiry` - Policy-Expiry. Valid values: `disable`, `enable`.
 
 * `policy_expiry_date` - Policy-Expiry-Date.
+* `policy_expiry_date_utc` - Policy expiry date and time, in epoch format.
 * `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
@@ -469,8 +480,13 @@ The following arguments are supported:
 * `webproxy_profile` - Webproxy profile name.
 * `wsso` - Enable/disable WiFi Single Sign On (WSSO). Valid values: `disable`, `enable`.
 
+* `ztna_device_ownership` - Enable/disable zero trust device ownership. Valid values: `disable`, `enable`.
+
 * `ztna_ems_tag` - Ztna-Ems-Tag.
+* `ztna_ems_tag_secondary` - Source ztna-ems-tag-secondary names.
 * `ztna_geo_tag` - Ztna-Geo-Tag.
+* `ztna_policy_redirect` - Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `disable`, `enable`.
+
 * `ztna_status` - Ztna-Status. Valid values: `disable`, `enable`.
 
 * `ztna_tags_match_logic` - Ztna-Tags-Match-Logic. Valid values: `or`, `and`.

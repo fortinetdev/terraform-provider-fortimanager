@@ -100,12 +100,14 @@ The `sip` block supports:
 * `bye_rate` - BYE request rate limit (per second, per policy).
 * `bye_rate_track` - Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
 
+* `call_id_regex` - Validate PCRE regular expression for Call-Id header value.
 * `call_keepalive` - Continue tracking calls with no RTP for this many minutes.
 * `cancel_rate` - CANCEL request rate limit (per second, per policy).
 * `cancel_rate_track` - Track the packet protocol field. Valid values: `none`, `src-ip`, `dest-ip`.
 
 * `contact_fixup` - Fixup contact anyway even if contact's IP:port doesn't match session's IP:port. Valid values: `disable`, `enable`.
 
+* `content_type_regex` - Validate PCRE regular expression for Content-Type header value.
 * `hnt_restrict_source_ip` - Enable/disable restrict RTP source IP to be the same as SIP source IP when HNT is enabled. Valid values: `disable`, `enable`.
 
 * `hosted_nat_traversal` - Hosted NAT Traversal (HNT). Valid values: `disable`, `enable`.

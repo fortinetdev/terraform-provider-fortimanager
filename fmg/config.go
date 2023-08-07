@@ -60,7 +60,11 @@ func flattenStringList(v interface{}) interface{} {
 
 	if v1, ok := v.(string); ok {
 		result := make([]string, 0, 1)
-		result = append(result, v1)
+		v1_list := strings.Split(v1, ",")
+		for _, ele := range v1_list {
+			ele_content := strings.TrimSpace(ele)
+			result = append(result, ele_content)
+		}
 		return result
 	}
 

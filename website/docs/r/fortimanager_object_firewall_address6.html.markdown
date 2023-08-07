@@ -57,6 +57,7 @@ The following arguments are supported:
 * `macaddr` - Multiple MAC address ranges.
 * `name` - Address name.
 * `obj_id` - Object ID for NSX.
+* `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).
@@ -93,6 +94,7 @@ The `dynamic_mapping` block supports:
 * `ip6` - IPv6 address prefix (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx/xxx).
 * `macaddr` - Macaddr.
 * `obj_id` - Object ID for NSX.
+* `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_tag` - SDN Tag.
 * `start_ip` - First IP address (inclusive) in the range for the address (format: xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx:xxxx).

@@ -53,6 +53,11 @@ func resourceObjectFirewallScheduleOnetime() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"end_utc": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"expiration_days": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -75,6 +80,11 @@ func resourceObjectFirewallScheduleOnetime() *schema.Resource {
 			"start": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"start_utc": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -202,6 +212,10 @@ func flattenObjectFirewallScheduleOnetimeEnd(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectFirewallScheduleOnetimeEndUtc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallScheduleOnetimeExpirationDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -219,6 +233,10 @@ func flattenObjectFirewallScheduleOnetimeName(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallScheduleOnetimeStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallScheduleOnetimeStartUtc(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -246,6 +264,16 @@ func refreshObjectObjectFirewallScheduleOnetime(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading end: %v", err)
+		}
+	}
+
+	if err = d.Set("end_utc", flattenObjectFirewallScheduleOnetimeEndUtc(o["end-utc"], d, "end_utc")); err != nil {
+		if vv, ok := fortiAPIPatch(o["end-utc"], "ObjectFirewallScheduleOnetime-EndUtc"); ok {
+			if err = d.Set("end_utc", vv); err != nil {
+				return fmt.Errorf("Error reading end_utc: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading end_utc: %v", err)
 		}
 	}
 
@@ -299,6 +327,16 @@ func refreshObjectObjectFirewallScheduleOnetime(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("start_utc", flattenObjectFirewallScheduleOnetimeStartUtc(o["start-utc"], d, "start_utc")); err != nil {
+		if vv, ok := fortiAPIPatch(o["start-utc"], "ObjectFirewallScheduleOnetime-StartUtc"); ok {
+			if err = d.Set("start_utc", vv); err != nil {
+				return fmt.Errorf("Error reading start_utc: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading start_utc: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -313,6 +351,10 @@ func expandObjectFirewallScheduleOnetimeColor(d *schema.ResourceData, v interfac
 }
 
 func expandObjectFirewallScheduleOnetimeEnd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallScheduleOnetimeEndUtc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -336,6 +378,10 @@ func expandObjectFirewallScheduleOnetimeStart(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectFirewallScheduleOnetimeStartUtc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -354,6 +400,15 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["end"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("end_utc"); ok || d.HasChange("end_utc") {
+		t, err := expandObjectFirewallScheduleOnetimeEndUtc(d, v, "end_utc")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["end-utc"] = t
 		}
 	}
 
@@ -399,6 +454,15 @@ func getObjectObjectFirewallScheduleOnetime(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["start"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("start_utc"); ok || d.HasChange("start_utc") {
+		t, err := expandObjectFirewallScheduleOnetimeStartUtc(d, v, "start_utc")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["start-utc"] = t
 		}
 	}
 

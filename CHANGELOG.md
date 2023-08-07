@@ -1,4 +1,33 @@
-## 1.8.0 (Unreleased)
+## 1.9.0 (Unreleased)
+
+## 1.8.0 (Aug 7, 2022)
+
+IMPROVEMENTS:
+
+* Support FMG v6.4.5-6.4.12, 7.0.6, 7.0.7,7.0.8, 7.2.2, 7.2.3, 7.4.0;
+* Support Token based authentication
+* Update sensitive arguments;
+* Fix data type issue;
+
+FEATURES:
+
+* **New Resource:** `fortimanager_object_cloud_orchestaws`
+* **New Resource:** `fortimanager_object_cloud_orchestawsconnector`
+* **New Resource:** `fortimanager_object_cloud_orchestawstemplate_autoscaleexistingvpc`
+* **New Resource:** `fortimanager_object_cloud_orchestawstemplate_autoscalenewvpc`
+* **New Resource:** `fortimanager_object_cloud_orchestawstemplate_autoscaletgwnewvpc`
+* **New Resource:** `fortimanager_object_cloud_orchestration`
+* **New Resource:** `fortimanager_object_firewall_networkservicedynamic`
+* **New Resource:** `fortimanager_object_switchcontroller_acl_group`
+* **New Resource:** `fortimanager_object_switchcontroller_acl_ingress`
+* **New Resource:** `fortimanager_object_system_npu_swtrhash`
+* **New Resource:** `fortimanager_object_user_certificate`
+* **New Resource:** `fortimanager_securityconsole_template_cli_preview`
+* **New Resource:** `fortimanager_system_socfabric_trustedlist`
+* **New Resource:** `fortimanager_packages_pblock_firewall_consolidated_policy`
+* **New Resource:** `fortimanager_packages_pblock_firewall_policy`
+* **New Resource:** `fortimanager_packages_pblock_firewall_policy6`
+* **New Resource:** `fortimanager_packages_pblock_firewall_securitypolicy`
 
 ## 1.7.0 (Dec 21, 2022)
 

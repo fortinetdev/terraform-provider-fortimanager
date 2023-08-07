@@ -29,11 +29,17 @@ The following arguments are supported:
 * `decrypted_traffic_mirror` - Decrypted traffic mirror.
 * `empty_cert_action` - Action of an empty client certificate. Valid values: `block`, `accept`.
 
+* `http_supported_max_version` - Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
+
 * `ldb_method` - Method used to distribute sessions to SSL real servers. Valid values: `static`, `round-robin`, `weighted`, `least-session`, `least-rtt`, `first-alive`.
 
 * `log_blocked_traffic` - Enable/disable logging of blocked traffic. Valid values: `disable`, `enable`.
 
 * `name` - Access Proxy name.
+* `svr_pool_multiplex` - Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `disable`, `enable`.
+
+* `svr_pool_server_max_request` - Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
+* `svr_pool_ttl` - Time-to-live in the server pool for idle connections to servers.
 * `user_agent_detect` - Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
 
 * `realservers` - Realservers. The structure of `realservers` block is documented below.
@@ -76,6 +82,8 @@ The `api_gateway` block supports:
 
 * `ssl_min_version` - Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
+* `ssl_renegotiation` - Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `disable`, `enable`.
+
 * `ssl_vpn_web_portal` - SSL-VPN web portal.
 * `url_map` - URL pattern to match.
 * `url_map_type` - Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
@@ -88,6 +96,8 @@ The `realservers` block supports:
 
 * `address` - Address or address group of the real server.
 * `domain` - Wildcard domain name of the real server.
+* `external_auth` - Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `disable`, `enable`.
+
 * `health_check` - Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 
 * `health_check_proto` - Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -104,6 +114,10 @@ The `realservers` block supports:
 * `ssh_host_key_validation` - Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
 
 * `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+
+* `translate_host` - Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `disable`, `enable`.
+
+* `tunnel_encryption` - Tunnel encryption. Valid values: `disable`, `enable`.
 
 * `type` - TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 
@@ -150,6 +164,8 @@ The `api_gateway6` block supports:
 
 * `ssl_min_version` - Lowest SSL/TLS version acceptable from a server. Valid values: `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
+* `ssl_renegotiation` - Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `disable`, `enable`.
+
 * `ssl_vpn_web_portal` - SSL-VPN web portal.
 * `url_map` - URL pattern to match.
 * `url_map_type` - Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
@@ -162,6 +178,8 @@ The `realservers` block supports:
 
 * `address` - Address or address group of the real server.
 * `domain` - Wildcard domain name of the real server.
+* `external_auth` - Enable/disable use of external browser as user-agent for SAML user authentication. Valid values: `disable`, `enable`.
+
 * `health_check` - Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`.
 
 * `health_check_proto` - Protocol of the health check monitor to use when polling to determine server's connectivity status. Valid values: `ping`, `http`, `tcp-connect`.
@@ -178,6 +196,10 @@ The `realservers` block supports:
 * `ssh_host_key_validation` - Enable/disable SSH real server host key validation. Valid values: `disable`, `enable`.
 
 * `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+
+* `translate_host` - Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `disable`, `enable`.
+
+* `tunnel_encryption` - Tunnel encryption. Valid values: `disable`, `enable`.
 
 * `type` - TCP forwarding server type. Valid values: `tcp-forwarding`, `ssh`.
 

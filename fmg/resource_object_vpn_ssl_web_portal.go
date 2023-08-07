@@ -201,6 +201,10 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 										Type:     schema.TypeString,
 										Optional: true,
 									},
+									"vnc_keyboard_layout": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
 									"width": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
@@ -214,6 +218,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 						},
 					},
 				},
+			},
+			"client_src_range": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"clipboard": &schema.Schema{
 				Type:     schema.TypeString,
@@ -242,6 +251,16 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"dhcp_ip_overlap": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"dhcp_ra_giaddr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"dhcp6_ra_linkaddr": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"display_bookmark": &schema.Schema{
 				Type:     schema.TypeString,
@@ -367,6 +386,63 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 			"keep_alive": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"landing_page": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"form_data": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"name": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"value": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+								},
+							},
+						},
+						"logout_url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"sso": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"sso_credential": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"sso_password": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
+						"sso_username": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"url": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+					},
+				},
+			},
+			"landing_page_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"limit_user_logins": &schema.Schema{
 				Type:     schema.TypeString,
@@ -953,6 +1029,12 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["url"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Url")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vnc_keyboard_layout"
+		if _, ok := i["vnc-keyboard-layout"]; ok {
+			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksVncKeyboardLayout(i["vnc-keyboard-layout"], d, pre_append)
+			tmp["vnc_keyboard_layout"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-VncKeyboardLayout")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "width"
 		if _, ok := i["width"]; ok {
 			v := flattenObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(i["width"], d, pre_append)
@@ -1130,11 +1212,19 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksUrl(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksVncKeyboardLayout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectVpnSslWebPortalBookmarkGroupName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalClientSrcRange(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1159,6 +1249,14 @@ func flattenObjectVpnSslWebPortalDefaultWindowWidth(v interface{}, d *schema.Res
 }
 
 func flattenObjectVpnSslWebPortalDhcpIpOverlap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalDhcpRaGiaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalDhcp6RaLinkaddr(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1275,6 +1373,129 @@ func flattenObjectVpnSslWebPortalIpv6WinsServer2(v interface{}, d *schema.Resour
 }
 
 func flattenObjectVpnSslWebPortalKeepAlive(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPage(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "form_data"
+	if _, ok := i["form-data"]; ok {
+		result["form_data"] = flattenObjectVpnSslWebPortalLandingPageFormData(i["form-data"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "logout_url"
+	if _, ok := i["logout-url"]; ok {
+		result["logout_url"] = flattenObjectVpnSslWebPortalLandingPageLogoutUrl(i["logout-url"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sso"
+	if _, ok := i["sso"]; ok {
+		result["sso"] = flattenObjectVpnSslWebPortalLandingPageSso(i["sso"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sso_credential"
+	if _, ok := i["sso-credential"]; ok {
+		result["sso_credential"] = flattenObjectVpnSslWebPortalLandingPageSsoCredential(i["sso-credential"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sso_password"
+	if _, ok := i["sso-password"]; ok {
+		result["sso_password"] = flattenObjectVpnSslWebPortalLandingPageSsoPassword(i["sso-password"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "sso_username"
+	if _, ok := i["sso-username"]; ok {
+		result["sso_username"] = flattenObjectVpnSslWebPortalLandingPageSsoUsername(i["sso-username"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "url"
+	if _, ok := i["url"]; ok {
+		result["url"] = flattenObjectVpnSslWebPortalLandingPageUrl(i["url"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectVpnSslWebPortalLandingPageFormData(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil
+	}
+
+	result := make([]map[string]interface{}, 0, len(l))
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := i["name"]; ok {
+			v := flattenObjectVpnSslWebPortalLandingPageFormDataName(i["name"], d, pre_append)
+			tmp["name"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalLandingPage-FormData-Name")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
+		if _, ok := i["value"]; ok {
+			v := flattenObjectVpnSslWebPortalLandingPageFormDataValue(i["value"], d, pre_append)
+			tmp["value"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalLandingPage-FormData-Value")
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result
+}
+
+func flattenObjectVpnSslWebPortalLandingPageFormDataName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageFormDataValue(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageSso(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageSsoCredential(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageSsoPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectVpnSslWebPortalLandingPageSsoUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalLandingPageMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1650,6 +1871,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("client_src_range", flattenObjectVpnSslWebPortalClientSrcRange(o["client-src-range"], d, "client_src_range")); err != nil {
+		if vv, ok := fortiAPIPatch(o["client-src-range"], "ObjectVpnSslWebPortal-ClientSrcRange"); ok {
+			if err = d.Set("client_src_range", vv); err != nil {
+				return fmt.Errorf("Error reading client_src_range: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading client_src_range: %v", err)
+		}
+	}
+
 	if err = d.Set("clipboard", flattenObjectVpnSslWebPortalClipboard(o["clipboard"], d, "clipboard")); err != nil {
 		if vv, ok := fortiAPIPatch(o["clipboard"], "ObjectVpnSslWebPortal-Clipboard"); ok {
 			if err = d.Set("clipboard", vv); err != nil {
@@ -1707,6 +1938,26 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading dhcp_ip_overlap: %v", err)
+		}
+	}
+
+	if err = d.Set("dhcp_ra_giaddr", flattenObjectVpnSslWebPortalDhcpRaGiaddr(o["dhcp-ra-giaddr"], d, "dhcp_ra_giaddr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dhcp-ra-giaddr"], "ObjectVpnSslWebPortal-DhcpRaGiaddr"); ok {
+			if err = d.Set("dhcp_ra_giaddr", vv); err != nil {
+				return fmt.Errorf("Error reading dhcp_ra_giaddr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dhcp_ra_giaddr: %v", err)
+		}
+	}
+
+	if err = d.Set("dhcp6_ra_linkaddr", flattenObjectVpnSslWebPortalDhcp6RaLinkaddr(o["dhcp6-ra-linkaddr"], d, "dhcp6_ra_linkaddr")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dhcp6-ra-linkaddr"], "ObjectVpnSslWebPortal-Dhcp6RaLinkaddr"); ok {
+			if err = d.Set("dhcp6_ra_linkaddr", vv); err != nil {
+				return fmt.Errorf("Error reading dhcp6_ra_linkaddr: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dhcp6_ra_linkaddr: %v", err)
 		}
 	}
 
@@ -1997,6 +2248,40 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading keep_alive: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("landing_page", flattenObjectVpnSslWebPortalLandingPage(o["landing-page"], d, "landing_page")); err != nil {
+			if vv, ok := fortiAPIPatch(o["landing-page"], "ObjectVpnSslWebPortal-LandingPage"); ok {
+				if err = d.Set("landing_page", vv); err != nil {
+					return fmt.Errorf("Error reading landing_page: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading landing_page: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("landing_page"); ok {
+			if err = d.Set("landing_page", flattenObjectVpnSslWebPortalLandingPage(o["landing-page"], d, "landing_page")); err != nil {
+				if vv, ok := fortiAPIPatch(o["landing-page"], "ObjectVpnSslWebPortal-LandingPage"); ok {
+					if err = d.Set("landing_page", vv); err != nil {
+						return fmt.Errorf("Error reading landing_page: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading landing_page: %v", err)
+				}
+			}
+		}
+	}
+
+	if err = d.Set("landing_page_mode", flattenObjectVpnSslWebPortalLandingPageMode(o["landing-page-mode"], d, "landing_page_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["landing-page-mode"], "ObjectVpnSslWebPortal-LandingPageMode"); ok {
+			if err = d.Set("landing_page_mode", vv); err != nil {
+				return fmt.Errorf("Error reading landing_page_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading landing_page_mode: %v", err)
 		}
 	}
 
@@ -2605,6 +2890,11 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 			tmp["url"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksUrl(d, i["url"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "vnc_keyboard_layout"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["vnc-keyboard-layout"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksVncKeyboardLayout(d, i["vnc_keyboard_layout"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "width"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["width"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(d, i["width"], pre_append)
@@ -2774,11 +3064,19 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksUrl(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalBookmarkGroupBookmarksVncKeyboardLayout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectVpnSslWebPortalBookmarkGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalClientSrcRange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2803,6 +3101,14 @@ func expandObjectVpnSslWebPortalDefaultWindowWidth(d *schema.ResourceData, v int
 }
 
 func expandObjectVpnSslWebPortalDhcpIpOverlap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalDhcpRaGiaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalDhcp6RaLinkaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2919,6 +3225,121 @@ func expandObjectVpnSslWebPortalIpv6WinsServer2(d *schema.ResourceData, v interf
 }
 
 func expandObjectVpnSslWebPortalKeepAlive(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "form_data"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		t, err := expandObjectVpnSslWebPortalLandingPageFormData(d, i["form_data"], pre_append)
+		if err != nil {
+			return result, err
+		} else if t != nil {
+			result["form-data"] = t
+		}
+	}
+	pre_append = pre + ".0." + "logout_url"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["logout-url"], _ = expandObjectVpnSslWebPortalLandingPageLogoutUrl(d, i["logout_url"], pre_append)
+	}
+	pre_append = pre + ".0." + "sso"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["sso"], _ = expandObjectVpnSslWebPortalLandingPageSso(d, i["sso"], pre_append)
+	}
+	pre_append = pre + ".0." + "sso_credential"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["sso-credential"], _ = expandObjectVpnSslWebPortalLandingPageSsoCredential(d, i["sso_credential"], pre_append)
+	}
+	pre_append = pre + ".0." + "sso_password"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["sso-password"], _ = expandObjectVpnSslWebPortalLandingPageSsoPassword(d, i["sso_password"], pre_append)
+	}
+	pre_append = pre + ".0." + "sso_username"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["sso-username"], _ = expandObjectVpnSslWebPortalLandingPageSsoUsername(d, i["sso_username"], pre_append)
+	}
+	pre_append = pre + ".0." + "url"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["url"], _ = expandObjectVpnSslWebPortalLandingPageUrl(d, i["url"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageFormData(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	result := make([]map[string]interface{}, 0, len(l))
+
+	if len(l) == 0 || l[0] == nil {
+		return result, nil
+	}
+
+	con := 0
+	for _, r := range l {
+		tmp := make(map[string]interface{})
+		i := r.(map[string]interface{})
+		pre_append := "" // table
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["name"], _ = expandObjectVpnSslWebPortalLandingPageFormDataName(d, i["name"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "value"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["value"], _ = expandObjectVpnSslWebPortalLandingPageFormDataValue(d, i["value"], pre_append)
+		}
+
+		result = append(result, tmp)
+
+		con += 1
+	}
+
+	return result, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageFormDataName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageFormDataValue(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageSso(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageSsoCredential(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageSsoPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageSsoUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalLandingPageMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3247,6 +3668,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("client_src_range"); ok || d.HasChange("client_src_range") {
+		t, err := expandObjectVpnSslWebPortalClientSrcRange(d, v, "client_src_range")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["client-src-range"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("clipboard"); ok || d.HasChange("clipboard") {
 		t, err := expandObjectVpnSslWebPortalClipboard(d, v, "clipboard")
 		if err != nil {
@@ -3298,6 +3728,24 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["dhcp-ip-overlap"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dhcp_ra_giaddr"); ok || d.HasChange("dhcp_ra_giaddr") {
+		t, err := expandObjectVpnSslWebPortalDhcpRaGiaddr(d, v, "dhcp_ra_giaddr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dhcp-ra-giaddr"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dhcp6_ra_linkaddr"); ok || d.HasChange("dhcp6_ra_linkaddr") {
+		t, err := expandObjectVpnSslWebPortalDhcp6RaLinkaddr(d, v, "dhcp6_ra_linkaddr")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dhcp6-ra-linkaddr"] = t
 		}
 	}
 
@@ -3559,6 +4007,24 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["keep-alive"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("landing_page"); ok || d.HasChange("landing_page") {
+		t, err := expandObjectVpnSslWebPortalLandingPage(d, v, "landing_page")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["landing-page"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("landing_page_mode"); ok || d.HasChange("landing_page_mode") {
+		t, err := expandObjectVpnSslWebPortalLandingPageMode(d, v, "landing_page_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["landing-page-mode"] = t
 		}
 	}
 

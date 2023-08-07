@@ -62,7 +62,9 @@ The following arguments are supported:
 
 * `auth_type` - Authentication methods/protocols permitted for this RADIUS server. Valid values: `pap`, `chap`, `ms_chap`, `ms_chap_v2`, `auto`.
 
+* `ca_cert` - CA of server to trust under TLS.
 * `class` - Class attribute name(s).
+* `client_cert` - Client certificate to use under TLS.
 * `delimiter` - Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
 
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
@@ -80,6 +82,9 @@ The following arguments are supported:
 * `mac_username_delimiter` - MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
 
 * `name` - RADIUS server entry name.
+* `nas_id` - Custom NAS identifier.
+* `nas_id_type` - NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+
 * `nas_ip` - IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 * `password_encoding` - Password encoding. Valid values: `ISO-8859-1`, `auto`.
 
@@ -112,18 +117,25 @@ The following arguments are supported:
 * `secondary_server` - {&lt;name_str|ip_str&gt;} secondary RADIUS CN domain name or IP.
 * `secret` - Pre-shared secret key used to access the primary RADIUS server.
 * `server` - Primary RADIUS server CN domain name or IP address.
+* `server_identity_check` - Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
+
 * `source_ip` - Source IP address for communications to the RADIUS server.
 * `sso_attribute` - RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `User-Password`, `CHAP-Password`, `NAS-IP-Address`, `NAS-Port`, `Service-Type`, `Framed-Protocol`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Framed-Routing`, `Filter-Id`, `Framed-MTU`, `Framed-Compression`, `Login-IP-Host`, `Login-Service`, `Login-TCP-Port`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `State`, `Class`, `Session-Timeout`, `Idle-Timeout`, `Termination-Action`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Link`, `Framed-AppleTalk-Network`, `Framed-AppleTalk-Zone`, `Acct-Status-Type`, `Acct-Delay-Time`, `Acct-Input-Octets`, `Acct-Output-Octets`, `Acct-Session-Id`, `Acct-Authentic`, `Acct-Session-Time`, `Acct-Input-Packets`, `Acct-Output-Packets`, `Acct-Terminate-Cause`, `Acct-Multi-Session-Id`, `Acct-Link-Count`, `CHAP-Challenge`, `NAS-Port-Type`, `Port-Limit`, `Login-LAT-Port`.
 
 * `sso_attribute_key` - Key prefix for SSO group value in the SSO attribute.
 * `sso_attribute_value_override` - Enable/disable override old attribute value with new value for the same endpoint. Valid values: `disable`, `enable`.
 
+* `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `switch_controller_acct_fast_framedip_detect` - Switch controller accounting message Framed-IP detection from DHCP snooping (seconds, default=2).
 * `switch_controller_service_type` - RADIUS service type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 
 * `tertiary_secret` - Secret key to access the tertiary server.
 * `tertiary_server` - {&lt;name_str|ip_str&gt;} tertiary RADIUS CN domain name or IP.
 * `timeout` - Time in seconds between re-sending authentication requests.
+* `tls_min_proto_version` - Minimum supported protocol version for TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
+
+* `transport_protocol` - Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+
 * `use_management_vdom` - Enable/disable using management VDOM to send requests. Valid values: `disable`, `enable`.
 
 * `username_case_sensitive` - Enable/disable case sensitive user names. Valid values: `disable`, `enable`.
@@ -154,7 +166,9 @@ The `dynamic_mapping` block supports:
 
 * `auth_type` - Authentication methods/protocols permitted for this RADIUS server. Valid values: `pap`, `chap`, `ms_chap`, `ms_chap_v2`, `auto`.
 
+* `ca_cert` - CA of server to trust under TLS.
 * `class` - Class attribute name(s).
+* `client_cert` - Client certificate to use under TLS.
 * `delimiter` - Delimiter. Valid values: `plus`, `comma`.
 
 * `dp_carrier_endpoint_attribute` - Dp-Carrier-Endpoint-Attribute. Valid values: `User-Name`, `User-Password`, `CHAP-Password`, `NAS-IP-Address`, `NAS-Port`, `Service-Type`, `Framed-Protocol`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Framed-Routing`, `Filter-Id`, `Framed-MTU`, `Framed-Compression`, `Login-IP-Host`, `Login-Service`, `Login-TCP-Port`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `State`, `Class`, `Vendor-Specific`, `Session-Timeout`, `Idle-Timeout`, `Termination-Action`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Link`, `Framed-AppleTalk-Network`, `Framed-AppleTalk-Zone`, `Acct-Status-Type`, `Acct-Delay-Time`, `Acct-Input-Octets`, `Acct-Output-Octets`, `Acct-Session-Id`, `Acct-Authentic`, `Acct-Session-Time`, `Acct-Input-Packets`, `Acct-Output-Packets`, `Acct-Terminate-Cause`, `Acct-Multi-Session-Id`, `Acct-Link-Count`, `CHAP-Challenge`, `NAS-Port-Type`, `Port-Limit`, `Login-LAT-Port`.
@@ -221,6 +235,9 @@ The `dynamic_mapping` block supports:
 
 * `mac_username_delimiter` - MAC authentication username delimiter (default = hyphen). Valid values: `hyphen`, `single-hyphen`, `colon`, `none`.
 
+* `nas_id` - Custom NAS identifier.
+* `nas_id_type` - NAS identifier type configuration (default = legacy). Valid values: `legacy`, `custom`, `hostname`.
+
 * `nas_ip` - IP address used to communicate with the RADIUS server and used as NAS-IP-Address and Called-Station-ID attributes.
 * `password_encoding` - Password encoding. Valid values: `ISO-8859-1`, `auto`.
 
@@ -253,18 +270,25 @@ The `dynamic_mapping` block supports:
 * `secondary_server` - {&lt;name_str|ip_str&gt;} secondary RADIUS CN domain name or IP.
 * `secret` - Pre-shared secret key used to access the primary RADIUS server.
 * `server` - Primary RADIUS server CN domain name or IP address.
+* `server_identity_check` - Enable/disable RADIUS server identity check (verify server domain name/IP address against the server certificate). Valid values: `disable`, `enable`.
+
 * `source_ip` - Source IP address for communications to the RADIUS server.
 * `sso_attribute` - RADIUS attribute that contains the profile group name to be extracted from the RADIUS Start record. Valid values: `User-Name`, `User-Password`, `CHAP-Password`, `NAS-IP-Address`, `NAS-Port`, `Service-Type`, `Framed-Protocol`, `Framed-IP-Address`, `Framed-IP-Netmask`, `Framed-Routing`, `Filter-Id`, `Framed-MTU`, `Framed-Compression`, `Login-IP-Host`, `Login-Service`, `Login-TCP-Port`, `Reply-Message`, `Callback-Number`, `Callback-Id`, `Framed-Route`, `Framed-IPX-Network`, `State`, `Class`, `Session-Timeout`, `Idle-Timeout`, `Termination-Action`, `Called-Station-Id`, `Calling-Station-Id`, `NAS-Identifier`, `Proxy-State`, `Login-LAT-Service`, `Login-LAT-Node`, `Login-LAT-Group`, `Framed-AppleTalk-Link`, `Framed-AppleTalk-Network`, `Framed-AppleTalk-Zone`, `Acct-Status-Type`, `Acct-Delay-Time`, `Acct-Input-Octets`, `Acct-Output-Octets`, `Acct-Session-Id`, `Acct-Authentic`, `Acct-Session-Time`, `Acct-Input-Packets`, `Acct-Output-Packets`, `Acct-Terminate-Cause`, `Acct-Multi-Session-Id`, `Acct-Link-Count`, `CHAP-Challenge`, `NAS-Port-Type`, `Port-Limit`, `Login-LAT-Port`.
 
 * `sso_attribute_key` - Key prefix for SSO group value in the SSO attribute.
 * `sso_attribute_value_override` - Enable/disable override old attribute value with new value for the same endpoint. Valid values: `disable`, `enable`.
 
+* `status_ttl` - Time for which server reachability is cached so that when a server is unreachable, it will not be retried for at least this period of time (0 = cache disabled, default = 300).
 * `switch_controller_acct_fast_framedip_detect` - Switch-Controller-Acct-Fast-Framedip-Detect.
 * `switch_controller_service_type` - Switch-Controller-Service-Type. Valid values: `login`, `framed`, `callback-login`, `callback-framed`, `outbound`, `administrative`, `nas-prompt`, `authenticate-only`, `callback-nas-prompt`, `call-check`, `callback-administrative`.
 
 * `tertiary_secret` - Secret key to access the tertiary server.
 * `tertiary_server` - {&lt;name_str|ip_str&gt;} tertiary RADIUS CN domain name or IP.
 * `timeout` - Time in seconds between re-sending authentication requests.
+* `tls_min_proto_version` - Minimum supported protocol version for TLS connections (default is to follow system global setting). Valid values: `default`, `TLSv1`, `TLSv1-1`, `TLSv1-2`, `SSLv3`.
+
+* `transport_protocol` - Transport protocol to be used (default = udp). Valid values: `udp`, `tcp`, `tls`.
+
 * `use_group_for_profile` - Use-Group-For-Profile. Valid values: `disable`, `enable`.
 
 * `use_management_vdom` - Enable/disable using management VDOM to send requests. Valid values: `disable`, `enable`.

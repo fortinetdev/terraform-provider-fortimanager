@@ -99,6 +99,7 @@ The following arguments are supported:
 * `np_queues` - Np-Queues. The structure of `np_queues` block is documented below.
 * `np6_cps_optimization_mode` - Enable/disable NP6 connection per second (CPS) optimization mode. Valid values: `disable`, `enable`.
 
+* `npu_group_effective_scope` - npu-group-effective-scope defines under which npu-group cmds such as list/purge will be excecuted. Default scope is for all four HS-ok groups. (0-3, default = 255).
 * `pba_eim` - Configure option for PBA(non-overload)/EIM combination. Valid values: `disallow`, `allow`.
 
 * `per_policy_accounting` - Set per-policy accounting. Valid values: `disable`, `enable`.
@@ -113,6 +114,8 @@ The following arguments are supported:
 * `port_npu_map` - Port-Npu-Map. The structure of `port_npu_map` block is documented below.
 * `port_path_option` - Port-Path-Option. The structure of `port_path_option` block is documented below.
 * `priority_protocol` - Priority-Protocol. The structure of `priority_protocol` block is documented below.
+* `prp_session_clear_mode` - PRP session clear mode for excluded ip sessions. Valid values: `blocking`, `non-blocking`, `do-not-clear`.
+
 * `process_icmp_by_host` - Enable/disable process ICMP by host when received from IPsec tunnel and payload size &lt; 119. Valid values: `disable`, `enable`.
 
 * `prp_port_in` - Ingress port configured to allow the PRP trailer not be stripped off when the PRP packets come in.                    All of the traffic originating from these ports will always be sent to the host.
@@ -130,6 +133,8 @@ The following arguments are supported:
 * `session_acct_interval` - Session accounting update interval (1 - 10 sec, default 5 sec).
 * `session_denied_offload` - Enable/disable offloading of denied sessions. Requires ses-denied-traffic to be set. Valid values: `disable`, `enable`.
 
+* `shaping_stats` - Enable/disable NP7 traffic shaping statistics (default = disable). Valid values: `disable`, `enable`.
+
 * `sse_backpressure` - Enable/disable sse backpressure. Valid values: `disable`, `enable`.
 
 * `sse_ha_scan` - Sse-Ha-Scan. The structure of `sse_ha_scan` block is documented below.
@@ -140,6 +145,7 @@ The following arguments are supported:
 * `sw_eh_hash` - Sw-Eh-Hash. The structure of `sw_eh_hash` block is documented below.
 * `sw_np_bandwidth` - Bandwidth from switch to NP. Valid values: `0G`, `2G`, `4G`, `5G`, `6G`, `7G`, `8G`, `9G`.
 
+* `sw_tr_hash` - Sw-Tr-Hash. The structure of `sw_tr_hash` block is documented below.
 * `switch_np_hash` - Switch-NP trunk port selection Criteria. Valid values: `src-ip`, `dst-ip`, `src-dst-ip`.
 
 * `tcp_rst_timeout` - TCP RST timeout in seconds (0-3600, default = 5).
@@ -593,6 +599,13 @@ The `sw_eh_hash` block supports:
 * `source_ip_upper_16` - Include/exclude source IP address upper 16 bits. Valid values: `include`, `exclude`.
 
 * `source_port` - Include/exclude source port if TCP/UDP. Valid values: `include`, `exclude`.
+
+
+The `sw_tr_hash` block supports:
+
+* `draco15` - Enable/disable DRACO15 hashing. Valid values: `disable`, `enable`.
+
+* `tcp_udp_port` - Include/exclude TCP/UDP source and destination port for unicast trunk traffic. Valid values: `include`, `exclude`.
 
 
 The `tcp_timeout_profile` block supports:

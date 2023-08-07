@@ -113,6 +113,10 @@ func resourceDvmdbAdom() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"tz": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -289,6 +293,10 @@ func flattenDvmdbAdomRestrictedPrds(v interface{}, d *schema.ResourceData, pre s
 }
 
 func flattenDvmdbAdomState(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmdbAdomTz(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -473,6 +481,16 @@ func refreshObjectDvmdbAdom(d *schema.ResourceData, o map[string]interface{}) er
 		}
 	}
 
+	if err = d.Set("tz", flattenDvmdbAdomTz(o["tz"], d, "tz")); err != nil {
+		if vv, ok := fortiAPIPatch(o["tz"], "DvmdbAdom-Tz"); ok {
+			if err = d.Set("tz", vv); err != nil {
+				return fmt.Errorf("Error reading tz: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading tz: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenDvmdbAdomUuid(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "DvmdbAdom-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -567,6 +585,10 @@ func expandDvmdbAdomRestrictedPrds(d *schema.ResourceData, v interface{}, pre st
 }
 
 func expandDvmdbAdomState(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmdbAdomTz(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -731,6 +753,15 @@ func getObjectDvmdbAdom(d *schema.ResourceData) (*map[string]interface{}, error)
 			return &obj, err
 		} else if t != nil {
 			obj["state"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("tz"); ok || d.HasChange("tz") {
+		t, err := expandDvmdbAdomTz(d, v, "tz")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["tz"] = t
 		}
 	}
 

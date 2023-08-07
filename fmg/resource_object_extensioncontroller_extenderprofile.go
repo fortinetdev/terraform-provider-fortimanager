@@ -45,6 +45,11 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"_is_factory_setting": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"allowaccess": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -580,6 +585,10 @@ func resourceObjectExtensionControllerExtenderProfileRead(d *schema.ResourceData
 		return fmt.Errorf("Error reading ObjectExtensionControllerExtenderProfile resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectExtensionControllerExtenderProfileIsFactorySetting(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectExtensionControllerExtenderProfileAllowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1407,6 +1416,16 @@ func refreshObjectObjectExtensionControllerExtenderProfile(d *schema.ResourceDat
 		d.Set("scopetype", "inherit")
 	}
 
+	if err = d.Set("_is_factory_setting", flattenObjectExtensionControllerExtenderProfileIsFactorySetting(o["_is_factory_setting"], d, "_is_factory_setting")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_is_factory_setting"], "ObjectExtensionControllerExtenderProfile-IsFactorySetting"); ok {
+			if err = d.Set("_is_factory_setting", vv); err != nil {
+				return fmt.Errorf("Error reading _is_factory_setting: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _is_factory_setting: %v", err)
+		}
+	}
+
 	if err = d.Set("allowaccess", flattenObjectExtensionControllerExtenderProfileAllowaccess(o["allowaccess"], d, "allowaccess")); err != nil {
 		if vv, ok := fortiAPIPatch(o["allowaccess"], "ObjectExtensionControllerExtenderProfile-Allowaccess"); ok {
 			if err = d.Set("allowaccess", vv); err != nil {
@@ -1552,6 +1571,10 @@ func flattenObjectExtensionControllerExtenderProfileFortiTestDebug(d *schema.Res
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectExtensionControllerExtenderProfileIsFactorySetting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectExtensionControllerExtenderProfileAllowaccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -2347,6 +2370,15 @@ func expandObjectExtensionControllerExtenderProfileName(d *schema.ResourceData, 
 
 func getObjectObjectExtensionControllerExtenderProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_is_factory_setting"); ok || d.HasChange("_is_factory_setting") {
+		t, err := expandObjectExtensionControllerExtenderProfileIsFactorySetting(d, v, "_is_factory_setting")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_is_factory_setting"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("allowaccess"); ok || d.HasChange("allowaccess") {
 		t, err := expandObjectExtensionControllerExtenderProfileAllowaccess(d, v, "allowaccess")

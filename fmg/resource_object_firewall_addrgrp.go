@@ -129,8 +129,10 @@ func resourceObjectFirewallAddrgrp() *schema.Resource {
 							Optional: true,
 						},
 						"member": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeList,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"tags": &schema.Schema{
 							Type:     schema.TypeString,
@@ -564,7 +566,7 @@ func flattenObjectFirewallAddrgrpDynamicMappingGlobalObject(v interface{}, d *sc
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return conv2str(v)
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddrgrpDynamicMappingTags(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1083,7 +1085,7 @@ func expandObjectFirewallAddrgrpDynamicMappingGlobalObject(d *schema.ResourceDat
 }
 
 func expandObjectFirewallAddrgrpDynamicMappingMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallAddrgrpDynamicMappingTags(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

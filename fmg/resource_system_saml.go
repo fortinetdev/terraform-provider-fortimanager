@@ -33,6 +33,11 @@ func resourceSystemSaml() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"auth_request_signed": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -180,6 +185,11 @@ func resourceSystemSaml() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"want_assertions_signed": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -269,6 +279,10 @@ func resourceSystemSamlRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenSystemSamlAcsUrlSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemSamlAuthRequestSignedSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -552,6 +566,10 @@ func flattenSystemSamlUserAutoCreateSSa(v interface{}, d *schema.ResourceData, p
 	return v
 }
 
+func flattenSystemSamlWantAssertionsSignedSSa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -566,6 +584,16 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading acs_url: %v", err)
+		}
+	}
+
+	if err = d.Set("auth_request_signed", flattenSystemSamlAuthRequestSignedSSa(o["auth-request-signed"], d, "auth_request_signed")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-request-signed"], "SystemSaml-AuthRequestSigned"); ok {
+			if err = d.Set("auth_request_signed", vv); err != nil {
+				return fmt.Errorf("Error reading auth_request_signed: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_request_signed: %v", err)
 		}
 	}
 
@@ -757,6 +785,16 @@ func refreshObjectSystemSaml(d *schema.ResourceData, o map[string]interface{}) e
 		}
 	}
 
+	if err = d.Set("want_assertions_signed", flattenSystemSamlWantAssertionsSignedSSa(o["want-assertions-signed"], d, "want_assertions_signed")); err != nil {
+		if vv, ok := fortiAPIPatch(o["want-assertions-signed"], "SystemSaml-WantAssertionsSigned"); ok {
+			if err = d.Set("want_assertions_signed", vv); err != nil {
+				return fmt.Errorf("Error reading want_assertions_signed: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading want_assertions_signed: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -767,6 +805,10 @@ func flattenSystemSamlFortiTestDebug(d *schema.ResourceData, fosdebugsn int, fos
 }
 
 func expandSystemSamlAcsUrlSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemSamlAuthRequestSignedSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1023,6 +1065,10 @@ func expandSystemSamlUserAutoCreateSSa(d *schema.ResourceData, v interface{}, pr
 	return v, nil
 }
 
+func expandSystemSamlWantAssertionsSignedSSa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -1032,6 +1078,15 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["acs-url"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auth_request_signed"); ok || d.HasChange("auth_request_signed") {
+		t, err := expandSystemSamlAuthRequestSignedSSa(d, v, "auth_request_signed")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-request-signed"] = t
 		}
 	}
 
@@ -1184,6 +1239,15 @@ func getObjectSystemSaml(d *schema.ResourceData, bemptysontable bool) (*map[stri
 			return &obj, err
 		} else if t != nil {
 			obj["user-auto-create"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("want_assertions_signed"); ok || d.HasChange("want_assertions_signed") {
+		t, err := expandSystemSamlWantAssertionsSignedSSa(d, v, "want_assertions_signed")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["want-assertions-signed"] = t
 		}
 	}
 

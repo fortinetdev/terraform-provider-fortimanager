@@ -27,6 +27,8 @@ The following arguments are supported:
 
 
 * `acs_url` - SP ACS(login) URL.
+* `auth_request_signed` - Enable/Disable auth request signed. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `cert` - Certificate name.
 * `default_profile` - Default Profile Name.
 * `entity_id` - SP entity ID.
@@ -47,6 +49,8 @@ The following arguments are supported:
 * `status` - Enable/disable SAML authentication (default = disable). disable - Disable SAML authentication. enable - Enabld SAML authentication. Valid values: `disable`, `enable`.
 
 * `user_auto_create` - Enable/disable user auto creation (default = disable). disable - Disable auto create user. enable - Enable auto create user. Valid values: `disable`, `enable`.
+
+* `want_assertions_signed` - Enable/Disable want assertions signed. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 

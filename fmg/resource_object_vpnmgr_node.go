@@ -96,6 +96,16 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"auto_discovery_receiver": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_discovery_sender": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"automatic_routing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -300,6 +310,15 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 				Optional: true,
 			},
 			"net_device": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"network_id": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"network_overlay": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -610,6 +629,14 @@ func flattenObjectVpnmgrNodeAutoConfiguration(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectVpnmgrNodeAutoDiscoveryReceiver(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeAutoDiscoverySender(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnmgrNodeAutomaticRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -865,6 +892,14 @@ func flattenObjectVpnmgrNodeModeCfgIpVersion(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectVpnmgrNodeNetDevice(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeNetworkId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeNetworkOverlay(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1124,6 +1159,26 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading auto_configuration: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_discovery_receiver", flattenObjectVpnmgrNodeAutoDiscoveryReceiver(o["auto-discovery-receiver"], d, "auto_discovery_receiver")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-discovery-receiver"], "ObjectVpnmgrNode-AutoDiscoveryReceiver"); ok {
+			if err = d.Set("auto_discovery_receiver", vv); err != nil {
+				return fmt.Errorf("Error reading auto_discovery_receiver: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_discovery_receiver: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_discovery_sender", flattenObjectVpnmgrNodeAutoDiscoverySender(o["auto-discovery-sender"], d, "auto_discovery_sender")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-discovery-sender"], "ObjectVpnmgrNode-AutoDiscoverySender"); ok {
+			if err = d.Set("auto_discovery_sender", vv); err != nil {
+				return fmt.Errorf("Error reading auto_discovery_sender: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_discovery_sender: %v", err)
 		}
 	}
 
@@ -1535,6 +1590,26 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("network_id", flattenObjectVpnmgrNodeNetworkId(o["network-id"], d, "network_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["network-id"], "ObjectVpnmgrNode-NetworkId"); ok {
+			if err = d.Set("network_id", vv); err != nil {
+				return fmt.Errorf("Error reading network_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading network_id: %v", err)
+		}
+	}
+
+	if err = d.Set("network_overlay", flattenObjectVpnmgrNodeNetworkOverlay(o["network-overlay"], d, "network_overlay")); err != nil {
+		if vv, ok := fortiAPIPatch(o["network-overlay"], "ObjectVpnmgrNode-NetworkOverlay"); ok {
+			if err = d.Set("network_overlay", vv); err != nil {
+				return fmt.Errorf("Error reading network_overlay: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading network_overlay: %v", err)
+		}
+	}
+
 	if err = d.Set("peer", flattenObjectVpnmgrNodePeer(o["peer"], d, "peer")); err != nil {
 		if vv, ok := fortiAPIPatch(o["peer"], "ObjectVpnmgrNode-Peer"); ok {
 			if err = d.Set("peer", vv); err != nil {
@@ -1810,6 +1885,14 @@ func expandObjectVpnmgrNodeAutoConfiguration(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectVpnmgrNodeAutoDiscoveryReceiver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnmgrNodeAutoDiscoverySender(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnmgrNodeAutomaticRouting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2052,6 +2135,14 @@ func expandObjectVpnmgrNodeNetDevice(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandObjectVpnmgrNodeNetworkId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnmgrNodeNetworkOverlay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnmgrNodePeer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
@@ -2273,6 +2364,24 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["auto-configuration"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_discovery_receiver"); ok || d.HasChange("auto_discovery_receiver") {
+		t, err := expandObjectVpnmgrNodeAutoDiscoveryReceiver(d, v, "auto_discovery_receiver")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-discovery-receiver"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_discovery_sender"); ok || d.HasChange("auto_discovery_sender") {
+		t, err := expandObjectVpnmgrNodeAutoDiscoverySender(d, v, "auto_discovery_sender")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-discovery-sender"] = t
 		}
 	}
 
@@ -2615,6 +2724,24 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["net-device"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("network_id"); ok || d.HasChange("network_id") {
+		t, err := expandObjectVpnmgrNodeNetworkId(d, v, "network_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["network-id"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("network_overlay"); ok || d.HasChange("network_overlay") {
+		t, err := expandObjectVpnmgrNodeNetworkOverlay(d, v, "network_overlay")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["network-overlay"] = t
 		}
 	}
 

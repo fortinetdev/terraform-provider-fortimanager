@@ -88,6 +88,10 @@ func resourceObjectDlpDictionary() *schema.Resource {
 					},
 				},
 			},
+			"match_around": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"match_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -327,6 +331,10 @@ func flattenObjectDlpDictionaryEntriesType(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectDlpDictionaryMatchAround(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectDlpDictionaryMatchType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -381,6 +389,16 @@ func refreshObjectObjectDlpDictionary(d *schema.ResourceData, o map[string]inter
 					return fmt.Errorf("Error reading entries: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("match_around", flattenObjectDlpDictionaryMatchAround(o["match-around"], d, "match_around")); err != nil {
+		if vv, ok := fortiAPIPatch(o["match-around"], "ObjectDlpDictionary-MatchAround"); ok {
+			if err = d.Set("match_around", vv); err != nil {
+				return fmt.Errorf("Error reading match_around: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading match_around: %v", err)
 		}
 	}
 
@@ -512,6 +530,10 @@ func expandObjectDlpDictionaryEntriesType(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectDlpDictionaryMatchAround(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectDlpDictionaryMatchType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -542,6 +564,15 @@ func getObjectObjectDlpDictionary(d *schema.ResourceData) (*map[string]interface
 			return &obj, err
 		} else if t != nil {
 			obj["entries"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("match_around"); ok || d.HasChange("match_around") {
+		t, err := expandObjectDlpDictionaryMatchAround(d, v, "match_around")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["match-around"] = t
 		}
 	}
 

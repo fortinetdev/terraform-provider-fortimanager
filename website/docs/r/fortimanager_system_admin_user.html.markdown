@@ -34,6 +34,7 @@ The following arguments are supported:
 * `ca` - PKI user certificate CA (CA name in local).
 * `change_password` - Enable/disable restricted user to change self password. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `cors_allow_origin` - Access-Control-Allow-Origin.
 * `dashboard` - Dashboard. The structure of `dashboard` block is documented below.
 * `dashboard_tabs` - Dashboard-Tabs. The structure of `dashboard_tabs` block is documented below.
 * `description` - Description.

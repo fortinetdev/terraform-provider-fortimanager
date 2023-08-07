@@ -58,6 +58,10 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"class_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"detect_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -241,6 +245,10 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 				Optional: true,
 			},
 			"source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"source6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -436,6 +444,10 @@ func flattenWantempSystemSdwanHealthCheckDynamicServerWssha(v interface{}, d *sc
 }
 
 func flattenWantempSystemSdwanHealthCheckAddrModeWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanHealthCheckClassIdWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -670,6 +682,10 @@ func flattenWantempSystemSdwanHealthCheckSourceWssha(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenWantempSystemSdwanHealthCheckSource6Wssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanHealthCheckSystemDnsWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -742,6 +758,16 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading addr_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("class_id", flattenWantempSystemSdwanHealthCheckClassIdWssha(o["class-id"], d, "class_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["class-id"], "WantempSystemSdwanHealthCheck-ClassId"); ok {
+			if err = d.Set("class_id", vv); err != nil {
+				return fmt.Errorf("Error reading class_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading class_id: %v", err)
 		}
 	}
 
@@ -1079,6 +1105,16 @@ func refreshObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("source6", flattenWantempSystemSdwanHealthCheckSource6Wssha(o["source6"], d, "source6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["source6"], "WantempSystemSdwanHealthCheck-Source6"); ok {
+			if err = d.Set("source6", vv); err != nil {
+				return fmt.Errorf("Error reading source6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading source6: %v", err)
+		}
+	}
+
 	if err = d.Set("system_dns", flattenWantempSystemSdwanHealthCheckSystemDnsWssha(o["system-dns"], d, "system_dns")); err != nil {
 		if vv, ok := fortiAPIPatch(o["system-dns"], "WantempSystemSdwanHealthCheck-SystemDns"); ok {
 			if err = d.Set("system_dns", vv); err != nil {
@@ -1203,6 +1239,10 @@ func expandWantempSystemSdwanHealthCheckDynamicServerWssha(d *schema.ResourceDat
 }
 
 func expandWantempSystemSdwanHealthCheckAddrModeWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanHealthCheckClassIdWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1424,6 +1464,10 @@ func expandWantempSystemSdwanHealthCheckSourceWssha(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandWantempSystemSdwanHealthCheckSource6Wssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanHealthCheckSystemDnsWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1486,6 +1530,15 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["addr-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("class_id"); ok || d.HasChange("class_id") {
+		t, err := expandWantempSystemSdwanHealthCheckClassIdWssha(d, v, "class_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["class-id"] = t
 		}
 	}
 
@@ -1774,6 +1827,15 @@ func getObjectWantempSystemSdwanHealthCheck(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["source"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("source6"); ok || d.HasChange("source6") {
+		t, err := expandWantempSystemSdwanHealthCheckSource6Wssha(d, v, "source6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["source6"] = t
 		}
 	}
 

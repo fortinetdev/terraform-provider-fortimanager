@@ -52,6 +52,7 @@ The following arguments are supported:
 * `dynamic_mapping` - Dynamic_Mapping. The structure of `dynamic_mapping` block is documented below.
 * `endip` - Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `endport` - Final port number (inclusive) in the range for the address pool (Default: 65533).
+* `exclude_ip` - Exclude IPs x.x.x.x.
 * `name` - IP pool name.
 * `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
 
@@ -97,6 +98,7 @@ The `dynamic_mapping` block supports:
 * `comments` - Comment.
 * `endip` - Final IPv4 address (inclusive) in the range for the address pool (format xxx.xxx.xxx.xxx, Default: 0.0.0.0).
 * `endport` - Endport.
+* `exclude_ip` - Exclude IPs x.x.x.x.
 * `nat64` - Enable/disable NAT64. Valid values: `disable`, `enable`.
 
 * `num_blocks_per_user` - Number of addresses blocks that can be used by a user (1 to 128, default = 8).

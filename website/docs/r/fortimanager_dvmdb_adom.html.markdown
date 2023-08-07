@@ -63,6 +63,7 @@ The following arguments are supported:
 * `restricted_prds` - Restricted_Prds. Valid values: `fos`, `foc`, `fml`, `fch`, `fwb`, `log`, `fct`, `faz`, `fsa`, `fsw`, `fmg`, `fdd`, `fac`, `fpx`, `fna`, `ffw`, `fsr`, `fad`, `fdc`.
 
 * `state` - State.
+* `tz` - Tz.
 * `uuid` - Uuid.
 * `workspace_mode` - Workspace_Mode.
 

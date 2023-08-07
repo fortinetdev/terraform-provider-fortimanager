@@ -45,6 +45,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"_is_factory_setting": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"allowaccess": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -698,6 +703,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"optional_antenna": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"power_level": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1077,6 +1086,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"optional_antenna": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"power_level": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1430,6 +1443,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"optional_antenna": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"power_level": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1774,6 +1791,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"optional_antenna": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"power_level": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -1988,6 +2009,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"unii_4_5ghz_band": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"wan_port_auth": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -2134,6 +2159,10 @@ func resourceObjectWirelessControllerWtpProfileRead(d *schema.ResourceData, m in
 		return fmt.Errorf("Error reading ObjectWirelessControllerWtpProfile resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenObjectWirelessControllerWtpProfileIsFactorySetting(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectWirelessControllerWtpProfileAllowaccess(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3084,6 +3113,11 @@ func flattenObjectWirelessControllerWtpProfileRadio1(v interface{}, d *schema.Re
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio1Mode(i["mode"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := i["optional-antenna"]; ok {
+		result["optional_antenna"] = flattenObjectWirelessControllerWtpProfileRadio1OptionalAntenna(i["optional-antenna"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := i["power-level"]; ok {
 		result["power_level"] = flattenObjectWirelessControllerWtpProfileRadio1PowerLevel(i["power-level"], d, pre_append)
@@ -3449,6 +3483,10 @@ func flattenObjectWirelessControllerWtpProfileRadio1MaxDistance(v interface{}, d
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio1OptionalAntenna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3826,6 +3864,11 @@ func flattenObjectWirelessControllerWtpProfileRadio2(v interface{}, d *schema.Re
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio2Mode(i["mode"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := i["optional-antenna"]; ok {
+		result["optional_antenna"] = flattenObjectWirelessControllerWtpProfileRadio2OptionalAntenna(i["optional-antenna"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := i["power-level"]; ok {
 		result["power_level"] = flattenObjectWirelessControllerWtpProfileRadio2PowerLevel(i["power-level"], d, pre_append)
@@ -4191,6 +4234,10 @@ func flattenObjectWirelessControllerWtpProfileRadio2MaxDistance(v interface{}, d
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio2OptionalAntenna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4568,6 +4615,11 @@ func flattenObjectWirelessControllerWtpProfileRadio3(v interface{}, d *schema.Re
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio3Mode(i["mode"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := i["optional-antenna"]; ok {
+		result["optional_antenna"] = flattenObjectWirelessControllerWtpProfileRadio3OptionalAntenna(i["optional-antenna"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := i["power-level"]; ok {
 		result["power_level"] = flattenObjectWirelessControllerWtpProfileRadio3PowerLevel(i["power-level"], d, pre_append)
@@ -4933,6 +4985,10 @@ func flattenObjectWirelessControllerWtpProfileRadio3MaxDistance(v interface{}, d
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3Mode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio3OptionalAntenna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -5310,6 +5366,11 @@ func flattenObjectWirelessControllerWtpProfileRadio4(v interface{}, d *schema.Re
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio4Mode(i["mode"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := i["optional-antenna"]; ok {
+		result["optional_antenna"] = flattenObjectWirelessControllerWtpProfileRadio4OptionalAntenna(i["optional-antenna"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := i["power-level"]; ok {
 		result["power_level"] = flattenObjectWirelessControllerWtpProfileRadio4PowerLevel(i["power-level"], d, pre_append)
@@ -5678,6 +5739,10 @@ func flattenObjectWirelessControllerWtpProfileRadio4Mode(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectWirelessControllerWtpProfileRadio4OptionalAntenna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileRadio4PowerLevel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5909,6 +5974,10 @@ func flattenObjectWirelessControllerWtpProfileTunMtuUplink(v interface{}, d *sch
 	return v
 }
 
+func flattenObjectWirelessControllerWtpProfileUnii45GhzBand(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerWtpProfileWanPortAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5938,6 +6007,16 @@ func refreshObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData, o m
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("_is_factory_setting", flattenObjectWirelessControllerWtpProfileIsFactorySetting(o["_is_factory_setting"], d, "_is_factory_setting")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_is_factory_setting"], "ObjectWirelessControllerWtpProfile-IsFactorySetting"); ok {
+			if err = d.Set("_is_factory_setting", vv); err != nil {
+				return fmt.Errorf("Error reading _is_factory_setting: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _is_factory_setting: %v", err)
+		}
 	}
 
 	if err = d.Set("allowaccess", flattenObjectWirelessControllerWtpProfileAllowaccess(o["allowaccess"], d, "allowaccess")); err != nil {
@@ -6500,6 +6579,16 @@ func refreshObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData, o m
 		}
 	}
 
+	if err = d.Set("unii_4_5ghz_band", flattenObjectWirelessControllerWtpProfileUnii45GhzBand(o["unii-4-5ghz-band"], d, "unii_4_5ghz_band")); err != nil {
+		if vv, ok := fortiAPIPatch(o["unii-4-5ghz-band"], "ObjectWirelessControllerWtpProfile-Unii45GhzBand"); ok {
+			if err = d.Set("unii_4_5ghz_band", vv); err != nil {
+				return fmt.Errorf("Error reading unii_4_5ghz_band: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading unii_4_5ghz_band: %v", err)
+		}
+	}
+
 	if err = d.Set("wan_port_auth", flattenObjectWirelessControllerWtpProfileWanPortAuth(o["wan-port-auth"], d, "wan_port_auth")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wan-port-auth"], "ObjectWirelessControllerWtpProfile-WanPortAuth"); ok {
 			if err = d.Set("wan_port_auth", vv); err != nil {
@@ -6547,6 +6636,10 @@ func flattenObjectWirelessControllerWtpProfileFortiTestDebug(d *schema.ResourceD
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectWirelessControllerWtpProfileIsFactorySetting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectWirelessControllerWtpProfileAllowaccess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -7395,6 +7488,10 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio1Mode(d, i["mode"], pre_append)
 	}
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["optional-antenna"], _ = expandObjectWirelessControllerWtpProfileRadio1OptionalAntenna(d, i["optional_antenna"], pre_append)
+	}
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio1PowerLevel(d, i["power_level"], pre_append)
@@ -7720,6 +7817,10 @@ func expandObjectWirelessControllerWtpProfileRadio1MaxDistance(d *schema.Resourc
 }
 
 func expandObjectWirelessControllerWtpProfileRadio1Mode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio1OptionalAntenna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8057,6 +8158,10 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio2Mode(d, i["mode"], pre_append)
 	}
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["optional-antenna"], _ = expandObjectWirelessControllerWtpProfileRadio2OptionalAntenna(d, i["optional_antenna"], pre_append)
+	}
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio2PowerLevel(d, i["power_level"], pre_append)
@@ -8382,6 +8487,10 @@ func expandObjectWirelessControllerWtpProfileRadio2MaxDistance(d *schema.Resourc
 }
 
 func expandObjectWirelessControllerWtpProfileRadio2Mode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio2OptionalAntenna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8719,6 +8828,10 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio3Mode(d, i["mode"], pre_append)
 	}
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["optional-antenna"], _ = expandObjectWirelessControllerWtpProfileRadio3OptionalAntenna(d, i["optional_antenna"], pre_append)
+	}
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio3PowerLevel(d, i["power_level"], pre_append)
@@ -9044,6 +9157,10 @@ func expandObjectWirelessControllerWtpProfileRadio3MaxDistance(d *schema.Resourc
 }
 
 func expandObjectWirelessControllerWtpProfileRadio3Mode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio3OptionalAntenna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -9381,6 +9498,10 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio4Mode(d, i["mode"], pre_append)
 	}
+	pre_append = pre + ".0." + "optional_antenna"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["optional-antenna"], _ = expandObjectWirelessControllerWtpProfileRadio4OptionalAntenna(d, i["optional_antenna"], pre_append)
+	}
 	pre_append = pre + ".0." + "power_level"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["power-level"], _ = expandObjectWirelessControllerWtpProfileRadio4PowerLevel(d, i["power_level"], pre_append)
@@ -9709,6 +9830,10 @@ func expandObjectWirelessControllerWtpProfileRadio4Mode(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectWirelessControllerWtpProfileRadio4OptionalAntenna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerWtpProfileRadio4PowerLevel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -9933,6 +10058,10 @@ func expandObjectWirelessControllerWtpProfileTunMtuUplink(d *schema.ResourceData
 	return v, nil
 }
 
+func expandObjectWirelessControllerWtpProfileUnii45GhzBand(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerWtpProfileWanPortAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -9955,6 +10084,15 @@ func expandObjectWirelessControllerWtpProfileWanPortMode(d *schema.ResourceData,
 
 func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_is_factory_setting"); ok || d.HasChange("_is_factory_setting") {
+		t, err := expandObjectWirelessControllerWtpProfileIsFactorySetting(d, v, "_is_factory_setting")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_is_factory_setting"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("allowaccess"); ok || d.HasChange("allowaccess") {
 		t, err := expandObjectWirelessControllerWtpProfileAllowaccess(d, v, "allowaccess")
@@ -10331,6 +10469,15 @@ func getObjectObjectWirelessControllerWtpProfile(d *schema.ResourceData) (*map[s
 			return &obj, err
 		} else if t != nil {
 			obj["tun-mtu-uplink"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("unii_4_5ghz_band"); ok || d.HasChange("unii_4_5ghz_band") {
+		t, err := expandObjectWirelessControllerWtpProfileUnii45GhzBand(d, v, "unii_4_5ghz_band")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["unii-4-5ghz-band"] = t
 		}
 	}
 

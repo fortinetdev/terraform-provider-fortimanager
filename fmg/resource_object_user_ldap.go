@@ -55,6 +55,11 @@ func resourceObjectUserLdap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"account_key_upn_san": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"antiphish": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -116,6 +121,10 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"account_key_upn_san": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"antiphish": &schema.Schema{
 							Type:     schema.TypeString,
@@ -565,6 +574,10 @@ func flattenObjectUserLdapAccountKeyProcessing(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectUserLdapAccountKeyUpnSan(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapAntiphish(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -630,6 +643,12 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["account-key-processing"]; ok {
 			v := flattenObjectUserLdapDynamicMappingAccountKeyProcessing(i["account-key-processing"], d, pre_append)
 			tmp["account_key_processing"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-AccountKeyProcessing")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_upn_san"
+		if _, ok := i["account-key-upn-san"]; ok {
+			v := flattenObjectUserLdapDynamicMappingAccountKeyUpnSan(i["account-key-upn-san"], d, pre_append)
+			tmp["account_key_upn_san"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-AccountKeyUpnSan")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "antiphish"
@@ -930,6 +949,10 @@ func flattenObjectUserLdapDynamicMappingAccountKeyName(v interface{}, d *schema.
 }
 
 func flattenObjectUserLdapDynamicMappingAccountKeyProcessing(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapDynamicMappingAccountKeyUpnSan(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1237,6 +1260,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 			}
 		} else {
 			return fmt.Errorf("Error reading account_key_processing: %v", err)
+		}
+	}
+
+	if err = d.Set("account_key_upn_san", flattenObjectUserLdapAccountKeyUpnSan(o["account-key-upn-san"], d, "account_key_upn_san")); err != nil {
+		if vv, ok := fortiAPIPatch(o["account-key-upn-san"], "ObjectUserLdap-AccountKeyUpnSan"); ok {
+			if err = d.Set("account_key_upn_san", vv); err != nil {
+				return fmt.Errorf("Error reading account_key_upn_san: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading account_key_upn_san: %v", err)
 		}
 	}
 
@@ -1631,6 +1664,10 @@ func expandObjectUserLdapAccountKeyProcessing(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectUserLdapAccountKeyUpnSan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapAntiphish(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1692,6 +1729,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_processing"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["account-key-processing"], _ = expandObjectUserLdapDynamicMappingAccountKeyProcessing(d, i["account_key_processing"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_upn_san"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["account-key-upn-san"], _ = expandObjectUserLdapDynamicMappingAccountKeyUpnSan(d, i["account_key_upn_san"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "antiphish"
@@ -1946,6 +1988,10 @@ func expandObjectUserLdapDynamicMappingAccountKeyName(d *schema.ResourceData, v 
 }
 
 func expandObjectUserLdapDynamicMappingAccountKeyProcessing(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapDynamicMappingAccountKeyUpnSan(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2243,6 +2289,15 @@ func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["account-key-processing"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("account_key_upn_san"); ok || d.HasChange("account_key_upn_san") {
+		t, err := expandObjectUserLdapAccountKeyUpnSan(d, v, "account_key_upn_san")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["account-key-upn-san"] = t
 		}
 	}
 

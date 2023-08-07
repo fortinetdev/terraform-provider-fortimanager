@@ -211,6 +211,12 @@ func resourceObjectFirewallIppool() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"exclude_ip": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"nat64": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -278,6 +284,12 @@ func resourceObjectFirewallIppool() *schema.Resource {
 			},
 			"endport": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"exclude_ip": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
 				Computed: true,
 			},
@@ -654,6 +666,12 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["endport"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-Endport")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude_ip"
+		if _, ok := i["exclude-ip"]; ok {
+			v := flattenObjectFirewallIppoolDynamicMappingExcludeIp(i["exclude-ip"], d, pre_append)
+			tmp["exclude_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-ExcludeIp")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
 		if _, ok := i["nat64"]; ok {
 			v := flattenObjectFirewallIppoolDynamicMappingNat64(i["nat64"], d, pre_append)
@@ -855,6 +873,10 @@ func flattenObjectFirewallIppoolDynamicMappingEndport(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectFirewallIppoolDynamicMappingExcludeIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallIppoolDynamicMappingNat64(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -913,6 +935,10 @@ func flattenObjectFirewallIppoolEndip(v interface{}, d *schema.ResourceData, pre
 
 func flattenObjectFirewallIppoolEndport(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallIppoolExcludeIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallIppoolName(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1173,6 +1199,16 @@ func refreshObjectObjectFirewallIppool(d *schema.ResourceData, o map[string]inte
 			}
 		} else {
 			return fmt.Errorf("Error reading endport: %v", err)
+		}
+	}
+
+	if err = d.Set("exclude_ip", flattenObjectFirewallIppoolExcludeIp(o["exclude-ip"], d, "exclude_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["exclude-ip"], "ObjectFirewallIppool-ExcludeIp"); ok {
+			if err = d.Set("exclude_ip", vv); err != nil {
+				return fmt.Errorf("Error reading exclude_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading exclude_ip: %v", err)
 		}
 	}
 
@@ -1494,6 +1530,11 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["endport"], _ = expandObjectFirewallIppoolDynamicMappingEndport(d, i["endport"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude_ip"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["exclude-ip"], _ = expandObjectFirewallIppoolDynamicMappingExcludeIp(d, i["exclude_ip"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "nat64"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["nat64"], _ = expandObjectFirewallIppoolDynamicMappingNat64(d, i["nat64"], pre_append)
@@ -1675,6 +1716,10 @@ func expandObjectFirewallIppoolDynamicMappingEndport(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectFirewallIppoolDynamicMappingExcludeIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallIppoolDynamicMappingNat64(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1733,6 +1778,10 @@ func expandObjectFirewallIppoolEndip(d *schema.ResourceData, v interface{}, pre 
 
 func expandObjectFirewallIppoolEndport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFirewallIppoolExcludeIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallIppoolName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1953,6 +2002,15 @@ func getObjectObjectFirewallIppool(d *schema.ResourceData) (*map[string]interfac
 			return &obj, err
 		} else if t != nil {
 			obj["endport"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("exclude_ip"); ok || d.HasChange("exclude_ip") {
+		t, err := expandObjectFirewallIppoolExcludeIp(d, v, "exclude_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["exclude-ip"] = t
 		}
 	}
 

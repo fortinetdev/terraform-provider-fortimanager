@@ -20,6 +20,8 @@ The following arguments are supported:
 
 * `addr_mode` - Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 
+* `agent_exclusive` - Set/unset the service as agent use exclusively. Valid values: `disable`, `enable`.
+
 * `bandwidth_weight` - Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
 * `default` - Enable/disable use of SD-WAN as default service. Valid values: `disable`, `enable`.
 
@@ -72,6 +74,10 @@ The following arguments are supported:
 * `protocol` - Protocol number.
 * `quality_link` - Quality grade.
 * `role` - Service role to work with neighbor. Valid values: `primary`, `secondary`, `standalone`.
+
+* `shortcut` - Enable/disable shortcut for this service. Valid values: `disable`, `enable`.
+
+* `shortcut_stickiness` - Enable/disable shortcut-stickiness of ADVPN. Valid values: `disable`, `enable`.
 
 * `route_tag` - IPv4 route map route-tag.
 * `sla` - Sla. The structure of `sla` block is documented below.

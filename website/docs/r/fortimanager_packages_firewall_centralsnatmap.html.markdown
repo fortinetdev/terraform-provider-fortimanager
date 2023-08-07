@@ -39,6 +39,7 @@ The following arguments are supported:
 * `comments` - Comment.
 * `dst_addr` - Destination address name from available addresses.
 * `dst_addr6` - IPv6 Destination address.
+* `dst_port` - Destination port or port range (1 to 65535, 0 means any port).
 * `dstintf` - Destination interface name from available interfaces.
 * `nat` - Enable/disable source NAT. Valid values: `disable`, `enable`.
 

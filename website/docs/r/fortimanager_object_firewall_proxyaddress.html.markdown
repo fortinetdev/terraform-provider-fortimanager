@@ -53,6 +53,8 @@ The following arguments are supported:
 
 * `ua` - Names of browsers to be used as user agent. Valid values: `chrome`, `ms`, `firefox`, `safari`, `other`.
 
+* `ua_max_ver` - Maximum version of the user agent specified in dotted notation. For example, use 120 with the ua field set to "chrome" to require Google Chrome's maximum version must be 120.
+* `ua_min_ver` - Minimum version of the user agent specified in dotted notation. For example, use 90.0.1 with the ua field set to "chrome" to require Google Chrome's minimum version must be 90.0.1.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `visibility` - Enable/disable visibility of the object in the GUI. Valid values: `disable`, `enable`.
 

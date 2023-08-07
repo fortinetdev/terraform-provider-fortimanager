@@ -208,9 +208,11 @@ The following arguments are supported:
 * `internet_service6_src_name` - IPv6 Internet Service source name.
 * `internet_service6_src_negate` - When enabled internet-service6-src specifies what the service must NOT be. Valid values: `disable`, `enable`.
 
+* `ip_version_type` - IP version of the policy.
 * `ippool` - Enable to use IP Pools for source NAT. Valid values: `disable`, `enable`.
 
 * `ips_sensor` - Name of an existing IPS sensor.
+* `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `label` - Label for the policy that appears when the GUI is in Section View mode.
 * `learning_mode` - Enable to allow everything, but log all of the meaningful data for security information gathering. A learning report will be generated. Valid values: `disable`, `enable`.
 
@@ -248,15 +250,22 @@ The following arguments are supported:
 
 * `passive_wan_health_measurement` - Enable/disable passive WAN health measurement. When enabled, auto-asic-offload is disabled. Valid values: `disable`, `enable`.
 
+* `pcp_inbound` - Enable/disable PCP inbound DNAT. Valid values: `disable`, `enable`.
+
+* `pcp_outbound` - Enable/disable PCP outbound SNAT. Valid values: `disable`, `enable`.
+
+* `pcp_poolname` - PCP pool names.
 * `per_ip_shaper` - Per-IP traffic shaper.
 * `permit_any_host` - Accept UDP packets from any host. Valid values: `disable`, `enable`.
 
 * `permit_stun_host` - Accept UDP packets from any Session Traversal Utilities for NAT (STUN) host. Valid values: `disable`, `enable`.
 
+* `policy_behaviour_type` - Behaviour of the policy.
 * `pfcp_profile` - PFCP profile.
 * `policy_expiry` - Enable/disable policy expiry. Valid values: `disable`, `enable`.
 
 * `policy_expiry_date` - Policy expiry date (YYYY-MM-DD HH:MM:SS).
+* `policy_expiry_date_utc` - Policy expiry date and time, in epoch format.
 * `policy_offload` - Enable/Disable hardware session setup for CGNAT. Valid values: `disable`, `enable`.
 
 * `policyid` - Policy ID (0 - 4294967294).
@@ -359,9 +368,16 @@ The following arguments are supported:
 * `webfilter_profile` - Name of an existing Web filter profile.
 * `webproxy_forward_server` - Webproxy forward server name.
 * `webproxy_profile` - Webproxy profile name.
+* `ztna_device_ownership` - Enable/disable zero trust device ownership. Valid values: `disable`, `enable`.
+
 * `ztna_ems_tag` - Source ztna-ems-tag names.
+* `ztna_ems_tag_secondary` - Source ztna-ems-tag-secondary names.
 * `ztna_geo_tag` - Source ztna-geo-tag names.
+* `ztna_policy_redirect` - Redirect ZTNA traffic to matching Access-Proxy proxy-policy. Valid values: `disable`, `enable`.
+
 * `ztna_status` - Enable/disable zero trust access. Valid values: `disable`, `enable`.
+
+* `ztna_tags_match_logic` - ZTNA tag matching logic. Valid values: `or`, `and`.
 
 * `wsso` - Enable/disable WiFi Single Sign On (WSSO). Valid values: `disable`, `enable`.
 

@@ -114,6 +114,11 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"iotv_preload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"linkd_log": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -399,6 +404,10 @@ func flattenFmupdateWebSpamFgdSettingIotLogFwfa(v interface{}, d *schema.Resourc
 }
 
 func flattenFmupdateWebSpamFgdSettingIotPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateWebSpamFgdSettingIotvPreloadFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -763,6 +772,16 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("iotv_preload", flattenFmupdateWebSpamFgdSettingIotvPreloadFwfa(o["iotv-preload"], d, "iotv_preload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["iotv-preload"], "FmupdateWebSpamFgdSetting-IotvPreload"); ok {
+			if err = d.Set("iotv_preload", vv); err != nil {
+				return fmt.Errorf("Error reading iotv_preload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading iotv_preload: %v", err)
+		}
+	}
+
 	if err = d.Set("linkd_log", flattenFmupdateWebSpamFgdSettingLinkdLogFwfa(o["linkd-log"], d, "linkd_log")); err != nil {
 		if vv, ok := fortiAPIPatch(o["linkd-log"], "FmupdateWebSpamFgdSetting-LinkdLog"); ok {
 			if err = d.Set("linkd_log", vv); err != nil {
@@ -1071,6 +1090,10 @@ func expandFmupdateWebSpamFgdSettingIotLogFwfa(d *schema.ResourceData, v interfa
 }
 
 func expandFmupdateWebSpamFgdSettingIotPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateWebSpamFgdSettingIotvPreloadFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1409,6 +1432,15 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["iot-preload"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("iotv_preload"); ok || d.HasChange("iotv_preload") {
+		t, err := expandFmupdateWebSpamFgdSettingIotvPreloadFwfa(d, v, "iotv_preload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["iotv-preload"] = t
 		}
 	}
 

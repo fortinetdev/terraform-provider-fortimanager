@@ -43,6 +43,8 @@ The following arguments are supported:
 * `fortiext_refresh_cnt` - Max device number for FortiExtender auto refresh (1 - 10000).
 * `install_image_timeout` - Maximum waiting time for image transfer and device upgrade (10*60 - 24*60*60 seconds).
 * `install_tunnel_retry_itvl` - Time to re-establish tunnel during install (10 - 60 sec).
+* `log_autoupdate` - Enable/disable autoupdate debug logging. disable - Disable. enable - Enable. Valid values: `disable`, `enable`.
+
 * `max_revs` - Maximum number of revisions saved (1 - 250).
 * `nr_retry` - Number of retries.
 * `retry` - Enable/disable configuration install retry. disable - Disable. enable - Enable. Valid values: `disable`, `enable`.

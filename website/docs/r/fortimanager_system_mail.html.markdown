@@ -33,6 +33,8 @@ The following arguments are supported:
 
 * `auth_type` - SMTP authentication type. psk - Use username and password to authenticate. certificate - Use local certificate to authenticate. Valid values: `psk`, `certificate`.
 
+* `from` - Username for MAIL FROM.
+* `from_passwd` - SMTP password of default user.
 * `fosid` - Mail Service ID.
 * `local_cert` - SMTP local certificate.
 * `passwd` - SMTP account password.

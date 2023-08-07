@@ -45,6 +45,10 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"ca_cn_info": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"admin_password": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -159,6 +163,10 @@ func resourceObjectEndpointControlFctems() *schema.Resource {
 				Computed: true,
 			},
 			"status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"trust_ca_cn": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -294,6 +302,10 @@ func resourceObjectEndpointControlFctemsRead(d *schema.ResourceData, m interface
 	return nil
 }
 
+func flattenObjectEndpointControlFctemsCaCnInfo(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectEndpointControlFctemsAdminPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -394,6 +406,10 @@ func flattenObjectEndpointControlFctemsStatus(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenObjectEndpointControlFctemsTrustCaCn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectEndpointControlFctemsTenantId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -411,6 +427,16 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("ca_cn_info", flattenObjectEndpointControlFctemsCaCnInfo(o["ca-cn-info"], d, "ca_cn_info")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ca-cn-info"], "ObjectEndpointControlFctems-CaCnInfo"); ok {
+			if err = d.Set("ca_cn_info", vv); err != nil {
+				return fmt.Errorf("Error reading ca_cn_info: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ca_cn_info: %v", err)
+		}
 	}
 
 	if err = d.Set("admin_password", flattenObjectEndpointControlFctemsAdminPassword(o["admin-password"], d, "admin_password")); err != nil {
@@ -663,6 +689,16 @@ func refreshObjectObjectEndpointControlFctems(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("trust_ca_cn", flattenObjectEndpointControlFctemsTrustCaCn(o["trust-ca-cn"], d, "trust_ca_cn")); err != nil {
+		if vv, ok := fortiAPIPatch(o["trust-ca-cn"], "ObjectEndpointControlFctems-TrustCaCn"); ok {
+			if err = d.Set("trust_ca_cn", vv); err != nil {
+				return fmt.Errorf("Error reading trust_ca_cn: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading trust_ca_cn: %v", err)
+		}
+	}
+
 	if err = d.Set("tenant_id", flattenObjectEndpointControlFctemsTenantId(o["tenant-id"], d, "tenant_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tenant-id"], "ObjectEndpointControlFctems-TenantId"); ok {
 			if err = d.Set("tenant_id", vv); err != nil {
@@ -700,6 +736,10 @@ func flattenObjectEndpointControlFctemsFortiTestDebug(d *schema.ResourceData, fo
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectEndpointControlFctemsCaCnInfo(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectEndpointControlFctemsAdminPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -802,6 +842,10 @@ func expandObjectEndpointControlFctemsStatus(d *schema.ResourceData, v interface
 	return v, nil
 }
 
+func expandObjectEndpointControlFctemsTrustCaCn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectEndpointControlFctemsTenantId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -816,6 +860,15 @@ func expandObjectEndpointControlFctemsWebsocketOverride(d *schema.ResourceData, 
 
 func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("ca_cn_info"); ok || d.HasChange("ca_cn_info") {
+		t, err := expandObjectEndpointControlFctemsCaCnInfo(d, v, "ca_cn_info")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ca-cn-info"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("admin_password"); ok || d.HasChange("admin_password") {
 		t, err := expandObjectEndpointControlFctemsAdminPassword(d, v, "admin_password")
@@ -1039,6 +1092,15 @@ func getObjectObjectEndpointControlFctems(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["status"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("trust_ca_cn"); ok || d.HasChange("trust_ca_cn") {
+		t, err := expandObjectEndpointControlFctemsTrustCaCn(d, v, "trust_ca_cn")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["trust-ca-cn"] = t
 		}
 	}
 

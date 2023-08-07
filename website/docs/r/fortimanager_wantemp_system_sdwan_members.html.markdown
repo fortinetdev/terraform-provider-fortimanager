@@ -25,6 +25,7 @@ The following arguments are supported:
 * `gateway6` - IPv6 gateway.
 * `ingress_spillover_threshold` - Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
 * `interface` - Interface name.
+* `preferred_source` - Preferred source of route for this member.
 * `priority` - Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
 * `priority6` - Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 * `seq_num` - Sequence number(1-512).

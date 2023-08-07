@@ -37,6 +37,7 @@ The following arguments are supported:
 * `file_filter_profile` - Name of an existing file-filter profile.
 * `icap_profile` - Name of an existing ICAP profile.
 * `ips_sensor` - Name of an existing IPS sensor.
+* `ips_voip_filter` - Name of an existing VoIP (ips) profile.
 * `mms_profile` - Name of an existing MMS profile.
 * `name` - Profile group name.
 * `profile_protocol_options` - Name of an existing Protocol options profile.

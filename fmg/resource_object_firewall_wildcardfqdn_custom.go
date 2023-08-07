@@ -66,6 +66,7 @@ func resourceObjectFirewallWildcardFqdnCustom() *schema.Resource {
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wildcard_fqdn": &schema.Schema{
 				Type:     schema.TypeString,

@@ -34,6 +34,9 @@ The following arguments are supported:
 * `adlds_ip_address` - AD LDS IPv4 address.
 * `adlds_ip6` - AD LDS IPv6 address.
 * `adlds_port` - Port number of AD LDS service (default = 389).
+* `change_detection` - Enable/disable detection of a configuration change in the Active Directory server. Valid values: `disable`, `enable`.
+
+* `change_detection_period` - Minutes to detect a configuration change in the Active Directory server (5 - 10080 minutes (7 days), default = 60).
 * `dns_srv_lookup` - Enable/disable DNS service lookup. Valid values: `disable`, `enable`.
 
 * `domain_name` - Domain DNS name.

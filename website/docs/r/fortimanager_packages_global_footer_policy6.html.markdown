@@ -34,6 +34,7 @@ The following arguments are supported:
 
 * `pkg` - Package.
 
+* `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
 * `action` - Policy action (allow/deny/ipsec). Valid values: `deny`, `accept`, `ipsec`, `ssl-vpn`.
 
 * `anti_replay` - Enable/disable anti-replay check. Valid values: `disable`, `enable`.

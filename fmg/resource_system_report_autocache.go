@@ -39,6 +39,11 @@ func resourceSystemReportAutoCache() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"sche_rpt_only": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -130,6 +135,10 @@ func flattenSystemReportAutoCacheOrder(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenSystemReportAutoCacheScheRptOnly(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemReportAutoCacheStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -154,6 +163,16 @@ func refreshObjectSystemReportAutoCache(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading order: %v", err)
+		}
+	}
+
+	if err = d.Set("sche_rpt_only", flattenSystemReportAutoCacheScheRptOnly(o["sche-rpt-only"], d, "sche_rpt_only")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sche-rpt-only"], "SystemReportAutoCache-ScheRptOnly"); ok {
+			if err = d.Set("sche_rpt_only", vv); err != nil {
+				return fmt.Errorf("Error reading sche_rpt_only: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sche_rpt_only: %v", err)
 		}
 	}
 
@@ -184,6 +203,10 @@ func expandSystemReportAutoCacheOrder(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
+func expandSystemReportAutoCacheScheRptOnly(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemReportAutoCacheStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -206,6 +229,15 @@ func getObjectSystemReportAutoCache(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["order"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("sche_rpt_only"); ok || d.HasChange("sche_rpt_only") {
+		t, err := expandSystemReportAutoCacheScheRptOnly(d, v, "sche_rpt_only")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sche-rpt-only"] = t
 		}
 	}
 

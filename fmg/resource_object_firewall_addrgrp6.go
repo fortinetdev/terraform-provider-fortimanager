@@ -90,6 +90,17 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"exclude": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"exclude_member": &schema.Schema{
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
+							Optional: true,
+							Computed: true,
+						},
 						"fabric_object": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -118,6 +129,17 @@ func resourceObjectFirewallAddrgrp6() *schema.Resource {
 						},
 					},
 				},
+			},
+			"exclude": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"exclude_member": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
 			},
 			"fabric_object": &schema.Schema{
 				Type:     schema.TypeString,
@@ -348,6 +370,18 @@ func flattenObjectFirewallAddrgrp6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["comment"] = fortiAPISubPartPatch(v, "ObjectFirewallAddrgrp6-DynamicMapping-Comment")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude"
+		if _, ok := i["exclude"]; ok {
+			v := flattenObjectFirewallAddrgrp6DynamicMappingExclude(i["exclude"], d, pre_append)
+			tmp["exclude"] = fortiAPISubPartPatch(v, "ObjectFirewallAddrgrp6-DynamicMapping-Exclude")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude_member"
+		if _, ok := i["exclude-member"]; ok {
+			v := flattenObjectFirewallAddrgrp6DynamicMappingExcludeMember(i["exclude-member"], d, pre_append)
+			tmp["exclude_member"] = fortiAPISubPartPatch(v, "ObjectFirewallAddrgrp6-DynamicMapping-ExcludeMember")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
 		if _, ok := i["fabric-object"]; ok {
 			v := flattenObjectFirewallAddrgrp6DynamicMappingFabricObject(i["fabric-object"], d, pre_append)
@@ -451,6 +485,14 @@ func flattenObjectFirewallAddrgrp6DynamicMappingComment(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectFirewallAddrgrp6DynamicMappingExclude(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddrgrp6DynamicMappingExcludeMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFirewallAddrgrp6DynamicMappingFabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -473,6 +515,14 @@ func flattenObjectFirewallAddrgrp6DynamicMappingUuid(v interface{}, d *schema.Re
 
 func flattenObjectFirewallAddrgrp6DynamicMappingVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
+}
+
+func flattenObjectFirewallAddrgrp6Exclude(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAddrgrp6ExcludeMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallAddrgrp6FabricObject(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -621,6 +671,26 @@ func refreshObjectObjectFirewallAddrgrp6(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("exclude", flattenObjectFirewallAddrgrp6Exclude(o["exclude"], d, "exclude")); err != nil {
+		if vv, ok := fortiAPIPatch(o["exclude"], "ObjectFirewallAddrgrp6-Exclude"); ok {
+			if err = d.Set("exclude", vv); err != nil {
+				return fmt.Errorf("Error reading exclude: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading exclude: %v", err)
+		}
+	}
+
+	if err = d.Set("exclude_member", flattenObjectFirewallAddrgrp6ExcludeMember(o["exclude-member"], d, "exclude_member")); err != nil {
+		if vv, ok := fortiAPIPatch(o["exclude-member"], "ObjectFirewallAddrgrp6-ExcludeMember"); ok {
+			if err = d.Set("exclude_member", vv); err != nil {
+				return fmt.Errorf("Error reading exclude_member: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading exclude_member: %v", err)
+		}
+	}
+
 	if err = d.Set("fabric_object", flattenObjectFirewallAddrgrp6FabricObject(o["fabric-object"], d, "fabric_object")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fabric-object"], "ObjectFirewallAddrgrp6-FabricObject"); ok {
 			if err = d.Set("fabric_object", vv); err != nil {
@@ -765,6 +835,16 @@ func expandObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, v interf
 			tmp["comment"], _ = expandObjectFirewallAddrgrp6DynamicMappingComment(d, i["comment"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["exclude"], _ = expandObjectFirewallAddrgrp6DynamicMappingExclude(d, i["exclude"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "exclude_member"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["exclude-member"], _ = expandObjectFirewallAddrgrp6DynamicMappingExcludeMember(d, i["exclude_member"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "fabric_object"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["fabric-object"], _ = expandObjectFirewallAddrgrp6DynamicMappingFabricObject(d, i["fabric_object"], pre_append)
@@ -855,6 +935,14 @@ func expandObjectFirewallAddrgrp6DynamicMappingComment(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectFirewallAddrgrp6DynamicMappingExclude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddrgrp6DynamicMappingExcludeMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFirewallAddrgrp6DynamicMappingFabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -877,6 +965,14 @@ func expandObjectFirewallAddrgrp6DynamicMappingUuid(d *schema.ResourceData, v in
 
 func expandObjectFirewallAddrgrp6DynamicMappingVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectFirewallAddrgrp6Exclude(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAddrgrp6ExcludeMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandObjectFirewallAddrgrp6FabricObject(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -988,6 +1084,24 @@ func getObjectObjectFirewallAddrgrp6(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["dynamic_mapping"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("exclude"); ok || d.HasChange("exclude") {
+		t, err := expandObjectFirewallAddrgrp6Exclude(d, v, "exclude")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["exclude"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("exclude_member"); ok || d.HasChange("exclude_member") {
+		t, err := expandObjectFirewallAddrgrp6ExcludeMember(d, v, "exclude_member")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["exclude-member"] = t
 		}
 	}
 

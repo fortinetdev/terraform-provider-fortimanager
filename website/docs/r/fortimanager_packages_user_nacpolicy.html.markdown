@@ -29,6 +29,7 @@ The following arguments are supported:
 * `mac` - NAC policy matching MAC address.
 * `name` - NAC policy name.
 * `os` - NAC policy matching operating system.
+* `severity` - NAC policy matching devices vulnerability severity lists.
 * `src` - NAC policy matching source.
 * `ssid_policy` - SSID policy to be applied on the matched NAC policy.
 * `status` - Enable/disable NAC policy. Valid values: `disable`, `enable`.

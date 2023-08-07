@@ -42,11 +42,14 @@ The following arguments are supported:
 
 * `_local_cert` - _Local_Cert.
 * `access_key` - AWS / ACS access key ID.
+* `alt_resource_ip` - Enable/disable AWS alternative resource IP. Valid values: `disable`, `enable`.
+
 * `api_key` - IBM cloud API key or service ID API key.
 * `azure_region` - Azure server region. Valid values: `global`, `china`, `germany`, `usgov`, `local`.
 
 * `client_id` - Azure client ID (application ID).
 * `client_secret` - Azure client secret (application key).
+* `compartment_list` - Compartment-List. The structure of `compartment_list` block is documented below.
 * `compartment_id` - Compartment ID.
 * `compute_generation` - Compute generation for IBM cloud infrastructure.
 * `domain` - Domain name.
@@ -72,11 +75,13 @@ The following arguments are supported:
 * `nsx_cert_fingerprint` - NSX certificate fingerprint.
 * `oci_cert` - OCI certificate.
 * `oci_fingerprint` - Oci-Fingerprint.
+* `oci_region_list` - Oci-Region-List. The structure of `oci_region_list` block is documented below.
 * `oci_region` - OCI server region.
 * `oci_region_type` - OCI region type. Valid values: `commercial`, `government`.
 
 * `password` - Password of the remote SDN connector as login credentials.
 * `private_key` - Private key of GCP service account.
+* `proxy` - SDN proxy.
 * `region` - AWS / ACS region name.
 * `resource_group` - Azure resource group.
 * `resource_url` - Azure Stack resource URL.
@@ -91,6 +96,8 @@ The following arguments are supported:
 * `secret_key` - AWS / ACS secret access key.
 * `secret_token` - Secret token of Kubernetes service account.
 * `server` - Server address of the remote SDN connector.
+* `server_ca_cert` - Trust only those servers whose certificate is directly/indirectly signed by this certificate.
+* `server_cert` - Trust servers that contain this certificate only.
 * `server_list` - Server address list of the remote SDN connector.
 * `server_port` - Port number of the remote SDN connector.
 * `service_account` - GCP service account email.
@@ -115,6 +122,10 @@ The following arguments are supported:
 * `vmx_service_name` - VMX Service name.
 * `vpc_id` - AWS VPC ID.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
+
+The `compartment_list` block supports:
+
+* `compartment_id` - OCI compartment ID.
 
 The `external_account_list` block supports:
 
@@ -146,6 +157,10 @@ The `ip` block supports:
 * `name` - IP configuration name.
 * `public_ip` - Public IP name.
 * `resource_group` - Resource group of Azure public IP.
+
+The `oci_region_list` block supports:
+
+* `region` - OCI region.
 
 The `route` block supports:
 

@@ -54,6 +54,11 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"default_action": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fortiguard_category": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -89,6 +94,11 @@ func resourceObjectVideofilterProfile() *schema.Resource {
 						},
 					},
 				},
+			},
+			"log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -248,6 +258,10 @@ func flattenObjectVideofilterProfileDailymotion(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectVideofilterProfileDefaultAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVideofilterProfileFortiguardCategory(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -333,6 +347,10 @@ func flattenObjectVideofilterProfileFortiguardCategoryFiltersLog(v interface{}, 
 	return v
 }
 
+func flattenObjectVideofilterProfileLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVideofilterProfileName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -388,6 +406,16 @@ func refreshObjectObjectVideofilterProfile(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("default_action", flattenObjectVideofilterProfileDefaultAction(o["default-action"], d, "default_action")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-action"], "ObjectVideofilterProfile-DefaultAction"); ok {
+			if err = d.Set("default_action", vv); err != nil {
+				return fmt.Errorf("Error reading default_action: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_action: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("fortiguard_category", flattenObjectVideofilterProfileFortiguardCategory(o["fortiguard-category"], d, "fortiguard_category")); err != nil {
 			if vv, ok := fortiAPIPatch(o["fortiguard-category"], "ObjectVideofilterProfile-FortiguardCategory"); ok {
@@ -409,6 +437,16 @@ func refreshObjectObjectVideofilterProfile(d *schema.ResourceData, o map[string]
 					return fmt.Errorf("Error reading fortiguard_category: %v", err)
 				}
 			}
+		}
+	}
+
+	if err = d.Set("log", flattenObjectVideofilterProfileLog(o["log"], d, "log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log"], "ObjectVideofilterProfile-Log"); ok {
+			if err = d.Set("log", vv); err != nil {
+				return fmt.Errorf("Error reading log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log: %v", err)
 		}
 	}
 
@@ -499,6 +537,10 @@ func expandObjectVideofilterProfileDailymotion(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectVideofilterProfileDefaultAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVideofilterProfileFortiguardCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	if len(l) == 0 || l[0] == nil {
@@ -580,6 +622,10 @@ func expandObjectVideofilterProfileFortiguardCategoryFiltersLog(d *schema.Resour
 	return v, nil
 }
 
+func expandObjectVideofilterProfileLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVideofilterProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -629,12 +675,30 @@ func getObjectObjectVideofilterProfile(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("default_action"); ok || d.HasChange("default_action") {
+		t, err := expandObjectVideofilterProfileDefaultAction(d, v, "default_action")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-action"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fortiguard_category"); ok || d.HasChange("fortiguard_category") {
 		t, err := expandObjectVideofilterProfileFortiguardCategory(d, v, "fortiguard_category")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["fortiguard-category"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log"); ok || d.HasChange("log") {
+		t, err := expandObjectVideofilterProfileLog(d, v, "log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log"] = t
 		}
 	}
 

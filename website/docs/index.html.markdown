@@ -65,15 +65,18 @@ The FortiManager provider offers a means of providing credentials for authentica
 
 ### Static credentials
 
-Static credentials can be provided by `username` and `password` parameters in the FortiManager provider block.
+Static credentials can be provided by adding credential keys in-line in the FortiManager provider block. 
+
+There are two kinds of credentials supported.
+- `token` based authentication (Recommanded). User needs to generate an API token from FortiManager. *Note: Only FortiManager version >= v7.2.2 supports Token based authentication.*
+- `username/password` authentication. User provide the username and password of the administrator. 
 
 Usage:
 
 ```hcl
 provider "fortimanager" {
   hostname     = "192.168.52.178"
-  username     = "admin"
-  password     = "admin"
+  token        = "4ktitbsdiuye6ja43aoxafuqcb15kzse"
   insecure     = "true"
 
   scopetype    = "adom"
@@ -81,9 +84,13 @@ provider "fortimanager" {
 }
 ```
 
+#### Generate an API token for FortiOS
+
+See the left navigation: `Guides` -> `Generate an API token for FortiManager`.
+
 ### Environment variables
 
-You can provide your credentials via the `FORTIMANAGER_ACCESS_HOSTNAME`, `FORTIMANAGER_ACCESS_USERNAME`, `FORTIMANAGER_ACCESS_PASSWORD`, `FORTIMANAGER_INSECURE` and `FORTIMANAGER_CA_CABUNDLE` environment variables. Note that setting your FortiManager credentials using static credentials variables will override the environment variables.
+You can provide your credentials via the `FORTIMANAGER_ACCESS_HOSTNAME`, `FORTIMANAGER_ACCESS_TOKEN`, `FORTIMANAGER_ACCESS_USERNAME`, `FORTIMANAGER_ACCESS_PASSWORD`, `FORTIMANAGER_INSECURE` and `FORTIMANAGER_CA_CABUNDLE` environment variables. Note that setting your FortiManager credentials using static credentials variables will override the environment variables.
 
 Usage:
 
@@ -91,6 +98,7 @@ Usage:
 $ export "FORTIMANAGER_ACCESS_HOSTNAME"="192.168.52.178"
 $ export "FORTIMANAGER_ACCESS_USERNAME"="admin"
 $ export "FORTIMANAGER_ACCESS_PASSWORD"="admin"
+$ export "FORTIMANAGER_ACCESS_TOKEN"="4ktitbsdiuye6ja43aoxafuqcb15kzse"
 $ export "FORTIMANAGER_INSECURE"="false"
 $ export "FORTIMANAGER_CA_CABUNDLE"="/path/yourCA.crt"
 ```
@@ -109,6 +117,8 @@ provider "fortimanager" {
 The following arguments are supported:
 
 * `hostname` - (Optional) The hostname or IP address of FortiManager unit. It must be provided, but it can also be sourced from the `FORTIMANAGER_ACCESS_HOSTNAME` environment variable.
+
+* `token` - (Optional) The token of FortiManager unit. If omitted, the `FORTIMANAGER_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used.
 
 * `username` - (Optional) Your username. It must be provided, but it can also be sourced from the `FORTIMANAGER_ACCESS_USERNAME` environment variable.
 
@@ -160,4 +170,4 @@ Fortinet also provides a developer community to help administrators and advanced
 
 ## Versioning
 
-The provider can cover FortiManager 6.4 to 7.2 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.
+The provider can cover FortiManager 6.4 to 7.4 versions, the configuration of all parameters should be based on the relevant FortiManager version manual and FortiManager API guide.

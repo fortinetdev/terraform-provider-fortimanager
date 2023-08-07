@@ -77,6 +77,14 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"cos": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"cos_mask": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -244,6 +252,10 @@ func resourcePackagesFirewallShapingPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"traffic_shaper_reverse": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"traffic_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -420,6 +432,14 @@ func flattenPackagesFirewallShapingPolicyComment(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenPackagesFirewallShapingPolicyCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallShapingPolicyCosMask(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallShapingPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -560,6 +580,10 @@ func flattenPackagesFirewallShapingPolicyTrafficShaperReverse(v interface{}, d *
 	return v
 }
 
+func flattenPackagesFirewallShapingPolicyTrafficType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallShapingPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -626,6 +650,26 @@ func refreshObjectPackagesFirewallShapingPolicy(d *schema.ResourceData, o map[st
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("cos", flattenPackagesFirewallShapingPolicyCos(o["cos"], d, "cos")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cos"], "PackagesFirewallShapingPolicy-Cos"); ok {
+			if err = d.Set("cos", vv); err != nil {
+				return fmt.Errorf("Error reading cos: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cos: %v", err)
+		}
+	}
+
+	if err = d.Set("cos_mask", flattenPackagesFirewallShapingPolicyCosMask(o["cos-mask"], d, "cos_mask")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cos-mask"], "PackagesFirewallShapingPolicy-CosMask"); ok {
+			if err = d.Set("cos_mask", vv); err != nil {
+				return fmt.Errorf("Error reading cos_mask: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cos_mask: %v", err)
 		}
 	}
 
@@ -979,6 +1023,16 @@ func refreshObjectPackagesFirewallShapingPolicy(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("traffic_type", flattenPackagesFirewallShapingPolicyTrafficType(o["traffic-type"], d, "traffic_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["traffic-type"], "PackagesFirewallShapingPolicy-TrafficType"); ok {
+			if err = d.Set("traffic_type", vv); err != nil {
+				return fmt.Errorf("Error reading traffic_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading traffic_type: %v", err)
+		}
+	}
+
 	if err = d.Set("url_category", flattenPackagesFirewallShapingPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesFirewallShapingPolicy-UrlCategory"); ok {
 			if err = d.Set("url_category", vv); err != nil {
@@ -1035,6 +1089,14 @@ func expandPackagesFirewallShapingPolicyClassId(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallShapingPolicyComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallShapingPolicyCos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallShapingPolicyCosMask(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1178,6 +1240,10 @@ func expandPackagesFirewallShapingPolicyTrafficShaperReverse(d *schema.ResourceD
 	return v, nil
 }
 
+func expandPackagesFirewallShapingPolicyTrafficType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallShapingPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
@@ -1235,6 +1301,24 @@ func getObjectPackagesFirewallShapingPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cos"); ok || d.HasChange("cos") {
+		t, err := expandPackagesFirewallShapingPolicyCos(d, v, "cos")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cos"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cos_mask"); ok || d.HasChange("cos_mask") {
+		t, err := expandPackagesFirewallShapingPolicyCosMask(d, v, "cos_mask")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cos-mask"] = t
 		}
 	}
 
@@ -1550,6 +1634,15 @@ func getObjectPackagesFirewallShapingPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["traffic-shaper-reverse"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("traffic_type"); ok || d.HasChange("traffic_type") {
+		t, err := expandPackagesFirewallShapingPolicyTrafficType(d, v, "traffic_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["traffic-type"] = t
 		}
 	}
 

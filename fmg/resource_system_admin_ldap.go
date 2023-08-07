@@ -37,6 +37,7 @@ func resourceSystemAdminLdap() *schema.Resource {
 						"adom_name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

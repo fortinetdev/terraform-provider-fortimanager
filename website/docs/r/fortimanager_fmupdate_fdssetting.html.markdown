@@ -47,11 +47,15 @@ The following arguments are supported:
 * `send_setup` - forward setup to fds server. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `server_override` - Server-Override. The structure of `server_override` block is documented below.
+* `system_support_faz` - Supported FortiAnalyzer versions. 6.x - Support version 6.x 7.x - Support version 7.x Valid values: `6.x`, `7.x`.
+
 * `system_support_fct` - Supported FortiClient versions. 4.x - Support version 4.x 5.0 - Support version 5.0 5.2 - Support version 5.2 5.4 - Support version 5.4 5.6 - Support version 5.6 6.0 - Support version 6.0 6.2 - Support version 6.2 6.4 - Support version 6.4 Valid values: `4.x`, `5.0`, `5.2`, `5.4`, `5.6`, `6.0`, `6.2`, `6.4`.
 
 * `system_support_fdc` - Supported FortiDeceptor versions. 3.x - Support version 3.x Valid values: `3.x`.
 
 * `system_support_fgt` - Supported FortiOS versions. 5.4 - Support version 5.4 5.6 - Support version 5.6 6.0 - Support version 6.0 6.2 - Support version 6.2 6.4 - Support version 6.4 Valid values: `5.4`, `5.6`, `6.0`, `6.2`, `6.4`.
+
+* `system_support_fis` - Supported FortiIsolator versions. 1.x - Support version 1.x 2.x - Support version 2.x Valid values: `1.x`, `2.x`.
 
 * `system_support_fml` - Supported FortiMail versions. 4.x - Support version 4.x 5.x - Support version 5.x 6.x - Support version 6.x Valid values: `4.x`, `5.x`, `6.x`.
 

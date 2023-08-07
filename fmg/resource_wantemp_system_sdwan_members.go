@@ -80,6 +80,10 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"preferred_source": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"priority": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -293,6 +297,10 @@ func flattenWantempSystemSdwanMembersInterface(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenWantempSystemSdwanMembersPreferredSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanMembersPriority(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -407,6 +415,16 @@ func refreshObjectWantempSystemSdwanMembers(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading interface: %v", err)
+		}
+	}
+
+	if err = d.Set("preferred_source", flattenWantempSystemSdwanMembersPreferredSource(o["preferred-source"], d, "preferred_source")); err != nil {
+		if vv, ok := fortiAPIPatch(o["preferred-source"], "WantempSystemSdwanMembers-PreferredSource"); ok {
+			if err = d.Set("preferred_source", vv); err != nil {
+				return fmt.Errorf("Error reading preferred_source: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading preferred_source: %v", err)
 		}
 	}
 
@@ -547,6 +565,10 @@ func expandWantempSystemSdwanMembersInterface(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandWantempSystemSdwanMembersPreferredSource(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanMembersPriority(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -650,6 +672,15 @@ func getObjectWantempSystemSdwanMembers(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["interface"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("preferred_source"); ok || d.HasChange("preferred_source") {
+		t, err := expandWantempSystemSdwanMembersPreferredSource(d, v, "preferred_source")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["preferred-source"] = t
 		}
 	}
 

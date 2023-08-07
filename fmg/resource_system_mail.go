@@ -39,6 +39,16 @@ func resourceSystemMail() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"from": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"from_passwd": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -183,6 +193,14 @@ func flattenSystemMailAuthType(v interface{}, d *schema.ResourceData, pre string
 	return v
 }
 
+func flattenSystemMailFrom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemMailFromPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenSystemMailId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -231,6 +249,26 @@ func refreshObjectSystemMail(d *schema.ResourceData, o map[string]interface{}) e
 			}
 		} else {
 			return fmt.Errorf("Error reading auth_type: %v", err)
+		}
+	}
+
+	if err = d.Set("from", flattenSystemMailFrom(o["from"], d, "from")); err != nil {
+		if vv, ok := fortiAPIPatch(o["from"], "SystemMail-From"); ok {
+			if err = d.Set("from", vv); err != nil {
+				return fmt.Errorf("Error reading from: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading from: %v", err)
+		}
+	}
+
+	if err = d.Set("from_passwd", flattenSystemMailFromPasswd(o["from_passwd"], d, "from_passwd")); err != nil {
+		if vv, ok := fortiAPIPatch(o["from_passwd"], "SystemMail-FromPasswd"); ok {
+			if err = d.Set("from_passwd", vv); err != nil {
+				return fmt.Errorf("Error reading from_passwd: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading from_passwd: %v", err)
 		}
 	}
 
@@ -311,6 +349,14 @@ func expandSystemMailAuthType(d *schema.ResourceData, v interface{}, pre string)
 	return v, nil
 }
 
+func expandSystemMailFrom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemMailFromPasswd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandSystemMailId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -357,6 +403,24 @@ func getObjectSystemMail(d *schema.ResourceData) (*map[string]interface{}, error
 			return &obj, err
 		} else if t != nil {
 			obj["auth-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("from"); ok || d.HasChange("from") {
+		t, err := expandSystemMailFrom(d, v, "from")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["from"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("from_passwd"); ok || d.HasChange("from_passwd") {
+		t, err := expandSystemMailFromPasswd(d, v, "from_passwd")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["from_passwd"] = t
 		}
 	}
 

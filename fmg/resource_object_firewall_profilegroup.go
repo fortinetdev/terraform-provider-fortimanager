@@ -85,6 +85,10 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"ips_voip_filter": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"mms_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -290,6 +294,10 @@ func flattenObjectFirewallProfileGroupIpsSensor(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectFirewallProfileGroupIpsVoipFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupMmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -438,6 +446,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading ips_sensor: %v", err)
+		}
+	}
+
+	if err = d.Set("ips_voip_filter", flattenObjectFirewallProfileGroupIpsVoipFilter(o["ips-voip-filter"], d, "ips_voip_filter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ips-voip-filter"], "ObjectFirewallProfileGroup-IpsVoipFilter"); ok {
+			if err = d.Set("ips_voip_filter", vv); err != nil {
+				return fmt.Errorf("Error reading ips_voip_filter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ips_voip_filter: %v", err)
 		}
 	}
 
@@ -600,6 +618,10 @@ func expandObjectFirewallProfileGroupIpsSensor(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectFirewallProfileGroupIpsVoipFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileGroupMmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -734,6 +756,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ips-sensor"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ips_voip_filter"); ok || d.HasChange("ips_voip_filter") {
+		t, err := expandObjectFirewallProfileGroupIpsVoipFilter(d, v, "ips_voip_filter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ips-voip-filter"] = t
 		}
 	}
 

@@ -18,6 +18,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `wanprof` - Wanprof.
 
+* `fail_alert_interfaces` - Physical interfaces that will be alerted.
 * `fail_detect` - Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `disable`, `enable`.
 
 * `health_check` - Health-Check. The structure of `health_check` block is documented below.

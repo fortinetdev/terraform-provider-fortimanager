@@ -50,6 +50,12 @@ func resourceWantempSystemVirtualWanLink() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"fail_alert_interfaces": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"fail_detect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -672,6 +678,10 @@ func resourceWantempSystemVirtualWanLinkRead(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error reading WantempSystemVirtualWanLink resource from API: %v", err)
 	}
 	return nil
+}
+
+func flattenWantempSystemVirtualWanLinkFailAlertInterfacesWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
 }
 
 func flattenWantempSystemVirtualWanLinkFailDetectWsva(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1963,6 +1973,16 @@ func refreshObjectWantempSystemVirtualWanLink(d *schema.ResourceData, o map[stri
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("fail_alert_interfaces", flattenWantempSystemVirtualWanLinkFailAlertInterfacesWsva(o["fail-alert-interfaces"], d, "fail_alert_interfaces")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fail-alert-interfaces"], "WantempSystemVirtualWanLink-FailAlertInterfaces"); ok {
+			if err = d.Set("fail_alert_interfaces", vv); err != nil {
+				return fmt.Errorf("Error reading fail_alert_interfaces: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fail_alert_interfaces: %v", err)
+		}
+	}
+
 	if err = d.Set("fail_detect", flattenWantempSystemVirtualWanLinkFailDetectWsva(o["fail-detect"], d, "fail_detect")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fail-detect"], "WantempSystemVirtualWanLink-FailDetect"); ok {
 			if err = d.Set("fail_detect", vv); err != nil {
@@ -2126,6 +2146,10 @@ func flattenWantempSystemVirtualWanLinkFortiTestDebug(d *schema.ResourceData, fo
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandWantempSystemVirtualWanLinkFailAlertInterfacesWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandWantempSystemVirtualWanLinkFailDetectWsva(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3278,6 +3302,15 @@ func expandWantempSystemVirtualWanLinkStatusWsva(d *schema.ResourceData, v inter
 
 func getObjectWantempSystemVirtualWanLink(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("fail_alert_interfaces"); ok || d.HasChange("fail_alert_interfaces") {
+		t, err := expandWantempSystemVirtualWanLinkFailAlertInterfacesWsva(d, v, "fail_alert_interfaces")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fail-alert-interfaces"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("fail_detect"); ok || d.HasChange("fail_detect") {
 		t, err := expandWantempSystemVirtualWanLinkFailDetectWsva(d, v, "fail_detect")

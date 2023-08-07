@@ -43,6 +43,10 @@ The following arguments are supported:
 * `chassis_update_interval` - Chassis background update interval (4 - 1440 mins).
 * `device_sync_status` - Enable/disable device synchronization status indication. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `firmware_upgrade_check` - Enable/disable firmware upgrade check. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
+* `fsw_ignore_platform_check` - Enable/disable FortiSwitch Manager switch platform support check. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `gui_theme` - Color scheme to use for the administration GUI. blue - Blueberry green - Kiwi red - Cherry melongene - Plum spring - Spring summer - Summer autumn - Autumn winter - Winter space - Space calla-lily - Calla Lily binary-tunnel - Binary Tunnel diving - Diving dreamy - Dreamy technology - Technology landscape - Landscape twilight - Twilight canyon - Canyon northern-light - Northern Light astronomy - Astronomy fish - Fish penguin - Penguin mountain - Mountain polar-bear - Polar Bear parrot - Parrot cave - Cave zebra - Zebra contrast-dark - High Contrast Dark Valid values: `blue`, `green`, `red`, `melongene`, `spring`, `summer`, `autumn`, `winter`, `space`, `calla-lily`, `binary-tunnel`, `diving`, `dreamy`, `technology`, `landscape`, `twilight`, `canyon`, `northern-light`, `astronomy`, `fish`, `penguin`, `mountain`, `polar-bear`, `parrot`, `cave`, `zebra`, `contrast-dark`.
 
 * `http_port` - HTTP port.
@@ -61,6 +65,8 @@ The following arguments are supported:
 
 * `preferred_fgfm_intf` - Preferred interface for FGFM connection.
 * `register_passwd` - Password for register a device.
+* `rtm_max_monitor_by_days` - Maximum rtm monitor (sdwan, traffic shaping, etc) history by days (1 - 180).
+* `rtm_temp_file_limit` - Set rtm monitor temp file limit by hours. Lower value will reduce disk usage, but may cause data loss (1 - 120).
 * `sdwan_monitor_history` - Enable/disable sdwan-monitor-history. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `sdwan_skip_unmapped_input_device` - Skip unmapped interface for sdwan/rule/input-device instead of report mapping error. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.

@@ -117,6 +117,10 @@ func resourcePackagesFirewallLocalInPolicy6() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"virtual_patch": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -305,6 +309,10 @@ func flattenPackagesFirewallLocalInPolicy6Uuid(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenPackagesFirewallLocalInPolicy6VirtualPatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -442,6 +450,16 @@ func refreshObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData, o map[s
 		}
 	}
 
+	if err = d.Set("virtual_patch", flattenPackagesFirewallLocalInPolicy6VirtualPatch(o["virtual-patch"], d, "virtual_patch")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch"], "PackagesFirewallLocalInPolicy6-VirtualPatch"); ok {
+			if err = d.Set("virtual_patch", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -500,6 +518,10 @@ func expandPackagesFirewallLocalInPolicy6Status(d *schema.ResourceData, v interf
 }
 
 func expandPackagesFirewallLocalInPolicy6Uuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallLocalInPolicy6VirtualPatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -620,6 +642,15 @@ func getObjectPackagesFirewallLocalInPolicy6(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch"); ok || d.HasChange("virtual_patch") {
+		t, err := expandPackagesFirewallLocalInPolicy6VirtualPatch(d, v, "virtual_patch")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch"] = t
 		}
 	}
 

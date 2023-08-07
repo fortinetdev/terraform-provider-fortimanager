@@ -122,6 +122,10 @@ func resourcePackagesFirewallLocalInPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"virtual_patch": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 		},
 	}
 }
@@ -314,6 +318,10 @@ func flattenPackagesFirewallLocalInPolicyUuid(v interface{}, d *schema.ResourceD
 	return v
 }
 
+func flattenPackagesFirewallLocalInPolicyVirtualPatch(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -461,6 +469,16 @@ func refreshObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData, o map[st
 		}
 	}
 
+	if err = d.Set("virtual_patch", flattenPackagesFirewallLocalInPolicyVirtualPatch(o["virtual-patch"], d, "virtual_patch")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch"], "PackagesFirewallLocalInPolicy-VirtualPatch"); ok {
+			if err = d.Set("virtual_patch", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -523,6 +541,10 @@ func expandPackagesFirewallLocalInPolicyStatus(d *schema.ResourceData, v interfa
 }
 
 func expandPackagesFirewallLocalInPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallLocalInPolicyVirtualPatch(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -652,6 +674,15 @@ func getObjectPackagesFirewallLocalInPolicy(d *schema.ResourceData) (*map[string
 			return &obj, err
 		} else if t != nil {
 			obj["uuid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch"); ok || d.HasChange("virtual_patch") {
+		t, err := expandPackagesFirewallLocalInPolicyVirtualPatch(d, v, "virtual_patch")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch"] = t
 		}
 	}
 

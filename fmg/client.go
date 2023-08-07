@@ -9,9 +9,9 @@ import (
 	"os"
 	"time"
 
-	"github.com/fortinetdev/forti-sdk-go/fortimanager2/auth"
-	forticlient "github.com/fortinetdev/forti-sdk-go/fortimanager2/sdkcore"
 	"github.com/hashicorp/terraform-plugin-sdk/v2/helper/schema"
+	"github.com/terraform-providers/terraform-provider-fortimanager/sdk/auth"
+	forticlient "github.com/terraform-providers/terraform-provider-fortimanager/sdk/sdkcore"
 )
 
 // Config gets the authentication information from the given metadata
@@ -27,6 +27,7 @@ type Config struct {
 
 	LogSession bool
 	Session    string
+	Token      string
 }
 
 // FortiClient contains the basic FMG SDK connection information to FMG
@@ -52,12 +53,19 @@ func (c *Config) CreateClient() (interface{}, error) {
 func createFMGClient(fClient *FortiClient, c *Config) error {
 	config := &tls.Config{}
 
-	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.LogSession)
+	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.LogSession)
 
 	if auth.Hostname == "" {
 		_, err := auth.GetEnvHostname()
 		if err != nil {
 			return fmt.Errorf("Error reading Hostname")
+		}
+	}
+
+	if auth.Token == "" {
+		_, err := auth.GetEnvToken()
+		if err != nil {
+			return fmt.Errorf("Error reading Token")
 		}
 	}
 

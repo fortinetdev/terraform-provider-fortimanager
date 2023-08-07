@@ -38,6 +38,7 @@ The following arguments are supported:
 * `n204_size_limit` - 204 response size limit to be saved by ICAP client in megabytes (1 - 10, default = 1 MB).
 * `chunk_encap` - Enable/disable chunked encapsulation (default = disable). Valid values: `disable`, `enable`.
 
+* `comment` - Comment.
 * `extension_feature` - Enable/disable ICAP extension features. Valid values: `scan-progress`.
 
 * `file_transfer` - Configure the file transfer protocols to pass transferred files to an ICAP server as REQMOD. Valid values: `ssh`, `ftp`.

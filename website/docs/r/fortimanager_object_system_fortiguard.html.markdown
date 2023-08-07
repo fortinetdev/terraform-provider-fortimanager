@@ -64,8 +64,10 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `fds_license_expiring_days` - Threshold for number of days before FortiGuard license expiration to generate license expiring event log (1 - 100 days, default = 15).
 * `antispam_cache` - Enable/disable FortiGuard antispam request caching. Uses a small amount of memory but improves performance. Valid values: `disable`, `enable`.
 
+* `antispam_cache_mpermille` - Maximum permille of FortiGate memory the antispam cache is allowed to use (1 - 150).
 * `antispam_cache_mpercent` - Maximum percent of FortiGate memory the antispam cache is allowed to use (1 - 15%).
 * `antispam_cache_ttl` - Time-to-live for antispam cache entries in seconds (300 - 86400). Lower times reduce the cache size. Higher times may improve performance since the cache will have more entries.
 * `antispam_expiration` - Antispam-Expiration.
@@ -79,6 +81,7 @@ The following arguments are supported:
 
 * `auto_firmware_upgrade_day` - Allowed day(s) of the week to start automatic patch-level firmware upgrade from FortiGuard. Valid values: `sunday`, `monday`, `tuesday`, `wednesday`, `thursday`, `friday`, `saturday`.
 
+* `auto_firmware_upgrade_delay` - Delay of day(s) before installing an automatic patch-level firmware upgrade from FortiGuard (default = 3). Set it 0 to use auto-firmware-upgrade-day instead, which selects allowed day(s) of the week for installing an automatic patch-level firmware upgrade.
 * `auto_firmware_upgrade_end_hour` - End time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 4). When the end time is smaller than the start time, the end time is interpreted as the next day. The actual upgrade time is selected randomly within the time window.
 * `auto_firmware_upgrade_start_hour` - Start time in the designated time window for automatic patch-level firmware upgrade from FortiGuard in 24 hour time (0 ~ 23, default = 2). The actual upgrade time is selected randomly within the time window.
 * `auto_join_forticloud` - Automatically connect to and login to FortiCloud. Valid values: `disable`, `enable`.
@@ -96,6 +99,7 @@ The following arguments are supported:
 * `load_balance_servers` - Number of servers to alternate between as first FortiGuard option.
 * `outbreak_prevention_cache` - Enable/disable FortiGuard Virus Outbreak Prevention cache. Valid values: `disable`, `enable`.
 
+* `outbreak_prevention_cache_mpermille` - Maximum permille of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 150 permille, default = 1).
 * `outbreak_prevention_cache_mpercent` - Maximum percent of memory FortiGuard Virus Outbreak Prevention cache can use (1 - 15%, default = 2).
 * `outbreak_prevention_cache_ttl` - Time-to-live for FortiGuard Virus Outbreak Prevention cache entries (300 - 86400 sec, default = 300).
 * `outbreak_prevention_expiration` - Outbreak-Prevention-Expiration.
@@ -124,6 +128,8 @@ The following arguments are supported:
 * `source_ip` - Source IPv4 address used to communicate with FortiGuard.
 * `source_ip6` - Source IPv6 address used to communicate with FortiGuard.
 * `update_build_proxy` - Enable/disable proxy dictionary rebuild. Valid values: `disable`, `enable`.
+
+* `update_dldb` - Enable/disable DLP signature update. Valid values: `disable`, `enable`.
 
 * `update_extdb` - Enable/disable external resource update. Valid values: `disable`, `enable`.
 

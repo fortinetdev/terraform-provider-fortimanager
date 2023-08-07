@@ -128,6 +128,8 @@ The following arguments are supported:
 
 * `_intf_listen_forticlient_connection` - _Intf_Listen-Forticlient-Connection. Valid values: `disable`, `enable`.
 
+* `_is_factory_setting` - _Is_Factory_Setting. Valid values: `disable`, `enable`, `ext`.
+
 * `access_control_list` - access-control-list profile name.
 * `additional_akms` - Additional AKMs. Valid values: `akm6`.
 
@@ -162,6 +164,8 @@ The following arguments are supported:
 * `bstm_rssi_disassoc_timer` - Time interval for client to voluntarily leave AP before forcing a disassociation due to low RSSI (0 to 2000, default = 200).
 * `captive_portal_ac_name` - Local-bridging captive portal ac-name.
 * `captive_portal_auth_timeout` - Hard timeout - AP will always clear the session after timeout regardless of traffic (0 - 864000 sec, default = 0).
+* `captive_portal_fw_accounting` - Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `disable`, `enable`.
+
 * `dhcp_address_enforcement` - Enable/disable DHCP address enforcement (default = disable). Valid values: `disable`, `enable`.
 
 * `captive_portal_macauth_radius_secret` - Secret key to access the macauth RADIUS server.
@@ -320,6 +324,7 @@ The following arguments are supported:
 
 * `radius_mac_auth` - Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `disable`, `enable`.
 
+* `radius_mac_auth_block_interval` - Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
 * `radius_mac_auth_server` - RADIUS-based MAC authentication server.
 * `radius_mac_auth_usergroups` - Selective user groups that are permitted for RADIUS mac authentication.
 * `radius_mac_mpsk_auth` - Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `disable`, `enable`.
@@ -424,6 +429,8 @@ The `dynamic_mapping` block supports:
 
 * `_intf_listen_forticlient_connection` - _Intf_Listen-Forticlient-Connection. Valid values: `disable`, `enable`.
 
+* `_is_factory_setting` - _Is_Factory_Setting. Valid values: `disable`, `enable`, `ext`.
+
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
 * `access_control_list` - Access-Control-List.
 * `acct_interim_interval` - WiFi RADIUS accounting interim interval (60 - 86400 sec, default = 0).
@@ -459,6 +466,8 @@ The `dynamic_mapping` block supports:
 * `bstm_rssi_disassoc_timer` - Bstm-Rssi-Disassoc-Timer.
 * `captive_portal_ac_name` - Local-bridging captive portal ac-name.
 * `captive_portal_auth_timeout` - Captive-Portal-Auth-Timeout.
+* `captive_portal_fw_accounting` - Enable/disable RADIUS accounting for captive portal firewall authentication session. Valid values: `disable`, `enable`.
+
 * `captive_portal_macauth_radius_secret` - Secret key to access the macauth RADIUS server.
 * `captive_portal_macauth_radius_server` - Captive portal external RADIUS server domain name or IP address.
 * `captive_portal_radius_secret` - Secret key to access the RADIUS server.
@@ -615,6 +624,7 @@ The `dynamic_mapping` block supports:
 
 * `radius_mac_auth` - Enable/disable RADIUS-based MAC authentication of clients (default = disable). Valid values: `disable`, `enable`.
 
+* `radius_mac_auth_block_interval` - Don't send RADIUS MAC auth request again if the client has been rejected within specific interval (0 or 30 - 864000 seconds, default = 0, 0 to disable blocking).
 * `radius_mac_auth_server` - RADIUS-based MAC authentication server.
 * `radius_mac_auth_usergroups` - Selective user groups that are permitted for RADIUS mac authentication.
 * `radius_mac_mpsk_auth` - Enable/disable RADIUS-based MAC authentication of clients for MPSK authentication (default = disable). Valid values: `disable`, `enable`.

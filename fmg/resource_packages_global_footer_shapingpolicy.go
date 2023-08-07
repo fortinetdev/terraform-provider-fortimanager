@@ -61,6 +61,14 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"cos": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"cos_mask": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -213,6 +221,10 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"traffic_shaper_reverse": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"traffic_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -386,6 +398,14 @@ func flattenPackagesGlobalFooterShapingPolicyComment(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesGlobalFooterShapingPolicyCos(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalFooterShapingPolicyCosMask(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterShapingPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -530,6 +550,10 @@ func flattenPackagesGlobalFooterShapingPolicyTrafficShaperReverse(v interface{},
 	return v
 }
 
+func flattenPackagesGlobalFooterShapingPolicyTrafficType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterShapingPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -606,6 +630,26 @@ func refreshObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData, o ma
 			}
 		} else {
 			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
+	if err = d.Set("cos", flattenPackagesGlobalFooterShapingPolicyCos(o["cos"], d, "cos")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cos"], "PackagesGlobalFooterShapingPolicy-Cos"); ok {
+			if err = d.Set("cos", vv); err != nil {
+				return fmt.Errorf("Error reading cos: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cos: %v", err)
+		}
+	}
+
+	if err = d.Set("cos_mask", flattenPackagesGlobalFooterShapingPolicyCosMask(o["cos-mask"], d, "cos_mask")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cos-mask"], "PackagesGlobalFooterShapingPolicy-CosMask"); ok {
+			if err = d.Set("cos_mask", vv); err != nil {
+				return fmt.Errorf("Error reading cos_mask: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cos_mask: %v", err)
 		}
 	}
 
@@ -969,6 +1013,16 @@ func refreshObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData, o ma
 		}
 	}
 
+	if err = d.Set("traffic_type", flattenPackagesGlobalFooterShapingPolicyTrafficType(o["traffic-type"], d, "traffic_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["traffic-type"], "PackagesGlobalFooterShapingPolicy-TrafficType"); ok {
+			if err = d.Set("traffic_type", vv); err != nil {
+				return fmt.Errorf("Error reading traffic_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading traffic_type: %v", err)
+		}
+	}
+
 	if err = d.Set("url_category", flattenPackagesGlobalFooterShapingPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesGlobalFooterShapingPolicy-UrlCategory"); ok {
 			if err = d.Set("url_category", vv); err != nil {
@@ -1039,6 +1093,14 @@ func expandPackagesGlobalFooterShapingPolicyClassIdReverse(d *schema.ResourceDat
 }
 
 func expandPackagesGlobalFooterShapingPolicyComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterShapingPolicyCos(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalFooterShapingPolicyCosMask(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1186,6 +1248,10 @@ func expandPackagesGlobalFooterShapingPolicyTrafficShaperReverse(d *schema.Resou
 	return v, nil
 }
 
+func expandPackagesGlobalFooterShapingPolicyTrafficType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterShapingPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1256,6 +1322,24 @@ func getObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["comment"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cos"); ok || d.HasChange("cos") {
+		t, err := expandPackagesGlobalFooterShapingPolicyCos(d, v, "cos")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cos"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cos_mask"); ok || d.HasChange("cos_mask") {
+		t, err := expandPackagesGlobalFooterShapingPolicyCosMask(d, v, "cos_mask")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cos-mask"] = t
 		}
 	}
 
@@ -1580,6 +1664,15 @@ func getObjectPackagesGlobalFooterShapingPolicy(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["traffic-shaper-reverse"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("traffic_type"); ok || d.HasChange("traffic_type") {
+		t, err := expandPackagesGlobalFooterShapingPolicyTrafficType(d, v, "traffic_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["traffic-type"] = t
 		}
 	}
 

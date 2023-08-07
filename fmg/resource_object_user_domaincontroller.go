@@ -69,6 +69,14 @@ func resourceObjectUserDomainController() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"change_detection": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"change_detection_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"dns_srv_lookup": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -320,6 +328,14 @@ func flattenObjectUserDomainControllerAdldsPort(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectUserDomainControllerChangeDetection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserDomainControllerChangeDetectionPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserDomainControllerDnsSrvLookup(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -519,6 +535,26 @@ func refreshObjectObjectUserDomainController(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading adlds_port: %v", err)
+		}
+	}
+
+	if err = d.Set("change_detection", flattenObjectUserDomainControllerChangeDetection(o["change-detection"], d, "change_detection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["change-detection"], "ObjectUserDomainController-ChangeDetection"); ok {
+			if err = d.Set("change_detection", vv); err != nil {
+				return fmt.Errorf("Error reading change_detection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading change_detection: %v", err)
+		}
+	}
+
+	if err = d.Set("change_detection_period", flattenObjectUserDomainControllerChangeDetectionPeriod(o["change-detection-period"], d, "change_detection_period")); err != nil {
+		if vv, ok := fortiAPIPatch(o["change-detection-period"], "ObjectUserDomainController-ChangeDetectionPeriod"); ok {
+			if err = d.Set("change_detection_period", vv); err != nil {
+				return fmt.Errorf("Error reading change_detection_period: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading change_detection_period: %v", err)
 		}
 	}
 
@@ -725,6 +761,14 @@ func expandObjectUserDomainControllerAdldsPort(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectUserDomainControllerChangeDetection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserDomainControllerChangeDetectionPeriod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserDomainControllerDnsSrvLookup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -901,6 +945,24 @@ func getObjectObjectUserDomainController(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["adlds-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("change_detection"); ok || d.HasChange("change_detection") {
+		t, err := expandObjectUserDomainControllerChangeDetection(d, v, "change_detection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["change-detection"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("change_detection_period"); ok || d.HasChange("change_detection_period") {
+		t, err := expandObjectUserDomainControllerChangeDetectionPeriod(d, v, "change_detection_period")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["change-detection-period"] = t
 		}
 	}
 

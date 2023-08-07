@@ -32,6 +32,7 @@ The following arguments are supported:
 
 * `member` - Interfaces belong to the virtual-wire-pair.
 * `name` - Virtual-wire-pair name. Must be a unique interface name.
+* `outer_vlan_id` - Outer VLAN ID.
 * `poweroff_bypass` - set interface bypass state in power off Valid values: `disable`, `enable`.
 
 * `poweron_bypass` - set interface bypass state in power on Valid values: `disable`, `enable`.

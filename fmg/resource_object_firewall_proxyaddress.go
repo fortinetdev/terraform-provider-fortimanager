@@ -169,6 +169,14 @@ func resourceObjectFirewallProxyAddress() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ua_max_ver": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ua_min_ver": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"uuid": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -493,6 +501,14 @@ func flattenObjectFirewallProxyAddressUa(v interface{}, d *schema.ResourceData, 
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallProxyAddressUaMaxVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProxyAddressUaMinVer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProxyAddressUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -730,6 +746,26 @@ func refreshObjectObjectFirewallProxyAddress(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("ua_max_ver", flattenObjectFirewallProxyAddressUaMaxVer(o["ua-max-ver"], d, "ua_max_ver")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ua-max-ver"], "ObjectFirewallProxyAddress-UaMaxVer"); ok {
+			if err = d.Set("ua_max_ver", vv); err != nil {
+				return fmt.Errorf("Error reading ua_max_ver: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ua_max_ver: %v", err)
+		}
+	}
+
+	if err = d.Set("ua_min_ver", flattenObjectFirewallProxyAddressUaMinVer(o["ua-min-ver"], d, "ua_min_ver")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ua-min-ver"], "ObjectFirewallProxyAddress-UaMinVer"); ok {
+			if err = d.Set("ua_min_ver", vv); err != nil {
+				return fmt.Errorf("Error reading ua_min_ver: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ua_min_ver: %v", err)
+		}
+	}
+
 	if err = d.Set("uuid", flattenObjectFirewallProxyAddressUuid(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallProxyAddress-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
@@ -934,6 +970,14 @@ func expandObjectFirewallProxyAddressUa(d *schema.ResourceData, v interface{}, p
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallProxyAddressUaMaxVer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProxyAddressUaMinVer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProxyAddressUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1113,6 +1157,24 @@ func getObjectObjectFirewallProxyAddress(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["ua"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ua_max_ver"); ok || d.HasChange("ua_max_ver") {
+		t, err := expandObjectFirewallProxyAddressUaMaxVer(d, v, "ua_max_ver")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ua-max-ver"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ua_min_ver"); ok || d.HasChange("ua_min_ver") {
+		t, err := expandObjectFirewallProxyAddressUaMinVer(d, v, "ua_min_ver")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ua-min-ver"] = t
 		}
 	}
 

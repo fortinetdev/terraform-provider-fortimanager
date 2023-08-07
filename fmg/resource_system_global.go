@@ -34,6 +34,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"admin_lockout_method": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"admin_lockout_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -144,12 +149,22 @@ func resourceSystemGlobal() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"fgfm_cert_exclusive": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fgfm_local_cert": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"fgfm_ssl_protocol": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"gui_curl_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -203,6 +218,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"log_checksum_upload": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"log_forward_cache_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -235,6 +255,11 @@ func resourceSystemGlobal() *schema.Resource {
 				},
 			},
 			"multiple_steps_upgrade_in_autolink": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"no_copy_permission_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -416,6 +441,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"workspace_unlock_after_install": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -500,6 +530,10 @@ func resourceSystemGlobalRead(d *schema.ResourceData, m interface{}) error {
 }
 
 func flattenSystemGlobalAdminLockoutDurationSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalAdminLockoutMethodSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -591,11 +625,19 @@ func flattenSystemGlobalFgfmCaCertSga(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenSystemGlobalFgfmCertExclusiveSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalFgfmLocalCertSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenSystemGlobalFgfmSslProtocolSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalGuiCurlTimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -636,6 +678,10 @@ func flattenSystemGlobalLockPreemptSga(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemGlobalLogChecksumSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalLogChecksumUploadSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -693,6 +739,10 @@ func flattenSystemGlobalMcPolicyDisabledAdomsAdomNameSga(v interface{}, d *schem
 }
 
 func flattenSystemGlobalMultipleStepsUpgradeInAutolinkSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalNoCopyPermissionCheckSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -877,6 +927,10 @@ func flattenSystemGlobalWorkspaceModeSga(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenSystemGlobalWorkspaceUnlockAfterInstallSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -891,6 +945,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading admin_lockout_duration: %v", err)
+		}
+	}
+
+	if err = d.Set("admin_lockout_method", flattenSystemGlobalAdminLockoutMethodSga(o["admin-lockout-method"], d, "admin_lockout_method")); err != nil {
+		if vv, ok := fortiAPIPatch(o["admin-lockout-method"], "SystemGlobal-AdminLockoutMethod"); ok {
+			if err = d.Set("admin_lockout_method", vv); err != nil {
+				return fmt.Errorf("Error reading admin_lockout_method: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading admin_lockout_method: %v", err)
 		}
 	}
 
@@ -1114,6 +1178,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("fgfm_cert_exclusive", flattenSystemGlobalFgfmCertExclusiveSga(o["fgfm-cert-exclusive"], d, "fgfm_cert_exclusive")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgfm-cert-exclusive"], "SystemGlobal-FgfmCertExclusive"); ok {
+			if err = d.Set("fgfm_cert_exclusive", vv); err != nil {
+				return fmt.Errorf("Error reading fgfm_cert_exclusive: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgfm_cert_exclusive: %v", err)
+		}
+	}
+
 	if err = d.Set("fgfm_local_cert", flattenSystemGlobalFgfmLocalCertSga(o["fgfm-local-cert"], d, "fgfm_local_cert")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-local-cert"], "SystemGlobal-FgfmLocalCert"); ok {
 			if err = d.Set("fgfm_local_cert", vv); err != nil {
@@ -1131,6 +1205,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading fgfm_ssl_protocol: %v", err)
+		}
+	}
+
+	if err = d.Set("gui_curl_timeout", flattenSystemGlobalGuiCurlTimeoutSga(o["gui-curl-timeout"], d, "gui_curl_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gui-curl-timeout"], "SystemGlobal-GuiCurlTimeout"); ok {
+			if err = d.Set("gui_curl_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading gui_curl_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gui_curl_timeout: %v", err)
 		}
 	}
 
@@ -1234,6 +1318,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("log_checksum_upload", flattenSystemGlobalLogChecksumUploadSga(o["log-checksum-upload"], d, "log_checksum_upload")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-checksum-upload"], "SystemGlobal-LogChecksumUpload"); ok {
+			if err = d.Set("log_checksum_upload", vv); err != nil {
+				return fmt.Errorf("Error reading log_checksum_upload: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_checksum_upload: %v", err)
+		}
+	}
+
 	if err = d.Set("log_forward_cache_size", flattenSystemGlobalLogForwardCacheSizeSga(o["log-forward-cache-size"], d, "log_forward_cache_size")); err != nil {
 		if vv, ok := fortiAPIPatch(o["log-forward-cache-size"], "SystemGlobal-LogForwardCacheSize"); ok {
 			if err = d.Set("log_forward_cache_size", vv); err != nil {
@@ -1305,6 +1399,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading multiple_steps_upgrade_in_autolink: %v", err)
+		}
+	}
+
+	if err = d.Set("no_copy_permission_check", flattenSystemGlobalNoCopyPermissionCheckSga(o["no-copy-permission-check"], d, "no_copy_permission_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["no-copy-permission-check"], "SystemGlobal-NoCopyPermissionCheck"); ok {
+			if err = d.Set("no_copy_permission_check", vv); err != nil {
+				return fmt.Errorf("Error reading no_copy_permission_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading no_copy_permission_check: %v", err)
 		}
 	}
 
@@ -1642,6 +1746,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("workspace_unlock_after_install", flattenSystemGlobalWorkspaceUnlockAfterInstallSga(o["workspace-unlock-after-install"], d, "workspace_unlock_after_install")); err != nil {
+		if vv, ok := fortiAPIPatch(o["workspace-unlock-after-install"], "SystemGlobal-WorkspaceUnlockAfterInstall"); ok {
+			if err = d.Set("workspace_unlock_after_install", vv); err != nil {
+				return fmt.Errorf("Error reading workspace_unlock_after_install: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading workspace_unlock_after_install: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1652,6 +1766,10 @@ func flattenSystemGlobalFortiTestDebug(d *schema.ResourceData, fosdebugsn int, f
 }
 
 func expandSystemGlobalAdminLockoutDurationSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalAdminLockoutMethodSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1743,11 +1861,19 @@ func expandSystemGlobalFgfmCaCertSga(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandSystemGlobalFgfmCertExclusiveSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalFgfmLocalCertSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandSystemGlobalFgfmSslProtocolSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalGuiCurlTimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1788,6 +1914,10 @@ func expandSystemGlobalLockPreemptSga(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemGlobalLogChecksumSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalLogChecksumUploadSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1839,6 +1969,10 @@ func expandSystemGlobalMcPolicyDisabledAdomsAdomNameSga(d *schema.ResourceData, 
 }
 
 func expandSystemGlobalMultipleStepsUpgradeInAutolinkSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalNoCopyPermissionCheckSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2015,6 +2149,10 @@ func expandSystemGlobalWorkspaceModeSga(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandSystemGlobalWorkspaceUnlockAfterInstallSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -2024,6 +2162,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["admin-lockout-duration"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("admin_lockout_method"); ok || d.HasChange("admin_lockout_method") {
+		t, err := expandSystemGlobalAdminLockoutMethodSga(d, v, "admin_lockout_method")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["admin-lockout-method"] = t
 		}
 	}
 
@@ -2225,6 +2372,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("fgfm_cert_exclusive"); ok || d.HasChange("fgfm_cert_exclusive") {
+		t, err := expandSystemGlobalFgfmCertExclusiveSga(d, v, "fgfm_cert_exclusive")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgfm-cert-exclusive"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fgfm_local_cert"); ok || d.HasChange("fgfm_local_cert") {
 		t, err := expandSystemGlobalFgfmLocalCertSga(d, v, "fgfm_local_cert")
 		if err != nil {
@@ -2240,6 +2396,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["fgfm-ssl-protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gui_curl_timeout"); ok || d.HasChange("gui_curl_timeout") {
+		t, err := expandSystemGlobalGuiCurlTimeoutSga(d, v, "gui_curl_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gui-curl-timeout"] = t
 		}
 	}
 
@@ -2333,6 +2498,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("log_checksum_upload"); ok || d.HasChange("log_checksum_upload") {
+		t, err := expandSystemGlobalLogChecksumUploadSga(d, v, "log_checksum_upload")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-checksum-upload"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("log_forward_cache_size"); ok || d.HasChange("log_forward_cache_size") {
 		t, err := expandSystemGlobalLogForwardCacheSizeSga(d, v, "log_forward_cache_size")
 		if err != nil {
@@ -2384,6 +2558,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["multiple-steps-upgrade-in-autolink"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("no_copy_permission_check"); ok || d.HasChange("no_copy_permission_check") {
+		t, err := expandSystemGlobalNoCopyPermissionCheckSga(d, v, "no_copy_permission_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["no-copy-permission-check"] = t
 		}
 	}
 
@@ -2672,6 +2855,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["workspace-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("workspace_unlock_after_install"); ok || d.HasChange("workspace_unlock_after_install") {
+		t, err := expandSystemGlobalWorkspaceUnlockAfterInstallSga(d, v, "workspace_unlock_after_install")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["workspace-unlock-after-install"] = t
 		}
 	}
 

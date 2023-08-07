@@ -237,6 +237,10 @@ func resourceObjectVoipProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"call_id_regex": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"call_keepalive": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -254,6 +258,10 @@ func resourceObjectVoipProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"content_type_regex": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"hnt_restrict_source_ip": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1035,6 +1043,11 @@ func flattenObjectVoipProfileSip(v interface{}, d *schema.ResourceData, pre stri
 		result["bye_rate_track"] = flattenObjectVoipProfileSipByeRateTrack(i["bye-rate-track"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "call_id_regex"
+	if _, ok := i["call-id-regex"]; ok {
+		result["call_id_regex"] = flattenObjectVoipProfileSipCallIdRegex(i["call-id-regex"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "call_keepalive"
 	if _, ok := i["call-keepalive"]; ok {
 		result["call_keepalive"] = flattenObjectVoipProfileSipCallKeepalive(i["call-keepalive"], d, pre_append)
@@ -1053,6 +1066,11 @@ func flattenObjectVoipProfileSip(v interface{}, d *schema.ResourceData, pre stri
 	pre_append = pre + ".0." + "contact_fixup"
 	if _, ok := i["contact-fixup"]; ok {
 		result["contact_fixup"] = flattenObjectVoipProfileSipContactFixup(i["contact-fixup"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "content_type_regex"
+	if _, ok := i["content-type-regex"]; ok {
+		result["content_type_regex"] = flattenObjectVoipProfileSipContentTypeRegex(i["content-type-regex"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "hnt_restrict_source_ip"
@@ -1583,6 +1601,10 @@ func flattenObjectVoipProfileSipByeRateTrack(v interface{}, d *schema.ResourceDa
 	return v
 }
 
+func flattenObjectVoipProfileSipCallIdRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVoipProfileSipCallKeepalive(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1596,6 +1618,10 @@ func flattenObjectVoipProfileSipCancelRateTrack(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectVoipProfileSipContactFixup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVoipProfileSipContentTypeRegex(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2283,6 +2309,10 @@ func expandObjectVoipProfileSip(d *schema.ResourceData, v interface{}, pre strin
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["bye-rate-track"], _ = expandObjectVoipProfileSipByeRateTrack(d, i["bye_rate_track"], pre_append)
 	}
+	pre_append = pre + ".0." + "call_id_regex"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["call-id-regex"], _ = expandObjectVoipProfileSipCallIdRegex(d, i["call_id_regex"], pre_append)
+	}
 	pre_append = pre + ".0." + "call_keepalive"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["call-keepalive"], _ = expandObjectVoipProfileSipCallKeepalive(d, i["call_keepalive"], pre_append)
@@ -2298,6 +2328,10 @@ func expandObjectVoipProfileSip(d *schema.ResourceData, v interface{}, pre strin
 	pre_append = pre + ".0." + "contact_fixup"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["contact-fixup"], _ = expandObjectVoipProfileSipContactFixup(d, i["contact_fixup"], pre_append)
+	}
+	pre_append = pre + ".0." + "content_type_regex"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["content-type-regex"], _ = expandObjectVoipProfileSipContentTypeRegex(d, i["content_type_regex"], pre_append)
 	}
 	pre_append = pre + ".0." + "hnt_restrict_source_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -2739,6 +2773,10 @@ func expandObjectVoipProfileSipByeRateTrack(d *schema.ResourceData, v interface{
 	return v, nil
 }
 
+func expandObjectVoipProfileSipCallIdRegex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVoipProfileSipCallKeepalive(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2752,6 +2790,10 @@ func expandObjectVoipProfileSipCancelRateTrack(d *schema.ResourceData, v interfa
 }
 
 func expandObjectVoipProfileSipContactFixup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVoipProfileSipContentTypeRegex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

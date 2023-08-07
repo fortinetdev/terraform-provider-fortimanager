@@ -34,6 +34,8 @@ The following arguments are supported:
 * `fosid` - ID.
 * `ip_addr_block` - Enable/disable blocking URLs when the hostname appears as an IP address. Valid values: `disable`, `enable`.
 
+* `ip4_mapped_ip6` - Enable/disable matching of IPv4 mapped IPv6 URLs. Valid values: `disable`, `enable`.
+
 * `name` - Name of URL filter list.
 * `one_arm_ips_urlfilter` - Enable/disable DNS resolver for one-arm IPS URL filter operation. Valid values: `disable`, `enable`.
 

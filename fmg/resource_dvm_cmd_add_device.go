@@ -48,8 +48,10 @@ func resourceDvmCmdAddDevice() *schema.Resource {
 				Elem: &schema.Resource{
 					Schema: map[string]*schema.Schema{
 						"adm_pass": &schema.Schema{
-							Type:     schema.TypeString,
-							Optional: true,
+							Type:      schema.TypeString,
+							Optional:  true,
+							Sensitive: true,
+							Computed:  true,
 						},
 						"adm_usr": &schema.Schema{
 							Type:     schema.TypeString,
@@ -207,6 +209,10 @@ func flattenDvmCmdAddDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 	pre_append = pre + ".0." + "adm_pass"
 	if _, ok := i["adm_pass"]; ok {
 		result["adm_pass"] = flattenDvmCmdAddDeviceDeviceAdmPass(i["adm_pass"], d, pre_append)
+		c := d.Get(pre_append).(string)
+		if c != "" {
+			result["adm_pass"] = c
+		}
 	}
 
 	pre_append = pre + ".0." + "adm_usr"

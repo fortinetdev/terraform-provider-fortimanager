@@ -64,6 +64,10 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"dst_port": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -291,6 +295,10 @@ func flattenPackagesFirewallCentralSnatMapDstAddr6(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenPackagesFirewallCentralSnatMapDstPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallCentralSnatMapDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -389,6 +397,16 @@ func refreshObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData, o map[s
 			}
 		} else {
 			return fmt.Errorf("Error reading dst_addr6: %v", err)
+		}
+	}
+
+	if err = d.Set("dst_port", flattenPackagesFirewallCentralSnatMapDstPort(o["dst-port"], d, "dst_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["dst-port"], "PackagesFirewallCentralSnatMap-DstPort"); ok {
+			if err = d.Set("dst_port", vv); err != nil {
+				return fmt.Errorf("Error reading dst_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading dst_port: %v", err)
 		}
 	}
 
@@ -573,6 +591,10 @@ func expandPackagesFirewallCentralSnatMapDstAddr6(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandPackagesFirewallCentralSnatMapDstPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallCentralSnatMapDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
@@ -664,6 +686,15 @@ func getObjectPackagesFirewallCentralSnatMap(d *schema.ResourceData) (*map[strin
 			return &obj, err
 		} else if t != nil {
 			obj["dst-addr6"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("dst_port"); ok || d.HasChange("dst_port") {
+		t, err := expandPackagesFirewallCentralSnatMapDstPort(d, v, "dst_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["dst-port"] = t
 		}
 	}
 

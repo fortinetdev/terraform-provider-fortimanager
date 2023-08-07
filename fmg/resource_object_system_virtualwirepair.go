@@ -56,6 +56,12 @@ func resourceObjectSystemVirtualWirePair() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"outer_vlan_id": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeInt},
+				Optional: true,
+				Computed: true,
+			},
 			"poweroff_bypass": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -201,6 +207,10 @@ func flattenObjectSystemVirtualWirePairName(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectSystemVirtualWirePairOuterVlanId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenIntegerList(v)
+}
+
 func flattenObjectSystemVirtualWirePairPoweroffBypass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -241,6 +251,16 @@ func refreshObjectObjectSystemVirtualWirePair(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("outer_vlan_id", flattenObjectSystemVirtualWirePairOuterVlanId(o["outer-vlan-id"], d, "outer_vlan_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["outer-vlan-id"], "ObjectSystemVirtualWirePair-OuterVlanId"); ok {
+			if err = d.Set("outer_vlan_id", vv); err != nil {
+				return fmt.Errorf("Error reading outer_vlan_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading outer_vlan_id: %v", err)
 		}
 	}
 
@@ -301,6 +321,10 @@ func expandObjectSystemVirtualWirePairName(d *schema.ResourceData, v interface{}
 	return v, nil
 }
 
+func expandObjectSystemVirtualWirePairOuterVlanId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandIntegerList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectSystemVirtualWirePairPoweroffBypass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -335,6 +359,15 @@ func getObjectObjectSystemVirtualWirePair(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("outer_vlan_id"); ok || d.HasChange("outer_vlan_id") {
+		t, err := expandObjectSystemVirtualWirePairOuterVlanId(d, v, "outer_vlan_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["outer-vlan-id"] = t
 		}
 	}
 

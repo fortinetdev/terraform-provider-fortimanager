@@ -53,6 +53,8 @@ The following arguments are supported:
 * `filter` - Match criteria filter.
 * `fqdn` - Fully Qualified Domain Name address.
 * `fsso_group` - FSSO group(s).
+* `hw_model` - Dynamic address matching hardware model.
+* `hw_vendor` - Dynamic address matching hardware vendor.
 * `global_object` - Global Object.
 * `interface` - Name of interface whose IP address is to be used.
 * `list` - List. The structure of `list` block is documented below.
@@ -65,7 +67,9 @@ The following arguments are supported:
 * `obj_type` - Object type. Valid values: `ip`, `mac`.
 
 * `organization` - Organization domain name (Syntax: organization/domain).
+* `os` - Dynamic address matching operating system.
 * `policy_group` - Policy group name.
+* `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `private`, `public`, `all`.
 
@@ -76,6 +80,7 @@ The following arguments are supported:
 
 * `subnet` - IP address and subnet mask of address.
 * `subnet_name` - Subnet name.
+* `sw_version` - Dynamic address matching software version.
 * `tag_detection_level` - Tag detection level of dynamic address object.
 * `tag_type` - Tag type of dynamic address object.
 * `tagging` - Tagging. The structure of `tagging` block is documented below.
@@ -113,6 +118,8 @@ The `dynamic_mapping` block supports:
 * `fqdn` - Fully Qualified Domain Name address.
 * `fsso_group` - FSSO group(s).
 * `global_object` - Global-Object.
+* `hw_model` - Dynamic address matching hardware model.
+* `hw_vendor` - Dynamic address matching hardware vendor.
 * `interface` - Name of interface whose IP address is to be used.
 * `macaddr` - Macaddr.
 * `node_ip_only` - Node-Ip-Only. Valid values: `disable`, `enable`.
@@ -122,9 +129,11 @@ The `dynamic_mapping` block supports:
 * `obj_type` - Obj-Type. Valid values: `ip`, `mac`.
 
 * `organization` - Organization domain name (Syntax: organization/domain).
+* `os` - Dynamic address matching operating system.
 * `pattern_end` - Pattern-End.
 * `pattern_start` - Pattern-Start.
 * `policy_group` - Policy group name.
+* `route_tag` - route-tag address.
 * `sdn` - SDN.
 * `sdn_addr_type` - Type of addresses to collect. Valid values: `private`, `public`, `all`.
 
@@ -135,6 +144,7 @@ The `dynamic_mapping` block supports:
 
 * `subnet` - IP address and subnet mask of address.
 * `subnet_name` - Subnet name.
+* `sw_version` - Dynamic address matching software version.
 * `tag_detection_level` - Tag detection level of dynamic address object.
 * `tag_type` - Tag type of dynamic address object.
 * `tags` - Tags.

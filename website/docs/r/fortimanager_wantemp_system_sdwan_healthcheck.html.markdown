@@ -21,6 +21,7 @@ The following arguments are supported:
 * `_dynamic_server` - _Dynamic-Server.
 * `addr_mode` - Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 
+* `class_id` - Traffic class ID.
 * `detect_mode` - The mode determining how to detect the server. Valid values: `active`, `passive`, `prefer-passive`.
 
 * `diffservcode` - Differentiated services code point (DSCP) in the IP header of the probe packet.
@@ -61,6 +62,7 @@ The following arguments are supported:
 * `sla_id_redistribute` - Select the ID from the SLA sub-table. The selected SLA's priority value will be distributed into the routing table (0 - 32, default = 0).
 * `sla_pass_log_period` - Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).
 * `source` - Source IP address used in the health-check packet to the server.
+* `source6` - Source IPv6 addressused in the health-check packet to server.
 * `system_dns` - Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
 
 * `threshold_alert_jitter` - Alert threshold for jitter (ms, default = 0).

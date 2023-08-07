@@ -25,6 +25,8 @@ The following arguments are supported:
 
 
 * `admin_lockout_duration` - Lockout duration(sec) for administration.
+* `admin_lockout_method` - Lockout method for administration. ip - Lockout by IP user - Lockout by user Valid values: `ip`, `user`.
+
 * `admin_lockout_threshold` - Lockout threshold for administration.
 * `adom_mode` - ADOM mode. normal - Normal ADOM mode. advanced - Advanced ADOM mode. Valid values: `normal`, `advanced`.
 
@@ -64,9 +66,12 @@ The following arguments are supported:
 * `faz_status` - FAZ status. disable - Disable FAZ feature. enable - Enable FAZ feature. Valid values: `disable`, `enable`.
 
 * `fgfm_ca_cert` - set the extra fgfm CA certificates.
+* `fgfm_cert_exclusive` - set if the local or CA certificates should be used exclusively. disable - Used certificate best-effort. enable - Used certificate exclusive. Valid values: `disable`, `enable`.
+
 * `fgfm_local_cert` - set the fgfm local certificate.
 * `fgfm_ssl_protocol` - set the lowest SSL protocols for fgfmsd. sslv3 - set SSLv3 as the lowest version. tlsv1.0 - set TLSv1.0 as the lowest version. tlsv1.1 - set TLSv1.1 as the lowest version. tlsv1.2 - set TLSv1.2 as the lowest version (default). tlsv1.3 - set TLSv1.3 as the lowest version. Valid values: `sslv3`, `tlsv1.0`, `tlsv1.1`, `tlsv1.2`, `tlsv1.3`.
 
+* `gui_curl_timeout` - GUI curl timeout in seconds (5-300 default 30).
 * `gui_polling_interval` - GUI polling interval in seconds (1-288000 default 5).
 * `ha_member_auto_grouping` - Enable/disable automatically group HA members feature disable - Disable automatically grouping HA members feature. enable - Enable automatically grouping HA members only when group name is unique in your network. Valid values: `disable`, `enable`.
 
@@ -82,12 +87,16 @@ The following arguments are supported:
 
 * `log_checksum` - Record log file hash value, timestamp, and authentication code at transmission or rolling. none - No record log file checksum. md5 - Record log file's MD5 hash value only. md5-auth - Record log file's MD5 hash value and authentication code. Valid values: `none`, `md5`, `md5-auth`.
 
+* `log_checksum_upload` - Enable/disable upload log checksum with log files. disable - Disable attribute function. enable - Enable attribute function. Valid values: `disable`, `enable`.
+
 * `log_forward_cache_size` - Log forwarding disk cache size (GB).
 * `longitude` - fmg location longitude
 * `max_log_forward` - Maximum number of log-forward and aggregation settings.
 * `max_running_reports` - Maximum number of reports generating at one time.
 * `mc_policy_disabled_adoms` - Mc-Policy-Disabled-Adoms. The structure of `mc_policy_disabled_adoms` block is documented below.
 * `multiple_steps_upgrade_in_autolink` - Enable/disable multiple steps upgade in autolink process disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
+* `no_copy_permission_check` - Do not perform permission check to block object changes in different adom during copy and install. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `normalized_intf_zone_only` - allow normalized interface to be zone only. disable - Disable SSL low-grade encryption. enable - Enable SSL low-grade encryption. Valid values: `disable`, `enable`.
 
@@ -144,6 +153,8 @@ The following arguments are supported:
 
 * `workflow_max_sessions` - Maximum number of workflow sessions per ADOM (minimum 100).
 * `workspace_mode` - Set workspace mode. disabled - Workspace disabled. normal - Workspace lock mode. workflow - Workspace workflow mode. per-adom - Per-Adom workspace mode. Valid values: `disabled`, `normal`, `workflow`, `per-adom`.
+
+* `workspace_unlock_after_install` - Enable/disable ADOM auto-unlock after device installation. disable - Disable automatically unlock adom after device installation. enable - Enable automatically unlock adom after device installation. Valid values: `disable`, `enable`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
 

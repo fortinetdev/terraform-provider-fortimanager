@@ -292,6 +292,10 @@ func resourceObjectFirewallVip6() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"translate_host": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
@@ -453,6 +457,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Computed: true,
 						},
 						"ssl_server_min_version": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"ssl_server_renegotiation": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -690,6 +699,10 @@ func resourceObjectFirewallVip6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"translate_host": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -873,6 +886,11 @@ func resourceObjectFirewallVip6() *schema.Resource {
 				Computed: true,
 			},
 			"ssl_server_min_version": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_server_renegotiation": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1476,6 +1494,12 @@ func flattenObjectFirewallVip6DynamicMapping(v interface{}, d *schema.ResourceDa
 			tmp["ssl_server_min_version"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SslServerMinVersion")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_renegotiation"
+		if _, ok := i["ssl-server-renegotiation"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingSslServerRenegotiation(i["ssl-server-renegotiation"], d, pre_append)
+			tmp["ssl_server_renegotiation"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-DynamicMapping-SslServerRenegotiation")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_max"
 		if _, ok := i["ssl-server-session-state-max"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingSslServerSessionStateMax(i["ssl-server-session-state-max"], d, pre_append)
@@ -1788,6 +1812,12 @@ func flattenObjectFirewallVip6DynamicMappingRealservers(v interface{}, d *schema
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := i["translate-host"]; ok {
+			v := flattenObjectFirewallVip6DynamicMappingRealserversTranslateHost(i["translate-host"], d, pre_append)
+			tmp["translate_host"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6DynamicMapping-Realservers-TranslateHost")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
 		if _, ok := i["weight"]; ok {
 			v := flattenObjectFirewallVip6DynamicMappingRealserversWeight(i["weight"], d, pre_append)
@@ -1839,6 +1869,10 @@ func flattenObjectFirewallVip6DynamicMappingRealserversPort(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVip6DynamicMappingRealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingRealserversTranslateHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2024,6 +2058,10 @@ func flattenObjectFirewallVip6DynamicMappingSslServerMaxVersion(v interface{}, d
 }
 
 func flattenObjectFirewallVip6DynamicMappingSslServerMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6DynamicMappingSslServerRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2258,6 +2296,12 @@ func flattenObjectFirewallVip6Realservers(v interface{}, d *schema.ResourceData,
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-Realservers-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := i["translate-host"]; ok {
+			v := flattenObjectFirewallVip6RealserversTranslateHost(i["translate-host"], d, pre_append)
+			tmp["translate_host"] = fortiAPISubPartPatch(v, "ObjectFirewallVip6-Realservers-TranslateHost")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
 		if _, ok := i["weight"]; ok {
 			v := flattenObjectFirewallVip6RealserversWeight(i["weight"], d, pre_append)
@@ -2309,6 +2353,10 @@ func flattenObjectFirewallVip6RealserversPort(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVip6RealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6RealserversTranslateHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2551,6 +2599,10 @@ func flattenObjectFirewallVip6SslServerMaxVersion(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallVip6SslServerMinVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVip6SslServerRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3349,6 +3401,16 @@ func refreshObjectObjectFirewallVip6(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("ssl_server_renegotiation", flattenObjectFirewallVip6SslServerRenegotiation(o["ssl-server-renegotiation"], d, "ssl_server_renegotiation")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-server-renegotiation"], "ObjectFirewallVip6-SslServerRenegotiation"); ok {
+			if err = d.Set("ssl_server_renegotiation", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_server_renegotiation: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_server_renegotiation: %v", err)
+		}
+	}
+
 	if err = d.Set("ssl_server_session_state_max", flattenObjectFirewallVip6SslServerSessionStateMax(o["ssl-server-session-state-max"], d, "ssl_server_session_state_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-server-session-state-max"], "ObjectFirewallVip6-SslServerSessionStateMax"); ok {
 			if err = d.Set("ssl_server_session_state_max", vv); err != nil {
@@ -3813,6 +3875,11 @@ func expandObjectFirewallVip6DynamicMapping(d *schema.ResourceData, v interface{
 			tmp["ssl-server-min-version"], _ = expandObjectFirewallVip6DynamicMappingSslServerMinVersion(d, i["ssl_server_min_version"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_renegotiation"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ssl-server-renegotiation"], _ = expandObjectFirewallVip6DynamicMappingSslServerRenegotiation(d, i["ssl_server_renegotiation"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_max"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-session-state-max"], _ = expandObjectFirewallVip6DynamicMappingSslServerSessionStateMax(d, i["ssl_server_session_state_max"], pre_append)
@@ -4096,6 +4163,11 @@ func expandObjectFirewallVip6DynamicMappingRealservers(d *schema.ResourceData, v
 			tmp["status"], _ = expandObjectFirewallVip6DynamicMappingRealserversStatus(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["translate-host"], _ = expandObjectFirewallVip6DynamicMappingRealserversTranslateHost(d, i["translate_host"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectFirewallVip6DynamicMappingRealserversWeight(d, i["weight"], pre_append)
@@ -4146,6 +4218,10 @@ func expandObjectFirewallVip6DynamicMappingRealserversPort(d *schema.ResourceDat
 }
 
 func expandObjectFirewallVip6DynamicMappingRealserversStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingRealserversTranslateHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4323,6 +4399,10 @@ func expandObjectFirewallVip6DynamicMappingSslServerMaxVersion(d *schema.Resourc
 }
 
 func expandObjectFirewallVip6DynamicMappingSslServerMinVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6DynamicMappingSslServerRenegotiation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4542,6 +4622,11 @@ func expandObjectFirewallVip6Realservers(d *schema.ResourceData, v interface{}, 
 			tmp["status"], _ = expandObjectFirewallVip6RealserversStatus(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["translate-host"], _ = expandObjectFirewallVip6RealserversTranslateHost(d, i["translate_host"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["weight"], _ = expandObjectFirewallVip6RealserversWeight(d, i["weight"], pre_append)
@@ -4592,6 +4677,10 @@ func expandObjectFirewallVip6RealserversPort(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallVip6RealserversStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6RealserversTranslateHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4818,6 +4907,10 @@ func expandObjectFirewallVip6SslServerMaxVersion(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallVip6SslServerMinVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVip6SslServerRenegotiation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5479,6 +5572,15 @@ func getObjectObjectFirewallVip6(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-server-min-version"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_server_renegotiation"); ok || d.HasChange("ssl_server_renegotiation") {
+		t, err := expandObjectFirewallVip6SslServerRenegotiation(d, v, "ssl_server_renegotiation")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-server-renegotiation"] = t
 		}
 	}
 

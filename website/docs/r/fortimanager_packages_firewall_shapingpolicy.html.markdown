@@ -45,6 +45,8 @@ The following arguments are supported:
 * `application` - IDs of one or more applications that this shaper applies application control traffic shaping to.
 * `class_id` - Traffic class ID.
 * `comment` - Comments.
+* `cos` - VLAN CoS bit pattern.
+* `cos_mask` - VLAN CoS evaluated bits.
 * `diffserv_forward` - Enable to change packet's DiffServ values to the specified diffservcode-forward value. Valid values: `disable`, `enable`.
 
 * `diffserv_reverse` - Enable to change packet's reverse (reply) DiffServ values to the specified diffservcode-rev value. Valid values: `disable`, `enable`.
@@ -87,6 +89,8 @@ The following arguments are supported:
 
 * `traffic_shaper` - Traffic shaper to apply to traffic forwarded by the firewall policy.
 * `traffic_shaper_reverse` - Traffic shaper to apply to response traffic received by the firewall policy.
+* `traffic_type` - Traffic type. Valid values: `forwarding`, `local-in`, `local-out`.
+
 * `url_category` - IDs of one or more FortiGuard Web Filtering categories that this shaper applies traffic shaping to.
 * `users` - Apply this traffic shaping policy to individual users that have authenticated with the FortiGate.
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).

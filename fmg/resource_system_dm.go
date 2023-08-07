@@ -104,6 +104,11 @@ func resourceSystemDm() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"log_autoupdate": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"max_revs": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -284,6 +289,10 @@ func flattenSystemDmInstallImageTimeout(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenSystemDmInstallTunnelRetryItvl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemDmLogAutoupdate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -476,6 +485,16 @@ func refreshObjectSystemDm(d *schema.ResourceData, o map[string]interface{}) err
 		}
 	}
 
+	if err = d.Set("log_autoupdate", flattenSystemDmLogAutoupdate(o["log-autoupdate"], d, "log_autoupdate")); err != nil {
+		if vv, ok := fortiAPIPatch(o["log-autoupdate"], "SystemDm-LogAutoupdate"); ok {
+			if err = d.Set("log_autoupdate", vv); err != nil {
+				return fmt.Errorf("Error reading log_autoupdate: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading log_autoupdate: %v", err)
+		}
+	}
+
 	if err = d.Set("max_revs", flattenSystemDmMaxRevs(o["max-revs"], d, "max_revs")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-revs"], "SystemDm-MaxRevs"); ok {
 			if err = d.Set("max_revs", vv); err != nil {
@@ -632,6 +651,10 @@ func expandSystemDmInstallImageTimeout(d *schema.ResourceData, v interface{}, pr
 }
 
 func expandSystemDmInstallTunnelRetryItvl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemDmLogAutoupdate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -806,6 +829,15 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 			return &obj, err
 		} else if t != nil {
 			obj["install-tunnel-retry-itvl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("log_autoupdate"); ok || d.HasChange("log_autoupdate") {
+		t, err := expandSystemDmLogAutoupdate(d, v, "log_autoupdate")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["log-autoupdate"] = t
 		}
 	}
 

@@ -480,6 +480,10 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"unknown_content_encoding": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"unknown_http_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1708,6 +1712,11 @@ func flattenObjectFirewallProfileProtocolOptionsHttp(v interface{}, d *schema.Re
 		result["uncompressed_oversize_limit"] = flattenObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(i["uncompressed-oversize-limit"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "unknown_content_encoding"
+	if _, ok := i["unknown-content-encoding"]; ok {
+		result["unknown_content_encoding"] = flattenObjectFirewallProfileProtocolOptionsHttpUnknownContentEncoding(i["unknown-content-encoding"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "unknown_http_version"
 	if _, ok := i["unknown-http-version"]; ok {
 		result["unknown_http_version"] = flattenObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(i["unknown-http-version"], d, pre_append)
@@ -1839,6 +1848,10 @@ func flattenObjectFirewallProfileProtocolOptionsHttpUncompressedNestLimit(v inte
 }
 
 func flattenObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallProfileProtocolOptionsHttpUnknownContentEncoding(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3487,6 +3500,10 @@ func expandObjectFirewallProfileProtocolOptionsHttp(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["uncompressed-oversize-limit"], _ = expandObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(d, i["uncompressed_oversize_limit"], pre_append)
 	}
+	pre_append = pre + ".0." + "unknown_content_encoding"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["unknown-content-encoding"], _ = expandObjectFirewallProfileProtocolOptionsHttpUnknownContentEncoding(d, i["unknown_content_encoding"], pre_append)
+	}
 	pre_append = pre + ".0." + "unknown_http_version"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["unknown-http-version"], _ = expandObjectFirewallProfileProtocolOptionsHttpUnknownHttpVersion(d, i["unknown_http_version"], pre_append)
@@ -3616,6 +3633,10 @@ func expandObjectFirewallProfileProtocolOptionsHttpUncompressedNestLimit(d *sche
 }
 
 func expandObjectFirewallProfileProtocolOptionsHttpUncompressedOversizeLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileProtocolOptionsHttpUnknownContentEncoding(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

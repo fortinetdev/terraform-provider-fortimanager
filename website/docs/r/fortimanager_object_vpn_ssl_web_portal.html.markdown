@@ -46,6 +46,8 @@ The following arguments are supported:
 * `auto_connect` - Enable/disable automatic connect by client when system is up. Valid values: `disable`, `enable`.
 
 * `bookmark_group` - Bookmark-Group. The structure of `bookmark_group` block is documented below.
+* `client_src_range` - Allow client to add source range for the tunnel traffic. Valid values: `disable`, `enable`.
+
 * `clipboard` - Enable to support RDP/VPC clipboard functionality. Valid values: `disable`, `enable`.
 
 * `custom_lang` - Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
@@ -55,6 +57,8 @@ The following arguments are supported:
 * `default_window_width` - Screen width (range from 0 - 65535, default = 1024).
 * `dhcp_ip_overlap` - Configure overlapping DHCP IP allocation assignment. Valid values: `use-old`, `use-new`.
 
+* `dhcp_ra_giaddr` - Relay agent gateway IP address to use in the giaddr field of DHCP requests.
+* `dhcp6_ra_linkaddr` - Relay agent IPv6 link address to use in DHCP6 requests.
 * `display_bookmark` - Enable to display the web portal bookmark widget. Valid values: `disable`, `enable`.
 
 * `display_connection_tools` - Enable to display the web portal connection tools widget. Valid values: `disable`, `enable`.
@@ -99,6 +103,9 @@ The following arguments are supported:
 * `ipv6_wins_server1` - IPv6 WINS server 1.
 * `ipv6_wins_server2` - IPv6 WINS server 2.
 * `keep_alive` - Enable/disable automatic reconnect for FortiClient connections. Valid values: `disable`, `enable`.
+
+* `landing_page` - Landing-Page. The structure of `landing_page` block is documented below.
+* `landing_page_mode` - Enable/disable SSL-VPN landing page mode. Valid values: `disable`, `enable`.
 
 * `limit_user_logins` - Enable to limit each user to one SSL-VPN session at a time. Valid values: `disable`, `enable`.
 
@@ -208,7 +215,26 @@ The `bookmarks` block supports:
 * `sso_password` - SSO password.
 * `sso_username` - SSO user name.
 * `url` - URL parameter.
+* `vnc_keyboard_layout` - Keyboard layout. Valid values: `da`, `de`, `de-ch`, `en-uk`, `es`, `fi`, `fr`, `fr-be`, `it`, `no`, `pt`, `sv`, `nl`, `en-uk-ext`, `it-142`, `pt-br-abnt2`, `default`, `fr-ca-mul`, `gd`, `us-intl`.
+
 * `width` - Screen width (range from 640 - 65535, default = 1024).
+
+The `form_data` block supports:
+
+* `name` - Name.
+* `value` - Value.
+
+The `landing_page` block supports:
+
+* `form_data` - Form-Data. The structure of `form_data` block is documented below.
+* `logout_url` - Landing page log out URL.
+* `sso` - Single sign-on. Valid values: `disable`, `static`, `auto`.
+
+* `sso_credential` - Single sign-on credentials. Valid values: `sslvpn-login`, `alternative`.
+
+* `sso_password` - SSO password.
+* `sso_username` - SSO user name.
+* `url` - Landing page URL.
 
 The `form_data` block supports:
 

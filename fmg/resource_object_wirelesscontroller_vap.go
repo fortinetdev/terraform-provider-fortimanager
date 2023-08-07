@@ -123,6 +123,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"_is_factory_setting": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"access_control_list": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -233,6 +238,10 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			},
 			"captive_portal_auth_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"captive_portal_fw_accounting": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 			},
 			"dhcp_address_enforcement": &schema.Schema{
@@ -375,6 +384,11 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"_is_factory_setting": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"_scope": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
@@ -497,6 +511,10 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 						},
 						"captive_portal_auth_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"captive_portal_fw_accounting": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"captive_portal_macauth_radius_secret": &schema.Schema{
@@ -962,6 +980,10 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"radius_mac_auth_block_interval": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"radius_mac_auth_server": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1688,6 +1710,10 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"radius_mac_auth_block_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"radius_mac_auth_server": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -2143,6 +2169,10 @@ func flattenObjectWirelessControllerVapIntfListenForticlientConnection(v interfa
 	return v
 }
 
+func flattenObjectWirelessControllerVapIsFactorySetting(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerVapAccessControlList(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2236,6 +2266,10 @@ func flattenObjectWirelessControllerVapCaptivePortalAcName(v interface{}, d *sch
 }
 
 func flattenObjectWirelessControllerVapCaptivePortalAuthTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerVapCaptivePortalFwAccounting(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2402,6 +2436,12 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["_intf_listen_forticlient_connection"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-IntfListenForticlientConnection")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_is_factory_setting"
+		if _, ok := i["_is_factory_setting"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingIsFactorySetting(i["_is_factory_setting"], d, pre_append)
+			tmp["_is_factory_setting"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-IsFactorySetting")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := i["_scope"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingScope(i["_scope"], d, pre_append)
@@ -2550,6 +2590,12 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 		if _, ok := i["captive-portal-auth-timeout"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingCaptivePortalAuthTimeout(i["captive-portal-auth-timeout"], d, pre_append)
 			tmp["captive_portal_auth_timeout"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-CaptivePortalAuthTimeout")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_fw_accounting"
+		if _, ok := i["captive-portal-fw-accounting"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingCaptivePortalFwAccounting(i["captive-portal-fw-accounting"], d, pre_append)
+			tmp["captive_portal_fw_accounting"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-CaptivePortalFwAccounting")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_macauth_radius_secret"
@@ -3144,6 +3190,12 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["radius_mac_auth"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-RadiusMacAuth")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth_block_interval"
+		if _, ok := i["radius-mac-auth-block-interval"]; ok {
+			v := flattenObjectWirelessControllerVapDynamicMappingRadiusMacAuthBlockInterval(i["radius-mac-auth-block-interval"], d, pre_append)
+			tmp["radius_mac_auth_block_interval"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-RadiusMacAuthBlockInterval")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth_server"
 		if _, ok := i["radius-mac-auth-server"]; ok {
 			v := flattenObjectWirelessControllerVapDynamicMappingRadiusMacAuthServer(i["radius-mac-auth-server"], d, pre_append)
@@ -3504,6 +3556,10 @@ func flattenObjectWirelessControllerVapDynamicMappingIntfListenForticlientConnec
 	return v
 }
 
+func flattenObjectWirelessControllerVapDynamicMappingIsFactorySetting(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerVapDynamicMappingScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -3644,6 +3700,10 @@ func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalAcName(v inter
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalAuthTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerVapDynamicMappingCaptivePortalFwAccounting(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4036,6 +4096,10 @@ func flattenObjectWirelessControllerVapDynamicMappingRadioSensitivity(v interfac
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingRadiusMacAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerVapDynamicMappingRadiusMacAuthBlockInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4754,6 +4818,10 @@ func flattenObjectWirelessControllerVapRadiusMacAuth(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectWirelessControllerVapRadiusMacAuthBlockInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerVapRadiusMacAuthServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5211,6 +5279,16 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("_is_factory_setting", flattenObjectWirelessControllerVapIsFactorySetting(o["_is_factory_setting"], d, "_is_factory_setting")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_is_factory_setting"], "ObjectWirelessControllerVap-IsFactorySetting"); ok {
+			if err = d.Set("_is_factory_setting", vv); err != nil {
+				return fmt.Errorf("Error reading _is_factory_setting: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _is_factory_setting: %v", err)
+		}
+	}
+
 	if err = d.Set("access_control_list", flattenObjectWirelessControllerVapAccessControlList(o["access-control-list"], d, "access_control_list")); err != nil {
 		if vv, ok := fortiAPIPatch(o["access-control-list"], "ObjectWirelessControllerVap-AccessControlList"); ok {
 			if err = d.Set("access_control_list", vv); err != nil {
@@ -5448,6 +5526,16 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading captive_portal_auth_timeout: %v", err)
+		}
+	}
+
+	if err = d.Set("captive_portal_fw_accounting", flattenObjectWirelessControllerVapCaptivePortalFwAccounting(o["captive-portal-fw-accounting"], d, "captive_portal_fw_accounting")); err != nil {
+		if vv, ok := fortiAPIPatch(o["captive-portal-fw-accounting"], "ObjectWirelessControllerVap-CaptivePortalFwAccounting"); ok {
+			if err = d.Set("captive_portal_fw_accounting", vv); err != nil {
+				return fmt.Errorf("Error reading captive_portal_fw_accounting: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading captive_portal_fw_accounting: %v", err)
 		}
 	}
 
@@ -6507,6 +6595,16 @@ func refreshObjectObjectWirelessControllerVap(d *schema.ResourceData, o map[stri
 		}
 	}
 
+	if err = d.Set("radius_mac_auth_block_interval", flattenObjectWirelessControllerVapRadiusMacAuthBlockInterval(o["radius-mac-auth-block-interval"], d, "radius_mac_auth_block_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["radius-mac-auth-block-interval"], "ObjectWirelessControllerVap-RadiusMacAuthBlockInterval"); ok {
+			if err = d.Set("radius_mac_auth_block_interval", vv); err != nil {
+				return fmt.Errorf("Error reading radius_mac_auth_block_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading radius_mac_auth_block_interval: %v", err)
+		}
+	}
+
 	if err = d.Set("radius_mac_auth_server", flattenObjectWirelessControllerVapRadiusMacAuthServer(o["radius-mac-auth-server"], d, "radius_mac_auth_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["radius-mac-auth-server"], "ObjectWirelessControllerVap-RadiusMacAuthServer"); ok {
 			if err = d.Set("radius_mac_auth_server", vv); err != nil {
@@ -7108,6 +7206,10 @@ func expandObjectWirelessControllerVapIntfListenForticlientConnection(d *schema.
 	return v, nil
 }
 
+func expandObjectWirelessControllerVapIsFactorySetting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerVapAccessControlList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -7201,6 +7303,10 @@ func expandObjectWirelessControllerVapCaptivePortalAcName(d *schema.ResourceData
 }
 
 func expandObjectWirelessControllerVapCaptivePortalAuthTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerVapCaptivePortalFwAccounting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -7346,6 +7452,11 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 			tmp["_intf_listen-forticlient-connection"], _ = expandObjectWirelessControllerVapDynamicMappingIntfListenForticlientConnection(d, i["_intf_listen_forticlient_connection"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "_is_factory_setting"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["_is_factory_setting"], _ = expandObjectWirelessControllerVapDynamicMappingIsFactorySetting(d, i["_is_factory_setting"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "_scope"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			t, err := expandObjectWirelessControllerVapDynamicMappingScope(d, i["_scope"], pre_append)
@@ -7474,6 +7585,11 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_auth_timeout"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["captive-portal-auth-timeout"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalAuthTimeout(d, i["captive_portal_auth_timeout"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_fw_accounting"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["captive-portal-fw-accounting"], _ = expandObjectWirelessControllerVapDynamicMappingCaptivePortalFwAccounting(d, i["captive_portal_fw_accounting"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "captive_portal_macauth_radius_secret"
@@ -7966,6 +8082,11 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 			tmp["radius-mac-auth"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacAuth(d, i["radius_mac_auth"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth_block_interval"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["radius-mac-auth-block-interval"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacAuthBlockInterval(d, i["radius_mac_auth_block_interval"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "radius_mac_auth_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["radius-mac-auth-server"], _ = expandObjectWirelessControllerVapDynamicMappingRadiusMacAuthServer(d, i["radius_mac_auth_server"], pre_append)
@@ -8278,6 +8399,10 @@ func expandObjectWirelessControllerVapDynamicMappingIntfListenForticlientConnect
 	return v, nil
 }
 
+func expandObjectWirelessControllerVapDynamicMappingIsFactorySetting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerVapDynamicMappingScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -8411,6 +8536,10 @@ func expandObjectWirelessControllerVapDynamicMappingCaptivePortalAcName(d *schem
 }
 
 func expandObjectWirelessControllerVapDynamicMappingCaptivePortalAuthTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerVapDynamicMappingCaptivePortalFwAccounting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8803,6 +8932,10 @@ func expandObjectWirelessControllerVapDynamicMappingRadioSensitivity(d *schema.R
 }
 
 func expandObjectWirelessControllerVapDynamicMappingRadiusMacAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerVapDynamicMappingRadiusMacAuthBlockInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -9500,6 +9633,10 @@ func expandObjectWirelessControllerVapRadiusMacAuth(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectWirelessControllerVapRadiusMacAuthBlockInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWirelessControllerVapRadiusMacAuthServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -9919,6 +10056,15 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 		}
 	}
 
+	if v, ok := d.GetOk("_is_factory_setting"); ok || d.HasChange("_is_factory_setting") {
+		t, err := expandObjectWirelessControllerVapIsFactorySetting(d, v, "_is_factory_setting")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_is_factory_setting"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("access_control_list"); ok || d.HasChange("access_control_list") {
 		t, err := expandObjectWirelessControllerVapAccessControlList(d, v, "access_control_list")
 		if err != nil {
@@ -10132,6 +10278,15 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["captive-portal-auth-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("captive_portal_fw_accounting"); ok || d.HasChange("captive_portal_fw_accounting") {
+		t, err := expandObjectWirelessControllerVapCaptivePortalFwAccounting(d, v, "captive_portal_fw_accounting")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["captive-portal-fw-accounting"] = t
 		}
 	}
 
@@ -11041,6 +11196,15 @@ func getObjectObjectWirelessControllerVap(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["radius-mac-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("radius_mac_auth_block_interval"); ok || d.HasChange("radius_mac_auth_block_interval") {
+		t, err := expandObjectWirelessControllerVapRadiusMacAuthBlockInterval(d, v, "radius_mac_auth_block_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["radius-mac-auth-block-interval"] = t
 		}
 	}
 

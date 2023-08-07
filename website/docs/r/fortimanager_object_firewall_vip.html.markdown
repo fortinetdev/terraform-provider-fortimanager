@@ -86,7 +86,11 @@ The following arguments are supported:
 * `http_ip_header_name` - For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
 * `http_multiplex` - Enable/disable HTTP multiplexing. Valid values: `disable`, `enable`.
 
+* `http_multiplex_max_request` - Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+* `http_multiplex_ttl` - Time-to-live for idle connections to servers.
 * `http_redirect` - Enable/disable redirection of HTTP to HTTPS Valid values: `disable`, `enable`.
+
+* `http_supported_max_version` - Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 
 * `https_cookie_secure` - Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 
@@ -174,6 +178,8 @@ The following arguments are supported:
 
 * `ssl_server_min_version` - Lowest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
 
+* `ssl_server_renegotiation` - Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `disable`, `enable`.
+
 * `ssl_server_session_state_max` - Maximum number of FortiGate to Server SSL session states to keep.
 * `ssl_server_session_state_timeout` - Number of minutes to keep FortiGate to Server SSL session state.
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -217,7 +223,11 @@ The `dynamic_mapping` block supports:
 * `http_ip_header_name` - For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
 * `http_multiplex` - Enable/disable HTTP multiplexing. Valid values: `disable`, `enable`.
 
+* `http_multiplex_max_request` - Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
+* `http_multiplex_ttl` - Time-to-live for idle connections to servers.
 * `http_redirect` - Enable/disable redirection of HTTP to HTTPS Valid values: `disable`, `enable`.
+
+* `http_supported_max_version` - Maximum supported HTTP versions. default = HTTP2 Valid values: `http1`, `http2`.
 
 * `https_cookie_secure` - Enable/disable verification that inserted HTTPS cookies are secure. Valid values: `disable`, `enable`.
 
@@ -303,6 +313,8 @@ The `dynamic_mapping` block supports:
 
 * `ssl_server_min_version` - Lowest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
 
+* `ssl_server_renegotiation` - Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `disable`, `enable`.
+
 * `ssl_server_session_state_max` - Maximum number of FortiGate to Server SSL session states to keep.
 * `ssl_server_session_state_timeout` - Number of minutes to keep FortiGate to Server SSL session state.
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -326,6 +338,8 @@ The `realservers` block supports:
 
 * `address` - Address.
 * `client_ip` - Only clients in this IP range can connect to this real server.
+* `health_check_proto` - Health-Check-Proto. Valid values: `ping`, `http`.
+
 * `healthcheck` - Enable to check the responsiveness of the real server before forwarding traffic. Valid values: `disable`, `enable`, `vip`.
 
 * `holddown_interval` - Time in seconds that the health check monitor continues to monitor and unresponsive server that should be active.
@@ -337,6 +351,8 @@ The `realservers` block supports:
 * `port` - Port for communicating with the real server. Required if port forwarding is enabled.
 * `seq` - Seq.
 * `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+
+* `translate_host` - Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `disable`, `enable`.
 
 * `type` - Type. Valid values: `ip`, `address`.
 
@@ -366,6 +382,8 @@ The `realservers` block supports:
 * `port` - Port for communicating with the real server. Required if port forwarding is enabled.
 * `seq` - Seq.
 * `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+
+* `translate_host` - Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `disable`, `enable`.
 
 * `type` - Type of address. Valid values: `ip`, `address`.
 

@@ -34,6 +34,10 @@ func resourcePackagesGlobalFooterPolicy6() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -677,6 +681,10 @@ func resourcePackagesGlobalFooterPolicy6Read(d *schema.ResourceData, m interface
 	return nil
 }
 
+func flattenPackagesGlobalFooterPolicy6PolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterPolicy6Action(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1143,6 +1151,16 @@ func flattenPackagesGlobalFooterPolicy6WebproxyProfile(v interface{}, d *schema.
 
 func refreshObjectPackagesGlobalFooterPolicy6(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("_policy_block", flattenPackagesGlobalFooterPolicy6PolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesGlobalFooterPolicy6-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
+	}
 
 	if err = d.Set("action", flattenPackagesGlobalFooterPolicy6Action(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesGlobalFooterPolicy6-Action"); ok {
@@ -2313,6 +2331,10 @@ func flattenPackagesGlobalFooterPolicy6FortiTestDebug(d *schema.ResourceData, fo
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesGlobalFooterPolicy6PolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterPolicy6Action(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2779,6 +2801,15 @@ func expandPackagesGlobalFooterPolicy6WebproxyProfile(d *schema.ResourceData, v 
 
 func getObjectPackagesGlobalFooterPolicy6(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_policy_block"); ok || d.HasChange("_policy_block") {
+		t, err := expandPackagesGlobalFooterPolicy6PolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesGlobalFooterPolicy6Action(d, v, "action")

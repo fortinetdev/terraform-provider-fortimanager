@@ -48,15 +48,21 @@ func resourceObjectIcapProfile() *schema.Resource {
 			"n204_response": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"n204_size_limit": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"chunk_encap": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"comment": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"extension_feature": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -381,6 +387,10 @@ func flattenObjectIcapProfile204SizeLimit(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectIcapProfileChunkEncap(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectIcapProfileComment(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -728,6 +738,16 @@ func refreshObjectObjectIcapProfile(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("comment", flattenObjectIcapProfileComment(o["comment"], d, "comment")); err != nil {
+		if vv, ok := fortiAPIPatch(o["comment"], "ObjectIcapProfile-Comment"); ok {
+			if err = d.Set("comment", vv); err != nil {
+				return fmt.Errorf("Error reading comment: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading comment: %v", err)
+		}
+	}
+
 	if err = d.Set("extension_feature", flattenObjectIcapProfileExtensionFeature(o["extension-feature"], d, "extension_feature")); err != nil {
 		if vv, ok := fortiAPIPatch(o["extension-feature"], "ObjectIcapProfile-ExtensionFeature"); ok {
 			if err = d.Set("extension_feature", vv); err != nil {
@@ -1034,6 +1054,10 @@ func expandObjectIcapProfile204SizeLimit(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectIcapProfileChunkEncap(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectIcapProfileComment(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1344,6 +1368,15 @@ func getObjectObjectIcapProfile(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["chunk-encap"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("comment"); ok || d.HasChange("comment") {
+		t, err := expandObjectIcapProfileComment(d, v, "comment")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["comment"] = t
 		}
 	}
 

@@ -114,6 +114,11 @@ func resourceObjectWebfilterUrlfilter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ip4_mapped_ip6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -385,6 +390,10 @@ func flattenObjectWebfilterUrlfilterIpAddrBlock(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectWebfilterUrlfilterIp4MappedIp6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebfilterUrlfilterName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -455,6 +464,16 @@ func refreshObjectObjectWebfilterUrlfilter(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading ip_addr_block: %v", err)
+		}
+	}
+
+	if err = d.Set("ip4_mapped_ip6", flattenObjectWebfilterUrlfilterIp4MappedIp6(o["ip4-mapped-ip6"], d, "ip4_mapped_ip6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ip4-mapped-ip6"], "ObjectWebfilterUrlfilter-Ip4MappedIp6"); ok {
+			if err = d.Set("ip4_mapped_ip6", vv); err != nil {
+				return fmt.Errorf("Error reading ip4_mapped_ip6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ip4_mapped_ip6: %v", err)
 		}
 	}
 
@@ -611,6 +630,10 @@ func expandObjectWebfilterUrlfilterIpAddrBlock(d *schema.ResourceData, v interfa
 	return v, nil
 }
 
+func expandObjectWebfilterUrlfilterIp4MappedIp6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebfilterUrlfilterName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -655,6 +678,15 @@ func getObjectObjectWebfilterUrlfilter(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["ip-addr-block"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ip4_mapped_ip6"); ok || d.HasChange("ip4_mapped_ip6") {
+		t, err := expandObjectWebfilterUrlfilterIp4MappedIp6(d, v, "ip4_mapped_ip6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ip4-mapped-ip6"] = t
 		}
 	}
 

@@ -90,6 +90,10 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -685,6 +689,10 @@ func resourceObjectSystemReplacemsgGroup() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"id": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"msg_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1080,6 +1088,12 @@ func flattenObjectSystemReplacemsgGroupAlertmail(v interface{}, d *schema.Resour
 			tmp["header"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Alertmail-Header")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectSystemReplacemsgGroupAlertmailId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Alertmail-Id")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
 		if _, ok := i["msg-type"]; ok {
 			v := flattenObjectSystemReplacemsgGroupAlertmailMsgType(i["msg-type"], d, pre_append)
@@ -1103,6 +1117,10 @@ func flattenObjectSystemReplacemsgGroupAlertmailFormat(v interface{}, d *schema.
 }
 
 func flattenObjectSystemReplacemsgGroupAlertmailHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupAlertmailId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2610,6 +2628,12 @@ func flattenObjectSystemReplacemsgGroupNacQuar(v interface{}, d *schema.Resource
 			tmp["header"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-NacQuar-Header")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := i["id"]; ok {
+			v := flattenObjectSystemReplacemsgGroupNacQuarId(i["id"], d, pre_append)
+			tmp["id"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-NacQuar-Id")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
 		if _, ok := i["msg-type"]; ok {
 			v := flattenObjectSystemReplacemsgGroupNacQuarMsgType(i["msg-type"], d, pre_append)
@@ -2633,6 +2657,10 @@ func flattenObjectSystemReplacemsgGroupNacQuarFormat(v interface{}, d *schema.Re
 }
 
 func flattenObjectSystemReplacemsgGroupNacQuarHeader(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemReplacemsgGroupNacQuarId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3759,6 +3787,11 @@ func expandObjectSystemReplacemsgGroupAlertmail(d *schema.ResourceData, v interf
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupAlertmailHeader(d, i["header"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectSystemReplacemsgGroupAlertmailId(d, i["id"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAlertmailMsgType(d, i["msg_type"], pre_append)
@@ -3781,6 +3814,10 @@ func expandObjectSystemReplacemsgGroupAlertmailFormat(d *schema.ResourceData, v 
 }
 
 func expandObjectSystemReplacemsgGroupAlertmailHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupAlertmailId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5100,6 +5137,11 @@ func expandObjectSystemReplacemsgGroupNacQuar(d *schema.ResourceData, v interfac
 			tmp["header"], _ = expandObjectSystemReplacemsgGroupNacQuarHeader(d, i["header"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "id"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["id"], _ = expandObjectSystemReplacemsgGroupNacQuarId(d, i["id"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "msg_type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupNacQuarMsgType(d, i["msg_type"], pre_append)
@@ -5122,6 +5164,10 @@ func expandObjectSystemReplacemsgGroupNacQuarFormat(d *schema.ResourceData, v in
 }
 
 func expandObjectSystemReplacemsgGroupNacQuarHeader(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemReplacemsgGroupNacQuarId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

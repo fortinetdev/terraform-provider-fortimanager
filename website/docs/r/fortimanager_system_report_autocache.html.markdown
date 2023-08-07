@@ -28,6 +28,8 @@ The following arguments are supported:
 
 * `order` - The order of which SQL log table is processed first. oldest-first - The oldest SQL log table is processed first. Valid values: `oldest-first`.
 
+* `sche_rpt_only` - Enable/disable auto-cache on scheduled reports only. disable - Disable auto-cache on scheduled report only. enable - Enable auto-cache on scheduled report only. Valid values: `disable`, `enable`.
+
 * `status` - Enable/disable sql report auto cache. disable - Disable the sql report auto-cache. enable - Enable the sql report auto-cache. Valid values: `disable`, `enable`.
 
 

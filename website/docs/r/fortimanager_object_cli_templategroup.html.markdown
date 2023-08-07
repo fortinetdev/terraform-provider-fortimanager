@@ -40,6 +40,7 @@ The following arguments are supported:
 * `member` - Member.
 * `modification_time` - Modification-Time.
 * `name` - Name.
+* `variables` - Variables.
 
 
 ## Attribute Reference

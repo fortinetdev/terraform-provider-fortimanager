@@ -34,6 +34,10 @@ func resourcePackagesGlobalFooterConsolidatedPolicy() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"_policy_block": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -578,6 +582,10 @@ func resourcePackagesGlobalFooterConsolidatedPolicyRead(d *schema.ResourceData, 
 	return nil
 }
 
+func flattenPackagesGlobalFooterConsolidatedPolicyPolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalFooterConsolidatedPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -960,6 +968,16 @@ func flattenPackagesGlobalFooterConsolidatedPolicyWebproxyProfile(v interface{},
 
 func refreshObjectPackagesGlobalFooterConsolidatedPolicy(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("_policy_block", flattenPackagesGlobalFooterConsolidatedPolicyPolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesGlobalFooterConsolidatedPolicy-PolicyBlock"); ok {
+			if err = d.Set("_policy_block", vv); err != nil {
+				return fmt.Errorf("Error reading _policy_block: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading _policy_block: %v", err)
+		}
+	}
 
 	if err = d.Set("action", flattenPackagesGlobalFooterConsolidatedPolicyAction(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesGlobalFooterConsolidatedPolicy-Action"); ok {
@@ -1920,6 +1938,10 @@ func flattenPackagesGlobalFooterConsolidatedPolicyFortiTestDebug(d *schema.Resou
 	log.Printf("ER List: %v", e)
 }
 
+func expandPackagesGlobalFooterConsolidatedPolicyPolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalFooterConsolidatedPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2302,6 +2324,15 @@ func expandPackagesGlobalFooterConsolidatedPolicyWebproxyProfile(d *schema.Resou
 
 func getObjectPackagesGlobalFooterConsolidatedPolicy(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("_policy_block"); ok || d.HasChange("_policy_block") {
+		t, err := expandPackagesGlobalFooterConsolidatedPolicyPolicyBlock(d, v, "_policy_block")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["_policy_block"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
 		t, err := expandPackagesGlobalFooterConsolidatedPolicyAction(d, v, "action")

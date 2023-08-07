@@ -52,6 +52,8 @@ The following arguments are supported:
 * `status` - Enable/disable this local-in policy. Valid values: `disable`, `enable`.
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
+* `virtual_patch` - Enable/disable the virtual patching feature. Valid values: `disable`, `enable`.
+
 
 
 ## Attribute Reference

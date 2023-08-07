@@ -68,6 +68,10 @@ The following arguments are supported:
 * `authusrgrp` - Authusrgrp.
 * `auto_configuration` - Auto-Configuration. Valid values: `disable`, `enable`.
 
+* `auto_discovery_receiver` - Auto-Discovery-Receiver. Valid values: `disable`, `enable`.
+
+* `auto_discovery_sender` - Auto-Discovery-Sender. Valid values: `disable`, `enable`.
+
 * `automatic_routing` - Automatic_Routing. Valid values: `disable`, `enable`.
 
 * `banner` - Banner.
@@ -116,6 +120,9 @@ The following arguments are supported:
 * `mode_cfg_ip_version` - Mode-Cfg-Ip-Version. Valid values: `4`, `6`.
 
 * `net_device` - Net-Device. Valid values: `disable`, `enable`.
+
+* `network_id` - Network-Id.
+* `network_overlay` - Network-Overlay. Valid values: `enable`, `disable`.
 
 * `peer` - Peer.
 * `peergrp` - Peergrp.

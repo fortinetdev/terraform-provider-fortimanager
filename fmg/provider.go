@@ -85,6 +85,12 @@ func Provider() *schema.Provider {
 				Optional: true,
 				Default:  "",
 			},
+
+			"token": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Default:  "",
+			},
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -133,6 +139,12 @@ func Provider() *schema.Provider {
 			"fortimanager_object_cifs_profile":                                        resourceObjectCifsProfile(),
 			"fortimanager_object_cli_template":                                        resourceObjectCliTemplate(),
 			"fortimanager_object_cli_templategroup":                                   resourceObjectCliTemplateGroup(),
+			"fortimanager_object_cloud_orchestaws":                                    resourceObjectCloudOrchestAws(),
+			"fortimanager_object_cloud_orchestawsconnector":                           resourceObjectCloudOrchestAwsconnector(),
+			"fortimanager_object_cloud_orchestawstemplate_autoscaleexistingvpc":       resourceObjectCloudOrchestAwstemplateAutoscaleExistingVpc(),
+			"fortimanager_object_cloud_orchestawstemplate_autoscalenewvpc":            resourceObjectCloudOrchestAwstemplateAutoscaleNewVpc(),
+			"fortimanager_object_cloud_orchestawstemplate_autoscaletgwnewvpc":         resourceObjectCloudOrchestAwstemplateAutoscaleTgwNewVpc(),
+			"fortimanager_object_cloud_orchestration":                                 resourceObjectCloudOrchestration(),
 			"fortimanager_object_credentialstore_domaincontroller":                    resourceObjectCredentialStoreDomainController(),
 			"fortimanager_object_dlp_datatype":                                        resourceObjectDlpDataType(),
 			"fortimanager_object_dlp_dictionary":                                      resourceObjectDlpDictionary(),
@@ -194,6 +206,7 @@ func Provider() *schema.Provider {
 			"fortimanager_object_firewall_mmsprofile":                                 resourceObjectFirewallMmsProfile(),
 			"fortimanager_object_firewall_multicastaddress":                           resourceObjectFirewallMulticastAddress(),
 			"fortimanager_object_firewall_multicastaddress6":                          resourceObjectFirewallMulticastAddress6(),
+			"fortimanager_object_firewall_networkservicedynamic":                      resourceObjectFirewallNetworkServiceDynamic(),
 			"fortimanager_object_firewall_profilegroup":                               resourceObjectFirewallProfileGroup(),
 			"fortimanager_object_firewall_profileprotocoloptions":                     resourceObjectFirewallProfileProtocolOptions(),
 			"fortimanager_object_firewall_proxyaddress":                               resourceObjectFirewallProxyAddress(),
@@ -246,6 +259,8 @@ func Provider() *schema.Provider {
 			"fortimanager_object_spamfilter_mheader":                                  resourceObjectSpamfilterMheader(),
 			"fortimanager_object_spamfilter_profile":                                  resourceObjectSpamfilterProfile(),
 			"fortimanager_object_sshfilter_profile":                                   resourceObjectSshFilterProfile(),
+			"fortimanager_object_switchcontroller_acl_group":                          resourceObjectSwitchControllerAclGroup(),
+			"fortimanager_object_switchcontroller_acl_ingress":                        resourceObjectSwitchControllerAclIngress(),
 			"fortimanager_object_switchcontroller_customcommand":                      resourceObjectSwitchControllerCustomCommand(),
 			"fortimanager_object_switchcontroller_dsl_policy":                         resourceObjectSwitchControllerDslPolicy(),
 			"fortimanager_object_switchcontroller_dynamicportpolicy":                  resourceObjectSwitchControllerDynamicPortPolicy(),
@@ -288,6 +303,7 @@ func Provider() *schema.Provider {
 			"fortimanager_object_system_npu_priorityprotocol":                         resourceObjectSystemNpuPriorityProtocol(),
 			"fortimanager_object_system_npu_ssehascan":                                resourceObjectSystemNpuSseHaScan(),
 			"fortimanager_object_system_npu_swehhash":                                 resourceObjectSystemNpuSwEhHash(),
+			"fortimanager_object_system_npu_swtrhash":                                 resourceObjectSystemNpuSwTrHash(),
 			"fortimanager_object_system_npu_tcptimeoutprofile":                        resourceObjectSystemNpuTcpTimeoutProfile(),
 			"fortimanager_object_system_npu_udptimeoutprofile":                        resourceObjectSystemNpuUdpTimeoutProfile(),
 			"fortimanager_object_system_objecttagging":                                resourceObjectSystemObjectTagging(),
@@ -297,6 +313,7 @@ func Provider() *schema.Provider {
 			"fortimanager_object_system_smsserver":                                    resourceObjectSystemSmsServer(),
 			"fortimanager_object_system_virtualwirepair":                              resourceObjectSystemVirtualWirePair(),
 			"fortimanager_object_user_adgrp":                                          resourceObjectUserAdgrp(),
+			"fortimanager_object_user_certificate":                                    resourceObjectUserCertificate(),
 			"fortimanager_object_user_clearpass":                                      resourceObjectUserClearpass(),
 			"fortimanager_object_user_connector":                                      resourceObjectUserConnector(),
 			"fortimanager_object_user_device":                                         resourceObjectUserDevice(),
@@ -439,6 +456,10 @@ func Provider() *schema.Provider {
 			"fortimanager_packages_global_header_policy":                              resourcePackagesGlobalHeaderPolicy(),
 			"fortimanager_packages_global_header_policy6":                             resourcePackagesGlobalHeaderPolicy6(),
 			"fortimanager_packages_global_header_shapingpolicy":                       resourcePackagesGlobalHeaderShapingPolicy(),
+			"fortimanager_packages_pblock_firewall_consolidated_policy":               resourcePackagesPblockFirewallConsolidatedPolicy(),
+			"fortimanager_packages_pblock_firewall_policy":                            resourcePackagesPblockFirewallPolicy(),
+			"fortimanager_packages_pblock_firewall_policy6":                           resourcePackagesPblockFirewallPolicy6(),
+			"fortimanager_packages_pblock_firewall_securitypolicy":                    resourcePackagesPblockFirewallSecurityPolicy(),
 			"fortimanager_packages_pkg":                                               resourcePackagesPkg(),
 			"fortimanager_packages_user_nacpolicy":                                    resourcePackagesUserNacPolicy(),
 			"fortimanager_packages_user_nacpolicy_move":                               resourcePackagesUserNacPolicyMove(),
@@ -454,6 +475,7 @@ func Provider() *schema.Provider {
 			"fortimanager_securityconsole_pblock_clone":                               resourceSecurityconsolePblockClone(),
 			"fortimanager_securityconsole_reinstall_package":                          resourceSecurityconsoleReinstallPackage(),
 			"fortimanager_securityconsole_sign_certificate_template":                  resourceSecurityconsoleSignCertificateTemplate(),
+			"fortimanager_securityconsole_template_cli_preview":                       resourceSecurityconsoleTemplateCliPreview(),
 			"fortimanager_system_admin_group":                                         resourceSystemAdminGroup(),
 			"fortimanager_system_admin_ldap":                                          resourceSystemAdminLdap(),
 			"fortimanager_system_admin_profile":                                       resourceSystemAdminProfile(),
@@ -544,6 +566,7 @@ func Provider() *schema.Provider {
 			"fortimanager_system_snmp_sysinfo":                                        resourceSystemSnmpSysinfo(),
 			"fortimanager_system_snmp_user":                                           resourceSystemSnmpUser(),
 			"fortimanager_system_socfabric":                                           resourceSystemSocFabric(),
+			"fortimanager_system_socfabric_trustedlist":                               resourceSystemSocFabricTrustedList(),
 			"fortimanager_system_sql":                                                 resourceSystemSql(),
 			"fortimanager_system_sql_customindex":                                     resourceSystemSqlCustomIndex(),
 			"fortimanager_system_sql_customskipidx":                                   resourceSystemSqlCustomSkipidx(),
@@ -586,6 +609,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 
 		LogSession: d.Get("logsession").(bool),
 		Session:    d.Get("presession").(string),
+		Token:      d.Get("token").(string),
 	}
 
 	v1, ok1 := d.GetOkExists("insecure")

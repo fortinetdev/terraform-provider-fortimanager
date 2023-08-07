@@ -29,6 +29,11 @@ func resourceSystemConnector() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"cloud_orchest_refresh_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"conn_refresh_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -132,6 +137,10 @@ func resourceSystemConnectorRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenSystemConnectorCloudOrchestRefreshInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemConnectorConnRefreshInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -154,6 +163,16 @@ func flattenSystemConnectorPxSvrTimeout(v interface{}, d *schema.ResourceData, p
 
 func refreshObjectSystemConnector(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
+
+	if err = d.Set("cloud_orchest_refresh_interval", flattenSystemConnectorCloudOrchestRefreshInterval(o["cloud-orchest-refresh-interval"], d, "cloud_orchest_refresh_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cloud-orchest-refresh-interval"], "SystemConnector-CloudOrchestRefreshInterval"); ok {
+			if err = d.Set("cloud_orchest_refresh_interval", vv); err != nil {
+				return fmt.Errorf("Error reading cloud_orchest_refresh_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cloud_orchest_refresh_interval: %v", err)
+		}
+	}
 
 	if err = d.Set("conn_refresh_interval", flattenSystemConnectorConnRefreshInterval(o["conn-refresh-interval"], d, "conn_refresh_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["conn-refresh-interval"], "SystemConnector-ConnRefreshInterval"); ok {
@@ -214,6 +233,10 @@ func flattenSystemConnectorFortiTestDebug(d *schema.ResourceData, fosdebugsn int
 	log.Printf("ER List: %v", e)
 }
 
+func expandSystemConnectorCloudOrchestRefreshInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemConnectorConnRefreshInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -236,6 +259,15 @@ func expandSystemConnectorPxSvrTimeout(d *schema.ResourceData, v interface{}, pr
 
 func getObjectSystemConnector(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("cloud_orchest_refresh_interval"); ok || d.HasChange("cloud_orchest_refresh_interval") {
+		t, err := expandSystemConnectorCloudOrchestRefreshInterval(d, v, "cloud_orchest_refresh_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cloud-orchest-refresh-interval"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("conn_refresh_interval"); ok || d.HasChange("conn_refresh_interval") {
 		t, err := expandSystemConnectorConnRefreshInterval(d, v, "conn_refresh_interval")

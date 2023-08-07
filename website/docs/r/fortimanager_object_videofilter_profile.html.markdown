@@ -20,7 +20,11 @@ The following arguments are supported:
 * `comment` - Comment.
 * `dailymotion` - Enable/disable Dailymotion video source. Valid values: `disable`, `enable`.
 
+* `default_action` - Video filter default action. Valid values: `block`, `monitor`, `allow`.
+
 * `fortiguard_category` - Fortiguard-Category. The structure of `fortiguard_category` block is documented below.
+* `log` - Enable/disable logging. Valid values: `disable`, `enable`.
+
 * `name` - Name.
 * `replacemsg_group` - Replacement message group.
 * `vimeo` - Enable/disable Vimeo video source. Valid values: `disable`, `enable`.

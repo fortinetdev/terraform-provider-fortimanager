@@ -54,6 +54,8 @@ The following arguments are supported:
 * `account_key_filter` - Account key filter, using the UPN as the search filter.
 * `account_key_processing` - Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 
+* `account_key_upn_san` - Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
+
 * `antiphish` - Enable/disable AntiPhishing credential backend. Valid values: `disable`, `enable`.
 
 * `ca_cert` - CA certificate name.
@@ -114,6 +116,8 @@ The `dynamic_mapping` block supports:
 * `account_key_filter` - Account key filter, using the UPN as the search filter.
 * `account_key_name` - Account-Key-Name.
 * `account_key_processing` - Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
+
+* `account_key_upn_san` - Define SAN in certificate for user principle name matching. Valid values: `othername`, `rfc822name`, `dnsname`.
 
 * `antiphish` - Antiphish. Valid values: `disable`, `enable`.
 

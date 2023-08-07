@@ -92,6 +92,16 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"firmware_upgrade_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"fsw_ignore_platform_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"gui_theme": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -160,6 +170,16 @@ func resourceSystemAdminSetting() *schema.Resource {
 				Optional:  true,
 				Sensitive: true,
 				Computed:  true,
+			},
+			"rtm_max_monitor_by_days": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"rtm_temp_file_limit": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"sdwan_monitor_history": &schema.Schema{
 				Type:     schema.TypeString,
@@ -378,6 +398,14 @@ func flattenSystemAdminSettingDeviceSyncStatus(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenSystemAdminSettingFirmwareUpgradeCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminSettingFswIgnorePlatformCheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemAdminSettingGuiTheme(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -432,6 +460,14 @@ func flattenSystemAdminSettingPreferredFgfmIntf(v interface{}, d *schema.Resourc
 
 func flattenSystemAdminSettingRegisterPasswd(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenSystemAdminSettingRtmMaxMonitorByDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminSettingRtmTempFileLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenSystemAdminSettingSdwanMonitorHistory(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -635,6 +671,26 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("firmware_upgrade_check", flattenSystemAdminSettingFirmwareUpgradeCheck(o["firmware-upgrade-check"], d, "firmware_upgrade_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["firmware-upgrade-check"], "SystemAdminSetting-FirmwareUpgradeCheck"); ok {
+			if err = d.Set("firmware_upgrade_check", vv); err != nil {
+				return fmt.Errorf("Error reading firmware_upgrade_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading firmware_upgrade_check: %v", err)
+		}
+	}
+
+	if err = d.Set("fsw_ignore_platform_check", flattenSystemAdminSettingFswIgnorePlatformCheck(o["fsw-ignore-platform-check"], d, "fsw_ignore_platform_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fsw-ignore-platform-check"], "SystemAdminSetting-FswIgnorePlatformCheck"); ok {
+			if err = d.Set("fsw_ignore_platform_check", vv); err != nil {
+				return fmt.Errorf("Error reading fsw_ignore_platform_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fsw_ignore_platform_check: %v", err)
+		}
+	}
+
 	if err = d.Set("gui_theme", flattenSystemAdminSettingGuiTheme(o["gui-theme"], d, "gui_theme")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gui-theme"], "SystemAdminSetting-GuiTheme"); ok {
 			if err = d.Set("gui_theme", vv); err != nil {
@@ -762,6 +818,26 @@ func refreshObjectSystemAdminSetting(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading preferred_fgfm_intf: %v", err)
+		}
+	}
+
+	if err = d.Set("rtm_max_monitor_by_days", flattenSystemAdminSettingRtmMaxMonitorByDays(o["rtm-max-monitor-by-days"], d, "rtm_max_monitor_by_days")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rtm-max-monitor-by-days"], "SystemAdminSetting-RtmMaxMonitorByDays"); ok {
+			if err = d.Set("rtm_max_monitor_by_days", vv); err != nil {
+				return fmt.Errorf("Error reading rtm_max_monitor_by_days: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rtm_max_monitor_by_days: %v", err)
+		}
+	}
+
+	if err = d.Set("rtm_temp_file_limit", flattenSystemAdminSettingRtmTempFileLimit(o["rtm-temp-file-limit"], d, "rtm_temp_file_limit")); err != nil {
+		if vv, ok := fortiAPIPatch(o["rtm-temp-file-limit"], "SystemAdminSetting-RtmTempFileLimit"); ok {
+			if err = d.Set("rtm_temp_file_limit", vv); err != nil {
+				return fmt.Errorf("Error reading rtm_temp_file_limit: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading rtm_temp_file_limit: %v", err)
 		}
 	}
 
@@ -986,6 +1062,14 @@ func expandSystemAdminSettingDeviceSyncStatus(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandSystemAdminSettingFirmwareUpgradeCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminSettingFswIgnorePlatformCheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminSettingGuiTheme(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1040,6 +1124,14 @@ func expandSystemAdminSettingPreferredFgfmIntf(d *schema.ResourceData, v interfa
 
 func expandSystemAdminSettingRegisterPasswd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandSystemAdminSettingRtmMaxMonitorByDays(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemAdminSettingRtmTempFileLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandSystemAdminSettingSdwanMonitorHistory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1230,6 +1322,24 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("firmware_upgrade_check"); ok || d.HasChange("firmware_upgrade_check") {
+		t, err := expandSystemAdminSettingFirmwareUpgradeCheck(d, v, "firmware_upgrade_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["firmware-upgrade-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fsw_ignore_platform_check"); ok || d.HasChange("fsw_ignore_platform_check") {
+		t, err := expandSystemAdminSettingFswIgnorePlatformCheck(d, v, "fsw_ignore_platform_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fsw-ignore-platform-check"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("gui_theme"); ok || d.HasChange("gui_theme") {
 		t, err := expandSystemAdminSettingGuiTheme(d, v, "gui_theme")
 		if err != nil {
@@ -1353,6 +1463,24 @@ func getObjectSystemAdminSetting(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["register_passwd"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("rtm_max_monitor_by_days"); ok || d.HasChange("rtm_max_monitor_by_days") {
+		t, err := expandSystemAdminSettingRtmMaxMonitorByDays(d, v, "rtm_max_monitor_by_days")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rtm-max-monitor-by-days"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("rtm_temp_file_limit"); ok || d.HasChange("rtm_temp_file_limit") {
+		t, err := expandSystemAdminSettingRtmTempFileLimit(d, v, "rtm_temp_file_limit")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["rtm-temp-file-limit"] = t
 		}
 	}
 

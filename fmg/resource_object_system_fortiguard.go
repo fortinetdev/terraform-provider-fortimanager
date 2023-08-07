@@ -45,8 +45,18 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"fds_license_expiring_days": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"antispam_cache": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"antispam_cache_mpermille": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -97,6 +107,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 			"auto_firmware_upgrade_day": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"auto_firmware_upgrade_delay": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -155,6 +170,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 			},
 			"outbreak_prevention_cache": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"outbreak_prevention_cache_mpermille": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -263,6 +283,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Computed: true,
 			},
 			"update_build_proxy": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"update_dldb": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -419,7 +444,15 @@ func resourceObjectSystemFortiguardRead(d *schema.ResourceData, m interface{}) e
 	return nil
 }
 
+func flattenObjectSystemFortiguardFdsLicenseExpiringDays(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemFortiguardAntispamCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardAntispamCacheMpermille(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -461,6 +494,10 @@ func flattenObjectSystemFortiguardAutoFirmwareUpgrade(v interface{}, d *schema.R
 
 func flattenObjectSystemFortiguardAutoFirmwareUpgradeDay(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectSystemFortiguardAutoFirmwareUpgradeDelay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectSystemFortiguardAutoFirmwareUpgradeEndHour(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -508,6 +545,10 @@ func flattenObjectSystemFortiguardLoadBalanceServers(v interface{}, d *schema.Re
 }
 
 func flattenObjectSystemFortiguardOutbreakPreventionCache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardOutbreakPreventionCacheMpermille(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -599,6 +640,10 @@ func flattenObjectSystemFortiguardUpdateBuildProxy(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectSystemFortiguardUpdateDldb(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemFortiguardUpdateExtdb(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -658,6 +703,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		d.Set("scopetype", "inherit")
 	}
 
+	if err = d.Set("fds_license_expiring_days", flattenObjectSystemFortiguardFdsLicenseExpiringDays(o["FDS-license-expiring-days"], d, "fds_license_expiring_days")); err != nil {
+		if vv, ok := fortiAPIPatch(o["FDS-license-expiring-days"], "ObjectSystemFortiguard-FdsLicenseExpiringDays"); ok {
+			if err = d.Set("fds_license_expiring_days", vv); err != nil {
+				return fmt.Errorf("Error reading fds_license_expiring_days: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fds_license_expiring_days: %v", err)
+		}
+	}
+
 	if err = d.Set("antispam_cache", flattenObjectSystemFortiguardAntispamCache(o["antispam-cache"], d, "antispam_cache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["antispam-cache"], "ObjectSystemFortiguard-AntispamCache"); ok {
 			if err = d.Set("antispam_cache", vv); err != nil {
@@ -665,6 +720,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading antispam_cache: %v", err)
+		}
+	}
+
+	if err = d.Set("antispam_cache_mpermille", flattenObjectSystemFortiguardAntispamCacheMpermille(o["antispam-cache-mpermille"], d, "antispam_cache_mpermille")); err != nil {
+		if vv, ok := fortiAPIPatch(o["antispam-cache-mpermille"], "ObjectSystemFortiguard-AntispamCacheMpermille"); ok {
+			if err = d.Set("antispam_cache_mpermille", vv); err != nil {
+				return fmt.Errorf("Error reading antispam_cache_mpermille: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading antispam_cache_mpermille: %v", err)
 		}
 	}
 
@@ -765,6 +830,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading auto_firmware_upgrade_day: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_firmware_upgrade_delay", flattenObjectSystemFortiguardAutoFirmwareUpgradeDelay(o["auto-firmware-upgrade-delay"], d, "auto_firmware_upgrade_delay")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-firmware-upgrade-delay"], "ObjectSystemFortiguard-AutoFirmwareUpgradeDelay"); ok {
+			if err = d.Set("auto_firmware_upgrade_delay", vv); err != nil {
+				return fmt.Errorf("Error reading auto_firmware_upgrade_delay: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_firmware_upgrade_delay: %v", err)
 		}
 	}
 
@@ -885,6 +960,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading outbreak_prevention_cache: %v", err)
+		}
+	}
+
+	if err = d.Set("outbreak_prevention_cache_mpermille", flattenObjectSystemFortiguardOutbreakPreventionCacheMpermille(o["outbreak-prevention-cache-mpermille"], d, "outbreak_prevention_cache_mpermille")); err != nil {
+		if vv, ok := fortiAPIPatch(o["outbreak-prevention-cache-mpermille"], "ObjectSystemFortiguard-OutbreakPreventionCacheMpermille"); ok {
+			if err = d.Set("outbreak_prevention_cache_mpermille", vv); err != nil {
+				return fmt.Errorf("Error reading outbreak_prevention_cache_mpermille: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading outbreak_prevention_cache_mpermille: %v", err)
 		}
 	}
 
@@ -1098,6 +1183,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("update_dldb", flattenObjectSystemFortiguardUpdateDldb(o["update-dldb"], d, "update_dldb")); err != nil {
+		if vv, ok := fortiAPIPatch(o["update-dldb"], "ObjectSystemFortiguard-UpdateDldb"); ok {
+			if err = d.Set("update_dldb", vv); err != nil {
+				return fmt.Errorf("Error reading update_dldb: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading update_dldb: %v", err)
+		}
+	}
+
 	if err = d.Set("update_extdb", flattenObjectSystemFortiguardUpdateExtdb(o["update-extdb"], d, "update_extdb")); err != nil {
 		if vv, ok := fortiAPIPatch(o["update-extdb"], "ObjectSystemFortiguard-UpdateExtdb"); ok {
 			if err = d.Set("update_extdb", vv); err != nil {
@@ -1237,7 +1332,15 @@ func flattenObjectSystemFortiguardFortiTestDebug(d *schema.ResourceData, fosdebu
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectSystemFortiguardFdsLicenseExpiringDays(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemFortiguardAntispamCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardAntispamCacheMpermille(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1279,6 +1382,10 @@ func expandObjectSystemFortiguardAutoFirmwareUpgrade(d *schema.ResourceData, v i
 
 func expandObjectSystemFortiguardAutoFirmwareUpgradeDay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectSystemFortiguardAutoFirmwareUpgradeDelay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSystemFortiguardAutoFirmwareUpgradeEndHour(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1326,6 +1433,10 @@ func expandObjectSystemFortiguardLoadBalanceServers(d *schema.ResourceData, v in
 }
 
 func expandObjectSystemFortiguardOutbreakPreventionCache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemFortiguardOutbreakPreventionCacheMpermille(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1417,6 +1528,10 @@ func expandObjectSystemFortiguardUpdateBuildProxy(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectSystemFortiguardUpdateDldb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemFortiguardUpdateExtdb(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1472,12 +1587,30 @@ func expandObjectSystemFortiguardWebfilterTimeout(d *schema.ResourceData, v inte
 func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("fds_license_expiring_days"); ok || d.HasChange("fds_license_expiring_days") {
+		t, err := expandObjectSystemFortiguardFdsLicenseExpiringDays(d, v, "fds_license_expiring_days")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["FDS-license-expiring-days"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("antispam_cache"); ok || d.HasChange("antispam_cache") {
 		t, err := expandObjectSystemFortiguardAntispamCache(d, v, "antispam_cache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["antispam-cache"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("antispam_cache_mpermille"); ok || d.HasChange("antispam_cache_mpermille") {
+		t, err := expandObjectSystemFortiguardAntispamCacheMpermille(d, v, "antispam_cache_mpermille")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["antispam-cache-mpermille"] = t
 		}
 	}
 
@@ -1568,6 +1701,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["auto-firmware-upgrade-day"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_firmware_upgrade_delay"); ok || d.HasChange("auto_firmware_upgrade_delay") {
+		t, err := expandObjectSystemFortiguardAutoFirmwareUpgradeDelay(d, v, "auto_firmware_upgrade_delay")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-firmware-upgrade-delay"] = t
 		}
 	}
 
@@ -1676,6 +1818,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["outbreak-prevention-cache"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("outbreak_prevention_cache_mpermille"); ok || d.HasChange("outbreak_prevention_cache_mpermille") {
+		t, err := expandObjectSystemFortiguardOutbreakPreventionCacheMpermille(d, v, "outbreak_prevention_cache_mpermille")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["outbreak-prevention-cache-mpermille"] = t
 		}
 	}
 
@@ -1874,6 +2025,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["update-build-proxy"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("update_dldb"); ok || d.HasChange("update_dldb") {
+		t, err := expandObjectSystemFortiguardUpdateDldb(d, v, "update_dldb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["update-dldb"] = t
 		}
 	}
 

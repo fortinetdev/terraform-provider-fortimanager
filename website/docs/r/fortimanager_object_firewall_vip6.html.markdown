@@ -167,6 +167,8 @@ The following arguments are supported:
 
 * `ssl_server_min_version` - Lowest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
 
+* `ssl_server_renegotiation` - Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `disable`, `enable`.
+
 * `ssl_server_session_state_max` - Maximum number of FortiGate to Server SSL session states to keep.
 * `ssl_server_session_state_timeout` - Number of minutes to keep FortiGate to Server SSL session state.
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -289,6 +291,8 @@ The `dynamic_mapping` block supports:
 
 * `ssl_server_min_version` - Lowest SSL/TLS version acceptable from a server. Use the client setting by default. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `client`, `tls-1.3`.
 
+* `ssl_server_renegotiation` - Enable/disable secure renegotiation to comply with RFC 5746. Valid values: `disable`, `enable`.
+
 * `ssl_server_session_state_max` - Maximum number of FortiGate to Server SSL session states to keep.
 * `ssl_server_session_state_timeout` - Number of minutes to keep FortiGate to Server SSL session state.
 * `ssl_server_session_state_type` - How to expire SSL sessions for the segment of the SSL connection between the server and the FortiGate. Valid values: `disable`, `time`, `count`, `both`.
@@ -320,6 +324,8 @@ The `realservers` block supports:
 * `port` - Port for communicating with the real server. Required if port forwarding is enabled.
 * `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
 
+* `translate_host` - Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `disable`, `enable`.
+
 * `weight` - Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
 
 The `ssl_cipher_suites` block supports:
@@ -343,6 +349,8 @@ The `realservers` block supports:
 * `monitor` - Name of the health check monitor to use when polling to determine a virtual server's connectivity status.
 * `port` - Port for communicating with the real server. Required if port forwarding is enabled.
 * `status` - Set the status of the real server to active so that it can accept traffic, or on standby or disabled so no traffic is sent. Valid values: `active`, `standby`, `disable`.
+
+* `translate_host` - Enable/disable translation of hostname/IP from virtual server to real server. Valid values: `disable`, `enable`.
 
 * `weight` - Weight of the real server. If weighted load balancing is enabled, the server with the highest weight gets more connections.
 

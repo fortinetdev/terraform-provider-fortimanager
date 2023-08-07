@@ -53,6 +53,8 @@ The following arguments are supported:
 
 * `iot_preload` - Enable/disable preloading IoT database to memory (default = disable). disable - Disable IoT db preload. enable - Enable IoT db preload. Valid values: `disable`, `enable`.
 
+* `iotv_preload` - Enable/disable preloading IoT-Vulnerability database to memory (default = disable). disable - Disable IoT-Vulnerability db preload. enable - Enable IoT-Vulnerability db preload. Valid values: `disable`, `enable`.
+
 * `linkd_log` - Linkd log setting (default = debug). emergency - The unit is unusable. alert - Immediate action is required critical - Functionality is affected. error - Functionality is probably affected. warn - Functionality might be affected. notice - Information about normal events. info - General information. debug - Debug information. disable - Linkd logging is disabled. Valid values: `emergency`, `alert`, `critical`, `error`, `warn`, `notice`, `info`, `debug`, `disable`.
 
 * `max_client_worker` - max worker for tcp client connection (0~16: 0 means use cpu number up to 4).

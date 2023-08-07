@@ -17,6 +17,7 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `ca_cn_info` - Ca-Cn-Info.
 * `admin_password` - FortiClient EMS admin password.
 * `admin_username` - FortiClient EMS admin username.
 * `call_timeout` - FortiClient EMS call timeout in seconds (1 - 180 seconds, default = 30).
@@ -53,6 +54,8 @@ The following arguments are supported:
 * `server` - FortiClient EMS FQDN or IPv4 address.
 * `source_ip` - REST API call source IP.
 * `status` - Enable or disable this EMS configuration. Valid values: `disable`, `enable`.
+
+* `trust_ca_cn` - Trust-Ca-Cn. Valid values: `disable`, `enable`.
 
 * `tenant_id` - EMS Tenant ID.
 * `status_check_interval` - FortiClient EMS call timeout in seconds (1 - 120 seconds, default = 5).

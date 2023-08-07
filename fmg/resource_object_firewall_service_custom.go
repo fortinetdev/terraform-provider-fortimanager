@@ -130,8 +130,10 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Computed: true,
 			},
 			"sctp_portrange": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"session_ttl": &schema.Schema{
 				Type:     schema.TypeString,
@@ -147,8 +149,10 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Optional: true,
 			},
 			"tcp_portrange": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_rst_timer": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -163,8 +167,10 @@ func resourceObjectFirewallServiceCustom() *schema.Resource {
 				Optional: true,
 			},
 			"udp_portrange": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeList,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"visibility": &schema.Schema{
 				Type:     schema.TypeString,
@@ -362,7 +368,7 @@ func flattenObjectFirewallServiceCustomProxy(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallServiceCustomSctpPortrange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallServiceCustomSessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -378,7 +384,7 @@ func flattenObjectFirewallServiceCustomTcpHalfopenTimer(v interface{}, d *schema
 }
 
 func flattenObjectFirewallServiceCustomTcpPortrange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallServiceCustomTcpRstTimer(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -394,7 +400,7 @@ func flattenObjectFirewallServiceCustomUdpIdleTimer(v interface{}, d *schema.Res
 }
 
 func flattenObjectFirewallServiceCustomUdpPortrange(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return convintflist2i(v)
+	return flattenStringList(v)
 }
 
 func flattenObjectFirewallServiceCustomVisibility(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -770,7 +776,7 @@ func expandObjectFirewallServiceCustomProxy(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallServiceCustomSctpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallServiceCustomSessionTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -786,7 +792,7 @@ func expandObjectFirewallServiceCustomTcpHalfopenTimer(d *schema.ResourceData, v
 }
 
 func expandObjectFirewallServiceCustomTcpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallServiceCustomTcpRstTimer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -802,7 +808,7 @@ func expandObjectFirewallServiceCustomUdpIdleTimer(d *schema.ResourceData, v int
 }
 
 func expandObjectFirewallServiceCustomUdpPortrange(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.([]interface{})), nil
 }
 
 func expandObjectFirewallServiceCustomVisibility(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {

@@ -43,6 +43,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `_is_factory_setting` - _Is_Factory_Setting. Valid values: `disable`, `enable`, `ext`.
+
 * `allowaccess` - Control management access to the managed WTP, FortiAP, or AP. Separate entries with a space. Valid values: `https`, `ssh`, `snmp`, `http`, `telnet`.
 
 * `ap_country` - Country in which this WTP, FortiAP or AP will operate (default = NA, automatically use the country configured for the current VDOM). Valid values: `AL`, `DZ`, `AR`, `AM`, `AU`, `AT`, `AZ`, `BH`, `BD`, `BY`, `BE`, `BZ`, `BO`, `BA`, `BR`, `BN`, `BG`, `CA`, `CL`, `CN`, `CO`, `CR`, `HR`, `CY`, `CZ`, `DK`, `DO`, `EC`, `EG`, `SV`, `EE`, `FI`, `FR`, `GE`, `DE`, `GR`, `GT`, `HN`, `HK`, `HU`, `IS`, `IN`, `ID`, `IR`, `IE`, `IL`, `IT`, `JM`, `JP`, `JO`, `KZ`, `KE`, `KP`, `KR`, `KW`, `LV`, `LB`, `LI`, `LT`, `LU`, `MO`, `MK`, `MY`, `MT`, `MX`, `MC`, `MA`, `NP`, `NL`, `AN`, `NZ`, `NO`, `OM`, `PK`, `PA`, `PG`, `PE`, `PH`, `PL`, `PT`, `PR`, `QA`, `RO`, `RU`, `SA`, `SG`, `SK`, `SI`, `ZA`, `ES`, `LK`, `SE`, `CH`, `SY`, `TW`, `TH`, `TT`, `TN`, `TR`, `AE`, `UA`, `GB`, `US`, `PS`, `UY`, `UZ`, `VE`, `VN`, `YE`, `ZW`, `NA`, `BS`, `VC`, `KH`, `MV`, `TZ`, `SN`, `CI`, `GH`, `SD`, `MW`, `AO`, `RW`, `MZ`, `UG`, `BF`, `CF`, `RS`, `ME`, `KY`, `BB`, `TC`, `GD`, `GL`, `TM`, `VU`, `GU`, `FM`, `PY`, `HT`, `GY`, `AW`, `KN`, `MM`, `LC`, `ZB`, `CX`.
@@ -105,6 +107,8 @@ The following arguments are supported:
 * `syslog_profile` - System log server configuration profile name.
 * `tun_mtu_downlink` - The MTU of downlink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
 * `tun_mtu_uplink` - The maximum transmission unit (MTU) of uplink CAPWAP tunnel (576 - 1500 bytes or 0; 0 means the local MTU of FortiAP; default = 0).
+* `unii_4_5ghz_band` - Enable/disable UNII-4 5Ghz band channels (default = disable). Valid values: `disable`, `enable`.
+
 * `wan_port_auth` - Set WAN port authentication mode (default = none). Valid values: `none`, `802.1x`.
 
 * `wan_port_auth_methods` - WAN port 802.1x supplicant EAP methods (default = all). Valid values: `all`, `EAP-FAST`, `EAP-TLS`, `EAP-PEAP`.
@@ -290,6 +294,8 @@ The `radio_1` block supports:
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 1. Radio 1 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
+* `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
+
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 
@@ -409,6 +415,8 @@ The `radio_2` block supports:
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 2. Radio 2 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
+
+* `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
@@ -530,6 +538,8 @@ The `radio_3` block supports:
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
+* `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
+
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.
 
@@ -649,6 +659,8 @@ The `radio_4` block supports:
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
 * `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `ap`, `monitor`, `sniffer`, `disabled`, `sam`.
+
+* `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
 
 * `power_level` - Radio power level as a percentage of the maximum transmit power (0 - 100, default = 100).
 * `power_mode` - Set radio effective isotropic radiated power (EIRP) in dBm or by a percentage of the maximum EIRP (default = percentage). This power takes into account both radio transmit power and antenna gain. Higher power level settings may be constrained by local regulatory requirements and AP capabilities. Valid values: `dBm`, `percentage`.

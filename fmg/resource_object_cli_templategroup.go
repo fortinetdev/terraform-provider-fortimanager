@@ -64,6 +64,12 @@ func resourceObjectCliTemplateGroup() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"variables": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -198,6 +204,10 @@ func flattenObjectCliTemplateGroupName(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
+func flattenObjectCliTemplateGroupVariables(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func refreshObjectObjectCliTemplateGroup(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -245,6 +255,16 @@ func refreshObjectObjectCliTemplateGroup(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("variables", flattenObjectCliTemplateGroupVariables(o["variables"], d, "variables")); err != nil {
+		if vv, ok := fortiAPIPatch(o["variables"], "ObjectCliTemplateGroup-Variables"); ok {
+			if err = d.Set("variables", vv); err != nil {
+				return fmt.Errorf("Error reading variables: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading variables: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -268,6 +288,10 @@ func expandObjectCliTemplateGroupModificationTime(d *schema.ResourceData, v inte
 
 func expandObjectCliTemplateGroupName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
+}
+
+func expandObjectCliTemplateGroupVariables(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func getObjectObjectCliTemplateGroup(d *schema.ResourceData) (*map[string]interface{}, error) {
@@ -306,6 +330,15 @@ func getObjectObjectCliTemplateGroup(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("variables"); ok || d.HasChange("variables") {
+		t, err := expandObjectCliTemplateGroupVariables(d, v, "variables")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["variables"] = t
 		}
 	}
 

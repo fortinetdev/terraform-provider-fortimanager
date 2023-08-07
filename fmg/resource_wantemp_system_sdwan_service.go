@@ -54,6 +54,10 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"agent_exclusive": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"bandwidth_weight": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -221,6 +225,14 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 				Optional: true,
 			},
 			"role": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"shortcut": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"shortcut_stickiness": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -437,6 +449,10 @@ func flattenWantempSystemSdwanServiceAddrModeWsssa(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenWantempSystemSdwanServiceAgentExclusiveWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanServiceBandwidthWeightWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -601,6 +617,14 @@ func flattenWantempSystemSdwanServiceRoleWsssa(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenWantempSystemSdwanServiceShortcutWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceShortcutStickinessWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanServiceRouteTagWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -718,6 +742,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading addr_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("agent_exclusive", flattenWantempSystemSdwanServiceAgentExclusiveWsssa(o["agent-exclusive"], d, "agent_exclusive")); err != nil {
+		if vv, ok := fortiAPIPatch(o["agent-exclusive"], "WantempSystemSdwanService-AgentExclusive"); ok {
+			if err = d.Set("agent_exclusive", vv); err != nil {
+				return fmt.Errorf("Error reading agent_exclusive: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading agent_exclusive: %v", err)
 		}
 	}
 
@@ -1131,6 +1165,26 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("shortcut", flattenWantempSystemSdwanServiceShortcutWsssa(o["shortcut"], d, "shortcut")); err != nil {
+		if vv, ok := fortiAPIPatch(o["shortcut"], "WantempSystemSdwanService-Shortcut"); ok {
+			if err = d.Set("shortcut", vv); err != nil {
+				return fmt.Errorf("Error reading shortcut: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading shortcut: %v", err)
+		}
+	}
+
+	if err = d.Set("shortcut_stickiness", flattenWantempSystemSdwanServiceShortcutStickinessWsssa(o["shortcut-stickiness"], d, "shortcut_stickiness")); err != nil {
+		if vv, ok := fortiAPIPatch(o["shortcut-stickiness"], "WantempSystemSdwanService-ShortcutStickiness"); ok {
+			if err = d.Set("shortcut_stickiness", vv); err != nil {
+				return fmt.Errorf("Error reading shortcut_stickiness: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading shortcut_stickiness: %v", err)
+		}
+	}
+
 	if err = d.Set("route_tag", flattenWantempSystemSdwanServiceRouteTagWsssa(o["route-tag"], d, "route_tag")); err != nil {
 		if vv, ok := fortiAPIPatch(o["route-tag"], "WantempSystemSdwanService-RouteTag"); ok {
 			if err = d.Set("route_tag", vv); err != nil {
@@ -1298,6 +1352,10 @@ func expandWantempSystemSdwanServiceAddrModeWsssa(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandWantempSystemSdwanServiceAgentExclusiveWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanServiceBandwidthWeightWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1462,6 +1520,14 @@ func expandWantempSystemSdwanServiceRoleWsssa(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandWantempSystemSdwanServiceShortcutWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceShortcutStickinessWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanServiceRouteTagWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1563,6 +1629,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["addr-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("agent_exclusive"); ok || d.HasChange("agent_exclusive") {
+		t, err := expandWantempSystemSdwanServiceAgentExclusiveWsssa(d, v, "agent_exclusive")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["agent-exclusive"] = t
 		}
 	}
 
@@ -1932,6 +2007,24 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["role"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("shortcut"); ok || d.HasChange("shortcut") {
+		t, err := expandWantempSystemSdwanServiceShortcutWsssa(d, v, "shortcut")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["shortcut"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("shortcut_stickiness"); ok || d.HasChange("shortcut_stickiness") {
+		t, err := expandWantempSystemSdwanServiceShortcutStickinessWsssa(d, v, "shortcut_stickiness")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["shortcut-stickiness"] = t
 		}
 	}
 

@@ -165,10 +165,22 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"http_multiplex_max_request": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"http_multiplex_ttl": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"http_redirect": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"http_supported_max_version": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"https_cookie_secure": &schema.Schema{
 							Type:     schema.TypeString,
@@ -264,6 +276,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"health_check_proto": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
 									"healthcheck": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -301,6 +317,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 										Optional: true,
 									},
 									"status": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
+									"translate_host": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
 									},
@@ -482,6 +502,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"ssl_server_renegotiation": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"ssl_server_session_state_max": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -579,7 +603,21 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"http_multiplex_max_request": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"http_multiplex_ttl": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"http_redirect": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"http_supported_max_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -720,6 +758,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Optional: true,
 						},
 						"status": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"translate_host": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -921,6 +963,11 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Computed: true,
 			},
 			"ssl_server_min_version": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ssl_server_renegotiation": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -1242,10 +1289,28 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["http_multiplex"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpMultiplex")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_max_request"
+		if _, ok := i["http-multiplex-max-request"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingHttpMultiplexMaxRequest(i["http-multiplex-max-request"], d, pre_append)
+			tmp["http_multiplex_max_request"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpMultiplexMaxRequest")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_ttl"
+		if _, ok := i["http-multiplex-ttl"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingHttpMultiplexTtl(i["http-multiplex-ttl"], d, pre_append)
+			tmp["http_multiplex_ttl"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpMultiplexTtl")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_redirect"
 		if _, ok := i["http-redirect"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingHttpRedirect(i["http-redirect"], d, pre_append)
 			tmp["http_redirect"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpRedirect")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_supported_max_version"
+		if _, ok := i["http-supported-max-version"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingHttpSupportedMaxVersion(i["http-supported-max-version"], d, pre_append)
+			tmp["http_supported_max_version"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpSupportedMaxVersion")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "https_cookie_secure"
@@ -1566,6 +1631,12 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["ssl_server_min_version"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-SslServerMinVersion")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_renegotiation"
+		if _, ok := i["ssl-server-renegotiation"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingSslServerRenegotiation(i["ssl-server-renegotiation"], d, pre_append)
+			tmp["ssl_server_renegotiation"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-SslServerRenegotiation")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_max"
 		if _, ok := i["ssl-server-session-state-max"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingSslServerSessionStateMax(i["ssl-server-session-state-max"], d, pre_append)
@@ -1745,7 +1816,19 @@ func flattenObjectFirewallVipDynamicMappingHttpMultiplex(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectFirewallVipDynamicMappingHttpMultiplexMaxRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingHttpMultiplexTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipDynamicMappingHttpRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingHttpSupportedMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1852,6 +1935,12 @@ func flattenObjectFirewallVipDynamicMappingRealservers(v interface{}, d *schema.
 			tmp["client_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-Realservers-ClientIp")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_proto"
+		if _, ok := i["health-check-proto"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingRealserversHealthCheckProto(i["health-check-proto"], d, pre_append)
+			tmp["health_check_proto"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-Realservers-HealthCheckProto")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
 		if _, ok := i["healthcheck"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingRealserversHealthcheck(i["healthcheck"], d, pre_append)
@@ -1912,6 +2001,12 @@ func flattenObjectFirewallVipDynamicMappingRealservers(v interface{}, d *schema.
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-Realservers-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := i["translate-host"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingRealserversTranslateHost(i["translate-host"], d, pre_append)
+			tmp["translate_host"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-Realservers-TranslateHost")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := i["type"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingRealserversType(i["type"], d, pre_append)
@@ -1938,6 +2033,10 @@ func flattenObjectFirewallVipDynamicMappingRealserversAddress(v interface{}, d *
 
 func flattenObjectFirewallVipDynamicMappingRealserversClientIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
+}
+
+func flattenObjectFirewallVipDynamicMappingRealserversHealthCheckProto(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversHealthcheck(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1977,6 +2076,10 @@ func flattenObjectFirewallVipDynamicMappingRealserversSeq(v interface{}, d *sche
 }
 
 func flattenObjectFirewallVipDynamicMappingRealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingRealserversTranslateHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2187,6 +2290,10 @@ func flattenObjectFirewallVipDynamicMappingSslServerMinVersion(v interface{}, d 
 	return v
 }
 
+func flattenObjectFirewallVipDynamicMappingSslServerRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipDynamicMappingSslServerSessionStateMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2275,7 +2382,19 @@ func flattenObjectFirewallVipHttpMultiplex(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenObjectFirewallVipHttpMultiplexMaxRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipHttpMultiplexTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipHttpRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipHttpSupportedMaxVersion(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2446,6 +2565,12 @@ func flattenObjectFirewallVipRealservers(v interface{}, d *schema.ResourceData, 
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-Status")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := i["translate-host"]; ok {
+			v := flattenObjectFirewallVipRealserversTranslateHost(i["translate-host"], d, pre_append)
+			tmp["translate_host"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-TranslateHost")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := i["type"]; ok {
 			v := flattenObjectFirewallVipRealserversType(i["type"], d, pre_append)
@@ -2511,6 +2636,10 @@ func flattenObjectFirewallVipRealserversSeq(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectFirewallVipRealserversStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipRealserversTranslateHost(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2778,6 +2907,10 @@ func flattenObjectFirewallVipSslServerMinVersion(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectFirewallVipSslServerRenegotiation(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipSslServerSessionStateMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3035,6 +3168,26 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("http_multiplex_max_request", flattenObjectFirewallVipHttpMultiplexMaxRequest(o["http-multiplex-max-request"], d, "http_multiplex_max_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-multiplex-max-request"], "ObjectFirewallVip-HttpMultiplexMaxRequest"); ok {
+			if err = d.Set("http_multiplex_max_request", vv); err != nil {
+				return fmt.Errorf("Error reading http_multiplex_max_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_multiplex_max_request: %v", err)
+		}
+	}
+
+	if err = d.Set("http_multiplex_ttl", flattenObjectFirewallVipHttpMultiplexTtl(o["http-multiplex-ttl"], d, "http_multiplex_ttl")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-multiplex-ttl"], "ObjectFirewallVip-HttpMultiplexTtl"); ok {
+			if err = d.Set("http_multiplex_ttl", vv); err != nil {
+				return fmt.Errorf("Error reading http_multiplex_ttl: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_multiplex_ttl: %v", err)
+		}
+	}
+
 	if err = d.Set("http_redirect", flattenObjectFirewallVipHttpRedirect(o["http-redirect"], d, "http_redirect")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-redirect"], "ObjectFirewallVip-HttpRedirect"); ok {
 			if err = d.Set("http_redirect", vv); err != nil {
@@ -3042,6 +3195,16 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading http_redirect: %v", err)
+		}
+	}
+
+	if err = d.Set("http_supported_max_version", flattenObjectFirewallVipHttpSupportedMaxVersion(o["http-supported-max-version"], d, "http_supported_max_version")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-supported-max-version"], "ObjectFirewallVip-HttpSupportedMaxVersion"); ok {
+			if err = d.Set("http_supported_max_version", vv); err != nil {
+				return fmt.Errorf("Error reading http_supported_max_version: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_supported_max_version: %v", err)
 		}
 	}
 
@@ -3637,6 +3800,16 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("ssl_server_renegotiation", flattenObjectFirewallVipSslServerRenegotiation(o["ssl-server-renegotiation"], d, "ssl_server_renegotiation")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ssl-server-renegotiation"], "ObjectFirewallVip-SslServerRenegotiation"); ok {
+			if err = d.Set("ssl_server_renegotiation", vv); err != nil {
+				return fmt.Errorf("Error reading ssl_server_renegotiation: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ssl_server_renegotiation: %v", err)
+		}
+	}
+
 	if err = d.Set("ssl_server_session_state_max", flattenObjectFirewallVipSslServerSessionStateMax(o["ssl-server-session-state-max"], d, "ssl_server_session_state_max")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-server-session-state-max"], "ObjectFirewallVip-SslServerSessionStateMax"); ok {
 			if err = d.Set("ssl_server_session_state_max", vv); err != nil {
@@ -3865,9 +4038,24 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["http-multiplex"], _ = expandObjectFirewallVipDynamicMappingHttpMultiplex(d, i["http_multiplex"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_max_request"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["http-multiplex-max-request"], _ = expandObjectFirewallVipDynamicMappingHttpMultiplexMaxRequest(d, i["http_multiplex_max_request"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_ttl"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["http-multiplex-ttl"], _ = expandObjectFirewallVipDynamicMappingHttpMultiplexTtl(d, i["http_multiplex_ttl"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_redirect"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-redirect"], _ = expandObjectFirewallVipDynamicMappingHttpRedirect(d, i["http_redirect"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_supported_max_version"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["http-supported-max-version"], _ = expandObjectFirewallVipDynamicMappingHttpSupportedMaxVersion(d, i["http_supported_max_version"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "https_cookie_secure"
@@ -4145,6 +4333,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["ssl-server-min-version"], _ = expandObjectFirewallVipDynamicMappingSslServerMinVersion(d, i["ssl_server_min_version"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_renegotiation"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["ssl-server-renegotiation"], _ = expandObjectFirewallVipDynamicMappingSslServerRenegotiation(d, i["ssl_server_renegotiation"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ssl_server_session_state_max"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ssl-server-session-state-max"], _ = expandObjectFirewallVipDynamicMappingSslServerSessionStateMax(d, i["ssl_server_session_state_max"], pre_append)
@@ -4309,7 +4502,19 @@ func expandObjectFirewallVipDynamicMappingHttpMultiplex(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectFirewallVipDynamicMappingHttpMultiplexMaxRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingHttpMultiplexTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingHttpRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingHttpSupportedMaxVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4409,6 +4614,11 @@ func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v 
 			tmp["client-ip"], _ = expandObjectFirewallVipDynamicMappingRealserversClientIp(d, i["client_ip"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "health_check_proto"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["health-check-proto"], _ = expandObjectFirewallVipDynamicMappingRealserversHealthCheckProto(d, i["health_check_proto"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "healthcheck"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["healthcheck"], _ = expandObjectFirewallVipDynamicMappingRealserversHealthcheck(d, i["healthcheck"], pre_append)
@@ -4459,6 +4669,11 @@ func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v 
 			tmp["status"], _ = expandObjectFirewallVipDynamicMappingRealserversStatus(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["translate-host"], _ = expandObjectFirewallVipDynamicMappingRealserversTranslateHost(d, i["translate_host"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallVipDynamicMappingRealserversType(d, i["type"], pre_append)
@@ -4483,6 +4698,10 @@ func expandObjectFirewallVipDynamicMappingRealserversAddress(d *schema.ResourceD
 
 func expandObjectFirewallVipDynamicMappingRealserversClientIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFirewallVipDynamicMappingRealserversHealthCheckProto(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversHealthcheck(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -4522,6 +4741,10 @@ func expandObjectFirewallVipDynamicMappingRealserversSeq(d *schema.ResourceData,
 }
 
 func expandObjectFirewallVipDynamicMappingRealserversStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingRealserversTranslateHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4723,6 +4946,10 @@ func expandObjectFirewallVipDynamicMappingSslServerMinVersion(d *schema.Resource
 	return v, nil
 }
 
+func expandObjectFirewallVipDynamicMappingSslServerRenegotiation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingSslServerSessionStateMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4811,7 +5038,19 @@ func expandObjectFirewallVipHttpMultiplex(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandObjectFirewallVipHttpMultiplexMaxRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipHttpMultiplexTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipHttpRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipHttpSupportedMaxVersion(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4965,6 +5204,11 @@ func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, p
 			tmp["status"], _ = expandObjectFirewallVipRealserversStatus(d, i["status"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "translate_host"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["translate-host"], _ = expandObjectFirewallVipRealserversTranslateHost(d, i["translate_host"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "type"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["type"], _ = expandObjectFirewallVipRealserversType(d, i["type"], pre_append)
@@ -5028,6 +5272,10 @@ func expandObjectFirewallVipRealserversSeq(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectFirewallVipRealserversStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipRealserversTranslateHost(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5278,6 +5526,10 @@ func expandObjectFirewallVipSslServerMinVersion(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectFirewallVipSslServerRenegotiation(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipSslServerSessionStateMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5493,12 +5745,39 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
+	if v, ok := d.GetOk("http_multiplex_max_request"); ok || d.HasChange("http_multiplex_max_request") {
+		t, err := expandObjectFirewallVipHttpMultiplexMaxRequest(d, v, "http_multiplex_max_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-multiplex-max-request"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_multiplex_ttl"); ok || d.HasChange("http_multiplex_ttl") {
+		t, err := expandObjectFirewallVipHttpMultiplexTtl(d, v, "http_multiplex_ttl")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-multiplex-ttl"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("http_redirect"); ok || d.HasChange("http_redirect") {
 		t, err := expandObjectFirewallVipHttpRedirect(d, v, "http_redirect")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["http-redirect"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_supported_max_version"); ok || d.HasChange("http_supported_max_version") {
+		t, err := expandObjectFirewallVipHttpSupportedMaxVersion(d, v, "http_supported_max_version")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-supported-max-version"] = t
 		}
 	}
 
@@ -5994,6 +6273,15 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["ssl-server-min-version"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ssl_server_renegotiation"); ok || d.HasChange("ssl_server_renegotiation") {
+		t, err := expandObjectFirewallVipSslServerRenegotiation(d, v, "ssl_server_renegotiation")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ssl-server-renegotiation"] = t
 		}
 	}
 

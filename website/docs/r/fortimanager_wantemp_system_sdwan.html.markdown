@@ -18,8 +18,10 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `wanprof` - Wanprof.
 
+* `app_perf_log_period` - Time interval in seconds that applicationperformance logs are generated (0 - 3600, default = 0).
 * `duplication` - Duplication. The structure of `duplication` block is documented below.
 * `duplication_max_num` - Maximum number of interface members a packet is duplicated in the SD-WAN zone (2 - 4, default = 2; if set to 3, the original packet plus 2 more copies are created).
+* `fail_alert_interfaces` - Physical interfaces that will be alerted.
 * `fail_detect` - Enable/disable SD-WAN Internet connection status checking (failure detection). Valid values: `disable`, `enable`.
 
 * `health_check` - Health-Check. The structure of `health_check` block is documented below.
@@ -62,6 +64,7 @@ The `health_check` block supports:
 * `_dynamic_server` - _Dynamic-Server.
 * `addr_mode` - Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
 
+* `class_id` - Traffic class ID.
 * `detect_mode` - The mode determining how to detect the server. Valid values: `active`, `passive`, `prefer-passive`.
 
 * `diffservcode` - Differentiated services code point (DSCP) in the IP header of the probe packet.
@@ -102,6 +105,7 @@ The `health_check` block supports:
 * `sla_id_redistribute` - Select the ID from the SLA sub-table. The selected SLA's priority value will be distributed into the routing table (0 - 32, default = 0).
 * `sla_pass_log_period` - Time interval in seconds that SLA pass log messages will be generated (0 - 3600, default = 0).
 * `source` - Source IP address used in the health-check packet to the server.
+* `source6` - Source IPv6 addressused in the health-check packet to server.
 * `system_dns` - Enable/disable system DNS as the probe server. Valid values: `disable`, `enable`.
 
 * `threshold_alert_jitter` - Alert threshold for jitter (ms, default = 0).
@@ -138,6 +142,7 @@ The `members` block supports:
 * `gateway6` - IPv6 gateway.
 * `ingress_spillover_threshold` - Ingress spillover threshold for this interface (0 - 16776000 kbit/s). When this traffic volume threshold is reached, new sessions spill over to other interfaces in the SD-WAN.
 * `interface` - Interface name.
+* `preferred_source` - Preferred source of route for this member.
 * `priority` - Priority of the interface (0 - 65535). Used for SD-WAN rules or priority rules.
 * `priority6` - Priority of the interface for IPv6 (1 - 65535, default = 1024). Used for SD-WAN rules or priority rules.
 * `seq_num` - Sequence number(1-512).
@@ -165,6 +170,8 @@ The `neighbor` block supports:
 The `service` block supports:
 
 * `addr_mode` - Address mode (IPv4 or IPv6). Valid values: `ipv4`, `ipv6`.
+
+* `agent_exclusive` - Set/unset the service as agent use exclusively. Valid values: `disable`, `enable`.
 
 * `bandwidth_weight` - Coefficient of reciprocal of available bidirectional bandwidth in the formula of custom-profile-1.
 * `default` - Enable/disable use of SD-WAN as default service. Valid values: `disable`, `enable`.
@@ -218,6 +225,10 @@ The `service` block supports:
 * `protocol` - Protocol number.
 * `quality_link` - Quality grade.
 * `role` - Service role to work with neighbor. Valid values: `primary`, `secondary`, `standalone`.
+
+* `shortcut` - Enable/disable shortcut for this service. Valid values: `disable`, `enable`.
+
+* `shortcut_stickiness` - Enable/disable shortcut-stickiness of ADVPN. Valid values: `disable`, `enable`.
 
 * `route_tag` - IPv4 route map route-tag.
 * `sla` - Sla. The structure of `sla` block is documented below.

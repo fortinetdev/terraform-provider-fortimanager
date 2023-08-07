@@ -106,6 +106,8 @@ The following arguments are supported:
 
 * `ips_filter` - IPS filter. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `ips_lock` - IPS locking none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
+
 * `ips_objects` - Ips objects configuration. none - No permission. read - Read permission. read-write - Read-write permission. Valid values: `none`, `read`, `read-write`.
 
 * `ipv6_trusthost1` - Admin user trusted host IPv6, default ::/0 for all.

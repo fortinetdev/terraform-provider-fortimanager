@@ -83,6 +83,10 @@ func resourceSystemAdminUser() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"cors_allow_origin": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"dashboard": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -755,6 +759,10 @@ func flattenSystemAdminUserCa(v interface{}, d *schema.ResourceData, pre string)
 }
 
 func flattenSystemAdminUserChangePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemAdminUserCorsAllowOrigin(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1526,6 +1534,16 @@ func refreshObjectSystemAdminUser(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading change_password: %v", err)
+		}
+	}
+
+	if err = d.Set("cors_allow_origin", flattenSystemAdminUserCorsAllowOrigin(o["cors-allow-origin"], d, "cors_allow_origin")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cors-allow-origin"], "SystemAdminUser-CorsAllowOrigin"); ok {
+			if err = d.Set("cors_allow_origin", vv); err != nil {
+				return fmt.Errorf("Error reading cors_allow_origin: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cors_allow_origin: %v", err)
 		}
 	}
 
@@ -2331,6 +2349,10 @@ func expandSystemAdminUserChangePassword(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandSystemAdminUserCorsAllowOrigin(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemAdminUserDashboard(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -2989,6 +3011,15 @@ func getObjectSystemAdminUser(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["change-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cors_allow_origin"); ok || d.HasChange("cors_allow_origin") {
+		t, err := expandSystemAdminUserCorsAllowOrigin(d, v, "cors_allow_origin")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cors-allow-origin"] = t
 		}
 	}
 
