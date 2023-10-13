@@ -358,6 +358,10 @@ func resourceObjectVpnmgrNode() *schema.Resource {
 					},
 				},
 			},
+			"protocol": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"public_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -963,6 +967,10 @@ func flattenObjectVpnmgrNodeProtectedSubnetAddr(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectVpnmgrNodeProtectedSubnetSeq(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnmgrNodeProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1674,6 +1682,16 @@ func refreshObjectObjectVpnmgrNode(d *schema.ResourceData, o map[string]interfac
 		}
 	}
 
+	if err = d.Set("protocol", flattenObjectVpnmgrNodeProtocol(o["protocol"], d, "protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["protocol"], "ObjectVpnmgrNode-Protocol"); ok {
+			if err = d.Set("protocol", vv); err != nil {
+				return fmt.Errorf("Error reading protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("public_ip", flattenObjectVpnmgrNodePublicIp(o["public-ip"], d, "public_ip")); err != nil {
 		if vv, ok := fortiAPIPatch(o["public-ip"], "ObjectVpnmgrNode-PublicIp"); ok {
 			if err = d.Set("public_ip", vv); err != nil {
@@ -2196,6 +2214,10 @@ func expandObjectVpnmgrNodeProtectedSubnetAddr(d *schema.ResourceData, v interfa
 }
 
 func expandObjectVpnmgrNodeProtectedSubnetSeq(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnmgrNodeProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2787,6 +2809,15 @@ func getObjectObjectVpnmgrNode(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["protected_subnet"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("protocol"); ok || d.HasChange("protocol") {
+		t, err := expandObjectVpnmgrNodeProtocol(d, v, "protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["protocol"] = t
 		}
 	}
 

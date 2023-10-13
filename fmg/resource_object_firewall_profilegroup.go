@@ -53,6 +53,10 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"casb_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"cifs_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -121,6 +125,10 @@ func resourceObjectFirewallProfileGroup() *schema.Resource {
 				Computed: true,
 			},
 			"videofilter_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"virtual_patch_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -262,6 +270,10 @@ func flattenObjectFirewallProfileGroupAvProfile(v interface{}, d *schema.Resourc
 	return v
 }
 
+func flattenObjectFirewallProfileGroupCasbProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -330,6 +342,10 @@ func flattenObjectFirewallProfileGroupVideofilterProfile(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectFirewallProfileGroupVirtualPatchProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallProfileGroupVoipProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -366,6 +382,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading av_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("casb_profile", flattenObjectFirewallProfileGroupCasbProfile(o["casb-profile"], d, "casb_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile"], "ObjectFirewallProfileGroup-CasbProfile"); ok {
+			if err = d.Set("casb_profile", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile: %v", err)
 		}
 	}
 
@@ -539,6 +565,16 @@ func refreshObjectObjectFirewallProfileGroup(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("virtual_patch_profile", flattenObjectFirewallProfileGroupVirtualPatchProfile(o["virtual-patch-profile"], d, "virtual_patch_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch-profile"], "ObjectFirewallProfileGroup-VirtualPatchProfile"); ok {
+			if err = d.Set("virtual_patch_profile", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("voip_profile", flattenObjectFirewallProfileGroupVoipProfile(o["voip-profile"], d, "voip_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["voip-profile"], "ObjectFirewallProfileGroup-VoipProfile"); ok {
 			if err = d.Set("voip_profile", vv); err != nil {
@@ -583,6 +619,10 @@ func expandObjectFirewallProfileGroupApplicationList(d *schema.ResourceData, v i
 }
 
 func expandObjectFirewallProfileGroupAvProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallProfileGroupCasbProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -654,6 +694,10 @@ func expandObjectFirewallProfileGroupVideofilterProfile(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectFirewallProfileGroupVirtualPatchProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallProfileGroupVoipProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -684,6 +728,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["av-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("casb_profile"); ok || d.HasChange("casb_profile") {
+		t, err := expandObjectFirewallProfileGroupCasbProfile(d, v, "casb_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile"] = t
 		}
 	}
 
@@ -837,6 +890,15 @@ func getObjectObjectFirewallProfileGroup(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["videofilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch_profile"); ok || d.HasChange("virtual_patch_profile") {
+		t, err := expandObjectFirewallProfileGroupVirtualPatchProfile(d, v, "virtual_patch_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch-profile"] = t
 		}
 	}
 

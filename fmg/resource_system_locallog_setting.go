@@ -54,6 +54,11 @@ func resourceSystemLocallogSetting() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"no_log_detection_threshold": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -152,6 +157,10 @@ func flattenSystemLocallogSettingLogIntervalGbdayExceeded(v interface{}, d *sche
 	return v
 }
 
+func flattenSystemLocallogSettingNoLogDetectionThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemLocallogSetting(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -205,6 +214,16 @@ func refreshObjectSystemLocallogSetting(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("no_log_detection_threshold", flattenSystemLocallogSettingNoLogDetectionThreshold(o["no-log-detection-threshold"], d, "no_log_detection_threshold")); err != nil {
+		if vv, ok := fortiAPIPatch(o["no-log-detection-threshold"], "SystemLocallogSetting-NoLogDetectionThreshold"); ok {
+			if err = d.Set("no_log_detection_threshold", vv); err != nil {
+				return fmt.Errorf("Error reading no_log_detection_threshold: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading no_log_detection_threshold: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -231,6 +250,10 @@ func expandSystemLocallogSettingLogIntervalDiskFull(d *schema.ResourceData, v in
 }
 
 func expandSystemLocallogSettingLogIntervalGbdayExceeded(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLocallogSettingNoLogDetectionThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -279,6 +302,15 @@ func getObjectSystemLocallogSetting(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["log-interval-gbday-exceeded"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("no_log_detection_threshold"); ok || d.HasChange("no_log_detection_threshold") {
+		t, err := expandSystemLocallogSettingNoLogDetectionThreshold(d, v, "no_log_detection_threshold")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["no-log-detection-threshold"] = t
 		}
 	}
 

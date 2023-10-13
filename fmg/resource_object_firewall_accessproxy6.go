@@ -61,6 +61,16 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"h2_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"h3_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -107,6 +117,56 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"quic": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Computed: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ack_delay_exponent": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"active_connection_id_limit": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"active_migration": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"grease_quic_bit": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"max_ack_delay": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"max_datagram_frame_size": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"max_idle_timeout": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"max_udp_payload_size": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
 						"realservers": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
@@ -128,6 +188,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"external_auth": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"health_check": &schema.Schema{
 										Type:     schema.TypeString,
@@ -189,10 +250,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"translate_host": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tunnel_encryption": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
@@ -264,6 +327,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"ssl_renegotiation": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_vpn_web_portal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -277,6 +341,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"url_map_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"virtual_host": &schema.Schema{
 							Type:     schema.TypeString,
@@ -296,6 +361,16 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"h2_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"h3_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -342,6 +417,56 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"quic": &schema.Schema{
+							Type:     schema.TypeList,
+							Optional: true,
+							MaxItems: 1,
+							Computed: true,
+							Elem: &schema.Resource{
+								Schema: map[string]*schema.Schema{
+									"ack_delay_exponent": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"active_connection_id_limit": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"active_migration": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"grease_quic_bit": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
+									},
+									"max_ack_delay": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"max_datagram_frame_size": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"max_idle_timeout": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+									"max_udp_payload_size": &schema.Schema{
+										Type:     schema.TypeInt,
+										Optional: true,
+										Computed: true,
+									},
+								},
+							},
+						},
 						"realservers": &schema.Schema{
 							Type:     schema.TypeList,
 							Optional: true,
@@ -363,6 +488,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"external_auth": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"health_check": &schema.Schema{
 										Type:     schema.TypeString,
@@ -424,10 +550,12 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 									"translate_host": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"tunnel_encryption": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"type": &schema.Schema{
 										Type:     schema.TypeString,
@@ -499,6 +627,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 						"ssl_renegotiation": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ssl_vpn_web_portal": &schema.Schema{
 							Type:     schema.TypeString,
@@ -547,6 +676,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 			"http_supported_max_version": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"log_blocked_traffic": &schema.Schema{
 				Type:     schema.TypeString,
@@ -561,6 +691,11 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 			"svr_pool_multiplex": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
+			},
+			"svr_pool_server_max_concurrent_request": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
 			},
 			"svr_pool_server_max_request": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -569,6 +704,7 @@ func resourceObjectFirewallAccessProxy6() *schema.Resource {
 			"svr_pool_ttl": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"user_agent_detect": &schema.Schema{
 				Type:     schema.TypeString,
@@ -731,6 +867,18 @@ func flattenObjectFirewallAccessProxy6ApiGateway(v interface{}, d *schema.Resour
 			tmp["application"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway-Application")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := i["h2-support"]; ok {
+			v := flattenObjectFirewallAccessProxy6ApiGatewayH2Support(i["h2-support"], d, pre_append)
+			tmp["h2_support"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway-H2Support")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := i["h3-support"]; ok {
+			v := flattenObjectFirewallAccessProxy6ApiGatewayH3Support(i["h3-support"], d, pre_append)
+			tmp["h3_support"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway-H3Support")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := i["http-cookie-age"]; ok {
 			v := flattenObjectFirewallAccessProxy6ApiGatewayHttpCookieAge(i["http-cookie-age"], d, pre_append)
@@ -789,6 +937,12 @@ func flattenObjectFirewallAccessProxy6ApiGateway(v interface{}, d *schema.Resour
 		if _, ok := i["persistence"]; ok {
 			v := flattenObjectFirewallAccessProxy6ApiGatewayPersistence(i["persistence"], d, pre_append)
 			tmp["persistence"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway-Persistence")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "quic"
+		if _, ok := i["quic"]; ok {
+			v := flattenObjectFirewallAccessProxy6ApiGatewayQuic(i["quic"], d, pre_append)
+			tmp["quic"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway-Quic")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
@@ -887,6 +1041,14 @@ func flattenObjectFirewallAccessProxy6ApiGatewayApplication(v interface{}, d *sc
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallAccessProxy6ApiGatewayH2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayH3Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAccessProxy6ApiGatewayHttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -924,6 +1086,91 @@ func flattenObjectFirewallAccessProxy6ApiGatewayLdbMethod(v interface{}, d *sche
 }
 
 func flattenObjectFirewallAccessProxy6ApiGatewayPersistence(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuic(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := i["ack-delay-exponent"]; ok {
+		result["ack_delay_exponent"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicAckDelayExponent(i["ack-delay-exponent"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := i["active-connection-id-limit"]; ok {
+		result["active_connection_id_limit"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicActiveConnectionIdLimit(i["active-connection-id-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := i["active-migration"]; ok {
+		result["active_migration"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicActiveMigration(i["active-migration"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := i["grease-quic-bit"]; ok {
+		result["grease_quic_bit"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicGreaseQuicBit(i["grease-quic-bit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := i["max-ack-delay"]; ok {
+		result["max_ack_delay"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxAckDelay(i["max-ack-delay"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := i["max-datagram-frame-size"]; ok {
+		result["max_datagram_frame_size"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxDatagramFrameSize(i["max-datagram-frame-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := i["max-idle-timeout"]; ok {
+		result["max_idle_timeout"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxIdleTimeout(i["max-idle-timeout"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := i["max-udp-payload-size"]; ok {
+		result["max_udp_payload_size"] = flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxUdpPayloadSize(i["max-udp-payload-size"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicAckDelayExponent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicActiveConnectionIdLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicActiveMigration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicGreaseQuicBit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxAckDelay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxDatagramFrameSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxIdleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGatewayQuicMaxUdpPayloadSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1284,6 +1531,18 @@ func flattenObjectFirewallAccessProxy6ApiGateway6(v interface{}, d *schema.Resou
 			tmp["application"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway6-Application")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := i["h2-support"]; ok {
+			v := flattenObjectFirewallAccessProxy6ApiGateway6H2Support(i["h2-support"], d, pre_append)
+			tmp["h2_support"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway6-H2Support")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := i["h3-support"]; ok {
+			v := flattenObjectFirewallAccessProxy6ApiGateway6H3Support(i["h3-support"], d, pre_append)
+			tmp["h3_support"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway6-H3Support")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := i["http-cookie-age"]; ok {
 			v := flattenObjectFirewallAccessProxy6ApiGateway6HttpCookieAge(i["http-cookie-age"], d, pre_append)
@@ -1342,6 +1601,12 @@ func flattenObjectFirewallAccessProxy6ApiGateway6(v interface{}, d *schema.Resou
 		if _, ok := i["persistence"]; ok {
 			v := flattenObjectFirewallAccessProxy6ApiGateway6Persistence(i["persistence"], d, pre_append)
 			tmp["persistence"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway6-Persistence")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "quic"
+		if _, ok := i["quic"]; ok {
+			v := flattenObjectFirewallAccessProxy6ApiGateway6Quic(i["quic"], d, pre_append)
+			tmp["quic"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy6-ApiGateway6-Quic")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
@@ -1440,6 +1705,14 @@ func flattenObjectFirewallAccessProxy6ApiGateway6Application(v interface{}, d *s
 	return flattenStringList(v)
 }
 
+func flattenObjectFirewallAccessProxy6ApiGateway6H2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6H3Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAccessProxy6ApiGateway6HttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1477,6 +1750,91 @@ func flattenObjectFirewallAccessProxy6ApiGateway6LdbMethod(v interface{}, d *sch
 }
 
 func flattenObjectFirewallAccessProxy6ApiGateway6Persistence(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6Quic(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := i["ack-delay-exponent"]; ok {
+		result["ack_delay_exponent"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicAckDelayExponent(i["ack-delay-exponent"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := i["active-connection-id-limit"]; ok {
+		result["active_connection_id_limit"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicActiveConnectionIdLimit(i["active-connection-id-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := i["active-migration"]; ok {
+		result["active_migration"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicActiveMigration(i["active-migration"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := i["grease-quic-bit"]; ok {
+		result["grease_quic_bit"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicGreaseQuicBit(i["grease-quic-bit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := i["max-ack-delay"]; ok {
+		result["max_ack_delay"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxAckDelay(i["max-ack-delay"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := i["max-datagram-frame-size"]; ok {
+		result["max_datagram_frame_size"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxDatagramFrameSize(i["max-datagram-frame-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := i["max-idle-timeout"]; ok {
+		result["max_idle_timeout"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxIdleTimeout(i["max-idle-timeout"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := i["max-udp-payload-size"]; ok {
+		result["max_udp_payload_size"] = flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxUdpPayloadSize(i["max-udp-payload-size"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicAckDelayExponent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicActiveConnectionIdLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicActiveMigration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicGreaseQuicBit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxAckDelay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxDatagramFrameSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxIdleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallAccessProxy6ApiGateway6QuicMaxUdpPayloadSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1848,6 +2206,10 @@ func flattenObjectFirewallAccessProxy6SvrPoolMultiplex(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFirewallAccessProxy6SvrPoolServerMaxConcurrentRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallAccessProxy6SvrPoolServerMaxRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2023,6 +2385,16 @@ func refreshObjectObjectFirewallAccessProxy6(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("svr_pool_server_max_concurrent_request", flattenObjectFirewallAccessProxy6SvrPoolServerMaxConcurrentRequest(o["svr-pool-server-max-concurrent-request"], d, "svr_pool_server_max_concurrent_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["svr-pool-server-max-concurrent-request"], "ObjectFirewallAccessProxy6-SvrPoolServerMaxConcurrentRequest"); ok {
+			if err = d.Set("svr_pool_server_max_concurrent_request", vv); err != nil {
+				return fmt.Errorf("Error reading svr_pool_server_max_concurrent_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading svr_pool_server_max_concurrent_request: %v", err)
+		}
+	}
+
 	if err = d.Set("svr_pool_server_max_request", flattenObjectFirewallAccessProxy6SvrPoolServerMaxRequest(o["svr-pool-server-max-request"], d, "svr_pool_server_max_request")); err != nil {
 		if vv, ok := fortiAPIPatch(o["svr-pool-server-max-request"], "ObjectFirewallAccessProxy6-SvrPoolServerMaxRequest"); ok {
 			if err = d.Set("svr_pool_server_max_request", vv); err != nil {
@@ -2095,6 +2467,16 @@ func expandObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData, v interf
 			tmp["application"], _ = expandObjectFirewallAccessProxy6ApiGatewayApplication(d, i["application"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h2-support"], _ = expandObjectFirewallAccessProxy6ApiGatewayH2Support(d, i["h2_support"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h3-support"], _ = expandObjectFirewallAccessProxy6ApiGatewayH3Support(d, i["h3_support"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-age"], _ = expandObjectFirewallAccessProxy6ApiGatewayHttpCookieAge(d, i["http_cookie_age"], pre_append)
@@ -2143,6 +2525,16 @@ func expandObjectFirewallAccessProxy6ApiGateway(d *schema.ResourceData, v interf
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "persistence"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["persistence"], _ = expandObjectFirewallAccessProxy6ApiGatewayPersistence(d, i["persistence"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "quic"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectFirewallAccessProxy6ApiGatewayQuic(d, i["quic"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["quic"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
@@ -2237,6 +2629,14 @@ func expandObjectFirewallAccessProxy6ApiGatewayApplication(d *schema.ResourceDat
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallAccessProxy6ApiGatewayH2Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayH3Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAccessProxy6ApiGatewayHttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2274,6 +2674,84 @@ func expandObjectFirewallAccessProxy6ApiGatewayLdbMethod(d *schema.ResourceData,
 }
 
 func expandObjectFirewallAccessProxy6ApiGatewayPersistence(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["ack-delay-exponent"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicAckDelayExponent(d, i["ack_delay_exponent"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-connection-id-limit"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicActiveConnectionIdLimit(d, i["active_connection_id_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-migration"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicActiveMigration(d, i["active_migration"], pre_append)
+	}
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["grease-quic-bit"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicGreaseQuicBit(d, i["grease_quic_bit"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-ack-delay"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicMaxAckDelay(d, i["max_ack_delay"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-datagram-frame-size"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicMaxDatagramFrameSize(d, i["max_datagram_frame_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-idle-timeout"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicMaxIdleTimeout(d, i["max_idle_timeout"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-udp-payload-size"], _ = expandObjectFirewallAccessProxy6ApiGatewayQuicMaxUdpPayloadSize(d, i["max_udp_payload_size"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicAckDelayExponent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicActiveConnectionIdLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicActiveMigration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicGreaseQuicBit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicMaxAckDelay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicMaxDatagramFrameSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicMaxIdleTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGatewayQuicMaxUdpPayloadSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2595,6 +3073,16 @@ func expandObjectFirewallAccessProxy6ApiGateway6(d *schema.ResourceData, v inter
 			tmp["application"], _ = expandObjectFirewallAccessProxy6ApiGateway6Application(d, i["application"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h2-support"], _ = expandObjectFirewallAccessProxy6ApiGateway6H2Support(d, i["h2_support"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h3-support"], _ = expandObjectFirewallAccessProxy6ApiGateway6H3Support(d, i["h3_support"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-age"], _ = expandObjectFirewallAccessProxy6ApiGateway6HttpCookieAge(d, i["http_cookie_age"], pre_append)
@@ -2643,6 +3131,16 @@ func expandObjectFirewallAccessProxy6ApiGateway6(d *schema.ResourceData, v inter
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "persistence"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["persistence"], _ = expandObjectFirewallAccessProxy6ApiGateway6Persistence(d, i["persistence"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "quic"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			t, err := expandObjectFirewallAccessProxy6ApiGateway6Quic(d, i["quic"], pre_append)
+			if err != nil {
+				return result, err
+			} else if t != nil {
+				tmp["quic"] = t
+			}
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "realservers"
@@ -2737,6 +3235,14 @@ func expandObjectFirewallAccessProxy6ApiGateway6Application(d *schema.ResourceDa
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFirewallAccessProxy6ApiGateway6H2Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6H3Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAccessProxy6ApiGateway6HttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2774,6 +3280,84 @@ func expandObjectFirewallAccessProxy6ApiGateway6LdbMethod(d *schema.ResourceData
 }
 
 func expandObjectFirewallAccessProxy6ApiGateway6Persistence(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6Quic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["ack-delay-exponent"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicAckDelayExponent(d, i["ack_delay_exponent"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-connection-id-limit"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicActiveConnectionIdLimit(d, i["active_connection_id_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-migration"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicActiveMigration(d, i["active_migration"], pre_append)
+	}
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["grease-quic-bit"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicGreaseQuicBit(d, i["grease_quic_bit"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-ack-delay"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicMaxAckDelay(d, i["max_ack_delay"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-datagram-frame-size"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicMaxDatagramFrameSize(d, i["max_datagram_frame_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-idle-timeout"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicMaxIdleTimeout(d, i["max_idle_timeout"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-udp-payload-size"], _ = expandObjectFirewallAccessProxy6ApiGateway6QuicMaxUdpPayloadSize(d, i["max_udp_payload_size"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicAckDelayExponent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicActiveConnectionIdLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicActiveMigration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicGreaseQuicBit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicMaxAckDelay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicMaxDatagramFrameSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicMaxIdleTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallAccessProxy6ApiGateway6QuicMaxUdpPayloadSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3112,6 +3696,10 @@ func expandObjectFirewallAccessProxy6SvrPoolMultiplex(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectFirewallAccessProxy6SvrPoolServerMaxConcurrentRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallAccessProxy6SvrPoolServerMaxRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3236,6 +3824,15 @@ func getObjectObjectFirewallAccessProxy6(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["svr-pool-multiplex"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("svr_pool_server_max_concurrent_request"); ok || d.HasChange("svr_pool_server_max_concurrent_request") {
+		t, err := expandObjectFirewallAccessProxy6SvrPoolServerMaxConcurrentRequest(d, v, "svr_pool_server_max_concurrent_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["svr-pool-server-max-concurrent-request"] = t
 		}
 	}
 

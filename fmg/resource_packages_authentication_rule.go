@@ -45,6 +45,11 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -57,6 +62,16 @@ func resourcePackagesAuthenticationRule() *schema.Resource {
 			"comments": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"cors_depth": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"cors_stateful": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dstaddr": &schema.Schema{
 				Type:     schema.TypeList,
@@ -140,7 +155,9 @@ func resourcePackagesAuthenticationRuleCreate(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesAuthenticationRule(d)
@@ -172,7 +189,9 @@ func resourcePackagesAuthenticationRuleUpdate(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesAuthenticationRule(d)
@@ -206,7 +225,9 @@ func resourcePackagesAuthenticationRuleDelete(d *schema.ResourceData, m interfac
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesAuthenticationRule(mkey, paradict)
@@ -233,13 +254,21 @@ func resourcePackagesAuthenticationRuleRead(d *schema.ResourceData, m interface{
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesAuthenticationRule(mkey, paradict)
@@ -265,6 +294,14 @@ func flattenPackagesAuthenticationRuleActiveAuthMethod(v interface{}, d *schema.
 }
 
 func flattenPackagesAuthenticationRuleComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationRuleCorsDepth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesAuthenticationRuleCorsStateful(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -344,6 +381,26 @@ func refreshObjectPackagesAuthenticationRule(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading comments: %v", err)
+		}
+	}
+
+	if err = d.Set("cors_depth", flattenPackagesAuthenticationRuleCorsDepth(o["cors-depth"], d, "cors_depth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cors-depth"], "PackagesAuthenticationRule-CorsDepth"); ok {
+			if err = d.Set("cors_depth", vv); err != nil {
+				return fmt.Errorf("Error reading cors_depth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cors_depth: %v", err)
+		}
+	}
+
+	if err = d.Set("cors_stateful", flattenPackagesAuthenticationRuleCorsStateful(o["cors-stateful"], d, "cors_stateful")); err != nil {
+		if vv, ok := fortiAPIPatch(o["cors-stateful"], "PackagesAuthenticationRule-CorsStateful"); ok {
+			if err = d.Set("cors_stateful", vv); err != nil {
+				return fmt.Errorf("Error reading cors_stateful: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading cors_stateful: %v", err)
 		}
 	}
 
@@ -494,6 +551,14 @@ func expandPackagesAuthenticationRuleComments(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandPackagesAuthenticationRuleCorsDepth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesAuthenticationRuleCorsStateful(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesAuthenticationRuleDstaddr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.([]interface{})), nil
 }
@@ -564,6 +629,24 @@ func getObjectPackagesAuthenticationRule(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["comments"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cors_depth"); ok || d.HasChange("cors_depth") {
+		t, err := expandPackagesAuthenticationRuleCorsDepth(d, v, "cors_depth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cors-depth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("cors_stateful"); ok || d.HasChange("cors_stateful") {
+		t, err := expandPackagesAuthenticationRuleCorsStateful(d, v, "cors_stateful")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["cors-stateful"] = t
 		}
 	}
 

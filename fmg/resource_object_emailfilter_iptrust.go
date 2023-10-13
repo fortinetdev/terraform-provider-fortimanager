@@ -65,6 +65,7 @@ func resourceObjectEmailfilterIptrust() *schema.Resource {
 						"ip4_subnet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ip6_subnet": &schema.Schema{
 							Type:     schema.TypeString,
@@ -73,6 +74,7 @@ func resourceObjectEmailfilterIptrust() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -279,7 +281,7 @@ func flattenObjectEmailfilterIptrustEntriesId(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectEmailfilterIptrustEntriesIp4Subnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenObjectEmailfilterIptrustEntriesIp6Subnet(v interface{}, d *schema.ResourceData, pre string) interface{} {

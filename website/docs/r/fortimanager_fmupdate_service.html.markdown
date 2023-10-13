@@ -35,6 +35,10 @@ The following arguments are supported:
 
 * `query_iot` - Enable/disable file query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `query_iot_collection` - Enable/disable IoT Collection Query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
+* `query_iot_vulnerability` - Enable/disable IoT Vulnerability Query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `query_outbreak_prevention` - Enable/disable  outbreak prevention query service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `query_webfilter` - Enable/disable Web Filter service (default = disable). disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.

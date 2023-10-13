@@ -73,6 +73,10 @@ The following arguments are supported:
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
 * `gratuitous_arp_interval` - Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+* `h2_support` - Enable/disable HTTP2 support (default = enable). Valid values: `disable`, `enable`.
+
+* `h3_support` - Enable/disable HTTP3/QUIC support (default = disable). Valid values: `disable`, `enable`.
+
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -86,6 +90,7 @@ The following arguments are supported:
 * `http_ip_header_name` - For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
 * `http_multiplex` - Enable/disable HTTP multiplexing. Valid values: `disable`, `enable`.
 
+* `http_multiplex_max_concurrent_request` - Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
 * `http_multiplex_max_request` - Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
 * `http_multiplex_ttl` - Time-to-live for idle connections to servers.
 * `http_redirect` - Enable/disable redirection of HTTP to HTTPS Valid values: `disable`, `enable`.
@@ -121,6 +126,7 @@ The following arguments are supported:
 
 * `protocol` - Protocol to use when forwarding packets. Valid values: `tcp`, `udp`, `sctp`, `icmp`.
 
+* `quic` - Quic. The structure of `quic` block is documented below.
 * `realservers` - Realservers. The structure of `realservers` block is documented below.
 * `server_type` - Protocol to be load balanced by the virtual server (also called the server load balance virtual IP). Valid values: `http`, `https`, `ssl`, `tcp`, `udp`, `ip`, `imaps`, `pop3s`, `smtps`.
 
@@ -210,6 +216,10 @@ The `dynamic_mapping` block supports:
 * `extip` - IP address or address range on the external interface that you want to map to an address or address range on the destination network.
 * `extport` - Incoming port number range that you want to map to a port number range on the destination network.
 * `gratuitous_arp_interval` - Enable to have the VIP send gratuitous ARPs. 0=disabled. Set from 5 up to 8640000 seconds to enable.
+* `h2_support` - Enable/disable HTTP2 support (default = enable). Valid values: `disable`, `enable`.
+
+* `h3_support` - Enable/disable HTTP3/QUIC support (default = disable). Valid values: `disable`, `enable`.
+
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 seconds. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -223,6 +233,7 @@ The `dynamic_mapping` block supports:
 * `http_ip_header_name` - For HTTP multiplexing, enter a custom HTTPS header name. The original client IP address is added to this header. If empty, X-Forwarded-For is used.
 * `http_multiplex` - Enable/disable HTTP multiplexing. Valid values: `disable`, `enable`.
 
+* `http_multiplex_max_concurrent_request` - Maximum number of concurrent requests that a multiplex server can handle (default = unlimited).
 * `http_multiplex_max_request` - Maximum number of requests that a multiplex server can handle before disconnecting sessions (default = unlimited).
 * `http_multiplex_ttl` - Time-to-live for idle connections to servers.
 * `http_redirect` - Enable/disable redirection of HTTP to HTTPS Valid values: `disable`, `enable`.
@@ -366,6 +377,19 @@ The `ssl_cipher_suites` block supports:
 * `priority` - SSL/TLS cipher suites priority.
 * `versions` - SSL/TLS versions that the cipher suite can be used with. Valid values: `ssl-3.0`, `tls-1.0`, `tls-1.1`, `tls-1.2`, `tls-1.3`.
 
+
+The `quic` block supports:
+
+* `ack_delay_exponent` - ACK delay exponent (1 - 20, default = 3).
+* `active_connection_id_limit` - Active connection ID limit (1 - 8, default = 2).
+* `active_migration` - Enable/disable active migration (default = disable). Valid values: `disable`, `enable`.
+
+* `grease_quic_bit` - Enable/disable grease QUIC bit (default = enable). Valid values: `disable`, `enable`.
+
+* `max_ack_delay` - Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+* `max_datagram_frame_size` - Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+* `max_idle_timeout` - Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+* `max_udp_payload_size` - Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
 
 The `realservers` block supports:
 

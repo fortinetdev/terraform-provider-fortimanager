@@ -53,6 +53,7 @@ func resourceObjectWirelessControllerHotspot20H2QpOsuProviderNai() *schema.Resou
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"osu_nai": &schema.Schema{
 							Type:     schema.TypeString,

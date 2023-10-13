@@ -34,6 +34,11 @@ func resourceSystemLocallogMemoryFilter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"controller": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"devcfg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -321,6 +326,10 @@ func flattenSystemLocallogMemoryFilterAid(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenSystemLocallogMemoryFilterController(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLocallogMemoryFilterDevcfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -495,6 +504,16 @@ func refreshObjectSystemLocallogMemoryFilter(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading aid: %v", err)
+		}
+	}
+
+	if err = d.Set("controller", flattenSystemLocallogMemoryFilterController(o["controller"], d, "controller")); err != nil {
+		if vv, ok := fortiAPIPatch(o["controller"], "SystemLocallogMemoryFilter-Controller"); ok {
+			if err = d.Set("controller", vv); err != nil {
+				return fmt.Errorf("Error reading controller: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading controller: %v", err)
 		}
 	}
 
@@ -921,6 +940,10 @@ func expandSystemLocallogMemoryFilterAid(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandSystemLocallogMemoryFilterController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLocallogMemoryFilterDevcfg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1094,6 +1117,15 @@ func getObjectSystemLocallogMemoryFilter(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["aid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("controller"); ok || d.HasChange("controller") {
+		t, err := expandSystemLocallogMemoryFilterController(d, v, "controller")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["controller"] = t
 		}
 	}
 

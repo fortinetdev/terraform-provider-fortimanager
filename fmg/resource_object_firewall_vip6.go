@@ -702,6 +702,7 @@ func resourceObjectFirewallVip6() *schema.Resource {
 						"translate_host": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"weight": &schema.Schema{
 							Type:     schema.TypeInt,

@@ -58,6 +58,7 @@ func resourceObjectSystemSdnConnector() *schema.Resource {
 			"alt_resource_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"api_key": &schema.Schema{
 				Type:      schema.TypeSet,

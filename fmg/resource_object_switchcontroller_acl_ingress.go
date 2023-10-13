@@ -55,10 +55,12 @@ func resourceObjectSwitchControllerAclIngress() *schema.Resource {
 						"count": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"drop": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -73,18 +75,22 @@ func resourceObjectSwitchControllerAclIngress() *schema.Resource {
 						"dst_ip_prefix": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dst_mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"src_ip_prefix": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"src_mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vlan": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -300,7 +306,7 @@ func flattenObjectSwitchControllerAclIngressClassifier(v interface{}, d *schema.
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierDstIpPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierDstMac(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -308,7 +314,7 @@ func flattenObjectSwitchControllerAclIngressClassifierDstMac(v interface{}, d *s
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierSrcIpPrefix(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenObjectSwitchControllerAclIngressClassifierSrcMac(v interface{}, d *schema.ResourceData, pre string) interface{} {

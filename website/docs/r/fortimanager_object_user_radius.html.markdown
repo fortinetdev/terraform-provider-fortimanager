@@ -54,6 +54,10 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `account_key_cert_field` - Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+
+* `account_key_processing` - Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+
 * `accounting_server` - Accounting-Server. The structure of `accounting_server` block is documented below.
 * `acct_all_servers` - Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `disable`, `enable`.
 
@@ -63,6 +67,8 @@ The following arguments are supported:
 * `auth_type` - Authentication methods/protocols permitted for this RADIUS server. Valid values: `pap`, `chap`, `ms_chap`, `ms_chap_v2`, `auto`.
 
 * `ca_cert` - CA of server to trust under TLS.
+* `call_station_id_type` - Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication. Valid values: `legacy`, `IP`, `MAC`.
+
 * `class` - Class attribute name(s).
 * `client_cert` - Client certificate to use under TLS.
 * `delimiter` - Configure delimiter to be used for separating profile group names in the SSO attribute (default = plus character "+"). Valid values: `plus`, `comma`.
@@ -158,6 +164,10 @@ The `accounting_server` block supports:
 The `dynamic_mapping` block supports:
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `account_key_cert_field` - Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+
+* `account_key_processing` - Account key processing operation. The FortiGate will keep either the whole domain or strip the domain from the subject identity. Valid values: `same`, `strip`.
+
 * `accounting_server` - Accounting-Server. The structure of `accounting_server` block is documented below.
 * `acct_all_servers` - Enable/disable sending of accounting messages to all configured servers (default = disable). Valid values: `disable`, `enable`.
 
@@ -167,6 +177,8 @@ The `dynamic_mapping` block supports:
 * `auth_type` - Authentication methods/protocols permitted for this RADIUS server. Valid values: `pap`, `chap`, `ms_chap`, `ms_chap_v2`, `auto`.
 
 * `ca_cert` - CA of server to trust under TLS.
+* `call_station_id_type` - Calling & Called station identifier type configuration (default = legacy), this option is not available for 802.1x authentication. Valid values: `legacy`, `IP`, `MAC`.
+
 * `class` - Class attribute name(s).
 * `client_cert` - Client certificate to use under TLS.
 * `delimiter` - Delimiter. Valid values: `plus`, `comma`.

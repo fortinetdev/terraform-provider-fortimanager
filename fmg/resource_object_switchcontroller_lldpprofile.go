@@ -62,6 +62,33 @@ func resourceObjectSwitchControllerLldpProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"auto_isl_auth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl_auth_encrypt": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl_auth_identity": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"auto_isl_auth_macsec_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"auto_isl_auth_reauth": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"auto_isl_auth_user": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"auto_isl_hello_timer": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -305,6 +332,30 @@ func flattenObjectSwitchControllerLldpProfile8023Tlvs(v interface{}, d *schema.R
 }
 
 func flattenObjectSwitchControllerLldpProfileAutoIsl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslAuth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslAuthEncrypt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslAuthIdentity(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslAuthMacsecProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslAuthReauth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSwitchControllerLldpProfileAutoIslAuthUser(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -594,6 +645,66 @@ func refreshObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData, o ma
 		}
 	}
 
+	if err = d.Set("auto_isl_auth", flattenObjectSwitchControllerLldpProfileAutoIslAuth(o["auto-isl-auth"], d, "auto_isl_auth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-auth"], "ObjectSwitchControllerLldpProfile-AutoIslAuth"); ok {
+			if err = d.Set("auto_isl_auth", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_auth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_auth: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_auth_encrypt", flattenObjectSwitchControllerLldpProfileAutoIslAuthEncrypt(o["auto-isl-auth-encrypt"], d, "auto_isl_auth_encrypt")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-auth-encrypt"], "ObjectSwitchControllerLldpProfile-AutoIslAuthEncrypt"); ok {
+			if err = d.Set("auto_isl_auth_encrypt", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_auth_encrypt: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_auth_encrypt: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_auth_identity", flattenObjectSwitchControllerLldpProfileAutoIslAuthIdentity(o["auto-isl-auth-identity"], d, "auto_isl_auth_identity")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-auth-identity"], "ObjectSwitchControllerLldpProfile-AutoIslAuthIdentity"); ok {
+			if err = d.Set("auto_isl_auth_identity", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_auth_identity: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_auth_identity: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_auth_macsec_profile", flattenObjectSwitchControllerLldpProfileAutoIslAuthMacsecProfile(o["auto-isl-auth-macsec-profile"], d, "auto_isl_auth_macsec_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-auth-macsec-profile"], "ObjectSwitchControllerLldpProfile-AutoIslAuthMacsecProfile"); ok {
+			if err = d.Set("auto_isl_auth_macsec_profile", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_auth_macsec_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_auth_macsec_profile: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_auth_reauth", flattenObjectSwitchControllerLldpProfileAutoIslAuthReauth(o["auto-isl-auth-reauth"], d, "auto_isl_auth_reauth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-auth-reauth"], "ObjectSwitchControllerLldpProfile-AutoIslAuthReauth"); ok {
+			if err = d.Set("auto_isl_auth_reauth", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_auth_reauth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_auth_reauth: %v", err)
+		}
+	}
+
+	if err = d.Set("auto_isl_auth_user", flattenObjectSwitchControllerLldpProfileAutoIslAuthUser(o["auto-isl-auth-user"], d, "auto_isl_auth_user")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auto-isl-auth-user"], "ObjectSwitchControllerLldpProfile-AutoIslAuthUser"); ok {
+			if err = d.Set("auto_isl_auth_user", vv); err != nil {
+				return fmt.Errorf("Error reading auto_isl_auth_user: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auto_isl_auth_user: %v", err)
+		}
+	}
+
 	if err = d.Set("auto_isl_hello_timer", flattenObjectSwitchControllerLldpProfileAutoIslHelloTimer(o["auto-isl-hello-timer"], d, "auto_isl_hello_timer")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auto-isl-hello-timer"], "ObjectSwitchControllerLldpProfile-AutoIslHelloTimer"); ok {
 			if err = d.Set("auto_isl_hello_timer", vv); err != nil {
@@ -744,6 +855,30 @@ func expandObjectSwitchControllerLldpProfile8023Tlvs(d *schema.ResourceData, v i
 }
 
 func expandObjectSwitchControllerLldpProfileAutoIsl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslAuth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslAuthEncrypt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslAuthIdentity(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslAuthMacsecProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslAuthReauth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSwitchControllerLldpProfileAutoIslAuthUser(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -990,6 +1125,60 @@ func getObjectObjectSwitchControllerLldpProfile(d *schema.ResourceData) (*map[st
 			return &obj, err
 		} else if t != nil {
 			obj["auto-isl"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_auth"); ok || d.HasChange("auto_isl_auth") {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslAuth(d, v, "auto_isl_auth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-auth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_auth_encrypt"); ok || d.HasChange("auto_isl_auth_encrypt") {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslAuthEncrypt(d, v, "auto_isl_auth_encrypt")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-auth-encrypt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_auth_identity"); ok || d.HasChange("auto_isl_auth_identity") {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslAuthIdentity(d, v, "auto_isl_auth_identity")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-auth-identity"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_auth_macsec_profile"); ok || d.HasChange("auto_isl_auth_macsec_profile") {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslAuthMacsecProfile(d, v, "auto_isl_auth_macsec_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-auth-macsec-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_auth_reauth"); ok || d.HasChange("auto_isl_auth_reauth") {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslAuthReauth(d, v, "auto_isl_auth_reauth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-auth-reauth"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("auto_isl_auth_user"); ok || d.HasChange("auto_isl_auth_user") {
+		t, err := expandObjectSwitchControllerLldpProfileAutoIslAuthUser(d, v, "auto_isl_auth_user")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auto-isl-auth-user"] = t
 		}
 	}
 

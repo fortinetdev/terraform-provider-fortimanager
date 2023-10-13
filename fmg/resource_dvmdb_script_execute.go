@@ -129,15 +129,15 @@ func resourceDvmdbScriptExecuteRead(d *schema.ResourceData, m interface{}) error
 	return nil
 }
 
-func flattenDvmdbScriptExecuteAdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenDvmdbScriptExecuteAdom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenDvmdbScriptExecutePackage(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenDvmdbScriptExecutePackage2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenDvmdbScriptExecuteScope(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+func flattenDvmdbScriptExecuteScope2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
 	}
@@ -158,13 +158,13 @@ func flattenDvmdbScriptExecuteScope(v interface{}, d *schema.ResourceData, pre s
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := i["name"]; ok {
-			v := flattenDvmdbScriptExecuteScopeName(i["name"], d, pre_append)
+			v := flattenDvmdbScriptExecuteScopeName2edl(i["name"], d, pre_append)
 			tmp["name"] = fortiAPISubPartPatch(v, "DvmdbScriptExecute-Scope-Name")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
 		if _, ok := i["vdom"]; ok {
-			v := flattenDvmdbScriptExecuteScopeVdom(i["vdom"], d, pre_append)
+			v := flattenDvmdbScriptExecuteScopeVdom2edl(i["vdom"], d, pre_append)
 			tmp["vdom"] = fortiAPISubPartPatch(v, "DvmdbScriptExecute-Scope-Vdom")
 		}
 
@@ -176,15 +176,15 @@ func flattenDvmdbScriptExecuteScope(v interface{}, d *schema.ResourceData, pre s
 	return result
 }
 
-func flattenDvmdbScriptExecuteScopeName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenDvmdbScriptExecuteScopeName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenDvmdbScriptExecuteScopeVdom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenDvmdbScriptExecuteScopeVdom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenDvmdbScriptExecuteScript(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenDvmdbScriptExecuteScript2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -199,7 +199,7 @@ func refreshObjectDvmdbScriptExecute(d *schema.ResourceData, o map[string]interf
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
-	if err = d.Set("fmgadom", flattenDvmdbScriptExecuteAdom(o["adom"], d, "fmgadom")); err != nil {
+	if err = d.Set("fmgadom", flattenDvmdbScriptExecuteAdom2edl(o["adom"], d, "fmgadom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["adom"], "DvmdbScriptExecute-Adom"); ok {
 			if err = d.Set("fmgadom", vv); err != nil {
 				return fmt.Errorf("Error reading fmgadom: %v", err)
@@ -209,7 +209,7 @@ func refreshObjectDvmdbScriptExecute(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("package", flattenDvmdbScriptExecutePackage(o["package"], d, "package")); err != nil {
+	if err = d.Set("package", flattenDvmdbScriptExecutePackage2edl(o["package"], d, "package")); err != nil {
 		if vv, ok := fortiAPIPatch(o["package"], "DvmdbScriptExecute-Package"); ok {
 			if err = d.Set("package", vv); err != nil {
 				return fmt.Errorf("Error reading package: %v", err)
@@ -220,7 +220,7 @@ func refreshObjectDvmdbScriptExecute(d *schema.ResourceData, o map[string]interf
 	}
 
 	if isImportTable() {
-		if err = d.Set("scope", flattenDvmdbScriptExecuteScope(o["scope"], d, "scope")); err != nil {
+		if err = d.Set("scope", flattenDvmdbScriptExecuteScope2edl(o["scope"], d, "scope")); err != nil {
 			if vv, ok := fortiAPIPatch(o["scope"], "DvmdbScriptExecute-Scope"); ok {
 				if err = d.Set("scope", vv); err != nil {
 					return fmt.Errorf("Error reading scope: %v", err)
@@ -231,7 +231,7 @@ func refreshObjectDvmdbScriptExecute(d *schema.ResourceData, o map[string]interf
 		}
 	} else {
 		if _, ok := d.GetOk("scope"); ok {
-			if err = d.Set("scope", flattenDvmdbScriptExecuteScope(o["scope"], d, "scope")); err != nil {
+			if err = d.Set("scope", flattenDvmdbScriptExecuteScope2edl(o["scope"], d, "scope")); err != nil {
 				if vv, ok := fortiAPIPatch(o["scope"], "DvmdbScriptExecute-Scope"); ok {
 					if err = d.Set("scope", vv); err != nil {
 						return fmt.Errorf("Error reading scope: %v", err)
@@ -243,7 +243,7 @@ func refreshObjectDvmdbScriptExecute(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
-	if err = d.Set("script", flattenDvmdbScriptExecuteScript(o["script"], d, "script")); err != nil {
+	if err = d.Set("script", flattenDvmdbScriptExecuteScript2edl(o["script"], d, "script")); err != nil {
 		if vv, ok := fortiAPIPatch(o["script"], "DvmdbScriptExecute-Script"); ok {
 			if err = d.Set("script", vv); err != nil {
 				return fmt.Errorf("Error reading script: %v", err)
@@ -262,15 +262,15 @@ func flattenDvmdbScriptExecuteFortiTestDebug(d *schema.ResourceData, fosdebugsn 
 	log.Printf("ER List: %v", e)
 }
 
-func expandDvmdbScriptExecuteAdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmdbScriptExecuteAdom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandDvmdbScriptExecutePackage(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmdbScriptExecutePackage2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandDvmdbScriptExecuteScope(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmdbScriptExecuteScope2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
 
@@ -286,12 +286,12 @@ func expandDvmdbScriptExecuteScope(d *schema.ResourceData, v interface{}, pre st
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["name"], _ = expandDvmdbScriptExecuteScopeName(d, i["name"], pre_append)
+			tmp["name"], _ = expandDvmdbScriptExecuteScopeName2edl(d, i["name"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "vdom"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["vdom"], _ = expandDvmdbScriptExecuteScopeVdom(d, i["vdom"], pre_append)
+			tmp["vdom"], _ = expandDvmdbScriptExecuteScopeVdom2edl(d, i["vdom"], pre_append)
 		}
 
 		result = append(result, tmp)
@@ -302,15 +302,15 @@ func expandDvmdbScriptExecuteScope(d *schema.ResourceData, v interface{}, pre st
 	return result, nil
 }
 
-func expandDvmdbScriptExecuteScopeName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmdbScriptExecuteScopeName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandDvmdbScriptExecuteScopeVdom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmdbScriptExecuteScopeVdom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandDvmdbScriptExecuteScript(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandDvmdbScriptExecuteScript2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -318,7 +318,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("fmgadom"); ok || d.HasChange("fmgadom") {
-		t, err := expandDvmdbScriptExecuteAdom(d, v, "fmgadom")
+		t, err := expandDvmdbScriptExecuteAdom2edl(d, v, "fmgadom")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -327,7 +327,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("package"); ok || d.HasChange("package") {
-		t, err := expandDvmdbScriptExecutePackage(d, v, "package")
+		t, err := expandDvmdbScriptExecutePackage2edl(d, v, "package")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -336,7 +336,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("scope"); ok || d.HasChange("scope") {
-		t, err := expandDvmdbScriptExecuteScope(d, v, "scope")
+		t, err := expandDvmdbScriptExecuteScope2edl(d, v, "scope")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -345,7 +345,7 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 	}
 
 	if v, ok := d.GetOk("script"); ok || d.HasChange("script") {
-		t, err := expandDvmdbScriptExecuteScript(d, v, "script")
+		t, err := expandDvmdbScriptExecuteScript2edl(d, v, "script")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

@@ -53,10 +53,12 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"addr_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"agent_exclusive": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"bandwidth_weight": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -65,10 +67,12 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"default": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_forward": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_forward_tag": &schema.Schema{
 				Type:     schema.TypeString,
@@ -77,6 +81,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"dscp_reverse": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dscp_reverse_tag": &schema.Schema{
 				Type:     schema.TypeString,
@@ -89,6 +94,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"dst_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dst6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -97,10 +103,17 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"end_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
+			},
+			"end_src_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"gateway": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"groups": &schema.Schema{
 				Type:     schema.TypeString,
@@ -120,6 +133,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 			"input_device": &schema.Schema{
@@ -129,6 +143,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"input_device_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"input_zone": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -139,6 +154,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"internet_service": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"internet_service_app_ctrl": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -187,6 +203,12 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"link_cost_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
+			},
+			"load_balance": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"minimum_sla_meet_members": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -195,6 +217,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -207,6 +230,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"passive_measurement": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"priority_members": &schema.Schema{
 				Type:     schema.TypeString,
@@ -227,14 +251,17 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"role": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"shortcut": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"shortcut_stickiness": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"route_tag": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -260,6 +287,11 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"sla_stickiness": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"src": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -267,6 +299,7 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"src_negate": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"src6": &schema.Schema{
 				Type:     schema.TypeString,
@@ -275,34 +308,51 @@ func resourceWantempSystemSdwanService() *schema.Resource {
 			"standalone_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"start_port": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
+			},
+			"start_src_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tie_break": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tos_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"use_shortcut_sla": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"users": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"zone_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"dynamic_sort_subtable": &schema.Schema{
 				Type:     schema.TypeString,
@@ -339,7 +389,7 @@ func resourceWantempSystemSdwanServiceCreate(d *schema.ResourceData, m interface
 		return fmt.Errorf("Error creating WantempSystemSdwanService resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceWantempSystemSdwanServiceRead(d, m)
 }
@@ -372,7 +422,7 @@ func resourceWantempSystemSdwanServiceUpdate(d *schema.ResourceData, m interface
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceWantempSystemSdwanServiceRead(d, m)
 }
@@ -421,6 +471,9 @@ func resourceWantempSystemSdwanServiceRead(d *schema.ResourceData, m interface{}
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}
@@ -490,6 +543,10 @@ func flattenWantempSystemSdwanServiceDst6Wsssa(v interface{}, d *schema.Resource
 }
 
 func flattenWantempSystemSdwanServiceEndPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceEndSrcPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -574,6 +631,10 @@ func flattenWantempSystemSdwanServiceLinkCostFactorWsssa(v interface{}, d *schem
 }
 
 func flattenWantempSystemSdwanServiceLinkCostThresholdWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceLoadBalanceWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -680,6 +741,10 @@ func flattenWantempSystemSdwanServiceSlaCompareMethodWsssa(v interface{}, d *sch
 	return v
 }
 
+func flattenWantempSystemSdwanServiceSlaStickinessWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanServiceSrcWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -697,6 +762,10 @@ func flattenWantempSystemSdwanServiceStandaloneActionWsssa(v interface{}, d *sch
 }
 
 func flattenWantempSystemSdwanServiceStartPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceStartSrcPortWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -721,6 +790,10 @@ func flattenWantempSystemSdwanServiceUseShortcutSlaWsssa(v interface{}, d *schem
 }
 
 func flattenWantempSystemSdwanServiceUsersWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanServiceZoneModeWsssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -852,6 +925,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading end_port: %v", err)
+		}
+	}
+
+	if err = d.Set("end_src_port", flattenWantempSystemSdwanServiceEndSrcPortWsssa(o["end-src-port"], d, "end_src_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["end-src-port"], "WantempSystemSdwanService-EndSrcPort"); ok {
+			if err = d.Set("end_src_port", vv); err != nil {
+				return fmt.Errorf("Error reading end_src_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading end_src_port: %v", err)
 		}
 	}
 
@@ -1065,6 +1148,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("load_balance", flattenWantempSystemSdwanServiceLoadBalanceWsssa(o["load-balance"], d, "load_balance")); err != nil {
+		if vv, ok := fortiAPIPatch(o["load-balance"], "WantempSystemSdwanService-LoadBalance"); ok {
+			if err = d.Set("load_balance", vv); err != nil {
+				return fmt.Errorf("Error reading load_balance: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading load_balance: %v", err)
+		}
+	}
+
 	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanServiceMinimumSlaMeetMembersWsssa(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
 		if vv, ok := fortiAPIPatch(o["minimum-sla-meet-members"], "WantempSystemSdwanService-MinimumSlaMeetMembers"); ok {
 			if err = d.Set("minimum_sla_meet_members", vv); err != nil {
@@ -1229,6 +1322,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("sla_stickiness", flattenWantempSystemSdwanServiceSlaStickinessWsssa(o["sla-stickiness"], d, "sla_stickiness")); err != nil {
+		if vv, ok := fortiAPIPatch(o["sla-stickiness"], "WantempSystemSdwanService-SlaStickiness"); ok {
+			if err = d.Set("sla_stickiness", vv); err != nil {
+				return fmt.Errorf("Error reading sla_stickiness: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading sla_stickiness: %v", err)
+		}
+	}
+
 	if err = d.Set("src", flattenWantempSystemSdwanServiceSrcWsssa(o["src"], d, "src")); err != nil {
 		if vv, ok := fortiAPIPatch(o["src"], "WantempSystemSdwanService-Src"); ok {
 			if err = d.Set("src", vv); err != nil {
@@ -1276,6 +1379,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 			}
 		} else {
 			return fmt.Errorf("Error reading start_port: %v", err)
+		}
+	}
+
+	if err = d.Set("start_src_port", flattenWantempSystemSdwanServiceStartSrcPortWsssa(o["start-src-port"], d, "start_src_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["start-src-port"], "WantempSystemSdwanService-StartSrcPort"); ok {
+			if err = d.Set("start_src_port", vv); err != nil {
+				return fmt.Errorf("Error reading start_src_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading start_src_port: %v", err)
 		}
 	}
 
@@ -1339,6 +1452,16 @@ func refreshObjectWantempSystemSdwanService(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("zone_mode", flattenWantempSystemSdwanServiceZoneModeWsssa(o["zone-mode"], d, "zone_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["zone-mode"], "WantempSystemSdwanService-ZoneMode"); ok {
+			if err = d.Set("zone_mode", vv); err != nil {
+				return fmt.Errorf("Error reading zone_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading zone_mode: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1393,6 +1516,10 @@ func expandWantempSystemSdwanServiceDst6Wsssa(d *schema.ResourceData, v interfac
 }
 
 func expandWantempSystemSdwanServiceEndPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceEndSrcPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1477,6 +1604,10 @@ func expandWantempSystemSdwanServiceLinkCostFactorWsssa(d *schema.ResourceData, 
 }
 
 func expandWantempSystemSdwanServiceLinkCostThresholdWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceLoadBalanceWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1576,6 +1707,10 @@ func expandWantempSystemSdwanServiceSlaCompareMethodWsssa(d *schema.ResourceData
 	return v, nil
 }
 
+func expandWantempSystemSdwanServiceSlaStickinessWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanServiceSrcWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1593,6 +1728,10 @@ func expandWantempSystemSdwanServiceStandaloneActionWsssa(d *schema.ResourceData
 }
 
 func expandWantempSystemSdwanServiceStartPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceStartSrcPortWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1617,6 +1756,10 @@ func expandWantempSystemSdwanServiceUseShortcutSlaWsssa(d *schema.ResourceData, 
 }
 
 func expandWantempSystemSdwanServiceUsersWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanServiceZoneModeWsssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1728,6 +1871,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["end-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("end_src_port"); ok || d.HasChange("end_src_port") {
+		t, err := expandWantempSystemSdwanServiceEndSrcPortWsssa(d, v, "end_src_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["end-src-port"] = t
 		}
 	}
 
@@ -1920,6 +2072,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
+	if v, ok := d.GetOk("load_balance"); ok || d.HasChange("load_balance") {
+		t, err := expandWantempSystemSdwanServiceLoadBalanceWsssa(d, v, "load_balance")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["load-balance"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("minimum_sla_meet_members"); ok || d.HasChange("minimum_sla_meet_members") {
 		t, err := expandWantempSystemSdwanServiceMinimumSlaMeetMembersWsssa(d, v, "minimum_sla_meet_members")
 		if err != nil {
@@ -2055,6 +2216,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 		}
 	}
 
+	if v, ok := d.GetOk("sla_stickiness"); ok || d.HasChange("sla_stickiness") {
+		t, err := expandWantempSystemSdwanServiceSlaStickinessWsssa(d, v, "sla_stickiness")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["sla-stickiness"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("src"); ok || d.HasChange("src") {
 		t, err := expandWantempSystemSdwanServiceSrcWsssa(d, v, "src")
 		if err != nil {
@@ -2097,6 +2267,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["start-port"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("start_src_port"); ok || d.HasChange("start_src_port") {
+		t, err := expandWantempSystemSdwanServiceStartSrcPortWsssa(d, v, "start_src_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["start-src-port"] = t
 		}
 	}
 
@@ -2151,6 +2330,15 @@ func getObjectWantempSystemSdwanService(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["users"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("zone_mode"); ok || d.HasChange("zone_mode") {
+		t, err := expandWantempSystemSdwanServiceZoneModeWsssa(d, v, "zone_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["zone-mode"] = t
 		}
 	}
 

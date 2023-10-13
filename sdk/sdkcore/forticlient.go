@@ -11,6 +11,7 @@ import (
 	"os"
 	"regexp"
 	"strings"
+	"time"
 
 	"github.com/terraform-providers/terraform-provider-fortimanager/sdk/auth"
 	"github.com/terraform-providers/terraform-provider-fortimanager/sdk/config"
@@ -51,14 +52,14 @@ func EscapeURLString(v string) string { // doesn't support "<>()"'#"
 }
 
 func escapeURLString(v string) string { // doesn't support "<>()"'#"
-	return strings.Replace(v, "/", "\\/", -1)
+	return strings.Replace(strings.Replace(v, "/", "\\/", -1), " ", "/", -1)
 	// return strings.Replace(url.QueryEscape(v), "+", "%20", -1)
 }
 
 // NewClient initializes a new global plugin client
 // It returns the created client object
-func NewClient(auth *auth.Auth, client *http.Client) *FortiSDKClient {
-	c := &FortiSDKClient{}
+func NewClient(auth *auth.Auth, client *http.Client) (c *FortiSDKClient, err error) {
+	c = &FortiSDKClient{}
 
 	c.Session = ""
 
@@ -70,13 +71,19 @@ func NewClient(auth *auth.Auth, client *http.Client) *FortiSDKClient {
 		c.Token = auth.Token
 	} else if auth.Session != "" {
 		c.Session = auth.Session
+	} else if auth.FMGType == "forticloud" {
+		err = loginFortiCloud(c)
 	} else {
-		login(auth, c)
+		err = login(auth, c)
+	}
+
+	if err != nil {
+		return
 	}
 
 	saveSession(auth, c.Session)
 
-	return c
+	return
 }
 
 func saveSession(auth *auth.Auth, session string) {
@@ -98,7 +105,7 @@ func saveSession(auth *auth.Auth, session string) {
 	}
 }
 
-func login(auth *auth.Auth, c *FortiSDKClient) {
+func login(auth *auth.Auth, c *FortiSDKClient) (err error) {
 	data := make(map[string]interface{})
 	data["method"] = "exec"
 	data["params"] = make([]map[string]interface{}, 0)
@@ -158,6 +165,117 @@ func login(auth *auth.Auth, c *FortiSDKClient) {
 
 			}
 		}
+	} else {
+		err = fmt.Errorf("Response body is nil or do not contain result.")
+	}
+
+	if c.Session == "" {
+		err = fmt.Errorf("Could not get session.")
+	}
+
+	return
+}
+
+func loginFortiCloud(c *FortiSDKClient) (err error) {
+	log.Printf("Login through FortiCloud.")
+	var forticloudToken string
+	if c.Config.Auth.FMGCloudToken != "" {
+		forticloudToken = c.Config.Auth.FMGCloudToken
+	} else {
+		forticloudToken, err = generateFortiCloudToken(c)
+		if err != nil {
+			return
+		}
+	}
+
+	if forticloudToken == "" {
+		err = fmt.Errorf("Could not get FortiManager Cloud Token.")
+		return
+	}
+
+	data := make(map[string]interface{})
+	data["access_token"] = forticloudToken
+
+	locJSON, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	bytes := bytes.NewBuffer(locJSON)
+
+	req := c.NewRequest("POST", "/p/forticloud_jsonrpc_login/", nil, bytes)
+	err = req.Send()
+	if err != nil || req.HTTPResponse == nil {
+		err = fmt.Errorf("Could not get session %v", err)
+		return
+	}
+
+	body, err := ioutil.ReadAll(req.HTTPResponse.Body)
+	req.HTTPResponse.Body.Close()
+	if err != nil || body == nil {
+		err = fmt.Errorf("Could not get response body %v", err)
+		return
+	}
+
+	var result map[string]interface{}
+	json.Unmarshal([]byte(string(body)), &result)
+
+	if result != nil && result["session"] != nil {
+		c.Session = fmt.Sprintf("%v", result["session"])
+		if c.Session == "" {
+			err = fmt.Errorf("Session is empty.")
+		}
+	} else {
+		err = fmt.Errorf("Response body is nil or do not contain session.")
+	}
+
+	return
+}
+
+func generateFortiCloudToken(c *FortiSDKClient) (forticloudToken string, err error) {
+	log.Printf("Generate FortiCloud Token.")
+	// Get access token
+	data := make(map[string]interface{})
+	data["username"] = c.Config.Auth.User
+	data["password"] = c.Config.Auth.Passwd
+	data["client_id"] = "FortiManager"
+	data["grant_type"] = "password"
+
+	locJSON, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	bytes := bytes.NewBuffer(locJSON)
+
+	client := &http.Client{
+		Timeout: time.Second * 250,
+	}
+	req, err := http.NewRequest("POST", "https://customerapiauth.fortinet.com/api/v1/oauth/token/", bytes)
+	req.Header.Add("Content-Type", "application/json")
+	resp, err := client.Do(req)
+
+	if err != nil || resp == nil {
+		err = fmt.Errorf("Could not generate FortiCloud token %v", err)
+		return
+	}
+
+	body, err := ioutil.ReadAll(resp.Body)
+	resp.Body.Close()
+	if err != nil || body == nil {
+		err = fmt.Errorf("Could not get FortiCloud response body %v", err)
+		return
+	}
+
+	var result map[string]interface{}
+	json.Unmarshal([]byte(string(body)), &result)
+	if result != nil && result["access_token"] != nil {
+		forticloudToken = result["access_token"].(string)
+	} else {
+		err = fmt.Errorf("Could not generate FortiCloud token %v", err)
+		return
 	}
 
 	return

@@ -68,6 +68,11 @@ func resourceObjectWebProxyForwardServer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ipv6": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"monitor": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -237,6 +242,10 @@ func flattenObjectWebProxyForwardServerIp(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenObjectWebProxyForwardServerIpv6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWebProxyForwardServerMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -315,6 +324,16 @@ func refreshObjectObjectWebProxyForwardServer(d *schema.ResourceData, o map[stri
 			}
 		} else {
 			return fmt.Errorf("Error reading ip: %v", err)
+		}
+	}
+
+	if err = d.Set("ipv6", flattenObjectWebProxyForwardServerIpv6(o["ipv6"], d, "ipv6")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipv6"], "ObjectWebProxyForwardServer-Ipv6"); ok {
+			if err = d.Set("ipv6", vv); err != nil {
+				return fmt.Errorf("Error reading ipv6: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipv6: %v", err)
 		}
 	}
 
@@ -397,6 +416,10 @@ func expandObjectWebProxyForwardServerIp(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandObjectWebProxyForwardServerIpv6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectWebProxyForwardServerMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -466,6 +489,15 @@ func getObjectObjectWebProxyForwardServer(d *schema.ResourceData) (*map[string]i
 			return &obj, err
 		} else if t != nil {
 			obj["ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipv6"); ok || d.HasChange("ipv6") {
+		t, err := expandObjectWebProxyForwardServerIpv6(d, v, "ipv6")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipv6"] = t
 		}
 	}
 

@@ -41,6 +41,7 @@ The following arguments are supported:
 * `healthcheck` - Enable/disable forward server health checking. Attempts to connect through the remote forwarding server to a destination to verify that the forwarding server is operating normally. Valid values: `disable`, `enable`.
 
 * `ip` - Forward proxy server IP address.
+* `ipv6` - Forward proxy server IPv6 address.
 * `monitor` - URL for forward server health check monitoring (default = http://www.google.com).
 * `name` - Server name.
 * `password` - HTTP authentication password.

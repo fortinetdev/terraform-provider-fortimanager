@@ -238,6 +238,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"default_protocol": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"default_window_height": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -291,6 +296,11 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 				Optional: true,
 			},
 			"exclusive_routing": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"focus_bookmark": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -417,10 +427,12 @@ func resourceObjectVpnSslWebPortal() *schema.Resource {
 						"sso": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sso_credential": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"sso_password": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -1240,6 +1252,10 @@ func flattenObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(v interface{}, 
 	return v
 }
 
+func flattenObjectVpnSslWebPortalDefaultProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnSslWebPortalDefaultWindowHeight(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1289,6 +1305,10 @@ func flattenObjectVpnSslWebPortalDnsSuffix(v interface{}, d *schema.ResourceData
 }
 
 func flattenObjectVpnSslWebPortalExclusiveRouting(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectVpnSslWebPortalFocusBookmark(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1911,6 +1931,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 		}
 	}
 
+	if err = d.Set("default_protocol", flattenObjectVpnSslWebPortalDefaultProtocol(o["default-protocol"], d, "default_protocol")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-protocol"], "ObjectVpnSslWebPortal-DefaultProtocol"); ok {
+			if err = d.Set("default_protocol", vv); err != nil {
+				return fmt.Errorf("Error reading default_protocol: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_protocol: %v", err)
+		}
+	}
+
 	if err = d.Set("default_window_height", flattenObjectVpnSslWebPortalDefaultWindowHeight(o["default-window-height"], d, "default_window_height")); err != nil {
 		if vv, ok := fortiAPIPatch(o["default-window-height"], "ObjectVpnSslWebPortal-DefaultWindowHeight"); ok {
 			if err = d.Set("default_window_height", vv); err != nil {
@@ -2038,6 +2068,16 @@ func refreshObjectObjectVpnSslWebPortal(d *schema.ResourceData, o map[string]int
 			}
 		} else {
 			return fmt.Errorf("Error reading exclusive_routing: %v", err)
+		}
+	}
+
+	if err = d.Set("focus_bookmark", flattenObjectVpnSslWebPortalFocusBookmark(o["focus-bookmark"], d, "focus_bookmark")); err != nil {
+		if vv, ok := fortiAPIPatch(o["focus-bookmark"], "ObjectVpnSslWebPortal-FocusBookmark"); ok {
+			if err = d.Set("focus_bookmark", vv); err != nil {
+				return fmt.Errorf("Error reading focus_bookmark: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading focus_bookmark: %v", err)
 		}
 	}
 
@@ -3092,6 +3132,10 @@ func expandObjectVpnSslWebPortalCustomizeForticlientDownloadUrl(d *schema.Resour
 	return v, nil
 }
 
+func expandObjectVpnSslWebPortalDefaultProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnSslWebPortalDefaultWindowHeight(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -3141,6 +3185,10 @@ func expandObjectVpnSslWebPortalDnsSuffix(d *schema.ResourceData, v interface{},
 }
 
 func expandObjectVpnSslWebPortalExclusiveRouting(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectVpnSslWebPortalFocusBookmark(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3704,6 +3752,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 		}
 	}
 
+	if v, ok := d.GetOk("default_protocol"); ok || d.HasChange("default_protocol") {
+		t, err := expandObjectVpnSslWebPortalDefaultProtocol(d, v, "default_protocol")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-protocol"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("default_window_height"); ok || d.HasChange("default_window_height") {
 		t, err := expandObjectVpnSslWebPortalDefaultWindowHeight(d, v, "default_window_height")
 		if err != nil {
@@ -3818,6 +3875,15 @@ func getObjectObjectVpnSslWebPortal(d *schema.ResourceData) (*map[string]interfa
 			return &obj, err
 		} else if t != nil {
 			obj["exclusive-routing"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("focus_bookmark"); ok || d.HasChange("focus_bookmark") {
+		t, err := expandObjectVpnSslWebPortalFocusBookmark(d, v, "focus_bookmark")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["focus-bookmark"] = t
 		}
 	}
 

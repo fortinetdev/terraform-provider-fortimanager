@@ -30,7 +30,8 @@ The following arguments are supported:
 
 * `server_number` - server number in this group.
 * `server_start_id` - the start id of the continuous server series in this group,[1,16].
-* `sw_log_flags` - Set flags for software logging via driver.
+* `sw_log_flags` - Set flags for software logging via driver. Valid values: `tcp-udp-only`, `enable-all-log`, `disable-all-log`.
+
 
 
 ## Attribute Reference

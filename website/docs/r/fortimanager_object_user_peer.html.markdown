@@ -42,6 +42,11 @@ The following arguments are supported:
 * `ldap_username` - Username for LDAP server bind.
 * `mandatory_ca_verify` - Determine what happens to the peer if the CA certificate is not installed. Disable to automatically consider the peer certificate as valid. Valid values: `disable`, `enable`.
 
+* `mfa_mode` - MFA mode for remote peer authentication/authorization. Valid values: `none`, `password`, `subject-identity`.
+
+* `mfa_password` - Unified password for remote authentication. This field may be left empty when RADIUS authentication is used, in which case the FortiGate will use the RADIUS username as a password.
+* `mfa_server` - Name of a remote authenticator. Performs client access right check.
+* `mfa_username` - Unified username for remote authentication.
 * `name` - Peer name.
 * `ocsp_override_server` - Online Certificate Status Protocol (OCSP) server for certificate retrieval.
 * `passwd` - Peer's password used for two-factor authentication.

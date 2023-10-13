@@ -399,6 +399,7 @@ func resourceObjectExtenderControllerExtenderProfile() *schema.Resource {
 												"status": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},

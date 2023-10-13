@@ -45,6 +45,11 @@ func resourceObjectUserLdap() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"account_key_cert_field": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"account_key_filter": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -107,6 +112,10 @@ func resourceObjectUserLdap() *schema.Resource {
 									},
 								},
 							},
+						},
+						"account_key_cert_field": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"account_key_filter": &schema.Schema{
 							Type:     schema.TypeString,
@@ -192,6 +201,10 @@ func resourceObjectUserLdap() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
+						},
+						"max_connections": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
 						},
 						"member_attr": &schema.Schema{
 							Type:     schema.TypeString,
@@ -566,6 +579,10 @@ func resourceObjectUserLdapRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenObjectUserLdapAccountKeyCertField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapAccountKeyFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -625,6 +642,12 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["_scope"]; ok {
 			v := flattenObjectUserLdapDynamicMappingScope(i["_scope"], d, pre_append)
 			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-Scope")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_cert_field"
+		if _, ok := i["account-key-cert-field"]; ok {
+			v := flattenObjectUserLdapDynamicMappingAccountKeyCertField(i["account-key-cert-field"], d, pre_append)
+			tmp["account_key_cert_field"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-AccountKeyCertField")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_filter"
@@ -739,6 +762,12 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 		if _, ok := i["interface-select-method"]; ok {
 			v := flattenObjectUserLdapDynamicMappingInterfaceSelectMethod(i["interface-select-method"], d, pre_append)
 			tmp["interface_select_method"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-InterfaceSelectMethod")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
+		if _, ok := i["max-connections"]; ok {
+			v := flattenObjectUserLdapDynamicMappingMaxConnections(i["max-connections"], d, pre_append)
+			tmp["max_connections"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-MaxConnections")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member_attr"
@@ -940,6 +969,10 @@ func flattenObjectUserLdapDynamicMappingScopeVdom(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenObjectUserLdapDynamicMappingAccountKeyCertField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserLdapDynamicMappingAccountKeyFilter(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1013,6 +1046,10 @@ func flattenObjectUserLdapDynamicMappingInterface(v interface{}, d *schema.Resou
 }
 
 func flattenObjectUserLdapDynamicMappingInterfaceSelectMethod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserLdapDynamicMappingMaxConnections(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1241,6 +1278,16 @@ func refreshObjectObjectUserLdap(d *schema.ResourceData, o map[string]interface{
 
 	if dssValue := d.Get("dynamic_sort_subtable"); dssValue == "" {
 		d.Set("dynamic_sort_subtable", "false")
+	}
+
+	if err = d.Set("account_key_cert_field", flattenObjectUserLdapAccountKeyCertField(o["account-key-cert-field"], d, "account_key_cert_field")); err != nil {
+		if vv, ok := fortiAPIPatch(o["account-key-cert-field"], "ObjectUserLdap-AccountKeyCertField"); ok {
+			if err = d.Set("account_key_cert_field", vv); err != nil {
+				return fmt.Errorf("Error reading account_key_cert_field: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading account_key_cert_field: %v", err)
+		}
 	}
 
 	if err = d.Set("account_key_filter", flattenObjectUserLdapAccountKeyFilter(o["account-key-filter"], d, "account_key_filter")); err != nil {
@@ -1656,6 +1703,10 @@ func flattenObjectUserLdapFortiTestDebug(d *schema.ResourceData, fosdebugsn int,
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectUserLdapAccountKeyCertField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapAccountKeyFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1714,6 +1765,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 			} else if t != nil {
 				tmp["_scope"] = t
 			}
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_cert_field"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["account-key-cert-field"], _ = expandObjectUserLdapDynamicMappingAccountKeyCertField(d, i["account_key_cert_field"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_filter"
@@ -1809,6 +1865,11 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "interface_select_method"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["interface-select-method"], _ = expandObjectUserLdapDynamicMappingInterfaceSelectMethod(d, i["interface_select_method"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "max_connections"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["max-connections"], _ = expandObjectUserLdapDynamicMappingMaxConnections(d, i["max_connections"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "member_attr"
@@ -1979,6 +2040,10 @@ func expandObjectUserLdapDynamicMappingScopeVdom(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandObjectUserLdapDynamicMappingAccountKeyCertField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserLdapDynamicMappingAccountKeyFilter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -2052,6 +2117,10 @@ func expandObjectUserLdapDynamicMappingInterface(d *schema.ResourceData, v inter
 }
 
 func expandObjectUserLdapDynamicMappingInterfaceSelectMethod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserLdapDynamicMappingMaxConnections(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2273,6 +2342,15 @@ func expandObjectUserLdapUsername(d *schema.ResourceData, v interface{}, pre str
 
 func getObjectObjectUserLdap(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("account_key_cert_field"); ok || d.HasChange("account_key_cert_field") {
+		t, err := expandObjectUserLdapAccountKeyCertField(d, v, "account_key_cert_field")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["account-key-cert-field"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("account_key_filter"); ok || d.HasChange("account_key_filter") {
 		t, err := expandObjectUserLdapAccountKeyFilter(d, v, "account_key_filter")

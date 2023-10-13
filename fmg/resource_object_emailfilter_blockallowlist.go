@@ -57,10 +57,12 @@ func resourceObjectEmailfilterBlockAllowList() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"addr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"email_pattern": &schema.Schema{
 							Type:     schema.TypeString,
@@ -73,6 +75,7 @@ func resourceObjectEmailfilterBlockAllowList() *schema.Resource {
 						"ip4_subnet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ip6_subnet": &schema.Schema{
 							Type:     schema.TypeString,
@@ -89,10 +92,12 @@ func resourceObjectEmailfilterBlockAllowList() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

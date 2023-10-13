@@ -32,7 +32,7 @@ func resourcePackagesFirewallDosPolicyMove() *schema.Resource {
 			"state_pos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "",
+				Computed: true,
 			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
@@ -46,6 +46,11 @@ func resourcePackagesFirewallDosPolicyMove() *schema.Resource {
 				}, false),
 			},
 			"adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
+			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
@@ -85,8 +90,10 @@ func resourcePackagesFirewallDosPolicyMoveUpdate(d *schema.ResourceData, m inter
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
 	dos_policy := d.Get("dos_policy").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 	paradict["dos_policy"] = dos_policy
 
@@ -103,7 +110,7 @@ func resourcePackagesFirewallDosPolicyMoveUpdate(d *schema.ResourceData, m inter
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId("PackagesFirewallDosPolicyMove" + "_" + pkg + "_" + dos_policy + "_" + target)
+	d.SetId("PackagesFirewallDosPolicyMove" + "_" + pkg_folder_path + "_" + pkg + "_" + dos_policy + "_" + target)
 
 	return resourcePackagesFirewallDosPolicyMoveRead(d, m)
 }
@@ -128,27 +135,30 @@ func resourcePackagesFirewallDosPolicyMoveRead(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	sid, err := strconv.Atoi(d.Get("dos_policy").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading PackagesFirewallDosPolicyMove resource: %v", err)
-	}
-	did, err := strconv.Atoi(d.Get("target").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading PackagesFirewallDosPolicyMove resource: %v", err)
-	}
+	sid := d.Get("dos_policy").(string)
+	did := d.Get("target").(string)
 	action := d.Get("option").(string)
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesFirewallDosPolicyMove(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallDosPolicyMove resource: %v", err)
 	}
 
@@ -169,18 +179,13 @@ func resourcePackagesFirewallDosPolicyMoveRead(d *schema.ResourceData, m interfa
 					return fmt.Errorf("Error reading PackagesFirewallDosPolicyMove resource: policyid doesn't exist.")
 				}
 
-				idn := -1
-				if vidn, ok := v["policyid"].(float64); !ok {
-					return fmt.Errorf("Error reading PackagesFirewallDosPolicyMove resource: wrong policyid.")
-				} else {
-					idn = int(vidn)
-				}
+				vid := fmt.Sprintf("%v", v["policyid"])
 
-				if idn == sid {
+				if vid == sid {
 					now_sid = i
 				}
 
-				if idn == did {
+				if vid == did {
 					now_did = i
 				}
 			} else {
@@ -194,11 +199,11 @@ func resourcePackagesFirewallDosPolicyMoveRead(d *schema.ResourceData, m interfa
 
 		if now_sid == -1 || now_did == -1 {
 			if now_sid == -1 && now_did == -1 {
-				state_pos = "policyid(" + strconv.Itoa(sid) + ") and target(" + strconv.Itoa(did) + ") were deleted"
+				state_pos = "policyid(" + sid + ") and target(" + did + ") were deleted"
 			} else if now_sid == -1 {
-				state_pos = "policyid(" + strconv.Itoa(sid) + ") was deleted"
+				state_pos = "policyid(" + sid + ") was deleted"
 			} else if now_did == -1 {
-				state_pos = "target(" + strconv.Itoa(did) + ") was deleted"
+				state_pos = "target(" + did + ") was deleted"
 			}
 		} else {
 			bconsistent := true
@@ -218,9 +223,9 @@ func resourcePackagesFirewallDosPolicyMoveRead(d *schema.ResourceData, m interfa
 				relative_pos := now_sid - now_did
 
 				if relative_pos > 0 {
-					state_pos = "policyid(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(relative_pos) + " behind target(" + strconv.Itoa(did) + ")"
+					state_pos = "policyid(" + sid + ") is " + strconv.Itoa(relative_pos) + " behind target(" + did + ")"
 				} else {
-					state_pos = "policyid(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + strconv.Itoa(did) + ")"
+					state_pos = "policyid(" + sid + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + did + ")"
 				}
 			}
 		}

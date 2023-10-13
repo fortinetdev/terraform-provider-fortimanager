@@ -18,6 +18,7 @@ The following arguments are supported:
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 * `wanprof` - Wanprof.
 
+* `minimum_sla_meet_members` - Minimum number of members which meet SLA when the neighbor is preferred.
 * `name` - Zone name.
 * `service_sla_tie_break` - Method of selecting member if more than one meets the SLA. Valid values: `cfg-order`, `fib-best-match`.
 
@@ -32,7 +33,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Wantemp SystemSdwanZone can be imported using any of these accepted formats:
 ```
-Set import_options = ["wanprof=mywanprof"] in the provider section.
+Set import_options = ["wanprof=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_wantemp_system_sdwan_zone.labelname {{name}}

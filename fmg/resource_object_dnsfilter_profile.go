@@ -209,6 +209,12 @@ func resourceObjectDnsfilterProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"transparent_dns_database": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"youtube_restrict": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -614,6 +620,10 @@ func flattenObjectDnsfilterProfileSdnsFtgdErrLog(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectDnsfilterProfileTransparentDnsDatabase(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectDnsfilterProfileYoutubeRestrict(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -808,6 +818,16 @@ func refreshObjectObjectDnsfilterProfile(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading sdns_ftgd_err_log: %v", err)
+		}
+	}
+
+	if err = d.Set("transparent_dns_database", flattenObjectDnsfilterProfileTransparentDnsDatabase(o["transparent-dns-database"], d, "transparent_dns_database")); err != nil {
+		if vv, ok := fortiAPIPatch(o["transparent-dns-database"], "ObjectDnsfilterProfile-TransparentDnsDatabase"); ok {
+			if err = d.Set("transparent_dns_database", vv); err != nil {
+				return fmt.Errorf("Error reading transparent_dns_database: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading transparent_dns_database: %v", err)
 		}
 	}
 
@@ -1088,6 +1108,10 @@ func expandObjectDnsfilterProfileSdnsFtgdErrLog(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectDnsfilterProfileTransparentDnsDatabase(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectDnsfilterProfileYoutubeRestrict(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1218,6 +1242,15 @@ func getObjectObjectDnsfilterProfile(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["sdns-ftgd-err-log"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("transparent_dns_database"); ok || d.HasChange("transparent_dns_database") {
+		t, err := expandObjectDnsfilterProfileTransparentDnsDatabase(d, v, "transparent_dns_database")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["transparent-dns-database"] = t
 		}
 	}
 

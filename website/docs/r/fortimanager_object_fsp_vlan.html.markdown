@@ -362,11 +362,13 @@ The `ipv6` block supports:
 * `dhcp6_prefix_hint` - DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
 * `dhcp6_prefix_hint_plt` - DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
 * `dhcp6_prefix_hint_vlt` - DHCPv6 prefix hint valid life time (sec).
+* `dhcp6_relay_interface_id` - DHCP6 relay interface ID.
 * `dhcp6_relay_ip` - DHCPv6 relay IP address.
 * `dhcp6_relay_service` - Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 
 * `dhcp6_relay_source_interface` - Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
 
+* `dhcp6_relay_source_ip` - IPv6 address used by the DHCP6 relay as its source IP.
 * `dhcp6_relay_type` - DHCPv6 relay type. Valid values: `regular`.
 
 * `icmp6_send_redirect` - Enable/disable sending of ICMPv6 redirects. Valid values: `disable`, `enable`.
@@ -586,6 +588,7 @@ The `interface` block supports:
 * `dhcp_client_identifier` - DHCP client identifier.
 * `dhcp_relay_agent_option` - Enable/disable DHCP relay agent option. Valid values: `disable`, `enable`.
 
+* `dhcp_relay_circuit_id` - DHCP relay circuit ID.
 * `dhcp_relay_interface` - Specify outgoing interface to reach server.
 * `dhcp_relay_interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
@@ -595,6 +598,7 @@ The `interface` block supports:
 
 * `dhcp_relay_service` - Enable/disable allowing this interface to act as a DHCP relay. Valid values: `disable`, `enable`.
 
+* `dhcp_relay_source_ip` - IP address used by the DHCP relay as its source IP.
 * `dhcp_relay_type` - DHCP relay type (regular or IPsec). Valid values: `regular`, `ipsec`.
 
 * `dhcp_renew_time` - DHCP renew time in seconds (300-604800), 0 means use the renew time provided by the server.
@@ -905,6 +909,11 @@ The `interface` block supports:
 * `switch_controller_nac` - Integrated NAC settings for managed FortiSwitch.
 * `switch_controller_netflow_collect` - NetFlow collection and processing. Valid values: `disable`, `enable`.
 
+* `switch_controller_offload` - Enable/disable managed FortiSwitch routing offload. Valid values: `disable`, `enable`.
+
+* `switch_controller_offload_gw` - Enable/disable managed FortiSwitch routing offload gateway. Valid values: `disable`, `enable`.
+
+* `switch_controller_offload_ip` - IP for routing offload on FortiSwitch.
 * `switch_controller_offloading` - Switch-Controller-Offloading. Valid values: `disable`, `enable`.
 
 * `switch_controller_offloading_gw` - Switch-Controller-Offloading-Gw. Valid values: `disable`, `enable`.
@@ -996,11 +1005,13 @@ The `ipv6` block supports:
 * `dhcp6_prefix_hint` - DHCPv6 prefix that will be used as a hint to the upstream DHCPv6 server.
 * `dhcp6_prefix_hint_plt` - DHCPv6 prefix hint preferred life time (sec), 0 means unlimited lease time.
 * `dhcp6_prefix_hint_vlt` - DHCPv6 prefix hint valid life time (sec).
+* `dhcp6_relay_interface_id` - DHCP6 relay interface ID.
 * `dhcp6_relay_ip` - DHCPv6 relay IP address.
 * `dhcp6_relay_service` - Enable/disable DHCPv6 relay. Valid values: `disable`, `enable`.
 
 * `dhcp6_relay_source_interface` - Enable/disable use of address on this interface as the source address of the relay message. Valid values: `disable`, `enable`.
 
+* `dhcp6_relay_source_ip` - IPv6 address used by the DHCP6 relay as its source IP.
 * `dhcp6_relay_type` - DHCPv6 relay type. Valid values: `regular`.
 
 * `icmp6_send_redirect` - Enable/disable sending of ICMPv6 redirects. Valid values: `disable`, `enable`.

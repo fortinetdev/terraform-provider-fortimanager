@@ -45,6 +45,16 @@ func resourceObjectUserRadius() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"account_key_cert_field": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"account_key_processing": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"accounting_server": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -113,6 +123,11 @@ func resourceObjectUserRadius() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"call_station_id_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"class": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -148,6 +163,14 @@ func resourceObjectUserRadius() *schema.Resource {
 									},
 								},
 							},
+						},
+						"account_key_cert_field": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"account_key_processing": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
 						},
 						"accounting_server": &schema.Schema{
 							Type:     schema.TypeList,
@@ -214,6 +237,10 @@ func resourceObjectUserRadius() *schema.Resource {
 							Computed: true,
 						},
 						"ca_cert": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"call_station_id_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -919,6 +946,14 @@ func resourceObjectUserRadiusRead(d *schema.ResourceData, m interface{}) error {
 	return nil
 }
 
+func flattenObjectUserRadiusAccountKeyCertField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusAccountKeyProcessing(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusAccountingServer(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -1050,6 +1085,10 @@ func flattenObjectUserRadiusCaCert(v interface{}, d *schema.ResourceData, pre st
 	return v
 }
 
+func flattenObjectUserRadiusCallStationIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusClass(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -1087,6 +1126,18 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["_scope"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-Scope")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_cert_field"
+		if _, ok := i["account-key-cert-field"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingAccountKeyCertField(i["account-key-cert-field"], d, pre_append)
+			tmp["account_key_cert_field"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-AccountKeyCertField")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_processing"
+		if _, ok := i["account-key-processing"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingAccountKeyProcessing(i["account-key-processing"], d, pre_append)
+			tmp["account_key_processing"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-AccountKeyProcessing")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accounting_server"
 		if _, ok := i["accounting-server"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingAccountingServer(i["accounting-server"], d, pre_append)
@@ -1121,6 +1172,12 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 		if _, ok := i["ca-cert"]; ok {
 			v := flattenObjectUserRadiusDynamicMappingCaCert(i["ca-cert"], d, pre_append)
 			tmp["ca_cert"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-CaCert")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "call_station_id_type"
+		if _, ok := i["call-station-id-type"]; ok {
+			v := flattenObjectUserRadiusDynamicMappingCallStationIdType(i["call-station-id-type"], d, pre_append)
+			tmp["call_station_id_type"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-CallStationIdType")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
@@ -1664,6 +1721,14 @@ func flattenObjectUserRadiusDynamicMappingScopeVdom(v interface{}, d *schema.Res
 	return v
 }
 
+func flattenObjectUserRadiusDynamicMappingAccountKeyCertField(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingAccountKeyProcessing(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserRadiusDynamicMappingAccountingServer(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -1792,6 +1857,10 @@ func flattenObjectUserRadiusDynamicMappingAuthType(v interface{}, d *schema.Reso
 }
 
 func flattenObjectUserRadiusDynamicMappingCaCert(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserRadiusDynamicMappingCallStationIdType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2314,6 +2383,26 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 		d.Set("dynamic_sort_subtable", "false")
 	}
 
+	if err = d.Set("account_key_cert_field", flattenObjectUserRadiusAccountKeyCertField(o["account-key-cert-field"], d, "account_key_cert_field")); err != nil {
+		if vv, ok := fortiAPIPatch(o["account-key-cert-field"], "ObjectUserRadius-AccountKeyCertField"); ok {
+			if err = d.Set("account_key_cert_field", vv); err != nil {
+				return fmt.Errorf("Error reading account_key_cert_field: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading account_key_cert_field: %v", err)
+		}
+	}
+
+	if err = d.Set("account_key_processing", flattenObjectUserRadiusAccountKeyProcessing(o["account-key-processing"], d, "account_key_processing")); err != nil {
+		if vv, ok := fortiAPIPatch(o["account-key-processing"], "ObjectUserRadius-AccountKeyProcessing"); ok {
+			if err = d.Set("account_key_processing", vv); err != nil {
+				return fmt.Errorf("Error reading account_key_processing: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading account_key_processing: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("accounting_server", flattenObjectUserRadiusAccountingServer(o["accounting-server"], d, "accounting_server")); err != nil {
 			if vv, ok := fortiAPIPatch(o["accounting-server"], "ObjectUserRadius-AccountingServer"); ok {
@@ -2385,6 +2474,16 @@ func refreshObjectObjectUserRadius(d *schema.ResourceData, o map[string]interfac
 			}
 		} else {
 			return fmt.Errorf("Error reading ca_cert: %v", err)
+		}
+	}
+
+	if err = d.Set("call_station_id_type", flattenObjectUserRadiusCallStationIdType(o["call-station-id-type"], d, "call_station_id_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["call-station-id-type"], "ObjectUserRadius-CallStationIdType"); ok {
+			if err = d.Set("call_station_id_type", vv); err != nil {
+				return fmt.Errorf("Error reading call_station_id_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading call_station_id_type: %v", err)
 		}
 	}
 
@@ -2881,6 +2980,14 @@ func flattenObjectUserRadiusFortiTestDebug(d *schema.ResourceData, fosdebugsn in
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectUserRadiusAccountKeyCertField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusAccountKeyProcessing(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusAccountingServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -2995,6 +3102,10 @@ func expandObjectUserRadiusCaCert(d *schema.ResourceData, v interface{}, pre str
 	return v, nil
 }
 
+func expandObjectUserRadiusCallStationIdType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusClass(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -3031,6 +3142,16 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			}
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_cert_field"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["account-key-cert-field"], _ = expandObjectUserRadiusDynamicMappingAccountKeyCertField(d, i["account_key_cert_field"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "account_key_processing"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["account-key-processing"], _ = expandObjectUserRadiusDynamicMappingAccountKeyProcessing(d, i["account_key_processing"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "accounting_server"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			t, err := expandObjectUserRadiusDynamicMappingAccountingServer(d, i["accounting_server"], pre_append)
@@ -3064,6 +3185,11 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "ca_cert"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["ca-cert"], _ = expandObjectUserRadiusDynamicMappingCaCert(d, i["ca_cert"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "call_station_id_type"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["call-station-id-type"], _ = expandObjectUserRadiusDynamicMappingCallStationIdType(d, i["call_station_id_type"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "class"
@@ -3519,6 +3645,14 @@ func expandObjectUserRadiusDynamicMappingScopeVdom(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandObjectUserRadiusDynamicMappingAccountKeyCertField(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingAccountKeyProcessing(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -3630,6 +3764,10 @@ func expandObjectUserRadiusDynamicMappingAuthType(d *schema.ResourceData, v inte
 }
 
 func expandObjectUserRadiusDynamicMappingCaCert(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserRadiusDynamicMappingCallStationIdType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -4144,6 +4282,24 @@ func expandObjectUserRadiusUsernameCaseSensitive(d *schema.ResourceData, v inter
 func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("account_key_cert_field"); ok || d.HasChange("account_key_cert_field") {
+		t, err := expandObjectUserRadiusAccountKeyCertField(d, v, "account_key_cert_field")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["account-key-cert-field"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("account_key_processing"); ok || d.HasChange("account_key_processing") {
+		t, err := expandObjectUserRadiusAccountKeyProcessing(d, v, "account_key_processing")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["account-key-processing"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("accounting_server"); ok || d.HasChange("accounting_server") {
 		t, err := expandObjectUserRadiusAccountingServer(d, v, "accounting_server")
 		if err != nil {
@@ -4195,6 +4351,15 @@ func getObjectObjectUserRadius(d *schema.ResourceData) (*map[string]interface{},
 			return &obj, err
 		} else if t != nil {
 			obj["ca-cert"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("call_station_id_type"); ok || d.HasChange("call_station_id_type") {
+		t, err := expandObjectUserRadiusCallStationIdType(d, v, "call_station_id_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["call-station-id-type"] = t
 		}
 	}
 

@@ -17,10 +17,18 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `auth_template` - Auth-Template.
 * `cliprofs` - Cliprofs.
 * `description` - Description.
 * `dev_group` - Dev-Group.
 * `folder` - Folder.
+* `ha_config` - Ha-Config. Valid values: `disable`, `enable`.
+
+* `ha_hbdev` - Ha-Hbdev.
+* `ha_monitor` - Ha-Monitor.
+* `ha_password` - Ha-Password.
+* `linked_to_model` - Linked-To-Model. Valid values: `disable`, `enable`.
+
 * `name` - Name.
 * `pkg` - Pkg.
 * `platform` - Platform.

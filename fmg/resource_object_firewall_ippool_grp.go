@@ -181,19 +181,19 @@ func resourceObjectFirewallIppoolGrpRead(d *schema.ResourceData, m interface{}) 
 	return nil
 }
 
-func flattenObjectFirewallIppoolGrpComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallIppoolGrpComments2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallIppoolGrpMember(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallIppoolGrpMember2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallIppoolGrpName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallIppoolGrpName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenObjectFirewallIppoolGrpUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenObjectFirewallIppoolGrpUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -204,7 +204,7 @@ func refreshObjectObjectFirewallIppoolGrp(d *schema.ResourceData, o map[string]i
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("comments", flattenObjectFirewallIppoolGrpComments(o["comments"], d, "comments")); err != nil {
+	if err = d.Set("comments", flattenObjectFirewallIppoolGrpComments2edl(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "ObjectFirewallIppoolGrp-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {
 				return fmt.Errorf("Error reading comments: %v", err)
@@ -214,7 +214,7 @@ func refreshObjectObjectFirewallIppoolGrp(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("member", flattenObjectFirewallIppoolGrpMember(o["member"], d, "member")); err != nil {
+	if err = d.Set("member", flattenObjectFirewallIppoolGrpMember2edl(o["member"], d, "member")); err != nil {
 		if vv, ok := fortiAPIPatch(o["member"], "ObjectFirewallIppoolGrp-Member"); ok {
 			if err = d.Set("member", vv); err != nil {
 				return fmt.Errorf("Error reading member: %v", err)
@@ -224,7 +224,7 @@ func refreshObjectObjectFirewallIppoolGrp(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("name", flattenObjectFirewallIppoolGrpName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenObjectFirewallIppoolGrpName2edl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectFirewallIppoolGrp-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -234,7 +234,7 @@ func refreshObjectObjectFirewallIppoolGrp(d *schema.ResourceData, o map[string]i
 		}
 	}
 
-	if err = d.Set("uuid", flattenObjectFirewallIppoolGrpUuid(o["uuid"], d, "uuid")); err != nil {
+	if err = d.Set("uuid", flattenObjectFirewallIppoolGrpUuid2edl(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "ObjectFirewallIppoolGrp-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
 				return fmt.Errorf("Error reading uuid: %v", err)
@@ -253,19 +253,19 @@ func flattenObjectFirewallIppoolGrpFortiTestDebug(d *schema.ResourceData, fosdeb
 	log.Printf("ER List: %v", e)
 }
 
-func expandObjectFirewallIppoolGrpComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallIppoolGrpComments2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallIppoolGrpMember(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallIppoolGrpMember2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallIppoolGrpName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallIppoolGrpName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandObjectFirewallIppoolGrpUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandObjectFirewallIppoolGrpUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -273,7 +273,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
-		t, err := expandObjectFirewallIppoolGrpComments(d, v, "comments")
+		t, err := expandObjectFirewallIppoolGrpComments2edl(d, v, "comments")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -282,7 +282,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("member"); ok || d.HasChange("member") {
-		t, err := expandObjectFirewallIppoolGrpMember(d, v, "member")
+		t, err := expandObjectFirewallIppoolGrpMember2edl(d, v, "member")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -291,7 +291,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandObjectFirewallIppoolGrpName(d, v, "name")
+		t, err := expandObjectFirewallIppoolGrpName2edl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -300,7 +300,7 @@ func getObjectObjectFirewallIppoolGrp(d *schema.ResourceData) (*map[string]inter
 	}
 
 	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
-		t, err := expandObjectFirewallIppoolGrpUuid(d, v, "uuid")
+		t, err := expandObjectFirewallIppoolGrpUuid2edl(d, v, "uuid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

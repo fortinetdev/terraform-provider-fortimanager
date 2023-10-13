@@ -57,6 +57,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 						"count": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"dictionary": &schema.Schema{
 							Type:     schema.TypeString,
@@ -69,6 +70,7 @@ func resourceObjectDlpSensor() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -393,7 +395,7 @@ func flattenObjectDlpSensorEntriesCount(v interface{}, d *schema.ResourceData, p
 }
 
 func flattenObjectDlpSensorEntriesDictionary(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectDlpSensorEntriesId(v interface{}, d *schema.ResourceData, pre string) interface{} {

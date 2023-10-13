@@ -53,14 +53,17 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"cos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cos_marking": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cos_marking_method": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv": &schema.Schema{
 				Type:     schema.TypeString,
@@ -88,6 +91,7 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"exceed_cos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"exceed_dscp": &schema.Schema{
 				Type:     schema.TypeString,
@@ -105,6 +109,7 @@ func resourceObjectFirewallShaperTrafficShaper() *schema.Resource {
 			"maximum_cos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"maximum_dscp": &schema.Schema{
 				Type:     schema.TypeString,

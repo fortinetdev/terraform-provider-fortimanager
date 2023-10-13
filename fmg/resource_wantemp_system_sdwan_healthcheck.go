@@ -85,6 +85,7 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 			"embed_measured_health": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"failtime": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -130,6 +131,7 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 			"mos_codec": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -247,14 +249,17 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 			"source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"source6": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"system_dns": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"threshold_alert_jitter": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -415,6 +420,9 @@ func resourceWantempSystemSdwanHealthCheckRead(d *schema.ResourceData, m interfa
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}

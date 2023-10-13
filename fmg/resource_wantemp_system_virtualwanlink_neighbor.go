@@ -68,6 +68,7 @@ func resourceWantempSystemVirtualWanLinkNeighbor() *schema.Resource {
 			},
 			"sla_id": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 		},
@@ -100,7 +101,7 @@ func resourceWantempSystemVirtualWanLinkNeighborCreate(d *schema.ResourceData, m
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkNeighbor resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "sla_id")))
 
 	return resourceWantempSystemVirtualWanLinkNeighborRead(d, m)
 }
@@ -133,7 +134,7 @@ func resourceWantempSystemVirtualWanLinkNeighborUpdate(d *schema.ResourceData, m
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "sla_id")))
 
 	return resourceWantempSystemVirtualWanLinkNeighborRead(d, m)
 }
@@ -182,6 +183,9 @@ func resourceWantempSystemVirtualWanLinkNeighborRead(d *schema.ResourceData, m i
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}

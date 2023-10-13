@@ -91,6 +91,7 @@ func resourceObjectDlpDictionary() *schema.Resource {
 			"match_around": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"match_type": &schema.Schema{
 				Type:     schema.TypeString,

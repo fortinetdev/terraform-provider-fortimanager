@@ -29,10 +29,14 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
 * `active_auth_method` - Select an active authentication method.
 * `comments` - Comment.
+* `cors_depth` - Depth to allow CORS access (default = 3).
+* `cors_stateful` - Enable/disable allowance of CORS access (default = disable). Valid values: `disable`, `enable`.
+
 * `dstaddr` - Select an IPv4 destination address from available options. Required for web proxy authentication.
 * `dstaddr6` - Select an IPv6 destination address from available options. Required for web proxy authentication.
 * `ip_based` - Enable/disable IP-based authentication. Once a user authenticates all traffic from the IP address the user authenticated from is allowed. Valid values: `disable`, `enable`.
@@ -63,7 +67,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages AuthenticationRule can be imported using any of these accepted formats:
 ```
-Set import_options = ["pkg=mypkg"] in the provider section.
+Set import_options = ["pkg_folder_path=YOUR_VALUE", "pkg=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_authentication_rule.labelname {{name}}

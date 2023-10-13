@@ -45,6 +45,11 @@ func resourcePackagesFirewallDosPolicy() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -194,7 +199,9 @@ func resourcePackagesFirewallDosPolicyCreate(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallDosPolicy(d)
@@ -235,7 +242,9 @@ func resourcePackagesFirewallDosPolicyUpdate(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallDosPolicy(d)
@@ -269,7 +278,9 @@ func resourcePackagesFirewallDosPolicyDelete(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesFirewallDosPolicy(mkey, paradict)
@@ -296,13 +307,21 @@ func resourcePackagesFirewallDosPolicyRead(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesFirewallDosPolicy(mkey, paradict)

@@ -79,6 +79,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"apache_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"clone_name_option": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -163,6 +168,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fortiservice_port": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"gui_curl_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -226,9 +236,19 @@ func resourceSystemGlobal() *schema.Resource {
 			"log_forward_cache_size": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"longitude": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"management_ip": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"management_port": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -260,6 +280,11 @@ func resourceSystemGlobal() *schema.Resource {
 				Computed: true,
 			},
 			"no_copy_permission_check": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"no_vip_value_check": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -345,6 +370,11 @@ func resourceSystemGlobal() *schema.Resource {
 			},
 			"remoteauthtimeout": &schema.Schema{
 				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"save_last_hit_in_adomdb": &schema.Schema{
+				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
@@ -569,6 +599,10 @@ func flattenSystemGlobalAdomStatusSga(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenSystemGlobalApacheModeSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalCloneNameOptionSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -637,6 +671,10 @@ func flattenSystemGlobalFgfmSslProtocolSga(v interface{}, d *schema.ResourceData
 	return v
 }
 
+func flattenSystemGlobalFortiservicePortSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalGuiCurlTimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -693,6 +731,14 @@ func flattenSystemGlobalLongitudeSga(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenSystemGlobalManagementIpSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalManagementPortSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemGlobalMaxLogForwardSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -743,6 +789,10 @@ func flattenSystemGlobalMultipleStepsUpgradeInAutolinkSga(v interface{}, d *sche
 }
 
 func flattenSystemGlobalNoCopyPermissionCheckSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalNoVipValueCheckSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -811,6 +861,10 @@ func flattenSystemGlobalPrivateDataEncryptionSga(v interface{}, d *schema.Resour
 }
 
 func flattenSystemGlobalRemoteauthtimeoutSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemGlobalSaveLastHitInAdomdbSga(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1038,6 +1092,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("apache_mode", flattenSystemGlobalApacheModeSga(o["apache-mode"], d, "apache_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["apache-mode"], "SystemGlobal-ApacheMode"); ok {
+			if err = d.Set("apache_mode", vv); err != nil {
+				return fmt.Errorf("Error reading apache_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading apache_mode: %v", err)
+		}
+	}
+
 	if err = d.Set("clone_name_option", flattenSystemGlobalCloneNameOptionSga(o["clone-name-option"], d, "clone_name_option")); err != nil {
 		if vv, ok := fortiAPIPatch(o["clone-name-option"], "SystemGlobal-CloneNameOption"); ok {
 			if err = d.Set("clone_name_option", vv); err != nil {
@@ -1208,6 +1272,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("fortiservice_port", flattenSystemGlobalFortiservicePortSga(o["fortiservice-port"], d, "fortiservice_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fortiservice-port"], "SystemGlobal-FortiservicePort"); ok {
+			if err = d.Set("fortiservice_port", vv); err != nil {
+				return fmt.Errorf("Error reading fortiservice_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fortiservice_port: %v", err)
+		}
+	}
+
 	if err = d.Set("gui_curl_timeout", flattenSystemGlobalGuiCurlTimeoutSga(o["gui-curl-timeout"], d, "gui_curl_timeout")); err != nil {
 		if vv, ok := fortiAPIPatch(o["gui-curl-timeout"], "SystemGlobal-GuiCurlTimeout"); ok {
 			if err = d.Set("gui_curl_timeout", vv); err != nil {
@@ -1348,6 +1422,26 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 		}
 	}
 
+	if err = d.Set("management_ip", flattenSystemGlobalManagementIpSga(o["management-ip"], d, "management_ip")); err != nil {
+		if vv, ok := fortiAPIPatch(o["management-ip"], "SystemGlobal-ManagementIp"); ok {
+			if err = d.Set("management_ip", vv); err != nil {
+				return fmt.Errorf("Error reading management_ip: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading management_ip: %v", err)
+		}
+	}
+
+	if err = d.Set("management_port", flattenSystemGlobalManagementPortSga(o["management-port"], d, "management_port")); err != nil {
+		if vv, ok := fortiAPIPatch(o["management-port"], "SystemGlobal-ManagementPort"); ok {
+			if err = d.Set("management_port", vv); err != nil {
+				return fmt.Errorf("Error reading management_port: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading management_port: %v", err)
+		}
+	}
+
 	if err = d.Set("max_log_forward", flattenSystemGlobalMaxLogForwardSga(o["max-log-forward"], d, "max_log_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["max-log-forward"], "SystemGlobal-MaxLogForward"); ok {
 			if err = d.Set("max_log_forward", vv); err != nil {
@@ -1409,6 +1503,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading no_copy_permission_check: %v", err)
+		}
+	}
+
+	if err = d.Set("no_vip_value_check", flattenSystemGlobalNoVipValueCheckSga(o["no-vip-value-check"], d, "no_vip_value_check")); err != nil {
+		if vv, ok := fortiAPIPatch(o["no-vip-value-check"], "SystemGlobal-NoVipValueCheck"); ok {
+			if err = d.Set("no_vip_value_check", vv); err != nil {
+				return fmt.Errorf("Error reading no_vip_value_check: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading no_vip_value_check: %v", err)
 		}
 	}
 
@@ -1579,6 +1683,16 @@ func refreshObjectSystemGlobal(d *schema.ResourceData, o map[string]interface{})
 			}
 		} else {
 			return fmt.Errorf("Error reading remoteauthtimeout: %v", err)
+		}
+	}
+
+	if err = d.Set("save_last_hit_in_adomdb", flattenSystemGlobalSaveLastHitInAdomdbSga(o["save-last-hit-in-adomdb"], d, "save_last_hit_in_adomdb")); err != nil {
+		if vv, ok := fortiAPIPatch(o["save-last-hit-in-adomdb"], "SystemGlobal-SaveLastHitInAdomdb"); ok {
+			if err = d.Set("save_last_hit_in_adomdb", vv); err != nil {
+				return fmt.Errorf("Error reading save_last_hit_in_adomdb: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading save_last_hit_in_adomdb: %v", err)
 		}
 	}
 
@@ -1805,6 +1919,10 @@ func expandSystemGlobalAdomStatusSga(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandSystemGlobalApacheModeSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalCloneNameOptionSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1873,6 +1991,10 @@ func expandSystemGlobalFgfmSslProtocolSga(d *schema.ResourceData, v interface{},
 	return v, nil
 }
 
+func expandSystemGlobalFortiservicePortSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalGuiCurlTimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1929,6 +2051,14 @@ func expandSystemGlobalLongitudeSga(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandSystemGlobalManagementIpSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalManagementPortSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemGlobalMaxLogForwardSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1973,6 +2103,10 @@ func expandSystemGlobalMultipleStepsUpgradeInAutolinkSga(d *schema.ResourceData,
 }
 
 func expandSystemGlobalNoCopyPermissionCheckSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalNoVipValueCheckSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2041,6 +2175,10 @@ func expandSystemGlobalPrivateDataEncryptionSga(d *schema.ResourceData, v interf
 }
 
 func expandSystemGlobalRemoteauthtimeoutSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemGlobalSaveLastHitInAdomdbSga(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2246,6 +2384,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("apache_mode"); ok || d.HasChange("apache_mode") {
+		t, err := expandSystemGlobalApacheModeSga(d, v, "apache_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["apache-mode"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("clone_name_option"); ok || d.HasChange("clone_name_option") {
 		t, err := expandSystemGlobalCloneNameOptionSga(d, v, "clone_name_option")
 		if err != nil {
@@ -2399,6 +2546,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("fortiservice_port"); ok || d.HasChange("fortiservice_port") {
+		t, err := expandSystemGlobalFortiservicePortSga(d, v, "fortiservice_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fortiservice-port"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("gui_curl_timeout"); ok || d.HasChange("gui_curl_timeout") {
 		t, err := expandSystemGlobalGuiCurlTimeoutSga(d, v, "gui_curl_timeout")
 		if err != nil {
@@ -2525,6 +2681,24 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 		}
 	}
 
+	if v, ok := d.GetOk("management_ip"); ok || d.HasChange("management_ip") {
+		t, err := expandSystemGlobalManagementIpSga(d, v, "management_ip")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["management-ip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("management_port"); ok || d.HasChange("management_port") {
+		t, err := expandSystemGlobalManagementPortSga(d, v, "management_port")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["management-port"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("max_log_forward"); ok || d.HasChange("max_log_forward") {
 		t, err := expandSystemGlobalMaxLogForwardSga(d, v, "max_log_forward")
 		if err != nil {
@@ -2567,6 +2741,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["no-copy-permission-check"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("no_vip_value_check"); ok || d.HasChange("no_vip_value_check") {
+		t, err := expandSystemGlobalNoVipValueCheckSga(d, v, "no_vip_value_check")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["no-vip-value-check"] = t
 		}
 	}
 
@@ -2720,6 +2903,15 @@ func getObjectSystemGlobal(d *schema.ResourceData) (*map[string]interface{}, err
 			return &obj, err
 		} else if t != nil {
 			obj["remoteauthtimeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("save_last_hit_in_adomdb"); ok || d.HasChange("save_last_hit_in_adomdb") {
+		t, err := expandSystemGlobalSaveLastHitInAdomdbSga(d, v, "save_last_hit_in_adomdb")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["save-last-hit-in-adomdb"] = t
 		}
 	}
 

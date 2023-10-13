@@ -32,7 +32,7 @@ func resourcePackagesFirewallLocalInPolicyMove() *schema.Resource {
 			"state_pos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "",
+				Computed: true,
 			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
@@ -46,6 +46,11 @@ func resourcePackagesFirewallLocalInPolicyMove() *schema.Resource {
 				}, false),
 			},
 			"adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
+			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
@@ -85,8 +90,10 @@ func resourcePackagesFirewallLocalInPolicyMoveUpdate(d *schema.ResourceData, m i
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
 	local_in_policy := d.Get("local_in_policy").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 	paradict["local_in_policy"] = local_in_policy
 
@@ -103,7 +110,7 @@ func resourcePackagesFirewallLocalInPolicyMoveUpdate(d *schema.ResourceData, m i
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId("PackagesFirewallLocalInPolicyMove" + "_" + pkg + "_" + local_in_policy + "_" + target)
+	d.SetId("PackagesFirewallLocalInPolicyMove" + "_" + pkg_folder_path + "_" + pkg + "_" + local_in_policy + "_" + target)
 
 	return resourcePackagesFirewallLocalInPolicyMoveRead(d, m)
 }
@@ -128,27 +135,30 @@ func resourcePackagesFirewallLocalInPolicyMoveRead(d *schema.ResourceData, m int
 	}
 	paradict["adom"] = adomv
 
-	sid, err := strconv.Atoi(d.Get("local_in_policy").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading PackagesFirewallLocalInPolicyMove resource: %v", err)
-	}
-	did, err := strconv.Atoi(d.Get("target").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading PackagesFirewallLocalInPolicyMove resource: %v", err)
-	}
+	sid := d.Get("local_in_policy").(string)
+	did := d.Get("target").(string)
 	action := d.Get("option").(string)
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesFirewallLocalInPolicyMove(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesFirewallLocalInPolicyMove resource: %v", err)
 	}
 
@@ -169,18 +179,13 @@ func resourcePackagesFirewallLocalInPolicyMoveRead(d *schema.ResourceData, m int
 					return fmt.Errorf("Error reading PackagesFirewallLocalInPolicyMove resource: policyid doesn't exist.")
 				}
 
-				idn := -1
-				if vidn, ok := v["policyid"].(float64); !ok {
-					return fmt.Errorf("Error reading PackagesFirewallLocalInPolicyMove resource: wrong policyid.")
-				} else {
-					idn = int(vidn)
-				}
+				vid := fmt.Sprintf("%v", v["policyid"])
 
-				if idn == sid {
+				if vid == sid {
 					now_sid = i
 				}
 
-				if idn == did {
+				if vid == did {
 					now_did = i
 				}
 			} else {
@@ -194,11 +199,11 @@ func resourcePackagesFirewallLocalInPolicyMoveRead(d *schema.ResourceData, m int
 
 		if now_sid == -1 || now_did == -1 {
 			if now_sid == -1 && now_did == -1 {
-				state_pos = "policyid(" + strconv.Itoa(sid) + ") and target(" + strconv.Itoa(did) + ") were deleted"
+				state_pos = "policyid(" + sid + ") and target(" + did + ") were deleted"
 			} else if now_sid == -1 {
-				state_pos = "policyid(" + strconv.Itoa(sid) + ") was deleted"
+				state_pos = "policyid(" + sid + ") was deleted"
 			} else if now_did == -1 {
-				state_pos = "target(" + strconv.Itoa(did) + ") was deleted"
+				state_pos = "target(" + did + ") was deleted"
 			}
 		} else {
 			bconsistent := true
@@ -218,9 +223,9 @@ func resourcePackagesFirewallLocalInPolicyMoveRead(d *schema.ResourceData, m int
 				relative_pos := now_sid - now_did
 
 				if relative_pos > 0 {
-					state_pos = "policyid(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(relative_pos) + " behind target(" + strconv.Itoa(did) + ")"
+					state_pos = "policyid(" + sid + ") is " + strconv.Itoa(relative_pos) + " behind target(" + did + ")"
 				} else {
-					state_pos = "policyid(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + strconv.Itoa(did) + ")"
+					state_pos = "policyid(" + sid + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + did + ")"
 				}
 			}
 		}

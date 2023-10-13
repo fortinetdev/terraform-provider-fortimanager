@@ -55,12 +55,31 @@ func resourceObjectSystemNpuHpe() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"enable_queue_shaper": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"enable_shaper": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
 			},
 			"esp_max": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"exception_code": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"fragment_with_sess": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"fragment_without_session": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -91,6 +110,11 @@ func resourceObjectSystemNpuHpe() *schema.Resource {
 				Computed: true,
 			},
 			"pri_type_max": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"queue_shaper_max": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -223,11 +247,27 @@ func flattenObjectSystemNpuHpeArpMax(v interface{}, d *schema.ResourceData, pre 
 	return v
 }
 
+func flattenObjectSystemNpuHpeEnableQueueShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuHpeEnableShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemNpuHpeEspMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeExceptionCode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeFragmentWithSess(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeFragmentWithoutSession(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -252,6 +292,10 @@ func flattenObjectSystemNpuHpeL2OthersMax(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectSystemNpuHpePriTypeMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeQueueShaperMax(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -306,6 +350,16 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 		}
 	}
 
+	if err = d.Set("enable_queue_shaper", flattenObjectSystemNpuHpeEnableQueueShaper(o["enable-queue-shaper"], d, "enable_queue_shaper")); err != nil {
+		if vv, ok := fortiAPIPatch(o["enable-queue-shaper"], "ObjectSystemNpuHpe-EnableQueueShaper"); ok {
+			if err = d.Set("enable_queue_shaper", vv); err != nil {
+				return fmt.Errorf("Error reading enable_queue_shaper: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading enable_queue_shaper: %v", err)
+		}
+	}
+
 	if err = d.Set("enable_shaper", flattenObjectSystemNpuHpeEnableShaper(o["enable-shaper"], d, "enable_shaper")); err != nil {
 		if vv, ok := fortiAPIPatch(o["enable-shaper"], "ObjectSystemNpuHpe-EnableShaper"); ok {
 			if err = d.Set("enable_shaper", vv); err != nil {
@@ -323,6 +377,36 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading esp_max: %v", err)
+		}
+	}
+
+	if err = d.Set("exception_code", flattenObjectSystemNpuHpeExceptionCode(o["exception-code"], d, "exception_code")); err != nil {
+		if vv, ok := fortiAPIPatch(o["exception-code"], "ObjectSystemNpuHpe-ExceptionCode"); ok {
+			if err = d.Set("exception_code", vv); err != nil {
+				return fmt.Errorf("Error reading exception_code: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading exception_code: %v", err)
+		}
+	}
+
+	if err = d.Set("fragment_with_sess", flattenObjectSystemNpuHpeFragmentWithSess(o["fragment-with-sess"], d, "fragment_with_sess")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fragment-with-sess"], "ObjectSystemNpuHpe-FragmentWithSess"); ok {
+			if err = d.Set("fragment_with_sess", vv); err != nil {
+				return fmt.Errorf("Error reading fragment_with_sess: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fragment_with_sess: %v", err)
+		}
+	}
+
+	if err = d.Set("fragment_without_session", flattenObjectSystemNpuHpeFragmentWithoutSession(o["fragment-without-session"], d, "fragment_without_session")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fragment-without-session"], "ObjectSystemNpuHpe-FragmentWithoutSession"); ok {
+			if err = d.Set("fragment_without_session", vv); err != nil {
+				return fmt.Errorf("Error reading fragment_without_session: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fragment_without_session: %v", err)
 		}
 	}
 
@@ -383,6 +467,16 @@ func refreshObjectObjectSystemNpuHpe(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading pri_type_max: %v", err)
+		}
+	}
+
+	if err = d.Set("queue_shaper_max", flattenObjectSystemNpuHpeQueueShaperMax(o["queue-shaper-max"], d, "queue_shaper_max")); err != nil {
+		if vv, ok := fortiAPIPatch(o["queue-shaper-max"], "ObjectSystemNpuHpe-QueueShaperMax"); ok {
+			if err = d.Set("queue_shaper_max", vv); err != nil {
+				return fmt.Errorf("Error reading queue_shaper_max: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading queue_shaper_max: %v", err)
 		}
 	}
 
@@ -463,11 +557,27 @@ func expandObjectSystemNpuHpeArpMax(d *schema.ResourceData, v interface{}, pre s
 	return v, nil
 }
 
+func expandObjectSystemNpuHpeEnableQueueShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuHpeEnableShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectSystemNpuHpeEspMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeExceptionCode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeFragmentWithSess(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeFragmentWithoutSession(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -492,6 +602,10 @@ func expandObjectSystemNpuHpeL2OthersMax(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectSystemNpuHpePriTypeMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeQueueShaperMax(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -540,6 +654,15 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 		}
 	}
 
+	if v, ok := d.GetOk("enable_queue_shaper"); ok || d.HasChange("enable_queue_shaper") {
+		t, err := expandObjectSystemNpuHpeEnableQueueShaper(d, v, "enable_queue_shaper")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["enable-queue-shaper"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("enable_shaper"); ok || d.HasChange("enable_shaper") {
 		t, err := expandObjectSystemNpuHpeEnableShaper(d, v, "enable_shaper")
 		if err != nil {
@@ -555,6 +678,33 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["esp-max"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("exception_code"); ok || d.HasChange("exception_code") {
+		t, err := expandObjectSystemNpuHpeExceptionCode(d, v, "exception_code")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["exception-code"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fragment_with_sess"); ok || d.HasChange("fragment_with_sess") {
+		t, err := expandObjectSystemNpuHpeFragmentWithSess(d, v, "fragment_with_sess")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fragment-with-sess"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("fragment_without_session"); ok || d.HasChange("fragment_without_session") {
+		t, err := expandObjectSystemNpuHpeFragmentWithoutSession(d, v, "fragment_without_session")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fragment-without-session"] = t
 		}
 	}
 
@@ -609,6 +759,15 @@ func getObjectObjectSystemNpuHpe(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["pri-type-max"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("queue_shaper_max"); ok || d.HasChange("queue_shaper_max") {
+		t, err := expandObjectSystemNpuHpeQueueShaperMax(d, v, "queue_shaper_max")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["queue-shaper-max"] = t
 		}
 	}
 

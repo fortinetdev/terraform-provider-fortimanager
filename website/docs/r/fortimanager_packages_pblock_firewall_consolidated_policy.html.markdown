@@ -3,11 +3,11 @@ subcategory: "No Category"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_pblock_firewall_consolidated_policy"
 description: |-
-  /pm/config/pblock/firewall/consolidated/policy
+  Configuring consolidated policy for a policy block.
 ---
 
 # fortimanager_packages_pblock_firewall_consolidated_policy
-/pm/config/pblock/firewall/consolidated/policy
+Configuring consolidated policy for a policy block.
 
 ## Argument Reference
 
@@ -148,7 +148,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages PblockFirewallConsolidatedPolicy can be imported using any of these accepted formats:
 ```
-Set import_options = ["pblock=mypblock"] in the provider section.
+Set import_options = ["pblock=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_pblock_firewall_consolidated_policy.labelname {{policyid}}

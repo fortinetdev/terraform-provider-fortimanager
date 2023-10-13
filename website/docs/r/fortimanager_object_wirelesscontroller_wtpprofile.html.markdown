@@ -214,6 +214,21 @@ The `lbs` block supports:
 * `fortipresence_server_fqdn` - FQDN of FortiPresence server.
 * `fortipresence_unassoc` - Enable/disable FortiPresence finding and reporting unassociated stations. Valid values: `disable`, `enable`.
 
+* `polestar` - Enable/disable PoleStar BLE NAO Track Real Time Location Service (RTLS) support (default = disable). Valid values: `disable`, `enable`.
+
+* `polestar_accumulation_interval` - Time that measurements should be accumulated in seconds (default = 2).
+* `polestar_asset_addrgrp_list` - Tags and asset addrgrp list to be reported.
+* `polestar_asset_uuid_list1` - Tags and asset UUID list 1 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+* `polestar_asset_uuid_list2` - Tags and asset UUID list 2 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+* `polestar_asset_uuid_list3` - Tags and asset UUID list 3 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+* `polestar_asset_uuid_list4` - Tags and asset UUID list 4 to be reported (string in the format of 'XXXXXXXX-XXXX-XXXX-XXXX-XXXXXXXXXXXX').
+* `polestar_protocol` - Select the protocol to report Measurements, Advertising Data, or Location Data to NAO Cloud. (default = WSS). Valid values: `WSS`.
+
+* `polestar_reporting_interval` - Time between reporting accumulated measurements in seconds (default = 2).
+* `polestar_server_fqdn` - FQDN of PoleStar Nao Track Server (default = ws.nao-cloud.com).
+* `polestar_server_path` - Path of PoleStar Nao Track Server (default = /v1/token/&lt;access_token&gt;/pst-v2).
+* `polestar_server_port` - Port of PoleStar Nao Track Server (default = 443).
+* `polestar_server_token` - Access Token of PoleStar Nao Track Server.
 * `station_locate` - Enable/disable client station locating services for all clients, whether associated or not (default = disable). Valid values: `disable`, `enable`.
 
 
@@ -292,6 +307,8 @@ The `radio_1` block supports:
 * `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+* `mimo_mode` - Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+
 * `mode` - Mode of radio 1. Radio 1 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
@@ -414,6 +431,8 @@ The `radio_2` block supports:
 * `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+* `mimo_mode` - Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+
 * `mode` - Mode of radio 2. Radio 2 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
@@ -536,6 +555,8 @@ The `radio_3` block supports:
 * `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+* `mimo_mode` - Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+
 * `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `disabled`, `ap`, `monitor`, `sniffer`, `sam`.
 
 * `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.
@@ -658,6 +679,8 @@ The `radio_4` block supports:
 * `iperf_server_port` - Iperf service port number.
 * `max_clients` - Maximum number of stations (STAs) or WiFi clients supported by the radio. Range depends on the hardware.
 * `max_distance` - Maximum expected distance between the AP and clients (0 - 54000 m, default = 0).
+* `mimo_mode` - Configure radio MIMO mode (default = default). Valid values: `default`, `1x1`, `2x2`, `3x3`, `4x4`, `8x8`.
+
 * `mode` - Mode of radio 3. Radio 3 can be disabled, configured as an access point, a rogue AP monitor, or a sniffer. Valid values: `ap`, `monitor`, `sniffer`, `disabled`, `sam`.
 
 * `optional_antenna` - Optional antenna used on FAP (default = none). Valid values: `none`, `FANT-04ABGN-0606-O-N`, `FANT-04ABGN-1414-P-N`, `FANT-04ABGN-8065-P-N`, `FANT-04ABGN-0606-O-R`, `FANT-04ABGN-0606-P-R`, `FANT-10ACAX-1213-D-N`, `FANT-08ABGN-1213-D-R`.

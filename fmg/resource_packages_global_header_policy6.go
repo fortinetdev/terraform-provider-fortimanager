@@ -29,6 +29,11 @@ func resourcePackagesGlobalHeaderPolicy6() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -564,7 +569,9 @@ func resourcePackagesGlobalHeaderPolicy6Create(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy6(d)
@@ -601,7 +608,9 @@ func resourcePackagesGlobalHeaderPolicy6Update(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy6(d)
@@ -631,7 +640,9 @@ func resourcePackagesGlobalHeaderPolicy6Delete(d *schema.ResourceData, m interfa
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesGlobalHeaderPolicy6(mkey, paradict)
@@ -654,13 +665,21 @@ func resourcePackagesGlobalHeaderPolicy6Read(d *schema.ResourceData, m interface
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesGlobalHeaderPolicy6(mkey, paradict)

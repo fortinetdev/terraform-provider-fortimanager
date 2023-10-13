@@ -30,16 +30,16 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{fosid}}.
 
 ## Import
 
 Wantemp SystemVirtualWanLinkHealthCheckSla can be imported using any of these accepted formats:
 ```
-Set import_options = ["wanprof=mywanprof", "health_check=myhealth_check"] in the provider section.
+Set import_options = ["wanprof=YOUR_VALUE", "health_check=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_wantemp_system_virtualwanlink_healthcheck_sla.labelname WantempSystemVirtualWanLinkHealthCheckSla
+$ terraform import fortimanager_wantemp_system_virtualwanlink_healthcheck_sla.labelname {{fosid}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 -> **Hint:** The scopetype and adom for import will directly inherit the scopetype and adom configuration of the provider.

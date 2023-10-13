@@ -48,10 +48,12 @@ func resourceObjectSystemNpuSwTrHash() *schema.Resource {
 			"draco15": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"tcp_udp_port": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

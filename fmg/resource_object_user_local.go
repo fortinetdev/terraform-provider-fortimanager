@@ -66,6 +66,18 @@ func resourceObjectUserLocal() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"history0": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"history1": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -302,6 +314,14 @@ func flattenObjectUserLocalFortitoken(v interface{}, d *schema.ResourceData, pre
 	return v
 }
 
+func flattenObjectUserLocalHistory0(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserLocalHistory1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectUserLocalId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -440,6 +460,26 @@ func refreshObjectObjectUserLocal(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading fortitoken: %v", err)
+		}
+	}
+
+	if err = d.Set("history0", flattenObjectUserLocalHistory0(o["history0"], d, "history0")); err != nil {
+		if vv, ok := fortiAPIPatch(o["history0"], "ObjectUserLocal-History0"); ok {
+			if err = d.Set("history0", vv); err != nil {
+				return fmt.Errorf("Error reading history0: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading history0: %v", err)
+		}
+	}
+
+	if err = d.Set("history1", flattenObjectUserLocalHistory1(o["history1"], d, "history1")); err != nil {
+		if vv, ok := fortiAPIPatch(o["history1"], "ObjectUserLocal-History1"); ok {
+			if err = d.Set("history1", vv); err != nil {
+				return fmt.Errorf("Error reading history1: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading history1: %v", err)
 		}
 	}
 
@@ -662,6 +702,14 @@ func expandObjectUserLocalFortitoken(d *schema.ResourceData, v interface{}, pre 
 	return v, nil
 }
 
+func expandObjectUserLocalHistory0(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserLocalHistory1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectUserLocalId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -791,6 +839,24 @@ func getObjectObjectUserLocal(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["fortitoken"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history0"); ok || d.HasChange("history0") {
+		t, err := expandObjectUserLocalHistory0(d, v, "history0")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history0"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("history1"); ok || d.HasChange("history1") {
+		t, err := expandObjectUserLocalHistory1(d, v, "history1")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["history1"] = t
 		}
 	}
 

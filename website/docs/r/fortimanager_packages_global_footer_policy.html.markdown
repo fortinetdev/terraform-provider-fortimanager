@@ -77,6 +77,7 @@ resource "fortimanager_packages_global_footer_policy" "labelname" {
 
 The following arguments are supported:
 
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
 * `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
@@ -114,6 +115,7 @@ The following arguments are supported:
 
 * `capture_packet` - Enable/disable capture packets. Valid values: `disable`, `enable`.
 
+* `casb_profile` - Name of an existing CASB profile.
 * `casi_profile` - Casi-Profile.
 * `central_nat` - Central-Nat. Valid values: `disable`, `enable`.
 
@@ -193,6 +195,8 @@ The following arguments are supported:
 
 * `endpoint_keepalive_interface` - Endpoint-Keepalive-Interface.
 * `endpoint_profile` - Endpoint-Profile.
+* `extended_log` - Extended-Log. Valid values: `disable`, `enable`.
+
 * `failed_connection` - Failed-Connection. Valid values: `disable`, `enable`.
 
 * `fall_through_unauthenticated` - Fall-Through-Unauthenticated. Valid values: `disable`, `enable`.
@@ -236,6 +240,8 @@ The following arguments are supported:
 
 * `identity_based_route` - Name of identity-based routing rule.
 * `identity_from` - Identity-From. Valid values: `auth`, `device`.
+
+* `implicit_proxy_detection` - Implicit-Proxy-Detection. Valid values: `disable`, `enable`.
 
 * `inbound` - Policy-based IPsec VPN: only traffic from the remote network can initiate a VPN. Valid values: `disable`, `enable`.
 
@@ -453,6 +459,7 @@ The following arguments are supported:
 * `uuid_idx` - Uuid-Idx.
 * `vendor_mac` - Vendor-Mac.
 * `videofilter_profile` - Videofilter-Profile.
+* `virtual_patch_profile` - Name of an existing virtual-patch profile.
 * `vlan_cos_fwd` - VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_cos_rev` - VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_filter` - Set VLAN filters.
@@ -502,7 +509,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages GlobalFooterPolicy can be imported using any of these accepted formats:
 ```
-Set import_options = ["pkg=mypkg"] in the provider section.
+Set import_options = ["pkg_folder_path=YOUR_VALUE", "pkg=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_global_footer_policy.labelname {{policyid}}

@@ -42,8 +42,7 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 	err = fortiAPIErrorFormat(result, string(body))
 
 	if err == nil {
-		output = decodeData(result)
-		log.Printf("Successful\n")
+		output, err = decodeData(result)
 	}
 
 	return
@@ -111,7 +110,7 @@ func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[
 	err = fortiAPIErrorFormat(result, string(body))
 
 	if err == nil {
-		mapTmp = decodeData(result)
+		mapTmp, err = decodeData(result)
 	}
 
 	return
@@ -158,7 +157,9 @@ func encodeData(c *FortiSDKClient, path, method string, params *map[string]inter
 	data := make(map[string]interface{})
 	data["method"] = method
 	data["params"] = make([]map[string]interface{}, 0)
-	data["verbose"] = 1
+	if method == "get" {
+		data["verbose"] = 1
+	}
 	if c.Session != "" {
 		data["session"] = c.Session
 	}
@@ -182,18 +183,31 @@ func encodeData(c *FortiSDKClient, path, method string, params *map[string]inter
 	return data
 }
 
-func decodeData(result map[string]interface{}) map[string]interface{} {
+func decodeData(result map[string]interface{}) (dataMap map[string]interface{}, err error) {
 	v := result["result"]
 
 	// fortiapi intercepted all the exceptions
 	l := v.([]interface{})
 	v2 := l[0].(map[string]interface{})
 	if v2["data"] != nil {
-		mapTmp := v2["data"].(map[string]interface{})
-		return mapTmp
+		if dataList, ok := v2["data"].([]interface{}); ok {
+			if len(dataList) == 0 {
+				err = fmt.Errorf("API response is empty.")
+				return
+			}
+			if dataMap, ok = dataList[0].(map[string]interface{}); ok {
+				return
+			} else {
+				err = fmt.Errorf("The element of data list is not map for the API response. Please file an issue on provider's Github repository.")
+			}
+		} else if dataMap, ok = v2["data"].(map[string]interface{}); ok {
+			return
+		} else {
+			err = fmt.Errorf("Could not identify the type of parameter 'data' of API response. Please file an issue on provider's Github repository.")
+		}
 	}
 
-	return nil
+	return
 }
 
 func decodeDataMove(result map[string]interface{}) []interface{} {
@@ -313,6 +327,8 @@ func replaceParaWithValue(path string, paradict map[string]string) (string, erro
 			log.Printf("[Warning] argument map: %v do not contain argument: %v", argUrlMap, curArgName)
 		}
 	}
+	rstPath = strings.ReplaceAll(rstPath, "//", "/")
+	rstPath = strings.TrimRight(rstPath, "/")
 
 	if strings.ContainsAny(rstPath, "[ | {") {
 		return "", fmt.Errorf("path parameters error %v, %v", path, paradict)

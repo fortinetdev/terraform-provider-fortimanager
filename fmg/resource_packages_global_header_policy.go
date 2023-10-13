@@ -29,6 +29,11 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -129,6 +134,10 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Computed: true,
 			},
 			"capture_packet": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"casb_profile": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -361,6 +370,10 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"extended_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"failed_connection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -477,6 +490,10 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Optional: true,
 			},
 			"identity_from": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"implicit_proxy_detection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 			},
@@ -1149,6 +1166,10 @@ func resourcePackagesGlobalHeaderPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"virtual_patch_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"vlan_cos_fwd": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -1278,7 +1299,9 @@ func resourcePackagesGlobalHeaderPolicyCreate(d *schema.ResourceData, m interfac
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy(d)
@@ -1315,7 +1338,9 @@ func resourcePackagesGlobalHeaderPolicyUpdate(d *schema.ResourceData, m interfac
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalHeaderPolicy(d)
@@ -1345,7 +1370,9 @@ func resourcePackagesGlobalHeaderPolicyDelete(d *schema.ResourceData, m interfac
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesGlobalHeaderPolicy(mkey, paradict)
@@ -1368,13 +1395,21 @@ func resourcePackagesGlobalHeaderPolicyRead(d *schema.ResourceData, m interface{
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesGlobalHeaderPolicy(mkey, paradict)
@@ -1480,6 +1515,10 @@ func flattenPackagesGlobalHeaderPolicyCaptivePortalExempt(v interface{}, d *sche
 }
 
 func flattenPackagesGlobalHeaderPolicyCapturePacket(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyCasbProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1687,6 +1726,10 @@ func flattenPackagesGlobalHeaderPolicyEndpointProfile(v interface{}, d *schema.R
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyExtendedLog(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyFailedConnection(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1792,6 +1835,10 @@ func flattenPackagesGlobalHeaderPolicyIdentityBasedRoute(v interface{}, d *schem
 }
 
 func flattenPackagesGlobalHeaderPolicyIdentityFrom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesGlobalHeaderPolicyImplicitProxyDetection(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2379,6 +2426,10 @@ func flattenPackagesGlobalHeaderPolicyVideofilterProfile(v interface{}, d *schem
 	return v
 }
 
+func flattenPackagesGlobalHeaderPolicyVirtualPatchProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesGlobalHeaderPolicyVlanCosFwd(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2703,6 +2754,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading capture_packet: %v", err)
+		}
+	}
+
+	if err = d.Set("casb_profile", flattenPackagesGlobalHeaderPolicyCasbProfile(o["casb-profile"], d, "casb_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile"], "PackagesGlobalHeaderPolicy-CasbProfile"); ok {
+			if err = d.Set("casb_profile", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile: %v", err)
 		}
 	}
 
@@ -3216,6 +3277,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("extended_log", flattenPackagesGlobalHeaderPolicyExtendedLog(o["extended-log"], d, "extended_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["extended-log"], "PackagesGlobalHeaderPolicy-ExtendedLog"); ok {
+			if err = d.Set("extended_log", vv); err != nil {
+				return fmt.Errorf("Error reading extended_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading extended_log: %v", err)
+		}
+	}
+
 	if err = d.Set("failed_connection", flattenPackagesGlobalHeaderPolicyFailedConnection(o["failed-connection"], d, "failed_connection")); err != nil {
 		if vv, ok := fortiAPIPatch(o["failed-connection"], "PackagesGlobalHeaderPolicy-FailedConnection"); ok {
 			if err = d.Set("failed_connection", vv); err != nil {
@@ -3483,6 +3554,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 			}
 		} else {
 			return fmt.Errorf("Error reading identity_from: %v", err)
+		}
+	}
+
+	if err = d.Set("implicit_proxy_detection", flattenPackagesGlobalHeaderPolicyImplicitProxyDetection(o["implicit-proxy-detection"], d, "implicit_proxy_detection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["implicit-proxy-detection"], "PackagesGlobalHeaderPolicy-ImplicitProxyDetection"); ok {
+			if err = d.Set("implicit_proxy_detection", vv); err != nil {
+				return fmt.Errorf("Error reading implicit_proxy_detection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading implicit_proxy_detection: %v", err)
 		}
 	}
 
@@ -4946,6 +5027,16 @@ func refreshObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("virtual_patch_profile", flattenPackagesGlobalHeaderPolicyVirtualPatchProfile(o["virtual-patch-profile"], d, "virtual_patch_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch-profile"], "PackagesGlobalHeaderPolicy-VirtualPatchProfile"); ok {
+			if err = d.Set("virtual_patch_profile", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("vlan_cos_fwd", flattenPackagesGlobalHeaderPolicyVlanCosFwd(o["vlan-cos-fwd"], d, "vlan_cos_fwd")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vlan-cos-fwd"], "PackagesGlobalHeaderPolicy-VlanCosFwd"); ok {
 			if err = d.Set("vlan_cos_fwd", vv); err != nil {
@@ -5303,6 +5394,10 @@ func expandPackagesGlobalHeaderPolicyCapturePacket(d *schema.ResourceData, v int
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyCasbProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyCasiProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5507,6 +5602,10 @@ func expandPackagesGlobalHeaderPolicyEndpointProfile(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyExtendedLog(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyFailedConnection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5612,6 +5711,10 @@ func expandPackagesGlobalHeaderPolicyIdentityBasedRoute(d *schema.ResourceData, 
 }
 
 func expandPackagesGlobalHeaderPolicyIdentityFrom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesGlobalHeaderPolicyImplicitProxyDetection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6199,6 +6302,10 @@ func expandPackagesGlobalHeaderPolicyVideofilterProfile(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandPackagesGlobalHeaderPolicyVirtualPatchProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesGlobalHeaderPolicyVlanCosFwd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -6501,6 +6608,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["capture-packet"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("casb_profile"); ok || d.HasChange("casb_profile") {
+		t, err := expandPackagesGlobalHeaderPolicyCasbProfile(d, v, "casb_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile"] = t
 		}
 	}
 
@@ -6963,6 +7079,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 		}
 	}
 
+	if v, ok := d.GetOk("extended_log"); ok || d.HasChange("extended_log") {
+		t, err := expandPackagesGlobalHeaderPolicyExtendedLog(d, v, "extended_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["extended-log"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("failed_connection"); ok || d.HasChange("failed_connection") {
 		t, err := expandPackagesGlobalHeaderPolicyFailedConnection(d, v, "failed_connection")
 		if err != nil {
@@ -7203,6 +7328,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["identity-from"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("implicit_proxy_detection"); ok || d.HasChange("implicit_proxy_detection") {
+		t, err := expandPackagesGlobalHeaderPolicyImplicitProxyDetection(d, v, "implicit_proxy_detection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["implicit-proxy-detection"] = t
 		}
 	}
 
@@ -8517,6 +8651,15 @@ func getObjectPackagesGlobalHeaderPolicy(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["videofilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch_profile"); ok || d.HasChange("virtual_patch_profile") {
+		t, err := expandPackagesGlobalHeaderPolicyVirtualPatchProfile(d, v, "virtual_patch_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch-profile"] = t
 		}
 	}
 

@@ -87,6 +87,7 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 						"match_extcommunity_exact": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"match_flags": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -260,6 +261,10 @@ func resourceObjectRouterRouteMap() *schema.Resource {
 							Optional: true,
 						},
 						"set_tag": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"set_vpnv4_nexthop": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -696,6 +701,12 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 			tmp["set_tag"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetTag")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_vpnv4_nexthop"
+		if _, ok := i["set-vpnv4-nexthop"]; ok {
+			v := flattenObjectRouterRouteMapRuleSetVpnv4Nexthop(i["set-vpnv4-nexthop"], d, pre_append)
+			tmp["set_vpnv4_nexthop"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetVpnv4Nexthop")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_weight"
 		if _, ok := i["set-weight"]; ok {
 			v := flattenObjectRouterRouteMapRuleSetWeight(i["set-weight"], d, pre_append)
@@ -891,6 +902,10 @@ func flattenObjectRouterRouteMapRuleSetRouteTag(v interface{}, d *schema.Resourc
 }
 
 func flattenObjectRouterRouteMapRuleSetTag(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectRouterRouteMapRuleSetVpnv4Nexthop(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1214,6 +1229,11 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 			tmp["set-tag"], _ = expandObjectRouterRouteMapRuleSetTag(d, i["set_tag"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_vpnv4_nexthop"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["set-vpnv4-nexthop"], _ = expandObjectRouterRouteMapRuleSetVpnv4Nexthop(d, i["set_vpnv4_nexthop"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "set_weight"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["set-weight"], _ = expandObjectRouterRouteMapRuleSetWeight(d, i["set_weight"], pre_append)
@@ -1408,6 +1428,10 @@ func expandObjectRouterRouteMapRuleSetRouteTag(d *schema.ResourceData, v interfa
 }
 
 func expandObjectRouterRouteMapRuleSetTag(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectRouterRouteMapRuleSetVpnv4Nexthop(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

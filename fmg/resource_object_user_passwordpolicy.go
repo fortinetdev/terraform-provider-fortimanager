@@ -50,8 +50,38 @@ func resourceObjectUserPasswordPolicy() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"expire_status": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"expired_password_renewal": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"min_change_characters": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"min_lower_case_letter": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"min_non_alphanumeric": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"min_number": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"min_upper_case_letter": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"minimum_length": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
 			},
@@ -59,6 +89,11 @@ func resourceObjectUserPasswordPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"reuse_password": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"warn_days": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -187,11 +222,43 @@ func flattenObjectUserPasswordPolicyExpireDays(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectUserPasswordPolicyExpireStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserPasswordPolicyExpiredPasswordRenewal(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
+func flattenObjectUserPasswordPolicyMinChangeCharacters(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPasswordPolicyMinLowerCaseLetter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPasswordPolicyMinNonAlphanumeric(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPasswordPolicyMinNumber(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPasswordPolicyMinUpperCaseLetter(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPasswordPolicyMinimumLength(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserPasswordPolicyName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPasswordPolicyReusePassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -216,6 +283,16 @@ func refreshObjectObjectUserPasswordPolicy(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("expire_status", flattenObjectUserPasswordPolicyExpireStatus(o["expire-status"], d, "expire_status")); err != nil {
+		if vv, ok := fortiAPIPatch(o["expire-status"], "ObjectUserPasswordPolicy-ExpireStatus"); ok {
+			if err = d.Set("expire_status", vv); err != nil {
+				return fmt.Errorf("Error reading expire_status: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading expire_status: %v", err)
+		}
+	}
+
 	if err = d.Set("expired_password_renewal", flattenObjectUserPasswordPolicyExpiredPasswordRenewal(o["expired-password-renewal"], d, "expired_password_renewal")); err != nil {
 		if vv, ok := fortiAPIPatch(o["expired-password-renewal"], "ObjectUserPasswordPolicy-ExpiredPasswordRenewal"); ok {
 			if err = d.Set("expired_password_renewal", vv); err != nil {
@@ -226,6 +303,66 @@ func refreshObjectObjectUserPasswordPolicy(d *schema.ResourceData, o map[string]
 		}
 	}
 
+	if err = d.Set("min_change_characters", flattenObjectUserPasswordPolicyMinChangeCharacters(o["min-change-characters"], d, "min_change_characters")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-change-characters"], "ObjectUserPasswordPolicy-MinChangeCharacters"); ok {
+			if err = d.Set("min_change_characters", vv); err != nil {
+				return fmt.Errorf("Error reading min_change_characters: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_change_characters: %v", err)
+		}
+	}
+
+	if err = d.Set("min_lower_case_letter", flattenObjectUserPasswordPolicyMinLowerCaseLetter(o["min-lower-case-letter"], d, "min_lower_case_letter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-lower-case-letter"], "ObjectUserPasswordPolicy-MinLowerCaseLetter"); ok {
+			if err = d.Set("min_lower_case_letter", vv); err != nil {
+				return fmt.Errorf("Error reading min_lower_case_letter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_lower_case_letter: %v", err)
+		}
+	}
+
+	if err = d.Set("min_non_alphanumeric", flattenObjectUserPasswordPolicyMinNonAlphanumeric(o["min-non-alphanumeric"], d, "min_non_alphanumeric")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-non-alphanumeric"], "ObjectUserPasswordPolicy-MinNonAlphanumeric"); ok {
+			if err = d.Set("min_non_alphanumeric", vv); err != nil {
+				return fmt.Errorf("Error reading min_non_alphanumeric: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_non_alphanumeric: %v", err)
+		}
+	}
+
+	if err = d.Set("min_number", flattenObjectUserPasswordPolicyMinNumber(o["min-number"], d, "min_number")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-number"], "ObjectUserPasswordPolicy-MinNumber"); ok {
+			if err = d.Set("min_number", vv); err != nil {
+				return fmt.Errorf("Error reading min_number: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_number: %v", err)
+		}
+	}
+
+	if err = d.Set("min_upper_case_letter", flattenObjectUserPasswordPolicyMinUpperCaseLetter(o["min-upper-case-letter"], d, "min_upper_case_letter")); err != nil {
+		if vv, ok := fortiAPIPatch(o["min-upper-case-letter"], "ObjectUserPasswordPolicy-MinUpperCaseLetter"); ok {
+			if err = d.Set("min_upper_case_letter", vv); err != nil {
+				return fmt.Errorf("Error reading min_upper_case_letter: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading min_upper_case_letter: %v", err)
+		}
+	}
+
+	if err = d.Set("minimum_length", flattenObjectUserPasswordPolicyMinimumLength(o["minimum-length"], d, "minimum_length")); err != nil {
+		if vv, ok := fortiAPIPatch(o["minimum-length"], "ObjectUserPasswordPolicy-MinimumLength"); ok {
+			if err = d.Set("minimum_length", vv); err != nil {
+				return fmt.Errorf("Error reading minimum_length: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading minimum_length: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectUserPasswordPolicyName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectUserPasswordPolicy-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -233,6 +370,16 @@ func refreshObjectObjectUserPasswordPolicy(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading name: %v", err)
+		}
+	}
+
+	if err = d.Set("reuse_password", flattenObjectUserPasswordPolicyReusePassword(o["reuse-password"], d, "reuse_password")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reuse-password"], "ObjectUserPasswordPolicy-ReusePassword"); ok {
+			if err = d.Set("reuse_password", vv); err != nil {
+				return fmt.Errorf("Error reading reuse_password: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reuse_password: %v", err)
 		}
 	}
 
@@ -259,11 +406,43 @@ func expandObjectUserPasswordPolicyExpireDays(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectUserPasswordPolicyExpireStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserPasswordPolicyExpiredPasswordRenewal(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
+func expandObjectUserPasswordPolicyMinChangeCharacters(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyMinLowerCaseLetter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyMinNonAlphanumeric(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyMinNumber(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyMinUpperCaseLetter(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyMinimumLength(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserPasswordPolicyName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPasswordPolicyReusePassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -283,6 +462,15 @@ func getObjectObjectUserPasswordPolicy(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("expire_status"); ok || d.HasChange("expire_status") {
+		t, err := expandObjectUserPasswordPolicyExpireStatus(d, v, "expire_status")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["expire-status"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("expired_password_renewal"); ok || d.HasChange("expired_password_renewal") {
 		t, err := expandObjectUserPasswordPolicyExpiredPasswordRenewal(d, v, "expired_password_renewal")
 		if err != nil {
@@ -292,12 +480,75 @@ func getObjectObjectUserPasswordPolicy(d *schema.ResourceData) (*map[string]inte
 		}
 	}
 
+	if v, ok := d.GetOk("min_change_characters"); ok || d.HasChange("min_change_characters") {
+		t, err := expandObjectUserPasswordPolicyMinChangeCharacters(d, v, "min_change_characters")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-change-characters"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("min_lower_case_letter"); ok || d.HasChange("min_lower_case_letter") {
+		t, err := expandObjectUserPasswordPolicyMinLowerCaseLetter(d, v, "min_lower_case_letter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-lower-case-letter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("min_non_alphanumeric"); ok || d.HasChange("min_non_alphanumeric") {
+		t, err := expandObjectUserPasswordPolicyMinNonAlphanumeric(d, v, "min_non_alphanumeric")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-non-alphanumeric"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("min_number"); ok || d.HasChange("min_number") {
+		t, err := expandObjectUserPasswordPolicyMinNumber(d, v, "min_number")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-number"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("min_upper_case_letter"); ok || d.HasChange("min_upper_case_letter") {
+		t, err := expandObjectUserPasswordPolicyMinUpperCaseLetter(d, v, "min_upper_case_letter")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["min-upper-case-letter"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("minimum_length"); ok || d.HasChange("minimum_length") {
+		t, err := expandObjectUserPasswordPolicyMinimumLength(d, v, "minimum_length")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["minimum-length"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandObjectUserPasswordPolicyName(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reuse_password"); ok || d.HasChange("reuse_password") {
+		t, err := expandObjectUserPasswordPolicyReusePassword(d, v, "reuse_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reuse-password"] = t
 		}
 	}
 

@@ -83,6 +83,25 @@ func resourceObjectUserPeer() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"mfa_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"mfa_password": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"mfa_server": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"mfa_username": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -257,6 +276,22 @@ func flattenObjectUserPeerMandatoryCaVerify(v interface{}, d *schema.ResourceDat
 	return v
 }
 
+func flattenObjectUserPeerMfaMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPeerMfaPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectUserPeerMfaServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserPeerMfaUsername(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserPeerName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -354,6 +389,46 @@ func refreshObjectObjectUserPeer(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("mfa_mode", flattenObjectUserPeerMfaMode(o["mfa-mode"], d, "mfa_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mfa-mode"], "ObjectUserPeer-MfaMode"); ok {
+			if err = d.Set("mfa_mode", vv); err != nil {
+				return fmt.Errorf("Error reading mfa_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mfa_mode: %v", err)
+		}
+	}
+
+	if err = d.Set("mfa_password", flattenObjectUserPeerMfaPassword(o["mfa-password"], d, "mfa_password")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mfa-password"], "ObjectUserPeer-MfaPassword"); ok {
+			if err = d.Set("mfa_password", vv); err != nil {
+				return fmt.Errorf("Error reading mfa_password: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mfa_password: %v", err)
+		}
+	}
+
+	if err = d.Set("mfa_server", flattenObjectUserPeerMfaServer(o["mfa-server"], d, "mfa_server")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mfa-server"], "ObjectUserPeer-MfaServer"); ok {
+			if err = d.Set("mfa_server", vv); err != nil {
+				return fmt.Errorf("Error reading mfa_server: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mfa_server: %v", err)
+		}
+	}
+
+	if err = d.Set("mfa_username", flattenObjectUserPeerMfaUsername(o["mfa-username"], d, "mfa_username")); err != nil {
+		if vv, ok := fortiAPIPatch(o["mfa-username"], "ObjectUserPeer-MfaUsername"); ok {
+			if err = d.Set("mfa_username", vv); err != nil {
+				return fmt.Errorf("Error reading mfa_username: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading mfa_username: %v", err)
+		}
+	}
+
 	if err = d.Set("name", flattenObjectUserPeerName(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "ObjectUserPeer-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
@@ -442,6 +517,22 @@ func expandObjectUserPeerLdapUsername(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandObjectUserPeerMandatoryCaVerify(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPeerMfaMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPeerMfaPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectUserPeerMfaServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserPeerMfaUsername(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -537,6 +628,42 @@ func getObjectObjectUserPeer(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["mandatory-ca-verify"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mfa_mode"); ok || d.HasChange("mfa_mode") {
+		t, err := expandObjectUserPeerMfaMode(d, v, "mfa_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mfa-mode"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mfa_password"); ok || d.HasChange("mfa_password") {
+		t, err := expandObjectUserPeerMfaPassword(d, v, "mfa_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mfa-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mfa_server"); ok || d.HasChange("mfa_server") {
+		t, err := expandObjectUserPeerMfaServer(d, v, "mfa_server")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mfa-server"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("mfa_username"); ok || d.HasChange("mfa_username") {
+		t, err := expandObjectUserPeerMfaUsername(d, v, "mfa_username")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["mfa-username"] = t
 		}
 	}
 

@@ -72,10 +72,12 @@ func resourceObjectUserDomainController() *schema.Resource {
 			"change_detection": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"change_detection_period": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"dns_srv_lookup": &schema.Schema{
 				Type:     schema.TypeString,
@@ -94,6 +96,7 @@ func resourceObjectUserDomainController() *schema.Resource {
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"ip_address": &schema.Schema{
 							Type:     schema.TypeString,
@@ -113,6 +116,7 @@ func resourceObjectUserDomainController() *schema.Resource {
 						"source_port": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

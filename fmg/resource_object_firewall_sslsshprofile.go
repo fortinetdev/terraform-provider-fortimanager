@@ -106,6 +106,11 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"quic": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"revoked_server_cert": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -296,6 +301,11 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 							Computed: true,
 						},
 						"proxy_after_tcp_handshake": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"quic": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
@@ -794,14 +804,17 @@ func resourceObjectFirewallSslSshProfile() *schema.Resource {
 						"unsupported_ssl_cipher": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"unsupported_ssl_negotiation": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"unsupported_ssl_version": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"untrusted_server_cert": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1165,6 +1178,11 @@ func flattenObjectFirewallSslSshProfileDot(v interface{}, d *schema.ResourceData
 		result["proxy_after_tcp_handshake"] = flattenObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(i["proxy-after-tcp-handshake"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quic"
+	if _, ok := i["quic"]; ok {
+		result["quic"] = flattenObjectFirewallSslSshProfileDotQuic(i["quic"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "revoked_server_cert"
 	if _, ok := i["revoked-server-cert"]; ok {
 		result["revoked_server_cert"] = flattenObjectFirewallSslSshProfileDotRevokedServerCert(i["revoked-server-cert"], d, pre_append)
@@ -1225,6 +1243,10 @@ func flattenObjectFirewallSslSshProfileDotMinAllowedSslVersion(v interface{}, d 
 }
 
 func flattenObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileDotQuic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1495,6 +1517,11 @@ func flattenObjectFirewallSslSshProfileHttps(v interface{}, d *schema.ResourceDa
 		result["proxy_after_tcp_handshake"] = flattenObjectFirewallSslSshProfileHttpsProxyAfterTcpHandshake(i["proxy-after-tcp-handshake"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "quic"
+	if _, ok := i["quic"]; ok {
+		result["quic"] = flattenObjectFirewallSslSshProfileHttpsQuic(i["quic"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "revoked_server_cert"
 	if _, ok := i["revoked-server-cert"]; ok {
 		result["revoked_server_cert"] = flattenObjectFirewallSslSshProfileHttpsRevokedServerCert(i["revoked-server-cert"], d, pre_append)
@@ -1585,6 +1612,10 @@ func flattenObjectFirewallSslSshProfileHttpsPorts(v interface{}, d *schema.Resou
 }
 
 func flattenObjectFirewallSslSshProfileHttpsProxyAfterTcpHandshake(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallSslSshProfileHttpsQuic(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3302,6 +3333,10 @@ func expandObjectFirewallSslSshProfileDot(d *schema.ResourceData, v interface{},
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["proxy-after-tcp-handshake"], _ = expandObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(d, i["proxy_after_tcp_handshake"], pre_append)
 	}
+	pre_append = pre + ".0." + "quic"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["quic"], _ = expandObjectFirewallSslSshProfileDotQuic(d, i["quic"], pre_append)
+	}
 	pre_append = pre + ".0." + "revoked_server_cert"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["revoked-server-cert"], _ = expandObjectFirewallSslSshProfileDotRevokedServerCert(d, i["revoked_server_cert"], pre_append)
@@ -3355,6 +3390,10 @@ func expandObjectFirewallSslSshProfileDotMinAllowedSslVersion(d *schema.Resource
 }
 
 func expandObjectFirewallSslSshProfileDotProxyAfterTcpHandshake(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileDotQuic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -3598,6 +3637,10 @@ func expandObjectFirewallSslSshProfileHttps(d *schema.ResourceData, v interface{
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["proxy-after-tcp-handshake"], _ = expandObjectFirewallSslSshProfileHttpsProxyAfterTcpHandshake(d, i["proxy_after_tcp_handshake"], pre_append)
 	}
+	pre_append = pre + ".0." + "quic"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["quic"], _ = expandObjectFirewallSslSshProfileHttpsQuic(d, i["quic"], pre_append)
+	}
 	pre_append = pre + ".0." + "revoked_server_cert"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["revoked-server-cert"], _ = expandObjectFirewallSslSshProfileHttpsRevokedServerCert(d, i["revoked_server_cert"], pre_append)
@@ -3679,6 +3722,10 @@ func expandObjectFirewallSslSshProfileHttpsPorts(d *schema.ResourceData, v inter
 }
 
 func expandObjectFirewallSslSshProfileHttpsProxyAfterTcpHandshake(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallSslSshProfileHttpsQuic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

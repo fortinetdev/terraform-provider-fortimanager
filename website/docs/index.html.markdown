@@ -67,9 +67,13 @@ The FortiManager provider offers a means of providing credentials for authentica
 
 Static credentials can be provided by adding credential keys in-line in the FortiManager provider block. 
 
-There are two kinds of credentials supported.
+There are two kinds of credentials supported for on-prem FortiManager.
 - `token` based authentication (Recommanded). User needs to generate an API token from FortiManager. *Note: Only FortiManager version >= v7.2.2 supports Token based authentication.*
 - `username/password` authentication. User provide the username and password of the administrator. 
+
+There are two kinds of credentials supported for FortiManager Cloud.
+- Provide `fmg_cloud_token` directly. User needs to generate an FortiCloud token. *Note: The Token could be expired. Make sure the Token provided is valid.*
+- `username/password` authentication. User provide the username and password of the FortiCloud API user. The provider will generate the FortiCloud token based on username/password. 
 
 Usage:
 
@@ -84,13 +88,17 @@ provider "fortimanager" {
 }
 ```
 
-#### Generate an API token for FortiOS
+#### Generate an API token for FortiManager
 
 See the left navigation: `Guides` -> `Generate an API token for FortiManager`.
 
+#### Create FortiCloud API user and generate FortiCloud token for FortiManager Cloud
+
+See the left navigation: `Guides` -> `Generate an FortiCloud token for FortiManager Cloud`.
+
 ### Environment variables
 
-You can provide your credentials via the `FORTIMANAGER_ACCESS_HOSTNAME`, `FORTIMANAGER_ACCESS_TOKEN`, `FORTIMANAGER_ACCESS_USERNAME`, `FORTIMANAGER_ACCESS_PASSWORD`, `FORTIMANAGER_INSECURE` and `FORTIMANAGER_CA_CABUNDLE` environment variables. Note that setting your FortiManager credentials using static credentials variables will override the environment variables.
+You can provide your credentials via the `FORTIMANAGER_ACCESS_HOSTNAME`, `FORTIMANAGER_ACCESS_TOKEN`, `FORTIMANAGER_CLOUD_ACCESS_TOKEN`,`FORTIMANAGER_ACCESS_USERNAME`, `FORTIMANAGER_ACCESS_PASSWORD`, `FORTIMANAGER_INSECURE` and `FORTIMANAGER_CA_CABUNDLE` environment variables. Note that setting your FortiManager credentials using static credentials variables will override the environment variables.
 
 Usage:
 
@@ -120,9 +128,13 @@ The following arguments are supported:
 
 * `token` - (Optional) The token of FortiManager unit. If omitted, the `FORTIMANAGER_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used.
 
-* `username` - (Optional) Your username. It must be provided, but it can also be sourced from the `FORTIMANAGER_ACCESS_USERNAME` environment variable.
+* `fmg_cloud_token` - (Optional) The access token of FortiManager Cloud. If omitted, the `FORTIMANAGER_CLOUD_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used. Available only when `fmg_type` set to `forticloud`. 
 
-* `password` - (Optional) Your password. It must be provided, but it can also be sourced from the `FORTIMANAGER_ACCESS_PASSWORD` environment variable.
+* `fmg_type` - (Optional) FortiManager type. Valid values: `on-prem`, `forticloud`. Default is `on-prem`. Set to `forticloud` if using FortiManager Cloud under FortiCloud.
+
+* `username` - (Optional) FortiManager username if `fmg_type` is `on-prem`, and it is required. FortiCloud API username if `fmg_type` is `forticloud`, and it is optional. It can also be sourced from the `FORTIMANAGER_ACCESS_USERNAME` environment variable.
+
+* `password` - (Optional) FortiManager password if `fmg_type` is `on-prem`, and it is required. FortiCloud API password if `fmg_type` is `forticloud`, and it is optional. It can also be sourced from the `FORTIMANAGER_ACCESS_PASSWORD` environment variable.
 
 * `insecure` - (Optional) Control whether the Provider to perform insecure SSL requests. If omitted, the `FORTIMANAGER_INSECURE` environment variable is used. If neither is set, default value is `false`.
 

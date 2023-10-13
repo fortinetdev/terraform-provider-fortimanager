@@ -105,6 +105,32 @@ func resourceObjectWirelessControllerBleProfile() *schema.Resource {
 				ForceNew: true,
 				Optional: true,
 			},
+			"scan_interval": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"scan_period": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"scan_threshold": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"scan_time": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
+			"scan_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"scan_window": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+			},
 			"txpower": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -276,6 +302,30 @@ func flattenObjectWirelessControllerBleProfileName(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectWirelessControllerBleProfileScanInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerBleProfileScanPeriod(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerBleProfileScanThreshold(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerBleProfileScanTime(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerBleProfileScanType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerBleProfileScanWindow(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectWirelessControllerBleProfileTxpower(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -407,6 +457,66 @@ func refreshObjectObjectWirelessControllerBleProfile(d *schema.ResourceData, o m
 		}
 	}
 
+	if err = d.Set("scan_interval", flattenObjectWirelessControllerBleProfileScanInterval(o["scan-interval"], d, "scan_interval")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-interval"], "ObjectWirelessControllerBleProfile-ScanInterval"); ok {
+			if err = d.Set("scan_interval", vv); err != nil {
+				return fmt.Errorf("Error reading scan_interval: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_interval: %v", err)
+		}
+	}
+
+	if err = d.Set("scan_period", flattenObjectWirelessControllerBleProfileScanPeriod(o["scan-period"], d, "scan_period")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-period"], "ObjectWirelessControllerBleProfile-ScanPeriod"); ok {
+			if err = d.Set("scan_period", vv); err != nil {
+				return fmt.Errorf("Error reading scan_period: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_period: %v", err)
+		}
+	}
+
+	if err = d.Set("scan_threshold", flattenObjectWirelessControllerBleProfileScanThreshold(o["scan-threshold"], d, "scan_threshold")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-threshold"], "ObjectWirelessControllerBleProfile-ScanThreshold"); ok {
+			if err = d.Set("scan_threshold", vv); err != nil {
+				return fmt.Errorf("Error reading scan_threshold: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_threshold: %v", err)
+		}
+	}
+
+	if err = d.Set("scan_time", flattenObjectWirelessControllerBleProfileScanTime(o["scan-time"], d, "scan_time")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-time"], "ObjectWirelessControllerBleProfile-ScanTime"); ok {
+			if err = d.Set("scan_time", vv); err != nil {
+				return fmt.Errorf("Error reading scan_time: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_time: %v", err)
+		}
+	}
+
+	if err = d.Set("scan_type", flattenObjectWirelessControllerBleProfileScanType(o["scan-type"], d, "scan_type")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-type"], "ObjectWirelessControllerBleProfile-ScanType"); ok {
+			if err = d.Set("scan_type", vv); err != nil {
+				return fmt.Errorf("Error reading scan_type: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_type: %v", err)
+		}
+	}
+
+	if err = d.Set("scan_window", flattenObjectWirelessControllerBleProfileScanWindow(o["scan-window"], d, "scan_window")); err != nil {
+		if vv, ok := fortiAPIPatch(o["scan-window"], "ObjectWirelessControllerBleProfile-ScanWindow"); ok {
+			if err = d.Set("scan_window", vv); err != nil {
+				return fmt.Errorf("Error reading scan_window: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading scan_window: %v", err)
+		}
+	}
+
 	if err = d.Set("txpower", flattenObjectWirelessControllerBleProfileTxpower(o["txpower"], d, "txpower")); err != nil {
 		if vv, ok := fortiAPIPatch(o["txpower"], "ObjectWirelessControllerBleProfile-Txpower"); ok {
 			if err = d.Set("txpower", vv); err != nil {
@@ -471,6 +581,30 @@ func expandObjectWirelessControllerBleProfileMinorId(d *schema.ResourceData, v i
 }
 
 func expandObjectWirelessControllerBleProfileName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerBleProfileScanInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerBleProfileScanPeriod(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerBleProfileScanThreshold(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerBleProfileScanTime(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerBleProfileScanType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerBleProfileScanWindow(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -586,6 +720,60 @@ func getObjectObjectWirelessControllerBleProfile(d *schema.ResourceData) (*map[s
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_interval"); ok || d.HasChange("scan_interval") {
+		t, err := expandObjectWirelessControllerBleProfileScanInterval(d, v, "scan_interval")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-interval"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_period"); ok || d.HasChange("scan_period") {
+		t, err := expandObjectWirelessControllerBleProfileScanPeriod(d, v, "scan_period")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-period"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_threshold"); ok || d.HasChange("scan_threshold") {
+		t, err := expandObjectWirelessControllerBleProfileScanThreshold(d, v, "scan_threshold")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-threshold"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_time"); ok || d.HasChange("scan_time") {
+		t, err := expandObjectWirelessControllerBleProfileScanTime(d, v, "scan_time")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-time"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_type"); ok || d.HasChange("scan_type") {
+		t, err := expandObjectWirelessControllerBleProfileScanType(d, v, "scan_type")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-type"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("scan_window"); ok || d.HasChange("scan_window") {
+		t, err := expandObjectWirelessControllerBleProfileScanWindow(d, v, "scan_window")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["scan-window"] = t
 		}
 	}
 

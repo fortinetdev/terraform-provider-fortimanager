@@ -128,6 +128,7 @@ func resourceObjectFirewallInternetServiceCustom() *schema.Resource {
 									"id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"start_port": &schema.Schema{
 										Type:     schema.TypeInt,

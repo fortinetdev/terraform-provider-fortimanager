@@ -101,6 +101,7 @@ func resourceObjectFileFilterProfile() *schema.Resource {
 						"name": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"password_protected": &schema.Schema{
 							Type:     schema.TypeString,

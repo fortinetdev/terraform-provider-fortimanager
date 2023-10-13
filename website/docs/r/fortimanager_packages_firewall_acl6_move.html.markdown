@@ -16,6 +16,7 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 * `acl6` - Acl6.
 

@@ -165,6 +165,7 @@ The `neighbor` block supports:
 
 * `role` - Role of neighbor. Valid values: `primary`, `secondary`, `standalone`.
 
+* `service_id` - SD-WAN service ID to work with the neighbor.
 * `sla_id` - SLA ID.
 
 The `service` block supports:
@@ -187,6 +188,7 @@ The `service` block supports:
 
 * `dst6` - Destination address6 name.
 * `end_port` - End destination port number.
+* `end_src_port` - End source port number.
 * `gateway` - Enable/disable SD-WAN service gateway. Valid values: `disable`, `enable`.
 
 * `groups` - User groups.
@@ -213,6 +215,8 @@ The `service` block supports:
 * `link_cost_factor` - Link cost factor. Valid values: `latency`, `jitter`, `packet-loss`, `inbandwidth`, `outbandwidth`, `bibandwidth`, `custom-profile-1`.
 
 * `link_cost_threshold` - Percentage threshold change of link cost values that will result in policy route regeneration (0 - 10000000, default = 10).
+* `load_balance` - Enable/disable load-balance. Valid values: `disable`, `enable`.
+
 * `minimum_sla_meet_members` - Minimum number of members which meet SLA.
 * `mode` - Control how the SD-WAN rule sets the priority of interfaces in the SD-WAN. Valid values: `auto`, `manual`, `priority`, `sla`, `load-balance`.
 
@@ -234,6 +238,8 @@ The `service` block supports:
 * `sla` - Sla. The structure of `sla` block is documented below.
 * `sla_compare_method` - Method to compare SLA value for SLA mode. Valid values: `order`, `number`.
 
+* `sla_stickiness` - Enable/disable SLA stickiness (default = disable). Valid values: `disable`, `enable`.
+
 * `src` - Source address name.
 * `src_negate` - Enable/disable negation of source address match. Valid values: `disable`, `enable`.
 
@@ -241,6 +247,7 @@ The `service` block supports:
 * `standalone_action` - Enable/disable service when selected neighbor role is standalone while service role is not standalone. Valid values: `disable`, `enable`.
 
 * `start_port` - Start destination port number.
+* `start_src_port` - Start source port number.
 * `status` - Enable/disable SD-WAN service. Valid values: `disable`, `enable`.
 
 * `tie_break` - Method of selecting member if more than one meets the SLA. Valid values: `zone`, `cfg-order`, `fib-best-match`.
@@ -250,6 +257,8 @@ The `service` block supports:
 * `use_shortcut_sla` - Enable/disable use of ADVPN shortcut for quality comparison. Valid values: `disable`, `enable`.
 
 * `users` - User name.
+* `zone_mode` - Enable/disable zone mode. Valid values: `disable`, `enable`.
+
 
 The `sla` block supports:
 
@@ -258,6 +267,7 @@ The `sla` block supports:
 
 The `zone` block supports:
 
+* `minimum_sla_meet_members` - Minimum number of members which meet SLA when the neighbor is preferred.
 * `name` - Zone name.
 * `service_sla_tie_break` - Method of selecting member if more than one meets the SLA. Valid values: `cfg-order`, `fib-best-match`.
 
@@ -272,7 +282,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Wantemp SystemSdwan can be imported using any of these accepted formats:
 ```
-Set import_options = ["wanprof=mywanprof"] in the provider section.
+Set import_options = ["wanprof=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_wantemp_system_sdwan.labelname WantempSystemSdwan

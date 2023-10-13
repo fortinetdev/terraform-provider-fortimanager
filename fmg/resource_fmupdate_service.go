@@ -54,6 +54,16 @@ func resourceFmupdateService() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"query_iot_collection": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"query_iot_vulnerability": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"query_outbreak_prevention": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -167,6 +177,14 @@ func flattenFmupdateServiceQueryIot(v interface{}, d *schema.ResourceData, pre s
 	return v
 }
 
+func flattenFmupdateServiceQueryIotCollection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateServiceQueryIotVulnerability(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenFmupdateServiceQueryOutbreakPrevention(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -232,6 +250,26 @@ func refreshObjectFmupdateService(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("query_iot_collection", flattenFmupdateServiceQueryIotCollection(o["query-iot-collection"], d, "query_iot_collection")); err != nil {
+		if vv, ok := fortiAPIPatch(o["query-iot-collection"], "FmupdateService-QueryIotCollection"); ok {
+			if err = d.Set("query_iot_collection", vv); err != nil {
+				return fmt.Errorf("Error reading query_iot_collection: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading query_iot_collection: %v", err)
+		}
+	}
+
+	if err = d.Set("query_iot_vulnerability", flattenFmupdateServiceQueryIotVulnerability(o["query-iot-vulnerability"], d, "query_iot_vulnerability")); err != nil {
+		if vv, ok := fortiAPIPatch(o["query-iot-vulnerability"], "FmupdateService-QueryIotVulnerability"); ok {
+			if err = d.Set("query_iot_vulnerability", vv); err != nil {
+				return fmt.Errorf("Error reading query_iot_vulnerability: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading query_iot_vulnerability: %v", err)
+		}
+	}
+
 	if err = d.Set("query_outbreak_prevention", flattenFmupdateServiceQueryOutbreakPrevention(o["query-outbreak-prevention"], d, "query_outbreak_prevention")); err != nil {
 		if vv, ok := fortiAPIPatch(o["query-outbreak-prevention"], "FmupdateService-QueryOutbreakPrevention"); ok {
 			if err = d.Set("query_outbreak_prevention", vv); err != nil {
@@ -288,6 +326,14 @@ func expandFmupdateServiceQueryFilequery(d *schema.ResourceData, v interface{}, 
 }
 
 func expandFmupdateServiceQueryIot(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateServiceQueryIotCollection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateServiceQueryIotVulnerability(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -348,6 +394,24 @@ func getObjectFmupdateService(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["query-iot"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("query_iot_collection"); ok || d.HasChange("query_iot_collection") {
+		t, err := expandFmupdateServiceQueryIotCollection(d, v, "query_iot_collection")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["query-iot-collection"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("query_iot_vulnerability"); ok || d.HasChange("query_iot_vulnerability") {
+		t, err := expandFmupdateServiceQueryIotVulnerability(d, v, "query_iot_vulnerability")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["query-iot-vulnerability"] = t
 		}
 	}
 

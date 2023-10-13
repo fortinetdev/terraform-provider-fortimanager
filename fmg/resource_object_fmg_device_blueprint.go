@@ -45,6 +45,12 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"auth_template": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"cliprofs": &schema.Schema{
 				Type:     schema.TypeSet,
 				Elem:     &schema.Schema{Type: schema.TypeString},
@@ -64,6 +70,32 @@ func resourceObjectFmgDeviceBlueprint() *schema.Resource {
 			"folder": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"ha_config": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"ha_hbdev": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ha_monitor": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ha_password": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"linked_to_model": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -220,6 +252,10 @@ func resourceObjectFmgDeviceBlueprintRead(d *schema.ResourceData, m interface{})
 	return nil
 }
 
+func flattenObjectFmgDeviceBlueprintAuthTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectFmgDeviceBlueprintCliprofs(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
@@ -233,6 +269,26 @@ func flattenObjectFmgDeviceBlueprintDevGroup(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFmgDeviceBlueprintFolder(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFmgDeviceBlueprintHaConfig(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFmgDeviceBlueprintHaHbdev(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFmgDeviceBlueprintHaMonitor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFmgDeviceBlueprintHaPassword(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectFmgDeviceBlueprintLinkedToModel(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -275,6 +331,16 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 		d.Set("scopetype", "inherit")
 	}
 
+	if err = d.Set("auth_template", flattenObjectFmgDeviceBlueprintAuthTemplate(o["auth-template"], d, "auth_template")); err != nil {
+		if vv, ok := fortiAPIPatch(o["auth-template"], "ObjectFmgDeviceBlueprint-AuthTemplate"); ok {
+			if err = d.Set("auth_template", vv); err != nil {
+				return fmt.Errorf("Error reading auth_template: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading auth_template: %v", err)
+		}
+	}
+
 	if err = d.Set("cliprofs", flattenObjectFmgDeviceBlueprintCliprofs(o["cliprofs"], d, "cliprofs")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cliprofs"], "ObjectFmgDeviceBlueprint-Cliprofs"); ok {
 			if err = d.Set("cliprofs", vv); err != nil {
@@ -312,6 +378,56 @@ func refreshObjectObjectFmgDeviceBlueprint(d *schema.ResourceData, o map[string]
 			}
 		} else {
 			return fmt.Errorf("Error reading folder: %v", err)
+		}
+	}
+
+	if err = d.Set("ha_config", flattenObjectFmgDeviceBlueprintHaConfig(o["ha-config"], d, "ha_config")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ha-config"], "ObjectFmgDeviceBlueprint-HaConfig"); ok {
+			if err = d.Set("ha_config", vv); err != nil {
+				return fmt.Errorf("Error reading ha_config: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ha_config: %v", err)
+		}
+	}
+
+	if err = d.Set("ha_hbdev", flattenObjectFmgDeviceBlueprintHaHbdev(o["ha-hbdev"], d, "ha_hbdev")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ha-hbdev"], "ObjectFmgDeviceBlueprint-HaHbdev"); ok {
+			if err = d.Set("ha_hbdev", vv); err != nil {
+				return fmt.Errorf("Error reading ha_hbdev: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ha_hbdev: %v", err)
+		}
+	}
+
+	if err = d.Set("ha_monitor", flattenObjectFmgDeviceBlueprintHaMonitor(o["ha-monitor"], d, "ha_monitor")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ha-monitor"], "ObjectFmgDeviceBlueprint-HaMonitor"); ok {
+			if err = d.Set("ha_monitor", vv); err != nil {
+				return fmt.Errorf("Error reading ha_monitor: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ha_monitor: %v", err)
+		}
+	}
+
+	if err = d.Set("ha_password", flattenObjectFmgDeviceBlueprintHaPassword(o["ha-password"], d, "ha_password")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ha-password"], "ObjectFmgDeviceBlueprint-HaPassword"); ok {
+			if err = d.Set("ha_password", vv); err != nil {
+				return fmt.Errorf("Error reading ha_password: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ha_password: %v", err)
+		}
+	}
+
+	if err = d.Set("linked_to_model", flattenObjectFmgDeviceBlueprintLinkedToModel(o["linked-to-model"], d, "linked_to_model")); err != nil {
+		if vv, ok := fortiAPIPatch(o["linked-to-model"], "ObjectFmgDeviceBlueprint-LinkedToModel"); ok {
+			if err = d.Set("linked_to_model", vv); err != nil {
+				return fmt.Errorf("Error reading linked_to_model: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading linked_to_model: %v", err)
 		}
 	}
 
@@ -404,6 +520,10 @@ func flattenObjectFmgDeviceBlueprintFortiTestDebug(d *schema.ResourceData, fosde
 	log.Printf("ER List: %v", e)
 }
 
+func expandObjectFmgDeviceBlueprintAuthTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectFmgDeviceBlueprintCliprofs(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
@@ -417,6 +537,26 @@ func expandObjectFmgDeviceBlueprintDevGroup(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFmgDeviceBlueprintFolder(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFmgDeviceBlueprintHaConfig(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFmgDeviceBlueprintHaHbdev(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFmgDeviceBlueprintHaMonitor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFmgDeviceBlueprintHaPassword(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectFmgDeviceBlueprintLinkedToModel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -455,6 +595,15 @@ func expandObjectFmgDeviceBlueprintTemplates(d *schema.ResourceData, v interface
 func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
+	if v, ok := d.GetOk("auth_template"); ok || d.HasChange("auth_template") {
+		t, err := expandObjectFmgDeviceBlueprintAuthTemplate(d, v, "auth_template")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["auth-template"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("cliprofs"); ok || d.HasChange("cliprofs") {
 		t, err := expandObjectFmgDeviceBlueprintCliprofs(d, v, "cliprofs")
 		if err != nil {
@@ -488,6 +637,51 @@ func getObjectObjectFmgDeviceBlueprint(d *schema.ResourceData) (*map[string]inte
 			return &obj, err
 		} else if t != nil {
 			obj["folder"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ha_config"); ok || d.HasChange("ha_config") {
+		t, err := expandObjectFmgDeviceBlueprintHaConfig(d, v, "ha_config")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ha-config"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ha_hbdev"); ok || d.HasChange("ha_hbdev") {
+		t, err := expandObjectFmgDeviceBlueprintHaHbdev(d, v, "ha_hbdev")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ha-hbdev"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ha_monitor"); ok || d.HasChange("ha_monitor") {
+		t, err := expandObjectFmgDeviceBlueprintHaMonitor(d, v, "ha_monitor")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ha-monitor"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ha_password"); ok || d.HasChange("ha_password") {
+		t, err := expandObjectFmgDeviceBlueprintHaPassword(d, v, "ha_password")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ha-password"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("linked_to_model"); ok || d.HasChange("linked_to_model") {
+		t, err := expandObjectFmgDeviceBlueprintLinkedToModel(d, v, "linked_to_model")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["linked-to-model"] = t
 		}
 	}
 

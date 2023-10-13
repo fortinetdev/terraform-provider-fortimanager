@@ -62,6 +62,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"application": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -78,10 +79,12 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						"default_action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"default_status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"exempt_ip": &schema.Schema{
 							Type:     schema.TypeList,
@@ -120,14 +123,17 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						"log": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_attack_context": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_packet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"os": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -148,6 +154,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						"quarantine": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"quarantine_expiry": &schema.Schema{
 							Type:     schema.TypeString,
@@ -188,6 +195,7 @@ func resourceObjectGlobalIpsSensor() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tags": &schema.Schema{
 							Type:     schema.TypeSet,

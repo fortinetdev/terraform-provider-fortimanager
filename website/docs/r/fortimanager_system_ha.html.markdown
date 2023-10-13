@@ -43,6 +43,7 @@ The following arguments are supported:
 * `unicast` - Use unitcast for VRRP message. disable - Disable. enable - Enable. Valid values: `disable`, `enable`.
 
 * `vip` - Virtual IP.
+* `vip_interface` - vip interface.
 * `vrrp_adv_interval` - VRRP advert interval [1 - 30 seconnds]
 * `vrrp_interface` - VRRP and vip interface.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

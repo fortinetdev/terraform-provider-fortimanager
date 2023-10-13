@@ -61,6 +61,7 @@ func resourceWantempSystemSdwanServiceSla() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 		},
@@ -95,7 +96,7 @@ func resourceWantempSystemSdwanServiceSlaCreate(d *schema.ResourceData, m interf
 		return fmt.Errorf("Error creating WantempSystemSdwanServiceSla resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceWantempSystemSdwanServiceSlaRead(d, m)
 }
@@ -130,7 +131,7 @@ func resourceWantempSystemSdwanServiceSlaUpdate(d *schema.ResourceData, m interf
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceWantempSystemSdwanServiceSlaRead(d, m)
 }
@@ -180,8 +181,20 @@ func resourceWantempSystemSdwanServiceSlaRead(d *schema.ResourceData, m interfac
 
 	wanprof := d.Get("wanprof").(string)
 	service := d.Get("service").(string)
+	if wanprof == "" {
+		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
+		if err = d.Set("wanprof", wanprof); err != nil {
+			return fmt.Errorf("Error set params wanprof: %v", err)
+		}
+	}
 	if service == "" {
 		service = importOptionChecking(m.(*FortiClient).Cfg, "service")
+		if service == "" {
+			return fmt.Errorf("Parameter service is missing")
+		}
 		if err = d.Set("service", service); err != nil {
 			return fmt.Errorf("Error set params service: %v", err)
 		}

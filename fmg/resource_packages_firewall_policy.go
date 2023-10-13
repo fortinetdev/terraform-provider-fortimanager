@@ -45,6 +45,11 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -115,6 +120,10 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"casb_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"capture_packet": &schema.Schema{
 				Type:     schema.TypeString,
@@ -909,6 +918,10 @@ func resourcePackagesFirewallPolicy() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"virtual_patch_profile": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"vlan_cos_fwd": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -1080,7 +1093,9 @@ func resourcePackagesFirewallPolicyCreate(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallPolicy(d)
@@ -1121,7 +1136,9 @@ func resourcePackagesFirewallPolicyUpdate(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallPolicy(d)
@@ -1155,7 +1172,9 @@ func resourcePackagesFirewallPolicyDelete(d *schema.ResourceData, m interface{})
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesFirewallPolicy(mkey, paradict)
@@ -1182,13 +1201,21 @@ func resourcePackagesFirewallPolicyRead(d *schema.ResourceData, m interface{}) e
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesFirewallPolicy(mkey, paradict)
@@ -1266,6 +1293,10 @@ func flattenPackagesFirewallPolicyBlockNotification(v interface{}, d *schema.Res
 }
 
 func flattenPackagesFirewallPolicyCaptivePortalExempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenPackagesFirewallPolicyCasbProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1945,6 +1976,10 @@ func flattenPackagesFirewallPolicyVideofilterProfile(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenPackagesFirewallPolicyVirtualPatchProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenPackagesFirewallPolicyVlanCosFwd(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2317,6 +2352,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading captive_portal_exempt: %v", err)
+		}
+	}
+
+	if err = d.Set("casb_profile", flattenPackagesFirewallPolicyCasbProfile(o["casb-profile"], d, "casb_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["casb-profile"], "PackagesFirewallPolicy-CasbProfile"); ok {
+			if err = d.Set("casb_profile", vv); err != nil {
+				return fmt.Errorf("Error reading casb_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading casb_profile: %v", err)
 		}
 	}
 
@@ -4010,6 +4055,16 @@ func refreshObjectPackagesFirewallPolicy(d *schema.ResourceData, o map[string]in
 		}
 	}
 
+	if err = d.Set("virtual_patch_profile", flattenPackagesFirewallPolicyVirtualPatchProfile(o["virtual-patch-profile"], d, "virtual_patch_profile")); err != nil {
+		if vv, ok := fortiAPIPatch(o["virtual-patch-profile"], "PackagesFirewallPolicy-VirtualPatchProfile"); ok {
+			if err = d.Set("virtual_patch_profile", vv); err != nil {
+				return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading virtual_patch_profile: %v", err)
+		}
+	}
+
 	if err = d.Set("vlan_cos_fwd", flattenPackagesFirewallPolicyVlanCosFwd(o["vlan-cos-fwd"], d, "vlan_cos_fwd")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vlan-cos-fwd"], "PackagesFirewallPolicy-VlanCosFwd"); ok {
 			if err = d.Set("vlan_cos_fwd", vv); err != nil {
@@ -4374,6 +4429,10 @@ func expandPackagesFirewallPolicyBlockNotification(d *schema.ResourceData, v int
 }
 
 func expandPackagesFirewallPolicyCaptivePortalExempt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandPackagesFirewallPolicyCasbProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5053,6 +5112,10 @@ func expandPackagesFirewallPolicyVideofilterProfile(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandPackagesFirewallPolicyVirtualPatchProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandPackagesFirewallPolicyVlanCosFwd(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5386,6 +5449,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["captive-portal-exempt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("casb_profile"); ok || d.HasChange("casb_profile") {
+		t, err := expandPackagesFirewallPolicyCasbProfile(d, v, "casb_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["casb-profile"] = t
 		}
 	}
 
@@ -6907,6 +6979,15 @@ func getObjectPackagesFirewallPolicy(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["videofilter-profile"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("virtual_patch_profile"); ok || d.HasChange("virtual_patch_profile") {
+		t, err := expandPackagesFirewallPolicyVirtualPatchProfile(d, v, "virtual_patch_profile")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["virtual-patch-profile"] = t
 		}
 	}
 

@@ -129,6 +129,14 @@ func resourceObjectFirewallVip() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"h2_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"h3_support": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"http_cookie_age": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
@@ -163,6 +171,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 						},
 						"http_multiplex": &schema.Schema{
 							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"http_multiplex_max_concurrent_request": &schema.Schema{
+							Type:     schema.TypeInt,
 							Optional: true,
 						},
 						"http_multiplex_max_request": &schema.Schema{
@@ -567,6 +579,16 @@ func resourceObjectFirewallVip() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"h2_support": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"h3_support": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"http_cookie_age": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -601,6 +623,10 @@ func resourceObjectFirewallVip() *schema.Resource {
 			},
 			"http_multiplex": &schema.Schema{
 				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"http_multiplex_max_concurrent_request": &schema.Schema{
+				Type:     schema.TypeInt,
 				Optional: true,
 			},
 			"http_multiplex_max_request": &schema.Schema{
@@ -705,6 +731,56 @@ func resourceObjectFirewallVip() *schema.Resource {
 			"protocol": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+			},
+			"quic": &schema.Schema{
+				Type:     schema.TypeList,
+				Optional: true,
+				MaxItems: 1,
+				Computed: true,
+				Elem: &schema.Resource{
+					Schema: map[string]*schema.Schema{
+						"ack_delay_exponent": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"active_connection_id_limit": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"active_migration": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"grease_quic_bit": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"max_ack_delay": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"max_datagram_frame_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"max_idle_timeout": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"max_udp_payload_size": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+					},
+				},
 			},
 			"realservers": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1235,6 +1311,18 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["gratuitous_arp_interval"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-GratuitousArpInterval")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := i["h2-support"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingH2Support(i["h2-support"], d, pre_append)
+			tmp["h2_support"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-H2Support")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := i["h3-support"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingH3Support(i["h3-support"], d, pre_append)
+			tmp["h3_support"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-H3Support")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := i["http-cookie-age"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingHttpCookieAge(i["http-cookie-age"], d, pre_append)
@@ -1287,6 +1375,12 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 		if _, ok := i["http-multiplex"]; ok {
 			v := flattenObjectFirewallVipDynamicMappingHttpMultiplex(i["http-multiplex"], d, pre_append)
 			tmp["http_multiplex"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpMultiplex")
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_max_concurrent_request"
+		if _, ok := i["http-multiplex-max-concurrent-request"]; ok {
+			v := flattenObjectFirewallVipDynamicMappingHttpMultiplexMaxConcurrentRequest(i["http-multiplex-max-concurrent-request"], d, pre_append)
+			tmp["http_multiplex_max_concurrent_request"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-HttpMultiplexMaxConcurrentRequest")
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_max_request"
@@ -1780,6 +1874,14 @@ func flattenObjectFirewallVipDynamicMappingGratuitousArpInterval(v interface{}, 
 	return v
 }
 
+func flattenObjectFirewallVipDynamicMappingH2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingH3Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipDynamicMappingHttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -1813,6 +1915,10 @@ func flattenObjectFirewallVipDynamicMappingHttpIpHeaderName(v interface{}, d *sc
 }
 
 func flattenObjectFirewallVipDynamicMappingHttpMultiplex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipDynamicMappingHttpMultiplexMaxConcurrentRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2346,6 +2452,14 @@ func flattenObjectFirewallVipGratuitousArpInterval(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenObjectFirewallVipH2Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipH3Support(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFirewallVipHttpCookieAge(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2379,6 +2493,10 @@ func flattenObjectFirewallVipHttpIpHeaderName(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectFirewallVipHttpMultiplex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipHttpMultiplexMaxConcurrentRequest(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2471,6 +2589,91 @@ func flattenObjectFirewallVipPortmappingType(v interface{}, d *schema.ResourceDa
 }
 
 func flattenObjectFirewallVipProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuic(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
+	if v == nil {
+		return nil
+	}
+
+	i := v.(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := i["ack-delay-exponent"]; ok {
+		result["ack_delay_exponent"] = flattenObjectFirewallVipQuicAckDelayExponent(i["ack-delay-exponent"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := i["active-connection-id-limit"]; ok {
+		result["active_connection_id_limit"] = flattenObjectFirewallVipQuicActiveConnectionIdLimit(i["active-connection-id-limit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := i["active-migration"]; ok {
+		result["active_migration"] = flattenObjectFirewallVipQuicActiveMigration(i["active-migration"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := i["grease-quic-bit"]; ok {
+		result["grease_quic_bit"] = flattenObjectFirewallVipQuicGreaseQuicBit(i["grease-quic-bit"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := i["max-ack-delay"]; ok {
+		result["max_ack_delay"] = flattenObjectFirewallVipQuicMaxAckDelay(i["max-ack-delay"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := i["max-datagram-frame-size"]; ok {
+		result["max_datagram_frame_size"] = flattenObjectFirewallVipQuicMaxDatagramFrameSize(i["max-datagram-frame-size"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := i["max-idle-timeout"]; ok {
+		result["max_idle_timeout"] = flattenObjectFirewallVipQuicMaxIdleTimeout(i["max-idle-timeout"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := i["max-udp-payload-size"]; ok {
+		result["max_udp_payload_size"] = flattenObjectFirewallVipQuicMaxUdpPayloadSize(i["max-udp-payload-size"], d, pre_append)
+	}
+
+	lastresult := []map[string]interface{}{result}
+	return lastresult
+}
+
+func flattenObjectFirewallVipQuicAckDelayExponent(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicActiveConnectionIdLimit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicActiveMigration(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicGreaseQuicBit(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicMaxAckDelay(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicMaxDatagramFrameSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicMaxIdleTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFirewallVipQuicMaxUdpPayloadSize(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3078,6 +3281,26 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("h2_support", flattenObjectFirewallVipH2Support(o["h2-support"], d, "h2_support")); err != nil {
+		if vv, ok := fortiAPIPatch(o["h2-support"], "ObjectFirewallVip-H2Support"); ok {
+			if err = d.Set("h2_support", vv); err != nil {
+				return fmt.Errorf("Error reading h2_support: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading h2_support: %v", err)
+		}
+	}
+
+	if err = d.Set("h3_support", flattenObjectFirewallVipH3Support(o["h3-support"], d, "h3_support")); err != nil {
+		if vv, ok := fortiAPIPatch(o["h3-support"], "ObjectFirewallVip-H3Support"); ok {
+			if err = d.Set("h3_support", vv); err != nil {
+				return fmt.Errorf("Error reading h3_support: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading h3_support: %v", err)
+		}
+	}
+
 	if err = d.Set("http_cookie_age", flattenObjectFirewallVipHttpCookieAge(o["http-cookie-age"], d, "http_cookie_age")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-cookie-age"], "ObjectFirewallVip-HttpCookieAge"); ok {
 			if err = d.Set("http_cookie_age", vv); err != nil {
@@ -3165,6 +3388,16 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading http_multiplex: %v", err)
+		}
+	}
+
+	if err = d.Set("http_multiplex_max_concurrent_request", flattenObjectFirewallVipHttpMultiplexMaxConcurrentRequest(o["http-multiplex-max-concurrent-request"], d, "http_multiplex_max_concurrent_request")); err != nil {
+		if vv, ok := fortiAPIPatch(o["http-multiplex-max-concurrent-request"], "ObjectFirewallVip-HttpMultiplexMaxConcurrentRequest"); ok {
+			if err = d.Set("http_multiplex_max_concurrent_request", vv); err != nil {
+				return fmt.Errorf("Error reading http_multiplex_max_concurrent_request: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading http_multiplex_max_concurrent_request: %v", err)
 		}
 	}
 
@@ -3395,6 +3628,30 @@ func refreshObjectObjectFirewallVip(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading protocol: %v", err)
+		}
+	}
+
+	if isImportTable() {
+		if err = d.Set("quic", flattenObjectFirewallVipQuic(o["quic"], d, "quic")); err != nil {
+			if vv, ok := fortiAPIPatch(o["quic"], "ObjectFirewallVip-Quic"); ok {
+				if err = d.Set("quic", vv); err != nil {
+					return fmt.Errorf("Error reading quic: %v", err)
+				}
+			} else {
+				return fmt.Errorf("Error reading quic: %v", err)
+			}
+		}
+	} else {
+		if _, ok := d.GetOk("quic"); ok {
+			if err = d.Set("quic", flattenObjectFirewallVipQuic(o["quic"], d, "quic")); err != nil {
+				if vv, ok := fortiAPIPatch(o["quic"], "ObjectFirewallVip-Quic"); ok {
+					if err = d.Set("quic", vv); err != nil {
+						return fmt.Errorf("Error reading quic: %v", err)
+					}
+				} else {
+					return fmt.Errorf("Error reading quic: %v", err)
+				}
+			}
 		}
 	}
 
@@ -3993,6 +4250,16 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["gratuitous-arp-interval"], _ = expandObjectFirewallVipDynamicMappingGratuitousArpInterval(d, i["gratuitous_arp_interval"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h2_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h2-support"], _ = expandObjectFirewallVipDynamicMappingH2Support(d, i["h2_support"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "h3_support"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["h3-support"], _ = expandObjectFirewallVipDynamicMappingH3Support(d, i["h3_support"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_cookie_age"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-cookie-age"], _ = expandObjectFirewallVipDynamicMappingHttpCookieAge(d, i["http_cookie_age"], pre_append)
@@ -4036,6 +4303,11 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["http-multiplex"], _ = expandObjectFirewallVipDynamicMappingHttpMultiplex(d, i["http_multiplex"], pre_append)
+		}
+
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_max_concurrent_request"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["http-multiplex-max-concurrent-request"], _ = expandObjectFirewallVipDynamicMappingHttpMultiplexMaxConcurrentRequest(d, i["http_multiplex_max_concurrent_request"], pre_append)
 		}
 
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "http_multiplex_max_request"
@@ -4466,6 +4738,14 @@ func expandObjectFirewallVipDynamicMappingGratuitousArpInterval(d *schema.Resour
 	return v, nil
 }
 
+func expandObjectFirewallVipDynamicMappingH2Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingH3Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipDynamicMappingHttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -4499,6 +4779,10 @@ func expandObjectFirewallVipDynamicMappingHttpIpHeaderName(d *schema.ResourceDat
 }
 
 func expandObjectFirewallVipDynamicMappingHttpMultiplex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipDynamicMappingHttpMultiplexMaxConcurrentRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5002,6 +5286,14 @@ func expandObjectFirewallVipGratuitousArpInterval(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandObjectFirewallVipH2Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipH3Support(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFirewallVipHttpCookieAge(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -5035,6 +5327,10 @@ func expandObjectFirewallVipHttpIpHeaderName(d *schema.ResourceData, v interface
 }
 
 func expandObjectFirewallVipHttpMultiplex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipHttpMultiplexMaxConcurrentRequest(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5127,6 +5423,84 @@ func expandObjectFirewallVipPortmappingType(d *schema.ResourceData, v interface{
 }
 
 func expandObjectFirewallVipProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	l := v.([]interface{})
+	if len(l) == 0 || l[0] == nil {
+		return nil, nil
+	}
+
+	i := l[0].(map[string]interface{})
+	result := make(map[string]interface{})
+
+	pre_append := "" // complex
+	pre_append = pre + ".0." + "ack_delay_exponent"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["ack-delay-exponent"], _ = expandObjectFirewallVipQuicAckDelayExponent(d, i["ack_delay_exponent"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_connection_id_limit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-connection-id-limit"], _ = expandObjectFirewallVipQuicActiveConnectionIdLimit(d, i["active_connection_id_limit"], pre_append)
+	}
+	pre_append = pre + ".0." + "active_migration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["active-migration"], _ = expandObjectFirewallVipQuicActiveMigration(d, i["active_migration"], pre_append)
+	}
+	pre_append = pre + ".0." + "grease_quic_bit"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["grease-quic-bit"], _ = expandObjectFirewallVipQuicGreaseQuicBit(d, i["grease_quic_bit"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_ack_delay"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-ack-delay"], _ = expandObjectFirewallVipQuicMaxAckDelay(d, i["max_ack_delay"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_datagram_frame_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-datagram-frame-size"], _ = expandObjectFirewallVipQuicMaxDatagramFrameSize(d, i["max_datagram_frame_size"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_idle_timeout"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-idle-timeout"], _ = expandObjectFirewallVipQuicMaxIdleTimeout(d, i["max_idle_timeout"], pre_append)
+	}
+	pre_append = pre + ".0." + "max_udp_payload_size"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["max-udp-payload-size"], _ = expandObjectFirewallVipQuicMaxUdpPayloadSize(d, i["max_udp_payload_size"], pre_append)
+	}
+
+	return result, nil
+}
+
+func expandObjectFirewallVipQuicAckDelayExponent(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicActiveConnectionIdLimit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicActiveMigration(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicGreaseQuicBit(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicMaxAckDelay(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicMaxDatagramFrameSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicMaxIdleTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFirewallVipQuicMaxUdpPayloadSize(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5664,6 +6038,24 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
+	if v, ok := d.GetOk("h2_support"); ok || d.HasChange("h2_support") {
+		t, err := expandObjectFirewallVipH2Support(d, v, "h2_support")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["h2-support"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("h3_support"); ok || d.HasChange("h3_support") {
+		t, err := expandObjectFirewallVipH3Support(d, v, "h3_support")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["h3-support"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("http_cookie_age"); ok || d.HasChange("http_cookie_age") {
 		t, err := expandObjectFirewallVipHttpCookieAge(d, v, "http_cookie_age")
 		if err != nil {
@@ -5742,6 +6134,15 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["http-multiplex"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("http_multiplex_max_concurrent_request"); ok || d.HasChange("http_multiplex_max_concurrent_request") {
+		t, err := expandObjectFirewallVipHttpMultiplexMaxConcurrentRequest(d, v, "http_multiplex_max_concurrent_request")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["http-multiplex-max-concurrent-request"] = t
 		}
 	}
 
@@ -5949,6 +6350,15 @@ func getObjectObjectFirewallVip(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["protocol"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("quic"); ok || d.HasChange("quic") {
+		t, err := expandObjectFirewallVipQuic(d, v, "quic")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["quic"] = t
 		}
 	}
 

@@ -1031,6 +1031,10 @@ func resourceObjectFspVlan() *schema.Resource {
 													Type:     schema.TypeInt,
 													Optional: true,
 												},
+												"dhcp6_relay_interface_id": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
 												"dhcp6_relay_ip": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
@@ -1040,6 +1044,10 @@ func resourceObjectFspVlan() *schema.Resource {
 													Optional: true,
 												},
 												"dhcp6_relay_source_interface": &schema.Schema{
+													Type:     schema.TypeString,
+													Optional: true,
+												},
+												"dhcp6_relay_source_ip": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
 												},
@@ -1481,6 +1489,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"aggregate_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"algorithm": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1627,6 +1636,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"default_purdue_level": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"defaultgw": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1678,16 +1688,22 @@ func resourceObjectFspVlan() *schema.Resource {
 						"dhcp_broadcast_flag": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_classless_route_addition": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"dhcp_client_identifier": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"dhcp_relay_agent_option": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"dhcp_relay_circuit_id": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 						},
@@ -1721,6 +1737,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"dhcp_relay_source_ip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"dhcp_relay_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1732,6 +1753,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"dhcp_smart_relay": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"disc_retry_timeout": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -2003,6 +2025,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"interconnect_profile": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"internal": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -2026,6 +2049,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"ips_sniffer_mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ipunnumbered": &schema.Schema{
 							Type:     schema.TypeString,
@@ -2078,6 +2102,10 @@ func resourceObjectFspVlan() *schema.Resource {
 										Optional: true,
 										Computed: true,
 									},
+									"dhcp6_relay_interface_id": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+									},
 									"dhcp6_relay_ip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
@@ -2090,6 +2118,12 @@ func resourceObjectFspVlan() *schema.Resource {
 									"dhcp6_relay_source_interface": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
+									},
+									"dhcp6_relay_source_ip": &schema.Schema{
+										Type:     schema.TypeString,
+										Optional: true,
+										Computed: true,
 									},
 									"dhcp6_relay_type": &schema.Schema{
 										Type:     schema.TypeString,
@@ -2338,26 +2372,32 @@ func resourceObjectFspVlan() *schema.Resource {
 												"accept_mode": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"adv_interval": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"preempt": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"priority": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"start_time": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"status": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"vrdst6": &schema.Schema{
 													Type:     schema.TypeString,
@@ -2374,6 +2414,7 @@ func resourceObjectFspVlan() *schema.Resource {
 												"vrip6": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -2394,6 +2435,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"lacp_ha_secondary": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"lacp_ha_slave": &schema.Schema{
 							Type:     schema.TypeString,
@@ -3009,6 +3051,22 @@ func resourceObjectFspVlan() *schema.Resource {
 						"switch_controller_netflow_collect": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
+						},
+						"switch_controller_offload": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"switch_controller_offload_gw": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"switch_controller_offload_ip": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
 						},
 						"switch_controller_offloading": &schema.Schema{
 							Type:     schema.TypeString,
@@ -3142,22 +3200,27 @@ func resourceObjectFspVlan() *schema.Resource {
 									"accept_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"adv_interval": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"ignore_default_route": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"preempt": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"priority": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"proxy_arp": &schema.Schema{
 										Type:     schema.TypeList,
@@ -3178,14 +3241,17 @@ func resourceObjectFspVlan() *schema.Resource {
 									"start_time": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"version": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"vrdst": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -3208,6 +3274,7 @@ func resourceObjectFspVlan() *schema.Resource {
 									"vrip": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -3262,10 +3329,12 @@ func resourceObjectFspVlan() *schema.Resource {
 						"wifi_dns_server1": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"wifi_dns_server2": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"wifi_encrypt": &schema.Schema{
 							Type:     schema.TypeString,
@@ -3279,6 +3348,7 @@ func resourceObjectFspVlan() *schema.Resource {
 						"wifi_gateway": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"wifi_key": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -5670,6 +5740,11 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6(v interface{}, d *schema.Re
 		result["dhcp6_prefix_hint_vlt"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHintVlt(i["dhcp6-prefix-hint-vlt"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "dhcp6_relay_interface_id"
+	if _, ok := i["dhcp6-relay-interface-id"]; ok {
+		result["dhcp6_relay_interface_id"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayInterfaceId(i["dhcp6-relay-interface-id"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "dhcp6_relay_ip"
 	if _, ok := i["dhcp6-relay-ip"]; ok {
 		result["dhcp6_relay_ip"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayIp(i["dhcp6-relay-ip"], d, pre_append)
@@ -5683,6 +5758,11 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6(v interface{}, d *schema.Re
 	pre_append = pre + ".0." + "dhcp6_relay_source_interface"
 	if _, ok := i["dhcp6-relay-source-interface"]; ok {
 		result["dhcp6_relay_source_interface"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceInterface(i["dhcp6-relay-source-interface"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dhcp6_relay_source_ip"
+	if _, ok := i["dhcp6-relay-source-ip"]; ok {
+		result["dhcp6_relay_source_ip"] = flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceIp(i["dhcp6-relay-source-ip"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "dhcp6_relay_type"
@@ -5896,6 +5976,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHintVlt(v interfa
 	return v
 }
 
+func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayInterfaceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -5905,6 +5989,10 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayService(v interfac
 }
 
 func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7019,6 +7107,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["dhcp_relay_agent_option"] = flattenObjectFspVlanInterfaceDhcpRelayAgentOption(i["dhcp-relay-agent-option"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "dhcp_relay_circuit_id"
+	if _, ok := i["dhcp-relay-circuit-id"]; ok {
+		result["dhcp_relay_circuit_id"] = flattenObjectFspVlanInterfaceDhcpRelayCircuitId(i["dhcp-relay-circuit-id"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "dhcp_relay_interface"
 	if _, ok := i["dhcp-relay-interface"]; ok {
 		result["dhcp_relay_interface"] = flattenObjectFspVlanInterfaceDhcpRelayInterface(i["dhcp-relay-interface"], d, pre_append)
@@ -7047,6 +7140,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "dhcp_relay_service"
 	if _, ok := i["dhcp-relay-service"]; ok {
 		result["dhcp_relay_service"] = flattenObjectFspVlanInterfaceDhcpRelayService(i["dhcp-relay-service"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dhcp_relay_source_ip"
+	if _, ok := i["dhcp-relay-source-ip"]; ok {
+		result["dhcp_relay_source_ip"] = flattenObjectFspVlanInterfaceDhcpRelaySourceIp(i["dhcp-relay-source-ip"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "dhcp_relay_type"
@@ -8044,6 +8142,21 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 		result["switch_controller_netflow_collect"] = flattenObjectFspVlanInterfaceSwitchControllerNetflowCollect(i["switch-controller-netflow-collect"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "switch_controller_offload"
+	if _, ok := i["switch-controller-offload"]; ok {
+		result["switch_controller_offload"] = flattenObjectFspVlanInterfaceSwitchControllerOffload(i["switch-controller-offload"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "switch_controller_offload_gw"
+	if _, ok := i["switch-controller-offload-gw"]; ok {
+		result["switch_controller_offload_gw"] = flattenObjectFspVlanInterfaceSwitchControllerOffloadGw(i["switch-controller-offload-gw"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "switch_controller_offload_ip"
+	if _, ok := i["switch-controller-offload-ip"]; ok {
+		result["switch_controller_offload_ip"] = flattenObjectFspVlanInterfaceSwitchControllerOffloadIp(i["switch-controller-offload-ip"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "switch_controller_offloading"
 	if _, ok := i["switch-controller-offloading"]; ok {
 		result["switch_controller_offloading"] = flattenObjectFspVlanInterfaceSwitchControllerOffloading(i["switch-controller-offloading"], d, pre_append)
@@ -8534,6 +8647,10 @@ func flattenObjectFspVlanInterfaceDhcpRelayAgentOption(v interface{}, d *schema.
 	return v
 }
 
+func flattenObjectFspVlanInterfaceDhcpRelayCircuitId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceDhcpRelayInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
@@ -8555,6 +8672,10 @@ func flattenObjectFspVlanInterfaceDhcpRelayRequestAllServer(v interface{}, d *sc
 }
 
 func flattenObjectFspVlanInterfaceDhcpRelayService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceDhcpRelaySourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -8879,6 +9000,11 @@ func flattenObjectFspVlanInterfaceIpv6(v interface{}, d *schema.ResourceData, pr
 		result["dhcp6_prefix_hint_vlt"] = flattenObjectFspVlanInterfaceIpv6Dhcp6PrefixHintVlt(i["dhcp6-prefix-hint-vlt"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "dhcp6_relay_interface_id"
+	if _, ok := i["dhcp6-relay-interface-id"]; ok {
+		result["dhcp6_relay_interface_id"] = flattenObjectFspVlanInterfaceIpv6Dhcp6RelayInterfaceId(i["dhcp6-relay-interface-id"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "dhcp6_relay_ip"
 	if _, ok := i["dhcp6-relay-ip"]; ok {
 		result["dhcp6_relay_ip"] = flattenObjectFspVlanInterfaceIpv6Dhcp6RelayIp(i["dhcp6-relay-ip"], d, pre_append)
@@ -8892,6 +9018,11 @@ func flattenObjectFspVlanInterfaceIpv6(v interface{}, d *schema.ResourceData, pr
 	pre_append = pre + ".0." + "dhcp6_relay_source_interface"
 	if _, ok := i["dhcp6-relay-source-interface"]; ok {
 		result["dhcp6_relay_source_interface"] = flattenObjectFspVlanInterfaceIpv6Dhcp6RelaySourceInterface(i["dhcp6-relay-source-interface"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "dhcp6_relay_source_ip"
+	if _, ok := i["dhcp6-relay-source-ip"]; ok {
+		result["dhcp6_relay_source_ip"] = flattenObjectFspVlanInterfaceIpv6Dhcp6RelaySourceIp(i["dhcp6-relay-source-ip"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "dhcp6_relay_type"
@@ -9105,6 +9236,10 @@ func flattenObjectFspVlanInterfaceIpv6Dhcp6PrefixHintVlt(v interface{}, d *schem
 	return v
 }
 
+func flattenObjectFspVlanInterfaceIpv6Dhcp6RelayInterfaceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceIpv6Dhcp6RelayIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return conv2str(v)
 }
@@ -9114,6 +9249,10 @@ func flattenObjectFspVlanInterfaceIpv6Dhcp6RelayService(v interface{}, d *schema
 }
 
 func flattenObjectFspVlanInterfaceIpv6Dhcp6RelaySourceInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceIpv6Dhcp6RelaySourceIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -10249,6 +10388,18 @@ func flattenObjectFspVlanInterfaceSwitchControllerNac(v interface{}, d *schema.R
 }
 
 func flattenObjectFspVlanInterfaceSwitchControllerNetflowCollect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSwitchControllerOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSwitchControllerOffloadGw(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectFspVlanInterfaceSwitchControllerOffloadIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -12846,6 +12997,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint-vlt"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHintVlt(d, i["dhcp6_prefix_hint_vlt"], pre_append)
 	}
+	pre_append = pre + ".0." + "dhcp6_relay_interface_id"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp6-relay-interface-id"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayInterfaceId(d, i["dhcp6_relay_interface_id"], pre_append)
+	}
 	pre_append = pre + ".0." + "dhcp6_relay_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-ip"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayIp(d, i["dhcp6_relay_ip"], pre_append)
@@ -12857,6 +13012,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "dhcp6_relay_source_interface"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-source-interface"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceInterface(d, i["dhcp6_relay_source_interface"], pre_append)
+	}
+	pre_append = pre + ".0." + "dhcp6_relay_source_ip"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp6-relay-source-ip"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceIp(d, i["dhcp6_relay_source_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -13054,6 +13213,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6PrefixHintVlt(d *schema.
 	return v, nil
 }
 
+func expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayInterfaceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -13063,6 +13226,10 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelayService(d *schema.R
 }
 
 func expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanDynamicMappingInterfaceIpv6Dhcp6RelaySourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -14043,6 +14210,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-agent-option"], _ = expandObjectFspVlanInterfaceDhcpRelayAgentOption(d, i["dhcp_relay_agent_option"], pre_append)
 	}
+	pre_append = pre + ".0." + "dhcp_relay_circuit_id"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp-relay-circuit-id"], _ = expandObjectFspVlanInterfaceDhcpRelayCircuitId(d, i["dhcp_relay_circuit_id"], pre_append)
+	}
 	pre_append = pre + ".0." + "dhcp_relay_interface"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-interface"], _ = expandObjectFspVlanInterfaceDhcpRelayInterface(d, i["dhcp_relay_interface"], pre_append)
@@ -14066,6 +14237,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "dhcp_relay_service"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp-relay-service"], _ = expandObjectFspVlanInterfaceDhcpRelayService(d, i["dhcp_relay_service"], pre_append)
+	}
+	pre_append = pre + ".0." + "dhcp_relay_source_ip"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp-relay-source-ip"], _ = expandObjectFspVlanInterfaceDhcpRelaySourceIp(d, i["dhcp_relay_source_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp_relay_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -14873,6 +15048,18 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-netflow-collect"], _ = expandObjectFspVlanInterfaceSwitchControllerNetflowCollect(d, i["switch_controller_netflow_collect"], pre_append)
 	}
+	pre_append = pre + ".0." + "switch_controller_offload"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["switch-controller-offload"], _ = expandObjectFspVlanInterfaceSwitchControllerOffload(d, i["switch_controller_offload"], pre_append)
+	}
+	pre_append = pre + ".0." + "switch_controller_offload_gw"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["switch-controller-offload-gw"], _ = expandObjectFspVlanInterfaceSwitchControllerOffloadGw(d, i["switch_controller_offload_gw"], pre_append)
+	}
+	pre_append = pre + ".0." + "switch_controller_offload_ip"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["switch-controller-offload-ip"], _ = expandObjectFspVlanInterfaceSwitchControllerOffloadIp(d, i["switch_controller_offload_ip"], pre_append)
+	}
 	pre_append = pre + ".0." + "switch_controller_offloading"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["switch-controller-offloading"], _ = expandObjectFspVlanInterfaceSwitchControllerOffloading(d, i["switch_controller_offloading"], pre_append)
@@ -15310,6 +15497,10 @@ func expandObjectFspVlanInterfaceDhcpRelayAgentOption(d *schema.ResourceData, v 
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceDhcpRelayCircuitId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceDhcpRelayInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -15331,6 +15522,10 @@ func expandObjectFspVlanInterfaceDhcpRelayRequestAllServer(d *schema.ResourceDat
 }
 
 func expandObjectFspVlanInterfaceDhcpRelayService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceDhcpRelaySourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -15648,6 +15843,10 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-prefix-hint-vlt"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6PrefixHintVlt(d, i["dhcp6_prefix_hint_vlt"], pre_append)
 	}
+	pre_append = pre + ".0." + "dhcp6_relay_interface_id"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp6-relay-interface-id"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelayInterfaceId(d, i["dhcp6_relay_interface_id"], pre_append)
+	}
 	pre_append = pre + ".0." + "dhcp6_relay_ip"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-ip"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelayIp(d, i["dhcp6_relay_ip"], pre_append)
@@ -15659,6 +15858,10 @@ func expandObjectFspVlanInterfaceIpv6(d *schema.ResourceData, v interface{}, pre
 	pre_append = pre + ".0." + "dhcp6_relay_source_interface"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["dhcp6-relay-source-interface"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelaySourceInterface(d, i["dhcp6_relay_source_interface"], pre_append)
+	}
+	pre_append = pre + ".0." + "dhcp6_relay_source_ip"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["dhcp6-relay-source-ip"], _ = expandObjectFspVlanInterfaceIpv6Dhcp6RelaySourceIp(d, i["dhcp6_relay_source_ip"], pre_append)
 	}
 	pre_append = pre + ".0." + "dhcp6_relay_type"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -15856,6 +16059,10 @@ func expandObjectFspVlanInterfaceIpv6Dhcp6PrefixHintVlt(d *schema.ResourceData, 
 	return v, nil
 }
 
+func expandObjectFspVlanInterfaceIpv6Dhcp6RelayInterfaceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceIpv6Dhcp6RelayIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -15865,6 +16072,10 @@ func expandObjectFspVlanInterfaceIpv6Dhcp6RelayService(d *schema.ResourceData, v
 }
 
 func expandObjectFspVlanInterfaceIpv6Dhcp6RelaySourceInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceIpv6Dhcp6RelaySourceIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -16939,6 +17150,18 @@ func expandObjectFspVlanInterfaceSwitchControllerNac(d *schema.ResourceData, v i
 }
 
 func expandObjectFspVlanInterfaceSwitchControllerNetflowCollect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSwitchControllerOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSwitchControllerOffloadGw(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectFspVlanInterfaceSwitchControllerOffloadIp(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

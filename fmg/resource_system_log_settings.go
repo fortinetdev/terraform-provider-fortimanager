@@ -78,6 +78,11 @@ func resourceSystemLogSettings() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"device_auto_detect": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"dns_resolve_dstip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -572,6 +577,11 @@ func resourceSystemLogSettings() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"unencrypted_logging": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 		},
 	}
 }
@@ -695,6 +705,10 @@ func flattenSystemLogSettingsFwbCustomField1Slsa(v interface{}, d *schema.Resour
 }
 
 func flattenSystemLogSettingsBrowseMaxLogfilesSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemLogSettingsDeviceAutoDetectSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1611,6 +1625,10 @@ func flattenSystemLogSettingsSyncSearchTimeoutSlsa(v interface{}, d *schema.Reso
 	return v
 }
 
+func flattenSystemLogSettingsUnencryptedLoggingSlsa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func refreshObjectSystemLogSettings(d *schema.ResourceData, o map[string]interface{}) error {
 	var err error
 
@@ -1731,6 +1749,16 @@ func refreshObjectSystemLogSettings(d *schema.ResourceData, o map[string]interfa
 			}
 		} else {
 			return fmt.Errorf("Error reading browse_max_logfiles: %v", err)
+		}
+	}
+
+	if err = d.Set("device_auto_detect", flattenSystemLogSettingsDeviceAutoDetectSlsa(o["device-auto-detect"], d, "device_auto_detect")); err != nil {
+		if vv, ok := fortiAPIPatch(o["device-auto-detect"], "SystemLogSettings-DeviceAutoDetect"); ok {
+			if err = d.Set("device_auto_detect", vv); err != nil {
+				return fmt.Errorf("Error reading device_auto_detect: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading device_auto_detect: %v", err)
 		}
 	}
 
@@ -1876,6 +1904,16 @@ func refreshObjectSystemLogSettings(d *schema.ResourceData, o map[string]interfa
 		}
 	}
 
+	if err = d.Set("unencrypted_logging", flattenSystemLogSettingsUnencryptedLoggingSlsa(o["unencrypted-logging"], d, "unencrypted_logging")); err != nil {
+		if vv, ok := fortiAPIPatch(o["unencrypted-logging"], "SystemLogSettings-UnencryptedLogging"); ok {
+			if err = d.Set("unencrypted_logging", vv); err != nil {
+				return fmt.Errorf("Error reading unencrypted_logging: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading unencrypted_logging: %v", err)
+		}
+	}
+
 	return nil
 }
 
@@ -1930,6 +1968,10 @@ func expandSystemLogSettingsFwbCustomField1Slsa(d *schema.ResourceData, v interf
 }
 
 func expandSystemLogSettingsBrowseMaxLogfilesSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemLogSettingsDeviceAutoDetectSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2723,6 +2765,10 @@ func expandSystemLogSettingsSyncSearchTimeoutSlsa(d *schema.ResourceData, v inte
 	return v, nil
 }
 
+func expandSystemLogSettingsUnencryptedLoggingSlsa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func getObjectSystemLogSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
 
@@ -2834,6 +2880,15 @@ func getObjectSystemLogSettings(d *schema.ResourceData) (*map[string]interface{}
 		}
 	}
 
+	if v, ok := d.GetOk("device_auto_detect"); ok || d.HasChange("device_auto_detect") {
+		t, err := expandSystemLogSettingsDeviceAutoDetectSlsa(d, v, "device_auto_detect")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["device-auto-detect"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dns_resolve_dstip"); ok || d.HasChange("dns_resolve_dstip") {
 		t, err := expandSystemLogSettingsDnsResolveDstipSlsa(d, v, "dns_resolve_dstip")
 		if err != nil {
@@ -2921,6 +2976,15 @@ func getObjectSystemLogSettings(d *schema.ResourceData) (*map[string]interface{}
 			return &obj, err
 		} else if t != nil {
 			obj["sync-search-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("unencrypted_logging"); ok || d.HasChange("unencrypted_logging") {
+		t, err := expandSystemLogSettingsUnencryptedLoggingSlsa(d, v, "unencrypted_logging")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["unencrypted-logging"] = t
 		}
 	}
 

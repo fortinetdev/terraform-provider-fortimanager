@@ -154,6 +154,11 @@ func resourceObjectSystemFortiguard() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"gui_prompt_auto_upgrade": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"interface": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -529,6 +534,10 @@ func flattenObjectSystemFortiguardFortiguardAnycast(v interface{}, d *schema.Res
 }
 
 func flattenObjectSystemFortiguardFortiguardAnycastSource(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemFortiguardGuiPromptAutoUpgrade(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -920,6 +929,16 @@ func refreshObjectObjectSystemFortiguard(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading fortiguard_anycast_source: %v", err)
+		}
+	}
+
+	if err = d.Set("gui_prompt_auto_upgrade", flattenObjectSystemFortiguardGuiPromptAutoUpgrade(o["gui-prompt-auto-upgrade"], d, "gui_prompt_auto_upgrade")); err != nil {
+		if vv, ok := fortiAPIPatch(o["gui-prompt-auto-upgrade"], "ObjectSystemFortiguard-GuiPromptAutoUpgrade"); ok {
+			if err = d.Set("gui_prompt_auto_upgrade", vv); err != nil {
+				return fmt.Errorf("Error reading gui_prompt_auto_upgrade: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading gui_prompt_auto_upgrade: %v", err)
 		}
 	}
 
@@ -1420,6 +1439,10 @@ func expandObjectSystemFortiguardFortiguardAnycastSource(d *schema.ResourceData,
 	return v, nil
 }
 
+func expandObjectSystemFortiguardGuiPromptAutoUpgrade(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemFortiguardInterface(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1782,6 +1805,15 @@ func getObjectObjectSystemFortiguard(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["fortiguard-anycast-source"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("gui_prompt_auto_upgrade"); ok || d.HasChange("gui_prompt_auto_upgrade") {
+		t, err := expandObjectSystemFortiguardGuiPromptAutoUpgrade(d, v, "gui_prompt_auto_upgrade")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["gui-prompt-auto-upgrade"] = t
 		}
 	}
 

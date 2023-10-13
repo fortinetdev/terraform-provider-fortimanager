@@ -57,6 +57,7 @@ func resourceWantempSystemSdwanHealthCheckSla() *schema.Resource {
 			},
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 			"jitter_threshold": &schema.Schema{
@@ -121,7 +122,7 @@ func resourceWantempSystemSdwanHealthCheckSlaCreate(d *schema.ResourceData, m in
 		return fmt.Errorf("Error creating WantempSystemSdwanHealthCheckSla resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceWantempSystemSdwanHealthCheckSlaRead(d, m)
 }
@@ -156,7 +157,7 @@ func resourceWantempSystemSdwanHealthCheckSlaUpdate(d *schema.ResourceData, m in
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceWantempSystemSdwanHealthCheckSlaRead(d, m)
 }
@@ -206,8 +207,20 @@ func resourceWantempSystemSdwanHealthCheckSlaRead(d *schema.ResourceData, m inte
 
 	wanprof := d.Get("wanprof").(string)
 	health_check := d.Get("health_check").(string)
+	if wanprof == "" {
+		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
+		if err = d.Set("wanprof", wanprof); err != nil {
+			return fmt.Errorf("Error set params wanprof: %v", err)
+		}
+	}
 	if health_check == "" {
 		health_check = importOptionChecking(m.(*FortiClient).Cfg, "health_check")
+		if health_check == "" {
+			return fmt.Errorf("Parameter health_check is missing")
+		}
 		if err = d.Set("health_check", health_check); err != nil {
 			return fmt.Errorf("Error set params health_check: %v", err)
 		}

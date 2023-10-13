@@ -34,6 +34,11 @@ func resourceSystemLocallogFortianalyzer3Filter() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"controller": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"devcfg": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -321,6 +326,10 @@ func flattenSystemLocallogFortianalyzer3FilterAid(v interface{}, d *schema.Resou
 	return v
 }
 
+func flattenSystemLocallogFortianalyzer3FilterController(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemLocallogFortianalyzer3FilterDevcfg(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -495,6 +504,16 @@ func refreshObjectSystemLocallogFortianalyzer3Filter(d *schema.ResourceData, o m
 			}
 		} else {
 			return fmt.Errorf("Error reading aid: %v", err)
+		}
+	}
+
+	if err = d.Set("controller", flattenSystemLocallogFortianalyzer3FilterController(o["controller"], d, "controller")); err != nil {
+		if vv, ok := fortiAPIPatch(o["controller"], "SystemLocallogFortianalyzer3Filter-Controller"); ok {
+			if err = d.Set("controller", vv); err != nil {
+				return fmt.Errorf("Error reading controller: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading controller: %v", err)
 		}
 	}
 
@@ -921,6 +940,10 @@ func expandSystemLocallogFortianalyzer3FilterAid(d *schema.ResourceData, v inter
 	return v, nil
 }
 
+func expandSystemLocallogFortianalyzer3FilterController(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemLocallogFortianalyzer3FilterDevcfg(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1094,6 +1117,15 @@ func getObjectSystemLocallogFortianalyzer3Filter(d *schema.ResourceData) (*map[s
 			return &obj, err
 		} else if t != nil {
 			obj["aid"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("controller"); ok || d.HasChange("controller") {
+		t, err := expandSystemLocallogFortianalyzer3FilterController(d, v, "controller")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["controller"] = t
 		}
 	}
 

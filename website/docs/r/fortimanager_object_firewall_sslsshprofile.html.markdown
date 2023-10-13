@@ -94,6 +94,8 @@ The `dot` block supports:
 
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
 
+* `quic` - Enable/disable QUIC inspection (default = disable). Valid values: `disable`, `enable`.
+
 * `revoked_server_cert` - Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 
 * `sni_server_cert_check` - Check the SNI in the client hello message with the CN or SAN fields in the returned server certificate. Valid values: `enable`, `strict`, `disable`.
@@ -169,6 +171,8 @@ The `https` block supports:
 
 * `ports` - Ports to use for scanning (1 - 65535, default = 443).
 * `proxy_after_tcp_handshake` - Proxy traffic after the TCP 3-way handshake has been established (not before). Valid values: `disable`, `enable`.
+
+* `quic` - Enable/disable QUIC inspection (default = disable). Valid values: `disable`, `enable`.
 
 * `revoked_server_cert` - Action based on server certificate is revoked. Valid values: `allow`, `block`, `ignore`.
 

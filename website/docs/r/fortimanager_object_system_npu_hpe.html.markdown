@@ -19,15 +19,21 @@ The following arguments are supported:
 
 * `all_protocol` - Maximum packet rate of each host queue except high priority traffic(1K - 40M pps, default = 10M pps), set 0 to disable.
 * `arp_max` - Maximum ARP packet rate (1K - 40M pps, default = 40K pps).
+* `enable_queue_shaper` - Enable/Disable NPU host protection engine (HPE) queue shaper. Valid values: `disable`, `enable`.
+
 * `enable_shaper` - Enable/Disable NPU Host Protection Engine (HPE) for packet type shaper. Valid values: `disable`, `enable`.
 
 * `esp_max` - Maximum ESP packet rate (1K - 40M pps, default = 40K pps).
+* `exception_code` - Maximum exception code rate of traffic(1K - 32M pps, default = 1M pps).
+* `fragment_with_sess` - Maximum fragment with session rate of traffic(1K - 32M pps, default = 1M pps).
+* `fragment_without_session` - Maximum fragment without session rate of traffic(1K - 32M pps, default = 1M pps).
 * `high_priority` - Maximum packet rate for TCAM high priority traffic (1K - 40M pps, default = 10M pps),set 0 to disable.
 * `icmp_max` - Maximum ICMP packet rate (1K - 40M pps, default = 40K pps).
 * `ip_frag_max` - Maximum fragmented IP packet rate (1K - 40M pps, default = 40K pps).
 * `ip_others_max` - Maximum IP packet rate for other packets (packet types that cannot be set with other options) (1K - 1G pps, default = 40K pps).
 * `l2_others_max` - Maximum L2 packet rate for L2 packets that are not ARP packets (1K - 40M pps, default = 40K pps).
 * `pri_type_max` - Maximum overflow rate of priority type traffic(1K - 40M pps, default = 40K pps). Includes L2: HA, 802.3ad LACP, heartbeats. L3: OSPF. L4_TCP: BGP. L4_UDP: IKE, SLBC, BFD.
+* `queue_shaper_max` - Maximum per queue byte rate of traffic(1K - 32M pps, default = 1M pps).
 * `sctp_max` - Maximum SCTP packet rate (1K - 40M pps, default = 40K pps).
 * `tcp_max` - Maximum TCP packet rate (1K - 40M pps, default = 600K pps).
 * `tcpfin_rst_max` - Maximum TCP carries FIN or RST flags packet rate (1K - 40M pps, default = 600K pps).

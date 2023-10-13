@@ -30,6 +30,7 @@ The following arguments are supported:
 * `log_interval_dev_no_logging` - Interval in minute for logging the event of no logs received from a device.
 * `log_interval_disk_full` - Interval in minute for logging the event of disk full.
 * `log_interval_gbday_exceeded` - Interval in minute for logging the event of the GB/Day license exceeded.
+* `no_log_detection_threshold` - Time interval in minutes to trigger a local event message if no log data is received.
 
 
 ## Attribute Reference

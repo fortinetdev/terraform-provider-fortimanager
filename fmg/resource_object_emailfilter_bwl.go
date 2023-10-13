@@ -57,10 +57,12 @@ func resourceObjectEmailfilterBwl() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"addr_type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"email_pattern": &schema.Schema{
 							Type:     schema.TypeString,
@@ -73,6 +75,7 @@ func resourceObjectEmailfilterBwl() *schema.Resource {
 						"ip4_subnet": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"ip6_subnet": &schema.Schema{
 							Type:     schema.TypeString,
@@ -85,10 +88,12 @@ func resourceObjectEmailfilterBwl() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -327,7 +332,7 @@ func flattenObjectEmailfilterBwlEntriesId(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectEmailfilterBwlEntriesIp4Subnet(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenObjectEmailfilterBwlEntriesIp6Subnet(v interface{}, d *schema.ResourceData, pre string) interface{} {

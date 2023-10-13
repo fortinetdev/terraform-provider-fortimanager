@@ -44,6 +44,8 @@ The following arguments are supported:
 * `authtimeout` - Time in minutes before the authentication timeout for a user is reached.
 * `email_to` - Two-factor recipient's email address.
 * `fortitoken` - Two-factor recipient's FortiToken serial number.
+* `history0` - History0.
+* `history1` - History1.
 * `fosid` - Id.
 * `ldap_server` - Name of LDAP server with which the user must authenticate.
 * `name` - User name.

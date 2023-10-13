@@ -59,6 +59,11 @@ func resourceSystemDm() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"fgfm_auto_retrieve_timeout": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"fgfm_install_refresh_count": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -90,6 +95,11 @@ func resourceSystemDm() *schema.Resource {
 				Computed: true,
 			},
 			"fortiext_refresh_cnt": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
+			"install_fds_timeout": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
 				Computed: true,
@@ -256,6 +266,10 @@ func flattenSystemDmDpmLogsize(v interface{}, d *schema.ResourceData, pre string
 	return v
 }
 
+func flattenSystemDmFgfmAutoRetrieveTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemDmFgfmInstallRefreshCount(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -281,6 +295,10 @@ func flattenSystemDmFortiapRefreshItvl(v interface{}, d *schema.ResourceData, pr
 }
 
 func flattenSystemDmFortiextRefreshCnt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenSystemDmInstallFdsTimeout(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -395,6 +413,16 @@ func refreshObjectSystemDm(d *schema.ResourceData, o map[string]interface{}) err
 		}
 	}
 
+	if err = d.Set("fgfm_auto_retrieve_timeout", flattenSystemDmFgfmAutoRetrieveTimeout(o["fgfm-auto-retrieve-timeout"], d, "fgfm_auto_retrieve_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["fgfm-auto-retrieve-timeout"], "SystemDm-FgfmAutoRetrieveTimeout"); ok {
+			if err = d.Set("fgfm_auto_retrieve_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading fgfm_auto_retrieve_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading fgfm_auto_retrieve_timeout: %v", err)
+		}
+	}
+
 	if err = d.Set("fgfm_install_refresh_count", flattenSystemDmFgfmInstallRefreshCount(o["fgfm-install-refresh-count"], d, "fgfm_install_refresh_count")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fgfm-install-refresh-count"], "SystemDm-FgfmInstallRefreshCount"); ok {
 			if err = d.Set("fgfm_install_refresh_count", vv); err != nil {
@@ -462,6 +490,16 @@ func refreshObjectSystemDm(d *schema.ResourceData, o map[string]interface{}) err
 			}
 		} else {
 			return fmt.Errorf("Error reading fortiext_refresh_cnt: %v", err)
+		}
+	}
+
+	if err = d.Set("install_fds_timeout", flattenSystemDmInstallFdsTimeout(o["install-fds-timeout"], d, "install_fds_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["install-fds-timeout"], "SystemDm-InstallFdsTimeout"); ok {
+			if err = d.Set("install_fds_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading install_fds_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading install_fds_timeout: %v", err)
 		}
 	}
 
@@ -618,6 +656,10 @@ func expandSystemDmDpmLogsize(d *schema.ResourceData, v interface{}, pre string)
 	return v, nil
 }
 
+func expandSystemDmFgfmAutoRetrieveTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemDmFgfmInstallRefreshCount(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -643,6 +685,10 @@ func expandSystemDmFortiapRefreshItvl(d *schema.ResourceData, v interface{}, pre
 }
 
 func expandSystemDmFortiextRefreshCnt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandSystemDmInstallFdsTimeout(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -751,6 +797,15 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 		}
 	}
 
+	if v, ok := d.GetOk("fgfm_auto_retrieve_timeout"); ok || d.HasChange("fgfm_auto_retrieve_timeout") {
+		t, err := expandSystemDmFgfmAutoRetrieveTimeout(d, v, "fgfm_auto_retrieve_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["fgfm-auto-retrieve-timeout"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("fgfm_install_refresh_count"); ok || d.HasChange("fgfm_install_refresh_count") {
 		t, err := expandSystemDmFgfmInstallRefreshCount(d, v, "fgfm_install_refresh_count")
 		if err != nil {
@@ -811,6 +866,15 @@ func getObjectSystemDm(d *schema.ResourceData) (*map[string]interface{}, error) 
 			return &obj, err
 		} else if t != nil {
 			obj["fortiext-refresh-cnt"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("install_fds_timeout"); ok || d.HasChange("install_fds_timeout") {
+		t, err := expandSystemDmInstallFdsTimeout(d, v, "install_fds_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["install-fds-timeout"] = t
 		}
 	}
 

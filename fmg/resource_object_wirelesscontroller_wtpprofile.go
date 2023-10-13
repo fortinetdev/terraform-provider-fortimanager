@@ -426,6 +426,65 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"polestar": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_accumulation_interval": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_asset_addrgrp_list": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"polestar_asset_uuid_list1": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"polestar_asset_uuid_list2": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"polestar_asset_uuid_list3": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"polestar_asset_uuid_list4": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
+						"polestar_protocol": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_reporting_interval": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_server_fqdn": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_server_path": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_server_port": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"polestar_server_token": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"station_locate": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -513,6 +572,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"n80211d": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"airtime_fairness": &schema.Schema{
 							Type:     schema.TypeString,
@@ -698,6 +758,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"mimo_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -706,6 +771,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"optional_antenna": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"power_level": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -827,6 +893,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"spectrum_analysis": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"transmit_optimize": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -897,6 +964,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"n80211d": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"airtime_fairness": &schema.Schema{
 							Type:     schema.TypeString,
@@ -1081,6 +1149,11 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"mimo_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -1089,6 +1162,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"optional_antenna": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"power_level": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -1210,6 +1284,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						"spectrum_analysis": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"transmit_optimize": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -1437,6 +1512,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 						},
 						"max_distance": &schema.Schema{
 							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"mimo_mode": &schema.Schema{
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 						"mode": &schema.Schema{
@@ -1787,6 +1866,10 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
+						"mimo_mode": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"mode": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -2012,6 +2095,7 @@ func resourceObjectWirelessControllerWtpProfile() *schema.Resource {
 			"unii_4_5ghz_band": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"wan_port_auth": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2713,6 +2797,71 @@ func flattenObjectWirelessControllerWtpProfileLbs(v interface{}, d *schema.Resou
 		result["fortipresence_unassoc"] = flattenObjectWirelessControllerWtpProfileLbsFortipresenceUnassoc(i["fortipresence-unassoc"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "polestar"
+	if _, ok := i["polestar"]; ok {
+		result["polestar"] = flattenObjectWirelessControllerWtpProfileLbsPolestar(i["polestar"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_accumulation_interval"
+	if _, ok := i["polestar-accumulation-interval"]; ok {
+		result["polestar_accumulation_interval"] = flattenObjectWirelessControllerWtpProfileLbsPolestarAccumulationInterval(i["polestar-accumulation-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_asset_addrgrp_list"
+	if _, ok := i["polestar-asset-addrgrp-list"]; ok {
+		result["polestar_asset_addrgrp_list"] = flattenObjectWirelessControllerWtpProfileLbsPolestarAssetAddrgrpList(i["polestar-asset-addrgrp-list"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_asset_uuid_list1"
+	if _, ok := i["polestar-asset-uuid-list1"]; ok {
+		result["polestar_asset_uuid_list1"] = flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList1(i["polestar-asset-uuid-list1"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_asset_uuid_list2"
+	if _, ok := i["polestar-asset-uuid-list2"]; ok {
+		result["polestar_asset_uuid_list2"] = flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList2(i["polestar-asset-uuid-list2"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_asset_uuid_list3"
+	if _, ok := i["polestar-asset-uuid-list3"]; ok {
+		result["polestar_asset_uuid_list3"] = flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList3(i["polestar-asset-uuid-list3"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_asset_uuid_list4"
+	if _, ok := i["polestar-asset-uuid-list4"]; ok {
+		result["polestar_asset_uuid_list4"] = flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList4(i["polestar-asset-uuid-list4"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_protocol"
+	if _, ok := i["polestar-protocol"]; ok {
+		result["polestar_protocol"] = flattenObjectWirelessControllerWtpProfileLbsPolestarProtocol(i["polestar-protocol"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_reporting_interval"
+	if _, ok := i["polestar-reporting-interval"]; ok {
+		result["polestar_reporting_interval"] = flattenObjectWirelessControllerWtpProfileLbsPolestarReportingInterval(i["polestar-reporting-interval"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_server_fqdn"
+	if _, ok := i["polestar-server-fqdn"]; ok {
+		result["polestar_server_fqdn"] = flattenObjectWirelessControllerWtpProfileLbsPolestarServerFqdn(i["polestar-server-fqdn"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_server_path"
+	if _, ok := i["polestar-server-path"]; ok {
+		result["polestar_server_path"] = flattenObjectWirelessControllerWtpProfileLbsPolestarServerPath(i["polestar-server-path"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_server_port"
+	if _, ok := i["polestar-server-port"]; ok {
+		result["polestar_server_port"] = flattenObjectWirelessControllerWtpProfileLbsPolestarServerPort(i["polestar-server-port"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "polestar_server_token"
+	if _, ok := i["polestar-server-token"]; ok {
+		result["polestar_server_token"] = flattenObjectWirelessControllerWtpProfileLbsPolestarServerToken(i["polestar-server-token"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "station_locate"
 	if _, ok := i["station-locate"]; ok {
 		result["station_locate"] = flattenObjectWirelessControllerWtpProfileLbsStationLocate(i["station-locate"], d, pre_append)
@@ -2811,6 +2960,58 @@ func flattenObjectWirelessControllerWtpProfileLbsFortipresenceServerFqdn(v inter
 }
 
 func flattenObjectWirelessControllerWtpProfileLbsFortipresenceUnassoc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestar(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarAccumulationInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarAssetAddrgrpList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return conv2str(v)
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList1(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList2(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList3(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarProtocol(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarReportingInterval(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarServerFqdn(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarServerPath(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarServerPort(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileLbsPolestarServerToken(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3106,6 +3307,11 @@ func flattenObjectWirelessControllerWtpProfileRadio1(v interface{}, d *schema.Re
 	pre_append = pre + ".0." + "max_distance"
 	if _, ok := i["max-distance"]; ok {
 		result["max_distance"] = flattenObjectWirelessControllerWtpProfileRadio1MaxDistance(i["max-distance"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := i["mimo-mode"]; ok {
+		result["mimo_mode"] = flattenObjectWirelessControllerWtpProfileRadio1MimoMode(i["mimo-mode"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "mode"
@@ -3479,6 +3685,10 @@ func flattenObjectWirelessControllerWtpProfileRadio1MaxClients(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio1MaxDistance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio1MimoMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -3859,6 +4069,11 @@ func flattenObjectWirelessControllerWtpProfileRadio2(v interface{}, d *schema.Re
 		result["max_distance"] = flattenObjectWirelessControllerWtpProfileRadio2MaxDistance(i["max-distance"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := i["mimo-mode"]; ok {
+		result["mimo_mode"] = flattenObjectWirelessControllerWtpProfileRadio2MimoMode(i["mimo-mode"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "mode"
 	if _, ok := i["mode"]; ok {
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio2Mode(i["mode"], d, pre_append)
@@ -4230,6 +4445,10 @@ func flattenObjectWirelessControllerWtpProfileRadio2MaxClients(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio2MaxDistance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio2MimoMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4610,6 +4829,11 @@ func flattenObjectWirelessControllerWtpProfileRadio3(v interface{}, d *schema.Re
 		result["max_distance"] = flattenObjectWirelessControllerWtpProfileRadio3MaxDistance(i["max-distance"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := i["mimo-mode"]; ok {
+		result["mimo_mode"] = flattenObjectWirelessControllerWtpProfileRadio3MimoMode(i["mimo-mode"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "mode"
 	if _, ok := i["mode"]; ok {
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio3Mode(i["mode"], d, pre_append)
@@ -4981,6 +5205,10 @@ func flattenObjectWirelessControllerWtpProfileRadio3MaxClients(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio3MaxDistance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio3MimoMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -5361,6 +5589,11 @@ func flattenObjectWirelessControllerWtpProfileRadio4(v interface{}, d *schema.Re
 		result["max_distance"] = flattenObjectWirelessControllerWtpProfileRadio4MaxDistance(i["max-distance"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := i["mimo-mode"]; ok {
+		result["mimo_mode"] = flattenObjectWirelessControllerWtpProfileRadio4MimoMode(i["mimo-mode"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "mode"
 	if _, ok := i["mode"]; ok {
 		result["mode"] = flattenObjectWirelessControllerWtpProfileRadio4Mode(i["mode"], d, pre_append)
@@ -5732,6 +5965,10 @@ func flattenObjectWirelessControllerWtpProfileRadio4MaxClients(v interface{}, d 
 }
 
 func flattenObjectWirelessControllerWtpProfileRadio4MaxDistance(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectWirelessControllerWtpProfileRadio4MimoMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -7132,6 +7369,58 @@ func expandObjectWirelessControllerWtpProfileLbs(d *schema.ResourceData, v inter
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["fortipresence-unassoc"], _ = expandObjectWirelessControllerWtpProfileLbsFortipresenceUnassoc(d, i["fortipresence_unassoc"], pre_append)
 	}
+	pre_append = pre + ".0." + "polestar"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar"], _ = expandObjectWirelessControllerWtpProfileLbsPolestar(d, i["polestar"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_accumulation_interval"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-accumulation-interval"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarAccumulationInterval(d, i["polestar_accumulation_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_asset_addrgrp_list"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-asset-addrgrp-list"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarAssetAddrgrpList(d, i["polestar_asset_addrgrp_list"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_asset_uuid_list1"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-asset-uuid-list1"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList1(d, i["polestar_asset_uuid_list1"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_asset_uuid_list2"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-asset-uuid-list2"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList2(d, i["polestar_asset_uuid_list2"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_asset_uuid_list3"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-asset-uuid-list3"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList3(d, i["polestar_asset_uuid_list3"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_asset_uuid_list4"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-asset-uuid-list4"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList4(d, i["polestar_asset_uuid_list4"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_protocol"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-protocol"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarProtocol(d, i["polestar_protocol"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_reporting_interval"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-reporting-interval"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarReportingInterval(d, i["polestar_reporting_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_server_fqdn"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-server-fqdn"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarServerFqdn(d, i["polestar_server_fqdn"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_server_path"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-server-path"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarServerPath(d, i["polestar_server_path"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_server_port"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-server-port"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarServerPort(d, i["polestar_server_port"], pre_append)
+	}
+	pre_append = pre + ".0." + "polestar_server_token"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["polestar-server-token"], _ = expandObjectWirelessControllerWtpProfileLbsPolestarServerToken(d, i["polestar_server_token"], pre_append)
+	}
 	pre_append = pre + ".0." + "station_locate"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["station-locate"], _ = expandObjectWirelessControllerWtpProfileLbsStationLocate(d, i["station_locate"], pre_append)
@@ -7229,6 +7518,58 @@ func expandObjectWirelessControllerWtpProfileLbsFortipresenceServerFqdn(d *schem
 }
 
 func expandObjectWirelessControllerWtpProfileLbsFortipresenceUnassoc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestar(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarAccumulationInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarAssetAddrgrpList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList1(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList2(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList3(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarAssetUuidList4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarProtocol(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarReportingInterval(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarServerFqdn(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarServerPath(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarServerPort(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileLbsPolestarServerToken(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -7483,6 +7824,10 @@ func expandObjectWirelessControllerWtpProfileRadio1(d *schema.ResourceData, v in
 	pre_append = pre + ".0." + "max_distance"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio1MaxDistance(d, i["max_distance"], pre_append)
+	}
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mimo-mode"], _ = expandObjectWirelessControllerWtpProfileRadio1MimoMode(d, i["mimo_mode"], pre_append)
 	}
 	pre_append = pre + ".0." + "mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -7813,6 +8158,10 @@ func expandObjectWirelessControllerWtpProfileRadio1MaxClients(d *schema.Resource
 }
 
 func expandObjectWirelessControllerWtpProfileRadio1MaxDistance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio1MimoMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8154,6 +8503,10 @@ func expandObjectWirelessControllerWtpProfileRadio2(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio2MaxDistance(d, i["max_distance"], pre_append)
 	}
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mimo-mode"], _ = expandObjectWirelessControllerWtpProfileRadio2MimoMode(d, i["mimo_mode"], pre_append)
+	}
 	pre_append = pre + ".0." + "mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio2Mode(d, i["mode"], pre_append)
@@ -8483,6 +8836,10 @@ func expandObjectWirelessControllerWtpProfileRadio2MaxClients(d *schema.Resource
 }
 
 func expandObjectWirelessControllerWtpProfileRadio2MaxDistance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio2MimoMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8824,6 +9181,10 @@ func expandObjectWirelessControllerWtpProfileRadio3(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio3MaxDistance(d, i["max_distance"], pre_append)
 	}
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mimo-mode"], _ = expandObjectWirelessControllerWtpProfileRadio3MimoMode(d, i["mimo_mode"], pre_append)
+	}
 	pre_append = pre + ".0." + "mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio3Mode(d, i["mode"], pre_append)
@@ -9153,6 +9514,10 @@ func expandObjectWirelessControllerWtpProfileRadio3MaxClients(d *schema.Resource
 }
 
 func expandObjectWirelessControllerWtpProfileRadio3MaxDistance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio3MimoMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -9494,6 +9859,10 @@ func expandObjectWirelessControllerWtpProfileRadio4(d *schema.ResourceData, v in
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["max-distance"], _ = expandObjectWirelessControllerWtpProfileRadio4MaxDistance(d, i["max_distance"], pre_append)
 	}
+	pre_append = pre + ".0." + "mimo_mode"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["mimo-mode"], _ = expandObjectWirelessControllerWtpProfileRadio4MimoMode(d, i["mimo_mode"], pre_append)
+	}
 	pre_append = pre + ".0." + "mode"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["mode"], _ = expandObjectWirelessControllerWtpProfileRadio4Mode(d, i["mode"], pre_append)
@@ -9823,6 +10192,10 @@ func expandObjectWirelessControllerWtpProfileRadio4MaxClients(d *schema.Resource
 }
 
 func expandObjectWirelessControllerWtpProfileRadio4MaxDistance(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectWirelessControllerWtpProfileRadio4MimoMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

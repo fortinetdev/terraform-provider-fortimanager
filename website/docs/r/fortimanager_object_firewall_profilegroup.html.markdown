@@ -29,6 +29,7 @@ The following arguments are supported:
 
 * `application_list` - Name of an existing Application list.
 * `av_profile` - Name of an existing Antivirus profile.
+* `casb_profile` - Name of an existing CASB profile.
 * `cifs_profile` - Name of an existing CIFS profile.
 * `dlp_profile` - Name of an existing DLP profile.
 * `dlp_sensor` - Name of an existing DLP sensor.
@@ -46,6 +47,7 @@ The following arguments are supported:
 * `ssh_filter_profile` - Name of an existing SSH filter profile.
 * `ssl_ssh_profile` - Name of an existing SSL SSH profile.
 * `videofilter_profile` - Name of an existing VideoFilter profile.
+* `virtual_patch_profile` - Name of an existing virtual-patch profile.
 * `voip_profile` - Name of an existing VoIP profile.
 * `waf_profile` - Name of an existing Web application firewall profile.
 * `webfilter_profile` - Name of an existing Web filter profile.

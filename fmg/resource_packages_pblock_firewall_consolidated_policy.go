@@ -4,7 +4,7 @@
 // Hongbin Lu (@fgtdev-hblu), Frank Shen (@frankshen01),
 // Xing Li (@lix-fortinet), Yue Wang (@yuew-ftnt)
 
-// Description: /pm/config/pblock/firewall/consolidated/policy
+// Description: Configuring consolidated policy for a policy block.
 
 package fortimanager
 
@@ -604,6 +604,9 @@ func resourcePackagesPblockFirewallConsolidatedPolicyRead(d *schema.ResourceData
 	pblock := d.Get("pblock").(string)
 	if pblock == "" {
 		pblock = importOptionChecking(m.(*FortiClient).Cfg, "pblock")
+		if pblock == "" {
+			return fmt.Errorf("Parameter pblock is missing")
+		}
 		if err = d.Set("pblock", pblock); err != nil {
 			return fmt.Errorf("Error set params pblock: %v", err)
 		}
@@ -628,359 +631,359 @@ func resourcePackagesPblockFirewallConsolidatedPolicyRead(d *schema.ResourceData
 	return nil
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyPolicyBlock(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyPolicyBlock2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyAction(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyAction2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyAppCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyAppCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyAppGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyAppGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyApplication(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyApplication2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenIntegerList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyApplicationList(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyApplicationList2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyAvProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyAvProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyCifsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyCifsProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyComments(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyComments2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDiffservForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDiffservForward2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDiffservReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDiffservReverse2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDlpSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDlpSensor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDstaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDstaddrNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDstaddr4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDstaddr42edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDstaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDstaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyDstintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyDstintf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyFixedport(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyFixedport2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyFssoGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyFssoGroups2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyGlobalLabel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyGlobalLabel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyGroups(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyGroups2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyIcapProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyIcapProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInbound2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInspectionMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInspectionMode2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyIppool(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyIppool2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyIpsSensor(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyIpsSensor2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyLogtraffic(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyLogtraffic2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyLogtrafficStart(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyLogtrafficStart2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyMmsProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyMmsProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyName2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyNat(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyNat2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyOutbound(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyOutbound2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyPerIpShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyPerIpShaper2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyPoolname4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyPoolname42edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyPoolname6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyPoolname62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyProfileGroup(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyProfileGroup2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyProfileType(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyProfileType2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySchedule(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySchedule2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyService(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyService2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyServiceNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyServiceNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySessionTtl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySessionTtl2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySrcaddrNegate(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySrcaddrNegate2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySrcaddr4(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySrcaddr42edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySrcaddr6(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySrcaddr62edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySrcintf(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySrcintf2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySshFilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySshFilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicySslSshProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicySslSshProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyTcpMssSender(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyTcpMssSender2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaper(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaper2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyUrlCategory(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyUrlCategory2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyUsers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyUsers2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return flattenStringList(v)
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyUtmStatus(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyUtmStatus2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyUuid(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyUuid2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyVoipProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyVoipProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyVpntunnel(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyVpntunnel2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWafProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWafProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWanopt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWanopt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWanoptDetection(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWanoptDetection2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWanoptPeer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWanoptPeer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWanoptProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWanoptProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWebcache(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWebcache2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWebcacheHttps(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWebcacheHttps2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWebfilterProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWebfilterProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
-func flattenPackagesPblockFirewallConsolidatedPolicyWebproxyProfile(v interface{}, d *schema.ResourceData, pre string) interface{} {
+func flattenPackagesPblockFirewallConsolidatedPolicyWebproxyProfile2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -991,7 +994,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		d.Set("scopetype", "inherit")
 	}
 
-	if err = d.Set("_policy_block", flattenPackagesPblockFirewallConsolidatedPolicyPolicyBlock(o["_policy_block"], d, "_policy_block")); err != nil {
+	if err = d.Set("_policy_block", flattenPackagesPblockFirewallConsolidatedPolicyPolicyBlock2edl(o["_policy_block"], d, "_policy_block")); err != nil {
 		if vv, ok := fortiAPIPatch(o["_policy_block"], "PackagesPblockFirewallConsolidatedPolicy-PolicyBlock"); ok {
 			if err = d.Set("_policy_block", vv); err != nil {
 				return fmt.Errorf("Error reading _policy_block: %v", err)
@@ -1001,7 +1004,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("action", flattenPackagesPblockFirewallConsolidatedPolicyAction(o["action"], d, "action")); err != nil {
+	if err = d.Set("action", flattenPackagesPblockFirewallConsolidatedPolicyAction2edl(o["action"], d, "action")); err != nil {
 		if vv, ok := fortiAPIPatch(o["action"], "PackagesPblockFirewallConsolidatedPolicy-Action"); ok {
 			if err = d.Set("action", vv); err != nil {
 				return fmt.Errorf("Error reading action: %v", err)
@@ -1011,7 +1014,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("app_category", flattenPackagesPblockFirewallConsolidatedPolicyAppCategory(o["app-category"], d, "app_category")); err != nil {
+	if err = d.Set("app_category", flattenPackagesPblockFirewallConsolidatedPolicyAppCategory2edl(o["app-category"], d, "app_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["app-category"], "PackagesPblockFirewallConsolidatedPolicy-AppCategory"); ok {
 			if err = d.Set("app_category", vv); err != nil {
 				return fmt.Errorf("Error reading app_category: %v", err)
@@ -1021,7 +1024,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("app_group", flattenPackagesPblockFirewallConsolidatedPolicyAppGroup(o["app-group"], d, "app_group")); err != nil {
+	if err = d.Set("app_group", flattenPackagesPblockFirewallConsolidatedPolicyAppGroup2edl(o["app-group"], d, "app_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["app-group"], "PackagesPblockFirewallConsolidatedPolicy-AppGroup"); ok {
 			if err = d.Set("app_group", vv); err != nil {
 				return fmt.Errorf("Error reading app_group: %v", err)
@@ -1031,7 +1034,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("application", flattenPackagesPblockFirewallConsolidatedPolicyApplication(o["application"], d, "application")); err != nil {
+	if err = d.Set("application", flattenPackagesPblockFirewallConsolidatedPolicyApplication2edl(o["application"], d, "application")); err != nil {
 		if vv, ok := fortiAPIPatch(o["application"], "PackagesPblockFirewallConsolidatedPolicy-Application"); ok {
 			if err = d.Set("application", vv); err != nil {
 				return fmt.Errorf("Error reading application: %v", err)
@@ -1041,7 +1044,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("application_list", flattenPackagesPblockFirewallConsolidatedPolicyApplicationList(o["application-list"], d, "application_list")); err != nil {
+	if err = d.Set("application_list", flattenPackagesPblockFirewallConsolidatedPolicyApplicationList2edl(o["application-list"], d, "application_list")); err != nil {
 		if vv, ok := fortiAPIPatch(o["application-list"], "PackagesPblockFirewallConsolidatedPolicy-ApplicationList"); ok {
 			if err = d.Set("application_list", vv); err != nil {
 				return fmt.Errorf("Error reading application_list: %v", err)
@@ -1051,7 +1054,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("auto_asic_offload", flattenPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload(o["auto-asic-offload"], d, "auto_asic_offload")); err != nil {
+	if err = d.Set("auto_asic_offload", flattenPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload2edl(o["auto-asic-offload"], d, "auto_asic_offload")); err != nil {
 		if vv, ok := fortiAPIPatch(o["auto-asic-offload"], "PackagesPblockFirewallConsolidatedPolicy-AutoAsicOffload"); ok {
 			if err = d.Set("auto_asic_offload", vv); err != nil {
 				return fmt.Errorf("Error reading auto_asic_offload: %v", err)
@@ -1061,7 +1064,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("av_profile", flattenPackagesPblockFirewallConsolidatedPolicyAvProfile(o["av-profile"], d, "av_profile")); err != nil {
+	if err = d.Set("av_profile", flattenPackagesPblockFirewallConsolidatedPolicyAvProfile2edl(o["av-profile"], d, "av_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["av-profile"], "PackagesPblockFirewallConsolidatedPolicy-AvProfile"); ok {
 			if err = d.Set("av_profile", vv); err != nil {
 				return fmt.Errorf("Error reading av_profile: %v", err)
@@ -1071,7 +1074,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("captive_portal_exempt", flattenPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt(o["captive-portal-exempt"], d, "captive_portal_exempt")); err != nil {
+	if err = d.Set("captive_portal_exempt", flattenPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt2edl(o["captive-portal-exempt"], d, "captive_portal_exempt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["captive-portal-exempt"], "PackagesPblockFirewallConsolidatedPolicy-CaptivePortalExempt"); ok {
 			if err = d.Set("captive_portal_exempt", vv); err != nil {
 				return fmt.Errorf("Error reading captive_portal_exempt: %v", err)
@@ -1081,7 +1084,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("cifs_profile", flattenPackagesPblockFirewallConsolidatedPolicyCifsProfile(o["cifs-profile"], d, "cifs_profile")); err != nil {
+	if err = d.Set("cifs_profile", flattenPackagesPblockFirewallConsolidatedPolicyCifsProfile2edl(o["cifs-profile"], d, "cifs_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["cifs-profile"], "PackagesPblockFirewallConsolidatedPolicy-CifsProfile"); ok {
 			if err = d.Set("cifs_profile", vv); err != nil {
 				return fmt.Errorf("Error reading cifs_profile: %v", err)
@@ -1091,7 +1094,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("comments", flattenPackagesPblockFirewallConsolidatedPolicyComments(o["comments"], d, "comments")); err != nil {
+	if err = d.Set("comments", flattenPackagesPblockFirewallConsolidatedPolicyComments2edl(o["comments"], d, "comments")); err != nil {
 		if vv, ok := fortiAPIPatch(o["comments"], "PackagesPblockFirewallConsolidatedPolicy-Comments"); ok {
 			if err = d.Set("comments", vv); err != nil {
 				return fmt.Errorf("Error reading comments: %v", err)
@@ -1101,7 +1104,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("diffserv_forward", flattenPackagesPblockFirewallConsolidatedPolicyDiffservForward(o["diffserv-forward"], d, "diffserv_forward")); err != nil {
+	if err = d.Set("diffserv_forward", flattenPackagesPblockFirewallConsolidatedPolicyDiffservForward2edl(o["diffserv-forward"], d, "diffserv_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffserv-forward"], "PackagesPblockFirewallConsolidatedPolicy-DiffservForward"); ok {
 			if err = d.Set("diffserv_forward", vv); err != nil {
 				return fmt.Errorf("Error reading diffserv_forward: %v", err)
@@ -1111,7 +1114,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("diffserv_reverse", flattenPackagesPblockFirewallConsolidatedPolicyDiffservReverse(o["diffserv-reverse"], d, "diffserv_reverse")); err != nil {
+	if err = d.Set("diffserv_reverse", flattenPackagesPblockFirewallConsolidatedPolicyDiffservReverse2edl(o["diffserv-reverse"], d, "diffserv_reverse")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffserv-reverse"], "PackagesPblockFirewallConsolidatedPolicy-DiffservReverse"); ok {
 			if err = d.Set("diffserv_reverse", vv); err != nil {
 				return fmt.Errorf("Error reading diffserv_reverse: %v", err)
@@ -1121,7 +1124,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("diffservcode_forward", flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward(o["diffservcode-forward"], d, "diffservcode_forward")); err != nil {
+	if err = d.Set("diffservcode_forward", flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward2edl(o["diffservcode-forward"], d, "diffservcode_forward")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffservcode-forward"], "PackagesPblockFirewallConsolidatedPolicy-DiffservcodeForward"); ok {
 			if err = d.Set("diffservcode_forward", vv); err != nil {
 				return fmt.Errorf("Error reading diffservcode_forward: %v", err)
@@ -1131,7 +1134,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("diffservcode_rev", flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev(o["diffservcode-rev"], d, "diffservcode_rev")); err != nil {
+	if err = d.Set("diffservcode_rev", flattenPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev2edl(o["diffservcode-rev"], d, "diffservcode_rev")); err != nil {
 		if vv, ok := fortiAPIPatch(o["diffservcode-rev"], "PackagesPblockFirewallConsolidatedPolicy-DiffservcodeRev"); ok {
 			if err = d.Set("diffservcode_rev", vv); err != nil {
 				return fmt.Errorf("Error reading diffservcode_rev: %v", err)
@@ -1141,7 +1144,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("dlp_sensor", flattenPackagesPblockFirewallConsolidatedPolicyDlpSensor(o["dlp-sensor"], d, "dlp_sensor")); err != nil {
+	if err = d.Set("dlp_sensor", flattenPackagesPblockFirewallConsolidatedPolicyDlpSensor2edl(o["dlp-sensor"], d, "dlp_sensor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dlp-sensor"], "PackagesPblockFirewallConsolidatedPolicy-DlpSensor"); ok {
 			if err = d.Set("dlp_sensor", vv); err != nil {
 				return fmt.Errorf("Error reading dlp_sensor: %v", err)
@@ -1151,7 +1154,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("dnsfilter_profile", flattenPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile(o["dnsfilter-profile"], d, "dnsfilter_profile")); err != nil {
+	if err = d.Set("dnsfilter_profile", flattenPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile2edl(o["dnsfilter-profile"], d, "dnsfilter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dnsfilter-profile"], "PackagesPblockFirewallConsolidatedPolicy-DnsfilterProfile"); ok {
 			if err = d.Set("dnsfilter_profile", vv); err != nil {
 				return fmt.Errorf("Error reading dnsfilter_profile: %v", err)
@@ -1161,7 +1164,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("dstaddr_negate", flattenPackagesPblockFirewallConsolidatedPolicyDstaddrNegate(o["dstaddr-negate"], d, "dstaddr_negate")); err != nil {
+	if err = d.Set("dstaddr_negate", flattenPackagesPblockFirewallConsolidatedPolicyDstaddrNegate2edl(o["dstaddr-negate"], d, "dstaddr_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstaddr-negate"], "PackagesPblockFirewallConsolidatedPolicy-DstaddrNegate"); ok {
 			if err = d.Set("dstaddr_negate", vv); err != nil {
 				return fmt.Errorf("Error reading dstaddr_negate: %v", err)
@@ -1171,7 +1174,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("dstaddr4", flattenPackagesPblockFirewallConsolidatedPolicyDstaddr4(o["dstaddr4"], d, "dstaddr4")); err != nil {
+	if err = d.Set("dstaddr4", flattenPackagesPblockFirewallConsolidatedPolicyDstaddr42edl(o["dstaddr4"], d, "dstaddr4")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstaddr4"], "PackagesPblockFirewallConsolidatedPolicy-Dstaddr4"); ok {
 			if err = d.Set("dstaddr4", vv); err != nil {
 				return fmt.Errorf("Error reading dstaddr4: %v", err)
@@ -1181,7 +1184,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("dstaddr6", flattenPackagesPblockFirewallConsolidatedPolicyDstaddr6(o["dstaddr6"], d, "dstaddr6")); err != nil {
+	if err = d.Set("dstaddr6", flattenPackagesPblockFirewallConsolidatedPolicyDstaddr62edl(o["dstaddr6"], d, "dstaddr6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstaddr6"], "PackagesPblockFirewallConsolidatedPolicy-Dstaddr6"); ok {
 			if err = d.Set("dstaddr6", vv); err != nil {
 				return fmt.Errorf("Error reading dstaddr6: %v", err)
@@ -1191,7 +1194,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("dstintf", flattenPackagesPblockFirewallConsolidatedPolicyDstintf(o["dstintf"], d, "dstintf")); err != nil {
+	if err = d.Set("dstintf", flattenPackagesPblockFirewallConsolidatedPolicyDstintf2edl(o["dstintf"], d, "dstintf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["dstintf"], "PackagesPblockFirewallConsolidatedPolicy-Dstintf"); ok {
 			if err = d.Set("dstintf", vv); err != nil {
 				return fmt.Errorf("Error reading dstintf: %v", err)
@@ -1201,7 +1204,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("emailfilter_profile", flattenPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile(o["emailfilter-profile"], d, "emailfilter_profile")); err != nil {
+	if err = d.Set("emailfilter_profile", flattenPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile2edl(o["emailfilter-profile"], d, "emailfilter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["emailfilter-profile"], "PackagesPblockFirewallConsolidatedPolicy-EmailfilterProfile"); ok {
 			if err = d.Set("emailfilter_profile", vv); err != nil {
 				return fmt.Errorf("Error reading emailfilter_profile: %v", err)
@@ -1211,7 +1214,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("fixedport", flattenPackagesPblockFirewallConsolidatedPolicyFixedport(o["fixedport"], d, "fixedport")); err != nil {
+	if err = d.Set("fixedport", flattenPackagesPblockFirewallConsolidatedPolicyFixedport2edl(o["fixedport"], d, "fixedport")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fixedport"], "PackagesPblockFirewallConsolidatedPolicy-Fixedport"); ok {
 			if err = d.Set("fixedport", vv); err != nil {
 				return fmt.Errorf("Error reading fixedport: %v", err)
@@ -1221,7 +1224,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("fsso_groups", flattenPackagesPblockFirewallConsolidatedPolicyFssoGroups(o["fsso-groups"], d, "fsso_groups")); err != nil {
+	if err = d.Set("fsso_groups", flattenPackagesPblockFirewallConsolidatedPolicyFssoGroups2edl(o["fsso-groups"], d, "fsso_groups")); err != nil {
 		if vv, ok := fortiAPIPatch(o["fsso-groups"], "PackagesPblockFirewallConsolidatedPolicy-FssoGroups"); ok {
 			if err = d.Set("fsso_groups", vv); err != nil {
 				return fmt.Errorf("Error reading fsso_groups: %v", err)
@@ -1231,7 +1234,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("global_label", flattenPackagesPblockFirewallConsolidatedPolicyGlobalLabel(o["global-label"], d, "global_label")); err != nil {
+	if err = d.Set("global_label", flattenPackagesPblockFirewallConsolidatedPolicyGlobalLabel2edl(o["global-label"], d, "global_label")); err != nil {
 		if vv, ok := fortiAPIPatch(o["global-label"], "PackagesPblockFirewallConsolidatedPolicy-GlobalLabel"); ok {
 			if err = d.Set("global_label", vv); err != nil {
 				return fmt.Errorf("Error reading global_label: %v", err)
@@ -1241,7 +1244,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("groups", flattenPackagesPblockFirewallConsolidatedPolicyGroups(o["groups"], d, "groups")); err != nil {
+	if err = d.Set("groups", flattenPackagesPblockFirewallConsolidatedPolicyGroups2edl(o["groups"], d, "groups")); err != nil {
 		if vv, ok := fortiAPIPatch(o["groups"], "PackagesPblockFirewallConsolidatedPolicy-Groups"); ok {
 			if err = d.Set("groups", vv); err != nil {
 				return fmt.Errorf("Error reading groups: %v", err)
@@ -1251,7 +1254,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("http_policy_redirect", flattenPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect(o["http-policy-redirect"], d, "http_policy_redirect")); err != nil {
+	if err = d.Set("http_policy_redirect", flattenPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect2edl(o["http-policy-redirect"], d, "http_policy_redirect")); err != nil {
 		if vv, ok := fortiAPIPatch(o["http-policy-redirect"], "PackagesPblockFirewallConsolidatedPolicy-HttpPolicyRedirect"); ok {
 			if err = d.Set("http_policy_redirect", vv); err != nil {
 				return fmt.Errorf("Error reading http_policy_redirect: %v", err)
@@ -1261,7 +1264,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("icap_profile", flattenPackagesPblockFirewallConsolidatedPolicyIcapProfile(o["icap-profile"], d, "icap_profile")); err != nil {
+	if err = d.Set("icap_profile", flattenPackagesPblockFirewallConsolidatedPolicyIcapProfile2edl(o["icap-profile"], d, "icap_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["icap-profile"], "PackagesPblockFirewallConsolidatedPolicy-IcapProfile"); ok {
 			if err = d.Set("icap_profile", vv); err != nil {
 				return fmt.Errorf("Error reading icap_profile: %v", err)
@@ -1271,7 +1274,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("inbound", flattenPackagesPblockFirewallConsolidatedPolicyInbound(o["inbound"], d, "inbound")); err != nil {
+	if err = d.Set("inbound", flattenPackagesPblockFirewallConsolidatedPolicyInbound2edl(o["inbound"], d, "inbound")); err != nil {
 		if vv, ok := fortiAPIPatch(o["inbound"], "PackagesPblockFirewallConsolidatedPolicy-Inbound"); ok {
 			if err = d.Set("inbound", vv); err != nil {
 				return fmt.Errorf("Error reading inbound: %v", err)
@@ -1281,7 +1284,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("inspection_mode", flattenPackagesPblockFirewallConsolidatedPolicyInspectionMode(o["inspection-mode"], d, "inspection_mode")); err != nil {
+	if err = d.Set("inspection_mode", flattenPackagesPblockFirewallConsolidatedPolicyInspectionMode2edl(o["inspection-mode"], d, "inspection_mode")); err != nil {
 		if vv, ok := fortiAPIPatch(o["inspection-mode"], "PackagesPblockFirewallConsolidatedPolicy-InspectionMode"); ok {
 			if err = d.Set("inspection_mode", vv); err != nil {
 				return fmt.Errorf("Error reading inspection_mode: %v", err)
@@ -1291,7 +1294,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service", flattenPackagesPblockFirewallConsolidatedPolicyInternetService(o["internet-service"], d, "internet_service")); err != nil {
+	if err = d.Set("internet_service", flattenPackagesPblockFirewallConsolidatedPolicyInternetService2edl(o["internet-service"], d, "internet_service")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service"], "PackagesPblockFirewallConsolidatedPolicy-InternetService"); ok {
 			if err = d.Set("internet_service", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service: %v", err)
@@ -1301,7 +1304,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_custom", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom(o["internet-service-custom"], d, "internet_service_custom")); err != nil {
+	if err = d.Set("internet_service_custom", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom2edl(o["internet-service-custom"], d, "internet_service_custom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-custom"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceCustom"); ok {
 			if err = d.Set("internet_service_custom", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_custom: %v", err)
@@ -1311,7 +1314,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_custom_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup(o["internet-service-custom-group"], d, "internet_service_custom_group")); err != nil {
+	if err = d.Set("internet_service_custom_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup2edl(o["internet-service-custom-group"], d, "internet_service_custom_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-custom-group"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceCustomGroup"); ok {
 			if err = d.Set("internet_service_custom_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_custom_group: %v", err)
@@ -1321,7 +1324,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup(o["internet-service-group"], d, "internet_service_group")); err != nil {
+	if err = d.Set("internet_service_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup2edl(o["internet-service-group"], d, "internet_service_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-group"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceGroup"); ok {
 			if err = d.Set("internet_service_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_group: %v", err)
@@ -1331,7 +1334,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_id", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceId(o["internet-service-id"], d, "internet_service_id")); err != nil {
+	if err = d.Set("internet_service_id", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceId2edl(o["internet-service-id"], d, "internet_service_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-id"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceId"); ok {
 			if err = d.Set("internet_service_id", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_id: %v", err)
@@ -1341,7 +1344,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_negate", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate(o["internet-service-negate"], d, "internet_service_negate")); err != nil {
+	if err = d.Set("internet_service_negate", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate2edl(o["internet-service-negate"], d, "internet_service_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-negate"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceNegate"); ok {
 			if err = d.Set("internet_service_negate", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_negate: %v", err)
@@ -1351,7 +1354,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_src", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc(o["internet-service-src"], d, "internet_service_src")); err != nil {
+	if err = d.Set("internet_service_src", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc2edl(o["internet-service-src"], d, "internet_service_src")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceSrc"); ok {
 			if err = d.Set("internet_service_src", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_src: %v", err)
@@ -1361,7 +1364,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_src_custom", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom(o["internet-service-src-custom"], d, "internet_service_src_custom")); err != nil {
+	if err = d.Set("internet_service_src_custom", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom2edl(o["internet-service-src-custom"], d, "internet_service_src_custom")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src-custom"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceSrcCustom"); ok {
 			if err = d.Set("internet_service_src_custom", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_src_custom: %v", err)
@@ -1371,7 +1374,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_src_custom_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup(o["internet-service-src-custom-group"], d, "internet_service_src_custom_group")); err != nil {
+	if err = d.Set("internet_service_src_custom_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup2edl(o["internet-service-src-custom-group"], d, "internet_service_src_custom_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src-custom-group"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceSrcCustomGroup"); ok {
 			if err = d.Set("internet_service_src_custom_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_src_custom_group: %v", err)
@@ -1381,7 +1384,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_src_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup(o["internet-service-src-group"], d, "internet_service_src_group")); err != nil {
+	if err = d.Set("internet_service_src_group", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup2edl(o["internet-service-src-group"], d, "internet_service_src_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src-group"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceSrcGroup"); ok {
 			if err = d.Set("internet_service_src_group", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_src_group: %v", err)
@@ -1391,7 +1394,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_src_id", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId(o["internet-service-src-id"], d, "internet_service_src_id")); err != nil {
+	if err = d.Set("internet_service_src_id", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId2edl(o["internet-service-src-id"], d, "internet_service_src_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src-id"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceSrcId"); ok {
 			if err = d.Set("internet_service_src_id", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_src_id: %v", err)
@@ -1401,7 +1404,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("internet_service_src_negate", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate(o["internet-service-src-negate"], d, "internet_service_src_negate")); err != nil {
+	if err = d.Set("internet_service_src_negate", flattenPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate2edl(o["internet-service-src-negate"], d, "internet_service_src_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["internet-service-src-negate"], "PackagesPblockFirewallConsolidatedPolicy-InternetServiceSrcNegate"); ok {
 			if err = d.Set("internet_service_src_negate", vv); err != nil {
 				return fmt.Errorf("Error reading internet_service_src_negate: %v", err)
@@ -1411,7 +1414,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("ippool", flattenPackagesPblockFirewallConsolidatedPolicyIppool(o["ippool"], d, "ippool")); err != nil {
+	if err = d.Set("ippool", flattenPackagesPblockFirewallConsolidatedPolicyIppool2edl(o["ippool"], d, "ippool")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ippool"], "PackagesPblockFirewallConsolidatedPolicy-Ippool"); ok {
 			if err = d.Set("ippool", vv); err != nil {
 				return fmt.Errorf("Error reading ippool: %v", err)
@@ -1421,7 +1424,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("ips_sensor", flattenPackagesPblockFirewallConsolidatedPolicyIpsSensor(o["ips-sensor"], d, "ips_sensor")); err != nil {
+	if err = d.Set("ips_sensor", flattenPackagesPblockFirewallConsolidatedPolicyIpsSensor2edl(o["ips-sensor"], d, "ips_sensor")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ips-sensor"], "PackagesPblockFirewallConsolidatedPolicy-IpsSensor"); ok {
 			if err = d.Set("ips_sensor", vv); err != nil {
 				return fmt.Errorf("Error reading ips_sensor: %v", err)
@@ -1431,7 +1434,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("logtraffic", flattenPackagesPblockFirewallConsolidatedPolicyLogtraffic(o["logtraffic"], d, "logtraffic")); err != nil {
+	if err = d.Set("logtraffic", flattenPackagesPblockFirewallConsolidatedPolicyLogtraffic2edl(o["logtraffic"], d, "logtraffic")); err != nil {
 		if vv, ok := fortiAPIPatch(o["logtraffic"], "PackagesPblockFirewallConsolidatedPolicy-Logtraffic"); ok {
 			if err = d.Set("logtraffic", vv); err != nil {
 				return fmt.Errorf("Error reading logtraffic: %v", err)
@@ -1441,7 +1444,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("logtraffic_start", flattenPackagesPblockFirewallConsolidatedPolicyLogtrafficStart(o["logtraffic-start"], d, "logtraffic_start")); err != nil {
+	if err = d.Set("logtraffic_start", flattenPackagesPblockFirewallConsolidatedPolicyLogtrafficStart2edl(o["logtraffic-start"], d, "logtraffic_start")); err != nil {
 		if vv, ok := fortiAPIPatch(o["logtraffic-start"], "PackagesPblockFirewallConsolidatedPolicy-LogtrafficStart"); ok {
 			if err = d.Set("logtraffic_start", vv); err != nil {
 				return fmt.Errorf("Error reading logtraffic_start: %v", err)
@@ -1451,7 +1454,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("mms_profile", flattenPackagesPblockFirewallConsolidatedPolicyMmsProfile(o["mms-profile"], d, "mms_profile")); err != nil {
+	if err = d.Set("mms_profile", flattenPackagesPblockFirewallConsolidatedPolicyMmsProfile2edl(o["mms-profile"], d, "mms_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["mms-profile"], "PackagesPblockFirewallConsolidatedPolicy-MmsProfile"); ok {
 			if err = d.Set("mms_profile", vv); err != nil {
 				return fmt.Errorf("Error reading mms_profile: %v", err)
@@ -1461,7 +1464,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("name", flattenPackagesPblockFirewallConsolidatedPolicyName(o["name"], d, "name")); err != nil {
+	if err = d.Set("name", flattenPackagesPblockFirewallConsolidatedPolicyName2edl(o["name"], d, "name")); err != nil {
 		if vv, ok := fortiAPIPatch(o["name"], "PackagesPblockFirewallConsolidatedPolicy-Name"); ok {
 			if err = d.Set("name", vv); err != nil {
 				return fmt.Errorf("Error reading name: %v", err)
@@ -1471,7 +1474,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("nat", flattenPackagesPblockFirewallConsolidatedPolicyNat(o["nat"], d, "nat")); err != nil {
+	if err = d.Set("nat", flattenPackagesPblockFirewallConsolidatedPolicyNat2edl(o["nat"], d, "nat")); err != nil {
 		if vv, ok := fortiAPIPatch(o["nat"], "PackagesPblockFirewallConsolidatedPolicy-Nat"); ok {
 			if err = d.Set("nat", vv); err != nil {
 				return fmt.Errorf("Error reading nat: %v", err)
@@ -1481,7 +1484,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("outbound", flattenPackagesPblockFirewallConsolidatedPolicyOutbound(o["outbound"], d, "outbound")); err != nil {
+	if err = d.Set("outbound", flattenPackagesPblockFirewallConsolidatedPolicyOutbound2edl(o["outbound"], d, "outbound")); err != nil {
 		if vv, ok := fortiAPIPatch(o["outbound"], "PackagesPblockFirewallConsolidatedPolicy-Outbound"); ok {
 			if err = d.Set("outbound", vv); err != nil {
 				return fmt.Errorf("Error reading outbound: %v", err)
@@ -1491,7 +1494,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("per_ip_shaper", flattenPackagesPblockFirewallConsolidatedPolicyPerIpShaper(o["per-ip-shaper"], d, "per_ip_shaper")); err != nil {
+	if err = d.Set("per_ip_shaper", flattenPackagesPblockFirewallConsolidatedPolicyPerIpShaper2edl(o["per-ip-shaper"], d, "per_ip_shaper")); err != nil {
 		if vv, ok := fortiAPIPatch(o["per-ip-shaper"], "PackagesPblockFirewallConsolidatedPolicy-PerIpShaper"); ok {
 			if err = d.Set("per_ip_shaper", vv); err != nil {
 				return fmt.Errorf("Error reading per_ip_shaper: %v", err)
@@ -1501,7 +1504,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("poolname4", flattenPackagesPblockFirewallConsolidatedPolicyPoolname4(o["poolname4"], d, "poolname4")); err != nil {
+	if err = d.Set("poolname4", flattenPackagesPblockFirewallConsolidatedPolicyPoolname42edl(o["poolname4"], d, "poolname4")); err != nil {
 		if vv, ok := fortiAPIPatch(o["poolname4"], "PackagesPblockFirewallConsolidatedPolicy-Poolname4"); ok {
 			if err = d.Set("poolname4", vv); err != nil {
 				return fmt.Errorf("Error reading poolname4: %v", err)
@@ -1511,7 +1514,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("poolname6", flattenPackagesPblockFirewallConsolidatedPolicyPoolname6(o["poolname6"], d, "poolname6")); err != nil {
+	if err = d.Set("poolname6", flattenPackagesPblockFirewallConsolidatedPolicyPoolname62edl(o["poolname6"], d, "poolname6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["poolname6"], "PackagesPblockFirewallConsolidatedPolicy-Poolname6"); ok {
 			if err = d.Set("poolname6", vv); err != nil {
 				return fmt.Errorf("Error reading poolname6: %v", err)
@@ -1521,7 +1524,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("profile_group", flattenPackagesPblockFirewallConsolidatedPolicyProfileGroup(o["profile-group"], d, "profile_group")); err != nil {
+	if err = d.Set("profile_group", flattenPackagesPblockFirewallConsolidatedPolicyProfileGroup2edl(o["profile-group"], d, "profile_group")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-group"], "PackagesPblockFirewallConsolidatedPolicy-ProfileGroup"); ok {
 			if err = d.Set("profile_group", vv); err != nil {
 				return fmt.Errorf("Error reading profile_group: %v", err)
@@ -1531,7 +1534,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("profile_protocol_options", flattenPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions(o["profile-protocol-options"], d, "profile_protocol_options")); err != nil {
+	if err = d.Set("profile_protocol_options", flattenPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions2edl(o["profile-protocol-options"], d, "profile_protocol_options")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-protocol-options"], "PackagesPblockFirewallConsolidatedPolicy-ProfileProtocolOptions"); ok {
 			if err = d.Set("profile_protocol_options", vv); err != nil {
 				return fmt.Errorf("Error reading profile_protocol_options: %v", err)
@@ -1541,7 +1544,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("profile_type", flattenPackagesPblockFirewallConsolidatedPolicyProfileType(o["profile-type"], d, "profile_type")); err != nil {
+	if err = d.Set("profile_type", flattenPackagesPblockFirewallConsolidatedPolicyProfileType2edl(o["profile-type"], d, "profile_type")); err != nil {
 		if vv, ok := fortiAPIPatch(o["profile-type"], "PackagesPblockFirewallConsolidatedPolicy-ProfileType"); ok {
 			if err = d.Set("profile_type", vv); err != nil {
 				return fmt.Errorf("Error reading profile_type: %v", err)
@@ -1551,7 +1554,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("schedule", flattenPackagesPblockFirewallConsolidatedPolicySchedule(o["schedule"], d, "schedule")); err != nil {
+	if err = d.Set("schedule", flattenPackagesPblockFirewallConsolidatedPolicySchedule2edl(o["schedule"], d, "schedule")); err != nil {
 		if vv, ok := fortiAPIPatch(o["schedule"], "PackagesPblockFirewallConsolidatedPolicy-Schedule"); ok {
 			if err = d.Set("schedule", vv); err != nil {
 				return fmt.Errorf("Error reading schedule: %v", err)
@@ -1561,7 +1564,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("service", flattenPackagesPblockFirewallConsolidatedPolicyService(o["service"], d, "service")); err != nil {
+	if err = d.Set("service", flattenPackagesPblockFirewallConsolidatedPolicyService2edl(o["service"], d, "service")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service"], "PackagesPblockFirewallConsolidatedPolicy-Service"); ok {
 			if err = d.Set("service", vv); err != nil {
 				return fmt.Errorf("Error reading service: %v", err)
@@ -1571,7 +1574,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("service_negate", flattenPackagesPblockFirewallConsolidatedPolicyServiceNegate(o["service-negate"], d, "service_negate")); err != nil {
+	if err = d.Set("service_negate", flattenPackagesPblockFirewallConsolidatedPolicyServiceNegate2edl(o["service-negate"], d, "service_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["service-negate"], "PackagesPblockFirewallConsolidatedPolicy-ServiceNegate"); ok {
 			if err = d.Set("service_negate", vv); err != nil {
 				return fmt.Errorf("Error reading service_negate: %v", err)
@@ -1581,7 +1584,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("session_ttl", flattenPackagesPblockFirewallConsolidatedPolicySessionTtl(o["session-ttl"], d, "session_ttl")); err != nil {
+	if err = d.Set("session_ttl", flattenPackagesPblockFirewallConsolidatedPolicySessionTtl2edl(o["session-ttl"], d, "session_ttl")); err != nil {
 		if vv, ok := fortiAPIPatch(o["session-ttl"], "PackagesPblockFirewallConsolidatedPolicy-SessionTtl"); ok {
 			if err = d.Set("session_ttl", vv); err != nil {
 				return fmt.Errorf("Error reading session_ttl: %v", err)
@@ -1591,7 +1594,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("srcaddr_negate", flattenPackagesPblockFirewallConsolidatedPolicySrcaddrNegate(o["srcaddr-negate"], d, "srcaddr_negate")); err != nil {
+	if err = d.Set("srcaddr_negate", flattenPackagesPblockFirewallConsolidatedPolicySrcaddrNegate2edl(o["srcaddr-negate"], d, "srcaddr_negate")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr-negate"], "PackagesPblockFirewallConsolidatedPolicy-SrcaddrNegate"); ok {
 			if err = d.Set("srcaddr_negate", vv); err != nil {
 				return fmt.Errorf("Error reading srcaddr_negate: %v", err)
@@ -1601,7 +1604,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("srcaddr4", flattenPackagesPblockFirewallConsolidatedPolicySrcaddr4(o["srcaddr4"], d, "srcaddr4")); err != nil {
+	if err = d.Set("srcaddr4", flattenPackagesPblockFirewallConsolidatedPolicySrcaddr42edl(o["srcaddr4"], d, "srcaddr4")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr4"], "PackagesPblockFirewallConsolidatedPolicy-Srcaddr4"); ok {
 			if err = d.Set("srcaddr4", vv); err != nil {
 				return fmt.Errorf("Error reading srcaddr4: %v", err)
@@ -1611,7 +1614,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("srcaddr6", flattenPackagesPblockFirewallConsolidatedPolicySrcaddr6(o["srcaddr6"], d, "srcaddr6")); err != nil {
+	if err = d.Set("srcaddr6", flattenPackagesPblockFirewallConsolidatedPolicySrcaddr62edl(o["srcaddr6"], d, "srcaddr6")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcaddr6"], "PackagesPblockFirewallConsolidatedPolicy-Srcaddr6"); ok {
 			if err = d.Set("srcaddr6", vv); err != nil {
 				return fmt.Errorf("Error reading srcaddr6: %v", err)
@@ -1621,7 +1624,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("srcintf", flattenPackagesPblockFirewallConsolidatedPolicySrcintf(o["srcintf"], d, "srcintf")); err != nil {
+	if err = d.Set("srcintf", flattenPackagesPblockFirewallConsolidatedPolicySrcintf2edl(o["srcintf"], d, "srcintf")); err != nil {
 		if vv, ok := fortiAPIPatch(o["srcintf"], "PackagesPblockFirewallConsolidatedPolicy-Srcintf"); ok {
 			if err = d.Set("srcintf", vv); err != nil {
 				return fmt.Errorf("Error reading srcintf: %v", err)
@@ -1631,7 +1634,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("ssh_filter_profile", flattenPackagesPblockFirewallConsolidatedPolicySshFilterProfile(o["ssh-filter-profile"], d, "ssh_filter_profile")); err != nil {
+	if err = d.Set("ssh_filter_profile", flattenPackagesPblockFirewallConsolidatedPolicySshFilterProfile2edl(o["ssh-filter-profile"], d, "ssh_filter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssh-filter-profile"], "PackagesPblockFirewallConsolidatedPolicy-SshFilterProfile"); ok {
 			if err = d.Set("ssh_filter_profile", vv); err != nil {
 				return fmt.Errorf("Error reading ssh_filter_profile: %v", err)
@@ -1641,7 +1644,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("ssh_policy_redirect", flattenPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect(o["ssh-policy-redirect"], d, "ssh_policy_redirect")); err != nil {
+	if err = d.Set("ssh_policy_redirect", flattenPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect2edl(o["ssh-policy-redirect"], d, "ssh_policy_redirect")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssh-policy-redirect"], "PackagesPblockFirewallConsolidatedPolicy-SshPolicyRedirect"); ok {
 			if err = d.Set("ssh_policy_redirect", vv); err != nil {
 				return fmt.Errorf("Error reading ssh_policy_redirect: %v", err)
@@ -1651,7 +1654,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("ssl_ssh_profile", flattenPackagesPblockFirewallConsolidatedPolicySslSshProfile(o["ssl-ssh-profile"], d, "ssl_ssh_profile")); err != nil {
+	if err = d.Set("ssl_ssh_profile", flattenPackagesPblockFirewallConsolidatedPolicySslSshProfile2edl(o["ssl-ssh-profile"], d, "ssl_ssh_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ssl-ssh-profile"], "PackagesPblockFirewallConsolidatedPolicy-SslSshProfile"); ok {
 			if err = d.Set("ssl_ssh_profile", vv); err != nil {
 				return fmt.Errorf("Error reading ssl_ssh_profile: %v", err)
@@ -1661,7 +1664,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("status", flattenPackagesPblockFirewallConsolidatedPolicyStatus(o["status"], d, "status")); err != nil {
+	if err = d.Set("status", flattenPackagesPblockFirewallConsolidatedPolicyStatus2edl(o["status"], d, "status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["status"], "PackagesPblockFirewallConsolidatedPolicy-Status"); ok {
 			if err = d.Set("status", vv); err != nil {
 				return fmt.Errorf("Error reading status: %v", err)
@@ -1671,7 +1674,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("tcp_mss_receiver", flattenPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver(o["tcp-mss-receiver"], d, "tcp_mss_receiver")); err != nil {
+	if err = d.Set("tcp_mss_receiver", flattenPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver2edl(o["tcp-mss-receiver"], d, "tcp_mss_receiver")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-mss-receiver"], "PackagesPblockFirewallConsolidatedPolicy-TcpMssReceiver"); ok {
 			if err = d.Set("tcp_mss_receiver", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_mss_receiver: %v", err)
@@ -1681,7 +1684,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("tcp_mss_sender", flattenPackagesPblockFirewallConsolidatedPolicyTcpMssSender(o["tcp-mss-sender"], d, "tcp_mss_sender")); err != nil {
+	if err = d.Set("tcp_mss_sender", flattenPackagesPblockFirewallConsolidatedPolicyTcpMssSender2edl(o["tcp-mss-sender"], d, "tcp_mss_sender")); err != nil {
 		if vv, ok := fortiAPIPatch(o["tcp-mss-sender"], "PackagesPblockFirewallConsolidatedPolicy-TcpMssSender"); ok {
 			if err = d.Set("tcp_mss_sender", vv); err != nil {
 				return fmt.Errorf("Error reading tcp_mss_sender: %v", err)
@@ -1691,7 +1694,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("traffic_shaper", flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaper(o["traffic-shaper"], d, "traffic_shaper")); err != nil {
+	if err = d.Set("traffic_shaper", flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaper2edl(o["traffic-shaper"], d, "traffic_shaper")); err != nil {
 		if vv, ok := fortiAPIPatch(o["traffic-shaper"], "PackagesPblockFirewallConsolidatedPolicy-TrafficShaper"); ok {
 			if err = d.Set("traffic_shaper", vv); err != nil {
 				return fmt.Errorf("Error reading traffic_shaper: %v", err)
@@ -1701,7 +1704,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("traffic_shaper_reverse", flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse(o["traffic-shaper-reverse"], d, "traffic_shaper_reverse")); err != nil {
+	if err = d.Set("traffic_shaper_reverse", flattenPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse2edl(o["traffic-shaper-reverse"], d, "traffic_shaper_reverse")); err != nil {
 		if vv, ok := fortiAPIPatch(o["traffic-shaper-reverse"], "PackagesPblockFirewallConsolidatedPolicy-TrafficShaperReverse"); ok {
 			if err = d.Set("traffic_shaper_reverse", vv); err != nil {
 				return fmt.Errorf("Error reading traffic_shaper_reverse: %v", err)
@@ -1711,7 +1714,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("url_category", flattenPackagesPblockFirewallConsolidatedPolicyUrlCategory(o["url-category"], d, "url_category")); err != nil {
+	if err = d.Set("url_category", flattenPackagesPblockFirewallConsolidatedPolicyUrlCategory2edl(o["url-category"], d, "url_category")); err != nil {
 		if vv, ok := fortiAPIPatch(o["url-category"], "PackagesPblockFirewallConsolidatedPolicy-UrlCategory"); ok {
 			if err = d.Set("url_category", vv); err != nil {
 				return fmt.Errorf("Error reading url_category: %v", err)
@@ -1721,7 +1724,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("users", flattenPackagesPblockFirewallConsolidatedPolicyUsers(o["users"], d, "users")); err != nil {
+	if err = d.Set("users", flattenPackagesPblockFirewallConsolidatedPolicyUsers2edl(o["users"], d, "users")); err != nil {
 		if vv, ok := fortiAPIPatch(o["users"], "PackagesPblockFirewallConsolidatedPolicy-Users"); ok {
 			if err = d.Set("users", vv); err != nil {
 				return fmt.Errorf("Error reading users: %v", err)
@@ -1731,7 +1734,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("utm_status", flattenPackagesPblockFirewallConsolidatedPolicyUtmStatus(o["utm-status"], d, "utm_status")); err != nil {
+	if err = d.Set("utm_status", flattenPackagesPblockFirewallConsolidatedPolicyUtmStatus2edl(o["utm-status"], d, "utm_status")); err != nil {
 		if vv, ok := fortiAPIPatch(o["utm-status"], "PackagesPblockFirewallConsolidatedPolicy-UtmStatus"); ok {
 			if err = d.Set("utm_status", vv); err != nil {
 				return fmt.Errorf("Error reading utm_status: %v", err)
@@ -1741,7 +1744,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("uuid", flattenPackagesPblockFirewallConsolidatedPolicyUuid(o["uuid"], d, "uuid")); err != nil {
+	if err = d.Set("uuid", flattenPackagesPblockFirewallConsolidatedPolicyUuid2edl(o["uuid"], d, "uuid")); err != nil {
 		if vv, ok := fortiAPIPatch(o["uuid"], "PackagesPblockFirewallConsolidatedPolicy-Uuid"); ok {
 			if err = d.Set("uuid", vv); err != nil {
 				return fmt.Errorf("Error reading uuid: %v", err)
@@ -1751,7 +1754,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("voip_profile", flattenPackagesPblockFirewallConsolidatedPolicyVoipProfile(o["voip-profile"], d, "voip_profile")); err != nil {
+	if err = d.Set("voip_profile", flattenPackagesPblockFirewallConsolidatedPolicyVoipProfile2edl(o["voip-profile"], d, "voip_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["voip-profile"], "PackagesPblockFirewallConsolidatedPolicy-VoipProfile"); ok {
 			if err = d.Set("voip_profile", vv); err != nil {
 				return fmt.Errorf("Error reading voip_profile: %v", err)
@@ -1761,7 +1764,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("vpntunnel", flattenPackagesPblockFirewallConsolidatedPolicyVpntunnel(o["vpntunnel"], d, "vpntunnel")); err != nil {
+	if err = d.Set("vpntunnel", flattenPackagesPblockFirewallConsolidatedPolicyVpntunnel2edl(o["vpntunnel"], d, "vpntunnel")); err != nil {
 		if vv, ok := fortiAPIPatch(o["vpntunnel"], "PackagesPblockFirewallConsolidatedPolicy-Vpntunnel"); ok {
 			if err = d.Set("vpntunnel", vv); err != nil {
 				return fmt.Errorf("Error reading vpntunnel: %v", err)
@@ -1771,7 +1774,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("waf_profile", flattenPackagesPblockFirewallConsolidatedPolicyWafProfile(o["waf-profile"], d, "waf_profile")); err != nil {
+	if err = d.Set("waf_profile", flattenPackagesPblockFirewallConsolidatedPolicyWafProfile2edl(o["waf-profile"], d, "waf_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["waf-profile"], "PackagesPblockFirewallConsolidatedPolicy-WafProfile"); ok {
 			if err = d.Set("waf_profile", vv); err != nil {
 				return fmt.Errorf("Error reading waf_profile: %v", err)
@@ -1781,7 +1784,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("wanopt", flattenPackagesPblockFirewallConsolidatedPolicyWanopt(o["wanopt"], d, "wanopt")); err != nil {
+	if err = d.Set("wanopt", flattenPackagesPblockFirewallConsolidatedPolicyWanopt2edl(o["wanopt"], d, "wanopt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wanopt"], "PackagesPblockFirewallConsolidatedPolicy-Wanopt"); ok {
 			if err = d.Set("wanopt", vv); err != nil {
 				return fmt.Errorf("Error reading wanopt: %v", err)
@@ -1791,7 +1794,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("wanopt_detection", flattenPackagesPblockFirewallConsolidatedPolicyWanoptDetection(o["wanopt-detection"], d, "wanopt_detection")); err != nil {
+	if err = d.Set("wanopt_detection", flattenPackagesPblockFirewallConsolidatedPolicyWanoptDetection2edl(o["wanopt-detection"], d, "wanopt_detection")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wanopt-detection"], "PackagesPblockFirewallConsolidatedPolicy-WanoptDetection"); ok {
 			if err = d.Set("wanopt_detection", vv); err != nil {
 				return fmt.Errorf("Error reading wanopt_detection: %v", err)
@@ -1801,7 +1804,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("wanopt_passive_opt", flattenPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt(o["wanopt-passive-opt"], d, "wanopt_passive_opt")); err != nil {
+	if err = d.Set("wanopt_passive_opt", flattenPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt2edl(o["wanopt-passive-opt"], d, "wanopt_passive_opt")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wanopt-passive-opt"], "PackagesPblockFirewallConsolidatedPolicy-WanoptPassiveOpt"); ok {
 			if err = d.Set("wanopt_passive_opt", vv); err != nil {
 				return fmt.Errorf("Error reading wanopt_passive_opt: %v", err)
@@ -1811,7 +1814,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("wanopt_peer", flattenPackagesPblockFirewallConsolidatedPolicyWanoptPeer(o["wanopt-peer"], d, "wanopt_peer")); err != nil {
+	if err = d.Set("wanopt_peer", flattenPackagesPblockFirewallConsolidatedPolicyWanoptPeer2edl(o["wanopt-peer"], d, "wanopt_peer")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wanopt-peer"], "PackagesPblockFirewallConsolidatedPolicy-WanoptPeer"); ok {
 			if err = d.Set("wanopt_peer", vv); err != nil {
 				return fmt.Errorf("Error reading wanopt_peer: %v", err)
@@ -1821,7 +1824,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("wanopt_profile", flattenPackagesPblockFirewallConsolidatedPolicyWanoptProfile(o["wanopt-profile"], d, "wanopt_profile")); err != nil {
+	if err = d.Set("wanopt_profile", flattenPackagesPblockFirewallConsolidatedPolicyWanoptProfile2edl(o["wanopt-profile"], d, "wanopt_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["wanopt-profile"], "PackagesPblockFirewallConsolidatedPolicy-WanoptProfile"); ok {
 			if err = d.Set("wanopt_profile", vv); err != nil {
 				return fmt.Errorf("Error reading wanopt_profile: %v", err)
@@ -1831,7 +1834,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("webcache", flattenPackagesPblockFirewallConsolidatedPolicyWebcache(o["webcache"], d, "webcache")); err != nil {
+	if err = d.Set("webcache", flattenPackagesPblockFirewallConsolidatedPolicyWebcache2edl(o["webcache"], d, "webcache")); err != nil {
 		if vv, ok := fortiAPIPatch(o["webcache"], "PackagesPblockFirewallConsolidatedPolicy-Webcache"); ok {
 			if err = d.Set("webcache", vv); err != nil {
 				return fmt.Errorf("Error reading webcache: %v", err)
@@ -1841,7 +1844,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("webcache_https", flattenPackagesPblockFirewallConsolidatedPolicyWebcacheHttps(o["webcache-https"], d, "webcache_https")); err != nil {
+	if err = d.Set("webcache_https", flattenPackagesPblockFirewallConsolidatedPolicyWebcacheHttps2edl(o["webcache-https"], d, "webcache_https")); err != nil {
 		if vv, ok := fortiAPIPatch(o["webcache-https"], "PackagesPblockFirewallConsolidatedPolicy-WebcacheHttps"); ok {
 			if err = d.Set("webcache_https", vv); err != nil {
 				return fmt.Errorf("Error reading webcache_https: %v", err)
@@ -1851,7 +1854,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("webfilter_profile", flattenPackagesPblockFirewallConsolidatedPolicyWebfilterProfile(o["webfilter-profile"], d, "webfilter_profile")); err != nil {
+	if err = d.Set("webfilter_profile", flattenPackagesPblockFirewallConsolidatedPolicyWebfilterProfile2edl(o["webfilter-profile"], d, "webfilter_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["webfilter-profile"], "PackagesPblockFirewallConsolidatedPolicy-WebfilterProfile"); ok {
 			if err = d.Set("webfilter_profile", vv); err != nil {
 				return fmt.Errorf("Error reading webfilter_profile: %v", err)
@@ -1861,7 +1864,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("webproxy_forward_server", flattenPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer(o["webproxy-forward-server"], d, "webproxy_forward_server")); err != nil {
+	if err = d.Set("webproxy_forward_server", flattenPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer2edl(o["webproxy-forward-server"], d, "webproxy_forward_server")); err != nil {
 		if vv, ok := fortiAPIPatch(o["webproxy-forward-server"], "PackagesPblockFirewallConsolidatedPolicy-WebproxyForwardServer"); ok {
 			if err = d.Set("webproxy_forward_server", vv); err != nil {
 				return fmt.Errorf("Error reading webproxy_forward_server: %v", err)
@@ -1871,7 +1874,7 @@ func refreshObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceDat
 		}
 	}
 
-	if err = d.Set("webproxy_profile", flattenPackagesPblockFirewallConsolidatedPolicyWebproxyProfile(o["webproxy-profile"], d, "webproxy_profile")); err != nil {
+	if err = d.Set("webproxy_profile", flattenPackagesPblockFirewallConsolidatedPolicyWebproxyProfile2edl(o["webproxy-profile"], d, "webproxy_profile")); err != nil {
 		if vv, ok := fortiAPIPatch(o["webproxy-profile"], "PackagesPblockFirewallConsolidatedPolicy-WebproxyProfile"); ok {
 			if err = d.Set("webproxy_profile", vv); err != nil {
 				return fmt.Errorf("Error reading webproxy_profile: %v", err)
@@ -1890,359 +1893,359 @@ func flattenPackagesPblockFirewallConsolidatedPolicyFortiTestDebug(d *schema.Res
 	log.Printf("ER List: %v", e)
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyPolicyBlock(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyPolicyBlock2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyAction(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyAction2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyAppCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyAppCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyAppGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyAppGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyApplication(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyApplication2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandIntegerList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyApplicationList(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyApplicationList2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyAvProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyAvProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyCifsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyCifsProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyComments(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyComments2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDiffservForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDiffservForward2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDiffservReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDiffservReverse2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDlpSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDlpSensor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDstaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDstaddrNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDstaddr4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDstaddr42edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDstaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDstaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyDstintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyDstintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyFixedport(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyFixedport2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyFssoGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyFssoGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyGlobalLabel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyGlobalLabel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyGroups(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyGroups2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyIcapProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyIcapProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInbound(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInbound2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInspectionMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInspectionMode2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyIppool(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyIppool2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyIpsSensor(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyIpsSensor2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyLogtraffic(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyLogtraffic2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyLogtrafficStart(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyLogtrafficStart2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyMmsProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyMmsProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyName2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyNat(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyNat2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyOutbound(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyOutbound2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyPerIpShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyPerIpShaper2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyPoolname4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyPoolname42edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyPoolname6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyPoolname62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyProfileGroup(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyProfileGroup2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyProfileType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyProfileType2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySchedule(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySchedule2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyService(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyService2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyServiceNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyServiceNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySessionTtl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySessionTtl2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySrcaddrNegate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySrcaddrNegate2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySrcaddr4(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySrcaddr42edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySrcaddr6(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySrcaddr62edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySrcintf(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySrcintf2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySshFilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySshFilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicySslSshProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicySslSshProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyTcpMssSender(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyTcpMssSender2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyTrafficShaper(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyTrafficShaper2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyUrlCategory(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyUrlCategory2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyUsers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyUsers2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyUtmStatus(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyUtmStatus2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyUuid(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyUuid2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyVoipProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyVoipProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyVpntunnel(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyVpntunnel2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWafProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWafProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWanopt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWanopt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWanoptDetection(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWanoptDetection2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWanoptPeer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWanoptPeer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWanoptProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWanoptProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWebcache(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWebcache2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWebcacheHttps(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWebcacheHttps2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWebfilterProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWebfilterProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
-func expandPackagesPblockFirewallConsolidatedPolicyWebproxyProfile(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+func expandPackagesPblockFirewallConsolidatedPolicyWebproxyProfile2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -2250,7 +2253,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	obj := make(map[string]interface{})
 
 	if v, ok := d.GetOk("_policy_block"); ok || d.HasChange("_policy_block") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyPolicyBlock(d, v, "_policy_block")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyPolicyBlock2edl(d, v, "_policy_block")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2259,7 +2262,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("action"); ok || d.HasChange("action") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyAction(d, v, "action")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyAction2edl(d, v, "action")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2268,7 +2271,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("app_category"); ok || d.HasChange("app_category") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyAppCategory(d, v, "app_category")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyAppCategory2edl(d, v, "app_category")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2277,7 +2280,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("app_group"); ok || d.HasChange("app_group") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyAppGroup(d, v, "app_group")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyAppGroup2edl(d, v, "app_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2286,7 +2289,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("application"); ok || d.HasChange("application") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyApplication(d, v, "application")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyApplication2edl(d, v, "application")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2295,7 +2298,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("application_list"); ok || d.HasChange("application_list") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyApplicationList(d, v, "application_list")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyApplicationList2edl(d, v, "application_list")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2304,7 +2307,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("auto_asic_offload"); ok || d.HasChange("auto_asic_offload") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload(d, v, "auto_asic_offload")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyAutoAsicOffload2edl(d, v, "auto_asic_offload")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2313,7 +2316,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("av_profile"); ok || d.HasChange("av_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyAvProfile(d, v, "av_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyAvProfile2edl(d, v, "av_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2322,7 +2325,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("captive_portal_exempt"); ok || d.HasChange("captive_portal_exempt") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt(d, v, "captive_portal_exempt")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyCaptivePortalExempt2edl(d, v, "captive_portal_exempt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2331,7 +2334,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("cifs_profile"); ok || d.HasChange("cifs_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyCifsProfile(d, v, "cifs_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyCifsProfile2edl(d, v, "cifs_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2340,7 +2343,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("comments"); ok || d.HasChange("comments") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyComments(d, v, "comments")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyComments2edl(d, v, "comments")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2349,7 +2352,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("diffserv_forward"); ok || d.HasChange("diffserv_forward") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservForward(d, v, "diffserv_forward")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservForward2edl(d, v, "diffserv_forward")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2358,7 +2361,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("diffserv_reverse"); ok || d.HasChange("diffserv_reverse") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservReverse(d, v, "diffserv_reverse")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservReverse2edl(d, v, "diffserv_reverse")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2367,7 +2370,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("diffservcode_forward"); ok || d.HasChange("diffservcode_forward") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward(d, v, "diffservcode_forward")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeForward2edl(d, v, "diffservcode_forward")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2376,7 +2379,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("diffservcode_rev"); ok || d.HasChange("diffservcode_rev") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev(d, v, "diffservcode_rev")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDiffservcodeRev2edl(d, v, "diffservcode_rev")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2385,7 +2388,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("dlp_sensor"); ok || d.HasChange("dlp_sensor") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDlpSensor(d, v, "dlp_sensor")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDlpSensor2edl(d, v, "dlp_sensor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2394,7 +2397,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("dnsfilter_profile"); ok || d.HasChange("dnsfilter_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile(d, v, "dnsfilter_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDnsfilterProfile2edl(d, v, "dnsfilter_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2403,7 +2406,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("dstaddr_negate"); ok || d.HasChange("dstaddr_negate") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstaddrNegate(d, v, "dstaddr_negate")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstaddrNegate2edl(d, v, "dstaddr_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2412,7 +2415,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("dstaddr4"); ok || d.HasChange("dstaddr4") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstaddr4(d, v, "dstaddr4")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstaddr42edl(d, v, "dstaddr4")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2421,7 +2424,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("dstaddr6"); ok || d.HasChange("dstaddr6") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstaddr6(d, v, "dstaddr6")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstaddr62edl(d, v, "dstaddr6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2430,7 +2433,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("dstintf"); ok || d.HasChange("dstintf") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstintf(d, v, "dstintf")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyDstintf2edl(d, v, "dstintf")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2439,7 +2442,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("emailfilter_profile"); ok || d.HasChange("emailfilter_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile(d, v, "emailfilter_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyEmailfilterProfile2edl(d, v, "emailfilter_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2448,7 +2451,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("fixedport"); ok || d.HasChange("fixedport") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyFixedport(d, v, "fixedport")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyFixedport2edl(d, v, "fixedport")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2457,7 +2460,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("fsso_groups"); ok || d.HasChange("fsso_groups") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyFssoGroups(d, v, "fsso_groups")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyFssoGroups2edl(d, v, "fsso_groups")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2466,7 +2469,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("global_label"); ok || d.HasChange("global_label") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyGlobalLabel(d, v, "global_label")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyGlobalLabel2edl(d, v, "global_label")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2475,7 +2478,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("groups"); ok || d.HasChange("groups") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyGroups(d, v, "groups")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyGroups2edl(d, v, "groups")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2484,7 +2487,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("http_policy_redirect"); ok || d.HasChange("http_policy_redirect") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect(d, v, "http_policy_redirect")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyHttpPolicyRedirect2edl(d, v, "http_policy_redirect")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2493,7 +2496,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("icap_profile"); ok || d.HasChange("icap_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyIcapProfile(d, v, "icap_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyIcapProfile2edl(d, v, "icap_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2502,7 +2505,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("inbound"); ok || d.HasChange("inbound") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInbound(d, v, "inbound")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInbound2edl(d, v, "inbound")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2511,7 +2514,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("inspection_mode"); ok || d.HasChange("inspection_mode") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInspectionMode(d, v, "inspection_mode")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInspectionMode2edl(d, v, "inspection_mode")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2520,7 +2523,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service"); ok || d.HasChange("internet_service") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetService(d, v, "internet_service")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetService2edl(d, v, "internet_service")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2529,7 +2532,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_custom"); ok || d.HasChange("internet_service_custom") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom(d, v, "internet_service_custom")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustom2edl(d, v, "internet_service_custom")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2538,7 +2541,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_custom_group"); ok || d.HasChange("internet_service_custom_group") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup(d, v, "internet_service_custom_group")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceCustomGroup2edl(d, v, "internet_service_custom_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2547,7 +2550,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_group"); ok || d.HasChange("internet_service_group") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup(d, v, "internet_service_group")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceGroup2edl(d, v, "internet_service_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2556,7 +2559,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_id"); ok || d.HasChange("internet_service_id") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceId(d, v, "internet_service_id")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceId2edl(d, v, "internet_service_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2565,7 +2568,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_negate"); ok || d.HasChange("internet_service_negate") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate(d, v, "internet_service_negate")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceNegate2edl(d, v, "internet_service_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2574,7 +2577,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_src"); ok || d.HasChange("internet_service_src") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc(d, v, "internet_service_src")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrc2edl(d, v, "internet_service_src")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2583,7 +2586,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_src_custom"); ok || d.HasChange("internet_service_src_custom") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom(d, v, "internet_service_src_custom")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustom2edl(d, v, "internet_service_src_custom")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2592,7 +2595,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_src_custom_group"); ok || d.HasChange("internet_service_src_custom_group") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup(d, v, "internet_service_src_custom_group")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcCustomGroup2edl(d, v, "internet_service_src_custom_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2601,7 +2604,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_src_group"); ok || d.HasChange("internet_service_src_group") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup(d, v, "internet_service_src_group")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcGroup2edl(d, v, "internet_service_src_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2610,7 +2613,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_src_id"); ok || d.HasChange("internet_service_src_id") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId(d, v, "internet_service_src_id")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcId2edl(d, v, "internet_service_src_id")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2619,7 +2622,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("internet_service_src_negate"); ok || d.HasChange("internet_service_src_negate") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate(d, v, "internet_service_src_negate")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyInternetServiceSrcNegate2edl(d, v, "internet_service_src_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2628,7 +2631,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("ippool"); ok || d.HasChange("ippool") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyIppool(d, v, "ippool")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyIppool2edl(d, v, "ippool")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2637,7 +2640,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("ips_sensor"); ok || d.HasChange("ips_sensor") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyIpsSensor(d, v, "ips_sensor")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyIpsSensor2edl(d, v, "ips_sensor")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2646,7 +2649,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("logtraffic"); ok || d.HasChange("logtraffic") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyLogtraffic(d, v, "logtraffic")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyLogtraffic2edl(d, v, "logtraffic")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2655,7 +2658,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("logtraffic_start"); ok || d.HasChange("logtraffic_start") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyLogtrafficStart(d, v, "logtraffic_start")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyLogtrafficStart2edl(d, v, "logtraffic_start")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2664,7 +2667,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("mms_profile"); ok || d.HasChange("mms_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyMmsProfile(d, v, "mms_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyMmsProfile2edl(d, v, "mms_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2673,7 +2676,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyName(d, v, "name")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyName2edl(d, v, "name")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2682,7 +2685,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("nat"); ok || d.HasChange("nat") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyNat(d, v, "nat")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyNat2edl(d, v, "nat")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2691,7 +2694,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("outbound"); ok || d.HasChange("outbound") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyOutbound(d, v, "outbound")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyOutbound2edl(d, v, "outbound")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2700,7 +2703,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("per_ip_shaper"); ok || d.HasChange("per_ip_shaper") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyPerIpShaper(d, v, "per_ip_shaper")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyPerIpShaper2edl(d, v, "per_ip_shaper")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2709,7 +2712,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("poolname4"); ok || d.HasChange("poolname4") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyPoolname4(d, v, "poolname4")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyPoolname42edl(d, v, "poolname4")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2718,7 +2721,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("poolname6"); ok || d.HasChange("poolname6") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyPoolname6(d, v, "poolname6")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyPoolname62edl(d, v, "poolname6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2727,7 +2730,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("profile_group"); ok || d.HasChange("profile_group") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyProfileGroup(d, v, "profile_group")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyProfileGroup2edl(d, v, "profile_group")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2736,7 +2739,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("profile_protocol_options"); ok || d.HasChange("profile_protocol_options") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions(d, v, "profile_protocol_options")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyProfileProtocolOptions2edl(d, v, "profile_protocol_options")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2745,7 +2748,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("profile_type"); ok || d.HasChange("profile_type") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyProfileType(d, v, "profile_type")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyProfileType2edl(d, v, "profile_type")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2754,7 +2757,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("schedule"); ok || d.HasChange("schedule") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySchedule(d, v, "schedule")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySchedule2edl(d, v, "schedule")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2763,7 +2766,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("service"); ok || d.HasChange("service") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyService(d, v, "service")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyService2edl(d, v, "service")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2772,7 +2775,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("service_negate"); ok || d.HasChange("service_negate") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyServiceNegate(d, v, "service_negate")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyServiceNegate2edl(d, v, "service_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2781,7 +2784,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("session_ttl"); ok || d.HasChange("session_ttl") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySessionTtl(d, v, "session_ttl")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySessionTtl2edl(d, v, "session_ttl")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2790,7 +2793,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("srcaddr_negate"); ok || d.HasChange("srcaddr_negate") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcaddrNegate(d, v, "srcaddr_negate")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcaddrNegate2edl(d, v, "srcaddr_negate")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2799,7 +2802,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("srcaddr4"); ok || d.HasChange("srcaddr4") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcaddr4(d, v, "srcaddr4")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcaddr42edl(d, v, "srcaddr4")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2808,7 +2811,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("srcaddr6"); ok || d.HasChange("srcaddr6") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcaddr6(d, v, "srcaddr6")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcaddr62edl(d, v, "srcaddr6")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2817,7 +2820,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("srcintf"); ok || d.HasChange("srcintf") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcintf(d, v, "srcintf")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySrcintf2edl(d, v, "srcintf")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2826,7 +2829,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("ssh_filter_profile"); ok || d.HasChange("ssh_filter_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySshFilterProfile(d, v, "ssh_filter_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySshFilterProfile2edl(d, v, "ssh_filter_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2835,7 +2838,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("ssh_policy_redirect"); ok || d.HasChange("ssh_policy_redirect") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect(d, v, "ssh_policy_redirect")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySshPolicyRedirect2edl(d, v, "ssh_policy_redirect")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2844,7 +2847,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("ssl_ssh_profile"); ok || d.HasChange("ssl_ssh_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicySslSshProfile(d, v, "ssl_ssh_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicySslSshProfile2edl(d, v, "ssl_ssh_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2853,7 +2856,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("status"); ok || d.HasChange("status") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyStatus(d, v, "status")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyStatus2edl(d, v, "status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2862,7 +2865,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("tcp_mss_receiver"); ok || d.HasChange("tcp_mss_receiver") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver(d, v, "tcp_mss_receiver")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyTcpMssReceiver2edl(d, v, "tcp_mss_receiver")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2871,7 +2874,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("tcp_mss_sender"); ok || d.HasChange("tcp_mss_sender") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyTcpMssSender(d, v, "tcp_mss_sender")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyTcpMssSender2edl(d, v, "tcp_mss_sender")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2880,7 +2883,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("traffic_shaper"); ok || d.HasChange("traffic_shaper") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyTrafficShaper(d, v, "traffic_shaper")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyTrafficShaper2edl(d, v, "traffic_shaper")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2889,7 +2892,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("traffic_shaper_reverse"); ok || d.HasChange("traffic_shaper_reverse") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse(d, v, "traffic_shaper_reverse")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyTrafficShaperReverse2edl(d, v, "traffic_shaper_reverse")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2898,7 +2901,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("url_category"); ok || d.HasChange("url_category") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyUrlCategory(d, v, "url_category")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyUrlCategory2edl(d, v, "url_category")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2907,7 +2910,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("users"); ok || d.HasChange("users") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyUsers(d, v, "users")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyUsers2edl(d, v, "users")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2916,7 +2919,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("utm_status"); ok || d.HasChange("utm_status") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyUtmStatus(d, v, "utm_status")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyUtmStatus2edl(d, v, "utm_status")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2925,7 +2928,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("uuid"); ok || d.HasChange("uuid") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyUuid(d, v, "uuid")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyUuid2edl(d, v, "uuid")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2934,7 +2937,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("voip_profile"); ok || d.HasChange("voip_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyVoipProfile(d, v, "voip_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyVoipProfile2edl(d, v, "voip_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2943,7 +2946,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("vpntunnel"); ok || d.HasChange("vpntunnel") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyVpntunnel(d, v, "vpntunnel")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyVpntunnel2edl(d, v, "vpntunnel")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2952,7 +2955,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("waf_profile"); ok || d.HasChange("waf_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWafProfile(d, v, "waf_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWafProfile2edl(d, v, "waf_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2961,7 +2964,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("wanopt"); ok || d.HasChange("wanopt") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanopt(d, v, "wanopt")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanopt2edl(d, v, "wanopt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2970,7 +2973,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("wanopt_detection"); ok || d.HasChange("wanopt_detection") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptDetection(d, v, "wanopt_detection")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptDetection2edl(d, v, "wanopt_detection")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2979,7 +2982,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("wanopt_passive_opt"); ok || d.HasChange("wanopt_passive_opt") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt(d, v, "wanopt_passive_opt")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptPassiveOpt2edl(d, v, "wanopt_passive_opt")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2988,7 +2991,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("wanopt_peer"); ok || d.HasChange("wanopt_peer") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptPeer(d, v, "wanopt_peer")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptPeer2edl(d, v, "wanopt_peer")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -2997,7 +3000,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("wanopt_profile"); ok || d.HasChange("wanopt_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptProfile(d, v, "wanopt_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWanoptProfile2edl(d, v, "wanopt_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3006,7 +3009,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("webcache"); ok || d.HasChange("webcache") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebcache(d, v, "webcache")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebcache2edl(d, v, "webcache")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3015,7 +3018,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("webcache_https"); ok || d.HasChange("webcache_https") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebcacheHttps(d, v, "webcache_https")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebcacheHttps2edl(d, v, "webcache_https")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3024,7 +3027,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("webfilter_profile"); ok || d.HasChange("webfilter_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebfilterProfile(d, v, "webfilter_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebfilterProfile2edl(d, v, "webfilter_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3033,7 +3036,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("webproxy_forward_server"); ok || d.HasChange("webproxy_forward_server") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer(d, v, "webproxy_forward_server")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebproxyForwardServer2edl(d, v, "webproxy_forward_server")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {
@@ -3042,7 +3045,7 @@ func getObjectPackagesPblockFirewallConsolidatedPolicy(d *schema.ResourceData) (
 	}
 
 	if v, ok := d.GetOk("webproxy_profile"); ok || d.HasChange("webproxy_profile") {
-		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebproxyProfile(d, v, "webproxy_profile")
+		t, err := expandPackagesPblockFirewallConsolidatedPolicyWebproxyProfile2edl(d, v, "webproxy_profile")
 		if err != nil {
 			return &obj, err
 		} else if t != nil {

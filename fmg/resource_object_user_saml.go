@@ -141,6 +141,10 @@ func resourceObjectUserSaml() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"reauth": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"single_logout_url": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -197,6 +201,11 @@ func resourceObjectUserSaml() *schema.Resource {
 				Type:     schema.TypeString,
 				ForceNew: true,
 				Optional: true,
+			},
+			"reauth": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
 			},
 			"single_logout_url": &schema.Schema{
 				Type:     schema.TypeString,
@@ -460,6 +469,12 @@ func flattenObjectUserSamlDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["limit_relaystate"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-LimitRelaystate")
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "reauth"
+		if _, ok := i["reauth"]; ok {
+			v := flattenObjectUserSamlDynamicMappingReauth(i["reauth"], d, pre_append)
+			tmp["reauth"] = fortiAPISubPartPatch(v, "ObjectUserSaml-DynamicMapping-Reauth")
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_logout_url"
 		if _, ok := i["single-logout-url"]; ok {
 			v := flattenObjectUserSamlDynamicMappingSingleLogoutUrl(i["single-logout-url"], d, pre_append)
@@ -591,6 +606,10 @@ func flattenObjectUserSamlDynamicMappingLimitRelaystate(v interface{}, d *schema
 	return v
 }
 
+func flattenObjectUserSamlDynamicMappingReauth(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectUserSamlDynamicMappingSingleLogoutUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -640,6 +659,10 @@ func flattenObjectUserSamlLimitRelaystate(v interface{}, d *schema.ResourceData,
 }
 
 func flattenObjectUserSamlName(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectUserSamlReauth(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -834,6 +857,16 @@ func refreshObjectObjectUserSaml(d *schema.ResourceData, o map[string]interface{
 		}
 	}
 
+	if err = d.Set("reauth", flattenObjectUserSamlReauth(o["reauth"], d, "reauth")); err != nil {
+		if vv, ok := fortiAPIPatch(o["reauth"], "ObjectUserSaml-Reauth"); ok {
+			if err = d.Set("reauth", vv); err != nil {
+				return fmt.Errorf("Error reading reauth: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading reauth: %v", err)
+		}
+	}
+
 	if err = d.Set("single_logout_url", flattenObjectUserSamlSingleLogoutUrl(o["single-logout-url"], d, "single_logout_url")); err != nil {
 		if vv, ok := fortiAPIPatch(o["single-logout-url"], "ObjectUserSaml-SingleLogoutUrl"); ok {
 			if err = d.Set("single_logout_url", vv); err != nil {
@@ -992,6 +1025,11 @@ func expandObjectUserSamlDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["limit-relaystate"], _ = expandObjectUserSamlDynamicMappingLimitRelaystate(d, i["limit_relaystate"], pre_append)
 		}
 
+		pre_append = pre + "." + strconv.Itoa(con) + "." + "reauth"
+		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+			tmp["reauth"], _ = expandObjectUserSamlDynamicMappingReauth(d, i["reauth"], pre_append)
+		}
+
 		pre_append = pre + "." + strconv.Itoa(con) + "." + "single_logout_url"
 		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 			tmp["single-logout-url"], _ = expandObjectUserSamlDynamicMappingSingleLogoutUrl(d, i["single_logout_url"], pre_append)
@@ -1112,6 +1150,10 @@ func expandObjectUserSamlDynamicMappingLimitRelaystate(d *schema.ResourceData, v
 	return v, nil
 }
 
+func expandObjectUserSamlDynamicMappingReauth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectUserSamlDynamicMappingSingleLogoutUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1161,6 +1203,10 @@ func expandObjectUserSamlLimitRelaystate(d *schema.ResourceData, v interface{}, 
 }
 
 func expandObjectUserSamlName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectUserSamlReauth(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1315,6 +1361,15 @@ func getObjectObjectUserSaml(d *schema.ResourceData) (*map[string]interface{}, e
 			return &obj, err
 		} else if t != nil {
 			obj["name"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("reauth"); ok || d.HasChange("reauth") {
+		t, err := expandObjectUserSamlReauth(d, v, "reauth")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["reauth"] = t
 		}
 	}
 

@@ -53,10 +53,12 @@ func resourceObjectSystemNpuNpQueuesEthernetType() *schema.Resource {
 			"queue": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"type": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"weight": &schema.Schema{
 				Type:     schema.TypeInt,

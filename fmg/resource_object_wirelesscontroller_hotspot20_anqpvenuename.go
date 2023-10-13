@@ -58,6 +58,7 @@ func resourceObjectWirelessControllerHotspot20AnqpVenueName() *schema.Resource {
 						"index": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"lang": &schema.Schema{
 							Type:     schema.TypeString,

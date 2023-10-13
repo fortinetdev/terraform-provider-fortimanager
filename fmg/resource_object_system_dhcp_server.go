@@ -144,6 +144,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"end_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -156,10 +157,12 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"start_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uci_match": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uci_string": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -170,6 +173,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"vci_match": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vci_string": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -210,6 +214,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"end_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"id": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -222,10 +227,12 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"start_ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uci_match": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uci_string": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -236,6 +243,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"vci_match": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vci_string": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -312,10 +320,12 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uci_match": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"uci_string": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -330,6 +340,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"vci_match": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"vci_string": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -353,6 +364,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"circuit_id": &schema.Schema{
 							Type:     schema.TypeString,
@@ -373,10 +385,12 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"ip": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"mac": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"remote_id": &schema.Schema{
 							Type:     schema.TypeString,
@@ -389,6 +403,7 @@ func resourceObjectSystemDhcpServer() *schema.Resource {
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

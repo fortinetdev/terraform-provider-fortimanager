@@ -57,6 +57,7 @@ func resourceObjectDnsfilterDomainFilter() *schema.Resource {
 						"action": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"domain": &schema.Schema{
 							Type:     schema.TypeString,
@@ -69,10 +70,12 @@ func resourceObjectDnsfilterDomainFilter() *schema.Resource {
 						"status": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"type": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},

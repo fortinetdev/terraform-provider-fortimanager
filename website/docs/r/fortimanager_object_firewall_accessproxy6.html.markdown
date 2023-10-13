@@ -36,6 +36,7 @@ The following arguments are supported:
 * `name` - Access Proxy name.
 * `svr_pool_multiplex` - Enable/disable server pool multiplexing. Share connected server in HTTP, HTTPS, and web-portal api-gateway. Valid values: `disable`, `enable`.
 
+* `svr_pool_server_max_concurrent_request` - Maximum number of concurrent requests that servers in server pool could handle (default = unlimited).
 * `svr_pool_server_max_request` - Maximum number of requests that servers in server pool handle before disconnecting (default = unlimited).
 * `svr_pool_ttl` - Time-to-live in the server pool for idle connections to servers.
 * `user_agent_detect` - Enable/disable to detect device type by HTTP user-agent if no client certificate provided. Valid values: `disable`, `enable`.
@@ -46,6 +47,10 @@ The following arguments are supported:
 The `api_gateway` block supports:
 
 * `application` - SaaS application controlled by this Access Proxy.
+* `h2_support` - HTTP2 support, default=Enable. Valid values: `disable`, `enable`.
+
+* `h3_support` - HTTP3/QUIC support, default=Disable. Valid values: `disable`, `enable`.
+
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -61,6 +66,7 @@ The `api_gateway` block supports:
 
 * `persistence` - Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 
+* `quic` - Quic. The structure of `quic` block is documented below.
 * `realservers` - Realservers. The structure of `realservers` block is documented below.
 * `saml_redirect` - Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
 
@@ -83,6 +89,19 @@ The `api_gateway` block supports:
 * `url_map_type` - Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
 
 * `virtual_host` - Virtual host.
+
+The `quic` block supports:
+
+* `ack_delay_exponent` - ACK delay exponent (1 - 20, default = 3).
+* `active_connection_id_limit` - Active connection ID limit (1 - 8, default = 2).
+* `active_migration` - Enable/disable active migration (default = disable). Valid values: `disable`, `enable`.
+
+* `grease_quic_bit` - Enable/disable grease QUIC bit (default = enable). Valid values: `disable`, `enable`.
+
+* `max_ack_delay` - Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+* `max_datagram_frame_size` - Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+* `max_idle_timeout` - Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+* `max_udp_payload_size` - Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
 
 The `realservers` block supports:
 
@@ -128,6 +147,10 @@ The `ssl_cipher_suites` block supports:
 The `api_gateway6` block supports:
 
 * `application` - SaaS application controlled by this Access Proxy.
+* `h2_support` - HTTP2 support, default=Enable. Valid values: `disable`, `enable`.
+
+* `h3_support` - HTTP3/QUIC support, default=Disable. Valid values: `disable`, `enable`.
+
 * `http_cookie_age` - Time in minutes that client web browsers should keep a cookie. Default is 60 minutes. 0 = no time limit.
 * `http_cookie_domain` - Domain that HTTP cookie persistence should apply to.
 * `http_cookie_domain_from_host` - Enable/disable use of HTTP cookie domain from host field in HTTP. Valid values: `disable`, `enable`.
@@ -143,6 +166,7 @@ The `api_gateway6` block supports:
 
 * `persistence` - Configure how to make sure that clients connect to the same server every time they make a request that is part of the same session. Valid values: `none`, `http-cookie`.
 
+* `quic` - Quic. The structure of `quic` block is documented below.
 * `realservers` - Realservers. The structure of `realservers` block is documented below.
 * `saml_redirect` - Enable/disable SAML redirection after successful authentication. Valid values: `disable`, `enable`.
 
@@ -165,6 +189,19 @@ The `api_gateway6` block supports:
 * `url_map_type` - Type of url-map. Valid values: `sub-string`, `wildcard`, `regex`.
 
 * `virtual_host` - Virtual host.
+
+The `quic` block supports:
+
+* `ack_delay_exponent` - ACK delay exponent (1 - 20, default = 3).
+* `active_connection_id_limit` - Active connection ID limit (1 - 8, default = 2).
+* `active_migration` - Enable/disable active migration (default = disable). Valid values: `disable`, `enable`.
+
+* `grease_quic_bit` - Enable/disable grease QUIC bit (default = enable). Valid values: `disable`, `enable`.
+
+* `max_ack_delay` - Maximum ACK delay in milliseconds (1 - 16383, default = 25).
+* `max_datagram_frame_size` - Maximum datagram frame size in bytes (1 - 1500, default = 1500).
+* `max_idle_timeout` - Maximum idle timeout milliseconds (1 - 60000, default = 30000).
+* `max_udp_payload_size` - Maximum UDP payload size in bytes (1200 - 1500, default = 1500).
 
 The `realservers` block supports:
 

@@ -50,6 +50,13 @@ The following arguments are supported:
 * `major_id` - Major ID.
 * `minor_id` - Minor ID.
 * `name` - Bluetooth Low Energy profile name.
+* `scan_interval` - Scan Interval (default = 50 msec).
+* `scan_period` - Scan Period (default = 4000 msec).
+* `scan_threshold` - Minimum signal level/threshold in dBm required for the AP to report detected BLE device (-95 to -20, default = -90).
+* `scan_time` - Scan Time (default = 1000 msec).
+* `scan_type` - Scan Type (default = active). Valid values: `active`, `passive`.
+
+* `scan_window` - Scan Windows (default = 50 msec).
 * `txpower` - Transmit power level (default = 0). Valid values: `0`, `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`, `11`, `12`.
 
 

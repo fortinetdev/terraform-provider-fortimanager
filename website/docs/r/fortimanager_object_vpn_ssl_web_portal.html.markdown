@@ -53,6 +53,8 @@ The following arguments are supported:
 * `custom_lang` - Change the web portal display language. Overrides config system global set language. You can use config system custom-language and execute system custom-language to add custom language files.
 * `customize_forticlient_download_url` - Enable support of customized download URL for FortiClient. Valid values: `disable`, `enable`.
 
+* `default_protocol` - Application type that is set by default. Valid values: `web`, `ftp`, `telnet`, `smb`, `vnc`, `rdp`, `ssh`, `sftp`.
+
 * `default_window_height` - Screen height (range from 0 - 65535, default = 768).
 * `default_window_width` - Screen width (range from 0 - 65535, default = 1024).
 * `dhcp_ip_overlap` - Configure overlapping DHCP IP allocation assignment. Valid values: `use-old`, `use-new`.
@@ -71,6 +73,8 @@ The following arguments are supported:
 * `dns_server2` - IPv4 DNS server 2.
 * `dns_suffix` - DNS suffix.
 * `exclusive_routing` - Enable/disable all traffic go through tunnel only. Valid values: `disable`, `enable`.
+
+* `focus_bookmark` - Enable to prioritize the placement of the bookmark section over the quick-connection section in the SSL-VPN application. Valid values: `disable`, `enable`.
 
 * `forticlient_download` - Enable/disable download option for FortiClient. Valid values: `disable`, `enable`.
 

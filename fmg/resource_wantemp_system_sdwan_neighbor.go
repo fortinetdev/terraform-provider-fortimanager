@@ -78,6 +78,10 @@ func resourceWantempSystemSdwanNeighbor() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"service_id": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"sla_id": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -194,6 +198,9 @@ func resourceWantempSystemSdwanNeighborRead(d *schema.ResourceData, m interface{
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}
@@ -239,6 +246,10 @@ func flattenWantempSystemSdwanNeighborMode(v interface{}, d *schema.ResourceData
 }
 
 func flattenWantempSystemSdwanNeighborRole(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenWantempSystemSdwanNeighborServiceId(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -313,6 +324,16 @@ func refreshObjectWantempSystemSdwanNeighbor(d *schema.ResourceData, o map[strin
 		}
 	}
 
+	if err = d.Set("service_id", flattenWantempSystemSdwanNeighborServiceId(o["service-id"], d, "service_id")); err != nil {
+		if vv, ok := fortiAPIPatch(o["service-id"], "WantempSystemSdwanNeighbor-ServiceId"); ok {
+			if err = d.Set("service_id", vv); err != nil {
+				return fmt.Errorf("Error reading service_id: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading service_id: %v", err)
+		}
+	}
+
 	if err = d.Set("sla_id", flattenWantempSystemSdwanNeighborSlaId(o["sla-id"], d, "sla_id")); err != nil {
 		if vv, ok := fortiAPIPatch(o["sla-id"], "WantempSystemSdwanNeighbor-SlaId"); ok {
 			if err = d.Set("sla_id", vv); err != nil {
@@ -353,6 +374,10 @@ func expandWantempSystemSdwanNeighborMode(d *schema.ResourceData, v interface{},
 }
 
 func expandWantempSystemSdwanNeighborRole(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandWantempSystemSdwanNeighborServiceId(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -414,6 +439,15 @@ func getObjectWantempSystemSdwanNeighbor(d *schema.ResourceData) (*map[string]in
 			return &obj, err
 		} else if t != nil {
 			obj["role"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("service_id"); ok || d.HasChange("service_id") {
+		t, err := expandWantempSystemSdwanNeighborServiceId(d, v, "service_id")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["service-id"] = t
 		}
 	}
 

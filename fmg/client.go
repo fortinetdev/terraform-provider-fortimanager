@@ -24,10 +24,12 @@ type Config struct {
 	ScopeType     string
 	Adom          string
 	ImportOptions *schema.Set
+	FMGType       string
 
-	LogSession bool
-	Session    string
-	Token      string
+	LogSession    bool
+	Session       string
+	Token         string
+	FMGCloudToken string
 }
 
 // FortiClient contains the basic FMG SDK connection information to FMG
@@ -53,7 +55,7 @@ func (c *Config) CreateClient() (interface{}, error) {
 func createFMGClient(fClient *FortiClient, c *Config) error {
 	config := &tls.Config{}
 
-	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.LogSession)
+	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.FMGCloudToken, c.FMGType, c.LogSession)
 
 	if auth.Hostname == "" {
 		_, err := auth.GetEnvHostname()
@@ -66,6 +68,13 @@ func createFMGClient(fClient *FortiClient, c *Config) error {
 		_, err := auth.GetEnvToken()
 		if err != nil {
 			return fmt.Errorf("Error reading Token")
+		}
+	}
+
+	if auth.FMGCloudToken == "" {
+		_, err := auth.GetEnvFMGCloudToken()
+		if err != nil {
+			return fmt.Errorf("Error reading FortiManager Cloud TokenToken")
 		}
 	}
 
@@ -127,7 +136,10 @@ func createFMGClient(fClient *FortiClient, c *Config) error {
 		Timeout:   time.Second * 250,
 	}
 
-	fc := forticlient.NewClient(auth, client)
+	fc, err := forticlient.NewClient(auth, client)
+	if err != nil {
+		return err
+	}
 
 	fClient.Cfg = c
 	fClient.Client = fc

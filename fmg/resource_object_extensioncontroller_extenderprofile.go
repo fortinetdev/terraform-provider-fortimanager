@@ -78,6 +78,7 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"interval": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"signal_threshold": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -115,22 +116,27 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 												"dataplan": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_period": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_threshold": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"signal": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back": &schema.Schema{
 													Type:     schema.TypeSet,
@@ -141,10 +147,12 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back_timer": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -156,10 +164,12 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"default_sim": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gps": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -176,10 +186,12 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"redundant_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -190,6 +202,7 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -217,22 +230,27 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 												"dataplan": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_period": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"disconnect_threshold": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 												"signal": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back": &schema.Schema{
 													Type:     schema.TypeSet,
@@ -243,10 +261,12 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 												"switch_back_time": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"switch_back_timer": &schema.Schema{
 													Type:     schema.TypeInt,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -258,14 +278,17 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"default_sim": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"gps": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"modem_id": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"preferred_carrier": &schema.Schema{
 										Type:     schema.TypeString,
@@ -278,10 +301,12 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"redundant_mode": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim1_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -292,6 +317,7 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"sim2_pin": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"sim2_pin_code": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -319,30 +345,37 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 												"data_exhausted": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"fgt_backup_mode_switch": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"low_signal_strength": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"mode_switch": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"os_image_fallback": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"session_disconnect": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"system_reboot": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -369,6 +402,7 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 												"status": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 											},
 										},
@@ -376,6 +410,7 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"status": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},
@@ -416,14 +451,17 @@ func resourceObjectExtensionControllerExtenderProfile() *schema.Resource {
 									"port": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"role": &schema.Schema{
 										Type:     schema.TypeString,
 										Optional: true,
+										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 								},
 							},

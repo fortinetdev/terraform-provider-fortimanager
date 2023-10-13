@@ -51,6 +51,8 @@ The following arguments are supported:
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
 
+* `account_key_cert_field` - Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+
 * `account_key_filter` - Account key filter, using the UPN as the search filter.
 * `account_key_processing` - Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
 
@@ -113,6 +115,8 @@ The following arguments are supported:
 The `dynamic_mapping` block supports:
 
 * `_scope` - _Scope. The structure of `_scope` block is documented below.
+* `account_key_cert_field` - Define subject identity field in certificate for user access right checking. Valid values: `othername`, `rfc822name`, `dnsname`.
+
 * `account_key_filter` - Account key filter, using the UPN as the search filter.
 * `account_key_name` - Account-Key-Name.
 * `account_key_processing` - Account key processing operation, either keep or strip domain string of UPN in the token. Valid values: `same`, `strip`.
@@ -138,6 +142,7 @@ The `dynamic_mapping` block supports:
 * `interface` - Specify outgoing interface to reach server.
 * `interface_select_method` - Specify how to select outgoing interface to reach server. Valid values: `auto`, `sdwan`, `specify`.
 
+* `max_connections` - Max-Connections.
 * `member_attr` - Name of attribute from which to get group membership.
 * `obtain_user_info` - Enable/disable obtaining of user information. Valid values: `disable`, `enable`.
 

@@ -80,6 +80,7 @@ The `rule` block supports:
 * `set_priority` - Priority for routing table.
 * `set_route_tag` - Route tag for routing table.
 * `set_tag` - Tag value.
+* `set_vpnv4_nexthop` - IP address of VPNv4 next-hop.
 * `set_weight` - BGP weight for routing table.
 
 

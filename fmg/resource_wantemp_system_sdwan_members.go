@@ -83,6 +83,7 @@ func resourceWantempSystemSdwanMembers() *schema.Resource {
 			"preferred_source": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"priority": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -245,6 +246,9 @@ func resourceWantempSystemSdwanMembersRead(d *schema.ResourceData, m interface{}
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}

@@ -45,6 +45,7 @@ The following arguments are supported:
 * `desc` - Desc.
 * `flags` - Flags. Valid values: `migration`, `db_export`, `no_vpn_console`, `backup`, `other_devices`, `central_sdwan`, `is_autosync`, `per_device_wtp`, `policy_check_on_install`, `install_on_policy_check_fail`, `auto_push_cfg`, `per_device_fsw`.
 
+* `lock_override` - Lock_Override.
 * `log_db_retention_hours` - Log_Db_Retention_Hours.
 * `log_disk_quota` - Log_Disk_Quota.
 * `log_disk_quota_alert_thres` - Log_Disk_Quota_Alert_Thres.

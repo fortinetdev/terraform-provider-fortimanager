@@ -31,6 +31,7 @@ func resourceSystemSocFabricTrustedList() *schema.Resource {
 		Schema: map[string]*schema.Schema{
 			"fosid": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 			"serial": &schema.Schema{
@@ -60,7 +61,7 @@ func resourceSystemSocFabricTrustedListCreate(d *schema.ResourceData, m interfac
 		return fmt.Errorf("Error creating SystemSocFabricTrustedList resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSocFabricTrustedListRead(d, m)
 }
@@ -86,7 +87,7 @@ func resourceSystemSocFabricTrustedListUpdate(d *schema.ResourceData, m interfac
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
 
 	return resourceSystemSocFabricTrustedListRead(d, m)
 }

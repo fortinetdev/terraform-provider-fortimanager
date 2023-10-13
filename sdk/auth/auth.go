@@ -13,23 +13,27 @@ type Auth struct {
 	CABundle string
 	Insecure *bool
 	Refresh  bool
+	FMGType  string
 
-	LogSession bool
-	Session    string
-	Token      string
+	LogSession    bool
+	Session       string
+	Token         string
+	FMGCloudToken string
 }
 
 // NewAuth inits Auth object with the given metadata
-func NewAuth(hostname, user, passwd, cabundle, session, token string, logsession bool) *Auth {
+func NewAuth(hostname, user, passwd, cabundle, session, token, fmgCloudToken, fmgtype string, logsession bool) *Auth {
 	return &Auth{
 		Hostname: hostname,
 		User:     user,
 		Passwd:   passwd,
 		CABundle: cabundle,
+		FMGType:  fmgtype,
 
-		LogSession: logsession,
-		Session:    session,
-		Token:      token,
+		LogSession:    logsession,
+		Session:       session,
+		Token:         token,
+		FMGCloudToken: fmgCloudToken,
 	}
 }
 
@@ -53,6 +57,16 @@ func (m *Auth) GetEnvToken() (string, error) {
 	token := os.Getenv("FORTIMANAGER_ACCESS_TOKEN")
 
 	m.Token = token
+
+	return token, nil
+}
+
+// GetEnvFMGCloudToken gets FortiManager Cloud token from OS environment
+// It returns the FortiManager Cloud token
+func (m *Auth) GetEnvFMGCloudToken() (string, error) {
+	token := os.Getenv("FORTIMANAGER_CLOUD_ACCESS_TOKEN")
+
+	m.FMGCloudToken = token
 
 	return token, nil
 }

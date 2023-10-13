@@ -78,6 +78,8 @@ The following arguments are supported:
 * `ap_fgscan_report_intv` - Period of time between foreground scan reports (15 - 600 sec, default = 15).
 * `ap_scan` - Enable/disable rogue AP detection. Valid values: `disable`, `enable`.
 
+* `ap_scan_channel_list_2g_5g` - Selected ap scan channel list for 2.4G and 5G bands.
+* `ap_scan_channel_list_6g` - Selected ap scan channel list for 6G band.
 * `ap_scan_passive` - Enable/disable passive scanning. Enable means do not send probe request on any channels (default = disable). Valid values: `disable`, `enable`.
 
 * `ap_scan_threshold` - Minimum signal level/threshold in dBm required for the AP to report detected rogue AP (-95 to -20, default = -90).

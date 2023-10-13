@@ -57,6 +57,10 @@ func resourceDvmCmdAddDevice() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"authorizationtemplate": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"desc": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -220,6 +224,11 @@ func flattenDvmCmdAddDeviceDevice(v interface{}, d *schema.ResourceData, pre str
 		result["adm_usr"] = flattenDvmCmdAddDeviceDeviceAdmUsr(i["adm_usr"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "authorizationtemplate"
+	if _, ok := i["authorization template"]; ok {
+		result["authorizationtemplate"] = flattenDvmCmdAddDeviceDeviceAuthorizationTemplate(i["authorization template"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "desc"
 	if _, ok := i["desc"]; ok {
 		result["desc"] = flattenDvmCmdAddDeviceDeviceDesc(i["desc"], d, pre_append)
@@ -304,6 +313,10 @@ func flattenDvmCmdAddDeviceDeviceAdmPass(v interface{}, d *schema.ResourceData, 
 }
 
 func flattenDvmCmdAddDeviceDeviceAdmUsr(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenDvmCmdAddDeviceDeviceAuthorizationTemplate(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -524,6 +537,10 @@ func expandDvmCmdAddDeviceDevice(d *schema.ResourceData, v interface{}, pre stri
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["adm_usr"], _ = expandDvmCmdAddDeviceDeviceAdmUsr(d, i["adm_usr"], pre_append)
 	}
+	pre_append = pre + ".0." + "authorizationtemplate"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["authorization template"], _ = expandDvmCmdAddDeviceDeviceAuthorizationTemplate(d, i["authorizationtemplate"], pre_append)
+	}
 	pre_append = pre + ".0." + "desc"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["desc"], _ = expandDvmCmdAddDeviceDeviceDesc(d, i["desc"], pre_append)
@@ -609,6 +626,10 @@ func expandDvmCmdAddDeviceDeviceAdmPass(d *schema.ResourceData, v interface{}, p
 }
 
 func expandDvmCmdAddDeviceDeviceAdmUsr(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandDvmCmdAddDeviceDeviceAuthorizationTemplate(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 

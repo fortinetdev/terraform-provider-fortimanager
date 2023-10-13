@@ -45,6 +45,11 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -67,6 +72,7 @@ func resourcePackagesFirewallCentralSnatMap() *schema.Resource {
 			"dst_port": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dstintf": &schema.Schema{
 				Type:     schema.TypeList,
@@ -163,7 +169,9 @@ func resourcePackagesFirewallCentralSnatMapCreate(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallCentralSnatMap(d)
@@ -195,7 +203,9 @@ func resourcePackagesFirewallCentralSnatMapUpdate(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesFirewallCentralSnatMap(d)
@@ -229,7 +239,9 @@ func resourcePackagesFirewallCentralSnatMapDelete(d *schema.ResourceData, m inte
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesFirewallCentralSnatMap(mkey, paradict)
@@ -256,13 +268,21 @@ func resourcePackagesFirewallCentralSnatMapRead(d *schema.ResourceData, m interf
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesFirewallCentralSnatMap(mkey, paradict)

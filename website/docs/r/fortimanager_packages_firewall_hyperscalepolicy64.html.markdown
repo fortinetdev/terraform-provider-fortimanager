@@ -16,6 +16,7 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
 * `action` - Policy action. Valid values: `deny`, `accept`.
@@ -58,7 +59,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages FirewallHyperscalePolicy64 can be imported using any of these accepted formats:
 ```
-Set import_options = ["pkg=mypkg"] in the provider section.
+Set import_options = ["pkg_folder_path=YOUR_VALUE", "pkg=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_hyperscalepolicy64.labelname {{policyid}}

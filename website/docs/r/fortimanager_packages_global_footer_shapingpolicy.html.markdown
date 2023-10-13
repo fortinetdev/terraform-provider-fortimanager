@@ -31,6 +31,7 @@ resource "fortimanager_packages_global_footer_shapingpolicy" "trname" {
 
 The following arguments are supported:
 
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
 * `app_category` - IDs of one or more application categories that this shaper applies application control traffic shaping to.
@@ -102,7 +103,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages GlobalFooterShapingPolicy can be imported using any of these accepted formats:
 ```
-Set import_options = ["pkg=mypkg"] in the provider section.
+Set import_options = ["pkg_folder_path=YOUR_VALUE", "pkg=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_global_footer_shapingpolicy.labelname {{fosid}}

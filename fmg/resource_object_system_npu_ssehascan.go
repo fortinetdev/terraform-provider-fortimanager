@@ -57,6 +57,7 @@ func resourceObjectSystemNpuSseHaScan() *schema.Resource {
 			"min_duration": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}

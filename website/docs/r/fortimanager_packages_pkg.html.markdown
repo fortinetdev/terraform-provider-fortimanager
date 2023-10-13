@@ -25,6 +25,7 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`, `global`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+* `pkg_folder_path` - Pkg Folder Path.
 
 * `name` - Name.
 * `objver` - Obj Ver.
@@ -32,7 +33,6 @@ The following arguments are supported:
 * `packagesettings` - Package Settings. The structure of `packagesettings` block is documented below.
 * `packagesetting` - Package Setting. The structure of `packagesetting` block is documented below.
 * `scopemember` - Scope Member. The structure of `scopemember` block is documented below.
-* `subobj` - Subobj. The structure of `subobj` block is documented below.
 * `type` - Type. Valid values: `pkg`, `folder`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
@@ -76,20 +76,19 @@ The `scopemember` block supports:
 * `name` - Name.
 * `vdom` - Vdom.
 
-The `subobj` block supports:
-
-* `name` - Name.
-
 
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
 * `id` - an identifier for the resource with format {{name}}.
+* `output_folder_path` - Folder path of the package..
+* `output_pkg_name` - Package name. The value will be empty string if the type of the resource is `folder`..
 
 ## Import
 
 Packages Pkg can be imported using any of these accepted formats:
 ```
+Set import_options = ["pkg_folder_path=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_pkg.labelname {{name}}

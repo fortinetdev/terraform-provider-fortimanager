@@ -3,11 +3,11 @@ subcategory: "No Category"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_pblock_firewall_policy"
 description: |-
-  /pm/config/pblock/firewall/policy
+  Configuring policy for a policy block.
 ---
 
 # fortimanager_packages_pblock_firewall_policy
-/pm/config/pblock/firewall/policy
+Configuring policy for a policy block.
 
 ## Argument Reference
 
@@ -40,6 +40,7 @@ The following arguments are supported:
 
 * `captive_portal_exempt` - Enable to exempt some users from the captive portal. Valid values: `disable`, `enable`.
 
+* `casb_profile` - Name of an existing CASB profile.
 * `capture_packet` - Enable/disable capture packets. Valid values: `disable`, `enable`.
 
 * `cgn_eif` - Enable/Disable CGN endpoint independent filtering. Valid values: `disable`, `enable`.
@@ -282,6 +283,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `videofilter_profile` - Name of an existing VideoFilter profile.
+* `virtual_patch_profile` - Name of an existing virtual-patch profile.
 * `vlan_cos_fwd` - VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_cos_rev` - VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_filter` - Set VLAN filters.
@@ -329,7 +331,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages PblockFirewallPolicy can be imported using any of these accepted formats:
 ```
-Set import_options = ["pblock=mypblock"] in the provider section.
+Set import_options = ["pblock=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_pblock_firewall_policy.labelname {{policyid}}

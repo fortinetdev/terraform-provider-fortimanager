@@ -130,6 +130,7 @@ The following arguments are supported:
 * `peertype` - Peertype. Valid values: `any`, `one`, `dialup`, `peer`, `peergrp`.
 
 * `protected_subnet` - Protected_Subnet. The structure of `protected_subnet` block is documented below.
+* `protocol` - Protocol.
 * `public_ip` - Public-Ip.
 * `role` - Role. Valid values: `hub`, `spoke`.
 

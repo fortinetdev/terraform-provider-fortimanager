@@ -122,10 +122,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -299,26 +301,32 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 			"fortindr_error_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortindr_timeout_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortisandbox_error_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortisandbox_max_upload": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"fortisandbox_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"fortisandbox_timeout_action": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"ftgd_analytics": &schema.Schema{
 				Type:     schema.TypeString,
@@ -367,10 +375,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -442,10 +452,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -466,6 +478,7 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"unknown_content_encoding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -522,10 +535,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -691,10 +706,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -792,10 +809,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -912,10 +931,12 @@ func resourceObjectAntivirusProfile() *schema.Resource {
 						"fortindr": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"fortisandbox": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"options": &schema.Schema{
 							Type:     schema.TypeSet,

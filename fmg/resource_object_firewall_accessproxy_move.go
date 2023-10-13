@@ -32,7 +32,7 @@ func resourceObjectFirewallAccessProxyMove() *schema.Resource {
 			"state_pos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "",
+				Computed: true,
 			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
@@ -121,18 +121,13 @@ func resourceObjectFirewallAccessProxyMoveRead(d *schema.ResourceData, m interfa
 	}
 	paradict["adom"] = adomv
 
-	sid, err := strconv.Atoi(d.Get("access_proxy").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading ObjectFirewallAccessProxyMove resource: %v", err)
-	}
-	did, err := strconv.Atoi(d.Get("target").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading ObjectFirewallAccessProxyMove resource: %v", err)
-	}
+	sid := d.Get("access_proxy").(string)
+	did := d.Get("target").(string)
 	action := d.Get("option").(string)
 
 	o, err := c.ReadObjectFirewallAccessProxyMove(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading ObjectFirewallAccessProxyMove resource: %v", err)
 	}
 
@@ -153,18 +148,13 @@ func resourceObjectFirewallAccessProxyMoveRead(d *schema.ResourceData, m interfa
 					return fmt.Errorf("Error reading ObjectFirewallAccessProxyMove resource: name doesn't exist.")
 				}
 
-				idn := -1
-				if vidn, ok := v["name"].(float64); !ok {
-					return fmt.Errorf("Error reading ObjectFirewallAccessProxyMove resource: wrong name.")
-				} else {
-					idn = int(vidn)
-				}
+				vid := fmt.Sprintf("%v", v["name"])
 
-				if idn == sid {
+				if vid == sid {
 					now_sid = i
 				}
 
-				if idn == did {
+				if vid == did {
 					now_did = i
 				}
 			} else {
@@ -178,11 +168,11 @@ func resourceObjectFirewallAccessProxyMoveRead(d *schema.ResourceData, m interfa
 
 		if now_sid == -1 || now_did == -1 {
 			if now_sid == -1 && now_did == -1 {
-				state_pos = "name(" + strconv.Itoa(sid) + ") and target(" + strconv.Itoa(did) + ") were deleted"
+				state_pos = "name(" + sid + ") and target(" + did + ") were deleted"
 			} else if now_sid == -1 {
-				state_pos = "name(" + strconv.Itoa(sid) + ") was deleted"
+				state_pos = "name(" + sid + ") was deleted"
 			} else if now_did == -1 {
-				state_pos = "target(" + strconv.Itoa(did) + ") was deleted"
+				state_pos = "target(" + did + ") was deleted"
 			}
 		} else {
 			bconsistent := true
@@ -202,9 +192,9 @@ func resourceObjectFirewallAccessProxyMoveRead(d *schema.ResourceData, m interfa
 				relative_pos := now_sid - now_did
 
 				if relative_pos > 0 {
-					state_pos = "name(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(relative_pos) + " behind target(" + strconv.Itoa(did) + ")"
+					state_pos = "name(" + sid + ") is " + strconv.Itoa(relative_pos) + " behind target(" + did + ")"
 				} else {
-					state_pos = "name(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + strconv.Itoa(did) + ")"
+					state_pos = "name(" + sid + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + did + ")"
 				}
 			}
 		}

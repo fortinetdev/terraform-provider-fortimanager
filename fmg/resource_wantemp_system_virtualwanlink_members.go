@@ -84,6 +84,7 @@ func resourceWantempSystemVirtualWanLinkMembers() *schema.Resource {
 			},
 			"seq_num": &schema.Schema{
 				Type:     schema.TypeInt,
+				ForceNew: true,
 				Optional: true,
 			},
 			"source": &schema.Schema{
@@ -140,7 +141,7 @@ func resourceWantempSystemVirtualWanLinkMembersCreate(d *schema.ResourceData, m 
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkMembers resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "seq_num")))
 
 	return resourceWantempSystemVirtualWanLinkMembersRead(d, m)
 }
@@ -173,7 +174,7 @@ func resourceWantempSystemVirtualWanLinkMembersUpdate(d *schema.ResourceData, m 
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(strconv.Itoa(getIntKey(d, "seq_num")))
 
 	return resourceWantempSystemVirtualWanLinkMembersRead(d, m)
 }
@@ -222,6 +223,9 @@ func resourceWantempSystemVirtualWanLinkMembersRead(d *schema.ResourceData, m in
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}

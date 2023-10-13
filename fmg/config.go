@@ -160,6 +160,20 @@ func getStringKey(d *schema.ResourceData, field string) string {
 	return ""
 }
 
+func getScopeKey(d *schema.ResourceData, field string) string {
+	if v, ok := d.GetOkExists(field); ok {
+		if field == "_scope" {
+			if scopeList, ok := v.([]interface{}); ok {
+				scopeContent := scopeList[0].(map[string]interface{})
+				scopeName := scopeContent["name"].(string)
+				scopeVdom := scopeContent["vdom"].(string)
+				return fmt.Sprintf("%v %v", scopeName, scopeVdom)
+			}
+		}
+	}
+	return ""
+}
+
 func getIntKey(d *schema.ResourceData, field string) int {
 	if v, ok := d.GetOkExists(field); ok {
 		if v1, ok := v.(int); ok {
@@ -295,7 +309,7 @@ func fortiAPISubPartPatch(t interface{}, lgname string) interface{} {
 		return t
 	} else if v, ok := t.([]interface{}); ok {
 		if len(v) == 0 {
-			log.Printf("shengh6671 - %v", lgname)
+			log.Printf("Item is empty - %v", lgname)
 			return ""
 		}
 	}
@@ -312,7 +326,7 @@ func fortiAPIPatch(t interface{}, lgname string) (interface{}, bool) {
 		// 	return true
 	} else if v, ok := t.([]interface{}); ok {
 		if len(v) == 0 {
-			log.Printf("shengh6670 - %v", lgname)
+			log.Printf("Item is empty - %v", lgname)
 			return nil, true
 		} else if len(v) == 1 {
 			if vv, ok := v[0].(string); ok {
@@ -376,6 +390,21 @@ func conv2str(v interface{}) interface{} {
 		return strconv.FormatInt(int64(v1), 10)
 	}
 	return ""
+}
+
+func conv2num(v interface{}) interface{} {
+	if vs, ok := v.(string); ok {
+		vn, err := strconv.Atoi(vs)
+		if err == nil {
+			var vi interface{} = vn
+			return vi
+		}
+	} else if vl, ok := v.([]interface{}); ok {
+		if len(vl) > 0 {
+			return conv2num(vl[0])
+		}
+	}
+	return v
 }
 
 func convintflist2str(v interface{}) interface{} {
@@ -493,4 +522,20 @@ func compareVersion(curVersion string, requiredVersion string) int {
 		}
 	}
 	return 0
+}
+
+func checkScopeId(idStr string) (string, error) {
+	if strings.Contains(idStr, ".") {
+		scopeList := strings.Split(idStr, ".")
+		if len(scopeList) != 2 {
+			return idStr, fmt.Errorf("ID not correct. Should be format of {_scope.name}.{_scope.vdom}, but got %v", idStr)
+		}
+		return fmt.Sprintf("%v %v", scopeList[0], scopeList[1]), nil
+	}
+	return idStr, nil
+}
+
+func formatPath(inputPath string) string {
+	inputPath = strings.ReplaceAll(inputPath, "//", "/")
+	return strings.Trim(inputPath, "/")
 }

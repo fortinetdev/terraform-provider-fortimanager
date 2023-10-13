@@ -56,11 +56,35 @@ func resourceObjectSystemNpu() *schema.Resource {
 							Type:     schema.TypeString,
 							Optional: true,
 						},
+						"scan_stale": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"scan_vt": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"stats_qual_access": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"stats_qual_duration": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
 						"stats_update_interval": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
 						"udp_keepalive_interval": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"udp_qual_access": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+						},
+						"udp_qual_duration": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 						},
@@ -83,6 +107,16 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Computed: true,
 			},
 			"default_qos_type": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"default_tcp_refresh_dir": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
+			"default_udp_refresh_dir": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
@@ -556,12 +590,31 @@ func resourceObjectSystemNpu() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"enable_queue_shaper": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+						},
 						"enable_shaper": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
 							Computed: true,
 						},
 						"esp_max": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"exception_code": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"fragment_with_sess": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"fragment_without_session": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
@@ -592,6 +645,11 @@ func resourceObjectSystemNpu() *schema.Resource {
 							Computed: true,
 						},
 						"pri_type_max": &schema.Schema{
+							Type:     schema.TypeInt,
+							Optional: true,
+							Computed: true,
+						},
+						"queue_shaper_max": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
 							Computed: true,
@@ -711,6 +769,10 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeInt,
 				Optional: true,
 			},
+			"ipsec_sts_timeout": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"ipsec_dec_subengine_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -749,6 +811,18 @@ func resourceObjectSystemNpu() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Computed: true,
+			},
+			"ipsec_throughput_msg_frequency": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ipt_sts_timeout": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
+			"ipt_throughput_msg_frequency": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
 			},
 			"isf_np_queues": &schema.Schema{
 				Type:     schema.TypeList,
@@ -848,10 +922,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 									"queue": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"type": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"weight": &schema.Schema{
 										Type:     schema.TypeInt,
@@ -1330,6 +1406,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 			"npu_group_effective_scope": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"pba_eim": &schema.Schema{
 				Type:     schema.TypeString,
@@ -1512,6 +1589,7 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"min_duration": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1596,10 +1674,12 @@ func resourceObjectSystemNpu() *schema.Resource {
 						"draco15": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"tcp_udp_port": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -1789,6 +1869,26 @@ func flattenObjectSystemNpuBackgroundSseScanOsna(v interface{}, d *schema.Resour
 		result["scan"] = flattenObjectSystemNpuBackgroundSseScanScanOsna(i["scan"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "scan_stale"
+	if _, ok := i["scan-stale"]; ok {
+		result["scan_stale"] = flattenObjectSystemNpuBackgroundSseScanScanStaleOsna(i["scan-stale"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "scan_vt"
+	if _, ok := i["scan-vt"]; ok {
+		result["scan_vt"] = flattenObjectSystemNpuBackgroundSseScanScanVtOsna(i["scan-vt"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "stats_qual_access"
+	if _, ok := i["stats-qual-access"]; ok {
+		result["stats_qual_access"] = flattenObjectSystemNpuBackgroundSseScanStatsQualAccessOsna(i["stats-qual-access"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "stats_qual_duration"
+	if _, ok := i["stats-qual-duration"]; ok {
+		result["stats_qual_duration"] = flattenObjectSystemNpuBackgroundSseScanStatsQualDurationOsna(i["stats-qual-duration"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "stats_update_interval"
 	if _, ok := i["stats-update-interval"]; ok {
 		result["stats_update_interval"] = flattenObjectSystemNpuBackgroundSseScanStatsUpdateIntervalOsna(i["stats-update-interval"], d, pre_append)
@@ -1799,6 +1899,16 @@ func flattenObjectSystemNpuBackgroundSseScanOsna(v interface{}, d *schema.Resour
 		result["udp_keepalive_interval"] = flattenObjectSystemNpuBackgroundSseScanUdpKeepaliveIntervalOsna(i["udp-keepalive-interval"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "udp_qual_access"
+	if _, ok := i["udp-qual-access"]; ok {
+		result["udp_qual_access"] = flattenObjectSystemNpuBackgroundSseScanUdpQualAccessOsna(i["udp-qual-access"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "udp_qual_duration"
+	if _, ok := i["udp-qual-duration"]; ok {
+		result["udp_qual_duration"] = flattenObjectSystemNpuBackgroundSseScanUdpQualDurationOsna(i["udp-qual-duration"], d, pre_append)
+	}
+
 	lastresult := []map[string]interface{}{result}
 	return lastresult
 }
@@ -1807,11 +1917,35 @@ func flattenObjectSystemNpuBackgroundSseScanScanOsna(v interface{}, d *schema.Re
 	return v
 }
 
+func flattenObjectSystemNpuBackgroundSseScanScanStaleOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuBackgroundSseScanScanVtOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuBackgroundSseScanStatsQualAccessOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuBackgroundSseScanStatsQualDurationOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuBackgroundSseScanStatsUpdateIntervalOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemNpuBackgroundSseScanUdpKeepaliveIntervalOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuBackgroundSseScanUdpQualAccessOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuBackgroundSseScanUdpQualDurationOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -1828,6 +1962,14 @@ func flattenObjectSystemNpuDedicatedManagementCpuOsna(v interface{}, d *schema.R
 }
 
 func flattenObjectSystemNpuDefaultQosTypeOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuDefaultTcpRefreshDirOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuDefaultUdpRefreshDirOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2672,6 +2814,11 @@ func flattenObjectSystemNpuHpeOsna(v interface{}, d *schema.ResourceData, pre st
 		result["arp_max"] = flattenObjectSystemNpuHpeArpMaxOsna(i["arp-max"], d, pre_append)
 	}
 
+	pre_append = pre + ".0." + "enable_queue_shaper"
+	if _, ok := i["enable-queue-shaper"]; ok {
+		result["enable_queue_shaper"] = flattenObjectSystemNpuHpeEnableQueueShaperOsna(i["enable-queue-shaper"], d, pre_append)
+	}
+
 	pre_append = pre + ".0." + "enable_shaper"
 	if _, ok := i["enable-shaper"]; ok {
 		result["enable_shaper"] = flattenObjectSystemNpuHpeEnableShaperOsna(i["enable-shaper"], d, pre_append)
@@ -2680,6 +2827,21 @@ func flattenObjectSystemNpuHpeOsna(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "esp_max"
 	if _, ok := i["esp-max"]; ok {
 		result["esp_max"] = flattenObjectSystemNpuHpeEspMaxOsna(i["esp-max"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "exception_code"
+	if _, ok := i["exception-code"]; ok {
+		result["exception_code"] = flattenObjectSystemNpuHpeExceptionCodeOsna(i["exception-code"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fragment_with_sess"
+	if _, ok := i["fragment-with-sess"]; ok {
+		result["fragment_with_sess"] = flattenObjectSystemNpuHpeFragmentWithSessOsna(i["fragment-with-sess"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "fragment_without_session"
+	if _, ok := i["fragment-without-session"]; ok {
+		result["fragment_without_session"] = flattenObjectSystemNpuHpeFragmentWithoutSessionOsna(i["fragment-without-session"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "high_priority"
@@ -2710,6 +2872,11 @@ func flattenObjectSystemNpuHpeOsna(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "pri_type_max"
 	if _, ok := i["pri-type-max"]; ok {
 		result["pri_type_max"] = flattenObjectSystemNpuHpePriTypeMaxOsna(i["pri-type-max"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "queue_shaper_max"
+	if _, ok := i["queue-shaper-max"]; ok {
+		result["queue_shaper_max"] = flattenObjectSystemNpuHpeQueueShaperMaxOsna(i["queue-shaper-max"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "sctp_max"
@@ -2754,11 +2921,27 @@ func flattenObjectSystemNpuHpeArpMaxOsna(v interface{}, d *schema.ResourceData, 
 	return v
 }
 
+func flattenObjectSystemNpuHpeEnableQueueShaperOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuHpeEnableShaperOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
 func flattenObjectSystemNpuHpeEspMaxOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeExceptionCodeOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeFragmentWithSessOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeFragmentWithoutSessionOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2783,6 +2966,10 @@ func flattenObjectSystemNpuHpeL2OthersMaxOsna(v interface{}, d *schema.ResourceD
 }
 
 func flattenObjectSystemNpuHpePriTypeMaxOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuHpeQueueShaperMaxOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -2898,6 +3085,10 @@ func flattenObjectSystemNpuIppoolOverloadLowOsna(v interface{}, d *schema.Resour
 	return v
 }
 
+func flattenObjectSystemNpuIpsecStsTimeoutOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSystemNpuIpsecDecSubengineMaskOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -2927,6 +3118,18 @@ func flattenObjectSystemNpuIpsecObNpSelOsna(v interface{}, d *schema.ResourceDat
 }
 
 func flattenObjectSystemNpuIpsecOverVlinkOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIpsecThroughputMsgFrequencyOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIptStsTimeoutOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenObjectSystemNpuIptThroughputMsgFrequencyOsna(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -4782,6 +4985,26 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("default_tcp_refresh_dir", flattenObjectSystemNpuDefaultTcpRefreshDirOsna(o["default-tcp-refresh-dir"], d, "default_tcp_refresh_dir")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-tcp-refresh-dir"], "ObjectSystemNpu-DefaultTcpRefreshDir"); ok {
+			if err = d.Set("default_tcp_refresh_dir", vv); err != nil {
+				return fmt.Errorf("Error reading default_tcp_refresh_dir: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_tcp_refresh_dir: %v", err)
+		}
+	}
+
+	if err = d.Set("default_udp_refresh_dir", flattenObjectSystemNpuDefaultUdpRefreshDirOsna(o["default-udp-refresh-dir"], d, "default_udp_refresh_dir")); err != nil {
+		if vv, ok := fortiAPIPatch(o["default-udp-refresh-dir"], "ObjectSystemNpu-DefaultUdpRefreshDir"); ok {
+			if err = d.Set("default_udp_refresh_dir", vv); err != nil {
+				return fmt.Errorf("Error reading default_udp_refresh_dir: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading default_udp_refresh_dir: %v", err)
+		}
+	}
+
 	if isImportTable() {
 		if err = d.Set("dos_options", flattenObjectSystemNpuDosOptionsOsna(o["dos-options"], d, "dos_options")); err != nil {
 			if vv, ok := fortiAPIPatch(o["dos-options"], "ObjectSystemNpu-DosOptions"); ok {
@@ -5146,6 +5369,16 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 		}
 	}
 
+	if err = d.Set("ipsec_sts_timeout", flattenObjectSystemNpuIpsecStsTimeoutOsna(o["ipsec-STS-timeout"], d, "ipsec_sts_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipsec-STS-timeout"], "ObjectSystemNpu-IpsecStsTimeout"); ok {
+			if err = d.Set("ipsec_sts_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading ipsec_sts_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipsec_sts_timeout: %v", err)
+		}
+	}
+
 	if err = d.Set("ipsec_dec_subengine_mask", flattenObjectSystemNpuIpsecDecSubengineMaskOsna(o["ipsec-dec-subengine-mask"], d, "ipsec_dec_subengine_mask")); err != nil {
 		if vv, ok := fortiAPIPatch(o["ipsec-dec-subengine-mask"], "ObjectSystemNpu-IpsecDecSubengineMask"); ok {
 			if err = d.Set("ipsec_dec_subengine_mask", vv); err != nil {
@@ -5223,6 +5456,36 @@ func refreshObjectObjectSystemNpu(d *schema.ResourceData, o map[string]interface
 			}
 		} else {
 			return fmt.Errorf("Error reading ipsec_over_vlink: %v", err)
+		}
+	}
+
+	if err = d.Set("ipsec_throughput_msg_frequency", flattenObjectSystemNpuIpsecThroughputMsgFrequencyOsna(o["ipsec-throughput-msg-frequency"], d, "ipsec_throughput_msg_frequency")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipsec-throughput-msg-frequency"], "ObjectSystemNpu-IpsecThroughputMsgFrequency"); ok {
+			if err = d.Set("ipsec_throughput_msg_frequency", vv); err != nil {
+				return fmt.Errorf("Error reading ipsec_throughput_msg_frequency: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipsec_throughput_msg_frequency: %v", err)
+		}
+	}
+
+	if err = d.Set("ipt_sts_timeout", flattenObjectSystemNpuIptStsTimeoutOsna(o["ipt-STS-timeout"], d, "ipt_sts_timeout")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipt-STS-timeout"], "ObjectSystemNpu-IptStsTimeout"); ok {
+			if err = d.Set("ipt_sts_timeout", vv); err != nil {
+				return fmt.Errorf("Error reading ipt_sts_timeout: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipt_sts_timeout: %v", err)
+		}
+	}
+
+	if err = d.Set("ipt_throughput_msg_frequency", flattenObjectSystemNpuIptThroughputMsgFrequencyOsna(o["ipt-throughput-msg-frequency"], d, "ipt_throughput_msg_frequency")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ipt-throughput-msg-frequency"], "ObjectSystemNpu-IptThroughputMsgFrequency"); ok {
+			if err = d.Set("ipt_throughput_msg_frequency", vv); err != nil {
+				return fmt.Errorf("Error reading ipt_throughput_msg_frequency: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ipt_throughput_msg_frequency: %v", err)
 		}
 	}
 
@@ -5873,6 +6136,22 @@ func expandObjectSystemNpuBackgroundSseScanOsna(d *schema.ResourceData, v interf
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["scan"], _ = expandObjectSystemNpuBackgroundSseScanScanOsna(d, i["scan"], pre_append)
 	}
+	pre_append = pre + ".0." + "scan_stale"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["scan-stale"], _ = expandObjectSystemNpuBackgroundSseScanScanStaleOsna(d, i["scan_stale"], pre_append)
+	}
+	pre_append = pre + ".0." + "scan_vt"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["scan-vt"], _ = expandObjectSystemNpuBackgroundSseScanScanVtOsna(d, i["scan_vt"], pre_append)
+	}
+	pre_append = pre + ".0." + "stats_qual_access"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["stats-qual-access"], _ = expandObjectSystemNpuBackgroundSseScanStatsQualAccessOsna(d, i["stats_qual_access"], pre_append)
+	}
+	pre_append = pre + ".0." + "stats_qual_duration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["stats-qual-duration"], _ = expandObjectSystemNpuBackgroundSseScanStatsQualDurationOsna(d, i["stats_qual_duration"], pre_append)
+	}
 	pre_append = pre + ".0." + "stats_update_interval"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["stats-update-interval"], _ = expandObjectSystemNpuBackgroundSseScanStatsUpdateIntervalOsna(d, i["stats_update_interval"], pre_append)
@@ -5880,6 +6159,14 @@ func expandObjectSystemNpuBackgroundSseScanOsna(d *schema.ResourceData, v interf
 	pre_append = pre + ".0." + "udp_keepalive_interval"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["udp-keepalive-interval"], _ = expandObjectSystemNpuBackgroundSseScanUdpKeepaliveIntervalOsna(d, i["udp_keepalive_interval"], pre_append)
+	}
+	pre_append = pre + ".0." + "udp_qual_access"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["udp-qual-access"], _ = expandObjectSystemNpuBackgroundSseScanUdpQualAccessOsna(d, i["udp_qual_access"], pre_append)
+	}
+	pre_append = pre + ".0." + "udp_qual_duration"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["udp-qual-duration"], _ = expandObjectSystemNpuBackgroundSseScanUdpQualDurationOsna(d, i["udp_qual_duration"], pre_append)
 	}
 
 	return result, nil
@@ -5889,11 +6176,35 @@ func expandObjectSystemNpuBackgroundSseScanScanOsna(d *schema.ResourceData, v in
 	return v, nil
 }
 
+func expandObjectSystemNpuBackgroundSseScanScanStaleOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuBackgroundSseScanScanVtOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuBackgroundSseScanStatsQualAccessOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuBackgroundSseScanStatsQualDurationOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuBackgroundSseScanStatsUpdateIntervalOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectSystemNpuBackgroundSseScanUdpKeepaliveIntervalOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuBackgroundSseScanUdpQualAccessOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuBackgroundSseScanUdpQualDurationOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -5910,6 +6221,14 @@ func expandObjectSystemNpuDedicatedManagementCpuOsna(d *schema.ResourceData, v i
 }
 
 func expandObjectSystemNpuDefaultQosTypeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuDefaultTcpRefreshDirOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuDefaultUdpRefreshDirOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6668,6 +6987,10 @@ func expandObjectSystemNpuHpeOsna(d *schema.ResourceData, v interface{}, pre str
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["arp-max"], _ = expandObjectSystemNpuHpeArpMaxOsna(d, i["arp_max"], pre_append)
 	}
+	pre_append = pre + ".0." + "enable_queue_shaper"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["enable-queue-shaper"], _ = expandObjectSystemNpuHpeEnableQueueShaperOsna(d, i["enable_queue_shaper"], pre_append)
+	}
 	pre_append = pre + ".0." + "enable_shaper"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["enable-shaper"], _ = expandObjectSystemNpuHpeEnableShaperOsna(d, i["enable_shaper"], pre_append)
@@ -6675,6 +6998,18 @@ func expandObjectSystemNpuHpeOsna(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "esp_max"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["esp-max"], _ = expandObjectSystemNpuHpeEspMaxOsna(d, i["esp_max"], pre_append)
+	}
+	pre_append = pre + ".0." + "exception_code"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["exception-code"], _ = expandObjectSystemNpuHpeExceptionCodeOsna(d, i["exception_code"], pre_append)
+	}
+	pre_append = pre + ".0." + "fragment_with_sess"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fragment-with-sess"], _ = expandObjectSystemNpuHpeFragmentWithSessOsna(d, i["fragment_with_sess"], pre_append)
+	}
+	pre_append = pre + ".0." + "fragment_without_session"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["fragment-without-session"], _ = expandObjectSystemNpuHpeFragmentWithoutSessionOsna(d, i["fragment_without_session"], pre_append)
 	}
 	pre_append = pre + ".0." + "high_priority"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -6699,6 +7034,10 @@ func expandObjectSystemNpuHpeOsna(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "pri_type_max"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["pri-type-max"], _ = expandObjectSystemNpuHpePriTypeMaxOsna(d, i["pri_type_max"], pre_append)
+	}
+	pre_append = pre + ".0." + "queue_shaper_max"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["queue-shaper-max"], _ = expandObjectSystemNpuHpeQueueShaperMaxOsna(d, i["queue_shaper_max"], pre_append)
 	}
 	pre_append = pre + ".0." + "sctp_max"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -6736,11 +7075,27 @@ func expandObjectSystemNpuHpeArpMaxOsna(d *schema.ResourceData, v interface{}, p
 	return v, nil
 }
 
+func expandObjectSystemNpuHpeEnableQueueShaperOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuHpeEnableShaperOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
 func expandObjectSystemNpuHpeEspMaxOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeExceptionCodeOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeFragmentWithSessOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeFragmentWithoutSessionOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6765,6 +7120,10 @@ func expandObjectSystemNpuHpeL2OthersMaxOsna(d *schema.ResourceData, v interface
 }
 
 func expandObjectSystemNpuHpePriTypeMaxOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuHpeQueueShaperMaxOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -6878,6 +7237,10 @@ func expandObjectSystemNpuIppoolOverloadLowOsna(d *schema.ResourceData, v interf
 	return v, nil
 }
 
+func expandObjectSystemNpuIpsecStsTimeoutOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectSystemNpuIpsecDecSubengineMaskOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -6907,6 +7270,18 @@ func expandObjectSystemNpuIpsecObNpSelOsna(d *schema.ResourceData, v interface{}
 }
 
 func expandObjectSystemNpuIpsecOverVlinkOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIpsecThroughputMsgFrequencyOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIptStsTimeoutOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandObjectSystemNpuIptThroughputMsgFrequencyOsna(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -8587,6 +8962,24 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("default_tcp_refresh_dir"); ok || d.HasChange("default_tcp_refresh_dir") {
+		t, err := expandObjectSystemNpuDefaultTcpRefreshDirOsna(d, v, "default_tcp_refresh_dir")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-tcp-refresh-dir"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("default_udp_refresh_dir"); ok || d.HasChange("default_udp_refresh_dir") {
+		t, err := expandObjectSystemNpuDefaultUdpRefreshDirOsna(d, v, "default_udp_refresh_dir")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["default-udp-refresh-dir"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("dos_options"); ok || d.HasChange("dos_options") {
 		t, err := expandObjectSystemNpuDosOptionsOsna(d, v, "dos_options")
 		if err != nil {
@@ -8839,6 +9232,15 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 		}
 	}
 
+	if v, ok := d.GetOk("ipsec_sts_timeout"); ok || d.HasChange("ipsec_sts_timeout") {
+		t, err := expandObjectSystemNpuIpsecStsTimeoutOsna(d, v, "ipsec_sts_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipsec-STS-timeout"] = t
+		}
+	}
+
 	if v, ok := d.GetOk("ipsec_dec_subengine_mask"); ok || d.HasChange("ipsec_dec_subengine_mask") {
 		t, err := expandObjectSystemNpuIpsecDecSubengineMaskOsna(d, v, "ipsec_dec_subengine_mask")
 		if err != nil {
@@ -8908,6 +9310,33 @@ func getObjectObjectSystemNpu(d *schema.ResourceData) (*map[string]interface{}, 
 			return &obj, err
 		} else if t != nil {
 			obj["ipsec-over-vlink"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipsec_throughput_msg_frequency"); ok || d.HasChange("ipsec_throughput_msg_frequency") {
+		t, err := expandObjectSystemNpuIpsecThroughputMsgFrequencyOsna(d, v, "ipsec_throughput_msg_frequency")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipsec-throughput-msg-frequency"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipt_sts_timeout"); ok || d.HasChange("ipt_sts_timeout") {
+		t, err := expandObjectSystemNpuIptStsTimeoutOsna(d, v, "ipt_sts_timeout")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipt-STS-timeout"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ipt_throughput_msg_frequency"); ok || d.HasChange("ipt_throughput_msg_frequency") {
+		t, err := expandObjectSystemNpuIptThroughputMsgFrequencyOsna(d, v, "ipt_throughput_msg_frequency")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ipt-throughput-msg-frequency"] = t
 		}
 	}
 

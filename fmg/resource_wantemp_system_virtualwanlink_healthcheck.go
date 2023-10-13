@@ -96,6 +96,7 @@ func resourceWantempSystemVirtualWanLinkHealthCheck() *schema.Resource {
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
+				ForceNew: true,
 				Optional: true,
 			},
 			"packet_size": &schema.Schema{
@@ -243,7 +244,7 @@ func resourceWantempSystemVirtualWanLinkHealthCheckCreate(d *schema.ResourceData
 		return fmt.Errorf("Error creating WantempSystemVirtualWanLinkHealthCheck resource: %v", err)
 	}
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceWantempSystemVirtualWanLinkHealthCheckRead(d, m)
 }
@@ -276,7 +277,7 @@ func resourceWantempSystemVirtualWanLinkHealthCheckUpdate(d *schema.ResourceData
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId(getStringKey(d, ""))
+	d.SetId(getStringKey(d, "name"))
 
 	return resourceWantempSystemVirtualWanLinkHealthCheckRead(d, m)
 }
@@ -325,6 +326,9 @@ func resourceWantempSystemVirtualWanLinkHealthCheckRead(d *schema.ResourceData, 
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}

@@ -32,7 +32,7 @@ func resourcePackagesUserNacPolicyMove() *schema.Resource {
 			"state_pos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
-				Default:  "",
+				Computed: true,
 			},
 			"scopetype": &schema.Schema{
 				Type:     schema.TypeString,
@@ -46,6 +46,11 @@ func resourcePackagesUserNacPolicyMove() *schema.Resource {
 				}, false),
 			},
 			"adom": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
+			"pkg_folder_path": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
 				ForceNew: true,
@@ -85,8 +90,10 @@ func resourcePackagesUserNacPolicyMoveUpdate(d *schema.ResourceData, m interface
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
 	nac_policy := d.Get("nac_policy").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 	paradict["nac_policy"] = nac_policy
 
@@ -103,7 +110,7 @@ func resourcePackagesUserNacPolicyMoveUpdate(d *schema.ResourceData, m interface
 
 	log.Printf(strconv.Itoa(c.Retries))
 
-	d.SetId("PackagesUserNacPolicyMove" + "_" + pkg + "_" + nac_policy + "_" + target)
+	d.SetId("PackagesUserNacPolicyMove" + "_" + pkg_folder_path + "_" + pkg + "_" + nac_policy + "_" + target)
 
 	return resourcePackagesUserNacPolicyMoveRead(d, m)
 }
@@ -128,27 +135,30 @@ func resourcePackagesUserNacPolicyMoveRead(d *schema.ResourceData, m interface{}
 	}
 	paradict["adom"] = adomv
 
-	sid, err := strconv.Atoi(d.Get("nac_policy").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading PackagesUserNacPolicyMove resource: %v", err)
-	}
-	did, err := strconv.Atoi(d.Get("target").(string))
-	if err != nil {
-		return fmt.Errorf("Error reading PackagesUserNacPolicyMove resource: %v", err)
-	}
+	sid := d.Get("nac_policy").(string)
+	did := d.Get("target").(string)
 	action := d.Get("option").(string)
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesUserNacPolicyMove(mkey, paradict)
 	if err != nil {
+		d.SetId("")
 		return fmt.Errorf("Error reading PackagesUserNacPolicyMove resource: %v", err)
 	}
 
@@ -169,18 +179,13 @@ func resourcePackagesUserNacPolicyMoveRead(d *schema.ResourceData, m interface{}
 					return fmt.Errorf("Error reading PackagesUserNacPolicyMove resource: name doesn't exist.")
 				}
 
-				idn := -1
-				if vidn, ok := v["name"].(float64); !ok {
-					return fmt.Errorf("Error reading PackagesUserNacPolicyMove resource: wrong name.")
-				} else {
-					idn = int(vidn)
-				}
+				vid := fmt.Sprintf("%v", v["name"])
 
-				if idn == sid {
+				if vid == sid {
 					now_sid = i
 				}
 
-				if idn == did {
+				if vid == did {
 					now_did = i
 				}
 			} else {
@@ -194,11 +199,11 @@ func resourcePackagesUserNacPolicyMoveRead(d *schema.ResourceData, m interface{}
 
 		if now_sid == -1 || now_did == -1 {
 			if now_sid == -1 && now_did == -1 {
-				state_pos = "name(" + strconv.Itoa(sid) + ") and target(" + strconv.Itoa(did) + ") were deleted"
+				state_pos = "name(" + sid + ") and target(" + did + ") were deleted"
 			} else if now_sid == -1 {
-				state_pos = "name(" + strconv.Itoa(sid) + ") was deleted"
+				state_pos = "name(" + sid + ") was deleted"
 			} else if now_did == -1 {
-				state_pos = "target(" + strconv.Itoa(did) + ") was deleted"
+				state_pos = "target(" + did + ") was deleted"
 			}
 		} else {
 			bconsistent := true
@@ -218,9 +223,9 @@ func resourcePackagesUserNacPolicyMoveRead(d *schema.ResourceData, m interface{}
 				relative_pos := now_sid - now_did
 
 				if relative_pos > 0 {
-					state_pos = "name(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(relative_pos) + " behind target(" + strconv.Itoa(did) + ")"
+					state_pos = "name(" + sid + ") is " + strconv.Itoa(relative_pos) + " behind target(" + did + ")"
 				} else {
-					state_pos = "name(" + strconv.Itoa(sid) + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + strconv.Itoa(did) + ")"
+					state_pos = "name(" + sid + ") is " + strconv.Itoa(-relative_pos) + " ahead of target(" + did + ")"
 				}
 			}
 		}

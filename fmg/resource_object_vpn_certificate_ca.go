@@ -65,6 +65,10 @@ func resourceObjectVpnCertificateCa() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"est_url": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"last_updated": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -245,6 +249,10 @@ func flattenObjectVpnCertificateCaCaIdentifier(v interface{}, d *schema.Resource
 	return v
 }
 
+func flattenObjectVpnCertificateCaEstUrl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectVpnCertificateCaLastUpdated(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -335,6 +343,16 @@ func refreshObjectObjectVpnCertificateCa(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading ca_identifier: %v", err)
+		}
+	}
+
+	if err = d.Set("est_url", flattenObjectVpnCertificateCaEstUrl(o["est-url"], d, "est_url")); err != nil {
+		if vv, ok := fortiAPIPatch(o["est-url"], "ObjectVpnCertificateCa-EstUrl"); ok {
+			if err = d.Set("est_url", vv); err != nil {
+				return fmt.Errorf("Error reading est_url: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading est_url: %v", err)
 		}
 	}
 
@@ -457,6 +475,10 @@ func expandObjectVpnCertificateCaCaIdentifier(d *schema.ResourceData, v interfac
 	return v, nil
 }
 
+func expandObjectVpnCertificateCaEstUrl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectVpnCertificateCaLastUpdated(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -538,6 +560,15 @@ func getObjectObjectVpnCertificateCa(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["ca-identifier"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("est_url"); ok || d.HasChange("est_url") {
+		t, err := expandObjectVpnCertificateCaEstUrl(d, v, "est_url")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["est-url"] = t
 		}
 	}
 

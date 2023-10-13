@@ -37,6 +37,7 @@ The following arguments are supported:
 * `auto_update_days_warning` - Number of days before an expiry-warning message is generated (0 - 4294967295, 0 = disabled).
 * `ca` - CA certificate as a PEM file.
 * `ca_identifier` - CA identifier of the SCEP server.
+* `est_url` - URL of the EST server.
 * `last_updated` - Time at which CA was last updated.
 * `name` - Name.
 * `obsolete` - Enable/disable this CA as obsoleted. Valid values: `disable`, `enable`.

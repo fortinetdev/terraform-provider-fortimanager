@@ -107,6 +107,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"_intf_ip": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"_intf_ip6_address": &schema.Schema{
 				Type:     schema.TypeString,
@@ -243,6 +244,7 @@ func resourceObjectWirelessControllerVap() *schema.Resource {
 			"captive_portal_fw_accounting": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"dhcp_address_enforcement": &schema.Schema{
 				Type:     schema.TypeString,
@@ -2154,7 +2156,7 @@ func flattenObjectWirelessControllerVapIntfDhcp6RelayType(v interface{}, d *sche
 }
 
 func flattenObjectWirelessControllerVapIntfIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenObjectWirelessControllerVapIntfIp6Address(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -3541,7 +3543,7 @@ func flattenObjectWirelessControllerVapDynamicMappingIntfDhcp6RelayType(v interf
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingIntfIp(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return convipstringlist2ipmask(v)
 }
 
 func flattenObjectWirelessControllerVapDynamicMappingIntfIp6Address(v interface{}, d *schema.ResourceData, pre string) interface{} {

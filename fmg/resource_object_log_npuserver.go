@@ -101,7 +101,7 @@ func resourceObjectLogNpuServer() *schema.Resource {
 							Optional: true,
 						},
 						"sw_log_flags": &schema.Schema{
-							Type:     schema.TypeInt,
+							Type:     schema.TypeString,
 							Optional: true,
 						},
 					},

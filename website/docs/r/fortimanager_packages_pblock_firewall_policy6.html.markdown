@@ -3,11 +3,11 @@ subcategory: "No Category"
 layout: "fortimanager"
 page_title: "FortiManager: fortimanager_packages_pblock_firewall_policy6"
 description: |-
-  /pm/config/pblock/firewall/policy6
+  Configuring policy6 for a policy block.
 ---
 
 # fortimanager_packages_pblock_firewall_policy6
-/pm/config/pblock/firewall/policy6
+Configuring policy6 for a policy block.
 
 ## Argument Reference
 
@@ -162,7 +162,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages PblockFirewallPolicy6 can be imported using any of these accepted formats:
 ```
-Set import_options = ["pblock=mypblock"] in the provider section.
+Set import_options = ["pblock=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_pblock_firewall_policy6.labelname {{policyid}}

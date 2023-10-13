@@ -25,6 +25,10 @@ The following arguments are supported:
 
 * `default_qos_type` - Set default QoS type. Valid values: `policing`, `shaping`.
 
+* `default_tcp_refresh_dir` - Default SSE timeout TCP refresh direction. Valid values: `both`, `outgoing`, `incoming`.
+
+* `default_udp_refresh_dir` - Default SSE timeout UDP refresh direction. Valid values: `both`, `outgoing`, `incoming`.
+
 * `dos_options` - Dos-Options. The structure of `dos_options` block is documented below.
 * `double_level_mcast_offload` - Enable double level mcast offload. Valid values: `disable`, `enable`.
 
@@ -68,6 +72,8 @@ The following arguments are supported:
 
 * `ippool_overload_high` - High threshold for overload ippool port reuse (100%-2000%, default = 200).
 * `ippool_overload_low` - Low threshold for overload ippool port reuse (100%-2000%, default = 150).
+* `ipsec_sts_timeout` - Set NP7Lite IPsec STS msg timeout. Valid values: `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
+
 * `ipsec_dec_subengine_mask` - IPsec decryption subengine mask (0x1 - 0xff, default 0xff).
 * `ipsec_enc_subengine_mask` - IPsec encryption subengine mask (0x1 - 0xff, default 0xff).
 * `ipsec_host_dfclr` - Enable/disable DF clearing of NP4lite host IPsec offload. Valid values: `disable`, `enable`.
@@ -80,6 +86,12 @@ The following arguments are supported:
 * `ipsec_ob_np_sel` - IPsec NP selection for OB SA offloading. Valid values: `RR`, `Packet`, `Hash`.
 
 * `ipsec_over_vlink` - Enable/disable IPSEC over vlink. Valid values: `disable`, `enable`.
+
+* `ipsec_throughput_msg_frequency` - Set NP7Lite IPsec throughput msg frequency: 0--disable 1--32KB 3--64KB ... 0x3fff--256MB 0x7fff--512MB 0xffff--1GB. Valid values: `disable`, `32KB`, `64KB`, `128KB`, `256KB`, `512KB`, `1MB`, `2MB`, `4MB`, `8MB`, `16MB`, `32MB`, `64MB`, `128MB`, `256MB`, `512MB`, `1GB`.
+
+* `ipt_sts_timeout` - Set NP7Lite IPT STS msg timeout. Valid values: `1`, `2`, `3`, `4`, `5`, `6`, `7`, `8`, `9`, `10`.
+
+* `ipt_throughput_msg_frequency` - Set NP7Lite IPT throughput msg frequency: 0--disable 1--32KB 3--64KB ... 0x3fff--256MB 0x7fff--512MB 0xffff--1GB. Valid values: `disable`, `32KB`, `64KB`, `128KB`, `256KB`, `512KB`, `1MB`, `2MB`, `4MB`, `8MB`, `16MB`, `32MB`, `64MB`, `128MB`, `256MB`, `512MB`, `1GB`.
 
 * `isf_np_queues` - Isf-Np-Queues. The structure of `isf_np_queues` block is documented below.
 * `isf_np_rx_tr_distr` - Select ISF NP Rx trunk distribution (PSC) mode. Valid values: `port-flow`, `round-robin`, `randomized`.
@@ -163,8 +175,14 @@ The `background_sse_scan` block supports:
 
 * `scan` - Enable/disable background SSE scan by driver thread(default enabled). Valid values: `disable`, `enable`.
 
+* `scan_stale` - Configure scanning of active or stale sessions (default = 0 = active sessions).
+* `scan_vt` - Select version/type to scan: bit-0: 44; bit-1: 46; bit-2: 64; bit-3: 66 (default = 0xF).
+* `stats_qual_access` - Statistics update access qualification in seconds (0 - INT_MAX, default = 180).
+* `stats_qual_duration` - Statistics update duration qualification in seconds (0 - INT_MAX, default = 300).
 * `stats_update_interval` - Stats update interval(&gt;=5*60 seconds, default 5*60 seconds).
 * `udp_keepalive_interval` - UDP keepalive interval(&gt;=90 seconds, default 90 seconds).
+* `udp_qual_access` - UDP keepalive access qualification in seconds (0 - INT_MAX, default = 30).
+* `udp_qual_duration` - UDP keepalive duration qualification in seconds (0 - INT_MAX, default = 90).
 
 The `dos_options` block supports:
 
@@ -330,15 +348,21 @@ The `hpe` block supports:
 
 * `all_protocol` - Maximum packet rate of each host queue except high priority traffic(1K - 40M pps, default = 10M pps), set 0 to disable.
 * `arp_max` - Maximum ARP packet rate (1K - 40M pps, default = 40K pps).
+* `enable_queue_shaper` - Enable/Disable NPU host protection engine (HPE) queue shaper. Valid values: `disable`, `enable`.
+
 * `enable_shaper` - Enable/Disable NPU Host Protection Engine (HPE) for packet type shaper. Valid values: `disable`, `enable`.
 
 * `esp_max` - Maximum ESP packet rate (1K - 40M pps, default = 40K pps).
+* `exception_code` - Maximum exception code rate of traffic(1K - 32M pps, default = 1M pps).
+* `fragment_with_sess` - Maximum fragment with session rate of traffic(1K - 32M pps, default = 1M pps).
+* `fragment_without_session` - Maximum fragment without session rate of traffic(1K - 32M pps, default = 1M pps).
 * `high_priority` - Maximum packet rate for TCAM high priority traffic (1K - 40M pps, default = 10M pps),set 0 to disable.
 * `icmp_max` - Maximum ICMP packet rate (1K - 40M pps, default = 40K pps).
 * `ip_frag_max` - Maximum fragmented IP packet rate (1K - 40M pps, default = 40K pps).
 * `ip_others_max` - Maximum IP packet rate for other packets (packet types that cannot be set with other options) (1K - 1G pps, default = 40K pps).
 * `l2_others_max` - Maximum L2 packet rate for L2 packets that are not ARP packets (1K - 40M pps, default = 40K pps).
 * `pri_type_max` - Maximum overflow rate of priority type traffic(1K - 40M pps, default = 40K pps). Includes L2: HA, 802.3ad LACP, heartbeats. L3: OSPF. L4_TCP: BGP. L4_UDP: IKE, SLBC, BFD.
+* `queue_shaper_max` - Maximum per queue byte rate of traffic(1K - 32M pps, default = 1M pps).
 * `sctp_max` - Maximum SCTP packet rate (1K - 40M pps, default = 40K pps).
 * `tcp_max` - Maximum TCP packet rate (1K - 40M pps, default = 600K pps).
 * `tcpfin_rst_max` - Maximum TCP carries FIN or RST flags packet rate (1K - 40M pps, default = 600K pps).

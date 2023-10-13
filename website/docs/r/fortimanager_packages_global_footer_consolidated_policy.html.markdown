@@ -28,6 +28,7 @@ resource "fortimanager_packages_global_footer_consolidated_policy" "trname" {
 
 The following arguments are supported:
 
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
 * `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
@@ -169,7 +170,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages GlobalFooterConsolidatedPolicy can be imported using any of these accepted formats:
 ```
-Set import_options = ["pkg=mypkg"] in the provider section.
+Set import_options = ["pkg_folder_path=YOUR_VALUE", "pkg=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_global_footer_consolidated_policy.labelname {{policyid}}

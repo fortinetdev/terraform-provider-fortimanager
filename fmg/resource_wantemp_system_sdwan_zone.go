@@ -50,6 +50,11 @@ func resourceWantempSystemSdwanZone() *schema.Resource {
 				Required: true,
 				ForceNew: true,
 			},
+			"minimum_sla_meet_members": &schema.Schema{
+				Type:     schema.TypeInt,
+				Optional: true,
+				Computed: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -171,6 +176,9 @@ func resourceWantempSystemSdwanZoneRead(d *schema.ResourceData, m interface{}) e
 	wanprof := d.Get("wanprof").(string)
 	if wanprof == "" {
 		wanprof = importOptionChecking(m.(*FortiClient).Cfg, "wanprof")
+		if wanprof == "" {
+			return fmt.Errorf("Parameter wanprof is missing")
+		}
 		if err = d.Set("wanprof", wanprof); err != nil {
 			return fmt.Errorf("Error set params wanprof: %v", err)
 		}
@@ -195,6 +203,10 @@ func resourceWantempSystemSdwanZoneRead(d *schema.ResourceData, m interface{}) e
 	return nil
 }
 
+func flattenWantempSystemSdwanZoneMinimumSlaMeetMembers(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenWantempSystemSdwanZoneName(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -208,6 +220,16 @@ func refreshObjectWantempSystemSdwanZone(d *schema.ResourceData, o map[string]in
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("minimum_sla_meet_members", flattenWantempSystemSdwanZoneMinimumSlaMeetMembers(o["minimum-sla-meet-members"], d, "minimum_sla_meet_members")); err != nil {
+		if vv, ok := fortiAPIPatch(o["minimum-sla-meet-members"], "WantempSystemSdwanZone-MinimumSlaMeetMembers"); ok {
+			if err = d.Set("minimum_sla_meet_members", vv); err != nil {
+				return fmt.Errorf("Error reading minimum_sla_meet_members: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading minimum_sla_meet_members: %v", err)
+		}
 	}
 
 	if err = d.Set("name", flattenWantempSystemSdwanZoneName(o["name"], d, "name")); err != nil {
@@ -239,6 +261,10 @@ func flattenWantempSystemSdwanZoneFortiTestDebug(d *schema.ResourceData, fosdebu
 	log.Printf("ER List: %v", e)
 }
 
+func expandWantempSystemSdwanZoneMinimumSlaMeetMembers(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandWantempSystemSdwanZoneName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -249,6 +275,15 @@ func expandWantempSystemSdwanZoneServiceSlaTieBreak(d *schema.ResourceData, v in
 
 func getObjectWantempSystemSdwanZone(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("minimum_sla_meet_members"); ok || d.HasChange("minimum_sla_meet_members") {
+		t, err := expandWantempSystemSdwanZoneMinimumSlaMeetMembers(d, v, "minimum_sla_meet_members")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["minimum-sla-meet-members"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("name"); ok || d.HasChange("name") {
 		t, err := expandWantempSystemSdwanZoneName(d, v, "name")

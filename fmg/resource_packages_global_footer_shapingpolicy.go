@@ -29,6 +29,11 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 		},
 
 		Schema: map[string]*schema.Schema{
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"pkg": &schema.Schema{
 				Type:     schema.TypeString,
 				Required: true,
@@ -64,10 +69,12 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"cos": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"cos_mask": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"diffserv_forward": &schema.Schema{
 				Type:     schema.TypeString,
@@ -227,6 +234,7 @@ func resourcePackagesGlobalFooterShapingPolicy() *schema.Resource {
 			"traffic_type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"url_category": &schema.Schema{
 				Type:     schema.TypeString,
@@ -257,7 +265,9 @@ func resourcePackagesGlobalFooterShapingPolicyCreate(d *schema.ResourceData, m i
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterShapingPolicy(d)
@@ -294,7 +304,9 @@ func resourcePackagesGlobalFooterShapingPolicyUpdate(d *schema.ResourceData, m i
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	obj, err := getObjectPackagesGlobalFooterShapingPolicy(d)
@@ -324,7 +336,9 @@ func resourcePackagesGlobalFooterShapingPolicyDelete(d *schema.ResourceData, m i
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	err = c.DeletePackagesGlobalFooterShapingPolicy(mkey, paradict)
@@ -347,13 +361,21 @@ func resourcePackagesGlobalFooterShapingPolicyRead(d *schema.ResourceData, m int
 	adomv, err := "global", fmt.Errorf("")
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
 	pkg := d.Get("pkg").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
 	if pkg == "" {
 		pkg = importOptionChecking(m.(*FortiClient).Cfg, "pkg")
+		if pkg == "" {
+			return fmt.Errorf("Parameter pkg is missing")
+		}
 		if err = d.Set("pkg", pkg); err != nil {
 			return fmt.Errorf("Error set params pkg: %v", err)
 		}
 	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 	paradict["pkg"] = pkg
 
 	o, err := c.ReadPackagesGlobalFooterShapingPolicy(mkey, paradict)

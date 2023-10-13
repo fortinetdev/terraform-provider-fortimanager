@@ -76,6 +76,7 @@ The following arguments are supported:
 
 * `scopetype` - The scope of application of the resource. Valid values: `inherit`, `adom`. The `inherit` means that the scopetype of the provider will be inherited, and adom will also be inherited. The default value is `inherit`.
 * `adom` - Adom. This value is valid only when the `scopetype` is `adom`, otherwise the value of adom in the provider will be inherited.
+* `pkg_folder_path` - Pkg Folder Path.
 * `pkg` - Package.
 
 * `_policy_block` - Assigned policy block.  When this attribute is set, the policy represent a policy block, and all other attributes are ignored. This attribute is not available when configuring policy inside a policy block.
@@ -100,6 +101,7 @@ The following arguments are supported:
 
 * `captive_portal_exempt` - Enable to exempt some users from the captive portal. Valid values: `disable`, `enable`.
 
+* `casb_profile` - Name of an existing CASB profile.
 * `capture_packet` - Enable/disable capture packets. Valid values: `disable`, `enable`.
 
 * `cgn_eif` - Enable/Disable CGN endpoint independent filtering. Valid values: `disable`, `enable`.
@@ -343,6 +345,7 @@ The following arguments are supported:
 
 * `uuid` - Universally Unique Identifier (UUID; automatically assigned but can be manually reset).
 * `videofilter_profile` - Name of an existing VideoFilter profile.
+* `virtual_patch_profile` - Name of an existing virtual-patch profile.
 * `vlan_cos_fwd` - VLAN forward direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_cos_rev` - VLAN reverse direction user priority: 255 passthrough, 0 lowest, 7 highest.
 * `vlan_filter` - Set VLAN filters.
@@ -405,7 +408,7 @@ In addition to all the above arguments, the following attributes are exported:
 
 Packages FirewallPolicy can be imported using any of these accepted formats:
 ```
-Set import_options = ["pkg=mypkg"] in the provider section.
+Set import_options = ["pkg_folder_path=YOUR_VALUE", "pkg=YOUR_VALUE"] in the provider section.
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
 $ terraform import fortimanager_packages_firewall_policy.labelname {{policyid}}

@@ -147,6 +147,10 @@ func resourceSystemHa() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"vip_interface": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"vrrp_adv_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -454,6 +458,10 @@ func flattenSystemHaVipSha(v interface{}, d *schema.ResourceData, pre string) in
 	return v
 }
 
+func flattenSystemHaVipInterfaceSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenSystemHaVrrpAdvIntervalSha(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -638,6 +646,16 @@ func refreshObjectSystemHa(d *schema.ResourceData, o map[string]interface{}) err
 			}
 		} else {
 			return fmt.Errorf("Error reading vip: %v", err)
+		}
+	}
+
+	if err = d.Set("vip_interface", flattenSystemHaVipInterfaceSha(o["vip-interface"], d, "vip_interface")); err != nil {
+		if vv, ok := fortiAPIPatch(o["vip-interface"], "SystemHa-VipInterface"); ok {
+			if err = d.Set("vip_interface", vv); err != nil {
+				return fmt.Errorf("Error reading vip_interface: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading vip_interface: %v", err)
 		}
 	}
 
@@ -861,6 +879,10 @@ func expandSystemHaVipSha(d *schema.ResourceData, v interface{}, pre string) (in
 	return v, nil
 }
 
+func expandSystemHaVipInterfaceSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandSystemHaVrrpAdvIntervalSha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -995,6 +1017,15 @@ func getObjectSystemHa(d *schema.ResourceData) (*map[string]interface{}, error) 
 			return &obj, err
 		} else if t != nil {
 			obj["vip"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("vip_interface"); ok || d.HasChange("vip_interface") {
+		t, err := expandSystemHaVipInterfaceSha(d, v, "vip_interface")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["vip-interface"] = t
 		}
 	}
 

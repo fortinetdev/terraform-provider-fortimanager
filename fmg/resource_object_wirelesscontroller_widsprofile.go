@@ -98,6 +98,18 @@ func resourceObjectWirelessControllerWidsProfile() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"ap_scan_channel_list_2g_5g": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
+			"ap_scan_channel_list_6g": &schema.Schema{
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
+				Optional: true,
+				Computed: true,
+			},
 			"ap_scan_passive": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -456,6 +468,14 @@ func flattenObjectWirelessControllerWidsProfileApScan(v interface{}, d *schema.R
 	return v
 }
 
+func flattenObjectWirelessControllerWidsProfileApScanChannelList2G5G(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
+func flattenObjectWirelessControllerWidsProfileApScanChannelList6G(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return flattenStringList(v)
+}
+
 func flattenObjectWirelessControllerWidsProfileApScanPassive(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -736,6 +756,26 @@ func refreshObjectObjectWirelessControllerWidsProfile(d *schema.ResourceData, o 
 			}
 		} else {
 			return fmt.Errorf("Error reading ap_scan: %v", err)
+		}
+	}
+
+	if err = d.Set("ap_scan_channel_list_2g_5g", flattenObjectWirelessControllerWidsProfileApScanChannelList2G5G(o["ap-scan-channel-list-2G-5G"], d, "ap_scan_channel_list_2g_5g")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ap-scan-channel-list-2G-5G"], "ObjectWirelessControllerWidsProfile-ApScanChannelList2G5G"); ok {
+			if err = d.Set("ap_scan_channel_list_2g_5g", vv); err != nil {
+				return fmt.Errorf("Error reading ap_scan_channel_list_2g_5g: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ap_scan_channel_list_2g_5g: %v", err)
+		}
+	}
+
+	if err = d.Set("ap_scan_channel_list_6g", flattenObjectWirelessControllerWidsProfileApScanChannelList6G(o["ap-scan-channel-list-6G"], d, "ap_scan_channel_list_6g")); err != nil {
+		if vv, ok := fortiAPIPatch(o["ap-scan-channel-list-6G"], "ObjectWirelessControllerWidsProfile-ApScanChannelList6G"); ok {
+			if err = d.Set("ap_scan_channel_list_6g", vv); err != nil {
+				return fmt.Errorf("Error reading ap_scan_channel_list_6g: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading ap_scan_channel_list_6g: %v", err)
 		}
 	}
 
@@ -1186,6 +1226,14 @@ func expandObjectWirelessControllerWidsProfileApScan(d *schema.ResourceData, v i
 	return v, nil
 }
 
+func expandObjectWirelessControllerWidsProfileApScanChannelList2G5G(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
+func expandObjectWirelessControllerWidsProfileApScanChannelList6G(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return expandStringList(v.(*schema.Set).List()), nil
+}
+
 func expandObjectWirelessControllerWidsProfileApScanPassive(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1450,6 +1498,24 @@ func getObjectObjectWirelessControllerWidsProfile(d *schema.ResourceData) (*map[
 			return &obj, err
 		} else if t != nil {
 			obj["ap-scan"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ap_scan_channel_list_2g_5g"); ok || d.HasChange("ap_scan_channel_list_2g_5g") {
+		t, err := expandObjectWirelessControllerWidsProfileApScanChannelList2G5G(d, v, "ap_scan_channel_list_2g_5g")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ap-scan-channel-list-2G-5G"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("ap_scan_channel_list_6g"); ok || d.HasChange("ap_scan_channel_list_6g") {
+		t, err := expandObjectWirelessControllerWidsProfileApScanChannelList6G(d, v, "ap_scan_channel_list_6g")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["ap-scan-channel-list-6G"] = t
 		}
 	}
 

@@ -37,6 +37,8 @@ The following arguments are supported:
 * `fsa_custom_field1` - Name of custom log field to index.
 * `fwb_custom_field1` - Name of custom log field to index.
 * `browse_max_logfiles` - Maximum number of log files for each log browse attempt for each Adom.
+* `device_auto_detect` - Enable/Disable looking up device ID in syslog received with no encryption. disable - Disable looking up device ID in syslog received with no encryption. enable - Enable looking up device ID in syslog received with no encryption. Valid values: `disable`, `enable`.
+
 * `dns_resolve_dstip` - Enable/Disable resolving destination IP by DNS. disable - Disable resolving destination IP by DNS. enable - Enable resolving destination IP by DNS. Valid values: `disable`, `enable`.
 
 * `download_max_logs` - Maximum number of logs for each log download attempt.
@@ -51,6 +53,8 @@ The following arguments are supported:
 * `rolling_local` - Rolling-Local. The structure of `rolling_local` block is documented below.
 * `rolling_regular` - Rolling-Regular. The structure of `rolling_regular` block is documented below.
 * `sync_search_timeout` - Maximum number of seconds for running a log search session in synchronous mode.
+* `unencrypted_logging` - Enable/Disable receiving syslog through UDP(514) or TCP(514) un-encrypted. disable - Disable receiving syslog through UDP(514) or TCP(514) un-encrypted. enable - Enable receiving syslog through UDP(514) or TCP(514) un-encrypted. Valid values: `disable`, `enable`.
+
 
 The `rolling_analyzer` block supports:
 

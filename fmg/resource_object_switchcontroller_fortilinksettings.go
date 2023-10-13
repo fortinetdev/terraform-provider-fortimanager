@@ -45,6 +45,11 @@ func resourceObjectSwitchControllerFortilinkSettings() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"access_vlan_mode": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"fortilink": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -70,6 +75,7 @@ func resourceObjectSwitchControllerFortilinkSettings() *schema.Resource {
 						"bounce_nac_port": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"lan_segment": &schema.Schema{
 							Type:     schema.TypeString,
@@ -224,6 +230,10 @@ func resourceObjectSwitchControllerFortilinkSettingsRead(d *schema.ResourceData,
 	return nil
 }
 
+func flattenObjectSwitchControllerFortilinkSettingsAccessVlanMode(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectSwitchControllerFortilinkSettingsFortilink(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -297,7 +307,7 @@ func flattenObjectSwitchControllerFortilinkSettingsNacPortsMemberChange(v interf
 }
 
 func flattenObjectSwitchControllerFortilinkSettingsNacPortsNacLanInterface(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSwitchControllerFortilinkSettingsNacPortsNacSegmentVlans(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -305,7 +315,7 @@ func flattenObjectSwitchControllerFortilinkSettingsNacPortsNacSegmentVlans(v int
 }
 
 func flattenObjectSwitchControllerFortilinkSettingsNacPortsOnboardingVlan(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return conv2str(v)
 }
 
 func flattenObjectSwitchControllerFortilinkSettingsNacPortsParentKey(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -321,6 +331,16 @@ func refreshObjectObjectSwitchControllerFortilinkSettings(d *schema.ResourceData
 
 	if stValue := d.Get("scopetype"); stValue == "" {
 		d.Set("scopetype", "inherit")
+	}
+
+	if err = d.Set("access_vlan_mode", flattenObjectSwitchControllerFortilinkSettingsAccessVlanMode(o["access-vlan-mode"], d, "access_vlan_mode")); err != nil {
+		if vv, ok := fortiAPIPatch(o["access-vlan-mode"], "ObjectSwitchControllerFortilinkSettings-AccessVlanMode"); ok {
+			if err = d.Set("access_vlan_mode", vv); err != nil {
+				return fmt.Errorf("Error reading access_vlan_mode: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading access_vlan_mode: %v", err)
+		}
 	}
 
 	if err = d.Set("fortilink", flattenObjectSwitchControllerFortilinkSettingsFortilink(o["fortilink"], d, "fortilink")); err != nil {
@@ -394,6 +414,10 @@ func flattenObjectSwitchControllerFortilinkSettingsFortiTestDebug(d *schema.Reso
 	log.Printf(strconv.Itoa(fosdebugsn))
 	e := validation.IntBetween(fosdebugbeg, fosdebugend)
 	log.Printf("ER List: %v", e)
+}
+
+func expandObjectSwitchControllerFortilinkSettingsAccessVlanMode(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
 }
 
 func expandObjectSwitchControllerFortilinkSettingsFortilink(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -484,6 +508,15 @@ func expandObjectSwitchControllerFortilinkSettingsName(d *schema.ResourceData, v
 
 func getObjectObjectSwitchControllerFortilinkSettings(d *schema.ResourceData) (*map[string]interface{}, error) {
 	obj := make(map[string]interface{})
+
+	if v, ok := d.GetOk("access_vlan_mode"); ok || d.HasChange("access_vlan_mode") {
+		t, err := expandObjectSwitchControllerFortilinkSettingsAccessVlanMode(d, v, "access_vlan_mode")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["access-vlan-mode"] = t
+		}
+	}
 
 	if v, ok := d.GetOk("fortilink"); ok || d.HasChange("fortilink") {
 		t, err := expandObjectSwitchControllerFortilinkSettingsFortilink(d, v, "fortilink")

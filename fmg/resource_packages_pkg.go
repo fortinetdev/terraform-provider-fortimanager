@@ -45,6 +45,11 @@ func resourcePackagesPkg() *schema.Resource {
 				Optional: true,
 				ForceNew: true,
 			},
+			"pkg_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				ForceNew: true,
+			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
 				ForceNew: true,
@@ -167,18 +172,6 @@ func resourcePackagesPkg() *schema.Resource {
 					},
 				},
 			},
-			"subobj": &schema.Schema{
-				Type:     schema.TypeList,
-				Optional: true,
-				Elem: &schema.Resource{
-					Schema: map[string]*schema.Schema{
-						"name": &schema.Schema{
-							Type:     schema.TypeString,
-							Optional: true,
-						},
-					},
-				},
-			},
 			"type": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -187,6 +180,14 @@ func resourcePackagesPkg() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 				Default:  "false",
+			},
+			"output_folder_path": &schema.Schema{
+				Type:     schema.TypeString,
+				Computed: true,
+			},
+			"output_pkg_name": &schema.Schema{
+				Type:     schema.TypeString,
+				Computed: true,
 			},
 		},
 	}
@@ -203,6 +204,9 @@ func resourcePackagesPkgCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
 	paradict["adom"] = adomv
+
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 
 	obj, err := getObjectPackagesPkg(d)
 	if err != nil {
@@ -232,6 +236,9 @@ func resourcePackagesPkgUpdate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error adom configuration: %v", err)
 	}
 	paradict["adom"] = adomv
+
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
 
 	obj, err := getObjectPackagesPkg(d)
 	if err != nil {
@@ -264,6 +271,9 @@ func resourcePackagesPkgDelete(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
+
 	err = c.DeletePackagesPkg(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error deleting PackagesPkg resource: %v", err)
@@ -288,6 +298,12 @@ func resourcePackagesPkgRead(d *schema.ResourceData, m interface{}) error {
 	}
 	paradict["adom"] = adomv
 
+	pkg_folder_path := d.Get("pkg_folder_path").(string)
+	if pkg_folder_path == "" {
+		pkg_folder_path = importOptionChecking(m.(*FortiClient).Cfg, "pkg_folder_path")
+	}
+	paradict["pkg_folder_path"] = formatPath(pkg_folder_path)
+
 	o, err := c.ReadPackagesPkg(mkey, paradict)
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesPkg resource: %v", err)
@@ -303,6 +319,19 @@ func resourcePackagesPkgRead(d *schema.ResourceData, m interface{}) error {
 	if err != nil {
 		return fmt.Errorf("Error reading PackagesPkg resource from API: %v", err)
 	}
+
+	pkg_type := d.Get("type").(string)
+	if pkg_type == "folder" {
+		d.Set("output_folder_path", formatPath(fmt.Sprintf("%s/%s", pkg_folder_path, d.Get("name").(string))))
+		d.Set("output_pkg_name", "")
+	} else if pkg_type == "pkg" {
+		d.Set("output_folder_path", formatPath(pkg_folder_path))
+		d.Set("output_pkg_name", d.Get("name").(string))
+	} else {
+		d.Set("output_folder_path", "")
+		d.Set("output_pkg_name", "")
+	}
+
 	return nil
 }
 
@@ -526,43 +555,6 @@ func flattenPackagesPkgScopeMemberVdom(v interface{}, d *schema.ResourceData, pr
 	return v
 }
 
-func flattenPackagesPkgSubobj(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
-	if v == nil {
-		return nil
-	}
-
-	l := v.([]interface{})
-	if len(l) == 0 || l[0] == nil {
-		return nil
-	}
-
-	result := make([]map[string]interface{}, 0, len(l))
-
-	con := 0
-	for _, r := range l {
-		tmp := make(map[string]interface{})
-		i := r.(map[string]interface{})
-
-		pre_append := "" // table
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := i["name"]; ok {
-			v := flattenPackagesPkgSubobjName(i["name"], d, pre_append)
-			tmp["name"] = fortiAPISubPartPatch(v, "PackagesPkg-Subobj-Name")
-		}
-
-		result = append(result, tmp)
-
-		con += 1
-	}
-
-	return result
-}
-
-func flattenPackagesPkgSubobjName(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
-}
-
 func flattenPackagesPkgType(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -675,30 +667,6 @@ func refreshObjectPackagesPkg(d *schema.ResourceData, o map[string]interface{}) 
 					}
 				} else {
 					return fmt.Errorf("Error reading scopemember: %v", err)
-				}
-			}
-		}
-	}
-
-	if isImportTable() {
-		if err = d.Set("subobj", flattenPackagesPkgSubobj(o["subobj"], d, "subobj")); err != nil {
-			if vv, ok := fortiAPIPatch(o["subobj"], "PackagesPkg-Subobj"); ok {
-				if err = d.Set("subobj", vv); err != nil {
-					return fmt.Errorf("Error reading subobj: %v", err)
-				}
-			} else {
-				return fmt.Errorf("Error reading subobj: %v", err)
-			}
-		}
-	} else {
-		if _, ok := d.GetOk("subobj"); ok {
-			if err = d.Set("subobj", flattenPackagesPkgSubobj(o["subobj"], d, "subobj")); err != nil {
-				if vv, ok := fortiAPIPatch(o["subobj"], "PackagesPkg-Subobj"); ok {
-					if err = d.Set("subobj", vv); err != nil {
-						return fmt.Errorf("Error reading subobj: %v", err)
-					}
-				} else {
-					return fmt.Errorf("Error reading subobj: %v", err)
 				}
 			}
 		}
@@ -923,37 +891,6 @@ func expandPackagesPkgScopeMemberVdom(d *schema.ResourceData, v interface{}, pre
 	return v, nil
 }
 
-func expandPackagesPkgSubobj(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	l := v.([]interface{})
-	result := make([]map[string]interface{}, 0, len(l))
-
-	if len(l) == 0 || l[0] == nil {
-		return result, nil
-	}
-
-	con := 0
-	for _, r := range l {
-		tmp := make(map[string]interface{})
-		i := r.(map[string]interface{})
-		pre_append := "" // table
-
-		pre_append = pre + "." + strconv.Itoa(con) + "." + "name"
-		if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
-			tmp["name"], _ = expandPackagesPkgSubobjName(d, i["name"], pre_append)
-		}
-
-		result = append(result, tmp)
-
-		con += 1
-	}
-
-	return result, nil
-}
-
-func expandPackagesPkgSubobjName(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
-}
-
 func expandPackagesPkgType(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -1012,15 +949,6 @@ func getObjectPackagesPkg(d *schema.ResourceData) (*map[string]interface{}, erro
 			return &obj, err
 		} else if t != nil {
 			obj["scope member"] = t
-		}
-	}
-
-	if v, ok := d.GetOk("subobj"); ok || d.HasChange("subobj") {
-		t, err := expandPackagesPkgSubobj(d, v, "subobj")
-		if err != nil {
-			return &obj, err
-		} else if t != nil {
-			obj["subobj"] = t
 		}
 	}
 

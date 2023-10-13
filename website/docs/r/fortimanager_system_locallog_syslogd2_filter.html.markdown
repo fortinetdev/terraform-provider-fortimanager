@@ -26,6 +26,8 @@ The following arguments are supported:
 
 * `aid` - Log aid messages. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
+* `controller` - Controller application generic messages. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
+
 * `devcfg` - Log device configuration message. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.
 
 * `devops` - Managered devices operations messages. disable - Disable setting. enable - Enable setting. Valid values: `disable`, `enable`.

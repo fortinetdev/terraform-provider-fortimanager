@@ -24,7 +24,7 @@ The following arguments are supported:
 ## Attribute Reference
 
 In addition to all the above arguments, the following attributes are exported:
-* `id` - an identifier for the resource.
+* `id` - an identifier for the resource with format {{cipher}}.
 
 ## Import
 
@@ -32,7 +32,7 @@ System GlobalSslCipherSuites can be imported using any of these accepted formats
 ```
 
 $ export "FORTIMANAGER_IMPORT_TABLE"="true"
-$ terraform import fortimanager_system_global_sslciphersuites.labelname SystemGlobalSslCipherSuites
+$ terraform import fortimanager_system_global_sslciphersuites.labelname {{cipher}}
 $ unset "FORTIMANAGER_IMPORT_TABLE"
 ```
 

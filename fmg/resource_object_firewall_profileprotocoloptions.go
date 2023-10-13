@@ -71,6 +71,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 												"action": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"comment": &schema.Schema{
 													Type:     schema.TypeString,
@@ -79,6 +80,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 												"direction": &schema.Schema{
 													Type:     schema.TypeString,
 													Optional: true,
+													Computed: true,
 												},
 												"file_type": &schema.Schema{
 													Type:     schema.TypeSet,
@@ -483,6 +485,7 @@ func resourceObjectFirewallProfileProtocolOptions() *schema.Resource {
 						"unknown_content_encoding": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"unknown_http_version": &schema.Schema{
 							Type:     schema.TypeString,

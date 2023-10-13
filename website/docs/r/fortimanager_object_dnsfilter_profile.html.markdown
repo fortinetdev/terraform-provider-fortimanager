@@ -49,6 +49,7 @@ The following arguments are supported:
 
 * `sdns_ftgd_err_log` - Enable/disable FortiGuard SDNS rating error logging. Valid values: `disable`, `enable`.
 
+* `transparent_dns_database` - Transparent DNS database zones.
 * `youtube_restrict` - Set safe search for YouTube restriction level. Valid values: `strict`, `moderate`.
 
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.
