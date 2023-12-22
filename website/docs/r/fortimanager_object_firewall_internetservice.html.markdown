@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_firewall_internetservice
 Show Internet Service application.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entry`: `fortimanager_object_firewall_internetservice_entry`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetservice" "trname" {
+  name  = "Google-DNS"
+  fosid = 65539
+}
+```
+
 ## Argument Reference
 
 

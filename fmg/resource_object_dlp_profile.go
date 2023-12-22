@@ -433,7 +433,9 @@ func flattenObjectDlpProfileRule(v interface{}, d *schema.ResourceData, pre stri
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectDlpProfile-Rule-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -760,7 +762,9 @@ func expandObjectDlpProfileRule(d *schema.ResourceData, v interface{}, pre strin
 			tmp["type"], _ = expandObjectDlpProfileRuleType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

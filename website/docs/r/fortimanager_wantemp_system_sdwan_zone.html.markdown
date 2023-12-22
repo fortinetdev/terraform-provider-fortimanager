@@ -9,6 +9,27 @@ description: |-
 # fortimanager_wantemp_system_sdwan_zone
 Configure SD-WAN zones.
 
+~> This resource is a sub resource for variable `zone` of resource `fortimanager_wantemp_system_sdwan`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_zone" "trname" {
+  name                  = "zone"
+  service_sla_tie_break = "cfg-order"
+  wanprof               = fortimanager_wan_template.trname.name
+  depends_on            = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wan_template" "trname" {
+  name = "template"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

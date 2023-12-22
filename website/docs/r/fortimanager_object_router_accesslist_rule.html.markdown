@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_router_accesslist_rule
 Rule.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_router_accesslist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_accesslist_rule" "trname" {
+  access_list = fortimanager_object_router_accesslist.trname.name
+  action      = "permit"
+  fosid       = 1
+  depends_on  = [fortimanager_object_router_accesslist.trname]
+}
+
+resource "fortimanager_object_router_accesslist" "trname" {
+  name = "terr-router-accesslist"
+}
+```
+
 ## Argument Reference
 
 

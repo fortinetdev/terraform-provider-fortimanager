@@ -240,7 +240,9 @@ func flattenObjectDynamicCertificateLocalDynamicMapping(v interface{}, d *schema
 			tmp["local_cert"] = fortiAPISubPartPatch(v, "ObjectDynamicCertificateLocal-DynamicMapping-LocalCert")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -279,7 +281,9 @@ func flattenObjectDynamicCertificateLocalDynamicMappingScope(v interface{}, d *s
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectDynamicCertificateLocalDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -400,7 +404,9 @@ func expandObjectDynamicCertificateLocalDynamicMapping(d *schema.ResourceData, v
 			tmp["local-cert"], _ = expandObjectDynamicCertificateLocalDynamicMappingLocalCert(d, i["local_cert"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -432,7 +438,9 @@ func expandObjectDynamicCertificateLocalDynamicMappingScope(d *schema.ResourceDa
 			tmp["vdom"], _ = expandObjectDynamicCertificateLocalDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

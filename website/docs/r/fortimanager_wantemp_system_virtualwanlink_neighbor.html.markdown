@@ -9,6 +9,10 @@ description: |-
 # fortimanager_wantemp_system_virtualwanlink_neighbor
 Create SD-WAN neighbor from BGP neighbor table to control route advertisements according to SLA status.
 
+~> This resource is a sub resource for variable `neighbor` of resource `fortimanager_wantemp_system_virtualwanlink`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

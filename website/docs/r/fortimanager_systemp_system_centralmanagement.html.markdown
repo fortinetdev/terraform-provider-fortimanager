@@ -9,6 +9,20 @@ description: |-
 # fortimanager_systemp_system_centralmanagement
 Configure central management.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`server_list`: `fortimanager_systemp_system_centralmanagement_serverlist`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_centralmanagement" "trname" {
+  devprof                 = "default"
+  include_default_servers = "disable"
+}
+```
+
 ## Argument Reference
 
 

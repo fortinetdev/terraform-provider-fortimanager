@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_firewall_accessproxy_apigateway_realservers
 Select the real servers that this Access Proxy will distribute traffic to.
 
+~> This resource is a sub resource for variable `realservers` of resource `fortimanager_object_firewall_accessproxy_apigateway`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy_apigateway_realservers" "trname" {
+  access_proxy       = fortimanager_object_firewall_accessproxy.trname.name
+  api_gateway        = fortimanager_object_firewall_accessproxy_apigateway.trname.fosid
+  health_check       = "enable"
+  health_check_proto = "ping"
+  fosid              = 2
+  ip                 = "2.3.4.5"
+  depends_on         = [fortimanager_object_firewall_accessproxy_apigateway.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy_apigateway" "trname" {
+  fosid        = 1
+  access_proxy = fortimanager_object_firewall_accessproxy.trname.name
+  depends_on   = [fortimanager_object_firewall_accessproxy.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy" "trname" {
+  name = "terr-accessproxy"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_switchcontroller_fortilinksettings_nacports
 NAC specific configuration.
 
+~> This resource is a sub resource for variable `nac_ports` of resource `fortimanager_object_switchcontroller_fortilinksettings`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

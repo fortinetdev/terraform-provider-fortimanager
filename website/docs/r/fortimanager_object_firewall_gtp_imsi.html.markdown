@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_gtp_imsi
 IMSI.
 
+~> This resource is a sub resource for variable `imsi` of resource `fortimanager_object_firewall_gtp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

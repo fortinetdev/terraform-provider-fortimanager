@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_fsp_vlan_interface_ipv6
 IPv6 of interface.
 
+~> This resource is a sub resource for variable `ipv6` of resource `fortimanager_object_fsp_vlan_interface`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ip6_delegated_prefix_list`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6delegatedprefixlist`
+`ip6_extra_addr`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6extraaddr`
+`ip6_prefix_list`: `fortimanager_object_fsp_vlan_interface_ipv6_ip6prefixlist`
+`vrrp6`: `fortimanager_object_fsp_vlan_interface_ipv6_vrrp6`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_fsp_vlan_interface_ipv6" "trname" {
+  vlan       = fortimanager_object_fsp_vlan.trname.name
+  autoconf   = "enable"
+  depends_on = [fortimanager_object_fsp_vlan.trname]
+}
+
+resource "fortimanager_object_fsp_vlan" "trname" {
+  name   = "terr-fsp-vlan"
+  vlanid = 101
+}
+```
+
 ## Argument Reference
 
 

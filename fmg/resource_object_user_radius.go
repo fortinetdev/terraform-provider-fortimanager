@@ -1025,7 +1025,9 @@ func flattenObjectUserRadiusAccountingServer(v interface{}, d *schema.ResourceDa
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectUserRadius-AccountingServer-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1666,7 +1668,9 @@ func flattenObjectUserRadiusDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["username_case_sensitive"] = fortiAPISubPartPatch(v, "ObjectUserRadius-DynamicMapping-UsernameCaseSensitive")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1705,7 +1709,9 @@ func flattenObjectUserRadiusDynamicMappingScope(v interface{}, d *schema.Resourc
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1800,7 +1806,9 @@ func flattenObjectUserRadiusDynamicMappingAccountingServer(v interface{}, d *sch
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectUserRadiusDynamicMapping-AccountingServer-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3042,7 +3050,9 @@ func expandObjectUserRadiusAccountingServer(d *schema.ResourceData, v interface{
 			tmp["status"], _ = expandObjectUserRadiusAccountingServerStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3597,7 +3607,9 @@ func expandObjectUserRadiusDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["username-case-sensitive"], _ = expandObjectUserRadiusDynamicMappingUsernameCaseSensitive(d, i["username_case_sensitive"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3629,7 +3641,9 @@ func expandObjectUserRadiusDynamicMappingScope(d *schema.ResourceData, v interfa
 			tmp["vdom"], _ = expandObjectUserRadiusDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3707,7 +3721,9 @@ func expandObjectUserRadiusDynamicMappingAccountingServer(d *schema.ResourceData
 			tmp["status"], _ = expandObjectUserRadiusDynamicMappingAccountingServerStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

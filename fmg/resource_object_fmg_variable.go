@@ -244,7 +244,9 @@ func flattenObjectFmgVariableDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectFmgVariable-DynamicMapping-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -283,7 +285,9 @@ func flattenObjectFmgVariableDynamicMappingScope(v interface{}, d *schema.Resour
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFmgVariableDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -418,7 +422,9 @@ func expandObjectFmgVariableDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["value"], _ = expandObjectFmgVariableDynamicMappingValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -450,7 +456,9 @@ func expandObjectFmgVariableDynamicMappingScope(d *schema.ResourceData, v interf
 			tmp["vdom"], _ = expandObjectFmgVariableDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

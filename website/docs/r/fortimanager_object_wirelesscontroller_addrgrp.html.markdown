@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wirelesscontroller_addrgrp
 Configure the MAC address group.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_addrgrp" "trname" {
+  fosid          = 1
+  default_policy = "deny"
+}
+```
+
 ## Argument Reference
 
 

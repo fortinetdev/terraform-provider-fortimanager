@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_webfilter_profile_antiphish_inspectionentries
 AntiPhishing entries.
 
+~> This resource is a sub resource for variable `inspection_entries` of resource `fortimanager_object_webfilter_profile_antiphish`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_profile_antiphish_inspectionentries" "trname" {
+  action     = "log"
+  name       = "terr-inspectionentries"
+  profile    = fortimanager_object_webfilter_profile.trname4.name
+  depends_on = [fortimanager_object_webfilter_profile.trname4]
+}
+
+resource "fortimanager_object_webfilter_profile" "trname4" {
+  name = "terr-webfilter-profile4"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,16 @@ description: |-
 # fortimanager_systemp_log_fortianalyzercloud_setting
 Global FortiAnalyzer Cloud settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_log_fortianalyzercloud_setting" "trname" {
+  devprof       = "default"
+  access_config = "enable"
+  conn_timeout  = 120
+}
+```
+
 ## Argument Reference
 
 

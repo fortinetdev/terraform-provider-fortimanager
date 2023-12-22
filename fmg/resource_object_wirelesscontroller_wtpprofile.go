@@ -2312,7 +2312,9 @@ func flattenObjectWirelessControllerWtpProfileDenyMacList(v interface{}, d *sche
 			tmp["mac"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerWtpProfile-DenyMacList-Mac")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6175,7 +6177,9 @@ func flattenObjectWirelessControllerWtpProfileSplitTunnelingAcl(v interface{}, d
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerWtpProfile-SplitTunnelingAcl-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6935,7 +6939,9 @@ func expandObjectWirelessControllerWtpProfileDenyMacList(d *schema.ResourceData,
 			tmp["mac"], _ = expandObjectWirelessControllerWtpProfileDenyMacListMac(d, i["mac"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -10395,7 +10401,9 @@ func expandObjectWirelessControllerWtpProfileSplitTunnelingAcl(d *schema.Resourc
 			tmp["id"], _ = expandObjectWirelessControllerWtpProfileSplitTunnelingAclId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

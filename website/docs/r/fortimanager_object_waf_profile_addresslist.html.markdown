@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_waf_profile_addresslist
 Black address list and white address list.
 
+~> This resource is a sub resource for variable `address_list` of resource `fortimanager_object_waf_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_addresslist" "trname" {
+  blocked_log = "enable"
+  profile     = fortimanager_object_waf_profile.trname.name
+  depends_on  = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

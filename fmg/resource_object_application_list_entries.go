@@ -427,7 +427,9 @@ func flattenObjectApplicationListEntriesParameters2edl(v interface{}, d *schema.
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntries-Parameters-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -476,7 +478,9 @@ func flattenObjectApplicationListEntriesParametersMembers2edl(v interface{}, d *
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntriesParameters-Members-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -928,7 +932,9 @@ func expandObjectApplicationListEntriesParameters2edl(d *schema.ResourceData, v 
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersValue2edl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -969,7 +975,9 @@ func expandObjectApplicationListEntriesParametersMembers2edl(d *schema.ResourceD
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersMembersValue2edl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

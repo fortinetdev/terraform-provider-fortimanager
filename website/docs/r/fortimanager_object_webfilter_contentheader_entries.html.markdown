@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_webfilter_contentheader_entries
 Configure content types used by web filter.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_webfilter_contentheader`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_contentheader_entries" "trname" {
+  category       = 2
+  pattern        = "abc"
+  content_header = fortimanager_object_webfilter_contentheader.trname.fosid
+  depends_on     = [fortimanager_object_webfilter_contentheader.trname]
+}
+
+resource "fortimanager_object_webfilter_contentheader" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 4
+  name    = "terr-webfilter-content-header3"
+}
+```
+
 ## Argument Reference
 
 

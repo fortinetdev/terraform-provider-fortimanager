@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_alert
 SMS alert list.
 
+~> This resource is a sub resource for variable `alert` of resource `fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_alert" "trname" {
+  os_image_fallback  = "os_image_fallback"
+  session_disconnect = "session_disconnect"
+  system_reboot      = "reboot"
+  extender_profile   = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on         = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

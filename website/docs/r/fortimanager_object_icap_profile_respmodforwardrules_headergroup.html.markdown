@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_icap_profile_respmodforwardrules_headergroup
 HTTP header group.
 
+~> This resource is a sub resource for variable `header_group` of resource `fortimanager_object_icap_profile_respmodforwardrules`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

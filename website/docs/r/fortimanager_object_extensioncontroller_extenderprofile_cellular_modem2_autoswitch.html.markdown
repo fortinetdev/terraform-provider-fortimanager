@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_cellular_modem2_autoswitch
 FortiExtender auto switch configuration.
 
+~> This resource is a sub resource for variable `auto_switch` of resource `fortimanager_object_extensioncontroller_extenderprofile_cellular_modem2`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_sql_customindex
 List of SQL index fields.
 
+~> This resource is a sub resource for variable `custom_index` of resource `fortimanager_system_sql`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

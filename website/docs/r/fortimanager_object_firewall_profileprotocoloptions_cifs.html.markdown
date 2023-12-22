@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions_cifs
 Configure CIFS protocol options.
 
+~> This resource is a sub resource for variable `cifs` of resource `fortimanager_object_firewall_profileprotocoloptions`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`file_filter`: `fortimanager_object_firewall_profileprotocoloptions_cifs_filefilter`
+`server_keytab`: `fortimanager_object_firewall_profileprotocoloptions_cifs_serverkeytab`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions_cifs" "trname" {
+  profile_protocol_options = fortimanager_object_firewall_profileprotocoloptions.trname.name
+  options                  = ["oversize"]
+  oversize_limit           = 200
+  ports                    = [445]
+  depends_on               = [fortimanager_object_firewall_profileprotocoloptions.trname]
+}
+
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  name = "terr-profileprotocoloptions"
+}
+```
+
 ## Argument Reference
 
 

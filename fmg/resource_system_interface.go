@@ -407,7 +407,9 @@ func flattenSystemInterfaceMember(v interface{}, d *schema.ResourceData, pre str
 			tmp["interface_name"] = fortiAPISubPartPatch(v, "SystemInterface-Member-InterfaceName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -848,7 +850,9 @@ func expandSystemInterfaceMember(d *schema.ResourceData, v interface{}, pre stri
 			tmp["interface-name"], _ = expandSystemInterfaceMemberInterfaceName(d, i["interface_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

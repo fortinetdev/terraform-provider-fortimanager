@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_webfilter_profile_ftgdwf_filters
 FortiGuard filters.
 
+~> This resource is a sub resource for variable `filters` of resource `fortimanager_object_webfilter_profile_ftgdwf`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_profile_ftgdwf_filters" "trname" {
+  action     = "block"
+  fosid      = 1
+  log        = "enable"
+  depends_on = [fortimanager_object_webfilter_profile.trname]
+  profile    = fortimanager_object_webfilter_profile.trname.name
+}
+
+resource "fortimanager_object_webfilter_profile" "trname" {
+  name = "terr-webfilter-profile3"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_switchcontroller_acl_ingress
 Configure ingress ACL policies to be applied on managed FortiSwitch ports.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`action`: `fortimanager_object_switchcontroller_acl_ingress_action`
+`classifier`: `fortimanager_object_switchcontroller_acl_ingress_classifier`
+
+
+
 ## Argument Reference
 
 

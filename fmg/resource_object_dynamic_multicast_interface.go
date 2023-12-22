@@ -261,7 +261,9 @@ func flattenObjectDynamicMulticastInterfaceDynamicMapping(v interface{}, d *sche
 			tmp["local_intf"] = fortiAPISubPartPatch(v, "ObjectDynamicMulticastInterface-DynamicMapping-LocalIntf")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -300,7 +302,9 @@ func flattenObjectDynamicMulticastInterfaceDynamicMappingScope(v interface{}, d 
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectDynamicMulticastInterfaceDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -463,7 +467,9 @@ func expandObjectDynamicMulticastInterfaceDynamicMapping(d *schema.ResourceData,
 			tmp["local-intf"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingLocalIntf(d, i["local_intf"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -495,7 +501,9 @@ func expandObjectDynamicMulticastInterfaceDynamicMappingScope(d *schema.Resource
 			tmp["vdom"], _ = expandObjectDynamicMulticastInterfaceDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

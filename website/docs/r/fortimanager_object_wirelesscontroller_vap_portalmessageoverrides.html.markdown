@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_vap_portalmessageoverrides
 Individual message overrides.
 
+~> This resource is a sub resource for variable `portal_message_overrides` of resource `fortimanager_object_wirelesscontroller_vap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_vap_portalmessageoverrides" "trname" {
+  auth_disclaimer_page   = 1
+  auth_login_failed_page = 2
+  vap                    = fortimanager_object_wirelesscontroller_vap.trname.name
+  depends_on             = [fortimanager_object_wirelesscontroller_vap.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_vap" "trname" {
+  name = "terr-wictl-vap6"
+}
+```
+
 ## Argument Reference
 
 

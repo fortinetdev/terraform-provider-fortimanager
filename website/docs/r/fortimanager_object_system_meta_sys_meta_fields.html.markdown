@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_meta_sys_meta_fields
 ObjectSystem MetaSysMetaFields
 
+~> This resource is a sub resource for variable `sys_meta_fields` of resource `fortimanager_object_system_meta`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_meta_sys_meta_fields" "trname" {
+  meta        = fortimanager_object_system_meta.trname.name
+  name        = "sys_meta_field"
+  importance  = "optional"
+  fieldlength = 23
+  depends_on  = [fortimanager_object_system_meta.trname]
+}
+
+resource "fortimanager_object_system_meta" "trname" {
+  name = "terr-system-meta"
+}
+```
+
 ## Argument Reference
 
 

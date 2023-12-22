@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_spamfilter_mheader
 Configure AntiSpam MIME header.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_spamfilter_mheader_entries`
+
+
+
 ## Argument Reference
 
 

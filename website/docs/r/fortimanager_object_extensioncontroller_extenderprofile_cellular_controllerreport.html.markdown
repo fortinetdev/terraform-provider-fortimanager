@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_cellular_controllerreport
 FortiExtender controller report configuration.
 
+~> This resource is a sub resource for variable `controller_report` of resource `fortimanager_object_extensioncontroller_extenderprofile_cellular`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

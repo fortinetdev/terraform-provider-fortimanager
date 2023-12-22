@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscprange
 Differentiated Services Code Point (DSCP) ranges.
 
+~> This resource is a sub resource for variable `dscp_range` of resource `fortimanager_object_wirelesscontroller_hotspot20_qosmap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscprange" "trname" {
+  qos_map    = fortimanager_object_wirelesscontroller_hotspot20_qosmap.trname.name
+  high       = 20
+  index      = 1
+  low        = 10
+  depends_on = [fortimanager_object_wirelesscontroller_hotspot20_qosmap.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_qosmap" "trname" {
+  name = "ss2"
+}
+```
+
 ## Argument Reference
 
 

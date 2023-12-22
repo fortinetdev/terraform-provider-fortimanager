@@ -271,7 +271,9 @@ func flattenObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(v interfa
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20H2QpAdviceOfCharge-AocList-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -334,7 +336,9 @@ func flattenObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo(v
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList-PlanInfo-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -464,7 +468,9 @@ func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList(d *schema.
 			tmp["type"], _ = expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -518,7 +524,9 @@ func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo(d 
 			tmp["name"], _ = expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

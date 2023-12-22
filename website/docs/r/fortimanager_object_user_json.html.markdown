@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_user_json
 ObjectUser Json
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_json" "trname" {
+  name   = "terr-json"
+  status = "enable"
+}
+```
+
 ## Argument Reference
 
 

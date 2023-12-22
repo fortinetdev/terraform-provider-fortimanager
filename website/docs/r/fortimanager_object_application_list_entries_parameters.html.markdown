@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_application_list_entries_parameters
 Application parameters.
 
+~> This resource is a sub resource for variable `parameters` of resource `fortimanager_object_application_list_entries`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`members`: `fortimanager_object_application_list_entries_parameters_members`
+
+
+
 ## Argument Reference
 
 

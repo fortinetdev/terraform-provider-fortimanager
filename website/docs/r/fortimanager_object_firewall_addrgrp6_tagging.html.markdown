@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_addrgrp6_tagging
 Config object tagging.
 
+~> This resource is a sub resource for variable `tagging` of resource `fortimanager_object_firewall_addrgrp6`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

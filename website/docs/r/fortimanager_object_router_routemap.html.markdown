@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_router_routemap
 Configure route maps.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rule`: `fortimanager_object_router_routemap_rule`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_routemap" "trname" {
+  name    = "terr-router-routemap"
+  comment = "This is a Terraform example"
+  rule {
+    action                   = "deny"
+    id                       = 1
+    match_community          = "Priority_1"
+    match_extcommunity_exact = "enable"
+  }
+}
+```
+
 ## Argument Reference
 
 

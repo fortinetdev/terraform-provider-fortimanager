@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_ntp_ntpserver
 NTP server.
 
+~> This resource is a sub resource for variable `ntpserver` of resource `fortimanager_system_ntp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

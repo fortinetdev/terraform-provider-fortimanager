@@ -9,6 +9,27 @@ description: |-
 # fortimanager_packages_user_nacpolicy_move
 Move NAC policy matching pattern to identify matching NAC devices.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_user_nacpolicy" "trname2" {
+  name = "2"
+  pkg  = "default"
+}
+
+resource "fortimanager_packages_user_nacpolicy" "trname3" {
+  name = "3"
+  pkg  = "default"
+}
+
+resource "fortimanager_packages_user_nacpolicy_move" "trname" {
+  pkg        = "default"
+  nac_policy = 2
+  target     = 3
+  option     = "after"
+}
+```
+
 ## Argument Reference
 
 

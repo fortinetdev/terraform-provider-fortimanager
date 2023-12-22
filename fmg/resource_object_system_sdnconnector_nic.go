@@ -256,7 +256,9 @@ func flattenObjectSystemSdnConnectorNicIp2edl(v interface{}, d *schema.ResourceD
 			tmp["resource_group"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnectorNic-Ip-ResourceGroup")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -363,7 +365,9 @@ func expandObjectSystemSdnConnectorNicIp2edl(d *schema.ResourceData, v interface
 			tmp["resource-group"], _ = expandObjectSystemSdnConnectorNicIpResourceGroup2edl(d, i["resource_group"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

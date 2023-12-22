@@ -506,7 +506,9 @@ func flattenObjectApplicationListDefaultNetworkServices(v interface{}, d *schema
 			tmp["violation_action"] = fortiAPISubPartPatch(v, "ObjectApplicationList-DefaultNetworkServices-ViolationAction")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -709,7 +711,9 @@ func flattenObjectApplicationListEntries(v interface{}, d *schema.ResourceData, 
 			tmp["vendor"] = fortiAPISubPartPatch(v, "ObjectApplicationList-Entries-Vendor")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -786,7 +790,9 @@ func flattenObjectApplicationListEntriesParameters(v interface{}, d *schema.Reso
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntries-Parameters-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -835,7 +841,9 @@ func flattenObjectApplicationListEntriesParametersMembers(v interface{}, d *sche
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntriesParameters-Members-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1249,7 +1257,9 @@ func expandObjectApplicationListDefaultNetworkServices(d *schema.ResourceData, v
 			tmp["violation-action"], _ = expandObjectApplicationListDefaultNetworkServicesViolationAction(d, i["violation_action"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1426,7 +1436,9 @@ func expandObjectApplicationListEntries(d *schema.ResourceData, v interface{}, p
 			tmp["vendor"], _ = expandObjectApplicationListEntriesVendor(d, i["vendor"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1500,7 +1512,9 @@ func expandObjectApplicationListEntriesParameters(d *schema.ResourceData, v inte
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1541,7 +1555,9 @@ func expandObjectApplicationListEntriesParametersMembers(d *schema.ResourceData,
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersMembersValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

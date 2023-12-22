@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_user_certificate
 Configure certificate users.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_certificate" "trname" {
+  name = "terr-certificate"
+}
+```
+
 ## Argument Reference
 
 

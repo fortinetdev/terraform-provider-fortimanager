@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_system_npu_npqueues_ipprotocol
 Configure a NP7 QoS IP Protocol.
 
+~> This resource is a sub resource for variable `ip_protocol` of resource `fortimanager_object_system_npu_npqueues`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_npqueues_ipprotocol" "trname" {
+  name   = "terr-ipprotocol"
+  queue  = 3
+  weight = 13
+}
+```
+
 ## Argument Reference
 
 

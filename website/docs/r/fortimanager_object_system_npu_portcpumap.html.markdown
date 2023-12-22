@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_system_npu_portcpumap
 Configure NPU interface to CPU core mapping.
 
+~> This resource is a sub resource for variable `port_cpu_map` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_portcpumap" "trname" {
+  interface = "port1"
+}
+```
+
 ## Argument Reference
 
 

@@ -1264,7 +1264,9 @@ func flattenObjectFirewallMmsProfileNotifMsisdn(v interface{}, d *schema.Resourc
 			tmp["threshold"] = fortiAPISubPartPatch(v, "ObjectFirewallMmsProfile-NotifMsisdn-Threshold")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2803,7 +2805,9 @@ func expandObjectFirewallMmsProfileNotifMsisdn(d *schema.ResourceData, v interfa
 			tmp["threshold"], _ = expandObjectFirewallMmsProfileNotifMsisdnThreshold(d, i["threshold"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

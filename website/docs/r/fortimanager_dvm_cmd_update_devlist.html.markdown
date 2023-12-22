@@ -9,6 +9,18 @@ description: |-
 # fortimanager_dvm_cmd_update_devlist
 Refresh FGFM connection and system information for a list of devices.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvm_cmd_update_devlist" "trname" {
+  fmgadom = "root"
+  update_dev_member_list {
+    name = "VM64_host"
+    vdom = "root"
+  }
+}
+```
+
 ## Argument Reference
 
 

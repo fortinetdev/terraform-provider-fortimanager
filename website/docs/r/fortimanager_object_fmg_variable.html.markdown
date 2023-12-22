@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_fmg_variable
 ObjectFmg Variable
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_fmg_variable_dynamic_mapping`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_fmg_variable" "trname" {
+  name        = "terr-variable"
+  description = "This is a Terraform example"
+  value       = "value"
+}
+```
+
 ## Argument Reference
 
 

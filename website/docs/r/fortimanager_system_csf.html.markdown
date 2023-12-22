@@ -9,6 +9,12 @@ description: |-
 # fortimanager_system_csf
 Add this device to a Security Fabric or set up a new Security Fabric on this device.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`fabric_connector`: `fortimanager_system_csf_fabricconnector`
+`trusted_list`: `fortimanager_system_csf_trustedlist`
+
+
+
 ## Argument Reference
 
 

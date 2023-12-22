@@ -9,6 +9,27 @@ description: |-
 # fortimanager_system_snmp_community_hosts
 Allow hosts configuration.
 
+~> This resource is a sub resource for variable `hosts` of resource `fortimanager_system_snmp_community`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_snmp_community_hosts" "trname" {
+  community  = fortimanager_system_snmp_community.trname.fosid
+  fosid      = 3
+  interface  = "port4"
+  ip         = "192.168.0.1 255.255.255.255"
+  depends_on = [fortimanager_system_snmp_community.trname]
+}
+
+resource "fortimanager_system_snmp_community" "trname" {
+  fosid = "1"
+  name  = "terraform-tefv-snmp3"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,21 @@ description: |-
 # fortimanager_systemp_log_syslogd_filter
 Filters for remote system server.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`exclude_list`: `fortimanager_systemp_log_syslogd_filter_excludelist`
+`free_style`: `fortimanager_systemp_log_syslogd_filter_freestyle`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_log_syslogd_filter" "trname" {
+  devprof = "default"
+  cifs    = "disable"
+}
+```
+
 ## Argument Reference
 
 

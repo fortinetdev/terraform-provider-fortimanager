@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_replacemsggroup_custommessage
 Replacement message table entries.
 
+~> This resource is a sub resource for variable `custom_message` of resource `fortimanager_object_system_replacemsggroup`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

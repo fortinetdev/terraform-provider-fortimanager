@@ -1015,7 +1015,9 @@ func flattenObjectFirewallAddressDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["wildcard_fqdn"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-DynamicMapping-WildcardFqdn")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1058,7 +1060,9 @@ func flattenObjectFirewallAddressDynamicMappingScope(v interface{}, d *schema.Re
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallAddressDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1351,7 +1355,9 @@ func flattenObjectFirewallAddressList(v interface{}, d *schema.ResourceData, pre
 			tmp["obj_id"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-List-ObjId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1492,7 +1498,9 @@ func flattenObjectFirewallAddressTagging(v interface{}, d *schema.ResourceData, 
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2408,7 +2416,9 @@ func expandObjectFirewallAddressDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["wildcard-fqdn"], _ = expandObjectFirewallAddressDynamicMappingWildcardFqdn(d, i["wildcard_fqdn"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2444,7 +2454,9 @@ func expandObjectFirewallAddressDynamicMappingScope(d *schema.ResourceData, v in
 			tmp["vdom"], _ = expandObjectFirewallAddressDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2729,7 +2741,9 @@ func expandObjectFirewallAddressList(d *schema.ResourceData, v interface{}, pre 
 			tmp["obj-id"], _ = expandObjectFirewallAddressListObjId(d, i["obj_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2862,7 +2876,9 @@ func expandObjectFirewallAddressTagging(d *schema.ResourceData, v interface{}, p
 			tmp["tags"], _ = expandObjectFirewallAddressTaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_vpnmgr_node_summary_addr
 ObjectVpnmgr NodeSummaryAddr
 
+~> This resource is a sub resource for variable `summary_addr` of resource `fortimanager_object_vpnmgr_node`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpnmgr_node_summary_addr" "trname" {
+  node       = fortimanager_object_vpnmgr_node.trname.fosid
+  priority   = 2
+  seq        = 1
+  depends_on = [fortimanager_object_vpnmgr_node.trname]
+}
+
+resource "fortimanager_object_vpnmgr_node" "trname" {
+  fosid = 5
+}
+```
+
 ## Argument Reference
 
 

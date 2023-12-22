@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_casbprofile_saasapplication_customcontrol_option
 ObjectFirewall CasbProfileSaasApplicationCustomControlOption
 
+~> This resource is a sub resource for variable `option` of resource `fortimanager_object_firewall_casbprofile_saasapplication_customcontrol`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

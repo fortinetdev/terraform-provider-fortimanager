@@ -589,7 +589,9 @@ func flattenObjectVpnmgrNodeScopeMember(v interface{}, d *schema.ResourceData, p
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-ScopeMember-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -750,7 +752,9 @@ func flattenObjectVpnmgrNodeIpRange(v interface{}, d *schema.ResourceData, pre s
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-IpRange-StartIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -827,7 +831,9 @@ func flattenObjectVpnmgrNodeIpv4ExcludeRange(v interface{}, d *schema.ResourceDa
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-Ipv4ExcludeRange-StartIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -954,7 +960,9 @@ func flattenObjectVpnmgrNodeProtectedSubnet(v interface{}, d *schema.ResourceDat
 			tmp["seq"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-ProtectedSubnet-Seq")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1027,7 +1035,9 @@ func flattenObjectVpnmgrNodeSummaryAddr(v interface{}, d *schema.ResourceData, p
 			tmp["seq"] = fortiAPISubPartPatch(v, "ObjectVpnmgrNode-SummaryAddr-Seq")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1859,7 +1869,9 @@ func expandObjectVpnmgrNodeScopeMember(d *schema.ResourceData, v interface{}, pr
 			tmp["vdom"], _ = expandObjectVpnmgrNodeScopeMemberVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2012,7 +2024,9 @@ func expandObjectVpnmgrNodeIpRange(d *schema.ResourceData, v interface{}, pre st
 			tmp["start-ip"], _ = expandObjectVpnmgrNodeIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2081,7 +2095,9 @@ func expandObjectVpnmgrNodeIpv4ExcludeRange(d *schema.ResourceData, v interface{
 			tmp["start-ip"], _ = expandObjectVpnmgrNodeIpv4ExcludeRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2201,7 +2217,9 @@ func expandObjectVpnmgrNodeProtectedSubnet(d *schema.ResourceData, v interface{}
 			tmp["seq"], _ = expandObjectVpnmgrNodeProtectedSubnetSeq(d, i["seq"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2266,7 +2284,9 @@ func expandObjectVpnmgrNodeSummaryAddr(d *schema.ResourceData, v interface{}, pr
 			tmp["seq"], _ = expandObjectVpnmgrNodeSummaryAddrSeq(d, i["seq"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,21 @@ description: |-
 # fortimanager_systemp_log_syslogd_setting
 Global settings for remote syslog server.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`custom_field_name`: `fortimanager_systemp_log_syslogd_setting_customfieldname`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_log_syslogd_setting" "trname" {
+  devprof      = "default"
+  format       = "rfc5424"
+  max_log_rate = 200
+}
+```
+
 ## Argument Reference
 
 

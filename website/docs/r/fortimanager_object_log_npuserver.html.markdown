@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_log_npuserver
 Configure all the log servers and create the server groups.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`server_group`: `fortimanager_object_log_npuserver_servergroup`
+`server_info`: `fortimanager_object_log_npuserver_serverinfo`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_log_npuserver" "trname" {
+  log_processing = "no-drop"
+  server_info {
+    id          = 2
+    dest_port   = 60
+    ip_family   = "v4"
+    ipv4_server = "34.5.6.9"
+  }
+}
+```
+
 ## Argument Reference
 
 

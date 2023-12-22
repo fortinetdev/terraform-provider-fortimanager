@@ -336,7 +336,9 @@ func flattenSystemSqlCustomIndexSqa(v interface{}, d *schema.ResourceData, pre s
 			tmp["log_type"] = fortiAPISubPartPatch(v, "SystemSql-CustomIndex-LogType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -407,7 +409,9 @@ func flattenSystemSqlCustomSkipidxSqa(v interface{}, d *schema.ResourceData, pre
 			tmp["log_type"] = fortiAPISubPartPatch(v, "SystemSql-CustomSkipidx-LogType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -522,7 +526,9 @@ func flattenSystemSqlTsIndexFieldSqa(v interface{}, d *schema.ResourceData, pre 
 			tmp["value"] = fortiAPISubPartPatch(v, "SystemSql-TsIndexField-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -861,7 +867,9 @@ func expandSystemSqlCustomIndexSqa(d *schema.ResourceData, v interface{}, pre st
 			tmp["log-type"], _ = expandSystemSqlCustomIndexLogTypeSqa(d, i["log_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -923,7 +931,9 @@ func expandSystemSqlCustomSkipidxSqa(d *schema.ResourceData, v interface{}, pre 
 			tmp["log-type"], _ = expandSystemSqlCustomSkipidxLogTypeSqa(d, i["log_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1031,7 +1041,9 @@ func expandSystemSqlTsIndexFieldSqa(d *schema.ResourceData, v interface{}, pre s
 			tmp["value"], _ = expandSystemSqlTsIndexFieldValueSqa(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

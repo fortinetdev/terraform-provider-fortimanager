@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_vpn_ssl_web_portal_bookmarkgroup_bookmarks_formdata
 Form data.
 
+~> This resource is a sub resource for variable `form_data` of resource `fortimanager_object_vpn_ssl_web_portal_bookmarkgroup_bookmarks`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

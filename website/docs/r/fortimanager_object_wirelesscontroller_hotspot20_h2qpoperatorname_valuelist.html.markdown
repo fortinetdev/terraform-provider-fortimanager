@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname_valuelist
 Name list.
 
+~> This resource is a sub resource for variable `value_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname_valuelist" "trname" {
+  h2qp_operator_name = fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname.trname.name
+  index              = 4
+  lang               = 23
+  value              = 34
+  depends_on         = [fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname" "trname" {
+  name = "ss"
+}
+```
+
 ## Argument Reference
 
 

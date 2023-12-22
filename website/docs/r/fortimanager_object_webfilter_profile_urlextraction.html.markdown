@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_webfilter_profile_urlextraction
 Configure URL Extraction
 
+~> This resource is a sub resource for variable `url_extraction` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

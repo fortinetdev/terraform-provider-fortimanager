@@ -9,6 +9,24 @@ description: |-
 # fortimanager_system_admin_user_adom
 Admin domain.
 
+~> This resource is a sub resource for variable `adom` of resource `fortimanager_system_admin_user`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_user_adom" "trname" {
+  user       = fortimanager_system_admin_user.trname.userid
+  adom_name  = "terr-adom"
+  depends_on = [fortimanager_system_admin_user.trname]
+}
+
+resource "fortimanager_system_admin_user" "trname" {
+  userid = "tfuser22"
+}
+```
+
 ## Argument Reference
 
 

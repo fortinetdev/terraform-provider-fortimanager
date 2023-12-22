@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_extendercontroller_template
 ObjectExtenderController Template
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_template" "trname" {
+  name        = "terr-template"
+  description = "This is a Terraform example"
+}
+```
+
 ## Argument Reference
 
 

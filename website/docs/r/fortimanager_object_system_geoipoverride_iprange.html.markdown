@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_geoipoverride_iprange
 Table of IP ranges assigned to country.
 
+~> This resource is a sub resource for variable `ip_range` of resource `fortimanager_object_system_geoipoverride`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_geoipoverride_iprange" "trname" {
+  geoip_override = fortimanager_object_system_geoipoverride.trname.name
+  end_ip         = "10.160.2.27"
+  fosid          = 1
+  start_ip       = "10.160.2.25"
+  depends_on     = [fortimanager_object_system_geoipoverride.trname]
+}
+
+resource "fortimanager_object_system_geoipoverride" "trname" {
+  name = "ACN3"
+}
+```
+
 ## Argument Reference
 
 

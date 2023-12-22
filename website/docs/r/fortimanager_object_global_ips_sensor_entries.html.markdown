@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_global_ips_sensor_entries
 IPS sensor filter.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_global_ips_sensor`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`exempt_ip`: `fortimanager_object_global_ips_sensor_entries_exemptip`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_global_ips_sensor_entries" "trname" {
+  sensor      = fortimanager_object_global_ips_sensor.trname.name
+  application = ["all"]
+  fosid       = 3
+  log         = "enable"
+  depends_on  = [fortimanager_object_global_ips_sensor.trname]
+}
+
+resource "fortimanager_object_global_ips_sensor" "trname" {
+  name = "terr-ips-sensor"
+}
+```
+
 ## Argument Reference
 
 

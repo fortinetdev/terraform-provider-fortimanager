@@ -266,7 +266,9 @@ func flattenSystemAdminLdapAdom(v interface{}, d *schema.ResourceData, pre strin
 			tmp["adom_name"] = fortiAPISubPartPatch(v, "SystemAdminLdap-Adom-AdomName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -607,7 +609,9 @@ func expandSystemAdminLdapAdom(d *schema.ResourceData, v interface{}, pre string
 			tmp["adom-name"], _ = expandSystemAdminLdapAdomAdomName(d, i["adom_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

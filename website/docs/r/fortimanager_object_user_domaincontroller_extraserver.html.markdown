@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_user_domaincontroller_extraserver
 extra servers.
 
+~> This resource is a sub resource for variable `extra_server` of resource `fortimanager_object_user_domaincontroller`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

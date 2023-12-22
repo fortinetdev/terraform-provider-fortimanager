@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_sdnconnector_ociregionlist
 Configure OCI region list.
 
+~> This resource is a sub resource for variable `oci_region_list` of resource `fortimanager_object_system_sdnconnector`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

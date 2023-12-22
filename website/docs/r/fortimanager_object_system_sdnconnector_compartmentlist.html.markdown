@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_sdnconnector_compartmentlist
 Configure OCI compartment list.
 
+~> This resource is a sub resource for variable `compartment_list` of resource `fortimanager_object_system_sdnconnector`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

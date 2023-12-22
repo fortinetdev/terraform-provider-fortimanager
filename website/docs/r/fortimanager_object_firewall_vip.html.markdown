@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_vip
 Configure virtual IP for IPv4.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_firewall_vip_dynamic_mapping`
+`quic`: `fortimanager_object_firewall_vip_quic`
+`realservers`: `fortimanager_object_firewall_vip_realservers`
+`ssl_cipher_suites`: `fortimanager_object_firewall_vip_sslciphersuites`
+`ssl_server_cipher_suites`: `fortimanager_object_firewall_vip_sslserverciphersuites`
+
+
+
 ## Example Usage
 
 ```hcl

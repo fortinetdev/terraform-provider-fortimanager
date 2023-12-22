@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_extendercontroller_sim_profile
 ObjectExtenderController SimProfile
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`auto_switch_profile`: `fortimanager_object_extendercontroller_sim_profile_autoswitch_profile`
+
+
+
 ## Example Usage
 
 ```hcl

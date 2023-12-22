@@ -291,7 +291,9 @@ func flattenObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo2e
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocList-PlanInfo-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -449,7 +451,9 @@ func expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfo2ed
 			tmp["name"], _ = expandObjectWirelessControllerHotspot20H2QpAdviceOfChargeAocListPlanInfoName2edl(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

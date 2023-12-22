@@ -301,7 +301,9 @@ func flattenObjectWirelessControllerApcfgProfileCommandList(v interface{}, d *sc
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerApcfgProfile-CommandList-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -510,7 +512,9 @@ func expandObjectWirelessControllerApcfgProfileCommandList(d *schema.ResourceDat
 			tmp["value"], _ = expandObjectWirelessControllerApcfgProfileCommandListValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

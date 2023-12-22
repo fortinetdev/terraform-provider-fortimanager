@@ -272,7 +272,9 @@ func flattenObjectSpamfilterMheaderEntries(v interface{}, d *schema.ResourceData
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectSpamfilterMheader-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -434,7 +436,9 @@ func expandObjectSpamfilterMheaderEntries(d *schema.ResourceData, v interface{},
 			tmp["status"], _ = expandObjectSpamfilterMheaderEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

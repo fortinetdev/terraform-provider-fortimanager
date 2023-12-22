@@ -317,7 +317,9 @@ func flattenObjectEmailfilterBlockAllowListEntries(v interface{}, d *schema.Reso
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectEmailfilterBlockAllowList-Entries-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -515,7 +517,9 @@ func expandObjectEmailfilterBlockAllowListEntries(d *schema.ResourceData, v inte
 			tmp["type"], _ = expandObjectEmailfilterBlockAllowListEntriesType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

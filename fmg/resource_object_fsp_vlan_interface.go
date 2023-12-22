@@ -82,6 +82,11 @@ func resourceObjectFspVlanInterface() *schema.Resource {
 				Optional: true,
 				Computed: true,
 			},
+			"annex": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"ap_discover": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
@@ -2114,6 +2119,10 @@ func flattenObjectFspVlanInterfaceAllowaccess2edl(v interface{}, d *schema.Resou
 	return flattenStringList(v)
 }
 
+func flattenObjectFspVlanInterfaceAnnex2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceApDiscover2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -3002,7 +3011,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList2edl(v interface{}, 
 			tmp["upstream_interface"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6DelegatedPrefixList-UpstreamInterface")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3071,7 +3082,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6ExtraAddr2edl(v interface{}, d *schema.
 			tmp["prefix"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6ExtraAddr-Prefix")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3172,7 +3185,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6PrefixList2edl(v interface{}, d *schema
 			tmp["valid_life_time"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6PrefixList-ValidLifeTime")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3351,7 +3366,9 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp62edl(v interface{}, d *schema.Resourc
 			tmp["vrip6"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-Vrip6")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3798,7 +3815,9 @@ func flattenObjectFspVlanInterfaceSecondaryip2edl(v interface{}, d *schema.Resou
 			tmp["seq"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterface-Secondaryip-Seq")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4269,7 +4288,9 @@ func flattenObjectFspVlanInterfaceVrrp2edl(v interface{}, d *schema.ResourceData
 			tmp["vrip"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterface-Vrrp-Vrip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4328,7 +4349,9 @@ func flattenObjectFspVlanInterfaceVrrpProxyArp2edl(v interface{}, d *schema.Reso
 			tmp["ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceVrrp-ProxyArp-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4554,6 +4577,16 @@ func refreshObjectObjectFspVlanInterface(d *schema.ResourceData, o map[string]in
 			}
 		} else {
 			return fmt.Errorf("Error reading allowaccess: %v", err)
+		}
+	}
+
+	if err = d.Set("annex", flattenObjectFspVlanInterfaceAnnex2edl(o["annex"], d, "annex")); err != nil {
+		if vv, ok := fortiAPIPatch(o["annex"], "ObjectFspVlanInterface-Annex"); ok {
+			if err = d.Set("annex", vv); err != nil {
+				return fmt.Errorf("Error reading annex: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading annex: %v", err)
 		}
 	}
 
@@ -7726,6 +7759,10 @@ func expandObjectFspVlanInterfaceAllowaccess2edl(d *schema.ResourceData, v inter
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFspVlanInterfaceAnnex2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceApDiscover2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -8574,7 +8611,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList2edl(d *schema.Resour
 			tmp["upstream-interface"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface2edl(d, i["upstream_interface"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8637,7 +8676,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr2edl(d *schema.ResourceData, v 
 			tmp["prefix"], _ = expandObjectFspVlanInterfaceIpv6Ip6ExtraAddrPrefix2edl(d, i["prefix"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8726,7 +8767,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6PrefixList2edl(d *schema.ResourceData, v
 			tmp["valid-life-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListValidLifeTime2edl(d, i["valid_life_time"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8890,7 +8933,9 @@ func expandObjectFspVlanInterfaceIpv6Vrrp62edl(d *schema.ResourceData, v interfa
 			tmp["vrip6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrip62edl(d, i["vrip6"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9322,7 +9367,9 @@ func expandObjectFspVlanInterfaceSecondaryip2edl(d *schema.ResourceData, v inter
 			tmp["seq"], _ = expandObjectFspVlanInterfaceSecondaryipSeq2edl(d, i["seq"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9779,7 +9826,9 @@ func expandObjectFspVlanInterfaceVrrp2edl(d *schema.ResourceData, v interface{},
 			tmp["vrip"], _ = expandObjectFspVlanInterfaceVrrpVrip2edl(d, i["vrip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9831,7 +9880,9 @@ func expandObjectFspVlanInterfaceVrrpProxyArp2edl(d *schema.ResourceData, v inte
 			tmp["ip"], _ = expandObjectFspVlanInterfaceVrrpProxyArpIp2edl(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -10042,6 +10093,15 @@ func getObjectObjectFspVlanInterface(d *schema.ResourceData) (*map[string]interf
 			return &obj, err
 		} else if t != nil {
 			obj["allowaccess"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("annex"); ok || d.HasChange("annex") {
+		t, err := expandObjectFspVlanInterfaceAnnex2edl(d, v, "annex")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["annex"] = t
 		}
 	}
 

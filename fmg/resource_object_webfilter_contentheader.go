@@ -243,7 +243,9 @@ func flattenObjectWebfilterContentHeaderEntries(v interface{}, d *schema.Resourc
 			tmp["pattern"] = fortiAPISubPartPatch(v, "ObjectWebfilterContentHeader-Entries-Pattern")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -378,7 +380,9 @@ func expandObjectWebfilterContentHeaderEntries(d *schema.ResourceData, v interfa
 			tmp["pattern"], _ = expandObjectWebfilterContentHeaderEntriesPattern(d, i["pattern"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

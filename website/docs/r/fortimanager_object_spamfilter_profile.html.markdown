@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_spamfilter_profile
 Configure AntiSpam profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`gmail`: `fortimanager_object_spamfilter_profile_gmail`
+`imap`: `fortimanager_object_spamfilter_profile_imap`
+`mapi`: `fortimanager_object_spamfilter_profile_mapi`
+`msn_hotmail`: `fortimanager_object_spamfilter_profile_msnhotmail`
+`pop3`: `fortimanager_object_spamfilter_profile_pop3`
+`smtp`: `fortimanager_object_spamfilter_profile_smtp`
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,36 @@ description: |-
 # fortimanager_object_filefilter_profile_rules_move
 File filter rules.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_filefilter_profile_rules_move" "trname" {
+  profile    = fortimanager_object_filefilter_profile.trname.name
+  rules      = fortimanager_object_filefilter_profile_rules.trname2.name
+  target     = fortimanager_object_filefilter_profile_rules.trname.name
+  option     = "after"
+  depends_on = [fortimanager_object_filefilter_profile_rules.trname, fortimanager_object_filefilter_profile_rules.trname2]
+}
+
+resource "fortimanager_object_filefilter_profile_rules" "trname" {
+  profile    = "terr-filefilter-profile"
+  name       = "terr-rules1"
+  file_type  = ["txt"]
+  depends_on = [fortimanager_object_filefilter_profile.trname]
+}
+
+resource "fortimanager_object_filefilter_profile_rules" "trname2" {
+  profile    = "terr-filefilter-profile"
+  name       = "terr-rules2"
+  file_type  = ["txt"]
+  depends_on = [fortimanager_object_filefilter_profile.trname]
+}
+
+resource "fortimanager_object_filefilter_profile" "trname" {
+  name = "terr-filefilter-profile"
+}
+```
+
 ## Argument Reference
 
 

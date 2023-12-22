@@ -9,6 +9,27 @@ description: |-
 # fortimanager_system_snmp_community_hosts6
 Allow hosts configuration for IPv6.
 
+~> This resource is a sub resource for variable `hosts6` of resource `fortimanager_system_snmp_community`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_snmp_community_hosts6" "trname" {
+  community  = fortimanager_system_snmp_community.trname4.fosid
+  fosid      = 2
+  interface  = "port2"
+  ip         = "2001:db8:85a3::8a2e:370:7334/128"
+  depends_on = [fortimanager_system_snmp_community.trname4]
+}
+
+resource "fortimanager_system_snmp_community" "trname4" {
+  fosid = "2"
+  name  = "terraform-tefv-snmp4"
+}
+```
+
 ## Argument Reference
 
 

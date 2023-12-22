@@ -52,6 +52,7 @@ func resourceDvmdbRevision() *schema.Resource {
 			"created_time": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"desc": &schema.Schema{
 				Type:     schema.TypeString,
@@ -60,6 +61,7 @@ func resourceDvmdbRevision() *schema.Resource {
 			"locked": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"name": &schema.Schema{
 				Type:     schema.TypeString,
@@ -69,6 +71,7 @@ func resourceDvmdbRevision() *schema.Resource {
 				Type:     schema.TypeInt,
 				ForceNew: true,
 				Optional: true,
+				Computed: true,
 			},
 		},
 	}
@@ -91,10 +94,19 @@ func resourceDvmdbRevisionCreate(d *schema.ResourceData, m interface{}) error {
 		return fmt.Errorf("Error creating DvmdbRevision resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateDvmdbRevision(obj, paradict)
+	v, err := c.CreateDvmdbRevision(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating DvmdbRevision resource: %v", err)
+	}
+
+	if v != nil && v["version"] != nil {
+		if vidn, ok := v["version"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceDvmdbRevisionRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating DvmdbRevision resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "version")))

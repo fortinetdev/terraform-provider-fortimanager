@@ -9,6 +9,12 @@ description: |-
 # fortimanager_fmupdate_fdssetting_serveroverride
 Server override configure.
 
+~> This resource is a sub resource for variable `server_override` of resource `fortimanager_fmupdate_fdssetting`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`servlist`: `fortimanager_fmupdate_fdssetting_serveroverride_servlist`
+
+
+
 ## Example Usage
 
 ```hcl

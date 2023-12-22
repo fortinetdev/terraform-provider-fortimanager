@@ -287,7 +287,9 @@ func flattenObjectIcapProfileRespmodForwardRulesHeaderGroup2edl(v interface{}, d
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectIcapProfileRespmodForwardRules-HeaderGroup-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -445,7 +447,9 @@ func expandObjectIcapProfileRespmodForwardRulesHeaderGroup2edl(d *schema.Resourc
 			tmp["id"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroupId2edl(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

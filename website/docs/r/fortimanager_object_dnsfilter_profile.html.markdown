@@ -9,6 +9,13 @@ description: |-
 # fortimanager_object_dnsfilter_profile
 Configure DNS domain filter profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dns_translation`: `fortimanager_object_dnsfilter_profile_dnstranslation`
+`domain_filter`: `fortimanager_object_dnsfilter_profile_domainfilter`
+`ftgd_dns`: `fortimanager_object_dnsfilter_profile_ftgddns`
+
+
+
 ## Example Usage
 
 ```hcl

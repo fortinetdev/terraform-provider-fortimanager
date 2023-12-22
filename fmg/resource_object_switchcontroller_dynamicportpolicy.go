@@ -367,7 +367,9 @@ func flattenObjectSwitchControllerDynamicPortPolicyPolicy(v interface{}, d *sche
 			tmp["vlan_policy"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerDynamicPortPolicy-Policy-VlanPolicy")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -596,7 +598,9 @@ func expandObjectSwitchControllerDynamicPortPolicyPolicy(d *schema.ResourceData,
 			tmp["vlan-policy"], _ = expandObjectSwitchControllerDynamicPortPolicyPolicyVlanPolicy(d, i["vlan_policy"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,29 @@ description: |-
 # fortimanager_system_admin_group_member
 Group members.
 
+~> This resource is a sub resource for variable `member` of resource `fortimanager_system_admin_group`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_admin_group_member" "trname" {
+  group      = fortimanager_system_admin_group.trname.name
+  name       = fortimanager_system_admin_radius.trname.name
+  depends_on = [fortimanager_system_admin_group.trname, fortimanager_system_admin_radius.trname]
+}
+
+resource "fortimanager_system_admin_group" "trname" {
+  name = "terraform-group"
+}
+
+resource "fortimanager_system_admin_radius" "trname" {
+  name   = "tradius2"
+  server = "ALL"
+}
+```
+
 ## Argument Reference
 
 

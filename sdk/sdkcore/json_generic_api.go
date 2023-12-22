@@ -13,7 +13,11 @@ func (c *FortiSDKClient) JsonGenericAPI(data string) (output string, err error) 
 	rev := map[string]interface{}{}
 	json.Unmarshal([]byte(data), &rev)
 	rev["verbose"] = 1
-	if c.Session != "" {
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+		rev["session"] = session
+	} else if c.Session != "" {
 		rev["session"] = c.Session
 	}
 
@@ -27,6 +31,9 @@ func (c *FortiSDKClient) JsonGenericAPI(data string) (output string, err error) 
 
 	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
 	err = req.Send()
+	if c.Config.Auth.CleanSession {
+		err = c.logoutSession(session)
+	}
 	if err != nil || req.HTTPResponse == nil {
 		err = fmt.Errorf("cannot send request %v", err)
 		return
@@ -41,7 +48,7 @@ func (c *FortiSDKClient) JsonGenericAPI(data string) (output string, err error) 
 
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
-	err = fortiAPIErrorFormat(result, string(body))
+	_, err = fortiAPIErrorFormat(result, string(body))
 
 	if err == nil {
 		output = string(body)

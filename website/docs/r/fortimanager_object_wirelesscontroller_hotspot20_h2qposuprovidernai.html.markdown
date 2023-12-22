@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai
 Configure online sign up (OSU) provider NAI list.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`nai_list`: `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai_nailist`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai" "trname" {
+  name = "terr-wictl-hot20"
+  nai_list {
+    name = "terr-h2qposuprovidernai"
+  }
+}
+```
+
 ## Argument Reference
 
 

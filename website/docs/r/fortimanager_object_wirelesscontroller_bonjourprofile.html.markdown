@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_wirelesscontroller_bonjourprofile
 Configure Bonjour profiles. Bonjour is Apple's zero configuration networking protocol. Bonjour profiles allow APs and FortiAPs to connnect to networks using Bonjour.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`policy_list`: `fortimanager_object_wirelesscontroller_bonjourprofile_policylist`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_bonjourprofile" "trname" {
+  comment = "This is a Terraform example"
+  name    = "terr-bonjourprofile"
+}
+```
+
 ## Argument Reference
 
 

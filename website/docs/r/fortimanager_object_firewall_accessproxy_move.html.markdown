@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_accessproxy_move
 Move Access Proxy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy" "trname" {
+  name = "accessproxy4"
+}
+
+resource "fortimanager_object_firewall_accessproxy" "trname2" {
+  name = "accessproxy5"
+}
+
+resource "fortimanager_object_firewall_accessproxy_move" "trname2" {
+  access_proxy = "accessproxy5"
+  target       = "accessproxy4"
+  option       = "before"
+  depends_on   = [fortimanager_object_firewall_accessproxy.trname, fortimanager_object_firewall_accessproxy.trname]
+}
+```
+
 ## Argument Reference
 
 

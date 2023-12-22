@@ -9,6 +9,17 @@ description: |-
 # fortimanager_packages_user_nacpolicy
 Configure NAC policy matching pattern to identify matching NAC devices.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_user_nacpolicy" "trname" {
+  name        = "1"
+  pkg         = "default"
+  category    = "device"
+  description = "This is a Terraform example"
+}
+```
+
 ## Argument Reference
 
 

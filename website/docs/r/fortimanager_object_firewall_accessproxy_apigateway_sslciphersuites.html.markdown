@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_firewall_accessproxy_apigateway_sslciphersuites
 SSL/TLS cipher suites to offer to a server, ordered by priority.
 
+~> This resource is a sub resource for variable `ssl_cipher_suites` of resource `fortimanager_object_firewall_accessproxy_apigateway`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy_apigateway_sslciphersuites" "trname" {
+  access_proxy = fortimanager_object_firewall_accessproxy.trname.name
+  api_gateway  = fortimanager_object_firewall_accessproxy_apigateway.trname.fosid
+  cipher       = "TLS-RSA-WITH-RC4-128-MD5"
+  priority     = 4
+  depends_on   = [fortimanager_object_firewall_accessproxy_apigateway.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy_apigateway" "trname" {
+  fosid        = 1
+  access_proxy = fortimanager_object_firewall_accessproxy.trname.name
+  depends_on   = [fortimanager_object_firewall_accessproxy.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy" "trname" {
+  name = "terr-accessproxy"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_priorityprotocol
 Configure NPU priority protocol.
 
+~> This resource is a sub resource for variable `priority_protocol` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_priorityprotocol" "trname" {
+  bfd = "disable"
+  bgp = "disable"
+}
+```
+
 ## Argument Reference
 
 

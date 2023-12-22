@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_system_npu_portnpumap
 Configure port to NPU group mapping.
 
+~> This resource is a sub resource for variable `port_npu_map` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_portnpumap" "trname" {
+  interface = "port1"
+}
+```
+
 ## Argument Reference
 
 

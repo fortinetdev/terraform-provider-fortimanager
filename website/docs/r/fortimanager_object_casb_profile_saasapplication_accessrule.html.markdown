@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_casb_profile_saasapplication_accessrule
 CASB profile access rule.
 
+~> This resource is a sub resource for variable `access_rule` of resource `fortimanager_object_casb_profile_saasapplication`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

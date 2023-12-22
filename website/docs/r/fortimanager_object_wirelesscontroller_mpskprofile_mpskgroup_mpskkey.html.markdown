@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey
 List of multiple PSK entries.
 
+~> This resource is a sub resource for variable `mpsk_key` of resource `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey" "trname" {
+  name         = "terr-mpskkey"
+  passphrase   = ["psph"]
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  mpsk_group   = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup" "trname" {
+  name         = "tst"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile" "trname" {
+  name = "terr-wictl-mpsk-profile2"
+}
+```
+
 ## Argument Reference
 
 

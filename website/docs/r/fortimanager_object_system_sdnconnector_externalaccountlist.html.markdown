@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_system_sdnconnector_externalaccountlist
 Configure AWS external account list.
 
+~> This resource is a sub resource for variable `external_account_list` of resource `fortimanager_object_system_sdnconnector`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_sdnconnector_externalaccountlist" "trname" {
+  sdn_connector = fortimanager_object_system_sdnconnector.trname.name
+  external_id   = 12
+  region_list   = ["region"]
+  role_arn      = 12
+  depends_on    = [fortimanager_object_system_sdnconnector.trname]
+}
+
+resource "fortimanager_object_system_sdnconnector" "trname" {
+  access_key = "key"
+  region     = "remote"
+  name       = "terr-sdnconnector"
+}
+```
+
 ## Argument Reference
 
 

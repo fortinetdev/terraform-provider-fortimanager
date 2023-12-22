@@ -9,6 +9,16 @@ description: |-
 # fortimanager_systemp_device_profile_fortianalyzer
 Systemp DeviceProfileFortianalyzer
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_device_profile_fortianalyzer" "trname" {
+  devprof   = "default"
+  target    = "others"
+  target_ip = "10.160.88.186"
+}
+```
+
 ## Argument Reference
 
 

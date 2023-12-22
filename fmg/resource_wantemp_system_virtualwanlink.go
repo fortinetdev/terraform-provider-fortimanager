@@ -902,7 +902,9 @@ func flattenWantempSystemVirtualWanLinkHealthCheckWsva(v interface{}, d *schema.
 			tmp["update_static_route"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-HealthCheck-UpdateStaticRoute")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1043,7 +1045,9 @@ func flattenWantempSystemVirtualWanLinkHealthCheckSlaWsva(v interface{}, d *sche
 			tmp["packetloss_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-PacketlossThreshold")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1224,7 +1228,9 @@ func flattenWantempSystemVirtualWanLinkMembersWsva(v interface{}, d *schema.Reso
 			tmp["weight"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Members-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1341,7 +1347,9 @@ func flattenWantempSystemVirtualWanLinkNeighborWsva(v interface{}, d *schema.Res
 			tmp["sla_id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Neighbor-SlaId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1706,7 +1714,9 @@ func flattenWantempSystemVirtualWanLinkServiceWsva(v interface{}, d *schema.Reso
 			tmp["users"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLink-Service-Users")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1905,7 +1915,9 @@ func flattenWantempSystemVirtualWanLinkServiceSlaWsva(v interface{}, d *schema.R
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkService-Sla-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2338,7 +2350,9 @@ func expandWantempSystemVirtualWanLinkHealthCheckWsva(d *schema.ResourceData, v 
 			tmp["update-static-route"], _ = expandWantempSystemVirtualWanLinkHealthCheckUpdateStaticRouteWsva(d, i["update_static_route"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2469,7 +2483,9 @@ func expandWantempSystemVirtualWanLinkHealthCheckSlaWsva(d *schema.ResourceData,
 			tmp["packetloss-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThresholdWsva(d, i["packetloss_threshold"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2630,7 +2646,9 @@ func expandWantempSystemVirtualWanLinkMembersWsva(d *schema.ResourceData, v inte
 			tmp["weight"], _ = expandWantempSystemVirtualWanLinkMembersWeightWsva(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2737,7 +2755,9 @@ func expandWantempSystemVirtualWanLinkNeighborWsva(d *schema.ResourceData, v int
 			tmp["sla-id"], _ = expandWantempSystemVirtualWanLinkNeighborSlaIdWsva(d, i["sla_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3051,7 +3071,9 @@ func expandWantempSystemVirtualWanLinkServiceWsva(d *schema.ResourceData, v inte
 			tmp["users"], _ = expandWantempSystemVirtualWanLinkServiceUsersWsva(d, i["users"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3243,7 +3265,9 @@ func expandWantempSystemVirtualWanLinkServiceSlaWsva(d *schema.ResourceData, v i
 			tmp["id"], _ = expandWantempSystemVirtualWanLinkServiceSlaIdWsva(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

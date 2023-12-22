@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_firewall_multicastaddress
 Configure multicast addresses.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`tagging`: `fortimanager_object_firewall_multicastaddress_tagging`
+
+
+
 ## Example Usage
 
 ```hcl

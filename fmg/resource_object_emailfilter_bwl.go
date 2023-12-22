@@ -307,7 +307,9 @@ func flattenObjectEmailfilterBwlEntries(v interface{}, d *schema.ResourceData, p
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectEmailfilterBwl-Entries-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -496,7 +498,9 @@ func expandObjectEmailfilterBwlEntries(d *schema.ResourceData, v interface{}, pr
 			tmp["type"], _ = expandObjectEmailfilterBwlEntriesType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

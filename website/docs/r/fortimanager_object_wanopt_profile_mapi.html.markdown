@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wanopt_profile_mapi
 Enable/disable MAPI email WAN Optimization and configure MAPI WAN Optimization features.
 
+~> This resource is a sub resource for variable `mapi` of resource `fortimanager_object_wanopt_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_profile_mapi" "trname" {
+  byte_caching = "enable"
+  log_traffic  = "enable"
+  depends_on   = [fortimanager_object_wanopt_profile.trname4]
+  profile      = fortimanager_object_wanopt_profile.trname4.name
+}
+
+resource "fortimanager_object_wanopt_profile" "trname4" {
+  name = "terr-wanopt-profile4"
+}
+```
+
 ## Argument Reference
 
 

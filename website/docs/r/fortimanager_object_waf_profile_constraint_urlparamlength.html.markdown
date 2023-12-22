@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_waf_profile_constraint_urlparamlength
 Maximum length of parameter in URL.
 
+~> This resource is a sub resource for variable `url_param_length` of resource `fortimanager_object_waf_profile_constraint`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_constraint_urlparamlength" "trname" {
+  action     = "block"
+  length     = 120
+  log        = "enable"
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

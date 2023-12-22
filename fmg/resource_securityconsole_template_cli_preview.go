@@ -152,7 +152,9 @@ func flattenSecurityconsoleTemplateCliPreviewScope(v interface{}, d *schema.Reso
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsoleTemplateCliPreview-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -274,7 +276,9 @@ func expandSecurityconsoleTemplateCliPreviewScope(d *schema.ResourceData, v inte
 			tmp["vdom"], _ = expandSecurityconsoleTemplateCliPreviewScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -304,7 +304,9 @@ func flattenObjectFirewallVipgrpDynamicMapping(v interface{}, d *schema.Resource
 			tmp["uuid"] = fortiAPISubPartPatch(v, "ObjectFirewallVipgrp-DynamicMapping-Uuid")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -343,7 +345,9 @@ func flattenObjectFirewallVipgrpDynamicMappingScope(v interface{}, d *schema.Res
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallVipgrpDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -556,7 +560,9 @@ func expandObjectFirewallVipgrpDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["uuid"], _ = expandObjectFirewallVipgrpDynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -588,7 +594,9 @@ func expandObjectFirewallVipgrpDynamicMappingScope(d *schema.ResourceData, v int
 			tmp["vdom"], _ = expandObjectFirewallVipgrpDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

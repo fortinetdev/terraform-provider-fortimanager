@@ -914,7 +914,9 @@ func flattenObjectUserLdapDynamicMapping(v interface{}, d *schema.ResourceData, 
 			tmp["username"] = fortiAPISubPartPatch(v, "ObjectUserLdap-DynamicMapping-Username")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -953,7 +955,9 @@ func flattenObjectUserLdapDynamicMappingScope(v interface{}, d *schema.ResourceD
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserLdapDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1992,7 +1996,9 @@ func expandObjectUserLdapDynamicMapping(d *schema.ResourceData, v interface{}, p
 			tmp["username"], _ = expandObjectUserLdapDynamicMappingUsername(d, i["username"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2024,7 +2030,9 @@ func expandObjectUserLdapDynamicMappingScope(d *schema.ResourceData, v interface
 			tmp["vdom"], _ = expandObjectUserLdapDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

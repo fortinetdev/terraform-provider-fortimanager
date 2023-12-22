@@ -9,6 +9,10 @@ description: |-
 # fortimanager_wantemp_system_virtualwanlink_service_sla
 Service level agreement (SLA).
 
+~> This resource is a sub resource for variable `sla` of resource `fortimanager_wantemp_system_virtualwanlink_service`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

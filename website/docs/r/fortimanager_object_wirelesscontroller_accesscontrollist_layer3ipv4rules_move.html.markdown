@@ -9,6 +9,36 @@ description: |-
 # fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules_move
 AP ACL layer3 ipv4 rule list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules_move" "trname" {
+  access_control_list = fortimanager_object_wirelesscontroller_accesscontrollist.trname.name
+  layer3_ipv4_rules   = fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules.trname2.rule_id
+  target              = fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules.trname.rule_id
+  option              = "after"
+  depends_on          = [fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules.trname2, fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules" "trname2" {
+  access_control_list = fortimanager_object_wirelesscontroller_accesscontrollist.trname.name
+  rule_id             = 13
+  srcport             = 25
+  depends_on          = [fortimanager_object_wirelesscontroller_accesscontrollist.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules" "trname" {
+  access_control_list = fortimanager_object_wirelesscontroller_accesscontrollist.trname.name
+  rule_id             = 14
+  srcport             = 23
+  depends_on          = [fortimanager_object_wirelesscontroller_accesscontrollist.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_accesscontrollist" "trname" {
+  name = "terr-move"
+}
+```
+
 ## Argument Reference
 
 

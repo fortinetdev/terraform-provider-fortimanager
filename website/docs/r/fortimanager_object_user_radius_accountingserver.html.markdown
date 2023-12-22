@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_user_radius_accountingserver
 Additional accounting servers.
 
+~> This resource is a sub resource for variable `accounting_server` of resource `fortimanager_object_user_radius`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_radius_accountingserver" "trname" {
+  radius                  = fortimanager_object_user_radius.trname.name
+  fosid                   = 1
+  interface               = "port3"
+  interface_select_method = "specify"
+  port                    = 34
+  depends_on              = [fortimanager_object_user_radius.trname]
+}
+
+resource "fortimanager_object_user_radius" "trname" {
+  name   = "terr-radius"
+  server = "2.2.2.2"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_fsp_vlan_interface_ipv6_vrrp6
 IPv6 VRRP configuration.
 
+~> This resource is a sub resource for variable `vrrp6` of resource `fortimanager_object_fsp_vlan_interface_ipv6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_fsp_vlan_interface_ipv6_vrrp6" "trname" {
+  vlan         = fortimanager_object_fsp_vlan.trname.name
+  accept_mode  = "enable"
+  adv_interval = 100
+  vrid         = 3
+  depends_on   = [fortimanager_object_fsp_vlan.trname]
+}
+
+resource "fortimanager_object_fsp_vlan" "trname" {
+  name   = "terr-fsp-vlan"
+  vlanid = 104
+}
+```
+
 ## Argument Reference
 
 

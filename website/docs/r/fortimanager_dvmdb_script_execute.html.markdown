@@ -9,6 +9,10 @@ description: |-
 # fortimanager_dvmdb_script_execute
 Run script.
 
+~> This resource is a sub resource for variable `execute` of resource `fortimanager_dvmdb_script`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl
@@ -29,6 +33,7 @@ The following arguments are supported:
 
 * `fmgadom` - Adom.
 * `package` - Package.
+* `pblock` - Pblock.
 * `scope` - Scope. The structure of `scope` block is documented below.
 * `script` - Script name.
 * `dynamic_sort_subtable` - true or false, set this parameter to true when using dynamic for_each + toset to configure and sort sub-tables, please do not set this parameter when configuring static sub-tables.

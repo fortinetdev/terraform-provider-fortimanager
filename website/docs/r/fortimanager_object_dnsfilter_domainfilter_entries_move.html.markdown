@@ -9,6 +9,38 @@ description: |-
 # fortimanager_object_dnsfilter_domainfilter_entries_move
 DNS domain filter entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dnsfilter_domainfilter_entries_move" "trname" {
+  domain_filter = fortimanager_object_dnsfilter_domainfilter.trname.fosid
+  entries       = 1
+  target        = 2
+  option        = "after"
+  depends_on    = [fortimanager_object_dnsfilter_domainfilter_entries.trname2, fortimanager_object_dnsfilter_domainfilter_entries.trname]
+}
+
+resource "fortimanager_object_dnsfilter_domainfilter_entries" "trname2" {
+  domain_filter = fortimanager_object_dnsfilter_domainfilter.trname.fosid
+  fosid         = 2
+  domain        = "domain"
+  depends_on    = [fortimanager_object_dnsfilter_domainfilter.trname]
+}
+
+resource "fortimanager_object_dnsfilter_domainfilter_entries" "trname" {
+  domain_filter = fortimanager_object_dnsfilter_domainfilter.trname.fosid
+  fosid         = 1
+  domain        = "domain"
+  depends_on    = [fortimanager_object_dnsfilter_domainfilter.trname]
+}
+
+resource "fortimanager_object_dnsfilter_domainfilter" "trname" {
+  name    = "F11"
+  comment = "This is a Terraform example"
+  fosid   = 25
+}
+```
+
 ## Argument Reference
 
 

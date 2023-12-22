@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_workflow_approvalmatrix_approver
 Approver.
 
+~> This resource is a sub resource for variable `approver` of resource `fortimanager_system_workflow_approvalmatrix`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

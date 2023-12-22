@@ -351,7 +351,9 @@ func flattenSystempLogSyslogdFilterExcludeList(v interface{}, d *schema.Resource
 			tmp["id"] = fortiAPISubPartPatch(v, "SystempLogSyslogdFilter-ExcludeList-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -400,7 +402,9 @@ func flattenSystempLogSyslogdFilterExcludeListFields(v interface{}, d *schema.Re
 			tmp["negate"] = fortiAPISubPartPatch(v, "SystempLogSyslogdFilterExcludeList-Fields-Negate")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -479,7 +483,9 @@ func flattenSystempLogSyslogdFilterFreeStyle(v interface{}, d *schema.ResourceDa
 			tmp["id"] = fortiAPISubPartPatch(v, "SystempLogSyslogdFilter-FreeStyle-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -831,7 +837,9 @@ func expandSystempLogSyslogdFilterExcludeList(d *schema.ResourceData, v interfac
 			tmp["id"], _ = expandSystempLogSyslogdFilterExcludeListId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -872,7 +880,9 @@ func expandSystempLogSyslogdFilterExcludeListFields(d *schema.ResourceData, v in
 			tmp["negate"], _ = expandSystempLogSyslogdFilterExcludeListFieldsNegate(d, i["negate"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -942,7 +952,9 @@ func expandSystempLogSyslogdFilterFreeStyle(d *schema.ResourceData, v interface{
 			tmp["id"], _ = expandSystempLogSyslogdFilterFreeStyleId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions_ssh
 Configure SFTP and SCP protocol options.
 
+~> This resource is a sub resource for variable `ssh` of resource `fortimanager_object_firewall_profileprotocoloptions`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions_ssh" "trname" {
+  profile_protocol_options = fortimanager_object_firewall_profileprotocoloptions.trname.name
+  comfort_amount           = 200
+  comfort_interval         = 20
+  oversize_limit           = 200
+  depends_on               = [fortimanager_object_firewall_profileprotocoloptions.trname]
+}
+
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  name = "terr-profileprotocoloptions"
+}
+```
+
 ## Argument Reference
 
 

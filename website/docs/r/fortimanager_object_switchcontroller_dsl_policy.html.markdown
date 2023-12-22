@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_switchcontroller_dsl_policy
 DSL policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_dsl_policy" "trname" {
+  name           = "terr-policy"
+  append_padding = "enable"
+  cpe_aele       = "enable"
+}
+```
+
 ## Argument Reference
 
 

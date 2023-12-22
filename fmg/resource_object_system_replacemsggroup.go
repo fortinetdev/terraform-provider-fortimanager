@@ -1027,7 +1027,9 @@ func flattenObjectSystemReplacemsgGroupAdmin(v interface{}, d *schema.ResourceDa
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Admin-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1100,7 +1102,9 @@ func flattenObjectSystemReplacemsgGroupAlertmail(v interface{}, d *schema.Resour
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Alertmail-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1171,7 +1175,9 @@ func flattenObjectSystemReplacemsgGroupAuth(v interface{}, d *schema.ResourceDat
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Auth-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1238,7 +1244,9 @@ func flattenObjectSystemReplacemsgGroupAutomation(v interface{}, d *schema.Resou
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Automation-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1309,7 +1317,9 @@ func flattenObjectSystemReplacemsgGroupCustomMessage(v interface{}, d *schema.Re
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-CustomMessage-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1376,7 +1386,9 @@ func flattenObjectSystemReplacemsgGroupDeviceDetectionPortal(v interface{}, d *s
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-DeviceDetectionPortal-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1443,7 +1455,9 @@ func flattenObjectSystemReplacemsgGroupEc(v interface{}, d *schema.ResourceData,
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Ec-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1510,7 +1524,9 @@ func flattenObjectSystemReplacemsgGroupFortiguardWf(v interface{}, d *schema.Res
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-FortiguardWf-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1577,7 +1593,9 @@ func flattenObjectSystemReplacemsgGroupFtp(v interface{}, d *schema.ResourceData
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Ftp-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1648,7 +1666,9 @@ func flattenObjectSystemReplacemsgGroupHttp(v interface{}, d *schema.ResourceDat
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Http-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1715,7 +1735,9 @@ func flattenObjectSystemReplacemsgGroupIcap(v interface{}, d *schema.ResourceDat
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Icap-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1782,7 +1804,9 @@ func flattenObjectSystemReplacemsgGroupMail(v interface{}, d *schema.ResourceDat
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Mail-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1921,7 +1945,9 @@ func flattenObjectSystemReplacemsgGroupMm1(v interface{}, d *schema.ResourceData
 			tmp["subject"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Mm1-Subject")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2084,7 +2110,9 @@ func flattenObjectSystemReplacemsgGroupMm3(v interface{}, d *schema.ResourceData
 			tmp["subject"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Mm3-Subject")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2249,7 +2277,9 @@ func flattenObjectSystemReplacemsgGroupMm4(v interface{}, d *schema.ResourceData
 			tmp["subject"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Mm4-Subject")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2432,7 +2462,9 @@ func flattenObjectSystemReplacemsgGroupMm7(v interface{}, d *schema.ResourceData
 			tmp["subject"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Mm7-Subject")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2559,7 +2591,9 @@ func flattenObjectSystemReplacemsgGroupMms(v interface{}, d *schema.ResourceData
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Mms-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2640,7 +2674,9 @@ func flattenObjectSystemReplacemsgGroupNacQuar(v interface{}, d *schema.Resource
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-NacQuar-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2715,7 +2751,9 @@ func flattenObjectSystemReplacemsgGroupNntp(v interface{}, d *schema.ResourceDat
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Nntp-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2782,7 +2820,9 @@ func flattenObjectSystemReplacemsgGroupSpam(v interface{}, d *schema.ResourceDat
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Spam-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2849,7 +2889,9 @@ func flattenObjectSystemReplacemsgGroupSslvpn(v interface{}, d *schema.ResourceD
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Sslvpn-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2916,7 +2958,9 @@ func flattenObjectSystemReplacemsgGroupTrafficQuota(v interface{}, d *schema.Res
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-TrafficQuota-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2983,7 +3027,9 @@ func flattenObjectSystemReplacemsgGroupUtm(v interface{}, d *schema.ResourceData
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Utm-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3050,7 +3096,9 @@ func flattenObjectSystemReplacemsgGroupWebproxy(v interface{}, d *schema.Resourc
 			tmp["msg_type"] = fortiAPISubPartPatch(v, "ObjectSystemReplacemsgGroup-Webproxy-MsgType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3734,7 +3782,9 @@ func expandObjectSystemReplacemsgGroupAdmin(d *schema.ResourceData, v interface{
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAdminMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3797,7 +3847,9 @@ func expandObjectSystemReplacemsgGroupAlertmail(d *schema.ResourceData, v interf
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAlertmailMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3859,7 +3911,9 @@ func expandObjectSystemReplacemsgGroupAuth(d *schema.ResourceData, v interface{}
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAuthMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3917,7 +3971,9 @@ func expandObjectSystemReplacemsgGroupAutomation(d *schema.ResourceData, v inter
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupAutomationMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3979,7 +4035,9 @@ func expandObjectSystemReplacemsgGroupCustomMessage(d *schema.ResourceData, v in
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupCustomMessageMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4037,7 +4095,9 @@ func expandObjectSystemReplacemsgGroupDeviceDetectionPortal(d *schema.ResourceDa
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupDeviceDetectionPortalMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4095,7 +4155,9 @@ func expandObjectSystemReplacemsgGroupEc(d *schema.ResourceData, v interface{}, 
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupEcMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4153,7 +4215,9 @@ func expandObjectSystemReplacemsgGroupFortiguardWf(d *schema.ResourceData, v int
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupFortiguardWfMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4211,7 +4275,9 @@ func expandObjectSystemReplacemsgGroupFtp(d *schema.ResourceData, v interface{},
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupFtpMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4273,7 +4339,9 @@ func expandObjectSystemReplacemsgGroupHttp(d *schema.ResourceData, v interface{}
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupHttpMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4331,7 +4399,9 @@ func expandObjectSystemReplacemsgGroupIcap(d *schema.ResourceData, v interface{}
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupIcapMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4389,7 +4459,9 @@ func expandObjectSystemReplacemsgGroupMail(d *schema.ResourceData, v interface{}
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMailMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4507,7 +4579,9 @@ func expandObjectSystemReplacemsgGroupMm1(d *schema.ResourceData, v interface{},
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm1Subject(d, i["subject"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4653,7 +4727,9 @@ func expandObjectSystemReplacemsgGroupMm3(d *schema.ResourceData, v interface{},
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm3Subject(d, i["subject"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4798,7 +4874,9 @@ func expandObjectSystemReplacemsgGroupMm4(d *schema.ResourceData, v interface{},
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm4Subject(d, i["subject"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4960,7 +5038,9 @@ func expandObjectSystemReplacemsgGroupMm7(d *schema.ResourceData, v interface{},
 			tmp["subject"], _ = expandObjectSystemReplacemsgGroupMm7Subject(d, i["subject"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5076,7 +5156,9 @@ func expandObjectSystemReplacemsgGroupMms(d *schema.ResourceData, v interface{},
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupMmsMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5147,7 +5229,9 @@ func expandObjectSystemReplacemsgGroupNacQuar(d *schema.ResourceData, v interfac
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupNacQuarMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5213,7 +5297,9 @@ func expandObjectSystemReplacemsgGroupNntp(d *schema.ResourceData, v interface{}
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupNntpMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5271,7 +5357,9 @@ func expandObjectSystemReplacemsgGroupSpam(d *schema.ResourceData, v interface{}
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupSpamMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5329,7 +5417,9 @@ func expandObjectSystemReplacemsgGroupSslvpn(d *schema.ResourceData, v interface
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupSslvpnMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5387,7 +5477,9 @@ func expandObjectSystemReplacemsgGroupTrafficQuota(d *schema.ResourceData, v int
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupTrafficQuotaMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5445,7 +5537,9 @@ func expandObjectSystemReplacemsgGroupUtm(d *schema.ResourceData, v interface{},
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupUtmMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5503,7 +5597,9 @@ func expandObjectSystemReplacemsgGroupWebproxy(d *schema.ResourceData, v interfa
 			tmp["msg-type"], _ = expandObjectSystemReplacemsgGroupWebproxyMsgType(d, i["msg_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,21 @@ description: |-
 # fortimanager_system_sql_customskipidx
 List of aditional SQL skip index fields.
 
+~> This resource is a sub resource for variable `custom_skipidx` of resource `fortimanager_system_sql`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_sql_customskipidx" "trname" {
+  device_type = "FortiGate"
+  fosid       = "2"
+  index_field = "srcip"
+  log_type    = "content"
+}
+```
+
 ## Argument Reference
 
 

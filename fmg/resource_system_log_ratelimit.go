@@ -218,7 +218,9 @@ func flattenSystemLogRatelimitDeviceSLR(v interface{}, d *schema.ResourceData, p
 			tmp["ratelimit"] = fortiAPISubPartPatch(v, "SystemLogRatelimit-Device-Ratelimit")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -293,7 +295,9 @@ func flattenSystemLogRatelimitRatelimitsSLR(v interface{}, d *schema.ResourceDat
 			tmp["ratelimit"] = fortiAPISubPartPatch(v, "SystemLogRatelimit-Ratelimits-Ratelimit")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -449,7 +453,9 @@ func expandSystemLogRatelimitDeviceSLR(d *schema.ResourceData, v interface{}, pr
 			tmp["ratelimit"], _ = expandSystemLogRatelimitDeviceRatelimitSLR(d, i["ratelimit"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -515,7 +521,9 @@ func expandSystemLogRatelimitRatelimitsSLR(d *schema.ResourceData, v interface{}
 			tmp["ratelimit"], _ = expandSystemLogRatelimitRatelimitsRatelimitSLR(d, i["ratelimit"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

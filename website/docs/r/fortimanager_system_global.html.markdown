@@ -9,6 +9,12 @@ description: |-
 # fortimanager_system_global
 Global range attributes.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`mc_policy_disabled_adoms`: `fortimanager_system_global_mcpolicydisabledadoms`
+`ssl_cipher_suites`: `fortimanager_system_global_sslciphersuites`
+
+
+
 ## Example Usage
 
 ```hcl

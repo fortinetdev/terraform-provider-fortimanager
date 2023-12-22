@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_emailfilter_profile_gmail
 Gmail.
 
+~> This resource is a sub resource for variable `gmail` of resource `fortimanager_object_emailfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_profile_gmail" "trname" {
+  log_all    = "enable"
+  depends_on = [fortimanager_object_emailfilter_profile.trname]
+  profile    = fortimanager_object_emailfilter_profile.trname.name
+}
+
+resource "fortimanager_object_emailfilter_profile" "trname" {
+  name = "terr-emailfilter-profile"
+}
+```
+
 ## Argument Reference
 
 

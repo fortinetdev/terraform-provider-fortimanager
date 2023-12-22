@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_emailfilter_profile
 Configure Email Filter profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`file_filter`: `fortimanager_object_emailfilter_profile_filefilter`
+`gmail`: `fortimanager_object_emailfilter_profile_gmail`
+`imap`: `fortimanager_object_emailfilter_profile_imap`
+`mapi`: `fortimanager_object_emailfilter_profile_mapi`
+`msn_hotmail`: `fortimanager_object_emailfilter_profile_msnhotmail`
+`other_webmails`: `fortimanager_object_emailfilter_profile_otherwebmails`
+`pop3`: `fortimanager_object_emailfilter_profile_pop3`
+`smtp`: `fortimanager_object_emailfilter_profile_smtp`
+
+
+
 ## Example Usage
 
 ```hcl

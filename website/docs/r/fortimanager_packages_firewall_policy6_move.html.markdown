@@ -9,6 +9,40 @@ description: |-
 # fortimanager_packages_firewall_policy6_move
 Move IPv6 policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_policy6_move" "trname" {
+  pkg        = "default"
+  policy6    = "2"
+  target     = "3"
+  option     = "before"
+  depends_on = [fortimanager_packages_firewall_policy6.trname2, fortimanager_packages_firewall_policy6.trname3]
+}
+
+resource "fortimanager_packages_firewall_policy6" "trname2" {
+  dstaddr  = "all"
+  dstintf  = "any"
+  pkg      = "default"
+  policyid = 2
+  schedule = "always"
+  service  = "ALL"
+  srcaddr  = "all"
+  srcintf  = "any"
+}
+
+resource "fortimanager_packages_firewall_policy6" "trname3" {
+  dstaddr  = "all"
+  dstintf  = "any"
+  pkg      = "default"
+  policyid = 3
+  schedule = "always"
+  service  = "ALL"
+  srcaddr  = "all"
+  srcintf  = "any"
+}
+```
+
 ## Argument Reference
 
 

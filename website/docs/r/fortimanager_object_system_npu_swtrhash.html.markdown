@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_npu_swtrhash
 Configure switch traditional hashing.
 
+~> This resource is a sub resource for variable `sw_tr_hash` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

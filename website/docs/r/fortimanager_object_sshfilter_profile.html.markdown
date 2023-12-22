@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_sshfilter_profile
 SSH filter profile.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`file_filter`: `fortimanager_object_sshfilter_profile_filefilter`
+`shell_commands`: `fortimanager_object_sshfilter_profile_shellcommands`
+
+
+
 ## Example Usage
 
 ```hcl

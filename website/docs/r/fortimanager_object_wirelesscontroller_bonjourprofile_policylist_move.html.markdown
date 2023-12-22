@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_wirelesscontroller_bonjourprofile_policylist_move
 Bonjour policy list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_bonjourprofile_policylist_move" "trname" {
+  bonjour_profile = fortimanager_object_wirelesscontroller_bonjourprofile.trname2.name
+  policy_list     = 2
+  target          = 3
+  option          = "after"
+  depends_on      = [fortimanager_object_wirelesscontroller_bonjourprofile_policylist.trname2, fortimanager_object_wirelesscontroller_bonjourprofile_policylist.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_bonjourprofile_policylist" "trname2" {
+  bonjour_profile = fortimanager_object_wirelesscontroller_bonjourprofile.trname2.name
+  policy_id       = 2
+  depends_on      = [fortimanager_object_wirelesscontroller_bonjourprofile.trname2]
+}
+
+resource "fortimanager_object_wirelesscontroller_bonjourprofile_policylist" "trname" {
+  bonjour_profile = fortimanager_object_wirelesscontroller_bonjourprofile.trname2.name
+  policy_id       = 3
+  depends_on      = [fortimanager_object_wirelesscontroller_bonjourprofile.trname2]
+}
+
+resource "fortimanager_object_wirelesscontroller_bonjourprofile" "trname2" {
+  name = "teset2"
+}
+```
+
 ## Argument Reference
 
 

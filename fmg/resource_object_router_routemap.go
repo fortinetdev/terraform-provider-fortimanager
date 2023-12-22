@@ -713,7 +713,9 @@ func flattenObjectRouterRouteMapRule(v interface{}, d *schema.ResourceData, pre 
 			tmp["set_weight"] = fortiAPISubPartPatch(v, "ObjectRouterRouteMap-Rule-SetWeight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1239,7 +1241,9 @@ func expandObjectRouterRouteMapRule(d *schema.ResourceData, v interface{}, pre s
 			tmp["set-weight"], _ = expandObjectRouterRouteMapRuleSetWeight(d, i["set_weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

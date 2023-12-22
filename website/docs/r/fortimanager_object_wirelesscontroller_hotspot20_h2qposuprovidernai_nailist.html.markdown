@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai_nailist
 OSU NAI list.
 
+~> This resource is a sub resource for variable `nai_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovidernai`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

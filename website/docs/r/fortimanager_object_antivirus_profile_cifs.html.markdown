@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_antivirus_profile_cifs
 Configure CIFS AntiVirus options.
 
+~> This resource is a sub resource for variable `cifs` of resource `fortimanager_object_antivirus_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_antivirus_profile_cifs" "trname" {
+  av_scan    = "monitor"
+  emulator   = "enable"
+  profile    = fortimanager_object_antivirus_profile.trname.name
+  depends_on = [fortimanager_object_antivirus_profile.trname]
+}
+
+resource "fortimanager_object_antivirus_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

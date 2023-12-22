@@ -353,7 +353,9 @@ func flattenSystemSamlFabricIdpSSa(v interface{}, d *schema.ResourceData, pre st
 			tmp["idp_status"] = fortiAPISubPartPatch(v, "SystemSaml-FabricIdp-IdpStatus")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -502,7 +504,9 @@ func flattenSystemSamlServiceProvidersSSa(v interface{}, d *schema.ResourceData,
 			tmp["sp_single_sign_on_url"] = fortiAPISubPartPatch(v, "SystemSaml-ServiceProviders-SpSingleSignOnUrl")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -868,7 +872,9 @@ func expandSystemSamlFabricIdpSSa(d *schema.ResourceData, v interface{}, pre str
 			tmp["idp-status"], _ = expandSystemSamlFabricIdpIdpStatusSSa(d, i["idp_status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1001,7 +1007,9 @@ func expandSystemSamlServiceProvidersSSa(d *schema.ResourceData, v interface{}, 
 			tmp["sp-single-sign-on-url"], _ = expandSystemSamlServiceProvidersSpSingleSignOnUrlSSa(d, i["sp_single_sign_on_url"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

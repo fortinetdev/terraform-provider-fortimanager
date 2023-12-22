@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_user_group_match
 Group matches.
 
+~> This resource is a sub resource for variable `match` of resource `fortimanager_object_user_group`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

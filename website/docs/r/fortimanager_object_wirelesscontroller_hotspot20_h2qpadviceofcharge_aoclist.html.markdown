@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge_aoclist
 AOC list.
 
+~> This resource is a sub resource for variable `aoc_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`plan_info`: `fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge_aoclist_planinfo`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge_aoclist" "trname" {
+  name                  = "terr-aoclist"
+  type                  = "unlimited"
+  h2qp_advice_of_charge = fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge.trname.name
+  depends_on            = [fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qpadviceofcharge" "trname" {
+  name = "terr-aoclist"
+}
+```
+
 ## Argument Reference
 
 

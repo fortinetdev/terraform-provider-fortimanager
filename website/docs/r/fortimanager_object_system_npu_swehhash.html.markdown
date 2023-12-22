@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_system_npu_swehhash
 Configure switch enhanced hashing.
 
+~> This resource is a sub resource for variable `sw_eh_hash` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_swehhash" "trname" {
+  computation        = "crc16"
+  source_port        = "exclude"
+  source_ip_upper_16 = "include"
+}
+```
+
 ## Argument Reference
 
 

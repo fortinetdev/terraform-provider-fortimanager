@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_firewall_mmsprofile
 Configure MMS profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dupe`: `fortimanager_object_firewall_mmsprofile_dupe`
+`flood`: `fortimanager_object_firewall_mmsprofile_flood`
+`notification`: `fortimanager_object_firewall_mmsprofile_notification`
+`notif_msisdn`: `fortimanager_object_firewall_mmsprofile_notifmsisdn`
+`outbreak_prevention`: `fortimanager_object_firewall_mmsprofile_outbreakprevention`
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,12 @@ description: |-
 # fortimanager_system_saml
 Global settings for SAML authentication.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`fabric_idp`: `fortimanager_system_saml_fabricidp`
+`service_providers`: `fortimanager_system_saml_serviceproviders`
+
+
+
 ## Example Usage
 
 ```hcl

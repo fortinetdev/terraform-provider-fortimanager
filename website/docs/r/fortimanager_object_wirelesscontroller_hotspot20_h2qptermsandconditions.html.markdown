@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions
 Configure terms and conditions.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qptermsandconditions" "trname" {
+  name = "terr-h2qptermsandconditions"
+}
+```
+
 ## Argument Reference
 
 

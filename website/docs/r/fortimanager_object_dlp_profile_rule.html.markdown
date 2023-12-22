@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_dlp_profile_rule
 Set up DLP rules for this profile.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_dlp_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

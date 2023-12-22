@@ -486,7 +486,9 @@ func flattenWantempSystemVirtualWanLinkHealthCheckSlaWsvha(v interface{}, d *sch
 			tmp["packetloss_threshold"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkHealthCheck-Sla-PacketlossThreshold")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1031,7 +1033,9 @@ func expandWantempSystemVirtualWanLinkHealthCheckSlaWsvha(d *schema.ResourceData
 			tmp["packetloss-threshold"], _ = expandWantempSystemVirtualWanLinkHealthCheckSlaPacketlossThresholdWsvha(d, i["packetloss_threshold"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

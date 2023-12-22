@@ -253,7 +253,9 @@ func flattenObjectEmailfilterDnsblEntries(v interface{}, d *schema.ResourceData,
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectEmailfilterDnsbl-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -397,7 +399,9 @@ func expandObjectEmailfilterDnsblEntries(d *schema.ResourceData, v interface{}, 
 			tmp["status"], _ = expandObjectEmailfilterDnsblEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

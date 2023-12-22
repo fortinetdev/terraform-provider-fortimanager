@@ -279,7 +279,9 @@ func flattenSystemSnmpCommunityHosts(v interface{}, d *schema.ResourceData, pre 
 			tmp["ip"] = fortiAPISubPartPatch(v, "SystemSnmpCommunity-Hosts-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -336,7 +338,9 @@ func flattenSystemSnmpCommunityHosts6(v interface{}, d *schema.ResourceData, pre
 			tmp["ip"] = fortiAPISubPartPatch(v, "SystemSnmpCommunity-Hosts6-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -617,7 +621,9 @@ func expandSystemSnmpCommunityHosts(d *schema.ResourceData, v interface{}, pre s
 			tmp["ip"], _ = expandSystemSnmpCommunityHostsIp(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -666,7 +672,9 @@ func expandSystemSnmpCommunityHosts6(d *schema.ResourceData, v interface{}, pre 
 			tmp["ip"], _ = expandSystemSnmpCommunityHosts6Ip(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

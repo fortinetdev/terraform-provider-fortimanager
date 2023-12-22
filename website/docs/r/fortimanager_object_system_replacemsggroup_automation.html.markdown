@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_system_replacemsggroup_automation
 Replacement message table entries.
 
+~> This resource is a sub resource for variable `automation` of resource `fortimanager_object_system_replacemsggroup`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_replacemsggroup_automation" "trname" {
+  replacemsg_group = fortimanager_object_system_replacemsggroup.trname.name
+  header           = "8bit"
+  msg_type         = "txt"
+  depends_on       = [fortimanager_object_system_replacemsggroup.trname]
+}
+
+resource "fortimanager_object_system_replacemsggroup" "trname" {
+  name = "terr-replacemsggroup"
+}
+```
+
 ## Argument Reference
 
 

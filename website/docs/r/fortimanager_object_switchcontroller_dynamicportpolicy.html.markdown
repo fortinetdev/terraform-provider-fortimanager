@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_switchcontroller_dynamicportpolicy
 Configure Dynamic port policy to be applied on the managed FortiSwitch ports through DPP device.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`policy`: `fortimanager_object_switchcontroller_dynamicportpolicy_policy`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_dynamicportpolicy" "trname" {
+  name = "terr-dynamicportpolicy"
+  policy {
+    name = "policy3"
+    mac  = "00:00:5e:00:53:af"
+  }
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_radio4
 Configuration options for radio 4.
 
+~> This resource is a sub resource for variable `radio_4` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

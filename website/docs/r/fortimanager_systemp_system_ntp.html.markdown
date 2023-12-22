@@ -9,6 +9,20 @@ description: |-
 # fortimanager_systemp_system_ntp
 Configure system NTP information.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ntpserver`: `fortimanager_systemp_system_ntp_ntpserver`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_ntp" "trname" {
+  devprof        = "default"
+  authentication = "disable"
+}
+```
+
 ## Argument Reference
 
 

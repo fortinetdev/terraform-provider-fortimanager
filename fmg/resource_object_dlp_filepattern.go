@@ -242,7 +242,9 @@ func flattenObjectDlpFilepatternEntries(v interface{}, d *schema.ResourceData, p
 			tmp["pattern"] = fortiAPISubPartPatch(v, "ObjectDlpFilepattern-Entries-Pattern")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -377,7 +379,9 @@ func expandObjectDlpFilepatternEntries(d *schema.ResourceData, v interface{}, pr
 			tmp["pattern"], _ = expandObjectDlpFilepatternEntriesPattern(d, i["pattern"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

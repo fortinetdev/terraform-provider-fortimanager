@@ -9,6 +9,33 @@ description: |-
 # fortimanager_object_firewall_accessproxy6_apigateway6_realservers
 Select the real servers that this Access Proxy will distribute traffic to.
 
+~> This resource is a sub resource for variable `realservers` of resource `fortimanager_object_firewall_accessproxy6_apigateway6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy6_apigateway6_realservers" "trname" {
+  access_proxy6 = fortimanager_object_firewall_accessproxy6.trname4.name
+  api_gateway6  = fortimanager_object_firewall_accessproxy6_apigateway6.trname3.fosid
+  fosid         = 1
+  ip            = "2001:db8:85a3::8a2e:370:7334"
+  mappedport    = 23
+  depends_on    = [fortimanager_object_firewall_accessproxy6_apigateway6.trname3]
+}
+
+resource "fortimanager_object_firewall_accessproxy6_apigateway6" "trname3" {
+  fosid         = 2
+  access_proxy6 = fortimanager_object_firewall_accessproxy6.trname4.name
+  depends_on    = [fortimanager_object_firewall_accessproxy6.trname4]
+}
+
+resource "fortimanager_object_firewall_accessproxy6" "trname4" {
+  name = "terr-accessproxy6"
+}
+```
+
 ## Argument Reference
 
 

@@ -283,7 +283,9 @@ func flattenObjectVpnSslWebHostCheckSoftwareCheckItemList(v interface{}, d *sche
 			tmp["version"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebHostCheckSoftware-CheckItemList-Version")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -473,7 +475,9 @@ func expandObjectVpnSslWebHostCheckSoftwareCheckItemList(d *schema.ResourceData,
 			tmp["version"], _ = expandObjectVpnSslWebHostCheckSoftwareCheckItemListVersion(d, i["version"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

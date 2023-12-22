@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv6rules
 AP ACL layer3 ipv6 rule list.
 
+~> This resource is a sub resource for variable `layer3_ipv6_rules` of resource `fortimanager_object_wirelesscontroller_accesscontrollist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv6rules" "trname" {
+  comment             = "This is a Terraform example"
+  dstport             = 0
+  rule_id             = 12
+  srcport             = 34
+  access_control_list = fortimanager_object_wirelesscontroller_accesscontrollist.trname2.name
+  depends_on          = [fortimanager_object_wirelesscontroller_accesscontrollist.trname2]
+}
+
+resource "fortimanager_object_wirelesscontroller_accesscontrollist" "trname2" {
+  name = "terr-accesscontrollist"
+}
+```
+
 ## Argument Reference
 
 

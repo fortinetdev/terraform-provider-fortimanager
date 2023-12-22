@@ -277,7 +277,9 @@ func flattenObjectWebfilterContentEntries(v interface{}, d *schema.ResourceData,
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectWebfilterContent-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -439,7 +441,9 @@ func expandObjectWebfilterContentEntries(d *schema.ResourceData, v interface{}, 
 			tmp["status"], _ = expandObjectWebfilterContentEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

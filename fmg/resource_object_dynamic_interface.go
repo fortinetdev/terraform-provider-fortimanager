@@ -369,7 +369,9 @@ func flattenObjectDynamicInterfaceDynamicMapping(v interface{}, d *schema.Resour
 			tmp["local_intf"] = fortiAPISubPartPatch(v, "ObjectDynamicInterface-DynamicMapping-LocalIntf")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -408,7 +410,9 @@ func flattenObjectDynamicInterfaceDynamicMappingScope(v interface{}, d *schema.R
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectDynamicInterfaceDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -501,7 +505,9 @@ func flattenObjectDynamicInterfacePlatformMapping(v interface{}, d *schema.Resou
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectDynamicInterface-PlatformMapping-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -811,7 +817,9 @@ func expandObjectDynamicInterfaceDynamicMapping(d *schema.ResourceData, v interf
 			tmp["local-intf"], _ = expandObjectDynamicInterfaceDynamicMappingLocalIntf(d, i["local_intf"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -843,7 +851,9 @@ func expandObjectDynamicInterfaceDynamicMappingScope(d *schema.ResourceData, v i
 			tmp["vdom"], _ = expandObjectDynamicInterfaceDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -926,7 +936,9 @@ func expandObjectDynamicInterfacePlatformMapping(d *schema.ResourceData, v inter
 			tmp["name"], _ = expandObjectDynamicInterfacePlatformMappingName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

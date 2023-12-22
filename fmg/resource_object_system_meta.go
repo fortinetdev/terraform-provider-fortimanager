@@ -234,7 +234,9 @@ func flattenObjectSystemMetaSysMetaFields(v interface{}, d *schema.ResourceData,
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemMeta-SysMetaFields-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -341,7 +343,9 @@ func expandObjectSystemMetaSysMetaFields(d *schema.ResourceData, v interface{}, 
 			tmp["name"], _ = expandObjectSystemMetaSysMetaFieldsName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

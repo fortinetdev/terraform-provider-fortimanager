@@ -9,6 +9,24 @@ description: |-
 # fortimanager_system_log_ratelimit
 Logging rate limit.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`device`: `fortimanager_system_log_ratelimit_device`
+`ratelimits`: `fortimanager_system_log_ratelimit_ratelimits`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_ratelimit" "trname" {
+  mode = "manual"
+  ratelimits {
+    id     = 1
+    filter = 1
+  }
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_ips_sensor_entries_move
 IPS sensor filter.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_ips_sensor_entries_move" "trname" {
+  sensor     = fortimanager_object_ips_sensor.trname.name
+  entries    = fortimanager_object_ips_sensor_entries.trname.fosid
+  target     = fortimanager_object_ips_sensor_entries.trname2.fosid
+  option     = "after"
+  depends_on = [fortimanager_object_ips_sensor_entries.trname, fortimanager_object_ips_sensor_entries.trname2]
+}
+
+resource "fortimanager_object_ips_sensor_entries" "trname" {
+  sensor     = fortimanager_object_ips_sensor.trname.name
+  fosid      = 23
+  depends_on = [fortimanager_object_ips_sensor.trname]
+}
+
+resource "fortimanager_object_ips_sensor_entries" "trname2" {
+  sensor     = fortimanager_object_ips_sensor.trname.name
+  fosid      = 24
+  depends_on = [fortimanager_object_ips_sensor.trname]
+}
+
+resource "fortimanager_object_ips_sensor" "trname" {
+  name = "terr-sensor"
+}
+```
+
 ## Argument Reference
 
 

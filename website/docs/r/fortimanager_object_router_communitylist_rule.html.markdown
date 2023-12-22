@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_router_communitylist_rule
 Community list rule.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_router_communitylist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_communitylist_rule" "trname" {
+  community_list = fortimanager_object_router_communitylist.trname.name
+  action         = "permit"
+  fosid          = 1
+  depends_on     = [fortimanager_object_router_communitylist.trname]
+}
+
+resource "fortimanager_object_router_communitylist" "trname" {
+  name = "terr-router-communitylist"
+}
+```
+
 ## Argument Reference
 
 

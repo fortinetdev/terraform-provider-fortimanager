@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_vpn_ssl_web_portal_macaddrcheckrule
 Client MAC address check rule.
 
+~> This resource is a sub resource for variable `mac_addr_check_rule` of resource `fortimanager_object_vpn_ssl_web_portal`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

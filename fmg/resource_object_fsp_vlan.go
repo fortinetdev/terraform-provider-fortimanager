@@ -1505,6 +1505,11 @@ func resourceObjectFspVlan() *schema.Resource {
 							Optional: true,
 							Computed: true,
 						},
+						"annex": &schema.Schema{
+							Type:     schema.TypeString,
+							Optional: true,
+							Computed: true,
+						},
 						"ap_discover": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
@@ -3993,7 +3998,9 @@ func flattenObjectFspVlanDhcpServerExcludeRange(v interface{}, d *schema.Resourc
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-ExcludeRange-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4116,7 +4123,9 @@ func flattenObjectFspVlanDhcpServerIpRange(v interface{}, d *schema.ResourceData
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-IpRange-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4289,7 +4298,9 @@ func flattenObjectFspVlanDhcpServerOptions(v interface{}, d *schema.ResourceData
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-Options-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4416,7 +4427,9 @@ func flattenObjectFspVlanDhcpServerReservedAddress(v interface{}, d *schema.Reso
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFspVlanDhcpServer-ReservedAddress-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4563,7 +4576,9 @@ func flattenObjectFspVlanDynamicMapping(v interface{}, d *schema.ResourceData, p
 			tmp["interface"] = fortiAPISubPartPatch(v, "ObjectFspVlan-DynamicMapping-Interface")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4606,7 +4621,9 @@ func flattenObjectFspVlanDynamicMappingScope(v interface{}, d *schema.ResourceDa
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5072,7 +5089,9 @@ func flattenObjectFspVlanDynamicMappingDhcpServerExcludeRange(v interface{}, d *
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-ExcludeRange-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5195,7 +5214,9 @@ func flattenObjectFspVlanDynamicMappingDhcpServerIpRange(v interface{}, d *schem
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-IpRange-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5368,7 +5389,9 @@ func flattenObjectFspVlanDynamicMappingDhcpServerOptions(v interface{}, d *schem
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-Options-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5495,7 +5518,9 @@ func flattenObjectFspVlanDynamicMappingDhcpServerReservedAddress(v interface{}, 
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingDhcpServer-ReservedAddress-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6091,7 +6116,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(v int
 			tmp["upstream_interface"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Ip6DelegatedPrefixList-UpstreamInterface")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6160,7 +6187,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(v interface{}, 
 			tmp["prefix"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Ip6ExtraAddr-Prefix")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6261,7 +6290,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(v interface{},
 			tmp["valid_life_time"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Ip6PrefixList-ValidLifeTime")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6440,7 +6471,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(v interface{}, d *sche
 			tmp["vrip6"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceIpv6-Vrrp6-Vrip6")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6571,7 +6604,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceSecondaryip(v interface{}, d *sc
 			tmp["seq"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterface-Secondaryip-Seq")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6726,7 +6761,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceVrrp(v interface{}, d *schema.Re
 			tmp["vrip"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterface-Vrrp-Vrip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6785,7 +6822,9 @@ func flattenObjectFspVlanDynamicMappingInterfaceVrrpProxyArp(v interface{}, d *s
 			tmp["ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanDynamicMappingInterfaceVrrp-ProxyArp-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6875,6 +6914,11 @@ func flattenObjectFspVlanInterface(v interface{}, d *schema.ResourceData, pre st
 	pre_append = pre + ".0." + "allowaccess"
 	if _, ok := i["allowaccess"]; ok {
 		result["allowaccess"] = flattenObjectFspVlanInterfaceAllowaccess(i["allowaccess"], d, pre_append)
+	}
+
+	pre_append = pre + ".0." + "annex"
+	if _, ok := i["annex"]; ok {
+		result["annex"] = flattenObjectFspVlanInterfaceAnnex(i["annex"], d, pre_append)
 	}
 
 	pre_append = pre + ".0." + "ap_discover"
@@ -8463,6 +8507,10 @@ func flattenObjectFspVlanInterfaceAllowaccess(v interface{}, d *schema.ResourceD
 	return flattenStringList(v)
 }
 
+func flattenObjectFspVlanInterfaceAnnex(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenObjectFspVlanInterfaceApDiscover(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
@@ -9351,7 +9399,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(v interface{}, d *s
 			tmp["upstream_interface"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6DelegatedPrefixList-UpstreamInterface")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9420,7 +9470,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6ExtraAddr(v interface{}, d *schema.Reso
 			tmp["prefix"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6ExtraAddr-Prefix")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9521,7 +9573,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6PrefixList(v interface{}, d *schema.Res
 			tmp["valid_life_time"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6PrefixList-ValidLifeTime")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9700,7 +9754,9 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp6(v interface{}, d *schema.ResourceDat
 			tmp["vrip6"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-Vrip6")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -10147,7 +10203,9 @@ func flattenObjectFspVlanInterfaceSecondaryip(v interface{}, d *schema.ResourceD
 			tmp["seq"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterface-Secondaryip-Seq")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -10618,7 +10676,9 @@ func flattenObjectFspVlanInterfaceVrrp(v interface{}, d *schema.ResourceData, pr
 			tmp["vrip"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterface-Vrrp-Vrip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -10677,7 +10737,9 @@ func flattenObjectFspVlanInterfaceVrrpProxyArp(v interface{}, d *schema.Resource
 			tmp["ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceVrrp-ProxyArp-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -11387,7 +11449,9 @@ func expandObjectFspVlanDhcpServerExcludeRange(d *schema.ResourceData, v interfa
 			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -11497,7 +11561,9 @@ func expandObjectFspVlanDhcpServerIpRange(d *schema.ResourceData, v interface{},
 			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -11656,7 +11722,9 @@ func expandObjectFspVlanDhcpServerOptions(d *schema.ResourceData, v interface{},
 			tmp["vci-string"], _ = expandObjectFspVlanDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -11768,7 +11836,9 @@ func expandObjectFspVlanDhcpServerReservedAddress(d *schema.ResourceData, v inte
 			tmp["type"], _ = expandObjectFspVlanDhcpServerReservedAddressType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -11921,7 +11991,9 @@ func expandObjectFspVlanDynamicMapping(d *schema.ResourceData, v interface{}, pr
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -11957,7 +12029,9 @@ func expandObjectFspVlanDynamicMappingScope(d *schema.ResourceData, v interface{
 			tmp["vdom"], _ = expandObjectFspVlanDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -12373,7 +12447,9 @@ func expandObjectFspVlanDynamicMappingDhcpServerExcludeRange(d *schema.ResourceD
 			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -12483,7 +12559,9 @@ func expandObjectFspVlanDynamicMappingDhcpServerIpRange(d *schema.ResourceData, 
 			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -12642,7 +12720,9 @@ func expandObjectFspVlanDynamicMappingDhcpServerOptions(d *schema.ResourceData, 
 			tmp["vci-string"], _ = expandObjectFspVlanDynamicMappingDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -12754,7 +12834,9 @@ func expandObjectFspVlanDynamicMappingDhcpServerReservedAddress(d *schema.Resour
 			tmp["type"], _ = expandObjectFspVlanDynamicMappingDhcpServerReservedAddressType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13315,7 +13397,9 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixList(d *sch
 			tmp["upstream-interface"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface(d, i["upstream_interface"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13378,7 +13462,9 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddr(d *schema.Resour
 			tmp["prefix"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6ExtraAddrPrefix(d, i["prefix"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13467,7 +13553,9 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixList(d *schema.Resou
 			tmp["valid-life-time"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Ip6PrefixListValidLifeTime(d, i["valid_life_time"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13631,7 +13719,9 @@ func expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6(d *schema.ResourceData,
 			tmp["vrip6"], _ = expandObjectFspVlanDynamicMappingInterfaceIpv6Vrrp6Vrip6(d, i["vrip6"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13747,7 +13837,9 @@ func expandObjectFspVlanDynamicMappingInterfaceSecondaryip(d *schema.ResourceDat
 			tmp["seq"], _ = expandObjectFspVlanDynamicMappingInterfaceSecondaryipSeq(d, i["seq"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13888,7 +13980,9 @@ func expandObjectFspVlanDynamicMappingInterfaceVrrp(d *schema.ResourceData, v in
 			tmp["vrip"], _ = expandObjectFspVlanDynamicMappingInterfaceVrrpVrip(d, i["vrip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -13940,7 +14034,9 @@ func expandObjectFspVlanDynamicMappingInterfaceVrrpProxyArp(d *schema.ResourceDa
 			tmp["ip"], _ = expandObjectFspVlanDynamicMappingInterfaceVrrpProxyArpIp(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -14025,6 +14121,10 @@ func expandObjectFspVlanInterface(d *schema.ResourceData, v interface{}, pre str
 	pre_append = pre + ".0." + "allowaccess"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
 		result["allowaccess"], _ = expandObjectFspVlanInterfaceAllowaccess(d, i["allowaccess"], pre_append)
+	}
+	pre_append = pre + ".0." + "annex"
+	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
+		result["annex"], _ = expandObjectFspVlanInterfaceAnnex(d, i["annex"], pre_append)
 	}
 	pre_append = pre + ".0." + "ap_discover"
 	if _, ok := d.GetOk(pre_append); ok || d.HasChange(pre_append) {
@@ -15313,6 +15413,10 @@ func expandObjectFspVlanInterfaceAllowaccess(d *schema.ResourceData, v interface
 	return expandStringList(v.(*schema.Set).List()), nil
 }
 
+func expandObjectFspVlanInterfaceAnnex(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandObjectFspVlanInterfaceApDiscover(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
@@ -16161,7 +16265,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList(d *schema.ResourceDa
 			tmp["upstream-interface"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface(d, i["upstream_interface"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -16224,7 +16330,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr(d *schema.ResourceData, v inte
 			tmp["prefix"], _ = expandObjectFspVlanInterfaceIpv6Ip6ExtraAddrPrefix(d, i["prefix"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -16313,7 +16421,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6PrefixList(d *schema.ResourceData, v int
 			tmp["valid-life-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListValidLifeTime(d, i["valid_life_time"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -16477,7 +16587,9 @@ func expandObjectFspVlanInterfaceIpv6Vrrp6(d *schema.ResourceData, v interface{}
 			tmp["vrip6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrip6(d, i["vrip6"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -16909,7 +17021,9 @@ func expandObjectFspVlanInterfaceSecondaryip(d *schema.ResourceData, v interface
 			tmp["seq"], _ = expandObjectFspVlanInterfaceSecondaryipSeq(d, i["seq"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -17366,7 +17480,9 @@ func expandObjectFspVlanInterfaceVrrp(d *schema.ResourceData, v interface{}, pre
 			tmp["vrip"], _ = expandObjectFspVlanInterfaceVrrpVrip(d, i["vrip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -17418,7 +17534,9 @@ func expandObjectFspVlanInterfaceVrrpProxyArp(d *schema.ResourceData, v interfac
 			tmp["ip"], _ = expandObjectFspVlanInterfaceVrrpProxyArpIp(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

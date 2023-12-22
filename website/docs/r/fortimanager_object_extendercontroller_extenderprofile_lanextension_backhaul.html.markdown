@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_lanextension_backhaul
 LAN extension backhaul tunnel configuration.
 
+~> This resource is a sub resource for variable `backhaul` of resource `fortimanager_object_extendercontroller_extenderprofile_lanextension`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_lanextension_backhaul" "trname" {
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  name             = "default"
+  port             = "port1"
+  role             = "secondary"
+  weight           = 23
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile_lanextension" "trname" {
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

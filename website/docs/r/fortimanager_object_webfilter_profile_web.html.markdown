@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_webfilter_profile_web
 Web content filtering settings.
 
+~> This resource is a sub resource for variable `web` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_profile_web" "trname" {
+  safe_search      = ["url"]
+  youtube_restrict = "strict"
+  depends_on       = [fortimanager_object_webfilter_profile.trname8]
+  profile          = fortimanager_object_webfilter_profile.trname8.name
+}
+
+resource "fortimanager_object_webfilter_profile" "trname8" {
+  name = "terr-webfilter-profile8"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_wirelesscontroller_vap_vlanpool
 VLAN pool.
 
+~> This resource is a sub resource for variable `vlan_pool` of resource `fortimanager_object_wirelesscontroller_vap`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

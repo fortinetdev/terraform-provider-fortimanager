@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_webfilter_content_entries
 Configure banned word entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_webfilter_content`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_content_entries" "trname" {
+  name         = "terr-entries"
+  pattern_type = "regexp"
+  score        = 20
+  status       = "enable"
+  depends_on   = [fortimanager_object_webfilter_content.trname]
+  content      = fortimanager_object_webfilter_content.trname.fosid
+}
+
+resource "fortimanager_object_webfilter_content" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-webfilter-content"
+}
+```
+
 ## Argument Reference
 
 

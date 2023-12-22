@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_npu_tcptimeoutprofile
 Configure TCP timeout profile.
 
+~> This resource is a sub resource for variable `tcp_timeout_profile` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

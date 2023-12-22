@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_webproxy
 Configure system web proxy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_webproxy" "trname" {
+  status   = "enable"
+  username = "admin"
+  password = ["psw"]
+}
+```
+
 ## Argument Reference
 
 

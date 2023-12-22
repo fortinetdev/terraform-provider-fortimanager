@@ -668,7 +668,9 @@ func flattenObjectSwitchControllerManagedSwitchPortsDhcpSnoopOption82Override2ed
 			tmp["vlan_name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitchPorts-DhcpSnoopOption82Override-VlanName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1937,7 +1939,9 @@ func expandObjectSwitchControllerManagedSwitchPortsDhcpSnoopOption82Override2edl
 			tmp["vlan-name"], _ = expandObjectSwitchControllerManagedSwitchPortsDhcpSnoopOption82OverrideVlanName2edl(d, i["vlan_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

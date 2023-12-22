@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_firewall_casbprofile
 ObjectFirewall CasbProfile
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`saas_application`: `fortimanager_object_firewall_casbprofile_saasapplication`
+
+
+
 ## Argument Reference
 
 

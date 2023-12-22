@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_cellular_controllerreport
 FortiExtender controller report configuration.
 
+~> This resource is a sub resource for variable `controller_report` of resource `fortimanager_object_extendercontroller_extenderprofile_cellular`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_controllerreport" "trname" {
+  interval         = 12
+  signal_threshold = 40
+  status           = "disable"
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

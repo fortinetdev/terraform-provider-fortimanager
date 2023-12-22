@@ -221,7 +221,9 @@ func flattenObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(v interfa
 			tmp["osu_nai"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20H2QpOsuProviderNai-NaiList-OsuNai")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -319,7 +321,9 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiList(d *schema.
 			tmp["osu-nai"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderNaiNaiListOsuNai(d, i["osu_nai"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

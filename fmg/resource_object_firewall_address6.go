@@ -726,7 +726,9 @@ func flattenObjectFirewallAddress6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["visibility"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-DynamicMapping-Visibility")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -769,7 +771,9 @@ func flattenObjectFirewallAddress6DynamicMappingScope(v interface{}, d *schema.R
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6DynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -902,7 +906,9 @@ func flattenObjectFirewallAddress6DynamicMappingSubnetSegment(v interface{}, d *
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6DynamicMapping-SubnetSegment-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1019,7 +1025,9 @@ func flattenObjectFirewallAddress6List(v interface{}, d *schema.ResourceData, pr
 			tmp["obj_id"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-List-ObjId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1108,7 +1116,9 @@ func flattenObjectFirewallAddress6SubnetSegment(v interface{}, d *schema.Resourc
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-SubnetSegment-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1165,7 +1175,9 @@ func flattenObjectFirewallAddress6Tagging(v interface{}, d *schema.ResourceData,
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1780,7 +1792,9 @@ func expandObjectFirewallAddress6DynamicMapping(d *schema.ResourceData, v interf
 			tmp["visibility"], _ = expandObjectFirewallAddress6DynamicMappingVisibility(d, i["visibility"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1816,7 +1830,9 @@ func expandObjectFirewallAddress6DynamicMappingScope(d *schema.ResourceData, v i
 			tmp["vdom"], _ = expandObjectFirewallAddress6DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1941,7 +1957,9 @@ func expandObjectFirewallAddress6DynamicMappingSubnetSegment(d *schema.ResourceD
 			tmp["value"], _ = expandObjectFirewallAddress6DynamicMappingSubnetSegmentValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2050,7 +2068,9 @@ func expandObjectFirewallAddress6List(d *schema.ResourceData, v interface{}, pre
 			tmp["obj-id"], _ = expandObjectFirewallAddress6ListObjId(d, i["obj_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2131,7 +2151,9 @@ func expandObjectFirewallAddress6SubnetSegment(d *schema.ResourceData, v interfa
 			tmp["value"], _ = expandObjectFirewallAddress6SubnetSegmentValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2180,7 +2202,9 @@ func expandObjectFirewallAddress6Tagging(d *schema.ResourceData, v interface{}, 
 			tmp["tags"], _ = expandObjectFirewallAddress6TaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

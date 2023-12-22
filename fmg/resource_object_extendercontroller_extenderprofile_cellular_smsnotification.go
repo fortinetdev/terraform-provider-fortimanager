@@ -359,7 +359,9 @@ func flattenObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiv
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectExtenderControllerExtenderProfileCellularSmsNotification-Receiver-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -569,7 +571,9 @@ func expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceive
 			tmp["status"], _ = expandObjectExtenderControllerExtenderProfileCellularSmsNotificationReceiverStatus3rdl(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

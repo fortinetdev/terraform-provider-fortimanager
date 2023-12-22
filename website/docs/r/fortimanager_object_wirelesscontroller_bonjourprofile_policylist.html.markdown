@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_bonjourprofile_policylist
 Bonjour policy list.
 
+~> This resource is a sub resource for variable `policy_list` of resource `fortimanager_object_wirelesscontroller_bonjourprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_bonjourprofile_policylist" "trname" {
+  bonjour_profile = fortimanager_object_wirelesscontroller_bonjourprofile.trname.name
+  policy_id       = 1
+  services        = ["ftp"]
+  to_vlan         = 2000
+  depends_on      = [fortimanager_object_wirelesscontroller_bonjourprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_bonjourprofile" "trname" {
+  name = "teset"
+}
+```
+
 ## Argument Reference
 
 

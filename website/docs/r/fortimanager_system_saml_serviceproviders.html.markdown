@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_saml_serviceproviders
 Authorized service providers.
 
+~> This resource is a sub resource for variable `service_providers` of resource `fortimanager_system_saml`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

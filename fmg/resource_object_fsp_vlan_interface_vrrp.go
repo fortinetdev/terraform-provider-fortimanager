@@ -325,7 +325,9 @@ func flattenObjectFspVlanInterfaceVrrpProxyArp3rdl(v interface{}, d *schema.Reso
 			tmp["ip"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceVrrp-ProxyArp-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -591,7 +593,9 @@ func expandObjectFspVlanInterfaceVrrpProxyArp3rdl(d *schema.ResourceData, v inte
 			tmp["ip"], _ = expandObjectFspVlanInterfaceVrrpProxyArpIp3rdl(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

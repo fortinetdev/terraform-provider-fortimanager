@@ -9,6 +9,16 @@ description: |-
 # fortimanager_systemp_system_global
 Configure global attributes.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_global" "trname" {
+  devprof              = "default"
+  admin_https_redirect = "enable"
+  admin_port           = 80
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile
 Configure WTP profiles or FortiAP profiles that define radio settings for manageable FortiAP platforms.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`deny_mac_list`: `fortimanager_object_wirelesscontroller_wtpprofile_denymaclist`
+`esl_ses_dongle`: `fortimanager_object_wirelesscontroller_wtpprofile_eslsesdongle`
+`lan`: `fortimanager_object_wirelesscontroller_wtpprofile_lan`
+`lbs`: `fortimanager_object_wirelesscontroller_wtpprofile_lbs`
+`platform`: `fortimanager_object_wirelesscontroller_wtpprofile_platform`
+`radio_1`: `fortimanager_object_wirelesscontroller_wtpprofile_radio1`
+`radio_2`: `fortimanager_object_wirelesscontroller_wtpprofile_radio2`
+`radio_3`: `fortimanager_object_wirelesscontroller_wtpprofile_radio3`
+`radio_4`: `fortimanager_object_wirelesscontroller_wtpprofile_radio4`
+`split_tunneling_acl`: `fortimanager_object_wirelesscontroller_wtpprofile_splittunnelingacl`
+
+
+
 ## Example Usage
 
 ```hcl

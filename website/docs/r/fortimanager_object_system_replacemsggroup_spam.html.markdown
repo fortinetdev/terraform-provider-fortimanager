@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_system_replacemsggroup_spam
 Replacement message table entries.
 
+~> This resource is a sub resource for variable `spam` of resource `fortimanager_object_system_replacemsggroup`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_replacemsggroup_spam" "trname" {
+  replacemsg_group = fortimanager_object_system_replacemsggroup.trname.name
+  header           = "8bit"
+  msg_type         = "txt"
+  depends_on       = [fortimanager_object_system_replacemsggroup.trname]
+}
+
+resource "fortimanager_object_system_replacemsggroup" "trname" {
+  name = "terr-replacemsggroup"
+}
+```
+
 ## Argument Reference
 
 

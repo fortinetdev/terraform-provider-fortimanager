@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_cellular_modem1
 Configuration options for modem 1.
 
+~> This resource is a sub resource for variable `modem1` of resource `fortimanager_object_extensioncontroller_extenderprofile_cellular`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`auto_switch`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_modem1_autoswitch`
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile_pop3s
 Configure POP3S options.
 
+~> This resource is a sub resource for variable `pop3s` of resource `fortimanager_object_firewall_sslsshprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_sslsshprofile_pop3s" "trname" {
+  ssl_ssh_profile           = fortimanager_object_firewall_sslsshprofile.trname.name
+  ports                     = [45]
+  proxy_after_tcp_handshake = "disable"
+  revoked_server_cert       = "allow"
+  depends_on                = [fortimanager_object_firewall_sslsshprofile.trname]
+}
+
+resource "fortimanager_object_firewall_sslsshprofile" "trname" {
+  name = "terr-sslsshprofile"
+}
+```
+
 ## Argument Reference
 
 

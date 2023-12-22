@@ -9,6 +9,21 @@ description: |-
 # fortimanager_packages_firewall_policy6
 Configure IPv6 policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_policy6" "trname" {
+  dstaddr  = "all"
+  dstintf  = "any"
+  pkg      = "default"
+  policyid = 1
+  schedule = "always"
+  service  = "ALL"
+  srcaddr  = "all"
+  srcintf  = "any"
+}
+```
+
 ## Argument Reference
 
 

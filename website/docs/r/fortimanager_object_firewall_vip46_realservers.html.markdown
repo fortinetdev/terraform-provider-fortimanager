@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_vip46_realservers
 Real servers.
 
+~> This resource is a sub resource for variable `realservers` of resource `fortimanager_object_firewall_vip46`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

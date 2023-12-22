@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_internetservicecustom_entry_portrange
 Port ranges in the custom entry.
 
+~> This resource is a sub resource for variable `port_range` of resource `fortimanager_object_firewall_internetservicecustom_entry`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

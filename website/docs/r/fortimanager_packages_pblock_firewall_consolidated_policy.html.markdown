@@ -9,6 +9,10 @@ description: |-
 # fortimanager_packages_pblock_firewall_consolidated_policy
 Configuring consolidated policy for a policy block.
 
+~> This resource is a sub resource for variable `firewall_consolidated_policy` of resource `fortimanager_packages_pblock`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

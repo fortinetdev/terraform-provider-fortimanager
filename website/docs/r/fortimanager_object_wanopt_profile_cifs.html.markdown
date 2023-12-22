@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wanopt_profile_cifs
 Enable/disable CIFS (Windows sharing) WAN Optimization and configure CIFS WAN Optimization features.
 
+~> This resource is a sub resource for variable `cifs` of resource `fortimanager_object_wanopt_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_profile_cifs" "trname" {
+  byte_caching = "enable"
+  log_traffic  = "enable"
+  profile      = fortimanager_object_wanopt_profile.trname.name
+  depends_on   = [fortimanager_object_wanopt_profile.trname]
+}
+
+resource "fortimanager_object_wanopt_profile" "trname" {
+  name = "terr-wanopt-profile"
+}
+```
+
 ## Argument Reference
 
 

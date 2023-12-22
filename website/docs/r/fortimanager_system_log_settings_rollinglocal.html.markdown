@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_log_settings_rollinglocal
 Log rolling policy for local logs.
 
+~> This resource is a sub resource for variable `rolling_local` of resource `fortimanager_system_log_settings`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

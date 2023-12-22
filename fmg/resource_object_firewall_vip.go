@@ -1779,7 +1779,9 @@ func flattenObjectFirewallVipDynamicMapping(v interface{}, d *schema.ResourceDat
 			tmp["websphere_server"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-DynamicMapping-WebsphereServer")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1818,7 +1820,9 @@ func flattenObjectFirewallVipDynamicMappingScope(v interface{}, d *schema.Resour
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2125,7 +2129,9 @@ func flattenObjectFirewallVipDynamicMappingRealservers(v interface{}, d *schema.
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2268,7 +2274,9 @@ func flattenObjectFirewallVipDynamicMappingSslCipherSuites(v interface{}, d *sch
 			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallVipDynamicMapping-SslCipherSuites-Versions")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2786,7 +2794,9 @@ func flattenObjectFirewallVipRealservers(v interface{}, d *schema.ResourceData, 
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2925,7 +2935,9 @@ func flattenObjectFirewallVipSslCipherSuites(v interface{}, d *schema.ResourceDa
 			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-SslCipherSuites-Versions")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3082,7 +3094,9 @@ func flattenObjectFirewallVipSslServerCipherSuites(v interface{}, d *schema.Reso
 			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallVip-SslServerCipherSuites-Versions")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4650,7 +4664,9 @@ func expandObjectFirewallVipDynamicMapping(d *schema.ResourceData, v interface{}
 			tmp["websphere-server"], _ = expandObjectFirewallVipDynamicMappingWebsphereServer(d, i["websphere_server"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4682,7 +4698,9 @@ func expandObjectFirewallVipDynamicMappingScope(d *schema.ResourceData, v interf
 			tmp["vdom"], _ = expandObjectFirewallVipDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4968,7 +4986,9 @@ func expandObjectFirewallVipDynamicMappingRealservers(d *schema.ResourceData, v 
 			tmp["weight"], _ = expandObjectFirewallVipDynamicMappingRealserversWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5102,7 +5122,9 @@ func expandObjectFirewallVipDynamicMappingSslCipherSuites(d *schema.ResourceData
 			tmp["versions"], _ = expandObjectFirewallVipDynamicMappingSslCipherSuitesVersions(d, i["versions"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5593,7 +5615,9 @@ func expandObjectFirewallVipRealservers(d *schema.ResourceData, v interface{}, p
 			tmp["weight"], _ = expandObjectFirewallVipRealserversWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5723,7 +5747,9 @@ func expandObjectFirewallVipSslCipherSuites(d *schema.ResourceData, v interface{
 			tmp["versions"], _ = expandObjectFirewallVipSslCipherSuitesVersions(d, i["versions"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5872,7 +5898,9 @@ func expandObjectFirewallVipSslServerCipherSuites(d *schema.ResourceData, v inte
 			tmp["versions"], _ = expandObjectFirewallVipSslServerCipherSuitesVersions(d, i["versions"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

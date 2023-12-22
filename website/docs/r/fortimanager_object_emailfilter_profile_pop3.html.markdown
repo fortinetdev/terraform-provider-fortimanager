@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_emailfilter_profile_pop3
 POP3.
 
+~> This resource is a sub resource for variable `pop3` of resource `fortimanager_object_emailfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

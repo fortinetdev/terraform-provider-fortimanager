@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_ippool_grp
 Configure IPv4 pool groups.
 
+~> This resource is a sub resource for variable `grp` of resource `fortimanager_object_firewall_ippool`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

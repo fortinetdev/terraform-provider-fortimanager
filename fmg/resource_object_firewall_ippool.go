@@ -750,7 +750,9 @@ func flattenObjectFirewallIppoolDynamicMapping(v interface{}, d *schema.Resource
 			tmp["utilization_alarm_raise"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool-DynamicMapping-UtilizationAlarmRaise")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -789,7 +791,9 @@ func flattenObjectFirewallIppoolDynamicMappingScope(v interface{}, d *schema.Res
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallIppoolDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1600,7 +1604,9 @@ func expandObjectFirewallIppoolDynamicMapping(d *schema.ResourceData, v interfac
 			tmp["utilization-alarm-raise"], _ = expandObjectFirewallIppoolDynamicMappingUtilizationAlarmRaise(d, i["utilization_alarm_raise"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1632,7 +1638,9 @@ func expandObjectFirewallIppoolDynamicMappingScope(d *schema.ResourceData, v int
 			tmp["vdom"], _ = expandObjectFirewallIppoolDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

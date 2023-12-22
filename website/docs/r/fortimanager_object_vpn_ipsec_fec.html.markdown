@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_vpn_ipsec_fec
 Configure Forward Error Correction (FEC) mapping profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`mappings`: `fortimanager_object_vpn_ipsec_fec_mappings`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ipsec_fec" "trname" {
+  name = "terr-fec"
+  mappings {
+    bandwidth_bi_threshold = 12
+  }
+}
+```
+
 ## Argument Reference
 
 

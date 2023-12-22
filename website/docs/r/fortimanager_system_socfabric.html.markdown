@@ -9,6 +9,11 @@ description: |-
 # fortimanager_system_socfabric
 SOC Fabric.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`trusted_list`: `fortimanager_system_socfabric_trustedlist`
+
+
+
 ## Argument Reference
 
 

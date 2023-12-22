@@ -238,7 +238,9 @@ func flattenObjectVpnSslWebPortalLandingPageFormData2edl(v interface{}, d *schem
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalLandingPage-FormData-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -406,7 +408,9 @@ func expandObjectVpnSslWebPortalLandingPageFormData2edl(d *schema.ResourceData, 
 			tmp["value"], _ = expandObjectVpnSslWebPortalLandingPageFormDataValue2edl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

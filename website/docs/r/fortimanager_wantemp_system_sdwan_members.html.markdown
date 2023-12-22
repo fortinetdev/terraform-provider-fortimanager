@@ -9,6 +9,29 @@ description: |-
 # fortimanager_wantemp_system_sdwan_members
 FortiGate interfaces added to the SD-WAN.
 
+~> This resource is a sub resource for variable `members` of resource `fortimanager_wantemp_system_sdwan`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_members" "trname" {
+  wanprof    = "terr3"
+  cost       = 1
+  interface  = "port7"
+  seq_num    = 2
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+
+resource "fortimanager_wan_template" "trname" {
+  name = "terr3"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

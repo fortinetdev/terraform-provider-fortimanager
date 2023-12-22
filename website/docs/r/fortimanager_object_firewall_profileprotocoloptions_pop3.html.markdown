@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions_pop3
 Configure POP3 protocol options.
 
+~> This resource is a sub resource for variable `pop3` of resource `fortimanager_object_firewall_profileprotocoloptions`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions_pop3" "trname" {
+  profile_protocol_options = fortimanager_object_firewall_profileprotocoloptions.trname.name
+  inspect_all              = "enable"
+  options                  = ["oversize"]
+  oversize_limit           = 34
+  depends_on               = [fortimanager_object_firewall_profileprotocoloptions.trname]
+}
+
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  name = "terr-profileprotocoloptions"
+}
+```
+
 ## Argument Reference
 
 

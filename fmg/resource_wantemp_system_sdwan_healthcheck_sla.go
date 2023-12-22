@@ -63,10 +63,12 @@ func resourceWantempSystemSdwanHealthCheckSla() *schema.Resource {
 			"jitter_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"latency_threshold": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"link_cost_factor": &schema.Schema{
 				Type:     schema.TypeSet,

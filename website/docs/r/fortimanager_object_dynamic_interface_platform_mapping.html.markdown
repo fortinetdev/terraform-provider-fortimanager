@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_dynamic_interface_platform_mapping
 ObjectDynamic InterfacePlatformMapping
 
+~> This resource is a sub resource for variable `platform_mapping` of resource `fortimanager_object_dynamic_interface`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_interface_platform_mapping" "trname" {
+  intrazone_deny = "disable"
+  name           = "terr-mapping"
+  interface      = fortimanager_object_dynamic_interface.trname.name
+  depends_on     = [fortimanager_object_dynamic_interface.trname]
+}
+
+resource "fortimanager_object_dynamic_interface" "trname" {
+  name = "terr-dynamic-interface"
+}
+```
+
 ## Argument Reference
 
 

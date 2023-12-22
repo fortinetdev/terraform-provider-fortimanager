@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_switchcontroller_lldpprofile_customtlvs
 Configuration method to edit custom TLV entries.
 
+~> This resource is a sub resource for variable `custom_tlvs` of resource `fortimanager_object_switchcontroller_lldpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_lldpprofile_customtlvs" "trname" {
+  lldp_profile       = fortimanager_object_switchcontroller_lldpprofile.trname.name
+  information_string = 400
+  name               = "terr-customtlvs"
+  depends_on         = [fortimanager_object_switchcontroller_lldpprofile.trname]
+}
+
+resource "fortimanager_object_switchcontroller_lldpprofile" "trname" {
+  name = "terr-switch-controller-lldp-profile"
+}
+```
+
 ## Argument Reference
 
 

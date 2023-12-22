@@ -457,7 +457,9 @@ func flattenPackagesFirewallDosPolicyAnomaly(v interface{}, d *schema.ResourceDa
 			tmp["thresholddefault"] = fortiAPISubPartPatch(v, "PackagesFirewallDosPolicy-Anomaly-ThresholdDefault")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -793,7 +795,9 @@ func expandPackagesFirewallDosPolicyAnomaly(d *schema.ResourceData, v interface{
 			tmp["threshold(default)"], _ = expandPackagesFirewallDosPolicyAnomalyThresholdDefault(d, i["thresholddefault"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_antivirus_profile
 Configure AntiVirus profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`cifs`: `fortimanager_object_antivirus_profile_cifs`
+`content_disarm`: `fortimanager_object_antivirus_profile_contentdisarm`
+`ftp`: `fortimanager_object_antivirus_profile_ftp`
+`http`: `fortimanager_object_antivirus_profile_http`
+`imap`: `fortimanager_object_antivirus_profile_imap`
+`mapi`: `fortimanager_object_antivirus_profile_mapi`
+`nac_quar`: `fortimanager_object_antivirus_profile_nacquar`
+`nntp`: `fortimanager_object_antivirus_profile_nntp`
+`outbreak_prevention`: `fortimanager_object_antivirus_profile_outbreakprevention`
+`pop3`: `fortimanager_object_antivirus_profile_pop3`
+`smb`: `fortimanager_object_antivirus_profile_smb`
+`smtp`: `fortimanager_object_antivirus_profile_smtp`
+`ssh`: `fortimanager_object_antivirus_profile_ssh`
+
+
+
 ## Example Usage
 
 ```hcl

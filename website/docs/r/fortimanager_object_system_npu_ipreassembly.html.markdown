@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_ipreassembly
 IP reassebmly engine configuration.
 
+~> This resource is a sub resource for variable `ip_reassembly` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_ipreassembly" "trname" {
+  max_timeout = 200000
+  min_timeout = 12000
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_user_vcenter_rule
 ObjectUser VcenterRule
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_user_vcenter`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_vcenter_rule" "trname" {
+  vcenter    = fortimanager_object_user_vcenter.trname.name
+  name       = "terr-rule"
+  depends_on = [fortimanager_object_user_vcenter.trname]
+}
+
+resource "fortimanager_object_user_vcenter" "trname" {
+  name   = "terr-vcenter"
+  server = "192.168.1.1"
+  user   = "admin"
+}
+```
+
 ## Argument Reference
 
 

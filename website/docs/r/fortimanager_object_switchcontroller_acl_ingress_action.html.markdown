@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_switchcontroller_acl_ingress_action
 ACL actions.
 
+~> This resource is a sub resource for variable `action` of resource `fortimanager_object_switchcontroller_acl_ingress`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

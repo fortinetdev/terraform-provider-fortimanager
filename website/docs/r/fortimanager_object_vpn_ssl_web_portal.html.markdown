@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_vpn_ssl_web_portal
 Portal.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`bookmark_group`: `fortimanager_object_vpn_ssl_web_portal_bookmarkgroup`
+`landing_page`: `fortimanager_object_vpn_ssl_web_portal_landingpage`
+`mac_addr_check_rule`: `fortimanager_object_vpn_ssl_web_portal_macaddrcheckrule`
+`os_check_list`: `fortimanager_object_vpn_ssl_web_portal_oschecklist`
+`split_dns`: `fortimanager_object_vpn_ssl_web_portal_splitdns`
+
+
+
 ## Example Usage
 
 ```hcl

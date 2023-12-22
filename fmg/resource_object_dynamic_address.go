@@ -238,7 +238,9 @@ func flattenObjectDynamicAddressDynamicAddrMapping(v interface{}, d *schema.Reso
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectDynamicAddress-DynamicAddrMapping-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -364,7 +366,9 @@ func expandObjectDynamicAddressDynamicAddrMapping(d *schema.ResourceData, v inte
 			tmp["id"], _ = expandObjectDynamicAddressDynamicAddrMappingId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

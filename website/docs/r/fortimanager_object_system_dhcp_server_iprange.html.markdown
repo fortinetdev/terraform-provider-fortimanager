@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_dhcp_server_iprange
 DHCP IP range configuration.
 
+~> This resource is a sub resource for variable `ip_range` of resource `fortimanager_object_system_dhcp_server`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_dhcp_server_iprange" "trname" {
+  server     = fortimanager_object_system_dhcp_server.trname2.fosid
+  end_ip     = "10.160.100.34"
+  fosid      = 12
+  start_ip   = "10.160.88.34"
+  depends_on = [fortimanager_object_system_dhcp_server.trname2]
+}
+
+resource "fortimanager_object_system_dhcp_server" "trname2" {
+  fosid = 3
+}
+```
+
 ## Argument Reference
 
 

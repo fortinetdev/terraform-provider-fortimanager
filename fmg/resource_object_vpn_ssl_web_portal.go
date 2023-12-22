@@ -834,7 +834,9 @@ func flattenObjectVpnSslWebPortalBookmarkGroup(v interface{}, d *schema.Resource
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortal-BookmarkGroup-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1053,7 +1055,9 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks(v interface{}, d *schema
 			tmp["width"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Width")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1116,7 +1120,9 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksFormData(v interface{}, d
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroupBookmarks-FormData-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1475,7 +1481,9 @@ func flattenObjectVpnSslWebPortalLandingPageFormData(v interface{}, d *schema.Re
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalLandingPage-FormData-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1568,7 +1576,9 @@ func flattenObjectVpnSslWebPortalMacAddrCheckRule(v interface{}, d *schema.Resou
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortal-MacAddrCheckRule-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1752,7 +1762,9 @@ func flattenObjectVpnSslWebPortalSplitDns(v interface{}, d *schema.ResourceData,
 			tmp["ipv6_dns_server2"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortal-SplitDns-Ipv6DnsServer2")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2753,7 +2765,9 @@ func expandObjectVpnSslWebPortalBookmarkGroup(d *schema.ResourceData, v interfac
 			tmp["name"], _ = expandObjectVpnSslWebPortalBookmarkGroupName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2940,7 +2954,9 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks(d *schema.ResourceData, v
 			tmp["width"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksWidth(d, i["width"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2996,7 +3012,9 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormData(d *schema.Resourc
 			tmp["value"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormDataValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3347,7 +3365,9 @@ func expandObjectVpnSslWebPortalLandingPageFormData(d *schema.ResourceData, v in
 			tmp["value"], _ = expandObjectVpnSslWebPortalLandingPageFormDataValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3432,7 +3452,9 @@ func expandObjectVpnSslWebPortalMacAddrCheckRule(d *schema.ResourceData, v inter
 			tmp["name"], _ = expandObjectVpnSslWebPortalMacAddrCheckRuleName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3602,7 +3624,9 @@ func expandObjectVpnSslWebPortalSplitDns(d *schema.ResourceData, v interface{}, 
 			tmp["ipv6-dns-server2"], _ = expandObjectVpnSslWebPortalSplitDnsIpv6DnsServer2(d, i["ipv6_dns_server2"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -222,7 +222,9 @@ func flattenSystemSocFabricTrustedListSsa(v interface{}, d *schema.ResourceData,
 			tmp["serial"] = fortiAPISubPartPatch(v, "SystemSocFabric-TrustedList-Serial")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -390,7 +392,9 @@ func expandSystemSocFabricTrustedListSsa(d *schema.ResourceData, v interface{}, 
 			tmp["serial"], _ = expandSystemSocFabricTrustedListSerialSsa(d, i["serial"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

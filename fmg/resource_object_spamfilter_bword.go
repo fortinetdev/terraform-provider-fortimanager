@@ -292,7 +292,9 @@ func flattenObjectSpamfilterBwordEntries(v interface{}, d *schema.ResourceData, 
 			tmp["where"] = fortiAPISubPartPatch(v, "ObjectSpamfilterBword-Entries-Where")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -472,7 +474,9 @@ func expandObjectSpamfilterBwordEntries(d *schema.ResourceData, v interface{}, p
 			tmp["where"], _ = expandObjectSpamfilterBwordEntriesWhere(d, i["where"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

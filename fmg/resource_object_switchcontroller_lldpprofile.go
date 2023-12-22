@@ -418,7 +418,9 @@ func flattenObjectSwitchControllerLldpProfileCustomTlvs(v interface{}, d *schema
 			tmp["subtype"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-CustomTlvs-Subtype")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -479,7 +481,9 @@ func flattenObjectSwitchControllerLldpProfileMedLocationService(v interface{}, d
 			tmp["sys_location_id"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedLocationService-SysLocationId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -560,7 +564,9 @@ func flattenObjectSwitchControllerLldpProfileMedNetworkPolicy(v interface{}, d *
 			tmp["vlan_intf"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerLldpProfile-MedNetworkPolicy-VlanIntf")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -932,7 +938,9 @@ func expandObjectSwitchControllerLldpProfileCustomTlvs(d *schema.ResourceData, v
 			tmp["subtype"], _ = expandObjectSwitchControllerLldpProfileCustomTlvsSubtype(d, i["subtype"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -985,7 +993,9 @@ func expandObjectSwitchControllerLldpProfileMedLocationService(d *schema.Resourc
 			tmp["sys-location-id"], _ = expandObjectSwitchControllerLldpProfileMedLocationServiceSysLocationId(d, i["sys_location_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1054,7 +1064,9 @@ func expandObjectSwitchControllerLldpProfileMedNetworkPolicy(d *schema.ResourceD
 			tmp["vlan-intf"], _ = expandObjectSwitchControllerLldpProfileMedNetworkPolicyVlanIntf(d, i["vlan_intf"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

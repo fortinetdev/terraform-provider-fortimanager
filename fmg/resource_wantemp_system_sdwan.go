@@ -116,6 +116,7 @@ func resourceWantempSystemSdwan() *schema.Resource {
 			"duplication_max_num": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"fail_alert_interfaces": &schema.Schema{
 				Type:     schema.TypeSet,
@@ -126,6 +127,7 @@ func resourceWantempSystemSdwan() *schema.Resource {
 			"fail_detect": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"health_check": &schema.Schema{
 				Type:     schema.TypeList,
@@ -207,8 +209,10 @@ func resourceWantempSystemSdwan() *schema.Resource {
 							Computed: true,
 						},
 						"members": &schema.Schema{
-							Type:     schema.TypeString,
+							Type:     schema.TypeSet,
+							Elem:     &schema.Schema{Type: schema.TypeString},
 							Optional: true,
+							Computed: true,
 						},
 						"mos_codec": &schema.Schema{
 							Type:     schema.TypeString,
@@ -285,10 +289,12 @@ func resourceWantempSystemSdwan() *schema.Resource {
 									"jitter_threshold": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"latency_threshold": &schema.Schema{
 										Type:     schema.TypeInt,
 										Optional: true,
+										Computed: true,
 									},
 									"link_cost_factor": &schema.Schema{
 										Type:     schema.TypeSet,
@@ -390,6 +396,7 @@ func resourceWantempSystemSdwan() *schema.Resource {
 			"load_balance_mode": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"members": &schema.Schema{
 				Type:     schema.TypeList,
@@ -532,6 +539,7 @@ func resourceWantempSystemSdwan() *schema.Resource {
 			"neighbor_hold_down": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"neighbor_hold_down_time": &schema.Schema{
 				Type:     schema.TypeInt,
@@ -851,10 +859,12 @@ func resourceWantempSystemSdwan() *schema.Resource {
 			"speedtest_bypass_routing": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"status": &schema.Schema{
 				Type:     schema.TypeString,
 				Optional: true,
+				Computed: true,
 			},
 			"zone": &schema.Schema{
 				Type:     schema.TypeList,
@@ -1085,7 +1095,9 @@ func flattenWantempSystemSdwanDuplicationWssa(v interface{}, d *schema.ResourceD
 			tmp["srcintf"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Duplication-Srcintf")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1454,7 +1466,9 @@ func flattenWantempSystemSdwanHealthCheckWssa(v interface{}, d *schema.ResourceD
 			tmp["vrf"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-HealthCheck-Vrf")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1527,7 +1541,7 @@ func flattenWantempSystemSdwanHealthCheckIntervalWssa(v interface{}, d *schema.R
 }
 
 func flattenWantempSystemSdwanHealthCheckMembersWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenWantempSystemSdwanHealthCheckMosCodecWssa(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -1649,7 +1663,9 @@ func flattenWantempSystemSdwanHealthCheckSlaWssa(v interface{}, d *schema.Resour
 			tmp["priority_out_sla"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-PriorityOutSla")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1884,7 +1900,9 @@ func flattenWantempSystemSdwanMembersWssa(v interface{}, d *schema.ResourceData,
 			tmp["zone"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Members-Zone")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2031,7 +2049,9 @@ func flattenWantempSystemSdwanNeighborWssa(v interface{}, d *schema.ResourceData
 			tmp["sla_id"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Neighbor-SlaId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2486,7 +2506,9 @@ func flattenWantempSystemSdwanServiceWssa(v interface{}, d *schema.ResourceData,
 			tmp["zone_mode"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Service-ZoneMode")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2717,7 +2739,9 @@ func flattenWantempSystemSdwanServiceSlaWssa(v interface{}, d *schema.ResourceDa
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemSdwanService-Sla-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2838,7 +2862,9 @@ func flattenWantempSystemSdwanZoneWssa(v interface{}, d *schema.ResourceData, pr
 			tmp["service_sla_tie_break"] = fortiAPISubPartPatch(v, "WantempSystemSdwan-Zone-ServiceSlaTieBreak")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3200,7 +3226,9 @@ func expandWantempSystemSdwanDuplicationWssa(d *schema.ResourceData, v interface
 			tmp["srcintf"], _ = expandWantempSystemSdwanDuplicationSrcintfWssa(d, i["srcintf"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3522,7 +3550,9 @@ func expandWantempSystemSdwanHealthCheckWssa(d *schema.ResourceData, v interface
 			tmp["vrf"], _ = expandWantempSystemSdwanHealthCheckVrfWssa(d, i["vrf"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3595,7 +3625,7 @@ func expandWantempSystemSdwanHealthCheckIntervalWssa(d *schema.ResourceData, v i
 }
 
 func expandWantempSystemSdwanHealthCheckMembersWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandWantempSystemSdwanHealthCheckMosCodecWssa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -3704,7 +3734,9 @@ func expandWantempSystemSdwanHealthCheckSlaWssa(d *schema.ResourceData, v interf
 			tmp["priority-out-sla"], _ = expandWantempSystemSdwanHealthCheckSlaPriorityOutSlaWssa(d, i["priority_out_sla"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3916,7 +3948,9 @@ func expandWantempSystemSdwanMembersWssa(d *schema.ResourceData, v interface{}, 
 			tmp["zone"], _ = expandWantempSystemSdwanMembersZoneWssa(d, i["zone"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4050,7 +4084,9 @@ func expandWantempSystemSdwanNeighborWssa(d *schema.ResourceData, v interface{},
 			tmp["sla-id"], _ = expandWantempSystemSdwanNeighborSlaIdWssa(d, i["sla_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4441,7 +4477,9 @@ func expandWantempSystemSdwanServiceWssa(d *schema.ResourceData, v interface{}, 
 			tmp["zone-mode"], _ = expandWantempSystemSdwanServiceZoneModeWssa(d, i["zone_mode"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4665,7 +4703,9 @@ func expandWantempSystemSdwanServiceSlaWssa(d *schema.ResourceData, v interface{
 			tmp["id"], _ = expandWantempSystemSdwanServiceSlaIdWssa(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4778,7 +4818,9 @@ func expandWantempSystemSdwanZoneWssa(d *schema.ResourceData, v interface{}, pre
 			tmp["service-sla-tie-break"], _ = expandWantempSystemSdwanZoneServiceSlaTieBreakWssa(d, i["service_sla_tie_break"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

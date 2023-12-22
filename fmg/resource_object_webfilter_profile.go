@@ -913,7 +913,9 @@ func flattenObjectWebfilterProfileAntiphishCustomPatterns(v interface{}, d *sche
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileAntiphish-CustomPatterns-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -978,7 +980,9 @@ func flattenObjectWebfilterProfileAntiphishInspectionEntries(v interface{}, d *s
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileAntiphish-InspectionEntries-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1118,7 +1122,9 @@ func flattenObjectWebfilterProfileFileFilterEntries(v interface{}, d *schema.Res
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFileFilter-Entries-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1314,7 +1320,9 @@ func flattenObjectWebfilterProfileFtgdWfFilters(v interface{}, d *schema.Resourc
 			tmp["warning_prompt"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Filters-WarningPrompt")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1431,7 +1439,9 @@ func flattenObjectWebfilterProfileFtgdWfQuota(v interface{}, d *schema.ResourceD
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Quota-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1905,7 +1915,9 @@ func flattenObjectWebfilterProfileYoutubeChannelFilter(v interface{}, d *schema.
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfile-YoutubeChannelFilter-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2550,7 +2562,9 @@ func expandObjectWebfilterProfileAntiphishCustomPatterns(d *schema.ResourceData,
 			tmp["type"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2607,7 +2621,9 @@ func expandObjectWebfilterProfileAntiphishInspectionEntries(d *schema.ResourceDa
 			tmp["name"], _ = expandObjectWebfilterProfileAntiphishInspectionEntriesName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2736,7 +2752,9 @@ func expandObjectWebfilterProfileFileFilterEntries(d *schema.ResourceData, v int
 			tmp["protocol"], _ = expandObjectWebfilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2919,7 +2937,9 @@ func expandObjectWebfilterProfileFtgdWfFilters(d *schema.ResourceData, v interfa
 			tmp["warning-prompt"], _ = expandObjectWebfilterProfileFtgdWfFiltersWarningPrompt(d, i["warning_prompt"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3024,7 +3044,9 @@ func expandObjectWebfilterProfileFtgdWfQuota(d *schema.ResourceData, v interface
 			tmp["value"], _ = expandObjectWebfilterProfileFtgdWfQuotaValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3467,7 +3489,9 @@ func expandObjectWebfilterProfileYoutubeChannelFilter(d *schema.ResourceData, v 
 			tmp["id"], _ = expandObjectWebfilterProfileYoutubeChannelFilterId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

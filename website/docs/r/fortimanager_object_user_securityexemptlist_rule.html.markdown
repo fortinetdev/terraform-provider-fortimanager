@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_user_securityexemptlist_rule
 Configure rules for exempting users from captive portal authentication.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_user_securityexemptlist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_securityexemptlist_rule" "trname" {
+  security_exempt_list = fortimanager_object_user_securityexemptlist.trname.name
+  fosid                = 1
+  depends_on           = [fortimanager_object_user_securityexemptlist.trname]
+}
+
+resource "fortimanager_object_user_securityexemptlist" "trname" {
+  name = "terr-securityexemptlist"
+}
+```
+
 ## Argument Reference
 
 

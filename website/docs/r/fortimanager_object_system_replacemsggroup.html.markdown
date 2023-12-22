@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_system_replacemsggroup
 Configure replacement message groups.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`admin`: `fortimanager_object_system_replacemsggroup_admin`
+`alertmail`: `fortimanager_object_system_replacemsggroup_alertmail`
+`auth`: `fortimanager_object_system_replacemsggroup_auth`
+`automation`: `fortimanager_object_system_replacemsggroup_automation`
+`custom_message`: `fortimanager_object_system_replacemsggroup_custommessage`
+`device_detection_portal`: `fortimanager_object_system_replacemsggroup_devicedetectionportal`
+`ec`: `fortimanager_object_system_replacemsggroup_ec`
+`fortiguard_wf`: `fortimanager_object_system_replacemsggroup_fortiguardwf`
+`ftp`: `fortimanager_object_system_replacemsggroup_ftp`
+`http`: `fortimanager_object_system_replacemsggroup_http`
+`icap`: `fortimanager_object_system_replacemsggroup_icap`
+`mail`: `fortimanager_object_system_replacemsggroup_mail`
+`mm1`: `fortimanager_object_system_replacemsggroup_mm1`
+`mm3`: `fortimanager_object_system_replacemsggroup_mm3`
+`mm4`: `fortimanager_object_system_replacemsggroup_mm4`
+`mm7`: `fortimanager_object_system_replacemsggroup_mm7`
+`mms`: `fortimanager_object_system_replacemsggroup_mms`
+`nac_quar`: `fortimanager_object_system_replacemsggroup_nacquar`
+`nntp`: `fortimanager_object_system_replacemsggroup_nntp`
+`spam`: `fortimanager_object_system_replacemsggroup_spam`
+`sslvpn`: `fortimanager_object_system_replacemsggroup_sslvpn`
+`traffic_quota`: `fortimanager_object_system_replacemsggroup_trafficquota`
+`utm`: `fortimanager_object_system_replacemsggroup_utm`
+`webproxy`: `fortimanager_object_system_replacemsggroup_webproxy`
+
+
+
 ## Example Usage
 
 ```hcl

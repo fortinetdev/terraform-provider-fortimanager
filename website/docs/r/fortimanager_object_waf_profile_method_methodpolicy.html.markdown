@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_waf_profile_method_methodpolicy
 HTTP method policy.
 
+~> This resource is a sub resource for variable `method_policy` of resource `fortimanager_object_waf_profile_method`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_method_methodpolicy" "trname" {
+  fosid      = 1
+  pattern    = "https://www.example.com/path/to/resource?param1=value1&param2=value2"
+  regex      = "enable"
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

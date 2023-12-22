@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile_dot
 Configure DNS over TLS options.
 
+~> This resource is a sub resource for variable `dot` of resource `fortimanager_object_firewall_sslsshprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_sslsshprofile_dot" "trname" {
+  ssl_ssh_profile         = fortimanager_object_firewall_sslsshprofile.trname.name
+  cert_validation_failure = "ignore"
+  cert_validation_timeout = "ignore"
+  client_certificate      = "bypass"
+  depends_on              = [fortimanager_object_firewall_sslsshprofile.trname]
+}
+
+resource "fortimanager_object_firewall_sslsshprofile" "trname" {
+  name = "terr-sslsshprofile"
+}
+```
+
 ## Argument Reference
 
 

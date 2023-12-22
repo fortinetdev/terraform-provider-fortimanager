@@ -9,6 +9,10 @@ description: |-
 # fortimanager_fmupdate_fdssetting_updateschedule
 Configure the schedule when built-in FortiGuard retrieves antivirus and IPS updates.
 
+~> This resource is a sub resource for variable `update_schedule` of resource `fortimanager_fmupdate_fdssetting`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

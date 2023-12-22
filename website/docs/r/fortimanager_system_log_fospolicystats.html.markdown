@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_log_fospolicystats
 FortiOS policy statistics settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_fospolicystats" "trname" {
+  retention_days    = 100
+  sampling_interval = 200
+}
+```
+
 ## Argument Reference
 
 

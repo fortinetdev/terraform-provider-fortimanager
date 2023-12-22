@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_antivirus_profile_contentdisarm
 AV Content Disarm and Reconstruction settings.
 
+~> This resource is a sub resource for variable `content_disarm` of resource `fortimanager_object_antivirus_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

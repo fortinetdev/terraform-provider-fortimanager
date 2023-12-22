@@ -332,7 +332,9 @@ func flattenObjectFirewallInternetServiceCustomDisableEntry(v interface{}, d *sc
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustom-DisableEntry-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -381,7 +383,9 @@ func flattenObjectFirewallInternetServiceCustomDisableEntryIpRange(v interface{}
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustomDisableEntry-IpRange-StartIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -464,7 +468,9 @@ func flattenObjectFirewallInternetServiceCustomEntry(v interface{}, d *schema.Re
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustom-Entry-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -525,7 +531,9 @@ func flattenObjectFirewallInternetServiceCustomEntryPortRange(v interface{}, d *
 			tmp["start_port"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustomEntry-PortRange-StartPort")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -726,7 +734,9 @@ func expandObjectFirewallInternetServiceCustomDisableEntry(d *schema.ResourceDat
 			tmp["protocol"], _ = expandObjectFirewallInternetServiceCustomDisableEntryProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -767,7 +777,9 @@ func expandObjectFirewallInternetServiceCustomDisableEntryIpRange(d *schema.Reso
 			tmp["start-ip"], _ = expandObjectFirewallInternetServiceCustomDisableEntryIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -844,7 +856,9 @@ func expandObjectFirewallInternetServiceCustomEntry(d *schema.ResourceData, v in
 			tmp["protocol"], _ = expandObjectFirewallInternetServiceCustomEntryProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -897,7 +911,9 @@ func expandObjectFirewallInternetServiceCustomEntryPortRange(d *schema.ResourceD
 			tmp["start-port"], _ = expandObjectFirewallInternetServiceCustomEntryPortRangeStartPort(d, i["start_port"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

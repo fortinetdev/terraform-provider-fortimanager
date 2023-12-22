@@ -462,7 +462,9 @@ func flattenObjectIcapProfileIcapHeaders(v interface{}, d *schema.ResourceData, 
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectIcapProfile-IcapHeaders-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -575,7 +577,9 @@ func flattenObjectIcapProfileRespmodForwardRules(v interface{}, d *schema.Resour
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectIcapProfile-RespmodForwardRules-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -630,7 +634,9 @@ func flattenObjectIcapProfileRespmodForwardRulesHeaderGroup(v interface{}, d *sc
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectIcapProfileRespmodForwardRules-HeaderGroup-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1120,7 +1126,9 @@ func expandObjectIcapProfileIcapHeaders(d *schema.ResourceData, v interface{}, p
 			tmp["name"], _ = expandObjectIcapProfileIcapHeadersName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1228,7 +1236,9 @@ func expandObjectIcapProfileRespmodForwardRules(d *schema.ResourceData, v interf
 			tmp["name"], _ = expandObjectIcapProfileRespmodForwardRulesName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1274,7 +1284,9 @@ func expandObjectIcapProfileRespmodForwardRulesHeaderGroup(d *schema.ResourceDat
 			tmp["id"], _ = expandObjectIcapProfileRespmodForwardRulesHeaderGroupId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

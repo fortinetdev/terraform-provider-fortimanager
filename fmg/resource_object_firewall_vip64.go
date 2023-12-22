@@ -526,7 +526,9 @@ func flattenObjectFirewallVip64DynamicMapping(v interface{}, d *schema.ResourceD
 			tmp["uuid"] = fortiAPISubPartPatch(v, "ObjectFirewallVip64-DynamicMapping-Uuid")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -565,7 +567,9 @@ func flattenObjectFirewallVip64DynamicMappingScope(v interface{}, d *schema.Reso
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallVip64DynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -764,7 +768,9 @@ func flattenObjectFirewallVip64Realservers(v interface{}, d *schema.ResourceData
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallVip64-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1182,7 +1188,9 @@ func expandObjectFirewallVip64DynamicMapping(d *schema.ResourceData, v interface
 			tmp["uuid"], _ = expandObjectFirewallVip64DynamicMappingUuid(d, i["uuid"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1214,7 +1222,9 @@ func expandObjectFirewallVip64DynamicMappingScope(d *schema.ResourceData, v inte
 			tmp["vdom"], _ = expandObjectFirewallVip64DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1398,7 +1408,9 @@ func expandObjectFirewallVip64Realservers(d *schema.ResourceData, v interface{},
 			tmp["weight"], _ = expandObjectFirewallVip64RealserversWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -968,7 +968,9 @@ func flattenObjectUserGroupDynamicMapping(v interface{}, d *schema.ResourceData,
 			tmp["user_name"] = fortiAPISubPartPatch(v, "ObjectUserGroup-DynamicMapping-UserName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1007,7 +1009,9 @@ func flattenObjectUserGroupDynamicMappingScope(v interface{}, d *schema.Resource
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserGroupDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1140,7 +1144,9 @@ func flattenObjectUserGroupDynamicMappingGuest(v interface{}, d *schema.Resource
 			tmp["user_id"] = fortiAPISubPartPatch(v, "ObjectUserGroupDynamicMapping-Guest-UserId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1251,7 +1257,9 @@ func flattenObjectUserGroupDynamicMappingMatch(v interface{}, d *schema.Resource
 			tmp["server_name"] = fortiAPISubPartPatch(v, "ObjectUserGroupDynamicMapping-Match-ServerName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1547,7 +1555,9 @@ func flattenObjectUserGroupGuest(v interface{}, d *schema.ResourceData, pre stri
 			tmp["user_id"] = fortiAPISubPartPatch(v, "ObjectUserGroup-Guest-UserId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1646,7 +1656,9 @@ func flattenObjectUserGroupMatch(v interface{}, d *schema.ResourceData, pre stri
 			tmp["server_name"] = fortiAPISubPartPatch(v, "ObjectUserGroup-Match-ServerName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2320,7 +2332,9 @@ func expandObjectUserGroupDynamicMapping(d *schema.ResourceData, v interface{}, 
 			tmp["user-name"], _ = expandObjectUserGroupDynamicMappingUserName(d, i["user_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2352,7 +2366,9 @@ func expandObjectUserGroupDynamicMappingScope(d *schema.ResourceData, v interfac
 			tmp["vdom"], _ = expandObjectUserGroupDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2469,7 +2485,9 @@ func expandObjectUserGroupDynamicMappingGuest(d *schema.ResourceData, v interfac
 			tmp["user-id"], _ = expandObjectUserGroupDynamicMappingGuestUserId(d, i["user_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2571,7 +2589,9 @@ func expandObjectUserGroupDynamicMappingMatch(d *schema.ResourceData, v interfac
 			tmp["server-name"], _ = expandObjectUserGroupDynamicMappingMatchServerName(d, i["server_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2849,7 +2869,9 @@ func expandObjectUserGroupGuest(d *schema.ResourceData, v interface{}, pre strin
 			tmp["user-id"], _ = expandObjectUserGroupGuestUserId(d, i["user_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2939,7 +2961,9 @@ func expandObjectUserGroupMatch(d *schema.ResourceData, v interface{}, pre strin
 			tmp["server-name"], _ = expandObjectUserGroupMatchServerName(d, i["server_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

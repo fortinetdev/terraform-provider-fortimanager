@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_casbprofile_saasapplication_accessrule
 ObjectFirewall CasbProfileSaasApplicationAccessRule
 
+~> This resource is a sub resource for variable `access_rule` of resource `fortimanager_object_firewall_casbprofile_saasapplication`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

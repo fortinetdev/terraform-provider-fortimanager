@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_user_fssopolling_adgrp
 LDAP Group Info.
 
+~> This resource is a sub resource for variable `adgrp` of resource `fortimanager_object_user_fssopolling`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_fssopolling_adgrp" "trname" {
+  fsso_polling = fortimanager_object_user_fssopolling.trname.fosid
+  name         = "terr-adgrp"
+  depends_on   = [fortimanager_object_user_fssopolling.trname]
+}
+
+resource "fortimanager_object_user_fssopolling" "trname" {
+  fosid = 1
+}
+```
+
 ## Argument Reference
 
 

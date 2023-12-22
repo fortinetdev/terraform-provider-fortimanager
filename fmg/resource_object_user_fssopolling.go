@@ -270,7 +270,9 @@ func flattenObjectUserFssoPollingAdgrp(v interface{}, d *schema.ResourceData, pr
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectUserFssoPolling-Adgrp-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -517,7 +519,9 @@ func expandObjectUserFssoPollingAdgrp(d *schema.ResourceData, v interface{}, pre
 			tmp["name"], _ = expandObjectUserFssoPollingAdgrpName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

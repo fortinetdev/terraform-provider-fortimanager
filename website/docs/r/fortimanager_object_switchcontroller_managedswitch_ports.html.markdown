@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_switchcontroller_managedswitch_ports
 Managed-switch port list.
 
+~> This resource is a sub resource for variable `ports` of resource `fortimanager_object_switchcontroller_managedswitch`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dhcp_snoop_option82_override`: `fortimanager_object_switchcontroller_managedswitch_ports_dhcpsnoopoption82override`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_managedswitch_ports" "trname" {
+  access_mode       = "static"
+  aggregator_mode   = "count"
+  allowed_vlans_all = "enable"
+  port_name         = "port3"
+  managed_switch    = fortimanager_object_switchcontroller_managedswitch.trname.switch_id
+  depends_on        = [fortimanager_object_switchcontroller_managedswitch.trname]
+}
+
+resource "fortimanager_object_switchcontroller_managedswitch" "trname" {
+  _platform = "FS1D48T418000533"
+  switch_id = 3
+}
+```
+
 ## Argument Reference
 
 

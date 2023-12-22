@@ -721,7 +721,9 @@ func flattenWantempSystemSdwanServiceSlaWsssa(v interface{}, d *schema.ResourceD
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemSdwanService-Sla-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1687,7 +1689,9 @@ func expandWantempSystemSdwanServiceSlaWsssa(d *schema.ResourceData, v interface
 			tmp["id"], _ = expandWantempSystemSdwanServiceSlaIdWsssa(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

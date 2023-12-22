@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_firewall_ippool
 Configure IPv4 IP pools.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_firewall_ippool_dynamic_mapping`
+`grp`: `fortimanager_object_firewall_ippool_grp`
+
+
+
 ## Example Usage
 
 ```hcl

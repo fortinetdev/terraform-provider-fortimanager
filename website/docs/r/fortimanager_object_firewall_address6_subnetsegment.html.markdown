@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_address6_subnetsegment
 IPv6 subnet segments.
 
+~> This resource is a sub resource for variable `subnet_segment` of resource `fortimanager_object_firewall_address6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_address6_subnetsegment" "trname" {
+  address6   = fortimanager_object_firewall_address6.trname3.name
+  name       = "terr-subnetsegment"
+  type       = "any"
+  depends_on = [fortimanager_object_firewall_address6.trname3]
+}
+
+resource "fortimanager_object_firewall_address6" "trname3" {
+  name = "terr-firewall-address6"
+}
+```
+
 ## Argument Reference
 
 

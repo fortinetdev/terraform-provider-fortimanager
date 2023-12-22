@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_router_routemap_rule
 Rule.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_router_routemap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_routemap_rule" "trname" {
+  route_map                = fortimanager_object_router_routemap.trname.name
+  action                   = "deny"
+  fosid                    = 1
+  match_community          = "Priority_1"
+  match_extcommunity_exact = "enable"
+  depends_on               = [fortimanager_object_router_routemap.trname]
+}
+
+resource "fortimanager_object_router_routemap" "trname" {
+  name = "terr-router-routemap"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_dlp_dictionary_entries
 DLP dictionary entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_dlp_dictionary`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

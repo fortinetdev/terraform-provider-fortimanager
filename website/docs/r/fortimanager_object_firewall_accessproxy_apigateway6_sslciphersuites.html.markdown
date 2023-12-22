@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_accessproxy_apigateway6_sslciphersuites
 SSL/TLS cipher suites to offer to a server, ordered by priority.
 
+~> This resource is a sub resource for variable `ssl_cipher_suites` of resource `fortimanager_object_firewall_accessproxy_apigateway6`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

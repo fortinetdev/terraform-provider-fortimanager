@@ -245,7 +245,9 @@ func flattenWanTemplateScopeMember(v interface{}, d *schema.ResourceData, pre st
 			tmp["vdom"] = fortiAPISubPartPatch(v, "WanTemplate-ScopeMember-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -385,7 +387,9 @@ func expandWanTemplateScopeMember(d *schema.ResourceData, v interface{}, pre str
 			tmp["vdom"], _ = expandWanTemplateScopeMemberVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -60,6 +60,10 @@ func resourceDvmdbScriptExecute() *schema.Resource {
 				Type:     schema.TypeString,
 				Optional: true,
 			},
+			"pblock": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+			},
 			"scope": &schema.Schema{
 				Type:     schema.TypeList,
 				Optional: true,
@@ -137,6 +141,10 @@ func flattenDvmdbScriptExecutePackage2edl(v interface{}, d *schema.ResourceData,
 	return v
 }
 
+func flattenDvmdbScriptExecutePblock2edl(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
 func flattenDvmdbScriptExecuteScope2edl(v interface{}, d *schema.ResourceData, pre string) []map[string]interface{} {
 	if v == nil {
 		return nil
@@ -168,7 +176,9 @@ func flattenDvmdbScriptExecuteScope2edl(v interface{}, d *schema.ResourceData, p
 			tmp["vdom"] = fortiAPISubPartPatch(v, "DvmdbScriptExecute-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -216,6 +226,16 @@ func refreshObjectDvmdbScriptExecute(d *schema.ResourceData, o map[string]interf
 			}
 		} else {
 			return fmt.Errorf("Error reading package: %v", err)
+		}
+	}
+
+	if err = d.Set("pblock", flattenDvmdbScriptExecutePblock2edl(o["pblock"], d, "pblock")); err != nil {
+		if vv, ok := fortiAPIPatch(o["pblock"], "DvmdbScriptExecute-Pblock"); ok {
+			if err = d.Set("pblock", vv); err != nil {
+				return fmt.Errorf("Error reading pblock: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading pblock: %v", err)
 		}
 	}
 
@@ -270,6 +290,10 @@ func expandDvmdbScriptExecutePackage2edl(d *schema.ResourceData, v interface{}, 
 	return v, nil
 }
 
+func expandDvmdbScriptExecutePblock2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
 func expandDvmdbScriptExecuteScope2edl(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	l := v.([]interface{})
 	result := make([]map[string]interface{}, 0, len(l))
@@ -294,7 +318,9 @@ func expandDvmdbScriptExecuteScope2edl(d *schema.ResourceData, v interface{}, pr
 			tmp["vdom"], _ = expandDvmdbScriptExecuteScopeVdom2edl(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -332,6 +358,15 @@ func getObjectDvmdbScriptExecute(d *schema.ResourceData) (*map[string]interface{
 			return &obj, err
 		} else if t != nil {
 			obj["package"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("pblock"); ok || d.HasChange("pblock") {
+		t, err := expandDvmdbScriptExecutePblock2edl(d, v, "pblock")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["pblock"] = t
 		}
 	}
 

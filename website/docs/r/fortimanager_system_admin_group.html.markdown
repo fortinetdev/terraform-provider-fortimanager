@@ -9,6 +9,11 @@ description: |-
 # fortimanager_system_admin_group
 User group.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`member`: `fortimanager_system_admin_group_member`
+
+
+
 ## Example Usage
 
 ```hcl

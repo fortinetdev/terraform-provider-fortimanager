@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_waf_profile_constraint_maxcookie
 Maximum number of cookies in HTTP request.
 
+~> This resource is a sub resource for variable `max_cookie` of resource `fortimanager_object_waf_profile_constraint`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_constraint_maxcookie" "trname" {
+  action     = "block"
+  log        = "enable"
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

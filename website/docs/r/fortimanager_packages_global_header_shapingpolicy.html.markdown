@@ -9,6 +9,21 @@ description: |-
 # fortimanager_packages_global_header_shapingpolicy
 Configure shaping policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_global_header_shapingpolicy" "trname2" {
+  dstaddr  = "gall"
+  dstintf  = "any"
+  name     = "shaping_header"
+  pkg      = "default"
+  schedule = "galways"
+  service  = "gALL"
+  srcaddr  = "gall"
+  srcintf  = "any"
+}
+```
+
 ## Argument Reference
 
 

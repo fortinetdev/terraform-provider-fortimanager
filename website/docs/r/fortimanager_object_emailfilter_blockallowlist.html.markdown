@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_emailfilter_blockallowlist
 Configure anti-spam block/allow list.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_emailfilter_blockallowlist_entries`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_blockallowlist" "trname" {
+  name    = "F11"
+  comment = "This is a Terraform example"
+  fosid   = 25
+}
+```
+
 ## Argument Reference
 
 

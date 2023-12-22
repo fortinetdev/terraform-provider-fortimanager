@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_dnsfilter_profile_domainfilter
 Domain filter settings.
 
+~> This resource is a sub resource for variable `domain_filter` of resource `fortimanager_object_dnsfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

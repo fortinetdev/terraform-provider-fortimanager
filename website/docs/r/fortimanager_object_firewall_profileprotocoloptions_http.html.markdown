@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions_http
 Configure HTTP protocol options.
 
+~> This resource is a sub resource for variable `http` of resource `fortimanager_object_firewall_profileprotocoloptions`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions_http" "trname" {
+  profile_protocol_options = fortimanager_object_firewall_profileprotocoloptions.trname.name
+  address_ip_rating        = "enable"
+  block_page_status_code   = 499
+  comfort_amount           = 200
+  depends_on               = [fortimanager_object_firewall_profileprotocoloptions.trname]
+}
+
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  name = "terr-profileprotocoloptions"
+}
+```
+
 ## Argument Reference
 
 

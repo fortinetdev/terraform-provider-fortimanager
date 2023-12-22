@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_casb_profile_saasapplication_customcontrol_option
 CASB custom control option.
 
+~> This resource is a sub resource for variable `option` of resource `fortimanager_object_casb_profile_saasapplication_customcontrol`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

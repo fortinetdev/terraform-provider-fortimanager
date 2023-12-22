@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_switchcontroller_managedswitch
 Configure FortiSwitch devices that are managed by this FortiGate.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`custom_command`: `fortimanager_object_switchcontroller_managedswitch_customcommand`
+`dhcp_snooping_static_client`: `fortimanager_object_switchcontroller_managedswitch_dhcpsnoopingstaticclient`
+`ports`: `fortimanager_object_switchcontroller_managedswitch_ports`
+`route_offload_router`: `fortimanager_object_switchcontroller_managedswitch_routeoffloadrouter`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_managedswitch" "trname" {
+  _platform               = "FS1D48T418000533"
+  description             = "This is a Terraform example"
+  dhcp_server_access_list = "enable"
+  switch_id               = 3
+}
+```
+
 ## Argument Reference
 
 

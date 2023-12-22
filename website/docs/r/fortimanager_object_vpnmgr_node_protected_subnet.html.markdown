@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_vpnmgr_node_protected_subnet
 ObjectVpnmgr NodeProtectedSubnet
 
+~> This resource is a sub resource for variable `protected_subnet` of resource `fortimanager_object_vpnmgr_node`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpnmgr_node_protected_subnet" "trname" {
+  node       = fortimanager_object_vpnmgr_node.trname.fosid
+  seq        = 1
+  depends_on = [fortimanager_object_vpnmgr_node.trname]
+}
+
+resource "fortimanager_object_vpnmgr_node" "trname" {
+  fosid = 3
+}
+```
+
 ## Argument Reference
 
 

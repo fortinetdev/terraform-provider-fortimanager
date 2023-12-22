@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_firewall_vip6
 Configure virtual IP for IPv6.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_firewall_vip6_dynamic_mapping`
+`realservers`: `fortimanager_object_firewall_vip6_realservers`
+`ssl_cipher_suites`: `fortimanager_object_firewall_vip6_sslciphersuites`
+`ssl_server_cipher_suites`: `fortimanager_object_firewall_vip6_sslserverciphersuites`
+
+
+
 ## Example Usage
 
 ```hcl

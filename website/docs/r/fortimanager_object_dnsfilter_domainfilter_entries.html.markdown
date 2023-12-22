@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_dnsfilter_domainfilter_entries
 DNS domain filter entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_dnsfilter_domainfilter`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dnsfilter_domainfilter_entries" "trname" {
+  domain_filter = fortimanager_object_dnsfilter_domainfilter.trname.fosid
+  action        = "monitor"
+  domain        = "domain"
+  fosid         = 1
+  status        = "disable"
+  depends_on    = [fortimanager_object_dnsfilter_domainfilter.trname]
+}
+
+resource "fortimanager_object_dnsfilter_domainfilter" "trname" {
+  name    = "F11"
+  comment = "This is a Terraform example"
+  fosid   = 25
+}
+```
+
 ## Argument Reference
 
 

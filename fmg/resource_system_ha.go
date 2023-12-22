@@ -296,7 +296,9 @@ func flattenSystemHaMonitoredInterfacesSha(v interface{}, d *schema.ResourceData
 			tmp["interface_name"] = fortiAPISubPartPatch(v, "SystemHa-MonitoredInterfaces-InterfaceName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -345,7 +347,9 @@ func flattenSystemHaMonitoredIpsSha(v interface{}, d *schema.ResourceData, pre s
 			tmp["ip"] = fortiAPISubPartPatch(v, "SystemHa-MonitoredIps-Ip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -418,7 +422,9 @@ func flattenSystemHaPeerSha(v interface{}, d *schema.ResourceData, pre string) [
 			tmp["status"] = fortiAPISubPartPatch(v, "SystemHa-Peer-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -735,7 +741,9 @@ func expandSystemHaMonitoredInterfacesSha(d *schema.ResourceData, v interface{},
 			tmp["interface-name"], _ = expandSystemHaMonitoredInterfacesInterfaceNameSha(d, i["interface_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -776,7 +784,9 @@ func expandSystemHaMonitoredIpsSha(d *schema.ResourceData, v interface{}, pre st
 			tmp["ip"], _ = expandSystemHaMonitoredIpsIpSha(d, i["ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -839,7 +849,9 @@ func expandSystemHaPeerSha(d *schema.ResourceData, v interface{}, pre string) (i
 			tmp["status"], _ = expandSystemHaPeerStatusSha(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

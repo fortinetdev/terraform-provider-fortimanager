@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_icon
 Configure OSU provider icon.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`icon_list`: `fortimanager_object_wirelesscontroller_hotspot20_icon_iconlist`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_icon" "trname" {
+  name = "terr-icon"
+  icon_list {
+    name = "terr-icon"
+  }
+}
+```
+
 ## Argument Reference
 
 

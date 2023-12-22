@@ -67,45 +67,62 @@ func NewClient(auth *auth.Auth, client *http.Client) (c *FortiSDKClient, err err
 	c.Config.HTTPCon = client
 	c.Config.FwTarget = auth.Hostname
 
+	// CleanSession only works for workspace mode set to 'disabled'
+	if auth.CleanSession {
+		workspaceMode, _ := c.GetWorkspaceMode()
+		if workspaceMode != "disabled" {
+			auth.CleanSession = false
+		}
+	}
+
+	if !auth.CleanSession {
+		err = c.login()
+	}
+
+	return
+}
+
+func (c *FortiSDKClient) login() (err error) {
+	auth := c.Config.Auth
+
 	if auth.Token != "" {
 		c.Token = auth.Token
 	} else if auth.Session != "" {
 		c.Session = auth.Session
 	} else if auth.FMGType == "forticloud" {
-		err = loginFortiCloud(c)
+		err = c.loginFortiCloud()
 	} else {
-		err = login(auth, c)
+		c.Session, err = c.loginSession()
 	}
 
 	if err != nil {
 		return
 	}
 
-	saveSession(auth, c.Session)
-
+	if auth.LogSession == true && c.Session != "" {
+		saveSession(c.Session)
+	}
 	return
 }
 
-func saveSession(auth *auth.Auth, session string) {
-	if auth.LogSession == true {
-		f, err := os.Create("presession.txt")
-		if err != nil {
-			return
-		}
-		_, err = f.WriteString(session + "\n")
-		if err != nil {
-			f.Close()
-			return
-		}
+func saveSession(session string) {
+	f, err := os.Create("presession.txt")
+	if err != nil {
+		return
+	}
+	_, err = f.WriteString(session + "\n")
+	if err != nil {
+		f.Close()
+		return
+	}
 
-		err = f.Close()
-		if err != nil {
-			return
-		}
+	err = f.Close()
+	if err != nil {
+		return
 	}
 }
 
-func login(auth *auth.Auth, c *FortiSDKClient) (err error) {
+func (c *FortiSDKClient) loginSession() (session string, err error) {
 	data := make(map[string]interface{})
 	data["method"] = "exec"
 	data["params"] = make([]map[string]interface{}, 0)
@@ -159,7 +176,7 @@ func login(auth *auth.Auth, c *FortiSDKClient) (err error) {
 				if vv, ok := v2["code"].(float64); ok {
 					tmp := int(vv)
 					if tmp == 0 {
-						c.Session = fmt.Sprintf("%v", result["session"])
+						session = fmt.Sprintf("%v", result["session"])
 					}
 				}
 
@@ -169,14 +186,10 @@ func login(auth *auth.Auth, c *FortiSDKClient) (err error) {
 		err = fmt.Errorf("Response body is nil or do not contain result.")
 	}
 
-	if c.Session == "" {
-		err = fmt.Errorf("Could not get session.")
-	}
-
 	return
 }
 
-func loginFortiCloud(c *FortiSDKClient) (err error) {
+func (c *FortiSDKClient) loginFortiCloud() (err error) {
 	log.Printf("Login through FortiCloud.")
 	var forticloudToken string
 	if c.Config.Auth.FMGCloudToken != "" {
@@ -228,6 +241,72 @@ func loginFortiCloud(c *FortiSDKClient) (err error) {
 		}
 	} else {
 		err = fmt.Errorf("Response body is nil or do not contain session.")
+	}
+
+	return
+}
+
+func (c *FortiSDKClient) logoutSession(session string) (err error) {
+	if session == "" {
+		return
+	}
+
+	data := make(map[string]interface{})
+	data["method"] = "exec"
+	data["params"] = make([]map[string]interface{}, 0)
+	data["session"] = session
+
+	paramItem := make(map[string]interface{})
+	paramItem["url"] = "/sys/logout"
+	params := make([]map[string]interface{}, 0)
+	params = append(params, paramItem)
+	data["params"] = params
+
+	locJSON, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
+		return
+	}
+
+	bytes := bytes.NewBuffer(locJSON)
+
+	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
+	err = req.Send()
+	if err != nil || req.HTTPResponse == nil {
+		err = fmt.Errorf("cannot send request %v", err)
+		return
+	}
+
+	body, err := ioutil.ReadAll(req.HTTPResponse.Body)
+	req.HTTPResponse.Body.Close()
+	if err != nil || body == nil {
+		err = fmt.Errorf("cannot get response body %v", err)
+		return
+	}
+
+	var result map[string]interface{}
+	json.Unmarshal([]byte(string(body)), &result)
+
+	if result != nil && result["result"] != nil {
+		v := result["result"].([]interface{})
+		if v[0] != nil {
+			v1 := v[0].(map[string]interface{})
+			if v1["status"] != nil {
+				v2 := v1["status"].(map[string]interface{})
+
+				if vv, ok := v2["code"].(float64); ok {
+					tmp := int(vv)
+					if tmp == 0 || tmp == -11 {
+						c.Session = ""
+					} else {
+						err = fmt.Errorf("Response code could not be recognized: %v", tmp)
+					}
+				}
+
+			}
+		}
+	} else {
+		err = fmt.Errorf("Response body is nil or do not contain result.")
 	}
 
 	return
@@ -294,7 +373,11 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 	data["method"] = "get"
 	data["params"] = make([]map[string]interface{}, 0)
 	data["verbose"] = 1
-	if c.Session != "" {
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+		data["session"] = session
+	} else if c.Session != "" {
 		data["session"] = c.Session
 	}
 
@@ -308,6 +391,9 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
+		if c.Config.Auth.CleanSession {
+			err = c.logoutSession(session)
+		}
 		return
 	}
 	bytes := bytes.NewBuffer(locJSON)
@@ -317,6 +403,9 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 
 	body, err := ioutil.ReadAll(req.HTTPResponse.Body)
 	req.HTTPResponse.Body.Close()
+	if c.Config.Auth.CleanSession {
+		err = c.logoutSession(session)
+	}
 	if err != nil || body == nil {
 		err = fmt.Errorf("Cannot get response body %v", err)
 		return "", err
@@ -325,7 +414,7 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
 	log.Printf("Get divice version response: %v\n", string(body))
-	err = fortiAPIErrorFormat(result, string(body))
+	_, err = fortiAPIErrorFormat(result, string(body))
 	if err != nil {
 		return "", err
 	}
@@ -340,5 +429,65 @@ func (c *FortiSDKClient) GetDeviceVersion() (version string, err error) {
 	}
 
 	err = fmt.Errorf("Cannot get the version in response %s", string(body))
+	return "", err
+}
+
+// GetWorkspaceMode gets the workspace mode of FMG
+// It returns workspaceMode as string
+func (c *FortiSDKClient) GetWorkspaceMode() (workspaceMode string, err error) {
+	data := make(map[string]interface{})
+	data["method"] = "get"
+	data["params"] = make([]map[string]interface{}, 0)
+	data["verbose"] = 1
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+		data["session"] = session
+	} else if c.Session != "" {
+		data["session"] = c.Session
+	}
+
+	paramItem := make(map[string]interface{})
+	paramItem["url"] = "/cli/global/system/global"
+
+	v2 := make([]map[string]interface{}, 0)
+	v2 = append(v2, paramItem)
+	data["params"] = v2
+
+	locJSON, err := json.Marshal(data)
+	if err != nil {
+		log.Fatal(err)
+		if c.Config.Auth.CleanSession {
+			err = c.logoutSession(session)
+		}
+		return
+	}
+	bytes := bytes.NewBuffer(locJSON)
+
+	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
+	err = req.Send()
+
+	body, err := ioutil.ReadAll(req.HTTPResponse.Body)
+	req.HTTPResponse.Body.Close()
+	if c.Config.Auth.CleanSession {
+		err = c.logoutSession(session)
+	}
+	if err != nil || body == nil {
+		err = fmt.Errorf("Cannot get response body %v", err)
+		return "", err
+	}
+
+	var result map[string]interface{}
+	json.Unmarshal([]byte(string(body)), &result)
+	_, err = fortiAPIErrorFormat(result, string(body))
+	if err != nil {
+		return "", err
+	}
+
+	if workspaceMode, ok := result["result"].([]interface{})[0].(map[string]interface{})["data"].(map[string]interface{})["workspace-mode"].(string); ok {
+		return workspaceMode, nil
+	}
+
+	err = fmt.Errorf("Cannot get the workspace mode in response %s", string(body))
 	return "", err
 }

@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_voip_profile_sip
 SIP.
 
+~> This resource is a sub resource for variable `sip` of resource `fortimanager_object_voip_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_voip_profile_sip" "trname" {
+  profile         = fortimanager_object_voip_profile.trname.name
+  ack_rate        = 23
+  block_ack       = "disable"
+  block_bye       = "disable"
+  max_body_length = 23
+  depends_on      = [fortimanager_object_voip_profile.trname]
+}
+
+resource "fortimanager_object_voip_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

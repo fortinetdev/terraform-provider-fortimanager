@@ -1142,7 +1142,9 @@ func flattenObjectFirewallAccessProxyApiGateway(v interface{}, d *schema.Resourc
 			tmp["virtual_host"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy-ApiGateway-VirtualHost")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1426,7 +1428,9 @@ func flattenObjectFirewallAccessProxyApiGatewayRealservers(v interface{}, d *sch
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyApiGateway-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1567,7 +1571,9 @@ func flattenObjectFirewallAccessProxyApiGatewaySslCipherSuites(v interface{}, d 
 			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyApiGateway-SslCipherSuites-Versions")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1806,7 +1812,9 @@ func flattenObjectFirewallAccessProxyApiGateway6(v interface{}, d *schema.Resour
 			tmp["virtual_host"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy-ApiGateway6-VirtualHost")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2090,7 +2098,9 @@ func flattenObjectFirewallAccessProxyApiGateway6Realservers(v interface{}, d *sc
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyApiGateway6-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2231,7 +2241,9 @@ func flattenObjectFirewallAccessProxyApiGateway6SslCipherSuites(v interface{}, d
 			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyApiGateway6-SslCipherSuites-Versions")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2388,7 +2400,9 @@ func flattenObjectFirewallAccessProxyRealservers(v interface{}, d *schema.Resour
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxy-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2520,7 +2534,9 @@ func flattenObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension(v int
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyServerPubkeyAuthSettings-CertExtension-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3031,7 +3047,9 @@ func expandObjectFirewallAccessProxyApiGateway(d *schema.ResourceData, v interfa
 			tmp["virtual-host"], _ = expandObjectFirewallAccessProxyApiGatewayVirtualHost(d, i["virtual_host"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3283,7 +3301,9 @@ func expandObjectFirewallAccessProxyApiGatewayRealservers(d *schema.ResourceData
 			tmp["weight"], _ = expandObjectFirewallAccessProxyApiGatewayRealserversWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3416,7 +3436,9 @@ func expandObjectFirewallAccessProxyApiGatewaySslCipherSuites(d *schema.Resource
 			tmp["versions"], _ = expandObjectFirewallAccessProxyApiGatewaySslCipherSuitesVersions(d, i["versions"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3637,7 +3659,9 @@ func expandObjectFirewallAccessProxyApiGateway6(d *schema.ResourceData, v interf
 			tmp["virtual-host"], _ = expandObjectFirewallAccessProxyApiGateway6VirtualHost(d, i["virtual_host"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3889,7 +3913,9 @@ func expandObjectFirewallAccessProxyApiGateway6Realservers(d *schema.ResourceDat
 			tmp["weight"], _ = expandObjectFirewallAccessProxyApiGateway6RealserversWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4022,7 +4048,9 @@ func expandObjectFirewallAccessProxyApiGateway6SslCipherSuites(d *schema.Resourc
 			tmp["versions"], _ = expandObjectFirewallAccessProxyApiGateway6SslCipherSuitesVersions(d, i["versions"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4169,7 +4197,9 @@ func expandObjectFirewallAccessProxyRealservers(d *schema.ResourceData, v interf
 			tmp["weight"], _ = expandObjectFirewallAccessProxyRealserversWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4290,7 +4320,9 @@ func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension(d *sch
 			tmp["type"], _ = expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtensionType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -297,7 +297,9 @@ func flattenObjectWafProfileUrlAccessAccessPattern2edl(v interface{}, d *schema.
 			tmp["srcaddr"] = fortiAPISubPartPatch(v, "ObjectWafProfileUrlAccess-AccessPattern-Srcaddr")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -478,7 +480,9 @@ func expandObjectWafProfileUrlAccessAccessPattern2edl(d *schema.ResourceData, v 
 			tmp["srcaddr"], _ = expandObjectWafProfileUrlAccessAccessPatternSrcaddr2edl(d, i["srcaddr"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

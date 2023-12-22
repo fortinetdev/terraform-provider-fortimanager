@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_emailfilter_blockallowlist_entries
 Anti-spam block/allow entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_emailfilter_blockallowlist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_blockallowlist_entries" "trname" {
+  block_allow_list = fortimanager_object_emailfilter_blockallowlist.trname.fosid
+  fosid            = 1
+  action           = "reject"
+  depends_on       = [fortimanager_object_emailfilter_blockallowlist.trname]
+}
+
+resource "fortimanager_object_emailfilter_blockallowlist" "trname" {
+  name    = "F11"
+  comment = "This is a Terraform example"
+  fosid   = 25
+}
+```
+
 ## Argument Reference
 
 

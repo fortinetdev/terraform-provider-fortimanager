@@ -9,6 +9,31 @@ description: |-
 # fortimanager_object_emailfilter_bword_entries
 Spam filter banned word.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_emailfilter_bword`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_bword_entries" "trname" {
+  bword        = fortimanager_object_emailfilter_bword.trname.fosid
+  fosid        = 2
+  language     = "simch"
+  pattern      = "exampe"
+  pattern_type = "regexp"
+  status       = "disable"
+  where        = "body"
+  depends_on   = [fortimanager_object_emailfilter_bword.trname]
+}
+
+resource "fortimanager_object_emailfilter_bword" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-bword"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules
 AP ACL layer3 ipv4 rule list.
 
+~> This resource is a sub resource for variable `layer3_ipv4_rules` of resource `fortimanager_object_wirelesscontroller_accesscontrollist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules" "trname" {
+  access_control_list = fortimanager_object_wirelesscontroller_accesscontrollist.trname.name
+  protocol            = 24
+  rule_id             = 12
+  srcport             = 23
+  depends_on          = [fortimanager_object_wirelesscontroller_accesscontrollist.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_accesscontrollist" "trname" {
+  name = "terr-layer3ipv4rules"
+}
+```
+
 ## Argument Reference
 
 

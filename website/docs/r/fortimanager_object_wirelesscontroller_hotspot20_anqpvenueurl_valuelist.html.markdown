@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl_valuelist
 URL list.
 
+~> This resource is a sub resource for variable `value_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl_valuelist" "trname" {
+  anqp_venue_url = fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl.trname.name
+  index          = 2
+  number         = 12
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl" "trname" {
+  name = "terr-valuelist"
+}
+```
+
 ## Argument Reference
 
 

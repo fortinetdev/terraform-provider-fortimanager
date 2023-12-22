@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_switchcontroller_customcommand
 Configure the FortiGate switch controller to send custom commands to managed FortiSwitch devices.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_customcommand" "trname" {
+  command_name = "cmd"
+  command      = <<EOF
+  config switch trunk 0x0.07f258d1c4808p-1022
+    edit myTrunk 0x0.00000172e012p-1022
+      set members port1 port2
+    end
+  EOF
+}
+```
+
 ## Argument Reference
 
 

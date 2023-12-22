@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_webproxy_profile_headers
 Configure HTTP forwarded requests headers.
 
+~> This resource is a sub resource for variable `headers` of resource `fortimanager_object_webproxy_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webproxy_profile_headers" "trname" {
+  fosid      = 1
+  name       = "terr-headers"
+  protocol   = ["https"]
+  profile    = fortimanager_object_webproxy_profile.trname2.name
+  depends_on = [fortimanager_object_webproxy_profile.trname2]
+}
+
+resource "fortimanager_object_webproxy_profile" "trname2" {
+  name = "terr-web-proxy-profile2"
+}
+```
+
 ## Argument Reference
 
 

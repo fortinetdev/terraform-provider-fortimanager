@@ -9,6 +9,11 @@ description: |-
 # fortimanager_fmupdate_webspam_fgdsetting
 Configure the FortiGuard run parameters.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`server_override`: `fortimanager_fmupdate_webspam_fgdsetting_serveroverride`
+
+
+
 ## Example Usage
 
 ```hcl
@@ -69,6 +74,8 @@ The following arguments are supported:
 * `restrict_iots_dbver` - Restrict system update to indicated file query database version (character limit = 127).
 * `restrict_wf_dbver` - Restrict system update to indicated web filter database version (character limit = 127).
 * `server_override` - Server-Override. The structure of `server_override` block is documented below.
+* `stat_log` - stat log setting (default = disable). emergency - The unit is unusable(0). alert - Immediate action is required(1) critical - Functionality is affected(2). error - Functionality is probably affected(3). warn - Functionality might be affected(4). notice - Information about normal events(5). info - General information(6). debug - Debug information(7). disable - Linkd logging is disabled. Valid values: `emergency`, `alert`, `critical`, `error`, `warn`, `notice`, `info`, `debug`, `disable`.
+
 * `stat_log_interval` - Statistic log interval setting, in minutes (1 - 1440, default = 60).
 * `stat_sync_interval` - Synchronization interval for statistic of unrated site in minutes (1 - 60, default = 60).
 * `update_interval` - FortiGuard database update wait time if not enough delta files, in hours (2 - 24, default = 6).

@@ -146,7 +146,9 @@ func flattenDvmCmdUpdateDevListUpdateDevMemberList(v interface{}, d *schema.Reso
 			tmp["vdom"] = fortiAPISubPartPatch(v, "DvmCmdUpdateDevList-UpdateDevMemberList-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -254,7 +256,9 @@ func expandDvmCmdUpdateDevListUpdateDevMemberList(d *schema.ResourceData, v inte
 			tmp["vdom"], _ = expandDvmCmdUpdateDevListUpdateDevMemberListVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

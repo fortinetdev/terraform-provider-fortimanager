@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_vpn_ssl_web_hostchecksoftware_checkitemlist
 Check item list.
 
+~> This resource is a sub resource for variable `check_item_list` of resource `fortimanager_object_vpn_ssl_web_hostchecksoftware`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ssl_web_hostchecksoftware_checkitemlist" "trname" {
+  host_check_software = fortimanager_object_vpn_ssl_web_hostchecksoftware.trname.name
+  action              = "deny"
+  fosid               = 1
+  type                = "file"
+  depends_on          = [fortimanager_object_vpn_ssl_web_hostchecksoftware.trname]
+}
+
+resource "fortimanager_object_vpn_ssl_web_hostchecksoftware" "trname" {
+  name = "terr-software"
+}
+```
+
 ## Argument Reference
 
 

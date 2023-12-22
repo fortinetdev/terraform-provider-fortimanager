@@ -234,7 +234,9 @@ func flattenObjectWirelessControllerHotspot20AnqpVenueUrlValueList(v interface{}
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20AnqpVenueUrl-ValueList-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -341,7 +343,9 @@ func expandObjectWirelessControllerHotspot20AnqpVenueUrlValueList(d *schema.Reso
 			tmp["value"], _ = expandObjectWirelessControllerHotspot20AnqpVenueUrlValueListValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

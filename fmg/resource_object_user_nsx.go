@@ -322,7 +322,9 @@ func flattenObjectUserNsxService(v interface{}, d *schema.ResourceData, pre stri
 			tmp["ref_id"] = fortiAPISubPartPatch(v, "ObjectUserNsx-Service-RefId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -572,7 +574,9 @@ func expandObjectUserNsxService(d *schema.ResourceData, v interface{}, pre strin
 			tmp["ref-id"], _ = expandObjectUserNsxServiceRefId(d, i["ref_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

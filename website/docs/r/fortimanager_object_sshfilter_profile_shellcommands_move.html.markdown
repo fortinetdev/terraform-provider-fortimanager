@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_sshfilter_profile_shellcommands_move
 SSH command filter.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_sshfilter_profile_shellcommands_move" "trname" {
+  profile        = fortimanager_object_sshfilter_profile.trname.name
+  shell_commands = fortimanager_object_sshfilter_profile_shellcommands.trname.fosid
+  target         = fortimanager_object_sshfilter_profile_shellcommands.trname2.fosid
+  option         = "after"
+  depends_on     = [fortimanager_object_sshfilter_profile_shellcommands.trname, fortimanager_object_sshfilter_profile_shellcommands.trname2]
+}
+
+resource "fortimanager_object_sshfilter_profile_shellcommands" "trname" {
+  profile    = fortimanager_object_sshfilter_profile.trname.name
+  fosid      = 1
+  depends_on = [fortimanager_object_sshfilter_profile.trname]
+}
+
+resource "fortimanager_object_sshfilter_profile_shellcommands" "trname2" {
+  profile    = fortimanager_object_sshfilter_profile.trname.name
+  fosid      = 2
+  depends_on = [fortimanager_object_sshfilter_profile.trname]
+}
+
+resource "fortimanager_object_sshfilter_profile" "trname" {
+  name = "terr-sshfilter-profile"
+}
+```
+
 ## Argument Reference
 
 

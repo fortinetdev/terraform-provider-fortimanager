@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_switchcontroller_managedswitch_customcommand
 Configuration method to edit FortiSwitch commands to be pushed to this FortiSwitch device upon rebooting the FortiGate switch controller or the FortiSwitch.
 
+~> This resource is a sub resource for variable `custom_command` of resource `fortimanager_object_switchcontroller_managedswitch`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_managedswitch_customcommand" "trname" {
+  managed_switch = fortimanager_object_switchcontroller_managedswitch.trname.switch_id
+  command_entry  = "customcommand"
+  depends_on     = [fortimanager_object_switchcontroller_managedswitch.trname]
+}
+
+resource "fortimanager_object_switchcontroller_managedswitch" "trname" {
+  _platform = "FS1D48T418000533"
+  switch_id = 3
+}
+```
+
 ## Argument Reference
 
 

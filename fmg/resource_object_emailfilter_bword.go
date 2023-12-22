@@ -298,7 +298,9 @@ func flattenObjectEmailfilterBwordEntries(v interface{}, d *schema.ResourceData,
 			tmp["where"] = fortiAPISubPartPatch(v, "ObjectEmailfilterBword-Entries-Where")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -478,7 +480,9 @@ func expandObjectEmailfilterBwordEntries(d *schema.ResourceData, v interface{}, 
 			tmp["where"], _ = expandObjectEmailfilterBwordEntriesWhere(d, i["where"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

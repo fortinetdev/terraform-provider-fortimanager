@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_system_npu
 Configure NPU attributes.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`background_sse_scan`: `fortimanager_object_system_npu_backgroundssescan`
+`dos_options`: `fortimanager_object_system_npu_dosoptions`
+`dsw_dts_profile`: `fortimanager_object_system_npu_dswdtsprofile`
+`dsw_queue_dts_profile`: `fortimanager_object_system_npu_dswqueuedtsprofile`
+`fp_anomaly`: `fortimanager_object_system_npu_fpanomaly`
+`hpe`: `fortimanager_object_system_npu_hpe`
+`ip_reassembly`: `fortimanager_object_system_npu_ipreassembly`
+`isf_np_queues`: `fortimanager_object_system_npu_isfnpqueues`
+`np_queues`: `fortimanager_object_system_npu_npqueues`
+`port_cpu_map`: `fortimanager_object_system_npu_portcpumap`
+`port_npu_map`: `fortimanager_object_system_npu_portnpumap`
+`port_path_option`: `fortimanager_object_system_npu_portpathoption`
+`priority_protocol`: `fortimanager_object_system_npu_priorityprotocol`
+`sse_ha_scan`: `fortimanager_object_system_npu_ssehascan`
+`sw_eh_hash`: `fortimanager_object_system_npu_swehhash`
+`sw_tr_hash`: `fortimanager_object_system_npu_swtrhash`
+`tcp_timeout_profile`: `fortimanager_object_system_npu_tcptimeoutprofile`
+`udp_timeout_profile`: `fortimanager_object_system_npu_udptimeoutprofile`
+
+
+
 ## Argument Reference
 
 

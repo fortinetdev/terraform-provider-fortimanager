@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_application_list_defaultnetworkservices_move
 Default network service entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_list_defaultnetworkservices_move" "trname" {
+  list                     = fortimanager_object_application_list.trname.name
+  default_network_services = 2
+  target                   = 1
+  option                   = "before"
+  depends_on               = [fortimanager_object_application_list_defaultnetworkservices.trname, fortimanager_object_application_list_defaultnetworkservices.trname2]
+}
+
+resource "fortimanager_object_application_list_defaultnetworkservices" "trname2" {
+  list       = fortimanager_object_application_list.trname.name
+  fosid      = 2
+  depends_on = [fortimanager_object_application_list.trname]
+}
+
+resource "fortimanager_object_application_list_defaultnetworkservices" "trname" {
+  list       = fortimanager_object_application_list.trname.name
+  fosid      = 1
+  depends_on = [fortimanager_object_application_list.trname]
+}
+
+resource "fortimanager_object_application_list" "trname" {
+  name = "terr-application-list"
+}
+```
+
 ## Argument Reference
 
 

@@ -353,7 +353,9 @@ func flattenObjectFirewallInternetServiceEntryOfia(v interface{}, d *schema.Reso
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetService-Entry-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -800,7 +802,9 @@ func expandObjectFirewallInternetServiceEntryOfia(d *schema.ResourceData, v inte
 			tmp["protocol"], _ = expandObjectFirewallInternetServiceEntryProtocolOfia(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

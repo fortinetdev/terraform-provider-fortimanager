@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_sdnconnector_forwardingrule
 Configure GCP forwarding rule.
 
+~> This resource is a sub resource for variable `forwarding_rule` of resource `fortimanager_object_system_sdnconnector`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_sdnconnector_forwardingrule" "trname" {
+  sdn_connector = fortimanager_object_system_sdnconnector.trname.name
+  rule_name     = "terr-forwardingrule"
+  depends_on    = [fortimanager_object_system_sdnconnector.trname]
+}
+
+resource "fortimanager_object_system_sdnconnector" "trname" {
+  access_key = "key"
+  region     = "local"
+  name       = "terr-sdnconnector"
+}
+```
+
 ## Argument Reference
 
 

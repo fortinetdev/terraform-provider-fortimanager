@@ -772,7 +772,9 @@ func flattenSystemGlobalMcPolicyDisabledAdomsSga(v interface{}, d *schema.Resour
 			tmp["adom_name"] = fortiAPISubPartPatch(v, "SystemGlobal-McPolicyDisabledAdoms-AdomName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -909,7 +911,9 @@ func flattenSystemGlobalSslCipherSuitesSga(v interface{}, d *schema.ResourceData
 			tmp["version"] = fortiAPISubPartPatch(v, "SystemGlobal-SslCipherSuites-Version")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2086,7 +2090,9 @@ func expandSystemGlobalMcPolicyDisabledAdomsSga(d *schema.ResourceData, v interf
 			tmp["adom-name"], _ = expandSystemGlobalMcPolicyDisabledAdomsAdomNameSga(d, i["adom_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2215,7 +2221,9 @@ func expandSystemGlobalSslCipherSuitesSga(d *schema.ResourceData, v interface{},
 			tmp["version"], _ = expandSystemGlobalSslCipherSuitesVersionSga(d, i["version"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

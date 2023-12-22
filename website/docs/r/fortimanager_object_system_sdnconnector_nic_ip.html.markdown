@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_sdnconnector_nic_ip
 Configure IP configuration.
 
+~> This resource is a sub resource for variable `ip` of resource `fortimanager_object_system_sdnconnector_nic`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

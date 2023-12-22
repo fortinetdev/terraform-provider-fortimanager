@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_gtp_apn
 APN.
 
+~> This resource is a sub resource for variable `apn` of resource `fortimanager_object_firewall_gtp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

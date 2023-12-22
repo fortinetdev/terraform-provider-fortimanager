@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_npqueues_scheduler
 Configure a NP7 QoS Scheduler.
 
+~> This resource is a sub resource for variable `scheduler` of resource `fortimanager_object_system_npu_npqueues`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_npqueues_scheduler" "trname" {
+  name = "terr-scheduler"
+  mode = "priority"
+}
+```
+
 ## Argument Reference
 
 

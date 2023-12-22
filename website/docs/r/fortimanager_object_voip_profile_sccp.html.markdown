@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_voip_profile_sccp
 SCCP.
 
+~> This resource is a sub resource for variable `sccp` of resource `fortimanager_object_voip_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_voip_profile_sccp" "trname" {
+  profile          = fortimanager_object_voip_profile.trname.name
+  log_call_summary = "enable"
+  log_violations   = "enable"
+  max_calls        = 32
+  depends_on       = [fortimanager_object_voip_profile.trname]
+}
+
+resource "fortimanager_object_voip_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_cellular_modem1
 Configuration options for modem 1.
 
+~> This resource is a sub resource for variable `modem1` of resource `fortimanager_object_extendercontroller_extenderprofile_cellular`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`auto_switch`: `fortimanager_object_extendercontroller_extenderprofile_cellular_modem1_autoswitch`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_modem1" "trname" {
+  default_sim      = "sim1"
+  redundant_mode   = "disable"
+  sim1_pin         = "enable"
+  sim1_pin_code    = ["psw"]
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_eslsesdongle
 ESL SES-imagotag dongle configuration.
 
+~> This resource is a sub resource for variable `esl_ses_dongle` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile_eslsesdongle" "trname" {
+  apc_addr_type = "ip"
+  apc_ip        = "10.160.88.123"
+  apc_port      = 67
+  wtp_profile   = fortimanager_object_wirelesscontroller_wtpprofile.trname2.name
+  depends_on    = [fortimanager_object_wirelesscontroller_wtpprofile.trname2]
+}
+
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname2" {
+  name = "terr-wtpprofile"
+}
+```
+
 ## Argument Reference
 
 

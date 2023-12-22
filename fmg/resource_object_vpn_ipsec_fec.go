@@ -281,7 +281,9 @@ func flattenObjectVpnIpsecFecMappings(v interface{}, d *schema.ResourceData, pre
 			tmp["seqno"] = fortiAPISubPartPatch(v, "ObjectVpnIpsecFec-Mappings-Seqno")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -433,7 +435,9 @@ func expandObjectVpnIpsecFecMappings(d *schema.ResourceData, v interface{}, pre 
 			tmp["seqno"], _ = expandObjectVpnIpsecFecMappingsSeqno(d, i["seqno"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

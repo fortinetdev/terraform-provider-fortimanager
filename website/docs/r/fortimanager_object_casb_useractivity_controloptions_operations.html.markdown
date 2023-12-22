@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_casb_useractivity_controloptions_operations
 CASB control option operations.
 
+~> This resource is a sub resource for variable `operations` of resource `fortimanager_object_casb_useractivity_controloptions`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

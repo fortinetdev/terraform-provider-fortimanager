@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_internetservice_entry
 Entries in the Internet Service database.
 
+~> This resource is a sub resource for variable `entry` of resource `fortimanager_object_firewall_internetservice`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

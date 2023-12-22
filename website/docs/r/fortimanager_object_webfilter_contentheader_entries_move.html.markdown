@@ -9,6 +9,38 @@ description: |-
 # fortimanager_object_webfilter_contentheader_entries_move
 Move content types used by web filter.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_contentheader_entries_move" "trname" {
+  content_header = fortimanager_object_webfilter_contentheader.trname2.fosid
+  entries        = fortimanager_object_webfilter_contentheader_entries.trname2.pattern
+  target         = fortimanager_object_webfilter_contentheader_entries.trname.pattern
+  option         = "after"
+  depends_on     = [fortimanager_object_webfilter_contentheader_entries.trname2, fortimanager_object_webfilter_contentheader_entries.trname]
+}
+
+resource "fortimanager_object_webfilter_contentheader_entries" "trname2" {
+  category       = 3
+  pattern        = "abc"
+  content_header = fortimanager_object_webfilter_contentheader.trname2.fosid
+  depends_on     = [fortimanager_object_webfilter_contentheader.trname2]
+}
+
+resource "fortimanager_object_webfilter_contentheader_entries" "trname" {
+  category       = 2
+  pattern        = "abc"
+  content_header = fortimanager_object_webfilter_contentheader.trname2.fosid
+  depends_on     = [fortimanager_object_webfilter_contentheader.trname2]
+}
+
+resource "fortimanager_object_webfilter_contentheader" "trname2" {
+  comment = "This is a Terraform example"
+  fosid   = 2
+  name    = "terr-webfilter-content-header2"
+}
+```
+
 ## Argument Reference
 
 

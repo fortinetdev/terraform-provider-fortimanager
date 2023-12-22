@@ -266,7 +266,9 @@ func flattenObjectWirelessControllerBonjourProfilePolicyList(v interface{}, d *s
 			tmp["to_vlan"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerBonjourProfile-PolicyList-ToVlan")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -405,7 +407,9 @@ func expandObjectWirelessControllerBonjourProfilePolicyList(d *schema.ResourceDa
 			tmp["to-vlan"], _ = expandObjectWirelessControllerBonjourProfilePolicyListToVlan(d, i["to_vlan"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

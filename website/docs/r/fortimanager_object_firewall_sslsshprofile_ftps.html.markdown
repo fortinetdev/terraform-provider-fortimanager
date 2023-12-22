@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile_ftps
 Configure FTPS options.
 
+~> This resource is a sub resource for variable `ftps` of resource `fortimanager_object_firewall_sslsshprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_sslsshprofile_ftps" "trname" {
+  ssl_ssh_profile       = fortimanager_object_firewall_sslsshprofile.trname.name
+  ports                 = [23, 24]
+  revoked_server_cert   = "ignore"
+  sni_server_cert_check = "enable"
+  depends_on            = [fortimanager_object_firewall_sslsshprofile.trname]
+}
+
+resource "fortimanager_object_firewall_sslsshprofile" "trname" {
+  name = "terr-sslsshprofile"
+}
+```
+
 ## Argument Reference
 
 

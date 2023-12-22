@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_wirelesscontroller_syslogprofile
 Configure Wireless Termination Points (WTP) system log server profile.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_syslogprofile" "trname" {
+  log_level        = "information"
+  name             = "terr-syslogprofile"
+  server_addr_type = "ip"
+  server_ip        = "1.2.3.4"
+}
+```
+
 ## Argument Reference
 
 

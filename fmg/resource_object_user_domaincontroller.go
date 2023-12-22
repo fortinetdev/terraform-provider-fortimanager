@@ -397,7 +397,9 @@ func flattenObjectUserDomainControllerExtraServer(v interface{}, d *schema.Resou
 			tmp["source_port"] = fortiAPISubPartPatch(v, "ObjectUserDomainController-ExtraServer-SourcePort")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -820,7 +822,9 @@ func expandObjectUserDomainControllerExtraServer(d *schema.ResourceData, v inter
 			tmp["source-port"], _ = expandObjectUserDomainControllerExtraServerSourcePort(d, i["source_port"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -239,7 +239,9 @@ func flattenObjectDnsfilterProfileFtgdDnsFilters2edl(v interface{}, d *schema.Re
 			tmp["log"] = fortiAPISubPartPatch(v, "ObjectDnsfilterProfileFtgdDns-Filters-Log")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -355,7 +357,9 @@ func expandObjectDnsfilterProfileFtgdDnsFilters2edl(d *schema.ResourceData, v in
 			tmp["log"], _ = expandObjectDnsfilterProfileFtgdDnsFiltersLog2edl(d, i["log"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_user_vcenter
 ObjectUser Vcenter
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rule`: `fortimanager_object_user_vcenter_rule`
+
+
+
 ## Example Usage
 
 ```hcl

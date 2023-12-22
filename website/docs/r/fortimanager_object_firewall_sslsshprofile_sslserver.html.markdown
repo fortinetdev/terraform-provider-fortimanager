@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile_sslserver
 SSL servers.
 
+~> This resource is a sub resource for variable `ssl_server` of resource `fortimanager_object_firewall_sslsshprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_sslsshprofile_sslserver" "trname" {
+  ssl_ssh_profile          = fortimanager_object_firewall_sslsshprofile.trname.name
+  ftps_client_certificate  = "bypass"
+  https_client_certificate = "block"
+  fosid                    = 2
+  depends_on               = [fortimanager_object_firewall_sslsshprofile.trname]
+}
+
+resource "fortimanager_object_firewall_sslsshprofile" "trname" {
+  name = "terr-sslsshprofile"
+}
+```
+
 ## Argument Reference
 
 

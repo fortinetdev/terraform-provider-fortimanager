@@ -9,6 +9,17 @@ description: |-
 # fortimanager_systemp_log_fortianalyzer_setting
 Global FortiAnalyzer settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_log_fortianalyzer_setting" "trname" {
+  devprof             = "default"
+  conn_timeout        = 60
+  fallback_to_primary = "disable"
+  max_log_rate        = 12
+}
+```
+
 ## Argument Reference
 
 

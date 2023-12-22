@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_logfetch_clientprofile_devicefilter
 List of device filter.
 
+~> This resource is a sub resource for variable `device_filter` of resource `fortimanager_system_logfetch_clientprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

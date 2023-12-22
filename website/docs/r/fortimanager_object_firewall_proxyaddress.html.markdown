@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_firewall_proxyaddress
 Configure web proxy address.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`header_group`: `fortimanager_object_firewall_proxyaddress_headergroup`
+`tagging`: `fortimanager_object_firewall_proxyaddress_tagging`
+
+
+
 ## Example Usage
 
 ```hcl

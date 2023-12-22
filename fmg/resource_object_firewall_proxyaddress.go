@@ -380,7 +380,9 @@ func flattenObjectFirewallProxyAddressHeaderGroup(v interface{}, d *schema.Resou
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallProxyAddress-HeaderGroup-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -473,7 +475,9 @@ func flattenObjectFirewallProxyAddressTagging(v interface{}, d *schema.ResourceD
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectFirewallProxyAddress-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -857,7 +861,9 @@ func expandObjectFirewallProxyAddressHeaderGroup(d *schema.ResourceData, v inter
 			tmp["id"], _ = expandObjectFirewallProxyAddressHeaderGroupId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -942,7 +948,9 @@ func expandObjectFirewallProxyAddressTagging(d *schema.ResourceData, v interface
 			tmp["tags"], _ = expandObjectFirewallProxyAddressTaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

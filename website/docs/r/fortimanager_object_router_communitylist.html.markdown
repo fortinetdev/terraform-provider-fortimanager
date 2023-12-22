@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_router_communitylist
 Configure community lists.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rule`: `fortimanager_object_router_communitylist_rule`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_communitylist" "trname" {
+  name = "terr-router-communitylist"
+  rule {
+    id     = 1
+    action = "permit"
+  }
+}
+```
+
 ## Argument Reference
 
 

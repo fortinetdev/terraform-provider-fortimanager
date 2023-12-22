@@ -9,6 +9,19 @@ description: |-
 # fortimanager_dvm_cmd_del_devlist
 Delete a list of devices.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvm_cmd_del_devlist" "trname" {
+  fmgadom = "root"
+  flags   = ["create_task", "nonblocking"]
+  del_dev_member_list {
+    name = "VM64_host"
+    vdom = "root"
+  }
+}
+```
+
 ## Argument Reference
 
 

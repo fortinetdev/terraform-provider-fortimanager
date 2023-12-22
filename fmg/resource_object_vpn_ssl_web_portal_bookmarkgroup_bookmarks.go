@@ -416,7 +416,9 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksFormData3rdl(v interface{
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroupBookmarks-FormData-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -934,7 +936,9 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormData3rdl(d *schema.Res
 			tmp["value"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormDataValue3rdl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

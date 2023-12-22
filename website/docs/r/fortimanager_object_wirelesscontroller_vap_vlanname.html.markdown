@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_vap_vlanname
 Table for mapping VLAN name to VLAN ID.
 
+~> This resource is a sub resource for variable `vlan_name` of resource `fortimanager_object_wirelesscontroller_vap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_vap_vlanname" "trname" {
+  name       = "terr-vlanname"
+  vlan_id    = 1200
+  vap        = fortimanager_object_wirelesscontroller_vap.trname34.name
+  depends_on = [fortimanager_object_wirelesscontroller_vap.trname34]
+}
+
+resource "fortimanager_object_wirelesscontroller_vap" "trname34" {
+  name = "terr-wictl-vap5"
+}
+```
+
 ## Argument Reference
 
 

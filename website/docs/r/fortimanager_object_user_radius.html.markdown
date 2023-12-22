@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_user_radius
 Configure RADIUS server entries.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`accounting_server`: `fortimanager_object_user_radius_accountingserver`
+`dynamic_mapping`: `fortimanager_object_user_radius_dynamic_mapping`
+
+
+
 ## Example Usage
 
 ```hcl

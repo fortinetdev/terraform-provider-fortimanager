@@ -606,7 +606,9 @@ func flattenWantempSystemVirtualWanLinkServiceSlaWsvsa(v interface{}, d *schema.
 			tmp["id"] = fortiAPISubPartPatch(v, "WantempSystemVirtualWanLinkService-Sla-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1390,7 +1392,9 @@ func expandWantempSystemVirtualWanLinkServiceSlaWsvsa(d *schema.ResourceData, v 
 			tmp["id"], _ = expandWantempSystemVirtualWanLinkServiceSlaIdWsvsa(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

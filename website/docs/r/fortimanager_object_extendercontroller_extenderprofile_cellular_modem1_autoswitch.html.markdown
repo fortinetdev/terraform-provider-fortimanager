@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_cellular_modem1_autoswitch
 FortiExtender auto switch configuration.
 
+~> This resource is a sub resource for variable `auto_switch` of resource `fortimanager_object_extendercontroller_extenderprofile_cellular_modem1`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_modem1_autoswitch" "trname" {
+  dataplan             = "enable"
+  disconnect           = "enable"
+  disconnect_period    = 700
+  disconnect_threshold = 80
+  extender_profile     = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on           = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

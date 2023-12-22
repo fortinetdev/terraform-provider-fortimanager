@@ -298,7 +298,9 @@ func flattenObjectFirewallAddress6TemplateSubnetSegment(v interface{}, d *schema
 			tmp["values"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6Template-SubnetSegment-Values")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -353,7 +355,9 @@ func flattenObjectFirewallAddress6TemplateSubnetSegmentValues(v interface{}, d *
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectFirewallAddress6TemplateSubnetSegment-Values-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -527,7 +531,9 @@ func expandObjectFirewallAddress6TemplateSubnetSegment(d *schema.ResourceData, v
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -575,7 +581,9 @@ func expandObjectFirewallAddress6TemplateSubnetSegmentValues(d *schema.ResourceD
 			tmp["value"], _ = expandObjectFirewallAddress6TemplateSubnetSegmentValuesValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

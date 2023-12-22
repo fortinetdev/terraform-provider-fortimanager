@@ -39763,6 +39763,206 @@ func (c *FortiSDKClient) ReadPackagesAuthenticationSetting(mkey string, paradict
 	return
 }
 
+// CreatePackagesCentralDnat API operation for FortiManager creates a new CentralDnat.
+// Returns the index value of the CentralDnat and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreatePackagesCentralDnat(params *map[string]interface{}, paradict map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false)
+	return
+}
+
+// UpdatePackagesCentralDnat API operation for FortiManager updates the specified CentralDnat.
+// Returns the index value of the CentralDnat and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdatePackagesCentralDnat(params *map[string]interface{}, mkey string, paradict map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false)
+	return
+}
+
+// DeletePackagesCentralDnat API operation for FortiManager deletes the specified CentralDnat.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeletePackagesCentralDnat(mkey string, paradict map[string]string) (err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false)
+	return
+}
+
+// ReadPackagesCentralDnat API operation for FortiManager gets the CentralDnat
+// with the specified index value.
+// Returns the requested CentralDnat value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadPackagesCentralDnat(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// CreatePackagesCentralDnat6 API operation for FortiManager creates a new CentralDnat6.
+// Returns the index value of the CentralDnat6 and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat6 chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) CreatePackagesCentralDnat6(params *map[string]interface{}, paradict map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat6"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "add", params, false)
+	return
+}
+
+// UpdatePackagesCentralDnat6 API operation for FortiManager updates the specified CentralDnat6.
+// Returns the index value of the CentralDnat6 and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat6 chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdatePackagesCentralDnat6(params *map[string]interface{}, mkey string, paradict map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat6"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	output, err = createUpdate(c, path, "set", params, false)
+	return
+}
+
+// DeletePackagesCentralDnat6 API operation for FortiManager deletes the specified CentralDnat6.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat6 chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) DeletePackagesCentralDnat6(mkey string, paradict map[string]string) (err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat6"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	err = delete(c, path, "delete", false)
+	return
+}
+
+// ReadPackagesCentralDnat6 API operation for FortiManager gets the CentralDnat6
+// with the specified index value.
+// Returns the requested CentralDnat6 value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat6 chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadPackagesCentralDnat6(mkey string, paradict map[string]string) (mapTmp map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat6"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	path += "/" + escapeURLString(mkey)
+
+	mapTmp, err = read(c, path, "get", false)
+	return
+}
+
+// UpdatePackagesCentralDnat6Move API operation for FortiManager updates the specified CentralDnat6Move.
+// Returns the index value of the CentralDnat6Move and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat6 move chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdatePackagesCentralDnat6Move(params *map[string]interface{}, mkey string, paradict map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat6/{dnat6}"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "move", params, true)
+	return
+}
+
+// ReadPackagesCentralDnat6Move API operation for FortiManager gets the CentralDnat6Move
+// with the specified index value.
+// Returns the requested CentralDnat6Move value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat6 move chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadPackagesCentralDnat6Move(mkey string, paradict map[string]string) (listTmp []interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat6"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	params := map[string]interface{}{
+		"fields": []string{"name"},
+	}
+	listTmp, err = readMove(c, path, "get", &params, true)
+	return
+}
+
+// UpdatePackagesCentralDnatMove API operation for FortiManager updates the specified CentralDnatMove.
+// Returns the index value of the CentralDnatMove and execution result when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat move chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) UpdatePackagesCentralDnatMove(params *map[string]interface{}, mkey string, paradict map[string]string) (output map[string]interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat/{dnat}"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	output, err = createUpdate(c, path, "move", params, true)
+	return
+}
+
+// ReadPackagesCentralDnatMove API operation for FortiManager gets the CentralDnatMove
+// with the specified index value.
+// Returns the requested CentralDnatMove value when the request executes successfully.
+// Returns error for service API and SDK errors.
+// See the packages - central dnat move chapter in the FortiManager Handbook - CLI Reference.
+func (c *FortiSDKClient) ReadPackagesCentralDnatMove(mkey string, paradict map[string]string) (listTmp []interface{}, err error) {
+	path := "/pm/config/[*]/pkg/{pkg_folder_path}/{pkg}/central/dnat"
+	path, err = replaceParaWithValue(path, paradict)
+	if err != nil {
+		return nil, fmt.Errorf("%v", err)
+	}
+
+	params := map[string]interface{}{
+		"fields": []string{"name"},
+	}
+	listTmp, err = readMove(c, path, "get", &params, true)
+	return
+}
+
 // CreatePackagesFirewallDosPolicy API operation for FortiManager creates a new FirewallDos Policy.
 // Returns the index value of the FirewallDos Policy and execution result when the request executes successfully.
 // Returns error for service API and SDK errors.

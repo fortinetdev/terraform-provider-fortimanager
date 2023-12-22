@@ -296,7 +296,9 @@ func flattenObjectDlpDictionaryEntries(v interface{}, d *schema.ResourceData, pr
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectDlpDictionary-Entries-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -495,7 +497,9 @@ func expandObjectDlpDictionaryEntries(d *schema.ResourceData, v interface{}, pre
 			tmp["type"], _ = expandObjectDlpDictionaryEntriesType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

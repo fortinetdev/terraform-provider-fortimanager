@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_accessproxy6_move
 Move IPv6 access proxy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy6" "trname" {
+  name = "terr-accessproxy66"
+}
+
+resource "fortimanager_object_firewall_accessproxy6" "trname2" {
+  name = "terr-accessproxy67"
+}
+
+resource "fortimanager_object_firewall_accessproxy6_move" "trname2" {
+  access_proxy6 = "terr-accessproxy66"
+  target        = "terr-accessproxy67"
+  option        = "before"
+  depends_on    = [fortimanager_object_firewall_accessproxy6.trname, fortimanager_object_firewall_accessproxy6.trname2]
+}
+```
+
 ## Argument Reference
 
 

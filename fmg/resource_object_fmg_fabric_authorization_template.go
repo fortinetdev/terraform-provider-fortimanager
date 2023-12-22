@@ -279,7 +279,9 @@ func flattenObjectFmgFabricAuthorizationTemplatePlatforms(v interface{}, d *sche
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFmgFabricAuthorizationTemplate-Platforms-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -460,7 +462,9 @@ func expandObjectFmgFabricAuthorizationTemplatePlatforms(d *schema.ResourceData,
 			tmp["type"], _ = expandObjectFmgFabricAuthorizationTemplatePlatformsType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_router_aspathlist_rule
 AS path list rule.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_router_aspathlist`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_aspathlist_rule" "trname" {
+  aspath_list = fortimanager_object_router_aspathlist.trname.name
+  action      = "permit"
+  fosid       = 1
+  depends_on  = [fortimanager_object_router_aspathlist.trname]
+}
+
+resource "fortimanager_object_router_aspathlist" "trname" {
+  name = "terr-router-aspathlist"
+}
+```
+
 ## Argument Reference
 
 

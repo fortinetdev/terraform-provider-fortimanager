@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_casb_useractivity
 Configure CASB user activity.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`control_options`: `fortimanager_object_casb_useractivity_controloptions`
+`match`: `fortimanager_object_casb_useractivity_match`
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_ssehascan
 Configure driver HA scan for SSE.
 
+~> This resource is a sub resource for variable `sse_ha_scan` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_ssehascan" "trname" {
+  gap             = 7000
+  max_session_cnt = 100
+}
+```
+
 ## Argument Reference
 
 

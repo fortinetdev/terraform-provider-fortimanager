@@ -2556,7 +2556,9 @@ func flattenObjectFirewallSslSshProfileSslExempt(v interface{}, d *schema.Resour
 			tmp["wildcard_fqdn"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslExempt-WildcardFqdn")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2715,7 +2717,9 @@ func flattenObjectFirewallSslSshProfileSslServer(v interface{}, d *schema.Resour
 			tmp["ssl_other_client_cert_request"] = fortiAPISubPartPatch(v, "ObjectFirewallSslSshProfile-SslServer-SslOtherClientCertRequest")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4576,7 +4580,9 @@ func expandObjectFirewallSslSshProfileSslExempt(d *schema.ResourceData, v interf
 			tmp["wildcard-fqdn"], _ = expandObjectFirewallSslSshProfileSslExemptWildcardFqdn(d, i["wildcard_fqdn"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4716,7 +4722,9 @@ func expandObjectFirewallSslSshProfileSslServer(d *schema.ResourceData, v interf
 			tmp["ssl-other-client-cert-request"], _ = expandObjectFirewallSslSshProfileSslServerSslOtherClientCertRequest(d, i["ssl_other_client_cert_request"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

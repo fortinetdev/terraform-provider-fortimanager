@@ -539,7 +539,9 @@ func flattenPackagesPkgScopeMember(v interface{}, d *schema.ResourceData, pre st
 			tmp["vdom"] = fortiAPISubPartPatch(v, "PackagesPkg-ScopeMember-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -875,7 +877,9 @@ func expandPackagesPkgScopeMember(d *schema.ResourceData, v interface{}, pre str
 			tmp["vdom"], _ = expandPackagesPkgScopeMemberVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -366,7 +366,9 @@ func flattenObjectWebfilterProfileFtgdWfFilters2edl(v interface{}, d *schema.Res
 			tmp["warning_prompt"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Filters-WarningPrompt")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -483,7 +485,9 @@ func flattenObjectWebfilterProfileFtgdWfQuota2edl(v interface{}, d *schema.Resou
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileFtgdWf-Quota-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -746,7 +750,9 @@ func expandObjectWebfilterProfileFtgdWfFilters2edl(d *schema.ResourceData, v int
 			tmp["warning-prompt"], _ = expandObjectWebfilterProfileFtgdWfFiltersWarningPrompt2edl(d, i["warning_prompt"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -851,7 +857,9 @@ func expandObjectWebfilterProfileFtgdWfQuota2edl(d *schema.ResourceData, v inter
 			tmp["value"], _ = expandObjectWebfilterProfileFtgdWfQuotaValue2edl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

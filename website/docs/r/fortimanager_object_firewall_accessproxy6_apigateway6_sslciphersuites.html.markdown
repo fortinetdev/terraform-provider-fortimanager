@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_firewall_accessproxy6_apigateway6_sslciphersuites
 SSL/TLS cipher suites to offer to a server, ordered by priority.
 
+~> This resource is a sub resource for variable `ssl_cipher_suites` of resource `fortimanager_object_firewall_accessproxy6_apigateway6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy6_apigateway6_sslciphersuites" "trname" {
+  access_proxy6 = fortimanager_object_firewall_accessproxy6.trname4.name
+  api_gateway6  = fortimanager_object_firewall_accessproxy6_apigateway6.trname3.fosid
+  priority      = 3
+  versions      = ["tls-1.0"]
+  depends_on    = [fortimanager_object_firewall_accessproxy6_apigateway6.trname3]
+}
+
+resource "fortimanager_object_firewall_accessproxy6_apigateway6" "trname3" {
+  fosid         = 2
+  access_proxy6 = fortimanager_object_firewall_accessproxy6.trname4.name
+  depends_on    = [fortimanager_object_firewall_accessproxy6.trname4]
+}
+
+resource "fortimanager_object_firewall_accessproxy6" "trname4" {
+  name = "terr-accessproxy6"
+}
+```
+
 ## Argument Reference
 
 

@@ -140,7 +140,9 @@ func flattenSecurityconsoleSignCertificateTemplateScope(v interface{}, d *schema
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsoleSignCertificateTemplate-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -248,7 +250,9 @@ func expandSecurityconsoleSignCertificateTemplateScope(d *schema.ResourceData, v
 			tmp["vdom"], _ = expandSecurityconsoleSignCertificateTemplateScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

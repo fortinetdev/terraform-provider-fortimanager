@@ -1270,7 +1270,9 @@ func flattenObjectExtensionControllerExtenderProfileCellularSmsNotificationRecei
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileCellularSmsNotification-Receiver-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1391,7 +1393,9 @@ func flattenObjectExtensionControllerExtenderProfileLanExtensionBackhaul(v inter
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectExtensionControllerExtenderProfileLanExtension-Backhaul-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2237,7 +2241,9 @@ func expandObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiv
 			tmp["status"], _ = expandObjectExtensionControllerExtenderProfileCellularSmsNotificationReceiverStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2350,7 +2356,9 @@ func expandObjectExtensionControllerExtenderProfileLanExtensionBackhaul(d *schem
 			tmp["weight"], _ = expandObjectExtensionControllerExtenderProfileLanExtensionBackhaulWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

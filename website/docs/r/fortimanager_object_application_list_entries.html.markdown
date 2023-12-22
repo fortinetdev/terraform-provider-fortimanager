@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_application_list_entries
 Application list entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_application_list`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`parameters`: `fortimanager_object_application_list_entries_parameters`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_list_entries" "trname" {
+  log            = "disable"
+  log_packet     = "enable"
+  quarantine_log = "enable"
+  depends_on     = [fortimanager_object_application_list.trname]
+  list           = fortimanager_object_application_list.trname.name
+  fosid          = 1
+}
+
+resource "fortimanager_object_application_list" "trname" {
+  name = "terr-application-list"
+}
+```
+
 ## Argument Reference
 
 

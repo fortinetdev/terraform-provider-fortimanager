@@ -266,7 +266,9 @@ func flattenObjectFirewallCarrierEndpointBwlEntries(v interface{}, d *schema.Res
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectFirewallCarrierEndpointBwl-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -419,7 +421,9 @@ func expandObjectFirewallCarrierEndpointBwlEntries(d *schema.ResourceData, v int
 			tmp["status"], _ = expandObjectFirewallCarrierEndpointBwlEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

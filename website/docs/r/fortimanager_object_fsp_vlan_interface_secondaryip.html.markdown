@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_fsp_vlan_interface_secondaryip
 Second IP address of interface.
 
+~> This resource is a sub resource for variable `secondaryip` of resource `fortimanager_object_fsp_vlan_interface`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

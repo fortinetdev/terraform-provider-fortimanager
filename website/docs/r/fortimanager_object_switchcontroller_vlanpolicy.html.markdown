@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_switchcontroller_vlanpolicy
 Configure VLAN policy to be applied on the managed FortiSwitch ports through dynamic-port-policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_vlanpolicy" "trname" {
+  name              = "terr-vlanpolicy"
+  allowed_vlans_all = "enable"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_system_npu_npqueues_ethernettype
 Configure a NP7 QoS Ethernet Type.
 
+~> This resource is a sub resource for variable `ethernet_type` of resource `fortimanager_object_system_npu_npqueues`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_npqueues_ethernettype" "trname" {
+  name   = "terr-ethernettype"
+  queue  = 6
+  weight = 12
+}
+```
+
 ## Argument Reference
 
 

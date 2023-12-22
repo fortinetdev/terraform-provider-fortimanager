@@ -528,7 +528,9 @@ func flattenObjectIpsSensorEntries(v interface{}, d *schema.ResourceData, pre st
 			tmp["vuln_type"] = fortiAPISubPartPatch(v, "ObjectIpsSensor-Entries-VulnType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -593,7 +595,9 @@ func flattenObjectIpsSensorEntriesExemptIp(v interface{}, d *schema.ResourceData
 			tmp["src_ip"] = fortiAPISubPartPatch(v, "ObjectIpsSensorEntries-ExemptIp-SrcIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -975,7 +979,9 @@ func expandObjectIpsSensorEntries(d *schema.ResourceData, v interface{}, pre str
 			tmp["vuln-type"], _ = expandObjectIpsSensorEntriesVulnType(d, i["vuln_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1032,7 +1038,9 @@ func expandObjectIpsSensorEntriesExemptIp(d *schema.ResourceData, v interface{},
 			tmp["src-ip"], _ = expandObjectIpsSensorEntriesExemptIpSrcIp(d, i["src_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

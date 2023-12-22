@@ -253,7 +253,9 @@ func flattenObjectFirewallIdentityBasedRouteRule(v interface{}, d *schema.Resour
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectFirewallIdentityBasedRoute-Rule-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -383,7 +385,9 @@ func expandObjectFirewallIdentityBasedRouteRule(d *schema.ResourceData, v interf
 			tmp["id"], _ = expandObjectFirewallIdentityBasedRouteRuleId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

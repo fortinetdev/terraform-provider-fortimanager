@@ -9,6 +9,21 @@ description: |-
 # fortimanager_packages_firewall_acl6
 Configure IPv6 access control list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_acl6" "trname" {
+  pkg       = "default"
+  name      = "acl6_policy"
+  interface = "port4"
+  dstaddr   = ["all"]
+  srcaddr   = ["all"]
+  service   = ["ALL"]
+  policyid  = 1
+  status    = "enable"
+}
+```
+
 ## Argument Reference
 
 

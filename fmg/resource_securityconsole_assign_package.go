@@ -156,7 +156,9 @@ func flattenSecurityconsoleAssignPackageTarget(v interface{}, d *schema.Resource
 			tmp["pkg"] = fortiAPISubPartPatch(v, "SecurityconsoleAssignPackage-Target-Pkg")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -273,7 +275,9 @@ func expandSecurityconsoleAssignPackageTarget(d *schema.ResourceData, v interfac
 			tmp["pkg"], _ = expandSecurityconsoleAssignPackageTargetPkg(d, i["pkg"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

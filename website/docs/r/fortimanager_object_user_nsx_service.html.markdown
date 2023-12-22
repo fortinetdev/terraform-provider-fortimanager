@@ -9,6 +9,31 @@ description: |-
 # fortimanager_object_user_nsx_service
 ObjectUser NsxService
 
+~> This resource is a sub resource for variable `service` of resource `fortimanager_object_user_nsx`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_nsx_service" "trname" {
+  nsx         = fortimanager_object_user_nsx.trname.name
+  fosid       = 1
+  integration = "east-west"
+  name        = "terr-service"
+  depends_on  = [fortimanager_object_user_nsx.trname]
+}
+
+resource "fortimanager_object_user_nsx" "trname" {
+  name      = "terr-nsx"
+  user      = "admin"
+  server    = "3.3.3.3"
+  fmgip     = "1.1.1.1"
+  fmgpasswd = ["psw"]
+  fmguser   = "admin"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,43 @@ description: |-
 # fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey_move
 List of multiple PSK entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey_move" "trname" {
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  mpsk_group   = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname.name
+  mpsk_key     = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey.trname2.name
+  target       = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey.trname.name
+  option       = "after"
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey.trname2, fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey" "trname2" {
+  name         = "terr-mpskkey2"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  mpsk_group   = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey" "trname" {
+  name         = "terr-mpskkey1"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  mpsk_group   = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup" "trname" {
+  name         = "terr-mpskgroup"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile" "trname" {
+  name = "terr-wictl-mpsk-profile"
+}
+```
+
 ## Argument Reference
 
 

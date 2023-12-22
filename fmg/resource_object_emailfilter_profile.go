@@ -586,7 +586,9 @@ func flattenObjectEmailfilterProfileFileFilterEntries(v interface{}, d *schema.R
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectEmailfilterProfileFileFilter-Entries-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1466,7 +1468,9 @@ func expandObjectEmailfilterProfileFileFilterEntries(d *schema.ResourceData, v i
 			tmp["protocol"], _ = expandObjectEmailfilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

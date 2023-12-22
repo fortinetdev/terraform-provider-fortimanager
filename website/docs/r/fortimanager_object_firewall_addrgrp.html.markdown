@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_firewall_addrgrp
 Configure IPv4 address groups.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_firewall_addrgrp_dynamic_mapping`
+`tagging`: `fortimanager_object_firewall_addrgrp_tagging`
+
+
+
 ## Example Usage
 
 ```hcl

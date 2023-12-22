@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_user_devicegroup
 Configure device groups.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_user_devicegroup_dynamic_mapping`
+`tagging`: `fortimanager_object_user_devicegroup_tagging`
+
+
+
 ## Argument Reference
 
 

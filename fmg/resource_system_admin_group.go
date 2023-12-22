@@ -178,7 +178,9 @@ func flattenSystemAdminGroupMember(v interface{}, d *schema.ResourceData, pre st
 			tmp["name"] = fortiAPISubPartPatch(v, "SystemAdminGroup-Member-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -263,7 +265,9 @@ func expandSystemAdminGroupMember(d *schema.ResourceData, v interface{}, pre str
 			tmp["name"], _ = expandSystemAdminGroupMemberName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,13 @@ description: |-
 # fortimanager_object_fsp_vlan
 ObjectFsp Vlan
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dhcp_server`: `fortimanager_object_fsp_vlan_dhcpserver`
+`dynamic_mapping`: `fortimanager_object_fsp_vlan_dynamic_mapping`
+`interface`: `fortimanager_object_fsp_vlan_interface`
+
+
+
 ## Example Usage
 
 ```hcl
@@ -519,6 +526,8 @@ The `interface` block supports:
 
 * `alias` - Alias will be displayed with the interface name to make it easier to distinguish.
 * `allowaccess` - Permitted types of management access to this interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `auto-ipsec`, `radius-acct`, `probe-response`, `capwap`, `dnp`, `ftm`, `fabric`.
+
+* `annex` - Set xDSL annex type. Valid values: `a`, `b`, `j`, `bjm`, `i`, `al`, `m`, `aijlm`.
 
 * `ap_discover` - Enable/disable automatic registration of unknown FortiAP devices. Valid values: `disable`, `enable`.
 

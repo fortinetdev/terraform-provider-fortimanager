@@ -394,7 +394,9 @@ func flattenObjectFirewallProfileProtocolOptionsCifsFileFilterEntries2edl(v inte
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectFirewallProfileProtocolOptionsCifsFileFilter-Entries-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -491,7 +493,9 @@ func flattenObjectFirewallProfileProtocolOptionsCifsServerKeytab2edl(v interface
 			tmp["principal"] = fortiAPISubPartPatch(v, "ObjectFirewallProfileProtocolOptionsCifs-ServerKeytab-Principal")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -816,7 +820,9 @@ func expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntries2edl(d *sche
 			tmp["protocol"], _ = expandObjectFirewallProfileProtocolOptionsCifsFileFilterEntriesProtocol2edl(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -905,7 +911,9 @@ func expandObjectFirewallProfileProtocolOptionsCifsServerKeytab2edl(d *schema.Re
 			tmp["principal"], _ = expandObjectFirewallProfileProtocolOptionsCifsServerKeytabPrincipal2edl(d, i["principal"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

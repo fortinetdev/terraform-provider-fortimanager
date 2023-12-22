@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_antivirus_profile_outbreakprevention
 Configure Virus Outbreak Prevention settings.
 
+~> This resource is a sub resource for variable `outbreak_prevention` of resource `fortimanager_object_antivirus_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

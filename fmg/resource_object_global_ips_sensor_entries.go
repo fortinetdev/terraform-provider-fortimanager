@@ -402,7 +402,9 @@ func flattenObjectGlobalIpsSensorEntriesExemptIp2edl(v interface{}, d *schema.Re
 			tmp["src_ip"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensorEntries-ExemptIp-SrcIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -859,7 +861,9 @@ func expandObjectGlobalIpsSensorEntriesExemptIp2edl(d *schema.ResourceData, v in
 			tmp["src-ip"], _ = expandObjectGlobalIpsSensorEntriesExemptIpSrcIp2edl(d, i["src_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

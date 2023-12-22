@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wirelesscontroller_ssidpolicy
 Configure WiFi SSID policies.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_ssidpolicy" "trname" {
+  name = "terr-ssidpolicy"
+  vlan = "1-A1"
+}
+```
+
 ## Argument Reference
 
 

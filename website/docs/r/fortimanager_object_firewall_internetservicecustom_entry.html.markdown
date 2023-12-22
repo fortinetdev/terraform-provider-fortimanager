@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_firewall_internetservicecustom_entry
 Entries added to the Internet Service database and custom database.
 
+~> This resource is a sub resource for variable `entry` of resource `fortimanager_object_firewall_internetservicecustom`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`port_range`: `fortimanager_object_firewall_internetservicecustom_entry_portrange`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetservicecustom_entry" "trname" {
+  internet_service_custom = fortimanager_object_firewall_internetservicecustom.trname.name
+  fosid                   = 2
+  protocol                = 26
+  port_range {
+    end_port   = 600
+    id         = 1
+    start_port = 500
+  }
+  depends_on = [fortimanager_object_firewall_internetservicecustom.trname]
+}
+
+resource "fortimanager_object_firewall_internetservicecustom" "trname" {
+  name = "terr-internetservicecustom"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,33 @@ description: |-
 # fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_move
 List of multiple PSK groups.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_move" "trname" {
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  mpsk_group   = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname2.name
+  target       = fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup.trname.name
+  option       = "after"
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup" "trname2" {
+  name         = "terr-mpskgroup2"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup" "trname" {
+  name         = "terr-mpskgroup1"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile" "trname" {
+  name = "terr-wictl-mpsk-profile3"
+}
+```
+
 ## Argument Reference
 
 

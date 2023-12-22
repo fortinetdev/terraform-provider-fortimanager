@@ -9,6 +9,15 @@ description: |-
 # fortimanager_system_log_topology
 Logging topology settings.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_topology" "trname" {
+  max_depth       = 10
+  max_depth_share = 2
+}
+```
+
 ## Argument Reference
 
 

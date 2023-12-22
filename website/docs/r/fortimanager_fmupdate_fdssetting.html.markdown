@@ -9,6 +9,14 @@ description: |-
 # fortimanager_fmupdate_fdssetting
 Configure FortiGuard settings.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`push_override`: `fortimanager_fmupdate_fdssetting_pushoverride`
+`push_override_to_client`: `fortimanager_fmupdate_fdssetting_pushoverridetoclient`
+`server_override`: `fortimanager_fmupdate_fdssetting_serveroverride`
+`update_schedule`: `fortimanager_fmupdate_fdssetting_updateschedule`
+
+
+
 ## Example Usage
 
 ```hcl

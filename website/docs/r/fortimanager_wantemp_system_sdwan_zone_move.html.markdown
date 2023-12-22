@@ -9,6 +9,37 @@ description: |-
 # fortimanager_wantemp_system_sdwan_zone_move
 Move SD-WAN zones.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_zone_move" "trname" {
+  wanprof = fortimanager_wan_template.trname2.name
+  zone    = fortimanager_wantemp_system_sdwan_zone.trname.name
+  target  = fortimanager_wantemp_system_sdwan_zone.trname2.name
+  option  = "after"
+}
+
+resource "fortimanager_wantemp_system_sdwan_zone" "trname2" {
+  name                  = "zone2"
+  service_sla_tie_break = "cfg-order"
+  wanprof               = fortimanager_wan_template.trname2.name
+  depends_on            = [fortimanager_wan_template.trname2]
+}
+
+resource "fortimanager_wantemp_system_sdwan_zone" "trname" {
+  name                  = "zone"
+  service_sla_tie_break = "cfg-order"
+  wanprof               = fortimanager_wan_template.trname2.name
+  depends_on            = [fortimanager_wan_template.trname2]
+}
+
+resource "fortimanager_wan_template" "trname2" {
+  name = "terr15"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

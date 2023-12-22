@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_user_connector
 ObjectUser Connector
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_connector" "trname" {
+  name = "terr-connector"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,15 @@ description: |-
 # fortimanager_systemp_system_snmp_sysinfo
 SNMP system info configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_snmp_sysinfo" "trname" {
+  devprof = "default"
+  status  = "disable"
+}
+```
+
 ## Argument Reference
 
 

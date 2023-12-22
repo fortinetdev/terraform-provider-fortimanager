@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_vpn_ssl_web_portal_splitdns
 Split DNS for SSL VPN.
 
+~> This resource is a sub resource for variable `split_dns` of resource `fortimanager_object_vpn_ssl_web_portal`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

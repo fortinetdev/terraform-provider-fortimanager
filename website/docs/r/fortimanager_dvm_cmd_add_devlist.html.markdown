@@ -9,6 +9,23 @@ description: |-
 # fortimanager_dvm_cmd_add_devlist
 Add multiple devices to the Device Manager database.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_dvm_cmd_add_devlist" "trname" {
+  fmgadom = "root"
+  flags   = ["create_task"]
+  add_dev_list {
+    adm_pass     = ["fortinet"]
+    adm_usr      = "admin"
+    ip           = "10.160.88.186"
+    name         = "VM64_host"
+    platform_str = "FortiGate-VM64"
+    sn           = "FGVMULTM23002193"
+  }
+}
+```
+
 ## Argument Reference
 
 

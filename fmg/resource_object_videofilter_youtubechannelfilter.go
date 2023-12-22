@@ -271,7 +271,9 @@ func flattenObjectVideofilterYoutubeChannelFilterEntries(v interface{}, d *schem
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectVideofilterYoutubeChannelFilter-Entries-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -457,7 +459,9 @@ func expandObjectVideofilterYoutubeChannelFilterEntries(d *schema.ResourceData, 
 			tmp["id"], _ = expandObjectVideofilterYoutubeChannelFilterEntriesId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

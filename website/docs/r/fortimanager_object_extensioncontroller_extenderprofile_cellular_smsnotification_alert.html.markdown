@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification_alert
 SMS alert list.
 
+~> This resource is a sub resource for variable `alert` of resource `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -242,7 +242,9 @@ func flattenObjectAntivirusNotificationEntries(v interface{}, d *schema.Resource
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectAntivirusNotification-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -377,7 +379,9 @@ func expandObjectAntivirusNotificationEntries(d *schema.ResourceData, v interfac
 			tmp["status"], _ = expandObjectAntivirusNotificationEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

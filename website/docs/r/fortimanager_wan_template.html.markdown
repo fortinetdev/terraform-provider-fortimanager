@@ -9,6 +9,16 @@ description: |-
 # fortimanager_wan_template
 Wan Template
 
+## Example Usage
+
+```hcl
+resource "fortimanager_wan_template" "trname" {
+  name = "terr-template"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

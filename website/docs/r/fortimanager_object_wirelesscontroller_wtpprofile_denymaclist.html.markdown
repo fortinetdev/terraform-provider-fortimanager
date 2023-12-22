@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_denymaclist
 List of MAC addresses that are denied access to this WTP, FortiAP, or AP.
 
+~> This resource is a sub resource for variable `deny_mac_list` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile_denymaclist" "trname" {
+  fosid       = 1
+  mac         = "4a:7e:1e:d2:9b:86"
+  wtp_profile = fortimanager_object_wirelesscontroller_wtpprofile.trname.name
+  depends_on  = [fortimanager_object_wirelesscontroller_wtpprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname" {
+  name = "terr-wtpprofile"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_antivirus_profile_pop3
 Configure POP3 AntiVirus options.
 
+~> This resource is a sub resource for variable `pop3` of resource `fortimanager_object_antivirus_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_antivirus_profile_pop3" "trname" {
+  emulator           = "enable"
+  executables        = "default"
+  external_blocklist = "block"
+  profile            = fortimanager_object_antivirus_profile.trname.name
+  depends_on         = [fortimanager_object_antivirus_profile.trname]
+}
+
+resource "fortimanager_object_antivirus_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

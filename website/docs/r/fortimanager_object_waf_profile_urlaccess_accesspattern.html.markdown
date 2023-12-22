@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_waf_profile_urlaccess_accesspattern
 URL access pattern.
 
+~> This resource is a sub resource for variable `access_pattern` of resource `fortimanager_object_waf_profile_urlaccess`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_urlaccess_accesspattern" "trname" {
+  profile    = fortimanager_object_waf_profile.trname.name
+  url_access = fortimanager_object_waf_profile_urlaccess.trname2.fosid
+  fosid      = 1
+  negate     = "enable"
+  depends_on = [fortimanager_object_waf_profile_urlaccess.trname2]
+}
+
+resource "fortimanager_object_waf_profile_urlaccess" "trname2" {
+  fosid      = 13
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

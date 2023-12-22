@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_system_npu_hpe
 Host protection engine configuration.
 
+~> This resource is a sub resource for variable `hpe` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_hpe" "trname" {
+  all_protocol = "400000"
+}
+```
+
 ## Argument Reference
 
 

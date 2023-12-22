@@ -507,7 +507,9 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(v interface{}, d
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Port")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -611,7 +613,9 @@ func flattenFmupdateFdsSettingServerOverrideServlistFfa(v interface{}, d *schema
 			tmp["service_type"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-ServiceType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1208,7 +1212,9 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfa(d *schema.Resourc
 			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfa(d, i["port"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1306,7 +1312,9 @@ func expandFmupdateFdsSettingServerOverrideServlistFfa(d *schema.ResourceData, v
 			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfa(d, i["service_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_vpnmgr_node_ipv4excluderange
 ObjectVpnmgr NodeIpv4ExcludeRange
 
+~> This resource is a sub resource for variable `ipv4_exclude_range` of resource `fortimanager_object_vpnmgr_node`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpnmgr_node_ipv4excluderange" "trname" {
+  node       = fortimanager_object_vpnmgr_node.trname.fosid
+  end_ip     = "10.160.88.52"
+  fosid      = 1
+  start_ip   = "10.160.88.40"
+  depends_on = [fortimanager_object_vpnmgr_node.trname]
+}
+
+resource "fortimanager_object_vpnmgr_node" "trname" {
+  fosid = 2
+}
+```
+
 ## Argument Reference
 
 

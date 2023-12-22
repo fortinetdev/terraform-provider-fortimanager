@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename_valuelist
 Name list.
 
+~> This resource is a sub resource for variable `value_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpvenuename`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

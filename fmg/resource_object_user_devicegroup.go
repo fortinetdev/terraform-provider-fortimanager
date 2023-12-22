@@ -294,7 +294,9 @@ func flattenObjectUserDeviceGroupDynamicMapping(v interface{}, d *schema.Resourc
 			tmp["member"] = fortiAPISubPartPatch(v, "ObjectUserDeviceGroup-DynamicMapping-Member")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -337,7 +339,9 @@ func flattenObjectUserDeviceGroupDynamicMappingScope(v interface{}, d *schema.Re
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserDeviceGroupDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -406,7 +410,9 @@ func flattenObjectUserDeviceGroupTagging(v interface{}, d *schema.ResourceData, 
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectUserDeviceGroup-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -581,7 +587,9 @@ func expandObjectUserDeviceGroupDynamicMapping(d *schema.ResourceData, v interfa
 			tmp["member"], _ = expandObjectUserDeviceGroupDynamicMappingMember(d, i["member"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -617,7 +625,9 @@ func expandObjectUserDeviceGroupDynamicMappingScope(d *schema.ResourceData, v in
 			tmp["vdom"], _ = expandObjectUserDeviceGroupDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -678,7 +688,9 @@ func expandObjectUserDeviceGroupTagging(d *schema.ResourceData, v interface{}, p
 			tmp["tags"], _ = expandObjectUserDeviceGroupTaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_cloud_orchestaws
 ObjectCloud OrchestAws
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_cloud_orchestaws" "trname" {
+  name        = "terr-orchestaws"
+  region_name = "us-east-1"
+}
+```
+
 ## Argument Reference
 
 

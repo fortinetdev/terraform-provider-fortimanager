@@ -290,7 +290,9 @@ func flattenDvmCmdAddDevListAddDevList(v interface{}, d *schema.ResourceData, pr
 			tmp["sn"] = fortiAPISubPartPatch(v, "DvmCmdAddDevList-AddDevList-Sn")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -533,7 +535,9 @@ func expandDvmCmdAddDevListAddDevList(d *schema.ResourceData, v interface{}, pre
 			tmp["sn"], _ = expandDvmCmdAddDevListAddDevListSn(d, i["sn"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -17,12 +17,13 @@ type Auth struct {
 
 	LogSession    bool
 	Session       string
+	CleanSession  bool
 	Token         string
 	FMGCloudToken string
 }
 
 // NewAuth inits Auth object with the given metadata
-func NewAuth(hostname, user, passwd, cabundle, session, token, fmgCloudToken, fmgtype string, logsession bool) *Auth {
+func NewAuth(hostname, user, passwd, cabundle, session, token, fmgCloudToken, fmgtype string, logsession, cleanSession bool) *Auth {
 	return &Auth{
 		Hostname: hostname,
 		User:     user,
@@ -32,6 +33,7 @@ func NewAuth(hostname, user, passwd, cabundle, session, token, fmgCloudToken, fm
 
 		LogSession:    logsession,
 		Session:       session,
+		CleanSession:  cleanSession,
 		Token:         token,
 		FMGCloudToken: fmgCloudToken,
 	}

@@ -9,6 +9,56 @@ description: |-
 # fortimanager_wantemp_system_sdwan_service_move
 Create SD-WAN rules (also called services) to control how sessions are distributed to interfaces in the SD-WAN.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_service_move" "trname" {
+  wanprof    = fortimanager_wan_template.trname.name
+  service    = fortimanager_wantemp_system_sdwan_service.trname2.fosid
+  target     = fortimanager_wantemp_system_sdwan_service.trname.fosid
+  option     = "after"
+  depends_on = [fortimanager_wantemp_system_sdwan_service.trname2, fortimanager_wantemp_system_sdwan_service.trname]
+}
+
+resource "fortimanager_wantemp_system_sdwan_service" "trname2" {
+  wanprof          = fortimanager_wan_template.trname.name
+  fosid            = 2
+  priority_members = 3
+  dst              = "all"
+  depends_on       = [fortimanager_wantemp_system_sdwan_service.trname2]
+}
+
+resource "fortimanager_wantemp_system_sdwan_service" "trname" {
+  wanprof          = fortimanager_wan_template.trname.name
+  fosid            = 1
+  priority_members = 3
+  dst              = "all"
+  depends_on       = [fortimanager_wantemp_system_sdwan_service.trname]
+}
+
+resource "fortimanager_wantemp_system_sdwan_members" "trname2" {
+  wanprof    = fortimanager_wan_template.trname.name
+  cost       = 2
+  interface  = "port2"
+  seq_num    = 3
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wantemp_system_sdwan_members" "trname" {
+  wanprof    = fortimanager_wan_template.trname.name
+  cost       = 1
+  interface  = "port7"
+  seq_num    = 2
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wan_template" "trname" {
+  name = "terr4"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

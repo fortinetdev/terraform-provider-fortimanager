@@ -9,6 +9,19 @@ description: |-
 # fortimanager_system_log_ratelimit_ratelimits
 Per device or ADOM log rate limits.
 
+~> This resource is a sub resource for variable `ratelimits` of resource `fortimanager_system_log_ratelimit`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_log_ratelimit_ratelimits" "trname" {
+  fosid  = 2
+  filter = 1
+}
+```
+
 ## Argument Reference
 
 

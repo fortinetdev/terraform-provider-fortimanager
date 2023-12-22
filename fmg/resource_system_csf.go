@@ -335,7 +335,9 @@ func flattenSystemCsfFabricConnector(v interface{}, d *schema.ResourceData, pre 
 			tmp["serial"] = fortiAPISubPartPatch(v, "SystemCsf-FabricConnector-Serial")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -470,7 +472,9 @@ func flattenSystemCsfTrustedList(v interface{}, d *schema.ResourceData, pre stri
 			tmp["serial"] = fortiAPISubPartPatch(v, "SystemCsf-TrustedList-Serial")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -835,7 +839,9 @@ func expandSystemCsfFabricConnector(d *schema.ResourceData, v interface{}, pre s
 			tmp["serial"], _ = expandSystemCsfFabricConnectorSerial(d, i["serial"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -957,7 +963,9 @@ func expandSystemCsfTrustedList(d *schema.ResourceData, v interface{}, pre strin
 			tmp["serial"], _ = expandSystemCsfTrustedListSerial(d, i["serial"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

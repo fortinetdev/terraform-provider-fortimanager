@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_lan
 WTP LAN port mapping.
 
+~> This resource is a sub resource for variable `lan` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

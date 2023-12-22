@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings
 Server SSH public key authentication settings.
 
+~> This resource is a sub resource for variable `server_pubkey_auth_settings` of resource `fortimanager_object_firewall_accessproxy`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`cert_extension`: `fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings_certextension`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy_serverpubkeyauthsettings" "trname" {
+  access_proxy            = fortimanager_object_firewall_accessproxy.trname.name
+  permit_agent_forwarding = "enable"
+  permit_port_forwarding  = "disable"
+  depends_on              = [fortimanager_object_firewall_accessproxy.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy" "trname" {
+  name = "terr-accessproxy"
+}
+```
+
 ## Argument Reference
 
 

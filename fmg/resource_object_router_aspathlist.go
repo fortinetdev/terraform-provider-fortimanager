@@ -234,7 +234,9 @@ func flattenObjectRouterAspathListRule(v interface{}, d *schema.ResourceData, pr
 			tmp["regexp"] = fortiAPISubPartPatch(v, "ObjectRouterAspathList-Rule-Regexp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -341,7 +343,9 @@ func expandObjectRouterAspathListRule(d *schema.ResourceData, v interface{}, pre
 			tmp["regexp"], _ = expandObjectRouterAspathListRuleRegexp(d, i["regexp"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

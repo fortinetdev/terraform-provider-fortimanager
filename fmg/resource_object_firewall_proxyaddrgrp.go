@@ -284,7 +284,9 @@ func flattenObjectFirewallProxyAddrgrpTagging(v interface{}, d *schema.ResourceD
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectFirewallProxyAddrgrp-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -489,7 +491,9 @@ func expandObjectFirewallProxyAddrgrpTagging(d *schema.ResourceData, v interface
 			tmp["tags"], _ = expandObjectFirewallProxyAddrgrpTaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

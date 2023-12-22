@@ -385,7 +385,9 @@ func flattenObjectCasbUserActivityControlOptions(v interface{}, d *schema.Resour
 			tmp["operations"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivity-ControlOptions-Operations")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -476,7 +478,9 @@ func flattenObjectCasbUserActivityControlOptionsOperations(v interface{}, d *sch
 			tmp["values"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityControlOptions-Operations-Values")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -565,7 +569,9 @@ func flattenObjectCasbUserActivityMatch(v interface{}, d *schema.ResourceData, p
 			tmp["strategy"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivity-Match-Strategy")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -650,7 +656,9 @@ func flattenObjectCasbUserActivityMatchRules(v interface{}, d *schema.ResourceDa
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityMatch-Rules-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -903,7 +911,9 @@ func expandObjectCasbUserActivityControlOptions(d *schema.ResourceData, v interf
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -979,7 +989,9 @@ func expandObjectCasbUserActivityControlOptionsOperations(d *schema.ResourceData
 			tmp["values"], _ = expandObjectCasbUserActivityControlOptionsOperationsValues(d, i["values"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1065,7 +1077,9 @@ func expandObjectCasbUserActivityMatch(d *schema.ResourceData, v interface{}, pr
 			tmp["strategy"], _ = expandObjectCasbUserActivityMatchStrategy(d, i["strategy"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1136,7 +1150,9 @@ func expandObjectCasbUserActivityMatchRules(d *schema.ResourceData, v interface{
 			tmp["type"], _ = expandObjectCasbUserActivityMatchRulesType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

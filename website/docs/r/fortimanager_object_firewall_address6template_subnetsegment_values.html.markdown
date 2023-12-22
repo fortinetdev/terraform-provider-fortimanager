@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_firewall_address6template_subnetsegment_values
 Subnet segment values.
 
+~> This resource is a sub resource for variable `values` of resource `fortimanager_object_firewall_address6template_subnetsegment`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_address6template_subnetsegment_values" "trname" {
+  address6_template = fortimanager_object_firewall_address6template.trname2.name
+  subnet_segment    = fortimanager_object_firewall_address6template_subnetsegment.trname2.fosid
+  name              = "terr-values"
+  value             = "0b101"
+  depends_on        = [fortimanager_object_firewall_address6template_subnetsegment.trname2]
+}
+
+resource "fortimanager_object_firewall_address6template_subnetsegment" "trname2" {
+  address6_template = fortimanager_object_firewall_address6template.trname2.name
+  bits              = 3
+  fosid             = 1
+  name              = "terr-subnetsegment"
+  depends_on        = [fortimanager_object_firewall_address6template.trname2]
+}
+
+resource "fortimanager_object_firewall_address6template" "trname2" {
+  name = "terr-address6template"
+}
+```
+
 ## Argument Reference
 
 

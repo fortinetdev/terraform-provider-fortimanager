@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_vpn_ipsec_fec_mappings
 FEC redundancy mapping table.
 
+~> This resource is a sub resource for variable `mappings` of resource `fortimanager_object_vpn_ipsec_fec`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ipsec_fec_mappings" "trname" {
+  fec        = fortimanager_object_vpn_ipsec_fec.trname.name
+  seqno      = 2
+  depends_on = [fortimanager_object_vpn_ipsec_fec.trname]
+}
+
+resource "fortimanager_object_vpn_ipsec_fec" "trname" {
+  name = "terr-fec"
+}
+```
+
 ## Argument Reference
 
 

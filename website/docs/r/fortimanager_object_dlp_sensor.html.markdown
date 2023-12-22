@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_dlp_sensor
 Configure DLP sensors.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_dlp_sensor_entries`
+`filter`: `fortimanager_object_dlp_sensor_filter`
+
+
+
 ## Example Usage
 
 ```hcl

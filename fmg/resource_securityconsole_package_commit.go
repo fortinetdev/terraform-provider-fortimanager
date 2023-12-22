@@ -136,7 +136,9 @@ func flattenSecurityconsolePackageCommitScope(v interface{}, d *schema.ResourceD
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsolePackageCommit-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -230,7 +232,9 @@ func expandSecurityconsolePackageCommitScope(d *schema.ResourceData, v interface
 			tmp["vdom"], _ = expandSecurityconsolePackageCommitScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

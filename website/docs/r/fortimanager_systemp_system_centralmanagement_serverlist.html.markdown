@@ -9,6 +9,20 @@ description: |-
 # fortimanager_systemp_system_centralmanagement_serverlist
 Additional severs that the FortiGate can use for updates (for AV, IPS, updates) and ratings (for web filter and antispam ratings) servers.
 
+~> This resource is a sub resource for variable `server_list` of resource `fortimanager_systemp_system_centralmanagement`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_centralmanagement_serverlist" "trname" {
+  devprof        = "default"
+  fosid          = 5
+  server_address = "10.160.2.8"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_videofilter_profile
 Configure VideoFilter profile.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`fortiguard_category`: `fortimanager_object_videofilter_profile_fortiguardcategory`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_videofilter_profile" "trname" {
+  name        = "terr-profile"
+  comment     = "This is a Terraform example"
+  dailymotion = "enable"
+  fortiguard_category {
+    filters {
+      id = 1
+    }
+  }
+}
+```
+
 ## Argument Reference
 
 

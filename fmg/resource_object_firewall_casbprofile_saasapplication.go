@@ -327,7 +327,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationAccessRule2edl(v interface{}
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplication-AccessRule-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -378,7 +380,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationCustomControl2edl(v interfac
 			tmp["option"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplication-CustomControl-Option")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -421,7 +425,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationCustomControlOption2edl(v in
 			tmp["user_input"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplicationCustomControl-Option-UserInput")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -646,7 +652,9 @@ func expandObjectFirewallCasbProfileSaasApplicationAccessRule2edl(d *schema.Reso
 			tmp["name"], _ = expandObjectFirewallCasbProfileSaasApplicationAccessRuleName2edl(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -695,7 +703,9 @@ func expandObjectFirewallCasbProfileSaasApplicationCustomControl2edl(d *schema.R
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -731,7 +741,9 @@ func expandObjectFirewallCasbProfileSaasApplicationCustomControlOption2edl(d *sc
 			tmp["user-input"], _ = expandObjectFirewallCasbProfileSaasApplicationCustomControlOptionUserInput2edl(d, i["user_input"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_dynamic_address
 ObjectDynamic Address
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_addr_mapping`: `fortimanager_object_dynamic_address_dynamic_addr_mapping`
+
+
+
 ## Example Usage
 
 ```hcl

@@ -160,7 +160,9 @@ func flattenSecurityconsolePackageCloneScope(v interface{}, d *schema.ResourceDa
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsolePackageClone-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -296,7 +298,9 @@ func expandSecurityconsolePackageCloneScope(d *schema.ResourceData, v interface{
 			tmp["vdom"], _ = expandSecurityconsolePackageCloneScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

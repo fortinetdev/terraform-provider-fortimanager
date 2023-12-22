@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_spamfilter_bwl
 Configure anti-spam black/white list.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_spamfilter_bwl_entries`
+
+
+
 ## Argument Reference
 
 

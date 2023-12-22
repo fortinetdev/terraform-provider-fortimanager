@@ -9,6 +9,15 @@ description: |-
 # fortimanager_systemp_device_profile_fortiguard
 Systemp DeviceProfileFortiguard
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_device_profile_fortiguard" "trname" {
+  devprof               = "default"
+  auto_firmware_upgrade = "disable"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_switchcontroller_dynamicportpolicy_policy
 Port policies with matching criteria and actions.
 
+~> This resource is a sub resource for variable `policy` of resource `fortimanager_object_switchcontroller_dynamicportpolicy`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_dynamicportpolicy_policy" "trname" {
+  dynamic_port_policy = fortimanager_object_switchcontroller_dynamicportpolicy.trname.name
+  mac                 = "02:42:ac:11:00:02"
+  name                = "terr-policy"
+  status              = "disable"
+  depends_on          = [fortimanager_object_switchcontroller_dynamicportpolicy.trname]
+}
+
+resource "fortimanager_object_switchcontroller_dynamicportpolicy" "trname" {
+  name = "terr-dynamicportpolicy"
+}
+```
+
 ## Argument Reference
 
 

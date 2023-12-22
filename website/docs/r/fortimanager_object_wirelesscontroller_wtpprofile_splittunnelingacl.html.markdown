@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_splittunnelingacl
 Split tunneling ACL filter list.
 
+~> This resource is a sub resource for variable `split_tunneling_acl` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile_splittunnelingacl" "trname" {
+  dest_ip     = "10.62.21.0 255.255.255.0"
+  fosid       = 12
+  wtp_profile = fortimanager_object_wirelesscontroller_wtpprofile.trname.name
+  depends_on  = [fortimanager_object_wirelesscontroller_wtpprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname" {
+  name = "terr-wtpprofile"
+}
+```
+
 ## Argument Reference
 
 

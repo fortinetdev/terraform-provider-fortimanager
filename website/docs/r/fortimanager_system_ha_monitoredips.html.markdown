@@ -9,6 +9,20 @@ description: |-
 # fortimanager_system_ha_monitoredips
 Monitored IP addresses.
 
+~> This resource is a sub resource for variable `monitored_ips` of resource `fortimanager_system_ha`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_system_ha_monitoredips" "trname" {
+  fosid     = 1
+  interface = "port4"
+  ip        = "1.2.3.4"
+}
+```
+
 ## Argument Reference
 
 

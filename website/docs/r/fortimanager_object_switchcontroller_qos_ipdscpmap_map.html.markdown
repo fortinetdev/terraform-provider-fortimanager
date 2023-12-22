@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_switchcontroller_qos_ipdscpmap_map
 Maps between IP-DSCP value to COS queue.
 
+~> This resource is a sub resource for variable `map` of resource `fortimanager_object_switchcontroller_qos_ipdscpmap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_qos_ipdscpmap_map" "trname" {
+  ip_dscp_map   = fortimanager_object_switchcontroller_qos_ipdscpmap.trname.name
+  diffserv      = ["CS0"]
+  ip_precedence = ["value"]
+  name          = "1"
+  value         = 21
+  depends_on    = [fortimanager_object_switchcontroller_qos_ipdscpmap.trname]
+}
+
+resource "fortimanager_object_switchcontroller_qos_ipdscpmap" "trname" {
+  name = "vp1"
+}
+```
+
 ## Argument Reference
 
 

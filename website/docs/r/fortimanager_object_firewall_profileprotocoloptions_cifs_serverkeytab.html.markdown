@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions_cifs_serverkeytab
 Server keytab.
 
+~> This resource is a sub resource for variable `server_keytab` of resource `fortimanager_object_firewall_profileprotocoloptions_cifs`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions_cifs_serverkeytab" "trname" {
+  profile_protocol_options = fortimanager_object_firewall_profileprotocoloptions.trname.name
+  password                 = ["psw"]
+  principal                = "principal"
+  depends_on               = [fortimanager_object_firewall_profileprotocoloptions.trname]
+}
+
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  name = "terr-profileprotocoloptions"
+}
+```
+
 ## Argument Reference
 
 

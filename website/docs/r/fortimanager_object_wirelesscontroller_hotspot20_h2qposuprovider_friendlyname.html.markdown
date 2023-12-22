@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider_friendlyname
 OSU provider friendly name.
 
+~> This resource is a sub resource for variable `friendly_name` of resource `fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider_friendlyname" "trname" {
+  index             = 5
+  h2qp_osu_provider = fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider.trname.name
+  depends_on        = [fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_h2qposuprovider" "trname" {
+  name = "terr-wictl-hot20-heqp-osu-provider"
+}
+```
+
 ## Argument Reference
 
 

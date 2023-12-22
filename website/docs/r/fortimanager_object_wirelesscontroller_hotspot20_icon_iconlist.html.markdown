@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_icon_iconlist
 Icon list.
 
+~> This resource is a sub resource for variable `icon_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_icon`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_icon_iconlist" "trname" {
+  name       = "terr-iconlist"
+  type       = "gif"
+  icon       = fortimanager_object_wirelesscontroller_hotspot20_icon.trname.name
+  depends_on = [fortimanager_object_wirelesscontroller_hotspot20_icon.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_icon" "trname" {
+  name = "terr-icon"
+}
+```
+
 ## Argument Reference
 
 

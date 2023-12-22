@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_identitybasedroute_rule
 Rule.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_firewall_identitybasedroute`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_identitybasedroute_rule" "trname" {
+  depends_on           = [fortimanager_object_firewall_identitybasedroute.trname]
+  identity_based_route = fortimanager_object_firewall_identitybasedroute.trname.name
+  fosid                = 2
+  gateway              = "34.8.24.1"
+}
+
+resource "fortimanager_object_firewall_identitybasedroute" "trname" {
+  name = "terr-identitybasedroute"
+}
+```
+
 ## Argument Reference
 
 

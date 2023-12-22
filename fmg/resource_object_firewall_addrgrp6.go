@@ -418,7 +418,9 @@ func flattenObjectFirewallAddrgrp6DynamicMapping(v interface{}, d *schema.Resour
 			tmp["visibility"] = fortiAPISubPartPatch(v, "ObjectFirewallAddrgrp6-DynamicMapping-Visibility")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -461,7 +463,9 @@ func flattenObjectFirewallAddrgrp6DynamicMappingScope(v interface{}, d *schema.R
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallAddrgrp6DynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -578,7 +582,9 @@ func flattenObjectFirewallAddrgrp6Tagging(v interface{}, d *schema.ResourceData,
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectFirewallAddrgrp6-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -875,7 +881,9 @@ func expandObjectFirewallAddrgrp6DynamicMapping(d *schema.ResourceData, v interf
 			tmp["visibility"], _ = expandObjectFirewallAddrgrp6DynamicMappingVisibility(d, i["visibility"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -911,7 +919,9 @@ func expandObjectFirewallAddrgrp6DynamicMappingScope(d *schema.ResourceData, v i
 			tmp["vdom"], _ = expandObjectFirewallAddrgrp6DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1020,7 +1030,9 @@ func expandObjectFirewallAddrgrp6Tagging(d *schema.ResourceData, v interface{}, 
 			tmp["tags"], _ = expandObjectFirewallAddrgrp6TaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

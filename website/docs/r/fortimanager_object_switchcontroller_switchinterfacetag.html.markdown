@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_switchcontroller_switchinterfacetag
 Configure switch object tags.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_switchinterfacetag" "trname" {
+  name = "tag"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wirelesscontroller_nacprofile
 Configure WiFi network access control (NAC) profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_nacprofile" "trname" {
+  name    = "terr-nacprofile"
+  comment = "This is a Terraform example"
+}
+```
+
 ## Argument Reference
 
 

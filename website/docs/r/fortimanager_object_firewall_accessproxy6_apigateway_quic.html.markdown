@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_accessproxy6_apigateway_quic
 QUIC setting.
 
+~> This resource is a sub resource for variable `quic` of resource `fortimanager_object_firewall_accessproxy6_apigateway`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

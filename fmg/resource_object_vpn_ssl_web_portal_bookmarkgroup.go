@@ -562,7 +562,9 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarks2edl(v interface{}, d *sc
 			tmp["width"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroup-Bookmarks-Width")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -625,7 +627,9 @@ func flattenObjectVpnSslWebPortalBookmarkGroupBookmarksFormData2edl(v interface{
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectVpnSslWebPortalBookmarkGroupBookmarks-FormData-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -978,7 +982,9 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarks2edl(d *schema.ResourceDat
 			tmp["width"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksWidth2edl(d, i["width"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1034,7 +1040,9 @@ func expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormData2edl(d *schema.Res
 			tmp["value"], _ = expandObjectVpnSslWebPortalBookmarkGroupBookmarksFormDataValue2edl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

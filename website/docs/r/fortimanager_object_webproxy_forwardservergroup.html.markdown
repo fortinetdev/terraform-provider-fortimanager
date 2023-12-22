@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_webproxy_forwardservergroup
 Configure a forward server group consisting or multiple forward servers. Supports failover and load balancing.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`server_list`: `fortimanager_object_webproxy_forwardservergroup_serverlist`
+
+
+
 ## Example Usage
 
 ```hcl

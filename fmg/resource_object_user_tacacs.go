@@ -436,7 +436,9 @@ func flattenObjectUserTacacsDynamicMapping(v interface{}, d *schema.ResourceData
 			tmp["tertiary_server"] = fortiAPISubPartPatch(v, "ObjectUserTacacs-DynamicMapping-TertiaryServer")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -475,7 +477,9 @@ func flattenObjectUserTacacsDynamicMappingScope(v interface{}, d *schema.Resourc
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectUserTacacsDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -819,7 +823,9 @@ func expandObjectUserTacacsDynamicMapping(d *schema.ResourceData, v interface{},
 			tmp["tertiary-server"], _ = expandObjectUserTacacsDynamicMappingTertiaryServer(d, i["tertiary_server"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -851,7 +857,9 @@ func expandObjectUserTacacsDynamicMappingScope(d *schema.ResourceData, v interfa
 			tmp["vdom"], _ = expandObjectUserTacacsDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

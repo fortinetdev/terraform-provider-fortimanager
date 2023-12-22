@@ -9,6 +9,15 @@ description: |-
 # fortimanager_object_wanopt_profile
 Configure WAN optimization profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`cifs`: `fortimanager_object_wanopt_profile_cifs`
+`ftp`: `fortimanager_object_wanopt_profile_ftp`
+`http`: `fortimanager_object_wanopt_profile_http`
+`mapi`: `fortimanager_object_wanopt_profile_mapi`
+`tcp`: `fortimanager_object_wanopt_profile_tcp`
+
+
+
 ## Example Usage
 
 ```hcl

@@ -9,6 +9,11 @@ description: |-
 # fortimanager_packages_firewall_dospolicy
 Configure IPv4 DoS policies.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`anomaly`: `fortimanager_packages_firewall_dospolicy_anomaly`
+
+
+
 ## Argument Reference
 
 

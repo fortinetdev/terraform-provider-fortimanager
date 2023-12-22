@@ -77,6 +77,7 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"log_gen_event": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"log_mode": &schema.Schema{
 							Type:     schema.TypeString,
@@ -91,6 +92,7 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"log_user_info": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 						"server_number": &schema.Schema{
 							Type:     schema.TypeInt,
@@ -103,6 +105,7 @@ func resourceObjectLogNpuServer() *schema.Resource {
 						"sw_log_flags": &schema.Schema{
 							Type:     schema.TypeString,
 							Optional: true,
+							Computed: true,
 						},
 					},
 				},
@@ -341,7 +344,9 @@ func flattenObjectLogNpuServerServerGroupOlna(v interface{}, d *schema.ResourceD
 			tmp["sw_log_flags"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerGroup-SwLogFlags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -452,7 +457,9 @@ func flattenObjectLogNpuServerServerInfoOlna(v interface{}, d *schema.ResourceDa
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectLogNpuServer-ServerInfo-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -689,7 +696,9 @@ func expandObjectLogNpuServerServerGroupOlna(d *schema.ResourceData, v interface
 			tmp["sw-log-flags"], _ = expandObjectLogNpuServerServerGroupSwLogFlagsOlna(d, i["sw_log_flags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -787,7 +796,9 @@ func expandObjectLogNpuServerServerInfoOlna(d *schema.ResourceData, v interface{
 			tmp["vdom"], _ = expandObjectLogNpuServerServerInfoVdomOlna(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

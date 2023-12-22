@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_dlp_filepattern
 Configure file patterns used by DLP blocking.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_dlp_filepattern_entries`
+
+
+
 ## Example Usage
 
 ```hcl

@@ -270,7 +270,9 @@ func flattenObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension2edl(v
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyServerPubkeyAuthSettings-CertExtension-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -470,7 +472,9 @@ func expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtension2edl(d 
 			tmp["type"], _ = expandObjectFirewallAccessProxyServerPubkeyAuthSettingsCertExtensionType2edl(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_log_settings_rollinganalyzer
 Log rolling policy for Network Analyzer logs.
 
+~> This resource is a sub resource for variable `rolling_analyzer` of resource `fortimanager_system_log_settings`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

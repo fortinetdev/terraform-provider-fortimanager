@@ -250,7 +250,9 @@ func flattenObjectExtenderControllerExtenderProfileLanExtensionBackhaul2edl(v in
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectExtenderControllerExtenderProfileLanExtension-Backhaul-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -408,7 +410,9 @@ func expandObjectExtenderControllerExtenderProfileLanExtensionBackhaul2edl(d *sc
 			tmp["weight"], _ = expandObjectExtenderControllerExtenderProfileLanExtensionBackhaulWeight2edl(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

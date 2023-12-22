@@ -9,6 +9,12 @@ description: |-
 # fortimanager_system_snmp_community
 SNMP community configuration.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`hosts`: `fortimanager_system_snmp_community_hosts`
+`hosts6`: `fortimanager_system_snmp_community_hosts6`
+
+
+
 ## Example Usage
 
 ```hcl

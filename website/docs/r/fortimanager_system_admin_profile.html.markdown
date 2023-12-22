@@ -9,6 +9,11 @@ description: |-
 # fortimanager_system_admin_profile
 Admin profile.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`datamask_custom_fields`: `fortimanager_system_admin_profile_datamaskcustomfields`
+
+
+
 ## Example Usage
 
 ```hcl

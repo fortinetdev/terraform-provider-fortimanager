@@ -327,7 +327,9 @@ func flattenSystemLogFetchClientProfileDeviceFilter(v interface{}, d *schema.Res
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SystemLogFetchClientProfile-DeviceFilter-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -406,7 +408,9 @@ func flattenSystemLogFetchClientProfileLogFilter(v interface{}, d *schema.Resour
 			tmp["value"] = fortiAPISubPartPatch(v, "SystemLogFetchClientProfile-LogFilter-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -744,7 +748,9 @@ func expandSystemLogFetchClientProfileDeviceFilter(d *schema.ResourceData, v int
 			tmp["vdom"], _ = expandSystemLogFetchClientProfileDeviceFilterVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -814,7 +820,9 @@ func expandSystemLogFetchClientProfileLogFilter(d *schema.ResourceData, v interf
 			tmp["value"], _ = expandSystemLogFetchClientProfileLogFilterValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

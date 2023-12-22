@@ -107,6 +107,12 @@ func Provider() *schema.Provider {
 					"forticloud",
 				}, false),
 			},
+
+			"clean_session": &schema.Schema{
+				Type:     schema.TypeBool,
+				Optional: true,
+				Default:  false,
+			},
 		},
 
 		ResourcesMap: map[string]*schema.Resource{
@@ -804,6 +810,10 @@ func Provider() *schema.Provider {
 			"fortimanager_object_wirelesscontroller_wtpprofile_splittunnelingacl":                            resourceObjectWirelessControllerWtpProfileSplitTunnelingAcl(),
 			"fortimanager_packages_authentication_rule":                                                      resourcePackagesAuthenticationRule(),
 			"fortimanager_packages_authentication_setting":                                                   resourcePackagesAuthenticationSetting(),
+			"fortimanager_packages_central_dnat":                                                             resourcePackagesCentralDnat(),
+			"fortimanager_packages_central_dnat6":                                                            resourcePackagesCentralDnat6(),
+			"fortimanager_packages_central_dnat6_move":                                                       resourcePackagesCentralDnat6Move(),
+			"fortimanager_packages_central_dnat_move":                                                        resourcePackagesCentralDnatMove(),
 			"fortimanager_packages_firewall_dospolicy":                                                       resourcePackagesFirewallDosPolicy(),
 			"fortimanager_packages_firewall_dospolicy6":                                                      resourcePackagesFirewallDosPolicy6(),
 			"fortimanager_packages_firewall_dospolicy6_anomaly":                                              resourcePackagesFirewallDosPolicy6Anomaly(),
@@ -1040,6 +1050,7 @@ func providerConfigure(d *schema.ResourceData) (interface{}, error) {
 
 		LogSession:    d.Get("logsession").(bool),
 		Session:       d.Get("presession").(string),
+		CleanSession:  d.Get("clean_session").(bool),
 		Token:         d.Get("token").(string),
 		FMGCloudToken: d.Get("fmg_cloud_token").(string),
 	}

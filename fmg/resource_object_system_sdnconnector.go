@@ -664,7 +664,9 @@ func flattenObjectSystemSdnConnectorCompartmentList(v interface{}, d *schema.Res
 			tmp["compartment_id"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-CompartmentList-CompartmentId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -725,7 +727,9 @@ func flattenObjectSystemSdnConnectorExternalAccountList(v interface{}, d *schema
 			tmp["role_arn"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ExternalAccountList-RoleArn")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -770,7 +774,9 @@ func flattenObjectSystemSdnConnectorExternalIp(v interface{}, d *schema.Resource
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ExternalIp-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -813,7 +819,9 @@ func flattenObjectSystemSdnConnectorForwardingRule(v interface{}, d *schema.Reso
 			tmp["target"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-ForwardingRule-Target")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -864,7 +872,9 @@ func flattenObjectSystemSdnConnectorGcpProjectList(v interface{}, d *schema.Reso
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-GcpProjectList-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -947,7 +957,9 @@ func flattenObjectSystemSdnConnectorNic(v interface{}, d *schema.ResourceData, p
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-Nic-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -992,7 +1004,9 @@ func flattenObjectSystemSdnConnectorNicIp(v interface{}, d *schema.ResourceData,
 			tmp["resource_group"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnectorNic-Ip-ResourceGroup")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1053,7 +1067,9 @@ func flattenObjectSystemSdnConnectorOciRegionList(v interface{}, d *schema.Resou
 			tmp["region"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-OciRegionList-Region")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1138,7 +1154,9 @@ func flattenObjectSystemSdnConnectorRoute(v interface{}, d *schema.ResourceData,
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-Route-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1193,7 +1211,9 @@ func flattenObjectSystemSdnConnectorRouteTable(v interface{}, d *schema.Resource
 			tmp["subscription_id"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnector-RouteTable-SubscriptionId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1240,7 +1260,9 @@ func flattenObjectSystemSdnConnectorRouteTableRoute(v interface{}, d *schema.Res
 			tmp["next_hop"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnectorRouteTable-Route-NextHop")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2179,7 +2201,9 @@ func expandObjectSystemSdnConnectorCompartmentList(d *schema.ResourceData, v int
 			tmp["compartment-id"], _ = expandObjectSystemSdnConnectorCompartmentListCompartmentId(d, i["compartment_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2232,7 +2256,9 @@ func expandObjectSystemSdnConnectorExternalAccountList(d *schema.ResourceData, v
 			tmp["role-arn"], _ = expandObjectSystemSdnConnectorExternalAccountListRoleArn(d, i["role_arn"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2271,7 +2297,9 @@ func expandObjectSystemSdnConnectorExternalIp(d *schema.ResourceData, v interfac
 			tmp["name"], _ = expandObjectSystemSdnConnectorExternalIpName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2307,7 +2335,9 @@ func expandObjectSystemSdnConnectorForwardingRule(d *schema.ResourceData, v inte
 			tmp["target"], _ = expandObjectSystemSdnConnectorForwardingRuleTarget(d, i["target"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2351,7 +2381,9 @@ func expandObjectSystemSdnConnectorGcpProjectList(d *schema.ResourceData, v inte
 			tmp["id"], _ = expandObjectSystemSdnConnectorGcpProjectListId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2432,7 +2464,9 @@ func expandObjectSystemSdnConnectorNic(d *schema.ResourceData, v interface{}, pr
 			tmp["name"], _ = expandObjectSystemSdnConnectorNicName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2469,7 +2503,9 @@ func expandObjectSystemSdnConnectorNicIp(d *schema.ResourceData, v interface{}, 
 			tmp["resource-group"], _ = expandObjectSystemSdnConnectorNicIpResourceGroup(d, i["resource_group"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2524,7 +2560,9 @@ func expandObjectSystemSdnConnectorOciRegionList(d *schema.ResourceData, v inter
 			tmp["region"], _ = expandObjectSystemSdnConnectorOciRegionListRegion(d, i["region"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2603,7 +2641,9 @@ func expandObjectSystemSdnConnectorRoute(d *schema.ResourceData, v interface{}, 
 			tmp["name"], _ = expandObjectSystemSdnConnectorRouteName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2654,7 +2694,9 @@ func expandObjectSystemSdnConnectorRouteTable(d *schema.ResourceData, v interfac
 			tmp["subscription-id"], _ = expandObjectSystemSdnConnectorRouteTableSubscriptionId(d, i["subscription_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2694,7 +2736,9 @@ func expandObjectSystemSdnConnectorRouteTableRoute(d *schema.ResourceData, v int
 			tmp["next-hop"], _ = expandObjectSystemSdnConnectorRouteTableRouteNextHop(d, i["next_hop"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

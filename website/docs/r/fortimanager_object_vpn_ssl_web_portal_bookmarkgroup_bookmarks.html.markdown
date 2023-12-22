@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_vpn_ssl_web_portal_bookmarkgroup_bookmarks
 Bookmark table.
 
+~> This resource is a sub resource for variable `bookmarks` of resource `fortimanager_object_vpn_ssl_web_portal_bookmarkgroup`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`form_data`: `fortimanager_object_vpn_ssl_web_portal_bookmarkgroup_bookmarks_formdata`
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_emailfilter_profile_msnhotmail
 MSN Hotmail.
 
+~> This resource is a sub resource for variable `msn_hotmail` of resource `fortimanager_object_emailfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

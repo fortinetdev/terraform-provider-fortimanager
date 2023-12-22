@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_accessproxyvirtualhost
 Configure Access Proxy virtual hosts.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxyvirtualhost" "trname" {
+  name      = "terr-accessproxyvirtualhost"
+  host_type = "wildcard"
+  host      = "host"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_videofilter_profile_fortiguardcategory
 Configure FortiGuard categories.
 
+~> This resource is a sub resource for variable `fortiguard_category` of resource `fortimanager_object_videofilter_profile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`filters`: `fortimanager_object_videofilter_profile_fortiguardcategory_filters`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_videofilter_profile_fortiguardcategory" "trname" {
+  profile = fortimanager_object_videofilter_profile.trname.name
+  filters {
+    id = 1
+  }
+  depends_on = [fortimanager_object_videofilter_profile.trname]
+}
+
+resource "fortimanager_object_videofilter_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

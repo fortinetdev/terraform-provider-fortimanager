@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_waf_profile_urlaccess
 URL access list
 
+~> This resource is a sub resource for variable `url_access` of resource `fortimanager_object_waf_profile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`access_pattern`: `fortimanager_object_waf_profile_urlaccess_accesspattern`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_urlaccess" "trname" {
+  fosid      = 12
+  log        = "enable"
+  severity   = "high"
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

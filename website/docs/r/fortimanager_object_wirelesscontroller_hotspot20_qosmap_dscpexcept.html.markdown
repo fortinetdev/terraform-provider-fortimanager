@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscpexcept
 Differentiated Services Code Point (DSCP) exceptions.
 
+~> This resource is a sub resource for variable `dscp_except` of resource `fortimanager_object_wirelesscontroller_hotspot20_qosmap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_qosmap_dscpexcept" "trname" {
+  qos_map    = fortimanager_object_wirelesscontroller_hotspot20_qosmap.trname.name
+  index      = 3
+  up         = 7
+  depends_on = [fortimanager_object_wirelesscontroller_hotspot20_qosmap.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_qosmap" "trname" {
+  name = "qosmap"
+}
+```
+
 ## Argument Reference
 
 

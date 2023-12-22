@@ -660,7 +660,9 @@ func flattenSystemAdminUserAdom(v interface{}, d *schema.ResourceData, pre strin
 			tmp["adom_name"] = fortiAPISubPartPatch(v, "SystemAdminUser-Adom-AdomName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -701,7 +703,9 @@ func flattenSystemAdminUserAdomExclude(v interface{}, d *schema.ResourceData, pr
 			tmp["adom_name"] = fortiAPISubPartPatch(v, "SystemAdminUser-AdomExclude-AdomName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -738,7 +742,9 @@ func flattenSystemAdminUserAppFilter(v interface{}, d *schema.ResourceData, pre 
 			tmp["app_filter_name"] = fortiAPISubPartPatch(v, "SystemAdminUser-AppFilter-AppFilterName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -887,7 +893,9 @@ func flattenSystemAdminUserDashboard(v interface{}, d *schema.ResourceData, pre 
 			tmp["widget_type"] = fortiAPISubPartPatch(v, "SystemAdminUser-Dashboard-WidgetType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -994,7 +1002,9 @@ func flattenSystemAdminUserDashboardTabs(v interface{}, d *schema.ResourceData, 
 			tmp["tabid"] = fortiAPISubPartPatch(v, "SystemAdminUser-DashboardTabs-Tabid")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1079,7 +1089,9 @@ func flattenSystemAdminUserIpsFilter(v interface{}, d *schema.ResourceData, pre 
 			tmp["ips_filter_name"] = fortiAPISubPartPatch(v, "SystemAdminUser-IpsFilter-IpsFilterName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1192,7 +1204,9 @@ func flattenSystemAdminUserMetaData(v interface{}, d *schema.ResourceData, pre s
 			tmp["status"] = fortiAPISubPartPatch(v, "SystemAdminUser-MetaData-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1265,7 +1279,9 @@ func flattenSystemAdminUserPolicyPackage(v interface{}, d *schema.ResourceData, 
 			tmp["policy_package_name"] = fortiAPISubPartPatch(v, "SystemAdminUser-PolicyPackage-PolicyPackageName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1402,7 +1418,9 @@ func flattenSystemAdminUserWebFilter(v interface{}, d *schema.ResourceData, pre 
 			tmp["web_filter_name"] = fortiAPISubPartPatch(v, "SystemAdminUser-WebFilter-WebFilterName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2259,7 +2277,9 @@ func expandSystemAdminUserAdom(d *schema.ResourceData, v interface{}, pre string
 			tmp["adom-name"], _ = expandSystemAdminUserAdomAdomName(d, i["adom_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2294,7 +2314,9 @@ func expandSystemAdminUserAdomExclude(d *schema.ResourceData, v interface{}, pre
 			tmp["adom-name"], _ = expandSystemAdminUserAdomExcludeAdomName(d, i["adom_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2325,7 +2347,9 @@ func expandSystemAdminUserAppFilter(d *schema.ResourceData, v interface{}, pre s
 			tmp["app-filter-name"], _ = expandSystemAdminUserAppFilterAppFilterName(d, i["app_filter_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2452,7 +2476,9 @@ func expandSystemAdminUserDashboard(d *schema.ResourceData, v interface{}, pre s
 			tmp["widget-type"], _ = expandSystemAdminUserDashboardWidgetType(d, i["widget_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2552,7 +2578,9 @@ func expandSystemAdminUserDashboardTabs(d *schema.ResourceData, v interface{}, p
 			tmp["tabid"], _ = expandSystemAdminUserDashboardTabsTabid(d, i["tabid"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2631,7 +2659,9 @@ func expandSystemAdminUserIpsFilter(d *schema.ResourceData, v interface{}, pre s
 			tmp["ips-filter-name"], _ = expandSystemAdminUserIpsFilterIpsFilterName(d, i["ips_filter_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2734,7 +2764,9 @@ func expandSystemAdminUserMetaData(d *schema.ResourceData, v interface{}, pre st
 			tmp["status"], _ = expandSystemAdminUserMetaDataStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2801,7 +2833,9 @@ func expandSystemAdminUserPolicyPackage(d *schema.ResourceData, v interface{}, p
 			tmp["policy-package-name"], _ = expandSystemAdminUserPolicyPackagePolicyPackageName(d, i["policy_package_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2932,7 +2966,9 @@ func expandSystemAdminUserWebFilter(d *schema.ResourceData, v interface{}, pre s
 			tmp["web-filter-name"], _ = expandSystemAdminUserWebFilterWebFilterName(d, i["web_filter_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

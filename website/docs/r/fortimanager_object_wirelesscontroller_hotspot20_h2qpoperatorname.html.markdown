@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname
 Configure operator friendly name.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`value_list`: `fortimanager_object_wirelesscontroller_hotspot20_h2qpoperatorname_valuelist`
+
+
+
 ## Example Usage
 
 ```hcl

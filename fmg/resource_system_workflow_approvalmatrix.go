@@ -200,7 +200,9 @@ func flattenSystemWorkflowApprovalMatrixApprover(v interface{}, d *schema.Resour
 			tmp["seq_num"] = fortiAPISubPartPatch(v, "SystemWorkflowApprovalMatrix-Approver-SeqNum")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -322,7 +324,9 @@ func expandSystemWorkflowApprovalMatrixApprover(d *schema.ResourceData, v interf
 			tmp["seq_num"], _ = expandSystemWorkflowApprovalMatrixApproverSeqNum(d, i["seq_num"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

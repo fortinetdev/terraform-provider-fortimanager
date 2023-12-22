@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_radio2
 Configuration options for radio 2.
 
+~> This resource is a sub resource for variable `radio_2` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile_radio2" "trname" {
+  amsdu            = "disable"
+  airtime_fairness = "enable"
+  ap_sniffer_addr  = "00:1a:2b:3c:4d:5e"
+  wtp_profile      = fortimanager_object_wirelesscontroller_wtpprofile.trname8.name
+  depends_on       = [fortimanager_object_wirelesscontroller_wtpprofile.trname8]
+}
+
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname8" {
+  name = "terr-wtpprofile"
+}
+```
+
 ## Argument Reference
 
 

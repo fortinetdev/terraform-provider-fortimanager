@@ -9,6 +9,13 @@ description: |-
 # fortimanager_object_firewall_address
 Configure IPv4 addresses.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_firewall_address_dynamic_mapping`
+`list`: `fortimanager_object_firewall_address_list`
+`tagging`: `fortimanager_object_firewall_address_tagging`
+
+
+
 ## Example Usage
 
 ```hcl

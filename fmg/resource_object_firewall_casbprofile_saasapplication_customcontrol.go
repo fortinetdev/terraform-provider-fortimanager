@@ -274,7 +274,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationCustomControlOption3rdl(v in
 			tmp["user_input"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplicationCustomControl-Option-UserInput")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -372,7 +374,9 @@ func expandObjectFirewallCasbProfileSaasApplicationCustomControlOption3rdl(d *sc
 			tmp["user-input"], _ = expandObjectFirewallCasbProfileSaasApplicationCustomControlOptionUserInput3rdl(d, i["user_input"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

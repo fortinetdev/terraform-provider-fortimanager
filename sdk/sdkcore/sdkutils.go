@@ -14,8 +14,11 @@ import (
 
 func createUpdate(c *FortiSDKClient, path string, method string, params *map[string]interface{}, move bool) (output map[string]interface{}, err error) {
 	log.Printf("[INFO] Request infomation: %v:    %v\n", path, params)
-
-	data := encodeData(c, path, method, params, move)
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+	}
+	data := encodeData(c, path, method, session, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -25,6 +28,9 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 
 	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
 	err = req.Send()
+	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	}
 	if err != nil || req.HTTPResponse == nil {
 		err = fmt.Errorf("cannot send request %v", err)
 		return
@@ -39,7 +45,7 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
-	err = fortiAPIErrorFormat(result, string(body))
+	_, err = fortiAPIErrorFormat(result, string(body))
 
 	if err == nil {
 		output, err = decodeData(result)
@@ -49,7 +55,11 @@ func createUpdate(c *FortiSDKClient, path string, method string, params *map[str
 }
 
 func delete(c *FortiSDKClient, path string, method string, move bool) (err error) {
-	data := encodeData(c, path, method, nil, move)
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+	}
+	data := encodeData(c, path, method, session, nil, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -59,6 +69,9 @@ func delete(c *FortiSDKClient, path string, method string, move bool) (err error
 
 	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
 	err = req.Send()
+	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	}
 	if err != nil || req.HTTPResponse == nil {
 		err = fmt.Errorf("cannot send request %v", err)
 		return
@@ -75,13 +88,17 @@ func delete(c *FortiSDKClient, path string, method string, move bool) (err error
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
 
-	err = fortiAPIErrorFormat(result, string(body))
+	_, err = fortiAPIErrorFormat(result, string(body))
 
 	return
 }
 
 func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[string]interface{}, err error) {
-	data := encodeData(c, path, method, nil, move)
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+	}
+	data := encodeData(c, path, method, session, nil, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -91,6 +108,9 @@ func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[
 
 	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
 	err = req.Send()
+	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	}
 	if err != nil || req.HTTPResponse == nil {
 		err = fmt.Errorf("cannot send request %v", err)
 		return
@@ -107,7 +127,11 @@ func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
 
-	err = fortiAPIErrorFormat(result, string(body))
+	code, err := fortiAPIErrorFormat(result, string(body))
+
+	if err != nil && code == -3 {
+		err = nil
+	}
 
 	if err == nil {
 		mapTmp, err = decodeData(result)
@@ -117,7 +141,11 @@ func read(c *FortiSDKClient, path string, method string, move bool) (mapTmp map[
 }
 
 func readMove(c *FortiSDKClient, path string, method string, params *map[string]interface{}, move bool) (listTmp []interface{}, err error) {
-	data := encodeData(c, path, method, params, move)
+	session := ""
+	if c.Config.Auth.CleanSession {
+		session, err = c.loginSession()
+	}
+	data := encodeData(c, path, method, session, params, move)
 	locJSON, err := json.Marshal(data)
 	if err != nil {
 		log.Fatal(err)
@@ -127,6 +155,9 @@ func readMove(c *FortiSDKClient, path string, method string, params *map[string]
 
 	req := c.NewRequest("POST", "/jsonrpc", nil, bytes)
 	err = req.Send()
+	if c.Config.Auth.CleanSession {
+		c.logoutSession(session)
+	}
 	if err != nil || req.HTTPResponse == nil {
 		err = fmt.Errorf("cannot send request %v", err)
 		return
@@ -143,7 +174,7 @@ func readMove(c *FortiSDKClient, path string, method string, params *map[string]
 	var result map[string]interface{}
 	json.Unmarshal([]byte(string(body)), &result)
 
-	err = fortiAPIErrorFormat(result, string(body))
+	_, err = fortiAPIErrorFormat(result, string(body))
 
 	if err == nil {
 		listTmp = decodeDataMove(result)
@@ -153,14 +184,16 @@ func readMove(c *FortiSDKClient, path string, method string, params *map[string]
 }
 
 ////////////////////////////////////////////////////////////////////////
-func encodeData(c *FortiSDKClient, path, method string, params *map[string]interface{}, move bool) map[string]interface{} {
+func encodeData(c *FortiSDKClient, path, method, session string, params *map[string]interface{}, move bool) map[string]interface{} {
 	data := make(map[string]interface{})
 	data["method"] = method
 	data["params"] = make([]map[string]interface{}, 0)
 	if method == "get" {
 		data["verbose"] = 1
 	}
-	if c.Session != "" {
+	if session != "" {
+		data["session"] = session
+	} else if c.Session != "" {
 		data["session"] = c.Session
 	}
 
@@ -228,7 +261,7 @@ func decodeDataMove(result map[string]interface{}) []interface{} {
 	return nil
 }
 
-func fortiAPIErrorFormat(result map[string]interface{}, body string) (err error) {
+func fortiAPIErrorFormat(result map[string]interface{}, body string) (code int, err error) {
 	if result != nil {
 		if result["result"] != nil {
 			v := result["result"]
@@ -240,7 +273,7 @@ func fortiAPIErrorFormat(result map[string]interface{}, body string) (err error)
 					v3 := v2["status"].(map[string]interface{})
 
 					if v3["code"] != nil && v3["message"] != nil {
-						code := fortiIntValue(v3["code"])
+						code = fortiIntValue(v3["code"])
 						message := fortiStringValue(v3["message"])
 
 						if code == 0 {
@@ -249,7 +282,7 @@ func fortiAPIErrorFormat(result map[string]interface{}, body string) (err error)
 						}
 
 						err = fmt.Errorf("\nerr %d: %v", code, message)
-						return
+						return code, err
 					}
 				}
 			}
@@ -257,7 +290,7 @@ func fortiAPIErrorFormat(result map[string]interface{}, body string) (err error)
 	}
 
 	err = fmt.Errorf("\n%v", body)
-	return
+	return code, err
 }
 
 ////////////////////////////////////////////////////////////////////////

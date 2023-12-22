@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_dlp_profile
 Configure DLP profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rule`: `fortimanager_object_dlp_profile_rule`
+
+
+
 ## Argument Reference
 
 

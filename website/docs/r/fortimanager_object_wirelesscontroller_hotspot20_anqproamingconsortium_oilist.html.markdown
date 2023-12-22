@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium_oilist
 Organization identifier list.
 
+~> This resource is a sub resource for variable `oi_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium_oilist" "trname" {
+  anqp_roaming_consortium = fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium.trname.name
+  comment                 = "This is a Terraform example"
+  index                   = 2
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqproamingconsortium" "trname" {
+  name = "sss"
+}
+```
+
 ## Argument Reference
 
 

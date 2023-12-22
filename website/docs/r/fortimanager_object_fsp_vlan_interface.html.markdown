@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_fsp_vlan_interface
 Configure interfaces.
 
+~> This resource is a sub resource for variable `interface` of resource `fortimanager_object_fsp_vlan`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ipv6`: `fortimanager_object_fsp_vlan_interface_ipv6`
+`secondaryip`: `fortimanager_object_fsp_vlan_interface_secondaryip`
+`vrrp`: `fortimanager_object_fsp_vlan_interface_vrrp`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_fsp_vlan_interface" "trname" {
+  vlan         = fortimanager_object_fsp_vlan.trname.name
+  vlan_op_mode = "tag"
+  algorithm    = "L2"
+  depends_on   = [fortimanager_object_fsp_vlan.trname]
+}
+
+resource "fortimanager_object_fsp_vlan" "trname" {
+  name   = "terr-fsp-vlan"
+  vlanid = 101
+}
+```
+
 ## Argument Reference
 
 
@@ -28,6 +52,8 @@ The following arguments are supported:
 
 * `alias` - Alias will be displayed with the interface name to make it easier to distinguish.
 * `allowaccess` - Permitted types of management access to this interface. Valid values: `https`, `ping`, `ssh`, `snmp`, `http`, `telnet`, `fgfm`, `auto-ipsec`, `radius-acct`, `probe-response`, `capwap`, `dnp`, `ftm`, `fabric`.
+
+* `annex` - Set xDSL annex type. Valid values: `a`, `b`, `j`, `bjm`, `i`, `al`, `m`, `aijlm`.
 
 * `ap_discover` - Enable/disable automatic registration of unknown FortiAP devices. Valid values: `disable`, `enable`.
 

@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_wirelesscontroller_apcfgprofile_commandlist
 AP local configuration command list.
 
+~> This resource is a sub resource for variable `command_list` of resource `fortimanager_object_wirelesscontroller_apcfgprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_apcfgprofile_commandlist" "trname" {
+  apcfg_profile = fortimanager_object_wirelesscontroller_apcfgprofile.trname.name
+  fosid         = 23
+  name          = "terr-commandlist"
+  type          = "password"
+  passwd_value  = ["123"]
+  depends_on    = [fortimanager_object_wirelesscontroller_apcfgprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_apcfgprofile" "trname" {
+  name = "terr-apcfgprofile"
+}
+```
+
 ## Argument Reference
 
 

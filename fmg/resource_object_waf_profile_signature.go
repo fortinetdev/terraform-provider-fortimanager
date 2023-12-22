@@ -335,7 +335,9 @@ func flattenObjectWafProfileSignatureCustomSignature2edl(v interface{}, d *schem
 			tmp["target"] = fortiAPISubPartPatch(v, "ObjectWafProfileSignature-CustomSignature-Target")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -606,7 +608,9 @@ func expandObjectWafProfileSignatureCustomSignature2edl(d *schema.ResourceData, 
 			tmp["target"], _ = expandObjectWafProfileSignatureCustomSignatureTarget2edl(d, i["target"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

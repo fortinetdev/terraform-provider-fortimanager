@@ -334,7 +334,9 @@ func flattenObjectWirelessControllerAccessControlListLayer3Ipv4Rules(v interface
 			tmp["srcport"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerAccessControlList-Layer3Ipv4Rules-Srcport")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -441,7 +443,9 @@ func flattenObjectWirelessControllerAccessControlListLayer3Ipv6Rules(v interface
 			tmp["srcport"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerAccessControlList-Layer3Ipv6Rules-Srcport")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -631,7 +635,9 @@ func expandObjectWirelessControllerAccessControlListLayer3Ipv4Rules(d *schema.Re
 			tmp["srcport"], _ = expandObjectWirelessControllerAccessControlListLayer3Ipv4RulesSrcport(d, i["srcport"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -725,7 +731,9 @@ func expandObjectWirelessControllerAccessControlListLayer3Ipv6Rules(d *schema.Re
 			tmp["srcport"], _ = expandObjectWirelessControllerAccessControlListLayer3Ipv6RulesSrcport(d, i["srcport"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_system_npu_dswdtsprofile
 Configure NPU DSW DTS profile.
 
+~> This resource is a sub resource for variable `dsw_dts_profile` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_dswdtsprofile" "trname" {
+  profile_id = 2
+  min_limit  = 40
+  action     = "drop"
+}
+```
+
 ## Argument Reference
 
 

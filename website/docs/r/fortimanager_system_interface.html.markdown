@@ -9,6 +9,12 @@ description: |-
 # fortimanager_system_interface
 Interface configuration.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ipv6`: `fortimanager_system_interface_ipv6`
+`member`: `fortimanager_system_interface_member`
+
+
+
 ## Example Usage
 
 ```hcl

@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_switchcontroller_trafficpolicy
 Configure FortiSwitch traffic policy.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_trafficpolicy" "trname" {
+  fosid            = 3
+  name             = "terr-trafficpolicy"
+  policer_status   = "enable"
+  guaranteed_burst = 230000
+}
+```
+
 ## Argument Reference
 
 

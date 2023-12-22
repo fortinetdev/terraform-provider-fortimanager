@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_geoipoverride_ip6range
 Table of IPv6 ranges assigned to country.
 
+~> This resource is a sub resource for variable `ip6_range` of resource `fortimanager_object_system_geoipoverride`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_geoipoverride_ip6range" "trname" {
+  geoip_override = fortimanager_object_system_geoipoverride.trname2.name
+  end_ip         = "2001:db8:85a3::8a2e:470:7334"
+  fosid          = 2
+  start_ip       = "2001:db8:85a3::8a2e:370:7334"
+  depends_on     = [fortimanager_object_system_geoipoverride.trname2]
+}
+
+resource "fortimanager_object_system_geoipoverride" "trname2" {
+  name = "ACN2"
+}
+```
+
 ## Argument Reference
 
 

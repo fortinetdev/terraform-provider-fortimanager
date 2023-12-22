@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_switchcontroller_managedswitch_dhcpsnoopingstaticclient
 Configure FortiSwitch DHCP snooping static clients.
 
+~> This resource is a sub resource for variable `dhcp_snooping_static_client` of resource `fortimanager_object_switchcontroller_managedswitch`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

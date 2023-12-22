@@ -230,7 +230,9 @@ func flattenObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(v interf
 			tmp["mnc"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20Anqp3GppCellular-MccMncList-Mnc")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -337,7 +339,9 @@ func expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncList(d *schema
 			tmp["mnc"], _ = expandObjectWirelessControllerHotspot20Anqp3GppCellularMccMncListMnc(d, i["mnc"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

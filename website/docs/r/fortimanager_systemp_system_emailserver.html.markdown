@@ -9,6 +9,15 @@ description: |-
 # fortimanager_systemp_system_emailserver
 Configure the email server used by the FortiGate various things. For example, for sending email messages to users to support user authentication features.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_emailserver" "trname" {
+  devprof      = "default"
+  authenticate = "disable"
+}
+```
+
 ## Argument Reference
 
 

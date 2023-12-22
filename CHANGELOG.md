@@ -1,4 +1,18 @@
-## 1.10.0 (Unreleased)
+## 1.11.0 (Unreleased)
+
+## 1.10.0 (Dec 22, 2023)
+
+IMPROVEMENTS:
+* Support FortiManager v7.0.10;
+* Add variable `clean_session` to support logout session on disabled workspace mode;
+* Add resources for central dnat;
+* Fix issue when setting block variable to empty block;
+
+FEATURES:
+* **New Resource:** `fortimanager_packages_central_dnat`
+* **New Resource:** `fortimanager_packages_central_dnat6`
+* **New Resource:** `fortimanager_packages_central_dnat6_move`
+* **New Resource:** `fortimanager_packages_central_dnat_move`
 
 ## 1.9.0 (Oct 13, 2023)
 

@@ -9,6 +9,28 @@ description: |-
 # fortimanager_wantemp_system_sdwan_duplication
 Create SD-WAN duplication rule.
 
+~> This resource is a sub resource for variable `duplication` of resource `fortimanager_wantemp_system_sdwan`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_duplication" "trname" {
+  dstaddr    = "all"
+  dstintf    = "port4"
+  fosid      = 1
+  wanprof    = fortimanager_wan_template.trname.name
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wan_template" "trname" {
+  name = "terr-template"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod
 EAP Methods.
 
+~> This resource is a sub resource for variable `eap_method` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`auth_param`: `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod_authparam`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod" "trname" {
+  index          = 2
+  method         = "eap-md5"
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist.trname2]
+  anqp_nai_realm = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname2.name
+  nai_list       = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist.trname2.name
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist" "trname2" {
+  name           = "terr-nailist"
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname2]
+  anqp_nai_realm = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname2.name
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm" "trname2" {
+  name = "terr-anqpnairealm"
+}
+```
+
 ## Argument Reference
 
 

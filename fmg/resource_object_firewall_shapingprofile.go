@@ -342,7 +342,9 @@ func flattenObjectFirewallShapingProfileShapingEntries(v interface{}, d *schema.
 			tmp["red_probability"] = fortiAPISubPartPatch(v, "ObjectFirewallShapingProfile-ShapingEntries-RedProbability")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -563,7 +565,9 @@ func expandObjectFirewallShapingProfileShapingEntries(d *schema.ResourceData, v 
 			tmp["red-probability"], _ = expandObjectFirewallShapingProfileShapingEntriesRedProbability(d, i["red_probability"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

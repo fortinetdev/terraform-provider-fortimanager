@@ -205,7 +205,9 @@ func flattenFmupdateServerAccessPrioritiesPrivateServerFsa(v interface{}, d *sch
 			tmp["time_zone"] = fortiAPISubPartPatch(v, "FmupdateServerAccessPriorities-PrivateServer-TimeZone")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -345,7 +347,9 @@ func expandFmupdateServerAccessPrioritiesPrivateServerFsa(d *schema.ResourceData
 			tmp["time_zone"], _ = expandFmupdateServerAccessPrioritiesPrivateServerTimeZoneFsa(d, i["time_zone"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

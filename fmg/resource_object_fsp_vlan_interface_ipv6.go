@@ -667,7 +667,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList3rdl(v interface{}, 
 			tmp["upstream_interface"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6DelegatedPrefixList-UpstreamInterface")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -736,7 +738,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6ExtraAddr3rdl(v interface{}, d *schema.
 			tmp["prefix"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6ExtraAddr-Prefix")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -837,7 +841,9 @@ func flattenObjectFspVlanInterfaceIpv6Ip6PrefixList3rdl(v interface{}, d *schema
 			tmp["valid_life_time"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Ip6PrefixList-ValidLifeTime")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1016,7 +1022,9 @@ func flattenObjectFspVlanInterfaceIpv6Vrrp63rdl(v interface{}, d *schema.Resourc
 			tmp["vrip6"] = fortiAPISubPartPatch(v, "ObjectFspVlanInterfaceIpv6-Vrrp6-Vrip6")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1754,7 +1762,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixList3rdl(d *schema.Resour
 			tmp["upstream-interface"], _ = expandObjectFspVlanInterfaceIpv6Ip6DelegatedPrefixListUpstreamInterface3rdl(d, i["upstream_interface"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1817,7 +1827,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6ExtraAddr3rdl(d *schema.ResourceData, v 
 			tmp["prefix"], _ = expandObjectFspVlanInterfaceIpv6Ip6ExtraAddrPrefix3rdl(d, i["prefix"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1906,7 +1918,9 @@ func expandObjectFspVlanInterfaceIpv6Ip6PrefixList3rdl(d *schema.ResourceData, v
 			tmp["valid-life-time"], _ = expandObjectFspVlanInterfaceIpv6Ip6PrefixListValidLifeTime3rdl(d, i["valid_life_time"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2070,7 +2084,9 @@ func expandObjectFspVlanInterfaceIpv6Vrrp63rdl(d *schema.ResourceData, v interfa
 			tmp["vrip6"], _ = expandObjectFspVlanInterfaceIpv6Vrrp6Vrip63rdl(d, i["vrip6"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

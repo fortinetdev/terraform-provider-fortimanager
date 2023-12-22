@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_application_list_entries_parameters_members
 Parameter tuple members.
 
+~> This resource is a sub resource for variable `members` of resource `fortimanager_object_application_list_entries_parameters`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

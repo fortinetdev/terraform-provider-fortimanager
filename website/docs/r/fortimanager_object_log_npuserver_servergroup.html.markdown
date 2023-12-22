@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_log_npuserver_servergroup
 create server group.
 
+~> This resource is a sub resource for variable `server_group` of resource `fortimanager_object_log_npuserver`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

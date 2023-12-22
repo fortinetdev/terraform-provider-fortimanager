@@ -9,6 +9,13 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification
 FortiExtender cellular SMS notification configuration.
 
+~> This resource is a sub resource for variable `sms_notification` of resource `fortimanager_object_extensioncontroller_extenderprofile_cellular`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`alert`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification_alert`
+`receiver`: `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification_receiver`
+
+
+
 ## Argument Reference
 
 

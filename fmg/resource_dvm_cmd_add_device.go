@@ -415,7 +415,9 @@ func flattenDvmCmdAddDeviceGroups(v interface{}, d *schema.ResourceData, pre str
 			tmp["vdom"] = fortiAPISubPartPatch(v, "DvmCmdAddDevice-Groups-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -721,7 +723,9 @@ func expandDvmCmdAddDeviceGroups(d *schema.ResourceData, v interface{}, pre stri
 			tmp["vdom"], _ = expandDvmCmdAddDeviceGroupsVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -3486,7 +3486,9 @@ func flattenObjectWirelessControllerVapDynamicMapping(v interface{}, d *schema.R
 			tmp["webfilter_profile"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-DynamicMapping-WebfilterProfile")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3593,7 +3595,9 @@ func flattenObjectWirelessControllerVapDynamicMappingScope(v interface{}, d *sch
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVapDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4498,7 +4502,9 @@ func flattenObjectWirelessControllerVapMacFilterList(v interface{}, d *schema.Re
 			tmp["mac_filter_policy"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-MacFilterList-MacFilterPolicy")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4611,7 +4617,9 @@ func flattenObjectWirelessControllerVapMpskKey(v interface{}, d *schema.Resource
 			tmp["passphrase"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-MpskKey-Passphrase")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5031,7 +5039,9 @@ func flattenObjectWirelessControllerVapVlanName(v interface{}, d *schema.Resourc
 			tmp["vlan_id"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-VlanName-VlanId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5078,7 +5088,9 @@ func flattenObjectWirelessControllerVapVlanPool(v interface{}, d *schema.Resourc
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerVap-VlanPool-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8329,7 +8341,9 @@ func expandObjectWirelessControllerVapDynamicMapping(d *schema.ResourceData, v i
 			tmp["webfilter-profile"], _ = expandObjectWirelessControllerVapDynamicMappingWebfilterProfile(d, i["webfilter_profile"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8429,7 +8443,9 @@ func expandObjectWirelessControllerVapDynamicMappingScope(d *schema.ResourceData
 			tmp["vdom"], _ = expandObjectWirelessControllerVapDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9326,7 +9342,9 @@ func expandObjectWirelessControllerVapMacFilterList(d *schema.ResourceData, v in
 			tmp["mac-filter-policy"], _ = expandObjectWirelessControllerVapMacFilterListMacFilterPolicy(d, i["mac_filter_policy"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9429,7 +9447,9 @@ func expandObjectWirelessControllerVapMpskKey(d *schema.ResourceData, v interfac
 			tmp["passphrase"], _ = expandObjectWirelessControllerVapMpskKeyPassphrase(d, i["passphrase"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9839,7 +9859,9 @@ func expandObjectWirelessControllerVapVlanName(d *schema.ResourceData, v interfa
 			tmp["vlan-id"], _ = expandObjectWirelessControllerVapVlanNameVlanId(d, i["vlan_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -9879,7 +9901,9 @@ func expandObjectWirelessControllerVapVlanPool(d *schema.ResourceData, v interfa
 			tmp["id"], _ = expandObjectWirelessControllerVapVlanPoolId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

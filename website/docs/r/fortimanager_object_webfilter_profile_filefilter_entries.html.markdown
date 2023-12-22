@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_webfilter_profile_filefilter_entries
 File filter entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_webfilter_profile_filefilter`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

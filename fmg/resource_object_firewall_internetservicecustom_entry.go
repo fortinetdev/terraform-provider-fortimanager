@@ -294,7 +294,9 @@ func flattenObjectFirewallInternetServiceCustomEntryPortRange2edl(v interface{},
 			tmp["start_port"] = fortiAPISubPartPatch(v, "ObjectFirewallInternetServiceCustomEntry-PortRange-StartPort")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -457,7 +459,9 @@ func expandObjectFirewallInternetServiceCustomEntryPortRange2edl(d *schema.Resou
 			tmp["start-port"], _ = expandObjectFirewallInternetServiceCustomEntryPortRangeStartPort2edl(d, i["start_port"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wanopt_profile_ftp
 Enable/disable FTP WAN Optimization and configure FTP WAN Optimization features.
 
+~> This resource is a sub resource for variable `ftp` of resource `fortimanager_object_wanopt_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_profile_ftp" "trname" {
+  byte_caching = "enable"
+  log_traffic  = "enable"
+  profile      = fortimanager_object_wanopt_profile.trname2.name
+  depends_on   = [fortimanager_object_wanopt_profile.trname2]
+}
+
+resource "fortimanager_object_wanopt_profile" "trname2" {
+  name = "terr-wanopt-profile2"
+}
+```
+
 ## Argument Reference
 
 

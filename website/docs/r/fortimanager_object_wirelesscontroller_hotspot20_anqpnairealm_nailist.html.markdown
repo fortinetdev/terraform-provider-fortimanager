@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist
 NAI list.
 
+~> This resource is a sub resource for variable `nai_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`eap_method`: `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist" "trname" {
+  encoding       = "enable"
+  name           = "terr-nailist"
+  anqp_nai_realm = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname.name
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm" "trname" {
+  name = "ss2"
+}
+```
+
 ## Argument Reference
 
 

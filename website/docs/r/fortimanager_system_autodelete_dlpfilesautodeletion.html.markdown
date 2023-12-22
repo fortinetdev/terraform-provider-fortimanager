@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_autodelete_dlpfilesautodeletion
 Automatic deletion policy for DLP archives.
 
+~> This resource is a sub resource for variable `dlp_files_auto_deletion` of resource `fortimanager_system_autodelete`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

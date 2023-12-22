@@ -9,6 +9,30 @@ description: |-
 # fortimanager_object_fsp_vlan_interface_vrrp
 VRRP configuration.
 
+~> This resource is a sub resource for variable `vrrp` of resource `fortimanager_object_fsp_vlan_interface`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`proxy_arp`: `fortimanager_object_fsp_vlan_interface_vrrp_proxyarp`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_fsp_vlan_interface_vrrp" "trname" {
+  vlan                 = fortimanager_object_fsp_vlan.trname.name
+  adv_interval         = 100
+  ignore_default_route = "disable"
+  preempt              = "enable"
+  vrid                 = 3
+  depends_on           = [fortimanager_object_fsp_vlan.trname]
+}
+
+resource "fortimanager_object_fsp_vlan" "trname" {
+  name   = "terr-fsp-vlan"
+  vlanid = 101
+}
+```
+
 ## Argument Reference
 
 

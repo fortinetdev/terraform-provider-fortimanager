@@ -242,7 +242,9 @@ func flattenObjectAntivirusMmsChecksumEntries(v interface{}, d *schema.ResourceD
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectAntivirusMmsChecksum-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -377,7 +379,9 @@ func expandObjectAntivirusMmsChecksumEntries(d *schema.ResourceData, v interface
 			tmp["status"], _ = expandObjectAntivirusMmsChecksumEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

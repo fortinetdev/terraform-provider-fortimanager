@@ -395,7 +395,9 @@ func flattenObjectSshFilterProfileFileFilterEntries(v interface{}, d *schema.Res
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfileFileFilter-Entries-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -512,7 +514,9 @@ func flattenObjectSshFilterProfileShellCommands(v interface{}, d *schema.Resourc
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectSshFilterProfile-ShellCommands-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -748,7 +752,9 @@ func expandObjectSshFilterProfileFileFilterEntries(d *schema.ResourceData, v int
 			tmp["protocol"], _ = expandObjectSshFilterProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -853,7 +859,9 @@ func expandObjectSshFilterProfileShellCommands(d *schema.ResourceData, v interfa
 			tmp["type"], _ = expandObjectSshFilterProfileShellCommandsType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

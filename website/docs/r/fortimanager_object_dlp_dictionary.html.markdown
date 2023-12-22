@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_dlp_dictionary
 Configure dictionaries used by DLP blocking.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_dlp_dictionary_entries`
+
+
+
 ## Argument Reference
 
 

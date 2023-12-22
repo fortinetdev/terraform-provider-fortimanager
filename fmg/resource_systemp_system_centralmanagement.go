@@ -264,7 +264,9 @@ func flattenSystempSystemCentralManagementServerList(v interface{}, d *schema.Re
 			tmp["server_type"] = fortiAPISubPartPatch(v, "SystempSystemCentralManagement-ServerList-ServerType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -398,7 +400,9 @@ func expandSystempSystemCentralManagementServerList(d *schema.ResourceData, v in
 			tmp["server-type"], _ = expandSystempSystemCentralManagementServerListServerType(d, i["server_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

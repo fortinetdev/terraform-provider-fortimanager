@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_log_settings_rollingregular
 Log rolling policy for device logs.
 
+~> This resource is a sub resource for variable `rolling_regular` of resource `fortimanager_system_log_settings`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

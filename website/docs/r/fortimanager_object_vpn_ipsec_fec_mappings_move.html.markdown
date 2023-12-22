@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_vpn_ipsec_fec_mappings_move
 FEC redundancy mapping table.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpn_ipsec_fec_mappings_move" "trname" {
+  fec        = fortimanager_object_vpn_ipsec_fec.trname2.name
+  mappings   = fortimanager_object_vpn_ipsec_fec_mappings.trname1.seqno
+  target     = fortimanager_object_vpn_ipsec_fec_mappings.trname2.seqno
+  option     = "after"
+  depends_on = [fortimanager_object_vpn_ipsec_fec_mappings.trname1, fortimanager_object_vpn_ipsec_fec_mappings.trname2]
+}
+
+resource "fortimanager_object_vpn_ipsec_fec_mappings" "trname2" {
+  fec        = fortimanager_object_vpn_ipsec_fec.trname2.name
+  seqno      = 4
+  depends_on = [fortimanager_object_vpn_ipsec_fec.trname2]
+}
+
+resource "fortimanager_object_vpn_ipsec_fec_mappings" "trname1" {
+  fec        = fortimanager_object_vpn_ipsec_fec.trname2.name
+  seqno      = 3
+  depends_on = [fortimanager_object_vpn_ipsec_fec.trname2]
+}
+
+resource "fortimanager_object_vpn_ipsec_fec" "trname2" {
+  name = "terr-fec"
+}
+```
+
 ## Argument Reference
 
 

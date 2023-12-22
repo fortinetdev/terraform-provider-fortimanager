@@ -264,7 +264,9 @@ func flattenObjectEmailfilterIptrustEntries(v interface{}, d *schema.ResourceDat
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectEmailfilterIptrust-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -417,7 +419,9 @@ func expandObjectEmailfilterIptrustEntries(d *schema.ResourceData, v interface{}
 			tmp["status"], _ = expandObjectEmailfilterIptrustEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

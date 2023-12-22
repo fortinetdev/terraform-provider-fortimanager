@@ -2033,7 +2033,9 @@ func flattenPackagesFirewallPolicyVpnDstNode(v interface{}, d *schema.ResourceDa
 			tmp["subnet"] = fortiAPISubPartPatch(v, "PackagesFirewallPolicy-VpnDstNode-Subnet")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2090,7 +2092,9 @@ func flattenPackagesFirewallPolicyVpnSrcNode(v interface{}, d *schema.ResourceDa
 			tmp["subnet"] = fortiAPISubPartPatch(v, "PackagesFirewallPolicy-VpnSrcNode-Subnet")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5161,7 +5165,9 @@ func expandPackagesFirewallPolicyVpnDstNode(d *schema.ResourceData, v interface{
 			tmp["subnet"], _ = expandPackagesFirewallPolicyVpnDstNodeSubnet(d, i["subnet"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5210,7 +5216,9 @@ func expandPackagesFirewallPolicyVpnSrcNode(d *schema.ResourceData, v interface{
 			tmp["subnet"], _ = expandPackagesFirewallPolicyVpnSrcNodeSubnet(d, i["subnet"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

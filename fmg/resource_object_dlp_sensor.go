@@ -382,7 +382,9 @@ func flattenObjectDlpSensorEntries(v interface{}, d *schema.ResourceData, pre st
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectDlpSensor-Entries-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -541,7 +543,9 @@ func flattenObjectDlpSensorFilter(v interface{}, d *schema.ResourceData, pre str
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectDlpSensor-Filter-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -877,7 +881,9 @@ func expandObjectDlpSensorEntries(d *schema.ResourceData, v interface{}, pre str
 			tmp["status"], _ = expandObjectDlpSensorEntriesStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1015,7 +1021,9 @@ func expandObjectDlpSensorFilter(d *schema.ResourceData, v interface{}, pre stri
 			tmp["type"], _ = expandObjectDlpSensorFilterType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

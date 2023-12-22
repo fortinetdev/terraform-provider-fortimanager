@@ -276,7 +276,9 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(v interface{}, 
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20AnqpNaiRealm-NaiList-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -321,7 +323,9 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(v inte
 			tmp["method"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20AnqpNaiRealmNaiList-EapMethod-Method")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -366,7 +370,9 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPar
 			tmp["val"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod-AuthParam-Val")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -503,7 +509,9 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiList(d *schema.Resour
 			tmp["name"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -545,7 +553,9 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod(d *sche
 			tmp["method"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodMethod(d, i["method"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -582,7 +592,9 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPara
 			tmp["val"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamVal(d, i["val"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -359,7 +359,9 @@ func flattenObjectCasbProfileSaasApplication(v interface{}, d *schema.ResourceDa
 			tmp["tenant_control_tenants"] = fortiAPISubPartPatch(v, "ObjectCasbProfile-SaasApplication-TenantControlTenants")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -404,7 +406,9 @@ func flattenObjectCasbProfileSaasApplicationAccessRule(v interface{}, d *schema.
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-AccessRule-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -455,7 +459,9 @@ func flattenObjectCasbProfileSaasApplicationCustomControl(v interface{}, d *sche
 			tmp["option"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-CustomControl-Option")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -498,7 +504,9 @@ func flattenObjectCasbProfileSaasApplicationCustomControlOption(v interface{}, d
 			tmp["user_input"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-Option-UserInput")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -678,7 +686,9 @@ func expandObjectCasbProfileSaasApplication(d *schema.ResourceData, v interface{
 			tmp["tenant-control-tenants"], _ = expandObjectCasbProfileSaasApplicationTenantControlTenants(d, i["tenant_control_tenants"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -715,7 +725,9 @@ func expandObjectCasbProfileSaasApplicationAccessRule(d *schema.ResourceData, v 
 			tmp["name"], _ = expandObjectCasbProfileSaasApplicationAccessRuleName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -764,7 +776,9 @@ func expandObjectCasbProfileSaasApplicationCustomControl(d *schema.ResourceData,
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -800,7 +814,9 @@ func expandObjectCasbProfileSaasApplicationCustomControlOption(d *schema.Resourc
 			tmp["user-input"], _ = expandObjectCasbProfileSaasApplicationCustomControlOptionUserInput(d, i["user_input"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_application_list_defaultnetworkservices
 Default network service entries.
 
+~> This resource is a sub resource for variable `default_network_services` of resource `fortimanager_object_application_list`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_application_list_defaultnetworkservices" "trname" {
+  services         = ["dns"]
+  violation_action = "pass"
+  list             = fortimanager_object_application_list.trname.name
+  fosid            = 1
+  depends_on       = [fortimanager_object_application_list.trname]
+}
+
+resource "fortimanager_object_application_list" "trname" {
+  name = "terr-application-list"
+}
+```
+
 ## Argument Reference
 
 

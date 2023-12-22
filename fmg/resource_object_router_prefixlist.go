@@ -275,7 +275,9 @@ func flattenObjectRouterPrefixListRule(v interface{}, d *schema.ResourceData, pr
 			tmp["prefix"] = fortiAPISubPartPatch(v, "ObjectRouterPrefixList-Rule-Prefix")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -423,7 +425,9 @@ func expandObjectRouterPrefixListRule(d *schema.ResourceData, v interface{}, pre
 			tmp["prefix"], _ = expandObjectRouterPrefixListRulePrefix(d, i["prefix"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

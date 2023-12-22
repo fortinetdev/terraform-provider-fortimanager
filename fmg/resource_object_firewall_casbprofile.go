@@ -359,7 +359,9 @@ func flattenObjectFirewallCasbProfileSaasApplication(v interface{}, d *schema.Re
 			tmp["tenant_control_tenants"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfile-SaasApplication-TenantControlTenants")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -404,7 +406,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationAccessRule(v interface{}, d 
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplication-AccessRule-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -455,7 +459,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationCustomControl(v interface{},
 			tmp["option"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplication-CustomControl-Option")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -498,7 +504,9 @@ func flattenObjectFirewallCasbProfileSaasApplicationCustomControlOption(v interf
 			tmp["user_input"] = fortiAPISubPartPatch(v, "ObjectFirewallCasbProfileSaasApplicationCustomControl-Option-UserInput")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -678,7 +686,9 @@ func expandObjectFirewallCasbProfileSaasApplication(d *schema.ResourceData, v in
 			tmp["tenant-control-tenants"], _ = expandObjectFirewallCasbProfileSaasApplicationTenantControlTenants(d, i["tenant_control_tenants"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -715,7 +725,9 @@ func expandObjectFirewallCasbProfileSaasApplicationAccessRule(d *schema.Resource
 			tmp["name"], _ = expandObjectFirewallCasbProfileSaasApplicationAccessRuleName(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -764,7 +776,9 @@ func expandObjectFirewallCasbProfileSaasApplicationCustomControl(d *schema.Resou
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -800,7 +814,9 @@ func expandObjectFirewallCasbProfileSaasApplicationCustomControlOption(d *schema
 			tmp["user-input"], _ = expandObjectFirewallCasbProfileSaasApplicationCustomControlOptionUserInput(d, i["user_input"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

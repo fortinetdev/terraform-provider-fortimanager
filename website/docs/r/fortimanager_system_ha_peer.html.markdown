@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_ha_peer
 Peer.
 
+~> This resource is a sub resource for variable `peer` of resource `fortimanager_system_ha`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

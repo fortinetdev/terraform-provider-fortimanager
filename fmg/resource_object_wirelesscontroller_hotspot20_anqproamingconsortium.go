@@ -234,7 +234,9 @@ func flattenObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(v inter
 			tmp["oi"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20AnqpRoamingConsortium-OiList-Oi")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -341,7 +343,9 @@ func expandObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiList(d *schem
 			tmp["oi"], _ = expandObjectWirelessControllerHotspot20AnqpRoamingConsortiumOiListOi(d, i["oi"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

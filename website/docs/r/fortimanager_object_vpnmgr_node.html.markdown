@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_vpnmgr_node
 VPN node for VPN Manager. Must specify vpntable and scope member.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ip_range`: `fortimanager_object_vpnmgr_node_iprange`
+`ipv4_exclude_range`: `fortimanager_object_vpnmgr_node_ipv4excluderange`
+`protected_subnet`: `fortimanager_object_vpnmgr_node_protected_subnet`
+`summary_addr`: `fortimanager_object_vpnmgr_node_summary_addr`
+
+
+
 ## Example Usage
 
 ```hcl

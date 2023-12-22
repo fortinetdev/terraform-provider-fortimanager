@@ -780,7 +780,9 @@ func flattenObjectSwitchControllerManagedSwitchCustomCommand(v interface{}, d *s
 			tmp["command_name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitch-CustomCommand-CommandName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -853,7 +855,9 @@ func flattenObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(v interf
 			tmp["vlan"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitch-DhcpSnoopingStaticClient-Vlan")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1454,7 +1458,9 @@ func flattenObjectSwitchControllerManagedSwitchPorts(v interface{}, d *schema.Re
 			tmp["vlan"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitch-Ports-Vlan")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1535,7 +1541,9 @@ func flattenObjectSwitchControllerManagedSwitchPortsDhcpSnoopOption82Override(v 
 			tmp["vlan_name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitchPorts-DhcpSnoopOption82Override-VlanName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1910,7 +1918,9 @@ func flattenObjectSwitchControllerManagedSwitchRouteOffloadRouter(v interface{},
 			tmp["vlan_name"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerManagedSwitch-RouteOffloadRouter-VlanName")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2312,7 +2322,9 @@ func expandObjectSwitchControllerManagedSwitchCustomCommand(d *schema.ResourceDa
 			tmp["command-name"], _ = expandObjectSwitchControllerManagedSwitchCustomCommandCommandName(d, i["command_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2375,7 +2387,9 @@ func expandObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClient(d *schema
 			tmp["vlan"], _ = expandObjectSwitchControllerManagedSwitchDhcpSnoopingStaticClientVlan(d, i["vlan"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2891,7 +2905,9 @@ func expandObjectSwitchControllerManagedSwitchPorts(d *schema.ResourceData, v in
 			tmp["vlan"], _ = expandObjectSwitchControllerManagedSwitchPortsVlan(d, i["vlan"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2964,7 +2980,9 @@ func expandObjectSwitchControllerManagedSwitchPortsDhcpSnoopOption82Override(d *
 			tmp["vlan-name"], _ = expandObjectSwitchControllerManagedSwitchPortsDhcpSnoopOption82OverrideVlanName(d, i["vlan_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3332,7 +3350,9 @@ func expandObjectSwitchControllerManagedSwitchRouteOffloadRouter(d *schema.Resou
 			tmp["vlan-name"], _ = expandObjectSwitchControllerManagedSwitchRouteOffloadRouterVlanName(d, i["vlan_name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

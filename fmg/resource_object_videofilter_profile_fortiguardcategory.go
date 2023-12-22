@@ -232,7 +232,9 @@ func flattenObjectVideofilterProfileFortiguardCategoryFilters2edl(v interface{},
 			tmp["log"] = fortiAPISubPartPatch(v, "ObjectVideofilterProfileFortiguardCategory-Filters-Log")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -334,7 +336,9 @@ func expandObjectVideofilterProfileFortiguardCategoryFilters2edl(d *schema.Resou
 			tmp["log"], _ = expandObjectVideofilterProfileFortiguardCategoryFiltersLog2edl(d, i["log"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

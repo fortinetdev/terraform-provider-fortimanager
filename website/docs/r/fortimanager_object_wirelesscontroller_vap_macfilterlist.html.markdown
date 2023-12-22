@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_vap_macfilterlist
 Create a list of MAC addresses for MAC address filtering.
 
+~> This resource is a sub resource for variable `mac_filter_list` of resource `fortimanager_object_wirelesscontroller_vap`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_vap_macfilterlist" "trname" {
+  fosid             = 1
+  mac               = "4a:7e:1e:d2:9b:86"
+  mac_filter_policy = "allow"
+  depends_on        = [fortimanager_object_wirelesscontroller_vap.trname]
+  vap               = fortimanager_object_wirelesscontroller_vap.trname.name
+}
+
+resource "fortimanager_object_wirelesscontroller_vap" "trname" {
+  name = "terr-wictl-vap2"
+}
+```
+
 ## Argument Reference
 
 

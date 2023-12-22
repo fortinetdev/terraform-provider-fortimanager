@@ -9,6 +9,11 @@ description: |-
 # fortimanager_system_ntp
 NTP settings.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ntpserver`: `fortimanager_system_ntp_ntpserver`
+
+
+
 ## Example Usage
 
 ```hcl

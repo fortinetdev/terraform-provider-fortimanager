@@ -9,6 +9,12 @@ description: |-
 # fortimanager_packages_firewall_policy
 Configure IPv4 policies.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`vpn_dst_node`: `fortimanager_packages_firewall_policy_vpn_dst_node`
+`vpn_src_node`: `fortimanager_packages_firewall_policy_vpn_src_node`
+
+
+
 ## Example Usage
 
 ```hcl

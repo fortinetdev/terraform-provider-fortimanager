@@ -9,6 +9,16 @@ description: |-
 # fortimanager_systemp_system_snmp_user
 SNMP user configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_systemp_system_snmp_user" "trname" {
+  devprof    = "default"
+  auth_proto = "sha512"
+  name       = "terr-user"
+}
+```
+
 ## Argument Reference
 
 

@@ -345,7 +345,9 @@ func flattenObjectCifsProfileFileFilterEntries(v interface{}, d *schema.Resource
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectCifsProfileFileFilter-Entries-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -430,7 +432,9 @@ func flattenObjectCifsProfileServerKeytab(v interface{}, d *schema.ResourceData,
 			tmp["principal"] = fortiAPISubPartPatch(v, "ObjectCifsProfile-ServerKeytab-Principal")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -627,7 +631,9 @@ func expandObjectCifsProfileFileFilterEntries(d *schema.ResourceData, v interfac
 			tmp["protocol"], _ = expandObjectCifsProfileFileFilterEntriesProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -704,7 +710,9 @@ func expandObjectCifsProfileServerKeytab(d *schema.ResourceData, v interface{}, 
 			tmp["principal"], _ = expandObjectCifsProfileServerKeytabPrincipal(d, i["principal"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

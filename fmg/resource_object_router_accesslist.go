@@ -274,7 +274,9 @@ func flattenObjectRouterAccessListRule(v interface{}, d *schema.ResourceData, pr
 			tmp["wildcard"] = fortiAPISubPartPatch(v, "ObjectRouterAccessList-Rule-Wildcard")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -422,7 +424,9 @@ func expandObjectRouterAccessListRule(d *schema.ResourceData, v interface{}, pre
 			tmp["wildcard"], _ = expandObjectRouterAccessListRuleWildcard(d, i["wildcard"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

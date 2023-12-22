@@ -9,6 +9,32 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver
 SMS notification receiver list.
 
+~> This resource is a sub resource for variable `receiver` of resource `fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver" "trname" {
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  alert            = ["system-reboot"]
+  name             = "receiver-name"
+  phone_number     = "+16501234567"
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification" "trname" {
+  status           = "disable"
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

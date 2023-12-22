@@ -746,7 +746,9 @@ func flattenObjectSystemDhcpServerExcludeRange(v interface{}, d *schema.Resource
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectSystemDhcpServer-ExcludeRange-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -873,7 +875,9 @@ func flattenObjectSystemDhcpServerIpRange(v interface{}, d *schema.ResourceData,
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectSystemDhcpServer-IpRange-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1022,7 +1026,9 @@ func flattenObjectSystemDhcpServerOptions(v interface{}, d *schema.ResourceData,
 			tmp["vci_string"] = fortiAPISubPartPatch(v, "ObjectSystemDhcpServer-Options-VciString")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1149,7 +1155,9 @@ func flattenObjectSystemDhcpServerReservedAddress(v interface{}, d *schema.Resou
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectSystemDhcpServer-ReservedAddress-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1979,7 +1987,9 @@ func expandObjectSystemDhcpServerExcludeRange(d *schema.ResourceData, v interfac
 			tmp["vci-string"], _ = expandObjectSystemDhcpServerExcludeRangeVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2093,7 +2103,9 @@ func expandObjectSystemDhcpServerIpRange(d *schema.ResourceData, v interface{}, 
 			tmp["vci-string"], _ = expandObjectSystemDhcpServerIpRangeVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2228,7 +2240,9 @@ func expandObjectSystemDhcpServerOptions(d *schema.ResourceData, v interface{}, 
 			tmp["vci-string"], _ = expandObjectSystemDhcpServerOptionsVciString(d, i["vci_string"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2340,7 +2354,9 @@ func expandObjectSystemDhcpServerReservedAddress(d *schema.ResourceData, v inter
 			tmp["type"], _ = expandObjectSystemDhcpServerReservedAddressType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

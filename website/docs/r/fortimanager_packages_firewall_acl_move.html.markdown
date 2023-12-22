@@ -9,6 +9,38 @@ description: |-
 # fortimanager_packages_firewall_acl_move
 Move IPv4 access control list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_acl" "trname1" {
+  pkg       = "default"
+  name      = "acl_policy1"
+  interface = "port4"
+  dstaddr   = ["all"]
+  srcaddr   = ["all"]
+  service   = ["ALL"]
+  policyid  = 4
+}
+
+resource "fortimanager_packages_firewall_acl" "trname2" {
+  pkg       = "default"
+  name      = "acl_policy2"
+  interface = "port4"
+  dstaddr   = ["all"]
+  srcaddr   = ["all"]
+  service   = ["ALL"]
+  policyid  = 5
+}
+
+resource "fortimanager_packages_firewall_acl_move" "trname" {
+  pkg        = "default"
+  acl        = fortimanager_packages_firewall_acl.trname1.name
+  target     = fortimanager_packages_firewall_acl.trname2.name
+  option     = "after"
+  depends_on = [fortimanager_packages_firewall_acl.trname1, fortimanager_packages_firewall_acl.trname2]
+}
+```
+
 ## Argument Reference
 
 

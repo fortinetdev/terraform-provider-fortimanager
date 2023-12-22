@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_router_prefixlist6
 Configure IPv6 prefix lists.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rule`: `fortimanager_object_router_prefixlist6_rule`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_prefixlist6" "trname" {
+  name = "terr-router-prefixlist6"
+  rule {
+    ge = 12
+    id = 23
+    le = 20
+  }
+}
+```
+
 ## Argument Reference
 
 

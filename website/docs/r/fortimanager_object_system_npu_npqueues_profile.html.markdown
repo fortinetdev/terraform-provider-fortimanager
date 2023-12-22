@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_system_npu_npqueues_profile
 Configure a NP7 class profile.
 
+~> This resource is a sub resource for variable `profile` of resource `fortimanager_object_system_npu_npqueues`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_npqueues_profile" "trname" {
+  fosid = 2
+  cos0  = "queue0"
+  cos1  = "queue1"
+  cos2  = "queue2"
+}
+```
+
 ## Argument Reference
 
 

@@ -176,7 +176,9 @@ func flattenFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(v interface{}, 
 			tmp["port"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingPushOverrideToClient-AnnounceIp-Port")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -279,7 +281,9 @@ func expandFmupdateFdsSettingPushOverrideToClientAnnounceIpFfpb(d *schema.Resour
 			tmp["port"], _ = expandFmupdateFdsSettingPushOverrideToClientAnnounceIpPortFfpb(d, i["port"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

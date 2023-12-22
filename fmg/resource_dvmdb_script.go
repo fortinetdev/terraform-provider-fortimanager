@@ -359,7 +359,9 @@ func flattenDvmdbScriptScriptSchedule(v interface{}, d *schema.ResourceData, pre
 			tmp["type"] = fortiAPISubPartPatch(v, "DvmdbScript-ScriptSchedule-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -661,7 +663,9 @@ func expandDvmdbScriptScriptSchedule(d *schema.ResourceData, v interface{}, pre 
 			tmp["type"], _ = expandDvmdbScriptScriptScheduleType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

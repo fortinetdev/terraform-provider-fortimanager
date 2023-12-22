@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_firewall_internetservicecustomgroup
 Configure custom Internet Service group.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_internetservicecustom" "trname" {
+  name = "terr-internetservicecustom"
+}
+
+resource "fortimanager_object_firewall_internetservicecustomgroup" "trname" {
+  name       = "terr-internetservicecustomgroup"
+  member     = [fortimanager_object_firewall_internetservicecustom.trname.name]
+  depends_on = [fortimanager_object_firewall_internetservicecustom.trname]
+}
+```
+
 ## Argument Reference
 
 

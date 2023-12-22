@@ -9,6 +9,22 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl
 Configure venue URL.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`value_list`: `fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl_valuelist`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpvenueurl" "trname" {
+  name = "terr-anqpvenueurl"
+  value_list {
+    index = 1
+  }
+}
+```
+
 ## Argument Reference
 
 

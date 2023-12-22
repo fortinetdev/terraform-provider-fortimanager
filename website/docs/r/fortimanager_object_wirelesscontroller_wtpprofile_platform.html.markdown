@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_platform
 WTP, FortiAP, or AP platform.
 
+~> This resource is a sub resource for variable `platform` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile_platform" "trname" {
+  _local_platform_str = "platfor"
+  depends_on          = [fortimanager_object_wirelesscontroller_wtpprofile.trname6]
+  wtp_profile         = fortimanager_object_wirelesscontroller_wtpprofile.trname6.name
+}
+
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname6" {
+  name = "terr-wtpprofile"
+}
+```
+
 ## Argument Reference
 
 

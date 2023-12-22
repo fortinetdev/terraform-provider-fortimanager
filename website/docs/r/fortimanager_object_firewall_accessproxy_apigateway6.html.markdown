@@ -9,6 +9,31 @@ description: |-
 # fortimanager_object_firewall_accessproxy_apigateway6
 Set IPv6 API Gateway.
 
+~> This resource is a sub resource for variable `api_gateway6` of resource `fortimanager_object_firewall_accessproxy`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`quic`: `fortimanager_object_firewall_accessproxy_apigateway6_quic`
+`realservers`: `fortimanager_object_firewall_accessproxy_apigateway6_realservers`
+`ssl_cipher_suites`: `fortimanager_object_firewall_accessproxy_apigateway6_sslciphersuites`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy_apigateway6" "trname" {
+  access_proxy                 = fortimanager_object_firewall_accessproxy.trname.name
+  fosid                        = 1
+  http_cookie_age              = 70
+  http_cookie_domain           = "domin"
+  http_cookie_domain_from_host = "enable"
+  depends_on                   = [fortimanager_object_firewall_accessproxy.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy" "trname" {
+  name = "terr-accessproxy"
+}
+```
+
 ## Argument Reference
 
 

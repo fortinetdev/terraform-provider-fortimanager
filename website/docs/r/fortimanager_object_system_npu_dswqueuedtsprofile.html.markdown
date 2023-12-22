@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_dswqueuedtsprofile
 Configure NPU DSW Queue DTS profile.
 
+~> This resource is a sub resource for variable `dsw_queue_dts_profile` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_dswqueuedtsprofile" "trname" {
+  name  = "terr-dswqueuedtsprofile"
+  oport = "EIF0"
+}
+```
+
 ## Argument Reference
 
 

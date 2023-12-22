@@ -9,6 +9,40 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod_authparam
 EAP auth param.
 
+~> This resource is a sub resource for variable `auth_param` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod_authparam" "trname" {
+  index          = 2
+  val            = "eap-md5"
+  anqp_nai_realm = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname.name
+  nai_list       = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist.trname2.name
+  eap_method     = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod.trname.index
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist_eapmethod" "trname" {
+  index          = 2
+  anqp_nai_realm = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname.name
+  nai_list       = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist.trname2.name
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist.trname2]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm_nailist" "trname2" {
+  name           = "terr-nailist"
+  anqp_nai_realm = fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname.name
+  depends_on     = [fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqpnairealm" "trname" {
+  name = "terr-anqpnairealm"
+}
+```
+
 ## Argument Reference
 
 

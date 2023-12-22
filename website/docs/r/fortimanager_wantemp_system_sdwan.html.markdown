@@ -9,6 +9,16 @@ description: |-
 # fortimanager_wantemp_system_sdwan
 Configure redundant Internet connections with multiple outbound links and health-check profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`duplication`: `fortimanager_wantemp_system_sdwan_duplication`
+`health_check`: `fortimanager_wantemp_system_sdwan_healthcheck`
+`members`: `fortimanager_wantemp_system_sdwan_members`
+`neighbor`: `fortimanager_wantemp_system_sdwan_neighbor`
+`service`: `fortimanager_wantemp_system_sdwan_service`
+`zone`: `fortimanager_wantemp_system_sdwan_zone`
+
+
+
 ## Argument Reference
 
 

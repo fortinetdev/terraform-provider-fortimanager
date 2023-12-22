@@ -2064,7 +2064,9 @@ func flattenObjectSystemNpuDswDtsProfileOsna(v interface{}, d *schema.ResourceDa
 			tmp["step"] = fortiAPISubPartPatch(v, "ObjectSystemNpu-DswDtsProfile-Step")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2137,7 +2139,9 @@ func flattenObjectSystemNpuDswQueueDtsProfileOsna(v interface{}, d *schema.Resou
 			tmp["queue_select"] = fortiAPISubPartPatch(v, "ObjectSystemNpu-DswQueueDtsProfile-QueueSelect")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3331,7 +3335,9 @@ func flattenObjectSystemNpuNpQueuesEthernetTypeOsna(v interface{}, d *schema.Res
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectSystemNpuNpQueues-EthernetType-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3398,7 +3404,9 @@ func flattenObjectSystemNpuNpQueuesIpProtocolOsna(v interface{}, d *schema.Resou
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectSystemNpuNpQueues-IpProtocol-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3477,7 +3485,9 @@ func flattenObjectSystemNpuNpQueuesIpServiceOsna(v interface{}, d *schema.Resour
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectSystemNpuNpQueues-IpService-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3978,7 +3988,9 @@ func flattenObjectSystemNpuNpQueuesProfileOsna(v interface{}, d *schema.Resource
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectSystemNpuNpQueues-Profile-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4317,7 +4329,9 @@ func flattenObjectSystemNpuNpQueuesSchedulerOsna(v interface{}, d *schema.Resour
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectSystemNpuNpQueues-Scheduler-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4392,7 +4406,9 @@ func flattenObjectSystemNpuPortCpuMapOsna(v interface{}, d *schema.ResourceData,
 			tmp["interface"] = fortiAPISubPartPatch(v, "ObjectSystemNpu-PortCpuMap-Interface")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4439,7 +4455,9 @@ func flattenObjectSystemNpuPortNpuMapOsna(v interface{}, d *schema.ResourceData,
 			tmp["npu_group_index"] = fortiAPISubPartPatch(v, "ObjectSystemNpu-PortNpuMap-NpuGroupIndex")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4815,7 +4833,9 @@ func flattenObjectSystemNpuTcpTimeoutProfileOsna(v interface{}, d *schema.Resour
 			tmp["time_wait"] = fortiAPISubPartPatch(v, "ObjectSystemNpu-TcpTimeoutProfile-TimeWait")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4882,7 +4902,9 @@ func flattenObjectSystemNpuUdpTimeoutProfileOsna(v interface{}, d *schema.Resour
 			tmp["udp_idle"] = fortiAPISubPartPatch(v, "ObjectSystemNpu-UdpTimeoutProfile-UdpIdle")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6312,7 +6334,9 @@ func expandObjectSystemNpuDswDtsProfileOsna(d *schema.ResourceData, v interface{
 			tmp["step"], _ = expandObjectSystemNpuDswDtsProfileStepOsna(d, i["step"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -6375,7 +6399,9 @@ func expandObjectSystemNpuDswQueueDtsProfileOsna(d *schema.ResourceData, v inter
 			tmp["queue-select"], _ = expandObjectSystemNpuDswQueueDtsProfileQueueSelectOsna(d, i["queue_select"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -7488,7 +7514,9 @@ func expandObjectSystemNpuNpQueuesEthernetTypeOsna(d *schema.ResourceData, v int
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesEthernetTypeWeightOsna(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -7546,7 +7574,9 @@ func expandObjectSystemNpuNpQueuesIpProtocolOsna(d *schema.ResourceData, v inter
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesIpProtocolWeightOsna(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -7614,7 +7644,9 @@ func expandObjectSystemNpuNpQueuesIpServiceOsna(d *schema.ResourceData, v interf
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesIpServiceWeightOsna(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8035,7 +8067,9 @@ func expandObjectSystemNpuNpQueuesProfileOsna(d *schema.ResourceData, v interfac
 			tmp["weight"], _ = expandObjectSystemNpuNpQueuesProfileWeightOsna(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8367,7 +8401,9 @@ func expandObjectSystemNpuNpQueuesSchedulerOsna(d *schema.ResourceData, v interf
 			tmp["name"], _ = expandObjectSystemNpuNpQueuesSchedulerNameOsna(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8435,7 +8471,9 @@ func expandObjectSystemNpuPortCpuMapOsna(d *schema.ResourceData, v interface{}, 
 			tmp["interface"], _ = expandObjectSystemNpuPortCpuMapInterfaceOsna(d, i["interface"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8475,7 +8513,9 @@ func expandObjectSystemNpuPortNpuMapOsna(d *schema.ResourceData, v interface{}, 
 			tmp["npu-group-index"], _ = expandObjectSystemNpuPortNpuMapNpuGroupIndexOsna(d, i["npu_group_index"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8826,7 +8866,9 @@ func expandObjectSystemNpuTcpTimeoutProfileOsna(d *schema.ResourceData, v interf
 			tmp["time-wait"], _ = expandObjectSystemNpuTcpTimeoutProfileTimeWaitOsna(d, i["time_wait"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -8886,7 +8928,9 @@ func expandObjectSystemNpuUdpTimeoutProfileOsna(d *schema.ResourceData, v interf
 			tmp["udp-idle"], _ = expandObjectSystemNpuUdpTimeoutProfileUdpIdleOsna(d, i["udp_idle"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

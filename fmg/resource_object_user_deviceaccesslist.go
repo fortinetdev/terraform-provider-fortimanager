@@ -238,7 +238,9 @@ func flattenObjectUserDeviceAccessListDeviceList(v interface{}, d *schema.Resour
 			tmp["id"] = fortiAPISubPartPatch(v, "ObjectUserDeviceAccessList-DeviceList-Id")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -359,7 +361,9 @@ func expandObjectUserDeviceAccessListDeviceList(d *schema.ResourceData, v interf
 			tmp["id"], _ = expandObjectUserDeviceAccessListDeviceListId(d, i["id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

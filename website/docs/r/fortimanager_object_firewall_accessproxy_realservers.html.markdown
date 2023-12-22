@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_firewall_accessproxy_realservers
 Select the SSL real servers that this Access Proxy will distribute traffic to.
 
+~> This resource is a sub resource for variable `realservers` of resource `fortimanager_object_firewall_accessproxy`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_accessproxy_realservers" "trname" {
+  access_proxy = fortimanager_object_firewall_accessproxy.trname.name
+  fosid        = 1
+  ip           = "12.3.4.5"
+  port         = 65
+  weight       = 23
+  depends_on   = [fortimanager_object_firewall_accessproxy.trname]
+}
+
+resource "fortimanager_object_firewall_accessproxy" "trname" {
+  name = "terr-accessproxy"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_log_npuserver_serverinfo
 configure server info.
 
+~> This resource is a sub resource for variable `server_info` of resource `fortimanager_object_log_npuserver`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_log_npuserver_serverinfo" "trname" {
+  fosid       = 1
+  dest_port   = 60
+  ip_family   = "v4"
+  ipv4_server = "34.5.6.9"
+}
+```
+
 ## Argument Reference
 
 

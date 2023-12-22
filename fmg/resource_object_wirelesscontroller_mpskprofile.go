@@ -297,7 +297,9 @@ func flattenObjectWirelessControllerMpskProfileMpskGroup(v interface{}, d *schem
 			tmp["vlan_type"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfile-MpskGroup-VlanType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -376,7 +378,9 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKey(v interface{}, d
 			tmp["pmk"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfileMpskGroup-MpskKey-Pmk")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -553,7 +557,9 @@ func expandObjectWirelessControllerMpskProfileMpskGroup(d *schema.ResourceData, 
 			tmp["vlan-type"], _ = expandObjectWirelessControllerMpskProfileMpskGroupVlanType(d, i["vlan_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -615,7 +621,9 @@ func expandObjectWirelessControllerMpskProfileMpskGroupMpskKey(d *schema.Resourc
 			tmp["pmk"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk(d, i["pmk"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

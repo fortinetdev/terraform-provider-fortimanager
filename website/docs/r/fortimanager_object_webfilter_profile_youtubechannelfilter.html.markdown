@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_webfilter_profile_youtubechannelfilter
 YouTube channel filter.
 
+~> This resource is a sub resource for variable `youtube_channel_filter` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

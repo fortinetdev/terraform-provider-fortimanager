@@ -273,7 +273,9 @@ func flattenObjectVirtualPatchProfileExemption(v interface{}, d *schema.Resource
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectVirtualPatchProfile-Exemption-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -445,7 +447,9 @@ func expandObjectVirtualPatchProfileExemption(d *schema.ResourceData, v interfac
 			tmp["status"], _ = expandObjectVirtualPatchProfileExemptionStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

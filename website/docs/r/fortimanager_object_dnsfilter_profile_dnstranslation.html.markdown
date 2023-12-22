@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_dnsfilter_profile_dnstranslation
 DNS translation settings.
 
+~> This resource is a sub resource for variable `dns_translation` of resource `fortimanager_object_dnsfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dnsfilter_profile_dnstranslation" "trname" {
+  dst        = "38.53.6.21"
+  fosid      = 1
+  src        = "34.53.6.21"
+  status     = "disable"
+  profile    = fortimanager_object_dnsfilter_profile.trname.name
+  depends_on = [fortimanager_object_dnsfilter_profile.trname]
+}
+
+resource "fortimanager_object_dnsfilter_profile" "trname" {
+  name = "terr-dnsfilter-profile"
+}
+```
+
 ## Argument Reference
 
 

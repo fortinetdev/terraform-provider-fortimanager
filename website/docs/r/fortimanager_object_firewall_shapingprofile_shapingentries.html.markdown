@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_firewall_shapingprofile_shapingentries
 Define shaping entries of this shaping profile.
 
+~> This resource is a sub resource for variable `shaping_entries` of resource `fortimanager_object_firewall_shapingprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_shapingprofile_shapingentries" "trname" {
+  shaping_profile              = fortimanager_object_firewall_shapingprofile.trname.profile_name
+  fosid                        = 1
+  limit                        = 50
+  max                          = 60
+  maximum_bandwidth_percentage = 40
+  depends_on                   = [fortimanager_object_firewall_shapingprofile.trname]
+}
+
+resource "fortimanager_object_firewall_shapingprofile" "trname" {
+  profile_name = "terr-shapingprofile"
+}
+```
+
 ## Argument Reference
 
 

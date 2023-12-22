@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_firewall_carrierendpointbwl
 Carrier end point black/white list tables.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_firewall_carrierendpointbwl_entries`
+
+
+
 ## Argument Reference
 
 

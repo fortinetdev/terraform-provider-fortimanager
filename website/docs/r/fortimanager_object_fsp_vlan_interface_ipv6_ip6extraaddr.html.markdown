@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_fsp_vlan_interface_ipv6_ip6extraaddr
 Extra IPv6 address prefixes of interface.
 
+~> This resource is a sub resource for variable `ip6_extra_addr` of resource `fortimanager_object_fsp_vlan_interface_ipv6`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

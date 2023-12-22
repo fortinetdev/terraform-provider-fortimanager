@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_extendercontroller_sim_profile_autoswitch_profile
 ObjectExtenderController SimProfileAutoSwitchProfile
 
+~> This resource is a sub resource for variable `auto_switch_profile` of resource `fortimanager_object_extendercontroller_sim_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_sim_profile_autoswitch_profile" "trname" {
+  sim_profile = fortimanager_object_extendercontroller_sim_profile.trname.name
+  dataplan    = "disable"
+  disconnect  = "enable"
+  depends_on  = [fortimanager_object_extendercontroller_sim_profile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_sim_profile" "trname" {
+  name = "terr-ex-ctl-sim-profile"
+  auto_switch_profile {
+    dataplan = "disable"
+  }
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wirelesscontroller_accesscontrollist
 Configure WiFi bridge access control list.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`layer3_ipv4_rules`: `fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv4rules`
+`layer3_ipv6_rules`: `fortimanager_object_wirelesscontroller_accesscontrollist_layer3ipv6rules`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_accesscontrollist" "trname" {
+  name = "terr-accesscontrollist"
+  layer3_ipv4_rules {
+    action  = "deny"
+    rule_id = 23
+    srcport = 12
+  }
+}
+```
+
 ## Argument Reference
 
 

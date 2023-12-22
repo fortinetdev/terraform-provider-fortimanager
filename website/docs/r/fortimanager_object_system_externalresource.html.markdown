@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_system_externalresource
 Configure external resource.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_externalresource" "trname" {
+  name     = "terr-externalresource"
+  category = 192
+  comment  = "This is a Terraform example"
+}
+```
+
 ## Argument Reference
 
 

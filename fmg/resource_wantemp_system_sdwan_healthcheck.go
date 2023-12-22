@@ -125,8 +125,10 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 				Computed: true,
 			},
 			"members": &schema.Schema{
-				Type:     schema.TypeString,
+				Type:     schema.TypeSet,
+				Elem:     &schema.Schema{Type: schema.TypeString},
 				Optional: true,
+				Computed: true,
 			},
 			"mos_codec": &schema.Schema{
 				Type:     schema.TypeString,
@@ -204,10 +206,12 @@ func resourceWantempSystemSdwanHealthCheck() *schema.Resource {
 						"jitter_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"latency_threshold": &schema.Schema{
 							Type:     schema.TypeInt,
 							Optional: true,
+							Computed: true,
 						},
 						"link_cost_factor": &schema.Schema{
 							Type:     schema.TypeSet,
@@ -512,7 +516,7 @@ func flattenWantempSystemSdwanHealthCheckIntervalWssha(v interface{}, d *schema.
 }
 
 func flattenWantempSystemSdwanHealthCheckMembersWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
-	return v
+	return flattenStringList(v)
 }
 
 func flattenWantempSystemSdwanHealthCheckMosCodecWssha(v interface{}, d *schema.ResourceData, pre string) interface{} {
@@ -634,7 +638,9 @@ func flattenWantempSystemSdwanHealthCheckSlaWssha(v interface{}, d *schema.Resou
 			tmp["priority_out_sla"] = fortiAPISubPartPatch(v, "WantempSystemSdwanHealthCheck-Sla-PriorityOutSla")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1307,7 +1313,7 @@ func expandWantempSystemSdwanHealthCheckIntervalWssha(d *schema.ResourceData, v 
 }
 
 func expandWantempSystemSdwanHealthCheckMembersWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
-	return v, nil
+	return expandStringList(v.(*schema.Set).List()), nil
 }
 
 func expandWantempSystemSdwanHealthCheckMosCodecWssha(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
@@ -1416,7 +1422,9 @@ func expandWantempSystemSdwanHealthCheckSlaWssha(d *schema.ResourceData, v inter
 			tmp["priority-out-sla"], _ = expandWantempSystemSdwanHealthCheckSlaPriorityOutSlaWssha(d, i["priority_out_sla"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

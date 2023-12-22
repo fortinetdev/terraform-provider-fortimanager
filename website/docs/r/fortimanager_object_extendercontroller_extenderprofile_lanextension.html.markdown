@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_lanextension
 FortiExtender lan extension configuration.
 
+~> This resource is a sub resource for variable `lan_extension` of resource `fortimanager_object_extendercontroller_extenderprofile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`backhaul`: `fortimanager_object_extendercontroller_extenderprofile_lanextension_backhaul`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_lanextension" "trname" {
+  backhaul_interface = "port1"
+  backhaul_ip        = "34.5.6.12"
+  link_loadbalance   = "loadbalance"
+  extender_profile   = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on         = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

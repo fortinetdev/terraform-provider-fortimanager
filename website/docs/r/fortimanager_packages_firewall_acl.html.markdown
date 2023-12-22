@@ -9,6 +9,20 @@ description: |-
 # fortimanager_packages_firewall_acl
 Configure IPv4 access control list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_packages_firewall_acl" "trname" {
+  pkg       = "default"
+  name      = "acl_policy"
+  interface = "port4"
+  dstaddr   = ["all"]
+  srcaddr   = ["all"]
+  service   = ["ALL"]
+  policyid  = 1
+}
+```
+
 ## Argument Reference
 
 

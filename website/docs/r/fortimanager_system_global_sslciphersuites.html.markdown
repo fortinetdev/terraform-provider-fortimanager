@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_global_sslciphersuites
 Configure preferred SSL/TLS cipher suites
 
+~> This resource is a sub resource for variable `ssl_cipher_suites` of resource `fortimanager_system_global`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

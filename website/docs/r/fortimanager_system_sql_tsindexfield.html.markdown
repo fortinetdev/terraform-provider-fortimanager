@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_sql_tsindexfield
 List of SQL text search index fields.
 
+~> This resource is a sub resource for variable `ts_index_field` of resource `fortimanager_system_sql`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

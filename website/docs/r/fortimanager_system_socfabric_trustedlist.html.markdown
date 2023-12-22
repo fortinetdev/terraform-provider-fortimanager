@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_socfabric_trustedlist
 Pre-authorized security fabric nodes
 
+~> This resource is a sub resource for variable `trusted_list` of resource `fortimanager_system_socfabric`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

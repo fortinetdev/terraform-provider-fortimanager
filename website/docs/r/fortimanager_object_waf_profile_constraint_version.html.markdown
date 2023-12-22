@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_waf_profile_constraint_version
 Enable/disable HTTP version check.
 
+~> This resource is a sub resource for variable `version` of resource `fortimanager_object_waf_profile_constraint`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_constraint_version" "trname" {
+  log        = "enable"
+  severity   = "high"
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,19 @@ description: |-
 # fortimanager_fmupdate_fwmsetting_upgradetimeout
 Configure the timeout value of image upgrade process.
 
+~> This resource is a sub resource for variable `upgrade_timeout` of resource `fortimanager_fmupdate_fwmsetting`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_fmupdate_fwmsetting_upgradetimeout" "trname" {
+  check_status_timeout      = 600
+  ctrl_check_status_timeout = 1200
+}
+```
+
 ## Argument Reference
 
 

@@ -867,7 +867,9 @@ func flattenObjectWafProfileConstraintException2edl(v interface{}, d *schema.Res
 			tmp["version"] = fortiAPISubPartPatch(v, "ObjectWafProfileConstraint-Exception-Version")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2112,7 +2114,9 @@ func expandObjectWafProfileConstraintException2edl(d *schema.ResourceData, v int
 			tmp["version"], _ = expandObjectWafProfileConstraintExceptionVersion2edl(d, i["version"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_firewall_vip6_realservers
 Select the real servers that this server load balancing VIP will distribute traffic to.
 
+~> This resource is a sub resource for variable `realservers` of resource `fortimanager_object_firewall_vip6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vip6_realservers" "trname" {
+  vip6       = fortimanager_object_firewall_vip6.trname.name
+  fosid      = 2
+  ip         = "2001:192:168:1::3"
+  port       = 36
+  depends_on = [fortimanager_object_firewall_vip6.trname]
+}
+
+resource "fortimanager_object_firewall_vip6" "trname" {
+  name     = "terr-firewall-vip6"
+  extip    = "2001:192:168:1::2"
+  mappedip = ["2001:192:168:1::2"]
+}
+```
+
 ## Argument Reference
 
 

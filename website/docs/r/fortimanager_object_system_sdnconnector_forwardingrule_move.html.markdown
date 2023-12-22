@@ -9,6 +9,36 @@ description: |-
 # fortimanager_object_system_sdnconnector_forwardingrule_move
 Move GCP forwarding rule.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_sdnconnector_forwardingrule_move" "trname" {
+  sdn_connector   = fortimanager_object_system_sdnconnector.trname.name
+  forwarding_rule = fortimanager_object_system_sdnconnector_forwardingrule.trname3.rule_name
+  target          = fortimanager_object_system_sdnconnector_forwardingrule.trname2.rule_name
+  option          = "after"
+  depends_on      = [fortimanager_object_system_sdnconnector_forwardingrule.trname3, fortimanager_object_system_sdnconnector_forwardingrule.trname2]
+}
+
+resource "fortimanager_object_system_sdnconnector_forwardingrule" "trname3" {
+  sdn_connector = fortimanager_object_system_sdnconnector.trname.name
+  rule_name     = "terr-system-sdnconnector2"
+  depends_on    = [fortimanager_object_system_sdnconnector.trname]
+}
+
+resource "fortimanager_object_system_sdnconnector_forwardingrule" "trname2" {
+  sdn_connector = fortimanager_object_system_sdnconnector.trname.name
+  rule_name     = "terr-system-sdnconnector1"
+  depends_on    = [fortimanager_object_system_sdnconnector.trname]
+}
+
+resource "fortimanager_object_system_sdnconnector" "trname" {
+  access_key = "key"
+  region     = "local"
+  name       = "terr-sdnconnector"
+}
+```
+
 ## Argument Reference
 
 

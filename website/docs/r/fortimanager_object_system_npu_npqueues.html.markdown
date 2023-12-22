@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_system_npu_npqueues
 Configure queue assignment on NP7.
 
+~> This resource is a sub resource for variable `np_queues` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`ethernet_type`: `fortimanager_object_system_npu_npqueues_ethernettype`
+`ip_protocol`: `fortimanager_object_system_npu_npqueues_ipprotocol`
+`ip_service`: `fortimanager_object_system_npu_npqueues_ipservice`
+`profile`: `fortimanager_object_system_npu_npqueues_profile`
+`scheduler`: `fortimanager_object_system_npu_npqueues_scheduler`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_npqueues" "trname" {
+  ethernet_type {
+    name  = "type"
+    queue = 10
+  }
+}
+```
+
 ## Argument Reference
 
 

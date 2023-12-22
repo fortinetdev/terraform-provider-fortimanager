@@ -9,6 +9,40 @@ description: |-
 # fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver_move
 SMS notification receiver list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver_move" "trname" {
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  receiver         = "terraform"
+  target           = "terraform2"
+  option           = "after"
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver.trname2, fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver" "trname2" {
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  name             = "terraform2"
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification_receiver" "trname" {
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  name             = "terraform"
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile_cellular_smsnotification" "trname" {
+  status           = "disable"
+  extender_profile = fortimanager_object_extendercontroller_extenderprofile.trname.name
+  depends_on       = [fortimanager_object_extendercontroller_extenderprofile.trname]
+}
+
+resource "fortimanager_object_extendercontroller_extenderprofile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

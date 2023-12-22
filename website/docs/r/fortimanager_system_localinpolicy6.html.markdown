@@ -9,6 +9,20 @@ description: |-
 # fortimanager_system_localinpolicy6
 IPv6 local in policy configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_localinpolicy6" "trname" {
+  action   = "accept"
+  dport    = 0
+  dst      = "ffff:153::/24"
+  fosid    = 1
+  intf     = "port5"
+  protocol = "udp"
+  src      = "ffff:123::/24"
+}
+```
+
 ## Argument Reference
 
 

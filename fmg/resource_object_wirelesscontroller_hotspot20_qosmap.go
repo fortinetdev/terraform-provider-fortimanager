@@ -256,7 +256,9 @@ func flattenObjectWirelessControllerHotspot20QosMapDscpExcept(v interface{}, d *
 			tmp["up"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20QosMap-DscpExcept-Up")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -319,7 +321,9 @@ func flattenObjectWirelessControllerHotspot20QosMapDscpRange(v interface{}, d *s
 			tmp["up"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20QosMap-DscpRange-Up")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -454,7 +458,9 @@ func expandObjectWirelessControllerHotspot20QosMapDscpExcept(d *schema.ResourceD
 			tmp["up"], _ = expandObjectWirelessControllerHotspot20QosMapDscpExceptUp(d, i["up"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -508,7 +514,9 @@ func expandObjectWirelessControllerHotspot20QosMapDscpRange(d *schema.ResourceDa
 			tmp["up"], _ = expandObjectWirelessControllerHotspot20QosMapDscpRangeUp(d, i["up"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

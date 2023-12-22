@@ -300,7 +300,9 @@ func flattenObjectSwitchControllerQosQueuePolicyCosQueue(v interface{}, d *schem
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerQosQueuePolicy-CosQueue-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -489,7 +491,9 @@ func expandObjectSwitchControllerQosQueuePolicyCosQueue(d *schema.ResourceData, 
 			tmp["weight"], _ = expandObjectSwitchControllerQosQueuePolicyCosQueueWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

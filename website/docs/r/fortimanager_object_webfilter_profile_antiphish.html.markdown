@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_webfilter_profile_antiphish
 AntiPhishing profile.
 
+~> This resource is a sub resource for variable `antiphish` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`custom_patterns`: `fortimanager_object_webfilter_profile_antiphish_custompatterns`
+`inspection_entries`: `fortimanager_object_webfilter_profile_antiphish_inspectionentries`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_profile_antiphish" "trname" {
+  check_basic_auth = "enable"
+  check_uri        = "enable"
+  depends_on       = [fortimanager_object_webfilter_profile.trname]
+  profile          = fortimanager_object_webfilter_profile.trname.name
+}
+
+resource "fortimanager_object_webfilter_profile" "trname" {
+  name = "terr-webfilter-profile3"
+}
+```
+
 ## Argument Reference
 
 

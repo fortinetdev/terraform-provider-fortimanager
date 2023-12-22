@@ -9,6 +9,18 @@ description: |-
 # fortimanager_object_system_npu_portpathoption
 Configure port using NPU or Intel-NIC.
 
+~> This resource is a sub resource for variable `port_path_option` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_portpathoption" "trname" {
+  ports_using_npu = [20, 23]
+}
+```
+
 ## Argument Reference
 
 

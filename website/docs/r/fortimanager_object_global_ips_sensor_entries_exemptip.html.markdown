@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_global_ips_sensor_entries_exemptip
 Traffic from selected source or destination IP addresses is exempt from this signature.
 
+~> This resource is a sub resource for variable `exempt_ip` of resource `fortimanager_object_global_ips_sensor_entries`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

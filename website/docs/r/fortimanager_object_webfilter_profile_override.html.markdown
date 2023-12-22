@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_webfilter_profile_override
 Web Filter override settings.
 
+~> This resource is a sub resource for variable `override` of resource `fortimanager_object_webfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_webfilter_profile_antiphish_custompatterns
 Custom username and password regex patterns.
 
+~> This resource is a sub resource for variable `custom_patterns` of resource `fortimanager_object_webfilter_profile_antiphish`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_profile_antiphish_custompatterns" "trname" {
+  category   = "username"
+  pattern    = "tset"
+  profile    = fortimanager_object_webfilter_profile.trname5.name
+  depends_on = [fortimanager_object_webfilter_profile.trname5]
+}
+
+resource "fortimanager_object_webfilter_profile" "trname5" {
+  name = "terr-webfilter-profile5"
+}
+```
+
 ## Argument Reference
 
 

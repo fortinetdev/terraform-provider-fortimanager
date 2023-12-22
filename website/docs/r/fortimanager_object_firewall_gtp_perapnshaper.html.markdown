@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_gtp_perapnshaper
 Per APN shaper.
 
+~> This resource is a sub resource for variable `per_apn_shaper` of resource `fortimanager_object_firewall_gtp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

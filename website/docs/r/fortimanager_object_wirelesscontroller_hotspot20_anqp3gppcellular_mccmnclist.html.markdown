@@ -9,6 +9,24 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular_mccmnclist
 Mobile Country Code and Mobile Network Code configuration.
 
+~> This resource is a sub resource for variable `mcc_mnc_list` of resource `fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular_mccmnclist" "trname" {
+  anqp_3gpp_cellular = fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular.trname.name
+  fosid              = 5
+  depends_on         = [fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular" "trname" {
+  name = "terr-wictl-hot20-anqp-3gpp-cellular"
+}
+```
+
 ## Argument Reference
 
 

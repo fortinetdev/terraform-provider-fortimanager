@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_gtp_policyv2
 Apply allow or deny action to each GTPv2-c packet.
 
+~> This resource is a sub resource for variable `policy_v2` of resource `fortimanager_object_firewall_gtp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

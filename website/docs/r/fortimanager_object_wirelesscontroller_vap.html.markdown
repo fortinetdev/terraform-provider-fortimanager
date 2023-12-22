@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_wirelesscontroller_vap
 Configure Virtual Access Points (VAPs).
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_wirelesscontroller_vap_dynamic_mapping`
+`mac_filter_list`: `fortimanager_object_wirelesscontroller_vap_macfilterlist`
+`mpsk_key`: `fortimanager_object_wirelesscontroller_vap_mpskkey`
+`portal_message_overrides`: `fortimanager_object_wirelesscontroller_vap_portalmessageoverrides`
+`vlan_name`: `fortimanager_object_wirelesscontroller_vap_vlanname`
+`vlan_pool`: `fortimanager_object_wirelesscontroller_vap_vlanpool`
+
+
+
 ## Example Usage
 
 ```hcl

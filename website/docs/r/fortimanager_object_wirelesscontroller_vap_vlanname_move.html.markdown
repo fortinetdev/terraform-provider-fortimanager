@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_wirelesscontroller_vap_vlanname_move
 Table for mapping VLAN name to VLAN ID.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_vap_vlanname_move" "trname" {
+  vlan_name  = fortimanager_object_wirelesscontroller_vap_vlanname.trname2.name
+  target     = fortimanager_object_wirelesscontroller_vap_vlanname.trname.name
+  option     = "before"
+  vap        = fortimanager_object_wirelesscontroller_vap.trname.name
+  depends_on = [fortimanager_object_wirelesscontroller_vap_vlanname.trname2, fortimanager_object_wirelesscontroller_vap_vlanname.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_vap_vlanname" "trname2" {
+  name       = "terr-vlanname2"
+  vap        = fortimanager_object_wirelesscontroller_vap.trname.name
+  depends_on = [fortimanager_object_wirelesscontroller_vap.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_vap_vlanname" "trname" {
+  name       = "terr-vlanname1"
+  vap        = fortimanager_object_wirelesscontroller_vap.trname.name
+  depends_on = [fortimanager_object_wirelesscontroller_vap.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_vap" "trname" {
+  name = "terr-wictl-vap5"
+}
+```
+
 ## Argument Reference
 
 

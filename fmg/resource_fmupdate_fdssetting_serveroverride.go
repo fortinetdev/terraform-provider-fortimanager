@@ -198,7 +198,9 @@ func flattenFmupdateFdsSettingServerOverrideServlistFfsa(v interface{}, d *schem
 			tmp["service_type"] = fortiAPISubPartPatch(v, "FmupdateFdsSettingServerOverride-Servlist-ServiceType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -319,7 +321,9 @@ func expandFmupdateFdsSettingServerOverrideServlistFfsa(d *schema.ResourceData, 
 			tmp["service-type"], _ = expandFmupdateFdsSettingServerOverrideServlistServiceTypeFfsa(d, i["service_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

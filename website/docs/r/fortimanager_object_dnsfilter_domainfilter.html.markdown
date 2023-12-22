@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_dnsfilter_domainfilter
 Configure DNS domain filters.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_dnsfilter_domainfilter_entries`
+
+
+
 ## Example Usage
 
 ```hcl

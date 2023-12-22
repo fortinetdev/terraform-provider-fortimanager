@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_autodelete_quarantinefilesautodeletion
 Automatic deletion policy for quarantined files.
 
+~> This resource is a sub resource for variable `quarantine_files_auto_deletion` of resource `fortimanager_system_autodelete`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

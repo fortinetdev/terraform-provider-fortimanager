@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_virtualpatch_profile_exemption
 Exempt devices or rules.
 
+~> This resource is a sub resource for variable `exemption` of resource `fortimanager_object_virtualpatch_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

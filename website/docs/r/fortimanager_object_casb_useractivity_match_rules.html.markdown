@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_casb_useractivity_match_rules
 CASB user activity rules.
 
+~> This resource is a sub resource for variable `rules` of resource `fortimanager_object_casb_useractivity_match`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

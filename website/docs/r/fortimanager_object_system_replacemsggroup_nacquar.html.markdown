@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_replacemsggroup_nacquar
 Replacement message table entries.
 
+~> This resource is a sub resource for variable `nac_quar` of resource `fortimanager_object_system_replacemsggroup`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,13 @@ description: |-
 # fortimanager_system_log_settings
 Log settings.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rolling_analyzer`: `fortimanager_system_log_settings_rollinganalyzer`
+`rolling_local`: `fortimanager_system_log_settings_rollinglocal`
+`rolling_regular`: `fortimanager_system_log_settings_rollingregular`
+
+
+
 ## Example Usage
 
 ```hcl

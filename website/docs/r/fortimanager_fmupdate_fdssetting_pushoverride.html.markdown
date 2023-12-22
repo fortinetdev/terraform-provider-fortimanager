@@ -9,6 +9,10 @@ description: |-
 # fortimanager_fmupdate_fdssetting_pushoverride
 Enable/disable push updates, and override the default IP address and port used by FortiGuard to send antivirus and IPS push messages for clients.
 
+~> This resource is a sub resource for variable `push_override` of resource `fortimanager_fmupdate_fdssetting`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

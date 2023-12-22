@@ -302,7 +302,9 @@ func flattenObjectSpamfilterBwlEntries(v interface{}, d *schema.ResourceData, pr
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectSpamfilterBwl-Entries-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -491,7 +493,9 @@ func expandObjectSpamfilterBwlEntries(d *schema.ResourceData, v interface{}, pre
 			tmp["type"], _ = expandObjectSpamfilterBwlEntriesType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

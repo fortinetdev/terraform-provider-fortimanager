@@ -63,6 +63,7 @@ func resourceSystemTemplate() *schema.Resource {
 			"oid": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
+				Computed: true,
 			},
 			"scopemember": &schema.Schema{
 				Type:     schema.TypeList,
@@ -250,7 +251,9 @@ func flattenSystemTemplateScopeMember(v interface{}, d *schema.ResourceData, pre
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SystemTemplate-ScopeMember-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -390,7 +393,9 @@ func expandSystemTemplateScopeMember(d *schema.ResourceData, v interface{}, pre 
 			tmp["vdom"], _ = expandSystemTemplateScopeMemberVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

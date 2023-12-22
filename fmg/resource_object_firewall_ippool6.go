@@ -304,7 +304,9 @@ func flattenObjectFirewallIppool6DynamicMapping(v interface{}, d *schema.Resourc
 			tmp["startip"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool6-DynamicMapping-Startip")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -343,7 +345,9 @@ func flattenObjectFirewallIppool6DynamicMappingScope(v interface{}, d *schema.Re
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectFirewallIppool6DynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -556,7 +560,9 @@ func expandObjectFirewallIppool6DynamicMapping(d *schema.ResourceData, v interfa
 			tmp["startip"], _ = expandObjectFirewallIppool6DynamicMappingStartip(d, i["startip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -588,7 +594,9 @@ func expandObjectFirewallIppool6DynamicMappingScope(d *schema.ResourceData, v in
 			tmp["vdom"], _ = expandObjectFirewallIppool6DynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

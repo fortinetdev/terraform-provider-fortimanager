@@ -9,6 +9,21 @@ description: |-
 # fortimanager_object_firewall_shapingprofile
 Configure shaping profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`shaping_entries`: `fortimanager_object_firewall_shapingprofile_shapingentries`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_shapingprofile" "trname" {
+  comment      = "This is a Terraform example"
+  profile_name = "tsst"
+  type         = "queuing"
+}
+```
+
 ## Argument Reference
 
 

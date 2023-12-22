@@ -338,7 +338,9 @@ func flattenObjectCasbUserActivityControlOptionsOperations2edl(v interface{}, d 
 			tmp["values"] = fortiAPISubPartPatch(v, "ObjectCasbUserActivityControlOptions-Operations-Values")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -508,7 +510,9 @@ func expandObjectCasbUserActivityControlOptionsOperations2edl(d *schema.Resource
 			tmp["values"], _ = expandObjectCasbUserActivityControlOptionsOperationsValues2edl(d, i["values"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

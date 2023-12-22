@@ -28,6 +28,7 @@ type Config struct {
 
 	LogSession    bool
 	Session       string
+	CleanSession  bool
 	Token         string
 	FMGCloudToken string
 }
@@ -55,7 +56,7 @@ func (c *Config) CreateClient() (interface{}, error) {
 func createFMGClient(fClient *FortiClient, c *Config) error {
 	config := &tls.Config{}
 
-	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.FMGCloudToken, c.FMGType, c.LogSession)
+	auth := auth.NewAuth(c.Hostname, c.User, c.Passwd, c.CABundle, c.Session, c.Token, c.FMGCloudToken, c.FMGType, c.LogSession, c.CleanSession)
 
 	if auth.Hostname == "" {
 		_, err := auth.GetEnvHostname()

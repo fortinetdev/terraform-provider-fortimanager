@@ -262,7 +262,9 @@ func flattenObjectSystemSdnConnectorRouteTableRoute2edl(v interface{}, d *schema
 			tmp["next_hop"] = fortiAPISubPartPatch(v, "ObjectSystemSdnConnectorRouteTable-Route-NextHop")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -388,7 +390,9 @@ func expandObjectSystemSdnConnectorRouteTableRoute2edl(d *schema.ResourceData, v
 			tmp["next-hop"], _ = expandObjectSystemSdnConnectorRouteTableRouteNextHop2edl(d, i["next_hop"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

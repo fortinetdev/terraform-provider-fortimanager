@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_switchcontroller_macpolicy
 Configure MAC policy to be applied on the managed FortiSwitch devices through NAC device.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_switchcontroller_macpolicy" "trname" {
+  name        = "terr-macpolicy"
+  vlan        = "1-A1"
+  description = "This is a Terraform example"
+}
+```
+
 ## Argument Reference
 
 

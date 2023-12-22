@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_autodelete_logautodeletion
 Automatic deletion policy for device logs.
 
+~> This resource is a sub resource for variable `log_auto_deletion` of resource `fortimanager_system_autodelete`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

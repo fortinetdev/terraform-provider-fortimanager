@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_npu_udptimeoutprofile
 Configure UDP timeout profile.
 
+~> This resource is a sub resource for variable `udp_timeout_profile` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

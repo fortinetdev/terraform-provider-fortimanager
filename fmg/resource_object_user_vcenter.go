@@ -253,7 +253,9 @@ func flattenObjectUserVcenterRule(v interface{}, d *schema.ResourceData, pre str
 			tmp["rule"] = fortiAPISubPartPatch(v, "ObjectUserVcenter-Rule-Rule")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -411,7 +413,9 @@ func expandObjectUserVcenterRule(d *schema.ResourceData, v interface{}, pre stri
 			tmp["rule"], _ = expandObjectUserVcenterRuleRule(d, i["rule"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

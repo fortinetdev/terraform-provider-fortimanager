@@ -285,7 +285,9 @@ func flattenObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPar
 			tmp["val"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethod-AuthParam-Val")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -406,7 +408,9 @@ func expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthPara
 			tmp["val"], _ = expandObjectWirelessControllerHotspot20AnqpNaiRealmNaiListEapMethodAuthParamVal3rdl(d, i["val"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

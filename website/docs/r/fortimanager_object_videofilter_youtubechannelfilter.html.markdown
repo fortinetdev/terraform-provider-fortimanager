@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_videofilter_youtubechannelfilter
 Configure YouTube channel filter.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`entries`: `fortimanager_object_videofilter_youtubechannelfilter_entries`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_videofilter_youtubechannelfilter" "trname" {
+  fosid = 12
+  name  = "terr-youtubechannelfilter"
+  entries {
+    action     = "monitor"
+    channel_id = 23
+    id         = 2
+  }
+}
+```
+
 ## Argument Reference
 
 

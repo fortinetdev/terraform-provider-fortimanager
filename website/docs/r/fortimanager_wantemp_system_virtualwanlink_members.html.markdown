@@ -9,6 +9,10 @@ description: |-
 # fortimanager_wantemp_system_virtualwanlink_members
 FortiGate interfaces added to the virtual-wan-link.
 
+~> This resource is a sub resource for variable `members` of resource `fortimanager_wantemp_system_virtualwanlink`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_apcfgprofile
 Configure AP local configuration profiles.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`command_list`: `fortimanager_object_wirelesscontroller_apcfgprofile_commandlist`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_apcfgprofile" "trname" {
+  command_list {
+    id           = 1
+    name         = "terr-apcfgprofile"
+    type         = "password"
+    passwd_value = ["123"]
+  }
+  comment = "This is a Terraform example"
+  name    = "terr-apcfgprofile"
+}
+```
+
 ## Argument Reference
 
 

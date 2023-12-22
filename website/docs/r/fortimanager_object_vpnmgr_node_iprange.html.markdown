@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_vpnmgr_node_iprange
 ObjectVpnmgr NodeIpRange
 
+~> This resource is a sub resource for variable `ip_range` of resource `fortimanager_object_vpnmgr_node`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_vpnmgr_node_iprange" "trname" {
+  node       = fortimanager_object_vpnmgr_node.trname.fosid
+  end_ip     = "10.160.88.52"
+  fosid      = 1
+  start_ip   = "10.160.88.40"
+  depends_on = [fortimanager_object_vpnmgr_node.trname]
+}
+
+resource "fortimanager_object_vpnmgr_node" "trname" {
+  fosid = 1
+}
+```
+
 ## Argument Reference
 
 

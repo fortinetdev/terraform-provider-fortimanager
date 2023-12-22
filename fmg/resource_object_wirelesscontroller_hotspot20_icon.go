@@ -262,7 +262,9 @@ func flattenObjectWirelessControllerHotspot20IconIconList(v interface{}, d *sche
 			tmp["width"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20Icon-IconList-Width")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -396,7 +398,9 @@ func expandObjectWirelessControllerHotspot20IconIconList(d *schema.ResourceData,
 			tmp["width"], _ = expandObjectWirelessControllerHotspot20IconIconListWidth(d, i["width"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

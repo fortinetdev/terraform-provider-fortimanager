@@ -303,7 +303,9 @@ func flattenObjectWebfilterProfileAntiphishCustomPatterns2edl(v interface{}, d *
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileAntiphish-CustomPatterns-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -368,7 +370,9 @@ func flattenObjectWebfilterProfileAntiphishInspectionEntries2edl(v interface{}, 
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectWebfilterProfileAntiphish-InspectionEntries-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -603,7 +607,9 @@ func expandObjectWebfilterProfileAntiphishCustomPatterns2edl(d *schema.ResourceD
 			tmp["type"], _ = expandObjectWebfilterProfileAntiphishCustomPatternsType2edl(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -660,7 +666,9 @@ func expandObjectWebfilterProfileAntiphishInspectionEntries2edl(d *schema.Resour
 			tmp["name"], _ = expandObjectWebfilterProfileAntiphishInspectionEntriesName2edl(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

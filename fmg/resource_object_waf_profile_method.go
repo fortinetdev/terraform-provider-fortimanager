@@ -272,7 +272,9 @@ func flattenObjectWafProfileMethodMethodPolicy2edl(v interface{}, d *schema.Reso
 			tmp["regex"] = fortiAPISubPartPatch(v, "ObjectWafProfileMethod-MethodPolicy-Regex")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -439,7 +441,9 @@ func expandObjectWafProfileMethodMethodPolicy2edl(d *schema.ResourceData, v inte
 			tmp["regex"], _ = expandObjectWafProfileMethodMethodPolicyRegex2edl(d, i["regex"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

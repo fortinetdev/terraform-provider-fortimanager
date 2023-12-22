@@ -9,6 +9,44 @@ description: |-
 # fortimanager_object_waf_profile_constraint
 WAF HTTP protocol restrictions.
 
+~> This resource is a sub resource for variable `constraint` of resource `fortimanager_object_waf_profile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`content_length`: `fortimanager_object_waf_profile_constraint_contentlength`
+`exception`: `fortimanager_object_waf_profile_constraint_exception`
+`header_length`: `fortimanager_object_waf_profile_constraint_headerlength`
+`hostname`: `fortimanager_object_waf_profile_constraint_hostname`
+`line_length`: `fortimanager_object_waf_profile_constraint_linelength`
+`malformed`: `fortimanager_object_waf_profile_constraint_malformed`
+`max_cookie`: `fortimanager_object_waf_profile_constraint_maxcookie`
+`max_header_line`: `fortimanager_object_waf_profile_constraint_maxheaderline`
+`max_range_segment`: `fortimanager_object_waf_profile_constraint_maxrangesegment`
+`max_url_param`: `fortimanager_object_waf_profile_constraint_maxurlparam`
+`method`: `fortimanager_object_waf_profile_constraint_method`
+`param_length`: `fortimanager_object_waf_profile_constraint_paramlength`
+`url_param_length`: `fortimanager_object_waf_profile_constraint_urlparamlength`
+`version`: `fortimanager_object_waf_profile_constraint_version`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_waf_profile_constraint" "trname" {
+  content_length {
+    action = "allow"
+    length = 120
+    log    = "enable"
+    status = "disable"
+  }
+  profile    = fortimanager_object_waf_profile.trname.name
+  depends_on = [fortimanager_object_waf_profile.trname]
+}
+
+resource "fortimanager_object_waf_profile" "trname" {
+  name = "terr-waf-profile"
+}
+```
+
 ## Argument Reference
 
 

@@ -334,7 +334,9 @@ func flattenObjectWebfilterUrlfilterEntries(v interface{}, d *schema.ResourceDat
 			tmp["web_proxy_profile"] = fortiAPISubPartPatch(v, "ObjectWebfilterUrlfilter-Entries-WebProxyProfile")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -574,7 +576,9 @@ func expandObjectWebfilterUrlfilterEntries(d *schema.ResourceData, v interface{}
 			tmp["web-proxy-profile"], _ = expandObjectWebfilterUrlfilterEntriesWebProxyProfile(d, i["web_proxy_profile"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

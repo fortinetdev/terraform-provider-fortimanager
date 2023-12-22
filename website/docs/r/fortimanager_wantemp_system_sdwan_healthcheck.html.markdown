@@ -9,6 +9,29 @@ description: |-
 # fortimanager_wantemp_system_sdwan_healthcheck
 SD-WAN status checking or health checking. Identify a server on the Internet and determine how SD-WAN verifies that the FortiGate can communicate with it.
 
+~> This resource is a sub resource for variable `health_check` of resource `fortimanager_wantemp_system_sdwan`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`sla`: `fortimanager_wantemp_system_sdwan_healthcheck_sla`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_healthcheck" "trname" {
+  addr_mode  = "ipv4"
+  name       = "healthcheck"
+  wanprof    = fortimanager_wan_template.trname.name
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wan_template" "trname" {
+  name = "terr21"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

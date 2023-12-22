@@ -9,6 +9,31 @@ description: |-
 # fortimanager_object_dnsfilter_profile_ftgddns
 FortiGuard DNS Filter settings.
 
+~> This resource is a sub resource for variable `ftgd_dns` of resource `fortimanager_object_dnsfilter_profile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`filters`: `fortimanager_object_dnsfilter_profile_ftgddns_filters`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dnsfilter_profile_ftgddns" "trname" {
+  options = ["error-allow"]
+  filters {
+    category = 2
+    id       = 1
+    log      = "enable"
+  }
+  profile    = fortimanager_object_dnsfilter_profile.trname.name
+  depends_on = [fortimanager_object_dnsfilter_profile.trname]
+}
+
+resource "fortimanager_object_dnsfilter_profile" "trname" {
+  name = "terr-dnsfilter-profile"
+}
+```
+
 ## Argument Reference
 
 

@@ -124,27 +124,27 @@ provider "fortimanager" {
 
 The following arguments are supported:
 
-* `hostname` - (Optional) The hostname or IP address of FortiManager unit. It must be provided, but it can also be sourced from the `FORTIMANAGER_ACCESS_HOSTNAME` environment variable.
+* `hostname` - (String | Optional) The hostname or IP address of FortiManager unit. It must be provided, but it can also be sourced from the `FORTIMANAGER_ACCESS_HOSTNAME` environment variable.
 
-* `token` - (Optional) The token of FortiManager unit. If omitted, the `FORTIMANAGER_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used.
+* `token` - (String | Optional) The token of FortiManager unit. If omitted, the `FORTIMANAGER_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used.
 
-* `fmg_cloud_token` - (Optional) The access token of FortiManager Cloud. If omitted, the `FORTIMANAGER_CLOUD_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used. Available only when `fmg_type` set to `forticloud`. 
+* `fmg_cloud_token` - (String | Optional) The access token of FortiManager Cloud. If omitted, the `FORTIMANAGER_CLOUD_ACCESS_TOKEN` environment variable will be used. If neither is set, username/password will be used. Available only when `fmg_type` set to `forticloud`. 
 
-* `fmg_type` - (Optional) FortiManager type. Valid values: `on-prem`, `forticloud`. Default is `on-prem`. Set to `forticloud` if using FortiManager Cloud under FortiCloud.
+* `fmg_type` - (String | Optional) FortiManager type. Valid values: `on-prem`, `forticloud`. Default is `on-prem`. Set to `forticloud` if using FortiManager Cloud under FortiCloud.
 
-* `username` - (Optional) FortiManager username if `fmg_type` is `on-prem`, and it is required. FortiCloud API username if `fmg_type` is `forticloud`, and it is optional. It can also be sourced from the `FORTIMANAGER_ACCESS_USERNAME` environment variable.
+* `username` - (String | Optional) FortiManager username if `fmg_type` is `on-prem`, and it is required. FortiCloud API username if `fmg_type` is `forticloud`, and it is optional. It can also be sourced from the `FORTIMANAGER_ACCESS_USERNAME` environment variable.
 
-* `password` - (Optional) FortiManager password if `fmg_type` is `on-prem`, and it is required. FortiCloud API password if `fmg_type` is `forticloud`, and it is optional. It can also be sourced from the `FORTIMANAGER_ACCESS_PASSWORD` environment variable.
+* `password` - (String | Optional) FortiManager password if `fmg_type` is `on-prem`, and it is required. FortiCloud API password if `fmg_type` is `forticloud`, and it is optional. It can also be sourced from the `FORTIMANAGER_ACCESS_PASSWORD` environment variable.
 
-* `insecure` - (Optional) Control whether the Provider to perform insecure SSL requests. If omitted, the `FORTIMANAGER_INSECURE` environment variable is used. If neither is set, default value is `false`.
+* `insecure` - (Bool | Optional) Control whether the Provider to perform insecure SSL requests. If omitted, the `FORTIMANAGER_INSECURE` environment variable is used. If neither is set, default value is `false`.
 
-* `cabundlefile` - (Optional) The path of a custom CA bundle file. You can specify a path to the file, or you can specify it by the `FORTIMANAGER_CA_CABUNDLE` environment variable.
+* `cabundlefile` - (String | Optional) The path of a custom CA bundle file. You can specify a path to the file, or you can specify it by the `FORTIMANAGER_CA_CABUNDLE` environment variable.
 
-* `scopetype` - (Optional) The option is used to set the default scope of application of those resources managed by the provider. Valid values: `adom`, `global`. The default value is `adom`. Each resource can also set its own scope as needed, see the description of each resource for details.
+* `scopetype` - (String | Optional) The option is used to set the default scope of application of those resources managed by the provider. Valid values: `adom`, `global`. The default value is `adom`. Each resource can also set its own scope as needed, see the description of each resource for details.
 
-* `adom` - (Optional) Adom. This value is valid only when the `scopetype` is set to `adom`. The option is used to set the default adom of the resources managed by the provider. The default value is `root`. Each resource can also set its own adom as needed, see the description of each resource for details.
+* `adom` - (String | Optional) Adom. This value is valid only when the `scopetype` is set to `adom`. The option is used to set the default adom of the resources managed by the provider. The default value is `root`. Each resource can also set its own adom as needed, see the description of each resource for details.
 
-* `import_options` - (Optional) This parameter is only used for import in some special cases. When the resource to be imported includes pkg parameter, you need to assign a value to the parameter here, for example:
+* `import_options` - (List | Optional) This parameter is only used for import in some special cases. When the resource to be imported includes pkg parameter, you need to assign a value to the parameter here, for example:
 
     ```hcl
     provider "fortimanager" {
@@ -160,9 +160,11 @@ The following arguments are supported:
     }
     ```
 
-* `logsession` - (Optional) Save the session to a local file. Used to assist fortimanager_exec_workspace_action resource. Valid values: `true`: log to file, `false`: do not log to file. Default is `false`. See `Guides -> To Lock for Restricting Configuration Changes` for details.
+* `logsession` - (Bool | Optional) Save the session to a local file. Used to assist fortimanager_exec_workspace_action resource. Valid values: `true`: log to file, `false`: do not log to file. Default is `false`. See `Guides -> To Lock for Restricting Configuration Changes` for details.
 
-* `presession` - (Optional) The session saved earlier and within the validity period, used to reuse the previous session and assist fortimanager_exec_workspace_action resource. See `Guides -> To Lock for Restricting Configuration Changes` for details. Default is empty.
+* `presession` - (String | Optional) The session saved earlier and within the validity period, used to reuse the previous session and assist fortimanager_exec_workspace_action resource. See `Guides -> To Lock for Restricting Configuration Changes` for details. Default is empty.
+
+* `clean_session` - (Bool | Optional) Whether clean sessions. **Only works on workspace mode set to `disabled`.** If set to `true`, the provider will generate and logout the session for each HTTPS request. If set to `false`, the provider will generate a session for each Terraform operation. But the session will stay exist until it expires. Default is `false`.
 
 
 ## Release

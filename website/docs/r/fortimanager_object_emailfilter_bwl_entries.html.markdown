@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_emailfilter_bwl_entries
 Anti-spam black/white list entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_emailfilter_bwl`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

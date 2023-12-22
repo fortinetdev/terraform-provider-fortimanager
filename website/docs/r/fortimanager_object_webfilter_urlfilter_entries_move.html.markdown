@@ -9,6 +9,40 @@ description: |-
 # fortimanager_object_webfilter_urlfilter_entries_move
 URL filter entries.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_urlfilter_entries_move" "trname" {
+  urlfilter  = fortimanager_object_webfilter_urlfilter.trname.fosid
+  entries    = fortimanager_object_webfilter_urlfilter_entries.trname.fosid
+  target     = fortimanager_object_webfilter_urlfilter_entries.trname2.fosid
+  option     = "before"
+  depends_on = [fortimanager_object_webfilter_urlfilter_entries.trname2, fortimanager_object_webfilter_urlfilter_entries.trname]
+}
+
+resource "fortimanager_object_webfilter_urlfilter_entries" "trname2" {
+  fosid      = 4
+  url        = "www.example.com/path/to/resource?param1=value1&param2=value2"
+  urlfilter  = fortimanager_object_webfilter_urlfilter.trname.fosid
+  depends_on = [fortimanager_object_webfilter_urlfilter.trname]
+}
+
+resource "fortimanager_object_webfilter_urlfilter_entries" "trname" {
+  fosid      = 3
+  url        = "www.example.com/path/to/resource?param1=value1&param3=value3"
+  urlfilter  = fortimanager_object_webfilter_urlfilter.trname.fosid
+  depends_on = [fortimanager_object_webfilter_urlfilter.trname]
+}
+
+resource "fortimanager_object_webfilter_urlfilter" "trname" {
+  comment               = "This is a Terraform example"
+  fosid                 = 1
+  ip_addr_block         = "enable"
+  name                  = "terr-webfilter-urlfilter"
+  one_arm_ips_urlfilter = "disable"
+}
+```
+
 ## Argument Reference
 
 

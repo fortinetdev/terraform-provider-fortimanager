@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_router_prefixlist6_rule
 IPv6 prefix list rule.
 
+~> This resource is a sub resource for variable `rule` of resource `fortimanager_object_router_prefixlist6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_prefixlist6_rule" "trname" {
+  prefix_list6 = fortimanager_object_router_prefixlist6.trname.name
+  action       = "deny"
+  ge           = 12
+  fosid        = 23
+  le           = 20
+  depends_on   = [fortimanager_object_router_prefixlist6.trname]
+}
+
+resource "fortimanager_object_router_prefixlist6" "trname" {
+  name = "terr-router-prefixlist6"
+}
+```
+
 ## Argument Reference
 
 

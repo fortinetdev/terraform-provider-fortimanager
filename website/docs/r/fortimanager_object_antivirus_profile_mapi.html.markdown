@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_antivirus_profile_mapi
 Configure MAPI AntiVirus options.
 
+~> This resource is a sub resource for variable `mapi` of resource `fortimanager_object_antivirus_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_emailfilter_dnsbl_entries
 Spam filter DNSBL and ORBL server.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_emailfilter_dnsbl`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_dnsbl_entries" "trname" {
+  action     = "spam"
+  fosid      = 12
+  status     = "disable"
+  depends_on = [fortimanager_object_emailfilter_dnsbl.trname]
+  dnsbl      = fortimanager_object_emailfilter_dnsbl.trname.fosid
+}
+
+resource "fortimanager_object_emailfilter_dnsbl" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-dnsbl"
+}
+```
+
 ## Argument Reference
 
 

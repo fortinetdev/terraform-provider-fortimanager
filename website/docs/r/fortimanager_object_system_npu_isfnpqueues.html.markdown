@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_isfnpqueues
 Configure queues of switch port connected to NP6 XAUI on ingress path.
 
+~> This resource is a sub resource for variable `isf_np_queues` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_isfnpqueues" "trname" {
+  cos0 = "cos-profile1"
+  cos1 = "cos-profile2"
+}
+```
+
 ## Argument Reference
 
 

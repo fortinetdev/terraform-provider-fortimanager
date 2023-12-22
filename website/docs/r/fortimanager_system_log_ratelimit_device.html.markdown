@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_log_ratelimit_device
 Device log rate limit.
 
+~> This resource is a sub resource for variable `device` of resource `fortimanager_system_log_ratelimit`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

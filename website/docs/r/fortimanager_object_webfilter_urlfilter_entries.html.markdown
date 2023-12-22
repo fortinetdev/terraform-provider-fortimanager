@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_webfilter_urlfilter_entries
 URL filter entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_webfilter_urlfilter`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_webfilter_urlfilter_entries" "trname" {
+  fosid      = 3
+  url        = "www.example.com/path/to/resource?param1=value1&param2=value2"
+  depends_on = [fortimanager_object_webfilter_urlfilter.trname]
+  urlfilter  = fortimanager_object_webfilter_urlfilter.trname.fosid
+}
+
+resource "fortimanager_object_webfilter_urlfilter" "trname" {
+  comment               = "This is a Terraform example"
+  fosid                 = 1
+  ip_addr_block         = "enable"
+  name                  = "terr-webfilter-urlfilter"
+  one_arm_ips_urlfilter = "disable"
+}
+```
+
 ## Argument Reference
 
 

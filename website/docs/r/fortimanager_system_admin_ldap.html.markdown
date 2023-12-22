@@ -9,6 +9,11 @@ description: |-
 # fortimanager_system_admin_ldap
 LDAP server entry configuration.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`adom`: `fortimanager_system_admin_ldap_adom`
+
+
+
 ## Example Usage
 
 ```hcl

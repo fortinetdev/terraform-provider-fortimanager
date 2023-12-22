@@ -9,6 +9,16 @@ description: |-
 # fortimanager_system_hascheduledcheck
 Scheduled HA integrity check.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_hascheduledcheck" "trname" {
+  status    = "enable"
+  week_days = ["sunday"]
+  time      = "12:12:12"
+}
+```
+
 ## Argument Reference
 
 

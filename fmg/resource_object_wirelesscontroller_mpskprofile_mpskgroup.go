@@ -327,7 +327,9 @@ func flattenObjectWirelessControllerMpskProfileMpskGroupMpskKey2edl(v interface{
 			tmp["pmk"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerMpskProfileMpskGroup-MpskKey-Pmk")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -507,7 +509,9 @@ func expandObjectWirelessControllerMpskProfileMpskGroupMpskKey2edl(d *schema.Res
 			tmp["pmk"], _ = expandObjectWirelessControllerMpskProfileMpskGroupMpskKeyPmk2edl(d, i["pmk"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

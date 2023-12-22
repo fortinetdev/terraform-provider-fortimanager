@@ -286,7 +286,9 @@ func flattenObjectApplicationListEntriesParametersMembers3rdl(v interface{}, d *
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectApplicationListEntriesParameters-Members-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -407,7 +409,9 @@ func expandObjectApplicationListEntriesParametersMembers3rdl(d *schema.ResourceD
 			tmp["value"], _ = expandObjectApplicationListEntriesParametersMembersValue3rdl(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

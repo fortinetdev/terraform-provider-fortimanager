@@ -9,6 +9,38 @@ description: |-
 # fortimanager_object_system_sdnconnector_externalaccountlist_move
 Move AWS external account list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_sdnconnector_externalaccountlist_move" "trname" {
+  sdn_connector         = fortimanager_object_system_sdnconnector.trname.name
+  external_account_list = fortimanager_object_system_sdnconnector_externalaccountlist.trname3.external_id
+  target                = fortimanager_object_system_sdnconnector_externalaccountlist.trname2.external_id
+  option                = "after"
+  depends_on            = [fortimanager_object_system_sdnconnector_externalaccountlist.trname3, fortimanager_object_system_sdnconnector_externalaccountlist.trname2]
+}
+
+resource "fortimanager_object_system_sdnconnector_externalaccountlist" "trname3" {
+  sdn_connector = fortimanager_object_system_sdnconnector.trname.name
+  external_id   = 13
+  role_arn      = 13
+  depends_on    = [fortimanager_object_system_sdnconnector.trname]
+}
+
+resource "fortimanager_object_system_sdnconnector_externalaccountlist" "trname2" {
+  sdn_connector = fortimanager_object_system_sdnconnector.trname.name
+  external_id   = 14
+  role_arn      = 14
+  depends_on    = [fortimanager_object_system_sdnconnector.trname]
+}
+
+resource "fortimanager_object_system_sdnconnector" "trname" {
+  access_key = "key"
+  region     = "remote"
+  name       = "terr-sdnconnector"
+}
+```
+
 ## Argument Reference
 
 

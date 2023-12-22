@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_admin_user_ipsfilter
 IPS filter.
 
+~> This resource is a sub resource for variable `ips_filter` of resource `fortimanager_system_admin_user`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

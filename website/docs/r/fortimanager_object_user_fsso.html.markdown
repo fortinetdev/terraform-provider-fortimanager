@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_user_fsso
 Configure Fortinet Single Sign On (FSSO) agents.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dynamic_mapping`: `fortimanager_object_user_fsso_dynamic_mapping`
+
+
+
 ## Example Usage
 
 ```hcl

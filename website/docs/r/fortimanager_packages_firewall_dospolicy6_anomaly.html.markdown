@@ -9,6 +9,10 @@ description: |-
 # fortimanager_packages_firewall_dospolicy6_anomaly
 Anomaly name.
 
+~> This resource is a sub resource for variable `anomaly` of resource `fortimanager_packages_firewall_dospolicy6`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

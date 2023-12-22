@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_autodelete_reportautodeletion
 Automatic deletion policy for reports.
 
+~> This resource is a sub resource for variable `report_auto_deletion` of resource `fortimanager_system_autodelete`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Example Usage
 
 ```hcl

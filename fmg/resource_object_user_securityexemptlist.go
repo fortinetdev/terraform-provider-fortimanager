@@ -262,7 +262,9 @@ func flattenObjectUserSecurityExemptListRule(v interface{}, d *schema.ResourceDa
 			tmp["srcaddr"] = fortiAPISubPartPatch(v, "ObjectUserSecurityExemptList-Rule-Srcaddr")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -401,7 +403,9 @@ func expandObjectUserSecurityExemptListRule(d *schema.ResourceData, v interface{
 			tmp["srcaddr"], _ = expandObjectUserSecurityExemptListRuleSrcaddr(d, i["srcaddr"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,29 @@ description: |-
 # fortimanager_object_emailfilter_mheader_entries
 Spam filter mime header content.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_emailfilter_mheader`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_mheader_entries" "trname" {
+  mheader    = fortimanager_object_emailfilter_mheader.trname.fosid
+  action     = "spam"
+  fieldbody  = "body"
+  fieldname  = "name"
+  fosid      = 1
+  depends_on = [fortimanager_object_emailfilter_mheader.trname]
+}
+
+resource "fortimanager_object_emailfilter_mheader" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-mheader"
+}
+```
+
 ## Argument Reference
 
 

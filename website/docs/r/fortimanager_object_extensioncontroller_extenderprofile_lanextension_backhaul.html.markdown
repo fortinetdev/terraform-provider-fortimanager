@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_lanextension_backhaul
 LAN extension backhaul tunnel configuration.
 
+~> This resource is a sub resource for variable `backhaul` of resource `fortimanager_object_extensioncontroller_extenderprofile_lanextension`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_sdnconnector_externalip
 Configure GCP external IP.
 
+~> This resource is a sub resource for variable `external_ip` of resource `fortimanager_object_system_sdnconnector`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

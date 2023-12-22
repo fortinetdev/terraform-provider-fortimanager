@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_firewall_vendormac
 Show vendor and the MAC address they have.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_vendormac" "trname" {
+  fosid      = 23
+  mac_number = 12
+  name       = "demo"
+}
+```
+
 ## Argument Reference
 
 

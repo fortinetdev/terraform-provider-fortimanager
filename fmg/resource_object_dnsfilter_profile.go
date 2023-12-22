@@ -428,7 +428,9 @@ func flattenObjectDnsfilterProfileDnsTranslation(v interface{}, d *schema.Resour
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectDnsfilterProfile-DnsTranslation-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -564,7 +566,9 @@ func flattenObjectDnsfilterProfileFtgdDnsFilters(v interface{}, d *schema.Resour
 			tmp["log"] = fortiAPISubPartPatch(v, "ObjectDnsfilterProfileFtgdDns-Filters-Log")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -921,7 +925,9 @@ func expandObjectDnsfilterProfileDnsTranslation(d *schema.ResourceData, v interf
 			tmp["status"], _ = expandObjectDnsfilterProfileDnsTranslationStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1052,7 +1058,9 @@ func expandObjectDnsfilterProfileFtgdDnsFilters(d *schema.ResourceData, v interf
 			tmp["log"], _ = expandObjectDnsfilterProfileFtgdDnsFiltersLog(d, i["log"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

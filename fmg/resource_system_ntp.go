@@ -240,7 +240,9 @@ func flattenSystemNtpNtpserverSna(v interface{}, d *schema.ResourceData, pre str
 			tmp["server"] = fortiAPISubPartPatch(v, "SystemNtp-Ntpserver-Server")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -402,7 +404,9 @@ func expandSystemNtpNtpserverSna(d *schema.ResourceData, v interface{}, pre stri
 			tmp["server"], _ = expandSystemNtpNtpserverServerSna(d, i["server"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

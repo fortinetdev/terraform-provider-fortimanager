@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification_receiver
 SMS notification receiver list.
 
+~> This resource is a sub resource for variable `receiver` of resource `fortimanager_object_extensioncontroller_extenderprofile_cellular_smsnotification`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

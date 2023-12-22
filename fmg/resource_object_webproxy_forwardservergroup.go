@@ -251,7 +251,9 @@ func flattenObjectWebProxyForwardServerGroupServerList(v interface{}, d *schema.
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectWebProxyForwardServerGroup-ServerList-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -391,7 +393,9 @@ func expandObjectWebProxyForwardServerGroupServerList(d *schema.ResourceData, v 
 			tmp["weight"], _ = expandObjectWebProxyForwardServerGroupServerListWeight(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

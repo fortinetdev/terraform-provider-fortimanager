@@ -271,7 +271,9 @@ func flattenObjectSystemGeoipOverrideIpRange(v interface{}, d *schema.ResourceDa
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectSystemGeoipOverride-IpRange-StartIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -328,7 +330,9 @@ func flattenObjectSystemGeoipOverrideIp6Range(v interface{}, d *schema.ResourceD
 			tmp["start_ip"] = fortiAPISubPartPatch(v, "ObjectSystemGeoipOverride-Ip6Range-StartIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -487,7 +491,9 @@ func expandObjectSystemGeoipOverrideIpRange(d *schema.ResourceData, v interface{
 			tmp["start-ip"], _ = expandObjectSystemGeoipOverrideIpRangeStartIp(d, i["start_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -536,7 +542,9 @@ func expandObjectSystemGeoipOverrideIp6Range(d *schema.ResourceData, v interface
 			tmp["start-ip"], _ = expandObjectSystemGeoipOverrideIp6RangeStartIp(d, i["start_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_voip_profile_msrp
 MSRP.
 
+~> This resource is a sub resource for variable `msrp` of resource `fortimanager_object_voip_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_voip_profile_msrp" "trname" {
+  profile             = fortimanager_object_voip_profile.trname.name
+  max_msg_size        = 12
+  max_msg_size_action = "reset"
+  depends_on          = [fortimanager_object_voip_profile.trname]
+}
+
+resource "fortimanager_object_voip_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

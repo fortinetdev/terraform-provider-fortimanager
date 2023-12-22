@@ -9,6 +9,14 @@ description: |-
 # fortimanager_object_wirelesscontroller_arrpprofile
 Configure WiFi Automatic Radio Resource Provisioning (ARRP) profiles.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_arrpprofile" "trname" {
+  name = "terr-wils-care-profile"
+}
+```
+
 ## Argument Reference
 
 

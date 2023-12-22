@@ -296,7 +296,9 @@ func flattenObjectFirewallMulticastAddressTagging(v interface{}, d *schema.Resou
 			tmp["tags"] = fortiAPISubPartPatch(v, "ObjectFirewallMulticastAddress-Tagging-Tags")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -515,7 +517,9 @@ func expandObjectFirewallMulticastAddressTagging(d *schema.ResourceData, v inter
 			tmp["tags"], _ = expandObjectFirewallMulticastAddressTaggingTags(d, i["tags"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

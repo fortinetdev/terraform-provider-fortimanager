@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_fpanomaly
 NP6Lite anomaly protection (packet drop or send trap to host).
 
+~> This resource is a sub resource for variable `fp_anomaly` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_fpanomaly" "trname" {
+  icmp_csum_err  = "drop"
+  esp_minlen_err = "drop"
+}
+```
+
 ## Argument Reference
 
 

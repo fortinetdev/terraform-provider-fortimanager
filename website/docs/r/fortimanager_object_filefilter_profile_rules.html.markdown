@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_filefilter_profile_rules
 File filter rules.
 
+~> This resource is a sub resource for variable `rules` of resource `fortimanager_object_filefilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

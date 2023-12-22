@@ -9,6 +9,10 @@ description: |-
 # fortimanager_packages_pblock_firewall_policy6
 Configuring policy6 for a policy block.
 
+~> This resource is a sub resource for variable `firewall_policy6` of resource `fortimanager_packages_pblock`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -240,7 +240,9 @@ func flattenObjectDynamicVpntunnelDynamicMapping(v interface{}, d *schema.Resour
 			tmp["local_ipsec"] = fortiAPISubPartPatch(v, "ObjectDynamicVpntunnel-DynamicMapping-LocalIpsec")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -279,7 +281,9 @@ func flattenObjectDynamicVpntunnelDynamicMappingScope(v interface{}, d *schema.R
 			tmp["vdom"] = fortiAPISubPartPatch(v, "ObjectDynamicVpntunnelDynamicMapping-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -400,7 +404,9 @@ func expandObjectDynamicVpntunnelDynamicMapping(d *schema.ResourceData, v interf
 			tmp["local-ipsec"], _ = expandObjectDynamicVpntunnelDynamicMappingLocalIpsec(d, i["local_ipsec"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -432,7 +438,9 @@ func expandObjectDynamicVpntunnelDynamicMappingScope(d *schema.ResourceData, v i
 			tmp["vdom"], _ = expandObjectDynamicVpntunnelDynamicMappingScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

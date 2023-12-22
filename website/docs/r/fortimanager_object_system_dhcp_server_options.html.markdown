@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_dhcp_server_options
 DHCP options.
 
+~> This resource is a sub resource for variable `options` of resource `fortimanager_object_system_dhcp_server`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_dhcp_server_options" "trname" {
+  server     = fortimanager_object_system_dhcp_server.trname3.fosid
+  fosid      = 34
+  ip         = ["10.160.88.32"]
+  type       = "ip"
+  depends_on = [fortimanager_object_system_dhcp_server.trname3]
+}
+
+resource "fortimanager_object_system_dhcp_server" "trname3" {
+  fosid = 4
+}
+```
+
 ## Argument Reference
 
 

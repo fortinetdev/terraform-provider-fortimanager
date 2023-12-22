@@ -1206,7 +1206,9 @@ func flattenObjectFirewallGtpApn(v interface{}, d *schema.ResourceData, pre stri
 			tmp["selection_mode"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-Apn-SelectionMode")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1385,7 +1387,9 @@ func flattenObjectFirewallGtpIeRemovePolicy(v interface{}, d *schema.ResourceDat
 			tmp["sgsn_addr6"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-IeRemovePolicy-SgsnAddr6")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1660,7 +1664,9 @@ func flattenObjectFirewallGtpImsi(v interface{}, d *schema.ResourceData, pre str
 			tmp["selection_mode"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-Imsi-SelectionMode")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1771,7 +1777,9 @@ func flattenObjectFirewallGtpIpPolicy(v interface{}, d *schema.ResourceData, pre
 			tmp["srcaddr6"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-IpPolicy-Srcaddr6")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2555,7 +2563,9 @@ func flattenObjectFirewallGtpNoipPolicy(v interface{}, d *schema.ResourceData, p
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-NoipPolicy-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2634,7 +2644,9 @@ func flattenObjectFirewallGtpPerApnShaper(v interface{}, d *schema.ResourceData,
 			tmp["version"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-PerApnShaper-Version")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2761,7 +2773,9 @@ func flattenObjectFirewallGtpPolicy(v interface{}, d *schema.ResourceData, pre s
 			tmp["uli"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-Policy-Uli")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2914,7 +2928,9 @@ func flattenObjectFirewallGtpPolicyV2(v interface{}, d *schema.ResourceData, pre
 			tmp["uli"] = fortiAPISubPartPatch(v, "ObjectFirewallGtp-PolicyV2-Uli")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4160,7 +4176,9 @@ func expandObjectFirewallGtpApn(d *schema.ResourceData, v interface{}, pre strin
 			tmp["selection-mode"], _ = expandObjectFirewallGtpApnSelectionMode(d, i["selection_mode"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4330,7 +4348,9 @@ func expandObjectFirewallGtpIeRemovePolicy(d *schema.ResourceData, v interface{}
 			tmp["sgsn-addr6"], _ = expandObjectFirewallGtpIeRemovePolicySgsnAddr6(d, i["sgsn_addr6"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4576,7 +4596,9 @@ func expandObjectFirewallGtpImsi(d *schema.ResourceData, v interface{}, pre stri
 			tmp["selection-mode"], _ = expandObjectFirewallGtpImsiSelectionMode(d, i["selection_mode"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4676,7 +4698,9 @@ func expandObjectFirewallGtpIpPolicy(d *schema.ResourceData, v interface{}, pre 
 			tmp["srcaddr6"], _ = expandObjectFirewallGtpIpPolicySrcaddr6(d, i["srcaddr6"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5387,7 +5411,9 @@ func expandObjectFirewallGtpNoipPolicy(d *schema.ResourceData, v interface{}, pr
 			tmp["type"], _ = expandObjectFirewallGtpNoipPolicyType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5457,7 +5483,9 @@ func expandObjectFirewallGtpPerApnShaper(d *schema.ResourceData, v interface{}, 
 			tmp["version"], _ = expandObjectFirewallGtpPerApnShaperVersion(d, i["version"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5565,7 +5593,9 @@ func expandObjectFirewallGtpPolicy(d *schema.ResourceData, v interface{}, pre st
 			tmp["uli"], _ = expandObjectFirewallGtpPolicyUli(d, i["uli"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -5702,7 +5732,9 @@ func expandObjectFirewallGtpPolicyV2(d *schema.ResourceData, v interface{}, pre 
 			tmp["uli"], _ = expandObjectFirewallGtpPolicyV2Uli(d, i["uli"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

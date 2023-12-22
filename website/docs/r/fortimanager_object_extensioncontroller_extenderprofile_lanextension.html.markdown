@@ -9,6 +9,12 @@ description: |-
 # fortimanager_object_extensioncontroller_extenderprofile_lanextension
 FortiExtender lan extension configuration.
 
+~> This resource is a sub resource for variable `lan_extension` of resource `fortimanager_object_extensioncontroller_extenderprofile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`backhaul`: `fortimanager_object_extensioncontroller_extenderprofile_lanextension_backhaul`
+
+
+
 ## Argument Reference
 
 

@@ -272,7 +272,9 @@ func flattenSystemAlertEventAlertDestination(v interface{}, d *schema.ResourceDa
 			tmp["type"] = fortiAPISubPartPatch(v, "SystemAlertEvent-AlertDestination-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -514,7 +516,9 @@ func expandSystemAlertEventAlertDestination(d *schema.ResourceData, v interface{
 			tmp["type"], _ = expandSystemAlertEventAlertDestinationType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

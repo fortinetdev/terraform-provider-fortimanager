@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_proxyaddress_tagging
 Config object tagging.
 
+~> This resource is a sub resource for variable `tagging` of resource `fortimanager_object_firewall_proxyaddress`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_proxyaddress_tagging" "trname" {
+  proxy_address = fortimanager_object_firewall_proxyaddress.trname.name
+  category      = "default"
+  name          = "tag"
+  depends_on    = [fortimanager_object_firewall_proxyaddress.trname]
+}
+
+resource "fortimanager_object_firewall_proxyaddress" "trname" {
+  name = "terr-proxyaddress"
+}
+```
+
 ## Argument Reference
 
 

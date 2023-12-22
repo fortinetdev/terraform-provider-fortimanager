@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_emailfilter_iptrust_entries
 Spam filter trusted IP addresses.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_emailfilter_iptrust`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_emailfilter_iptrust_entries" "trname" {
+  iptrust    = fortimanager_object_emailfilter_iptrust.trname.fosid
+  addr_type  = "ipv4"
+  fosid      = 1
+  ip4_subnet = "32.25.23.0 255.255.255.0"
+  depends_on = [fortimanager_object_emailfilter_iptrust.trname]
+}
+
+resource "fortimanager_object_emailfilter_iptrust" "trname" {
+  comment = "This is a Terraform example"
+  fosid   = 1
+  name    = "terr-emailfilter-iptrust"
+}
+```
+
 ## Argument Reference
 
 

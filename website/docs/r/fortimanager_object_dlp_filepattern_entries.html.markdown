@@ -9,6 +9,27 @@ description: |-
 # fortimanager_object_dlp_filepattern_entries
 Configure file patterns used by DLP blocking.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_dlp_filepattern`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dlp_filepattern_entries" "trname" {
+  filepattern = fortimanager_object_dlp_filepattern.trname2.fosid
+  file_type   = "unknown"
+  filter_type = "pattern"
+  pattern     = "*.bat"
+  depends_on  = [fortimanager_object_dlp_filepattern.trname2]
+}
+
+resource "fortimanager_object_dlp_filepattern" "trname2" {
+  name  = "terr-dlp-filepattern"
+  fosid = 5
+}
+```
+
 ## Argument Reference
 
 

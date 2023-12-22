@@ -158,7 +158,9 @@ func flattenSecurityconsoleReinstallPackageTarget(v interface{}, d *schema.Resou
 			tmp["scope"] = fortiAPISubPartPatch(v, "SecurityconsoleReinstallPackage-Target-Scope")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -201,7 +203,9 @@ func flattenSecurityconsoleReinstallPackageTargetScope(v interface{}, d *schema.
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsoleReinstallPackageTarget-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -314,7 +318,9 @@ func expandSecurityconsoleReinstallPackageTarget(d *schema.ResourceData, v inter
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -350,7 +356,9 @@ func expandSecurityconsoleReinstallPackageTargetScope(d *schema.ResourceData, v 
 			tmp["vdom"], _ = expandSecurityconsoleReinstallPackageTargetScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

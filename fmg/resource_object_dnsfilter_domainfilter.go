@@ -265,7 +265,9 @@ func flattenObjectDnsfilterDomainFilterEntries(v interface{}, d *schema.Resource
 			tmp["type"] = fortiAPISubPartPatch(v, "ObjectDnsfilterDomainFilter-Entries-Type")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -418,7 +420,9 @@ func expandObjectDnsfilterDomainFilterEntries(d *schema.ResourceData, v interfac
 			tmp["type"], _ = expandObjectDnsfilterDomainFilterEntriesType(d, i["type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

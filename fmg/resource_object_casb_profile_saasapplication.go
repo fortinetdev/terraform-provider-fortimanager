@@ -327,7 +327,9 @@ func flattenObjectCasbProfileSaasApplicationAccessRule2edl(v interface{}, d *sch
 			tmp["name"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-AccessRule-Name")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -378,7 +380,9 @@ func flattenObjectCasbProfileSaasApplicationCustomControl2edl(v interface{}, d *
 			tmp["option"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplication-CustomControl-Option")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -421,7 +425,9 @@ func flattenObjectCasbProfileSaasApplicationCustomControlOption2edl(v interface{
 			tmp["user_input"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-Option-UserInput")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -646,7 +652,9 @@ func expandObjectCasbProfileSaasApplicationAccessRule2edl(d *schema.ResourceData
 			tmp["name"], _ = expandObjectCasbProfileSaasApplicationAccessRuleName2edl(d, i["name"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -695,7 +703,9 @@ func expandObjectCasbProfileSaasApplicationCustomControl2edl(d *schema.ResourceD
 			}
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -731,7 +741,9 @@ func expandObjectCasbProfileSaasApplicationCustomControlOption2edl(d *schema.Res
 			tmp["user-input"], _ = expandObjectCasbProfileSaasApplicationCustomControlOptionUserInput2edl(d, i["user_input"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

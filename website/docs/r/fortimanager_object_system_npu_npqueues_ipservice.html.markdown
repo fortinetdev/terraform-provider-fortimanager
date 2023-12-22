@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_system_npu_npqueues_ipservice
 Configure a NP7 QoS IP Service.
 
+~> This resource is a sub resource for variable `ip_service` of resource `fortimanager_object_system_npu_npqueues`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_npqueues_ipservice" "trname" {
+  name  = "terr-ipservice"
+  dport = 23
+  sport = 23
+}
+```
+
 ## Argument Reference
 
 

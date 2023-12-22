@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_dhcp_server_reservedaddress
 Options for the DHCP server to assign IP settings to specific MAC addresses.
 
+~> This resource is a sub resource for variable `reserved_address` of resource `fortimanager_object_system_dhcp_server`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_dhcp_server_reservedaddress" "trname" {
+  server      = fortimanager_object_system_dhcp_server.trname4.fosid
+  description = "This is a Terraform example"
+  fosid       = 34
+  ip          = "10.160.88.34"
+  depends_on  = [fortimanager_object_system_dhcp_server.trname4]
+}
+
+resource "fortimanager_object_system_dhcp_server" "trname4" {
+  fosid = 5
+}
+```
+
 ## Argument Reference
 
 

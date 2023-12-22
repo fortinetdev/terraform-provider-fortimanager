@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wanopt_profile_tcp
 Enable/disable TCP WAN Optimization and configure TCP WAN Optimization features.
 
+~> This resource is a sub resource for variable `tcp` of resource `fortimanager_object_wanopt_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_profile_tcp" "trname" {
+  byte_caching = "enable"
+  port         = 12
+  ssl          = "disable"
+  depends_on   = [fortimanager_object_wanopt_profile.trname5]
+  profile      = fortimanager_object_wanopt_profile.trname5.name
+}
+
+resource "fortimanager_object_wanopt_profile" "trname5" {
+  name = "terr-wanopt-profile5"
+}
+```
+
 ## Argument Reference
 
 

@@ -262,7 +262,9 @@ func flattenObjectSwitchControllerQosIpDscpMapMap(v interface{}, d *schema.Resou
 			tmp["value"] = fortiAPISubPartPatch(v, "ObjectSwitchControllerQosIpDscpMap-Map-Value")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -401,7 +403,9 @@ func expandObjectSwitchControllerQosIpDscpMapMap(d *schema.ResourceData, v inter
 			tmp["value"], _ = expandObjectSwitchControllerQosIpDscpMapMapValue(d, i["value"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

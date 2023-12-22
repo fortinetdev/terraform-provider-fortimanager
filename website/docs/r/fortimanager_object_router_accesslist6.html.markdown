@@ -9,6 +9,23 @@ description: |-
 # fortimanager_object_router_accesslist6
 Configure IPv6 access lists.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`rule`: `fortimanager_object_router_accesslist6_rule`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_router_accesslist6" "trname" {
+  name = "terr-router-accesslist6"
+  rule {
+    id     = 1
+    action = "permit"
+  }
+}
+```
+
 ## Argument Reference
 
 

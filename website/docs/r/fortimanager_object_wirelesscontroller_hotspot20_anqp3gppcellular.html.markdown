@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular
 Configure 3GPP public land mobile network (PLMN).
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`mcc_mnc_list`: `fortimanager_object_wirelesscontroller_hotspot20_anqp3gppcellular_mccmnclist`
+
+
+
 ## Example Usage
 
 ```hcl

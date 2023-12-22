@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile_sslexempt
 Servers to exempt from SSL inspection.
 
+~> This resource is a sub resource for variable `ssl_exempt` of resource `fortimanager_object_firewall_sslsshprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_sslsshprofile_sslexempt" "trname" {
+  ssl_ssh_profile = fortimanager_object_firewall_sslsshprofile.trname.name
+  address         = "FABRIC_DEVICE"
+  fosid           = 4
+  type            = "address"
+  depends_on      = [fortimanager_object_firewall_sslsshprofile.trname]
+}
+
+resource "fortimanager_object_firewall_sslsshprofile" "trname" {
+  name = "terr-sslsshprofile"
+}
+```
+
 ## Argument Reference
 
 

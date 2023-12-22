@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_gtp_messageratelimitv1
 Message rate limiting for GTP version 1.
 
+~> This resource is a sub resource for variable `message_rate_limit_v1` of resource `fortimanager_object_firewall_gtp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_system_dhcp_server_excluderange
 Exclude one or more ranges of IP addresses from being assigned to clients.
 
+~> This resource is a sub resource for variable `exclude_range` of resource `fortimanager_object_system_dhcp_server`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_dhcp_server_excluderange" "trname" {
+  server     = fortimanager_object_system_dhcp_server.trname.fosid
+  end_ip     = "10.160.100.34"
+  fosid      = 11
+  start_ip   = "10.160.88.34"
+  depends_on = [fortimanager_object_system_dhcp_server.trname]
+}
+
+resource "fortimanager_object_system_dhcp_server" "trname" {
+  fosid = 2
+}
+```
+
 ## Argument Reference
 
 

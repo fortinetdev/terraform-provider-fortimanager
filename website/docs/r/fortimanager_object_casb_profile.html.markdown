@@ -9,6 +9,11 @@ description: |-
 # fortimanager_object_casb_profile
 Configure CASB profile.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`saas_application`: `fortimanager_object_casb_profile_saasapplication`
+
+
+
 ## Argument Reference
 
 

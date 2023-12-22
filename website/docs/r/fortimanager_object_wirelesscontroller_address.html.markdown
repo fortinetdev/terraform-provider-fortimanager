@@ -9,6 +9,16 @@ description: |-
 # fortimanager_object_wirelesscontroller_address
 Configure the client with its MAC address.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_address" "trname" {
+  fosid  = 1
+  mac    = "4a:7e:1e:d2:9b:86"
+  policy = "allow"
+}
+```
+
 ## Argument Reference
 
 

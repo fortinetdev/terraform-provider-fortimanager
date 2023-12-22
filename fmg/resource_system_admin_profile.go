@@ -662,7 +662,9 @@ func flattenSystemAdminProfileDatamaskCustomFields(v interface{}, d *schema.Reso
 			tmp["field_type"] = fortiAPISubPartPatch(v, "SystemAdminProfile-DatamaskCustomFields-FieldType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1898,7 +1900,9 @@ func expandSystemAdminProfileDatamaskCustomFields(d *schema.ResourceData, v inte
 			tmp["field-type"], _ = expandSystemAdminProfileDatamaskCustomFieldsFieldType(d, i["field_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

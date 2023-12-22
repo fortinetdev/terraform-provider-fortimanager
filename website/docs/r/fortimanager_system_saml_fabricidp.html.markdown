@@ -9,6 +9,10 @@ description: |-
 # fortimanager_system_saml_fabricidp
 Authorized identity providers.
 
+~> This resource is a sub resource for variable `fabric_idp` of resource `fortimanager_system_saml`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

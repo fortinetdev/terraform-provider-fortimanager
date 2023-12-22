@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_wirelesscontroller_wtpprofile_lbs
 Set various location based service (LBS) options.
 
+~> This resource is a sub resource for variable `lbs` of resource `fortimanager_object_wirelesscontroller_wtpprofile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_wtpprofile_lbs" "trname" {
+  aeroscout            = "disable"
+  aeroscout_ap_mac     = "bssid"
+  aeroscout_mmu_report = "disable"
+  wtp_profile          = fortimanager_object_wirelesscontroller_wtpprofile.trname5.name
+  depends_on           = [fortimanager_object_wirelesscontroller_wtpprofile.trname5]
+}
+
+resource "fortimanager_object_wirelesscontroller_wtpprofile" "trname5" {
+  name = "terr-wtpprofile"
+}
+```
+
 ## Argument Reference
 
 

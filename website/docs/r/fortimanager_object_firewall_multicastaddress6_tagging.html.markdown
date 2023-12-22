@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_firewall_multicastaddress6_tagging
 Config object tagging.
 
+~> This resource is a sub resource for variable `tagging` of resource `fortimanager_object_firewall_multicastaddress6`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_multicastaddress6_tagging" "trname" {
+  multicast_address6 = fortimanager_object_firewall_multicastaddress6.trname.name
+  name               = "terr-tagging"
+  category           = "default"
+  depends_on         = [fortimanager_object_firewall_multicastaddress6.trname]
+}
+
+resource "fortimanager_object_firewall_multicastaddress6" "trname" {
+  name = "terr-multicastaddress6"
+}
+```
+
 ## Argument Reference
 
 

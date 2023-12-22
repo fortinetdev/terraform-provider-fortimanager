@@ -249,7 +249,9 @@ func flattenObjectRouterCommunityListRule(v interface{}, d *schema.ResourceData,
 			tmp["regexp"] = fortiAPISubPartPatch(v, "ObjectRouterCommunityList-Rule-Regexp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -379,7 +381,9 @@ func expandObjectRouterCommunityListRule(d *schema.ResourceData, v interface{}, 
 			tmp["regexp"], _ = expandObjectRouterCommunityListRuleRegexp(d, i["regexp"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

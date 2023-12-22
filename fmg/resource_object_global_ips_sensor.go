@@ -697,7 +697,9 @@ func flattenObjectGlobalIpsSensorEntries(v interface{}, d *schema.ResourceData, 
 			tmp["vuln_type"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Entries-VulnType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -762,7 +764,9 @@ func flattenObjectGlobalIpsSensorEntriesExemptIp(v interface{}, d *schema.Resour
 			tmp["src_ip"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensorEntries-ExemptIp-SrcIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -997,7 +1001,9 @@ func flattenObjectGlobalIpsSensorFilter(v interface{}, d *schema.ResourceData, p
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Filter-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1158,7 +1164,9 @@ func flattenObjectGlobalIpsSensorOverride(v interface{}, d *schema.ResourceData,
 			tmp["status"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensor-Override-Status")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1207,7 +1215,9 @@ func flattenObjectGlobalIpsSensorOverrideExemptIp(v interface{}, d *schema.Resou
 			tmp["src_ip"] = fortiAPISubPartPatch(v, "ObjectGlobalIpsSensorOverride-ExemptIp-SrcIp")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1587,7 +1597,9 @@ func expandObjectGlobalIpsSensorEntries(d *schema.ResourceData, v interface{}, p
 			tmp["vuln-type"], _ = expandObjectGlobalIpsSensorEntriesVulnType(d, i["vuln_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1644,7 +1656,9 @@ func expandObjectGlobalIpsSensorEntriesExemptIp(d *schema.ResourceData, v interf
 			tmp["src-ip"], _ = expandObjectGlobalIpsSensorEntriesExemptIpSrcIp(d, i["src_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1856,7 +1870,9 @@ func expandObjectGlobalIpsSensorFilter(d *schema.ResourceData, v interface{}, pr
 			tmp["status"], _ = expandObjectGlobalIpsSensorFilterStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2008,7 +2024,9 @@ func expandObjectGlobalIpsSensorOverride(d *schema.ResourceData, v interface{}, 
 			tmp["status"], _ = expandObjectGlobalIpsSensorOverrideStatus(d, i["status"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2049,7 +2067,9 @@ func expandObjectGlobalIpsSensorOverrideExemptIp(d *schema.ResourceData, v inter
 			tmp["src-ip"], _ = expandObjectGlobalIpsSensorOverrideExemptIpSrcIp(d, i["src_ip"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

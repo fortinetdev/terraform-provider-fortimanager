@@ -9,6 +9,40 @@ description: |-
 # fortimanager_wantemp_system_sdwan_members_move
 FortiGate interfaces added to the SD-WAN.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_wantemp_system_sdwan_members_move" "trname" {
+  wanprof    = fortimanager_wan_template.trname.name
+  members    = fortimanager_wantemp_system_sdwan_members.trname.seq_num
+  target     = fortimanager_wantemp_system_sdwan_members.trname2.seq_num
+  option     = "after"
+  depends_on = [fortimanager_wantemp_system_sdwan_members.trname2, fortimanager_wantemp_system_sdwan_members.trname]
+}
+
+resource "fortimanager_wantemp_system_sdwan_members" "trname2" {
+  wanprof    = fortimanager_wan_template.trname.name
+  cost       = 2
+  interface  = "port2"
+  seq_num    = 3
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wantemp_system_sdwan_members" "trname" {
+  wanprof    = fortimanager_wan_template.trname.name
+  cost       = 1
+  interface  = "port7"
+  seq_num    = 2
+  depends_on = [fortimanager_wan_template.trname]
+}
+
+resource "fortimanager_wan_template" "trname" {
+  name = "terr3"
+  adom = "root"
+  type = "wanprof"
+}
+```
+
 ## Argument Reference
 
 

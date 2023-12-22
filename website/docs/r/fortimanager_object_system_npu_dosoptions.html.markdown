@@ -9,6 +9,19 @@ description: |-
 # fortimanager_object_system_npu_dosoptions
 NPU DoS configurations.
 
+~> This resource is a sub resource for variable `dos_options` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_system_npu_dosoptions" "trname" {
+  npu_dos_meter_mode    = "global"
+  npu_dos_synproxy_mode = "synack2ack"
+}
+```
+
 ## Argument Reference
 
 

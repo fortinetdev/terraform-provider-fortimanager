@@ -9,6 +9,17 @@ description: |-
 # fortimanager_object_user_flexvm
 ObjectUser Flexvm
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_user_flexvm" "trname" {
+  name     = "terr-flexvm"
+  config   = "config"
+  folder   = "myfolder"
+  password = "psw"
+}
+```
+
 ## Argument Reference
 
 

@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_gtp_ippolicy
 IP policy.
 
+~> This resource is a sub resource for variable `ip_policy` of resource `fortimanager_object_firewall_gtp`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

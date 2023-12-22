@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_sdnconnector_routetable_route
 Configure Azure route.
 
+~> This resource is a sub resource for variable `route` of resource `fortimanager_object_system_sdnconnector_routetable`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

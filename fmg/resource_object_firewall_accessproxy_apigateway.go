@@ -373,10 +373,19 @@ func resourceObjectFirewallAccessProxyApiGatewayCreate(d *schema.ResourceData, m
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGateway resource while getting object: %v", err)
 	}
 
-	_, err = c.CreateObjectFirewallAccessProxyApiGateway(obj, paradict)
+	v, err := c.CreateObjectFirewallAccessProxyApiGateway(obj, paradict)
 
 	if err != nil {
 		return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGateway resource: %v", err)
+	}
+
+	if v != nil && v["id"] != nil {
+		if vidn, ok := v["id"].(float64); ok {
+			d.SetId(strconv.Itoa(int(vidn)))
+			return resourceObjectFirewallAccessProxyApiGatewayRead(d, m)
+		} else {
+			return fmt.Errorf("Error creating ObjectFirewallAccessProxyApiGateway resource: %v", err)
+		}
 	}
 
 	d.SetId(strconv.Itoa(getIntKey(d, "fosid")))
@@ -764,7 +773,9 @@ func flattenObjectFirewallAccessProxyApiGatewayRealservers2edl(v interface{}, d 
 			tmp["weight"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyApiGateway-Realservers-Weight")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -905,7 +916,9 @@ func flattenObjectFirewallAccessProxyApiGatewaySslCipherSuites2edl(v interface{}
 			tmp["versions"] = fortiAPISubPartPatch(v, "ObjectFirewallAccessProxyApiGateway-SslCipherSuites-Versions")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1543,7 +1556,9 @@ func expandObjectFirewallAccessProxyApiGatewayRealservers2edl(d *schema.Resource
 			tmp["weight"], _ = expandObjectFirewallAccessProxyApiGatewayRealserversWeight2edl(d, i["weight"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1676,7 +1691,9 @@ func expandObjectFirewallAccessProxyApiGatewaySslCipherSuites2edl(d *schema.Reso
 			tmp["versions"], _ = expandObjectFirewallAccessProxyApiGatewaySslCipherSuitesVersions2edl(d, i["versions"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

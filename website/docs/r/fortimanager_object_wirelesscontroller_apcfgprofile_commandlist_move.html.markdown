@@ -9,6 +9,34 @@ description: |-
 # fortimanager_object_wirelesscontroller_apcfgprofile_commandlist_move
 AP local configuration command list.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_apcfgprofile_commandlist_move" "trname" {
+  apcfg_profile = fortimanager_object_wirelesscontroller_apcfgprofile.trname.name
+  command_list  = 23
+  target        = 24
+  option        = "before"
+  depends_on    = [fortimanager_object_wirelesscontroller_apcfgprofile_commandlist.trname2, fortimanager_object_wirelesscontroller_apcfgprofile_commandlist.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_apcfgprofile_commandlist" "trname2" {
+  apcfg_profile = fortimanager_object_wirelesscontroller_apcfgprofile.trname.name
+  fosid         = 24
+  depends_on    = [fortimanager_object_wirelesscontroller_apcfgprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_apcfgprofile_commandlist" "trname" {
+  apcfg_profile = fortimanager_object_wirelesscontroller_apcfgprofile.trname.name
+  fosid         = 23
+  depends_on    = [fortimanager_object_wirelesscontroller_apcfgprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_apcfgprofile" "trname" {
+  name = "terr-apcfgprofile"
+}
+```
+
 ## Argument Reference
 
 

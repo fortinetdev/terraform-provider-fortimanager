@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_firewall_profileprotocoloptions_mapi
 Configure MAPI protocol options.
 
+~> This resource is a sub resource for variable `mapi` of resource `fortimanager_object_firewall_profileprotocoloptions`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_firewall_profileprotocoloptions_mapi" "trname" {
+  profile_protocol_options = fortimanager_object_firewall_profileprotocoloptions.trname.name
+  options                  = ["fragmail"]
+  oversize_limit           = 200
+  ports                    = [123, 124]
+  depends_on               = [fortimanager_object_firewall_profileprotocoloptions.trname]
+}
+
+resource "fortimanager_object_firewall_profileprotocoloptions" "trname" {
+  name = "terr-profileprotocoloptions"
+}
+```
+
 ## Argument Reference
 
 

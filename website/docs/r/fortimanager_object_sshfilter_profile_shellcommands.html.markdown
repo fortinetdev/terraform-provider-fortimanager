@@ -9,6 +9,26 @@ description: |-
 # fortimanager_object_sshfilter_profile_shellcommands
 SSH command filter.
 
+~> This resource is a sub resource for variable `shell_commands` of resource `fortimanager_object_sshfilter_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_sshfilter_profile_shellcommands" "trname" {
+  profile    = fortimanager_object_sshfilter_profile.trname.name
+  fosid      = 1
+  log        = "enable"
+  alert      = "enable"
+  depends_on = [fortimanager_object_sshfilter_profile.trname]
+}
+
+resource "fortimanager_object_sshfilter_profile" "trname" {
+  name = "terr-sshfilter-profile"
+}
+```
+
 ## Argument Reference
 
 

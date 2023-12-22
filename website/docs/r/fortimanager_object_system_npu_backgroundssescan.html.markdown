@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_system_npu_backgroundssescan
 Configure driver background scan for SSE.
 
+~> This resource is a sub resource for variable `background_sse_scan` of resource `fortimanager_object_system_npu`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

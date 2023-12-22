@@ -9,6 +9,33 @@ description: |-
 # fortimanager_object_videofilter_profile_fortiguardcategory_filters_move
 Move VideoFilter FortiGuard category.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_object_videofilter_profile_fortiguardcategory_filters_move" "trname" {
+  profile = fortimanager_object_videofilter_profile.trname.name
+  filters = fortimanager_object_videofilter_profile_fortiguardcategory_filters.trname.fosid
+  target  = fortimanager_object_videofilter_profile_fortiguardcategory_filters.trname2.fosid
+  option  = "before"
+}
+
+resource "fortimanager_object_videofilter_profile_fortiguardcategory_filters" "trname2" {
+  profile    = fortimanager_object_videofilter_profile.trname.name
+  fosid      = 2
+  depends_on = [fortimanager_object_videofilter_profile.trname]
+}
+
+resource "fortimanager_object_videofilter_profile_fortiguardcategory_filters" "trname" {
+  profile    = fortimanager_object_videofilter_profile.trname.name
+  fosid      = 1
+  depends_on = [fortimanager_object_videofilter_profile.trname]
+}
+
+resource "fortimanager_object_videofilter_profile" "trname" {
+  name = "terr-profile"
+}
+```
+
 ## Argument Reference
 
 

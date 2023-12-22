@@ -1307,7 +1307,9 @@ func flattenObjectWafProfileConstraintException(v interface{}, d *schema.Resourc
 			tmp["version"] = fortiAPISubPartPatch(v, "ObjectWafProfileConstraint-Exception-Version")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2146,7 +2148,9 @@ func flattenObjectWafProfileMethodMethodPolicy(v interface{}, d *schema.Resource
 			tmp["regex"] = fortiAPISubPartPatch(v, "ObjectWafProfileMethod-MethodPolicy-Regex")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2301,7 +2305,9 @@ func flattenObjectWafProfileSignatureCustomSignature(v interface{}, d *schema.Re
 			tmp["target"] = fortiAPISubPartPatch(v, "ObjectWafProfileSignature-CustomSignature-Target")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2466,7 +2472,9 @@ func flattenObjectWafProfileUrlAccess(v interface{}, d *schema.ResourceData, pre
 			tmp["severity"] = fortiAPISubPartPatch(v, "ObjectWafProfile-UrlAccess-Severity")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -2523,7 +2531,9 @@ func flattenObjectWafProfileUrlAccessAccessPattern(v interface{}, d *schema.Reso
 			tmp["srcaddr"] = fortiAPISubPartPatch(v, "ObjectWafProfileUrlAccess-AccessPattern-Srcaddr")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3102,7 +3112,9 @@ func expandObjectWafProfileConstraintException(d *schema.ResourceData, v interfa
 			tmp["version"], _ = expandObjectWafProfileConstraintExceptionVersion(d, i["version"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -3888,7 +3900,9 @@ func expandObjectWafProfileMethodMethodPolicy(d *schema.ResourceData, v interfac
 			tmp["regex"], _ = expandObjectWafProfileMethodMethodPolicyRegex(d, i["regex"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4035,7 +4049,9 @@ func expandObjectWafProfileSignatureCustomSignature(d *schema.ResourceData, v in
 			tmp["target"], _ = expandObjectWafProfileSignatureCustomSignatureTarget(d, i["target"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4190,7 +4206,9 @@ func expandObjectWafProfileUrlAccess(d *schema.ResourceData, v interface{}, pre 
 			tmp["severity"], _ = expandObjectWafProfileUrlAccessSeverity(d, i["severity"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -4237,7 +4255,9 @@ func expandObjectWafProfileUrlAccessAccessPattern(d *schema.ResourceData, v inte
 			tmp["srcaddr"], _ = expandObjectWafProfileUrlAccessAccessPatternSrcaddr(d, i["srcaddr"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

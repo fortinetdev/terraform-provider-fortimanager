@@ -378,7 +378,9 @@ func flattenObjectWebProxyProfileHeaders(v interface{}, d *schema.ResourceData, 
 			tmp["protocol"] = fortiAPISubPartPatch(v, "ObjectWebProxyProfile-Headers-Protocol")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -679,7 +681,9 @@ func expandObjectWebProxyProfileHeaders(d *schema.ResourceData, v interface{}, p
 			tmp["protocol"], _ = expandObjectWebProxyProfileHeadersProtocol(d, i["protocol"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

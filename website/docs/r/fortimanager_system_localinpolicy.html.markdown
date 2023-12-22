@@ -9,6 +9,20 @@ description: |-
 # fortimanager_system_localinpolicy
 IPv4 local in policy configuration.
 
+## Example Usage
+
+```hcl
+resource "fortimanager_system_localinpolicy" "trname" {
+  action   = "accept"
+  dport    = 0
+  dst      = ["1.2.3.4", "255.255.255.0"]
+  fosid    = 1
+  intf     = "port5"
+  protocol = "udp"
+  src      = ["4.5.6.6", "255.255.255.0"]
+}
+```
+
 ## Argument Reference
 
 

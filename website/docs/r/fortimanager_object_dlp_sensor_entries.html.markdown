@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_dlp_sensor_entries
 DLP sensor entries.
 
+~> This resource is a sub resource for variable `entries` of resource `fortimanager_object_dlp_sensor`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 

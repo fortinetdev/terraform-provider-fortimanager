@@ -9,6 +9,28 @@ description: |-
 # fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup
 List of multiple PSK groups.
 
+~> This resource is a sub resource for variable `mpsk_group` of resource `fortimanager_object_wirelesscontroller_mpskprofile`. Conflict and overwrite may occur if use both of them.
+The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`mpsk_key`: `fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup_mpskkey`
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wirelesscontroller_mpskprofile_mpskgroup" "trname" {
+  name         = "tst"
+  vlan_id      = 1300
+  vlan_type    = "no-vlan"
+  mpsk_profile = fortimanager_object_wirelesscontroller_mpskprofile.trname.name
+  depends_on   = [fortimanager_object_wirelesscontroller_mpskprofile.trname]
+}
+
+resource "fortimanager_object_wirelesscontroller_mpskprofile" "trname" {
+  name = "terr-wictl-mpsk-profile67"
+}
+```
+
 ## Argument Reference
 
 

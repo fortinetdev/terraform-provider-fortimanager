@@ -274,7 +274,9 @@ func flattenObjectCasbProfileSaasApplicationCustomControlOption3rdl(v interface{
 			tmp["user_input"] = fortiAPISubPartPatch(v, "ObjectCasbProfileSaasApplicationCustomControl-Option-UserInput")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -372,7 +374,9 @@ func expandObjectCasbProfileSaasApplicationCustomControlOption3rdl(d *schema.Res
 			tmp["user-input"], _ = expandObjectCasbProfileSaasApplicationCustomControlOptionUserInput3rdl(d, i["user_input"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

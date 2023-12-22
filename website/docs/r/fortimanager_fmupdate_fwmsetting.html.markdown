@@ -9,6 +9,11 @@ description: |-
 # fortimanager_fmupdate_fwmsetting
 Configure firmware management settings.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`upgrade_timeout`: `fortimanager_fmupdate_fwmsetting_upgradetimeout`
+
+
+
 ## Example Usage
 
 ```hcl
@@ -38,6 +43,8 @@ The following arguments are supported:
 * `log` - Configure log setting for fwm daemon fwm - FWM daemon log fwm_dm - FWM and Deployment service log fwm_dm_json - FWM and Deployment service log with JSON data between FMG-FGT Valid values: `fwm`, `fwm_dm`, `fwm_dm_json`.
 
 * `multiple_steps_interval` - waiting time between multiple steps upgrade (30-180s, default=60)
+* `retry_interval` - waiting time for resending request to device(1-360s, default=60)
+* `retry_max` - max retry times(0-100, default=10)
 * `upgrade_timeout` - Upgrade-Timeout. The structure of `upgrade_timeout` block is documented below.
 
 The `upgrade_timeout` block supports:

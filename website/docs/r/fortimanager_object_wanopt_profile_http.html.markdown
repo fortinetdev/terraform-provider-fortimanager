@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_wanopt_profile_http
 Enable/disable HTTP WAN Optimization and configure HTTP WAN Optimization features.
 
+~> This resource is a sub resource for variable `http` of resource `fortimanager_object_wanopt_profile`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_wanopt_profile_http" "trname" {
+  byte_caching = "enable"
+  log_traffic  = "enable"
+  profile      = fortimanager_object_wanopt_profile.trname3.name
+  depends_on   = [fortimanager_object_wanopt_profile.trname3]
+}
+
+resource "fortimanager_object_wanopt_profile" "trname3" {
+  name = "terr-wanopt-profile3"
+}
+```
+
 ## Argument Reference
 
 

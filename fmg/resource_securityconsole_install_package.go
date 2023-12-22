@@ -178,7 +178,9 @@ func flattenSecurityconsoleInstallPackageScope(v interface{}, d *schema.Resource
 			tmp["vdom"] = fortiAPISubPartPatch(v, "SecurityconsoleInstallPackage-Scope-Vdom")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -342,7 +344,9 @@ func expandSecurityconsoleInstallPackageScope(d *schema.ResourceData, v interfac
 			tmp["vdom"], _ = expandSecurityconsoleInstallPackageScopeVdom(d, i["vdom"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

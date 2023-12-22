@@ -9,6 +9,20 @@ description: |-
 # fortimanager_object_firewall_sslsshprofile
 Configure SSL/SSH protocol options.
 
+~> The following variables have sub resource. Avoid using them together, otherwise conflicts and overwrites may occur.
+`dot`: `fortimanager_object_firewall_sslsshprofile_dot`
+`ftps`: `fortimanager_object_firewall_sslsshprofile_ftps`
+`https`: `fortimanager_object_firewall_sslsshprofile_https`
+`imaps`: `fortimanager_object_firewall_sslsshprofile_imaps`
+`pop3s`: `fortimanager_object_firewall_sslsshprofile_pop3s`
+`smtps`: `fortimanager_object_firewall_sslsshprofile_smtps`
+`ssh`: `fortimanager_object_firewall_sslsshprofile_ssh`
+`ssl`: `fortimanager_object_firewall_sslsshprofile_ssl`
+`ssl_exempt`: `fortimanager_object_firewall_sslsshprofile_sslexempt`
+`ssl_server`: `fortimanager_object_firewall_sslsshprofile_sslserver`
+
+
+
 ## Example Usage
 
 ```hcl

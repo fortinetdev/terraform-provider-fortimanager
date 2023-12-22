@@ -270,7 +270,9 @@ func flattenObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyName(v inter
 			tmp["lang"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20H2QpOsuProvider-FriendlyName-Lang")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -347,7 +349,9 @@ func flattenObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(v
 			tmp["service_id"] = fortiAPISubPartPatch(v, "ObjectWirelessControllerHotspot20H2QpOsuProvider-ServiceDescription-ServiceId")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -514,7 +518,9 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyName(d *schem
 			tmp["lang"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderFriendlyNameLang(d, i["lang"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -583,7 +589,9 @@ func expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescription(d 
 			tmp["service-id"], _ = expandObjectWirelessControllerHotspot20H2QpOsuProviderServiceDescriptionServiceId(d, i["service_id"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}

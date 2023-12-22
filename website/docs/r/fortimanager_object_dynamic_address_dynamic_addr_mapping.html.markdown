@@ -9,6 +9,25 @@ description: |-
 # fortimanager_object_dynamic_address_dynamic_addr_mapping
 ObjectDynamic AddressDynamicAddrMapping
 
+~> This resource is a sub resource for variable `dynamic_addr_mapping` of resource `fortimanager_object_dynamic_address`. Conflict and overwrite may occur if use both of them.
+
+
+
+## Example Usage
+
+```hcl
+resource "fortimanager_object_dynamic_address_dynamic_addr_mapping" "trname" {
+  address    = fortimanager_object_dynamic_address.trname.name
+  addr       = "34.56.1.5"
+  fosid      = 1
+  depends_on = [fortimanager_object_dynamic_address.trname]
+}
+
+resource "fortimanager_object_dynamic_address" "trname" {
+  name = "terr-dynamic-address"
+}
+```
+
 ## Argument Reference
 
 

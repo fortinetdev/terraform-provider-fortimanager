@@ -216,6 +216,11 @@ func resourceFmupdateWebSpamFgdSetting() *schema.Resource {
 					},
 				},
 			},
+			"stat_log": &schema.Schema{
+				Type:     schema.TypeString,
+				Optional: true,
+				Computed: true,
+			},
 			"stat_log_interval": &schema.Schema{
 				Type:     schema.TypeInt,
 				Optional: true,
@@ -531,7 +536,9 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(v interface{}, d
 			tmp["service_type"] = fortiAPISubPartPatch(v, "FmupdateWebSpamFgdSettingServerOverride-Servlist-ServiceType")
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -560,6 +567,10 @@ func flattenFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(v int
 }
 
 func flattenFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
+	return v
+}
+
+func flattenFmupdateWebSpamFgdSettingStatLogFwfa(v interface{}, d *schema.ResourceData, pre string) interface{} {
 	return v
 }
 
@@ -926,6 +937,16 @@ func refreshObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData, o map[string
 		}
 	}
 
+	if err = d.Set("stat_log", flattenFmupdateWebSpamFgdSettingStatLogFwfa(o["stat-log"], d, "stat_log")); err != nil {
+		if vv, ok := fortiAPIPatch(o["stat-log"], "FmupdateWebSpamFgdSetting-StatLog"); ok {
+			if err = d.Set("stat_log", vv); err != nil {
+				return fmt.Errorf("Error reading stat_log: %v", err)
+			}
+		} else {
+			return fmt.Errorf("Error reading stat_log: %v", err)
+		}
+	}
+
 	if err = d.Set("stat_log_interval", flattenFmupdateWebSpamFgdSettingStatLogIntervalFwfa(o["stat-log-interval"], d, "stat_log_interval")); err != nil {
 		if vv, ok := fortiAPIPatch(o["stat-log-interval"], "FmupdateWebSpamFgdSetting-StatLogInterval"); ok {
 			if err = d.Set("stat_log_interval", vv); err != nil {
@@ -1211,7 +1232,9 @@ func expandFmupdateWebSpamFgdSettingServerOverrideServlistFwfa(d *schema.Resourc
 			tmp["service-type"], _ = expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(d, i["service_type"], pre_append)
 		}
 
-		result = append(result, tmp)
+		if len(tmp) > 0 {
+			result = append(result, tmp)
+		}
 
 		con += 1
 	}
@@ -1240,6 +1263,10 @@ func expandFmupdateWebSpamFgdSettingServerOverrideServlistServiceTypeFwfa(d *sch
 }
 
 func expandFmupdateWebSpamFgdSettingServerOverrideStatusFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
+	return v, nil
+}
+
+func expandFmupdateWebSpamFgdSettingStatLogFwfa(d *schema.ResourceData, v interface{}, pre string) (interface{}, error) {
 	return v, nil
 }
 
@@ -1558,6 +1585,15 @@ func getObjectFmupdateWebSpamFgdSetting(d *schema.ResourceData) (*map[string]int
 			return &obj, err
 		} else if t != nil {
 			obj["server-override"] = t
+		}
+	}
+
+	if v, ok := d.GetOk("stat_log"); ok || d.HasChange("stat_log") {
+		t, err := expandFmupdateWebSpamFgdSettingStatLogFwfa(d, v, "stat_log")
+		if err != nil {
+			return &obj, err
+		} else if t != nil {
+			obj["stat-log"] = t
 		}
 	}
 

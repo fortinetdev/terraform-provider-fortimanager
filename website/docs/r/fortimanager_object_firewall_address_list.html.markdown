@@ -9,6 +9,10 @@ description: |-
 # fortimanager_object_firewall_address_list
 IP address list.
 
+~> This resource is a sub resource for variable `list` of resource `fortimanager_object_firewall_address`. Conflict and overwrite may occur if use both of them.
+
+
+
 ## Argument Reference
 
 
